@@ -18,7 +18,6 @@ defmodule UniboExPocWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    live "/purchasing/orders", Purchasing.OrderLive.Index, :index
   end
 
   # GraphQL — 验证无 BFF 架构
