@@ -24,10 +24,40 @@ defmodule UniboExPocWeb.Graphql.OrderFlowTest do
     supplier_id = get_in(create_party_resp, ["data", "createParty", "result", "id"])
     assert is_binary(supplier_id)
 
+    create_product = """
+    mutation CreateProduct($input: CreateProductInput!) {
+      createProduct(input: $input) {
+        result { id }
+        errors { message fields }
+      }
+    }
+    """
+
+    create_product_resp =
+      graphql(conn, create_product, %{
+        "input" => %{
+          "internalName" => "SKU-001",
+          "productName" => "测试产品"
+        }
+      })
+
+    assert [] == get_in(create_product_resp, ["data", "createProduct", "errors"])
+    product_id = get_in(create_product_resp, ["data", "createProduct", "result", "id"])
+    assert is_binary(product_id)
+
     create_order = """
     mutation CreateOrder($input: CreateOrderInput!) {
       createOrder(input: $input) {
-        result { id }
+        result {
+          id
+          status
+          items {
+            id
+            seqId
+            quantity
+            unitPrice
+          }
+        }
         errors { message fields }
       }
     }
@@ -38,13 +68,22 @@ defmodule UniboExPocWeb.Graphql.OrderFlowTest do
         "input" => %{
           "orderName" => "PO-001",
           "supplierId" => supplier_id,
-          "items" => []
+          "items" => [
+            %{
+              "seqId" => 1,
+              "quantity" => "2",
+              "unitPrice" => "10.50",
+              "productId" => product_id
+            }
+          ]
         }
       })
 
     assert [] == get_in(create_order_resp, ["data", "createOrder", "errors"])
     order_id = get_in(create_order_resp, ["data", "createOrder", "result", "id"])
     assert is_binary(order_id)
+    assert "created" == get_in(create_order_resp, ["data", "createOrder", "result", "status"])
+    assert 1 == get_in(create_order_resp, ["data", "createOrder", "result", "items"]) |> length()
 
     list_orders = """
     query {
@@ -108,6 +147,50 @@ defmodule UniboExPocWeb.Graphql.OrderFlowTest do
 
     resp = graphql(conn, mutation)
     assert [_ | _] = resp["errors"]
+  end
+
+  test "GraphQL 创建空行项订单也可成功", %{conn: conn} do
+    create_party = """
+    mutation CreateParty($input: CreatePartyInput!) {
+      createParty(input: $input) {
+        result { id }
+        errors { message fields }
+      }
+    }
+    """
+
+    create_party_resp =
+      graphql(conn, create_party, %{
+        "input" => %{
+          "partyType" => "party_group",
+          "name" => "空行项供应商",
+          "role" => "supplier"
+        }
+      })
+
+    supplier_id = get_in(create_party_resp, ["data", "createParty", "result", "id"])
+
+    mutation = """
+    mutation CreateOrder($input: CreateOrderInput!) {
+      createOrder(input: $input) {
+        result { id status items { id } }
+        errors { message fields }
+      }
+    }
+    """
+
+    resp =
+      graphql(conn, mutation, %{
+        "input" => %{
+          "orderName" => "PO-empty-items",
+          "supplierId" => supplier_id,
+          "items" => []
+        }
+      })
+
+    assert [] == get_in(resp, ["data", "createOrder", "errors"])
+    assert "created" == get_in(resp, ["data", "createOrder", "result", "status"])
+    assert [] == get_in(resp, ["data", "createOrder", "result", "items"])
   end
 
   defp graphql(conn, query, variables \\ %{}) do

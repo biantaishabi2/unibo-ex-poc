@@ -11,7 +11,7 @@ config :unibo_ex_poc, UniboExPoc.Repo,
   hostname: "localhost",
   database: "unibo_ex_poc_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
-  pool_size: System.schedulers_online() * 2
+  pool_size: 5
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.

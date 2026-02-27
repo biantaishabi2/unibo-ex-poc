@@ -41,14 +41,19 @@ defmodule UniboExPoc.Purchasing.Order do
     uuid_primary_key :id
 
     # 对应 OFBiz OrderHeader.orderName
-    attribute :order_name, :string
+    attribute :order_name, :string do
+      public? true
+    end
 
     # 对应 OFBiz OrderHeader.externalId
-    attribute :external_id, :string
+    attribute :external_id, :string do
+      public? true
+    end
 
     # 对应 OFBiz OrderHeader.orderDate
     attribute :order_date, :utc_datetime do
       default &DateTime.utc_now/0
+      public? true
     end
 
     # 对应 OFBiz OrderHeader.statusId — 采购订单状态机
@@ -64,27 +69,32 @@ defmodule UniboExPoc.Purchasing.Order do
       ]
       default :created
       allow_nil? false
+      public? true
     end
 
     # 对应 OFBiz OrderHeader.currencyUom
     attribute :currency, :string do
       default "CNY"
+      public? true
     end
 
     # 对应 OFBiz OrderHeader.grandTotal — Determination: 自动计算
     attribute :grand_total, :decimal do
       default Decimal.new(0)
+      public? true
     end
 
     # 对应 OFBiz OrderHeader.priority
     attribute :priority, :atom do
       constraints one_of: [:low, :normal, :high, :urgent]
       default :normal
+      public? true
     end
 
     # 对应 OFBiz OrderHeader.needsInventoryIssuance
     attribute :needs_inventory_issuance, :boolean do
       default false
+      public? true
     end
 
     create_timestamp :inserted_at
@@ -95,13 +105,18 @@ defmodule UniboExPoc.Purchasing.Order do
     # 对应 OFBiz OrderRole（roleTypeId=BILL_FROM_VENDOR）→ 供应商
     belongs_to :supplier, UniboExPoc.Purchasing.Party do
       allow_nil? false
+      public? true
     end
 
     # 对应 OFBiz OrderRole（roleTypeId=BILL_TO_CUSTOMER）→ 买方
-    belongs_to :buyer, UniboExPoc.Purchasing.Party
+    belongs_to :buyer, UniboExPoc.Purchasing.Party do
+      public? true
+    end
 
     # 聚合根管理的子实体
-    has_many :items, UniboExPoc.Purchasing.OrderItem
+    has_many :items, UniboExPoc.Purchasing.OrderItem do
+      public? true
+    end
   end
 
   actions do
