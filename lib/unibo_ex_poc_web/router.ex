@@ -18,10 +18,18 @@ defmodule UniboExPocWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    live "/purchasing/orders", Purchasing.OrderLive.Index, :index
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", UniboExPocWeb do
-  #   pipe_through :api
-  # end
+  # GraphQL — 验证无 BFF 架构
+  scope "/api" do
+    pipe_through :api
+
+    forward "/graphql", Absinthe.Plug, schema: UniboExPocWeb.Schema
+
+    # 开发环境 GraphiQL 界面
+    forward "/graphiql", Absinthe.Plug.GraphiQL,
+      schema: UniboExPocWeb.Schema,
+      interface: :playground
+  end
 end

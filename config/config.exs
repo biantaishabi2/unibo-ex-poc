@@ -9,6 +9,7 @@ import Config
 
 config :unibo_ex_poc,
   ecto_repos: [UniboExPoc.Repo],
+  ash_domains: [UniboExPoc.Purchasing],
   generators: [timestamp_type: :utc_datetime]
 
 # Configures the endpoint
