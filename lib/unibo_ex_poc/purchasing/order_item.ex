@@ -149,7 +149,21 @@ defmodule UniboExPoc.Purchasing.OrderItem do
 
   # Validation: 取消数量不能超过订购数量
   validations do
+    validate compare(:quantity, greater_than: 0),
+      message: "订购数量必须大于 0"
+
+    validate compare(:unit_price, greater_than: 0),
+      message: "单价必须大于 0"
+
+    validate compare(:cancel_quantity, greater_than_or_equal_to: 0),
+      message: "取消数量不能为负数"
+
     validate compare(:cancel_quantity, less_than_or_equal_to: :quantity),
       message: "取消数量不能超过订购数量"
+  end
+
+  identities do
+    # 同一订单内，行项序号必须唯一
+    identity :order_item_seq_unique, [:order_id, :seq_id], pre_check?: true
   end
 end

@@ -35,34 +35,43 @@ defmodule UniboExPoc.Purchasing.Party do
     attribute :party_type, :atom do
       constraints one_of: [:person, :party_group]
       allow_nil? false
+      public? true
     end
 
     # 对应 OFBiz Party.externalId
-    attribute :external_id, :string
+    attribute :external_id, :string do
+      public? true
+    end
 
     # 对应 OFBiz PartyGroup.groupName / Person.firstName+lastName
     attribute :name, :string do
       allow_nil? false
+      public? true
     end
 
     # 对应 OFBiz Party.description
-    attribute :description, :string
+    attribute :description, :string do
+      public? true
+    end
 
     # 对应 OFBiz Party.statusId
     attribute :status, :atom do
       constraints one_of: [:active, :inactive]
       default :active
+      public? true
     end
 
     # 对应 OFBiz PartyRole.roleTypeId — 采购场景核心角色
     attribute :role, :atom do
       constraints one_of: [:supplier, :buyer, :carrier, :bill_to]
       allow_nil? false
+      public? true
     end
 
     # 对应 OFBiz Party.preferredCurrencyUomId
     attribute :preferred_currency, :string do
       default "CNY"
+      public? true
     end
 
     create_timestamp :inserted_at
