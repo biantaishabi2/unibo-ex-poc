@@ -9,7 +9,7 @@ import Config
 
 config :unibo_ex_poc,
   ecto_repos: [UniboExPoc.Repo],
-  ash_domains: [UniboExPoc.Purchasing, UniboExPoc.PurchasingV2],
+  ash_domains: [UniboExPoc.Purchasing, UniboExPoc.PurchasingV2, UniboExPoc.PurchasingV3],
   generators: [timestamp_type: :utc_datetime]
 
 config :unibo_ex_poc, UniboExPocWeb.Graphql.RuntimeConfig,
