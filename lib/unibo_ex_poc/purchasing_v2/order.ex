@@ -191,7 +191,9 @@ defmodule UniboExPoc.PurchasingV2.Order do
 
   calculations do
     # 定制 calculation：利润率 = (售价 - 成本) / 成本
-    calculate(:margin_rate, :decimal, {__MODULE__.MarginRate, []})
+    calculate :margin_rate, :decimal, {__MODULE__.MarginRate, []} do
+      public?(true)
+    end
   end
 
   policies do
