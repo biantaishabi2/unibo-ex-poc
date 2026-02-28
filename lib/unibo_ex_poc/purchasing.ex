@@ -10,13 +10,13 @@ defmodule UniboExPoc.Purchasing do
 
   graphql do
     # 自动暴露所有 resource 的 queries/mutations
-    authorize? false
+    authorize?(false)
   end
 
   resources do
-    resource UniboExPoc.Purchasing.Party
-    resource UniboExPoc.Purchasing.Product
-    resource UniboExPoc.Purchasing.Order
-    resource UniboExPoc.Purchasing.OrderItem
+    resource(UniboExPoc.Purchasing.Party)
+    resource(UniboExPoc.Purchasing.Product)
+    resource(UniboExPoc.Purchasing.Order)
+    resource(UniboExPoc.Purchasing.OrderItem)
   end
 end

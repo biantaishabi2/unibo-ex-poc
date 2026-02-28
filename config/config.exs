@@ -9,8 +9,13 @@ import Config
 
 config :unibo_ex_poc,
   ecto_repos: [UniboExPoc.Repo],
-  ash_domains: [UniboExPoc.Purchasing],
+  ash_domains: [UniboExPoc.Purchasing, UniboExPoc.PurchasingV2],
   generators: [timestamp_type: :utc_datetime]
+
+config :unibo_ex_poc, UniboExPocWeb.Graphql.RuntimeConfig,
+  source: :default,
+  schema: UniboExPocWeb.Schema,
+  manifest: "priv/unibo/graphql/manifest.json"
 
 # Configures the endpoint
 config :unibo_ex_poc, UniboExPocWeb.Endpoint,

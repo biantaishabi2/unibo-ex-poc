@@ -57,11 +57,18 @@ defmodule UniboExPoc.MixProject do
       {:bandit, "~> 1.5"},
       # Ash 核心
       {:ash, "~> 3.18"},
+      # Policy 求解器（纯 Elixir 实现，避免 NIF 依赖）
+      {:simple_sat, "~> 0.1"},
       {:ash_postgres, "~> 2.6"},
       {:ash_phoenix, "~> 2.3"},
       # GraphQL（验证无 BFF）
       {:ash_graphql, "~> 1.8"},
-      {:absinthe_plug, "~> 1.5"}
+      {:absinthe_plug, "~> 1.5"},
+      # UniBO GraphQL 通用运行时库（来自主仓库 elixir target）
+      {:unibo_graphql_runtime,
+       github: "biantaishabi2/unibo",
+       ref: "c7e4696750d0e6d5936918f8bfeb073bc1b372f4",
+       sparse: "targets/elixir/unibo_graphql_runtime"}
     ]
   end
 

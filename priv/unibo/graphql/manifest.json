@@ -1,0 +1,414 @@
+{
+  "version": "1.0",
+  "domain": "Purchasing",
+  "module_prefix": "UniboExPoc.Purchasing",
+  "auto_register": "all",
+  "fields": [
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_supplier",
+      "entity": "Supplier",
+      "resource": "UniboExPoc.Purchasing.Supplier",
+      "action": "read",
+      "action_type": "read",
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_suppliers",
+      "entity": "Supplier",
+      "resource": "UniboExPoc.Purchasing.Supplier",
+      "action": "read",
+      "action_type": "read",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_supplier",
+      "entity": "Supplier",
+      "resource": "UniboExPoc.Purchasing.Supplier",
+      "action": "create",
+      "action_type": "create",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_supplier",
+      "entity": "Supplier",
+      "resource": "UniboExPoc.Purchasing.Supplier",
+      "action": "update",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "activate_supplier",
+      "entity": "Supplier",
+      "resource": "UniboExPoc.Purchasing.Supplier",
+      "action": "activate",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "block_supplier",
+      "entity": "Supplier",
+      "resource": "UniboExPoc.Purchasing.Supplier",
+      "action": "block",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_supplier_product",
+      "entity": "SupplierProduct",
+      "resource": "UniboExPoc.Purchasing.SupplierProduct",
+      "action": "read",
+      "action_type": "read",
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_supplier_products",
+      "entity": "SupplierProduct",
+      "resource": "UniboExPoc.Purchasing.SupplierProduct",
+      "action": "read",
+      "action_type": "read",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_supplier_product",
+      "entity": "SupplierProduct",
+      "resource": "UniboExPoc.Purchasing.SupplierProduct",
+      "action": "create",
+      "action_type": "create",
+      "arguments": [
+        {
+          "name": "supplier_id",
+          "type": "uuid",
+          "required": true
+        }
+      ]
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_supplier_product",
+      "entity": "SupplierProduct",
+      "resource": "UniboExPoc.Purchasing.SupplierProduct",
+      "action": "update",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "destroy",
+      "field": "delete_supplier_product",
+      "entity": "SupplierProduct",
+      "resource": "UniboExPoc.Purchasing.SupplierProduct",
+      "action": "destroy",
+      "action_type": "destroy",
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_purchase_requisition",
+      "entity": "PurchaseRequisition",
+      "resource": "UniboExPoc.Purchasing.PurchaseRequisition",
+      "action": "read",
+      "action_type": "read",
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_purchase_requisitions",
+      "entity": "PurchaseRequisition",
+      "resource": "UniboExPoc.Purchasing.PurchaseRequisition",
+      "action": "read",
+      "action_type": "read",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_purchase_requisition",
+      "entity": "PurchaseRequisition",
+      "resource": "UniboExPoc.Purchasing.PurchaseRequisition",
+      "action": "create",
+      "action_type": "create",
+      "arguments": [
+        {
+          "name": "items",
+          "type": "array",
+          "required": true
+        }
+      ]
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "submit_purchase_requisition",
+      "entity": "PurchaseRequisition",
+      "resource": "UniboExPoc.Purchasing.PurchaseRequisition",
+      "action": "submit",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "approve_purchase_requisition",
+      "entity": "PurchaseRequisition",
+      "resource": "UniboExPoc.Purchasing.PurchaseRequisition",
+      "action": "approve",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "reject_purchase_requisition",
+      "entity": "PurchaseRequisition",
+      "resource": "UniboExPoc.Purchasing.PurchaseRequisition",
+      "action": "reject",
+      "action_type": "update",
+      "arguments": [
+        {
+          "name": "reason",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_purchase_requisition_item",
+      "entity": "PurchaseRequisitionItem",
+      "resource": "UniboExPoc.Purchasing.PurchaseRequisitionItem",
+      "action": "create",
+      "action_type": "create",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_purchase_requisition_item",
+      "entity": "PurchaseRequisitionItem",
+      "resource": "UniboExPoc.Purchasing.PurchaseRequisitionItem",
+      "action": "update",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_purchase_order",
+      "entity": "PurchaseOrder",
+      "resource": "UniboExPoc.Purchasing.PurchaseOrder",
+      "action": "read",
+      "action_type": "read",
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_purchase_orders",
+      "entity": "PurchaseOrder",
+      "resource": "UniboExPoc.Purchasing.PurchaseOrder",
+      "action": "read",
+      "action_type": "read",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_purchase_order",
+      "entity": "PurchaseOrder",
+      "resource": "UniboExPoc.Purchasing.PurchaseOrder",
+      "action": "create",
+      "action_type": "create",
+      "arguments": [
+        {
+          "name": "items",
+          "type": "array",
+          "required": true
+        },
+        {
+          "name": "supplier_id",
+          "type": "uuid",
+          "required": true
+        }
+      ]
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "submit_purchase_order",
+      "entity": "PurchaseOrder",
+      "resource": "UniboExPoc.Purchasing.PurchaseOrder",
+      "action": "submit",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "approve_purchase_order",
+      "entity": "PurchaseOrder",
+      "resource": "UniboExPoc.Purchasing.PurchaseOrder",
+      "action": "approve",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "reject_purchase_order",
+      "entity": "PurchaseOrder",
+      "resource": "UniboExPoc.Purchasing.PurchaseOrder",
+      "action": "reject",
+      "action_type": "update",
+      "arguments": [
+        {
+          "name": "reason",
+          "type": "string",
+          "required": true
+        }
+      ]
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "receive_purchase_order",
+      "entity": "PurchaseOrder",
+      "resource": "UniboExPoc.Purchasing.PurchaseOrder",
+      "action": "receive",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "cancel_purchase_order",
+      "entity": "PurchaseOrder",
+      "resource": "UniboExPoc.Purchasing.PurchaseOrder",
+      "action": "cancel",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_purchase_order_item",
+      "entity": "PurchaseOrderItem",
+      "resource": "UniboExPoc.Purchasing.PurchaseOrderItem",
+      "action": "create",
+      "action_type": "create",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_purchase_order_item",
+      "entity": "PurchaseOrderItem",
+      "resource": "UniboExPoc.Purchasing.PurchaseOrderItem",
+      "action": "update",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "get",
+      "field": "get_goods_receipt",
+      "entity": "GoodsReceipt",
+      "resource": "UniboExPoc.Purchasing.GoodsReceipt",
+      "action": "read",
+      "action_type": "read",
+      "arguments": []
+    },
+    {
+      "kind": "query",
+      "mode": "list",
+      "field": "list_goods_receipts",
+      "entity": "GoodsReceipt",
+      "resource": "UniboExPoc.Purchasing.GoodsReceipt",
+      "action": "read",
+      "action_type": "read",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_goods_receipt",
+      "entity": "GoodsReceipt",
+      "resource": "UniboExPoc.Purchasing.GoodsReceipt",
+      "action": "create",
+      "action_type": "create",
+      "arguments": [
+        {
+          "name": "items",
+          "type": "array",
+          "required": true
+        },
+        {
+          "name": "purchase_order_id",
+          "type": "uuid",
+          "required": true
+        }
+      ]
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "confirm_goods_receipt",
+      "entity": "GoodsReceipt",
+      "resource": "UniboExPoc.Purchasing.GoodsReceipt",
+      "action": "confirm",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "cancel_goods_receipt",
+      "entity": "GoodsReceipt",
+      "resource": "UniboExPoc.Purchasing.GoodsReceipt",
+      "action": "cancel",
+      "action_type": "update",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "create",
+      "field": "create_goods_receipt_item",
+      "entity": "GoodsReceiptItem",
+      "resource": "UniboExPoc.Purchasing.GoodsReceiptItem",
+      "action": "create",
+      "action_type": "create",
+      "arguments": []
+    },
+    {
+      "kind": "mutation",
+      "mode": "update",
+      "field": "update_goods_receipt_item",
+      "entity": "GoodsReceiptItem",
+      "resource": "UniboExPoc.Purchasing.GoodsReceiptItem",
+      "action": "update",
+      "action_type": "update",
+      "arguments": []
+    }
+  ]
+}

@@ -1,6 +1,11 @@
 defmodule UniboExPocWeb.Graphql.OrderFlowTest do
   use UniboExPocWeb.ConnCase, async: false
 
+  test "GraphQL bridge 入口 health 查询可用", %{conn: conn} do
+    resp = graphql(conn, "query { health }")
+    assert "ok" == get_in(resp, ["data", "health"])
+  end
+
   test "GraphQL 创建订单并完成状态流转", %{conn: conn} do
     create_party = """
     mutation CreateParty($input: CreatePartyInput!) {
@@ -85,10 +90,19 @@ defmodule UniboExPocWeb.Graphql.OrderFlowTest do
     assert is_binary(order_id)
     assert "created" == get_in(create_order_resp, ["data", "createOrder", "result", "status"])
     assert 1 == get_in(create_order_resp, ["data", "createOrder", "result", "items"]) |> length()
-    item_id = get_in(create_order_resp, ["data", "createOrder", "result", "items", Access.at(0), "id"])
+
+    item_id =
+      get_in(create_order_resp, ["data", "createOrder", "result", "items", Access.at(0), "id"])
 
     create_subtotal =
-      get_in(create_order_resp, ["data", "createOrder", "result", "items", Access.at(0), "subtotal"])
+      get_in(create_order_resp, [
+        "data",
+        "createOrder",
+        "result",
+        "items",
+        Access.at(0),
+        "subtotal"
+      ])
 
     assert Decimal.eq?(Decimal.new(create_subtotal), Decimal.new("21"))
 
@@ -101,7 +115,10 @@ defmodule UniboExPocWeb.Graphql.OrderFlowTest do
     """
 
     list_orders_resp = graphql(conn, list_orders)
-    order_ids = get_in(list_orders_resp, ["data", "listOrders", "results"]) |> Enum.map(& &1["id"])
+
+    order_ids =
+      get_in(list_orders_resp, ["data", "listOrders", "results"]) |> Enum.map(& &1["id"])
+
     assert order_id in order_ids
 
     update_order = """

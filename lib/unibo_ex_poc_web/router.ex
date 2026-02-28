@@ -24,7 +24,7 @@ defmodule UniboExPocWeb.Router do
   scope "/api" do
     pipe_through :api
 
-    forward "/graphql", Absinthe.Plug, schema: UniboExPocWeb.Schema
+    post "/graphql", UniboExPocWeb.GraphqlController, :execute
 
     # 开发环境 GraphiQL 界面
     forward "/graphiql", Absinthe.Plug.GraphiQL,

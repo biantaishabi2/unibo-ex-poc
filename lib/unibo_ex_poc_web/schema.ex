@@ -6,9 +6,9 @@ defmodule UniboExPocWeb.Schema do
   """
   use Absinthe.Schema
 
-  use AshGraphql, domains: [UniboExPoc.Purchasing]
+  use AshGraphql, domains: [UniboExPoc.Purchasing, UniboExPoc.PurchasingV2]
 
-  import_types Absinthe.Plug.Types
+  import_types(Absinthe.Plug.Types)
 
   query do
     # 占位查询，保证 schema 根 query 类型存在
