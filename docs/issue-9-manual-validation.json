@@ -1,0 +1,130 @@
+{
+  "meta": {
+    "generated_at": "2026-02-28T14:29:09.112179Z",
+    "issue": 9
+  },
+  "rules": [
+    {
+      "id": "rule-1",
+      "name": "风险供应商拦截",
+      "positive": {
+        "title": "低风险供应商可下单",
+        "pass": true,
+        "actual": {
+          "data": {
+            "createOrderV3": {
+              "errors": [],
+              "result": {
+                "createdById": "13d37b6a-8800-481c-9138-500c60cbf56d",
+                "id": "0c57dc4b-af23-4009-89c8-6efc0b645e4d",
+                "status": "created",
+                "totalAmount": "5000"
+              }
+            }
+          }
+        },
+        "expected": "创建成功并返回订单ID"
+      },
+      "negative": {
+        "title": "高风险供应商禁止下单",
+        "pass": true,
+        "actual": {
+          "data": {
+            "createOrderV3": {
+              "errors": [
+                {
+                  "fields": [
+                    "supplier_id"
+                  ],
+                  "message": "供应商风险等级过高，禁止下单"
+                }
+              ],
+              "result": null
+            }
+          }
+        },
+        "expected": "创建失败，错误包含“风险等级过高”"
+      }
+    },
+    {
+      "id": "rule-2",
+      "name": "状态流转约束",
+      "positive": {
+        "title": "created -> submitted",
+        "pass": true,
+        "actual": {
+          "data": {
+            "submitOrderV3": {
+              "errors": [],
+              "result": {
+                "id": "0c57dc4b-af23-4009-89c8-6efc0b645e4d",
+                "status": "submitted"
+              }
+            }
+          }
+        },
+        "expected": "提交成功，状态变为submitted"
+      },
+      "negative": {
+        "title": "created 不能直接 approve",
+        "pass": true,
+        "actual": {
+          "data": {
+            "approveOrderV3": {
+              "errors": [
+                {
+                  "fields": [
+                    "status"
+                  ],
+                  "message": "只有已提交订单可以审批"
+                }
+              ],
+              "result": null
+            }
+          }
+        },
+        "expected": "审批失败，错误包含“只有已提交订单可以审批”"
+      }
+    },
+    {
+      "id": "rule-3",
+      "name": "大额单高级审批",
+      "positive": {
+        "title": "admin 可执行 senior approve",
+        "pass": true,
+        "actual": {
+          "data": {
+            "seniorApproveOrderV3": {
+              "errors": [],
+              "result": {
+                "id": "fe7e1c37-305c-4e36-962e-5e1b064319e1",
+                "status": "approved"
+              }
+            }
+          }
+        },
+        "expected": "高级审批成功，状态变为approved"
+      },
+      "negative": {
+        "title": "buyer 不能普通审批大额单",
+        "pass": true,
+        "actual": {
+          "data": {
+            "approveOrderV3": {
+              "errors": [
+                {
+                  "fields": [
+                    "total_amount"
+                  ],
+                  "message": "订单金额达到分级阈值，需走高级审批"
+                }
+              ],
+              "result": null
+            }
+          }
+        },
+        "expected": "普通审批失败，错误包含“需走高级审批”"
+      }
+    }
+  ]
+}

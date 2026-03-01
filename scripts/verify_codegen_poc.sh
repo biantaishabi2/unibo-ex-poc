@@ -51,8 +51,15 @@ if [[ "$FILE_COUNT" -lt 50 ]]; then
   exit 1
 fi
 
-if ! grep -q "defmodule UniboExPoc.Purchasing.Generated" "$ASH_OUT/generated.ex"; then
-  echo "错误: generated.ex 未生成 domain 模块" >&2
+# 编译器可能调整 domain 文件名，这里按 "use Ash.Domain + 模块前缀" 判定
+DOMAIN_FILE="$(rg -l "use Ash.Domain" "$ASH_OUT"/*.ex | head -n 1 || true)"
+if [[ -z "${DOMAIN_FILE:-}" ]]; then
+  echo "错误: 未生成 Ash.Domain 模块" >&2
+  exit 1
+fi
+
+if ! grep -q "defmodule UniboExPoc.Purchasing.Generated" "$DOMAIN_FILE"; then
+  echo "错误: Domain 模块前缀不符合预期: $DOMAIN_FILE" >&2
   exit 1
 fi
 
