@@ -1,0 +1,5 @@
+module: MEMBERSHIP_MEMBERSHIP_LINE
+contract: MembershipLine.membership_flow workflow contract
+edge_class: workflow_contract
+source_file: models/membership/membership.ubo.yaml
+source_summary: GIVEN 实体 MembershipLine 定义工作流 membership_flow / WHEN 按步骤执行 create -> cancel -> renew / THEN 流程顺序应满足声明约束

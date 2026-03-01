@@ -14,7 +14,8 @@ defmodule UniboV4.BDD.CommonInstructions do
   @module_dirs %{
     "ACCOUNTING" => "accounting",
     "SALES" => "sales",
-    "PURCHASING" => "purchasing"
+    "PURCHASING" => "purchasing",
+    "MEMBERSHIP" => "membership"
   }
 
   # ============================================================
