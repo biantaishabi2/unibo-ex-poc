@@ -1,0 +1,5 @@
+module: MEMBERSHIP_RES_PARTNER
+contract: ResPartner.create_membership_invoice action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/membership/membership.ubo.yaml
+source_summary: GIVEN 实体 ResPartner 的动作 create_membership_invoice 触发副作用 / WHEN 执行动作 create_membership_invoice / THEN 变更副作用应完整生效且状态一致

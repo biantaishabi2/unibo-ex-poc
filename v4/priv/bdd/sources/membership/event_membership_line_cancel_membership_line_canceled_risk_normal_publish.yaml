@@ -1,0 +1,5 @@
+module: MEMBERSHIP_MEMBERSHIP_LINE
+contract: MembershipLine.cancel event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/membership/membership.ubo.yaml
+source_summary: GIVEN 实体 MembershipLine 动作 cancel 触发事件 / WHEN 发布 topic `membership.line.canceled` / THEN 消费方应收到一次有效通知

@@ -1,0 +1,5 @@
+module: MEMBERSHIP_MEMBERSHIP_LINE
+contract: MembershipLine.cancel event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/membership/membership.ubo.yaml
+source_summary: GIVEN 实体 MembershipLine 动作 cancel 事件被重复投递 / WHEN 重放 topic `membership.line.canceled` / THEN 消费方处理应保持幂等且无重复副作用
