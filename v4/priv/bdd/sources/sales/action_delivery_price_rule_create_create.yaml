@@ -1,0 +1,5 @@
+module: SALES_DELIVERY_PRICE_RULE
+contract: DeliveryPriceRule.create action contract
+edge_class: action_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 DeliveryPriceRule 的动作 create 可执行，accept=[sequence, variable, operator, max_value, list_base_price, list_price, variable_factor]，args=[carrier_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 运费规则设定条件变量和阈值，update 调整基础运费

@@ -1,0 +1,5 @@
+module: PURCHASING_GOODS_RECEIPT
+contract: GoodsReceipt.goods_receipt_lifecycle workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 GoodsReceipt 定义工作流 goods_receipt_lifecycle / WHEN 按主路径执行 create -> confirm -> cancel / THEN 主流程应可达并保持顺序一致

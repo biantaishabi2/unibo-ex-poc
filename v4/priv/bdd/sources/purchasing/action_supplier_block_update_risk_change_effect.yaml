@@ -1,0 +1,5 @@
+module: PURCHASING_SUPPLIER
+contract: Supplier.block action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 Supplier 的动作 block 触发副作用 / WHEN 执行动作 block / THEN 变更副作用应完整生效且状态一致 / 补充场景：block 后不可创建新采购订单

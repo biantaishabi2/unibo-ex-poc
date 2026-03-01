@@ -1,0 +1,5 @@
+module: ACCOUNTING_INVOICE_ITEM
+contract: InvoiceItem.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 InvoiceItem 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 明细行填写数量和单价，update 调整数量后 amount 和 tax_amount 自动重算

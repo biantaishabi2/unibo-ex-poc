@@ -1,0 +1,5 @@
+module: ACCOUNTING_INVOICE
+contract: Invoice.approve action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 Invoice 的动作 approve 触发副作用 / WHEN 执行动作 approve / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 后添加明细项，approve 审批通过后 send 发送；发票 approve 后 void 作废

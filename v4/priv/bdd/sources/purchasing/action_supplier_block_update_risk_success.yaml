@@ -1,0 +1,5 @@
+module: PURCHASING_SUPPLIER
+contract: Supplier.block action contract (risk:success)
+edge_class: action_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 Supplier 的动作 block 可执行 / WHEN 执行动作 block / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：block 后不可创建新采购订单

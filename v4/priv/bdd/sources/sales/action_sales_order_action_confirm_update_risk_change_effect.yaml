@@ -1,0 +1,5 @@
+module: SALES_SALES_ORDER
+contract: SalesOrder.action_confirm action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 SalesOrder 的动作 action_confirm 触发副作用 / WHEN 执行动作 action_confirm / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 后 action_quotation_send，再 action_confirm 进入 sale 并 create_invoices；action_confirm 后 action_done 锁定订单，已锁定订单不可再修改

@@ -1,0 +1,5 @@
+module: SALES_RETURN
+contract: Return.approve action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 Return 的动作 approve 触发副作用 / WHEN 执行动作 approve / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 退货单后 approve 审批，receive 收货后 complete 完成；approve 后 cancel 取消退货

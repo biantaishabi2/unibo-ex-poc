@@ -1,0 +1,5 @@
+module: PURCHASING_PURCHASE_REQUISITION
+contract: PurchaseRequisition.action_done event contract
+edge_class: event_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 PurchaseRequisition 的动作 action_done 完成 / WHEN 触发事件发布 / THEN 应广播 topic `purchasing.requisition.done`

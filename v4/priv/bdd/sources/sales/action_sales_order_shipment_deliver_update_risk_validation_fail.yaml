@@ -1,0 +1,5 @@
+module: SALES_SALES_ORDER_SHIPMENT
+contract: SalesOrderShipment.deliver action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 SalesOrderShipment 的动作 deliver 输入非法 / WHEN 执行动作 deliver / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：ship 仅允许草稿状态发货，deliver 仅允许已发货状态标记送达

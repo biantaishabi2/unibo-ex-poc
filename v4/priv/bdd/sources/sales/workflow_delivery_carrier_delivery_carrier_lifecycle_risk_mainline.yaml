@@ -1,0 +1,5 @@
+module: SALES_DELIVERY_CARRIER
+contract: DeliveryCarrier.delivery_carrier_lifecycle workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 DeliveryCarrier 定义工作流 delivery_carrier_lifecycle / WHEN 按主路径执行 create -> update -> rate_shipment -> destroy / THEN 主流程应可达并保持顺序一致

@@ -1,0 +1,5 @@
+module: ACCOUNTING_PAYMENT
+contract: Payment.cancel action contract (risk:success)
+edge_class: action_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 Payment 的动作 cancel 可执行 / WHEN 执行动作 cancel / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：post 后 cancel 取消，reset_to_draft 重置再 post

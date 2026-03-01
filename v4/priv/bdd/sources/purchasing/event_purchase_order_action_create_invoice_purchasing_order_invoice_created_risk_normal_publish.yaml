@@ -1,0 +1,5 @@
+module: PURCHASING_PURCHASE_ORDER
+contract: PurchaseOrder.action_create_invoice event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 PurchaseOrder 动作 action_create_invoice 触发事件 / WHEN 发布 topic `purchasing.order.invoice_created` / THEN 消费方应收到一次有效通知

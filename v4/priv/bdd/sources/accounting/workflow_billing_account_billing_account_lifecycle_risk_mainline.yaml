@@ -1,0 +1,5 @@
+module: ACCOUNTING_BILLING_ACCOUNT
+contract: BillingAccount.billing_account_lifecycle workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 BillingAccount 定义工作流 billing_account_lifecycle / WHEN 按主路径执行 create -> update / THEN 主流程应可达并保持顺序一致

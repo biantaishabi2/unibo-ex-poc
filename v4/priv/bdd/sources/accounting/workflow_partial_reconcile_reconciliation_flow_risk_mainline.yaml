@@ -1,0 +1,5 @@
+module: ACCOUNTING_PARTIAL_RECONCILE
+contract: PartialReconcile.reconciliation_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 PartialReconcile 定义工作流 reconciliation_flow / WHEN 按主路径执行 create -> destroy / THEN 主流程应可达并保持顺序一致

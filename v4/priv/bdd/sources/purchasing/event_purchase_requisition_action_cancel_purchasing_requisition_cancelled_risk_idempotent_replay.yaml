@@ -1,0 +1,5 @@
+module: PURCHASING_PURCHASE_REQUISITION
+contract: PurchaseRequisition.action_cancel event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 PurchaseRequisition 动作 action_cancel 事件被重复投递 / WHEN 重放 topic `purchasing.requisition.cancelled` / THEN 消费方处理应保持幂等且无重复副作用

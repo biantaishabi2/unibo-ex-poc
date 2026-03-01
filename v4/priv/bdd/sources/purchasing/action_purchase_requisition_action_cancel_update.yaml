@@ -1,0 +1,5 @@
+module: PURCHASING_PURCHASE_REQUISITION
+contract: PurchaseRequisition.action_cancel action contract
+edge_class: action_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 PurchaseRequisition 的动作 action_cancel 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 action_cancel / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：action_cancel 后 action_draft 重置为草稿并重新发起

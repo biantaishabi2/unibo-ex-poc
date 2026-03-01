@@ -1,0 +1,5 @@
+module: SALES_SALES_ORDER_SHIPMENT
+contract: SalesOrderShipment.deliver event contract
+edge_class: event_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 SalesOrderShipment 的动作 deliver 完成 / WHEN 触发事件发布 / THEN 应广播 topic `sales.shipment.delivered`

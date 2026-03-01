@@ -1,0 +1,5 @@
+module: ACCOUNTING_BILLING_ACCOUNT
+contract: BillingAccount.create action contract
+edge_class: action_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 BillingAccount 的动作 create 可执行，accept=[account_number, account_type, credit_limit, currency, from_date, thru_date, description]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，应符合工作流步骤约束 / 补充场景：create 新建账户设定信用额度，update 调整信用额度和有效期

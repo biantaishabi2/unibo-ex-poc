@@ -1,0 +1,5 @@
+module: SALES_SALES_ORDER_ITEM
+contract: SalesOrderItem.order_item_editing workflow contract
+edge_class: workflow_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 SalesOrderItem 定义工作流 order_item_editing / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束

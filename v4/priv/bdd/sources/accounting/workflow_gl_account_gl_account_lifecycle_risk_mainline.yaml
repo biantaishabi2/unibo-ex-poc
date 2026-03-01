@@ -1,0 +1,5 @@
+module: ACCOUNTING_GL_ACCOUNT
+contract: GlAccount.gl_account_lifecycle workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 GlAccount 定义工作流 gl_account_lifecycle / WHEN 按主路径执行 create -> update -> deactivate / THEN 主流程应可达并保持顺序一致

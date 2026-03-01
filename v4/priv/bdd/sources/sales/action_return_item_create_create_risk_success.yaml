@@ -1,0 +1,5 @@
+module: SALES_RETURN_ITEM
+contract: ReturnItem.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 ReturnItem 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 退货明细填写退货数量和退款金额，update 调整数量

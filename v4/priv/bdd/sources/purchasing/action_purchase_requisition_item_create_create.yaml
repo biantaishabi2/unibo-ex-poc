@@ -1,0 +1,5 @@
+module: PURCHASING_PURCHASE_REQUISITION_ITEM
+contract: PurchaseRequisitionItem.create action contract
+edge_class: action_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 PurchaseRequisitionItem 的动作 create 可执行，accept=[product_name, product_description_variants, product_qty, price_unit, schedule_date, description]，args=[product_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 申请行填写产品和数量，update 调整数量后 estimated_amount 自动重算

@@ -1,0 +1,1364 @@
+{
+  "total": 151,
+  "entries": [
+    {
+      "name": "unibo_purchasing_supplier_action_create",
+      "domain": "Purchasing",
+      "entity": "Supplier",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_action_read",
+      "domain": "Purchasing",
+      "entity": "Supplier",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_action_list",
+      "domain": "Purchasing",
+      "entity": "Supplier",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_action_search",
+      "domain": "Purchasing",
+      "entity": "Supplier",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_action_get",
+      "domain": "Purchasing",
+      "entity": "Supplier",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_action_preview",
+      "domain": "Purchasing",
+      "entity": "Supplier",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_action_compute",
+      "domain": "Purchasing",
+      "entity": "Supplier",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_action_lookup",
+      "domain": "Purchasing",
+      "entity": "Supplier",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_action_update",
+      "domain": "Purchasing",
+      "entity": "Supplier",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_action_activate",
+      "domain": "Purchasing",
+      "entity": "Supplier",
+      "source_kind": "action",
+      "source_name": "activate",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_action_block",
+      "domain": "Purchasing",
+      "entity": "Supplier",
+      "source_kind": "action",
+      "source_name": "block",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_workflow_supplier_lifecycle",
+      "domain": "Purchasing",
+      "entity": "Supplier",
+      "source_kind": "workflow",
+      "source_name": "supplier_lifecycle",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_product_action_create",
+      "domain": "Purchasing",
+      "entity": "SupplierProduct",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_product_action_update",
+      "domain": "Purchasing",
+      "entity": "SupplierProduct",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_product_action_read",
+      "domain": "Purchasing",
+      "entity": "SupplierProduct",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_product_action_list",
+      "domain": "Purchasing",
+      "entity": "SupplierProduct",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_product_action_search",
+      "domain": "Purchasing",
+      "entity": "SupplierProduct",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_product_action_get",
+      "domain": "Purchasing",
+      "entity": "SupplierProduct",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_product_action_preview",
+      "domain": "Purchasing",
+      "entity": "SupplierProduct",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_product_action_compute",
+      "domain": "Purchasing",
+      "entity": "SupplierProduct",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_product_action_lookup",
+      "domain": "Purchasing",
+      "entity": "SupplierProduct",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_product_action_destroy",
+      "domain": "Purchasing",
+      "entity": "SupplierProduct",
+      "source_kind": "action",
+      "source_name": "destroy",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_supplier_product_workflow_supplier_product_lifecycle",
+      "domain": "Purchasing",
+      "entity": "SupplierProduct",
+      "source_kind": "workflow",
+      "source_name": "supplier_product_lifecycle",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_type_action_create",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionType",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_type_action_read",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionType",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_type_action_list",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionType",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_type_action_search",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionType",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_type_action_get",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionType",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_type_action_preview",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionType",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_type_action_compute",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionType",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_type_action_lookup",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionType",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_type_action_update",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionType",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_type_workflow_requisition_type_lifecycle",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionType",
+      "source_kind": "workflow",
+      "source_name": "requisition_type_lifecycle",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_action_create",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_action_read",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_action_list",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_action_search",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_action_get",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_action_preview",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_action_compute",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_action_lookup",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_action_action_in_progress",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "action",
+      "source_name": "action_in_progress",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_action_action_open",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "action",
+      "source_name": "action_open",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_action_action_done",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "action",
+      "source_name": "action_done",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_action_action_cancel",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "action",
+      "source_name": "action_cancel",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_action_action_draft",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "action",
+      "source_name": "action_draft",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_event_action_in_progress_purchasing_requisition_confirmed",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "event",
+      "source_name": "action_in_progress#purchasing.requisition.confirmed",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_event_action_done_purchasing_requisition_done",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "event",
+      "source_name": "action_done#purchasing.requisition.done",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_event_action_cancel_purchasing_requisition_cancelled",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "event",
+      "source_name": "action_cancel#purchasing.requisition.cancelled",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_workflow_requisition_lifecycle_flow",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "workflow",
+      "source_name": "requisition_lifecycle_flow",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_workflow_requisition_reopen_flow",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisition",
+      "source_kind": "workflow",
+      "source_name": "requisition_reopen_flow",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_item_action_create",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionItem",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_item_action_update",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionItem",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_requisition_item_workflow_requisition_item_editing",
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionItem",
+      "source_kind": "workflow",
+      "source_name": "requisition_item_editing",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_create",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_read",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_list",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_search",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_get",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_preview",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_compute",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_lookup",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_update",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_print_quotation",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "print_quotation",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_send_rfq",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "send_rfq",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_button_confirm",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "button_confirm",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_button_approve",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "button_approve",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_button_done",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "button_done",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_button_unlock",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "button_unlock",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_button_cancel",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "button_cancel",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_button_draft",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "button_draft",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_action_action_create_invoice",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "action",
+      "source_name": "action_create_invoice",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_event_button_confirm_purchasing_order_confirmed",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "event",
+      "source_name": "button_confirm#purchasing.order.confirmed",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_event_button_approve_purchasing_order_approved",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "event",
+      "source_name": "button_approve#purchasing.order.approved",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_event_button_cancel_purchasing_order_cancelled",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "event",
+      "source_name": "button_cancel#purchasing.order.cancelled",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_event_button_done_purchasing_order_locked",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "event",
+      "source_name": "button_done#purchasing.order.locked",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_event_button_unlock_purchasing_order_unlocked",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "event",
+      "source_name": "button_unlock#purchasing.order.unlocked",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_event_button_draft_purchasing_order_reset_to_draft",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "event",
+      "source_name": "button_draft#purchasing.order.reset_to_draft",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_event_action_create_invoice_purchasing_order_invoice_created",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "event",
+      "source_name": "action_create_invoice#purchasing.order.invoice_created",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_event_print_quotation_purchasing_order_rfq_printed",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "event",
+      "source_name": "print_quotation#purchasing.order.rfq_printed",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_event_send_rfq_purchasing_order_rfq_sent",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "event",
+      "source_name": "send_rfq#purchasing.order.rfq_sent",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_workflow_procurement_flow",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "workflow",
+      "source_name": "procurement_flow",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_workflow_purchase_order_editing",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrder",
+      "source_kind": "workflow",
+      "source_name": "purchase_order_editing",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_line_action_create",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrderLine",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_line_action_update",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrderLine",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_line_action_read",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrderLine",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_line_action_list",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrderLine",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_line_action_search",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrderLine",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_line_action_get",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrderLine",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_line_action_preview",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrderLine",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_line_action_compute",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrderLine",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_line_action_lookup",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrderLine",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_line_workflow_order_line_editing",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrderLine",
+      "source_kind": "workflow",
+      "source_name": "order_line_editing",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_item_action_create",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrderItem",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_item_action_update",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrderItem",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_purchase_order_item_workflow_order_item_editing",
+      "domain": "Purchasing",
+      "entity": "PurchaseOrderItem",
+      "source_kind": "workflow",
+      "source_name": "order_item_editing",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_supplierinfo_action_create",
+      "domain": "Purchasing",
+      "entity": "ProductSupplierinfo",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_supplierinfo_action_update",
+      "domain": "Purchasing",
+      "entity": "ProductSupplierinfo",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_supplierinfo_action_read",
+      "domain": "Purchasing",
+      "entity": "ProductSupplierinfo",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_supplierinfo_action_list",
+      "domain": "Purchasing",
+      "entity": "ProductSupplierinfo",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_supplierinfo_action_search",
+      "domain": "Purchasing",
+      "entity": "ProductSupplierinfo",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_supplierinfo_action_get",
+      "domain": "Purchasing",
+      "entity": "ProductSupplierinfo",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_supplierinfo_action_preview",
+      "domain": "Purchasing",
+      "entity": "ProductSupplierinfo",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_supplierinfo_action_compute",
+      "domain": "Purchasing",
+      "entity": "ProductSupplierinfo",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_supplierinfo_action_lookup",
+      "domain": "Purchasing",
+      "entity": "ProductSupplierinfo",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_supplierinfo_action_destroy",
+      "domain": "Purchasing",
+      "entity": "ProductSupplierinfo",
+      "source_kind": "action",
+      "source_name": "destroy",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_supplierinfo_event_create_purchasing_supplierinfo_created",
+      "domain": "Purchasing",
+      "entity": "ProductSupplierinfo",
+      "source_kind": "event",
+      "source_name": "create#purchasing.supplierinfo.created",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_supplierinfo_workflow_supplierinfo_lifecycle",
+      "domain": "Purchasing",
+      "entity": "ProductSupplierinfo",
+      "source_kind": "workflow",
+      "source_name": "supplierinfo_lifecycle",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_action_create",
+      "domain": "Purchasing",
+      "entity": "GoodsReceipt",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_action_read",
+      "domain": "Purchasing",
+      "entity": "GoodsReceipt",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_action_list",
+      "domain": "Purchasing",
+      "entity": "GoodsReceipt",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_action_search",
+      "domain": "Purchasing",
+      "entity": "GoodsReceipt",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_action_get",
+      "domain": "Purchasing",
+      "entity": "GoodsReceipt",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_action_preview",
+      "domain": "Purchasing",
+      "entity": "GoodsReceipt",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_action_compute",
+      "domain": "Purchasing",
+      "entity": "GoodsReceipt",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_action_lookup",
+      "domain": "Purchasing",
+      "entity": "GoodsReceipt",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_action_confirm",
+      "domain": "Purchasing",
+      "entity": "GoodsReceipt",
+      "source_kind": "action",
+      "source_name": "confirm",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_action_cancel",
+      "domain": "Purchasing",
+      "entity": "GoodsReceipt",
+      "source_kind": "action",
+      "source_name": "cancel",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_event_confirm_purchasing_receipt_confirmed",
+      "domain": "Purchasing",
+      "entity": "GoodsReceipt",
+      "source_kind": "event",
+      "source_name": "confirm#purchasing.receipt.confirmed",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_workflow_goods_receipt_lifecycle",
+      "domain": "Purchasing",
+      "entity": "GoodsReceipt",
+      "source_kind": "workflow",
+      "source_name": "goods_receipt_lifecycle",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_item_action_create",
+      "domain": "Purchasing",
+      "entity": "GoodsReceiptItem",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_item_action_update",
+      "domain": "Purchasing",
+      "entity": "GoodsReceiptItem",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_goods_receipt_item_workflow_receipt_item_editing",
+      "domain": "Purchasing",
+      "entity": "GoodsReceiptItem",
+      "source_kind": "workflow",
+      "source_name": "receipt_item_editing",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_user_action_read",
+      "domain": "Purchasing",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_user_action_list",
+      "domain": "Purchasing",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_user_action_search",
+      "domain": "Purchasing",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_user_action_get",
+      "domain": "Purchasing",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_user_action_preview",
+      "domain": "Purchasing",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_user_action_compute",
+      "domain": "Purchasing",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_user_action_lookup",
+      "domain": "Purchasing",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_action_read",
+      "domain": "Purchasing",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_action_list",
+      "domain": "Purchasing",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_action_search",
+      "domain": "Purchasing",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_action_get",
+      "domain": "Purchasing",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_action_preview",
+      "domain": "Purchasing",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_action_compute",
+      "domain": "Purchasing",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_product_action_lookup",
+      "domain": "Purchasing",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_action_read",
+      "domain": "Purchasing",
+      "entity": "AccountMove",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_action_list",
+      "domain": "Purchasing",
+      "entity": "AccountMove",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_action_search",
+      "domain": "Purchasing",
+      "entity": "AccountMove",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_action_get",
+      "domain": "Purchasing",
+      "entity": "AccountMove",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_action_preview",
+      "domain": "Purchasing",
+      "entity": "AccountMove",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_action_compute",
+      "domain": "Purchasing",
+      "entity": "AccountMove",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_action_lookup",
+      "domain": "Purchasing",
+      "entity": "AccountMove",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_line_action_read",
+      "domain": "Purchasing",
+      "entity": "AccountMoveLine",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_line_action_list",
+      "domain": "Purchasing",
+      "entity": "AccountMoveLine",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_line_action_search",
+      "domain": "Purchasing",
+      "entity": "AccountMoveLine",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_line_action_get",
+      "domain": "Purchasing",
+      "entity": "AccountMoveLine",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_line_action_preview",
+      "domain": "Purchasing",
+      "entity": "AccountMoveLine",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_line_action_compute",
+      "domain": "Purchasing",
+      "entity": "AccountMoveLine",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_purchasing_account_move_line_action_lookup",
+      "domain": "Purchasing",
+      "entity": "AccountMoveLine",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    }
+  ]
+}

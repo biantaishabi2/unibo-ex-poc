@@ -1,0 +1,5 @@
+module: SALES_SALES_ORDER_ITEM
+contract: SalesOrderItem.create action contract
+edge_class: action_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 SalesOrderItem 的动作 create 可执行，accept=[product_name, product_code, product_uom_qty, price_unit, discount, display_type]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 订单行填写产品数量和单价，update 调整后 price_subtotal 和 price_tax 自动重算

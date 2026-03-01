@@ -1,0 +1,5 @@
+module: PURCHASING_PRODUCT_SUPPLIERINFO
+contract: ProductSupplierinfo.create event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 ProductSupplierinfo 动作 create 事件被重复投递 / WHEN 重放 topic `purchasing.supplierinfo.created` / THEN 消费方处理应保持幂等且无重复副作用

@@ -1,0 +1,5 @@
+module: PURCHASING_PURCHASE_REQUISITION
+contract: PurchaseRequisition.action_done action contract (risk:success)
+edge_class: action_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 PurchaseRequisition 的动作 action_done 可执行 / WHEN 执行动作 action_done / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 采购申请单，action_in_progress 后 action_open，再 action_done 完成采购协议

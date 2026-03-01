@@ -1,0 +1,5 @@
+module: PURCHASING_PURCHASE_ORDER_ITEM
+contract: PurchaseOrderItem.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 PurchaseOrderItem 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 旧版订单行填写产品和数量，update 调整数量后 line_amount 自动重算

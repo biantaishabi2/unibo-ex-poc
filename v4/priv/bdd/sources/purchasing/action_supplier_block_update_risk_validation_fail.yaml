@@ -1,0 +1,5 @@
+module: PURCHASING_SUPPLIER
+contract: Supplier.block action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 Supplier 的动作 block 输入非法 / WHEN 执行动作 block / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：block 后不可创建新采购订单

@@ -1,0 +1,5 @@
+module: ACCOUNTING_BUDGET_ITEM
+contract: BudgetItem.create action contract
+edge_class: action_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 BudgetItem 的动作 create 可执行，accept=[description, amount, purpose, justification]，args=[gl_account_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，应符合工作流步骤约束 / 补充场景：create 预算项填写金额和用途，update 调整金额后预算总额自动重算

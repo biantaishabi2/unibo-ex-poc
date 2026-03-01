@@ -1,0 +1,5 @@
+module: ACCOUNTING_JOURNAL_ENTRY
+contract: JournalEntry.post action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 JournalEntry 的动作 post 输入非法 / WHEN 执行动作 post / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：借贷不平衡的凭证尝试 post 被 balanced_entry 校验拒绝

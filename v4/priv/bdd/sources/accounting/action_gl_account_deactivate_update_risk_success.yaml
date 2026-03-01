@@ -1,0 +1,5 @@
+module: ACCOUNTING_GL_ACCOUNT
+contract: GlAccount.deactivate action contract (risk:success)
+edge_class: action_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 GlAccount 的动作 deactivate 可执行 / WHEN 执行动作 deactivate / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：deactivate 停用科目，已停用科目不可用于新分录

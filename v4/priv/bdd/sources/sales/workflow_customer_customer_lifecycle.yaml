@@ -1,0 +1,5 @@
+module: SALES_CUSTOMER
+contract: Customer.customer_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 Customer 定义工作流 customer_lifecycle / WHEN 按步骤执行 create -> update -> block / THEN 流程顺序应满足声明约束

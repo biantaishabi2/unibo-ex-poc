@@ -1,0 +1,5 @@
+module: ACCOUNTING_INVOICE_ITEM
+contract: InvoiceItem.create action contract
+edge_class: action_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 InvoiceItem 的动作 create 可执行，accept=[description, quantity, unit_price, tax_rate]，args=[gl_account_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 明细行填写数量和单价，update 调整数量后 amount 和 tax_amount 自动重算

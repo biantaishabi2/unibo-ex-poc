@@ -1,0 +1,5 @@
+module: SALES_CUSTOMER
+contract: Customer.block action contract (risk:success)
+edge_class: action_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 Customer 的动作 block 可执行 / WHEN 执行动作 block / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：block 冻结客户，已冻结客户不可下单

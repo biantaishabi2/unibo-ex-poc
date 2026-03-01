@@ -1,0 +1,5 @@
+module: SALES_DELIVERY_CARRIER
+contract: DeliveryCarrier.rate_shipment action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 DeliveryCarrier 的动作 rate_shipment 触发副作用 / WHEN 执行动作 rate_shipment / THEN 变更副作用应完整生效且状态一致 / 补充场景：rate_shipment 计算订单运费并返回运费金额

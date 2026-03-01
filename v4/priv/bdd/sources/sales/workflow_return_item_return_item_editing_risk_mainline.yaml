@@ -1,0 +1,5 @@
+module: SALES_RETURN_ITEM
+contract: ReturnItem.return_item_editing workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 ReturnItem 定义工作流 return_item_editing / WHEN 按主路径执行 create -> update / THEN 主流程应可达并保持顺序一致

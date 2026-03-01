@@ -1,0 +1,5 @@
+module: PURCHASING_PURCHASE_REQUISITION_ITEM
+contract: PurchaseRequisitionItem.requisition_item_editing workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 PurchaseRequisitionItem 定义工作流 requisition_item_editing / WHEN 按主路径执行 create -> update / THEN 主流程应可达并保持顺序一致

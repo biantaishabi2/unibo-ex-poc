@@ -1,0 +1,5 @@
+module: SALES_SALES_ORDER
+contract: SalesOrder.action_quotation_send event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 SalesOrder 动作 action_quotation_send 触发事件 / WHEN 发布 topic `sales.order.sent` / THEN 消费方应收到一次有效通知

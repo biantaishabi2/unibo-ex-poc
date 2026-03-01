@@ -1,0 +1,5 @@
+module: SALES_QUOTE
+contract: Quote.accept action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 Quote 的动作 accept 触发副作用 / WHEN 执行动作 accept / THEN 变更副作用应完整生效且状态一致 / 补充场景：submit 后客户 accept 接受或 reject 拒绝

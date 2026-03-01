@@ -1,0 +1,5 @@
+module: SALES_SALES_ORDER
+contract: SalesOrder.create_invoices event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 SalesOrder 动作 create_invoices 触发事件 / WHEN 发布 topic `sales.order.invoice_created` / THEN 消费方应收到一次有效通知

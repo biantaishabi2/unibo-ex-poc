@@ -1,0 +1,1229 @@
+{
+  "total": 136,
+  "entries": [
+    {
+      "name": "unibo_sales_customer_action_create",
+      "domain": "Sales",
+      "entity": "Customer",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_customer_action_read",
+      "domain": "Sales",
+      "entity": "Customer",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_customer_action_list",
+      "domain": "Sales",
+      "entity": "Customer",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_customer_action_search",
+      "domain": "Sales",
+      "entity": "Customer",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_customer_action_get",
+      "domain": "Sales",
+      "entity": "Customer",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_customer_action_preview",
+      "domain": "Sales",
+      "entity": "Customer",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_customer_action_compute",
+      "domain": "Sales",
+      "entity": "Customer",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_customer_action_lookup",
+      "domain": "Sales",
+      "entity": "Customer",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_customer_action_update",
+      "domain": "Sales",
+      "entity": "Customer",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_customer_action_block",
+      "domain": "Sales",
+      "entity": "Customer",
+      "source_kind": "action",
+      "source_name": "block",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_customer_workflow_customer_lifecycle",
+      "domain": "Sales",
+      "entity": "Customer",
+      "source_kind": "workflow",
+      "source_name": "customer_lifecycle",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_action_create",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_action_read",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_action_list",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_action_search",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_action_get",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_action_preview",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_action_compute",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_action_lookup",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_action_submit",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "action",
+      "source_name": "submit",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_action_accept",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "action",
+      "source_name": "accept",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_action_reject",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "action",
+      "source_name": "reject",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_event_submit_sales_quote_submitted",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "event",
+      "source_name": "submit#sales.quote.submitted",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_event_accept_sales_quote_accepted",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "event",
+      "source_name": "accept#sales.quote.accepted",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_workflow_quote_lifecycle",
+      "domain": "Sales",
+      "entity": "Quote",
+      "source_kind": "workflow",
+      "source_name": "quote_lifecycle",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_item_action_create",
+      "domain": "Sales",
+      "entity": "QuoteItem",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_item_action_update",
+      "domain": "Sales",
+      "entity": "QuoteItem",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_quote_item_workflow_quote_item_editing",
+      "domain": "Sales",
+      "entity": "QuoteItem",
+      "source_kind": "workflow",
+      "source_name": "quote_item_editing",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_create",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_read",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_list",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_search",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_get",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_preview",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_compute",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_lookup",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_action_quotation_send",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "action_quotation_send",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_action_confirm",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "action_confirm",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_action_done",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "action_done",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_action_cancel",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "action_cancel",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_action_draft",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "action_draft",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_action_create_invoices",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "action",
+      "source_name": "create_invoices",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_event_action_quotation_send_sales_order_sent",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "event",
+      "source_name": "action_quotation_send#sales.order.sent",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_event_action_confirm_sales_order_confirmed",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "event",
+      "source_name": "action_confirm#sales.order.confirmed",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_event_action_done_sales_order_done",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "event",
+      "source_name": "action_done#sales.order.done",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_event_action_cancel_sales_order_cancelled",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "event",
+      "source_name": "action_cancel#sales.order.cancelled",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_event_action_draft_sales_order_reset_to_draft",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "event",
+      "source_name": "action_draft#sales.order.reset_to_draft",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_event_create_invoices_sales_order_invoice_created",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "event",
+      "source_name": "create_invoices#sales.order.invoice_created",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_workflow_sales_order_lifecycle_flow",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "workflow",
+      "source_name": "sales_order_lifecycle_flow",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_workflow_sales_order_reopen_flow",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "workflow",
+      "source_name": "sales_order_reopen_flow",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_workflow_pricing_chain",
+      "domain": "Sales",
+      "entity": "SalesOrder",
+      "source_kind": "workflow",
+      "source_name": "pricing_chain",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_item_action_create",
+      "domain": "Sales",
+      "entity": "SalesOrderItem",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_item_action_update",
+      "domain": "Sales",
+      "entity": "SalesOrderItem",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_item_workflow_order_item_editing",
+      "domain": "Sales",
+      "entity": "SalesOrderItem",
+      "source_kind": "workflow",
+      "source_name": "order_item_editing",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_shipment_action_create",
+      "domain": "Sales",
+      "entity": "SalesOrderShipment",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_shipment_action_read",
+      "domain": "Sales",
+      "entity": "SalesOrderShipment",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_shipment_action_list",
+      "domain": "Sales",
+      "entity": "SalesOrderShipment",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_shipment_action_search",
+      "domain": "Sales",
+      "entity": "SalesOrderShipment",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_shipment_action_get",
+      "domain": "Sales",
+      "entity": "SalesOrderShipment",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_shipment_action_preview",
+      "domain": "Sales",
+      "entity": "SalesOrderShipment",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_shipment_action_compute",
+      "domain": "Sales",
+      "entity": "SalesOrderShipment",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_shipment_action_lookup",
+      "domain": "Sales",
+      "entity": "SalesOrderShipment",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_shipment_action_ship",
+      "domain": "Sales",
+      "entity": "SalesOrderShipment",
+      "source_kind": "action",
+      "source_name": "ship",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_shipment_action_deliver",
+      "domain": "Sales",
+      "entity": "SalesOrderShipment",
+      "source_kind": "action",
+      "source_name": "deliver",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_shipment_event_ship_sales_shipment_shipped",
+      "domain": "Sales",
+      "entity": "SalesOrderShipment",
+      "source_kind": "event",
+      "source_name": "ship#sales.shipment.shipped",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_shipment_event_deliver_sales_shipment_delivered",
+      "domain": "Sales",
+      "entity": "SalesOrderShipment",
+      "source_kind": "event",
+      "source_name": "deliver#sales.shipment.delivered",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_shipment_workflow_shipment_lifecycle",
+      "domain": "Sales",
+      "entity": "SalesOrderShipment",
+      "source_kind": "workflow",
+      "source_name": "shipment_lifecycle",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_action_create",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_action_read",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_action_list",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_action_search",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_action_get",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_action_preview",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_action_compute",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_action_lookup",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_action_approve",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "action",
+      "source_name": "approve",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_action_receive",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "action",
+      "source_name": "receive",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_action_complete",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "action",
+      "source_name": "complete",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_action_cancel",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "action",
+      "source_name": "cancel",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_event_approve_sales_return_approved",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "event",
+      "source_name": "approve#sales.return.approved",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_event_complete_sales_return_completed",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "event",
+      "source_name": "complete#sales.return.completed",
+      "kind": "then",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_workflow_return_lifecycle",
+      "domain": "Sales",
+      "entity": "Return",
+      "source_kind": "workflow",
+      "source_name": "return_lifecycle",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_item_action_create",
+      "domain": "Sales",
+      "entity": "ReturnItem",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_item_action_update",
+      "domain": "Sales",
+      "entity": "ReturnItem",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_return_item_workflow_return_item_editing",
+      "domain": "Sales",
+      "entity": "ReturnItem",
+      "source_kind": "workflow",
+      "source_name": "return_item_editing",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_carrier_action_create",
+      "domain": "Sales",
+      "entity": "DeliveryCarrier",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_carrier_action_read",
+      "domain": "Sales",
+      "entity": "DeliveryCarrier",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_carrier_action_list",
+      "domain": "Sales",
+      "entity": "DeliveryCarrier",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_carrier_action_search",
+      "domain": "Sales",
+      "entity": "DeliveryCarrier",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_carrier_action_get",
+      "domain": "Sales",
+      "entity": "DeliveryCarrier",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_carrier_action_preview",
+      "domain": "Sales",
+      "entity": "DeliveryCarrier",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_carrier_action_compute",
+      "domain": "Sales",
+      "entity": "DeliveryCarrier",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_carrier_action_lookup",
+      "domain": "Sales",
+      "entity": "DeliveryCarrier",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_carrier_action_update",
+      "domain": "Sales",
+      "entity": "DeliveryCarrier",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_carrier_action_destroy",
+      "domain": "Sales",
+      "entity": "DeliveryCarrier",
+      "source_kind": "action",
+      "source_name": "destroy",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_carrier_action_rate_shipment",
+      "domain": "Sales",
+      "entity": "DeliveryCarrier",
+      "source_kind": "action",
+      "source_name": "rate_shipment",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_carrier_workflow_delivery_carrier_lifecycle",
+      "domain": "Sales",
+      "entity": "DeliveryCarrier",
+      "source_kind": "workflow",
+      "source_name": "delivery_carrier_lifecycle",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_price_rule_action_create",
+      "domain": "Sales",
+      "entity": "DeliveryPriceRule",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_price_rule_action_read",
+      "domain": "Sales",
+      "entity": "DeliveryPriceRule",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_price_rule_action_list",
+      "domain": "Sales",
+      "entity": "DeliveryPriceRule",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_price_rule_action_search",
+      "domain": "Sales",
+      "entity": "DeliveryPriceRule",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_price_rule_action_get",
+      "domain": "Sales",
+      "entity": "DeliveryPriceRule",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_price_rule_action_preview",
+      "domain": "Sales",
+      "entity": "DeliveryPriceRule",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_price_rule_action_compute",
+      "domain": "Sales",
+      "entity": "DeliveryPriceRule",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_price_rule_action_lookup",
+      "domain": "Sales",
+      "entity": "DeliveryPriceRule",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_price_rule_action_update",
+      "domain": "Sales",
+      "entity": "DeliveryPriceRule",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_price_rule_action_destroy",
+      "domain": "Sales",
+      "entity": "DeliveryPriceRule",
+      "source_kind": "action",
+      "source_name": "destroy",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_delivery_price_rule_workflow_price_rule_lifecycle",
+      "domain": "Sales",
+      "entity": "DeliveryPriceRule",
+      "source_kind": "workflow",
+      "source_name": "price_rule_lifecycle",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_user_action_read",
+      "domain": "Sales",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_user_action_list",
+      "domain": "Sales",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_user_action_search",
+      "domain": "Sales",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_user_action_get",
+      "domain": "Sales",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_user_action_preview",
+      "domain": "Sales",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_user_action_compute",
+      "domain": "Sales",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_user_action_lookup",
+      "domain": "Sales",
+      "entity": "User",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_product_action_read",
+      "domain": "Sales",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_product_action_list",
+      "domain": "Sales",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_product_action_search",
+      "domain": "Sales",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_product_action_get",
+      "domain": "Sales",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_product_action_preview",
+      "domain": "Sales",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_product_action_compute",
+      "domain": "Sales",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_product_action_lookup",
+      "domain": "Sales",
+      "entity": "Product",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_tax_action_read",
+      "domain": "Sales",
+      "entity": "Tax",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_tax_action_list",
+      "domain": "Sales",
+      "entity": "Tax",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_tax_action_search",
+      "domain": "Sales",
+      "entity": "Tax",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_tax_action_get",
+      "domain": "Sales",
+      "entity": "Tax",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_tax_action_preview",
+      "domain": "Sales",
+      "entity": "Tax",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_tax_action_compute",
+      "domain": "Sales",
+      "entity": "Tax",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_tax_action_lookup",
+      "domain": "Sales",
+      "entity": "Tax",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_item_tax_rel_action_read",
+      "domain": "Sales",
+      "entity": "SalesOrderItemTaxRel",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_item_tax_rel_action_list",
+      "domain": "Sales",
+      "entity": "SalesOrderItemTaxRel",
+      "source_kind": "action",
+      "source_name": "list",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_item_tax_rel_action_search",
+      "domain": "Sales",
+      "entity": "SalesOrderItemTaxRel",
+      "source_kind": "action",
+      "source_name": "search",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_item_tax_rel_action_get",
+      "domain": "Sales",
+      "entity": "SalesOrderItemTaxRel",
+      "source_kind": "action",
+      "source_name": "get",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_item_tax_rel_action_preview",
+      "domain": "Sales",
+      "entity": "SalesOrderItemTaxRel",
+      "source_kind": "action",
+      "source_name": "preview",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_item_tax_rel_action_compute",
+      "domain": "Sales",
+      "entity": "SalesOrderItemTaxRel",
+      "source_kind": "action",
+      "source_name": "compute",
+      "kind": "when",
+      "dedup_index": 0
+    },
+    {
+      "name": "unibo_sales_sales_order_item_tax_rel_action_lookup",
+      "domain": "Sales",
+      "entity": "SalesOrderItemTaxRel",
+      "source_kind": "action",
+      "source_name": "lookup",
+      "kind": "when",
+      "dedup_index": 0
+    }
+  ]
+}

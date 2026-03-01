@@ -1,0 +1,5 @@
+module: PURCHASING_GOODS_RECEIPT_ITEM
+contract: GoodsReceiptItem.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 GoodsReceiptItem 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 收货明细填写收货数量，update 填写合格/不合格数量

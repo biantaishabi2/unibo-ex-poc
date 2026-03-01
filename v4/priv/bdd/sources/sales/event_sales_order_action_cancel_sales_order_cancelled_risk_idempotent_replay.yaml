@@ -1,0 +1,5 @@
+module: SALES_SALES_ORDER
+contract: SalesOrder.action_cancel event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 SalesOrder 动作 action_cancel 事件被重复投递 / WHEN 重放 topic `sales.order.cancelled` / THEN 消费方处理应保持幂等且无重复副作用

@@ -1,0 +1,5 @@
+module: ACCOUNTING_PAYMENT
+contract: Payment.cancel action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 Payment 的动作 cancel 输入非法 / WHEN 执行动作 cancel / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：post 后 cancel 取消，reset_to_draft 重置再 post

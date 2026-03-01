@@ -1,0 +1,5 @@
+module: ACCOUNTING_INVOICE
+contract: Invoice.send event contract
+edge_class: event_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 Invoice 的动作 send 完成 / WHEN 触发事件发布 / THEN 应广播 topic `accounting.invoice.sent`

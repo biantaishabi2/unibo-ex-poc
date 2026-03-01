@@ -1,0 +1,5 @@
+module: SALES_SALES_ORDER_SHIPMENT
+contract: SalesOrderShipment.ship event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 SalesOrderShipment 动作 ship 事件被重复投递 / WHEN 重放 topic `sales.shipment.shipped` / THEN 消费方处理应保持幂等且无重复副作用

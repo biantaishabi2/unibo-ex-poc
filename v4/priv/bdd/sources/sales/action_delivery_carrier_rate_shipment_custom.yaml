@@ -1,0 +1,5 @@
+module: SALES_DELIVERY_CARRIER
+contract: DeliveryCarrier.rate_shipment action contract
+edge_class: action_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 DeliveryCarrier 的动作 rate_shipment 可执行，accept=[(未声明)]，args=[order_id:uuid!] / WHEN 执行动作 rate_shipment / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：rate_shipment 计算订单运费并返回运费金额

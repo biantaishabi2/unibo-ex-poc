@@ -1,0 +1,5 @@
+module: PURCHASING_GOODS_RECEIPT_ITEM
+contract: GoodsReceiptItem.receipt_item_editing workflow contract (risk:branch_or_exception)
+edge_class: workflow_contract
+source_file: models/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 GoodsReceiptItem 的工作流 receipt_item_editing 存在分支或异常可能 / WHEN 执行分支路径 / THEN 流程应可恢复并保持状态一致

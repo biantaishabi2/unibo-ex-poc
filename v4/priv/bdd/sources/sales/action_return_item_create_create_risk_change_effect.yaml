@@ -1,0 +1,5 @@
+module: SALES_RETURN_ITEM
+contract: ReturnItem.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 ReturnItem 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 退货明细填写退货数量和退款金额，update 调整数量

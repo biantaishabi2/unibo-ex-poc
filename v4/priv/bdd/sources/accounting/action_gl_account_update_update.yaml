@@ -1,0 +1,5 @@
+module: ACCOUNTING_GL_ACCOUNT
+contract: GlAccount.update action contract
+edge_class: action_contract
+source_file: models/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 GlAccount 的动作 update 可执行，accept=[account_name, description, is_active, parent_account_code, reconcile, currency_id]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，应符合工作流步骤约束
