@@ -12,6 +12,7 @@ defmodule UniboV4Web.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug UniboV4Web.Plugs.LoadLocale
   end
 
   scope "/", UniboV4Web do
