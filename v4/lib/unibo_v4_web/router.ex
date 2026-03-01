@@ -27,10 +27,11 @@ defmodule UniboV4Web.Router do
     forward "/graphql",
       Absinthe.Plug,
       schema: UniboV4Web.Schema
-
-    forward "/graphiql",
-      Absinthe.Plug.GraphiQL,
-      schema: UniboV4Web.Schema,
-      interface: :playground
   end
+
+  # GraphiQL UI 需要返回 HTML，不能走 :api pipeline
+  forward "/graphiql",
+    Absinthe.Plug.GraphiQL,
+    schema: UniboV4Web.Schema,
+    interface: :playground
 end
