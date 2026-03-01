@@ -1,0 +1,13 @@
+defmodule UniboV4.Uom do
+  use Ash.Domain,
+    extensions: [AshGraphql.Domain]
+
+  graphql do
+    authorize? false
+  end
+
+  resources do
+    resource UniboV4.Uom.UomCategory
+    resource UniboV4.Uom.Uom
+  end
+end

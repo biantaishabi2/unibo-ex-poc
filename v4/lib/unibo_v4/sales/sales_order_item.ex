@@ -1,3 +1,10 @@
+# Workflow: order_item_editing — 订单行编辑流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   update --> [*]
+# ```
 defmodule UniboV4.Sales.SalesOrderItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -6,36 +13,76 @@ defmodule UniboV4.Sales.SalesOrderItem do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "sales_order_items"
+    table "sales_sales_order_items"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :sales_order_item
+    type :sales_sales_order_item
 
     mutations do
-      create :create_sales_order_item, :create
-      update :update_sales_order_item, :update
+      create :create_sales_sales_order_item, :create
+      update :update_sales_sales_order_item, :update
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :product_name, :string, allow_nil?: false
-    attribute :product_code, :string
-    attribute :quantity, :integer, allow_nil?: false
-    attribute :unit_price, :decimal, allow_nil?: false
-    attribute :discount_percent, :decimal, default: 0
-    attribute :line_amount, :decimal, allow_nil?: false
-    attribute :shipped_quantity, :integer, default: 0
+    attribute :product_name, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :product_code, :string, public?: true
+    attribute :display_type, :atom do
+      constraints one_of: [:line_section, :line_note, :false]
+      public? true
+    end
+    attribute :product_uom_qty, :decimal do
+      allow_nil? false
+      default 1
+      public? true
+    end
+    attribute :qty_delivered, :decimal do
+      default 0
+      public? true
+    end
+    attribute :qty_invoiced, :decimal do
+      default 0
+      public? true
+    end
+    attribute :price_unit, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :discount, :decimal do
+      default 0
+      public? true
+    end
+    attribute :price_subtotal, :decimal, public?: true
+    attribute :price_tax, :decimal, public?: true
+    attribute :price_total, :decimal, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
+  calculations do
+    # TODO: 不支持的 calculation 表达式 :qty_to_invoice
+    # TODO: 不支持的 calculation 表达式 :invoice_status
+  end
+
   relationships do
     belongs_to :order, UniboV4.Sales.SalesOrder do
+      public? true
       allow_nil? false
+    end
+    belongs_to :product, UniboV4.Sales.Product do
+      public? true
+      allow_nil? false
+    end
+    many_to_many :tax_ids, UniboV4.Sales.Tax do
+      public? true
+      through UniboV4.Sales.SalesOrderItemTaxRel
     end
   end
 
@@ -43,15 +90,30 @@ defmodule UniboV4.Sales.SalesOrderItem do
     defaults [:read]
     create :create do
       primary? true
-      accept [:product_name, :product_code, :quantity, :unit_price, :discount_percent]
+      accept [:product_name, :product_code, :product_uom_qty, :price_unit, :discount, :display_type]
       argument :order_id, :uuid, allow_nil?: false
       change manage_relationship(:order_id, :order, type: :append, on_lookup: :relate)
+      argument :product_id, :uuid, allow_nil?: false
+      change manage_relationship(:product_id, :product, type: :append, on_lookup: :relate)
+      validate compare(:product_uom_qty, greater_than: 0)
+      # message: "订购数量必须大于零"
+      # TODO: 跨实体聚合表达式暂不支持
+      # TODO: 跨实体聚合表达式暂不支持
       change fn changeset, _context ->
-        quantity = Ash.Changeset.get_attribute(changeset, :quantity)
-        unit_price = Ash.Changeset.get_attribute(changeset, :unit_price)
+        price_subtotal = Ash.Changeset.get_attribute(changeset, :price_subtotal)
+        price_tax = Ash.Changeset.get_attribute(changeset, :price_tax)
 
-        if quantity && unit_price do
-          Ash.Changeset.force_change_attribute(changeset, :line_amount, Decimal.mult(quantity, unit_price))
+        if price_subtotal && price_tax do
+          Ash.Changeset.force_change_attribute(changeset, :price_total, Decimal.add(price_subtotal, price_tax))
+        else
+          changeset
+        end
+      end
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
         else
           changeset
         end
@@ -59,24 +121,39 @@ defmodule UniboV4.Sales.SalesOrderItem do
     end
     update :update do
       primary? true
-      accept [:quantity, :unit_price, :discount_percent]
+      accept [:product_uom_qty, :price_unit, :discount]
+      # skipped: validate compare :product_uom_qty (incompatible with bulk update atomic path)
+      # skipped: validate immutable :product (incompatible with bulk update atomic path)
+      # skipped: validate immutable :price_unit (incompatible with bulk update atomic path)
+      # TODO: 跨实体聚合表达式暂不支持
+      # TODO: 跨实体聚合表达式暂不支持
       change fn changeset, _context ->
-        quantity = Ash.Changeset.get_attribute(changeset, :quantity)
-        unit_price = Ash.Changeset.get_attribute(changeset, :unit_price)
+        price_subtotal = Ash.Changeset.get_attribute(changeset, :price_subtotal)
+        price_tax = Ash.Changeset.get_attribute(changeset, :price_tax)
 
-        if quantity && unit_price do
-          Ash.Changeset.force_change_attribute(changeset, :line_amount, Decimal.mult(quantity, unit_price))
+        if price_subtotal && price_tax do
+          Ash.Changeset.force_change_attribute(changeset, :price_total, Decimal.add(price_subtotal, price_tax))
         else
           changeset
         end
       end
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 
   validations do
-    validate compare(:quantity, greater_than: 0)
-    validate compare(:unit_price, greater_than_or_equal_to: 0)
-    validate compare(:discount_percent, greater_than_or_equal_to: 0)
+    validate compare(:price_unit, greater_than_or_equal_to: 0)
+    validate compare(:discount, greater_than_or_equal_to: 0)
+    validate compare(:discount, less_than_or_equal_to: 100)
   end
 
 end

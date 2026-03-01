@@ -27,7 +27,8 @@ config :unibo_v4,
     UniboV4.Marketing,
     UniboV4.Ecommerce,
     UniboV4.Communication,
-    UniboV4.Currency
+    UniboV4.Currency,
+    UniboV4.Uom
   ]
 
 # Configures the endpoint

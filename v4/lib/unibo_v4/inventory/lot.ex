@@ -6,32 +6,49 @@ defmodule UniboV4.Inventory.Lot do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "lots"
+    table "inventory_lots"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :lot
+    type :inventory_lot
 
     queries do
-      get :get_lot, :read
-      list :list_lots, :read
+      get :get_inventory_lot, :read
+      list :list_inventory_lots, :read
     end
 
     mutations do
-      create :create_lot, :create
-      update :update_lot, :update
+      create :create_inventory_lot, :create
+      update :update_inventory_lot, :update
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :lot_number, :string, allow_nil?: false
-    attribute :product_code, :string, allow_nil?: false
-    attribute :expiration_date, :date
-    attribute :manufacturing_date, :date
-    attribute :notes, :string
+    attribute :lot_number, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :product_code, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :expiration_date, :utc_datetime, public?: true
+    attribute :use_date, :utc_datetime, public?: true
+    attribute :removal_date, :utc_datetime, public?: true
+    attribute :alert_date, :utc_datetime, public?: true
+    attribute :manufacturing_date, :date, public?: true
+    attribute :product_expiry_alert, :boolean do
+      default false
+      public? true
+    end
+    attribute :product_expiry_reminded, :boolean do
+      default false
+      public? true
+    end
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -40,13 +57,32 @@ defmodule UniboV4.Inventory.Lot do
     defaults [:read]
     create :create do
       primary? true
-      accept [:lot_number, :product_code, :expiration_date, :manufacturing_date, :notes]
+      accept [:lot_number, :product_code, :expiration_date, :use_date, :removal_date, :alert_date, :manufacturing_date, :product_expiry_reminded, :notes]
       validate present(:lot_number)
       validate present(:product_code)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
     end
     update :update do
       primary? true
-      accept [:expiration_date, :notes]
+      accept [:expiration_date, :use_date, :removal_date, :alert_date, :product_expiry_reminded, :notes]
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

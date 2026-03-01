@@ -14,5 +14,9 @@ defmodule UniboV4.CRM do
     resource UniboV4.CRM.LeadStage
     resource UniboV4.CRM.Activity
     resource UniboV4.CRM.SalesForecast
+    resource UniboV4.CRM.CalendarEvent
+    resource UniboV4.CRM.User
+    resource UniboV4.CRM.SalesTeam
+    resource UniboV4.CRM.SalesTeamMember
   end
 end

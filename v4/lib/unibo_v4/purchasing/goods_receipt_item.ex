@@ -1,3 +1,10 @@
+# Workflow: receipt_item_editing — 收货明细编辑流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   update --> [*]
+# ```
 defmodule UniboV4.Purchasing.GoodsReceiptItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -6,33 +13,43 @@ defmodule UniboV4.Purchasing.GoodsReceiptItem do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "goods_receipt_items"
+    table "purchasing_goods_receipt_items"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :goods_receipt_item
+    type :purchasing_goods_receipt_item
 
     mutations do
-      create :create_goods_receipt_item, :create
-      update :update_goods_receipt_item, :update
+      create :create_purchasing_goods_receipt_item, :create
+      update :update_purchasing_goods_receipt_item, :update
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :product_name, :string, allow_nil?: false
-    attribute :quantity_received, :integer, allow_nil?: false
-    attribute :quantity_accepted, :integer
-    attribute :quantity_rejected, :integer, default: 0
-    attribute :rejection_reason, :string
+    attribute :product_name, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :quantity_received, :integer do
+      allow_nil? false
+      public? true
+    end
+    attribute :quantity_accepted, :integer, public?: true
+    attribute :quantity_rejected, :integer do
+      default 0
+      public? true
+    end
+    attribute :rejection_reason, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     belongs_to :receipt, UniboV4.Purchasing.GoodsReceipt do
+      public? true
       allow_nil? false
     end
   end
@@ -44,10 +61,29 @@ defmodule UniboV4.Purchasing.GoodsReceiptItem do
       accept [:product_name, :quantity_received, :quantity_accepted, :quantity_rejected, :rejection_reason]
       argument :receipt_id, :uuid, allow_nil?: false
       change manage_relationship(:receipt_id, :receipt, type: :append, on_lookup: :relate)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
     end
     update :update do
       primary? true
       accept [:quantity_accepted, :quantity_rejected, :rejection_reason]
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

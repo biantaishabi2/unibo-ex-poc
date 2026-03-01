@@ -6,11 +6,12 @@ defmodule UniboV4.CRM.Lead.Notifier do
     topic = case action_name do
       :win -> "crm.lead.won"
       :lose -> "crm.lead.lost"
+      :convert_opportunity -> "crm.lead.converted"
       _ -> nil
     end
 
     if topic do
-      Phoenix.PubSub.broadcast(PubSub, topic, {action_name, notification.data})
+      Phoenix.PubSub.broadcast(UniboV4.PubSub, topic, {action_name, notification.data})
     end
 
     :ok

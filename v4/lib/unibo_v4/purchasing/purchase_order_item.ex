@@ -1,3 +1,10 @@
+# Workflow: order_item_editing — 旧版订单行编辑流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   update --> [*]
+# ```
 defmodule UniboV4.Purchasing.PurchaseOrderItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -6,34 +13,50 @@ defmodule UniboV4.Purchasing.PurchaseOrderItem do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "purchase_order_items"
+    table "purchasing_purchase_order_items"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :purchase_order_item
+    type :purchasing_purchase_order_item
 
     mutations do
-      create :create_purchase_order_item, :create
-      update :update_purchase_order_item, :update
+      create :create_purchasing_purchase_order_item, :create
+      update :update_purchasing_purchase_order_item, :update
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :product_name, :string, allow_nil?: false
-    attribute :product_code, :string
-    attribute :quantity, :integer, allow_nil?: false
-    attribute :unit_price, :decimal, allow_nil?: false
-    attribute :line_amount, :decimal, allow_nil?: false
-    attribute :received_quantity, :integer, default: 0
+    attribute :product_name, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :product_code, :string, public?: true
+    attribute :quantity, :integer do
+      allow_nil? false
+      public? true
+    end
+    attribute :unit_price, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :line_amount, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :received_quantity, :integer do
+      default 0
+      public? true
+    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     belongs_to :order, UniboV4.Purchasing.PurchaseOrder do
+      public? true
       allow_nil? false
     end
   end
@@ -55,6 +78,15 @@ defmodule UniboV4.Purchasing.PurchaseOrderItem do
           changeset
         end
       end
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
     end
     update :update do
       primary? true
@@ -69,6 +101,16 @@ defmodule UniboV4.Purchasing.PurchaseOrderItem do
           changeset
         end
       end
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

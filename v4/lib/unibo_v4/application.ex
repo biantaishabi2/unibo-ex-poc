@@ -14,6 +14,8 @@ defmodule UniboV4.Application do
       {Phoenix.PubSub, name: UniboV4.PubSub},
       # Start a worker by calling: UniboV4.Worker.start_link(arg)
       # {UniboV4.Worker, arg},
+      # 翻译 ETS 缓存（来自 unibo_i18n_runtime）
+      Unibo.I18n.TranslationCache,
       # Start to serve requests, typically the last entry
       UniboV4Web.Endpoint
     ]

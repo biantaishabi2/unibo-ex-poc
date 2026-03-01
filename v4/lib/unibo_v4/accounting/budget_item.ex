@@ -1,3 +1,10 @@
+# Workflow: budget_item_editing — 预算项编辑流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   update --> [*]
+# ```
 defmodule UniboV4.Accounting.BudgetItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -6,35 +13,44 @@ defmodule UniboV4.Accounting.BudgetItem do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "budget_items"
+    table "accounting_budget_items"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :budget_item
+    type :accounting_budget_item
 
     mutations do
-      create :create_budget_item, :create
-      update :update_budget_item, :update
+      create :create_accounting_budget_item, :create
+      update :update_accounting_budget_item, :update
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :description, :string, allow_nil?: false
-    attribute :amount, :decimal, allow_nil?: false
-    attribute :purpose, :string
-    attribute :justification, :string
+    attribute :description, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :amount, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :purpose, :string, public?: true
+    attribute :justification, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     belongs_to :budget, UniboV4.Accounting.Budget do
+      public? true
       allow_nil? false
     end
-    belongs_to :gl_account, UniboV4.Accounting.GlAccount
+    belongs_to :gl_account, UniboV4.Accounting.GlAccount do
+      public? true
+    end
   end
 
   actions do
@@ -45,15 +61,15 @@ defmodule UniboV4.Accounting.BudgetItem do
       argument :gl_account_id, :uuid
       argument :budget_id, :uuid, allow_nil?: false
       change manage_relationship(:budget_id, :budget, type: :append, on_lookup: :relate)
+      validate compare(:amount, greater_than: 0)
+      # message: "预算金额必须大于零"
     end
     update :update do
       primary? true
       accept [:description, :amount, :purpose, :justification]
+      # skipped: validate compare :amount (incompatible with bulk update atomic path)
+      require_atomic? false
     end
-  end
-
-  validations do
-    validate compare(:amount, greater_than: 0)
   end
 
 end

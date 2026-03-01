@@ -1,3 +1,10 @@
+# Workflow: quote_item_editing — 报价明细编辑流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   update --> [*]
+# ```
 defmodule UniboV4.Sales.QuoteItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -6,34 +13,47 @@ defmodule UniboV4.Sales.QuoteItem do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "quote_items"
+    table "sales_quote_items"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :quote_item
+    type :sales_quote_item
 
     mutations do
-      create :create_quote_item, :create
-      update :update_quote_item, :update
+      create :create_sales_quote_item, :create
+      update :update_sales_quote_item, :update
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :product_name, :string, allow_nil?: false
-    attribute :product_code, :string
-    attribute :quantity, :integer, allow_nil?: false
-    attribute :unit_price, :decimal, allow_nil?: false
-    attribute :line_amount, :decimal, allow_nil?: false
-    attribute :description, :string
+    attribute :product_name, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :product_code, :string, public?: true
+    attribute :quantity, :integer do
+      allow_nil? false
+      public? true
+    end
+    attribute :unit_price, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :line_amount, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     belongs_to :quote, UniboV4.Sales.Quote do
+      public? true
       allow_nil? false
     end
   end
@@ -55,6 +75,15 @@ defmodule UniboV4.Sales.QuoteItem do
           changeset
         end
       end
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
     end
     update :update do
       primary? true
@@ -69,6 +98,16 @@ defmodule UniboV4.Sales.QuoteItem do
           changeset
         end
       end
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

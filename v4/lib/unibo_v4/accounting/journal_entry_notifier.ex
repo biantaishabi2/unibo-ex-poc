@@ -5,12 +5,13 @@ defmodule UniboV4.Accounting.JournalEntry.Notifier do
   def notify(%Ash.Notifier.Notification{action: %{name: action_name}} = notification) do
     topic = case action_name do
       :post -> "accounting.journal.posted"
-      :reverse -> "accounting.journal.reversed"
+      :cancel -> "accounting.journal.cancelled"
+      :reset_to_draft -> "accounting.journal.reset_to_draft"
       _ -> nil
     end
 
     if topic do
-      Phoenix.PubSub.broadcast(PubSub, topic, {action_name, notification.data})
+      Phoenix.PubSub.broadcast(UniboV4.PubSub, topic, {action_name, notification.data})
     end
 
     :ok

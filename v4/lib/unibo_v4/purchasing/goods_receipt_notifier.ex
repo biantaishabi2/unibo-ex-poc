@@ -9,7 +9,7 @@ defmodule UniboV4.Purchasing.GoodsReceipt.Notifier do
     end
 
     if topic do
-      Phoenix.PubSub.broadcast(PubSub, topic, {action_name, notification.data})
+      Phoenix.PubSub.broadcast(UniboV4.PubSub, topic, {action_name, notification.data})
     end
 
     :ok

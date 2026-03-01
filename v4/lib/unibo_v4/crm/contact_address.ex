@@ -6,17 +6,17 @@ defmodule UniboV4.CRM.ContactAddress do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "contact_addresses"
+    table "crm_contact_addresses"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :contact_address
+    type :crm_contact_address
 
     mutations do
-      create :create_contact_address, :create
-      update :update_contact_address, :update
-      destroy :delete_contact_address, :destroy
+      create :create_crm_contact_address, :create
+      update :update_crm_contact_address, :update
+      destroy :delete_crm_contact_address, :destroy
     end
 
   end
@@ -26,19 +26,27 @@ defmodule UniboV4.CRM.ContactAddress do
     attribute :address_type, :atom do
       constraints one_of: [:home, :work, :shipping, :billing, :other]
       default :work
+      public? true
     end
-    attribute :street, :string
-    attribute :city, :string
-    attribute :state, :string
-    attribute :postal_code, :string
-    attribute :country, :string, default: "CN"
-    attribute :is_primary, :boolean, default: false
+    attribute :street, :string, public?: true
+    attribute :city, :string, public?: true
+    attribute :state, :string, public?: true
+    attribute :postal_code, :string, public?: true
+    attribute :country, :string do
+      default "CN"
+      public? true
+    end
+    attribute :is_primary, :boolean do
+      default false
+      public? true
+    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     belongs_to :contact, UniboV4.CRM.Contact do
+      public? true
       allow_nil? false
     end
   end
@@ -50,10 +58,29 @@ defmodule UniboV4.CRM.ContactAddress do
       accept [:address_type, :street, :city, :state, :postal_code, :country, :is_primary]
       argument :contact_id, :uuid, allow_nil?: false
       change manage_relationship(:contact_id, :contact, type: :append, on_lookup: :relate)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
     end
     update :update do
       primary? true
       accept [:address_type, :street, :city, :state, :postal_code, :country, :is_primary]
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

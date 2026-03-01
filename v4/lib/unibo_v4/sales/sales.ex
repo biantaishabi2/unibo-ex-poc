@@ -15,5 +15,11 @@ defmodule UniboV4.Sales do
     resource UniboV4.Sales.SalesOrderShipment
     resource UniboV4.Sales.Return
     resource UniboV4.Sales.ReturnItem
+    resource UniboV4.Sales.DeliveryCarrier
+    resource UniboV4.Sales.DeliveryPriceRule
+    resource UniboV4.Sales.User
+    resource UniboV4.Sales.Product
+    resource UniboV4.Sales.Tax
+    resource UniboV4.Sales.SalesOrderItemTaxRel
   end
 end

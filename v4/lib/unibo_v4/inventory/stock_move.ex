@@ -7,79 +7,243 @@ defmodule UniboV4.Inventory.StockMove do
     notifiers: [UniboV4.Inventory.StockMove.Notifier]
 
   postgres do
-    table "stock_moves"
+    table "inventory_stock_moves"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :stock_move
+    type :inventory_stock_move
 
     queries do
-      get :get_stock_move, :read
-      list :list_stock_moves, :read
+      get :get_inventory_stock_move, :read
+      list :list_inventory_stock_moves, :read
     end
 
     mutations do
-      create :create_stock_move, :create
-      update :confirm_stock_move, :confirm
-      update :complete_stock_move, :complete
-      update :cancel_stock_move, :cancel
+      create :create_inventory_stock_move, :create
+      update :action_confirm_inventory_stock_move, :action_confirm
+      update :action_assign_inventory_stock_move, :action_assign
+      update :action_done_inventory_stock_move, :action_done
+      update :action_cancel_inventory_stock_move, :action_cancel
+      update :trigger_assign_inventory_stock_move, :trigger_assign
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :move_number, :string, allow_nil?: false
-    attribute :status, :atom do
-      constraints one_of: [:draft, :confirmed, :in_transit, :done, :cancelled]
-      default :draft
+    attribute :name, :string do
+      allow_nil? false
+      public? true
     end
-    attribute :move_date, :date, allow_nil?: false
-    attribute :notes, :string
+    attribute :product_id, :uuid do
+      allow_nil? false
+      public? true
+    end
+    attribute :product_uom_qty, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :product_uom, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :product_qty, :decimal, public?: true
+    attribute :quantity, :decimal, public?: true
+    attribute :reserved_qty, :decimal do
+      default 0
+      public? true
+    end
+    attribute :state, :atom do
+      constraints one_of: [:draft, :waiting, :confirmed, :partially_available, :assigned, :done, :cancel]
+      default :draft
+      public? true
+    end
+    attribute :date, :utc_datetime do
+      allow_nil? false
+      public? true
+    end
+    attribute :date_deadline, :utc_datetime, public?: true
+    attribute :priority, :atom do
+      constraints one_of: [:"0", :"1"]
+      default :"0"
+      public? true
+    end
+    attribute :procure_method, :atom do
+      allow_nil? false
+      constraints one_of: [:make_to_stock, :make_to_order]
+      default :make_to_stock
+      public? true
+    end
+    attribute :is_inventory, :boolean do
+      default false
+      public? true
+    end
+    attribute :availability, :decimal, public?: true
+    attribute :forecast_availability, :decimal, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    belongs_to :source_warehouse, UniboV4.Inventory.Warehouse
-    belongs_to :destination_warehouse, UniboV4.Inventory.Warehouse
+    belongs_to :picking, UniboV4.Inventory.StockPicking do
+      public? true
+    end
+    belongs_to :source_location, UniboV4.Inventory.StockLocation do
+      public? true
+      allow_nil? false
+    end
+    belongs_to :dest_location, UniboV4.Inventory.StockLocation do
+      public? true
+      allow_nil? false
+    end
+    has_many :move_line_ids, UniboV4.Inventory.StockMoveLine do
+      public? true
+      destination_attribute :move_id
+    end
+    many_to_many :move_orig_ids, UniboV4.Inventory.StockMove do
+      public? true
+      through UniboV4.Inventory.StockMoveDependencyLink
+    end
+    many_to_many :move_dest_ids, UniboV4.Inventory.StockMove do
+      public? true
+      through UniboV4.Inventory.StockMoveDependencyLink
+    end
+    has_many :valuation_adjustment_lines, UniboV4.Inventory.ValuationAdjustmentLine do
+      public? true
+      destination_attribute :move_id
+    end
   end
 
   actions do
     defaults [:read]
     create :create do
       primary? true
-      accept [:move_number, :move_date, :notes]
-      argument :source_warehouse_id, :uuid
-      argument :destination_warehouse_id, :uuid
-      validate present(:move_number)
-    end
-    update :confirm do
-      accept []
-      validate attribute_equals(:status, :draft) do
-        message "只有草稿状态可以确认"
-      end
-      change set_attribute(:status, :confirmed)
-    end
-    update :complete do
-      accept []
-      validate attribute_in(:status, [:confirmed, :in_transit]) do
-        message "只有已确认或在途状态可以完成"
-      end
-      change set_attribute(:status, :done)
-    end
-    update :cancel do
-      accept []
-      validate attribute_in(:status, [:draft, :confirmed]) do
-        message "只有草稿或已确认状态可以取消"
-      end
-      change set_attribute(:status, :cancelled)
-    end
-  end
+      accept [:name, :product_id, :product_uom_qty, :product_uom, :date, :date_deadline, :priority, :procure_method]
+      argument :picking_id, :uuid
+      argument :source_location_id, :uuid, allow_nil?: false
+      argument :dest_location_id, :uuid, allow_nil?: false
+      change manage_relationship(:source_location_id, :source_location, type: :append, on_lookup: :relate)
+      change manage_relationship(:dest_location_id, :dest_location, type: :append, on_lookup: :relate)
+      argument :move_line_ids, {:array, :map}, default: []
+      change manage_relationship(:move_line_ids, :move_line_ids, type: :create)
+      validate present(:name)
+      validate present(:product_id)
+      validate compare(:product_uom_qty, greater_than: 0)
+      # message: "需求数量必须大于零"
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
 
-  identities do
-    identity :unique_move_number, [:move_number]
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+    end
+    update :action_confirm do
+      primary? true
+      accept []
+      argument :merge, :boolean
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :state)
+        if current == :draft do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :state, message: "must equal %{value}", vars: %{value: :draft}))
+        end
+      end
+      # message: "只有草稿状态可以确认"
+      change set_attribute(:state, :confirmed)
+      change set_attribute(:state, :waiting)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :action_assign do
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :state)
+        if current in [:confirmed, :partially_available, :waiting] do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :state, message: "must be one of %{values}", vars: %{values: [:confirmed, :partially_available, :waiting]}))
+        end
+      end
+      # message: "只有已确认/部分可用/等待状态可以预留"
+      change set_attribute(:state, :assigned)
+      change set_attribute(:state, :partially_available)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :action_done do
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :state)
+        if current in [:confirmed, :partially_available, :assigned] do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :state, message: "must be one of %{values}", vars: %{values: [:confirmed, :partially_available, :assigned]}))
+        end
+      end
+      # message: "只有已确认/部分可用/已分配状态可以完成"
+      change set_attribute(:state, :done)
+      # TODO: 不支持的 change effect invoke
+      # TODO: 不支持的 change effect invoke
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :action_cancel do
+      accept []
+      change set_attribute(:state, :cancel)
+      # TODO: 不支持的 change effect invoke
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :trigger_assign do
+      accept []
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
   end
 
 end

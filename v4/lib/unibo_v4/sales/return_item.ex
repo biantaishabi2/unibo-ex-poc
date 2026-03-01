@@ -1,3 +1,10 @@
+# Workflow: return_item_editing — 退货明细编辑流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   update --> [*]
+# ```
 defmodule UniboV4.Sales.ReturnItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -6,32 +13,42 @@ defmodule UniboV4.Sales.ReturnItem do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "return_items"
+    table "sales_return_items"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :return_item
+    type :sales_return_item
 
     mutations do
-      create :create_return_item, :create
-      update :update_return_item, :update
+      create :create_sales_return_item, :create
+      update :update_sales_return_item, :update
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :product_name, :string, allow_nil?: false
-    attribute :quantity, :integer, allow_nil?: false
-    attribute :return_reason, :string
-    attribute :refund_amount, :decimal, allow_nil?: false
+    attribute :product_name, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :quantity, :integer do
+      allow_nil? false
+      public? true
+    end
+    attribute :return_reason, :string, public?: true
+    attribute :refund_amount, :decimal do
+      allow_nil? false
+      public? true
+    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     belongs_to :return, UniboV4.Sales.Return do
+      public? true
       allow_nil? false
     end
   end
@@ -43,10 +60,29 @@ defmodule UniboV4.Sales.ReturnItem do
       accept [:product_name, :quantity, :return_reason, :refund_amount]
       argument :return_id, :uuid, allow_nil?: false
       change manage_relationship(:return_id, :return, type: :append, on_lookup: :relate)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
     end
     update :update do
       primary? true
       accept [:quantity, :refund_amount]
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

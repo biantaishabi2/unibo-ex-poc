@@ -1,3 +1,14 @@
+# Workflow: invoice_lifecycle — 发票生命周期
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> approve
+#   create --> void
+#   approve --> send
+#   approve --> void
+#   send --> [*] : sent
+#   void --> [*]
+# ```
 defmodule UniboV4.Accounting.Invoice do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -7,60 +18,84 @@ defmodule UniboV4.Accounting.Invoice do
     notifiers: [UniboV4.Accounting.Invoice.Notifier]
 
   postgres do
-    table "invoices"
+    table "accounting_invoices"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :invoice
+    type :accounting_invoice
 
     queries do
-      get :get_invoice, :read
-      list :list_invoices, :read
+      get :get_accounting_invoice, :read
+      list :list_accounting_invoices, :read
     end
 
     mutations do
-      create :create_invoice, :create
-      update :approve_invoice, :approve
-      update :send_invoice, :send
-      update :void_invoice, :void
+      create :create_accounting_invoice, :create
+      update :approve_accounting_invoice, :approve
+      update :send_accounting_invoice, :send
+      update :void_accounting_invoice, :void
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :invoice_number, :string, allow_nil?: false
+    attribute :invoice_number, :string do
+      allow_nil? false
+      public? true
+    end
     attribute :invoice_type, :atom do
       allow_nil? false
       constraints one_of: [:sales_invoice, :purchase_invoice, :credit_memo, :debit_memo]
+      public? true
     end
     attribute :status, :atom do
       constraints one_of: [:draft, :approved, :sent, :paid, :partially_paid, :cancelled, :void]
       default :draft
+      public? true
     end
-    attribute :invoice_date, :date, allow_nil?: false
-    attribute :due_date, :date
-    attribute :total_amount, :decimal
-    attribute :paid_amount, :decimal, default: 0
-    attribute :currency, :string, default: "CNY"
-    attribute :description, :string
-    attribute :notes, :string
+    attribute :invoice_date, :date do
+      allow_nil? false
+      public? true
+    end
+    attribute :due_date, :date, public?: true
+    attribute :total_amount, :decimal, public?: true
+    attribute :paid_amount, :decimal do
+      default 0
+      public? true
+    end
+    attribute :currency, :string do
+      default "CNY"
+      public? true
+    end
+    attribute :invoice_origin, :string, public?: true
+    attribute :description, :string, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    has_many :items, UniboV4.Accounting.InvoiceItem
-    has_many :payments, UniboV4.Accounting.PaymentApplication
-    belongs_to :created_by, UniboV4.Accounts.User
+    has_many :items, UniboV4.Accounting.InvoiceItem do
+      public? true
+    end
+    has_many :payments, UniboV4.Accounting.PaymentApplication do
+      public? true
+    end
+    belongs_to :created_by, UniboV4.Accounting.User do
+      public? true
+    end
+    belongs_to :journal_entry, UniboV4.Accounting.JournalEntry do
+      public? true
+    end
   end
 
   actions do
     defaults [:read]
     create :create do
       primary? true
-      accept [:invoice_number, :invoice_type, :invoice_date, :due_date, :currency, :description, :notes]
+      accept [:invoice_number, :invoice_type, :invoice_date, :due_date, :currency, :description, :notes, :invoice_origin]
       argument :items, {:array, :string}, allow_nil?: false
       change manage_relationship(:items, :items, type: :create)
       validate present(:invoice_number)
@@ -68,31 +103,47 @@ defmodule UniboV4.Accounting.Invoice do
       # TODO: 跨实体聚合表达式暂不支持
     end
     update :approve do
+      primary? true
       accept []
-      argument :items, {:array, :map}, default: []
-      change manage_relationship(:items, :items, on_lookup: :relate, on_no_match: :create, on_match: :update)
-      validate attribute_equals(:status, :draft) do
-        message "只有草稿发票可以审批"
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :draft do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :draft}))
+        end
       end
+      # message: "只有草稿发票可以审批"
       change set_attribute(:status, :approved)
+      require_atomic? false
     end
     update :send do
       accept []
-      argument :items, {:array, :map}, default: []
-      change manage_relationship(:items, :items, on_lookup: :relate, on_no_match: :create, on_match: :update)
-      validate attribute_equals(:status, :approved) do
-        message "只有已审批发票可以发送"
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :approved do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :approved}))
+        end
       end
+      # message: "只有已审批发票可以发送"
       change set_attribute(:status, :sent)
+      require_atomic? false
     end
     update :void do
       accept []
-      argument :items, {:array, :map}, default: []
-      change manage_relationship(:items, :items, on_lookup: :relate, on_no_match: :create, on_match: :update)
-      validate attribute_in(:status, [:draft, :approved]) do
-        message "只有草稿或已审批发票可以作废"
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current in [:draft, :approved] do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must be one of %{values}", vars: %{values: [:draft, :approved]}))
+        end
       end
+      # message: "只有草稿或已审批发票可以作废"
       change set_attribute(:status, :void)
+      require_atomic? false
     end
   end
 

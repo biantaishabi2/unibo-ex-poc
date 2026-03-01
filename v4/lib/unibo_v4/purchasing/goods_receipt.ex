@@ -1,3 +1,11 @@
+# Workflow: goods_receipt_lifecycle — 收货流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> confirm
+#   confirm --> cancel
+#   cancel --> [*]
+# ```
 defmodule UniboV4.Purchasing.GoodsReceipt do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -7,45 +15,70 @@ defmodule UniboV4.Purchasing.GoodsReceipt do
     notifiers: [UniboV4.Purchasing.GoodsReceipt.Notifier]
 
   postgres do
-    table "goods_receipts"
+    table "purchasing_goods_receipts"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :goods_receipt
+    type :purchasing_goods_receipt
 
     queries do
-      get :get_goods_receipt, :read
-      list :list_goods_receipts, :read
+      get :get_purchasing_goods_receipt, :read
+      list :list_purchasing_goods_receipts, :read
+      get :get_list_purchasing_goods_receipt, :list
+      list :list_list_purchasing_goods_receipts, :list
+      get :get_search_purchasing_goods_receipt, :search
+      list :list_search_purchasing_goods_receipts, :search
+      get :get_get_purchasing_goods_receipt, :get
+      list :list_get_purchasing_goods_receipts, :get
+      get :get_preview_purchasing_goods_receipt, :preview
+      list :list_preview_purchasing_goods_receipts, :preview
+      get :get_compute_purchasing_goods_receipt, :compute
+      list :list_compute_purchasing_goods_receipts, :compute
+      get :get_lookup_purchasing_goods_receipt, :lookup
+      list :list_lookup_purchasing_goods_receipts, :lookup
     end
 
     mutations do
-      create :create_goods_receipt, :create
-      update :confirm_goods_receipt, :confirm
-      update :cancel_goods_receipt, :cancel
+      create :create_purchasing_goods_receipt, :create
+      update :confirm_purchasing_goods_receipt, :confirm
+      update :cancel_purchasing_goods_receipt, :cancel
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :receipt_number, :string, allow_nil?: false
+    attribute :receipt_number, :string do
+      allow_nil? false
+      public? true
+    end
     attribute :status, :atom do
       constraints one_of: [:draft, :confirmed, :cancelled]
       default :draft
+      public? true
     end
-    attribute :receipt_date, :date, allow_nil?: false
-    attribute :notes, :string
+    attribute :receipt_date, :date do
+      allow_nil? false
+      public? true
+    end
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    has_many :items, UniboV4.Purchasing.GoodsReceiptItem
+    has_many :items, UniboV4.Purchasing.GoodsReceiptItem do
+      public? true
+      destination_attribute :receipt_id
+    end
     belongs_to :purchase_order, UniboV4.Purchasing.PurchaseOrder do
+      public? true
       allow_nil? false
     end
-    belongs_to :received_by, UniboV4.Accounts.User
+    belongs_to :received_by, UniboV4.Purchasing.User do
+      public? true
+    end
   end
 
   actions do
@@ -59,24 +92,74 @@ defmodule UniboV4.Purchasing.GoodsReceipt do
       change manage_relationship(:purchase_order_id, :purchase_order, type: :append, on_lookup: :relate)
       validate present(:receipt_number)
       change relate_actor(:received_by)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+    end
+    read :list do
+    end
+    read :search do
+    end
+    read :get do
+    end
+    read :preview do
+    end
+    read :compute do
+    end
+    read :lookup do
     end
     update :confirm do
+      primary? true
       accept []
-      argument :items, {:array, :map}, default: []
-      change manage_relationship(:items, :items, on_lookup: :relate, on_no_match: :create, on_match: :update)
-      validate attribute_equals(:status, :draft) do
-        message "只有草稿状态可以确认"
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :draft do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :draft}))
+        end
       end
+      # message: "只有草稿状态可以确认"
       change set_attribute(:status, :confirmed)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
     update :cancel do
       accept []
-      argument :items, {:array, :map}, default: []
-      change manage_relationship(:items, :items, on_lookup: :relate, on_no_match: :create, on_match: :update)
-      validate attribute_equals(:status, :draft) do
-        message "只有草稿状态可以取消"
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :draft do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :draft}))
+        end
       end
+      # message: "只有草稿状态可以取消"
       change set_attribute(:status, :cancelled)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

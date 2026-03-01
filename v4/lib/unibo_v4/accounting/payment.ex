@@ -1,3 +1,12 @@
+# Workflow: payment_lifecycle — 付款处理流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> post
+#   post --> cancel
+#   cancel --> reset_to_draft
+#   reset_to_draft --> post
+# ```
 defmodule UniboV4.Accounting.Payment do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -7,78 +16,155 @@ defmodule UniboV4.Accounting.Payment do
     notifiers: [UniboV4.Accounting.Payment.Notifier]
 
   postgres do
-    table "payments"
+    table "accounting_payments"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :payment
+    type :accounting_payment
 
     queries do
-      get :get_payment, :read
-      list :list_payments, :read
+      get :get_accounting_payment, :read
+      list :list_accounting_payments, :read
     end
 
     mutations do
-      create :create_payment, :create
-      update :confirm_payment, :confirm
-      update :cancel_payment, :cancel
+      create :create_accounting_payment, :create
+      update :post_accounting_payment, :post
+      update :cancel_accounting_payment, :cancel
+      update :reset_to_draft_accounting_payment, :reset_to_draft
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :payment_number, :string, allow_nil?: false
+    attribute :payment_number, :string do
+      allow_nil? false
+      public? true
+    end
     attribute :payment_type, :atom do
       allow_nil? false
-      constraints one_of: [:customer_payment, :vendor_payment, :refund]
+      constraints one_of: [:inbound, :outbound]
+      public? true
+    end
+    attribute :partner_type, :atom do
+      constraints one_of: [:customer, :supplier]
+      public? true
     end
     attribute :status, :atom do
-      constraints one_of: [:draft, :confirmed, :sent, :received, :cancelled]
+      constraints one_of: [:draft, :posted, :cancel]
       default :draft
+      public? true
     end
-    attribute :amount, :decimal, allow_nil?: false
-    attribute :currency, :string, default: "CNY"
-    attribute :payment_date, :date, allow_nil?: false
-    attribute :payment_method, :atom, constraints: [one_of: [:bank_transfer, :cash, :check, :credit_card, :other]]
-    attribute :reference_number, :string
-    attribute :notes, :string
+    attribute :amount, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :currency, :string do
+      default "CNY"
+      public? true
+    end
+    attribute :payment_date, :date do
+      allow_nil? false
+      public? true
+    end
+    attribute :payment_method, :atom do
+      constraints one_of: [:manual, :check, :bank_transfer, :cash, :credit_card, :sepa, :batch_deposit, :other]
+      public? true
+    end
+    attribute :destination_account_id, :uuid, public?: true
+    attribute :reference_number, :string, public?: true
+    attribute :is_reconciled, :boolean do
+      default false
+      public? true
+    end
+    attribute :is_matched, :boolean do
+      default false
+      public? true
+    end
+    attribute :paired_internal_transfer_payment_id, :uuid, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    has_many :applications, UniboV4.Accounting.PaymentApplication
-    belongs_to :created_by, UniboV4.Accounts.User
+    belongs_to :journal_entry, UniboV4.Accounting.JournalEntry do
+      public? true
+      allow_nil? false
+    end
+    has_many :applications, UniboV4.Accounting.PaymentApplication do
+      public? true
+    end
+    belongs_to :created_by, UniboV4.Accounting.User do
+      public? true
+    end
+    belongs_to :paired_internal_transfer, UniboV4.Accounting.Payment do
+      public? true
+    end
   end
 
   actions do
     defaults [:read]
     create :create do
       primary? true
-      accept [:payment_number, :payment_type, :amount, :currency, :payment_date, :payment_method, :reference_number, :notes]
+      accept [:payment_number, :payment_type, :partner_type, :amount, :currency, :payment_date, :payment_method, :destination_account_id, :reference_number, :notes]
+      argument :journal_entry_id, :uuid, allow_nil?: false
+      change manage_relationship(:journal_entry_id, :journal_entry, type: :append, on_lookup: :relate)
       validate present(:payment_number)
+      validate compare(:amount, greater_than_or_equal_to: 0)
+      # message: "[R-PAY-001] 付款金额不能为负"
+      # TODO: 不支持的 action 内校验规则 custom
       change relate_actor(:created_by)
     end
-    update :confirm do
+    update :post do
+      primary? true
       accept []
-      validate attribute_equals(:status, :draft) do
-        message "只有草稿状态可以确认"
+      # skipped: validate compare :amount (incompatible with bulk update atomic path)
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :draft do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :draft}))
+        end
       end
-      change set_attribute(:status, :confirmed)
+      # message: "只有草稿状态可以确认"
+      # skipped: validate custom : (incompatible with bulk update atomic path)
+      change set_attribute(:status, :posted)
+      # TODO: 不支持的 change effect custom
+      # TODO: 不支持的 change effect custom
+      require_atomic? false
     end
     update :cancel do
       accept []
-      validate attribute_equals(:status, :draft) do
-        message "只有草稿状态可以取消"
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :posted do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :posted}))
+        end
       end
-      change set_attribute(:status, :cancelled)
+      # message: "只有已过账状态可以取消"
+      change set_attribute(:status, :cancel)
+      require_atomic? false
     end
-  end
-
-  validations do
-    validate compare(:amount, greater_than: 0)
+    update :reset_to_draft do
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :cancel do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :cancel}))
+        end
+      end
+      # message: "只有已取消状态可以重置为草稿"
+      change set_attribute(:status, :draft)
+      require_atomic? false
+    end
   end
 
   identities do

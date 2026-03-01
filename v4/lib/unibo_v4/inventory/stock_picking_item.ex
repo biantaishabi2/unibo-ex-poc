@@ -6,32 +6,42 @@ defmodule UniboV4.Inventory.StockPickingItem do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "stock_picking_items"
+    table "inventory_stock_picking_items"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :stock_picking_item
+    type :inventory_stock_picking_item
 
     mutations do
-      create :create_stock_picking_item, :create
-      update :update_stock_picking_item, :update
+      create :create_inventory_stock_picking_item, :create
+      update :update_inventory_stock_picking_item, :update
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :product_name, :string, allow_nil?: false
-    attribute :product_code, :string
-    attribute :quantity_planned, :decimal, allow_nil?: false
-    attribute :quantity_done, :decimal, default: 0
+    attribute :product_name, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :product_code, :string, public?: true
+    attribute :quantity_planned, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :quantity_done, :decimal do
+      default 0
+      public? true
+    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     belongs_to :picking, UniboV4.Inventory.StockPicking do
+      public? true
       allow_nil? false
     end
   end
@@ -43,10 +53,29 @@ defmodule UniboV4.Inventory.StockPickingItem do
       accept [:product_name, :product_code, :quantity_planned]
       argument :picking_id, :uuid, allow_nil?: false
       change manage_relationship(:picking_id, :picking, type: :append, on_lookup: :relate)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
     end
     update :update do
       primary? true
       accept [:quantity_done]
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

@@ -7,50 +7,92 @@ defmodule UniboV4.Inventory.StockPicking do
     notifiers: [UniboV4.Inventory.StockPicking.Notifier]
 
   postgres do
-    table "stock_pickings"
+    table "inventory_stock_pickings"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :stock_picking
+    type :inventory_stock_picking
 
     queries do
-      get :get_stock_picking, :read
-      list :list_stock_pickings, :read
+      get :get_inventory_stock_picking, :read
+      list :list_inventory_stock_pickings, :read
     end
 
     mutations do
-      create :create_stock_picking, :create
-      update :assign_stock_picking, :assign
-      update :start_stock_picking, :start
-      update :complete_stock_picking, :complete
-      update :cancel_stock_picking, :cancel
+      create :create_inventory_stock_picking, :create
+      update :action_confirm_inventory_stock_picking, :action_confirm
+      update :action_assign_inventory_stock_picking, :action_assign
+      update :button_validate_inventory_stock_picking, :button_validate
+      update :action_cancel_inventory_stock_picking, :action_cancel
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :picking_number, :string, allow_nil?: false
+    attribute :name, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :origin, :string, public?: true
     attribute :picking_type, :atom do
       allow_nil? false
       constraints one_of: [:inbound, :outbound, :internal]
+      public? true
     end
-    attribute :status, :atom do
-      constraints one_of: [:draft, :assigned, :in_progress, :done, :cancelled]
+    attribute :move_type, :atom do
+      allow_nil? false
+      constraints one_of: [:direct, :one]
+      default :direct
+      public? true
+    end
+    attribute :state, :atom do
+      constraints one_of: [:draft, :waiting, :confirmed, :assigned, :done, :cancel]
       default :draft
+      public? true
     end
-    attribute :scheduled_date, :date
-    attribute :completed_date, :date
-    attribute :notes, :string
+    attribute :priority, :atom do
+      constraints one_of: [:"0", :"1"]
+      default :"0"
+      public? true
+    end
+    attribute :scheduled_date, :utc_datetime, public?: true
+    attribute :date_deadline, :utc_datetime, public?: true
+    attribute :date_done, :utc_datetime, public?: true
+    attribute :is_locked, :boolean do
+      default false
+      public? true
+    end
+    attribute :show_check_availability, :boolean, public?: true
+    attribute :products_availability, :string, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    has_many :items, UniboV4.Inventory.StockPickingItem
-    belongs_to :warehouse, UniboV4.Inventory.Warehouse do
+    has_many :move_ids, UniboV4.Inventory.StockMove do
+      public? true
+      destination_attribute :picking_id
+    end
+    belongs_to :source_location, UniboV4.Inventory.StockLocation do
+      public? true
       allow_nil? false
+    end
+    belongs_to :dest_location, UniboV4.Inventory.StockLocation do
+      public? true
+      allow_nil? false
+    end
+    belongs_to :partner, UniboV4.Inventory.Partner do
+      public? true
+    end
+    belongs_to :warehouse, UniboV4.Inventory.Warehouse do
+      public? true
+      allow_nil? false
+    end
+    belongs_to :batch, UniboV4.Inventory.PickingBatch do
+      public? true
     end
   end
 
@@ -58,53 +100,122 @@ defmodule UniboV4.Inventory.StockPicking do
     defaults [:read]
     create :create do
       primary? true
-      accept [:picking_number, :picking_type, :scheduled_date, :notes]
-      argument :items, {:array, :string}, allow_nil?: false
+      accept [:origin, :picking_type, :move_type, :priority, :notes]
+      argument :move_ids, {:array, :string}, allow_nil?: false
       argument :warehouse_id, :uuid, allow_nil?: false
-      change manage_relationship(:items, :items, type: :create)
+      argument :source_location_id, :uuid, allow_nil?: false
+      argument :dest_location_id, :uuid, allow_nil?: false
+      argument :partner_id, :uuid
+      change manage_relationship(:move_ids, :move_ids, type: :create)
+      change manage_relationship(:source_location_id, :source_location, type: :append, on_lookup: :relate)
+      change manage_relationship(:dest_location_id, :dest_location, type: :append, on_lookup: :relate)
       change manage_relationship(:warehouse_id, :warehouse, type: :append, on_lookup: :relate)
-      validate present(:picking_number)
-    end
-    update :assign do
-      accept []
-      argument :items, {:array, :map}, default: []
-      change manage_relationship(:items, :items, on_lookup: :relate, on_no_match: :create, on_match: :update)
-      validate attribute_equals(:status, :draft) do
-        message "只有草稿状态可以分配"
+      validate present(:picking_type)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
       end
-      change set_attribute(:status, :assigned)
     end
-    update :start do
+    update :action_confirm do
+      primary? true
       accept []
-      argument :items, {:array, :map}, default: []
-      change manage_relationship(:items, :items, on_lookup: :relate, on_no_match: :create, on_match: :update)
-      validate attribute_equals(:status, :assigned) do
-        message "只有已分配状态可以开始"
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :state)
+        if current == :draft do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :state, message: "must equal %{value}", vars: %{value: :draft}))
+        end
       end
-      change set_attribute(:status, :in_progress)
+      # message: "只有草稿状态可以确认"
+      # TODO: 不支持的 change effect invoke
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
-    update :complete do
+    update :action_assign do
       accept []
-      argument :items, {:array, :map}, default: []
-      change manage_relationship(:items, :items, on_lookup: :relate, on_no_match: :create, on_match: :update)
-      validate attribute_equals(:status, :in_progress) do
-        message "只有进行中状态可以完成"
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :state)
+        if current in [:confirmed, :waiting, :assigned] do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :state, message: "must be one of %{values}", vars: %{values: [:confirmed, :waiting, :assigned]}))
+        end
       end
-      change set_attribute(:status, :done)
+      # message: "只有已确认/等待/已分配状态可以检查可用性"
+      # TODO: 不支持的 change effect invoke
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
-    update :cancel do
+    update :button_validate do
       accept []
-      argument :items, {:array, :map}, default: []
-      change manage_relationship(:items, :items, on_lookup: :relate, on_no_match: :create, on_match: :update)
-      validate attribute_in(:status, [:draft, :assigned]) do
-        message "只有草稿或已分配状态可以取消"
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :state)
+        if current in [:assigned, :confirmed] do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :state, message: "must be one of %{values}", vars: %{values: [:assigned, :confirmed]}))
+        end
       end
-      change set_attribute(:status, :cancelled)
+      # message: "只有已分配或已确认状态可以验证"
+      # skipped: validate custom : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
+      # TODO: 不支持的 change effect invoke
+      change set_attribute(:date_done, &DateTime.utc_now/0)
+      change set_attribute(:priority, :"0")
+      change set_attribute(:is_locked, true)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :action_cancel do
+      accept []
+      change set_attribute(:is_locked, true)
+      # TODO: 不支持的 change effect invoke
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 
   identities do
-    identity :unique_picking_number, [:picking_number]
+    identity :unique_picking_name, [:name]
   end
 
 end
