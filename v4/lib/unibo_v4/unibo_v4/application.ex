@@ -9,8 +9,8 @@ defmodule UniboV4.Application do
       {DNSCluster, query: Application.get_env(:unibo_v4, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: UniboV4.PubSub},
       UniboV4Web.Telemetry,
-      # 翻译 ETS 缓存
-      UniboV4.I18n.TranslationCache,
+      # 翻译 ETS 缓存（来自 unibo_i18n_runtime）
+      Unibo.I18n.TranslationCache,
       UniboV4Web.Endpoint
     ]
 

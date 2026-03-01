@@ -3,7 +3,7 @@ defmodule UniboV4.Currency.CurrencyTranslation do
     otp_app: :unibo_v4,
     domain: UniboV4.Currency,
     data_layer: AshPostgres.DataLayer,
-    notifiers: [UniboV4.I18n.TranslationCacheNotifier]
+    notifiers: [Unibo.I18n.TranslationCacheNotifier]
 
   postgres do
     table "currency_currency_translations"

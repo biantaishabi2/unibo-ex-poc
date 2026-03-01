@@ -63,7 +63,9 @@ defmodule UniboV4.MixProject do
       # GraphQL
       {:ash_graphql, "~> 1.8"},
       {:absinthe, "~> 1.7.0"},
-      {:absinthe_plug, "~> 1.5"}
+      {:absinthe_plug, "~> 1.5"},
+      # UniBO 运行时库
+      {:unibo_i18n_runtime, path: "../../unibo/targets/elixir/unibo_i18n_runtime"}
     ]
   end
 

@@ -4,7 +4,7 @@
 require Ash.Query
 
 alias UniboV4.Currency.{Currency, CurrencyTranslation}
-alias UniboV4.I18n.TranslationCache
+alias Unibo.I18n.TranslationCache
 
 IO.puts("=== 翻译运行时端到端测试 ===\n")
 
