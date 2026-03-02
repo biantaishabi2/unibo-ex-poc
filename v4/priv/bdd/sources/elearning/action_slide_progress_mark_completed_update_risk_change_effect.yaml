@@ -1,0 +1,5 @@
+module: E_LEARNING_SLIDE_PROGRESS
+contract: SlideProgress.mark_completed action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 SlideProgress 的动作 mark_completed 触发副作用 / WHEN 执行动作 mark_completed / THEN 变更副作用应完整生效且状态一致 / 补充场景：mark_completed 尝试对测验类型手动标记完成，校验失败；mark_completed 尝试对已完成内容标记完成，校验失败

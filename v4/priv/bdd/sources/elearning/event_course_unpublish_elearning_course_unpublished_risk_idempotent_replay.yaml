@@ -1,0 +1,5 @@
+module: E_LEARNING_COURSE
+contract: Course.unpublish event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Course 动作 unpublish 事件被重复投递 / WHEN 重放 topic `elearning.course.unpublished` / THEN 消费方处理应保持幂等且无重复副作用

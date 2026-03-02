@@ -1,0 +1,5 @@
+module: E_LEARNING_ENROLLMENT
+contract: Enrollment.join event contract
+edge_class: event_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Enrollment 的动作 join 完成 / WHEN 触发事件发布 / THEN 应广播 topic `elearning.enrollment.joined`

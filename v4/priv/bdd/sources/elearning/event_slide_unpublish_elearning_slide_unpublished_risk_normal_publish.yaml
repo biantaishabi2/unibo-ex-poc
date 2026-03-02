@@ -1,0 +1,5 @@
+module: E_LEARNING_SLIDE
+contract: Slide.unpublish event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Slide 动作 unpublish 触发事件 / WHEN 发布 topic `elearning.slide.unpublished` / THEN 消费方应收到一次有效通知

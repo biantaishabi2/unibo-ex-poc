@@ -1,0 +1,5 @@
+module: E_LEARNING_SLIDE_PROGRESS
+contract: SlideProgress.action_dislike action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 SlideProgress 的动作 action_dislike 触发副作用 / WHEN 执行动作 action_dislike / THEN 变更副作用应完整生效且状态一致 / 补充场景：action_like 点赞（toggle），action_dislike 踩（toggle），触发 Slide 计数重算

@@ -1,0 +1,5 @@
+module: E_LEARNING_ENROLLMENT
+contract: Enrollment.destroy action contract (risk:success)
+edge_class: action_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Enrollment 的动作 destroy 可执行 / WHEN 执行动作 destroy / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：destroy 清理过期邀请（GC 定时任务）

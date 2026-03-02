@@ -1,0 +1,5 @@
+module: E_LEARNING_SLIDE_PROGRESS
+contract: SlideProgress.complete_quiz action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 SlideProgress 的动作 complete_quiz 触发副作用 / WHEN 执行动作 complete_quiz / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建学习进度，complete_quiz 测验答题完成，累加尝试次数；complete_quiz 对非测验类型执行答题完成，校验失败

@@ -1,0 +1,5 @@
+module: E_LEARNING_COURSE
+contract: Course.publish action contract (risk:success)
+edge_class: action_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Course 的动作 publish 可执行 / WHEN 执行动作 publish / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：publish 尝试对已发布课程发布，校验失败

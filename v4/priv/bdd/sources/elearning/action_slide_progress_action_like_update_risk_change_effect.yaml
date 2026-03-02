@@ -1,0 +1,5 @@
+module: E_LEARNING_SLIDE_PROGRESS
+contract: SlideProgress.action_like action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 SlideProgress 的动作 action_like 触发副作用 / WHEN 执行动作 action_like / THEN 变更副作用应完整生效且状态一致

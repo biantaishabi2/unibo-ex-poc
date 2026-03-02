@@ -1,0 +1,5 @@
+module: E_LEARNING_SLIDE_PROGRESS
+contract: SlideProgress.progress_tracking workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 SlideProgress 定义工作流 progress_tracking / WHEN 按主路径执行 create -> mark_completed -> mark_uncompleted -> complete_quiz -> action_like -> action_dislike / THEN 主流程应可达并保持顺序一致

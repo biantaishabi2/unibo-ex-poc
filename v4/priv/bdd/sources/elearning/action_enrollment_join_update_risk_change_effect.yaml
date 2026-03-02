@@ -1,0 +1,5 @@
+module: E_LEARNING_ENROLLMENT
+contract: Enrollment.join action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Enrollment 的动作 join 触发副作用 / WHEN 执行动作 join / THEN 变更副作用应完整生效且状态一致 / 补充场景：join 尝试对非 invited 状态执行加入，校验失败

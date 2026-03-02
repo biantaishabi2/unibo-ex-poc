@@ -1,0 +1,5 @@
+module: E_LEARNING_COURSE
+contract: Course.unpublish action contract (risk:success)
+edge_class: action_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Course 的动作 unpublish 可执行 / WHEN 执行动作 unpublish / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：unpublish 尝试对未发布课程取消发布，校验失败
