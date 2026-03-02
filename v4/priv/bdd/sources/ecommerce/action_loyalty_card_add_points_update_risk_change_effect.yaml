@@ -1,0 +1,5 @@
+module: ECOMMERCE_LOYALTY_CARD
+contract: LoyaltyCard.add_points action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 LoyaltyCard 的动作 add_points 触发副作用 / WHEN 执行动作 add_points / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 新建积分卡，add_points 增加积分，share 生成分享链接；create 新建积分卡，update 修改过期日期，add_points 增加积分

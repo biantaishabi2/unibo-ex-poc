@@ -1,0 +1,5 @@
+module: ECOMMERCE_LOYALTY_PROGRAM
+contract: LoyaltyProgram.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 LoyaltyProgram 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 新建忠诚度计划，update 修改触发方式和有效期；create 新建优惠券计划并配置促销码触发

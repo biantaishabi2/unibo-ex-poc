@@ -1,0 +1,5 @@
+module: ECOMMERCE_SHOPPING_CART
+contract: ShoppingCart.cart_update action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 ShoppingCart 的动作 cart_update 输入非法 / WHEN 执行动作 cart_update / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 新建购物车，cart_update 加购商品，select_carrier 选择物流，convert 转为订单；cart_update 加购后 update_pricelist 切换价格表重算价格；弃购购物车通过 recover 恢复后继续 cart_update 和 convert
