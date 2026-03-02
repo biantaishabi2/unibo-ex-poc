@@ -1,0 +1,7 @@
+{
+  "id": "marketing_campaign_event_campaign_complete_marketing_campaign_completed_risk_idempotent_replay",
+  "module": "MARKETING_CAMPAIGN",
+  "edge_class": "all",
+  "source_file": "event_campaign_complete_marketing_campaign_completed_risk_idempotent_replay.yaml",
+  "source_summary": "module: MARKETING_CAMPAIGN\\ncontract: Campaign.complete event contract (risk:idempotent_replay)\\nedge_class: event_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 Campaign 动作 complete 事件被重复投递 / WHEN 重放 topic `marketing.campaign.completed` / THEN 消费方处理应保持幂等且无重复副作用"
+}

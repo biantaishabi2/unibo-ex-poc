@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_SOCIAL_POST_ACCOUNT_LINK-SEED-marketing_social_post_account_link_action_social_post_account_link_read_read] TITLE: MARKETING_SOCIAL_POST_ACCOUNT_LINK contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_social_post_account_link_action_social_post_account_link_read_read" module="MARKETING_SOCIAL_POST_ACCOUNT_LINK"
+WHEN when_execute_seed_contract module="MARKETING_SOCIAL_POST_ACCOUNT_LINK"
+THEN then_seed_contract_should_hold module="MARKETING_SOCIAL_POST_ACCOUNT_LINK"

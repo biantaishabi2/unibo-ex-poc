@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_CAMPAIGN-SEED-marketing_campaign_action_campaign_launch_update_risk_change_effect] TITLE: MARKETING_CAMPAIGN contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_campaign_action_campaign_launch_update_risk_change_effect" module="MARKETING_CAMPAIGN"
+WHEN when_execute_seed_contract module="MARKETING_CAMPAIGN"
+THEN then_seed_contract_should_hold module="MARKETING_CAMPAIGN"

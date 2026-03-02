@@ -1,0 +1,7 @@
+{
+  "id": "currency_currency_action_currency_create_create_risk_validation_fail",
+  "module": "CURRENCY_CURRENCY",
+  "edge_class": "all",
+  "source_file": "action_currency_create_create_risk_validation_fail.yaml",
+  "source_summary": "module: CURRENCY_CURRENCY\\ncontract: Currency.create action contract (risk:validation_fail)\\nedge_class: action_contract\\nsource_file: models/currency/currency.ubo.yaml\\nsource_summary: GIVEN 实体 Currency 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建币种 -> update 修改币种信息 -> destroy 删除币种"
+}

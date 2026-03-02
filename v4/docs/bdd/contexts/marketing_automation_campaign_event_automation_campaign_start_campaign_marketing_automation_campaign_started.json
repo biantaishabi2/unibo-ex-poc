@@ -1,0 +1,7 @@
+{
+  "id": "marketing_automation_campaign_event_automation_campaign_start_campaign_marketing_automation_campaign_started",
+  "module": "MARKETING_AUTOMATION_CAMPAIGN",
+  "edge_class": "all",
+  "source_file": "event_automation_campaign_start_campaign_marketing_automation_campaign_started.yaml",
+  "source_summary": "module: MARKETING_AUTOMATION_CAMPAIGN\\ncontract: AutomationCampaign.start_campaign event contract\\nedge_class: event_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 AutomationCampaign 的动作 start_campaign 完成 / WHEN 触发事件发布 / THEN 应广播 topic `marketing.automation.campaign.started`"
+}

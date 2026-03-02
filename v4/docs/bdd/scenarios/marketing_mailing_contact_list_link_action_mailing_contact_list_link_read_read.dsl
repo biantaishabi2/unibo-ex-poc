@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_MAILING_CONTACT_LIST_LINK-SEED-marketing_mailing_contact_list_link_action_mailing_contact_list_link_read_read] TITLE: MARKETING_MAILING_CONTACT_LIST_LINK contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_mailing_contact_list_link_action_mailing_contact_list_link_read_read" module="MARKETING_MAILING_CONTACT_LIST_LINK"
+WHEN when_execute_seed_contract module="MARKETING_MAILING_CONTACT_LIST_LINK"
+THEN then_seed_contract_should_hold module="MARKETING_MAILING_CONTACT_LIST_LINK"

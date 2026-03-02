@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_SEGMENT-SEED-marketing_segment_action_segment_create_create_risk_validation_fail] TITLE: MARKETING_SEGMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_segment_action_segment_create_create_risk_validation_fail" module="MARKETING_SEGMENT"
+WHEN when_execute_seed_contract module="MARKETING_SEGMENT"
+THEN then_seed_contract_should_hold module="MARKETING_SEGMENT"

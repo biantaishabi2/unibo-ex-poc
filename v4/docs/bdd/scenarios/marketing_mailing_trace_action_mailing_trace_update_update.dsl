@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_MAILING_TRACE-SEED-marketing_mailing_trace_action_mailing_trace_update_update] TITLE: MARKETING_MAILING_TRACE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_mailing_trace_action_mailing_trace_update_update" module="MARKETING_MAILING_TRACE"
+WHEN when_execute_seed_contract module="MARKETING_MAILING_TRACE"
+THEN then_seed_contract_should_hold module="MARKETING_MAILING_TRACE"

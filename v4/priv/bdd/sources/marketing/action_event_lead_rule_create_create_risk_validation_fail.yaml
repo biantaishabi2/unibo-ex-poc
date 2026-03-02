@@ -1,0 +1,5 @@
+module: MARKETING_EVENT_LEAD_RULE
+contract: EventLeadRule.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 EventLeadRule 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建线索规则 -> update 修改规则配置

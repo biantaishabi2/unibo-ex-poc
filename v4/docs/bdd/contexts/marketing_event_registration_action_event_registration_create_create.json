@@ -1,0 +1,7 @@
+{
+  "id": "marketing_event_registration_action_event_registration_create_create",
+  "module": "MARKETING_EVENT_REGISTRATION",
+  "edge_class": "all",
+  "source_file": "action_event_registration_create_create.yaml",
+  "source_summary": "module: MARKETING_EVENT_REGISTRATION\\ncontract: EventRegistration.create action contract\\nedge_class: action_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 EventRegistration 的动作 create 可执行，accept=[attendee_name, attendee_email, attendee_phone, company_name, registration_date, barcode]，args=[event_id:uuid!, ticket_id:uuid, partner_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

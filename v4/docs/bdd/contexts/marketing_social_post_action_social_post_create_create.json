@@ -1,0 +1,7 @@
+{
+  "id": "marketing_social_post_action_social_post_create_create",
+  "module": "MARKETING_SOCIAL_POST",
+  "edge_class": "all",
+  "source_file": "action_social_post_create_create.yaml",
+  "source_summary": "module: MARKETING_SOCIAL_POST\\ncontract: SocialPost.create action contract\\nedge_class: action_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 SocialPost 的动作 create 可执行，accept=[content, media_ids, platform_specific, utm_source, utm_medium, utm_campaign]，args=[campaign_id:uuid, account_ids:array] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 创建帖子 -> update 编辑内容 -> publish_now 立即发布 -> sync_stats 同步统计；create 创建帖子 -> schedule 定时发布 -> sync_stats 同步统计"
+}

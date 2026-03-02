@@ -1,0 +1,7 @@
+{
+  "id": "marketing_event_lead_rule_action_event_lead_rule_run_on_registrations_custom",
+  "module": "MARKETING_EVENT_LEAD_RULE",
+  "edge_class": "all",
+  "source_file": "action_event_lead_rule_run_on_registrations_custom.yaml",
+  "source_summary": "module: MARKETING_EVENT_LEAD_RULE\\ncontract: EventLeadRule.run_on_registrations action contract\\nedge_class: action_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 EventLeadRule 的动作 run_on_registrations 可执行，accept=[(未声明)]，args=[registration_ids:text!] / WHEN 执行动作 run_on_registrations / THEN 状态变更与副作用应生效"
+}

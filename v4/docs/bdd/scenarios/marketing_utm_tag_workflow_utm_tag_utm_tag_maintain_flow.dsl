@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_UTM_TAG-SEED-marketing_utm_tag_workflow_utm_tag_utm_tag_maintain_flow] TITLE: MARKETING_UTM_TAG contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_utm_tag_workflow_utm_tag_utm_tag_maintain_flow" module="MARKETING_UTM_TAG"
+WHEN when_execute_seed_contract module="MARKETING_UTM_TAG"
+THEN then_seed_contract_should_hold module="MARKETING_UTM_TAG"

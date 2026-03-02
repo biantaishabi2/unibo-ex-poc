@@ -1,0 +1,5 @@
+module: MARKETING_SOCIAL_POST
+contract: SocialPost.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 SocialPost 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建帖子 -> update 编辑内容 -> publish_now 立即发布 -> sync_stats 同步统计；create 创建帖子 -> schedule 定时发布 -> sync_stats 同步统计

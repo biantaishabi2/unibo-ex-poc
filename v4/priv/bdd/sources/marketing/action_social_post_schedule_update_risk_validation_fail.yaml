@@ -1,0 +1,5 @@
+module: MARKETING_SOCIAL_POST
+contract: SocialPost.schedule action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 SocialPost 的动作 schedule 输入非法 / WHEN 执行动作 schedule / THEN 应返回校验失败且不产生持久化副作用

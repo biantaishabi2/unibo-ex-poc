@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_CONTACT-SEED-marketing_contact_action_contact_read_read] TITLE: MARKETING_CONTACT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_contact_action_contact_read_read" module="MARKETING_CONTACT"
+WHEN when_execute_seed_contract module="MARKETING_CONTACT"
+THEN then_seed_contract_should_hold module="MARKETING_CONTACT"

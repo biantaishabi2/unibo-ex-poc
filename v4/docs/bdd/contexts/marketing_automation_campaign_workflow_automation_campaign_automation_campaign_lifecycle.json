@@ -1,0 +1,7 @@
+{
+  "id": "marketing_automation_campaign_workflow_automation_campaign_automation_campaign_lifecycle",
+  "module": "MARKETING_AUTOMATION_CAMPAIGN",
+  "edge_class": "all",
+  "source_file": "workflow_automation_campaign_automation_campaign_lifecycle.yaml",
+  "source_summary": "module: MARKETING_AUTOMATION_CAMPAIGN\\ncontract: AutomationCampaign.automation_campaign_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 AutomationCampaign 定义工作流 automation_campaign_lifecycle / WHEN 按步骤执行 create -> update -> start_campaign -> stop_campaign / THEN 流程顺序应满足声明约束"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "currency_currency_rate_action_currency_rate_destroy_destroy_risk_validation_fail",
+  "module": "CURRENCY_CURRENCY_RATE",
+  "edge_class": "all",
+  "source_file": "action_currency_rate_destroy_destroy_risk_validation_fail.yaml",
+  "source_summary": "module: CURRENCY_CURRENCY_RATE\\ncontract: CurrencyRate.destroy action contract (risk:validation_fail)\\nedge_class: action_contract\\nsource_file: models/currency/currency.ubo.yaml\\nsource_summary: GIVEN 实体 CurrencyRate 的动作 destroy 输入非法 / WHEN 执行动作 destroy / THEN 应返回校验失败且不产生持久化副作用"
+}

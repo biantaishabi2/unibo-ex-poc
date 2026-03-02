@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_UTM_STAGE-SEED-marketing_utm_stage_workflow_utm_stage_utm_stage_maintain_flow_risk_branch_or_exception] TITLE: MARKETING_UTM_STAGE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_utm_stage_workflow_utm_stage_utm_stage_maintain_flow_risk_branch_or_exception" module="MARKETING_UTM_STAGE"
+WHEN when_execute_seed_contract module="MARKETING_UTM_STAGE"
+THEN then_seed_contract_should_hold module="MARKETING_UTM_STAGE"

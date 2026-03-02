@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_MAILING-SEED-marketing_mailing_event_mailing_schedule_marketing_mailing_scheduled_risk_idempotent_replay] TITLE: MARKETING_MAILING contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_mailing_event_mailing_schedule_marketing_mailing_scheduled_risk_idempotent_replay" module="MARKETING_MAILING"
+WHEN when_execute_seed_contract module="MARKETING_MAILING"
+THEN then_seed_contract_should_hold module="MARKETING_MAILING"

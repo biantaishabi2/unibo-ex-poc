@@ -1,0 +1,5 @@
+module: MARKETING_MAILING
+contract: Mailing.cancel event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 Mailing 动作 cancel 事件被重复投递 / WHEN 重放 topic `marketing.mailing.cancelled` / THEN 消费方处理应保持幂等且无重复副作用

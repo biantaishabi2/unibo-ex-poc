@@ -1,0 +1,7 @@
+{
+  "id": "marketing_campaign_action_campaign_update_update",
+  "module": "MARKETING_CAMPAIGN",
+  "edge_class": "all",
+  "source_file": "action_campaign_update_update.yaml",
+  "source_summary": "module: MARKETING_CAMPAIGN\\ncontract: Campaign.update action contract\\nedge_class: action_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 Campaign 的动作 update 可执行，accept=[name, status, start_date, end_date, budget, actual_cost, description, utm_campaign_id, utm_medium_id, utm_source_id]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

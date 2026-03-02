@@ -1,0 +1,5 @@
+module: MARKETING_EVENT_MAIL_SCHEDULE
+contract: EventMailSchedule.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 EventMailSchedule 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建邮件计划 -> update 修改计划 -> destroy 删除计划

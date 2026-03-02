@@ -1,0 +1,5 @@
+module: DATA_RECYCLE_RECYCLE_MODEL
+contract: RecycleModel.recycle_model_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/data_recycle/data_recycle.ubo.yaml
+source_summary: GIVEN 实体 RecycleModel 定义工作流 recycle_model_lifecycle / WHEN 按步骤执行 create -> update -> recycle_records_action -> cron_recycle -> destroy / THEN 流程顺序应满足声明约束

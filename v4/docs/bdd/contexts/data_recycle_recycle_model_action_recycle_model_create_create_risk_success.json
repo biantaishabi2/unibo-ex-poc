@@ -1,0 +1,7 @@
+{
+  "id": "data_recycle_recycle_model_action_recycle_model_create_create_risk_success",
+  "module": "DATA_RECYCLE_RECYCLE_MODEL",
+  "edge_class": "all",
+  "source_file": "action_recycle_model_create_create_risk_success.yaml",
+  "source_summary": "module: DATA_RECYCLE_RECYCLE_MODEL\\ncontract: RecycleModel.create action contract (risk:success)\\nedge_class: action_contract\\nsource_file: models/data_recycle/data_recycle.ubo.yaml\\nsource_summary: GIVEN 实体 RecycleModel 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 新建回收规则，update 调整时间窗口与回收模式；create 新建回收规则后，recycle_records_action 手动触发回收任务；create 新建自动规则后，cron_recycle 定时执行批量扫描与回收；create 新建回收规则后，destroy 删除规则；create 时 recycle_action 非法值，校验失败"
+}

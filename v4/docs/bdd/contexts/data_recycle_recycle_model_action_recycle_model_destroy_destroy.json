@@ -1,0 +1,7 @@
+{
+  "id": "data_recycle_recycle_model_action_recycle_model_destroy_destroy",
+  "module": "DATA_RECYCLE_RECYCLE_MODEL",
+  "edge_class": "all",
+  "source_file": "action_recycle_model_destroy_destroy.yaml",
+  "source_summary": "module: DATA_RECYCLE_RECYCLE_MODEL\\ncontract: RecycleModel.destroy action contract\\nedge_class: action_contract\\nsource_file: models/data_recycle/data_recycle.ubo.yaml\\nsource_summary: GIVEN 实体 RecycleModel 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

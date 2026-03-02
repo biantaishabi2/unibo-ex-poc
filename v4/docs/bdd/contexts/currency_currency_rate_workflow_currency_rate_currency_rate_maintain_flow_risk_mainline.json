@@ -1,0 +1,7 @@
+{
+  "id": "currency_currency_rate_workflow_currency_rate_currency_rate_maintain_flow_risk_mainline",
+  "module": "CURRENCY_CURRENCY_RATE",
+  "edge_class": "all",
+  "source_file": "workflow_currency_rate_currency_rate_maintain_flow_risk_mainline.yaml",
+  "source_summary": "module: CURRENCY_CURRENCY_RATE\\ncontract: CurrencyRate.currency_rate_maintain_flow workflow contract (risk:mainline)\\nedge_class: workflow_contract\\nsource_file: models/currency/currency.ubo.yaml\\nsource_summary: GIVEN 实体 CurrencyRate 定义工作流 currency_rate_maintain_flow / WHEN 按主路径执行 create -> update -> destroy / THEN 主流程应可达并保持顺序一致"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_MAILING_LIST-SEED-marketing_mailing_list_action_mailing_list_create_create_risk_change_effect] TITLE: MARKETING_MAILING_LIST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_mailing_list_action_mailing_list_create_create_risk_change_effect" module="MARKETING_MAILING_LIST"
+WHEN when_execute_seed_contract module="MARKETING_MAILING_LIST"
+THEN then_seed_contract_should_hold module="MARKETING_MAILING_LIST"

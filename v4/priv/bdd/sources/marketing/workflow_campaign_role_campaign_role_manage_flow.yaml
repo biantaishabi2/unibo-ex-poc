@@ -1,0 +1,5 @@
+module: MARKETING_CAMPAIGN_ROLE
+contract: CampaignRole.campaign_role_manage_flow workflow contract
+edge_class: workflow_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 CampaignRole 定义工作流 campaign_role_manage_flow / WHEN 按步骤执行 create -> destroy / THEN 流程顺序应满足声明约束

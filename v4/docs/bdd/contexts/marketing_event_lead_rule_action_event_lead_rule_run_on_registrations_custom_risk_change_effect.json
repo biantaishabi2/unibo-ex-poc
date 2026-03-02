@@ -1,0 +1,7 @@
+{
+  "id": "marketing_event_lead_rule_action_event_lead_rule_run_on_registrations_custom_risk_change_effect",
+  "module": "MARKETING_EVENT_LEAD_RULE",
+  "edge_class": "all",
+  "source_file": "action_event_lead_rule_run_on_registrations_custom_risk_change_effect.yaml",
+  "source_summary": "module: MARKETING_EVENT_LEAD_RULE\\ncontract: EventLeadRule.run_on_registrations action contract (risk:change_effect)\\nedge_class: action_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 EventLeadRule 的动作 run_on_registrations 触发副作用 / WHEN 执行动作 run_on_registrations / THEN 变更副作用应完整生效且状态一致"
+}

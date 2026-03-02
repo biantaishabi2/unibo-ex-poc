@@ -1,0 +1,5 @@
+module: MARKETING_CAMPAIGN
+contract: Campaign.complete action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 Campaign 的动作 complete 触发副作用 / WHEN 执行动作 complete / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建活动 -> launch 启动活动 -> pause 暂停 -> resume 恢复 -> complete 完成

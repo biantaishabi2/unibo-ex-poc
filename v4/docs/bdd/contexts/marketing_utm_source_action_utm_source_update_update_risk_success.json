@@ -1,0 +1,7 @@
+{
+  "id": "marketing_utm_source_action_utm_source_update_update_risk_success",
+  "module": "MARKETING_UTM_SOURCE",
+  "edge_class": "all",
+  "source_file": "action_utm_source_update_update_risk_success.yaml",
+  "source_summary": "module: MARKETING_UTM_SOURCE\\ncontract: UtmSource.update action contract (risk:success)\\nedge_class: action_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 UtmSource 的动作 update 可执行 / WHEN 执行动作 update / THEN 成功路径应满足业务约束并持久化结果"
+}

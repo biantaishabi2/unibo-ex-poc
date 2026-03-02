@@ -1,0 +1,5 @@
+module: MARKETING_AUTOMATION_CAMPAIGN
+contract: AutomationCampaign.start_campaign event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 AutomationCampaign 动作 start_campaign 事件被重复投递 / WHEN 重放 topic `marketing.automation.campaign.started` / THEN 消费方处理应保持幂等且无重复副作用

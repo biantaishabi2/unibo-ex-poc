@@ -1,0 +1,5 @@
+module: MARKETING_SMS_MESSAGE
+contract: SmsMessage.resend_failed action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 SmsMessage 的动作 resend_failed 触发副作用 / WHEN 执行动作 resend_failed / THEN 变更副作用应完整生效且状态一致

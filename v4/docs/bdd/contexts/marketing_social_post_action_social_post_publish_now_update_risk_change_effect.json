@@ -1,0 +1,7 @@
+{
+  "id": "marketing_social_post_action_social_post_publish_now_update_risk_change_effect",
+  "module": "MARKETING_SOCIAL_POST",
+  "edge_class": "all",
+  "source_file": "action_social_post_publish_now_update_risk_change_effect.yaml",
+  "source_summary": "module: MARKETING_SOCIAL_POST\\ncontract: SocialPost.publish_now action contract (risk:change_effect)\\nedge_class: action_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 SocialPost 的动作 publish_now 触发副作用 / WHEN 执行动作 publish_now / THEN 变更副作用应完整生效且状态一致"
+}

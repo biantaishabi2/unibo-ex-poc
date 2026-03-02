@@ -1,0 +1,7 @@
+{
+  "id": "marketing_automation_trace_workflow_automation_trace_automation_trace_lifecycle",
+  "module": "MARKETING_AUTOMATION_TRACE",
+  "edge_class": "all",
+  "source_file": "workflow_automation_trace_automation_trace_lifecycle.yaml",
+  "source_summary": "module: MARKETING_AUTOMATION_TRACE\\ncontract: AutomationTrace.automation_trace_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 AutomationTrace 定义工作流 automation_trace_lifecycle / WHEN 按步骤执行 create -> execute -> cancel / THEN 流程顺序应满足声明约束"
+}

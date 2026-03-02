@@ -1,0 +1,7 @@
+{
+  "id": "marketing_automation_activity_action_automation_activity_destroy_destroy_risk_success",
+  "module": "MARKETING_AUTOMATION_ACTIVITY",
+  "edge_class": "all",
+  "source_file": "action_automation_activity_destroy_destroy_risk_success.yaml",
+  "source_summary": "module: MARKETING_AUTOMATION_ACTIVITY\\ncontract: AutomationActivity.destroy action contract (risk:success)\\nedge_class: action_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 AutomationActivity 的动作 destroy 可执行 / WHEN 执行动作 destroy / THEN 成功路径应满足业务约束并持久化结果"
+}

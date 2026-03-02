@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_EVENT_LEAD_RULE-SEED-marketing_event_lead_rule_action_event_lead_rule_run_on_registrations_custom] TITLE: MARKETING_EVENT_LEAD_RULE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_event_lead_rule_action_event_lead_rule_run_on_registrations_custom" module="MARKETING_EVENT_LEAD_RULE"
+WHEN when_execute_seed_contract module="MARKETING_EVENT_LEAD_RULE"
+THEN then_seed_contract_should_hold module="MARKETING_EVENT_LEAD_RULE"

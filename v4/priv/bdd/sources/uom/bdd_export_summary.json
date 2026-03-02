@@ -1,0 +1,137 @@
+{
+  "total_models": 1,
+  "generated_files": 25,
+  "action_sources": 19,
+  "event_sources": 0,
+  "workflow_sources": 6,
+  "scenario_total": 2,
+  "scenario_associated": 2,
+  "scenario_unassociated": 0,
+  "unassociated_scenarios": [],
+  "scenario_resolutions": [
+    {
+      "model": "uom.ubo.yaml",
+      "entity": "UomCategory",
+      "path": "entities[0].scenarios",
+      "scenario": "create 创建单位分类 -> update 修改分类名称",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "UomCategory.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "UomCategory.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "UomCategory.uom_category_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "UomCategory.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 UomCategory.create (action)（score=70）"
+    },
+    {
+      "model": "uom.ubo.yaml",
+      "entity": "Uom",
+      "path": "entities[1].scenarios",
+      "scenario": "create 创建计量单位 -> update 修改换算比率/精度",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Uom.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Uom.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Uom.uom_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Uom.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Uom.create (action)（score=70）"
+    }
+  ],
+  "auto_anchor_enabled": true,
+  "auto_anchor_total": 2,
+  "auto_anchor_mapped": 2,
+  "auto_anchor_unmapped": 0,
+  "auto_anchor_results": [
+    {
+      "model": "uom.ubo.yaml",
+      "entity": "Uom",
+      "action": "create",
+      "scenario": "create 创建计量单位 -> update 修改换算比率/精度",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "uom.ubo.yaml",
+      "entity": "UomCategory",
+      "action": "create",
+      "scenario": "create 创建单位分类 -> update 修改分类名称",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    }
+  ],
+  "weak_assertion_count": 0,
+  "weak_assertion_read_count": 0,
+  "weak_assertion_write_count": 0,
+  "weak_assertion_other_count": 0,
+  "weak_assertion_effective_count": 0,
+  "weak_assertion_effective_read_count": 0,
+  "weak_assertion_effective_write_count": 0,
+  "weak_assertion_effective_other_count": 0,
+  "weak_whitelist_path": null,
+  "weak_whitelist_rule_count": 0,
+  "weak_whitelist_active_rule_count": 0,
+  "weak_whitelist_hit_count": 0,
+  "weak_whitelist_hits": [],
+  "weak_assertions": []
+}

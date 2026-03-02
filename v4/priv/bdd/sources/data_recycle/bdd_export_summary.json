@@ -1,0 +1,527 @@
+{
+  "total_models": 1,
+  "generated_files": 53,
+  "action_sources": 44,
+  "event_sources": 0,
+  "workflow_sources": 9,
+  "scenario_total": 10,
+  "scenario_associated": 10,
+  "scenario_unassociated": 0,
+  "unassociated_scenarios": [],
+  "scenario_resolutions": [
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModel",
+      "path": "entities[0].scenarios",
+      "scenario": "create 新建回收规则后，destroy 删除规则",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "RecycleModel.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "RecycleModel.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "RecycleModel.recycle_model_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "RecycleModel.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 RecycleModel.create (action)（score=70）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModel",
+      "path": "entities[0].scenarios",
+      "scenario": "create 新建回收规则后，recycle_records_action 手动触发回收任务",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "RecycleModel.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "RecycleModel.recycle_records_action (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "RecycleModel.recycle_model_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "RecycleModel.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 RecycleModel.create (action)（score=70）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModel",
+      "path": "entities[0].scenarios",
+      "scenario": "create 新建回收规则，update 调整时间窗口与回收模式",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "RecycleModel.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "RecycleModel.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "RecycleModel.recycle_model_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "RecycleModel.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 RecycleModel.create (action)（score=70）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModel",
+      "path": "entities[0].scenarios",
+      "scenario": "create 新建自动规则后，cron_recycle 定时执行批量扫描与回收",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "RecycleModel.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "RecycleModel.cron_recycle (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "RecycleModel.recycle_model_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "RecycleModel.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 RecycleModel.create (action)（score=70）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModel",
+      "path": "entities[0].scenarios",
+      "scenario": "create 时 recycle_action 非法值，校验失败",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "RecycleModel.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "RecycleModel.recycle_model_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "RecycleModel.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 RecycleModel.create (action)（score=70）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleRecord",
+      "path": "entities[1].scenarios",
+      "scenario": "create 新建待回收记录，discard 忽略记录并设为非活跃",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "RecycleRecord.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "RecycleRecord.discard (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "RecycleRecord.recycle_record_processing (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "RecycleRecord.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 RecycleRecord.create (action)（score=70）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleRecord",
+      "path": "entities[1].scenarios",
+      "scenario": "create 新建待回收记录，validate 执行确认回收",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "RecycleRecord.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "RecycleRecord.validate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "RecycleRecord.recycle_record_processing (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "RecycleRecord.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 RecycleRecord.create (action)（score=70）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleRecord",
+      "path": "entities[1].scenarios",
+      "scenario": "discard 后再次 validate，因 active=false 校验失败",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "RecycleRecord.discard (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "RecycleRecord.validate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "RecycleRecord.recycle_record_processing (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "RecycleRecord.discard (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 RecycleRecord.discard (action)（score=70）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModelNotifyUser",
+      "path": "entities[2].scenarios",
+      "scenario": "create 新增回收规则通知用户关联，destroy 删除关联",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "RecycleModelNotifyUser.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "RecycleModelNotifyUser.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "RecycleModelNotifyUser.recycle_model_notify_user_management (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "RecycleModelNotifyUser.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 RecycleModelNotifyUser.create (action)（score=70）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModelNotifyUser",
+      "path": "entities[2].scenarios",
+      "scenario": "create 缺少 recycle_model_id 或 user_id，校验失败",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "RecycleModelNotifyUser.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "RecycleModelNotifyUser.recycle_model_notify_user_management (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "RecycleModelNotifyUser.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 RecycleModelNotifyUser.create (action)（score=70）"
+    }
+  ],
+  "auto_anchor_enabled": true,
+  "auto_anchor_total": 10,
+  "auto_anchor_mapped": 5,
+  "auto_anchor_unmapped": 5,
+  "auto_anchor_results": [
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModel",
+      "action": "create",
+      "scenario": "create 新建回收规则后，destroy 删除规则",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModel",
+      "action": "create",
+      "scenario": "create 新建回收规则后，recycle_records_action 手动触发回收任务",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModel",
+      "action": "create",
+      "scenario": "create 新建回收规则，update 调整时间窗口与回收模式",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModel",
+      "action": "create",
+      "scenario": "create 新建自动规则后，cron_recycle 定时执行批量扫描与回收",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModel",
+      "action": "create",
+      "scenario": "create 时 recycle_action 非法值，校验失败",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation"
+      ],
+      "reason": "命中规则：validation"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModelNotifyUser",
+      "action": "create",
+      "scenario": "create 新增回收规则通知用户关联，destroy 删除关联",
+      "status": "mapped",
+      "anchor_candidates": [
+        "event"
+      ],
+      "reason": "命中规则：event"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleModelNotifyUser",
+      "action": "create",
+      "scenario": "create 缺少 recycle_model_id 或 user_id，校验失败",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation"
+      ],
+      "reason": "命中规则：validation"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleRecord",
+      "action": "create",
+      "scenario": "create 新建待回收记录，discard 忽略记录并设为非活跃",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleRecord",
+      "action": "create",
+      "scenario": "create 新建待回收记录，validate 执行确认回收",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation"
+      ],
+      "reason": "命中规则：validation"
+    },
+    {
+      "model": "data_recycle.ubo.yaml",
+      "entity": "RecycleRecord",
+      "action": "discard",
+      "scenario": "discard 后再次 validate，因 active=false 校验失败",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation"
+      ],
+      "reason": "命中规则：validation"
+    }
+  ],
+  "weak_assertion_count": 0,
+  "weak_assertion_read_count": 0,
+  "weak_assertion_write_count": 0,
+  "weak_assertion_other_count": 0,
+  "weak_assertion_effective_count": 0,
+  "weak_assertion_effective_read_count": 0,
+  "weak_assertion_effective_write_count": 0,
+  "weak_assertion_effective_other_count": 0,
+  "weak_whitelist_path": null,
+  "weak_whitelist_rule_count": 0,
+  "weak_whitelist_active_rule_count": 0,
+  "weak_whitelist_hit_count": 0,
+  "weak_whitelist_hits": [],
+  "weak_assertions": []
+}

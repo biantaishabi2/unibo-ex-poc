@@ -1,0 +1,4 @@
+[SCENARIO: BDD-DATA_RECYCLE_RECYCLE_RECORD-SEED-data_recycle_recycle_record_workflow_recycle_record_recycle_record_processing_risk_mainline] TITLE: DATA_RECYCLE_RECYCLE_RECORD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="data_recycle_recycle_record_workflow_recycle_record_recycle_record_processing_risk_mainline" module="DATA_RECYCLE_RECYCLE_RECORD"
+WHEN when_execute_seed_contract module="DATA_RECYCLE_RECYCLE_RECORD"
+THEN then_seed_contract_should_hold module="DATA_RECYCLE_RECYCLE_RECORD"

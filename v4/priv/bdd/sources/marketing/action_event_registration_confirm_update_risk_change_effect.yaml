@@ -1,0 +1,5 @@
+module: MARKETING_EVENT_REGISTRATION
+contract: EventRegistration.confirm action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 EventRegistration 的动作 confirm 触发副作用 / WHEN 执行动作 confirm / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 报名 -> confirm 确认 -> set_done 签到完成；create 报名 -> confirm 确认 -> send_badge_email 发送证件邮件

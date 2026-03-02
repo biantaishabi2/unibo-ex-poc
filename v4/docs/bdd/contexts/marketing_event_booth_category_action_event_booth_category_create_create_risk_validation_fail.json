@@ -1,0 +1,7 @@
+{
+  "id": "marketing_event_booth_category_action_event_booth_category_create_create_risk_validation_fail",
+  "module": "MARKETING_EVENT_BOOTH_CATEGORY",
+  "edge_class": "all",
+  "source_file": "action_event_booth_category_create_create_risk_validation_fail.yaml",
+  "source_summary": "module: MARKETING_EVENT_BOOTH_CATEGORY\\ncontract: EventBoothCategory.create action contract (risk:validation_fail)\\nedge_class: action_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 EventBoothCategory 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建展位类别 -> update 修改类别"
+}

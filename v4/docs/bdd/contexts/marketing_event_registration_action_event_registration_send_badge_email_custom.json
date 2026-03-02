@@ -1,0 +1,7 @@
+{
+  "id": "marketing_event_registration_action_event_registration_send_badge_email_custom",
+  "module": "MARKETING_EVENT_REGISTRATION",
+  "edge_class": "all",
+  "source_file": "action_event_registration_send_badge_email_custom.yaml",
+  "source_summary": "module: MARKETING_EVENT_REGISTRATION\\ncontract: EventRegistration.send_badge_email action contract\\nedge_class: action_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 EventRegistration 的动作 send_badge_email 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 send_badge_email / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

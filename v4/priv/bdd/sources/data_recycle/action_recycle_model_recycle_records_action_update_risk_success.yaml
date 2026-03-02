@@ -1,0 +1,5 @@
+module: DATA_RECYCLE_RECYCLE_MODEL
+contract: RecycleModel.recycle_records_action action contract (risk:success)
+edge_class: action_contract
+source_file: models/data_recycle/data_recycle.ubo.yaml
+source_summary: GIVEN 实体 RecycleModel 的动作 recycle_records_action 可执行 / WHEN 执行动作 recycle_records_action / THEN 成功路径应满足业务约束并持久化结果

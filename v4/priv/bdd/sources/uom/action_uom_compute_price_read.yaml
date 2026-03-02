@@ -1,0 +1,5 @@
+module: UOM_UOM
+contract: Uom.compute_price action contract
+edge_class: action_contract
+source_file: models/uom/uom.ubo.yaml
+source_summary: GIVEN 实体 Uom 的动作 compute_price 可执行，accept=[(未声明)]，args=[price:decimal!, to_unit_id:uuid!] / WHEN 执行动作 compute_price / THEN 输入应满足校验规则，读取结果应符合查询语义

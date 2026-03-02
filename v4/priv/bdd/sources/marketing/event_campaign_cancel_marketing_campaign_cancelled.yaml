@@ -1,0 +1,5 @@
+module: MARKETING_CAMPAIGN
+contract: Campaign.cancel event contract
+edge_class: event_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 Campaign 的动作 cancel 完成 / WHEN 触发事件发布 / THEN 应广播 topic `marketing.campaign.cancelled`

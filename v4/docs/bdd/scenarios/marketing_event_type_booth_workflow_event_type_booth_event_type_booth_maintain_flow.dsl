@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_EVENT_TYPE_BOOTH-SEED-marketing_event_type_booth_workflow_event_type_booth_event_type_booth_maintain_flow] TITLE: MARKETING_EVENT_TYPE_BOOTH contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_event_type_booth_workflow_event_type_booth_event_type_booth_maintain_flow" module="MARKETING_EVENT_TYPE_BOOTH"
+WHEN when_execute_seed_contract module="MARKETING_EVENT_TYPE_BOOTH"
+THEN then_seed_contract_should_hold module="MARKETING_EVENT_TYPE_BOOTH"

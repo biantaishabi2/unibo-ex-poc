@@ -1,0 +1,7 @@
+{
+  "id": "currency_currency_action_currency_destroy_destroy",
+  "module": "CURRENCY_CURRENCY",
+  "edge_class": "all",
+  "source_file": "action_currency_destroy_destroy.yaml",
+  "source_summary": "module: CURRENCY_CURRENCY\\ncontract: Currency.destroy action contract\\nedge_class: action_contract\\nsource_file: models/currency/currency.ubo.yaml\\nsource_summary: GIVEN 实体 Currency 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 应符合工作流步骤约束"
+}

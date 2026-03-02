@@ -1,0 +1,167 @@
+{
+  "total_models": 1,
+  "generated_files": 28,
+  "action_sources": 22,
+  "event_sources": 0,
+  "workflow_sources": 6,
+  "scenario_total": 2,
+  "scenario_associated": 2,
+  "scenario_unassociated": 0,
+  "unassociated_scenarios": [],
+  "scenario_resolutions": [
+    {
+      "model": "currency.ubo.yaml",
+      "entity": "Currency",
+      "path": "entities[0].scenarios",
+      "scenario": "create 创建币种 -> update 修改币种信息 -> destroy 删除币种",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Currency.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Currency.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Currency.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Currency.currency_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Currency.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Currency.create (action)（score=70）"
+    },
+    {
+      "model": "currency.ubo.yaml",
+      "entity": "CurrencyRate",
+      "path": "entities[1].scenarios",
+      "scenario": "create 创建汇率记录 -> update 修改汇率 -> destroy 删除记录",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "CurrencyRate.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "CurrencyRate.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "CurrencyRate.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "CurrencyRate.currency_rate_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "CurrencyRate.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 CurrencyRate.create (action)（score=70）"
+    }
+  ],
+  "auto_anchor_enabled": true,
+  "auto_anchor_total": 2,
+  "auto_anchor_mapped": 2,
+  "auto_anchor_unmapped": 0,
+  "auto_anchor_results": [
+    {
+      "model": "currency.ubo.yaml",
+      "entity": "Currency",
+      "action": "create",
+      "scenario": "create 创建币种 -> update 修改币种信息 -> destroy 删除币种",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "currency.ubo.yaml",
+      "entity": "CurrencyRate",
+      "action": "create",
+      "scenario": "create 创建汇率记录 -> update 修改汇率 -> destroy 删除记录",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    }
+  ],
+  "weak_assertion_count": 1,
+  "weak_assertion_read_count": 0,
+  "weak_assertion_write_count": 1,
+  "weak_assertion_other_count": 0,
+  "weak_assertion_effective_count": 1,
+  "weak_assertion_effective_read_count": 0,
+  "weak_assertion_effective_write_count": 1,
+  "weak_assertion_effective_other_count": 0,
+  "weak_whitelist_path": null,
+  "weak_whitelist_rule_count": 0,
+  "weak_whitelist_active_rule_count": 0,
+  "weak_whitelist_hit_count": 0,
+  "weak_whitelist_hits": [],
+  "weak_assertions": [
+    {
+      "file": "action_currency_destroy_destroy.yaml",
+      "model": "currency.ubo.yaml",
+      "entity": "Currency",
+      "kind": "action",
+      "subject": "destroy",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change 直接断言，仅有事件或流程语义",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    }
+  ]
+}

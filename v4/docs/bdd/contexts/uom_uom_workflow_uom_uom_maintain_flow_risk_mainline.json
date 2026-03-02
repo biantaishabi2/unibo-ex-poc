@@ -1,0 +1,7 @@
+{
+  "id": "uom_uom_workflow_uom_uom_maintain_flow_risk_mainline",
+  "module": "UOM_UOM",
+  "edge_class": "all",
+  "source_file": "workflow_uom_uom_maintain_flow_risk_mainline.yaml",
+  "source_summary": "module: UOM_UOM\\ncontract: Uom.uom_maintain_flow workflow contract (risk:mainline)\\nedge_class: workflow_contract\\nsource_file: models/uom/uom.ubo.yaml\\nsource_summary: GIVEN 实体 Uom 定义工作流 uom_maintain_flow / WHEN 按主路径执行 create -> update / THEN 主流程应可达并保持顺序一致"
+}

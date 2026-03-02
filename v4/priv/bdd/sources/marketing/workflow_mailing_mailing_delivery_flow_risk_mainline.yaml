@@ -1,0 +1,5 @@
+module: MARKETING_MAILING
+contract: Mailing.mailing_delivery_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 Mailing 定义工作流 mailing_delivery_flow / WHEN 按主路径执行 create -> schedule -> put_in_queue -> launch -> retry_failed / THEN 主流程应可达并保持顺序一致

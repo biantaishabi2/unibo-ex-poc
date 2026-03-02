@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_EVENT_TICKET-SEED-marketing_event_ticket_action_event_ticket_create_create_risk_validation_fail] TITLE: MARKETING_EVENT_TICKET contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_event_ticket_action_event_ticket_create_create_risk_validation_fail" module="MARKETING_EVENT_TICKET"
+WHEN when_execute_seed_contract module="MARKETING_EVENT_TICKET"
+THEN then_seed_contract_should_hold module="MARKETING_EVENT_TICKET"

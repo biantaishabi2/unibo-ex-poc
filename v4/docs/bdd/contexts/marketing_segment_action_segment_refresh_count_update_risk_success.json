@@ -1,0 +1,7 @@
+{
+  "id": "marketing_segment_action_segment_refresh_count_update_risk_success",
+  "module": "MARKETING_SEGMENT",
+  "edge_class": "all",
+  "source_file": "action_segment_refresh_count_update_risk_success.yaml",
+  "source_summary": "module: MARKETING_SEGMENT\\ncontract: Segment.refresh_count action contract (risk:success)\\nedge_class: action_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 Segment 的动作 refresh_count 可执行 / WHEN 执行动作 refresh_count / THEN 成功路径应满足业务约束并持久化结果"
+}

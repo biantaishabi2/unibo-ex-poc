@@ -1,0 +1,7 @@
+{
+  "id": "marketing_utm_source_workflow_utm_source_utm_source_maintain_flow_risk_branch_or_exception",
+  "module": "MARKETING_UTM_SOURCE",
+  "edge_class": "all",
+  "source_file": "workflow_utm_source_utm_source_maintain_flow_risk_branch_or_exception.yaml",
+  "source_summary": "module: MARKETING_UTM_SOURCE\\ncontract: UtmSource.utm_source_maintain_flow workflow contract (risk:branch_or_exception)\\nedge_class: workflow_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 UtmSource 的工作流 utm_source_maintain_flow 存在分支或异常可能 / WHEN 执行分支路径 / THEN 流程应可恢复并保持状态一致"
+}

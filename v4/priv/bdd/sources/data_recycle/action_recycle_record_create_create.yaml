@@ -1,0 +1,5 @@
+module: DATA_RECYCLE_RECYCLE_RECORD
+contract: RecycleRecord.create action contract
+edge_class: action_contract
+source_file: models/data_recycle/data_recycle.ubo.yaml
+source_summary: GIVEN 实体 RecycleRecord 的动作 create 可执行，accept=[res_id, res_model_name, name, active]，args=[recycle_model_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建待回收记录，validate 执行确认回收；create 新建待回收记录，discard 忽略记录并设为非活跃

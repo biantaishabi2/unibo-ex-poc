@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_SOCIAL_ACCOUNT-SEED-marketing_social_account_workflow_social_account_social_account_lifecycle_risk_mainline] TITLE: MARKETING_SOCIAL_ACCOUNT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_social_account_workflow_social_account_social_account_lifecycle_risk_mainline" module="MARKETING_SOCIAL_ACCOUNT"
+WHEN when_execute_seed_contract module="MARKETING_SOCIAL_ACCOUNT"
+THEN then_seed_contract_should_hold module="MARKETING_SOCIAL_ACCOUNT"

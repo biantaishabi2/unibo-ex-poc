@@ -1,0 +1,7 @@
+{
+  "id": "marketing_mailing_trace_workflow_mailing_trace_mailing_trace_flow",
+  "module": "MARKETING_MAILING_TRACE",
+  "edge_class": "all",
+  "source_file": "workflow_mailing_trace_mailing_trace_flow.yaml",
+  "source_summary": "module: MARKETING_MAILING_TRACE\\ncontract: MailingTrace.mailing_trace_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 MailingTrace 定义工作流 mailing_trace_flow / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束"
+}

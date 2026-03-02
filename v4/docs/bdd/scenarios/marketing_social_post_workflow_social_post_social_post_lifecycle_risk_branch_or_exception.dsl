@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_SOCIAL_POST-SEED-marketing_social_post_workflow_social_post_social_post_lifecycle_risk_branch_or_exception] TITLE: MARKETING_SOCIAL_POST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_social_post_workflow_social_post_social_post_lifecycle_risk_branch_or_exception" module="MARKETING_SOCIAL_POST"
+WHEN when_execute_seed_contract module="MARKETING_SOCIAL_POST"
+THEN then_seed_contract_should_hold module="MARKETING_SOCIAL_POST"

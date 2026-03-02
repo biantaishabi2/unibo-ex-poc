@@ -1,0 +1,4 @@
+[SCENARIO: BDD-DATA_RECYCLE_RECYCLE_MODEL-SEED-data_recycle_recycle_model_action_recycle_model_destroy_destroy_risk_change_effect] TITLE: DATA_RECYCLE_RECYCLE_MODEL contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="data_recycle_recycle_model_action_recycle_model_destroy_destroy_risk_change_effect" module="DATA_RECYCLE_RECYCLE_MODEL"
+WHEN when_execute_seed_contract module="DATA_RECYCLE_RECYCLE_MODEL"
+THEN then_seed_contract_should_hold module="DATA_RECYCLE_RECYCLE_MODEL"

@@ -1,0 +1,7 @@
+{
+  "id": "marketing_automation_activity_action_automation_activity_update_update",
+  "module": "MARKETING_AUTOMATION_ACTIVITY",
+  "edge_class": "all",
+  "source_file": "action_automation_activity_update_update.yaml",
+  "source_summary": "module: MARKETING_AUTOMATION_ACTIVITY\\ncontract: AutomationActivity.update action contract\\nedge_class: action_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 AutomationActivity 的动作 update 可执行，accept=[name, activity_type, trigger_type, decision_path, trigger_interval, trigger_interval_type, trigger_mode, trigger_hour, trigger_restricted_days, domain_filter, condition, server_action_id, email_template_id, sms_template_id, variable_cost, expiry_duration, expiry_duration_type, order]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

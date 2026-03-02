@@ -1,0 +1,5 @@
+module: MARKETING_EVENT_REGISTRATION
+contract: EventRegistration.confirm action contract
+edge_class: action_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 EventRegistration 的动作 confirm 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 confirm / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 报名 -> confirm 确认 -> set_done 签到完成；create 报名 -> confirm 确认 -> send_badge_email 发送证件邮件

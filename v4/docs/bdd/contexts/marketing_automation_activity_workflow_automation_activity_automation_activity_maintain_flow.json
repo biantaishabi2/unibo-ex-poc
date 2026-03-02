@@ -1,0 +1,7 @@
+{
+  "id": "marketing_automation_activity_workflow_automation_activity_automation_activity_maintain_flow",
+  "module": "MARKETING_AUTOMATION_ACTIVITY",
+  "edge_class": "all",
+  "source_file": "workflow_automation_activity_automation_activity_maintain_flow.yaml",
+  "source_summary": "module: MARKETING_AUTOMATION_ACTIVITY\\ncontract: AutomationActivity.automation_activity_maintain_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: models/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 AutomationActivity 定义工作流 automation_activity_maintain_flow / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束"
+}

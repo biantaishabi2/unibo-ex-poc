@@ -1,0 +1,5 @@
+module: MARKETING_MAILING_LIST_MEMBER
+contract: MailingListMember.mailing_list_member_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 MailingListMember 定义工作流 mailing_list_member_lifecycle / WHEN 按步骤执行 create -> unsubscribe -> subscribe / THEN 流程顺序应满足声明约束

@@ -1,0 +1,5 @@
+module: MARKETING_SMS_MESSAGE
+contract: SmsMessage.resend_failed action contract
+edge_class: action_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 SmsMessage 的动作 resend_failed 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 resend_failed / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

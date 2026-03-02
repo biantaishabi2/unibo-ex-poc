@@ -1,0 +1,5 @@
+module: DATA_RECYCLE_RECYCLE_MODEL_NOTIFY_USER
+contract: RecycleModelNotifyUser.destroy action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/data_recycle/data_recycle.ubo.yaml
+source_summary: GIVEN 实体 RecycleModelNotifyUser 的动作 destroy 触发副作用 / WHEN 执行动作 destroy / THEN 变更副作用应完整生效且状态一致

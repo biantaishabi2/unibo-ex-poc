@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_EVENT_BOOTH-SEED-marketing_event_booth_action_event_booth_release_update_risk_change_effect] TITLE: MARKETING_EVENT_BOOTH contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_event_booth_action_event_booth_release_update_risk_change_effect" module="MARKETING_EVENT_BOOTH"
+WHEN when_execute_seed_contract module="MARKETING_EVENT_BOOTH"
+THEN then_seed_contract_should_hold module="MARKETING_EVENT_BOOTH"

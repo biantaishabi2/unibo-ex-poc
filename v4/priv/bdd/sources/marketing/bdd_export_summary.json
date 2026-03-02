@@ -1,0 +1,2493 @@
+{
+  "total_models": 1,
+  "generated_files": 523,
+  "action_sources": 398,
+  "event_sources": 42,
+  "workflow_sources": 83,
+  "scenario_total": 40,
+  "scenario_associated": 40,
+  "scenario_unassociated": 0,
+  "unassociated_scenarios": [],
+  "scenario_resolutions": [
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Campaign",
+      "path": "entities[0].scenarios",
+      "scenario": "create 创建活动 -> launch 启动活动 -> cancel 取消活动",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Campaign.cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Campaign.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Campaign.launch (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Campaign.cancel:marketing.campaign.cancelled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Campaign.launch:marketing.campaign.launched (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Campaign.campaign_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Campaign.cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Campaign.cancel (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Campaign",
+      "path": "entities[0].scenarios",
+      "scenario": "create 创建活动 -> launch 启动活动 -> pause 暂停 -> resume 恢复 -> complete 完成",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Campaign.complete (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Campaign.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Campaign.launch (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Campaign.pause (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Campaign.resume (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Campaign.complete:marketing.campaign.completed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Campaign.launch:marketing.campaign.launched (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Campaign.pause:marketing.campaign.paused (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Campaign.resume:marketing.campaign.resumed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Campaign.campaign_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Campaign.complete (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Campaign.complete (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventRegistration",
+      "path": "entities[10].scenarios",
+      "scenario": "create 报名 -> confirm 确认 -> cancel 取消报名 -> set_previous_state 恢复状态",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EventRegistration.cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventRegistration.confirm (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventRegistration.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventRegistration.set_previous_state (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EventRegistration.event_registration_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EventRegistration.cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EventRegistration.cancel (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventRegistration",
+      "path": "entities[10].scenarios",
+      "scenario": "create 报名 -> confirm 确认 -> send_badge_email 发送证件邮件",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EventRegistration.confirm (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventRegistration.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventRegistration.send_badge_email (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EventRegistration.event_registration_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EventRegistration.confirm (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EventRegistration.confirm (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventRegistration",
+      "path": "entities[10].scenarios",
+      "scenario": "create 报名 -> confirm 确认 -> set_done 签到完成",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EventRegistration.confirm (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventRegistration.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventRegistration.set_done (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EventRegistration.event_registration_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EventRegistration.confirm (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EventRegistration.confirm (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SmsMessage",
+      "path": "entities[11].scenarios",
+      "scenario": "create 创建短信 -> cancel 取消发送",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "SmsMessage.cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SmsMessage.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "SmsMessage.cancel:marketing.sms.cancelled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "SmsMessage.sms_message_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "SmsMessage.cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 SmsMessage.cancel (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SmsMessage",
+      "path": "entities[11].scenarios",
+      "scenario": "create 创建短信 -> send 发送短信",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "SmsMessage.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SmsMessage.send (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "SmsMessage.send:marketing.sms.sent (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "SmsMessage.sms_message_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "SmsMessage.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 SmsMessage.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SmsMessage",
+      "path": "entities[11].scenarios",
+      "scenario": "create 创建短信 -> send 发送短信 -> resend_failed 重发失败短信",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "SmsMessage.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SmsMessage.resend_failed (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SmsMessage.send (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "SmsMessage.send:marketing.sms.sent (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "SmsMessage.sms_message_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "SmsMessage.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 SmsMessage.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SmsTemplate",
+      "path": "entities[12].scenarios",
+      "scenario": "create_sidebar_action 后在侧边栏触发 render 发送短信",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "SmsTemplate.create_sidebar_action (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SmsTemplate.render (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "SmsTemplate.sms_template_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "SmsTemplate.create_sidebar_action (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 SmsTemplate.create_sidebar_action (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SocialPost",
+      "path": "entities[13].scenarios",
+      "scenario": "create 创建帖子 -> schedule 定时发布 -> sync_stats 同步统计",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "SocialPost.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SocialPost.schedule (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SocialPost.sync_stats (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "SocialPost.schedule:marketing.social.scheduled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "SocialPost.social_post_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "SocialPost.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 SocialPost.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SocialPost",
+      "path": "entities[13].scenarios",
+      "scenario": "create 创建帖子 -> update 编辑内容 -> publish_now 立即发布 -> sync_stats 同步统计",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "SocialPost.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SocialPost.publish_now (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SocialPost.sync_stats (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SocialPost.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "SocialPost.publish_now:marketing.social.published (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "SocialPost.social_post_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "SocialPost.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 SocialPost.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SocialAccount",
+      "path": "entities[14].scenarios",
+      "scenario": "create 创建账户 -> connect 连接平台 -> disconnect 断开连接",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "SocialAccount.connect (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SocialAccount.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SocialAccount.disconnect (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "SocialAccount.social_account_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "SocialAccount.connect (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 SocialAccount.connect (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SocialAccount",
+      "path": "entities[14].scenarios",
+      "scenario": "create 创建账户 -> connect 连接平台 -> refresh_token 刷新令牌",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "SocialAccount.connect (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SocialAccount.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SocialAccount.refresh_token (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "SocialAccount.social_account_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "SocialAccount.connect (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 SocialAccount.connect (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "AutomationCampaign",
+      "path": "entities[15].scenarios",
+      "scenario": "create 创建自动化活动 -> update 配置规则 -> start_campaign 启动 -> stop_campaign 停止",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "AutomationCampaign.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "AutomationCampaign.start_campaign (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "AutomationCampaign.stop_campaign (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "AutomationCampaign.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "AutomationCampaign.start_campaign:marketing.automation.campaign.started (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "AutomationCampaign.stop_campaign:marketing.automation.campaign.stopped (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "AutomationCampaign.automation_campaign_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "AutomationCampaign.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 AutomationCampaign.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "AutomationActivity",
+      "path": "entities[16].scenarios",
+      "scenario": "create 创建活动节点 -> update 修改节点配置 -> destroy 删除节点",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "AutomationActivity.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "AutomationActivity.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "AutomationActivity.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "AutomationActivity.automation_activity_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "AutomationActivity.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 AutomationActivity.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "AutomationParticipant",
+      "path": "entities[17].scenarios",
+      "scenario": "create 创建参与者记录",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "AutomationParticipant.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "AutomationParticipant.automation_participant_creation_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "AutomationParticipant.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 AutomationParticipant.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "AutomationTrace",
+      "path": "entities[18].scenarios",
+      "scenario": "create 创建执行追踪 -> cancel 取消执行",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "AutomationTrace.cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "AutomationTrace.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "AutomationTrace.automation_trace_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "AutomationTrace.cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 AutomationTrace.cancel (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "AutomationTrace",
+      "path": "entities[18].scenarios",
+      "scenario": "create 创建执行追踪 -> execute 执行动作",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "AutomationTrace.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "AutomationTrace.execute (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "AutomationTrace.automation_trace_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "AutomationTrace.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 AutomationTrace.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "UtmCampaign",
+      "path": "entities[19].scenarios",
+      "scenario": "create 创建 UTM 活动 -> update 修改活动配置",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "UtmCampaign.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "UtmCampaign.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "UtmCampaign.utm_campaign_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "UtmCampaign.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 UtmCampaign.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "CampaignRole",
+      "path": "entities[1].scenarios",
+      "scenario": "create 分配角色 -> destroy 移除角色",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "CampaignRole.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "CampaignRole.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "CampaignRole.campaign_role_manage_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "CampaignRole.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 CampaignRole.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "UtmSource",
+      "path": "entities[20].scenarios",
+      "scenario": "create 创建 UTM 来源 -> update 修改来源",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "UtmSource.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "UtmSource.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "UtmSource.utm_source_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "UtmSource.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 UtmSource.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "UtmMedium",
+      "path": "entities[21].scenarios",
+      "scenario": "create 创建 UTM 媒介 -> update 修改媒介",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "UtmMedium.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "UtmMedium.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "UtmMedium.utm_medium_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "UtmMedium.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 UtmMedium.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "UtmTag",
+      "path": "entities[22].scenarios",
+      "scenario": "create 创建 UTM 标签 -> update 修改标签",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "UtmTag.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "UtmTag.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "UtmTag.utm_tag_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "UtmTag.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 UtmTag.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "UtmStage",
+      "path": "entities[23].scenarios",
+      "scenario": "create 创建 UTM 阶段 -> update 修改阶段",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "UtmStage.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "UtmStage.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "UtmStage.utm_stage_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "UtmStage.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 UtmStage.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventBoothCategory",
+      "path": "entities[25].scenarios",
+      "scenario": "create 创建展位类别 -> update 修改类别",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EventBoothCategory.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventBoothCategory.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EventBoothCategory.event_booth_category_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EventBoothCategory.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EventBoothCategory.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventBooth",
+      "path": "entities[26].scenarios",
+      "scenario": "create 创建展位 -> confirm 确认预订 -> release 释放展位",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EventBooth.confirm (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventBooth.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventBooth.release (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EventBooth.event_booth_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EventBooth.confirm (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EventBooth.confirm (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventBooth",
+      "path": "entities[26].scenarios",
+      "scenario": "create 创建展位 -> update 编辑展位 -> confirm 确认预订",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EventBooth.confirm (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventBooth.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventBooth.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EventBooth.event_booth_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EventBooth.confirm (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EventBooth.confirm (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventTypeBooth",
+      "path": "entities[27].scenarios",
+      "scenario": "create 创建展位类型 -> update 修改类型",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EventTypeBooth.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventTypeBooth.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EventTypeBooth.event_type_booth_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EventTypeBooth.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EventTypeBooth.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventLeadRule",
+      "path": "entities[28].scenarios",
+      "scenario": "create 创建线索规则 -> update 修改规则配置",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EventLeadRule.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventLeadRule.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EventLeadRule.event_lead_rule_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EventLeadRule.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EventLeadRule.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "MailingList",
+      "path": "entities[2].scenarios",
+      "scenario": "create 创建邮件列表 -> update 修改列表配置",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "MailingList.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailingList.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "MailingList.mailing_list_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "MailingList.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 MailingList.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "MailingListMember",
+      "path": "entities[3].scenarios",
+      "scenario": "create 添加成员 -> unsubscribe 取消订阅 -> subscribe 重新订阅",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "MailingListMember.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailingListMember.subscribe (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailingListMember.unsubscribe (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "MailingListMember.mailing_list_member_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "MailingListMember.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 MailingListMember.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Mailing",
+      "path": "entities[4].scenarios",
+      "scenario": "launch 后 put_in_queue 发送，失败时 retry_failed 重试",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Mailing.launch (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Mailing.put_in_queue (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Mailing.retry_failed (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Mailing.launch:marketing.mailing.launched (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Mailing.mailing_delivery_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Mailing.launch (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Mailing.launch (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Mailing",
+      "path": "entities[4].scenarios",
+      "scenario": "schedule 后可 cancel 回到草稿并重新 launch",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Mailing.cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Mailing.launch (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Mailing.schedule (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Mailing.cancel:marketing.mailing.cancelled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Mailing.launch:marketing.mailing.launched (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Mailing.schedule:marketing.mailing.scheduled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Mailing.mailing_delivery_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Mailing.cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Mailing.cancel (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "MailingTrace",
+      "path": "entities[5].scenarios",
+      "scenario": "create 创建追踪记录 -> update 更新追踪状态",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "MailingTrace.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailingTrace.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "MailingTrace.mailing_trace_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "MailingTrace.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 MailingTrace.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Segment",
+      "path": "entities[6].scenarios",
+      "scenario": "create 创建分群 -> update 修改分群条件 -> refresh_count 刷新计数",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Segment.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Segment.refresh_count (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Segment.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Segment.segment_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Segment.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Segment.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Event",
+      "path": "entities[7].scenarios",
+      "scenario": "create 创建活动 -> publish 发布活动 -> cancel 取消活动",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Event.cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Event.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Event.publish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Event.event_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Event.cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Event.cancel (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Event",
+      "path": "entities[7].scenarios",
+      "scenario": "create 创建活动 -> publish 发布活动 -> set_done 标记完成",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Event.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Event.publish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Event.set_done (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Event.event_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Event.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Event.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Event",
+      "path": "entities[7].scenarios",
+      "scenario": "create 创建活动 -> update 编辑活动 -> publish 发布活动 -> complete 结束活动",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Event.complete (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Event.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Event.publish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Event.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Event.event_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Event.complete (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Event.complete (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventTicket",
+      "path": "entities[8].scenarios",
+      "scenario": "create 创建票种 -> update 修改票种 -> destroy 删除票种",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EventTicket.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventTicket.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventTicket.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EventTicket.event_ticket_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EventTicket.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EventTicket.create (action)（score=70）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventMailSchedule",
+      "path": "entities[9].scenarios",
+      "scenario": "create 创建邮件计划 -> update 修改计划 -> destroy 删除计划",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EventMailSchedule.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventMailSchedule.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EventMailSchedule.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EventMailSchedule.event_mail_schedule_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EventMailSchedule.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EventMailSchedule.create (action)（score=70）"
+    }
+  ],
+  "auto_anchor_enabled": true,
+  "auto_anchor_total": 40,
+  "auto_anchor_mapped": 39,
+  "auto_anchor_unmapped": 1,
+  "auto_anchor_results": [
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "AutomationActivity",
+      "action": "create",
+      "scenario": "create 创建活动节点 -> update 修改节点配置 -> destroy 删除节点",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "AutomationCampaign",
+      "action": "create",
+      "scenario": "create 创建自动化活动 -> update 配置规则 -> start_campaign 启动 -> stop_campaign 停止",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "AutomationParticipant",
+      "action": "create",
+      "scenario": "create 创建参与者记录",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "AutomationTrace",
+      "action": "cancel",
+      "scenario": "create 创建执行追踪 -> cancel 取消执行",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "AutomationTrace",
+      "action": "create",
+      "scenario": "create 创建执行追踪 -> execute 执行动作",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Campaign",
+      "action": "cancel",
+      "scenario": "create 创建活动 -> launch 启动活动 -> cancel 取消活动",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Campaign",
+      "action": "complete",
+      "scenario": "create 创建活动 -> launch 启动活动 -> pause 暂停 -> resume 恢复 -> complete 完成",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "CampaignRole",
+      "action": "create",
+      "scenario": "create 分配角色 -> destroy 移除角色",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Event",
+      "action": "cancel",
+      "scenario": "create 创建活动 -> publish 发布活动 -> cancel 取消活动",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Event",
+      "action": "complete",
+      "scenario": "create 创建活动 -> update 编辑活动 -> publish 发布活动 -> complete 结束活动",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Event",
+      "action": "create",
+      "scenario": "create 创建活动 -> publish 发布活动 -> set_done 标记完成",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventBooth",
+      "action": "confirm",
+      "scenario": "create 创建展位 -> confirm 确认预订 -> release 释放展位",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventBooth",
+      "action": "confirm",
+      "scenario": "create 创建展位 -> update 编辑展位 -> confirm 确认预订",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventBoothCategory",
+      "action": "create",
+      "scenario": "create 创建展位类别 -> update 修改类别",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventLeadRule",
+      "action": "create",
+      "scenario": "create 创建线索规则 -> update 修改规则配置",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventMailSchedule",
+      "action": "create",
+      "scenario": "create 创建邮件计划 -> update 修改计划 -> destroy 删除计划",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventRegistration",
+      "action": "cancel",
+      "scenario": "create 报名 -> confirm 确认 -> cancel 取消报名 -> set_previous_state 恢复状态",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventRegistration",
+      "action": "confirm",
+      "scenario": "create 报名 -> confirm 确认 -> send_badge_email 发送证件邮件",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventRegistration",
+      "action": "confirm",
+      "scenario": "create 报名 -> confirm 确认 -> set_done 签到完成",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventTicket",
+      "action": "create",
+      "scenario": "create 创建票种 -> update 修改票种 -> destroy 删除票种",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "EventTypeBooth",
+      "action": "create",
+      "scenario": "create 创建展位类型 -> update 修改类型",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Mailing",
+      "action": "cancel",
+      "scenario": "schedule 后可 cancel 回到草稿并重新 launch",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Mailing",
+      "action": "launch",
+      "scenario": "launch 后 put_in_queue 发送，失败时 retry_failed 重试",
+      "status": "mapped",
+      "anchor_candidates": [
+        "event"
+      ],
+      "reason": "命中规则：event"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "MailingList",
+      "action": "create",
+      "scenario": "create 创建邮件列表 -> update 修改列表配置",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "MailingListMember",
+      "action": "create",
+      "scenario": "create 添加成员 -> unsubscribe 取消订阅 -> subscribe 重新订阅",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "MailingTrace",
+      "action": "create",
+      "scenario": "create 创建追踪记录 -> update 更新追踪状态",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "Segment",
+      "action": "create",
+      "scenario": "create 创建分群 -> update 修改分群条件 -> refresh_count 刷新计数",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation",
+        "change"
+      ],
+      "reason": "命中规则：validation + change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SmsMessage",
+      "action": "cancel",
+      "scenario": "create 创建短信 -> cancel 取消发送",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SmsMessage",
+      "action": "create",
+      "scenario": "create 创建短信 -> send 发送短信",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SmsMessage",
+      "action": "create",
+      "scenario": "create 创建短信 -> send 发送短信 -> resend_failed 重发失败短信",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SmsTemplate",
+      "action": "create_sidebar_action",
+      "scenario": "create_sidebar_action 后在侧边栏触发 render 发送短信",
+      "status": "mapped",
+      "anchor_candidates": [
+        "event"
+      ],
+      "reason": "命中规则：event"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SocialAccount",
+      "action": "connect",
+      "scenario": "create 创建账户 -> connect 连接平台 -> disconnect 断开连接",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SocialAccount",
+      "action": "connect",
+      "scenario": "create 创建账户 -> connect 连接平台 -> refresh_token 刷新令牌",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SocialPost",
+      "action": "create",
+      "scenario": "create 创建帖子 -> schedule 定时发布 -> sync_stats 同步统计",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "SocialPost",
+      "action": "create",
+      "scenario": "create 创建帖子 -> update 编辑内容 -> publish_now 立即发布 -> sync_stats 同步统计",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "UtmCampaign",
+      "action": "create",
+      "scenario": "create 创建 UTM 活动 -> update 修改活动配置",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "UtmMedium",
+      "action": "create",
+      "scenario": "create 创建 UTM 媒介 -> update 修改媒介",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "UtmSource",
+      "action": "create",
+      "scenario": "create 创建 UTM 来源 -> update 修改来源",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "UtmStage",
+      "action": "create",
+      "scenario": "create 创建 UTM 阶段 -> update 修改阶段",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "marketing.ubo.yaml",
+      "entity": "UtmTag",
+      "action": "create",
+      "scenario": "create 创建 UTM 标签 -> update 修改标签",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    }
+  ],
+  "weak_assertion_count": 1,
+  "weak_assertion_read_count": 0,
+  "weak_assertion_write_count": 0,
+  "weak_assertion_other_count": 1,
+  "weak_assertion_effective_count": 1,
+  "weak_assertion_effective_read_count": 0,
+  "weak_assertion_effective_write_count": 0,
+  "weak_assertion_effective_other_count": 1,
+  "weak_whitelist_path": null,
+  "weak_whitelist_rule_count": 0,
+  "weak_whitelist_active_rule_count": 0,
+  "weak_whitelist_hit_count": 0,
+  "weak_whitelist_hits": [],
+  "weak_assertions": [
+    {
+      "file": "workflow_automation_participant_automation_participant_creation_flow.yaml",
+      "model": "marketing.ubo.yaml",
+      "entity": "AutomationParticipant",
+      "kind": "workflow",
+      "subject": "automation_participant_creation_flow",
+      "bucket": "other_weak",
+      "reasons": [
+        "workflow 步骤少于 2，断言信息较弱"
+      ]
+    }
+  ]
+}

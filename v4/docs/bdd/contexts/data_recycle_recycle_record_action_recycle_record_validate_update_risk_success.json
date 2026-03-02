@@ -1,0 +1,7 @@
+{
+  "id": "data_recycle_recycle_record_action_recycle_record_validate_update_risk_success",
+  "module": "DATA_RECYCLE_RECYCLE_RECORD",
+  "edge_class": "all",
+  "source_file": "action_recycle_record_validate_update_risk_success.yaml",
+  "source_summary": "module: DATA_RECYCLE_RECYCLE_RECORD\\ncontract: RecycleRecord.validate action contract (risk:success)\\nedge_class: action_contract\\nsource_file: models/data_recycle/data_recycle.ubo.yaml\\nsource_summary: GIVEN 实体 RecycleRecord 的动作 validate 可执行 / WHEN 执行动作 validate / THEN 成功路径应满足业务约束并持久化结果"
+}

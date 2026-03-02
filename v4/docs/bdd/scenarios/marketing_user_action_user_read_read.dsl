@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_USER-SEED-marketing_user_action_user_read_read] TITLE: MARKETING_USER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_user_action_user_read_read" module="MARKETING_USER"
+WHEN when_execute_seed_contract module="MARKETING_USER"
+THEN then_seed_contract_should_hold module="MARKETING_USER"

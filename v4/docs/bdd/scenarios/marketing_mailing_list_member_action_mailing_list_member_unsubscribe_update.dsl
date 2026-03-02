@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_MAILING_LIST_MEMBER-SEED-marketing_mailing_list_member_action_mailing_list_member_unsubscribe_update] TITLE: MARKETING_MAILING_LIST_MEMBER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_mailing_list_member_action_mailing_list_member_unsubscribe_update" module="MARKETING_MAILING_LIST_MEMBER"
+WHEN when_execute_seed_contract module="MARKETING_MAILING_LIST_MEMBER"
+THEN then_seed_contract_should_hold module="MARKETING_MAILING_LIST_MEMBER"

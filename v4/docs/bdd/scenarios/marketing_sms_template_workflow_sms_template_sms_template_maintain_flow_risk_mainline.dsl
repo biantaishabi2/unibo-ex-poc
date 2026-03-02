@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_SMS_TEMPLATE-SEED-marketing_sms_template_workflow_sms_template_sms_template_maintain_flow_risk_mainline] TITLE: MARKETING_SMS_TEMPLATE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_sms_template_workflow_sms_template_sms_template_maintain_flow_risk_mainline" module="MARKETING_SMS_TEMPLATE"
+WHEN when_execute_seed_contract module="MARKETING_SMS_TEMPLATE"
+THEN then_seed_contract_should_hold module="MARKETING_SMS_TEMPLATE"

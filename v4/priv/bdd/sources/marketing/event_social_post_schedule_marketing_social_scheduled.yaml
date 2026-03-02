@@ -1,0 +1,5 @@
+module: MARKETING_SOCIAL_POST
+contract: SocialPost.schedule event contract
+edge_class: event_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 SocialPost 的动作 schedule 完成 / WHEN 触发事件发布 / THEN 应广播 topic `marketing.social.scheduled`

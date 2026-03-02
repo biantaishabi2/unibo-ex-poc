@@ -1,0 +1,5 @@
+module: MARKETING_SEGMENT
+contract: Segment.refresh_count action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 Segment 的动作 refresh_count 触发副作用 / WHEN 执行动作 refresh_count / THEN 变更副作用应完整生效且状态一致

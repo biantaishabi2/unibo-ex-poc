@@ -1,0 +1,5 @@
+module: MARKETING_SOCIAL_POST
+contract: SocialPost.social_post_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 SocialPost 定义工作流 social_post_lifecycle / WHEN 按步骤执行 create -> update -> publish_now -> schedule -> sync_stats / THEN 流程顺序应满足声明约束

@@ -23,7 +23,11 @@ defmodule UniboV4.BDD.CommonInstructions do
     "LUNCH" => "lunch",
     "POS" => "pos",
     "SUBSCRIPTIONS" => "subscriptions",
-    "E_LEARNING" => "elearning"
+    "E_LEARNING" => "elearning",
+    "MARKETING" => "marketing",
+    "CURRENCY" => "currency",
+    "UOM" => "uom",
+    "DATA_RECYCLE" => "data_recycle"
   }
 
   # ============================================================

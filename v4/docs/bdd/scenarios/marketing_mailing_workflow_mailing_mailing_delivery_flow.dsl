@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_MAILING-SEED-marketing_mailing_workflow_mailing_mailing_delivery_flow] TITLE: MARKETING_MAILING contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_mailing_workflow_mailing_mailing_delivery_flow" module="MARKETING_MAILING"
+WHEN when_execute_seed_contract module="MARKETING_MAILING"
+THEN then_seed_contract_should_hold module="MARKETING_MAILING"

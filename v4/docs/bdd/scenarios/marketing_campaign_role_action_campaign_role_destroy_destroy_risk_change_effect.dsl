@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_CAMPAIGN_ROLE-SEED-marketing_campaign_role_action_campaign_role_destroy_destroy_risk_change_effect] TITLE: MARKETING_CAMPAIGN_ROLE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_campaign_role_action_campaign_role_destroy_destroy_risk_change_effect" module="MARKETING_CAMPAIGN_ROLE"
+WHEN when_execute_seed_contract module="MARKETING_CAMPAIGN_ROLE"
+THEN then_seed_contract_should_hold module="MARKETING_CAMPAIGN_ROLE"

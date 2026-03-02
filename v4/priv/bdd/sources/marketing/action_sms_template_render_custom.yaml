@@ -1,0 +1,5 @@
+module: MARKETING_SMS_TEMPLATE
+contract: SmsTemplate.render action contract
+edge_class: action_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 SmsTemplate 的动作 render 可执行，accept=[record_ids]，args=[无显式参数] / WHEN 执行动作 render / THEN 输入应满足校验规则，状态变更与副作用应生效

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_CAMPAIGN-SEED-marketing_campaign_event_campaign_cancel_marketing_campaign_cancelled_risk_idempotent_replay] TITLE: MARKETING_CAMPAIGN contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_campaign_event_campaign_cancel_marketing_campaign_cancelled_risk_idempotent_replay" module="MARKETING_CAMPAIGN"
+WHEN when_execute_seed_contract module="MARKETING_CAMPAIGN"
+THEN then_seed_contract_should_hold module="MARKETING_CAMPAIGN"

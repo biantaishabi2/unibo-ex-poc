@@ -1,0 +1,5 @@
+module: MARKETING_SOCIAL_ACCOUNT
+contract: SocialAccount.connect action contract (risk:success)
+edge_class: action_contract
+source_file: models/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 SocialAccount 的动作 connect 可执行 / WHEN 执行动作 connect / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 创建账户 -> connect 连接平台 -> refresh_token 刷新令牌；create 创建账户 -> connect 连接平台 -> disconnect 断开连接

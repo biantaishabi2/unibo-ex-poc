@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_EVENT_REGISTRATION-SEED-marketing_event_registration_action_event_registration_confirm_update_risk_validation_fail] TITLE: MARKETING_EVENT_REGISTRATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_event_registration_action_event_registration_confirm_update_risk_validation_fail" module="MARKETING_EVENT_REGISTRATION"
+WHEN when_execute_seed_contract module="MARKETING_EVENT_REGISTRATION"
+THEN then_seed_contract_should_hold module="MARKETING_EVENT_REGISTRATION"
