@@ -1,0 +1,5 @@
+module: PLM_ECO_STAGE_APPROVAL_TEMPLATE
+contract: EcoStageApprovalTemplate.eco_approval_template_maintain_flow workflow contract
+edge_class: workflow_contract
+source_file: models/plm/plm.ubo.yaml
+source_summary: GIVEN 实体 EcoStageApprovalTemplate 定义工作流 eco_approval_template_maintain_flow / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束

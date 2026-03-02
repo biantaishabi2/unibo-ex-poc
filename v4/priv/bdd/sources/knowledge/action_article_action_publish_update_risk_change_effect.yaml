@@ -1,0 +1,5 @@
+module: KNOWLEDGE_ARTICLE
+contract: Article.action_publish action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/knowledge/knowledge.ubo.yaml
+source_summary: GIVEN 实体 Article 的动作 action_publish 触发副作用 / WHEN 执行动作 action_publish / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建文章，update 编辑正文，action_publish 发布文章；action_publish 发布后，action_unpublish 撤销发布回到草稿

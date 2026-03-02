@@ -1,0 +1,5 @@
+module: INVENTORY_WAREHOUSE
+contract: Warehouse.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 Warehouse 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 新建仓库，update 修改仓库名称和地址

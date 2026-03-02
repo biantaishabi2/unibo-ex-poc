@@ -1,0 +1,5 @@
+module: SPREADSHEET_REVISION
+contract: Revision.create_snapshot action contract (risk:success)
+edge_class: action_contract
+source_file: models/spreadsheet/spreadsheet.ubo.yaml
+source_summary: GIVEN 实体 Revision 的动作 create_snapshot 可执行 / WHEN 执行动作 create_snapshot / THEN 成功路径应满足业务约束并持久化结果

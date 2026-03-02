@@ -1,0 +1,5 @@
+module: KNOWLEDGE_ARTICLE
+contract: Article.action_lock action contract (risk:success)
+edge_class: action_contract
+source_file: models/knowledge/knowledge.ubo.yaml
+source_summary: GIVEN 实体 Article 的动作 action_lock 可执行 / WHEN 执行动作 action_lock / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：action_lock 抢锁开始编辑，action_unlock 解锁并写入版本快照

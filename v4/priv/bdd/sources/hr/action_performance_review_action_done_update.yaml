@@ -1,0 +1,5 @@
+module: HR_PERFORMANCE_REVIEW
+contract: PerformanceReview.action_done action contract
+edge_class: action_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 PerformanceReview 的动作 action_done 可执行，accept=[overall_rating, manager_note]，args=[无显式参数] / WHEN 执行动作 action_done / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束

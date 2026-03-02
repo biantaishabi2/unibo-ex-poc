@@ -1,0 +1,5 @@
+module: PROJECT_PROJECT
+contract: Project.update event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 Project 动作 update 触发事件 / WHEN 发布 topic `project.status_updated` / THEN 消费方应收到一次有效通知

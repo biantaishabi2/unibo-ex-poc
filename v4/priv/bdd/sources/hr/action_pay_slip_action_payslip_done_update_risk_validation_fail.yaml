@@ -1,0 +1,5 @@
+module: HR_PAY_SLIP
+contract: PaySlip.action_payslip_done action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 PaySlip 的动作 action_payslip_done 输入非法 / WHEN 执行动作 action_payslip_done / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 后 compute_sheet，再 action_payslip_done，最后 action_payslip_paid 完成发放

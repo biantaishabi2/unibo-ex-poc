@@ -1,0 +1,5 @@
+module: INVENTORY_STOCK_QUANT
+contract: StockQuant.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 StockQuant 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 库存快照，update 修改数量，_update_available_quantity 双重记账更新

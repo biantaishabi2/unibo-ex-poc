@@ -1,0 +1,989 @@
+{
+  "total_models": 1,
+  "generated_files": 111,
+  "action_sources": 88,
+  "event_sources": 9,
+  "workflow_sources": 14,
+  "scenario_total": 18,
+  "scenario_associated": 18,
+  "scenario_unassociated": 0,
+  "unassociated_scenarios": [],
+  "scenario_resolutions": [
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Article",
+      "path": "entities[0].scenarios",
+      "scenario": "action_lock 抢锁开始编辑，action_unlock 解锁并写入版本快照",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Article.action_lock (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Article.action_unlock (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Article.article_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Article.action_lock (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Article.action_lock (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Article",
+      "path": "entities[0].scenarios",
+      "scenario": "action_publish 发布后，action_archive 归档，action_restore_state 恢复到草稿",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Article.action_archive (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Article.action_publish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Article.action_restore_state (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Article.action_archive:knowledge.article.archived (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Article.action_publish:knowledge.article.published (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Article.article_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Article.action_archive (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Article.action_archive (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Article",
+      "path": "entities[0].scenarios",
+      "scenario": "action_publish 发布后，action_unpublish 撤销发布回到草稿",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Article.action_publish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Article.action_unpublish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Article.action_publish:knowledge.article.published (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Article.article_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Article.action_publish (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Article.action_publish (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Article",
+      "path": "entities[0].scenarios",
+      "scenario": "create 创建文章后，action_trash 移入回收站，action_restore_trash 恢复",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Article.action_restore_trash (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Article.action_trash (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Article.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Article.action_trash:knowledge.article.trashed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Article.article_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Article.action_restore_trash (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Article.action_restore_trash (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Article",
+      "path": "entities[0].scenarios",
+      "scenario": "create 创建文章，update 编辑正文，action_publish 发布文章",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Article.action_publish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Article.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Article.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Article.action_publish:knowledge.article.published (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Article.article_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Article.action_publish (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Article.action_publish (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Article",
+      "path": "entities[0].scenarios",
+      "scenario": "create 创建父子文章后，action_move 调整层级，action_copy 深拷贝文章树",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Article.action_copy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Article.action_move (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Article.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Article.article_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Article.action_copy (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Article.action_copy (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "ArticleMember",
+      "path": "entities[1].scenarios",
+      "scenario": "create 且 based_on=group 但未传 group_id，校验失败",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ArticleMember.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ArticleMember.article_member_management (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ArticleMember.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ArticleMember.create (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "ArticleMember",
+      "path": "entities[1].scenarios",
+      "scenario": "create 且 based_on=partner 但未传 partner_id，校验失败",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ArticleMember.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ArticleMember.article_member_management (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ArticleMember.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ArticleMember.create (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "ArticleMember",
+      "path": "entities[1].scenarios",
+      "scenario": "create 新增权限成员后，destroy 删除权限成员",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ArticleMember.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ArticleMember.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ArticleMember.article_member_management (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ArticleMember.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ArticleMember.create (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "ArticleMember",
+      "path": "entities[1].scenarios",
+      "scenario": "create 新增权限成员，update 调整 permission",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ArticleMember.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ArticleMember.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ArticleMember.article_member_management (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ArticleMember.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ArticleMember.create (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "ArticleVersion",
+      "path": "entities[2].scenarios",
+      "scenario": "create 创建文章版本快照并自动编号",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ArticleVersion.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ArticleVersion.article_version_creation (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ArticleVersion.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ArticleVersion.create (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "ArticleVersion",
+      "path": "entities[2].scenarios",
+      "scenario": "create 创建首版时 article_id、body、version_uid 必填",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ArticleVersion.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ArticleVersion.article_version_creation (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ArticleVersion.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ArticleVersion.create (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Tag",
+      "path": "entities[3].scenarios",
+      "scenario": "create 新建标签后，destroy 删除标签",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Tag.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Tag.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Tag.tag_management (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Tag.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Tag.create (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Tag",
+      "path": "entities[3].scenarios",
+      "scenario": "create 新建标签，update 修改名称或颜色",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Tag.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Tag.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Tag.tag_management (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Tag.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Tag.create (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Tag",
+      "path": "entities[3].scenarios",
+      "scenario": "create 重复标签名称，唯一性校验失败",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Tag.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Tag.tag_management (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Tag.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Tag.create (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Favorite",
+      "path": "entities[4].scenarios",
+      "scenario": "create 同一 user_id+article_id 重复收藏，唯一性校验失败",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Favorite.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Favorite.favorite_management (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Favorite.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Favorite.create (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Favorite",
+      "path": "entities[4].scenarios",
+      "scenario": "create 新增收藏后，destroy 取消收藏",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Favorite.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Favorite.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Favorite.favorite_management (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Favorite.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Favorite.create (action)（score=70）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Favorite",
+      "path": "entities[4].scenarios",
+      "scenario": "create 新增收藏，reorder 调整 sequence 排序",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Favorite.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Favorite.reorder (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Favorite.favorite_management (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Favorite.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Favorite.create (action)（score=70）"
+    }
+  ],
+  "auto_anchor_enabled": true,
+  "auto_anchor_total": 18,
+  "auto_anchor_mapped": 9,
+  "auto_anchor_unmapped": 9,
+  "auto_anchor_results": [
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Article",
+      "action": "action_archive",
+      "scenario": "action_publish 发布后，action_archive 归档，action_restore_state 恢复到草稿",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Article",
+      "action": "action_copy",
+      "scenario": "create 创建父子文章后，action_move 调整层级，action_copy 深拷贝文章树",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Article",
+      "action": "action_lock",
+      "scenario": "action_lock 抢锁开始编辑，action_unlock 解锁并写入版本快照",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Article",
+      "action": "action_publish",
+      "scenario": "action_publish 发布后，action_unpublish 撤销发布回到草稿",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Article",
+      "action": "action_publish",
+      "scenario": "create 创建文章，update 编辑正文，action_publish 发布文章",
+      "status": "mapped",
+      "anchor_candidates": [
+        "event"
+      ],
+      "reason": "命中规则：event"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Article",
+      "action": "action_restore_trash",
+      "scenario": "create 创建文章后，action_trash 移入回收站，action_restore_trash 恢复",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "ArticleMember",
+      "action": "create",
+      "scenario": "create 且 based_on=group 但未传 group_id，校验失败",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation"
+      ],
+      "reason": "命中规则：validation"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "ArticleMember",
+      "action": "create",
+      "scenario": "create 且 based_on=partner 但未传 partner_id，校验失败",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation"
+      ],
+      "reason": "命中规则：validation"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "ArticleMember",
+      "action": "create",
+      "scenario": "create 新增权限成员后，destroy 删除权限成员",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "ArticleMember",
+      "action": "create",
+      "scenario": "create 新增权限成员，update 调整 permission",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "ArticleVersion",
+      "action": "create",
+      "scenario": "create 创建文章版本快照并自动编号",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "ArticleVersion",
+      "action": "create",
+      "scenario": "create 创建首版时 article_id、body、version_uid 必填",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation"
+      ],
+      "reason": "命中规则：validation"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Favorite",
+      "action": "create",
+      "scenario": "create 同一 user_id+article_id 重复收藏，唯一性校验失败",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation"
+      ],
+      "reason": "命中规则：validation"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Favorite",
+      "action": "create",
+      "scenario": "create 新增收藏后，destroy 取消收藏",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Favorite",
+      "action": "create",
+      "scenario": "create 新增收藏，reorder 调整 sequence 排序",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Tag",
+      "action": "create",
+      "scenario": "create 新建标签后，destroy 删除标签",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Tag",
+      "action": "create",
+      "scenario": "create 新建标签，update 修改名称或颜色",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "knowledge.ubo.yaml",
+      "entity": "Tag",
+      "action": "create",
+      "scenario": "create 重复标签名称，唯一性校验失败",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation"
+      ],
+      "reason": "命中规则：validation"
+    }
+  ],
+  "weak_assertion_count": 1,
+  "weak_assertion_read_count": 0,
+  "weak_assertion_write_count": 0,
+  "weak_assertion_other_count": 1,
+  "weak_assertion_effective_count": 1,
+  "weak_assertion_effective_read_count": 0,
+  "weak_assertion_effective_write_count": 0,
+  "weak_assertion_effective_other_count": 1,
+  "weak_whitelist_path": null,
+  "weak_whitelist_rule_count": 0,
+  "weak_whitelist_active_rule_count": 0,
+  "weak_whitelist_hit_count": 0,
+  "weak_whitelist_hits": [],
+  "weak_assertions": [
+    {
+      "file": "workflow_article_version_article_version_creation.yaml",
+      "model": "knowledge.ubo.yaml",
+      "entity": "ArticleVersion",
+      "kind": "workflow",
+      "subject": "article_version_creation",
+      "bucket": "other_weak",
+      "reasons": [
+        "workflow 步骤少于 2，断言信息较弱"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+module: MANUFACTURING_BILL_OF_MATERIALS
+contract: BillOfMaterials.bom_lifecycle_flow workflow contract
+edge_class: workflow_contract
+source_file: models/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 BillOfMaterials 定义工作流 bom_lifecycle_flow / WHEN 按步骤执行 create -> update -> activate -> obsolete / THEN 流程顺序应满足声明约束

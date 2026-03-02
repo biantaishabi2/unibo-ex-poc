@@ -1,0 +1,5 @@
+module: LIVE_CHAT_LIVE_CHAT_CHANNEL
+contract: LiveChatChannel.get_livechat_info action contract
+edge_class: action_contract
+source_file: models/livechat/livechat.ubo.yaml
+source_summary: GIVEN 实体 LiveChatChannel 的动作 get_livechat_info 可执行，accept=[(未声明)]，args=[username:string] / WHEN 执行动作 get_livechat_info / THEN 读取结果应符合查询语义

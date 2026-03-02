@@ -1,0 +1,5 @@
+module: INVENTORY_STOCK_QUANT
+contract: StockQuant._apply_inventory action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 StockQuant 的动作 _apply_inventory 输入非法 / WHEN 执行动作 _apply_inventory / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 库存快照，_apply_inventory 执行盘点调整

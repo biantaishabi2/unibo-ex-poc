@@ -1,0 +1,5 @@
+module: PLM_ECO
+contract: Eco.apply_changes event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/plm/plm.ubo.yaml
+source_summary: GIVEN 实体 Eco 动作 apply_changes 事件被重复投递 / WHEN 重放 topic `plm.eco.changes_applied` / THEN 消费方处理应保持幂等且无重复副作用

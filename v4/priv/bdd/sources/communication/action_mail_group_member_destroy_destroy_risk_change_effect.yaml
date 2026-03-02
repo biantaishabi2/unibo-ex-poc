@@ -1,0 +1,5 @@
+module: COMMUNICATION_MAIL_GROUP_MEMBER
+contract: MailGroupMember.destroy action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/communication/communication.ubo.yaml
+source_summary: GIVEN 实体 MailGroupMember 的动作 destroy 触发副作用 / WHEN 执行动作 destroy / THEN 变更副作用应完整生效且状态一致

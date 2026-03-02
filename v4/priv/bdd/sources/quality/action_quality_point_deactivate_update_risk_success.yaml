@@ -1,0 +1,5 @@
+module: QUALITY_QUALITY_POINT
+contract: QualityPoint.deactivate action contract (risk:success)
+edge_class: action_contract
+source_file: models/quality/quality.ubo.yaml
+source_summary: GIVEN 实体 QualityPoint 的动作 deactivate 可执行 / WHEN 执行动作 deactivate / THEN 成功路径应满足业务约束并持久化结果

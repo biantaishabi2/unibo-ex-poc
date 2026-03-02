@@ -1,0 +1,5 @@
+module: HR_EMPLOYEE_SKILL_LOG
+contract: EmployeeSkillLog.employee_skill_log_write_flow workflow contract
+edge_class: workflow_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 EmployeeSkillLog 定义工作流 employee_skill_log_write_flow / WHEN 按步骤执行 create -> read / THEN 流程顺序应满足声明约束

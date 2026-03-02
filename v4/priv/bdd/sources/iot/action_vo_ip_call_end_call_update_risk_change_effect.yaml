@@ -1,0 +1,5 @@
+module: IO_T_VO_IP_CALL
+contract: VoIPCall.end_call action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 VoIPCall 的动作 end_call 触发副作用 / WHEN 执行动作 end_call / THEN 变更副作用应完整生效且状态一致

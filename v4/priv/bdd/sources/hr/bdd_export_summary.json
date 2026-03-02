@@ -1,0 +1,2124 @@
+{
+  "total_models": 1,
+  "generated_files": 467,
+  "action_sources": 305,
+  "event_sources": 72,
+  "workflow_sources": 90,
+  "scenario_total": 31,
+  "scenario_associated": 31,
+  "scenario_unassociated": 0,
+  "unassociated_scenarios": [],
+  "scenario_resolutions": [
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "Employee",
+      "path": "entities[0].scenarios",
+      "scenario": "create -> update -> terminate -> suspend -> reactivate",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Employee.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Employee.reactivate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Employee.suspend (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Employee.terminate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Employee.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Employee.create:hr.employee.created (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Employee.terminate:hr.employee.terminated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Employee.employee_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Employee.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Employee.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "JobRequisition",
+      "path": "entities[10].scenarios",
+      "scenario": "create 后 open，再 cancel 终止招聘",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "JobRequisition.cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "JobRequisition.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "JobRequisition.open (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "JobRequisition.cancel:hr.requisition.cancelled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "JobRequisition.create:hr.requisition.created (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "JobRequisition.open:hr.requisition.opened (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "JobRequisition.requisition_cancel_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "JobRequisition.requisition_filled_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "JobRequisition.cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 JobRequisition.cancel (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "JobRequisition",
+      "path": "entities[10].scenarios",
+      "scenario": "create 后 open，再 close 完成招聘关闭",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "JobRequisition.close (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "JobRequisition.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "JobRequisition.open (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "JobRequisition.close:hr.requisition.closed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "JobRequisition.create:hr.requisition.created (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "JobRequisition.open:hr.requisition.opened (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "JobRequisition.requisition_cancel_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "JobRequisition.requisition_filled_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "JobRequisition.close (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 JobRequisition.close (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "JobApplication",
+      "path": "entities[11].scenarios",
+      "scenario": "create 后 advance 到 interview，再 hire 完成录用",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "JobApplication.advance (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "JobApplication.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "JobApplication.hire (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "JobApplication.create:hr.application.received (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "JobApplication.hire:hr.application.hired (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "JobApplication.application_reopen_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "JobApplication.recruitment_pipeline_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "JobApplication.advance (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 JobApplication.advance (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "JobApplication",
+      "path": "entities[11].scenarios",
+      "scenario": "hire 完成后 archive，申请进入归档态",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "JobApplication.archive (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "JobApplication.hire (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "JobApplication.hire:hr.application.hired (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "JobApplication.recruitment_pipeline_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "JobApplication.archive (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 JobApplication.archive (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "JobApplication",
+      "path": "entities[11].scenarios",
+      "scenario": "reject 后 reset 回 received，再次 advance 进入筛选",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "JobApplication.advance (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "JobApplication.reject (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "JobApplication.reset (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "JobApplication.application_reopen_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "JobApplication.recruitment_pipeline_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "JobApplication.advance (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 JobApplication.advance (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "Skill",
+      "path": "entities[12].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Skill.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Skill.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Skill.skill_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Skill.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Skill.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "SkillType",
+      "path": "entities[13].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "SkillType.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SkillType.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "SkillType.skill_type_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "SkillType.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 SkillType.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "SkillLevel",
+      "path": "entities[14].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "SkillLevel.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "SkillLevel.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "SkillLevel.skill_level_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "SkillLevel.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 SkillLevel.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "EmployeeSkill",
+      "path": "entities[15].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EmployeeSkill.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EmployeeSkill.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EmployeeSkill.employee_skill_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EmployeeSkill.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EmployeeSkill.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "Training",
+      "path": "entities[16].scenarios",
+      "scenario": "create -> start -> complete -> cancel",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Training.cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Training.complete (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Training.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Training.start (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Training.training_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Training.cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Training.cancel (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "EmployeeSkillLog",
+      "path": "entities[18].scenarios",
+      "scenario": "create",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EmployeeSkillLog.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EmployeeSkillLog.employee_skill_log_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EmployeeSkillLog.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EmployeeSkillLog.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "ResumeLineType",
+      "path": "entities[19].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ResumeLineType.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ResumeLineType.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ResumeLineType.resume_line_type_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ResumeLineType.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ResumeLineType.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "Department",
+      "path": "entities[1].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Department.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Department.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Department.department_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Department.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Department.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "ResumeLine",
+      "path": "entities[20].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ResumeLine.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ResumeLine.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ResumeLine.resume_line_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ResumeLine.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ResumeLine.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "WorkEntryType",
+      "path": "entities[21].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "WorkEntryType.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "WorkEntryType.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "WorkEntryType.work_entry_type_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "WorkEntryType.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 WorkEntryType.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "WorkEntry",
+      "path": "entities[22].scenarios",
+      "scenario": "create 后 action_cancel，工时条目进入 cancelled",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "WorkEntry.action_cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "WorkEntry.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "WorkEntry.action_cancel:hr.work_entry.cancelled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "WorkEntry.create:hr.work_entry.created (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "WorkEntry.work_entry_cancel_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "WorkEntry.work_entry_validation_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "WorkEntry.action_cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 WorkEntry.action_cancel (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "WorkEntry",
+      "path": "entities[22].scenarios",
+      "scenario": "create 后 action_validate，工时条目进入 validated",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "WorkEntry.action_validate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "WorkEntry.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "WorkEntry.action_validate:hr.work_entry.validated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "WorkEntry.create:hr.work_entry.created (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "WorkEntry.work_entry_cancel_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "WorkEntry.work_entry_validation_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "WorkEntry.action_validate (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 WorkEntry.action_validate (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "WorkLocation",
+      "path": "entities[23].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "WorkLocation.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "WorkLocation.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "WorkLocation.work_location_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "WorkLocation.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 WorkLocation.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "EmployeeLocation",
+      "path": "entities[24].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EmployeeLocation.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EmployeeLocation.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EmployeeLocation.employee_location_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EmployeeLocation.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EmployeeLocation.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "ApplicantSkill",
+      "path": "entities[25].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ApplicantSkill.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApplicantSkill.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApplicantSkill.applicant_skill_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ApplicantSkill.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ApplicantSkill.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "JobPosition",
+      "path": "entities[2].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "JobPosition.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "JobPosition.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "JobPosition.job_position_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "JobPosition.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 JobPosition.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "EmploymentContract",
+      "path": "entities[3].scenarios",
+      "scenario": "create -> activate -> terminate",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "EmploymentContract.activate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EmploymentContract.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "EmploymentContract.terminate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "EmploymentContract.employment_contract_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "EmploymentContract.activate (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 EmploymentContract.activate (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "LeaveType",
+      "path": "entities[4].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "LeaveType.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "LeaveType.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "LeaveType.leave_type_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "LeaveType.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 LeaveType.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "LeaveRequest",
+      "path": "entities[5].scenarios",
+      "scenario": "create -> action_confirm -> action_approve -> action_validate -> action_refuse -> action_draft",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "LeaveRequest.action_approve (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "LeaveRequest.action_confirm (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "LeaveRequest.action_draft (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "LeaveRequest.action_refuse (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "LeaveRequest.action_validate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "LeaveRequest.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "LeaveRequest.action_approve:hr.leave.approved (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "LeaveRequest.action_validate:hr.leave.validated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "LeaveRequest.leave_request_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "LeaveRequest.action_approve (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 LeaveRequest.action_approve (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "Attendance",
+      "path": "entities[6].scenarios",
+      "scenario": "create -> check_out",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Attendance.check_out (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Attendance.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Attendance.attendance_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Attendance.check_out (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Attendance.check_out (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "PaySlip",
+      "path": "entities[7].scenarios",
+      "scenario": "create 后 action_payslip_cancel，再 refund_sheet 回到草稿并重新 compute_sheet",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "PaySlip.action_payslip_cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "PaySlip.compute_sheet (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "PaySlip.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "PaySlip.refund_sheet (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PaySlip.action_payslip_cancel:hr.payslip.cancelled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PaySlip.compute_sheet:hr.payslip.verified (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PaySlip.create:hr.payslip.created (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PaySlip.refund_sheet:hr.payslip.refunded (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "PaySlip.payslip_payment_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "PaySlip.payslip_refund_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "PaySlip.action_payslip_cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 PaySlip.action_payslip_cancel (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "PaySlip",
+      "path": "entities[7].scenarios",
+      "scenario": "create 后 compute_sheet，再 action_payslip_done，最后 action_payslip_paid 完成发放",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "PaySlip.action_payslip_done (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "PaySlip.action_payslip_paid (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "PaySlip.compute_sheet (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "PaySlip.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PaySlip.action_payslip_done:hr.payslip.done (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PaySlip.action_payslip_paid:hr.payslip.paid (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PaySlip.compute_sheet:hr.payslip.verified (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PaySlip.create:hr.payslip.created (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "PaySlip.payslip_payment_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "PaySlip.payslip_refund_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "PaySlip.action_payslip_done (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 PaySlip.action_payslip_done (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "PayGrade",
+      "path": "entities[8].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "PayGrade.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "PayGrade.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "PayGrade.pay_grade_write_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "PayGrade.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 PayGrade.create (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "PerformanceReview",
+      "path": "entities[9].scenarios",
+      "scenario": "create 后 action_cancel，再 action_back 恢复并重新 action_confirm",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "PerformanceReview.action_back (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "PerformanceReview.action_cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "PerformanceReview.action_confirm (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "PerformanceReview.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PerformanceReview.action_back:hr.appraisal.reopened (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PerformanceReview.action_cancel:hr.appraisal.cancelled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PerformanceReview.action_confirm:hr.appraisal.confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PerformanceReview.create:hr.appraisal.created (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "PerformanceReview.appraisal_cycle_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "PerformanceReview.appraisal_reopen_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "PerformanceReview.action_back (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 PerformanceReview.action_back (action)（score=70）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "PerformanceReview",
+      "path": "entities[9].scenarios",
+      "scenario": "create 后 action_confirm，再 action_done 完成评估",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "PerformanceReview.action_confirm (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "PerformanceReview.action_done (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "PerformanceReview.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PerformanceReview.action_confirm:hr.appraisal.confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PerformanceReview.action_done:hr.appraisal.done (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "PerformanceReview.create:hr.appraisal.created (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "PerformanceReview.appraisal_cycle_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "PerformanceReview.appraisal_reopen_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "PerformanceReview.action_confirm (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 PerformanceReview.action_confirm (action)（score=70）"
+    }
+  ],
+  "auto_anchor_enabled": true,
+  "auto_anchor_total": 31,
+  "auto_anchor_mapped": 22,
+  "auto_anchor_unmapped": 9,
+  "auto_anchor_results": [
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "ApplicantSkill",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "Attendance",
+      "action": "check_out",
+      "scenario": "create -> check_out",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "Department",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "Employee",
+      "action": "create",
+      "scenario": "create -> update -> terminate -> suspend -> reactivate",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "EmployeeLocation",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "EmployeeSkill",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "EmployeeSkillLog",
+      "action": "create",
+      "scenario": "create",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "EmploymentContract",
+      "action": "activate",
+      "scenario": "create -> activate -> terminate",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "JobApplication",
+      "action": "advance",
+      "scenario": "create 后 advance 到 interview，再 hire 完成录用",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "JobApplication",
+      "action": "advance",
+      "scenario": "reject 后 reset 回 received，再次 advance 进入筛选",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "JobApplication",
+      "action": "archive",
+      "scenario": "hire 完成后 archive，申请进入归档态",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "JobPosition",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "JobRequisition",
+      "action": "cancel",
+      "scenario": "create 后 open，再 cancel 终止招聘",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "JobRequisition",
+      "action": "close",
+      "scenario": "create 后 open，再 close 完成招聘关闭",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "LeaveRequest",
+      "action": "action_approve",
+      "scenario": "create -> action_confirm -> action_approve -> action_validate -> action_refuse -> action_draft",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation",
+        "change"
+      ],
+      "reason": "命中规则：validation + change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "LeaveType",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "PayGrade",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "PaySlip",
+      "action": "action_payslip_cancel",
+      "scenario": "create 后 action_payslip_cancel，再 refund_sheet 回到草稿并重新 compute_sheet",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "PaySlip",
+      "action": "action_payslip_done",
+      "scenario": "create 后 compute_sheet，再 action_payslip_done，最后 action_payslip_paid 完成发放",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "PerformanceReview",
+      "action": "action_back",
+      "scenario": "create 后 action_cancel，再 action_back 恢复并重新 action_confirm",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "PerformanceReview",
+      "action": "action_confirm",
+      "scenario": "create 后 action_confirm，再 action_done 完成评估",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "ResumeLine",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "ResumeLineType",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "Skill",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "SkillLevel",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "SkillType",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "Training",
+      "action": "cancel",
+      "scenario": "create -> start -> complete -> cancel",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "WorkEntry",
+      "action": "action_cancel",
+      "scenario": "create 后 action_cancel，工时条目进入 cancelled",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "WorkEntry",
+      "action": "action_validate",
+      "scenario": "create 后 action_validate，工时条目进入 validated",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation"
+      ],
+      "reason": "命中规则：validation"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "WorkEntryType",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "hr.ubo.yaml",
+      "entity": "WorkLocation",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    }
+  ],
+  "weak_assertion_count": 0,
+  "weak_assertion_read_count": 0,
+  "weak_assertion_write_count": 0,
+  "weak_assertion_other_count": 0,
+  "weak_assertion_effective_count": 0,
+  "weak_assertion_effective_read_count": 0,
+  "weak_assertion_effective_write_count": 0,
+  "weak_assertion_effective_other_count": 0,
+  "weak_whitelist_path": null,
+  "weak_whitelist_rule_count": 0,
+  "weak_whitelist_active_rule_count": 0,
+  "weak_whitelist_hit_count": 0,
+  "weak_whitelist_hits": [],
+  "weak_assertions": []
+}

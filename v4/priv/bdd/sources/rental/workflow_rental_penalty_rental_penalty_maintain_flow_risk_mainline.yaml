@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_PENALTY
+contract: RentalPenalty.rental_penalty_maintain_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalPenalty 定义工作流 rental_penalty_maintain_flow / WHEN 按主路径执行 create -> update -> destroy / THEN 主流程应可达并保持顺序一致

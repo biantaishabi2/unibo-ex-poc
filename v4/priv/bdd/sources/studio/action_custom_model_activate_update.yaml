@@ -1,0 +1,5 @@
+module: STUDIO_CUSTOM_MODEL
+contract: CustomModel.activate action contract
+edge_class: action_contract
+source_file: models/studio/studio.ubo.yaml
+source_summary: GIVEN 实体 CustomModel 的动作 activate 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 activate / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 创建自定义模型 -> update 修改模型配置 -> activate 启用模型；create 创建自定义模型 -> activate 启用 -> archive 归档 -> reactivate 重新激活

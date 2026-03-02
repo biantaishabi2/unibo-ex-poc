@@ -1,0 +1,5 @@
+module: IO_T_QUEUE_MEMBER
+contract: QueueMember.record_call action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 QueueMember 的动作 record_call 触发副作用 / WHEN 执行动作 record_call / THEN 变更副作用应完整生效且状态一致

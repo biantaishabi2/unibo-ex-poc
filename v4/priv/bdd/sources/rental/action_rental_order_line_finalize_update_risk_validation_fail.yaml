@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_ORDER_LINE
+contract: RentalOrderLine.finalize action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalOrderLine 的动作 finalize 输入非法 / WHEN 执行动作 finalize / THEN 应返回校验失败且不产生持久化副作用

@@ -1,0 +1,5 @@
+module: GAMIFICATION_BADGE_USER
+contract: BadgeUser.destroy action contract (risk:success)
+edge_class: action_contract
+source_file: models/gamification/gamification.ubo.yaml
+source_summary: GIVEN 实体 BadgeUser 的动作 destroy 可执行 / WHEN 执行动作 destroy / THEN 成功路径应满足业务约束并持久化结果

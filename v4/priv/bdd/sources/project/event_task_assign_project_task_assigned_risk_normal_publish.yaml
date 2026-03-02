@@ -1,0 +1,5 @@
+module: PROJECT_TASK
+contract: Task.assign event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 Task 动作 assign 触发事件 / WHEN 发布 topic `project.task.assigned` / THEN 消费方应收到一次有效通知

@@ -1,0 +1,5 @@
+module: SPREADSHEET_DATA_SOURCE
+contract: DataSource.data_source_refresh_flow workflow contract
+edge_class: workflow_contract
+source_file: models/spreadsheet/spreadsheet.ubo.yaml
+source_summary: GIVEN 实体 DataSource 定义工作流 data_source_refresh_flow / WHEN 按步骤执行 create -> update -> refresh -> destroy / THEN 流程顺序应满足声明约束

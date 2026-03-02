@@ -1,0 +1,5 @@
+module: PROJECT_TASK
+contract: Task.copy action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 Task 的动作 copy 触发副作用 / WHEN 执行动作 copy / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 任务，update 修改配置，copy 复制任务

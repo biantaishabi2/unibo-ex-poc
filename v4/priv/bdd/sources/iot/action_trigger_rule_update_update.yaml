@@ -1,0 +1,5 @@
+module: IO_T_TRIGGER_RULE
+contract: TriggerRule.update action contract
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 TriggerRule 的动作 update 可执行，accept=[name, description, condition, action_type, action_config, is_active, priority, stop_on_match, cooldown_seconds, error_action]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束

@@ -1,0 +1,5 @@
+module: HR_JOB_POSITION
+contract: JobPosition.create action contract
+edge_class: action_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 JobPosition 的动作 create 可执行，accept=[position_code, title, headcount, description]，args=[department_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create -> update

@@ -1,0 +1,5 @@
+module: IO_T_VO_IP_CALL
+contract: VoIPCall.to_voicemail action contract (risk:success)
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 VoIPCall 的动作 to_voicemail 可执行 / WHEN 执行动作 to_voicemail / THEN 成功路径应满足业务约束并持久化结果

@@ -1,0 +1,5 @@
+module: IO_T_CALL_QUEUE
+contract: CallQueue.create action contract
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 CallQueue 的动作 create 可执行，accept=[name, ring_strategy, timeout_seconds, max_wait_seconds, max_callers, voicemail_enabled, overflow_action, callback_enabled, announce_position, announce_wait_time, music_on_hold_id, wrapup_time_seconds, sla_target_seconds, org_id]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create -> update -> destroy；来电路由到队列；按策略选择可用坐席；通知被选中坐席；创建新的通话尝试（转下一坐席时）

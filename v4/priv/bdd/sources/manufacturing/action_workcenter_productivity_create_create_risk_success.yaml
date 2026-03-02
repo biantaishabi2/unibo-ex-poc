@@ -1,0 +1,5 @@
+module: MANUFACTURING_WORKCENTER_PRODUCTIVITY
+contract: WorkcenterProductivity.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 WorkcenterProductivity 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create -> update

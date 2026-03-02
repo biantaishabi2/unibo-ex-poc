@@ -1,0 +1,5 @@
+module: EXPENSES_EXPENSE_REPORT
+contract: ExpenseReport.submit event contract
+edge_class: event_contract
+source_file: models/expenses/expenses.ubo.yaml
+source_summary: GIVEN 实体 ExpenseReport 的动作 submit 完成 / WHEN 触发事件发布 / THEN 应广播 topic `expenses.report.submitted`

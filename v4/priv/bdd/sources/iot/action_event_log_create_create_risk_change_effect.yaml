@@ -1,0 +1,5 @@
+module: IO_T_EVENT_LOG
+contract: EventLog.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 EventLog 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create -> mark_processed；每次设备事件到达；清理 30 天前已处理日志

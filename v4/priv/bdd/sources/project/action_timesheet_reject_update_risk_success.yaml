@@ -1,0 +1,5 @@
+module: PROJECT_TIMESHEET
+contract: Timesheet.reject action contract (risk:success)
+edge_class: action_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 Timesheet 的动作 reject 可执行 / WHEN 执行动作 reject / THEN 成功路径应满足业务约束并持久化结果

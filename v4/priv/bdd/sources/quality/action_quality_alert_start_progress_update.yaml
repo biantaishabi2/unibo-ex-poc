@@ -1,0 +1,5 @@
+module: QUALITY_QUALITY_ALERT
+contract: QualityAlert.start_progress action contract
+edge_class: action_contract
+source_file: models/quality/quality.ubo.yaml
+source_summary: GIVEN 实体 QualityAlert 的动作 start_progress 可执行，accept=[[]]，args=[responsible_id:uuid] / WHEN 执行动作 start_progress / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束

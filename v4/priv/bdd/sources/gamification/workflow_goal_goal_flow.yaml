@@ -1,0 +1,5 @@
+module: GAMIFICATION_GOAL
+contract: Goal.goal_flow workflow contract
+edge_class: workflow_contract
+source_file: models/gamification/gamification.ubo.yaml
+source_summary: GIVEN 实体 Goal 定义工作流 goal_flow / WHEN 按步骤执行 create -> update -> action_start -> action_reach -> action_fail -> action_cancel / THEN 流程顺序应满足声明约束

@@ -1,0 +1,5 @@
+module: SURVEY_ANSWER
+contract: Answer.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/survey/survey.ubo.yaml
+source_summary: GIVEN 实体 Answer 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 选项，update 修改选项文本和得分，destroy 删除选项

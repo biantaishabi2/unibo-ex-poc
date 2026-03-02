@@ -1,0 +1,5 @@
+module: KNOWLEDGE_ARTICLE
+contract: Article.action_move action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/knowledge/knowledge.ubo.yaml
+source_summary: GIVEN 实体 Article 的动作 action_move 触发副作用 / WHEN 执行动作 action_move / THEN 变更副作用应完整生效且状态一致

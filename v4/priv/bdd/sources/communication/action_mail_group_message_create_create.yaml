@@ -1,0 +1,5 @@
+module: COMMUNICATION_MAIL_GROUP_MESSAGE
+contract: MailGroupMessage.create action contract
+edge_class: action_contract
+source_file: models/communication/communication.ubo.yaml
+source_summary: GIVEN 实体 MailGroupMessage 的动作 create 可执行，accept=[subject, body, email_from, email_from_normalized, moderation_status]，args=[mail_group_id:uuid!, moderator_id:uuid, parent_message_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create -> moderate_accept；create -> moderate_reject -> moderate_allow -> moderate_ban

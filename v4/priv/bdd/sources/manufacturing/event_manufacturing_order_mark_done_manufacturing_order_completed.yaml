@@ -1,0 +1,5 @@
+module: MANUFACTURING_MANUFACTURING_ORDER
+contract: ManufacturingOrder.mark_done event contract
+edge_class: event_contract
+source_file: models/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 ManufacturingOrder 的动作 mark_done 完成 / WHEN 触发事件发布 / THEN 应广播 topic `manufacturing.order.completed`

@@ -1,0 +1,5 @@
+module: HR_WORK_ENTRY_TYPE
+contract: WorkEntryType.update action contract
+edge_class: action_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 WorkEntryType 的动作 update 可执行，accept=[name, external_code, color, sequence, is_active]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束

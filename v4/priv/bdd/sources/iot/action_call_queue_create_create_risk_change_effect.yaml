@@ -1,0 +1,5 @@
+module: IO_T_CALL_QUEUE
+contract: CallQueue.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 CallQueue 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create -> update -> destroy；来电路由到队列；按策略选择可用坐席；通知被选中坐席；创建新的通话尝试（转下一坐席时）

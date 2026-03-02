@@ -1,0 +1,5 @@
+module: QUALITY_QUALITY_ALERT
+contract: QualityAlert.alert_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/quality/quality.ubo.yaml
+source_summary: GIVEN 实体 QualityAlert 定义工作流 alert_lifecycle / WHEN 按步骤执行 create -> confirm -> start_progress -> done / THEN 流程顺序应满足声明约束

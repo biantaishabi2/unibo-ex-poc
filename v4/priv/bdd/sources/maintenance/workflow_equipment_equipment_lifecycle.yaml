@@ -1,0 +1,5 @@
+module: MAINTENANCE_EQUIPMENT
+contract: Equipment.equipment_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 Equipment 定义工作流 equipment_lifecycle / WHEN 按步骤执行 create -> update -> retire / THEN 流程顺序应满足声明约束

@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_ORDER_LINE
+contract: RentalOrderLine.validate_pickup action contract (risk:success)
+edge_class: action_contract
+source_file: models/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalOrderLine 的动作 validate_pickup 可执行 / WHEN 执行动作 validate_pickup / THEN 成功路径应满足业务约束并持久化结果

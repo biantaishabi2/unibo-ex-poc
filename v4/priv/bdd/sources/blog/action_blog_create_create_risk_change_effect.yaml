@@ -1,0 +1,5 @@
+module: BLOG_BLOG
+contract: Blog.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/blog/blog.ubo.yaml
+source_summary: GIVEN 实体 Blog 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建博客 -> update 修改博客信息

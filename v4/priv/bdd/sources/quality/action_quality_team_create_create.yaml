@@ -1,0 +1,5 @@
+module: QUALITY_QUALITY_TEAM
+contract: QualityTeam.create action contract
+edge_class: action_contract
+source_file: models/quality/quality.ubo.yaml
+source_summary: GIVEN 实体 QualityTeam 的动作 create 可执行，accept=[name, alias_email]，args=[member_ids:array] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建团队 -> update 修改团队信息 -> destroy 删除团队

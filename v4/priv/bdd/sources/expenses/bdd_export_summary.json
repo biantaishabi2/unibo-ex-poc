@@ -1,0 +1,377 @@
+{
+  "total_models": 1,
+  "generated_files": 90,
+  "action_sources": 60,
+  "event_sources": 18,
+  "workflow_sources": 12,
+  "scenario_total": 4,
+  "scenario_associated": 4,
+  "scenario_unassociated": 0,
+  "unassociated_scenarios": [],
+  "scenario_resolutions": [
+    {
+      "model": "expenses.ubo.yaml",
+      "entity": "ExpenseReport",
+      "path": "entities[0].scenarios",
+      "scenario": "create -> submit -> approve -> post -> register_payment",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ExpenseReport.approve (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ExpenseReport.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ExpenseReport.post (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ExpenseReport.register_payment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ExpenseReport.submit (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ExpenseReport.approve:expenses.report.approved (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ExpenseReport.post:expenses.report.posted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ExpenseReport.register_payment:expenses.report.paid (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ExpenseReport.submit:expenses.report.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ExpenseReport.expense_report_approval_payment_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ExpenseReport.expense_report_refuse_reset_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ExpenseReport.approve (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ExpenseReport.approve (action)（score=70）"
+    },
+    {
+      "model": "expenses.ubo.yaml",
+      "entity": "ExpenseReport",
+      "path": "entities[0].scenarios",
+      "scenario": "create -> submit -> refuse -> reset -> submit -> approve",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ExpenseReport.approve (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ExpenseReport.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ExpenseReport.refuse (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ExpenseReport.reset (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ExpenseReport.submit (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ExpenseReport.approve:expenses.report.approved (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ExpenseReport.refuse:expenses.report.refused (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ExpenseReport.reset:expenses.report.reset (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ExpenseReport.submit:expenses.report.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ExpenseReport.expense_report_approval_payment_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ExpenseReport.expense_report_refuse_reset_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ExpenseReport.approve (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ExpenseReport.approve (action)（score=70）"
+    },
+    {
+      "model": "expenses.ubo.yaml",
+      "entity": "ExpenseLine",
+      "path": "entities[1].scenarios",
+      "scenario": "create -> update -> split",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ExpenseLine.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ExpenseLine.split (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ExpenseLine.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ExpenseLine.expense_line_edit_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ExpenseLine.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ExpenseLine.create (action)（score=70）"
+    },
+    {
+      "model": "expenses.ubo.yaml",
+      "entity": "ExpenseCategory",
+      "path": "entities[2].scenarios",
+      "scenario": "create -> update",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ExpenseCategory.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ExpenseCategory.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ExpenseCategory.expense_category_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ExpenseCategory.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ExpenseCategory.create (action)（score=70）"
+    }
+  ],
+  "auto_anchor_enabled": true,
+  "auto_anchor_total": 4,
+  "auto_anchor_mapped": 4,
+  "auto_anchor_unmapped": 0,
+  "auto_anchor_results": [
+    {
+      "model": "expenses.ubo.yaml",
+      "entity": "ExpenseCategory",
+      "action": "create",
+      "scenario": "create -> update",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "expenses.ubo.yaml",
+      "entity": "ExpenseLine",
+      "action": "create",
+      "scenario": "create -> update -> split",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "expenses.ubo.yaml",
+      "entity": "ExpenseReport",
+      "action": "approve",
+      "scenario": "create -> submit -> approve -> post -> register_payment",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "expenses.ubo.yaml",
+      "entity": "ExpenseReport",
+      "action": "approve",
+      "scenario": "create -> submit -> refuse -> reset -> submit -> approve",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    }
+  ],
+  "weak_assertion_count": 0,
+  "weak_assertion_read_count": 0,
+  "weak_assertion_write_count": 0,
+  "weak_assertion_other_count": 0,
+  "weak_assertion_effective_count": 0,
+  "weak_assertion_effective_read_count": 0,
+  "weak_assertion_effective_write_count": 0,
+  "weak_assertion_effective_other_count": 0,
+  "weak_whitelist_path": null,
+  "weak_whitelist_rule_count": 0,
+  "weak_whitelist_active_rule_count": 0,
+  "weak_whitelist_hit_count": 0,
+  "weak_whitelist_hits": [],
+  "weak_assertions": []
+}

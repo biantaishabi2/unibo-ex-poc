@@ -1,0 +1,5 @@
+module: BLOG_WEB_PAGE
+contract: WebPage.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/blog/blog.ubo.yaml
+source_summary: GIVEN 实体 WebPage 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建页面 -> update 编辑页面 -> publish 发布页面；create 创建页面 -> publish 发布页面 -> unpublish 取消发布

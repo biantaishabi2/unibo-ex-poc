@@ -1,0 +1,5 @@
+module: DOCUMENTS_DOCUMENT
+contract: Document.lock event contract
+edge_class: event_contract
+source_file: models/documents/documents.ubo.yaml
+source_summary: GIVEN 实体 Document 的动作 lock 完成 / WHEN 触发事件发布 / THEN 应广播 topic `documents.document.locked`

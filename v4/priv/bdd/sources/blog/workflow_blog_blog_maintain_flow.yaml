@@ -1,0 +1,5 @@
+module: BLOG_BLOG
+contract: Blog.blog_maintain_flow workflow contract
+edge_class: workflow_contract
+source_file: models/blog/blog.ubo.yaml
+source_summary: GIVEN 实体 Blog 定义工作流 blog_maintain_flow / WHEN 按步骤执行 create -> update -> archive / THEN 流程顺序应满足声明约束

@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_ORDER
+contract: RentalOrder.action_pickup event contract
+edge_class: event_contract
+source_file: models/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalOrder 的动作 action_pickup 完成 / WHEN 触发事件发布 / THEN 应广播 topic `rental.order.picked_up`

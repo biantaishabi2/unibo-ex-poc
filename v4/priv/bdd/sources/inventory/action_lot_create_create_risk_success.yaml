@@ -1,0 +1,5 @@
+module: INVENTORY_LOT
+contract: Lot.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 Lot 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 新建批次，update 修改有效期和提醒设置

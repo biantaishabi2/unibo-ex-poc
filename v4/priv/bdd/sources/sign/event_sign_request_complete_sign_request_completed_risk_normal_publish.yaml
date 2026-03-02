@@ -1,0 +1,5 @@
+module: SIGN_SIGN_REQUEST
+contract: SignRequest.complete event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/sign/sign.ubo.yaml
+source_summary: GIVEN 实体 SignRequest 动作 complete 触发事件 / WHEN 发布 topic `sign.request.completed` / THEN 消费方应收到一次有效通知

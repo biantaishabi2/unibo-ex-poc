@@ -1,0 +1,5 @@
+module: PLM_ECO
+contract: Eco.advance_stage action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/plm/plm.ubo.yaml
+source_summary: GIVEN 实体 Eco 的动作 advance_stage 触发副作用 / WHEN 执行动作 advance_stage / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建 ECO -> advance_stage 推进阶段 -> apply_changes 应用变更到生产 BOM；create 创建 ECO -> advance_stage 推进阶段 -> rebase 同步最新 BOM -> advance_stage 继续推进 -> apply_changes 应用变更

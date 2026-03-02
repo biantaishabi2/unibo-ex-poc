@@ -1,0 +1,5 @@
+module: PROJECT_PROJECT
+contract: Project.complete event contract
+edge_class: event_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 Project 的动作 complete 完成 / WHEN 触发事件发布 / THEN 应广播 topic `project.completed`

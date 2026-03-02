@@ -1,0 +1,5 @@
+module: INVENTORY_LOT
+contract: Lot.create action contract
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 Lot 的动作 create 可执行，accept=[lot_number, product_code, expiration_date, use_date, removal_date, alert_date, manufacturing_date, product_expiry_reminded, notes]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建批次，update 修改有效期和提醒设置

@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_ORDER_LINE
+contract: RentalOrderLine.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalOrderLine 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建订单行 -> validate_pickup 取货验证 -> validate_return 归还验证 -> finalize 完成；create 创建订单行 -> update 修改日期/数量 -> validate_pickup 取货验证 -> validate_return 归还验证 -> finalize 完成

@@ -1,0 +1,5 @@
+module: HR_EMPLOYEE_SKILL
+contract: EmployeeSkill.employee_skill_write_flow workflow contract (risk:branch_or_exception)
+edge_class: workflow_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 EmployeeSkill 的工作流 employee_skill_write_flow 存在分支或异常可能 / WHEN 执行分支路径 / THEN 流程应可恢复并保持状态一致

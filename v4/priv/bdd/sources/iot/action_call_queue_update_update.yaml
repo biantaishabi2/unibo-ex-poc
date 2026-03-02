@@ -1,0 +1,5 @@
+module: IO_T_CALL_QUEUE
+contract: CallQueue.update action contract
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 CallQueue 的动作 update 可执行，accept=[name, ring_strategy, timeout_seconds, max_wait_seconds, max_callers, voicemail_enabled, overflow_action, callback_enabled, announce_position, announce_wait_time, music_on_hold_id, wrapup_time_seconds, sla_target_seconds]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

@@ -1,0 +1,5 @@
+module: MANUFACTURING_BILL_OF_MATERIALS
+contract: BillOfMaterials.explode action contract
+edge_class: action_contract
+source_file: models/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 BillOfMaterials 的动作 explode 可执行，accept=[[]]，args=[quantity:decimal!, product_id:uuid] / WHEN 执行动作 explode / THEN 输入应满足校验规则，读取结果应符合查询语义

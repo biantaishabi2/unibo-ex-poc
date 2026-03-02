@@ -1,0 +1,5 @@
+module: INVENTORY_STOCK_QUANT
+contract: StockQuant.create action contract
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 StockQuant 的动作 create 可执行，accept=[product_id, product_code, product_name, quantity, reserved_quantity, unit_cost, lot_number, in_date]，args=[warehouse_id:uuid!, location_id:uuid!, lot_id:uuid, package_id:uuid, owner_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 库存快照，update 修改数量，_update_available_quantity 双重记账更新

@@ -1,0 +1,497 @@
+{
+  "total_models": 1,
+  "generated_files": 154,
+  "action_sources": 121,
+  "event_sources": 15,
+  "workflow_sources": 18,
+  "scenario_total": 6,
+  "scenario_associated": 6,
+  "scenario_unassociated": 0,
+  "unassociated_scenarios": [],
+  "scenario_resolutions": [
+    {
+      "model": "documents.ubo.yaml",
+      "entity": "Document",
+      "path": "entities[0].scenarios",
+      "scenario": "create -> upload -> lock -> unlock -> archive -> restore -> update -> toggle_favorite -> destroy",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Document.archive (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Document.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Document.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Document.lock (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Document.restore (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Document.toggle_favorite (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Document.unlock (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Document.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Document.upload (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Document.archive:documents.document.archived (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Document.lock:documents.document.locked (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Document.unlock:documents.document.unlocked (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Document.update:documents.document.updated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Document.upload:documents.document.uploaded (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Document.document_lifecycle_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Document.archive (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Document.archive (action)（score=70）"
+    },
+    {
+      "model": "documents.ubo.yaml",
+      "entity": "Folder",
+      "path": "entities[1].scenarios",
+      "scenario": "create -> update -> destroy",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Folder.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Folder.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Folder.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Folder.folder_management_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Folder.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Folder.create (action)（score=70）"
+    },
+    {
+      "model": "documents.ubo.yaml",
+      "entity": "Tag",
+      "path": "entities[2].scenarios",
+      "scenario": "create -> update -> destroy",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Tag.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Tag.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Tag.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Tag.tag_lifecycle_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Tag.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Tag.create (action)（score=70）"
+    },
+    {
+      "model": "documents.ubo.yaml",
+      "entity": "Facet",
+      "path": "entities[3].scenarios",
+      "scenario": "create -> update -> destroy",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Facet.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Facet.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Facet.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Facet.facet_lifecycle_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Facet.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Facet.create (action)（score=70）"
+    },
+    {
+      "model": "documents.ubo.yaml",
+      "entity": "WorkflowRule",
+      "path": "entities[4].scenarios",
+      "scenario": "create -> update -> execute -> destroy",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "WorkflowRule.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "WorkflowRule.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "WorkflowRule.execute (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "WorkflowRule.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "WorkflowRule.workflow_rule_execution_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "WorkflowRule.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 WorkflowRule.create (action)（score=70）"
+    },
+    {
+      "model": "documents.ubo.yaml",
+      "entity": "Share",
+      "path": "entities[5].scenarios",
+      "scenario": "create -> update -> upload_via_share -> destroy",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Share.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Share.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Share.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Share.upload_via_share (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Share.share_lifecycle_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Share.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Share.create (action)（score=70）"
+    }
+  ],
+  "auto_anchor_enabled": true,
+  "auto_anchor_total": 6,
+  "auto_anchor_mapped": 6,
+  "auto_anchor_unmapped": 0,
+  "auto_anchor_results": [
+    {
+      "model": "documents.ubo.yaml",
+      "entity": "Document",
+      "action": "archive",
+      "scenario": "create -> upload -> lock -> unlock -> archive -> restore -> update -> toggle_favorite -> destroy",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "documents.ubo.yaml",
+      "entity": "Facet",
+      "action": "create",
+      "scenario": "create -> update -> destroy",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "documents.ubo.yaml",
+      "entity": "Folder",
+      "action": "create",
+      "scenario": "create -> update -> destroy",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "documents.ubo.yaml",
+      "entity": "Share",
+      "action": "create",
+      "scenario": "create -> update -> upload_via_share -> destroy",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "documents.ubo.yaml",
+      "entity": "Tag",
+      "action": "create",
+      "scenario": "create -> update -> destroy",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "documents.ubo.yaml",
+      "entity": "WorkflowRule",
+      "action": "create",
+      "scenario": "create -> update -> execute -> destroy",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    }
+  ],
+  "weak_assertion_count": 0,
+  "weak_assertion_read_count": 0,
+  "weak_assertion_write_count": 0,
+  "weak_assertion_other_count": 0,
+  "weak_assertion_effective_count": 0,
+  "weak_assertion_effective_read_count": 0,
+  "weak_assertion_effective_write_count": 0,
+  "weak_assertion_effective_other_count": 0,
+  "weak_whitelist_path": null,
+  "weak_whitelist_rule_count": 0,
+  "weak_whitelist_active_rule_count": 0,
+  "weak_whitelist_hit_count": 0,
+  "weak_whitelist_hits": [],
+  "weak_assertions": []
+}

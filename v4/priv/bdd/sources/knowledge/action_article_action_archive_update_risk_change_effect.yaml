@@ -1,0 +1,5 @@
+module: KNOWLEDGE_ARTICLE
+contract: Article.action_archive action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/knowledge/knowledge.ubo.yaml
+source_summary: GIVEN 实体 Article 的动作 action_archive 触发副作用 / WHEN 执行动作 action_archive / THEN 变更副作用应完整生效且状态一致 / 补充场景：action_publish 发布后，action_archive 归档，action_restore_state 恢复到草稿

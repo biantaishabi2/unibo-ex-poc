@@ -1,0 +1,5 @@
+module: DOCUMENTS_SHARE
+contract: Share.access action contract
+edge_class: action_contract
+source_file: models/documents/documents.ubo.yaml
+source_summary: GIVEN 实体 Share 的动作 access 可执行，accept=[(未声明)]，args=[access_token:string!] / WHEN 执行动作 access / THEN 读取结果应符合查询语义

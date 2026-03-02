@@ -1,0 +1,5 @@
+module: HR_PAY_SLIP
+contract: PaySlip.refund_sheet event contract
+edge_class: event_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 PaySlip 的动作 refund_sheet 完成 / WHEN 触发事件发布 / THEN 应广播 topic `hr.payslip.refunded`

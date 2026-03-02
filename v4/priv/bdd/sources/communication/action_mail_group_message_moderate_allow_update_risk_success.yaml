@@ -1,0 +1,5 @@
+module: COMMUNICATION_MAIL_GROUP_MESSAGE
+contract: MailGroupMessage.moderate_allow action contract (risk:success)
+edge_class: action_contract
+source_file: models/communication/communication.ubo.yaml
+source_summary: GIVEN 实体 MailGroupMessage 的动作 moderate_allow 可执行 / WHEN 执行动作 moderate_allow / THEN 成功路径应满足业务约束并持久化结果

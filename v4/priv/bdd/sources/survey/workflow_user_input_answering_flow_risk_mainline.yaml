@@ -1,0 +1,5 @@
+module: SURVEY_USER_INPUT
+contract: UserInput.answering_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/survey/survey.ubo.yaml
+source_summary: GIVEN 实体 UserInput 定义工作流 answering_flow / WHEN 按主路径执行 create -> mark_in_progress -> mark_done / THEN 主流程应可达并保持顺序一致

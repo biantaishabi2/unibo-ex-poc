@@ -1,0 +1,5 @@
+module: MANUFACTURING_WORKCENTER_PRODUCTIVITY
+contract: WorkcenterProductivity.workcenter_productivity_tracking_flow workflow contract (risk:branch_or_exception)
+edge_class: workflow_contract
+source_file: models/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 WorkcenterProductivity 的工作流 workcenter_productivity_tracking_flow 存在分支或异常可能 / WHEN 执行分支路径 / THEN 流程应可恢复并保持状态一致

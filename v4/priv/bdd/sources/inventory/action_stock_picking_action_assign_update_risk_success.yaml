@@ -1,0 +1,5 @@
+module: INVENTORY_STOCK_PICKING
+contract: StockPicking.action_assign action contract (risk:success)
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 StockPicking 的动作 action_assign 可执行 / WHEN 执行动作 action_assign / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 拣货单，action_confirm 确认，action_assign 预留库存，button_validate 完成验证

@@ -1,0 +1,5 @@
+module: BLOG_VISITOR
+contract: Visitor.upsert action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/blog/blog.ubo.yaml
+source_summary: GIVEN 实体 Visitor 的动作 upsert 触发副作用 / WHEN 执行动作 upsert / THEN 变更副作用应完整生效且状态一致

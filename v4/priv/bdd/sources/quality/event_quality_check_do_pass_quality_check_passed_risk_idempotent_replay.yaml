@@ -1,0 +1,5 @@
+module: QUALITY_QUALITY_CHECK
+contract: QualityCheck.do_pass event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/quality/quality.ubo.yaml
+source_summary: GIVEN 实体 QualityCheck 动作 do_pass 事件被重复投递 / WHEN 重放 topic `quality.check.passed` / THEN 消费方处理应保持幂等且无重复副作用

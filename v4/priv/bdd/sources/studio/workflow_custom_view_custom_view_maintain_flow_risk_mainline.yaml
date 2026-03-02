@@ -1,0 +1,5 @@
+module: STUDIO_CUSTOM_VIEW
+contract: CustomView.custom_view_maintain_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/studio/studio.ubo.yaml
+source_summary: GIVEN 实体 CustomView 定义工作流 custom_view_maintain_flow / WHEN 按主路径执行 create -> update -> destroy / THEN 主流程应可达并保持顺序一致

@@ -1,0 +1,5 @@
+module: SPREADSHEET_REVISION
+contract: Revision.apply_revision action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/spreadsheet/spreadsheet.ubo.yaml
+source_summary: GIVEN 实体 Revision 的动作 apply_revision 触发副作用 / WHEN 执行动作 apply_revision / THEN 变更副作用应完整生效且状态一致 / 补充场景：create_snapshot -> apply_revision

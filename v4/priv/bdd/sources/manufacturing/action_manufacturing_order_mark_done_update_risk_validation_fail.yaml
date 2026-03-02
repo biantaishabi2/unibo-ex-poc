@@ -1,0 +1,5 @@
+module: MANUFACTURING_MANUFACTURING_ORDER
+contract: ManufacturingOrder.mark_done action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 ManufacturingOrder 的动作 mark_done 输入非法 / WHEN 执行动作 mark_done / THEN 应返回校验失败且不产生持久化副作用

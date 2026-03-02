@@ -1,0 +1,5 @@
+module: APPROVALS_APPROVER
+contract: Approver.approver_cancel_reset_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/approvals/approvals.ubo.yaml
+source_summary: GIVEN 实体 Approver 定义工作流 approver_cancel_reset_flow / WHEN 按主路径执行 create -> cancel -> draft / THEN 主流程应可达并保持顺序一致

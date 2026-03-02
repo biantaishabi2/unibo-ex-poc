@@ -1,0 +1,5 @@
+module: LIVE_CHAT_CHANNEL_RULE
+contract: ChannelRule.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/livechat/livechat.ubo.yaml
+source_summary: GIVEN 实体 ChannelRule 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 创建频道规则 -> update 修改规则配置 -> destroy 删除规则

@@ -1,0 +1,5 @@
+module: IO_T_VO_IP_CALL
+contract: VoIPCall.voip_call_lifecycle_flow workflow contract
+edge_class: workflow_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 VoIPCall 定义工作流 voip_call_lifecycle_flow / WHEN 按步骤执行 create -> answer -> add_note -> end_call -> miss -> to_voicemail / THEN 流程顺序应满足声明约束

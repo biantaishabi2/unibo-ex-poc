@@ -1,0 +1,5 @@
+module: SURVEY_QUESTION
+contract: Question.question_write_flow workflow contract
+edge_class: workflow_contract
+source_file: models/survey/survey.ubo.yaml
+source_summary: GIVEN 实体 Question 定义工作流 question_write_flow / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束

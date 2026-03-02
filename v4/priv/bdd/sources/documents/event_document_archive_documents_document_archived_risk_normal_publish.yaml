@@ -1,0 +1,5 @@
+module: DOCUMENTS_DOCUMENT
+contract: Document.archive event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/documents/documents.ubo.yaml
+source_summary: GIVEN 实体 Document 动作 archive 触发事件 / WHEN 发布 topic `documents.document.archived` / THEN 消费方应收到一次有效通知

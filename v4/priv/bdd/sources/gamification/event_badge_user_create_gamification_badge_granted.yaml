@@ -1,0 +1,5 @@
+module: GAMIFICATION_BADGE_USER
+contract: BadgeUser.create event contract
+edge_class: event_contract
+source_file: models/gamification/gamification.ubo.yaml
+source_summary: GIVEN 实体 BadgeUser 的动作 create 完成 / WHEN 触发事件发布 / THEN 应广播 topic `gamification.badge.granted`

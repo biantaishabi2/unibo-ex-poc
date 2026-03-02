@@ -1,0 +1,5 @@
+module: QUALITY_QUALITY_TAG
+contract: QualityTag.quality_tag_maintain_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/quality/quality.ubo.yaml
+source_summary: GIVEN 实体 QualityTag 定义工作流 quality_tag_maintain_flow / WHEN 按主路径执行 create -> update -> destroy / THEN 主流程应可达并保持顺序一致

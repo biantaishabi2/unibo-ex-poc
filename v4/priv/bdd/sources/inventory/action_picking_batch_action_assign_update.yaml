@@ -1,0 +1,5 @@
+module: INVENTORY_PICKING_BATCH
+contract: PickingBatch.action_assign action contract
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 PickingBatch 的动作 action_assign 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 action_assign / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 批量拣货批次，update 修改设置，action_confirm 确认，action_assign 预留，action_done 完成

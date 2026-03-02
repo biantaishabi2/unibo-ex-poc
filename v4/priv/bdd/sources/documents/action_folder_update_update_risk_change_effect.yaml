@@ -1,0 +1,5 @@
+module: DOCUMENTS_FOLDER
+contract: Folder.update action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/documents/documents.ubo.yaml
+source_summary: GIVEN 实体 Folder 的动作 update 触发副作用 / WHEN 执行动作 update / THEN 变更副作用应完整生效且状态一致

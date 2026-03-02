@@ -1,0 +1,5 @@
+module: PLM_ECO
+contract: Eco.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/plm/plm.ubo.yaml
+source_summary: GIVEN 实体 Eco 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：应用变更后更新草稿 MO；BOM 激活/归档；更新产品当前 BOM 引用；递增产品版本号；新增组件触发采购需求；评估库存影响；ECO 类型关联项目；审批通知、活动调度；操作员反馈创建 ECO

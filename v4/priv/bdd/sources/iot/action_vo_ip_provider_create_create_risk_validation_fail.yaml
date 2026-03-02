@@ -1,0 +1,5 @@
+module: IO_T_VO_IP_PROVIDER
+contract: VoIPProvider.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 VoIPProvider 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create -> update -> destroy；initiate_call 获取 SIP 凭据；来电路由确定 org 和路由逻辑

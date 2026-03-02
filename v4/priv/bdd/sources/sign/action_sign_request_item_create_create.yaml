@@ -1,0 +1,5 @@
+module: SIGN_SIGN_REQUEST_ITEM
+contract: SignRequestItem.create action contract
+edge_class: action_contract
+source_file: models/sign/sign.ubo.yaml
+source_summary: GIVEN 实体 SignRequestItem 的动作 create 可执行，accept=[signing_order, signer_email, sms_number]，args=[request_id:uuid!, role_id:uuid!, signer_id:uuid] / WHEN 执行动作 create / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create -> send -> sign -> reset -> send -> refuse

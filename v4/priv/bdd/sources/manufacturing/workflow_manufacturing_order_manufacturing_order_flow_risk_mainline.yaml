@@ -1,0 +1,5 @@
+module: MANUFACTURING_MANUFACTURING_ORDER
+contract: ManufacturingOrder.manufacturing_order_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 ManufacturingOrder 定义工作流 manufacturing_order_flow / WHEN 按主路径执行 create -> confirm -> start -> produce -> mark_done -> complete -> split_production -> cancel / THEN 主流程应可达并保持顺序一致

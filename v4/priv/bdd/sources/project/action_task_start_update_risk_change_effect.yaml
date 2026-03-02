@@ -1,0 +1,5 @@
+module: PROJECT_TASK
+contract: Task.start action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 Task 的动作 start 触发副作用 / WHEN 执行动作 start / THEN 变更副作用应完整生效且状态一致

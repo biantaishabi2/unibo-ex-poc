@@ -1,0 +1,5 @@
+module: MAINTENANCE_MAINTENANCE_REQUEST
+contract: MaintenanceRequest.change_stage action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 MaintenanceRequest 的动作 change_stage 输入非法 / WHEN 执行动作 change_stage / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建维护请求 -> update 更新请求 -> change_stage 变更阶段（完成）

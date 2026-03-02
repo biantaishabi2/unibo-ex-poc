@@ -1,0 +1,5 @@
+module: STUDIO_CUSTOM_MODEL
+contract: CustomModel.activate event contract
+edge_class: event_contract
+source_file: models/studio/studio.ubo.yaml
+source_summary: GIVEN 实体 CustomModel 的动作 activate 完成 / WHEN 触发事件发布 / THEN 应广播 topic `studio.model.activated`

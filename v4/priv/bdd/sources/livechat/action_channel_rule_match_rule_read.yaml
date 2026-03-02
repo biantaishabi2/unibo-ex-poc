@@ -1,0 +1,5 @@
+module: LIVE_CHAT_CHANNEL_RULE
+contract: ChannelRule.match_rule action contract
+edge_class: action_contract
+source_file: models/livechat/livechat.ubo.yaml
+source_summary: GIVEN 实体 ChannelRule 的动作 match_rule 可执行，accept=[(未声明)]，args=[channel_id:uuid!, url:string!, country_id:uuid] / WHEN 执行动作 match_rule / THEN 读取结果应符合查询语义

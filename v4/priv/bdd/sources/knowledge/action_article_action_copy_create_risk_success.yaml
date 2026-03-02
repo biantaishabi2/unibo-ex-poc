@@ -1,0 +1,5 @@
+module: KNOWLEDGE_ARTICLE
+contract: Article.action_copy action contract (risk:success)
+edge_class: action_contract
+source_file: models/knowledge/knowledge.ubo.yaml
+source_summary: GIVEN 实体 Article 的动作 action_copy 可执行 / WHEN 执行动作 action_copy / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 创建父子文章后，action_move 调整层级，action_copy 深拷贝文章树

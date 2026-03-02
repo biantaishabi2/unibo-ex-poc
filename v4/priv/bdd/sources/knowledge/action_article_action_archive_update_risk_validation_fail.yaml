@@ -1,0 +1,5 @@
+module: KNOWLEDGE_ARTICLE
+contract: Article.action_archive action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/knowledge/knowledge.ubo.yaml
+source_summary: GIVEN 实体 Article 的动作 action_archive 输入非法 / WHEN 执行动作 action_archive / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：action_publish 发布后，action_archive 归档，action_restore_state 恢复到草稿

@@ -1,0 +1,5 @@
+module: MANUFACTURING_ROUTING_OPERATION
+contract: RoutingOperation.routing_operation_maintenance_flow workflow contract
+edge_class: workflow_contract
+source_file: models/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 RoutingOperation 定义工作流 routing_operation_maintenance_flow / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束

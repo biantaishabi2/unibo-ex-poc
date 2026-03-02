@@ -1,0 +1,5 @@
+module: HR_PAY_SLIP
+contract: PaySlip.action_payslip_cancel event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 PaySlip 动作 action_payslip_cancel 触发事件 / WHEN 发布 topic `hr.payslip.cancelled` / THEN 消费方应收到一次有效通知

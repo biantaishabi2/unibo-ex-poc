@@ -1,0 +1,5 @@
+module: HR_LEAVE_REQUEST
+contract: LeaveRequest.action_draft action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 LeaveRequest 的动作 action_draft 输入非法 / WHEN 执行动作 action_draft / THEN 应返回校验失败且不产生持久化副作用

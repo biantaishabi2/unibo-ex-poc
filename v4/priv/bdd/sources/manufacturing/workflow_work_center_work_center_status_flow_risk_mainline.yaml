@@ -1,0 +1,5 @@
+module: MANUFACTURING_WORK_CENTER
+contract: WorkCenter.work_center_status_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 WorkCenter 定义工作流 work_center_status_flow / WHEN 按主路径执行 create -> update -> block -> unblock / THEN 主流程应可达并保持顺序一致

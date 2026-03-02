@@ -1,0 +1,5 @@
+module: COMMUNICATION_CHANNEL
+contract: Channel.channel_get action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/communication/communication.ubo.yaml
+source_summary: GIVEN 实体 Channel 的动作 channel_get 触发副作用 / WHEN 执行动作 channel_get / THEN 变更副作用应完整生效且状态一致

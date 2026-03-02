@@ -1,0 +1,5 @@
+module: EXPENSES_EXPENSE_REPORT
+contract: ExpenseReport.submit action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/expenses/expenses.ubo.yaml
+source_summary: GIVEN 实体 ExpenseReport 的动作 submit 触发副作用 / WHEN 执行动作 submit / THEN 变更副作用应完整生效且状态一致

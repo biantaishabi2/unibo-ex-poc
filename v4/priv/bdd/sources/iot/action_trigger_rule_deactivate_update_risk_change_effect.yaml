@@ -1,0 +1,5 @@
+module: IO_T_TRIGGER_RULE
+contract: TriggerRule.deactivate action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 TriggerRule 的动作 deactivate 触发副作用 / WHEN 执行动作 deactivate / THEN 变更副作用应完整生效且状态一致

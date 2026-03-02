@@ -1,0 +1,5 @@
+module: GAMIFICATION_BADGE_USER
+contract: BadgeUser.create event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/gamification/gamification.ubo.yaml
+source_summary: GIVEN 实体 BadgeUser 动作 create 事件被重复投递 / WHEN 重放 topic `gamification.badge.granted` / THEN 消费方处理应保持幂等且无重复副作用

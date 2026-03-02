@@ -1,0 +1,5 @@
+module: INVENTORY_STOCK_QUANT
+contract: StockQuant.stock_quant_lifecycle_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 StockQuant 定义工作流 stock_quant_lifecycle_flow / WHEN 按主路径执行 create -> update -> _update_available_quantity / THEN 主流程应可达并保持顺序一致

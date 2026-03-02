@@ -1,0 +1,5 @@
+module: BLOG_BLOG_POST
+contract: BlogPost.blog_post_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/blog/blog.ubo.yaml
+source_summary: GIVEN 实体 BlogPost 定义工作流 blog_post_lifecycle / WHEN 按步骤执行 create -> update -> publish -> unpublish -> archive -> unarchive / THEN 流程顺序应满足声明约束

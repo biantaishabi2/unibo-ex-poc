@@ -1,0 +1,610 @@
+{
+  "total_models": 1,
+  "generated_files": 91,
+  "action_sources": 70,
+  "event_sources": 9,
+  "workflow_sources": 12,
+  "scenario_total": 9,
+  "scenario_associated": 9,
+  "scenario_unassociated": 0,
+  "unassociated_scenarios": [],
+  "scenario_resolutions": [
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "Blog",
+      "path": "entities[0].scenarios",
+      "scenario": "create 创建博客 -> archive 归档博客",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Blog.archive (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Blog.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Blog.archive:blog.blog.archived (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Blog.blog_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Blog.archive (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Blog.archive (action)（score=70）"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "Blog",
+      "path": "entities[0].scenarios",
+      "scenario": "create 创建博客 -> update 修改博客信息",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Blog.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Blog.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Blog.blog_maintain_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Blog.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Blog.create (action)（score=70）"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "BlogPost",
+      "path": "entities[1].scenarios",
+      "scenario": "create 创建文章 -> publish 发布文章 -> archive 归档文章 -> unarchive 取消归档",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "BlogPost.archive (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "BlogPost.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "BlogPost.publish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "BlogPost.unarchive (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "BlogPost.archive:blog.post.archived (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "BlogPost.publish:blog.post.published (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "BlogPost.blog_post_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "BlogPost.archive (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 BlogPost.archive (action)（score=70）"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "BlogPost",
+      "path": "entities[1].scenarios",
+      "scenario": "create 创建文章 -> publish 发布文章 -> unpublish 取消发布 -> publish 重新发布",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "BlogPost.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "BlogPost.publish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "BlogPost.unpublish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "BlogPost.publish:blog.post.published (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "BlogPost.blog_post_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "BlogPost.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 BlogPost.create (action)（score=70）"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "BlogPost",
+      "path": "entities[1].scenarios",
+      "scenario": "create 创建文章 -> update 编辑内容 -> publish 发布文章",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "BlogPost.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "BlogPost.publish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "BlogPost.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "BlogPost.publish:blog.post.published (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "BlogPost.blog_post_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "BlogPost.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 BlogPost.create (action)（score=70）"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "WebPage",
+      "path": "entities[2].scenarios",
+      "scenario": "create 创建页面 -> publish 发布页面 -> unpublish 取消发布",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "WebPage.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "WebPage.publish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "WebPage.unpublish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "WebPage.webpage_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "WebPage.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 WebPage.create (action)（score=70）"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "WebPage",
+      "path": "entities[2].scenarios",
+      "scenario": "create 创建页面 -> update 编辑页面 -> publish 发布页面",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "WebPage.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "WebPage.publish (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "WebPage.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "WebPage.webpage_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "WebPage.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 WebPage.create (action)（score=70）"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "Visitor",
+      "path": "entities[3].scenarios",
+      "scenario": "upsert 创建访客 -> track_visit 记录访问 -> cleanup 清理过期访客",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Visitor.cleanup (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Visitor.track_visit (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Visitor.upsert (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Visitor.visitor_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Visitor.cleanup (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Visitor.cleanup (action)（score=70）"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "Visitor",
+      "path": "entities[3].scenarios",
+      "scenario": "upsert 创建访客 -> track_visit 记录访问 -> merge 合并到已认证用户",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Visitor.merge (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Visitor.track_visit (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Visitor.upsert (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Visitor.visitor_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Visitor.merge (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Visitor.merge (action)（score=70）"
+    }
+  ],
+  "auto_anchor_enabled": true,
+  "auto_anchor_total": 9,
+  "auto_anchor_mapped": 9,
+  "auto_anchor_unmapped": 0,
+  "auto_anchor_results": [
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "Blog",
+      "action": "archive",
+      "scenario": "create 创建博客 -> archive 归档博客",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "Blog",
+      "action": "create",
+      "scenario": "create 创建博客 -> update 修改博客信息",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "BlogPost",
+      "action": "archive",
+      "scenario": "create 创建文章 -> publish 发布文章 -> archive 归档文章 -> unarchive 取消归档",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "BlogPost",
+      "action": "create",
+      "scenario": "create 创建文章 -> publish 发布文章 -> unpublish 取消发布 -> publish 重新发布",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "BlogPost",
+      "action": "create",
+      "scenario": "create 创建文章 -> update 编辑内容 -> publish 发布文章",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "Visitor",
+      "action": "cleanup",
+      "scenario": "upsert 创建访客 -> track_visit 记录访问 -> cleanup 清理过期访客",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "Visitor",
+      "action": "merge",
+      "scenario": "upsert 创建访客 -> track_visit 记录访问 -> merge 合并到已认证用户",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "WebPage",
+      "action": "create",
+      "scenario": "create 创建页面 -> publish 发布页面 -> unpublish 取消发布",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "blog.ubo.yaml",
+      "entity": "WebPage",
+      "action": "create",
+      "scenario": "create 创建页面 -> update 编辑页面 -> publish 发布页面",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    }
+  ],
+  "weak_assertion_count": 0,
+  "weak_assertion_read_count": 0,
+  "weak_assertion_write_count": 0,
+  "weak_assertion_other_count": 0,
+  "weak_assertion_effective_count": 0,
+  "weak_assertion_effective_read_count": 0,
+  "weak_assertion_effective_write_count": 0,
+  "weak_assertion_effective_other_count": 0,
+  "weak_whitelist_path": null,
+  "weak_whitelist_rule_count": 0,
+  "weak_whitelist_active_rule_count": 0,
+  "weak_whitelist_hit_count": 0,
+  "weak_whitelist_hits": [],
+  "weak_assertions": []
+}

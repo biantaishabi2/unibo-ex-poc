@@ -1,0 +1,5 @@
+module: LIVE_CHAT_CHAT_SESSION
+contract: ChatSession.chat_session_lifecycle workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/livechat/livechat.ubo.yaml
+source_summary: GIVEN 实体 ChatSession 定义工作流 chat_session_lifecycle / WHEN 按主路径执行 create -> close / THEN 主流程应可达并保持顺序一致

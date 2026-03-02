@@ -1,0 +1,5 @@
+module: APPROVALS_APPROVER
+contract: Approver.approve event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/approvals/approvals.ubo.yaml
+source_summary: GIVEN 实体 Approver 动作 approve 触发事件 / WHEN 发布 topic `approvals.approver.approved` / THEN 消费方应收到一次有效通知

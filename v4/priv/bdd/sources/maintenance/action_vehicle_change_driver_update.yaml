@@ -1,0 +1,5 @@
+module: MAINTENANCE_VEHICLE
+contract: Vehicle.change_driver action contract
+edge_class: action_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 Vehicle 的动作 change_driver 可执行，accept=[driver_id]，args=[无显式参数] / WHEN 执行动作 change_driver / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建车辆 -> update 编辑信息 -> change_driver 变更驾驶员 -> set_odometer 记录里程；create 创建车辆 -> set_future_driver 设置计划驾驶员 -> change_driver 变更驾驶员

@@ -1,0 +1,5 @@
+module: INVENTORY_LANDED_COST
+contract: LandedCost.button_cancel action contract
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 LandedCost 的动作 button_cancel 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 button_cancel / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 到岸成本，button_cancel 取消

@@ -1,0 +1,5 @@
+module: HR_PAY_SLIP
+contract: PaySlip.refund_sheet event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 PaySlip 动作 refund_sheet 事件被重复投递 / WHEN 重放 topic `hr.payslip.refunded` / THEN 消费方处理应保持幂等且无重复副作用

@@ -1,0 +1,5 @@
+module: IO_T_VO_IP_CALL
+contract: VoIPCall.miss event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 VoIPCall 动作 miss 触发事件 / WHEN 发布 topic `voip.call.missed` / THEN 消费方应收到一次有效通知

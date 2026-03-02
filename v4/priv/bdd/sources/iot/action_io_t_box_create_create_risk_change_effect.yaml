@@ -1,0 +1,5 @@
+module: IO_T_IO_T_BOX
+contract: IoTBox.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 IoTBox 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create -> register_box -> heartbeat -> update；配对成功通知；离线告警；box 离线时批量更新设备状态；定时检测超时 box

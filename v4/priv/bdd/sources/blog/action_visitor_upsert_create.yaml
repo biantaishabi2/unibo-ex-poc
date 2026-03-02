@@ -1,0 +1,5 @@
+module: BLOG_VISITOR
+contract: Visitor.upsert action contract
+edge_class: action_contract
+source_file: models/blog/blog.ubo.yaml
+source_summary: GIVEN 实体 Visitor 的动作 upsert 可执行，accept=[access_token, partner_id, country_id, lang_id, timezone]，args=[无显式参数] / WHEN 执行动作 upsert / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

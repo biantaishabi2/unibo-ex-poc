@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_ORDER
+contract: RentalOrder.create action contract
+edge_class: action_contract
+source_file: models/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalOrder 的动作 create 可执行，accept=[pickup_date, return_date, padding_time, deposit_amount, currency_id, company_id]，args=[lines:array!, customer_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

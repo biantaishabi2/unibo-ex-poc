@@ -1,0 +1,5 @@
+module: MAINTENANCE_CONTRACT
+contract: Contract.action_open action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 Contract 的动作 action_open 触发副作用 / WHEN 执行动作 action_open / THEN 变更副作用应完整生效且状态一致

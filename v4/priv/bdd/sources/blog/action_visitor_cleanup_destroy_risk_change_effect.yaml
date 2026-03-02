@@ -1,0 +1,5 @@
+module: BLOG_VISITOR
+contract: Visitor.cleanup action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/blog/blog.ubo.yaml
+source_summary: GIVEN 实体 Visitor 的动作 cleanup 触发副作用 / WHEN 执行动作 cleanup / THEN 变更副作用应完整生效且状态一致 / 补充场景：upsert 创建访客 -> track_visit 记录访问 -> cleanup 清理过期访客

@@ -1,0 +1,5 @@
+module: SPREADSHEET_REVISION
+contract: Revision.create_snapshot action contract
+edge_class: action_contract
+source_file: models/spreadsheet/spreadsheet.ubo.yaml
+source_summary: GIVEN 实体 Revision 的动作 create_snapshot 可执行，accept=[commands]，args=[document_id:bigint!, user_id:bigint!] / WHEN 执行动作 create_snapshot / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

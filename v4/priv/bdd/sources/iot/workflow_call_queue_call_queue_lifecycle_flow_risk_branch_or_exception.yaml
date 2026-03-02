@@ -1,0 +1,5 @@
+module: IO_T_CALL_QUEUE
+contract: CallQueue.call_queue_lifecycle_flow workflow contract (risk:branch_or_exception)
+edge_class: workflow_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 CallQueue 的工作流 call_queue_lifecycle_flow 存在分支或异常可能 / WHEN 执行分支路径 / THEN 流程应可恢复并保持状态一致

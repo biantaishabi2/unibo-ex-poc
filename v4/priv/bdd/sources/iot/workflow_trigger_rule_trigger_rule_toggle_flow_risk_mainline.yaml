@@ -1,0 +1,5 @@
+module: IO_T_TRIGGER_RULE
+contract: TriggerRule.trigger_rule_toggle_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 TriggerRule 定义工作流 trigger_rule_toggle_flow / WHEN 按主路径执行 create -> update -> activate -> deactivate / THEN 主流程应可达并保持顺序一致

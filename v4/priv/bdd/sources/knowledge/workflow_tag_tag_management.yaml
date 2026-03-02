@@ -1,0 +1,5 @@
+module: KNOWLEDGE_TAG
+contract: Tag.tag_management workflow contract
+edge_class: workflow_contract
+source_file: models/knowledge/knowledge.ubo.yaml
+source_summary: GIVEN 实体 Tag 定义工作流 tag_management / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束

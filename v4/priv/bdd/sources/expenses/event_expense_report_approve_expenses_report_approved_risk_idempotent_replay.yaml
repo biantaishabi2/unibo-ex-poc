@@ -1,0 +1,5 @@
+module: EXPENSES_EXPENSE_REPORT
+contract: ExpenseReport.approve event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/expenses/expenses.ubo.yaml
+source_summary: GIVEN 实体 ExpenseReport 动作 approve 事件被重复投递 / WHEN 重放 topic `expenses.report.approved` / THEN 消费方处理应保持幂等且无重复副作用

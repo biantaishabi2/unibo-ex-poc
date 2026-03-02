@@ -1,0 +1,5 @@
+module: INVENTORY_LANDED_COST_PICKING
+contract: LandedCostPicking.landed_cost_picking_write_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 LandedCostPicking 定义工作流 landed_cost_picking_write_flow / WHEN 按主路径执行 create / THEN 主流程应可达并保持顺序一致

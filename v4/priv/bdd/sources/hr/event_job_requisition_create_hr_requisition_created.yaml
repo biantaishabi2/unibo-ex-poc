@@ -1,0 +1,5 @@
+module: HR_JOB_REQUISITION
+contract: JobRequisition.create event contract
+edge_class: event_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 JobRequisition 的动作 create 完成 / WHEN 触发事件发布 / THEN 应广播 topic `hr.requisition.created`

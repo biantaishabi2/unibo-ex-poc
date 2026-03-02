@@ -1,0 +1,5 @@
+module: MANUFACTURING_WORK_ORDER
+contract: WorkOrder.finish action contract
+edge_class: action_contract
+source_file: models/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 WorkOrder 的动作 finish 可执行，accept=[actual_duration_hours, qty_produced]，args=[无显式参数] / WHEN 执行动作 finish / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

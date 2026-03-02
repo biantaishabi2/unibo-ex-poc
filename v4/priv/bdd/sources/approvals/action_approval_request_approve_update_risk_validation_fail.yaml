@@ -1,0 +1,5 @@
+module: APPROVALS_APPROVAL_REQUEST
+contract: ApprovalRequest.approve action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/approvals/approvals.ubo.yaml
+source_summary: GIVEN 实体 ApprovalRequest 的动作 approve 输入非法 / WHEN 执行动作 approve / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 审批请求，submit 提交，审批人全部通过后 approve；并发审批（两人同时 approve）

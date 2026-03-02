@@ -1,0 +1,5 @@
+module: MANUFACTURING_MRP_SCHEDULE
+contract: MrpSchedule.mrp_schedule_create_flow workflow contract
+edge_class: workflow_contract
+source_file: models/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 MrpSchedule 定义工作流 mrp_schedule_create_flow / WHEN 按步骤执行 create / THEN 流程顺序应满足声明约束

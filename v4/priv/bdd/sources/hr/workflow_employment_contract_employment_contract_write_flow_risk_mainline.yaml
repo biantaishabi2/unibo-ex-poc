@@ -1,0 +1,5 @@
+module: HR_EMPLOYMENT_CONTRACT
+contract: EmploymentContract.employment_contract_write_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 EmploymentContract 定义工作流 employment_contract_write_flow / WHEN 按主路径执行 create -> activate -> terminate / THEN 主流程应可达并保持顺序一致

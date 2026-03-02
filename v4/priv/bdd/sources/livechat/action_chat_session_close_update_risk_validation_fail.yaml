@@ -1,0 +1,5 @@
+module: LIVE_CHAT_CHAT_SESSION
+contract: ChatSession.close action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/livechat/livechat.ubo.yaml
+source_summary: GIVEN 实体 ChatSession 的动作 close 输入非法 / WHEN 执行动作 close / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建聊天会话 -> close 关闭会话

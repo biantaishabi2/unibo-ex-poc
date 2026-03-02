@@ -1,0 +1,5 @@
+module: IO_T_VO_IP_CALL
+contract: VoIPCall.end_call event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 VoIPCall 动作 end_call 事件被重复投递 / WHEN 重放 topic `voip.call.ended` / THEN 消费方处理应保持幂等且无重复副作用

@@ -1,0 +1,5 @@
+module: PROJECT_TASK
+contract: Task.assign action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 Task 的动作 assign 输入非法 / WHEN 执行动作 assign / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 任务，assign 分配负责人，start 开始，complete 完成

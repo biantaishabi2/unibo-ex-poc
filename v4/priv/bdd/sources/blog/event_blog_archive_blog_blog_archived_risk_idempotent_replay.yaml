@@ -1,0 +1,5 @@
+module: BLOG_BLOG
+contract: Blog.archive event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/blog/blog.ubo.yaml
+source_summary: GIVEN 实体 Blog 动作 archive 事件被重复投递 / WHEN 重放 topic `blog.blog.archived` / THEN 消费方处理应保持幂等且无重复副作用

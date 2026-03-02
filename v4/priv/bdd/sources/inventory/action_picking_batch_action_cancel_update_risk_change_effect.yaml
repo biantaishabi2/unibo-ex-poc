@@ -1,0 +1,5 @@
+module: INVENTORY_PICKING_BATCH
+contract: PickingBatch.action_cancel action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 PickingBatch 的动作 action_cancel 触发副作用 / WHEN 执行动作 action_cancel / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 批量拣货批次，action_confirm 确认后 action_cancel 取消

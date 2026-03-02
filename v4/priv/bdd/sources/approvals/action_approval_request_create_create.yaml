@@ -1,0 +1,5 @@
+module: APPROVALS_APPROVAL_REQUEST
+contract: ApprovalRequest.create action contract
+edge_class: action_contract
+source_file: models/approvals/approvals.ubo.yaml
+source_summary: GIVEN 实体 ApprovalRequest 的动作 create 可执行，accept=[name, reason, metadata, attachment_ids]，args=[category_id:integer!, company_id:integer!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 审批请求，submit 提交，审批人拒绝后 refuse，draft 重置为草稿重新 submit

@@ -1,0 +1,5 @@
+module: PROJECT_TASK
+contract: Task.update action contract
+edge_class: action_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 Task 的动作 update 可执行，accept=[name, state, priority, date_deadline, allocated_hours, description, stage_id, user_ids, parent_id, milestone_id, depend_on_ids, tag_ids, kanban_state, project_id]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

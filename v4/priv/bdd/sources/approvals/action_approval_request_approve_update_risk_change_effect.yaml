@@ -1,0 +1,5 @@
+module: APPROVALS_APPROVAL_REQUEST
+contract: ApprovalRequest.approve action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/approvals/approvals.ubo.yaml
+source_summary: GIVEN 实体 ApprovalRequest 的动作 approve 触发副作用 / WHEN 执行动作 approve / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 审批请求，submit 提交，审批人全部通过后 approve；并发审批（两人同时 approve）

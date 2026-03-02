@@ -1,0 +1,5 @@
+module: KNOWLEDGE_ARTICLE
+contract: Article.action_restore_trash action contract (risk:success)
+edge_class: action_contract
+source_file: models/knowledge/knowledge.ubo.yaml
+source_summary: GIVEN 实体 Article 的动作 action_restore_trash 可执行 / WHEN 执行动作 action_restore_trash / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 创建文章后，action_trash 移入回收站，action_restore_trash 恢复

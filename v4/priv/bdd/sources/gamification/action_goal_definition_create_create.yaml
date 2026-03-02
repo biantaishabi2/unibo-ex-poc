@@ -1,0 +1,5 @@
+module: GAMIFICATION_GOAL_DEFINITION
+contract: GoalDefinition.create action contract
+edge_class: action_contract
+source_file: models/gamification/gamification.ubo.yaml
+source_summary: GIVEN 实体 GoalDefinition 的动作 create 可执行，accept=[name, description, monetary, suffix, computation_mode, display_mode, domain, batch_mode, batch_user_expression, compute_code, condition, res_id_field]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create -> update -> destroy

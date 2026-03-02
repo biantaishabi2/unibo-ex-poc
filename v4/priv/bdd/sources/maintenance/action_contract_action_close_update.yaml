@@ -1,0 +1,5 @@
+module: MAINTENANCE_CONTRACT
+contract: Contract.action_close action contract
+edge_class: action_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 Contract 的动作 action_close 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 action_close / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建合同 -> action_open 生效 -> action_expire 过期 -> action_close 关闭

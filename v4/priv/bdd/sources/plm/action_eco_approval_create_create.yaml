@@ -1,0 +1,5 @@
+module: PLM_ECO_APPROVAL
+contract: EcoApproval.create action contract
+edge_class: action_contract
+source_file: models/plm/plm.ubo.yaml
+source_summary: GIVEN 实体 EcoApproval 的动作 create 可执行，accept=[role, approval_type]，args=[eco_id:uuid!, approver_id:uuid!] / WHEN 执行动作 create / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建审批记录 -> reject 审批拒绝

@@ -1,0 +1,5 @@
+module: HR_PAY_SLIP
+contract: PaySlip.compute_sheet action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 PaySlip 的动作 compute_sheet 触发副作用 / WHEN 执行动作 compute_sheet / THEN 变更副作用应完整生效且状态一致

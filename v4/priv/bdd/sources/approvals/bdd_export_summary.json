@@ -1,0 +1,1213 @@
+{
+  "total_models": 1,
+  "generated_files": 104,
+  "action_sources": 62,
+  "event_sources": 18,
+  "workflow_sources": 24,
+  "scenario_total": 15,
+  "scenario_associated": 15,
+  "scenario_unassociated": 0,
+  "unassociated_scenarios": [],
+  "scenario_resolutions": [
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": null,
+      "path": "edge_cases[0].scenario",
+      "scenario": "approval_minimum=0 且无 required 审批人",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.submit (action)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.submit:approvals.request.submitted (event)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_approve_flow (workflow)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_cancel_flow (workflow)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_refuse_resubmit_flow (workflow)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ApprovalRequest.submit (action)",
+        "score": 120,
+        "rules": [
+          "anchor"
+        ]
+      },
+      "reason": "命中 ApprovalRequest.submit (action)（score=120）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": null,
+      "path": "edge_cases[1].scenario",
+      "scenario": "所有 optional 审批人全部 refuse",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.refuse (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Approver.refuse (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.refuse:approvals.request.refused (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Approver.refuse:approvals.approver.refused (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_refuse_resubmit_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Approver.approver_refuse_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ApprovalRequest.refuse (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ApprovalRequest.refuse (action)（score=70）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": null,
+      "path": "edge_cases[2].scenario",
+      "scenario": "manager_approval=required 但申请人无直属经理",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.submit (action)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.submit:approvals.request.submitted (event)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_approve_flow (workflow)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_cancel_flow (workflow)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_refuse_resubmit_flow (workflow)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ApprovalRequest.submit (action)",
+        "score": 120,
+        "rules": [
+          "anchor"
+        ]
+      },
+      "reason": "命中 ApprovalRequest.submit (action)（score=120）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": null,
+      "path": "edge_cases[3].scenario",
+      "scenario": "exclusive_user=true 但过滤后无审批人可用",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.submit (action)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.submit:approvals.request.submitted (event)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_approve_flow (workflow)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_cancel_flow (workflow)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_refuse_resubmit_flow (workflow)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ApprovalRequest.submit (action)",
+        "score": 120,
+        "rules": [
+          "anchor"
+        ]
+      },
+      "reason": "命中 ApprovalRequest.submit (action)（score=120）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": null,
+      "path": "edge_cases[4].scenario",
+      "scenario": "审批人被停用/删除",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.submit (action)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.submit:approvals.request.submitted (event)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_approve_flow (workflow)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_cancel_flow (workflow)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_refuse_resubmit_flow (workflow)",
+          "score": 120,
+          "rules": [
+            "anchor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ApprovalRequest.submit (action)",
+        "score": 120,
+        "rules": [
+          "anchor"
+        ]
+      },
+      "reason": "命中 ApprovalRequest.submit (action)（score=120）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": null,
+      "path": "edge_cases[5].scenario",
+      "scenario": "并发审批（两人同时 approve）",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.approve (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Approver.approve (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.approve:approvals.request.approved (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Approver.approve:approvals.approver.approved (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_approve_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Approver.approver_approve_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ApprovalRequest.approve (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ApprovalRequest.approve (action)（score=70）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": null,
+      "path": "edge_cases[6].scenario",
+      "scenario": "refused/cancel → draft → 重新 submit",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.draft (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.submit (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Approver.cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Approver.draft (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.cancel:approvals.request.cancelled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.submit:approvals.request.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_approve_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_cancel_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_refuse_resubmit_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Approver.approver_cancel_reset_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ApprovalRequest.cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ApprovalRequest.cancel (action)（score=70）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalCategory",
+      "path": "entities[0].scenarios",
+      "scenario": "create 审批类型，update 修改审批规则，deactivate 停用",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ApprovalCategory.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalCategory.deactivate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalCategory.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalCategory.approval_category_deactivate_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalCategory.approval_category_lifecycle_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ApprovalCategory.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ApprovalCategory.create (action)（score=70）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalCategory",
+      "path": "entities[0].scenarios",
+      "scenario": "create 审批类型，update 修改配置，deactivate 停用后 activate 重新启用",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ApprovalCategory.activate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalCategory.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalCategory.deactivate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalCategory.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalCategory.approval_category_deactivate_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalCategory.approval_category_lifecycle_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ApprovalCategory.activate (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ApprovalCategory.activate (action)（score=70）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalRequest",
+      "path": "entities[1].scenarios",
+      "scenario": "create 审批请求，submit 提交后 cancel 取消，draft 重置为草稿",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.draft (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.submit (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.cancel:approvals.request.cancelled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.submit:approvals.request.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_approve_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_cancel_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_refuse_resubmit_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ApprovalRequest.cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ApprovalRequest.cancel (action)（score=70）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalRequest",
+      "path": "entities[1].scenarios",
+      "scenario": "create 审批请求，submit 提交，审批人全部通过后 approve",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.approve (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.submit (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.approve:approvals.request.approved (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.submit:approvals.request.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_approve_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_cancel_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_refuse_resubmit_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ApprovalRequest.approve (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ApprovalRequest.approve (action)（score=70）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalRequest",
+      "path": "entities[1].scenarios",
+      "scenario": "create 审批请求，submit 提交，审批人拒绝后 refuse，draft 重置为草稿重新 submit",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.draft (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.refuse (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ApprovalRequest.submit (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.refuse:approvals.request.refused (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "ApprovalRequest.submit:approvals.request.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_approve_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_cancel_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ApprovalRequest.approval_request_refuse_resubmit_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ApprovalRequest.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ApprovalRequest.create (action)（score=70）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "Approver",
+      "path": "entities[2].scenarios",
+      "scenario": "create 审批人记录，approve 通过审批",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Approver.approve (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Approver.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Approver.approve:approvals.approver.approved (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Approver.approver_approve_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Approver.approver_cancel_reset_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Approver.approver_refuse_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Approver.approve (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Approver.approve (action)（score=70）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "Approver",
+      "path": "entities[2].scenarios",
+      "scenario": "create 审批人记录，cancel 随请求取消，draft 重置状态",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Approver.cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Approver.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Approver.draft (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Approver.approver_approve_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Approver.approver_cancel_reset_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Approver.approver_refuse_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Approver.cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Approver.cancel (action)（score=70）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "Approver",
+      "path": "entities[2].scenarios",
+      "scenario": "create 审批人记录，refuse 拒绝审批",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Approver.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Approver.refuse (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "Approver.refuse:approvals.approver.refused (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Approver.approver_approve_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Approver.approver_cancel_reset_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Approver.approver_refuse_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Approver.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Approver.create (action)（score=70）"
+    }
+  ],
+  "auto_anchor_enabled": true,
+  "auto_anchor_total": 15,
+  "auto_anchor_mapped": 3,
+  "auto_anchor_unmapped": 12,
+  "auto_anchor_results": [
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalCategory",
+      "action": "activate",
+      "scenario": "create 审批类型，update 修改配置，deactivate 停用后 activate 重新启用",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalCategory",
+      "action": "create",
+      "scenario": "create 审批类型，update 修改审批规则，deactivate 停用",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalRequest",
+      "action": "approve",
+      "scenario": "create 审批请求，submit 提交，审批人全部通过后 approve",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalRequest",
+      "action": "approve",
+      "scenario": "并发审批（两人同时 approve）",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalRequest",
+      "action": "cancel",
+      "scenario": "create 审批请求，submit 提交后 cancel 取消，draft 重置为草稿",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalRequest",
+      "action": "cancel",
+      "scenario": "refused/cancel → draft → 重新 submit",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalRequest",
+      "action": "create",
+      "scenario": "create 审批请求，submit 提交，审批人拒绝后 refuse，draft 重置为草稿重新 submit",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalRequest",
+      "action": "refuse",
+      "scenario": "所有 optional 审批人全部 refuse",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalRequest",
+      "action": "submit",
+      "scenario": "approval_minimum=0 且无 required 审批人",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation"
+      ],
+      "reason": "命中规则：validation"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalRequest",
+      "action": "submit",
+      "scenario": "exclusive_user=true 但过滤后无审批人可用",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalRequest",
+      "action": "submit",
+      "scenario": "manager_approval=required 但申请人无直属经理",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation"
+      ],
+      "reason": "命中规则：validation"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "ApprovalRequest",
+      "action": "submit",
+      "scenario": "审批人被停用/删除",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "Approver",
+      "action": "approve",
+      "scenario": "create 审批人记录，approve 通过审批",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "Approver",
+      "action": "cancel",
+      "scenario": "create 审批人记录，cancel 随请求取消，draft 重置状态",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "approvals.ubo.yaml",
+      "entity": "Approver",
+      "action": "create",
+      "scenario": "create 审批人记录，refuse 拒绝审批",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    }
+  ],
+  "weak_assertion_count": 0,
+  "weak_assertion_read_count": 0,
+  "weak_assertion_write_count": 0,
+  "weak_assertion_other_count": 0,
+  "weak_assertion_effective_count": 0,
+  "weak_assertion_effective_read_count": 0,
+  "weak_assertion_effective_write_count": 0,
+  "weak_assertion_effective_other_count": 0,
+  "weak_whitelist_path": null,
+  "weak_whitelist_rule_count": 0,
+  "weak_whitelist_active_rule_count": 0,
+  "weak_whitelist_hit_count": 0,
+  "weak_whitelist_hits": [],
+  "weak_assertions": []
+}

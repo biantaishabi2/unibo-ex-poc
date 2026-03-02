@@ -1,0 +1,5 @@
+module: PLM_ECO
+contract: Eco.apply_changes event contract
+edge_class: event_contract
+source_file: models/plm/plm.ubo.yaml
+source_summary: GIVEN 实体 Eco 的动作 apply_changes 完成 / WHEN 触发事件发布 / THEN 应广播 topic `plm.eco.changes_applied`

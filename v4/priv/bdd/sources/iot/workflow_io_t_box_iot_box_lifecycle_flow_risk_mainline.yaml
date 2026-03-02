@@ -1,0 +1,5 @@
+module: IO_T_IO_T_BOX
+contract: IoTBox.iot_box_lifecycle_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 IoTBox 定义工作流 iot_box_lifecycle_flow / WHEN 按主路径执行 create -> register_box -> heartbeat -> update / THEN 主流程应可达并保持顺序一致

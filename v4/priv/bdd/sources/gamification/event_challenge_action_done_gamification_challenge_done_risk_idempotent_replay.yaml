@@ -1,0 +1,5 @@
+module: GAMIFICATION_CHALLENGE
+contract: Challenge.action_done event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/gamification/gamification.ubo.yaml
+source_summary: GIVEN 实体 Challenge 动作 action_done 事件被重复投递 / WHEN 重放 topic `gamification.challenge.done` / THEN 消费方处理应保持幂等且无重复副作用

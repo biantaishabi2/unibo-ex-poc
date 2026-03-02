@@ -1,0 +1,5 @@
+module: IO_T_IO_T_DEVICE
+contract: IoTDevice.iot_device_sync_flow workflow contract
+edge_class: workflow_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 IoTDevice 定义工作流 iot_device_sync_flow / WHEN 按步骤执行 upsert -> update -> update_value / THEN 流程顺序应满足声明约束

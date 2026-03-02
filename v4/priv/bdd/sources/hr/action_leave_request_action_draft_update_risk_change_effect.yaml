@@ -1,0 +1,5 @@
+module: HR_LEAVE_REQUEST
+contract: LeaveRequest.action_draft action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 LeaveRequest 的动作 action_draft 触发副作用 / WHEN 执行动作 action_draft / THEN 变更副作用应完整生效且状态一致

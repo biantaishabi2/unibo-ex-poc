@@ -1,0 +1,5 @@
+module: APPROVALS_APPROVAL_REQUEST
+contract: ApprovalRequest.refuse action contract (risk:success)
+edge_class: action_contract
+source_file: models/approvals/approvals.ubo.yaml
+source_summary: GIVEN 实体 ApprovalRequest 的动作 refuse 可执行 / WHEN 执行动作 refuse / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：所有 optional 审批人全部 refuse

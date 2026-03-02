@@ -1,0 +1,5 @@
+module: MAINTENANCE_VEHICLE
+contract: Vehicle.change_state action contract (risk:success)
+edge_class: action_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 Vehicle 的动作 change_state 可执行 / WHEN 执行动作 change_state / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 创建车辆 -> change_state 变更状态 -> deactivate 停用车辆

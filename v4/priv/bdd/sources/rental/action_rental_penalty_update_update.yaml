@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_PENALTY
+contract: RentalPenalty.update action contract
+edge_class: action_contract
+source_file: models/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalPenalty 的动作 update 可执行，accept=[extra_hour_cost, extra_day_cost, grace_period_hours, max_penalty_pct]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，应符合工作流步骤约束

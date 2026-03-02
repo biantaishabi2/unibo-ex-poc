@@ -1,0 +1,5 @@
+module: IO_T_IO_T_DEVICE
+contract: IoTDevice.upsert action contract (risk:success)
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 IoTDevice 的动作 upsert 可执行 / WHEN 执行动作 upsert / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：事件触发规则匹配；每个设备事件都写日志；POS 订单验证后调用；制造工单步骤；质检检查；仓库操作

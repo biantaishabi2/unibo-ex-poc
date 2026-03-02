@@ -1,0 +1,5 @@
+module: PROJECT_PLANNING_SLOT
+contract: PlanningSlot.create_from_template action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 PlanningSlot 的动作 create_from_template 输入非法 / WHEN 执行动作 create_from_template / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create_from_template 从模板快速创建排班

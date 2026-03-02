@@ -1,0 +1,5 @@
+module: COMMUNICATION_MAIL_GROUP_MESSAGE
+contract: MailGroupMessage.mail_group_message_moderation_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/communication/communication.ubo.yaml
+source_summary: GIVEN 实体 MailGroupMessage 定义工作流 mail_group_message_moderation_flow / WHEN 按主路径执行 create -> moderate_accept -> moderate_reject -> moderate_allow -> moderate_ban / THEN 主流程应可达并保持顺序一致

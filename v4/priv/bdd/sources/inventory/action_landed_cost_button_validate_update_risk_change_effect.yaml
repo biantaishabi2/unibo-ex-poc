@@ -1,0 +1,5 @@
+module: INVENTORY_LANDED_COST
+contract: LandedCost.button_validate action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 LandedCost 的动作 button_validate 触发副作用 / WHEN 执行动作 button_validate / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 到岸成本，update 修改日期和描述，button_validate 验证并分摊成本

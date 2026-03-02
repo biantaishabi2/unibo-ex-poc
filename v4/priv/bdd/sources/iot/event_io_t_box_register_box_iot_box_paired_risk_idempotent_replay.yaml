@@ -1,0 +1,5 @@
+module: IO_T_IO_T_BOX
+contract: IoTBox.register_box event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 IoTBox 动作 register_box 事件被重复投递 / WHEN 重放 topic `iot.box.paired` / THEN 消费方处理应保持幂等且无重复副作用

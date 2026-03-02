@@ -1,0 +1,5 @@
+module: PLM_ECO
+contract: Eco.eco_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/plm/plm.ubo.yaml
+source_summary: GIVEN 实体 Eco 定义工作流 eco_lifecycle / WHEN 按步骤执行 create -> advance_stage -> apply_changes -> rebase / THEN 流程顺序应满足声明约束

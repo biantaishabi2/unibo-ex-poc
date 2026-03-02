@@ -1,0 +1,5 @@
+module: KNOWLEDGE_FAVORITE
+contract: Favorite.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/knowledge/knowledge.ubo.yaml
+source_summary: GIVEN 实体 Favorite 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 新增收藏，reorder 调整 sequence 排序；create 新增收藏后，destroy 取消收藏；create 同一 user_id+article_id 重复收藏，唯一性校验失败

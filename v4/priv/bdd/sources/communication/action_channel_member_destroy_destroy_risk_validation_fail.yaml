@@ -1,0 +1,5 @@
+module: COMMUNICATION_CHANNEL_MEMBER
+contract: ChannelMember.destroy action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/communication/communication.ubo.yaml
+source_summary: GIVEN 实体 ChannelMember 的动作 destroy 输入非法 / WHEN 执行动作 destroy / THEN 应返回校验失败且不产生持久化副作用

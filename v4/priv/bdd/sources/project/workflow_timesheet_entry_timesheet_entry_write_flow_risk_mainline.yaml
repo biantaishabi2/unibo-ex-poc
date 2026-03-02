@@ -1,0 +1,5 @@
+module: PROJECT_TIMESHEET_ENTRY
+contract: TimesheetEntry.timesheet_entry_write_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 TimesheetEntry 定义工作流 timesheet_entry_write_flow / WHEN 按主路径执行 create -> update / THEN 主流程应可达并保持顺序一致

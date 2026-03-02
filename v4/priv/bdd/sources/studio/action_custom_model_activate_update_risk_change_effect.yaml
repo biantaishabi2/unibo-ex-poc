@@ -1,0 +1,5 @@
+module: STUDIO_CUSTOM_MODEL
+contract: CustomModel.activate action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/studio/studio.ubo.yaml
+source_summary: GIVEN 实体 CustomModel 的动作 activate 触发副作用 / WHEN 执行动作 activate / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建自定义模型 -> update 修改模型配置 -> activate 启用模型；create 创建自定义模型 -> activate 启用 -> archive 归档 -> reactivate 重新激活

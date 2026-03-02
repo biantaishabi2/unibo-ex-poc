@@ -1,0 +1,5 @@
+module: DOCUMENTS_WORKFLOW_RULE
+contract: WorkflowRule.update action contract
+edge_class: action_contract
+source_file: models/documents/documents.ubo.yaml
+source_summary: GIVEN 实体 WorkflowRule 的动作 update 可执行，accept=[name, note, condition_type, domain, partner_id, owner_id, folder_action_id, partner_action_id, owner_action_id, create_model, activity_option, activity_type_id, activity_summary, activity_user_id, activity_date_deadline_range, activity_note, trigger_type, sequence]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

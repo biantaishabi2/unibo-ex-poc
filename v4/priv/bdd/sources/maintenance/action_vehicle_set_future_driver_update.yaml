@@ -1,0 +1,5 @@
+module: MAINTENANCE_VEHICLE
+contract: Vehicle.set_future_driver action contract
+edge_class: action_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 Vehicle 的动作 set_future_driver 可执行，accept=[future_driver_id]，args=[无显式参数] / WHEN 执行动作 set_future_driver / THEN 状态变更与副作用应生效，应符合工作流步骤约束

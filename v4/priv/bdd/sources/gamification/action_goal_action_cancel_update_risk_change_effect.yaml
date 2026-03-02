@@ -1,0 +1,5 @@
+module: GAMIFICATION_GOAL
+contract: Goal.action_cancel action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/gamification/gamification.ubo.yaml
+source_summary: GIVEN 实体 Goal 的动作 action_cancel 触发副作用 / WHEN 执行动作 action_cancel / THEN 变更副作用应完整生效且状态一致 / 补充场景：create -> action_start -> action_fail -> action_cancel；create -> update -> action_cancel

@@ -1,0 +1,5 @@
+module: PROJECT_TASK
+contract: Task.cancel event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 Task 动作 cancel 事件被重复投递 / WHEN 重放 topic `project.task.cancelled` / THEN 消费方处理应保持幂等且无重复副作用

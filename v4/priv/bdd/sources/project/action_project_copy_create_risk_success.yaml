@@ -1,0 +1,5 @@
+module: PROJECT_PROJECT
+contract: Project.copy action contract (risk:success)
+edge_class: action_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 Project 的动作 copy 可执行 / WHEN 执行动作 copy / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 项目，copy 复制项目，destroy 删除项目

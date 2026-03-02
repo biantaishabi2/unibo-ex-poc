@@ -1,0 +1,5 @@
+module: SURVEY_SURVEY
+contract: Survey.survey_edit_flow workflow contract
+edge_class: workflow_contract
+source_file: models/survey/survey.ubo.yaml
+source_summary: GIVEN 实体 Survey 定义工作流 survey_edit_flow / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束

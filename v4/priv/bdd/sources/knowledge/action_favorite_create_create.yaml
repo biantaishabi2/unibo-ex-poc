@@ -1,0 +1,5 @@
+module: KNOWLEDGE_FAVORITE
+contract: Favorite.create action contract
+edge_class: action_contract
+source_file: models/knowledge/knowledge.ubo.yaml
+source_summary: GIVEN 实体 Favorite 的动作 create 可执行，accept=[article_id, user_id, sequence]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新增收藏，reorder 调整 sequence 排序；create 新增收藏后，destroy 取消收藏；create 同一 user_id+article_id 重复收藏，唯一性校验失败

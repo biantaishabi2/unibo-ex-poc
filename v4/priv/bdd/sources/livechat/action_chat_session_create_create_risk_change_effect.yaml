@@ -1,0 +1,5 @@
+module: LIVE_CHAT_CHAT_SESSION
+contract: ChatSession.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/livechat/livechat.ubo.yaml
+source_summary: GIVEN 实体 ChatSession 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致

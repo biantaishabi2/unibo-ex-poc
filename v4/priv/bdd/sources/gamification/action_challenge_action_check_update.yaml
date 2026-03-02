@@ -1,0 +1,5 @@
+module: GAMIFICATION_CHALLENGE
+contract: Challenge.action_check action contract
+edge_class: action_contract
+source_file: models/gamification/gamification.ubo.yaml
+source_summary: GIVEN 实体 Challenge 的动作 action_check 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 action_check / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create -> action_start -> action_check -> action_done

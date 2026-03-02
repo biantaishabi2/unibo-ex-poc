@@ -1,0 +1,5 @@
+module: QUALITY_QUALITY_ALERT
+contract: QualityAlert.confirm action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/quality/quality.ubo.yaml
+source_summary: GIVEN 实体 QualityAlert 的动作 confirm 输入非法 / WHEN 执行动作 confirm / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建警报 -> confirm 确认 -> start_progress 开始处理 -> done 完成（含纠正/预防措施）；create 创建警报 -> confirm 确认 -> start_progress 开始处理 -> create_maintenance_request 创建维保请求

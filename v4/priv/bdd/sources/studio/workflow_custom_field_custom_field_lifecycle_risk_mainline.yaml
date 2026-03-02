@@ -1,0 +1,5 @@
+module: STUDIO_CUSTOM_FIELD
+contract: CustomField.custom_field_lifecycle workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/studio/studio.ubo.yaml
+source_summary: GIVEN 实体 CustomField 定义工作流 custom_field_lifecycle / WHEN 按主路径执行 create -> update -> activate -> archive -> destroy / THEN 主流程应可达并保持顺序一致

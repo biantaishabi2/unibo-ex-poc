@@ -1,0 +1,5 @@
+module: QUALITY_QUALITY_ALERT
+contract: QualityAlert.done event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/quality/quality.ubo.yaml
+source_summary: GIVEN 实体 QualityAlert 动作 done 触发事件 / WHEN 发布 topic `quality.alert.done` / THEN 消费方应收到一次有效通知

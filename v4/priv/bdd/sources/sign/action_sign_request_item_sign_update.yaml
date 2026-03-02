@@ -1,0 +1,5 @@
+module: SIGN_SIGN_REQUEST_ITEM
+contract: SignRequestItem.sign action contract
+edge_class: action_contract
+source_file: models/sign/sign.ubo.yaml
+source_summary: GIVEN 实体 SignRequestItem 的动作 sign 可执行，accept=[[]]，args=[signer_ip:string, latitude:float, longitude:float] / WHEN 执行动作 sign / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

@@ -1,0 +1,5 @@
+module: IO_T_VO_IP_CALL
+contract: VoIPCall.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 VoIPCall 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create -> miss -> to_voicemail；来电/外呼时查找联系人；关联商机并更新活动时间；来电自动创建/关联工单；通话结束后写活动记录；通话录音控制；队列来电分配；通话状态实时推送到 UI；商机列表点击拨号；联系人页面点击拨号；报价单页面点击拨号；工单页面点击拨号

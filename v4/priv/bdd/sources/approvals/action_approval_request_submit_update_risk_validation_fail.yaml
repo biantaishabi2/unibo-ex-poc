@@ -1,0 +1,5 @@
+module: APPROVALS_APPROVAL_REQUEST
+contract: ApprovalRequest.submit action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/approvals/approvals.ubo.yaml
+source_summary: GIVEN 实体 ApprovalRequest 的动作 submit 输入非法 / WHEN 执行动作 submit / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：approval_minimum=0 且无 required 审批人；manager_approval=required 但申请人无直属经理；exclusive_user=true 但过滤后无审批人可用；审批人被停用/删除

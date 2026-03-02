@@ -1,0 +1,5 @@
+module: APPROVALS_APPROVAL_CATEGORY
+contract: ApprovalCategory.update action contract
+edge_class: action_contract
+source_file: models/approvals/approvals.ubo.yaml
+source_summary: GIVEN 实体 ApprovalCategory 的动作 update 可执行，accept=[name, description, sequence_code, automated_sequence, approval_minimum, manager_approval, exclusive_user, requester_document, field_config, approval_mode, routing_rules, escalation_config]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

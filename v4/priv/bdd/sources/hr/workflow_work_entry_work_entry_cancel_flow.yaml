@@ -1,0 +1,5 @@
+module: HR_WORK_ENTRY
+contract: WorkEntry.work_entry_cancel_flow workflow contract
+edge_class: workflow_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 WorkEntry 定义工作流 work_entry_cancel_flow / WHEN 按步骤执行 create -> action_cancel / THEN 流程顺序应满足声明约束

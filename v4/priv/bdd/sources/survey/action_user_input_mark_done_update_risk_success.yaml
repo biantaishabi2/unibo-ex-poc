@@ -1,0 +1,5 @@
+module: SURVEY_USER_INPUT
+contract: UserInput.mark_done action contract (risk:success)
+edge_class: action_contract
+source_file: models/survey/survey.ubo.yaml
+source_summary: GIVEN 实体 UserInput 的动作 mark_done 可执行 / WHEN 执行动作 mark_done / THEN 成功路径应满足业务约束并持久化结果

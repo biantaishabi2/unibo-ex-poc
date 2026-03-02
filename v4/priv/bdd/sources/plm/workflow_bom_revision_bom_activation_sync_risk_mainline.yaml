@@ -1,0 +1,5 @@
+module: PLM_BOM_REVISION
+contract: BomRevision.bom_activation_sync workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/plm/plm.ubo.yaml
+source_summary: GIVEN 实体 BomRevision 定义工作流 bom_activation_sync / WHEN 按主路径执行 evaluate_activation -> sync_draft_mo / THEN 主流程应可达并保持顺序一致 / 补充场景：evaluate_activation 评估 BOM 激活 -> sync_draft_mo 同步草稿制造单；BOM 激活时更新草稿 MO

@@ -1,0 +1,5 @@
+module: COMMUNICATION_CHANNEL_MEMBER
+contract: ChannelMember.mark_fetched action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/communication/communication.ubo.yaml
+source_summary: GIVEN 实体 ChannelMember 的动作 mark_fetched 触发副作用 / WHEN 执行动作 mark_fetched / THEN 变更副作用应完整生效且状态一致

@@ -1,0 +1,5 @@
+module: HR_PERFORMANCE_REVIEW
+contract: PerformanceReview.action_done event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 PerformanceReview 动作 action_done 触发事件 / WHEN 发布 topic `hr.appraisal.done` / THEN 消费方应收到一次有效通知

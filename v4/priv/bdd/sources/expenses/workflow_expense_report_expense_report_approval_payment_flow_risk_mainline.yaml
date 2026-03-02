@@ -1,0 +1,5 @@
+module: EXPENSES_EXPENSE_REPORT
+contract: ExpenseReport.expense_report_approval_payment_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/expenses/expenses.ubo.yaml
+source_summary: GIVEN 实体 ExpenseReport 定义工作流 expense_report_approval_payment_flow / WHEN 按主路径执行 create -> submit -> approve -> post -> register_payment / THEN 主流程应可达并保持顺序一致

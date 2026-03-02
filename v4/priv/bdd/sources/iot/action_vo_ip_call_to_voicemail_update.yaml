@@ -1,0 +1,5 @@
+module: IO_T_VO_IP_CALL
+contract: VoIPCall.to_voicemail action contract
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 VoIPCall 的动作 to_voicemail 可执行，accept=[recording_url, recording_duration]，args=[无显式参数] / WHEN 执行动作 to_voicemail / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

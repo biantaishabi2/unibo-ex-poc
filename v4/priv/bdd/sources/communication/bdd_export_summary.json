@@ -1,0 +1,1207 @@
+{
+  "total_models": 1,
+  "generated_files": 151,
+  "action_sources": 130,
+  "event_sources": 0,
+  "workflow_sources": 21,
+  "scenario_total": 22,
+  "scenario_associated": 22,
+  "scenario_unassociated": 0,
+  "unassociated_scenarios": [],
+  "scenario_resolutions": [
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Channel",
+      "path": "entities[0].cross_module[0].scenario",
+      "scenario": "group_ids 变更时通过 _subscribe_users_automatically() 批量从用户组创建成员记录",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Channel.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Channel.channel_member_manage_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Channel.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 Channel.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Channel",
+      "path": "entities[0].cross_module[1].scenario",
+      "scenario": "成员变更、新消息、typing 指示器等事件广播",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Channel.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Channel.channel_member_manage_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Channel.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 Channel.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Channel",
+      "path": "entities[0].cross_module[2].scenario",
+      "scenario": "视频/语音通话会话管理，SFU 服务器路由",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Channel.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Channel.channel_member_manage_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Channel.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 Channel.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Channel",
+      "path": "entities[0].scenarios",
+      "scenario": "create -> update -> add_members -> archive",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Channel.add_members (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Channel.archive (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Channel.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Channel.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Channel.channel_member_manage_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Channel.add_members (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Channel.add_members (action)（score=70）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "ChannelMember",
+      "path": "entities[1].cross_module[0].scenario",
+      "scenario": "成员变更触发频道级别的广播和通知",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ChannelMember.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ChannelMember.channel_member_read_state_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ChannelMember.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 ChannelMember.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "ChannelMember",
+      "path": "entities[1].cross_module[1].scenario",
+      "scenario": "seen_message_id / fetched_message_id 引用 Message 记录",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ChannelMember.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ChannelMember.channel_member_read_state_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ChannelMember.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 ChannelMember.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "ChannelMember",
+      "path": "entities[1].cross_module[2].scenario",
+      "scenario": "成员状态变更（join/leave/typing/seen）广播",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ChannelMember.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ChannelMember.channel_member_read_state_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ChannelMember.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 ChannelMember.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "ChannelMember",
+      "path": "entities[1].cross_module[3].scenario",
+      "scenario": "_rtc_join_call() 创建会话，SFU 超过 3 人阈值自动启用",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ChannelMember.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ChannelMember.channel_member_read_state_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ChannelMember.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 ChannelMember.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "ChannelMember",
+      "path": "entities[1].cross_module[4].scenario",
+      "scenario": "custom_notifications 和 mute_until_dt 影响通知分发",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ChannelMember.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ChannelMember.channel_member_read_state_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ChannelMember.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 ChannelMember.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "ChannelMember",
+      "path": "entities[1].scenarios",
+      "scenario": "create -> update -> mark_fetched -> mark_seen -> destroy",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "ChannelMember.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ChannelMember.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ChannelMember.mark_fetched (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ChannelMember.mark_seen (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "ChannelMember.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "ChannelMember.channel_member_read_state_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "ChannelMember.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 ChannelMember.create (action)（score=70）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "path": "entities[2].cross_module[0].scenario",
+      "scenario": "发布消息更新所有成员的 is_pinned 和 last_interest_dt",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Message.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Message.message_publish_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Message.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 Message.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "path": "entities[2].cross_module[1].scenario",
+      "scenario": "创建通知记录，分发到 Inbox/Email/Web Push/Bus 四种渠道",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Message.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Message.message_publish_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Message.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 Message.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "path": "entities[2].cross_module[2].scenario",
+      "scenario": "Base64 图片提取为附件，语音附件元数据提取",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Message.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Message.message_publish_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Message.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 Message.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "path": "entities[2].cross_module[3].scenario",
+      "scenario": "discuss.channel/new_message 实时广播",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Message.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Message.message_publish_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Message.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 Message.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "path": "entities[2].cross_module[4].scenario",
+      "scenario": "message_post() 是通用 mixin，任何业务实体都可通过 mail.thread 获得消息能力",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Message.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Message.message_publish_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Message.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 Message.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "path": "entities[2].cross_module[5].scenario",
+      "scenario": "字段变更追踪，支持按用户组过滤可见性",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Message.create (action)",
+          "score": 35,
+          "rules": [
+            "neighbor",
+            "fallback"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Message.message_publish_flow (workflow)",
+          "score": 15,
+          "rules": [
+            "neighbor"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Message.create (action)",
+        "score": 35,
+        "rules": [
+          "neighbor",
+          "fallback"
+        ]
+      },
+      "reason": "命中 Message.create (action)（score=35）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "path": "entities[2].scenarios",
+      "scenario": "create -> update -> toggle_star -> send_transient -> destroy",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "Message.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Message.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Message.send_transient (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Message.toggle_star (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "Message.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "Message.message_publish_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "Message.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 Message.create (action)（score=70）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "MailGroup",
+      "path": "entities[3].scenarios",
+      "scenario": "create -> join -> leave -> update -> destroy",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "MailGroup.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailGroup.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailGroup.join (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailGroup.leave (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailGroup.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "MailGroup.mail_group_membership_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "MailGroup.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 MailGroup.create (action)（score=70）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "MailGroupMember",
+      "path": "entities[4].scenarios",
+      "scenario": "create -> destroy",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "MailGroupMember.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailGroupMember.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "MailGroupMember.mail_group_member_join_leave_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "MailGroupMember.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 MailGroupMember.create (action)（score=70）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "MailGroupMessage",
+      "path": "entities[5].scenarios",
+      "scenario": "create -> moderate_accept",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "MailGroupMessage.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailGroupMessage.moderate_accept (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "MailGroupMessage.mail_group_message_moderation_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "MailGroupMessage.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 MailGroupMessage.create (action)（score=70）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "MailGroupMessage",
+      "path": "entities[5].scenarios",
+      "scenario": "create -> moderate_reject -> moderate_allow -> moderate_ban",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "MailGroupMessage.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailGroupMessage.moderate_allow (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailGroupMessage.moderate_ban (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailGroupMessage.moderate_reject (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "MailGroupMessage.mail_group_message_moderation_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "MailGroupMessage.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 MailGroupMessage.create (action)（score=70）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "MailGroupModeration",
+      "path": "entities[6].scenarios",
+      "scenario": "create -> update -> destroy",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "MailGroupModeration.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailGroupModeration.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "MailGroupModeration.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "MailGroupModeration.mail_group_moderation_rule_flow (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "MailGroupModeration.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 MailGroupModeration.create (action)（score=70）"
+    }
+  ],
+  "auto_anchor_enabled": true,
+  "auto_anchor_total": 22,
+  "auto_anchor_mapped": 20,
+  "auto_anchor_unmapped": 2,
+  "auto_anchor_results": [
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Channel",
+      "action": "add_members",
+      "scenario": "create -> update -> add_members -> archive",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Channel",
+      "action": "create",
+      "scenario": "group_ids 变更时通过 _subscribe_users_automatically() 批量从用户组创建成员记录",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Channel",
+      "action": "create",
+      "scenario": "成员变更、新消息、typing 指示器等事件广播",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Channel",
+      "action": "create",
+      "scenario": "视频/语音通话会话管理，SFU 服务器路由",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "ChannelMember",
+      "action": "create",
+      "scenario": "_rtc_join_call() 创建会话，SFU 超过 3 人阈值自动启用",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation"
+      ],
+      "reason": "命中规则：validation"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "ChannelMember",
+      "action": "create",
+      "scenario": "create -> update -> mark_fetched -> mark_seen -> destroy",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "ChannelMember",
+      "action": "create",
+      "scenario": "custom_notifications 和 mute_until_dt 影响通知分发",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "ChannelMember",
+      "action": "create",
+      "scenario": "seen_message_id / fetched_message_id 引用 Message 记录",
+      "status": "mapped",
+      "anchor_candidates": [
+        "event"
+      ],
+      "reason": "命中规则：event"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "ChannelMember",
+      "action": "create",
+      "scenario": "成员变更触发频道级别的广播和通知",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "ChannelMember",
+      "action": "create",
+      "scenario": "成员状态变更（join/leave/typing/seen）广播",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "MailGroup",
+      "action": "create",
+      "scenario": "create -> join -> leave -> update -> destroy",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "MailGroupMember",
+      "action": "create",
+      "scenario": "create -> destroy",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "MailGroupMessage",
+      "action": "create",
+      "scenario": "create -> moderate_accept",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "MailGroupMessage",
+      "action": "create",
+      "scenario": "create -> moderate_reject -> moderate_allow -> moderate_ban",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "MailGroupModeration",
+      "action": "create",
+      "scenario": "create -> update -> destroy",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "action": "create",
+      "scenario": "Base64 图片提取为附件，语音附件元数据提取",
+      "status": "unmapped",
+      "anchor_candidates": [],
+      "reason": "文本未命中明确规则，保持 weak（避免误绑定）"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "action": "create",
+      "scenario": "create -> update -> toggle_star -> send_transient -> destroy",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "action": "create",
+      "scenario": "discuss.channel/new_message 实时广播",
+      "status": "mapped",
+      "anchor_candidates": [
+        "event"
+      ],
+      "reason": "命中规则：event"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "action": "create",
+      "scenario": "message_post() 是通用 mixin，任何业务实体都可通过 mail.thread 获得消息能力",
+      "status": "mapped",
+      "anchor_candidates": [
+        "event"
+      ],
+      "reason": "命中规则：event"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "action": "create",
+      "scenario": "创建通知记录，分发到 Inbox/Email/Web Push/Bus 四种渠道",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "action": "create",
+      "scenario": "发布消息更新所有成员的 is_pinned 和 last_interest_dt",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change",
+        "event"
+      ],
+      "reason": "命中规则：change + event"
+    },
+    {
+      "model": "communication.ubo.yaml",
+      "entity": "Message",
+      "action": "create",
+      "scenario": "字段变更追踪，支持按用户组过滤可见性",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    }
+  ],
+  "weak_assertion_count": 0,
+  "weak_assertion_read_count": 0,
+  "weak_assertion_write_count": 0,
+  "weak_assertion_other_count": 0,
+  "weak_assertion_effective_count": 0,
+  "weak_assertion_effective_read_count": 0,
+  "weak_assertion_effective_write_count": 0,
+  "weak_assertion_effective_other_count": 0,
+  "weak_whitelist_path": null,
+  "weak_whitelist_rule_count": 0,
+  "weak_whitelist_active_rule_count": 0,
+  "weak_whitelist_hit_count": 0,
+  "weak_whitelist_hits": [],
+  "weak_assertions": []
+}

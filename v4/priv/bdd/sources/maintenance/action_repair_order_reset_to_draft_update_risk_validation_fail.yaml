@@ -1,0 +1,5 @@
+module: MAINTENANCE_REPAIR_ORDER
+contract: RepairOrder.reset_to_draft action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 RepairOrder 的动作 reset_to_draft 输入非法 / WHEN 执行动作 reset_to_draft / THEN 应返回校验失败且不产生持久化副作用

@@ -1,0 +1,5 @@
+module: LIVE_CHAT_CHAT_SESSION
+contract: ChatSession.create action contract
+edge_class: action_contract
+source_file: models/livechat/livechat.ubo.yaml
+source_summary: GIVEN 实体 ChatSession 的动作 create 可执行，accept=[anonymous_name]，args=[livechat_channel_id:uuid!, previous_operator_id:uuid, lang:string, country_id:uuid, chatbot_script_id:uuid] / WHEN 执行动作 create / THEN 状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束

@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_ORDER
+contract: RentalOrder.action_confirm action contract
+edge_class: action_contract
+source_file: models/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalOrder 的动作 action_confirm 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 action_confirm / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 创建租赁订单 -> action_confirm 确认 -> action_pickup 取货 -> action_return 归还 -> action_done 完成；create 创建租赁订单 -> update 修改日期 -> action_confirm 确认 -> action_pickup 取货 -> action_return 归还 -> action_done 完成

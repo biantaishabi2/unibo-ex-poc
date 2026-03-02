@@ -27,7 +27,28 @@ defmodule UniboV4.BDD.CommonInstructions do
     "MARKETING" => "marketing",
     "CURRENCY" => "currency",
     "UOM" => "uom",
-    "DATA_RECYCLE" => "data_recycle"
+    "DATA_RECYCLE" => "data_recycle",
+    "HR" => "hr",
+    "APPROVALS" => "approvals",
+    "EXPENSES" => "expenses",
+    "MAINTENANCE" => "maintenance",
+    "INVENTORY" => "inventory",
+    "PLM" => "plm",
+    "DOCUMENTS" => "documents",
+    "COMMUNICATION" => "communication",
+    "KNOWLEDGE" => "knowledge",
+    "BLOG" => "blog",
+    "PROJECT" => "project",
+    "IO_T" => "iot",
+    "MANUFACTURING" => "manufacturing",
+    "QUALITY" => "quality",
+    "GAMIFICATION" => "gamification",
+    "STUDIO" => "studio",
+    "SIGN" => "sign",
+    "RENTAL" => "rental",
+    "SURVEY" => "survey",
+    "LIVE_CHAT" => "livechat",
+    "SPREADSHEET" => "spreadsheet"
   }
 
   # ============================================================

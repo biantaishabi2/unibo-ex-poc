@@ -1,0 +1,5 @@
+module: HR_LEAVE_TYPE
+contract: LeaveType.update action contract
+edge_class: action_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 LeaveType 的动作 update 可执行，accept=[name, max_days_per_year, is_paid, requires_allocation, leave_validation_type, allows_negative, max_allowed_negative, request_unit, create_calendar_meeting, description]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束

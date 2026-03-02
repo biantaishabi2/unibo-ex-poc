@@ -1,0 +1,5 @@
+module: MAINTENANCE_MAINTENANCE_REQUEST
+contract: MaintenanceRequest.create action contract
+edge_class: action_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 MaintenanceRequest 的动作 create 可执行，accept=[request_number, name, maintenance_type, priority, description, request_date, schedule_date, duration, notes, repeat_interval, repeat_unit, repeat_type, repeat_until]，args=[equipment_id:uuid, category_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

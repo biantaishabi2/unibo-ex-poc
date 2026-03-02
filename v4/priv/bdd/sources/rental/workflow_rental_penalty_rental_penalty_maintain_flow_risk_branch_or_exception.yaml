@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_PENALTY
+contract: RentalPenalty.rental_penalty_maintain_flow workflow contract (risk:branch_or_exception)
+edge_class: workflow_contract
+source_file: models/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalPenalty 的工作流 rental_penalty_maintain_flow 存在分支或异常可能 / WHEN 执行分支路径 / THEN 流程应可恢复并保持状态一致

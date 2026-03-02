@@ -1,0 +1,5 @@
+module: IO_T_IO_T_BOX
+contract: IoTBox.register_box action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 IoTBox 的动作 register_box 输入非法 / WHEN 执行动作 register_box / THEN 应返回校验失败且不产生持久化副作用

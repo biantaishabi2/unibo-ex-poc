@@ -1,0 +1,5 @@
+module: INVENTORY_STOCK_PICKING
+contract: StockPicking.button_validate event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 StockPicking 动作 button_validate 事件被重复投递 / WHEN 重放 topic `inventory.picking.completed` / THEN 消费方处理应保持幂等且无重复副作用

@@ -1,0 +1,5 @@
+module: PROJECT_TASK
+contract: Task.task_edit_copy_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 Task 定义工作流 task_edit_copy_flow / WHEN 按主路径执行 create -> update -> copy / THEN 主流程应可达并保持顺序一致

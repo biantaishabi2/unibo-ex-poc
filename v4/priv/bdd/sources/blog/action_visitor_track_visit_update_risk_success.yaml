@@ -1,0 +1,5 @@
+module: BLOG_VISITOR
+contract: Visitor.track_visit action contract (risk:success)
+edge_class: action_contract
+source_file: models/blog/blog.ubo.yaml
+source_summary: GIVEN 实体 Visitor 的动作 track_visit 可执行 / WHEN 执行动作 track_visit / THEN 成功路径应满足业务约束并持久化结果

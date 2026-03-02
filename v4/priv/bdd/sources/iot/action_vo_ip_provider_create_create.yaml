@@ -1,0 +1,5 @@
+module: IO_T_VO_IP_PROVIDER
+contract: VoIPProvider.create action contract
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 VoIPProvider 的动作 create 可执行，accept=[name, sip_server, sip_port, transport, domain, outbound_proxy, stun_server, turn_server, turn_username, turn_password, is_default, org_id]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create -> update -> destroy；initiate_call 获取 SIP 凭据；来电路由确定 org 和路由逻辑

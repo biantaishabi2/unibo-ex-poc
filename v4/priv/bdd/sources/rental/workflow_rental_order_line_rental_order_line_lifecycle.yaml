@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_ORDER_LINE
+contract: RentalOrderLine.rental_order_line_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalOrderLine 定义工作流 rental_order_line_lifecycle / WHEN 按步骤执行 create -> update -> validate_pickup -> validate_return -> finalize / THEN 流程顺序应满足声明约束

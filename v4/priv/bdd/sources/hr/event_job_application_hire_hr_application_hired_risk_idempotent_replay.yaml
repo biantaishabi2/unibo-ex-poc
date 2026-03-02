@@ -1,0 +1,5 @@
+module: HR_JOB_APPLICATION
+contract: JobApplication.hire event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 JobApplication 动作 hire 事件被重复投递 / WHEN 重放 topic `hr.application.hired` / THEN 消费方处理应保持幂等且无重复副作用

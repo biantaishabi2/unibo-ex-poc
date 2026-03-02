@@ -1,0 +1,5 @@
+module: EXPENSES_EXPENSE_REPORT
+contract: ExpenseReport.expense_report_refuse_reset_flow workflow contract
+edge_class: workflow_contract
+source_file: models/expenses/expenses.ubo.yaml
+source_summary: GIVEN 实体 ExpenseReport 定义工作流 expense_report_refuse_reset_flow / WHEN 按步骤执行 create -> submit -> refuse -> reset -> submit -> approve / THEN 流程顺序应满足声明约束

@@ -1,0 +1,5 @@
+module: MAINTENANCE_EQUIPMENT
+contract: Equipment.create action contract
+edge_class: action_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 Equipment 的动作 create 可执行，accept=[asset_code, name, category, location, purchase_date, warranty_expiry_date, serial_number, effective_date, notes]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建设备 -> update 编辑设备信息 -> retire 报废设备

@@ -1,0 +1,5 @@
+module: SPREADSHEET_GLOBAL_FILTER
+contract: GlobalFilter.global_filter_apply_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/spreadsheet/spreadsheet.ubo.yaml
+source_summary: GIVEN 实体 GlobalFilter 定义工作流 global_filter_apply_flow / WHEN 按主路径执行 create -> update -> apply_filter -> destroy / THEN 主流程应可达并保持顺序一致

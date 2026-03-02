@@ -1,0 +1,5 @@
+module: GAMIFICATION_GOAL
+contract: Goal.create action contract
+edge_class: action_contract
+source_file: models/gamification/gamification.ubo.yaml
+source_summary: GIVEN 实体 Goal 的动作 create 可执行，accept=[start_date, end_date, target_goal, current, state, remind_update_delay]，args=[definition_id:uuid!, user_id:uuid!, line_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

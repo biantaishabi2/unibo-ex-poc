@@ -1,0 +1,5 @@
+module: MAINTENANCE_SERVICE_LOG
+contract: ServiceLog.cancel action contract
+edge_class: action_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 ServiceLog 的动作 cancel 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 cancel / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建服务记录 -> start 开始服务 -> cancel 取消服务；create 创建服务记录 -> cancel 取消服务

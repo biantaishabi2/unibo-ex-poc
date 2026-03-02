@@ -1,0 +1,5 @@
+module: HR_PERFORMANCE_REVIEW
+contract: PerformanceReview.action_back event contract
+edge_class: event_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 PerformanceReview 的动作 action_back 完成 / WHEN 触发事件发布 / THEN 应广播 topic `hr.appraisal.reopened`

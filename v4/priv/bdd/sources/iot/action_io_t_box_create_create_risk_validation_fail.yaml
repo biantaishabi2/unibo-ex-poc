@@ -1,0 +1,5 @@
+module: IO_T_IO_T_BOX
+contract: IoTBox.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 IoTBox 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create -> register_box -> heartbeat -> update；配对成功通知；离线告警；box 离线时批量更新设备状态；定时检测超时 box

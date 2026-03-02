@@ -1,0 +1,5 @@
+module: INVENTORY_LANDED_COST_LINE
+contract: LandedCostLine.landed_cost_line_write_flow workflow contract (risk:branch_or_exception)
+edge_class: workflow_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 LandedCostLine 的工作流 landed_cost_line_write_flow 存在分支或异常可能 / WHEN 执行分支路径 / THEN 流程应可恢复并保持状态一致

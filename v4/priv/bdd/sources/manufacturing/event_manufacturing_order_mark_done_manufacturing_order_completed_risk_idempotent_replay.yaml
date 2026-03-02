@@ -1,0 +1,5 @@
+module: MANUFACTURING_MANUFACTURING_ORDER
+contract: ManufacturingOrder.mark_done event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 ManufacturingOrder 动作 mark_done 事件被重复投递 / WHEN 重放 topic `manufacturing.order.completed` / THEN 消费方处理应保持幂等且无重复副作用

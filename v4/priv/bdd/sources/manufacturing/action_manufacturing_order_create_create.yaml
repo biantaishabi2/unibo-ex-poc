@@ -1,0 +1,5 @@
+module: MANUFACTURING_MANUFACTURING_ORDER
+contract: ManufacturingOrder.create action contract
+edge_class: action_contract
+source_file: models/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 ManufacturingOrder 的动作 create 可执行，accept=[order_number, product_id, product_name, product_code, product_qty, product_uom_id, quantity, planned_start_date, planned_end_date, date_start, date_finished, location_src_id, location_dest_id, company_id, notes]，args=[bom_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

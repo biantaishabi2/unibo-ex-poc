@@ -1,0 +1,5 @@
+module: HR_EMPLOYEE
+contract: Employee.create action contract
+edge_class: action_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 Employee 的动作 create 可执行，accept=[employee_code, first_name, last_name, email, phone, gender, birth_date, hire_date, employee_type, address, notes]，args=[department_id:uuid, position_id:uuid, parent_id:uuid, coach_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create -> update -> terminate -> suspend -> reactivate

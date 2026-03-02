@@ -1,0 +1,5 @@
+module: BLOG_VISITOR
+contract: Visitor.visitor_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/blog/blog.ubo.yaml
+source_summary: GIVEN 实体 Visitor 定义工作流 visitor_lifecycle / WHEN 按步骤执行 upsert -> track_visit -> merge -> cleanup / THEN 流程顺序应满足声明约束

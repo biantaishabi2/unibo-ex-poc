@@ -1,0 +1,5 @@
+module: INVENTORY_PICKING_BATCH
+contract: PickingBatch.action_assign action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 PickingBatch 的动作 action_assign 输入非法 / WHEN 执行动作 action_assign / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 批量拣货批次，update 修改设置，action_confirm 确认，action_assign 预留，action_done 完成

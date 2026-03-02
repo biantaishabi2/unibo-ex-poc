@@ -1,0 +1,5 @@
+module: SURVEY_USER_INPUT_LINE
+contract: UserInputLine.create action contract
+edge_class: action_contract
+source_file: models/survey/survey.ubo.yaml
+source_summary: GIVEN 实体 UserInputLine 的动作 create 可执行，accept=[answer_type, value_text_box, value_char_box, value_numerical_box, value_date, value_datetime]，args=[user_input_id:uuid!, question_id:uuid!, suggested_answer_id:uuid, matrix_row_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 答案行记录作答内容，destroy 删除旧答案（replace 语义）

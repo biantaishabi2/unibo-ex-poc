@@ -1,0 +1,5 @@
+module: HR_EMPLOYEE
+contract: Employee.terminate action contract
+edge_class: action_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 Employee 的动作 terminate 可执行，accept=[departure_reason]，args=[无显式参数] / WHEN 执行动作 terminate / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束

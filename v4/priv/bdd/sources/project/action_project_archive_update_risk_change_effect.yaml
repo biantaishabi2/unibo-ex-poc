@@ -1,0 +1,5 @@
+module: PROJECT_PROJECT
+contract: Project.archive action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 Project 的动作 archive 触发副作用 / WHEN 执行动作 archive / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 项目，update 修改配置，start 启动，complete 完成；create 项目，archive 归档，unarchive 取消归档

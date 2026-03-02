@@ -1,0 +1,5 @@
+module: PROJECT_PROJECT
+contract: Project.copy action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 Project 的动作 copy 输入非法 / WHEN 执行动作 copy / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 项目，copy 复制项目，destroy 删除项目

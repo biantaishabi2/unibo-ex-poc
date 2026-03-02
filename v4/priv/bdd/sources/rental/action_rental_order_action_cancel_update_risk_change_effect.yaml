@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_ORDER
+contract: RentalOrder.action_cancel action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalOrder 的动作 action_cancel 触发副作用 / WHEN 执行动作 action_cancel / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建租赁订单 -> action_confirm 确认 -> action_cancel 取消订单

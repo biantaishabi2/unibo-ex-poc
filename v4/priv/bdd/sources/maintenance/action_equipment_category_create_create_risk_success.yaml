@@ -1,0 +1,5 @@
+module: MAINTENANCE_EQUIPMENT_CATEGORY
+contract: EquipmentCategory.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 EquipmentCategory 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 创建设备分类 -> update 修改分类 -> destroy 删除分类

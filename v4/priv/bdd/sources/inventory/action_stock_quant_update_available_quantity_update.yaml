@@ -1,0 +1,5 @@
+module: INVENTORY_STOCK_QUANT
+contract: StockQuant._update_available_quantity action contract
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 StockQuant 的动作 _update_available_quantity 可执行，accept=[[]]，args=[product_id:uuid!, location_id:uuid!, qty:decimal!, lot_id:uuid, package_id:uuid, owner_id:uuid, in_date:datetime] / WHEN 执行动作 _update_available_quantity / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

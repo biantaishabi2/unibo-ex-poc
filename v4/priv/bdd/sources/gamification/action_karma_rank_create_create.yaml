@@ -1,0 +1,5 @@
+module: GAMIFICATION_KARMA_RANK
+contract: KarmaRank.create action contract
+edge_class: action_contract
+source_file: models/gamification/gamification.ubo.yaml
+source_summary: GIVEN 实体 KarmaRank 的动作 create 可执行，accept=[name, description, description_motivational, karma_min]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create -> update -> destroy

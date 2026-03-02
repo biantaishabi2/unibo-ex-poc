@@ -1,0 +1,5 @@
+module: IO_T_IO_T_BOX
+contract: IoTBox.heartbeat_timeout event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 IoTBox 动作 heartbeat_timeout 触发事件 / WHEN 发布 topic `iot.box.offline` / THEN 消费方应收到一次有效通知

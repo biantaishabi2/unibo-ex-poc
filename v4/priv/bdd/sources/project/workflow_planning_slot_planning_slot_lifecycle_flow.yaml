@@ -1,0 +1,5 @@
+module: PROJECT_PLANNING_SLOT
+contract: PlanningSlot.planning_slot_lifecycle_flow workflow contract
+edge_class: workflow_contract
+source_file: models/project/project.ubo.yaml
+source_summary: GIVEN 实体 PlanningSlot 定义工作流 planning_slot_lifecycle_flow / WHEN 按步骤执行 create -> update -> publish / THEN 流程顺序应满足声明约束

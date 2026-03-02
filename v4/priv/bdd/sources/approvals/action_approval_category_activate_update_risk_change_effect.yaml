@@ -1,0 +1,5 @@
+module: APPROVALS_APPROVAL_CATEGORY
+contract: ApprovalCategory.activate action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/approvals/approvals.ubo.yaml
+source_summary: GIVEN 实体 ApprovalCategory 的动作 activate 触发副作用 / WHEN 执行动作 activate / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 审批类型，update 修改配置，deactivate 停用后 activate 重新启用

@@ -1,0 +1,5 @@
+module: PLM_BOM_REVISION
+contract: BomRevision.bom_component_delta_impact workflow contract (risk:branch_or_exception)
+edge_class: workflow_contract
+source_file: models/plm/plm.ubo.yaml
+source_summary: GIVEN 实体 BomRevision 的工作流 bom_component_delta_impact 存在分支或异常可能 / WHEN 执行分支路径 / THEN 流程应可恢复并保持状态一致 / 补充场景：detect_component_delta 检测组件增删 -> sync_procurement_stock_impact 同步供应链影响；新增组件→采购需求，删除组件→库存消化

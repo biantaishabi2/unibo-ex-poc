@@ -1,0 +1,5 @@
+module: INVENTORY_STOCK_QUANT
+contract: StockQuant._get_reserve_quantity action contract
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 StockQuant 的动作 _get_reserve_quantity 可执行，accept=[(未声明)]，args=[product_id:uuid!, location_id:uuid!, qty:decimal!, removal_strategy:string] / WHEN 执行动作 _get_reserve_quantity / THEN 输入应满足校验规则，读取结果应符合查询语义

@@ -1,0 +1,5 @@
+module: HR_JOB_REQUISITION
+contract: JobRequisition.cancel event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 JobRequisition 动作 cancel 触发事件 / WHEN 发布 topic `hr.requisition.cancelled` / THEN 消费方应收到一次有效通知

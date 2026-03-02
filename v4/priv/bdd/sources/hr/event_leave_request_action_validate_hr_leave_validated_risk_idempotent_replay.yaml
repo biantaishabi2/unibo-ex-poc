@@ -1,0 +1,5 @@
+module: HR_LEAVE_REQUEST
+contract: LeaveRequest.action_validate event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 LeaveRequest 动作 action_validate 事件被重复投递 / WHEN 重放 topic `hr.leave.validated` / THEN 消费方处理应保持幂等且无重复副作用

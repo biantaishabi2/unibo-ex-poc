@@ -1,0 +1,5 @@
+module: SURVEY_SURVEY
+contract: Survey.create action contract
+edge_class: action_contract
+source_file: models/survey/survey.ubo.yaml
+source_summary: GIVEN 实体 Survey 的动作 create 可执行，accept=[title, survey_type, access_mode, users_login_required, questions_layout, questions_selection, random_questions_count, scoring_type, scoring_success_min, is_time_limited, time_limit, is_attempts_limited, attempts_limit, certification_give_badge]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

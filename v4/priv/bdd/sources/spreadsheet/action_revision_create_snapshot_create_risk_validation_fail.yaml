@@ -1,0 +1,5 @@
+module: SPREADSHEET_REVISION
+contract: Revision.create_snapshot action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/spreadsheet/spreadsheet.ubo.yaml
+source_summary: GIVEN 实体 Revision 的动作 create_snapshot 输入非法 / WHEN 执行动作 create_snapshot / THEN 应返回校验失败且不产生持久化副作用

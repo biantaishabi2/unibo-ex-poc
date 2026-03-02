@@ -1,0 +1,5 @@
+module: INVENTORY_LANDED_COST
+contract: LandedCost.button_cancel action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 LandedCost 的动作 button_cancel 触发副作用 / WHEN 执行动作 button_cancel / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 到岸成本，button_cancel 取消

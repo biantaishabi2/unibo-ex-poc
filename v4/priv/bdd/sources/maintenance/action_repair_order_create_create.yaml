@@ -1,0 +1,5 @@
+module: MAINTENANCE_REPAIR_ORDER
+contract: RepairOrder.create action contract
+edge_class: action_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 RepairOrder 的动作 create 可执行，accept=[repair_number, diagnosis, repair_notes, estimated_cost, schedule_date, repair_date, under_warranty]，args=[equipment_id:uuid!, product_id:uuid!, location_id:uuid!, location_dest_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

@@ -1,0 +1,5 @@
+module: MAINTENANCE_REPAIR_ORDER
+contract: RepairOrder.start_repair action contract (risk:success)
+edge_class: action_contract
+source_file: models/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 RepairOrder 的动作 start_repair 可执行 / WHEN 执行动作 start_repair / THEN 成功路径应满足业务约束并持久化结果

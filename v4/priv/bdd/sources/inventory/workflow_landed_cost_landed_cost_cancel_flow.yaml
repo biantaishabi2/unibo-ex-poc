@@ -1,0 +1,5 @@
+module: INVENTORY_LANDED_COST
+contract: LandedCost.landed_cost_cancel_flow workflow contract
+edge_class: workflow_contract
+source_file: models/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 LandedCost 定义工作流 landed_cost_cancel_flow / WHEN 按步骤执行 create -> button_cancel / THEN 流程顺序应满足声明约束

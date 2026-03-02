@@ -1,0 +1,5 @@
+module: HR_JOB_APPLICATION
+contract: JobApplication.advance action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 JobApplication 的动作 advance 输入非法 / WHEN 执行动作 advance / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 后 advance 到 interview，再 hire 完成录用；reject 后 reset 回 received，再次 advance 进入筛选

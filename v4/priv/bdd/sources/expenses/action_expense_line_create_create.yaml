@@ -1,0 +1,5 @@
+module: EXPENSES_EXPENSE_LINE
+contract: ExpenseLine.create action contract
+edge_class: action_contract
+source_file: models/expenses/expenses.ubo.yaml
+source_summary: GIVEN 实体 ExpenseLine 的动作 create 可执行，accept=[description, quantity, price_unit, expense_date, receipt_reference, payment_mode, currency_rate, analytic_distribution, notes]，args=[product_id:uuid!, employee_id:uuid!, currency_id:uuid!, tax_ids:array, category_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create -> update -> split

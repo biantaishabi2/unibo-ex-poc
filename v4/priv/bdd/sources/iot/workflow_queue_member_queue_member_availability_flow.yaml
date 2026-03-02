@@ -1,0 +1,5 @@
+module: IO_T_QUEUE_MEMBER
+contract: QueueMember.queue_member_availability_flow workflow contract
+edge_class: workflow_contract
+source_file: models/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 QueueMember 定义工作流 queue_member_availability_flow / WHEN 按步骤执行 create -> update -> pause -> unpause -> record_call -> destroy / THEN 流程顺序应满足声明约束 / 补充场景：calls_taken+1；last_call_at 更新；wrapup 暂停

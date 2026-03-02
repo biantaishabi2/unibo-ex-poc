@@ -1,0 +1,5 @@
+module: DOCUMENTS_DOCUMENT
+contract: Document.archive event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/documents/documents.ubo.yaml
+source_summary: GIVEN 实体 Document 动作 archive 事件被重复投递 / WHEN 重放 topic `documents.document.archived` / THEN 消费方处理应保持幂等且无重复副作用

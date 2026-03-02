@@ -1,0 +1,5 @@
+module: HR_JOB_APPLICATION
+contract: JobApplication.recruitment_pipeline_flow workflow contract
+edge_class: workflow_contract
+source_file: models/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 JobApplication 定义工作流 recruitment_pipeline_flow / WHEN 按步骤执行 create -> advance -> hire -> archive / THEN 流程顺序应满足声明约束

@@ -1,0 +1,5 @@
+module: EXPENSES_EXPENSE_REPORT
+contract: ExpenseReport.submit event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/expenses/expenses.ubo.yaml
+source_summary: GIVEN 实体 ExpenseReport 动作 submit 触发事件 / WHEN 发布 topic `expenses.report.submitted` / THEN 消费方应收到一次有效通知

@@ -1,0 +1,5 @@
+module: DOCUMENTS_DOCUMENT
+contract: Document.unlock action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/documents/documents.ubo.yaml
+source_summary: GIVEN 实体 Document 的动作 unlock 输入非法 / WHEN 执行动作 unlock / THEN 应返回校验失败且不产生持久化副作用

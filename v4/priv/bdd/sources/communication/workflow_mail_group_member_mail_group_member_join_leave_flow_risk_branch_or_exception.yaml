@@ -1,0 +1,5 @@
+module: COMMUNICATION_MAIL_GROUP_MEMBER
+contract: MailGroupMember.mail_group_member_join_leave_flow workflow contract (risk:branch_or_exception)
+edge_class: workflow_contract
+source_file: models/communication/communication.ubo.yaml
+source_summary: GIVEN 实体 MailGroupMember 的工作流 mail_group_member_join_leave_flow 存在分支或异常可能 / WHEN 执行分支路径 / THEN 流程应可恢复并保持状态一致

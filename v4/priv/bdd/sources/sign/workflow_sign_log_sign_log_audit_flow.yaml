@@ -1,0 +1,5 @@
+module: SIGN_SIGN_LOG
+contract: SignLog.sign_log_audit_flow workflow contract
+edge_class: workflow_contract
+source_file: models/sign/sign.ubo.yaml
+source_summary: GIVEN 实体 SignLog 定义工作流 sign_log_audit_flow / WHEN 按步骤执行 create -> read / THEN 流程顺序应满足声明约束
