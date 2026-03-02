@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_SLA
+contract: HelpdeskSLA.sla_policy_management workflow contract
+edge_class: workflow_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskSLA 定义工作流 sla_policy_management / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束

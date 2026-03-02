@@ -1,0 +1,5 @@
+module: HELPDESK_FIELD_SERVICE_ORDER
+contract: FieldServiceOrder.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 FieldServiceOrder 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 创建任务，schedule 分配技术员和时间窗

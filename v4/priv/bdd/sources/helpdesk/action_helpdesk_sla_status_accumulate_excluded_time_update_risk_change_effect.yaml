@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_SLA_STATUS
+contract: HelpdeskSLAStatus.accumulate_excluded_time action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskSLAStatus 的动作 accumulate_excluded_time 触发副作用 / WHEN 执行动作 accumulate_excluded_time / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建追踪记录，accumulate_excluded_time 累加暂停时间

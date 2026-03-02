@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_TICKET
+contract: HelpdeskTicket.ticket_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskTicket 定义工作流 ticket_lifecycle / WHEN 按步骤执行 create -> assign -> change_stage -> resolve -> close -> reopen -> archive -> update_priority -> plan_intervention / THEN 流程顺序应满足声明约束

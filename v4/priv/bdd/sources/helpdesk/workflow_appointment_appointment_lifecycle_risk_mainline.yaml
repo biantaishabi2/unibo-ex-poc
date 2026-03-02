@@ -1,0 +1,5 @@
+module: HELPDESK_APPOINTMENT
+contract: Appointment.appointment_lifecycle workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 Appointment 定义工作流 appointment_lifecycle / WHEN 按主路径执行 create -> confirm -> complete -> cancel / THEN 主流程应可达并保持顺序一致

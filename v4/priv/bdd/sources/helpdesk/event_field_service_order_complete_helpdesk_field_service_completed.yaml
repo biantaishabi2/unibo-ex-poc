@@ -1,0 +1,5 @@
+module: HELPDESK_FIELD_SERVICE_ORDER
+contract: FieldServiceOrder.complete event contract
+edge_class: event_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 FieldServiceOrder 的动作 complete 完成 / WHEN 触发事件发布 / THEN 应广播 topic `helpdesk.field_service.completed`

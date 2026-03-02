@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_SLA_STATUS
+contract: HelpdeskSLAStatus.mark_failed action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskSLAStatus 的动作 mark_failed 触发副作用 / WHEN 执行动作 mark_failed / THEN 变更副作用应完整生效且状态一致 / 补充场景：mark_failed 尝试对已 failed 的记录操作，校验失败（终态不可逆）

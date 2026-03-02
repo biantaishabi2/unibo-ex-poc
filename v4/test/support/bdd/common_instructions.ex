@@ -17,7 +17,8 @@ defmodule UniboV4.BDD.CommonInstructions do
     "SALES" => "sales",
     "PURCHASING" => "purchasing",
     "MEMBERSHIP" => "membership",
-    "CRM" => "crm"
+    "CRM" => "crm",
+    "HELPDESK" => "helpdesk"
   }
 
   # ============================================================

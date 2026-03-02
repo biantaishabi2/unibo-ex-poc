@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_SLA_STATUS
+contract: HelpdeskSLAStatus.sla_tracking_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskSLAStatus 定义工作流 sla_tracking_lifecycle / WHEN 按步骤执行 create -> check_and_update -> mark_reached -> mark_failed -> accumulate_excluded_time / THEN 流程顺序应满足声明约束

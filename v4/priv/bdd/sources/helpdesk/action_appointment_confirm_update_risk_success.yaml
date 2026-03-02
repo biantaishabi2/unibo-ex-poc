@@ -1,0 +1,5 @@
+module: HELPDESK_APPOINTMENT
+contract: Appointment.confirm action contract (risk:success)
+edge_class: action_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 Appointment 的动作 confirm 可执行 / WHEN 执行动作 confirm / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：confirm 尝试对非 scheduled 状态预约确认，校验失败

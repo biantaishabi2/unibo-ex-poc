@@ -1,0 +1,5 @@
+module: HELPDESK_RATING
+contract: Rating.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 Rating 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 新建评分记录，update 修改评分和反馈；create 新建评分记录，reset 重置评分（清零分值、清空反馈）；create 新建评分，rating>=4 自动映射为 top 等级

@@ -1,0 +1,5 @@
+module: HELPDESK_FIELD_SERVICE_ORDER
+contract: FieldServiceOrder.complete event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 FieldServiceOrder 动作 complete 事件被重复投递 / WHEN 重放 topic `helpdesk.field_service.completed` / THEN 消费方处理应保持幂等且无重复副作用
