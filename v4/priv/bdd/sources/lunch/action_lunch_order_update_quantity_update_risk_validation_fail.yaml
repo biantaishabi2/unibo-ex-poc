@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_ORDER
+contract: LunchOrder.update_quantity action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchOrder 的动作 update_quantity 输入非法 / WHEN 执行动作 update_quantity / THEN 应返回校验失败且不产生持久化副作用

@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_ORDER
+contract: LunchOrder.action_cancel event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchOrder 动作 action_cancel 事件被重复投递 / WHEN 重放 topic `lunch.order.cancelled` / THEN 消费方处理应保持幂等且无重复副作用

@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_ORDER
+contract: LunchOrder.action_confirm action contract
+edge_class: action_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchOrder 的动作 action_confirm 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 action_confirm / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 新建订单，action_order 下单，action_send 发送，action_confirm 确认；action_confirm 尝试对非 sent 状态确认，校验失败

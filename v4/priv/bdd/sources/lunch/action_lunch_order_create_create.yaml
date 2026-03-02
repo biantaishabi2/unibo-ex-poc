@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_ORDER
+contract: LunchOrder.create action contract
+edge_class: action_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchOrder 的动作 create 可执行，accept=[quantity, date, note]，args=[product_id:uuid!, lunch_location_id:uuid, topping_ids_1:array, topping_ids_2:array, topping_ids_3:array] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建订单，update_quantity 修改数量

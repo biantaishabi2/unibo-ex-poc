@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_SUPPLIER
+contract: LunchSupplier.send_orders event contract
+edge_class: event_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchSupplier 的动作 send_orders 完成 / WHEN 触发事件发布 / THEN 应广播 topic `lunch.supplier.orders_sent`

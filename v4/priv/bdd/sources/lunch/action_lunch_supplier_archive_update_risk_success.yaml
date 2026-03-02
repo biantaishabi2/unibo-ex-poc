@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_SUPPLIER
+contract: LunchSupplier.archive action contract (risk:success)
+edge_class: action_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchSupplier 的动作 archive 可执行 / WHEN 执行动作 archive / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 新建供应商，archive 归档（级联归档产品），unarchive 取消归档；archive 尝试对已归档供应商归档，校验失败

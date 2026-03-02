@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_SUPPLIER
+contract: LunchSupplier.send_orders action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchSupplier 的动作 send_orders 触发副作用 / WHEN 执行动作 send_orders / THEN 变更副作用应完整生效且状态一致

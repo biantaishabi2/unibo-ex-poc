@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_ORDER
+contract: LunchOrder.action_reset action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchOrder 的动作 action_reset 触发副作用 / WHEN 执行动作 action_reset / THEN 变更副作用应完整生效且状态一致
