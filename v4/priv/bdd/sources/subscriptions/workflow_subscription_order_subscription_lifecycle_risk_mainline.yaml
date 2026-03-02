@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER
+contract: SubscriptionOrder.subscription_lifecycle workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionOrder 定义工作流 subscription_lifecycle / WHEN 按主路径执行 create -> action_confirm -> action_pause -> action_resume -> action_close -> action_renew / THEN 主流程应可达并保持顺序一致

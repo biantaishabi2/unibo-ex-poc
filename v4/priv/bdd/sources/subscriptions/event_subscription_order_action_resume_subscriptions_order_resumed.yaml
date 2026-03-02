@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER
+contract: SubscriptionOrder.action_resume event contract
+edge_class: event_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionOrder 的动作 action_resume 完成 / WHEN 触发事件发布 / THEN 应广播 topic `subscriptions.order.resumed`

@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER
+contract: SubscriptionOrder.cron_payment_retry workflow contract
+edge_class: workflow_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionOrder 定义工作流 cron_payment_retry / WHEN 按步骤执行 evaluate_retry_due -> retry_payment / THEN 流程顺序应满足声明约束

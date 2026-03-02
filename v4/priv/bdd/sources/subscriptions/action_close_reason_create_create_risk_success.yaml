@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_CLOSE_REASON
+contract: CloseReason.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 CloseReason 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 新建关闭原因（含挽留话术），update 修改排序和话术；create 新建关闭原因，destroy 删除；create 排序权重为负时校验失败

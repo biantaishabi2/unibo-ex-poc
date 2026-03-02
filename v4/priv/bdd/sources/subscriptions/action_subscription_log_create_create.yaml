@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_LOG
+contract: SubscriptionLog.create action contract
+edge_class: action_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionLog 的动作 create 可执行，accept=[event_type, event_date, amount_signed, mrr_before, mrr_after, reason]，args=[subscription_id:uuid!, currency_id:uuid!, user_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建 MRR 变动日志（creation 类型），验证 amount_signed 一致性；create 创建流失日志（churn 类型，amount_signed 为负）；create amount_signed 不等于 mrr_after - mrr_before 时校验失败

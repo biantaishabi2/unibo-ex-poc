@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_LOG
+contract: SubscriptionLog.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionLog 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建 MRR 变动日志（creation 类型），验证 amount_signed 一致性；create 创建流失日志（churn 类型，amount_signed 为负）；create amount_signed 不等于 mrr_after - mrr_before 时校验失败

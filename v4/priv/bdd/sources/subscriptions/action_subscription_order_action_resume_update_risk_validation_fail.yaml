@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER
+contract: SubscriptionOrder.action_resume action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionOrder 的动作 action_resume 输入非法 / WHEN 执行动作 action_resume / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：action_resume 对非 paused 状态恢复，校验失败

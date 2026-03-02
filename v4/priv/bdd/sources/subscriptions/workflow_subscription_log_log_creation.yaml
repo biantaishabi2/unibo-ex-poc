@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_LOG
+contract: SubscriptionLog.log_creation workflow contract
+edge_class: workflow_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionLog 定义工作流 log_creation / WHEN 按步骤执行 create / THEN 流程顺序应满足声明约束
