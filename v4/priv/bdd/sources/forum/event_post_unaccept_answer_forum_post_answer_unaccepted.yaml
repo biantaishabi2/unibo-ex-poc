@@ -1,0 +1,5 @@
+module: FORUM_POST
+contract: Post.unaccept_answer event contract
+edge_class: event_contract
+source_file: models/forum/forum.ubo.yaml
+source_summary: GIVEN 实体 Post 的动作 unaccept_answer 完成 / WHEN 触发事件发布 / THEN 应广播 topic `forum.post.answer_unaccepted`

@@ -1,0 +1,5 @@
+module: FORUM_FORUM
+contract: Forum.update action contract
+edge_class: action_contract
+source_file: models/forum/forum.ubo.yaml
+source_summary: GIVEN 实体 Forum 的动作 update 可执行，accept=[name, mode, privacy, authorized_group_id, description, welcome_message, default_post_type, default_order, relevancy_post_vote, relevancy_time_decay, allow_bump, allow_share, allow_mark_as_offensive, karma_gen_question_new, karma_gen_question_upvote, karma_gen_question_downvote, karma_gen_answer_upvote, karma_gen_answer_downvote, karma_gen_answer_accepted, karma_gen_answer_accept, karma_gen_question_flagged, karma_gen_answer_flagged, karma_ask, karma_answer, karma_upvote, karma_downvote, karma_comment, karma_edit_own, karma_edit_all, karma_edit_retag, karma_close_own, karma_close_all, karma_unlink_own, karma_unlink_all, karma_tag_create, karma_answer_accept_own, karma_answer_accept_all, karma_flag, karma_moderate, karma_dofollow, karma_editor, karma_user_bio, karma_comment_convert_own, karma_comment_convert_all]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束

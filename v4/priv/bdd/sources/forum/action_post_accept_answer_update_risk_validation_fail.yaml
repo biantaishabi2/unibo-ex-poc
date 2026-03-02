@@ -1,0 +1,5 @@
+module: FORUM_POST
+contract: Post.accept_answer action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/forum/forum.ubo.yaml
+source_summary: GIVEN 实体 Post 的动作 accept_answer 输入非法 / WHEN 执行动作 accept_answer / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 新建问题，create 回答，accept_answer 采纳最佳答案；create 新建回答，accept_answer 采纳后 unaccept_answer 取消采纳；accept_answer 尝试对非回答（parent_id 为空）采纳，校验失败

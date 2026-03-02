@@ -1,0 +1,5 @@
+module: FORUM_POST
+contract: Post.close action contract (risk:success)
+edge_class: action_contract
+source_file: models/forum/forum.ubo.yaml
+source_summary: GIVEN 实体 Post 的动作 close 可执行 / WHEN 执行动作 close / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 新建问题，update 编辑内容，close 关闭帖子；create 新建帖子，close 关闭后 reopen 重新打开；close 尝试对非 active 状态帖子关闭，校验失败
