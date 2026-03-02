@@ -1,0 +1,5 @@
+module: CRM_LEAD_STAGE
+contract: LeadStage.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 LeadStage 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 新建阶段并设置 sequence，update 修改名称和概率；create 团队专属阶段（team_id 非空），仅该团队可见；create is_won=true 的赢单阶段

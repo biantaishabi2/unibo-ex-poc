@@ -1,0 +1,5 @@
+module: CRM_LEAD_STAGE
+contract: LeadStage.lead_stage_management workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 LeadStage 定义工作流 lead_stage_management / WHEN 按主路径执行 create -> update / THEN 主流程应可达并保持顺序一致

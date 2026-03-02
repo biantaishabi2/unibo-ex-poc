@@ -1,0 +1,5 @@
+module: CRM_SALES_FORECAST
+contract: SalesForecast.create action contract
+edge_class: action_contract
+source_file: models/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 SalesForecast 的动作 create 可执行，accept=[name, period, amount, probability, recurring_revenue, recurring_revenue_monthly, currency, notes]，args=[team_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建预测，update 修改金额后 prorated_revenue 自动重算；create 带 probability 的预测，prorated_revenue 自动计算

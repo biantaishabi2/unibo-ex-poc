@@ -1,0 +1,5 @@
+module: CRM_CONTACT
+contract: Contact.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 Contact 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 新建联系人，update 修改名称和联系方式

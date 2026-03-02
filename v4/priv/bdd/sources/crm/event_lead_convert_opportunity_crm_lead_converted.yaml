@@ -1,0 +1,5 @@
+module: CRM_LEAD
+contract: Lead.convert_opportunity event contract
+edge_class: event_contract
+source_file: models/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 Lead 的动作 convert_opportunity 完成 / WHEN 触发事件发布 / THEN 应广播 topic `crm.lead.converted`

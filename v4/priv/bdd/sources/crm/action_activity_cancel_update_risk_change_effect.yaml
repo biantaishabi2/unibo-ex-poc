@@ -1,0 +1,5 @@
+module: CRM_ACTIVITY
+contract: Activity.cancel action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 Activity 的动作 cancel 触发副作用 / WHEN 执行动作 cancel / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 新建活动，cancel 取消活动；已完成活动尝试 cancel 被校验拒绝

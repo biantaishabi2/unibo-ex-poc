@@ -1,0 +1,5 @@
+module: CRM_ACTIVITY
+contract: Activity.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 Activity 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 带 date_deadline 的活动，驱动 Lead kanban_state 变化

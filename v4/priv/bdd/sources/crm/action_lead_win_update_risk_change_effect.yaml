@@ -1,0 +1,5 @@
+module: CRM_LEAD
+contract: Lead.win action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 Lead 的动作 win 触发副作用 / WHEN 执行动作 win / THEN 变更副作用应完整生效且状态一致 / 补充场景：active=false 时尝试 win 被校验拒绝
