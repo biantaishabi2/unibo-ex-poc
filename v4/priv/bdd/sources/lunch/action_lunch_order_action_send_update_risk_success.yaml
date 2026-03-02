@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_ORDER
+contract: LunchOrder.action_send action contract (risk:success)
+edge_class: action_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchOrder 的动作 action_send 可执行 / WHEN 执行动作 action_send / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：action_send 尝试对非 ordered 状态发送，校验失败

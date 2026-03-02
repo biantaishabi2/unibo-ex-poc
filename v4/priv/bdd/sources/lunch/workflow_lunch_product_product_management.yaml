@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_PRODUCT
+contract: LunchProduct.product_management workflow contract
+edge_class: workflow_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchProduct 定义工作流 product_management / WHEN 按步骤执行 create -> update -> toggle_favorite -> destroy / THEN 流程顺序应满足声明约束

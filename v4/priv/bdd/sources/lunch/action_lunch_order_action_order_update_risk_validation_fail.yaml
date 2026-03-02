@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_ORDER
+contract: LunchOrder.action_order action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchOrder 的动作 action_order 输入非法 / WHEN 执行动作 action_order / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：action_order 下单时供应商不可用，校验失败；action_order 下单时钱包余额不足，校验失败

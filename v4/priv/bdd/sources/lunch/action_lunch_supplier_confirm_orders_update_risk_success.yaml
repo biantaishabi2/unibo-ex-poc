@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_SUPPLIER
+contract: LunchSupplier.confirm_orders action contract (risk:success)
+edge_class: action_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchSupplier 的动作 confirm_orders 可执行 / WHEN 执行动作 confirm_orders / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 新建供应商，send_orders 批量发送当日订单，confirm_orders 批量确认

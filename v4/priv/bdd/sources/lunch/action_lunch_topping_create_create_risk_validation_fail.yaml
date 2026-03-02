@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_TOPPING
+contract: LunchTopping.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchTopping 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 新建配料，update 修改价格和分类；create 新建配料，destroy 删除配料；create 价格为负数，校验失败

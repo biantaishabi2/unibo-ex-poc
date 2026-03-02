@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_SUPPLIER
+contract: LunchSupplier.supplier_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchSupplier 定义工作流 supplier_lifecycle / WHEN 按步骤执行 create -> update -> send_orders -> confirm_orders -> archive -> unarchive / THEN 流程顺序应满足声明约束
