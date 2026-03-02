@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_TICKET
+contract: HelpdeskTicket.change_stage event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskTicket 动作 change_stage 触发事件 / WHEN 发布 topic `helpdesk.ticket.stage_changed` / THEN 消费方应收到一次有效通知

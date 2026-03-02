@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_TICKET
+contract: HelpdeskTicket.assign action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskTicket 的动作 assign 触发副作用 / WHEN 执行动作 assign / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 新建工单，assign 分配负责人，change_stage 推进阶段，resolve 解决，close 关闭；create 新建工单，assign 分配后 change_stage 推进到中间阶段，reopen 重新打开，再次 assign 和 close；active=false 时尝试 assign 被拒绝（已归档工单不可操作）

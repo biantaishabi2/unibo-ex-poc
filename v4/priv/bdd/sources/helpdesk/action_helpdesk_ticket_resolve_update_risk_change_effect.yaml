@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_TICKET
+contract: HelpdeskTicket.resolve action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskTicket 的动作 resolve 触发副作用 / WHEN 执行动作 resolve / THEN 变更副作用应完整生效且状态一致

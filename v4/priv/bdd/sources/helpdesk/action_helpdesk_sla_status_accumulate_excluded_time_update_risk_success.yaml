@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_SLA_STATUS
+contract: HelpdeskSLAStatus.accumulate_excluded_time action contract (risk:success)
+edge_class: action_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskSLAStatus 的动作 accumulate_excluded_time 可执行 / WHEN 执行动作 accumulate_excluded_time / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 创建追踪记录，accumulate_excluded_time 累加暂停时间

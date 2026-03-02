@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_SLA_STATUS
+contract: HelpdeskSLAStatus.accumulate_excluded_time action contract
+edge_class: action_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskSLAStatus 的动作 accumulate_excluded_time 可执行，accept=[excluded_time_hours]，args=[无显式参数] / WHEN 执行动作 accumulate_excluded_time / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建追踪记录，accumulate_excluded_time 累加暂停时间

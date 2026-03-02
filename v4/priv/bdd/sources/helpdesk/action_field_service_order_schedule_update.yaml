@@ -1,0 +1,5 @@
+module: HELPDESK_FIELD_SERVICE_ORDER
+contract: FieldServiceOrder.schedule action contract
+edge_class: action_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 FieldServiceOrder 的动作 schedule 可执行，accept=[planned_date_begin, planned_date_end]，args=[user_id:uuid] / WHEN 执行动作 schedule / THEN 状态变更与副作用应生效，应符合工作流步骤约束

@@ -1,0 +1,5 @@
+module: HELPDESK_RATING
+contract: Rating.reset action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 Rating 的动作 reset 触发副作用 / WHEN 执行动作 reset / THEN 变更副作用应完整生效且状态一致

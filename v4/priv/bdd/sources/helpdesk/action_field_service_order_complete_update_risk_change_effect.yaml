@@ -1,0 +1,5 @@
+module: HELPDESK_FIELD_SERVICE_ORDER
+contract: FieldServiceOrder.complete action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 FieldServiceOrder 的动作 complete 触发副作用 / WHEN 执行动作 complete / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建现场服务任务，schedule 排期，complete 完成；create 创建任务后 complete，触发工单所有任务完成检查

@@ -1,0 +1,5 @@
+module: HELPDESK_FIELD_SERVICE_ORDER
+contract: FieldServiceOrder.field_service_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 FieldServiceOrder 定义工作流 field_service_lifecycle / WHEN 按步骤执行 create -> schedule -> complete / THEN 流程顺序应满足声明约束

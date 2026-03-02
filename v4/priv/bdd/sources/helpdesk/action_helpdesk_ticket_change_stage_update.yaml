@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_TICKET
+contract: HelpdeskTicket.change_stage action contract
+edge_class: action_contract
+source_file: models/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskTicket 的动作 change_stage 可执行，accept=[[]]，args=[stage_id:uuid!] / WHEN 执行动作 change_stage / THEN 状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束
