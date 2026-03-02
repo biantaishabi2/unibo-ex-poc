@@ -13,6 +13,7 @@ defmodule UniboV4.BDD.CommonInstructions do
   # 模块名 → 子目录映射
   @module_dirs %{
     "ACCOUNTING" => "accounting",
+    "ECOMMERCE" => "ecommerce",
     "SALES" => "sales",
     "PURCHASING" => "purchasing",
     "MEMBERSHIP" => "membership"

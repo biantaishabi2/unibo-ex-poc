@@ -1,0 +1,5 @@
+module: ECOMMERCE_THEME
+contract: Theme.apply action contract (risk:success)
+edge_class: action_contract
+source_file: models/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 Theme 的动作 apply 可执行 / WHEN 执行动作 apply / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 新建主题，apply 应用到网站，switch 切换回 available；apply 应用主题后 update 修改配色方案

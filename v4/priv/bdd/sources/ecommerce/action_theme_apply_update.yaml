@@ -1,0 +1,5 @@
+module: ECOMMERCE_THEME
+contract: Theme.apply action contract
+edge_class: action_contract
+source_file: models/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 Theme 的动作 apply 可执行，accept=[[]]，args=[website_id:uuid!] / WHEN 执行动作 apply / THEN 状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 新建主题，apply 应用到网站，switch 切换回 available；apply 应用主题后 update 修改配色方案

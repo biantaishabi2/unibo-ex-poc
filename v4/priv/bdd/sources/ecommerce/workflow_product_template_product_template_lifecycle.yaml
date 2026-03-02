@@ -1,0 +1,5 @@
+module: ECOMMERCE_PRODUCT_TEMPLATE
+contract: ProductTemplate.product_template_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 ProductTemplate 定义工作流 product_template_lifecycle / WHEN 按步骤执行 create -> publish -> update -> unpublish -> discontinue -> reactivate / THEN 流程顺序应满足声明约束

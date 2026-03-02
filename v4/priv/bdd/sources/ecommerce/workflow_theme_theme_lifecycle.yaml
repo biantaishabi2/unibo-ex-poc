@@ -1,0 +1,5 @@
+module: ECOMMERCE_THEME
+contract: Theme.theme_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 Theme 定义工作流 theme_lifecycle / WHEN 按步骤执行 create -> update -> apply -> switch / THEN 流程顺序应满足声明约束

@@ -1,0 +1,5 @@
+module: ECOMMERCE_PRODUCT_TEMPLATE
+contract: ProductTemplate.discontinue action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 ProductTemplate 的动作 discontinue 输入非法 / WHEN 执行动作 discontinue / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：discontinue 停产产品，reactivate 恢复后重新上架

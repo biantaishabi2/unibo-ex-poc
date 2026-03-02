@@ -1,0 +1,5 @@
+module: ECOMMERCE_LOYALTY_CARD
+contract: LoyaltyCard.add_points action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 LoyaltyCard 的动作 add_points 输入非法 / WHEN 执行动作 add_points / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 新建积分卡，add_points 增加积分，share 生成分享链接；create 新建积分卡，update 修改过期日期，add_points 增加积分

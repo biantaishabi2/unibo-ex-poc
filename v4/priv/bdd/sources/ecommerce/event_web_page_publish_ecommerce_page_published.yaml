@@ -1,0 +1,5 @@
+module: ECOMMERCE_WEB_PAGE
+contract: WebPage.publish event contract
+edge_class: event_contract
+source_file: models/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 WebPage 的动作 publish 完成 / WHEN 触发事件发布 / THEN 应广播 topic `ecommerce.page.published`

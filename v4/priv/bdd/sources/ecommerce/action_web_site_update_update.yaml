@@ -1,0 +1,5 @@
+module: ECOMMERCE_WEB_SITE
+contract: WebSite.update action contract
+edge_class: action_contract
+source_file: models/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 WebSite 的动作 update 可执行，accept=[name, domain_name, is_active, description, homepage_url, favicon, logo, social_twitter, social_facebook, social_github, social_linkedin, social_youtube, social_instagram, social_tiktok, google_analytics_key, google_search_console, plausible_shared_key, cdn_activated, cdn_url, cdn_filters, cookies_bar, custom_code_head, custom_code_footer, prevent_zero_price_sale, cart_abandoned_delay, show_line_subtotals_tax_selection]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：update 修改主题和价格表设置
