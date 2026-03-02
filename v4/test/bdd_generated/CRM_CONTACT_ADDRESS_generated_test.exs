@@ -69,18 +69,50 @@ defmodule UniboV4.BDD.Generated.CRM_CONTACT_ADDRESSTest do
     :ok
   end
 
+  # Source: BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_update_update_risk_validation_fail
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_update_update_risk_validation_fail]" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_update_update_risk_validation_fail"}
+    # line 24: GIVEN given_seed_context id="crm_contact_address_action_contact_address_update_update_risk_validation_fail" module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_contact_address_action_contact_address_update_update_risk_validation_fail", module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 24, raw: "GIVEN given_seed_context id=\"crm_contact_address_action_contact_address_update_update_risk_validation_fail\" module=\"CRM_CONTACT_ADDRESS\""}, 24)
+    # line 25: WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 25, raw: "WHEN when_execute_seed_contract module=\"CRM_CONTACT_ADDRESS\""}, 25)
+    # line 26: THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 26, raw: "THEN then_seed_contract_should_hold module=\"CRM_CONTACT_ADDRESS\""}, 26)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_destroy_destroy_risk_validation_fail
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_destroy_destroy_risk_validation_fail]" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_destroy_destroy_risk_validation_fail"}
+    # line 29: GIVEN given_seed_context id="crm_contact_address_action_contact_address_destroy_destroy_risk_validation_fail" module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_contact_address_action_contact_address_destroy_destroy_risk_validation_fail", module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 29, raw: "GIVEN given_seed_context id=\"crm_contact_address_action_contact_address_destroy_destroy_risk_validation_fail\" module=\"CRM_CONTACT_ADDRESS\""}, 29)
+    # line 30: WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 30, raw: "WHEN when_execute_seed_contract module=\"CRM_CONTACT_ADDRESS\""}, 30)
+    # line 31: THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 31, raw: "THEN then_seed_contract_should_hold module=\"CRM_CONTACT_ADDRESS\""}, 31)
+    _ctx = ctx
+    :ok
+  end
+
   # Source: BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_destroy_destroy_risk_change_effect
   @tag :all
   @tag :seed
   test "[BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_destroy_destroy_risk_change_effect]" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_destroy_destroy_risk_change_effect"}
-    # line 24: GIVEN given_seed_context id="crm_contact_address_action_contact_address_destroy_destroy_risk_change_effect" module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_contact_address_action_contact_address_destroy_destroy_risk_change_effect", module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 24, raw: "GIVEN given_seed_context id=\"crm_contact_address_action_contact_address_destroy_destroy_risk_change_effect\" module=\"CRM_CONTACT_ADDRESS\""}, 24)
-    # line 25: WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 25, raw: "WHEN when_execute_seed_contract module=\"CRM_CONTACT_ADDRESS\""}, 25)
-    # line 26: THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 26, raw: "THEN then_seed_contract_should_hold module=\"CRM_CONTACT_ADDRESS\""}, 26)
+    # line 34: GIVEN given_seed_context id="crm_contact_address_action_contact_address_destroy_destroy_risk_change_effect" module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_contact_address_action_contact_address_destroy_destroy_risk_change_effect", module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 34, raw: "GIVEN given_seed_context id=\"crm_contact_address_action_contact_address_destroy_destroy_risk_change_effect\" module=\"CRM_CONTACT_ADDRESS\""}, 34)
+    # line 35: WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 35, raw: "WHEN when_execute_seed_contract module=\"CRM_CONTACT_ADDRESS\""}, 35)
+    # line 36: THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 36, raw: "THEN then_seed_contract_should_hold module=\"CRM_CONTACT_ADDRESS\""}, 36)
     _ctx = ctx
     :ok
   end
@@ -91,12 +123,12 @@ defmodule UniboV4.BDD.Generated.CRM_CONTACT_ADDRESSTest do
   test "[BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_create_create_risk_change_effect]" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_create_create_risk_change_effect"}
-    # line 29: GIVEN given_seed_context id="crm_contact_address_action_contact_address_create_create_risk_change_effect" module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_contact_address_action_contact_address_create_create_risk_change_effect", module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 29, raw: "GIVEN given_seed_context id=\"crm_contact_address_action_contact_address_create_create_risk_change_effect\" module=\"CRM_CONTACT_ADDRESS\""}, 29)
-    # line 30: WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 30, raw: "WHEN when_execute_seed_contract module=\"CRM_CONTACT_ADDRESS\""}, 30)
-    # line 31: THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 31, raw: "THEN then_seed_contract_should_hold module=\"CRM_CONTACT_ADDRESS\""}, 31)
+    # line 39: GIVEN given_seed_context id="crm_contact_address_action_contact_address_create_create_risk_change_effect" module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_contact_address_action_contact_address_create_create_risk_change_effect", module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 39, raw: "GIVEN given_seed_context id=\"crm_contact_address_action_contact_address_create_create_risk_change_effect\" module=\"CRM_CONTACT_ADDRESS\""}, 39)
+    # line 40: WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 40, raw: "WHEN when_execute_seed_contract module=\"CRM_CONTACT_ADDRESS\""}, 40)
+    # line 41: THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 41, raw: "THEN then_seed_contract_should_hold module=\"CRM_CONTACT_ADDRESS\""}, 41)
     _ctx = ctx
     :ok
   end
@@ -107,12 +139,12 @@ defmodule UniboV4.BDD.Generated.CRM_CONTACT_ADDRESSTest do
   test "[BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_update_update_risk_success]" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_update_update_risk_success"}
-    # line 34: GIVEN given_seed_context id="crm_contact_address_action_contact_address_update_update_risk_success" module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_contact_address_action_contact_address_update_update_risk_success", module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 34, raw: "GIVEN given_seed_context id=\"crm_contact_address_action_contact_address_update_update_risk_success\" module=\"CRM_CONTACT_ADDRESS\""}, 34)
-    # line 35: WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 35, raw: "WHEN when_execute_seed_contract module=\"CRM_CONTACT_ADDRESS\""}, 35)
-    # line 36: THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 36, raw: "THEN then_seed_contract_should_hold module=\"CRM_CONTACT_ADDRESS\""}, 36)
+    # line 44: GIVEN given_seed_context id="crm_contact_address_action_contact_address_update_update_risk_success" module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_contact_address_action_contact_address_update_update_risk_success", module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 44, raw: "GIVEN given_seed_context id=\"crm_contact_address_action_contact_address_update_update_risk_success\" module=\"CRM_CONTACT_ADDRESS\""}, 44)
+    # line 45: WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 45, raw: "WHEN when_execute_seed_contract module=\"CRM_CONTACT_ADDRESS\""}, 45)
+    # line 46: THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 46, raw: "THEN then_seed_contract_should_hold module=\"CRM_CONTACT_ADDRESS\""}, 46)
     _ctx = ctx
     :ok
   end
@@ -123,12 +155,12 @@ defmodule UniboV4.BDD.Generated.CRM_CONTACT_ADDRESSTest do
   test "[BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_update_update]" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_update_update"}
-    # line 39: GIVEN given_seed_context id="crm_contact_address_action_contact_address_update_update" module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_contact_address_action_contact_address_update_update", module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 39, raw: "GIVEN given_seed_context id=\"crm_contact_address_action_contact_address_update_update\" module=\"CRM_CONTACT_ADDRESS\""}, 39)
-    # line 40: WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 40, raw: "WHEN when_execute_seed_contract module=\"CRM_CONTACT_ADDRESS\""}, 40)
-    # line 41: THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 41, raw: "THEN then_seed_contract_should_hold module=\"CRM_CONTACT_ADDRESS\""}, 41)
+    # line 49: GIVEN given_seed_context id="crm_contact_address_action_contact_address_update_update" module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_contact_address_action_contact_address_update_update", module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 49, raw: "GIVEN given_seed_context id=\"crm_contact_address_action_contact_address_update_update\" module=\"CRM_CONTACT_ADDRESS\""}, 49)
+    # line 50: WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 50, raw: "WHEN when_execute_seed_contract module=\"CRM_CONTACT_ADDRESS\""}, 50)
+    # line 51: THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 51, raw: "THEN then_seed_contract_should_hold module=\"CRM_CONTACT_ADDRESS\""}, 51)
     _ctx = ctx
     :ok
   end
@@ -139,12 +171,28 @@ defmodule UniboV4.BDD.Generated.CRM_CONTACT_ADDRESSTest do
   test "[BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_create_create]" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_create_create"}
-    # line 44: GIVEN given_seed_context id="crm_contact_address_action_contact_address_create_create" module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_contact_address_action_contact_address_create_create", module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 44, raw: "GIVEN given_seed_context id=\"crm_contact_address_action_contact_address_create_create\" module=\"CRM_CONTACT_ADDRESS\""}, 44)
-    # line 45: WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 45, raw: "WHEN when_execute_seed_contract module=\"CRM_CONTACT_ADDRESS\""}, 45)
-    # line 46: THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 46, raw: "THEN then_seed_contract_should_hold module=\"CRM_CONTACT_ADDRESS\""}, 46)
+    # line 54: GIVEN given_seed_context id="crm_contact_address_action_contact_address_create_create" module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_contact_address_action_contact_address_create_create", module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 54, raw: "GIVEN given_seed_context id=\"crm_contact_address_action_contact_address_create_create\" module=\"CRM_CONTACT_ADDRESS\""}, 54)
+    # line 55: WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 55, raw: "WHEN when_execute_seed_contract module=\"CRM_CONTACT_ADDRESS\""}, 55)
+    # line 56: THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 56, raw: "THEN then_seed_contract_should_hold module=\"CRM_CONTACT_ADDRESS\""}, 56)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_create_create_risk_validation_fail
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_create_create_risk_validation_fail]" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_create_create_risk_validation_fail"}
+    # line 59: GIVEN given_seed_context id="crm_contact_address_action_contact_address_create_create_risk_validation_fail" module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_contact_address_action_contact_address_create_create_risk_validation_fail", module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 59, raw: "GIVEN given_seed_context id=\"crm_contact_address_action_contact_address_create_create_risk_validation_fail\" module=\"CRM_CONTACT_ADDRESS\""}, 59)
+    # line 60: WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 60, raw: "WHEN when_execute_seed_contract module=\"CRM_CONTACT_ADDRESS\""}, 60)
+    # line 61: THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_CONTACT_ADDRESS"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_CONTACT_ADDRESS.dsl", line: 61, raw: "THEN then_seed_contract_should_hold module=\"CRM_CONTACT_ADDRESS\""}, 61)
     _ctx = ctx
     :ok
   end

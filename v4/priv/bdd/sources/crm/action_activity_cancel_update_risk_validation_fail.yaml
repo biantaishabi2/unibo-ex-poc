@@ -2,4 +2,4 @@ module: CRM_ACTIVITY
 contract: Activity.cancel action contract (risk:validation_fail)
 edge_class: action_contract
 source_file: models/crm/crm.ubo.yaml
-source_summary: GIVEN 实体 Activity 的动作 cancel 输入非法 / WHEN 执行动作 cancel / THEN 应返回校验失败且不产生持久化副作用
+source_summary: GIVEN 实体 Activity 的动作 cancel 输入非法 / WHEN 执行动作 cancel / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 新建活动，cancel 取消活动；已完成活动尝试 cancel 被校验拒绝

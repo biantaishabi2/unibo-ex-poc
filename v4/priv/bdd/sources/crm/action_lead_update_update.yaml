@@ -2,4 +2,4 @@ module: CRM_LEAD
 contract: Lead.update action contract
 edge_class: action_contract
 source_file: models/crm/crm.ubo.yaml
-source_summary: GIVEN 实体 Lead 的动作 update 可执行，accept=[name, partner_name, contact_name, email_from, phone, mobile, expected_revenue, probability, priority, tag_ids, source, date_deadline, notes, lead_properties]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效
+source_summary: GIVEN 实体 Lead 的动作 update 可执行，accept=[name, partner_name, contact_name, email_from, phone, mobile, expected_revenue, probability, priority, tag_ids, source, date_deadline, notes, lead_properties]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束

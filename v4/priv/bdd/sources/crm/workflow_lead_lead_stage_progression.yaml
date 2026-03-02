@@ -1,0 +1,5 @@
+module: CRM_LEAD
+contract: Lead.lead_stage_progression workflow contract
+edge_class: workflow_contract
+source_file: models/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 Lead 定义工作流 lead_stage_progression / WHEN 按步骤执行 update / THEN 流程顺序应满足声明约束

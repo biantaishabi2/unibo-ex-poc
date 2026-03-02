@@ -30,6 +30,11 @@ GIVEN given_seed_context id="crm_sales_forecast_action_sales_forecast_create_cre
 WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
 THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
 
+[SCENARIO: BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_branch_or_exception] TITLE: CRM_SALES_FORECAST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_branch_or_exception" module="CRM_SALES_FORECAST"
+WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
+THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
+
 [SCENARIO: BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_action_sales_forecast_update_update_risk_change_effect] TITLE: CRM_SALES_FORECAST contract seed scenario TAGS: seed all
 GIVEN given_seed_context id="crm_sales_forecast_action_sales_forecast_update_update_risk_change_effect" module="CRM_SALES_FORECAST"
 WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
@@ -40,8 +45,18 @@ GIVEN given_seed_context id="crm_sales_forecast_action_sales_forecast_create_cre
 WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
 THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
 
+[SCENARIO: BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_workflow_sales_forecast_sales_forecast_management] TITLE: CRM_SALES_FORECAST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_sales_forecast_workflow_sales_forecast_sales_forecast_management" module="CRM_SALES_FORECAST"
+WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
+THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
+
 [SCENARIO: BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_action_sales_forecast_create_create_risk_validation_fail] TITLE: CRM_SALES_FORECAST contract seed scenario TAGS: seed all
 GIVEN given_seed_context id="crm_sales_forecast_action_sales_forecast_create_create_risk_validation_fail" module="CRM_SALES_FORECAST"
+WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
+THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
+
+[SCENARIO: BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_mainline] TITLE: CRM_SALES_FORECAST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_mainline" module="CRM_SALES_FORECAST"
 WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
 THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
 

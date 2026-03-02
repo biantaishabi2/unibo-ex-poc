@@ -2,4 +2,4 @@ module: CRM_LEAD
 contract: Lead.merge action contract (risk:change_effect)
 edge_class: action_contract
 source_file: models/crm/crm.ubo.yaml
-source_summary: GIVEN 实体 Lead 的动作 merge 触发副作用 / WHEN 执行动作 merge / THEN 变更副作用应完整生效且状态一致
+source_summary: GIVEN 实体 Lead 的动作 merge 触发副作用 / WHEN 执行动作 merge / THEN 变更副作用应完整生效且状态一致 / 补充场景：merge 合并多条线索，字段取第一个非空值，活动/日历事件迁移

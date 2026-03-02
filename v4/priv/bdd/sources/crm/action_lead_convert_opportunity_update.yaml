@@ -2,4 +2,4 @@ module: CRM_LEAD
 contract: Lead.convert_opportunity action contract
 edge_class: action_contract
 source_file: models/crm/crm.ubo.yaml
-source_summary: GIVEN 实体 Lead 的动作 convert_opportunity 可执行，accept=[[]]，args=[contact_id:uuid] / WHEN 执行动作 convert_opportunity / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件
+source_summary: GIVEN 实体 Lead 的动作 convert_opportunity 可执行，accept=[[]]，args=[contact_id:uuid] / WHEN 执行动作 convert_opportunity / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 新建线索，convert_opportunity 转为商机，win 赢单；create 新建线索，convert_opportunity 转商机并关联 Contact，win 赢单；type=opportunity 时尝试 convert_opportunity 被校验拒绝

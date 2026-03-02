@@ -21,18 +21,50 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
     :ok
   end
 
+  # Source: BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_lifecycle_risk_mainline
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_lifecycle_risk_mainline] CRM_LEAD contract seed scenario" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_lifecycle_risk_mainline"}
+    # line 9: GIVEN given_seed_context id="crm_lead_workflow_lead_lead_lifecycle_risk_mainline" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_workflow_lead_lead_lifecycle_risk_mainline", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 9, raw: "GIVEN given_seed_context id=\"crm_lead_workflow_lead_lead_lifecycle_risk_mainline\" module=\"CRM_LEAD\""}, 9)
+    # line 10: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 10, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 10)
+    # line 11: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 11, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 11)
+    _ctx = ctx
+    :ok
+  end
+
   # Source: BDD-CRM_LEAD-SEED-crm_lead_event_lead_lose_crm_lead_lost
   @tag :all
   @tag :seed
   test "[BDD-CRM_LEAD-SEED-crm_lead_event_lead_lose_crm_lead_lost] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_event_lead_lose_crm_lead_lost"}
-    # line 9: GIVEN given_seed_context id="crm_lead_event_lead_lose_crm_lead_lost" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_lose_crm_lead_lost", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 9, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_lose_crm_lead_lost\" module=\"CRM_LEAD\""}, 9)
-    # line 10: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 10, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 10)
-    # line 11: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 11, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 11)
+    # line 14: GIVEN given_seed_context id="crm_lead_event_lead_lose_crm_lead_lost" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_lose_crm_lead_lost", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 14, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_lose_crm_lead_lost\" module=\"CRM_LEAD\""}, 14)
+    # line 15: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 15, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 15)
+    # line 16: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 16, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 16)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_stage_progression
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_stage_progression] CRM_LEAD contract seed scenario" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_stage_progression"}
+    # line 19: GIVEN given_seed_context id="crm_lead_workflow_lead_lead_stage_progression" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_workflow_lead_lead_stage_progression", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 19, raw: "GIVEN given_seed_context id=\"crm_lead_workflow_lead_lead_stage_progression\" module=\"CRM_LEAD\""}, 19)
+    # line 20: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 20, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 20)
+    # line 21: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 21, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 21)
     _ctx = ctx
     :ok
   end
@@ -43,12 +75,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_event_lead_convert_opportunity_crm_lead_converted] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_event_lead_convert_opportunity_crm_lead_converted"}
-    # line 14: GIVEN given_seed_context id="crm_lead_event_lead_convert_opportunity_crm_lead_converted" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_convert_opportunity_crm_lead_converted", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 14, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_convert_opportunity_crm_lead_converted\" module=\"CRM_LEAD\""}, 14)
-    # line 15: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 15, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 15)
-    # line 16: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 16, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 16)
+    # line 24: GIVEN given_seed_context id="crm_lead_event_lead_convert_opportunity_crm_lead_converted" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_convert_opportunity_crm_lead_converted", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 24, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_convert_opportunity_crm_lead_converted\" module=\"CRM_LEAD\""}, 24)
+    # line 25: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 25, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 25)
+    # line 26: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 26, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 26)
     _ctx = ctx
     :ok
   end
@@ -59,12 +91,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_convert_opportunity_update_risk_change_effect] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_convert_opportunity_update_risk_change_effect"}
-    # line 19: GIVEN given_seed_context id="crm_lead_action_lead_convert_opportunity_update_risk_change_effect" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_convert_opportunity_update_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 19, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_convert_opportunity_update_risk_change_effect\" module=\"CRM_LEAD\""}, 19)
-    # line 20: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 20, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 20)
-    # line 21: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 21, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 21)
+    # line 29: GIVEN given_seed_context id="crm_lead_action_lead_convert_opportunity_update_risk_change_effect" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_convert_opportunity_update_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 29, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_convert_opportunity_update_risk_change_effect\" module=\"CRM_LEAD\""}, 29)
+    # line 30: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 30, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 30)
+    # line 31: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 31, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 31)
     _ctx = ctx
     :ok
   end
@@ -75,12 +107,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_read_read] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_read_read"}
-    # line 24: GIVEN given_seed_context id="crm_lead_action_lead_read_read" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_read_read", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 24, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_read_read\" module=\"CRM_LEAD\""}, 24)
-    # line 25: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 25, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 25)
-    # line 26: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 26, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 26)
+    # line 34: GIVEN given_seed_context id="crm_lead_action_lead_read_read" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_read_read", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 34, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_read_read\" module=\"CRM_LEAD\""}, 34)
+    # line 35: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 35, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 35)
+    # line 36: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 36, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 36)
     _ctx = ctx
     :ok
   end
@@ -91,12 +123,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_event_lead_lose_crm_lead_lost_risk_idempotent_replay] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_event_lead_lose_crm_lead_lost_risk_idempotent_replay"}
-    # line 29: GIVEN given_seed_context id="crm_lead_event_lead_lose_crm_lead_lost_risk_idempotent_replay" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_lose_crm_lead_lost_risk_idempotent_replay", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 29, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_lose_crm_lead_lost_risk_idempotent_replay\" module=\"CRM_LEAD\""}, 29)
-    # line 30: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 30, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 30)
-    # line 31: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 31, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 31)
+    # line 39: GIVEN given_seed_context id="crm_lead_event_lead_lose_crm_lead_lost_risk_idempotent_replay" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_lose_crm_lead_lost_risk_idempotent_replay", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 39, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_lose_crm_lead_lost_risk_idempotent_replay\" module=\"CRM_LEAD\""}, 39)
+    # line 40: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 40, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 40)
+    # line 41: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 41, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 41)
     _ctx = ctx
     :ok
   end
@@ -107,12 +139,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_assign_salesperson_update] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_assign_salesperson_update"}
-    # line 34: GIVEN given_seed_context id="crm_lead_action_lead_assign_salesperson_update" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_assign_salesperson_update", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 34, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_assign_salesperson_update\" module=\"CRM_LEAD\""}, 34)
-    # line 35: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 35, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 35)
-    # line 36: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 36, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 36)
+    # line 44: GIVEN given_seed_context id="crm_lead_action_lead_assign_salesperson_update" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_assign_salesperson_update", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 44, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_assign_salesperson_update\" module=\"CRM_LEAD\""}, 44)
+    # line 45: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 45, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 45)
+    # line 46: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 46, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 46)
     _ctx = ctx
     :ok
   end
@@ -123,12 +155,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_normal_publish] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_normal_publish"}
-    # line 39: GIVEN given_seed_context id="crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_normal_publish" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_normal_publish", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 39, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_normal_publish\" module=\"CRM_LEAD\""}, 39)
-    # line 40: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 40, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 40)
-    # line 41: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 41, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 41)
+    # line 49: GIVEN given_seed_context id="crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_normal_publish" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_normal_publish", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 49, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_normal_publish\" module=\"CRM_LEAD\""}, 49)
+    # line 50: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 50, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 50)
+    # line 51: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 51, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 51)
     _ctx = ctx
     :ok
   end
@@ -139,12 +171,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_event_lead_win_crm_lead_won] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_event_lead_win_crm_lead_won"}
-    # line 44: GIVEN given_seed_context id="crm_lead_event_lead_win_crm_lead_won" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_win_crm_lead_won", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 44, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_win_crm_lead_won\" module=\"CRM_LEAD\""}, 44)
-    # line 45: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 45, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 45)
-    # line 46: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 46, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 46)
+    # line 54: GIVEN given_seed_context id="crm_lead_event_lead_win_crm_lead_won" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_win_crm_lead_won", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 54, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_win_crm_lead_won\" module=\"CRM_LEAD\""}, 54)
+    # line 55: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 55, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 55)
+    # line 56: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 56, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 56)
     _ctx = ctx
     :ok
   end
@@ -155,12 +187,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_win_update] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_win_update"}
-    # line 49: GIVEN given_seed_context id="crm_lead_action_lead_win_update" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_win_update", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 49, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_win_update\" module=\"CRM_LEAD\""}, 49)
-    # line 50: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 50, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 50)
-    # line 51: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 51, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 51)
+    # line 59: GIVEN given_seed_context id="crm_lead_action_lead_win_update" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_win_update", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 59, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_win_update\" module=\"CRM_LEAD\""}, 59)
+    # line 60: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 60, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 60)
+    # line 61: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 61, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 61)
     _ctx = ctx
     :ok
   end
@@ -171,12 +203,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_assign_salesperson_update_risk_success] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_assign_salesperson_update_risk_success"}
-    # line 54: GIVEN given_seed_context id="crm_lead_action_lead_assign_salesperson_update_risk_success" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_assign_salesperson_update_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 54, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_assign_salesperson_update_risk_success\" module=\"CRM_LEAD\""}, 54)
-    # line 55: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 55, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 55)
-    # line 56: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 56, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 56)
+    # line 64: GIVEN given_seed_context id="crm_lead_action_lead_assign_salesperson_update_risk_success" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_assign_salesperson_update_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 64, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_assign_salesperson_update_risk_success\" module=\"CRM_LEAD\""}, 64)
+    # line 65: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 65, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 65)
+    # line 66: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 66, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 66)
     _ctx = ctx
     :ok
   end
@@ -187,12 +219,28 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_lose_update_risk_success] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_lose_update_risk_success"}
-    # line 59: GIVEN given_seed_context id="crm_lead_action_lead_lose_update_risk_success" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_lose_update_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 59, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_lose_update_risk_success\" module=\"CRM_LEAD\""}, 59)
-    # line 60: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 60, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 60)
-    # line 61: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 61, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 61)
+    # line 69: GIVEN given_seed_context id="crm_lead_action_lead_lose_update_risk_success" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_lose_update_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 69, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_lose_update_risk_success\" module=\"CRM_LEAD\""}, 69)
+    # line 70: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 70, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 70)
+    # line 71: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 71, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 71)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_lifecycle_risk_branch_or_exception
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_lifecycle_risk_branch_or_exception] CRM_LEAD contract seed scenario" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_lifecycle_risk_branch_or_exception"}
+    # line 74: GIVEN given_seed_context id="crm_lead_workflow_lead_lead_lifecycle_risk_branch_or_exception" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_workflow_lead_lead_lifecycle_risk_branch_or_exception", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 74, raw: "GIVEN given_seed_context id=\"crm_lead_workflow_lead_lead_lifecycle_risk_branch_or_exception\" module=\"CRM_LEAD\""}, 74)
+    # line 75: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 75, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 75)
+    # line 76: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 76, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 76)
     _ctx = ctx
     :ok
   end
@@ -203,12 +251,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_event_lead_win_crm_lead_won_risk_idempotent_replay] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_event_lead_win_crm_lead_won_risk_idempotent_replay"}
-    # line 64: GIVEN given_seed_context id="crm_lead_event_lead_win_crm_lead_won_risk_idempotent_replay" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_win_crm_lead_won_risk_idempotent_replay", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 64, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_win_crm_lead_won_risk_idempotent_replay\" module=\"CRM_LEAD\""}, 64)
-    # line 65: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 65, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 65)
-    # line 66: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 66, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 66)
+    # line 79: GIVEN given_seed_context id="crm_lead_event_lead_win_crm_lead_won_risk_idempotent_replay" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_win_crm_lead_won_risk_idempotent_replay", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 79, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_win_crm_lead_won_risk_idempotent_replay\" module=\"CRM_LEAD\""}, 79)
+    # line 80: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 80, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 80)
+    # line 81: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 81, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 81)
     _ctx = ctx
     :ok
   end
@@ -219,12 +267,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_event_lead_win_crm_lead_won_risk_normal_publish] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_event_lead_win_crm_lead_won_risk_normal_publish"}
-    # line 69: GIVEN given_seed_context id="crm_lead_event_lead_win_crm_lead_won_risk_normal_publish" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_win_crm_lead_won_risk_normal_publish", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 69, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_win_crm_lead_won_risk_normal_publish\" module=\"CRM_LEAD\""}, 69)
-    # line 70: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 70, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 70)
-    # line 71: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 71, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 71)
+    # line 84: GIVEN given_seed_context id="crm_lead_event_lead_win_crm_lead_won_risk_normal_publish" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_win_crm_lead_won_risk_normal_publish", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 84, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_win_crm_lead_won_risk_normal_publish\" module=\"CRM_LEAD\""}, 84)
+    # line 85: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 85, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 85)
+    # line 86: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 86, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 86)
     _ctx = ctx
     :ok
   end
@@ -235,12 +283,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_convert_opportunity_update] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_convert_opportunity_update"}
-    # line 74: GIVEN given_seed_context id="crm_lead_action_lead_convert_opportunity_update" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_convert_opportunity_update", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 74, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_convert_opportunity_update\" module=\"CRM_LEAD\""}, 74)
-    # line 75: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 75, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 75)
-    # line 76: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 76, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 76)
+    # line 89: GIVEN given_seed_context id="crm_lead_action_lead_convert_opportunity_update" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_convert_opportunity_update", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 89, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_convert_opportunity_update\" module=\"CRM_LEAD\""}, 89)
+    # line 90: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 90, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 90)
+    # line 91: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 91, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 91)
     _ctx = ctx
     :ok
   end
@@ -251,12 +299,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_update_update_risk_change_effect] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_update_update_risk_change_effect"}
-    # line 79: GIVEN given_seed_context id="crm_lead_action_lead_update_update_risk_change_effect" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_update_update_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 79, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_update_update_risk_change_effect\" module=\"CRM_LEAD\""}, 79)
-    # line 80: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 80, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 80)
-    # line 81: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 81, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 81)
+    # line 94: GIVEN given_seed_context id="crm_lead_action_lead_update_update_risk_change_effect" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_update_update_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 94, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_update_update_risk_change_effect\" module=\"CRM_LEAD\""}, 94)
+    # line 95: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 95, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 95)
+    # line 96: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 96, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 96)
     _ctx = ctx
     :ok
   end
@@ -267,12 +315,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_lose_update_risk_change_effect] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_lose_update_risk_change_effect"}
-    # line 84: GIVEN given_seed_context id="crm_lead_action_lead_lose_update_risk_change_effect" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_lose_update_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 84, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_lose_update_risk_change_effect\" module=\"CRM_LEAD\""}, 84)
-    # line 85: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 85, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 85)
-    # line 86: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 86, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 86)
+    # line 99: GIVEN given_seed_context id="crm_lead_action_lead_lose_update_risk_change_effect" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_lose_update_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 99, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_lose_update_risk_change_effect\" module=\"CRM_LEAD\""}, 99)
+    # line 100: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 100, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 100)
+    # line 101: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 101, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 101)
     _ctx = ctx
     :ok
   end
@@ -283,12 +331,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_update_update] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_update_update"}
-    # line 89: GIVEN given_seed_context id="crm_lead_action_lead_update_update" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_update_update", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 89, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_update_update\" module=\"CRM_LEAD\""}, 89)
-    # line 90: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 90, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 90)
-    # line 91: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 91, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 91)
+    # line 104: GIVEN given_seed_context id="crm_lead_action_lead_update_update" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_update_update", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 104, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_update_update\" module=\"CRM_LEAD\""}, 104)
+    # line 105: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 105, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 105)
+    # line 106: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 106, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 106)
     _ctx = ctx
     :ok
   end
@@ -299,12 +347,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_create_create_risk_validation_fail] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_create_create_risk_validation_fail"}
-    # line 94: GIVEN given_seed_context id="crm_lead_action_lead_create_create_risk_validation_fail" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_create_create_risk_validation_fail", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 94, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_create_create_risk_validation_fail\" module=\"CRM_LEAD\""}, 94)
-    # line 95: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 95, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 95)
-    # line 96: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 96, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 96)
+    # line 109: GIVEN given_seed_context id="crm_lead_action_lead_create_create_risk_validation_fail" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_create_create_risk_validation_fail", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 109, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_create_create_risk_validation_fail\" module=\"CRM_LEAD\""}, 109)
+    # line 110: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 110, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 110)
+    # line 111: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 111, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 111)
     _ctx = ctx
     :ok
   end
@@ -315,12 +363,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_create_create_risk_change_effect] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_create_create_risk_change_effect"}
-    # line 99: GIVEN given_seed_context id="crm_lead_action_lead_create_create_risk_change_effect" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_create_create_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 99, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_create_create_risk_change_effect\" module=\"CRM_LEAD\""}, 99)
-    # line 100: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 100, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 100)
-    # line 101: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 101, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 101)
+    # line 114: GIVEN given_seed_context id="crm_lead_action_lead_create_create_risk_change_effect" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_create_create_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 114, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_create_create_risk_change_effect\" module=\"CRM_LEAD\""}, 114)
+    # line 115: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 115, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 115)
+    # line 116: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 116, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 116)
     _ctx = ctx
     :ok
   end
@@ -331,12 +379,28 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_assign_salesperson_update_risk_change_effect] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_assign_salesperson_update_risk_change_effect"}
-    # line 104: GIVEN given_seed_context id="crm_lead_action_lead_assign_salesperson_update_risk_change_effect" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_assign_salesperson_update_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 104, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_assign_salesperson_update_risk_change_effect\" module=\"CRM_LEAD\""}, 104)
-    # line 105: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 105, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 105)
-    # line 106: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 106, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 106)
+    # line 119: GIVEN given_seed_context id="crm_lead_action_lead_assign_salesperson_update_risk_change_effect" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_assign_salesperson_update_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 119, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_assign_salesperson_update_risk_change_effect\" module=\"CRM_LEAD\""}, 119)
+    # line 120: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 120, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 120)
+    # line 121: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 121, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 121)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_lifecycle
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_lifecycle] CRM_LEAD contract seed scenario" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_lifecycle"}
+    # line 124: GIVEN given_seed_context id="crm_lead_workflow_lead_lead_lifecycle" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_workflow_lead_lead_lifecycle", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 124, raw: "GIVEN given_seed_context id=\"crm_lead_workflow_lead_lead_lifecycle\" module=\"CRM_LEAD\""}, 124)
+    # line 125: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 125, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 125)
+    # line 126: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 126, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 126)
     _ctx = ctx
     :ok
   end
@@ -347,12 +411,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_merge_custom_risk_success] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_merge_custom_risk_success"}
-    # line 109: GIVEN given_seed_context id="crm_lead_action_lead_merge_custom_risk_success" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_merge_custom_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 109, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_merge_custom_risk_success\" module=\"CRM_LEAD\""}, 109)
-    # line 110: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 110, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 110)
-    # line 111: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 111, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 111)
+    # line 129: GIVEN given_seed_context id="crm_lead_action_lead_merge_custom_risk_success" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_merge_custom_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 129, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_merge_custom_risk_success\" module=\"CRM_LEAD\""}, 129)
+    # line 130: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 130, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 130)
+    # line 131: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 131, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 131)
     _ctx = ctx
     :ok
   end
@@ -363,12 +427,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_idempotent_replay] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_idempotent_replay"}
-    # line 114: GIVEN given_seed_context id="crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_idempotent_replay" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_idempotent_replay", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 114, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_idempotent_replay\" module=\"CRM_LEAD\""}, 114)
-    # line 115: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 115, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 115)
-    # line 116: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 116, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 116)
+    # line 134: GIVEN given_seed_context id="crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_idempotent_replay" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_idempotent_replay", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 134, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_convert_opportunity_crm_lead_converted_risk_idempotent_replay\" module=\"CRM_LEAD\""}, 134)
+    # line 135: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 135, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 135)
+    # line 136: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 136, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 136)
     _ctx = ctx
     :ok
   end
@@ -379,12 +443,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_event_lead_lose_crm_lead_lost_risk_normal_publish] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_event_lead_lose_crm_lead_lost_risk_normal_publish"}
-    # line 119: GIVEN given_seed_context id="crm_lead_event_lead_lose_crm_lead_lost_risk_normal_publish" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_lose_crm_lead_lost_risk_normal_publish", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 119, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_lose_crm_lead_lost_risk_normal_publish\" module=\"CRM_LEAD\""}, 119)
-    # line 120: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 120, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 120)
-    # line 121: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 121, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 121)
+    # line 139: GIVEN given_seed_context id="crm_lead_event_lead_lose_crm_lead_lost_risk_normal_publish" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_event_lead_lose_crm_lead_lost_risk_normal_publish", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 139, raw: "GIVEN given_seed_context id=\"crm_lead_event_lead_lose_crm_lead_lost_risk_normal_publish\" module=\"CRM_LEAD\""}, 139)
+    # line 140: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 140, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 140)
+    # line 141: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 141, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 141)
     _ctx = ctx
     :ok
   end
@@ -395,12 +459,28 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_convert_opportunity_update_risk_success] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_convert_opportunity_update_risk_success"}
-    # line 124: GIVEN given_seed_context id="crm_lead_action_lead_convert_opportunity_update_risk_success" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_convert_opportunity_update_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 124, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_convert_opportunity_update_risk_success\" module=\"CRM_LEAD\""}, 124)
-    # line 125: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 125, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 125)
-    # line 126: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 126, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 126)
+    # line 144: GIVEN given_seed_context id="crm_lead_action_lead_convert_opportunity_update_risk_success" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_convert_opportunity_update_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 144, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_convert_opportunity_update_risk_success\" module=\"CRM_LEAD\""}, 144)
+    # line 145: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 145, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 145)
+    # line 146: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 146, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 146)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_stage_progression_risk_mainline
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_stage_progression_risk_mainline] CRM_LEAD contract seed scenario" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_stage_progression_risk_mainline"}
+    # line 149: GIVEN given_seed_context id="crm_lead_workflow_lead_lead_stage_progression_risk_mainline" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_workflow_lead_lead_stage_progression_risk_mainline", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 149, raw: "GIVEN given_seed_context id=\"crm_lead_workflow_lead_lead_stage_progression_risk_mainline\" module=\"CRM_LEAD\""}, 149)
+    # line 150: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 150, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 150)
+    # line 151: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 151, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 151)
     _ctx = ctx
     :ok
   end
@@ -411,12 +491,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_win_update_risk_change_effect] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_win_update_risk_change_effect"}
-    # line 129: GIVEN given_seed_context id="crm_lead_action_lead_win_update_risk_change_effect" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_win_update_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 129, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_win_update_risk_change_effect\" module=\"CRM_LEAD\""}, 129)
-    # line 130: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 130, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 130)
-    # line 131: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 131, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 131)
+    # line 154: GIVEN given_seed_context id="crm_lead_action_lead_win_update_risk_change_effect" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_win_update_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 154, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_win_update_risk_change_effect\" module=\"CRM_LEAD\""}, 154)
+    # line 155: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 155, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 155)
+    # line 156: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 156, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 156)
     _ctx = ctx
     :ok
   end
@@ -427,12 +507,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_update_update_risk_success] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_update_update_risk_success"}
-    # line 134: GIVEN given_seed_context id="crm_lead_action_lead_update_update_risk_success" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_update_update_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 134, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_update_update_risk_success\" module=\"CRM_LEAD\""}, 134)
-    # line 135: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 135, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 135)
-    # line 136: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 136, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 136)
+    # line 159: GIVEN given_seed_context id="crm_lead_action_lead_update_update_risk_success" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_update_update_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 159, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_update_update_risk_success\" module=\"CRM_LEAD\""}, 159)
+    # line 160: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 160, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 160)
+    # line 161: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 161, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 161)
     _ctx = ctx
     :ok
   end
@@ -443,12 +523,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_win_update_risk_validation_fail] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_win_update_risk_validation_fail"}
-    # line 139: GIVEN given_seed_context id="crm_lead_action_lead_win_update_risk_validation_fail" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_win_update_risk_validation_fail", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 139, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_win_update_risk_validation_fail\" module=\"CRM_LEAD\""}, 139)
-    # line 140: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 140, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 140)
-    # line 141: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 141, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 141)
+    # line 164: GIVEN given_seed_context id="crm_lead_action_lead_win_update_risk_validation_fail" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_win_update_risk_validation_fail", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 164, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_win_update_risk_validation_fail\" module=\"CRM_LEAD\""}, 164)
+    # line 165: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 165, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 165)
+    # line 166: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 166, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 166)
     _ctx = ctx
     :ok
   end
@@ -459,12 +539,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_lose_update] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_lose_update"}
-    # line 144: GIVEN given_seed_context id="crm_lead_action_lead_lose_update" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_lose_update", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 144, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_lose_update\" module=\"CRM_LEAD\""}, 144)
-    # line 145: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 145, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 145)
-    # line 146: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 146, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 146)
+    # line 169: GIVEN given_seed_context id="crm_lead_action_lead_lose_update" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_lose_update", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 169, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_lose_update\" module=\"CRM_LEAD\""}, 169)
+    # line 170: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 170, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 170)
+    # line 171: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 171, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 171)
     _ctx = ctx
     :ok
   end
@@ -475,12 +555,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_convert_opportunity_update_risk_validation_fail] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_convert_opportunity_update_risk_validation_fail"}
-    # line 149: GIVEN given_seed_context id="crm_lead_action_lead_convert_opportunity_update_risk_validation_fail" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_convert_opportunity_update_risk_validation_fail", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 149, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_convert_opportunity_update_risk_validation_fail\" module=\"CRM_LEAD\""}, 149)
-    # line 150: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 150, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 150)
-    # line 151: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 151, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 151)
+    # line 174: GIVEN given_seed_context id="crm_lead_action_lead_convert_opportunity_update_risk_validation_fail" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_convert_opportunity_update_risk_validation_fail", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 174, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_convert_opportunity_update_risk_validation_fail\" module=\"CRM_LEAD\""}, 174)
+    # line 175: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 175, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 175)
+    # line 176: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 176, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 176)
     _ctx = ctx
     :ok
   end
@@ -491,12 +571,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_create_create_risk_success] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_create_create_risk_success"}
-    # line 154: GIVEN given_seed_context id="crm_lead_action_lead_create_create_risk_success" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_create_create_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 154, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_create_create_risk_success\" module=\"CRM_LEAD\""}, 154)
-    # line 155: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 155, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 155)
-    # line 156: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 156, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 156)
+    # line 179: GIVEN given_seed_context id="crm_lead_action_lead_create_create_risk_success" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_create_create_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 179, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_create_create_risk_success\" module=\"CRM_LEAD\""}, 179)
+    # line 180: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 180, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 180)
+    # line 181: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 181, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 181)
     _ctx = ctx
     :ok
   end
@@ -507,12 +587,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_merge_custom_risk_change_effect] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_merge_custom_risk_change_effect"}
-    # line 159: GIVEN given_seed_context id="crm_lead_action_lead_merge_custom_risk_change_effect" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_merge_custom_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 159, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_merge_custom_risk_change_effect\" module=\"CRM_LEAD\""}, 159)
-    # line 160: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 160, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 160)
-    # line 161: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 161, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 161)
+    # line 184: GIVEN given_seed_context id="crm_lead_action_lead_merge_custom_risk_change_effect" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_merge_custom_risk_change_effect", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 184, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_merge_custom_risk_change_effect\" module=\"CRM_LEAD\""}, 184)
+    # line 185: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 185, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 185)
+    # line 186: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 186, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 186)
     _ctx = ctx
     :ok
   end
@@ -523,12 +603,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_create_create] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_create_create"}
-    # line 164: GIVEN given_seed_context id="crm_lead_action_lead_create_create" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_create_create", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 164, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_create_create\" module=\"CRM_LEAD\""}, 164)
-    # line 165: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 165, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 165)
-    # line 166: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 166, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 166)
+    # line 189: GIVEN given_seed_context id="crm_lead_action_lead_create_create" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_create_create", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 189, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_create_create\" module=\"CRM_LEAD\""}, 189)
+    # line 190: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 190, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 190)
+    # line 191: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 191, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 191)
     _ctx = ctx
     :ok
   end
@@ -539,12 +619,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_win_update_risk_success] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_win_update_risk_success"}
-    # line 169: GIVEN given_seed_context id="crm_lead_action_lead_win_update_risk_success" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_win_update_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 169, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_win_update_risk_success\" module=\"CRM_LEAD\""}, 169)
-    # line 170: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 170, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 170)
-    # line 171: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 171, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 171)
+    # line 194: GIVEN given_seed_context id="crm_lead_action_lead_win_update_risk_success" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_win_update_risk_success", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 194, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_win_update_risk_success\" module=\"CRM_LEAD\""}, 194)
+    # line 195: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 195, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 195)
+    # line 196: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 196, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 196)
     _ctx = ctx
     :ok
   end
@@ -555,12 +635,12 @@ defmodule UniboV4.BDD.Generated.CRM_LEADTest do
   test "[BDD-CRM_LEAD-SEED-crm_lead_action_lead_merge_custom] CRM_LEAD contract seed scenario" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_LEAD-SEED-crm_lead_action_lead_merge_custom"}
-    # line 174: GIVEN given_seed_context id="crm_lead_action_lead_merge_custom" module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_merge_custom", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 174, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_merge_custom\" module=\"CRM_LEAD\""}, 174)
-    # line 175: WHEN when_execute_seed_contract module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 175, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 175)
-    # line 176: THEN then_seed_contract_should_hold module="CRM_LEAD"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 176, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 176)
+    # line 199: GIVEN given_seed_context id="crm_lead_action_lead_merge_custom" module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_lead_action_lead_merge_custom", module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 199, raw: "GIVEN given_seed_context id=\"crm_lead_action_lead_merge_custom\" module=\"CRM_LEAD\""}, 199)
+    # line 200: WHEN when_execute_seed_contract module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 200, raw: "WHEN when_execute_seed_contract module=\"CRM_LEAD\""}, 200)
+    # line 201: THEN then_seed_contract_should_hold module="CRM_LEAD"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_LEAD"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_LEAD.dsl", line: 201, raw: "THEN then_seed_contract_should_hold module=\"CRM_LEAD\""}, 201)
     _ctx = ctx
     :ok
   end

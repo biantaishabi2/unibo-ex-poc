@@ -101,18 +101,34 @@ defmodule UniboV4.BDD.Generated.CRM_SALES_FORECASTTest do
     :ok
   end
 
+  # Source: BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_branch_or_exception
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_branch_or_exception]" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_branch_or_exception"}
+    # line 34: GIVEN given_seed_context id="crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_branch_or_exception" module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_branch_or_exception", module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 34, raw: "GIVEN given_seed_context id=\"crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_branch_or_exception\" module=\"CRM_SALES_FORECAST\""}, 34)
+    # line 35: WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 35, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_FORECAST\""}, 35)
+    # line 36: THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 36, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_FORECAST\""}, 36)
+    _ctx = ctx
+    :ok
+  end
+
   # Source: BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_action_sales_forecast_update_update_risk_change_effect
   @tag :all
   @tag :seed
   test "[BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_action_sales_forecast_update_update_risk_change_effect]" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_action_sales_forecast_update_update_risk_change_effect"}
-    # line 34: GIVEN given_seed_context id="crm_sales_forecast_action_sales_forecast_update_update_risk_change_effect" module="CRM_SALES_FORECAST"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_forecast_action_sales_forecast_update_update_risk_change_effect", module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 34, raw: "GIVEN given_seed_context id=\"crm_sales_forecast_action_sales_forecast_update_update_risk_change_effect\" module=\"CRM_SALES_FORECAST\""}, 34)
-    # line 35: WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 35, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_FORECAST\""}, 35)
-    # line 36: THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 36, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_FORECAST\""}, 36)
+    # line 39: GIVEN given_seed_context id="crm_sales_forecast_action_sales_forecast_update_update_risk_change_effect" module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_forecast_action_sales_forecast_update_update_risk_change_effect", module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 39, raw: "GIVEN given_seed_context id=\"crm_sales_forecast_action_sales_forecast_update_update_risk_change_effect\" module=\"CRM_SALES_FORECAST\""}, 39)
+    # line 40: WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 40, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_FORECAST\""}, 40)
+    # line 41: THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 41, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_FORECAST\""}, 41)
     _ctx = ctx
     :ok
   end
@@ -123,12 +139,28 @@ defmodule UniboV4.BDD.Generated.CRM_SALES_FORECASTTest do
   test "[BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_action_sales_forecast_create_create]" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_action_sales_forecast_create_create"}
-    # line 39: GIVEN given_seed_context id="crm_sales_forecast_action_sales_forecast_create_create" module="CRM_SALES_FORECAST"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_forecast_action_sales_forecast_create_create", module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 39, raw: "GIVEN given_seed_context id=\"crm_sales_forecast_action_sales_forecast_create_create\" module=\"CRM_SALES_FORECAST\""}, 39)
-    # line 40: WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 40, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_FORECAST\""}, 40)
-    # line 41: THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 41, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_FORECAST\""}, 41)
+    # line 44: GIVEN given_seed_context id="crm_sales_forecast_action_sales_forecast_create_create" module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_forecast_action_sales_forecast_create_create", module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 44, raw: "GIVEN given_seed_context id=\"crm_sales_forecast_action_sales_forecast_create_create\" module=\"CRM_SALES_FORECAST\""}, 44)
+    # line 45: WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 45, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_FORECAST\""}, 45)
+    # line 46: THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 46, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_FORECAST\""}, 46)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_workflow_sales_forecast_sales_forecast_management
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_workflow_sales_forecast_sales_forecast_management]" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_workflow_sales_forecast_sales_forecast_management"}
+    # line 49: GIVEN given_seed_context id="crm_sales_forecast_workflow_sales_forecast_sales_forecast_management" module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_forecast_workflow_sales_forecast_sales_forecast_management", module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 49, raw: "GIVEN given_seed_context id=\"crm_sales_forecast_workflow_sales_forecast_sales_forecast_management\" module=\"CRM_SALES_FORECAST\""}, 49)
+    # line 50: WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 50, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_FORECAST\""}, 50)
+    # line 51: THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 51, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_FORECAST\""}, 51)
     _ctx = ctx
     :ok
   end
@@ -139,12 +171,28 @@ defmodule UniboV4.BDD.Generated.CRM_SALES_FORECASTTest do
   test "[BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_action_sales_forecast_create_create_risk_validation_fail]" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_action_sales_forecast_create_create_risk_validation_fail"}
-    # line 44: GIVEN given_seed_context id="crm_sales_forecast_action_sales_forecast_create_create_risk_validation_fail" module="CRM_SALES_FORECAST"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_forecast_action_sales_forecast_create_create_risk_validation_fail", module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 44, raw: "GIVEN given_seed_context id=\"crm_sales_forecast_action_sales_forecast_create_create_risk_validation_fail\" module=\"CRM_SALES_FORECAST\""}, 44)
-    # line 45: WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 45, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_FORECAST\""}, 45)
-    # line 46: THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 46, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_FORECAST\""}, 46)
+    # line 54: GIVEN given_seed_context id="crm_sales_forecast_action_sales_forecast_create_create_risk_validation_fail" module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_forecast_action_sales_forecast_create_create_risk_validation_fail", module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 54, raw: "GIVEN given_seed_context id=\"crm_sales_forecast_action_sales_forecast_create_create_risk_validation_fail\" module=\"CRM_SALES_FORECAST\""}, 54)
+    # line 55: WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 55, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_FORECAST\""}, 55)
+    # line 56: THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 56, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_FORECAST\""}, 56)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_mainline
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_mainline]" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_SALES_FORECAST-SEED-crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_mainline"}
+    # line 59: GIVEN given_seed_context id="crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_mainline" module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_mainline", module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 59, raw: "GIVEN given_seed_context id=\"crm_sales_forecast_workflow_sales_forecast_sales_forecast_management_risk_mainline\" module=\"CRM_SALES_FORECAST\""}, 59)
+    # line 60: WHEN when_execute_seed_contract module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 60, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_FORECAST\""}, 60)
+    # line 61: THEN then_seed_contract_should_hold module="CRM_SALES_FORECAST"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_FORECAST"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_FORECAST.dsl", line: 61, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_FORECAST\""}, 61)
     _ctx = ctx
     :ok
   end

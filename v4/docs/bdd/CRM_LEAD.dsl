@@ -5,8 +5,18 @@ GIVEN given_seed_context id="crm_lead_action_lead_lose_update_risk_validation_fa
 WHEN when_execute_seed_contract module="CRM_LEAD"
 THEN then_seed_contract_should_hold module="CRM_LEAD"
 
+[SCENARIO: BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_lifecycle_risk_mainline] TITLE: CRM_LEAD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_lead_workflow_lead_lead_lifecycle_risk_mainline" module="CRM_LEAD"
+WHEN when_execute_seed_contract module="CRM_LEAD"
+THEN then_seed_contract_should_hold module="CRM_LEAD"
+
 [SCENARIO: BDD-CRM_LEAD-SEED-crm_lead_event_lead_lose_crm_lead_lost] TITLE: CRM_LEAD contract seed scenario TAGS: seed all
 GIVEN given_seed_context id="crm_lead_event_lead_lose_crm_lead_lost" module="CRM_LEAD"
+WHEN when_execute_seed_contract module="CRM_LEAD"
+THEN then_seed_contract_should_hold module="CRM_LEAD"
+
+[SCENARIO: BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_stage_progression] TITLE: CRM_LEAD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_lead_workflow_lead_lead_stage_progression" module="CRM_LEAD"
 WHEN when_execute_seed_contract module="CRM_LEAD"
 THEN then_seed_contract_should_hold module="CRM_LEAD"
 
@@ -60,6 +70,11 @@ GIVEN given_seed_context id="crm_lead_action_lead_lose_update_risk_success" modu
 WHEN when_execute_seed_contract module="CRM_LEAD"
 THEN then_seed_contract_should_hold module="CRM_LEAD"
 
+[SCENARIO: BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_lifecycle_risk_branch_or_exception] TITLE: CRM_LEAD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_lead_workflow_lead_lead_lifecycle_risk_branch_or_exception" module="CRM_LEAD"
+WHEN when_execute_seed_contract module="CRM_LEAD"
+THEN then_seed_contract_should_hold module="CRM_LEAD"
+
 [SCENARIO: BDD-CRM_LEAD-SEED-crm_lead_event_lead_win_crm_lead_won_risk_idempotent_replay] TITLE: CRM_LEAD contract seed scenario TAGS: seed all
 GIVEN given_seed_context id="crm_lead_event_lead_win_crm_lead_won_risk_idempotent_replay" module="CRM_LEAD"
 WHEN when_execute_seed_contract module="CRM_LEAD"
@@ -105,6 +120,11 @@ GIVEN given_seed_context id="crm_lead_action_lead_assign_salesperson_update_risk
 WHEN when_execute_seed_contract module="CRM_LEAD"
 THEN then_seed_contract_should_hold module="CRM_LEAD"
 
+[SCENARIO: BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_lifecycle] TITLE: CRM_LEAD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_lead_workflow_lead_lead_lifecycle" module="CRM_LEAD"
+WHEN when_execute_seed_contract module="CRM_LEAD"
+THEN then_seed_contract_should_hold module="CRM_LEAD"
+
 [SCENARIO: BDD-CRM_LEAD-SEED-crm_lead_action_lead_merge_custom_risk_success] TITLE: CRM_LEAD contract seed scenario TAGS: seed all
 GIVEN given_seed_context id="crm_lead_action_lead_merge_custom_risk_success" module="CRM_LEAD"
 WHEN when_execute_seed_contract module="CRM_LEAD"
@@ -122,6 +142,11 @@ THEN then_seed_contract_should_hold module="CRM_LEAD"
 
 [SCENARIO: BDD-CRM_LEAD-SEED-crm_lead_action_lead_convert_opportunity_update_risk_success] TITLE: CRM_LEAD contract seed scenario TAGS: seed all
 GIVEN given_seed_context id="crm_lead_action_lead_convert_opportunity_update_risk_success" module="CRM_LEAD"
+WHEN when_execute_seed_contract module="CRM_LEAD"
+THEN then_seed_contract_should_hold module="CRM_LEAD"
+
+[SCENARIO: BDD-CRM_LEAD-SEED-crm_lead_workflow_lead_lead_stage_progression_risk_mainline] TITLE: CRM_LEAD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_lead_workflow_lead_lead_stage_progression_risk_mainline" module="CRM_LEAD"
 WHEN when_execute_seed_contract module="CRM_LEAD"
 THEN then_seed_contract_should_hold module="CRM_LEAD"
 

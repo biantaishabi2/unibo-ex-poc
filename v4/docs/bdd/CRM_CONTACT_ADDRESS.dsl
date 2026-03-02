@@ -20,6 +20,16 @@ GIVEN given_seed_context id="crm_contact_address_action_contact_address_update_u
 WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
 THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
 
+[SCENARIO: BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_update_update_risk_validation_fail] TITLE: CRM_CONTACT_ADDRESS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_contact_address_action_contact_address_update_update_risk_validation_fail" module="CRM_CONTACT_ADDRESS"
+WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
+THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
+
+[SCENARIO: BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_destroy_destroy_risk_validation_fail] TITLE: CRM_CONTACT_ADDRESS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_contact_address_action_contact_address_destroy_destroy_risk_validation_fail" module="CRM_CONTACT_ADDRESS"
+WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
+THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
+
 [SCENARIO: BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_destroy_destroy_risk_change_effect] TITLE: CRM_CONTACT_ADDRESS contract seed scenario TAGS: seed all
 GIVEN given_seed_context id="crm_contact_address_action_contact_address_destroy_destroy_risk_change_effect" module="CRM_CONTACT_ADDRESS"
 WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
@@ -42,6 +52,11 @@ THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
 
 [SCENARIO: BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_create_create] TITLE: CRM_CONTACT_ADDRESS contract seed scenario TAGS: seed all
 GIVEN given_seed_context id="crm_contact_address_action_contact_address_create_create" module="CRM_CONTACT_ADDRESS"
+WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
+THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
+
+[SCENARIO: BDD-CRM_CONTACT_ADDRESS-SEED-crm_contact_address_action_contact_address_create_create_risk_validation_fail] TITLE: CRM_CONTACT_ADDRESS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_contact_address_action_contact_address_create_create_risk_validation_fail" module="CRM_CONTACT_ADDRESS"
 WHEN when_execute_seed_contract module="CRM_CONTACT_ADDRESS"
 THEN then_seed_contract_should_hold module="CRM_CONTACT_ADDRESS"
 

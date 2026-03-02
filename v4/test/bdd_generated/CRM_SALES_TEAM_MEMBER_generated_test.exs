@@ -101,18 +101,50 @@ defmodule UniboV4.BDD.Generated.CRM_SALES_TEAM_MEMBERTest do
     :ok
   end
 
+  # Source: BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_update_update_risk_validation_fail
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_update_update_risk_validation_fail]" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_update_update_risk_validation_fail"}
+    # line 34: GIVEN given_seed_context id="crm_sales_team_member_action_sales_team_member_update_update_risk_validation_fail" module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_team_member_action_sales_team_member_update_update_risk_validation_fail", module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 34, raw: "GIVEN given_seed_context id=\"crm_sales_team_member_action_sales_team_member_update_update_risk_validation_fail\" module=\"CRM_SALES_TEAM_MEMBER\""}, 34)
+    # line 35: WHEN when_execute_seed_contract module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 35, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_TEAM_MEMBER\""}, 35)
+    # line 36: THEN then_seed_contract_should_hold module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 36, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_TEAM_MEMBER\""}, 36)
+    _ctx = ctx
+    :ok
+  end
+
   # Source: BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_read_read
   @tag :all
   @tag :seed
   test "[BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_read_read]" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_read_read"}
-    # line 34: GIVEN given_seed_context id="crm_sales_team_member_action_sales_team_member_read_read" module="CRM_SALES_TEAM_MEMBER"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_team_member_action_sales_team_member_read_read", module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 34, raw: "GIVEN given_seed_context id=\"crm_sales_team_member_action_sales_team_member_read_read\" module=\"CRM_SALES_TEAM_MEMBER\""}, 34)
-    # line 35: WHEN when_execute_seed_contract module="CRM_SALES_TEAM_MEMBER"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 35, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_TEAM_MEMBER\""}, 35)
-    # line 36: THEN then_seed_contract_should_hold module="CRM_SALES_TEAM_MEMBER"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 36, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_TEAM_MEMBER\""}, 36)
+    # line 39: GIVEN given_seed_context id="crm_sales_team_member_action_sales_team_member_read_read" module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_team_member_action_sales_team_member_read_read", module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 39, raw: "GIVEN given_seed_context id=\"crm_sales_team_member_action_sales_team_member_read_read\" module=\"CRM_SALES_TEAM_MEMBER\""}, 39)
+    # line 40: WHEN when_execute_seed_contract module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 40, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_TEAM_MEMBER\""}, 40)
+    # line 41: THEN then_seed_contract_should_hold module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 41, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_TEAM_MEMBER\""}, 41)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_destroy_destroy_risk_validation_fail
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_destroy_destroy_risk_validation_fail]" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_destroy_destroy_risk_validation_fail"}
+    # line 44: GIVEN given_seed_context id="crm_sales_team_member_action_sales_team_member_destroy_destroy_risk_validation_fail" module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_team_member_action_sales_team_member_destroy_destroy_risk_validation_fail", module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 44, raw: "GIVEN given_seed_context id=\"crm_sales_team_member_action_sales_team_member_destroy_destroy_risk_validation_fail\" module=\"CRM_SALES_TEAM_MEMBER\""}, 44)
+    # line 45: WHEN when_execute_seed_contract module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 45, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_TEAM_MEMBER\""}, 45)
+    # line 46: THEN then_seed_contract_should_hold module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 46, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_TEAM_MEMBER\""}, 46)
     _ctx = ctx
     :ok
   end
@@ -123,12 +155,12 @@ defmodule UniboV4.BDD.Generated.CRM_SALES_TEAM_MEMBERTest do
   test "[BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_create_create]" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_create_create"}
-    # line 39: GIVEN given_seed_context id="crm_sales_team_member_action_sales_team_member_create_create" module="CRM_SALES_TEAM_MEMBER"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_team_member_action_sales_team_member_create_create", module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 39, raw: "GIVEN given_seed_context id=\"crm_sales_team_member_action_sales_team_member_create_create\" module=\"CRM_SALES_TEAM_MEMBER\""}, 39)
-    # line 40: WHEN when_execute_seed_contract module="CRM_SALES_TEAM_MEMBER"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 40, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_TEAM_MEMBER\""}, 40)
-    # line 41: THEN then_seed_contract_should_hold module="CRM_SALES_TEAM_MEMBER"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 41, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_TEAM_MEMBER\""}, 41)
+    # line 49: GIVEN given_seed_context id="crm_sales_team_member_action_sales_team_member_create_create" module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_team_member_action_sales_team_member_create_create", module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 49, raw: "GIVEN given_seed_context id=\"crm_sales_team_member_action_sales_team_member_create_create\" module=\"CRM_SALES_TEAM_MEMBER\""}, 49)
+    # line 50: WHEN when_execute_seed_contract module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 50, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_TEAM_MEMBER\""}, 50)
+    # line 51: THEN then_seed_contract_should_hold module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 51, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_TEAM_MEMBER\""}, 51)
     _ctx = ctx
     :ok
   end
@@ -139,12 +171,28 @@ defmodule UniboV4.BDD.Generated.CRM_SALES_TEAM_MEMBERTest do
   test "[BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_update_update]" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_update_update"}
-    # line 44: GIVEN given_seed_context id="crm_sales_team_member_action_sales_team_member_update_update" module="CRM_SALES_TEAM_MEMBER"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_team_member_action_sales_team_member_update_update", module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 44, raw: "GIVEN given_seed_context id=\"crm_sales_team_member_action_sales_team_member_update_update\" module=\"CRM_SALES_TEAM_MEMBER\""}, 44)
-    # line 45: WHEN when_execute_seed_contract module="CRM_SALES_TEAM_MEMBER"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 45, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_TEAM_MEMBER\""}, 45)
-    # line 46: THEN then_seed_contract_should_hold module="CRM_SALES_TEAM_MEMBER"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 46, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_TEAM_MEMBER\""}, 46)
+    # line 54: GIVEN given_seed_context id="crm_sales_team_member_action_sales_team_member_update_update" module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_team_member_action_sales_team_member_update_update", module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 54, raw: "GIVEN given_seed_context id=\"crm_sales_team_member_action_sales_team_member_update_update\" module=\"CRM_SALES_TEAM_MEMBER\""}, 54)
+    # line 55: WHEN when_execute_seed_contract module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 55, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_TEAM_MEMBER\""}, 55)
+    # line 56: THEN then_seed_contract_should_hold module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 56, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_TEAM_MEMBER\""}, 56)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_create_create_risk_validation_fail
+  @tag :all
+  @tag :seed
+  test "[BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_create_create_risk_validation_fail]" do
+    run_id = UniboV4.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_create_create_risk_validation_fail"}
+    # line 59: GIVEN given_seed_context id="crm_sales_team_member_action_sales_team_member_create_create_risk_validation_fail" module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_team_member_action_sales_team_member_create_create_risk_validation_fail", module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 59, raw: "GIVEN given_seed_context id=\"crm_sales_team_member_action_sales_team_member_create_create_risk_validation_fail\" module=\"CRM_SALES_TEAM_MEMBER\""}, 59)
+    # line 60: WHEN when_execute_seed_contract module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 60, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_TEAM_MEMBER\""}, 60)
+    # line 61: THEN then_seed_contract_should_hold module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 61, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_TEAM_MEMBER\""}, 61)
     _ctx = ctx
     :ok
   end
@@ -155,12 +203,12 @@ defmodule UniboV4.BDD.Generated.CRM_SALES_TEAM_MEMBERTest do
   test "[BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_destroy_destroy]" do
     run_id = UniboV4.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_destroy_destroy"}
-    # line 49: GIVEN given_seed_context id="crm_sales_team_member_action_sales_team_member_destroy_destroy" module="CRM_SALES_TEAM_MEMBER"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_team_member_action_sales_team_member_destroy_destroy", module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 49, raw: "GIVEN given_seed_context id=\"crm_sales_team_member_action_sales_team_member_destroy_destroy\" module=\"CRM_SALES_TEAM_MEMBER\""}, 49)
-    # line 50: WHEN when_execute_seed_contract module="CRM_SALES_TEAM_MEMBER"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 50, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_TEAM_MEMBER\""}, 50)
-    # line 51: THEN then_seed_contract_should_hold module="CRM_SALES_TEAM_MEMBER"
-    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 51, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_TEAM_MEMBER\""}, 51)
+    # line 64: GIVEN given_seed_context id="crm_sales_team_member_action_sales_team_member_destroy_destroy" module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "crm_sales_team_member_action_sales_team_member_destroy_destroy", module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 64, raw: "GIVEN given_seed_context id=\"crm_sales_team_member_action_sales_team_member_destroy_destroy\" module=\"CRM_SALES_TEAM_MEMBER\""}, 64)
+    # line 65: WHEN when_execute_seed_contract module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 65, raw: "WHEN when_execute_seed_contract module=\"CRM_SALES_TEAM_MEMBER\""}, 65)
+    # line 66: THEN then_seed_contract_should_hold module="CRM_SALES_TEAM_MEMBER"
+    ctx = UniboV4.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "CRM_SALES_TEAM_MEMBER"}, %{file: "/home/wangbo/document/unibo_ex_poc-feat-223/v4/docs/bdd/CRM_SALES_TEAM_MEMBER.dsl", line: 66, raw: "THEN then_seed_contract_should_hold module=\"CRM_SALES_TEAM_MEMBER\""}, 66)
     _ctx = ctx
     :ok
   end

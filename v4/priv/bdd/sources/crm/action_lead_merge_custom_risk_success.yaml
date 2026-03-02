@@ -2,4 +2,4 @@ module: CRM_LEAD
 contract: Lead.merge action contract (risk:success)
 edge_class: action_contract
 source_file: models/crm/crm.ubo.yaml
-source_summary: GIVEN 实体 Lead 的动作 merge 可执行 / WHEN 执行动作 merge / THEN 成功路径应满足业务约束并持久化结果
+source_summary: GIVEN 实体 Lead 的动作 merge 可执行 / WHEN 执行动作 merge / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：merge 合并多条线索，字段取第一个非空值，活动/日历事件迁移

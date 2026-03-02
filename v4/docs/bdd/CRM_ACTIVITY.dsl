@@ -45,6 +45,11 @@ GIVEN given_seed_context id="crm_activity_action_activity_update_update_risk_suc
 WHEN when_execute_seed_contract module="CRM_ACTIVITY"
 THEN then_seed_contract_should_hold module="CRM_ACTIVITY"
 
+[SCENARIO: BDD-CRM_ACTIVITY-SEED-crm_activity_workflow_activity_activity_lifecycle] TITLE: CRM_ACTIVITY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_activity_workflow_activity_activity_lifecycle" module="CRM_ACTIVITY"
+WHEN when_execute_seed_contract module="CRM_ACTIVITY"
+THEN then_seed_contract_should_hold module="CRM_ACTIVITY"
+
 [SCENARIO: BDD-CRM_ACTIVITY-SEED-crm_activity_action_activity_cancel_update_risk_change_effect] TITLE: CRM_ACTIVITY contract seed scenario TAGS: seed all
 GIVEN given_seed_context id="crm_activity_action_activity_cancel_update_risk_change_effect" module="CRM_ACTIVITY"
 WHEN when_execute_seed_contract module="CRM_ACTIVITY"
@@ -57,6 +62,16 @@ THEN then_seed_contract_should_hold module="CRM_ACTIVITY"
 
 [SCENARIO: BDD-CRM_ACTIVITY-SEED-crm_activity_action_activity_create_create_risk_change_effect] TITLE: CRM_ACTIVITY contract seed scenario TAGS: seed all
 GIVEN given_seed_context id="crm_activity_action_activity_create_create_risk_change_effect" module="CRM_ACTIVITY"
+WHEN when_execute_seed_contract module="CRM_ACTIVITY"
+THEN then_seed_contract_should_hold module="CRM_ACTIVITY"
+
+[SCENARIO: BDD-CRM_ACTIVITY-SEED-crm_activity_workflow_activity_activity_lifecycle_risk_mainline] TITLE: CRM_ACTIVITY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_activity_workflow_activity_activity_lifecycle_risk_mainline" module="CRM_ACTIVITY"
+WHEN when_execute_seed_contract module="CRM_ACTIVITY"
+THEN then_seed_contract_should_hold module="CRM_ACTIVITY"
+
+[SCENARIO: BDD-CRM_ACTIVITY-SEED-crm_activity_workflow_activity_activity_lifecycle_risk_branch_or_exception] TITLE: CRM_ACTIVITY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_activity_workflow_activity_activity_lifecycle_risk_branch_or_exception" module="CRM_ACTIVITY"
 WHEN when_execute_seed_contract module="CRM_ACTIVITY"
 THEN then_seed_contract_should_hold module="CRM_ACTIVITY"
 
