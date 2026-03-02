@@ -1,0 +1,5 @@
+module: E_LEARNING_ENROLLMENT
+contract: Enrollment.recompute_completion event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Enrollment 动作 recompute_completion 事件被重复投递 / WHEN 重放 topic `elearning.enrollment.progress_updated` / THEN 消费方处理应保持幂等且无重复副作用

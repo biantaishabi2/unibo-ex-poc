@@ -1,0 +1,5 @@
+module: E_LEARNING_SLIDE_PROGRESS
+contract: SlideProgress.action_like action contract
+edge_class: action_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 SlideProgress 的动作 action_like 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 action_like / THEN 状态变更与副作用应生效，应符合工作流步骤约束

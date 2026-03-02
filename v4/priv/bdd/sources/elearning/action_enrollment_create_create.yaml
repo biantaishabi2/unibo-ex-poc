@@ -1,0 +1,5 @@
+module: E_LEARNING_ENROLLMENT
+contract: Enrollment.create action contract
+edge_class: action_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Enrollment 的动作 create 可执行，accept=[member_status]，args=[channel_id:uuid!, partner_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 自由注册加入课程（enroll=public），recompute_completion 随学习进度更新；create 邀请注册（member_status=invited），join 接受邀请加入；create 未完成前置课程时校验失败

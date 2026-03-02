@@ -1,0 +1,5 @@
+module: E_LEARNING_SLIDE_PROGRESS
+contract: SlideProgress.mark_uncompleted action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 SlideProgress 的动作 mark_uncompleted 输入非法 / WHEN 执行动作 mark_uncompleted / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：mark_uncompleted 取消完成标记，触发 Enrollment 重算；mark_uncompleted 尝试对未完成内容取消完成，校验失败

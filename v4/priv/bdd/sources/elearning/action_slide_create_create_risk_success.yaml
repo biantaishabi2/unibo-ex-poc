@@ -1,0 +1,5 @@
+module: E_LEARNING_SLIDE
+contract: Slide.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Slide 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 创建文章类型 Slide，update 修改内容，publish 发布；create 创建视频类型 Slide（url），publish 发布，unpublish 取消发布；create 创建章节标题（is_category=true）；create html_content 和 url 同时存在时校验失败

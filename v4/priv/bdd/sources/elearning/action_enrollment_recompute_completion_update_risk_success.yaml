@@ -1,0 +1,5 @@
+module: E_LEARNING_ENROLLMENT
+contract: Enrollment.recompute_completion action contract (risk:success)
+edge_class: action_contract
+source_file: models/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Enrollment 的动作 recompute_completion 可执行 / WHEN 执行动作 recompute_completion / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：recompute_completion 完成所有 Slide 后状态自动迁移到 completed

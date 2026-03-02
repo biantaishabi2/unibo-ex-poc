@@ -22,7 +22,8 @@ defmodule UniboV4.BDD.CommonInstructions do
     "FORUM" => "forum",
     "LUNCH" => "lunch",
     "POS" => "pos",
-    "SUBSCRIPTIONS" => "subscriptions"
+    "SUBSCRIPTIONS" => "subscriptions",
+    "E_LEARNING" => "elearning"
   }
 
   # ============================================================
@@ -127,10 +128,26 @@ defmodule UniboV4.BDD.CommonInstructions do
   # ============================================================
 
   # 解析模块名，如 "ACCOUNTING_INVOICE" → {"ACCOUNTING", "INVOICE"}
+  # 优先匹配 @module_dirs 中最长的 key，处理含下划线的域名（如 E_LEARNING）
   defp parse_module(module) do
-    case String.split(module, "_", parts: 2) do
-      [domain, entity] -> {domain, entity}
-      [domain] -> {domain, ""}
+    match =
+      @module_dirs
+      |> Map.keys()
+      |> Enum.filter(&String.starts_with?(module, &1))
+      |> Enum.sort_by(&String.length/1, :desc)
+      |> List.first()
+
+    case match do
+      nil ->
+        case String.split(module, "_", parts: 2) do
+          [domain, entity] -> {domain, entity}
+          [domain] -> {domain, ""}
+        end
+
+      domain ->
+        entity = String.replace_prefix(module, domain <> "_", "")
+        entity = if entity == module, do: "", else: entity
+        {domain, entity}
     end
   end
 
