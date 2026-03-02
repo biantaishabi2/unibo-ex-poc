@@ -29,22 +29,23 @@ defmodule UniboV4.Helpdesk.Appointment do
 
   attributes do
     uuid_primary_key :id
-    attribute :title, :string, allow_nil?: false
+    attribute :title, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:scheduled, :confirmed, :completed, :cancelled, :no_show]
       default :scheduled
+        public? true
     end
-    attribute :start_time, :utc_datetime, allow_nil?: false
-    attribute :end_time, :utc_datetime, allow_nil?: false
-    attribute :location, :string
-    attribute :description, :string
-    attribute :notes, :string
+    attribute :start_time, :utc_datetime, allow_nil?: false, public?: true
+    attribute :end_time, :utc_datetime, allow_nil?: false, public?: true
+    attribute :location, :string, public?: true
+    attribute :description, :string, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    belongs_to :created_by, UniboV4.Accounts.User
+    belongs_to :created_by, UniboV4.Accounts.User, public?: true
   end
 
   actions do

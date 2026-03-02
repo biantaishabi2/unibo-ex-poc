@@ -30,24 +30,27 @@ defmodule UniboV4.Maintenance.MaintenanceRequest do
 
   attributes do
     uuid_primary_key :id
-    attribute :request_number, :string, allow_nil?: false
+    attribute :request_number, :string, allow_nil?: false, public?: true
     attribute :maintenance_type, :atom do
       allow_nil? false
       constraints one_of: [:corrective, :preventive]
+        public? true
     end
     attribute :priority, :atom do
       constraints one_of: [:low, :medium, :high, :urgent]
       default :medium
+        public? true
     end
     attribute :status, :atom do
       constraints one_of: [:requested, :in_progress, :completed, :cancelled]
       default :requested
+        public? true
     end
-    attribute :description, :string, allow_nil?: false
-    attribute :requested_date, :date, allow_nil?: false
-    attribute :scheduled_date, :date
-    attribute :completed_date, :date
-    attribute :notes, :string
+    attribute :description, :string, allow_nil?: false, public?: true
+    attribute :requested_date, :date, allow_nil?: false, public?: true
+    attribute :scheduled_date, :date, public?: true
+    attribute :completed_date, :date, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -55,8 +58,9 @@ defmodule UniboV4.Maintenance.MaintenanceRequest do
   relationships do
     belongs_to :equipment, UniboV4.Maintenance.Equipment do
       allow_nil? false
+        public? true
     end
-    belongs_to :requested_by, UniboV4.Accounts.User
+    belongs_to :requested_by, UniboV4.Accounts.User, public?: true
   end
 
   actions do

@@ -27,21 +27,23 @@ defmodule UniboV4.Communication.Message do
 
   attributes do
     uuid_primary_key :id
-    attribute :content, :string, allow_nil?: false
+    attribute :content, :string, allow_nil?: false, public?: true
     attribute :message_type, :atom do
       constraints one_of: [:text, :image, :file, :system]
       default :text
+        public? true
     end
-    attribute :is_read, :boolean, default: false
-    attribute :sent_at, :utc_datetime, allow_nil?: false
+    attribute :is_read, :boolean, default: false, public?: true
+    attribute :sent_at, :utc_datetime, allow_nil?: false, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    belongs_to :channel, UniboV4.Communication.Channel
+    belongs_to :channel, UniboV4.Communication.Channel, public?: true
     belongs_to :sender, UniboV4.Accounts.User do
       allow_nil? false
+        public? true
     end
   end
 

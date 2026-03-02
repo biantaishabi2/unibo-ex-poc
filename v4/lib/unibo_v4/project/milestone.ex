@@ -27,13 +27,14 @@ defmodule UniboV4.Project.Milestone do
 
   attributes do
     uuid_primary_key :id
-    attribute :name, :string, allow_nil?: false
-    attribute :due_date, :date, allow_nil?: false
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :due_date, :date, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:pending, :reached, :missed]
       default :pending
+        public? true
     end
-    attribute :description, :string
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -41,6 +42,7 @@ defmodule UniboV4.Project.Milestone do
   relationships do
     belongs_to :project, UniboV4.Project.Project do
       allow_nil? false
+        public? true
     end
   end
 

@@ -28,15 +28,16 @@ defmodule UniboV4.Manufacturing.WorkOrder do
 
   attributes do
     uuid_primary_key :id
-    attribute :name, :string, allow_nil?: false
-    attribute :sequence, :integer, allow_nil?: false
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :sequence, :integer, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:pending, :in_progress, :done, :cancelled]
       default :pending
+        public? true
     end
-    attribute :planned_duration_hours, :decimal
-    attribute :actual_duration_hours, :decimal
-    attribute :notes, :string
+    attribute :planned_duration_hours, :decimal, public?: true
+    attribute :actual_duration_hours, :decimal, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -44,8 +45,9 @@ defmodule UniboV4.Manufacturing.WorkOrder do
   relationships do
     belongs_to :manufacturing_order, UniboV4.Manufacturing.ManufacturingOrder do
       allow_nil? false
+        public? true
     end
-    belongs_to :work_center, UniboV4.Manufacturing.WorkCenter
+    belongs_to :work_center, UniboV4.Manufacturing.WorkCenter, public?: true
   end
 
   actions do

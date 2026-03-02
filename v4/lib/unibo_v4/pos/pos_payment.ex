@@ -29,9 +29,10 @@ defmodule UniboV4.POS.PosPayment do
     attribute :payment_method, :atom do
       allow_nil? false
       constraints one_of: [:cash, :credit_card, :debit_card, :wechat, :alipay, :other]
+        public? true
     end
-    attribute :amount, :decimal, allow_nil?: false
-    attribute :reference_number, :string
+    attribute :amount, :decimal, allow_nil?: false, public?: true
+    attribute :reference_number, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -39,6 +40,7 @@ defmodule UniboV4.POS.PosPayment do
   relationships do
     belongs_to :order, UniboV4.POS.PosOrder do
       allow_nil? false
+        public? true
     end
   end
 

@@ -28,14 +28,15 @@ defmodule UniboV4.HR.PerformanceReview do
 
   attributes do
     uuid_primary_key :id
-    attribute :review_period, :string, allow_nil?: false
+    attribute :review_period, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :submitted, :completed]
       default :draft
+        public? true
     end
-    attribute :overall_rating, :atom, constraints: [one_of: [:outstanding, :exceeds, :meets, :below, :unsatisfactory]]
-    attribute :comments, :string
-    attribute :review_date, :date
+    attribute :overall_rating, :atom, constraints: [one_of: [:outstanding, :exceeds, :meets, :below, :unsatisfactory]], public?: true
+    attribute :comments, :string, public?: true
+    attribute :review_date, :date, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -43,8 +44,9 @@ defmodule UniboV4.HR.PerformanceReview do
   relationships do
     belongs_to :employee, UniboV4.HR.Employee do
       allow_nil? false
+        public? true
     end
-    belongs_to :reviewer, UniboV4.Accounts.User
+    belongs_to :reviewer, UniboV4.Accounts.User, public?: true
   end
 
   actions do

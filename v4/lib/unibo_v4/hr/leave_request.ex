@@ -33,11 +33,12 @@ defmodule UniboV4.HR.LeaveRequest do
     attribute :status, :atom do
       constraints one_of: [:draft, :submitted, :approved, :rejected, :cancelled]
       default :draft
+        public? true
     end
-    attribute :start_date, :date, allow_nil?: false
-    attribute :end_date, :date, allow_nil?: false
-    attribute :days, :decimal, allow_nil?: false
-    attribute :reason, :string
+    attribute :start_date, :date, allow_nil?: false, public?: true
+    attribute :end_date, :date, allow_nil?: false, public?: true
+    attribute :days, :decimal, allow_nil?: false, public?: true
+    attribute :reason, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -45,9 +46,11 @@ defmodule UniboV4.HR.LeaveRequest do
   relationships do
     belongs_to :employee, UniboV4.HR.Employee do
       allow_nil? false
+        public? true
     end
     belongs_to :leave_type, UniboV4.HR.LeaveType do
       allow_nil? false
+        public? true
     end
   end
 

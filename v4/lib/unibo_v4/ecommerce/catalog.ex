@@ -27,10 +27,10 @@ defmodule UniboV4.Ecommerce.Catalog do
 
   attributes do
     uuid_primary_key :id
-    attribute :catalog_code, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
-    attribute :description, :string
-    attribute :is_active, :boolean, default: true
+    attribute :catalog_code, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :description, :string, public?: true
+    attribute :is_active, :boolean, default: true, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

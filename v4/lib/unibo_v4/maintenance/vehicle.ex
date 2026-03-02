@@ -27,18 +27,19 @@ defmodule UniboV4.Maintenance.Vehicle do
 
   attributes do
     uuid_primary_key :id
-    attribute :vehicle_code, :string, allow_nil?: false
-    attribute :plate_number, :string, allow_nil?: false
-    attribute :brand, :string
-    attribute :model, :string
-    attribute :year, :integer
+    attribute :vehicle_code, :string, allow_nil?: false, public?: true
+    attribute :plate_number, :string, allow_nil?: false, public?: true
+    attribute :brand, :string, public?: true
+    attribute :model, :string, public?: true
+    attribute :year, :integer, public?: true
     attribute :status, :atom do
       constraints one_of: [:available, :in_use, :maintenance, :retired]
       default :available
+        public? true
     end
-    attribute :odometer, :decimal, default: 0
-    attribute :fuel_type, :atom, constraints: [one_of: [:gasoline, :diesel, :electric, :hybrid]]
-    attribute :notes, :string
+    attribute :odometer, :decimal, default: 0, public?: true
+    attribute :fuel_type, :atom, constraints: [one_of: [:gasoline, :diesel, :electric, :hybrid]], public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

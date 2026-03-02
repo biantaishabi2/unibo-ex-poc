@@ -28,19 +28,21 @@ defmodule UniboV4.HR.EmploymentContract do
 
   attributes do
     uuid_primary_key :id
-    attribute :contract_number, :string, allow_nil?: false
+    attribute :contract_number, :string, allow_nil?: false, public?: true
     attribute :contract_type, :atom do
       allow_nil? false
       constraints one_of: [:fixed_term, :permanent, :probation, :internship]
+        public? true
     end
-    attribute :start_date, :date, allow_nil?: false
-    attribute :end_date, :date
-    attribute :salary, :decimal
+    attribute :start_date, :date, allow_nil?: false, public?: true
+    attribute :end_date, :date, public?: true
+    attribute :salary, :decimal, public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :active, :expired, :terminated]
       default :draft
+        public? true
     end
-    attribute :notes, :string
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -48,6 +50,7 @@ defmodule UniboV4.HR.EmploymentContract do
   relationships do
     belongs_to :employee, UniboV4.HR.Employee do
       allow_nil? false
+        public? true
     end
   end
 

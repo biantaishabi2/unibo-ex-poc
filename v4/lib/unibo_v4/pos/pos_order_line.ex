@@ -22,11 +22,11 @@ defmodule UniboV4.POS.PosOrderLine do
 
   attributes do
     uuid_primary_key :id
-    attribute :product_name, :string, allow_nil?: false
-    attribute :product_code, :string
-    attribute :quantity, :integer, allow_nil?: false
-    attribute :unit_price, :decimal, allow_nil?: false
-    attribute :line_amount, :decimal, allow_nil?: false
+    attribute :product_name, :string, allow_nil?: false, public?: true
+    attribute :product_code, :string, public?: true
+    attribute :quantity, :integer, allow_nil?: false, public?: true
+    attribute :unit_price, :decimal, allow_nil?: false, public?: true
+    attribute :line_amount, :decimal, allow_nil?: false, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -34,6 +34,7 @@ defmodule UniboV4.POS.PosOrderLine do
   relationships do
     belongs_to :order, UniboV4.POS.PosOrder do
       allow_nil? false
+        public? true
     end
   end
 

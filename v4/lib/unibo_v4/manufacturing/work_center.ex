@@ -27,14 +27,15 @@ defmodule UniboV4.Manufacturing.WorkCenter do
 
   attributes do
     uuid_primary_key :id
-    attribute :center_code, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
-    attribute :capacity, :decimal
+    attribute :center_code, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :capacity, :decimal, public?: true
     attribute :status, :atom do
       constraints one_of: [:active, :inactive, :maintenance]
       default :active
+        public? true
     end
-    attribute :description, :string
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

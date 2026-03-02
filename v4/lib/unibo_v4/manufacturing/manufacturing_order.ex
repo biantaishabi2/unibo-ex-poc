@@ -31,28 +31,29 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder do
 
   attributes do
     uuid_primary_key :id
-    attribute :order_number, :string, allow_nil?: false
-    attribute :product_name, :string, allow_nil?: false
-    attribute :product_code, :string, allow_nil?: false
-    attribute :quantity, :decimal, allow_nil?: false
-    attribute :quantity_produced, :decimal, default: 0
+    attribute :order_number, :string, allow_nil?: false, public?: true
+    attribute :product_name, :string, allow_nil?: false, public?: true
+    attribute :product_code, :string, allow_nil?: false, public?: true
+    attribute :quantity, :decimal, allow_nil?: false, public?: true
+    attribute :quantity_produced, :decimal, default: 0, public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :confirmed, :in_progress, :done, :cancelled]
       default :draft
+        public? true
     end
-    attribute :planned_start_date, :date
-    attribute :planned_end_date, :date
-    attribute :actual_start_date, :date
-    attribute :actual_end_date, :date
-    attribute :notes, :string
+    attribute :planned_start_date, :date, public?: true
+    attribute :planned_end_date, :date, public?: true
+    attribute :actual_start_date, :date, public?: true
+    attribute :actual_end_date, :date, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    belongs_to :bom, UniboV4.Manufacturing.BillOfMaterials
+    belongs_to :bom, UniboV4.Manufacturing.BillOfMaterials, public?: true
     has_many :work_orders, UniboV4.Manufacturing.WorkOrder
-    belongs_to :work_center, UniboV4.Manufacturing.WorkCenter
+    belongs_to :work_center, UniboV4.Manufacturing.WorkCenter, public?: true
   end
 
   actions do

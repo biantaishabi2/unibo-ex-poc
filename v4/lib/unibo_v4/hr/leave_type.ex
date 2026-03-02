@@ -27,11 +27,11 @@ defmodule UniboV4.HR.LeaveType do
 
   attributes do
     uuid_primary_key :id
-    attribute :name, :string, allow_nil?: false
-    attribute :code, :string, allow_nil?: false
-    attribute :max_days_per_year, :decimal
-    attribute :is_paid, :boolean, default: true
-    attribute :description, :string
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :code, :string, allow_nil?: false, public?: true
+    attribute :max_days_per_year, :decimal, public?: true
+    attribute :is_paid, :boolean, default: true, public?: true
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

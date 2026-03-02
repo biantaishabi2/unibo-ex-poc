@@ -22,9 +22,9 @@ defmodule UniboV4.Project.TimesheetEntry do
 
   attributes do
     uuid_primary_key :id
-    attribute :hours, :decimal, allow_nil?: false
-    attribute :work_date, :date, allow_nil?: false
-    attribute :description, :string
+    attribute :hours, :decimal, allow_nil?: false, public?: true
+    attribute :work_date, :date, allow_nil?: false, public?: true
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -32,8 +32,9 @@ defmodule UniboV4.Project.TimesheetEntry do
   relationships do
     belongs_to :timesheet, UniboV4.Project.Timesheet do
       allow_nil? false
+        public? true
     end
-    belongs_to :task, UniboV4.Project.Task
+    belongs_to :task, UniboV4.Project.Task, public?: true
   end
 
   actions do

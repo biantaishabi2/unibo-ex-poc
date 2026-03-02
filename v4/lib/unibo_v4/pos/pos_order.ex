@@ -28,16 +28,17 @@ defmodule UniboV4.POS.PosOrder do
 
   attributes do
     uuid_primary_key :id
-    attribute :order_number, :string, allow_nil?: false
+    attribute :order_number, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :paid, :refunded, :cancelled]
       default :draft
+        public? true
     end
-    attribute :total_amount, :decimal, allow_nil?: false
-    attribute :tax_amount, :decimal, default: 0
-    attribute :discount_amount, :decimal, default: 0
-    attribute :order_date, :utc_datetime, allow_nil?: false
-    attribute :notes, :string
+    attribute :total_amount, :decimal, allow_nil?: false, public?: true
+    attribute :tax_amount, :decimal, default: 0, public?: true
+    attribute :discount_amount, :decimal, default: 0, public?: true
+    attribute :order_date, :utc_datetime, allow_nil?: false, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -47,6 +48,7 @@ defmodule UniboV4.POS.PosOrder do
     has_many :payments, UniboV4.POS.PosPayment
     belongs_to :session, UniboV4.POS.PosSession do
       allow_nil? false
+        public? true
     end
   end
 

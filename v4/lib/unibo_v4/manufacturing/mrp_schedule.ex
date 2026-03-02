@@ -26,14 +26,15 @@ defmodule UniboV4.Manufacturing.MrpSchedule do
 
   attributes do
     uuid_primary_key :id
-    attribute :product_code, :string, allow_nil?: false
+    attribute :product_code, :string, allow_nil?: false, public?: true
     attribute :event_type, :atom do
       allow_nil? false
       constraints one_of: [:demand, :supply, :forecast]
+        public? true
     end
-    attribute :quantity, :decimal, allow_nil?: false
-    attribute :event_date, :date, allow_nil?: false
-    attribute :description, :string
+    attribute :quantity, :decimal, allow_nil?: false, public?: true
+    attribute :event_date, :date, allow_nil?: false, public?: true
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

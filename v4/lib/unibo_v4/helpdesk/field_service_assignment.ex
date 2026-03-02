@@ -27,9 +27,9 @@ defmodule UniboV4.Helpdesk.FieldServiceAssignment do
 
   attributes do
     uuid_primary_key :id
-    attribute :role, :string, default: "technician"
-    attribute :from_date, :date, allow_nil?: false
-    attribute :thru_date, :date
+    attribute :role, :string, default: "technician", public?: true
+    attribute :from_date, :date, allow_nil?: false, public?: true
+    attribute :thru_date, :date, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -37,9 +37,11 @@ defmodule UniboV4.Helpdesk.FieldServiceAssignment do
   relationships do
     belongs_to :service_order, UniboV4.Helpdesk.FieldServiceOrder do
       allow_nil? false
+        public? true
     end
     belongs_to :technician, UniboV4.Accounts.User do
       allow_nil? false
+        public? true
     end
   end
 

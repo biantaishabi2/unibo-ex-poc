@@ -27,10 +27,10 @@ defmodule UniboV4.Marketing.Segment do
 
   attributes do
     uuid_primary_key :id
-    attribute :name, :string, allow_nil?: false
-    attribute :description, :string
-    attribute :criteria, :string
-    attribute :member_count, :integer, default: 0
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :description, :string, public?: true
+    attribute :criteria, :string, public?: true
+    attribute :member_count, :integer, default: 0, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

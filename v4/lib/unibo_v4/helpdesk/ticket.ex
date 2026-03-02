@@ -30,31 +30,34 @@ defmodule UniboV4.Helpdesk.Ticket do
 
   attributes do
     uuid_primary_key :id
-    attribute :ticket_number, :string, allow_nil?: false
-    attribute :subject, :string, allow_nil?: false
-    attribute :description, :string
+    attribute :ticket_number, :string, allow_nil?: false, public?: true
+    attribute :subject, :string, allow_nil?: false, public?: true
+    attribute :description, :string, public?: true
     attribute :status, :atom do
       constraints one_of: [:new, :open, :in_progress, :resolved, :closed, :cancelled]
       default :new
+        public? true
     end
     attribute :priority, :atom do
       constraints one_of: [:low, :medium, :high, :urgent]
       default :medium
+        public? true
     end
     attribute :channel, :atom do
       constraints one_of: [:email, :phone, :web, :chat, :other]
       default :web
+        public? true
     end
-    attribute :resolution, :string
-    attribute :resolved_date, :utc_datetime
+    attribute :resolution, :string, public?: true
+    attribute :resolved_date, :utc_datetime, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    belongs_to :category, UniboV4.Helpdesk.TicketCategory
-    belongs_to :assigned_to, UniboV4.Accounts.User
-    belongs_to :created_by, UniboV4.Accounts.User
+    belongs_to :category, UniboV4.Helpdesk.TicketCategory, public?: true
+    belongs_to :assigned_to, UniboV4.Accounts.User, public?: true
+    belongs_to :created_by, UniboV4.Accounts.User, public?: true
   end
 
   actions do

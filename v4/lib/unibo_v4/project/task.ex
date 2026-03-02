@@ -30,20 +30,22 @@ defmodule UniboV4.Project.Task do
 
   attributes do
     uuid_primary_key :id
-    attribute :name, :string, allow_nil?: false
+    attribute :name, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:todo, :in_progress, :review, :done, :cancelled]
       default :todo
+        public? true
     end
     attribute :priority, :atom do
       constraints one_of: [:low, :medium, :high, :urgent]
       default :medium
+        public? true
     end
-    attribute :start_date, :date
-    attribute :due_date, :date
-    attribute :estimated_hours, :decimal
-    attribute :actual_hours, :decimal
-    attribute :description, :string
+    attribute :start_date, :date, public?: true
+    attribute :due_date, :date, public?: true
+    attribute :estimated_hours, :decimal, public?: true
+    attribute :actual_hours, :decimal, public?: true
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -51,6 +53,7 @@ defmodule UniboV4.Project.Task do
   relationships do
     belongs_to :project, UniboV4.Project.Project do
       allow_nil? false
+        public? true
     end
     has_many :assignments, UniboV4.Project.TaskAssignment
     has_many :dependencies, UniboV4.Project.TaskDependency

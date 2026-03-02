@@ -30,13 +30,14 @@ defmodule UniboV4.Project.Timesheet do
 
   attributes do
     uuid_primary_key :id
-    attribute :period, :string, allow_nil?: false
+    attribute :period, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :submitted, :approved, :rejected]
       default :draft
+        public? true
     end
-    attribute :total_hours, :decimal
-    attribute :notes, :string
+    attribute :total_hours, :decimal, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -45,6 +46,7 @@ defmodule UniboV4.Project.Timesheet do
     has_many :entries, UniboV4.Project.TimesheetEntry
     belongs_to :employee, UniboV4.Accounts.User do
       allow_nil? false
+        public? true
     end
   end
 

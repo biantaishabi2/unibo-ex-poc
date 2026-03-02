@@ -27,12 +27,13 @@ defmodule UniboV4.Marketing.MailingListMember do
 
   attributes do
     uuid_primary_key :id
-    attribute :email, :string, allow_nil?: false
+    attribute :email, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:subscribed, :unsubscribed]
       default :subscribed
+        public? true
     end
-    attribute :subscribed_date, :date
+    attribute :subscribed_date, :date, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -40,6 +41,7 @@ defmodule UniboV4.Marketing.MailingListMember do
   relationships do
     belongs_to :mailing_list, UniboV4.Marketing.MailingList do
       allow_nil? false
+        public? true
     end
   end
 

@@ -27,18 +27,18 @@ defmodule UniboV4.HR.JobPosition do
 
   attributes do
     uuid_primary_key :id
-    attribute :position_code, :string, allow_nil?: false
-    attribute :title, :string, allow_nil?: false
-    attribute :headcount, :integer, default: 1
-    attribute :is_active, :boolean, default: true
-    attribute :description, :string
+    attribute :position_code, :string, allow_nil?: false, public?: true
+    attribute :title, :string, allow_nil?: false, public?: true
+    attribute :headcount, :integer, default: 1, public?: true
+    attribute :is_active, :boolean, default: true, public?: true
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    belongs_to :department, UniboV4.HR.Department
-    belongs_to :pay_grade, UniboV4.HR.PayGrade
+    belongs_to :department, UniboV4.HR.Department, public?: true
+    belongs_to :pay_grade, UniboV4.HR.PayGrade, public?: true
   end
 
   actions do

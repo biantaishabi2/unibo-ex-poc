@@ -27,17 +27,17 @@ defmodule UniboV4.Manufacturing.RoutingOperation do
 
   attributes do
     uuid_primary_key :id
-    attribute :routing_code, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
-    attribute :sequence, :integer, allow_nil?: false
-    attribute :standard_time_hours, :decimal
-    attribute :description, :string
+    attribute :routing_code, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :sequence, :integer, allow_nil?: false, public?: true
+    attribute :standard_time_hours, :decimal, public?: true
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    belongs_to :work_center, UniboV4.Manufacturing.WorkCenter
+    belongs_to :work_center, UniboV4.Manufacturing.WorkCenter, public?: true
   end
 
   actions do

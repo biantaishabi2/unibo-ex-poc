@@ -29,28 +29,30 @@ defmodule UniboV4.Ecommerce.ProductTemplate do
 
   attributes do
     uuid_primary_key :id
-    attribute :product_code, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
+    attribute :product_code, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
     attribute :product_type, :atom do
       constraints one_of: [:goods, :service, :consumable]
       default :goods
+        public? true
     end
     attribute :status, :atom do
       constraints one_of: [:draft, :active, :discontinued]
       default :draft
+        public? true
     end
-    attribute :description, :string
-    attribute :internal_notes, :string
-    attribute :weight, :decimal
-    attribute :weight_unit, :string, default: "kg"
-    attribute :is_published, :boolean, default: false
+    attribute :description, :string, public?: true
+    attribute :internal_notes, :string, public?: true
+    attribute :weight, :decimal, public?: true
+    attribute :weight_unit, :string, default: "kg", public?: true
+    attribute :is_published, :boolean, default: false, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     has_many :variants, UniboV4.Ecommerce.ProductVariant
-    belongs_to :category, UniboV4.Ecommerce.ProductCategory
+    belongs_to :category, UniboV4.Ecommerce.ProductCategory, public?: true
     has_many :prices, UniboV4.Ecommerce.ProductPrice
   end
 

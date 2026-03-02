@@ -27,11 +27,11 @@ defmodule UniboV4.HR.PayGrade do
 
   attributes do
     uuid_primary_key :id
-    attribute :grade_code, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
-    attribute :min_salary, :decimal
-    attribute :max_salary, :decimal
-    attribute :description, :string
+    attribute :grade_code, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :min_salary, :decimal, public?: true
+    attribute :max_salary, :decimal, public?: true
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

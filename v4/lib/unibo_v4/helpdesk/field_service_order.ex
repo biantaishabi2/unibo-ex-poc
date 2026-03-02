@@ -30,24 +30,25 @@ defmodule UniboV4.Helpdesk.FieldServiceOrder do
 
   attributes do
     uuid_primary_key :id
-    attribute :order_number, :string, allow_nil?: false
+    attribute :order_number, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :scheduled, :in_progress, :completed, :cancelled]
       default :draft
+        public? true
     end
-    attribute :service_type, :string
-    attribute :location, :string
-    attribute :scheduled_date, :utc_datetime
-    attribute :completed_date, :utc_datetime
-    attribute :description, :string
-    attribute :notes, :string
+    attribute :service_type, :string, public?: true
+    attribute :location, :string, public?: true
+    attribute :scheduled_date, :utc_datetime, public?: true
+    attribute :completed_date, :utc_datetime, public?: true
+    attribute :description, :string, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     has_many :assignments, UniboV4.Helpdesk.FieldServiceAssignment
-    belongs_to :ticket, UniboV4.Helpdesk.Ticket
+    belongs_to :ticket, UniboV4.Helpdesk.Ticket, public?: true
   end
 
   actions do

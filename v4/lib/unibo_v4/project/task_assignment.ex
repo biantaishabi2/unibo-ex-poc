@@ -27,9 +27,9 @@ defmodule UniboV4.Project.TaskAssignment do
 
   attributes do
     uuid_primary_key :id
-    attribute :role, :string
-    attribute :from_date, :date, allow_nil?: false
-    attribute :thru_date, :date
+    attribute :role, :string, public?: true
+    attribute :from_date, :date, allow_nil?: false, public?: true
+    attribute :thru_date, :date, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -37,9 +37,11 @@ defmodule UniboV4.Project.TaskAssignment do
   relationships do
     belongs_to :task, UniboV4.Project.Task do
       allow_nil? false
+        public? true
     end
     belongs_to :assignee, UniboV4.Accounts.User do
       allow_nil? false
+        public? true
     end
   end
 

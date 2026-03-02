@@ -31,16 +31,17 @@ defmodule UniboV4.Ecommerce.ShoppingCart do
     attribute :status, :atom do
       constraints one_of: [:active, :converted, :abandoned]
       default :active
+        public? true
     end
-    attribute :total_amount, :decimal, default: 0
-    attribute :item_count, :integer, default: 0
-    attribute :currency, :string, default: "CNY"
+    attribute :total_amount, :decimal, default: 0, public?: true
+    attribute :item_count, :integer, default: 0, public?: true
+    attribute :currency, :string, default: "CNY", public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    belongs_to :owner, UniboV4.Accounts.User
+    belongs_to :owner, UniboV4.Accounts.User, public?: true
   end
 
   actions do

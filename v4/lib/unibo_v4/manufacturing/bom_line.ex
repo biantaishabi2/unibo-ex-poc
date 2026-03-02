@@ -22,11 +22,11 @@ defmodule UniboV4.Manufacturing.BomLine do
 
   attributes do
     uuid_primary_key :id
-    attribute :component_name, :string, allow_nil?: false
-    attribute :component_code, :string, allow_nil?: false
-    attribute :quantity, :decimal, allow_nil?: false
-    attribute :unit, :string, default: "PCS"
-    attribute :sequence, :integer
+    attribute :component_name, :string, allow_nil?: false, public?: true
+    attribute :component_code, :string, allow_nil?: false, public?: true
+    attribute :quantity, :decimal, allow_nil?: false, public?: true
+    attribute :unit, :string, default: "PCS", public?: true
+    attribute :sequence, :integer, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -34,6 +34,7 @@ defmodule UniboV4.Manufacturing.BomLine do
   relationships do
     belongs_to :bom, UniboV4.Manufacturing.BillOfMaterials do
       allow_nil? false
+        public? true
     end
   end
 

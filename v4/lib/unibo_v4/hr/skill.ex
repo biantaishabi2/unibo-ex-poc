@@ -27,9 +27,9 @@ defmodule UniboV4.HR.Skill do
 
   attributes do
     uuid_primary_key :id
-    attribute :name, :string, allow_nil?: false
-    attribute :category, :string
-    attribute :description, :string
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :category, :string, public?: true
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

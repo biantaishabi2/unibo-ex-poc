@@ -31,23 +31,24 @@ defmodule UniboV4.Expenses.ExpenseReport do
 
   attributes do
     uuid_primary_key :id
-    attribute :report_number, :string, allow_nil?: false
+    attribute :report_number, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :submitted, :approved, :rejected, :paid]
       default :draft
+        public? true
     end
-    attribute :total_amount, :decimal
-    attribute :currency, :string, default: "CNY"
-    attribute :report_date, :date, allow_nil?: false
-    attribute :description, :string
-    attribute :notes, :string
+    attribute :total_amount, :decimal, public?: true
+    attribute :currency, :string, default: "CNY", public?: true
+    attribute :report_date, :date, allow_nil?: false, public?: true
+    attribute :description, :string, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     has_many :lines, UniboV4.Expenses.ExpenseLine
-    belongs_to :submitted_by, UniboV4.Accounts.User
+    belongs_to :submitted_by, UniboV4.Accounts.User, public?: true
   end
 
   actions do
