@@ -1,0 +1,5 @@
+module: FORUM_VOTE
+contract: Vote.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/forum/forum.ubo.yaml
+source_summary: GIVEN 实体 Vote 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 投赞成票，帖子作者获得 Karma；create 投反对票，帖子作者扣除 Karma；create 尝试给自己的帖子投票，被拒绝；create Karma 不足尝试投踩，校验失败

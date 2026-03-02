@@ -1,0 +1,5 @@
+module: FORUM_VOTE
+contract: Vote.update event contract
+edge_class: event_contract
+source_file: models/forum/forum.ubo.yaml
+source_summary: GIVEN 实体 Vote 的动作 update 完成 / WHEN 触发事件发布 / THEN 应广播 topic `forum.vote.changed`

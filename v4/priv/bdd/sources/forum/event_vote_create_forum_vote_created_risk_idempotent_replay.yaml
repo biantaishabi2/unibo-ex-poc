@@ -1,0 +1,5 @@
+module: FORUM_VOTE
+contract: Vote.create event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/forum/forum.ubo.yaml
+source_summary: GIVEN 实体 Vote 动作 create 事件被重复投递 / WHEN 重放 topic `forum.vote.created` / THEN 消费方处理应保持幂等且无重复副作用
