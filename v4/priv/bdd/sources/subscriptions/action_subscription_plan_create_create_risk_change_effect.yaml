@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_PLAN
+contract: SubscriptionPlan.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionPlan 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 新建月度计划，update 修改宽限天数；create 周期数值为0时校验失败；create 宽限天数为负时校验失败

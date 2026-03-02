@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_PLAN
+contract: SubscriptionPlan.deactivate action contract
+edge_class: action_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionPlan 的动作 deactivate 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 deactivate / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：deactivate 尝试停用已停用计划，校验失败

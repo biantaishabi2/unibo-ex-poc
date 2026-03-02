@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_PLAN
+contract: SubscriptionPlan.activate action contract (risk:success)
+edge_class: action_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionPlan 的动作 activate 可执行 / WHEN 执行动作 activate / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 新建年度计划，deactivate 停用，activate 重新启用；activate 尝试启用已启用计划，校验失败

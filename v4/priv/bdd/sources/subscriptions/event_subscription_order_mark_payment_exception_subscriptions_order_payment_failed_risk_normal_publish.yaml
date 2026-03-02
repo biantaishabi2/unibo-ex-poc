@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER
+contract: SubscriptionOrder.mark_payment_exception event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionOrder 动作 mark_payment_exception 触发事件 / WHEN 发布 topic `subscriptions.order.payment_failed` / THEN 消费方应收到一次有效通知

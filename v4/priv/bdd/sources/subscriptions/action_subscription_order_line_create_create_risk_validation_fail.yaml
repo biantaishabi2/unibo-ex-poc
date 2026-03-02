@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER_LINE
+contract: SubscriptionOrderLine.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionOrderLine 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建周期性订阅行，update 修改数量和折扣；create 创建一次性订阅行（recurring=false）；create 数量为0时校验失败；create 单价为负时校验失败；create 折扣超过100%时校验失败

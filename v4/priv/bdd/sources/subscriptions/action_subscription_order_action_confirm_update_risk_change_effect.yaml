@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER
+contract: SubscriptionOrder.action_confirm action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionOrder 的动作 action_confirm 触发副作用 / WHEN 执行动作 action_confirm / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 新建订阅，action_confirm 确认（draft→in_progress），生成首张发票；create 新建订阅，action_confirm 确认，action_pause 暂停，action_resume 恢复；action_confirm 对非 draft 状态确认，校验失败

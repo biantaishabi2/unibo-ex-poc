@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER
+contract: SubscriptionOrder.action_close action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionOrder 的动作 action_close 输入非法 / WHEN 执行动作 action_close / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 新建订阅，action_confirm 确认，action_close 手动关闭（指定关闭原因）；create 新建订阅，action_confirm 确认，action_close 关闭，action_renew 续订（生成新草稿）；action_close 对非 in_progress 状态关闭，校验失败

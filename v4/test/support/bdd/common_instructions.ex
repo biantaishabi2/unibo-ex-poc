@@ -21,7 +21,8 @@ defmodule UniboV4.BDD.CommonInstructions do
     "HELPDESK" => "helpdesk",
     "FORUM" => "forum",
     "LUNCH" => "lunch",
-    "POS" => "pos"
+    "POS" => "pos",
+    "SUBSCRIPTIONS" => "subscriptions"
   }
 
   # ============================================================

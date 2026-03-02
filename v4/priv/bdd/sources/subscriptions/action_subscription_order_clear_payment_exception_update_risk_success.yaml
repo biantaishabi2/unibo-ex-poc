@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER
+contract: SubscriptionOrder.clear_payment_exception action contract (risk:success)
+edge_class: action_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionOrder 的动作 clear_payment_exception 可执行 / WHEN 执行动作 clear_payment_exception / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：mark_payment_exception 标记支付异常，clear_payment_exception 清除异常

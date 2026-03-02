@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER
+contract: SubscriptionOrder.action_close event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionOrder 动作 action_close 事件被重复投递 / WHEN 重放 topic `subscriptions.order.closed` / THEN 消费方处理应保持幂等且无重复副作用

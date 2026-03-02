@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER
+contract: SubscriptionOrder.update action contract
+edge_class: action_contract
+source_file: models/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionOrder 的动作 update 可执行，accept=[end_date, next_invoice_date, payment_token_id, pricelist_id, team_id, stage_id]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效 / 补充场景：update 修改下次开票日期和支付令牌
