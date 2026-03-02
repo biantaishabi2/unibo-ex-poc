@@ -1,0 +1,5 @@
+module: POS_POS_SESSION
+contract: PosSession.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosSession 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 新建会话，open 打开会话（继承期初余额），正常收银；create 新建救援会话（rescue=true），跳过唯一活跃会话校验

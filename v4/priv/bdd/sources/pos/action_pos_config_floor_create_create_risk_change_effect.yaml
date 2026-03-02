@@ -1,0 +1,5 @@
+module: POS_POS_CONFIG_FLOOR
+contract: PosConfigFloor.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosConfigFloor 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 关联配置与楼层，destroy 解除关联；create 重复关联同一配置和楼层，唯一约束校验失败

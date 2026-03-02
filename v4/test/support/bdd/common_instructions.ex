@@ -20,7 +20,8 @@ defmodule UniboV4.BDD.CommonInstructions do
     "CRM" => "crm",
     "HELPDESK" => "helpdesk",
     "FORUM" => "forum",
-    "LUNCH" => "lunch"
+    "LUNCH" => "lunch",
+    "POS" => "pos"
   }
 
   # ============================================================

@@ -1,0 +1,5 @@
+module: POS_POS_ORDER
+contract: PosOrder.create action contract
+edge_class: action_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosOrder 的动作 create 可执行，accept=[order_number, order_date, discount_amount, currency_id, fiscal_position_id, partner_id, customer_count, notes]，args=[items:array!, session_id:uuid!, table_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建订单，pay 付款，done 完成，invoice 开票（完整主流程）；create 新建订单，pay 付款（实时模式触发库存拣货），done 完成

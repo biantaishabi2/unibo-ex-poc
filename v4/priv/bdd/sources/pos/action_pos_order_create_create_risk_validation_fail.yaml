@@ -1,0 +1,5 @@
+module: POS_POS_ORDER
+contract: PosOrder.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosOrder 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 新建订单，pay 付款，done 完成，invoice 开票（完整主流程）；create 新建订单，pay 付款（实时模式触发库存拣货），done 完成

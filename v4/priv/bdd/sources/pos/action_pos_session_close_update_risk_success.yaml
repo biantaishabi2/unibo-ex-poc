@@ -1,0 +1,5 @@
+module: POS_POS_SESSION
+contract: PosSession.close action contract (risk:success)
+edge_class: action_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosSession 的动作 close 可执行 / WHEN 执行动作 close / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 新建会话，open 打开，start_close 开始关闭，close 关闭（触发会计分录+库存拣货）；close 存在未过账发票时尝试关闭，校验失败
