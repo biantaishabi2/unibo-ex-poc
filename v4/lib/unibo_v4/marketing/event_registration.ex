@@ -28,13 +28,14 @@ defmodule UniboV4.Marketing.EventRegistration do
 
   attributes do
     uuid_primary_key :id
-    attribute :attendee_name, :string, allow_nil?: false
-    attribute :attendee_email, :string
+    attribute :attendee_name, :string, allow_nil?: false, public?: true
+    attribute :attendee_email, :string, public?: true
     attribute :status, :atom do
       constraints one_of: [:registered, :confirmed, :attended, :cancelled]
       default :registered
+        public? true
     end
-    attribute :registration_date, :date, allow_nil?: false
+    attribute :registration_date, :date, allow_nil?: false, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -42,6 +43,7 @@ defmodule UniboV4.Marketing.EventRegistration do
   relationships do
     belongs_to :event, UniboV4.Marketing.Event do
       allow_nil? false
+        public? true
     end
   end
 

@@ -30,6 +30,7 @@ defmodule UniboV4.Project.TaskDependency do
     attribute :dependency_type, :atom do
       constraints one_of: [:finish_to_start, :start_to_start, :finish_to_finish]
       default :finish_to_start
+        public? true
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
@@ -38,9 +39,11 @@ defmodule UniboV4.Project.TaskDependency do
   relationships do
     belongs_to :task, UniboV4.Project.Task do
       allow_nil? false
+        public? true
     end
     belongs_to :depends_on, UniboV4.Project.Task do
       allow_nil? false
+        public? true
     end
   end
 

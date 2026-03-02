@@ -30,11 +30,12 @@ defmodule UniboV4.Ecommerce.ProductPrice do
     attribute :price_type, :atom do
       allow_nil? false
       constraints one_of: [:list_price, :sale_price, :cost_price, :member_price]
+        public? true
     end
-    attribute :amount, :decimal, allow_nil?: false
-    attribute :currency, :string, default: "CNY"
-    attribute :from_date, :date, allow_nil?: false
-    attribute :thru_date, :date
+    attribute :amount, :decimal, allow_nil?: false, public?: true
+    attribute :currency, :string, default: "CNY", public?: true
+    attribute :from_date, :date, allow_nil?: false, public?: true
+    attribute :thru_date, :date, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -42,6 +43,7 @@ defmodule UniboV4.Ecommerce.ProductPrice do
   relationships do
     belongs_to :product, UniboV4.Ecommerce.ProductTemplate do
       allow_nil? false
+        public? true
     end
   end
 

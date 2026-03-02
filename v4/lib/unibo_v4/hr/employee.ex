@@ -29,27 +29,28 @@ defmodule UniboV4.HR.Employee do
 
   attributes do
     uuid_primary_key :id
-    attribute :employee_code, :string, allow_nil?: false
-    attribute :first_name, :string, allow_nil?: false
-    attribute :last_name, :string, allow_nil?: false
-    attribute :email, :string
-    attribute :phone, :string
-    attribute :gender, :atom, constraints: [one_of: [:male, :female, :other]]
-    attribute :birth_date, :date
-    attribute :hire_date, :date, allow_nil?: false
+    attribute :employee_code, :string, allow_nil?: false, public?: true
+    attribute :first_name, :string, allow_nil?: false, public?: true
+    attribute :last_name, :string, allow_nil?: false, public?: true
+    attribute :email, :string, public?: true
+    attribute :phone, :string, public?: true
+    attribute :gender, :atom, constraints: [one_of: [:male, :female, :other]], public?: true
+    attribute :birth_date, :date, public?: true
+    attribute :hire_date, :date, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:active, :on_leave, :terminated]
       default :active
+        public? true
     end
-    attribute :address, :string
-    attribute :notes, :string
+    attribute :address, :string, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    belongs_to :department, UniboV4.HR.Department
-    belongs_to :position, UniboV4.HR.JobPosition
+    belongs_to :department, UniboV4.HR.Department, public?: true
+    belongs_to :position, UniboV4.HR.JobPosition, public?: true
     has_many :contracts, UniboV4.HR.EmploymentContract
     has_many :leave_requests, UniboV4.HR.LeaveRequest
     has_many :attendances, UniboV4.HR.Attendance

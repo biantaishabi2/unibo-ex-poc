@@ -27,12 +27,12 @@ defmodule UniboV4.Ecommerce.ProductVariant do
 
   attributes do
     uuid_primary_key :id
-    attribute :sku, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
-    attribute :attributes_json, :string
-    attribute :price, :decimal, allow_nil?: false
-    attribute :stock_quantity, :integer, default: 0
-    attribute :is_active, :boolean, default: true
+    attribute :sku, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :attributes_json, :string, public?: true
+    attribute :price, :decimal, allow_nil?: false, public?: true
+    attribute :stock_quantity, :integer, default: 0, public?: true
+    attribute :is_active, :boolean, default: true, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -40,6 +40,7 @@ defmodule UniboV4.Ecommerce.ProductVariant do
   relationships do
     belongs_to :template, UniboV4.Ecommerce.ProductTemplate do
       allow_nil? false
+        public? true
     end
   end
 

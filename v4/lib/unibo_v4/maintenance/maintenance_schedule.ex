@@ -27,15 +27,16 @@ defmodule UniboV4.Maintenance.MaintenanceSchedule do
 
   attributes do
     uuid_primary_key :id
-    attribute :schedule_code, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
+    attribute :schedule_code, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
     attribute :frequency, :atom do
       allow_nil? false
       constraints one_of: [:daily, :weekly, :monthly, :quarterly, :yearly]
+        public? true
     end
-    attribute :next_due_date, :date, allow_nil?: false
-    attribute :is_active, :boolean, default: true
-    attribute :description, :string
+    attribute :next_due_date, :date, allow_nil?: false, public?: true
+    attribute :is_active, :boolean, default: true, public?: true
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -43,6 +44,7 @@ defmodule UniboV4.Maintenance.MaintenanceSchedule do
   relationships do
     belongs_to :equipment, UniboV4.Maintenance.Equipment do
       allow_nil? false
+        public? true
     end
   end
 

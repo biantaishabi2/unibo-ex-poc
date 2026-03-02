@@ -27,15 +27,16 @@ defmodule UniboV4.HR.Training do
 
   attributes do
     uuid_primary_key :id
-    attribute :training_name, :string, allow_nil?: false
+    attribute :training_name, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:planned, :in_progress, :completed, :cancelled]
       default :planned
+        public? true
     end
-    attribute :start_date, :date, allow_nil?: false
-    attribute :end_date, :date
-    attribute :score, :decimal
-    attribute :notes, :string
+    attribute :start_date, :date, allow_nil?: false, public?: true
+    attribute :end_date, :date, public?: true
+    attribute :score, :decimal, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -43,6 +44,7 @@ defmodule UniboV4.HR.Training do
   relationships do
     belongs_to :employee, UniboV4.HR.Employee do
       allow_nil? false
+        public? true
     end
   end
 

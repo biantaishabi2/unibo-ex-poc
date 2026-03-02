@@ -27,7 +27,7 @@ defmodule UniboV4.Marketing.CampaignRole do
 
   attributes do
     uuid_primary_key :id
-    attribute :role, :string, allow_nil?: false
+    attribute :role, :string, allow_nil?: false, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -35,9 +35,11 @@ defmodule UniboV4.Marketing.CampaignRole do
   relationships do
     belongs_to :campaign, UniboV4.Marketing.Campaign do
       allow_nil? false
+        public? true
     end
     belongs_to :person, UniboV4.Accounts.User do
       allow_nil? false
+        public? true
     end
   end
 

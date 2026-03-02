@@ -29,15 +29,16 @@ defmodule UniboV4.Manufacturing.BillOfMaterials do
 
   attributes do
     uuid_primary_key :id
-    attribute :bom_code, :string, allow_nil?: false
-    attribute :product_name, :string, allow_nil?: false
-    attribute :product_code, :string, allow_nil?: false
-    attribute :version, :string, default: "1.0"
+    attribute :bom_code, :string, allow_nil?: false, public?: true
+    attribute :product_name, :string, allow_nil?: false, public?: true
+    attribute :product_code, :string, allow_nil?: false, public?: true
+    attribute :version, :string, default: "1.0", public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :active, :obsolete]
       default :draft
+        public? true
     end
-    attribute :description, :string
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

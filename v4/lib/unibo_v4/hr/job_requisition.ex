@@ -28,25 +28,27 @@ defmodule UniboV4.HR.JobRequisition do
 
   attributes do
     uuid_primary_key :id
-    attribute :requisition_number, :string, allow_nil?: false
-    attribute :job_title, :string, allow_nil?: false
-    attribute :headcount, :integer, allow_nil?: false
+    attribute :requisition_number, :string, allow_nil?: false, public?: true
+    attribute :job_title, :string, allow_nil?: false, public?: true
+    attribute :headcount, :integer, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :open, :in_progress, :filled, :cancelled]
       default :draft
+        public? true
     end
     attribute :priority, :atom do
       constraints one_of: [:low, :medium, :high, :urgent]
       default :medium
+        public? true
     end
-    attribute :description, :string
-    attribute :requirements, :string
+    attribute :description, :string, public?: true
+    attribute :requirements, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    belongs_to :department, UniboV4.HR.Department
+    belongs_to :department, UniboV4.HR.Department, public?: true
     has_many :applications, UniboV4.HR.JobApplication
   end
 

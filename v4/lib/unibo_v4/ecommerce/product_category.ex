@@ -27,16 +27,16 @@ defmodule UniboV4.Ecommerce.ProductCategory do
 
   attributes do
     uuid_primary_key :id
-    attribute :category_code, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
-    attribute :description, :string
-    attribute :is_active, :boolean, default: true
+    attribute :category_code, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :description, :string, public?: true
+    attribute :is_active, :boolean, default: true, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    belongs_to :parent, UniboV4.Ecommerce.ProductCategory
+    belongs_to :parent, UniboV4.Ecommerce.ProductCategory, public?: true
     has_many :products, UniboV4.Ecommerce.ProductTemplate
   end
 

@@ -28,23 +28,24 @@ defmodule UniboV4.POS.PosSession do
 
   attributes do
     uuid_primary_key :id
-    attribute :session_code, :string, allow_nil?: false
+    attribute :session_code, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:opening, :open, :closing, :closed]
       default :opening
+        public? true
     end
-    attribute :opening_balance, :decimal, default: 0
-    attribute :closing_balance, :decimal
-    attribute :open_date, :utc_datetime, allow_nil?: false
-    attribute :close_date, :utc_datetime
-    attribute :notes, :string
+    attribute :opening_balance, :decimal, default: 0, public?: true
+    attribute :closing_balance, :decimal, public?: true
+    attribute :open_date, :utc_datetime, allow_nil?: false, public?: true
+    attribute :close_date, :utc_datetime, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     has_many :orders, UniboV4.POS.PosOrder
-    belongs_to :cashier, UniboV4.Accounts.User
+    belongs_to :cashier, UniboV4.Accounts.User, public?: true
   end
 
   actions do

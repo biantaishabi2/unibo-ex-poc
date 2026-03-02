@@ -27,11 +27,11 @@ defmodule UniboV4.Ecommerce.WebSite do
 
   attributes do
     uuid_primary_key :id
-    attribute :site_code, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
-    attribute :domain_name, :string
-    attribute :is_active, :boolean, default: true
-    attribute :description, :string
+    attribute :site_code, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :domain_name, :string, public?: true
+    attribute :is_active, :boolean, default: true, public?: true
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

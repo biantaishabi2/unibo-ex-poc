@@ -30,16 +30,17 @@ defmodule UniboV4.Project.Project do
 
   attributes do
     uuid_primary_key :id
-    attribute :project_code, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
+    attribute :project_code, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:planning, :in_progress, :on_hold, :completed, :cancelled]
       default :planning
+        public? true
     end
-    attribute :start_date, :date
-    attribute :end_date, :date
-    attribute :budget, :decimal
-    attribute :description, :string
+    attribute :start_date, :date, public?: true
+    attribute :end_date, :date, public?: true
+    attribute :budget, :decimal, public?: true
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -47,7 +48,7 @@ defmodule UniboV4.Project.Project do
   relationships do
     has_many :tasks, UniboV4.Project.Task
     has_many :milestones, UniboV4.Project.Milestone
-    belongs_to :manager, UniboV4.Accounts.User
+    belongs_to :manager, UniboV4.Accounts.User, public?: true
   end
 
   actions do

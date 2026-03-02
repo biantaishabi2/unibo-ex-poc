@@ -28,24 +28,25 @@ defmodule UniboV4.Marketing.Event do
 
   attributes do
     uuid_primary_key :id
-    attribute :event_code, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
+    attribute :event_code, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :published, :ongoing, :completed, :cancelled]
       default :draft
+        public? true
     end
-    attribute :start_date, :utc_datetime
-    attribute :end_date, :utc_datetime
-    attribute :location, :string
-    attribute :max_attendees, :integer
-    attribute :description, :string
+    attribute :start_date, :utc_datetime, public?: true
+    attribute :end_date, :utc_datetime, public?: true
+    attribute :location, :string, public?: true
+    attribute :max_attendees, :integer, public?: true
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     has_many :registrations, UniboV4.Marketing.EventRegistration
-    belongs_to :campaign, UniboV4.Marketing.Campaign
+    belongs_to :campaign, UniboV4.Marketing.Campaign, public?: true
   end
 
   actions do

@@ -31,17 +31,18 @@ defmodule UniboV4.Maintenance.RepairOrder do
 
   attributes do
     uuid_primary_key :id
-    attribute :repair_number, :string, allow_nil?: false
+    attribute :repair_number, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :confirmed, :in_repair, :repaired, :cancelled]
       default :draft
+        public? true
     end
-    attribute :diagnosis, :string
-    attribute :repair_notes, :string
-    attribute :estimated_cost, :decimal
-    attribute :actual_cost, :decimal
-    attribute :repair_date, :date
-    attribute :completion_date, :date
+    attribute :diagnosis, :string, public?: true
+    attribute :repair_notes, :string, public?: true
+    attribute :estimated_cost, :decimal, public?: true
+    attribute :actual_cost, :decimal, public?: true
+    attribute :repair_date, :date, public?: true
+    attribute :completion_date, :date, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -49,6 +50,7 @@ defmodule UniboV4.Maintenance.RepairOrder do
   relationships do
     belongs_to :equipment, UniboV4.Maintenance.Equipment do
       allow_nil? false
+        public? true
     end
   end
 

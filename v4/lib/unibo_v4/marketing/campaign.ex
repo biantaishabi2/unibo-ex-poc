@@ -30,28 +30,30 @@ defmodule UniboV4.Marketing.Campaign do
 
   attributes do
     uuid_primary_key :id
-    attribute :campaign_code, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
+    attribute :campaign_code, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :running, :paused, :completed, :cancelled]
       default :draft
+        public? true
     end
     attribute :campaign_type, :atom do
       constraints one_of: [:email, :social, :event, :promotion, :other]
       default :email
+        public? true
     end
-    attribute :start_date, :date
-    attribute :end_date, :date
-    attribute :budget, :decimal
-    attribute :actual_cost, :decimal
-    attribute :description, :string
+    attribute :start_date, :date, public?: true
+    attribute :end_date, :date, public?: true
+    attribute :budget, :decimal, public?: true
+    attribute :actual_cost, :decimal, public?: true
+    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     has_many :roles, UniboV4.Marketing.CampaignRole
-    belongs_to :created_by, UniboV4.Accounts.User
+    belongs_to :created_by, UniboV4.Accounts.User, public?: true
   end
 
   actions do

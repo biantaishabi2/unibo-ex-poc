@@ -28,18 +28,19 @@ defmodule UniboV4.Maintenance.Equipment do
 
   attributes do
     uuid_primary_key :id
-    attribute :asset_code, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
+    attribute :asset_code, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:operational, :maintenance, :retired]
       default :operational
+        public? true
     end
-    attribute :category, :string
-    attribute :location, :string
-    attribute :purchase_date, :date
-    attribute :warranty_expiry_date, :date
-    attribute :serial_number, :string
-    attribute :notes, :string
+    attribute :category, :string, public?: true
+    attribute :location, :string, public?: true
+    attribute :purchase_date, :date, public?: true
+    attribute :warranty_expiry_date, :date, public?: true
+    attribute :serial_number, :string, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

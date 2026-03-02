@@ -28,13 +28,14 @@ defmodule UniboV4.Communication.Channel do
 
   attributes do
     uuid_primary_key :id
-    attribute :name, :string, allow_nil?: false
+    attribute :name, :string, allow_nil?: false, public?: true
     attribute :channel_type, :atom do
       constraints one_of: [:public, :private, :direct]
       default :public
+        public? true
     end
-    attribute :description, :string
-    attribute :is_active, :boolean, default: true
+    attribute :description, :string, public?: true
+    attribute :is_active, :boolean, default: true, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -42,7 +43,7 @@ defmodule UniboV4.Communication.Channel do
   relationships do
     has_many :members, UniboV4.Communication.ChannelMember
     has_many :messages, UniboV4.Communication.Message
-    belongs_to :created_by, UniboV4.Accounts.User
+    belongs_to :created_by, UniboV4.Accounts.User, public?: true
   end
 
   actions do

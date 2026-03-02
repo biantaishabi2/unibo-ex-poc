@@ -28,17 +28,18 @@ defmodule UniboV4.HR.PaySlip do
 
   attributes do
     uuid_primary_key :id
-    attribute :payslip_number, :string, allow_nil?: false
-    attribute :period, :string, allow_nil?: false
-    attribute :basic_salary, :decimal, allow_nil?: false
-    attribute :allowances, :decimal, default: 0
-    attribute :deductions, :decimal, default: 0
-    attribute :net_salary, :decimal, allow_nil?: false
+    attribute :payslip_number, :string, allow_nil?: false, public?: true
+    attribute :period, :string, allow_nil?: false, public?: true
+    attribute :basic_salary, :decimal, allow_nil?: false, public?: true
+    attribute :allowances, :decimal, default: 0, public?: true
+    attribute :deductions, :decimal, default: 0, public?: true
+    attribute :net_salary, :decimal, allow_nil?: false, public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :confirmed, :paid]
       default :draft
+        public? true
     end
-    attribute :pay_date, :date
+    attribute :pay_date, :date, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -46,6 +47,7 @@ defmodule UniboV4.HR.PaySlip do
   relationships do
     belongs_to :employee, UniboV4.HR.Employee do
       allow_nil? false
+        public? true
     end
   end
 

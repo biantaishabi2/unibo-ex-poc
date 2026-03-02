@@ -30,16 +30,17 @@ defmodule UniboV4.HR.JobApplication do
 
   attributes do
     uuid_primary_key :id
-    attribute :applicant_name, :string, allow_nil?: false
-    attribute :email, :string
-    attribute :phone, :string
+    attribute :applicant_name, :string, allow_nil?: false, public?: true
+    attribute :email, :string, public?: true
+    attribute :phone, :string, public?: true
     attribute :status, :atom do
       constraints one_of: [:received, :screening, :interview, :offer, :hired, :rejected]
       default :received
+        public? true
     end
-    attribute :resume_summary, :string
-    attribute :notes, :string
-    attribute :applied_date, :date, allow_nil?: false
+    attribute :resume_summary, :string, public?: true
+    attribute :notes, :string, public?: true
+    attribute :applied_date, :date, allow_nil?: false, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -47,6 +48,7 @@ defmodule UniboV4.HR.JobApplication do
   relationships do
     belongs_to :requisition, UniboV4.HR.JobRequisition do
       allow_nil? false
+        public? true
     end
   end
 

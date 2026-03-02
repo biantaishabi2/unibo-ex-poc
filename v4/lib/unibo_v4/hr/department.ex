@@ -27,17 +27,17 @@ defmodule UniboV4.HR.Department do
 
   attributes do
     uuid_primary_key :id
-    attribute :department_code, :string, allow_nil?: false
-    attribute :name, :string, allow_nil?: false
-    attribute :description, :string
-    attribute :is_active, :boolean, default: true
+    attribute :department_code, :string, allow_nil?: false, public?: true
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :description, :string, public?: true
+    attribute :is_active, :boolean, default: true, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     has_many :employees, UniboV4.HR.Employee
-    belongs_to :parent, UniboV4.HR.Department
+    belongs_to :parent, UniboV4.HR.Department, public?: true
   end
 
   actions do

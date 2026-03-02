@@ -30,8 +30,9 @@ defmodule UniboV4.Communication.ChannelMember do
     attribute :role, :atom do
       constraints one_of: [:admin, :member]
       default :member
+        public? true
     end
-    attribute :joined_date, :date, allow_nil?: false
+    attribute :joined_date, :date, allow_nil?: false, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -39,9 +40,11 @@ defmodule UniboV4.Communication.ChannelMember do
   relationships do
     belongs_to :channel, UniboV4.Communication.Channel do
       allow_nil? false
+        public? true
     end
     belongs_to :user, UniboV4.Accounts.User do
       allow_nil? false
+        public? true
     end
   end
 

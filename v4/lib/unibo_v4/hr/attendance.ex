@@ -27,10 +27,10 @@ defmodule UniboV4.HR.Attendance do
 
   attributes do
     uuid_primary_key :id
-    attribute :check_in, :utc_datetime, allow_nil?: false
-    attribute :check_out, :utc_datetime
-    attribute :worked_hours, :decimal
-    attribute :attendance_date, :date, allow_nil?: false
+    attribute :check_in, :utc_datetime, allow_nil?: false, public?: true
+    attribute :check_out, :utc_datetime, public?: true
+    attribute :worked_hours, :decimal, public?: true
+    attribute :attendance_date, :date, allow_nil?: false, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -38,6 +38,7 @@ defmodule UniboV4.HR.Attendance do
   relationships do
     belongs_to :employee, UniboV4.HR.Employee do
       allow_nil? false
+        public? true
     end
   end
 

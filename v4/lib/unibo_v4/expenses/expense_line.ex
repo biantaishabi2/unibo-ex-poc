@@ -22,11 +22,11 @@ defmodule UniboV4.Expenses.ExpenseLine do
 
   attributes do
     uuid_primary_key :id
-    attribute :description, :string, allow_nil?: false
-    attribute :amount, :decimal, allow_nil?: false
-    attribute :expense_date, :date, allow_nil?: false
-    attribute :receipt_reference, :string
-    attribute :notes, :string
+    attribute :description, :string, allow_nil?: false, public?: true
+    attribute :amount, :decimal, allow_nil?: false, public?: true
+    attribute :expense_date, :date, allow_nil?: false, public?: true
+    attribute :receipt_reference, :string, public?: true
+    attribute :notes, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -34,8 +34,9 @@ defmodule UniboV4.Expenses.ExpenseLine do
   relationships do
     belongs_to :report, UniboV4.Expenses.ExpenseReport do
       allow_nil? false
+        public? true
     end
-    belongs_to :category, UniboV4.Expenses.ExpenseCategory
+    belongs_to :category, UniboV4.Expenses.ExpenseCategory, public?: true
   end
 
   actions do
