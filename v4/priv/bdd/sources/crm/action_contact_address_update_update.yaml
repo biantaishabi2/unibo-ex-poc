@@ -1,0 +1,5 @@
+module: CRM_CONTACT_ADDRESS
+contract: ContactAddress.update action contract
+edge_class: action_contract
+source_file: models/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 ContactAddress 的动作 update 可执行，accept=[address_type, street, city, state, postal_code, country, is_primary]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效

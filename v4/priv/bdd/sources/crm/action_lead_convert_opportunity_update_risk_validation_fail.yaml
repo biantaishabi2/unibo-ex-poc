@@ -1,0 +1,5 @@
+module: CRM_LEAD
+contract: Lead.convert_opportunity action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 Lead 的动作 convert_opportunity 输入非法 / WHEN 执行动作 convert_opportunity / THEN 应返回校验失败且不产生持久化副作用

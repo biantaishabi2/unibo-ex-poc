@@ -1,0 +1,5 @@
+module: CRM_LEAD
+contract: Lead.create action contract
+edge_class: action_contract
+source_file: models/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 Lead 的动作 create 可执行，accept=[name, type, partner_name, contact_name, email_from, phone, mobile, expected_revenue, probability, priority, tag_ids, source, date_deadline, notes, lead_properties]，args=[contact_id:uuid, stage_id:uuid, team_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效
