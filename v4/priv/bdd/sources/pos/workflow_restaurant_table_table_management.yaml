@@ -1,0 +1,5 @@
+module: POS_RESTAURANT_TABLE
+contract: RestaurantTable.table_management workflow contract
+edge_class: workflow_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 RestaurantTable 定义工作流 table_management / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束

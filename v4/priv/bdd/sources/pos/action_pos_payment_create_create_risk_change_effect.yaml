@@ -1,0 +1,5 @@
+module: POS_POS_PAYMENT
+contract: PosPayment.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosPayment 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建正常支付记录（amount > 0），关联订单；create 创建找零记录（amount < 0，is_change=true）；create 正常支付 amount 为负时校验失败；create 找零记录未标记 is_change 时校验失败

@@ -1,0 +1,5 @@
+module: POS_POS_ORDER
+contract: PosOrder.refund action contract (risk:success)
+edge_class: action_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosOrder 的动作 refund 可执行 / WHEN 执行动作 refund / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：refund 创建退款单（部分退款），生成镜像订单

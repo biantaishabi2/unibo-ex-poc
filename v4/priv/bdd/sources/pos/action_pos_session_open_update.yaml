@@ -1,0 +1,5 @@
+module: POS_POS_SESSION
+contract: PosSession.open action contract
+edge_class: action_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosSession 的动作 open 可执行，accept=[opening_balance]，args=[无显式参数] / WHEN 执行动作 open / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：open 尝试打开非 opening 状态的会话，校验失败

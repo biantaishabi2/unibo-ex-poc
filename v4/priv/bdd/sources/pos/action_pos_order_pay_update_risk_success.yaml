@@ -1,0 +1,5 @@
+module: POS_POS_ORDER
+contract: PosOrder.pay action contract (risk:success)
+edge_class: action_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosOrder 的动作 pay 可执行 / WHEN 执行动作 pay / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：pay 支付金额不足时校验失败；pay 尝试对非 draft 状态订单付款，校验失败

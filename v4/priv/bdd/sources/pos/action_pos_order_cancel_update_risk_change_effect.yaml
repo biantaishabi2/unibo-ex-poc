@@ -1,0 +1,5 @@
+module: POS_POS_ORDER
+contract: PosOrder.cancel action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosOrder 的动作 cancel 触发副作用 / WHEN 执行动作 cancel / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 新建订单，cancel 取消订单，destroy 删除已取消订单；destroy 尝试删除非 draft/cancel 状态订单，校验失败

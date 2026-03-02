@@ -1,0 +1,5 @@
+module: POS_POS_ORDER
+contract: PosOrder.done action contract
+edge_class: action_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosOrder 的动作 done 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 done / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：done 尝试对非 paid 状态订单标记完成，校验失败；invoice 对非 done 状态订单开票，校验失败

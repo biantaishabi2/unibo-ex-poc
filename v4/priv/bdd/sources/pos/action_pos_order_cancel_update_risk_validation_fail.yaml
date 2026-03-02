@@ -1,0 +1,5 @@
+module: POS_POS_ORDER
+contract: PosOrder.cancel action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosOrder 的动作 cancel 输入非法 / WHEN 执行动作 cancel / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 新建订单，cancel 取消订单，destroy 删除已取消订单；destroy 尝试删除非 draft/cancel 状态订单，校验失败

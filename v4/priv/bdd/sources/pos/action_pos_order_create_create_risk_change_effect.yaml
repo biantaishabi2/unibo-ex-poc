@@ -1,0 +1,5 @@
+module: POS_POS_ORDER
+contract: PosOrder.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosOrder 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 新建订单，pay 付款，done 完成，invoice 开票（完整主流程）；create 新建订单，pay 付款（实时模式触发库存拣货），done 完成
