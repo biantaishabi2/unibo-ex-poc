@@ -7,13 +7,13 @@
 #   update --> decommission
 #   decommission --> [*]
 # ```
-defmodule UniboV4.Fleet.Fleet.FleetVehicle do
+defmodule UniboV4.Fleet.FleetVehicle do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Fleet.Fleet,
+    domain: UniboV4.Fleet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Fleet.Fleet.FleetVehicle.Notifier]
+    notifiers: [UniboV4.Fleet.FleetVehicle.Notifier]
 
   postgres do
     table "fleet_vehicles"
@@ -83,18 +83,18 @@ defmodule UniboV4.Fleet.Fleet.FleetVehicle do
   end
 
   relationships do
-    belongs_to :vehicle_type, UniboV4.Fleet.Fleet.FleetVehicleType do
+    belongs_to :vehicle_type, UniboV4.Fleet.FleetVehicleType do
       public? true
     end
-    has_many :assignments, UniboV4.Fleet.Fleet.VehicleAssignment do
-      public? true
-      destination_attribute :fleet_vehicle_id
-    end
-    has_many :services, UniboV4.Fleet.Fleet.VehicleService do
+    has_many :assignments, UniboV4.Fleet.VehicleAssignment do
       public? true
       destination_attribute :fleet_vehicle_id
     end
-    has_many :contracts, UniboV4.Fleet.Fleet.VehicleContract do
+    has_many :services, UniboV4.Fleet.VehicleService do
+      public? true
+      destination_attribute :fleet_vehicle_id
+    end
+    has_many :contracts, UniboV4.Fleet.VehicleContract do
       public? true
       destination_attribute :fleet_vehicle_id
     end

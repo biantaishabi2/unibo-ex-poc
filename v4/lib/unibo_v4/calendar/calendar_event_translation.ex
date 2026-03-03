@@ -1,4 +1,4 @@
-defmodule UniboV4.Calendar.Calendar.CalendarEventTranslation do
+defmodule UniboV4.Calendar.CalendarEventTranslation do
   use Ash.Resource,
     otp_app: :unibo_v4,
     data_layer: AshPostgres.DataLayer
@@ -24,7 +24,7 @@ defmodule UniboV4.Calendar.Calendar.CalendarEventTranslation do
   end
 
   relationships do
-    belongs_to :calendar_event, UniboV4.Calendar.Calendar.CalendarEvent do
+    belongs_to :calendar_event, UniboV4.Calendar.CalendarEvent do
       public? true
       allow_nil? false
     end

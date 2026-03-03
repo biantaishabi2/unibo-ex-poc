@@ -1,10 +1,10 @@
-defmodule UniboV4.Rating.Rating.RatingSummary do
+defmodule UniboV4.Rating.RatingSummary do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Rating.Rating,
+    domain: UniboV4.Rating,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Rating.Rating.RatingSummary.Notifier]
+    notifiers: [UniboV4.Rating.RatingSummary.Notifier]
 
   postgres do
     table "rating_summaries"

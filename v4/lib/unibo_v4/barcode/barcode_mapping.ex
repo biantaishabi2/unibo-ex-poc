@@ -11,13 +11,13 @@
 #   deactivate --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Barcode.Barcode.BarcodeMapping do
+defmodule UniboV4.Barcode.BarcodeMapping do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Barcode.Barcode,
+    domain: UniboV4.Barcode,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Barcode.Barcode.BarcodeMapping.Notifier]
+    notifiers: [UniboV4.Barcode.BarcodeMapping.Notifier]
 
   postgres do
     table "barcode_mappings"
@@ -65,7 +65,7 @@ defmodule UniboV4.Barcode.Barcode.BarcodeMapping do
   end
 
   relationships do
-    belongs_to :nomenclature, UniboV4.Barcode.Barcode.BarcodeNomenclature do
+    belongs_to :nomenclature, UniboV4.Barcode.BarcodeNomenclature do
       public? true
     end
   end

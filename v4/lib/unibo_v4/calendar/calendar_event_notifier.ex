@@ -1,4 +1,4 @@
-defmodule UniboV4.Calendar.Calendar.CalendarEvent.Notifier do
+defmodule UniboV4.Calendar.CalendarEvent.Notifier do
   use Ash.Notifier
 
   @impl true
@@ -11,7 +11,7 @@ defmodule UniboV4.Calendar.Calendar.CalendarEvent.Notifier do
     end
 
     if topic do
-      Phoenix.PubSub.broadcast(UniboV4.Calendar.PubSub, topic, {action_name, notification.data})
+      Phoenix.PubSub.broadcast(UniboV4.PubSub, topic, {action_name, notification.data})
     end
 
     :ok

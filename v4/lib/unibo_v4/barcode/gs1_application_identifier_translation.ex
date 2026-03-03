@@ -1,4 +1,4 @@
-defmodule UniboV4.Barcode.Barcode.Gs1ApplicationIdentifierTranslation do
+defmodule UniboV4.Barcode.Gs1ApplicationIdentifierTranslation do
   use Ash.Resource,
     otp_app: :unibo_v4,
     data_layer: AshPostgres.DataLayer
@@ -24,7 +24,7 @@ defmodule UniboV4.Barcode.Barcode.Gs1ApplicationIdentifierTranslation do
   end
 
   relationships do
-    belongs_to :gs1_application_identifier, UniboV4.Barcode.Barcode.Gs1ApplicationIdentifier do
+    belongs_to :gs1_application_identifier, UniboV4.Barcode.Gs1ApplicationIdentifier do
       public? true
       allow_nil? false
     end

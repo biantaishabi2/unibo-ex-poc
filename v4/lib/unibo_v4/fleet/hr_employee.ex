@@ -1,7 +1,7 @@
-defmodule UniboV4.Fleet.Fleet.HrEmployee do
+defmodule UniboV4.Fleet.HrEmployee do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Fleet.Fleet,
+    domain: UniboV4.Fleet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 

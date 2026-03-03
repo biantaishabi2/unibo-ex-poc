@@ -12,13 +12,13 @@
 #   pause --> expire
 #   expire --> [*] : expired
 # ```
-defmodule UniboV4.Loyalty.Loyalty.LoyaltyProgram do
+defmodule UniboV4.Loyalty.LoyaltyProgram do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Loyalty.Loyalty,
+    domain: UniboV4.Loyalty,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Loyalty.Loyalty.LoyaltyProgram.Notifier]
+    notifiers: [UniboV4.Loyalty.LoyaltyProgram.Notifier]
 
   postgres do
     table "loyalty_programs"
@@ -89,23 +89,23 @@ defmodule UniboV4.Loyalty.Loyalty.LoyaltyProgram do
   end
 
   relationships do
-    has_many :rules, UniboV4.Loyalty.Loyalty.LoyaltyRule do
+    has_many :rules, UniboV4.Loyalty.LoyaltyRule do
       public? true
       destination_attribute :program_id
     end
-    has_many :rewards, UniboV4.Loyalty.Loyalty.LoyaltyReward do
+    has_many :rewards, UniboV4.Loyalty.LoyaltyReward do
       public? true
       destination_attribute :program_id
     end
-    has_many :coupons, UniboV4.Loyalty.Loyalty.Coupon do
+    has_many :coupons, UniboV4.Loyalty.Coupon do
       public? true
       destination_attribute :program_id
     end
-    has_many :cards, UniboV4.Loyalty.Loyalty.LoyaltyCard do
+    has_many :cards, UniboV4.Loyalty.LoyaltyCard do
       public? true
       destination_attribute :program_id
     end
-    has_many :translations, UniboV4.Loyalty.Loyalty.LoyaltyProgramTranslation, public?: true
+    has_many :translations, UniboV4.Loyalty.LoyaltyProgramTranslation, public?: true
   end
 
   actions do

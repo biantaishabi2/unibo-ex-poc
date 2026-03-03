@@ -1,4 +1,4 @@
-defmodule UniboV4.Payment.Payment.Payment.Notifier do
+defmodule UniboV4.Payment.Payment.Notifier do
   use Ash.Notifier
 
   @impl true
@@ -13,7 +13,7 @@ defmodule UniboV4.Payment.Payment.Payment.Notifier do
     end
 
     if topic do
-      Phoenix.PubSub.broadcast(UniboV4.Payment.PubSub, topic, {action_name, notification.data})
+      Phoenix.PubSub.broadcast(UniboV4.PubSub, topic, {action_name, notification.data})
     end
 
     :ok

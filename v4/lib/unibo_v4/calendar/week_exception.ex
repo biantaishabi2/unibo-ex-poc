@@ -5,10 +5,10 @@
 #   add --> remove
 #   remove --> [*]
 # ```
-defmodule UniboV4.Calendar.Calendar.WeekException do
+defmodule UniboV4.Calendar.WeekException do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Calendar.Calendar,
+    domain: UniboV4.Calendar,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -48,14 +48,14 @@ defmodule UniboV4.Calendar.Calendar.WeekException do
   end
 
   relationships do
-    belongs_to :work_schedule, UniboV4.Calendar.Calendar.WorkSchedule do
+    belongs_to :work_schedule, UniboV4.Calendar.WorkSchedule do
       public? true
       allow_nil? false
     end
-    belongs_to :override_week_template, UniboV4.Calendar.Calendar.WeekTemplate do
+    belongs_to :override_week_template, UniboV4.Calendar.WeekTemplate do
       public? true
     end
-    has_many :translations, UniboV4.Calendar.Calendar.WeekExceptionTranslation, public?: true
+    has_many :translations, UniboV4.Calendar.WeekExceptionTranslation, public?: true
   end
 
   actions do

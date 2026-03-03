@@ -21,13 +21,13 @@
 #   unfreeze --> expire_card
 #   expire_card --> [*]
 # ```
-defmodule UniboV4.Loyalty.Loyalty.LoyaltyCard do
+defmodule UniboV4.Loyalty.LoyaltyCard do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Loyalty.Loyalty,
+    domain: UniboV4.Loyalty,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Loyalty.Loyalty.LoyaltyCard.Notifier]
+    notifiers: [UniboV4.Loyalty.LoyaltyCard.Notifier]
 
   postgres do
     table "loyalty_cards"
@@ -84,15 +84,11 @@ defmodule UniboV4.Loyalty.Loyalty.LoyaltyCard do
   end
 
   relationships do
-    belongs_to :program, UniboV4.Loyalty.Loyalty.LoyaltyProgram do
+    belongs_to :program, UniboV4.Loyalty.LoyaltyProgram do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.Loyalty.Loyalty.ResPartner do
-      public? true
-      allow_nil? false
-    end
-    has_many :transactions, UniboV4.Loyalty.Loyalty.LoyaltyTransaction do
+    has_many :transactions, UniboV4.Loyalty.LoyaltyTransaction do
       public? true
       destination_attribute :card_id
     end
@@ -106,7 +102,6 @@ defmodule UniboV4.Loyalty.Loyalty.LoyaltyCard do
       argument :program_id, :uuid, allow_nil?: false
       argument :partner_id, :uuid, allow_nil?: false
       change manage_relationship(:program_id, :program, type: :append, on_lookup: :relate)
-      change manage_relationship(:partner_id, :partner, type: :append, on_lookup: :relate)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

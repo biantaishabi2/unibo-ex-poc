@@ -8,13 +8,13 @@
 #   process --> [*] : processed
 #   reject --> [*] : rejected
 # ```
-defmodule UniboV4.Payment.Payment.PaymentRefund do
+defmodule UniboV4.Payment.PaymentRefund do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Payment.Payment,
+    domain: UniboV4.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Payment.Payment.PaymentRefund.Notifier]
+    notifiers: [UniboV4.Payment.PaymentRefund.Notifier]
 
   postgres do
     table "payment_refunds"
@@ -58,7 +58,7 @@ defmodule UniboV4.Payment.Payment.PaymentRefund do
   end
 
   relationships do
-    belongs_to :payment, UniboV4.Payment.Payment.Payment do
+    belongs_to :payment, UniboV4.Payment.Payment do
       public? true
       allow_nil? false
     end

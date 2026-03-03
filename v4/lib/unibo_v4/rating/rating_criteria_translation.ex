@@ -1,4 +1,4 @@
-defmodule UniboV4.Rating.Rating.RatingCriteriaTranslation do
+defmodule UniboV4.Rating.RatingCriteriaTranslation do
   use Ash.Resource,
     otp_app: :unibo_v4,
     data_layer: AshPostgres.DataLayer
@@ -24,7 +24,7 @@ defmodule UniboV4.Rating.Rating.RatingCriteriaTranslation do
   end
 
   relationships do
-    belongs_to :rating_criteria, UniboV4.Rating.Rating.RatingCriteria do
+    belongs_to :rating_criteria, UniboV4.Rating.RatingCriteria do
       public? true
       allow_nil? false
     end

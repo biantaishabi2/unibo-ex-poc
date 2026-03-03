@@ -1,7 +1,7 @@
 {
-  "total": 892,
+  "total": 1105,
   "errors": 0,
-  "warnings": 892,
+  "warnings": 1105,
   "issues": [
     {
       "domain": "Accounting",
@@ -188,6 +188,94 @@
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
     },
     {
+      "domain": "Analytic",
+      "entity": "AnalyticAccount",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Analytic",
+      "entity": "AnalyticAccount",
+      "action": "deactivate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Analytic",
+      "entity": "AnalyticAccount",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Analytic",
+      "entity": "AnalyticDistribution",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Analytic",
+      "entity": "AnalyticDistribution",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Analytic",
+      "entity": "AnalyticLine",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Analytic",
+      "entity": "AnalyticLine",
+      "action": "destroy",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Analytic",
+      "entity": "AnalyticLine",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Analytic",
+      "entity": "AnalyticPlan",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Analytic",
+      "entity": "AnalyticPlan",
+      "action": "deactivate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Analytic",
+      "entity": "AnalyticPlan",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
       "domain": "Approvals",
       "entity": "ApprovalCategory",
       "action": "activate",
@@ -303,6 +391,102 @@
       "domain": "Approvals",
       "entity": "Approver",
       "action": "refuse",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Barcode",
+      "entity": "BarcodeMapping",
+      "action": "deactivate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Barcode",
+      "entity": "BarcodeMapping",
+      "action": "register",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Barcode",
+      "entity": "BarcodeMapping",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Barcode",
+      "entity": "BarcodeNomenclature",
+      "action": "activate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Barcode",
+      "entity": "BarcodeNomenclature",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Barcode",
+      "entity": "BarcodeNomenclature",
+      "action": "deactivate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Barcode",
+      "entity": "BarcodeNomenclature",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Barcode",
+      "entity": "BarcodeRule",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Barcode",
+      "entity": "BarcodeRule",
+      "action": "reorder",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Barcode",
+      "entity": "BarcodeRule",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Barcode",
+      "entity": "GS1ApplicationIdentifier",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Barcode",
+      "entity": "GS1ApplicationIdentifier",
+      "action": "update",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
@@ -636,6 +820,174 @@
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
     },
     {
+      "domain": "Calendar",
+      "entity": "Attendee",
+      "action": "invite",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "Attendee",
+      "action": "remove",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "Attendee",
+      "action": "update_response",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "Calendar",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "Calendar",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "CalendarEvent",
+      "action": "cancel",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "CalendarEvent",
+      "action": "confirm",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "CalendarEvent",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "CalendarEvent",
+      "action": "mark_tentative",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "CalendarEvent",
+      "action": "revert_to_draft",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "CalendarEvent",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "CalendarException",
+      "action": "add",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "CalendarException",
+      "action": "remove",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "WeekException",
+      "action": "add",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "WeekException",
+      "action": "remove",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "WeekTemplate",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "WeekTemplate",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "WorkSchedule",
+      "action": "activate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "WorkSchedule",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "WorkSchedule",
+      "action": "deactivate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Calendar",
+      "entity": "WorkSchedule",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
       "domain": "Communication",
       "entity": "Channel",
       "action": "archive",
@@ -919,6 +1271,310 @@
       "domain": "DataRecycle",
       "entity": "RecycleRecord",
       "action": "validate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "CarrierShipmentMethod",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "CarrierShipmentMethod",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Delivery",
+      "action": "arrive",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Delivery",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Delivery",
+      "action": "start",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Delivery",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Shipment",
+      "action": "cancel",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Shipment",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Shipment",
+      "action": "deliver",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Shipment",
+      "action": "pack",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Shipment",
+      "action": "pick",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Shipment",
+      "action": "ship",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Shipment",
+      "action": "submit",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Shipment",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentBoxType",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentBoxType",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentCostEstimate",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentCostEstimate",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentItem",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentItem",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentMethodType",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentMethodType",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackage",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackage",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackageContent",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackageContent",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackageRouteSeg",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackageRouteSeg",
+      "action": "mark_printed",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackageRouteSeg",
+      "action": "update_cost",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackageRouteSeg",
+      "action": "update_label",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentRouteSegment",
+      "action": "confirm_shipment",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentRouteSegment",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentRouteSegment",
+      "action": "record_cost",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentRouteSegment",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentRouteSegment",
+      "action": "update_tracking",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentStatus",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentType",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentType",
+      "action": "update",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
@@ -1604,6 +2260,190 @@
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
     },
     {
+      "domain": "Events",
+      "entity": "Event",
+      "action": "archive",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "Event",
+      "action": "cancel",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "Event",
+      "action": "complete",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "Event",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "Event",
+      "action": "destroy",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "Event",
+      "action": "publish",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "Event",
+      "action": "start",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "Event",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventBooth",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventBooth",
+      "action": "release",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventBooth",
+      "action": "reserve",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventBooth",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventRegistration",
+      "action": "cancel",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventRegistration",
+      "action": "check_in",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventRegistration",
+      "action": "confirm",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventRegistration",
+      "action": "register",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventStage",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventStage",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventTicket",
+      "action": "close_sales",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventTicket",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventTicket",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventType",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventType",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
       "domain": "Expenses",
       "entity": "ExpenseCategory",
       "action": "create",
@@ -1695,6 +2535,158 @@
       "domain": "Expenses",
       "entity": "ExpenseReport",
       "action": "submit",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "Driver",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "Driver",
+      "action": "deactivate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "Driver",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "FleetVehicle",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "FleetVehicle",
+      "action": "decommission",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "FleetVehicle",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "FleetVehicleType",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "FleetVehicleType",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleAssignment",
+      "action": "assign",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleAssignment",
+      "action": "return",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleAssignment",
+      "action": "transfer",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleContract",
+      "action": "activate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleContract",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleContract",
+      "action": "renew",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleContract",
+      "action": "terminate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleService",
+      "action": "cancel",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleService",
+      "action": "complete",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleService",
+      "action": "schedule",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleService",
+      "action": "start",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
@@ -3580,6 +4572,246 @@
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
     },
     {
+      "domain": "Loyalty",
+      "entity": "Coupon",
+      "action": "apply",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "Coupon",
+      "action": "cancel_coupon",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "Coupon",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "Coupon",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "CouponBoundParty",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "CouponUsage",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "GiftCard",
+      "action": "activate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "GiftCard",
+      "action": "cancel_card",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "GiftCard",
+      "action": "charge",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "GiftCard",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "GiftCard",
+      "action": "expire_card",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "GiftCard",
+      "action": "topup",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "GiftCardTransaction",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyCard",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyCard",
+      "action": "earn_points",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyCard",
+      "action": "expire_card",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyCard",
+      "action": "freeze",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyCard",
+      "action": "redeem_points",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyCard",
+      "action": "unfreeze",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyProgram",
+      "action": "activate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyProgram",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyProgram",
+      "action": "expire",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyProgram",
+      "action": "pause",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyProgram",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyReward",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyReward",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyRule",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyRule",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyTransaction",
+      "action": "cancel_transaction",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyTransaction",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
       "domain": "Lunch",
       "entity": "LunchCashMove",
       "action": "create",
@@ -5452,6 +6684,262 @@
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
     },
     {
+      "domain": "Payment",
+      "entity": "Payment",
+      "action": "authorize",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "Payment",
+      "action": "cancel",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "Payment",
+      "action": "capture",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "Payment",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "Payment",
+      "action": "mark_failed",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "Payment",
+      "action": "refund",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "Payment",
+      "action": "submit",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "Payment",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentApplication",
+      "action": "apply_to_account",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentApplication",
+      "action": "apply_to_invoice",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentApplication",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentApplication",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentGatewayResponse",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentGatewayResponse",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentMethod",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentMethod",
+      "action": "expire",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentMethod",
+      "action": "set_default",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentMethod",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentProvider",
+      "action": "activate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentProvider",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentProvider",
+      "action": "toggle_test_mode",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentProvider",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentRefund",
+      "action": "approve",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentRefund",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentRefund",
+      "action": "process",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentRefund",
+      "action": "reject",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentToken",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentToken",
+      "action": "expire",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentToken",
+      "action": "revoke",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentToken",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentType",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentType",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
       "domain": "Project",
       "entity": "Milestone",
       "action": "create",
@@ -6140,6 +7628,102 @@
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
     },
     {
+      "domain": "Rating",
+      "entity": "Rating",
+      "action": "approve",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rating",
+      "entity": "Rating",
+      "action": "flag",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rating",
+      "entity": "Rating",
+      "action": "reject",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rating",
+      "entity": "Rating",
+      "action": "submit",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Rating",
+      "entity": "Rating",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rating",
+      "entity": "RatingCriteria",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Rating",
+      "entity": "RatingCriteria",
+      "action": "reorder",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rating",
+      "entity": "RatingCriteria",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rating",
+      "entity": "RatingScore",
+      "action": "submit",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Rating",
+      "entity": "RatingSummary",
+      "action": "recalculate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rating",
+      "entity": "RatingType",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Rating",
+      "entity": "RatingType",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
       "domain": "Rental",
       "entity": "RentalOrder",
       "action": "action_cancel",
@@ -6207,6 +7791,126 @@
       "domain": "Rental",
       "entity": "RentalOrderLine",
       "action": "validate_return",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairFee",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairFee",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairLine",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairLine",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTag",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTag",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "action": "cancel",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "action": "complete_repair",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "action": "confirm",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "action": "deliver",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "action": "start_repair",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "Warranty",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Repair",
+      "entity": "Warranty",
+      "action": "update",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"

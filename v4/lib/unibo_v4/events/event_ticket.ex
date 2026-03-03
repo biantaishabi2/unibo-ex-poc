@@ -9,10 +9,10 @@
 #   update --> close_sales
 #   close_sales --> [*]
 # ```
-defmodule UniboV4.Events.Events.EventTicket do
+defmodule UniboV4.Events.EventTicket do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Events.Events,
+    domain: UniboV4.Events,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -74,15 +74,15 @@ defmodule UniboV4.Events.Events.EventTicket do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Events.Events.Event do
+    belongs_to :event, UniboV4.Events.Event do
       public? true
       allow_nil? false
     end
-    has_many :registrations, UniboV4.Events.Events.EventRegistration do
+    has_many :registrations, UniboV4.Events.EventRegistration do
       public? true
       destination_attribute :ticket_id
     end
-    has_many :translations, UniboV4.Events.Events.EventTicketTranslation, public?: true
+    has_many :translations, UniboV4.Events.EventTicketTranslation, public?: true
   end
 
   actions do

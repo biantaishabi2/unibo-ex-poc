@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Fleet.Fleet.FleetVehicleType do
+defmodule UniboV4.Fleet.FleetVehicleType do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Fleet.Fleet,
+    domain: UniboV4.Fleet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -48,11 +48,11 @@ defmodule UniboV4.Fleet.Fleet.FleetVehicleType do
   end
 
   relationships do
-    has_many :vehicles, UniboV4.Fleet.Fleet.FleetVehicle do
+    has_many :vehicles, UniboV4.Fleet.FleetVehicle do
       public? true
       destination_attribute :fleet_vehicle_type_id
     end
-    has_many :translations, UniboV4.Fleet.Fleet.FleetVehicleTypeTranslation, public?: true
+    has_many :translations, UniboV4.Fleet.FleetVehicleTypeTranslation, public?: true
   end
 
   actions do
