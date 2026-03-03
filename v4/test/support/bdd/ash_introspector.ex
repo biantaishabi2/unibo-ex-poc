@@ -19,7 +19,7 @@ defmodule UniboV4.BDD.AshIntrospector do
     UniboV4.POS,
     UniboV4.Project,
     UniboV4.Currency,
-    UniboV4.UOM,
+    UniboV4.Uom,
     UniboV4.Accounts
   ]
 
@@ -41,7 +41,7 @@ defmodule UniboV4.BDD.AshIntrospector do
     "POS" => UniboV4.POS,
     "PROJECT" => UniboV4.Project,
     "CURRENCY" => UniboV4.Currency,
-    "UOM" => UniboV4.UOM,
+    "UOM" => UniboV4.Uom,
     "ACCOUNTS" => UniboV4.Accounts
   }
 
