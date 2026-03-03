@@ -52,7 +52,7 @@ defmodule UniboV4.Manufacturing.BillOfMaterials do
     create :create do
       primary? true
       accept [:bom_code, :product_name, :product_code, :version, :description]
-      argument :lines, {:array, :string}, allow_nil?: false
+      argument :lines, {:array, :map}, allow_nil?: false
       change manage_relationship(:lines, :lines, type: :create)
       validate present(:bom_code)
     end

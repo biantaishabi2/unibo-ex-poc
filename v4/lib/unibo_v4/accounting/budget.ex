@@ -77,7 +77,7 @@ defmodule UniboV4.Accounting.Budget do
     create :create do
       primary? true
       accept [:budget_number, :name, :fiscal_year, :description]
-      argument :items, {:array, :string}, allow_nil?: false
+      argument :items, {:array, :map}, allow_nil?: false
       change manage_relationship(:items, :items, type: :create)
       validate present(:budget_number)
       validate present(:name)

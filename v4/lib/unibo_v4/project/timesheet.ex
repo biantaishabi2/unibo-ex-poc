@@ -55,7 +55,7 @@ defmodule UniboV4.Project.Timesheet do
     create :create do
       primary? true
       accept [:period, :notes]
-      argument :entries, {:array, :string}
+      argument :entries, {:array, :map}
       change manage_relationship(:entries, :entries, type: :create)
       argument :employee_id, :uuid, allow_nil?: false
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)

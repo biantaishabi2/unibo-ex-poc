@@ -86,7 +86,7 @@ defmodule UniboV4.Purchasing.GoodsReceipt do
     create :create do
       primary? true
       accept [:receipt_number, :receipt_date, :notes]
-      argument :items, {:array, :string}, allow_nil?: false
+      argument :items, {:array, :map}, allow_nil?: false
       argument :purchase_order_id, :uuid, allow_nil?: false
       change manage_relationship(:items, :items, type: :create)
       change manage_relationship(:purchase_order_id, :purchase_order, type: :append, on_lookup: :relate)

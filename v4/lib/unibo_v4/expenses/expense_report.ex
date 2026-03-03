@@ -56,7 +56,7 @@ defmodule UniboV4.Expenses.ExpenseReport do
     create :create do
       primary? true
       accept [:report_number, :report_date, :currency, :description, :notes]
-      argument :lines, {:array, :string}, allow_nil?: false
+      argument :lines, {:array, :map}, allow_nil?: false
       change manage_relationship(:lines, :lines, type: :create)
       validate present(:report_number)
       change relate_actor(:submitted_by)

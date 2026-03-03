@@ -96,7 +96,7 @@ defmodule UniboV4.Accounting.Invoice do
     create :create do
       primary? true
       accept [:invoice_number, :invoice_type, :invoice_date, :due_date, :currency, :description, :notes, :invoice_origin]
-      argument :items, {:array, :string}, allow_nil?: false
+      argument :items, {:array, :map}, allow_nil?: false
       change manage_relationship(:items, :items, type: :create)
       validate present(:invoice_number)
       change relate_actor(:created_by)

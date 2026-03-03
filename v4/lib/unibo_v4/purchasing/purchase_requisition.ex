@@ -111,7 +111,7 @@ defmodule UniboV4.Purchasing.PurchaseRequisition do
     create :create do
       primary? true
       accept [:name, :origin, :description, :ordering_date, :date_end, :schedule_date, :currency, :notes]
-      argument :items, {:array, :string}, allow_nil?: false
+      argument :items, {:array, :map}, allow_nil?: false
       argument :type_id, :uuid, allow_nil?: false
       argument :vendor_id, :uuid
       change manage_relationship(:items, :items, type: :create)

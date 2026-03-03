@@ -38,7 +38,7 @@ defmodule UniboV4.BDD.DataFactory do
   end
 
   @doc """
-  创建一条记录，自动处理 belongs_to 依赖和 actor。
+  创建一条记录，自动处理 belongs_to 依赖、manage_relationship 参数和 actor。
   opts:
     - :actor — 操作者
     - :overrides — 覆盖属性值
@@ -61,10 +61,14 @@ defmodule UniboV4.BDD.DataFactory do
     # 处理 belongs_to 依赖
     dep_attrs = ensure_dependencies!(resource, action_name, visited)
 
+    # 处理 manage_relationship 参数（创建关联记录或生成子资源数据）
+    mr_attrs = resolve_manage_relationships(resource, action, MapSet.put(visited, resource))
+
     # 生成属性值
     attrs =
       build_attrs(resource, action_name)
       |> Map.merge(dep_attrs)
+      |> Map.merge(mr_attrs)
       |> Map.merge(overrides)
 
     # 执行创建
@@ -125,12 +129,79 @@ defmodule UniboV4.BDD.DataFactory do
   # 内部辅助
   # ============================================================
 
-  # 构建 action argument 值
+  # 解析 manage_relationship changes，创建关联记录或生成子资源属性
+  defp resolve_manage_relationships(resource, action, visited) do
+    # 收集所有 manage_relationship changes
+    mr_changes = collect_manage_relationships(action)
+
+    Enum.reduce(mr_changes, %{}, fn {arg_name, rel_name, mr_opts}, acc ->
+      mr_type = Keyword.get(mr_opts, :type)
+      rel = Enum.find(Ash.Resource.Info.relationships(resource), &(&1.name == rel_name))
+
+      if is_nil(rel) do
+        acc
+      else
+        try do
+          case mr_type do
+            :create ->
+              # 嵌套创建子记录太复杂（子资源的 parent FK argument 有 allow_nil?: false）
+              # 传空数组满足父资源的 allow_nil?: false 约束
+              Map.put(acc, arg_name, [])
+
+            type when type in [:append, :append_and_remove] ->
+              # append 只是引用已有记录，不会循环，每次创建独立记录
+              dest = rel.destination
+              create_action = find_create_action(dest)
+
+              if not is_nil(create_action) and Code.ensure_loaded?(dest) do
+                record = create_record!(dest, create_action.name, visited: visited)
+                Map.put(acc, arg_name, record.id)
+              else
+                acc
+              end
+
+            _ ->
+              acc
+          end
+        rescue
+          _ -> acc
+        end
+      end
+    end)
+  end
+
+  # 从 action changes 中提取 manage_relationship 配置
+  defp collect_manage_relationships(action) do
+    (action.changes || [])
+    |> Enum.flat_map(fn
+      %{change: {Ash.Resource.Change.ManageRelationship, opts}} ->
+        arg_name = Keyword.get(opts, :argument)
+        rel_name = Keyword.get(opts, :relationship) || Keyword.get(opts, :relationship_name)
+        mr_opts = Keyword.get(opts, :opts, [])
+        if arg_name && rel_name, do: [{arg_name, rel_name, mr_opts}], else: []
+
+      _ ->
+        []
+    end)
+  end
+
+  # 构建 action argument 值（不含 manage_relationship 处理的参数）
   defp build_argument_values(action) do
+    # 收集 manage_relationship 处理的参数名
+    mr_arg_names =
+      collect_manage_relationships(action)
+      |> Enum.map(fn {arg_name, _, _} -> arg_name end)
+      |> MapSet.new()
+
     (action.arguments || [])
     |> Enum.reduce(%{}, fn arg, acc ->
-      value = generate_argument_value(arg)
-      Map.put(acc, arg.name, value)
+      # 跳过 manage_relationship 处理的参数（由 resolve_manage_relationships 负责）
+      if MapSet.member?(mr_arg_names, arg.name) do
+        acc
+      else
+        value = generate_argument_value(arg)
+        Map.put(acc, arg.name, value)
+      end
     end)
   end
 
