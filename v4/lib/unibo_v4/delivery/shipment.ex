@@ -17,13 +17,13 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Delivery.Delivery.Shipment do
+defmodule UniboV4.Delivery.Shipment do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Delivery.Delivery,
+    domain: UniboV4.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Delivery.Delivery.Shipment.Notifier]
+    notifiers: [UniboV4.Delivery.Shipment.Notifier]
 
   postgres do
     table "delivery_shipments"
@@ -87,36 +87,36 @@ defmodule UniboV4.Delivery.Delivery.Shipment do
   end
 
   relationships do
-    belongs_to :shipment_type, UniboV4.Delivery.Delivery.ShipmentType do
+    belongs_to :shipment_type, UniboV4.Delivery.ShipmentType do
       public? true
     end
-    belongs_to :origin_facility, UniboV4.Delivery.Delivery.Facility do
+    belongs_to :origin_facility, UniboV4.Delivery.Facility do
       public? true
     end
-    belongs_to :destination_facility, UniboV4.Delivery.Delivery.Facility do
+    belongs_to :destination_facility, UniboV4.Delivery.Facility do
       public? true
     end
-    belongs_to :to_party, UniboV4.Delivery.Delivery.Party do
+    belongs_to :to_party, UniboV4.Delivery.Party do
       public? true
       source_attribute :party_id_to
     end
-    belongs_to :from_party, UniboV4.Delivery.Delivery.Party do
+    belongs_to :from_party, UniboV4.Delivery.Party do
       public? true
       source_attribute :party_id_from
     end
-    has_many :shipment_items, UniboV4.Delivery.Delivery.ShipmentItem do
+    has_many :shipment_items, UniboV4.Delivery.ShipmentItem do
       public? true
       destination_attribute :shipment_id
     end
-    has_many :shipment_packages, UniboV4.Delivery.Delivery.ShipmentPackage do
+    has_many :shipment_packages, UniboV4.Delivery.ShipmentPackage do
       public? true
       destination_attribute :shipment_id
     end
-    has_many :route_segments, UniboV4.Delivery.Delivery.ShipmentRouteSegment do
+    has_many :route_segments, UniboV4.Delivery.ShipmentRouteSegment do
       public? true
       destination_attribute :shipment_id
     end
-    has_many :status_history, UniboV4.Delivery.Delivery.ShipmentStatus do
+    has_many :status_history, UniboV4.Delivery.ShipmentStatus do
       public? true
       destination_attribute :shipment_id
     end

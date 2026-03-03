@@ -1,4 +1,4 @@
-defmodule UniboV4.Barcode.Barcode.BarcodeRuleTranslation do
+defmodule UniboV4.Barcode.BarcodeRuleTranslation do
   use Ash.Resource,
     otp_app: :unibo_v4,
     data_layer: AshPostgres.DataLayer
@@ -24,7 +24,7 @@ defmodule UniboV4.Barcode.Barcode.BarcodeRuleTranslation do
   end
 
   relationships do
-    belongs_to :barcode_rule, UniboV4.Barcode.Barcode.BarcodeRule do
+    belongs_to :barcode_rule, UniboV4.Barcode.BarcodeRule do
       public? true
       allow_nil? false
     end

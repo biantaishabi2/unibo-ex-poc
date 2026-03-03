@@ -4,19 +4,8 @@ defmodule UniboV4Web.Plugs.SubdomainGraphql do
   绕过 Phoenix Router 对同一模块只能 forward 一次的限制。
   """
 
-  @subdomains %{
-    purchasing: UniboV4Web.Schema.Purchasing,
-    sales: UniboV4Web.Schema.Sales,
-    finance: UniboV4Web.Schema.Finance,
-    production: UniboV4Web.Schema.Production,
-    hr: UniboV4Web.Schema.HR,
-    project: UniboV4Web.Schema.Project,
-    marketing: UniboV4Web.Schema.Marketing,
-    knowledge: UniboV4Web.Schema.Knowledge,
-    learning: UniboV4Web.Schema.Learning,
-    engagement: UniboV4Web.Schema.Engagement,
-    platform: UniboV4Web.Schema.Platform
-  }
+  # 子域映射由编译器自动生成
+  @subdomains UniboV4Web.Generated.SubdomainGraphql.subdomains()
 
   for {name, schema} <- @subdomains do
     # GraphQL API Plug

@@ -1,7 +1,7 @@
-defmodule UniboV4.Delivery.Delivery.Facility do
+defmodule UniboV4.Delivery.Facility do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Delivery.Delivery,
+    domain: UniboV4.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 

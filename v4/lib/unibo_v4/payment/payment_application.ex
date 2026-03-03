@@ -11,10 +11,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Payment.Payment.PaymentApplication do
+defmodule UniboV4.Payment.PaymentApplication do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Payment.Payment,
+    domain: UniboV4.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -56,14 +56,14 @@ defmodule UniboV4.Payment.Payment.PaymentApplication do
   end
 
   relationships do
-    belongs_to :payment, UniboV4.Payment.Payment.Payment do
+    belongs_to :payment, UniboV4.Payment.Payment do
       public? true
       allow_nil? false
     end
-    belongs_to :to_payment, UniboV4.Payment.Payment.Payment do
+    belongs_to :to_payment, UniboV4.Payment.Payment do
       public? true
     end
-    belongs_to :invoice, UniboV4.Payment.Payment.Invoice do
+    belongs_to :invoice, UniboV4.Payment.Invoice do
       public? true
     end
   end

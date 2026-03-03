@@ -8,13 +8,13 @@
 #   update --> deactivate
 #   deactivate --> [*] : deactivated
 # ```
-defmodule UniboV4.Analytic.Analytic.AnalyticAccount do
+defmodule UniboV4.Analytic.AnalyticAccount do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Analytic.Analytic,
+    domain: UniboV4.Analytic,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Analytic.Analytic.AnalyticAccount.Notifier]
+    notifiers: [UniboV4.Analytic.AnalyticAccount.Notifier]
 
   postgres do
     table "analytic_accounts"
@@ -62,21 +62,21 @@ defmodule UniboV4.Analytic.Analytic.AnalyticAccount do
   end
 
   relationships do
-    belongs_to :plan, UniboV4.Analytic.Analytic.AnalyticPlan do
+    belongs_to :plan, UniboV4.Analytic.AnalyticPlan do
       public? true
       allow_nil? false
     end
-    belongs_to :parent, UniboV4.Analytic.Analytic.AnalyticAccount do
+    belongs_to :parent, UniboV4.Analytic.AnalyticAccount do
       public? true
     end
-    has_many :children, UniboV4.Analytic.Analytic.AnalyticAccount do
+    has_many :children, UniboV4.Analytic.AnalyticAccount do
       public? true
       destination_attribute :parent_id
     end
-    belongs_to :partner, UniboV4.Analytic.Analytic.Partner do
+    belongs_to :partner, UniboV4.Analytic.Partner do
       public? true
     end
-    has_many :analytic_lines, UniboV4.Analytic.Analytic.AnalyticLine do
+    has_many :analytic_lines, UniboV4.Analytic.AnalyticLine do
       public? true
       destination_attribute :account_id
     end

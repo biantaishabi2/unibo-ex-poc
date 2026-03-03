@@ -7,13 +7,13 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Analytic.Analytic.AnalyticLine do
+defmodule UniboV4.Analytic.AnalyticLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Analytic.Analytic,
+    domain: UniboV4.Analytic,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Analytic.Analytic.AnalyticLine.Notifier]
+    notifiers: [UniboV4.Analytic.AnalyticLine.Notifier]
 
   postgres do
     table "analytic_lines"
@@ -63,26 +63,26 @@ defmodule UniboV4.Analytic.Analytic.AnalyticLine do
   end
 
   relationships do
-    belongs_to :account, UniboV4.Analytic.Analytic.AnalyticAccount do
+    belongs_to :account, UniboV4.Analytic.AnalyticAccount do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.Analytic.Analytic.Partner do
+    belongs_to :partner, UniboV4.Analytic.Partner do
       public? true
     end
-    belongs_to :move_line, UniboV4.Analytic.Analytic.JournalEntryLine do
+    belongs_to :move_line, UniboV4.Analytic.JournalEntryLine do
       public? true
     end
-    belongs_to :currency, UniboV4.Analytic.Analytic.Currency do
+    belongs_to :currency, UniboV4.Analytic.Currency do
       public? true
     end
-    belongs_to :product, UniboV4.Analytic.Analytic.Product do
+    belongs_to :product, UniboV4.Analytic.Product do
       public? true
     end
-    belongs_to :employee, UniboV4.Analytic.Analytic.Employee do
+    belongs_to :employee, UniboV4.Analytic.Employee do
       public? true
     end
-    belongs_to :company, UniboV4.Analytic.Analytic.Company do
+    belongs_to :company, UniboV4.Analytic.Company do
       public? true
     end
   end

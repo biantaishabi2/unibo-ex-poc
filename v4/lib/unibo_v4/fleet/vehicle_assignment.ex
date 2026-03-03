@@ -7,13 +7,13 @@
 #   return --> [*]
 #   transfer --> [*]
 # ```
-defmodule UniboV4.Fleet.Fleet.VehicleAssignment do
+defmodule UniboV4.Fleet.VehicleAssignment do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Fleet.Fleet,
+    domain: UniboV4.Fleet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Fleet.Fleet.VehicleAssignment.Notifier]
+    notifiers: [UniboV4.Fleet.VehicleAssignment.Notifier]
 
   postgres do
     table "fleet_vehicle_assignments"
@@ -54,11 +54,11 @@ defmodule UniboV4.Fleet.Fleet.VehicleAssignment do
   end
 
   relationships do
-    belongs_to :fleet_vehicle, UniboV4.Fleet.Fleet.FleetVehicle do
+    belongs_to :fleet_vehicle, UniboV4.Fleet.FleetVehicle do
       public? true
       allow_nil? false
     end
-    belongs_to :driver, UniboV4.Fleet.Fleet.Driver do
+    belongs_to :driver, UniboV4.Fleet.Driver do
       public? true
       allow_nil? false
     end

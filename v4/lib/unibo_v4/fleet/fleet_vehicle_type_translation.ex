@@ -1,4 +1,4 @@
-defmodule UniboV4.Fleet.Fleet.FleetVehicleTypeTranslation do
+defmodule UniboV4.Fleet.FleetVehicleTypeTranslation do
   use Ash.Resource,
     otp_app: :unibo_v4,
     data_layer: AshPostgres.DataLayer
@@ -24,7 +24,7 @@ defmodule UniboV4.Fleet.Fleet.FleetVehicleTypeTranslation do
   end
 
   relationships do
-    belongs_to :fleet_vehicle_type, UniboV4.Fleet.Fleet.FleetVehicleType do
+    belongs_to :fleet_vehicle_type, UniboV4.Fleet.FleetVehicleType do
       public? true
       allow_nil? false
     end

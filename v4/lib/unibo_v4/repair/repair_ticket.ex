@@ -12,13 +12,13 @@
 #   deliver --> [*] : delivered
 #   cancel --> [*] : cancelled
 # ```
-defmodule UniboV4.Repair.Repair.RepairTicket do
+defmodule UniboV4.Repair.RepairTicket do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Repair.Repair,
+    domain: UniboV4.Repair,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Repair.Repair.RepairTicket.Notifier]
+    notifiers: [UniboV4.Repair.RepairTicket.Notifier]
 
   postgres do
     table "repair_tickets"
@@ -73,36 +73,15 @@ defmodule UniboV4.Repair.Repair.RepairTicket do
   end
 
   relationships do
-    belongs_to :customer, UniboV4.Repair.Repair.Customer do
-      public? true
-      allow_nil? false
-    end
-    belongs_to :product, UniboV4.Repair.Repair.Product do
-      public? true
-      allow_nil? false
-    end
-    belongs_to :sales_order, UniboV4.Repair.Repair.SalesOrder do
-      public? true
-    end
-    belongs_to :facility, UniboV4.Repair.Repair.Facility do
-      public? true
-    end
-    belongs_to :technician, UniboV4.Repair.Repair.User do
-      public? true
-    end
-    belongs_to :company, UniboV4.Repair.Repair.Company do
-      public? true
-      allow_nil? false
-    end
-    has_many :repair_lines, UniboV4.Repair.Repair.RepairLine do
+    has_many :repair_lines, UniboV4.Repair.RepairLine do
       public? true
       destination_attribute :repair_ticket_id
     end
-    has_many :repair_fees, UniboV4.Repair.Repair.RepairFee do
+    has_many :repair_fees, UniboV4.Repair.RepairFee do
       public? true
       destination_attribute :repair_ticket_id
     end
-    has_many :tags, UniboV4.Repair.Repair.RepairTag do
+    has_many :tags, UniboV4.Repair.RepairTag do
       public? true
     end
   end
@@ -117,10 +96,6 @@ defmodule UniboV4.Repair.Repair.RepairTicket do
       argument :sales_order_id, :uuid
       argument :facility_id, :uuid
       argument :technician_id, :uuid
-      change manage_relationship(:customer_id, :customer, type: :append, on_lookup: :relate)
-      change manage_relationship(:product_id, :product, type: :append, on_lookup: :relate)
-      argument :company_id, :uuid, allow_nil?: false
-      change manage_relationship(:company_id, :company, type: :append, on_lookup: :relate)
       validate present(:repair_number)
       validate present(:customer_id)
       validate present(:product_id)
@@ -172,6 +147,7 @@ defmodule UniboV4.Repair.Repair.RepairTicket do
       require_atomic? false
     end
     update :start_repair do
+      argument :technician_id, :uuid
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)
         if current == :confirmed do

@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Repair.Repair.Warranty do
+defmodule UniboV4.Repair.Warranty do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Repair.Repair,
+    domain: UniboV4.Repair,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -60,24 +60,6 @@ defmodule UniboV4.Repair.Repair.Warranty do
     update_timestamp :updated_at
   end
 
-  relationships do
-    belongs_to :customer, UniboV4.Repair.Repair.Customer do
-      public? true
-      allow_nil? false
-    end
-    belongs_to :product, UniboV4.Repair.Repair.Product do
-      public? true
-      allow_nil? false
-    end
-    belongs_to :sales_order, UniboV4.Repair.Repair.SalesOrder do
-      public? true
-    end
-    belongs_to :company, UniboV4.Repair.Repair.Company do
-      public? true
-      allow_nil? false
-    end
-  end
-
   actions do
     defaults [:read, :destroy]
     create :create do
@@ -86,10 +68,6 @@ defmodule UniboV4.Repair.Repair.Warranty do
       argument :customer_id, :uuid, allow_nil?: false
       argument :product_id, :uuid, allow_nil?: false
       argument :sales_order_id, :uuid
-      change manage_relationship(:customer_id, :customer, type: :append, on_lookup: :relate)
-      change manage_relationship(:product_id, :product, type: :append, on_lookup: :relate)
-      argument :company_id, :uuid, allow_nil?: false
-      change manage_relationship(:company_id, :company, type: :append, on_lookup: :relate)
       validate present(:warranty_number)
       # TODO: 不支持的 action 内校验规则 date_after
       change fn changeset, _context ->

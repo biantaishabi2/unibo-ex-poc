@@ -1,7 +1,7 @@
-defmodule UniboV4.Payment.Payment.Party do
+defmodule UniboV4.Payment.Party do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Payment.Payment,
+    domain: UniboV4.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 

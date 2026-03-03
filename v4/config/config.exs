@@ -10,69 +10,13 @@ import Config
 config :unibo_v4,
   ecto_repos: [UniboV4.Repo],
   generators: [timestamp_type: :utc_datetime],
+  # 仅保留手写域；编译器生成的域在 application.ex 启动时动态合并
   ash_domains: [
-    # 认证（不暴露 GraphQL）
-    UniboV4.Accounts,
-    # 采购供应链
-    UniboV4.Purchasing,
-    UniboV4.Inventory,
-    UniboV4.Uom,
-    UniboV4.Delivery.Delivery,
-    UniboV4.Barcode.Barcode,
-    # 销售客户
-    UniboV4.Sales,
-    UniboV4.CRM,
-    UniboV4.Ecommerce,
-    UniboV4.POS,
-    UniboV4.Subscriptions,
-    UniboV4.Rental,
-    UniboV4.Loyalty.Loyalty,
-    UniboV4.Rating.Rating,
-    # 财务
-    UniboV4.Accounting,
-    UniboV4.Expenses,
-    UniboV4.Currency,
-    UniboV4.Payment.Payment,
-    UniboV4.Analytic.Analytic,
-    # 生产质量
-    UniboV4.Manufacturing,
-    UniboV4.Maintenance,
-    UniboV4.PLM,
-    UniboV4.Quality,
-    UniboV4.Repair.Repair,
-    # 人事行政
-    UniboV4.HR,
-    UniboV4.Lunch,
-    UniboV4.Fleet.Fleet,
-    # 项目协作
-    UniboV4.Project,
-    UniboV4.Helpdesk,
-    # 营销传播
-    UniboV4.Marketing,
-    UniboV4.Communication,
-    UniboV4.LiveChat,
-    UniboV4.Events.Events,
-    # 知识内容
-    UniboV4.Knowledge,
-    UniboV4.Blog,
-    UniboV4.Forum,
-    UniboV4.Documents,
-    UniboV4.Survey,
-    UniboV4.Sign,
-    # 在线学习
-    UniboV4.ELearning,
-    # 用户互动
-    UniboV4.Gamification,
-    UniboV4.Membership,
-    # 日历
-    UniboV4.Calendar.Calendar,
-    # 平台工具
-    UniboV4.Approvals,
-    UniboV4.DataRecycle,
-    UniboV4.Spreadsheet,
-    UniboV4.Studio,
-    UniboV4.IoT
+    UniboV4.Accounts
   ]
+
+# 允许编译器生成的域模块不在 config 中列出（运行时动态注册）
+config :ash, :validate_domain_config_inclusion?, false
 
 # Configures the endpoint
 config :unibo_v4, UniboV4Web.Endpoint,

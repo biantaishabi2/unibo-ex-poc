@@ -27,13 +27,13 @@
 #   mark_tentative --> update
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Calendar.Calendar.CalendarEvent do
+defmodule UniboV4.Calendar.CalendarEvent do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Calendar.Calendar,
+    domain: UniboV4.Calendar,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Calendar.Calendar.CalendarEvent.Notifier]
+    notifiers: [UniboV4.Calendar.CalendarEvent.Notifier]
 
   postgres do
     table "calendar_events"
@@ -128,24 +128,24 @@ defmodule UniboV4.Calendar.Calendar.CalendarEvent do
   end
 
   relationships do
-    belongs_to :calendar, UniboV4.Calendar.Calendar.Calendar do
+    belongs_to :calendar, UniboV4.Calendar.Calendar do
       public? true
     end
-    belongs_to :work_schedule, UniboV4.Calendar.Calendar.WorkSchedule do
+    belongs_to :work_schedule, UniboV4.Calendar.WorkSchedule do
       public? true
     end
-    has_many :attendees, UniboV4.Calendar.Calendar.Attendee do
+    has_many :attendees, UniboV4.Calendar.Attendee do
       public? true
       destination_attribute :event_id
     end
-    belongs_to :parent_event, UniboV4.Calendar.Calendar.CalendarEvent do
+    belongs_to :parent_event, UniboV4.Calendar.CalendarEvent do
       public? true
     end
-    has_many :child_events, UniboV4.Calendar.Calendar.CalendarEvent do
+    has_many :child_events, UniboV4.Calendar.CalendarEvent do
       public? true
       destination_attribute :parent_event_id
     end
-    has_many :translations, UniboV4.Calendar.Calendar.CalendarEventTranslation, public?: true
+    has_many :translations, UniboV4.Calendar.CalendarEventTranslation, public?: true
   end
 
   actions do

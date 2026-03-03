@@ -13,46 +13,8 @@ defmodule UniboV4.BDD.CommonInstructions do
   # BDD source YAML 文件根目录
   @sources_root Path.join(:code.priv_dir(:unibo_v4), "bdd/sources")
 
-  # 模块名 → 子目录映射
-  @module_dirs %{
-    "ACCOUNTING" => "accounting",
-    "ECOMMERCE" => "ecommerce",
-    "SALES" => "sales",
-    "PURCHASING" => "purchasing",
-    "MEMBERSHIP" => "membership",
-    "CRM" => "crm",
-    "HELPDESK" => "helpdesk",
-    "FORUM" => "forum",
-    "LUNCH" => "lunch",
-    "POS" => "pos",
-    "SUBSCRIPTIONS" => "subscriptions",
-    "E_LEARNING" => "elearning",
-    "MARKETING" => "marketing",
-    "CURRENCY" => "currency",
-    "UOM" => "uom",
-    "DATA_RECYCLE" => "data_recycle",
-    "HR" => "hr",
-    "APPROVALS" => "approvals",
-    "EXPENSES" => "expenses",
-    "MAINTENANCE" => "maintenance",
-    "INVENTORY" => "inventory",
-    "PLM" => "plm",
-    "DOCUMENTS" => "documents",
-    "COMMUNICATION" => "communication",
-    "KNOWLEDGE" => "knowledge",
-    "BLOG" => "blog",
-    "PROJECT" => "project",
-    "IO_T" => "iot",
-    "MANUFACTURING" => "manufacturing",
-    "QUALITY" => "quality",
-    "GAMIFICATION" => "gamification",
-    "STUDIO" => "studio",
-    "SIGN" => "sign",
-    "RENTAL" => "rental",
-    "SURVEY" => "survey",
-    "LIVE_CHAT" => "livechat",
-    "SPREADSHEET" => "spreadsheet"
-  }
+  # 模块名 → 子目录映射（由编译器自动生成）
+  @module_dirs UniboV4.Generated.BddModuleDirs.module_dirs()
 
   # ============================================================
   # seed 通用指令
