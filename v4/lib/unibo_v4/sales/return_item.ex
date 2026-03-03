@@ -29,19 +29,25 @@ defmodule UniboV4.Sales.ReturnItem do
 
   attributes do
     uuid_primary_key :id
+    attribute :return_item_type_id, :string, public?: true
+    attribute :return_reason, :string, public?: true
+    attribute :return_type, :string, public?: true
+    attribute :status_id, :string, public?: true
+    attribute :description, :string, public?: true
+    attribute :return_quantity, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :received_quantity, :decimal, public?: true
+    attribute :return_price, :decimal do
+      allow_nil? false
+      public? true
+    end
     attribute :product_name, :string do
       allow_nil? false
       public? true
     end
-    attribute :quantity, :integer do
-      allow_nil? false
-      public? true
-    end
-    attribute :return_reason, :string, public?: true
-    attribute :refund_amount, :decimal do
-      allow_nil? false
-      public? true
-    end
+    attribute :refund_amount, :decimal, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -57,7 +63,7 @@ defmodule UniboV4.Sales.ReturnItem do
     defaults [:read]
     create :create do
       primary? true
-      accept [:product_name, :quantity, :return_reason, :refund_amount]
+      accept [:product_name, :description, :return_quantity, :return_price, :refund_amount, :return_reason, :return_type, :return_item_type_id, :status_id]
       argument :return_id, :uuid, allow_nil?: false
       change manage_relationship(:return_id, :return, type: :append, on_lookup: :relate)
       change fn changeset, _context ->
@@ -72,7 +78,7 @@ defmodule UniboV4.Sales.ReturnItem do
     end
     update :update do
       primary? true
-      accept [:quantity, :refund_amount]
+      accept [:return_quantity, :return_price, :refund_amount, :received_quantity, :status_id]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -87,8 +93,8 @@ defmodule UniboV4.Sales.ReturnItem do
   end
 
   validations do
-    validate compare(:quantity, greater_than: 0)
-    validate compare(:refund_amount, greater_than_or_equal_to: 0)
+    validate compare(:return_quantity, greater_than: 0)
+    validate compare(:return_price, greater_than_or_equal_to: 0)
   end
 
 end

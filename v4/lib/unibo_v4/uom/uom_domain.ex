@@ -8,6 +8,8 @@ defmodule UniboV4.Uom do
 
   resources do
     resource UniboV4.Uom.UomCategory
+    resource UniboV4.Uom.UomCategoryTranslation
     resource UniboV4.Uom.Uom
+    resource UniboV4.Uom.UomTranslation
   end
 end

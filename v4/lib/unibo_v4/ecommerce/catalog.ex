@@ -1,3 +1,10 @@
+# Workflow: catalog_lifecycle — 产品目录管理流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   update --> update
+# ```
 defmodule UniboV4.Ecommerce.Catalog do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -6,31 +13,40 @@ defmodule UniboV4.Ecommerce.Catalog do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "catalogs"
+    table "ecommerce_catalogs"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :catalog
+    type :ecommerce_catalog
 
     queries do
-      get :get_catalog, :read
-      list :list_catalogs, :read
+      get :get_ecommerce_catalog, :read
+      list :list_ecommerce_catalogs, :read
     end
 
     mutations do
-      create :create_catalog, :create
-      update :update_catalog, :update
+      create :create_ecommerce_catalog, :create
+      update :update_ecommerce_catalog, :update
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :catalog_code, :string, allow_nil?: false, public?: true
-    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :catalog_code, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :name, :string do
+      allow_nil? false
+      public? true
+    end
     attribute :description, :string, public?: true
-    attribute :is_active, :boolean, default: true, public?: true
+    attribute :is_active, :boolean do
+      default true
+      public? true
+    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -42,10 +58,29 @@ defmodule UniboV4.Ecommerce.Catalog do
       accept [:catalog_code, :name, :description]
       validate present(:catalog_code)
       validate present(:name)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
     end
     update :update do
       primary? true
       accept [:name, :description, :is_active]
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

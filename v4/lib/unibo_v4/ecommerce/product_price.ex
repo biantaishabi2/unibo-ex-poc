@@ -1,3 +1,10 @@
+# Workflow: price_lifecycle — 产品价格管理流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   update --> update
+# ```
 defmodule UniboV4.Ecommerce.ProductPrice do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -6,21 +13,21 @@ defmodule UniboV4.Ecommerce.ProductPrice do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "product_prices"
+    table "ecommerce_product_prices"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :product_price
+    type :ecommerce_product_price
 
     queries do
-      get :get_product_price, :read
-      list :list_product_prices, :read
+      get :get_ecommerce_product_price, :read
+      list :list_ecommerce_product_prices, :read
     end
 
     mutations do
-      create :create_product_price, :create
-      update :update_product_price, :update
+      create :create_ecommerce_product_price, :create
+      update :update_ecommerce_product_price, :update
     end
 
   end
@@ -30,20 +37,34 @@ defmodule UniboV4.Ecommerce.ProductPrice do
     attribute :price_type, :atom do
       allow_nil? false
       constraints one_of: [:list_price, :sale_price, :cost_price, :member_price]
-        public? true
+      public? true
     end
-    attribute :amount, :decimal, allow_nil?: false, public?: true
-    attribute :currency, :string, default: "CNY", public?: true
-    attribute :from_date, :date, allow_nil?: false, public?: true
+    attribute :amount, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :currency, :string do
+      default "CNY"
+      public? true
+    end
+    attribute :from_date, :date do
+      allow_nil? false
+      public? true
+    end
     attribute :thru_date, :date, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
+  calculations do
+    # TODO: 不支持的 calculation 表达式 :is_active
+    # TODO: 不支持的 calculation 表达式 :effective_price
+  end
+
   relationships do
     belongs_to :product, UniboV4.Ecommerce.ProductTemplate do
+      public? true
       allow_nil? false
-        public? true
     end
   end
 
@@ -54,10 +75,30 @@ defmodule UniboV4.Ecommerce.ProductPrice do
       accept [:price_type, :amount, :currency, :from_date, :thru_date]
       argument :product_id, :uuid, allow_nil?: false
       change manage_relationship(:product_id, :product, type: :append, on_lookup: :relate)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
     end
     update :update do
       primary? true
       accept [:amount, :thru_date]
+      # TODO: 不支持的 change effect recompute_prices
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

@@ -46,23 +46,39 @@ defmodule UniboV4.Purchasing.PurchaseOrderLine do
 
   attributes do
     uuid_primary_key :id
-    attribute :name, :string do
+    attribute :order_item_type_id, :string, public?: true
+    attribute :seq_id, :integer, public?: true
+    attribute :item_description, :string do
       allow_nil? false
       public? true
     end
     attribute :product_id, :uuid, public?: true
-    attribute :product_uom_id, :uuid, public?: true
-    attribute :product_packaging_id, :uuid, public?: true
-    attribute :product_packaging_qty, :decimal, public?: true
-    attribute :price_unit, :decimal do
+    attribute :quantity, :decimal do
       allow_nil? false
       public? true
     end
-    attribute :discount, :decimal do
+    attribute :cancel_quantity, :decimal, public?: true
+    attribute :unit_price, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :unit_list_price, :decimal, public?: true
+    attribute :discount_rate, :decimal do
       default 0
       public? true
     end
-    attribute :date_planned, :utc_datetime, public?: true
+    attribute :status_id, :string, public?: true
+    attribute :estimated_delivery_date, :utc_datetime, public?: true
+    attribute :comments, :string, public?: true
+    attribute :supplier_product_id, :string, public?: true
+    attribute :corresponding_po_id, :string, public?: true
+    attribute :is_promo, :boolean do
+      default false
+      public? true
+    end
+    attribute :product_uom_id, :uuid, public?: true
+    attribute :product_packaging_id, :uuid, public?: true
+    attribute :product_packaging_qty, :decimal, public?: true
     attribute :qty_received_method, :atom do
       constraints one_of: [:manual, :stock_move]
       public? true
@@ -70,11 +86,6 @@ defmodule UniboV4.Purchasing.PurchaseOrderLine do
     attribute :qty_received_manual, :decimal, public?: true
     attribute :taxes_id, :map, public?: true
     attribute :analytic_distribution, :map, public?: true
-    attribute :display_type, :atom do
-      constraints one_of: [false, :line_section, :line_note]
-      default false
-      public? true
-    end
     attribute :company_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
@@ -88,7 +99,6 @@ defmodule UniboV4.Purchasing.PurchaseOrderLine do
     # TODO: 不支持的 calculation 表达式 :qty_received
     # TODO: 不支持的 calculation 表达式 :qty_invoiced
     # TODO: 不支持的 calculation 表达式 :qty_to_invoice
-    # TODO: 不支持的 calculation 表达式 :product_qty
   end
 
   relationships do
@@ -105,8 +115,7 @@ defmodule UniboV4.Purchasing.PurchaseOrderLine do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :product_id, :product_uom_id, :product_packaging_id, :product_packaging_qty, :price_unit, :discount, :date_planned, :taxes_id, :analytic_distribution, :display_type, :qty_received_manual]
-      argument :product_qty, :decimal
+      accept [:item_description, :product_id, :product_uom_id, :quantity, :product_packaging_id, :product_packaging_qty, :unit_price, :discount_rate, :estimated_delivery_date, :taxes_id, :analytic_distribution, :order_item_type_id, :seq_id, :qty_received_manual, :supplier_product_id, :comments, :status_id]
       argument :order_id, :uuid, allow_nil?: false
       change manage_relationship(:order_id, :order, type: :append, on_lookup: :relate)
       # TODO: 不支持的 action 内校验规则 custom
@@ -128,8 +137,7 @@ defmodule UniboV4.Purchasing.PurchaseOrderLine do
     end
     update :update do
       primary? true
-      accept [:price_unit, :discount, :date_planned, :taxes_id, :analytic_distribution, :qty_received_manual]
-      argument :product_qty, :decimal
+      accept [:quantity, :unit_price, :discount_rate, :estimated_delivery_date, :taxes_id, :analytic_distribution, :qty_received_manual, :comments, :status_id]
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
@@ -162,8 +170,8 @@ defmodule UniboV4.Purchasing.PurchaseOrderLine do
   end
 
   validations do
-    validate compare(:product_qty, greater_than: 0)
-    validate compare(:price_unit, greater_than_or_equal_to: 0)
+    validate compare(:quantity, greater_than: 0)
+    validate compare(:unit_price, greater_than_or_equal_to: 0)
   end
 
 end

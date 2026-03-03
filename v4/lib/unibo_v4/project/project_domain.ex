@@ -14,5 +14,13 @@ defmodule UniboV4.Project do
     resource UniboV4.Project.TaskDependency
     resource UniboV4.Project.Timesheet
     resource UniboV4.Project.TimesheetEntry
+    resource UniboV4.Project.PlanningSlot
+    resource UniboV4.Project.ProjectTaskStageLink
+    resource UniboV4.Project.User
+    resource UniboV4.Project.Employee
+    resource UniboV4.Project.TaskStage
+    resource UniboV4.Project.PlanningRecurrence
+    resource UniboV4.Project.PlanningRole
+    resource UniboV4.Project.PlanningSlotTemplate
   end
 end

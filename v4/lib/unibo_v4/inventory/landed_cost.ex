@@ -1,3 +1,18 @@
+# Workflow: landed_cost_lifecycle_flow — 到岸成本正常流转流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   update --> [*]
+#   button_validate --> [*]
+# ```
+# Workflow: landed_cost_cancel_flow — 到岸成本取消流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   button_cancel --> [*]
+# ```
 defmodule UniboV4.Inventory.LandedCost do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -68,7 +83,7 @@ defmodule UniboV4.Inventory.LandedCost do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :date, :description]
+      accept [:date, :description]
       argument :cost_lines, {:array, :map}, default: []
       change manage_relationship(:cost_lines, :cost_lines, type: :create)
       validate present(:date)

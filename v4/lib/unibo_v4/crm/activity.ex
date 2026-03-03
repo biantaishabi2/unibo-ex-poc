@@ -1,3 +1,16 @@
+# Workflow: activity_lifecycle — 活动生命周期
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   create --> complete
+#   create --> cancel
+#   update --> update
+#   update --> complete
+#   update --> cancel
+#   complete --> [*]
+#   cancel --> [*]
+# ```
 defmodule UniboV4.CRM.Activity do
   use Ash.Resource,
     otp_app: :unibo_v4,

@@ -29,19 +29,28 @@ defmodule UniboV4.Accounting.InvoiceItem do
 
   attributes do
     uuid_primary_key :id
+    attribute :invoice_item_type_id, :string, public?: true
+    attribute :seq_id, :integer, public?: true
     attribute :description, :string do
       allow_nil? false
       public? true
     end
-    attribute :quantity, :integer do
-      allow_nil? false
-      public? true
-    end
-    attribute :unit_price, :decimal do
+    attribute :quantity, :decimal do
       allow_nil? false
       public? true
     end
     attribute :amount, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :taxable_flag, :boolean do
+      default true
+      public? true
+    end
+    attribute :tax_auth_party_id, :string, public?: true
+    attribute :tax_auth_geo_id, :string, public?: true
+    attribute :product_id, :string, public?: true
+    attribute :unit_price, :decimal do
       allow_nil? false
       public? true
     end
@@ -71,7 +80,7 @@ defmodule UniboV4.Accounting.InvoiceItem do
     defaults [:read]
     create :create do
       primary? true
-      accept [:description, :quantity, :unit_price, :tax_rate]
+      accept [:description, :quantity, :unit_price, :tax_rate, :taxable_flag, :invoice_item_type_id, :seq_id, :product_id, :tax_auth_party_id, :tax_auth_geo_id]
       argument :gl_account_id, :uuid
       argument :invoice_id, :uuid, allow_nil?: false
       change manage_relationship(:invoice_id, :invoice, type: :append, on_lookup: :relate)
@@ -98,10 +107,19 @@ defmodule UniboV4.Accounting.InvoiceItem do
           changeset
         end
       end
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
     end
     update :update do
       primary? true
-      accept [:quantity, :unit_price, :tax_rate]
+      accept [:quantity, :unit_price, :tax_rate, :taxable_flag, :invoice_item_type_id, :seq_id, :product_id]
       # skipped: validate compare :quantity (incompatible with bulk update atomic path)
       # skipped: validate compare :unit_price (incompatible with bulk update atomic path)
       change fn changeset, _context ->
@@ -120,6 +138,15 @@ defmodule UniboV4.Accounting.InvoiceItem do
 
         if amount && tax_rate do
           Ash.Changeset.force_change_attribute(changeset, :tax_amount, Decimal.div(Decimal.mult(amount, tax_rate), 100))
+        else
+          changeset
+        end
+      end
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
         else
           changeset
         end

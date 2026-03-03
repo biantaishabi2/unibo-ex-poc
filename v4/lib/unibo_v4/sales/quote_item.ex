@@ -29,24 +29,31 @@ defmodule UniboV4.Sales.QuoteItem do
 
   attributes do
     uuid_primary_key :id
+    attribute :quantity, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :quote_unit_price, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :estimated_delivery_date, :utc_datetime, public?: true
+    attribute :comments, :string, public?: true
+    attribute :seq_id, :integer, public?: true
+    attribute :is_promo, :boolean do
+      default false
+      public? true
+    end
+    attribute :lead_time_days, :integer, public?: true
     attribute :product_name, :string do
       allow_nil? false
       public? true
     end
     attribute :product_code, :string, public?: true
-    attribute :quantity, :integer do
-      allow_nil? false
-      public? true
-    end
-    attribute :unit_price, :decimal do
-      allow_nil? false
-      public? true
-    end
     attribute :line_amount, :decimal do
       allow_nil? false
       public? true
     end
-    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -62,15 +69,15 @@ defmodule UniboV4.Sales.QuoteItem do
     defaults [:read]
     create :create do
       primary? true
-      accept [:product_name, :product_code, :quantity, :unit_price, :description]
+      accept [:product_name, :product_code, :quantity, :quote_unit_price, :comments, :estimated_delivery_date, :seq_id, :is_promo, :lead_time_days]
       argument :quote_id, :uuid, allow_nil?: false
       change manage_relationship(:quote_id, :quote, type: :append, on_lookup: :relate)
       change fn changeset, _context ->
         quantity = Ash.Changeset.get_attribute(changeset, :quantity)
-        unit_price = Ash.Changeset.get_attribute(changeset, :unit_price)
+        quote_unit_price = Ash.Changeset.get_attribute(changeset, :quote_unit_price)
 
-        if quantity && unit_price do
-          Ash.Changeset.force_change_attribute(changeset, :line_amount, Decimal.mult(quantity, unit_price))
+        if quantity && quote_unit_price do
+          Ash.Changeset.force_change_attribute(changeset, :line_amount, Decimal.mult(quantity, quote_unit_price))
         else
           changeset
         end
@@ -87,13 +94,13 @@ defmodule UniboV4.Sales.QuoteItem do
     end
     update :update do
       primary? true
-      accept [:quantity, :unit_price, :description]
+      accept [:quantity, :quote_unit_price, :comments, :estimated_delivery_date, :seq_id, :is_promo, :lead_time_days]
       change fn changeset, _context ->
         quantity = Ash.Changeset.get_attribute(changeset, :quantity)
-        unit_price = Ash.Changeset.get_attribute(changeset, :unit_price)
+        quote_unit_price = Ash.Changeset.get_attribute(changeset, :quote_unit_price)
 
-        if quantity && unit_price do
-          Ash.Changeset.force_change_attribute(changeset, :line_amount, Decimal.mult(quantity, unit_price))
+        if quantity && quote_unit_price do
+          Ash.Changeset.force_change_attribute(changeset, :line_amount, Decimal.mult(quantity, quote_unit_price))
         else
           changeset
         end
@@ -113,7 +120,7 @@ defmodule UniboV4.Sales.QuoteItem do
 
   validations do
     validate compare(:quantity, greater_than: 0)
-    validate compare(:unit_price, greater_than_or_equal_to: 0)
+    validate compare(:quote_unit_price, greater_than_or_equal_to: 0)
   end
 
 end

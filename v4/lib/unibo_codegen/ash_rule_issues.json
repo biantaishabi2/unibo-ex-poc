@@ -1,8 +1,24 @@
 {
-  "total": 869,
-  "errors": 4,
-  "warnings": 865,
+  "total": 892,
+  "errors": 0,
+  "warnings": 892,
   "issues": [
+    {
+      "domain": "Accounting",
+      "entity": "BillingAccount",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
+      "entity": "Budget",
+      "action": "approve",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
     {
       "domain": "Accounting",
       "entity": "Budget",
@@ -13,11 +29,75 @@
     },
     {
       "domain": "Accounting",
+      "entity": "Budget",
+      "action": "reject",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
+      "entity": "Budget",
+      "action": "submit",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
+      "entity": "BudgetItem",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
+      "entity": "BudgetItem",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
+      "entity": "GlAccount",
+      "action": "deactivate",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
+      "entity": "Invoice",
+      "action": "approve",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
       "entity": "Invoice",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
+      "entity": "Invoice",
+      "action": "send",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
+      "entity": "Invoice",
+      "action": "void",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
     },
     {
       "domain": "Accounting",
@@ -31,6 +111,14 @@
       "domain": "Accounting",
       "entity": "InvoiceItem",
       "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
+      "entity": "JournalEntry",
+      "action": "cancel",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
@@ -53,6 +141,14 @@
     },
     {
       "domain": "Accounting",
+      "entity": "JournalEntry",
+      "action": "reset_to_draft",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
       "entity": "JournalEntryLine",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
@@ -63,6 +159,30 @@
       "domain": "Accounting",
       "entity": "JournalEntryLine",
       "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
+      "entity": "Payment",
+      "action": "cancel",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
+      "entity": "Payment",
+      "action": "post",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Accounting",
+      "entity": "Payment",
+      "action": "reset_to_draft",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
@@ -708,6 +828,38 @@
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
     },
     {
+      "domain": "Currency",
+      "entity": "Currency",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Currency",
+      "entity": "Currency",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Currency",
+      "entity": "CurrencyRate",
+      "action": "create",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Currency",
+      "entity": "CurrencyRate",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
       "domain": "DataRecycle",
       "entity": "RecycleModel",
       "action": "create",
@@ -990,14 +1142,6 @@
     {
       "domain": "ELearning",
       "entity": "Enrollment",
-      "action": null,
-      "rule_code": "identity_keys_must_be_attribute_or_calculation",
-      "severity": "error",
-      "reason": "identity unique_enrollment 存在非法 keys: channel_id, partner_id"
-    },
-    {
-      "domain": "ELearning",
-      "entity": "Enrollment",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -1062,14 +1206,6 @@
     {
       "domain": "ELearning",
       "entity": "SlideProgress",
-      "action": null,
-      "rule_code": "identity_keys_must_be_attribute_or_calculation",
-      "severity": "error",
-      "reason": "identity unique_slide_progress 存在非法 keys: slide_id, partner_id"
-    },
-    {
-      "domain": "ELearning",
-      "entity": "SlideProgress",
       "action": "action_dislike",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -1127,6 +1263,14 @@
       "domain": "Ecommerce",
       "entity": "Catalog",
       "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Ecommerce",
+      "entity": "LoyaltyCard",
+      "action": "add_points",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
@@ -1654,14 +1798,6 @@
     {
       "domain": "Forum",
       "entity": "Tag",
-      "action": null,
-      "rule_code": "identity_keys_must_be_attribute_or_calculation",
-      "severity": "error",
-      "reason": "identity unique_tag_name_per_forum 存在非法 keys: forum_id"
-    },
-    {
-      "domain": "Forum",
-      "entity": "Tag",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -1674,14 +1810,6 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "Forum",
-      "entity": "Vote",
-      "action": null,
-      "rule_code": "identity_keys_must_be_attribute_or_calculation",
-      "severity": "error",
-      "reason": "identity unique_user_post_vote 存在非法 keys: user_id, post_id"
     },
     {
       "domain": "Forum",
@@ -6007,6 +6135,62 @@
       "domain": "Quality",
       "entity": "QualityTeam",
       "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rental",
+      "entity": "RentalOrder",
+      "action": "action_cancel",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rental",
+      "entity": "RentalOrder",
+      "action": "action_confirm",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rental",
+      "entity": "RentalOrder",
+      "action": "action_done",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rental",
+      "entity": "RentalOrder",
+      "action": "action_pickup",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rental",
+      "entity": "RentalOrder",
+      "action": "action_return",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rental",
+      "entity": "RentalOrder",
+      "action": "update",
+      "rule_code": "action_requires_non_atomic",
+      "severity": "warning",
+      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Rental",
+      "entity": "RentalOrderLine",
+      "action": "finalize",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"

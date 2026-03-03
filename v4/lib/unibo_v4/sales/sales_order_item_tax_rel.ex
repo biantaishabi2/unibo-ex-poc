@@ -6,7 +6,7 @@ defmodule UniboV4.Sales.SalesOrderItemTaxRel do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "sales_sales_order_item_tax_rels"
+    table "sales_order_item_tax_rels"
     repo UniboV4.Repo
   end
 

@@ -1,3 +1,10 @@
+# Workflow: landed_cost_line_write_flow — 到岸成本行写操作覆盖流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   update --> [*]
+# ```
 defmodule UniboV4.Inventory.LandedCostLine do
   use Ash.Resource,
     otp_app: :unibo_v4,

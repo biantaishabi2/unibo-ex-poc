@@ -1,3 +1,20 @@
+# Workflow: stock_picking_lifecycle_flow — 拣货单正常流转流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   action_confirm --> [*]
+#   action_assign --> [*]
+#   button_validate --> [*]
+# ```
+# Workflow: stock_picking_cancel_flow — 拣货单取消流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   action_confirm --> [*]
+#   action_cancel --> [*]
+# ```
 defmodule UniboV4.Inventory.StockPicking do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -100,8 +117,8 @@ defmodule UniboV4.Inventory.StockPicking do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :origin, :picking_type, :move_type, :priority, :notes]
-      argument :move_ids, {:array, :map}, allow_nil?: false
+      accept [:origin, :picking_type, :move_type, :priority, :notes]
+      argument :move_ids, {:array, :string}, allow_nil?: false
       argument :warehouse_id, :uuid, allow_nil?: false
       argument :source_location_id, :uuid, allow_nil?: false
       argument :dest_location_id, :uuid, allow_nil?: false

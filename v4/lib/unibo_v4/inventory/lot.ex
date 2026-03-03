@@ -1,3 +1,10 @@
+# Workflow: lot_write_flow — 批次/序列号写操作覆盖流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   update --> [*]
+# ```
 defmodule UniboV4.Inventory.Lot do
   use Ash.Resource,
     otp_app: :unibo_v4,

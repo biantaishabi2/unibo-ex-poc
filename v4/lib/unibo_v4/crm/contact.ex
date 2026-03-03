@@ -1,3 +1,13 @@
+# Workflow: contact_lifecycle — 联系人管理流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   create --> destroy
+#   update --> update
+#   update --> destroy
+#   destroy --> [*]
+# ```
 defmodule UniboV4.CRM.Contact do
   use Ash.Resource,
     otp_app: :unibo_v4,

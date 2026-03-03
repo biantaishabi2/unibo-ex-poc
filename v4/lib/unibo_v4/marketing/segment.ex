@@ -1,3 +1,12 @@
+# Workflow: segment_maintain_flow — 客户分群维护流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   create --> refresh_count
+#   update --> refresh_count
+#   refresh_count --> [*]
+# ```
 defmodule UniboV4.Marketing.Segment do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -6,31 +15,38 @@ defmodule UniboV4.Marketing.Segment do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "segments"
+    table "marketing_segments"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :segment
+    type :marketing_segment
 
     queries do
-      get :get_segment, :read
-      list :list_segments, :read
+      get :get_marketing_segment, :read
+      list :list_marketing_segments, :read
     end
 
     mutations do
-      create :create_segment, :create
-      update :update_segment, :update
+      create :create_marketing_segment, :create
+      update :update_marketing_segment, :update
+      update :refresh_count_marketing_segment, :refresh_count
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :name, :string do
+      allow_nil? false
+      public? true
+    end
     attribute :description, :string, public?: true
     attribute :criteria, :string, public?: true
-    attribute :member_count, :integer, default: 0, public?: true
+    attribute :member_count, :integer do
+      default 0
+      public? true
+    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -41,10 +57,46 @@ defmodule UniboV4.Marketing.Segment do
       primary? true
       accept [:name, :description, :criteria]
       validate present(:name)
+      # TODO: 不支持的 action 内校验规则 custom
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
     end
     update :update do
       primary? true
       accept [:name, :description, :criteria, :member_count]
+      # skipped: validate custom : (incompatible with bulk update atomic path)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :refresh_count do
+      accept []
+      # skipped: validate custom : (incompatible with bulk update atomic path)
+      # TODO: 不支持的 change effect custom
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

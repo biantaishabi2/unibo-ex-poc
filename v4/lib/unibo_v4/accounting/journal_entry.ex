@@ -110,7 +110,7 @@ defmodule UniboV4.Accounting.JournalEntry do
     create :create do
       primary? true
       accept [:entry_number, :move_type, :entry_date, :invoice_date, :invoice_date_due, :description, :notes, :journal_id, :currency_id, :partner_id, :fiscal_position_id, :invoice_origin, :ref]
-      argument :lines, {:array, :map}, allow_nil?: false
+      argument :lines, {:array, :string}, allow_nil?: false
       change manage_relationship(:lines, :lines, type: :create)
       validate present(:entry_number)
       change relate_actor(:created_by)

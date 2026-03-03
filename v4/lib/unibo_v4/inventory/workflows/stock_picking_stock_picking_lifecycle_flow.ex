@@ -1,0 +1,38 @@
+defmodule UniboV4.Inventory.Workflows.StockPicking.StockPickingLifecycleFlowWorkflow do
+  @moduledoc """
+  自动生成的工作流编排模块。
+  """
+
+  alias UniboV4.Inventory.StockPicking
+
+  def steps do
+    [:create, :action_confirm, :action_assign, :button_validate]
+  end
+
+  def run(record, opts \\ []) do
+    Enum.reduce_while(steps(), {:ok, record}, fn step, {:ok, current} ->
+      case apply_step(current, step, opts) do
+        {:ok, next_record} -> {:cont, {:ok, next_record}}
+        {:error, reason} -> {:halt, {:error, %{step: step, reason: reason}}}
+      end
+    end)
+  end
+
+  defp apply_step(record, step, opts) do
+    actor = Keyword.get(opts, :actor)
+    params_by_step = Keyword.get(opts, :params, %{})
+    params = Map.get(params_by_step, step, %{})
+
+    case step do
+      :create ->
+        Ash.create(Ash.Changeset.for_create(StockPicking, :create, params), actor: actor)
+      :action_confirm ->
+        Ash.update(Ash.Changeset.for_update(record, :action_confirm, params), actor: actor)
+      :action_assign ->
+        Ash.update(Ash.Changeset.for_update(record, :action_assign, params), actor: actor)
+      :button_validate ->
+        Ash.update(Ash.Changeset.for_update(record, :button_validate, params), actor: actor)
+      _ -> {:ok, record}
+    end
+  end
+end

@@ -20,6 +20,7 @@ defmodule UniboV4.Purchasing do
     resource UniboV4.Purchasing.GoodsReceiptItem
     resource UniboV4.Purchasing.User
     resource UniboV4.Purchasing.Product
+    resource UniboV4.Purchasing.Company
     resource UniboV4.Purchasing.AccountMove
     resource UniboV4.Purchasing.AccountMoveLine
   end

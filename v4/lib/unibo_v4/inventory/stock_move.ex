@@ -1,3 +1,21 @@
+# Workflow: stock_move_lifecycle_flow — 库存移动正常流转流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   _action_confirm --> [*]
+#   _action_assign --> [*]
+#   _action_done --> [*]
+#   _trigger_assign --> [*]
+# ```
+# Workflow: stock_move_cancel_flow — 库存移动取消流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   _action_confirm --> [*]
+#   _action_cancel --> [*]
+# ```
 defmodule UniboV4.Inventory.StockMove do
   use Ash.Resource,
     otp_app: :unibo_v4,

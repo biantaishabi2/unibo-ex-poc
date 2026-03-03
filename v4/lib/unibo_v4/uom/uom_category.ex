@@ -1,3 +1,10 @@
+# Workflow: uom_category_maintain_flow — 计量单位分类维护
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   update --> [*]
+# ```
 defmodule UniboV4.Uom.UomCategory do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -6,7 +13,7 @@ defmodule UniboV4.Uom.UomCategory do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "uom_uom_categories"
+    table "uom_categories"
     repo UniboV4.Repo
   end
 
@@ -40,6 +47,7 @@ defmodule UniboV4.Uom.UomCategory do
       public? true
       destination_attribute :category_id
     end
+    has_many :translations, UniboV4.Uom.UomCategoryTranslation, public?: true
   end
 
   actions do

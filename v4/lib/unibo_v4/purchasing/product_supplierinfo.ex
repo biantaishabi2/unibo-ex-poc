@@ -56,33 +56,42 @@ defmodule UniboV4.Purchasing.ProductSupplierinfo do
       allow_nil? false
       public? true
     end
-    attribute :product_tmpl_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :product_id, :uuid, public?: true
-    attribute :price, :decimal do
-      allow_nil? false
-      public? true
-    end
-    attribute :currency_id, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :min_qty, :decimal do
+    attribute :available_from_date, :date, public?: true
+    attribute :available_thru_date, :date, public?: true
+    attribute :minimum_order_quantity, :decimal do
       default 0
       public? true
     end
-    attribute :delay, :integer do
+    attribute :standard_lead_time_days, :integer do
       default 1
+      public? true
+    end
+    attribute :last_price, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :shipping_price, :decimal, public?: true
+    attribute :currency_uom_id, :uuid do
+      allow_nil? false
+      public? true
+    end
+    attribute :supplier_product_name, :string, public?: true
+    attribute :supplier_product_id, :string, public?: true
+    attribute :can_drop_ship, :boolean do
+      default false
+      public? true
+    end
+    attribute :comments, :string, public?: true
+    attribute :order_qty_increments, :decimal, public?: true
+    attribute :product_tmpl_id, :uuid do
+      allow_nil? false
       public? true
     end
     attribute :discount, :decimal do
       default 0
       public? true
     end
-    attribute :date_start, :date, public?: true
-    attribute :date_end, :date, public?: true
     attribute :sequence, :integer do
       default 1
       public? true
@@ -102,7 +111,7 @@ defmodule UniboV4.Purchasing.ProductSupplierinfo do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:partner_id, :product_tmpl_id, :product_id, :price, :currency_id, :min_qty, :delay, :discount, :date_start, :date_end, :sequence]
+      accept [:partner_id, :product_tmpl_id, :product_id, :last_price, :currency_uom_id, :minimum_order_quantity, :standard_lead_time_days, :discount, :available_from_date, :available_thru_date, :sequence, :supplier_product_name, :supplier_product_id, :can_drop_ship, :shipping_price, :comments, :order_qty_increments]
       argument :supplier_id, :uuid, allow_nil?: false
       change manage_relationship(:supplier_id, :supplier, type: :append, on_lookup: :relate)
       validate present(:partner_id)
@@ -121,7 +130,7 @@ defmodule UniboV4.Purchasing.ProductSupplierinfo do
     end
     update :update do
       primary? true
-      accept [:price, :currency_id, :min_qty, :delay, :discount, :date_start, :date_end, :sequence]
+      accept [:last_price, :currency_uom_id, :minimum_order_quantity, :standard_lead_time_days, :discount, :available_from_date, :available_thru_date, :sequence, :supplier_product_name, :can_drop_ship, :shipping_price, :comments]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -148,13 +157,13 @@ defmodule UniboV4.Purchasing.ProductSupplierinfo do
   end
 
   validations do
-    validate compare(:price, greater_than_or_equal_to: 0)
-    validate compare(:min_qty, greater_than_or_equal_to: 0)
-    validate compare(:delay, greater_than_or_equal_to: 0)
+    validate compare(:last_price, greater_than_or_equal_to: 0)
+    validate compare(:minimum_order_quantity, greater_than_or_equal_to: 0)
+    validate compare(:standard_lead_time_days, greater_than_or_equal_to: 0)
   end
 
   identities do
-    identity :unique_supplier_product, [:partner_id, :product_tmpl_id, :min_qty]
+    identity :unique_supplier_product, [:partner_id, :product_tmpl_id, :minimum_order_quantity]
   end
 
   policies do

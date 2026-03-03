@@ -1,53 +1,96 @@
+# Workflow: payslip_payment_flow — 工资条核验与发放流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   compute_sheet --> [*]
+#   action_payslip_done --> [*]
+#   action_payslip_paid --> [*]
+# ```
+# Workflow: payslip_refund_flow — 工资条取消与冲红重算流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   action_payslip_cancel --> [*]
+#   refund_sheet --> [*]
+#   compute_sheet --> [*]
+# ```
 defmodule UniboV4.HR.PaySlip do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    extensions: [AshGraphql.Resource],
+    notifiers: [UniboV4.HR.PaySlip.Notifier]
 
   postgres do
-    table "pay_slips"
+    table "hr_pay_slips"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :pay_slip
+    type :hr_pay_slip
 
     queries do
-      get :get_pay_slip, :read
-      list :list_pay_slips, :read
+      get :get_hr_pay_slip, :read
+      list :list_hr_pay_slips, :read
     end
 
     mutations do
-      create :create_pay_slip, :create
-      update :confirm_pay_slip, :confirm
-      update :mark_paid_pay_slip, :mark_paid
+      create :create_hr_pay_slip, :create
+      update :compute_sheet_hr_pay_slip, :compute_sheet
+      update :action_payslip_done_hr_pay_slip, :action_payslip_done
+      update :action_payslip_paid_hr_pay_slip, :action_payslip_paid
+      update :action_payslip_cancel_hr_pay_slip, :action_payslip_cancel
+      update :refund_sheet_hr_pay_slip, :refund_sheet
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :payslip_number, :string, allow_nil?: false, public?: true
-    attribute :period, :string, allow_nil?: false, public?: true
-    attribute :basic_salary, :decimal, allow_nil?: false, public?: true
-    attribute :allowances, :decimal, default: 0, public?: true
-    attribute :deductions, :decimal, default: 0, public?: true
-    attribute :net_salary, :decimal, allow_nil?: false, public?: true
+    attribute :payslip_number, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :period_start, :date do
+      allow_nil? false
+      public? true
+    end
+    attribute :period_end, :date do
+      allow_nil? false
+      public? true
+    end
+    attribute :basic_salary, :decimal, public?: true
+    attribute :gross_salary, :decimal, public?: true
+    attribute :total_deductions, :decimal do
+      default 0
+      public? true
+    end
+    attribute :net_salary, :decimal, public?: true
     attribute :status, :atom do
-      constraints one_of: [:draft, :confirmed, :paid]
+      constraints one_of: [:draft, :verify, :done, :paid, :cancel]
       default :draft
-        public? true
+      public? true
     end
     attribute :pay_date, :date, public?: true
+    attribute :credit_note, :boolean do
+      default false
+      public? true
+    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
     belongs_to :employee, UniboV4.HR.Employee do
+      public? true
       allow_nil? false
-        public? true
+    end
+    belongs_to :contract, UniboV4.HR.EmploymentContract do
+      public? true
+      allow_nil? false
     end
   end
 
@@ -55,24 +98,141 @@ defmodule UniboV4.HR.PaySlip do
     defaults [:read]
     create :create do
       primary? true
-      accept [:payslip_number, :period, :basic_salary, :allowances, :deductions, :net_salary, :pay_date]
+      accept [:payslip_number, :period_start, :period_end, :basic_salary, :pay_date]
       argument :employee_id, :uuid, allow_nil?: false
+      argument :contract_id, :uuid, allow_nil?: false
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
+      change manage_relationship(:contract_id, :contract, type: :append, on_lookup: :relate)
       validate present(:payslip_number)
-    end
-    update :confirm do
-      accept []
-      validate attribute_equals(:status, :draft) do
-        message "只有草稿状态可以确认"
+      # TODO: 不支持的 action 内校验规则 custom
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
       end
-      change set_attribute(:status, :confirmed)
     end
-    update :mark_paid do
+    update :compute_sheet do
+      primary? true
       accept []
-      validate attribute_equals(:status, :confirmed) do
-        message "只有已确认状态可以标记发放"
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :draft do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :draft}))
+        end
       end
+      # message: "只有草稿状态可以计算薪资"
+      change set_attribute(:status, :verify)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :action_payslip_done do
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :verify do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :verify}))
+        end
+      end
+      # message: "只有已核验状态可以确认"
+      change set_attribute(:status, :done)
+      # TODO: 不支持的 change effect custom
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :action_payslip_paid do
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :done do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :done}))
+        end
+      end
+      # message: "只有已确认状态可以标记发放"
       change set_attribute(:status, :paid)
+      change set_attribute(:pay_date, &Date.utc_today/0)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :action_payslip_cancel do
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current in [:draft, :verify] do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must be one of %{values}", vars: %{values: [:draft, :verify]}))
+        end
+      end
+      # message: "只有草稿或核验状态可以取消"
+      change set_attribute(:status, :cancel)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :refund_sheet do
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :cancel do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :cancel}))
+        end
+      end
+      # message: "只有已取消状态可以冲红"
+      change set_attribute(:status, :draft)
+      change set_attribute(:credit_note, true)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

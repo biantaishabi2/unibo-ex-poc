@@ -13,7 +13,7 @@ defmodule UniboV4.Sales.SalesOrderItem do
     extensions: [AshGraphql.Resource]
 
   postgres do
-    table "sales_sales_order_items"
+    table "sales_order_items"
     repo UniboV4.Repo
   end
 
@@ -29,33 +29,42 @@ defmodule UniboV4.Sales.SalesOrderItem do
 
   attributes do
     uuid_primary_key :id
-    attribute :product_name, :string do
+    attribute :order_item_type_id, :string, public?: true
+    attribute :seq_id, :integer, public?: true
+    attribute :item_description, :string do
       allow_nil? false
       public? true
     end
-    attribute :product_code, :string, public?: true
-    attribute :display_type, :atom do
-      constraints one_of: [:line_section, :line_note, :false]
-      public? true
-    end
-    attribute :product_uom_qty, :decimal do
+    attribute :quantity, :decimal do
       allow_nil? false
       default 1
       public? true
     end
+    attribute :cancel_quantity, :decimal, public?: true
+    attribute :unit_price, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :unit_list_price, :decimal, public?: true
+    attribute :discount_rate, :decimal do
+      default 0
+      public? true
+    end
+    attribute :status_id, :string, public?: true
+    attribute :estimated_delivery_date, :utc_datetime, public?: true
+    attribute :comments, :string, public?: true
+    attribute :is_promo, :boolean do
+      default false
+      public? true
+    end
+    attribute :corresponding_po_id, :string, public?: true
+    attribute :product_name, :string, public?: true
+    attribute :product_code, :string, public?: true
     attribute :qty_delivered, :decimal do
       default 0
       public? true
     end
     attribute :qty_invoiced, :decimal do
-      default 0
-      public? true
-    end
-    attribute :price_unit, :decimal do
-      allow_nil? false
-      public? true
-    end
-    attribute :discount, :decimal do
       default 0
       public? true
     end
@@ -90,12 +99,12 @@ defmodule UniboV4.Sales.SalesOrderItem do
     defaults [:read]
     create :create do
       primary? true
-      accept [:product_name, :product_code, :product_uom_qty, :price_unit, :discount, :display_type]
+      accept [:item_description, :product_name, :product_code, :quantity, :unit_price, :discount_rate, :order_item_type_id, :seq_id, :estimated_delivery_date, :comments, :status_id, :is_promo]
       argument :order_id, :uuid, allow_nil?: false
       change manage_relationship(:order_id, :order, type: :append, on_lookup: :relate)
       argument :product_id, :uuid, allow_nil?: false
       change manage_relationship(:product_id, :product, type: :append, on_lookup: :relate)
-      validate compare(:product_uom_qty, greater_than: 0)
+      validate compare(:quantity, greater_than: 0)
       # message: "订购数量必须大于零"
       # TODO: 跨实体聚合表达式暂不支持
       # TODO: 跨实体聚合表达式暂不支持
@@ -121,10 +130,10 @@ defmodule UniboV4.Sales.SalesOrderItem do
     end
     update :update do
       primary? true
-      accept [:product_uom_qty, :price_unit, :discount]
-      # skipped: validate compare :product_uom_qty (incompatible with bulk update atomic path)
+      accept [:quantity, :unit_price, :discount_rate, :estimated_delivery_date, :comments, :status_id]
+      # skipped: validate compare :quantity (incompatible with bulk update atomic path)
       # skipped: validate immutable :product (incompatible with bulk update atomic path)
-      # skipped: validate immutable :price_unit (incompatible with bulk update atomic path)
+      # skipped: validate immutable :unit_price (incompatible with bulk update atomic path)
       # TODO: 跨实体聚合表达式暂不支持
       # TODO: 跨实体聚合表达式暂不支持
       change fn changeset, _context ->
@@ -151,9 +160,9 @@ defmodule UniboV4.Sales.SalesOrderItem do
   end
 
   validations do
-    validate compare(:price_unit, greater_than_or_equal_to: 0)
-    validate compare(:discount, greater_than_or_equal_to: 0)
-    validate compare(:discount, less_than_or_equal_to: 100)
+    validate compare(:unit_price, greater_than_or_equal_to: 0)
+    validate compare(:discount_rate, greater_than_or_equal_to: 0)
+    validate compare(:discount_rate, less_than_or_equal_to: 100)
   end
 
 end

@@ -1,3 +1,10 @@
+# Workflow: stock_picking_item_write_flow — 拣货明细行写操作覆盖流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   update --> [*]
+# ```
 defmodule UniboV4.Inventory.StockPickingItem do
   use Ash.Resource,
     otp_app: :unibo_v4,

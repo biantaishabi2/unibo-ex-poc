@@ -1,3 +1,10 @@
+# Workflow: stock_location_write_flow — 库位写操作覆盖流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   update --> [*]
+# ```
 defmodule UniboV4.Inventory.StockLocation do
   use Ash.Resource,
     otp_app: :unibo_v4,

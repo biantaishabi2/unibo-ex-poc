@@ -58,6 +58,8 @@ defmodule UniboV4.CRM.ContactAddress do
       accept [:address_type, :street, :city, :state, :postal_code, :country, :is_primary]
       argument :contact_id, :uuid, allow_nil?: false
       change manage_relationship(:contact_id, :contact, type: :append, on_lookup: :relate)
+      validate present(:contact_id)
+      # TODO: 不支持的 action 内校验规则 belongs_to_exists
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -71,6 +73,7 @@ defmodule UniboV4.CRM.ContactAddress do
     update :update do
       primary? true
       accept [:address_type, :street, :city, :state, :postal_code, :country, :is_primary]
+      # skipped: validate belongs_to_exists :contact_id (incompatible with bulk update atomic path)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

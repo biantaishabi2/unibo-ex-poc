@@ -46,6 +46,15 @@ defmodule UniboV4.Purchasing.PurchaseRequisitionType do
 
   attributes do
     uuid_primary_key :id
+    attribute :description, :string do
+      allow_nil? false
+      public? true
+    end
+    attribute :parent_type_id, :string, public?: true
+    attribute :has_table, :boolean do
+      default false
+      public? true
+    end
     attribute :name, :string do
       allow_nil? false
       public? true
@@ -77,12 +86,19 @@ defmodule UniboV4.Purchasing.PurchaseRequisitionType do
     update_timestamp :updated_at
   end
 
+  relationships do
+    belongs_to :parent_type, UniboV4.Purchasing.PurchaseRequisitionType do
+      public? true
+    end
+  end
+
   actions do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :sequence, :exclusive, :quantity_copy, :line_copy, :active]
+      accept [:name, :description, :sequence, :exclusive, :quantity_copy, :line_copy, :active, :parent_type_id, :has_table]
       validate present(:name)
+      validate present(:description)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -107,7 +123,7 @@ defmodule UniboV4.Purchasing.PurchaseRequisitionType do
     end
     update :update do
       primary? true
-      accept [:name, :sequence, :exclusive, :quantity_copy, :line_copy, :active]
+      accept [:name, :description, :sequence, :exclusive, :quantity_copy, :line_copy, :active, :parent_type_id, :has_table]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

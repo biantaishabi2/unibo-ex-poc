@@ -1,3 +1,10 @@
+# Workflow: stock_move_line_write_flow — 库存移动明细行写操作覆盖流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   update --> [*]
+# ```
 defmodule UniboV4.Inventory.StockMoveLine do
   use Ash.Resource,
     otp_app: :unibo_v4,

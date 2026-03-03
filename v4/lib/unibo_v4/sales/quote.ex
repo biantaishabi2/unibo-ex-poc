@@ -95,7 +95,7 @@ defmodule UniboV4.Sales.Quote do
     create :create do
       primary? true
       accept [:quote_number, :quote_date, :valid_thru_date, :currency, :description, :notes]
-      argument :items, {:array, :map}, allow_nil?: false
+      argument :items, {:array, :string}, allow_nil?: false
       argument :customer_id, :uuid, allow_nil?: false
       change manage_relationship(:items, :items, type: :create)
       change manage_relationship(:customer_id, :customer, type: :append, on_lookup: :relate)

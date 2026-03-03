@@ -1,3 +1,10 @@
+# Workflow: lead_stage_management — 管道阶段管理流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   update --> update
+# ```
 defmodule UniboV4.CRM.LeadStage do
   use Ash.Resource,
     otp_app: :unibo_v4,

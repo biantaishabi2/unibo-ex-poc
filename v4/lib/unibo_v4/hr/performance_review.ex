@@ -1,41 +1,71 @@
+# Workflow: appraisal_cycle_flow — 绩效评估标准推进流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   action_confirm --> [*]
+#   action_done --> [*]
+# ```
+# Workflow: appraisal_reopen_flow — 绩效评估取消后恢复流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   action_cancel --> [*]
+#   action_back --> [*]
+#   action_confirm --> [*]
+# ```
 defmodule UniboV4.HR.PerformanceReview do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    extensions: [AshGraphql.Resource],
+    notifiers: [UniboV4.HR.PerformanceReview.Notifier]
 
   postgres do
-    table "performance_reviews"
+    table "hr_performance_reviews"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :performance_review
+    type :hr_performance_review
 
     queries do
-      get :get_performance_review, :read
-      list :list_performance_reviews, :read
+      get :get_hr_performance_review, :read
+      list :list_hr_performance_reviews, :read
     end
 
     mutations do
-      create :create_performance_review, :create
-      update :submit_performance_review, :submit
-      update :complete_performance_review, :complete
+      create :create_hr_performance_review, :create
+      update :action_confirm_hr_performance_review, :action_confirm
+      update :action_done_hr_performance_review, :action_done
+      update :action_cancel_hr_performance_review, :action_cancel
+      update :action_back_hr_performance_review, :action_back
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :review_period, :string, allow_nil?: false, public?: true
-    attribute :status, :atom do
-      constraints one_of: [:draft, :submitted, :completed]
-      default :draft
-        public? true
+    attribute :review_period, :string do
+      allow_nil? false
+      public? true
     end
-    attribute :overall_rating, :atom, constraints: [one_of: [:outstanding, :exceeds, :meets, :below, :unsatisfactory]], public?: true
-    attribute :comments, :string, public?: true
+    attribute :status, :atom do
+      constraints one_of: [:new, :pending, :done, :cancel]
+      default :new
+      public? true
+    end
+    attribute :overall_rating, :atom do
+      constraints one_of: [:outstanding, :exceeds, :meets, :below, :unsatisfactory]
+      public? true
+    end
+    attribute :date_close, :date, public?: true
+    attribute :final_interview_date, :date, public?: true
+    attribute :note, :string, public?: true
+    attribute :assessment_note, :string, public?: true
+    attribute :manager_note, :string, public?: true
     attribute :review_date, :date, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
@@ -43,34 +73,129 @@ defmodule UniboV4.HR.PerformanceReview do
 
   relationships do
     belongs_to :employee, UniboV4.HR.Employee do
+      public? true
       allow_nil? false
-        public? true
     end
-    belongs_to :reviewer, UniboV4.Accounts.User, public?: true
+    belongs_to :reviewer, UniboV4.HR.Employee do
+      public? true
+    end
   end
 
   actions do
     defaults [:read]
     create :create do
       primary? true
-      accept [:review_period, :review_date, :comments]
+      accept [:review_period, :date_close, :final_interview_date, :note, :review_date]
       argument :employee_id, :uuid, allow_nil?: false
+      argument :reviewer_id, :uuid
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
-      change relate_actor(:reviewer)
-    end
-    update :submit do
-      accept [:overall_rating, :comments]
-      validate attribute_equals(:status, :draft) do
-        message "只有草稿状态可以提交"
+      # TODO: 不支持的 action 内校验规则 custom
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
       end
-      change set_attribute(:status, :submitted)
     end
-    update :complete do
+    update :action_confirm do
+      primary? true
       accept []
-      validate attribute_equals(:status, :submitted) do
-        message "只有已提交状态可以完成"
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :new do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :new}))
+        end
       end
-      change set_attribute(:status, :completed)
+      # message: "只有新建状态可以确认"
+      change set_attribute(:status, :pending)
+      # TODO: 不支持的 change effect custom
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :action_done do
+      accept [:overall_rating, :manager_note]
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :pending do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :pending}))
+        end
+      end
+      # message: "只有进行中状态可以完成"
+      # skipped: validate present :overall_rating (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
+      change set_attribute(:status, :done)
+      # TODO: 不支持的 change effect custom
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :action_cancel do
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current in [:new, :pending] do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must be one of %{values}", vars: %{values: [:new, :pending]}))
+        end
+      end
+      # message: "只有新建或进行中状态可以取消"
+      change set_attribute(:status, :cancel)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :action_back do
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :cancel do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :cancel}))
+        end
+      end
+      # message: "只有已取消状态可以恢复"
+      change set_attribute(:status, :new)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

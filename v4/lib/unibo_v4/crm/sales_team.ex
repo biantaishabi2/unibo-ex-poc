@@ -1,3 +1,13 @@
+# Workflow: sales_team_lifecycle — 销售团队管理流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   create --> destroy
+#   update --> update
+#   update --> destroy
+#   destroy --> [*]
+# ```
 defmodule UniboV4.CRM.SalesTeam do
   use Ash.Resource,
     otp_app: :unibo_v4,

@@ -4,12 +4,15 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder.Notifier do
   @impl true
   def notify(%Ash.Notifier.Notification{action: %{name: action_name}} = notification) do
     topic = case action_name do
+      :mark_done -> "manufacturing.order.completed"
       :complete -> "manufacturing.order.completed"
+      :confirm -> "manufacturing.order.confirmed"
+      :split_production -> "manufacturing.order.backorder_created"
       _ -> nil
     end
 
     if topic do
-      Phoenix.PubSub.broadcast(PubSub, topic, {action_name, notification.data})
+      Phoenix.PubSub.broadcast(UniboV4.PubSub, topic, {action_name, notification.data})
     end
 
     :ok

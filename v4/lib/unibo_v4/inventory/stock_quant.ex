@@ -1,3 +1,18 @@
+# Workflow: stock_quant_lifecycle_flow — 库存快照正常操作流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   update --> [*]
+#   _update_available_quantity --> [*]
+# ```
+# Workflow: stock_quant_inventory_flow — 库存盘点调整流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+#   _apply_inventory --> [*]
+# ```
 defmodule UniboV4.Inventory.StockQuant do
   use Ash.Resource,
     otp_app: :unibo_v4,

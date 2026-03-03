@@ -29,22 +29,25 @@ defmodule UniboV4.Purchasing.PurchaseRequisitionItem do
 
   attributes do
     uuid_primary_key :id
+    attribute :status_id, :string, public?: true
+    attribute :quantity, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :description, :string, public?: true
+    attribute :required_by_date, :date, public?: true
+    attribute :estimated_budget, :decimal, public?: true
+    attribute :reason, :string, public?: true
     attribute :product_name, :string do
       allow_nil? false
       public? true
     end
     attribute :product_description_variants, :string, public?: true
-    attribute :product_qty, :decimal do
-      allow_nil? false
-      public? true
-    end
-    attribute :price_unit, :decimal do
+    attribute :unit_price, :decimal do
       default 0
       public? true
     end
     attribute :estimated_amount, :decimal, public?: true
-    attribute :schedule_date, :date, public?: true
-    attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -67,16 +70,16 @@ defmodule UniboV4.Purchasing.PurchaseRequisitionItem do
     defaults [:read]
     create :create do
       primary? true
-      accept [:product_name, :product_description_variants, :product_qty, :price_unit, :schedule_date, :description]
+      accept [:product_name, :product_description_variants, :quantity, :unit_price, :required_by_date, :description, :reason, :status_id]
       argument :product_id, :uuid
       argument :requisition_id, :uuid, allow_nil?: false
       change manage_relationship(:requisition_id, :requisition, type: :append, on_lookup: :relate)
       change fn changeset, _context ->
-        product_qty = Ash.Changeset.get_attribute(changeset, :product_qty)
-        price_unit = Ash.Changeset.get_attribute(changeset, :price_unit)
+        quantity = Ash.Changeset.get_attribute(changeset, :quantity)
+        unit_price = Ash.Changeset.get_attribute(changeset, :unit_price)
 
-        if product_qty && price_unit do
-          Ash.Changeset.force_change_attribute(changeset, :estimated_amount, Decimal.mult(product_qty, price_unit))
+        if quantity && unit_price do
+          Ash.Changeset.force_change_attribute(changeset, :estimated_amount, Decimal.mult(quantity, unit_price))
         else
           changeset
         end
@@ -93,13 +96,13 @@ defmodule UniboV4.Purchasing.PurchaseRequisitionItem do
     end
     update :update do
       primary? true
-      accept [:product_qty, :price_unit, :schedule_date, :description]
+      accept [:quantity, :unit_price, :required_by_date, :description, :reason, :status_id]
       change fn changeset, _context ->
-        product_qty = Ash.Changeset.get_attribute(changeset, :product_qty)
-        price_unit = Ash.Changeset.get_attribute(changeset, :price_unit)
+        quantity = Ash.Changeset.get_attribute(changeset, :quantity)
+        unit_price = Ash.Changeset.get_attribute(changeset, :unit_price)
 
-        if product_qty && price_unit do
-          Ash.Changeset.force_change_attribute(changeset, :estimated_amount, Decimal.mult(product_qty, price_unit))
+        if quantity && unit_price do
+          Ash.Changeset.force_change_attribute(changeset, :estimated_amount, Decimal.mult(quantity, unit_price))
         else
           changeset
         end
@@ -118,8 +121,8 @@ defmodule UniboV4.Purchasing.PurchaseRequisitionItem do
   end
 
   validations do
-    validate compare(:product_qty, greater_than: 0)
-    validate compare(:price_unit, greater_than_or_equal_to: 0)
+    validate compare(:quantity, greater_than: 0)
+    validate compare(:unit_price, greater_than_or_equal_to: 0)
   end
 
 end

@@ -35,7 +35,7 @@ defmodule UniboV4.Sales.SalesOrder do
     notifiers: [UniboV4.Sales.SalesOrder.Notifier]
 
   postgres do
-    table "sales_sales_orders"
+    table "sales_orders"
     repo UniboV4.Repo
   end
 
@@ -139,7 +139,7 @@ defmodule UniboV4.Sales.SalesOrder do
     create :create do
       primary? true
       accept [:name, :date_order, :promised_delivery_date, :payment_terms, :shipping_address, :currency, :notes]
-      argument :items, {:array, :map}, allow_nil?: false
+      argument :items, {:array, :string}, allow_nil?: false
       argument :customer_id, :uuid, allow_nil?: false
       change manage_relationship(:items, :items, type: :create)
       change manage_relationship(:customer_id, :customer, type: :append, on_lookup: :relate)
@@ -304,13 +304,12 @@ defmodule UniboV4.Sales.SalesOrder do
 
   aggregates do
     count :total_items, :items
-    sum :total_quantity, :items, field: :product_uom_qty
+    sum :total_quantity, :items, field: :quantity
   end
 
   policies do
     policy action_type(:create) do
-      # TODO: role 字段尚未定义，暂时放开
-      authorize_if always()
+      authorize_if expr(role in [:sales_rep, :admin])
     end
     policy action_type(:read) do
       authorize_if always()

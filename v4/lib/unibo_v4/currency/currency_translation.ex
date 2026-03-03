@@ -1,9 +1,7 @@
 defmodule UniboV4.Currency.CurrencyTranslation do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Currency,
-    data_layer: AshPostgres.DataLayer,
-    notifiers: [Unibo.I18n.TranslationCacheNotifier]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "currency_currency_translations"

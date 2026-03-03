@@ -97,7 +97,7 @@ defmodule UniboV4.Sales.Return do
     create :create do
       primary? true
       accept [:return_number, :return_date, :reason, :notes]
-      argument :items, {:array, :map}, allow_nil?: false
+      argument :items, {:array, :string}, allow_nil?: false
       argument :sales_order_id, :uuid, allow_nil?: false
       argument :customer_id, :uuid, allow_nil?: false
       change manage_relationship(:items, :items, type: :create)

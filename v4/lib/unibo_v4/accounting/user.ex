@@ -27,10 +27,6 @@ defmodule UniboV4.Accounting.User do
 
   actions do
     defaults [:read, :update]
-    create :create do
-      primary? true
-      accept [:name]
-    end
   end
 
 end

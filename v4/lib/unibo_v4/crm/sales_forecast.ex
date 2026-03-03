@@ -1,3 +1,10 @@
+# Workflow: sales_forecast_management — 销售预测管理流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   update --> update
+# ```
 defmodule UniboV4.CRM.SalesForecast do
   use Ash.Resource,
     otp_app: :unibo_v4,

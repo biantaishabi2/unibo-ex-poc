@@ -1,3 +1,12 @@
+# Workflow: currency_maintain_flow — 币种维护
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   create --> destroy
+#   update --> destroy
+#   destroy --> [*]
+# ```
 defmodule UniboV4.Currency.Currency do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -28,11 +37,23 @@ defmodule UniboV4.Currency.Currency do
 
   attributes do
     uuid_primary_key :id
-    attribute :code, :string do
+    attribute :name, :string do
       allow_nil? false
       public? true
     end
-    attribute :name, :string do
+    attribute :factor, :float do
+      default 1.0
+      public? true
+    end
+    attribute :rounding, :float do
+      default 0.01
+      public? true
+    end
+    attribute :active, :boolean do
+      default true
+      public? true
+    end
+    attribute :code, :string do
       allow_nil? false
       public? true
     end
@@ -41,15 +62,18 @@ defmodule UniboV4.Currency.Currency do
       default 2
       public? true
     end
-    attribute :active, :boolean do
-      default true
-      public? true
-    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
+  calculations do
+    # TODO: 不支持的 calculation 表达式 :factor_inv
+  end
+
   relationships do
+    belongs_to :category, UniboV4.Uom.UomCategory do
+      public? true
+    end
     has_many :from_rates, UniboV4.Currency.CurrencyRate do
       public? true
       destination_attribute :from_currency_id
@@ -65,11 +89,33 @@ defmodule UniboV4.Currency.Currency do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:code, :name, :symbol, :decimal_places, :active]
+      accept [:name, :code, :symbol, :factor, :rounding, :decimal_places, :active]
+      argument :category_id, :uuid
+      validate present(:code)
+      validate present(:name)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
     end
     update :update do
       primary? true
-      accept [:name, :symbol, :decimal_places, :active]
+      accept [:name, :symbol, :factor, :rounding, :decimal_places, :active]
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
     end
   end
 

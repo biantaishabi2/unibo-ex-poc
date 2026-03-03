@@ -1,3 +1,32 @@
+# Workflow: lead_lifecycle — 线索/商机生命周期
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> update
+#   create --> convert_opportunity
+#   create --> lose
+#   create --> assign_salesperson
+#   create --> merge
+#   convert_opportunity --> update
+#   convert_opportunity --> win
+#   convert_opportunity --> lose
+#   convert_opportunity --> assign_salesperson
+#   win --> [*] : won
+#   lose --> [*] : lost
+#   assign_salesperson --> update
+#   assign_salesperson --> convert_opportunity
+#   assign_salesperson --> win
+#   assign_salesperson --> lose
+#   merge --> [*]
+# ```
+# Workflow: lead_stage_progression — 商机阶段推进流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> update
+#   update --> update
+#   update --> win
+#   update --> lose
+# ```
 defmodule UniboV4.CRM.Lead do
   use Ash.Resource,
     otp_app: :unibo_v4,

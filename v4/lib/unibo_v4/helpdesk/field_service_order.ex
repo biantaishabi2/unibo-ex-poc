@@ -1,3 +1,12 @@
+# Workflow: field_service_lifecycle — 现场服务任务生命周期（创建→排期→完成）
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> schedule
+#   create --> complete
+#   schedule --> complete
+#   complete --> [*]
+# ```
 defmodule UniboV4.Helpdesk.FieldServiceOrder do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -7,83 +16,120 @@ defmodule UniboV4.Helpdesk.FieldServiceOrder do
     notifiers: [UniboV4.Helpdesk.FieldServiceOrder.Notifier]
 
   postgres do
-    table "field_service_orders"
+    table "helpdesk_field_service_orders"
     repo UniboV4.Repo
   end
 
   graphql do
-    type :field_service_order
+    type :helpdesk_field_service_order
 
     queries do
-      get :get_field_service_order, :read
-      list :list_field_service_orders, :read
+      get :get_helpdesk_field_service_order, :read
+      list :list_helpdesk_field_service_orders, :read
     end
 
     mutations do
-      create :create_field_service_order, :create
-      update :schedule_field_service_order, :schedule
-      update :start_field_service_order, :start
-      update :complete_field_service_order, :complete
+      create :create_helpdesk_field_service_order, :create
+      update :schedule_helpdesk_field_service_order, :schedule
+      update :complete_helpdesk_field_service_order, :complete
     end
 
   end
 
   attributes do
     uuid_primary_key :id
-    attribute :order_number, :string, allow_nil?: false, public?: true
-    attribute :status, :atom do
-      constraints one_of: [:draft, :scheduled, :in_progress, :completed, :cancelled]
-      default :draft
-        public? true
+    attribute :name, :string do
+      allow_nil? false
+      public? true
     end
-    attribute :service_type, :string, public?: true
-    attribute :location, :string, public?: true
-    attribute :scheduled_date, :utc_datetime, public?: true
-    attribute :completed_date, :utc_datetime, public?: true
     attribute :description, :string, public?: true
-    attribute :notes, :string, public?: true
+    attribute :planned_date_begin, :utc_datetime, public?: true
+    attribute :planned_date_end, :utc_datetime, public?: true
+    attribute :is_done, :boolean do
+      allow_nil? false
+      default false
+      public? true
+    end
+    attribute :helpdesk_ticket_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    has_many :assignments, UniboV4.Helpdesk.FieldServiceAssignment
-    belongs_to :ticket, UniboV4.Helpdesk.Ticket, public?: true
+    belongs_to :helpdesk_ticket, UniboV4.Helpdesk.HelpdeskTicket do
+      public? true
+    end
+    belongs_to :project, UniboV4.Helpdesk.Project do
+      public? true
+    end
+    belongs_to :partner, UniboV4.Helpdesk.Partner do
+      public? true
+    end
+    belongs_to :user, UniboV4.Helpdesk.User do
+      public? true
+    end
+    many_to_many :tag_ids, UniboV4.Helpdesk.Tag do
+      public? true
+      through UniboV4.Helpdesk.FieldServiceOrderTagLink
+    end
   end
 
   actions do
     defaults [:read]
     create :create do
       primary? true
-      accept [:order_number, :service_type, :location, :scheduled_date, :description, :notes]
-      argument :ticket_id, :uuid
-      validate present(:order_number)
+      accept [:name, :description, :planned_date_begin, :planned_date_end]
+      argument :helpdesk_ticket_id, :uuid
+      argument :project_id, :uuid
+      argument :partner_id, :uuid
+      argument :user_id, :uuid
+      validate present(:name)
+      # message: "任务标题必填"
+      # TODO: 不支持的 change effect callback
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
     end
     update :schedule do
-      accept [:scheduled_date]
-      validate attribute_equals(:status, :draft) do
-        message "只有草稿状态可以安排"
+      primary? true
+      accept [:planned_date_begin, :planned_date_end]
+      argument :user_id, :uuid
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
       end
-      change set_attribute(:status, :scheduled)
-    end
-    update :start do
-      accept []
-      validate attribute_equals(:status, :scheduled) do
-        message "只有已安排状态可以开始"
-      end
-      change set_attribute(:status, :in_progress)
+      require_atomic? false
     end
     update :complete do
-      accept [:notes]
-      validate attribute_equals(:status, :in_progress) do
-        message "只有进行中状态可以完成"
+      accept []
+      change set_attribute(:is_done, true)
+      # TODO: 不支持的 change effect callback
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
       end
-      change set_attribute(:status, :completed)
+      require_atomic? false
     end
   end
 
   identities do
-    identity :unique_order_number, [:order_number]
+    identity :unique_field_service_name, [:name, :helpdesk_ticket_id]
   end
 
 end

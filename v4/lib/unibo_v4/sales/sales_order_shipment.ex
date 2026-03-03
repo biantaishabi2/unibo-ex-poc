@@ -15,7 +15,7 @@ defmodule UniboV4.Sales.SalesOrderShipment do
     notifiers: [UniboV4.Sales.SalesOrderShipment.Notifier]
 
   postgres do
-    table "sales_sales_order_shipments"
+    table "sales_order_shipments"
     repo UniboV4.Repo
   end
 

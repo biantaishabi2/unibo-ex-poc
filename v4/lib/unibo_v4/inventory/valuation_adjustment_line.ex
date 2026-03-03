@@ -1,3 +1,9 @@
+# Workflow: valuation_adjustment_line_write_flow — 估值调整行写操作覆盖流程
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> [*]
+# ```
 defmodule UniboV4.Inventory.ValuationAdjustmentLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
@@ -65,6 +71,10 @@ defmodule UniboV4.Inventory.ValuationAdjustmentLine do
       change manage_relationship(:cost_id, :cost, type: :append, on_lookup: :relate)
       change manage_relationship(:cost_line_id, :cost_line, type: :append, on_lookup: :relate)
       change manage_relationship(:move_id, :move, type: :append, on_lookup: :relate)
+      validate present(:former_cost)
+      # message: "原始成本不能为空"
+      validate compare(:additional_landed_cost, greater_than_or_equal_to: 0)
+      # message: "附加到岸成本不能为负"
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
