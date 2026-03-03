@@ -76,10 +76,6 @@ defmodule UniboV4.Approvals.ApprovalCategory do
       default true
       public? true
     end
-    attribute :company_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :exclusive_user, :boolean do
       allow_nil? false
       default false
@@ -102,6 +98,7 @@ defmodule UniboV4.Approvals.ApprovalCategory do
     belongs_to :company, UniboV4.Approvals.Company do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     has_many :approval_requests, UniboV4.Approvals.ApprovalRequest do
       public? true

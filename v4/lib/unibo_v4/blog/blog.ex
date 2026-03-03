@@ -47,7 +47,6 @@ defmodule UniboV4.Blog.Blog do
       default true
       public? true
     end
-    attribute :website_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -69,7 +68,7 @@ defmodule UniboV4.Blog.Blog do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :subtitle, :website_id]
+      accept [:name, :subtitle]
       validate present(:name)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

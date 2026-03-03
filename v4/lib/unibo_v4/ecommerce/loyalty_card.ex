@@ -44,10 +44,6 @@ defmodule UniboV4.Ecommerce.LoyaltyCard do
 
   attributes do
     uuid_primary_key :id
-    attribute :program_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :code, :string, public?: true
     attribute :points, :decimal do
       default 0

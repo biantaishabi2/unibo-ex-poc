@@ -38,19 +38,7 @@ defmodule UniboV4.Spreadsheet.Revision do
       allow_nil? false
       public? true
     end
-    attribute :document_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :commands, :string do
-      allow_nil? false
-      public? true
-    end
-    attribute :parent_revision_id, :string do
-      allow_nil? false
-      public? true
-    end
-    attribute :user_id, :integer do
       allow_nil? false
       public? true
     end
@@ -66,6 +54,7 @@ defmodule UniboV4.Spreadsheet.Revision do
     belongs_to :document, UniboV4.Spreadsheet.SpreadsheetDocument do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     belongs_to :user, UniboV4.Spreadsheet.User do
       public? true
@@ -73,6 +62,7 @@ defmodule UniboV4.Spreadsheet.Revision do
     end
     belongs_to :parent_revision, UniboV4.Spreadsheet.Revision do
       public? true
+      attribute_type :string
     end
   end
 
@@ -80,7 +70,7 @@ defmodule UniboV4.Spreadsheet.Revision do
     defaults [:read, :update]
     create :apply_revision do
       primary? true
-      accept [:commands, :parent_revision_id, :type]
+      accept [:commands, :type]
       argument :document_id, :integer, allow_nil?: false
       argument :user_id, :integer, allow_nil?: false
       change manage_relationship(:document_id, :document, type: :append, on_lookup: :relate)

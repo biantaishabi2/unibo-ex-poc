@@ -52,11 +52,6 @@ defmodule UniboV4.Blog.BlogPost do
       public? true
     end
     attribute :subtitle, :string, public?: true
-    attribute :author_id, :uuid, public?: true
-    attribute :blog_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :content, :string, public?: true
     attribute :cover_properties, :string, public?: true
     attribute :is_published, :boolean do

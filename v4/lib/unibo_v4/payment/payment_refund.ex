@@ -1,0 +1,162 @@
+# Workflow: refund_lifecycle — 退款生命周期流程（pending → approved → processed / rejected）
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> create
+#   create --> approve
+#   create --> reject
+#   approve --> process
+#   process --> [*] : processed
+#   reject --> [*] : rejected
+# ```
+defmodule UniboV4.Payment.Payment.PaymentRefund do
+  use Ash.Resource,
+    otp_app: :unibo_v4,
+    domain: UniboV4.Payment.Payment,
+    data_layer: AshPostgres.DataLayer,
+    extensions: [AshGraphql.Resource],
+    notifiers: [UniboV4.Payment.Payment.PaymentRefund.Notifier]
+
+  postgres do
+    table "payment_refunds"
+    repo UniboV4.Repo
+  end
+
+  graphql do
+    type :payment_payment_refund
+
+    queries do
+      get :get_payment_payment_refund, :read
+      list :list_payment_payment_refunds, :read
+    end
+
+    mutations do
+      create :create_payment_payment_refund, :create
+      update :approve_payment_payment_refund, :approve
+      update :process_payment_payment_refund, :process
+      update :reject_payment_payment_refund, :reject
+    end
+
+  end
+
+  attributes do
+    uuid_primary_key :id
+    attribute :amount, :decimal do
+      allow_nil? false
+      public? true
+    end
+    attribute :reason, :string, public?: true
+    attribute :status, :atom do
+      allow_nil? false
+      constraints one_of: [:pending, :approved, :processed, :rejected]
+      default :pending
+      public? true
+    end
+    attribute :refund_method, :string, public?: true
+    attribute :processed_at, :utc_datetime, public?: true
+    create_timestamp :inserted_at
+    update_timestamp :updated_at
+  end
+
+  relationships do
+    belongs_to :payment, UniboV4.Payment.Payment.Payment do
+      public? true
+      allow_nil? false
+    end
+  end
+
+  actions do
+    defaults [:read]
+    create :create do
+      primary? true
+      accept [:amount, :reason, :refund_method]
+      argument :payment_id, :uuid, allow_nil?: false
+      change manage_relationship(:payment_id, :payment, type: :append, on_lookup: :relate)
+      validate present(:payment_id)
+      validate present(:amount)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+    end
+    update :approve do
+      primary? true
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :pending do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :pending}))
+        end
+      end
+      # message: "只有待处理状态可以审批"
+      change set_attribute(:status, :approved)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :process do
+      accept [:processed_at]
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :approved do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :approved}))
+        end
+      end
+      # message: "只有已审批状态可以处理"
+      change set_attribute(:status, :processed)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+    update :reject do
+      accept [:reason]
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :pending do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :pending}))
+        end
+      end
+      # message: "只有待处理状态可以拒绝"
+      change set_attribute(:status, :rejected)
+      change fn changeset, _context ->
+        id = Ash.Changeset.get_attribute(changeset, :id)
+
+        if id do
+          Ash.Changeset.force_change_attribute(changeset, :id, id)
+        else
+          changeset
+        end
+      end
+      require_atomic? false
+    end
+  end
+
+  validations do
+    validate compare(:amount, greater_than: 0)
+  end
+
+end

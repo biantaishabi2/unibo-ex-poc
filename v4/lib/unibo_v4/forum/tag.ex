@@ -44,7 +44,6 @@ defmodule UniboV4.Forum.Tag do
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
-    attribute :forum_id, :uuid, public?: true
   end
 
   calculations do

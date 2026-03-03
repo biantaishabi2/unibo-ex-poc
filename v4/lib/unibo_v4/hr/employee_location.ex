@@ -34,10 +34,6 @@ defmodule UniboV4.HR.EmployeeLocation do
 
   attributes do
     uuid_primary_key :id
-    attribute :employee_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :date, :date do
       allow_nil? false
       public? true

@@ -68,8 +68,6 @@ defmodule UniboV4.ELearning.SlideProgress do
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
-    attribute :slide_id, :uuid, public?: true
-    attribute :partner_id, :uuid, public?: true
   end
 
   relationships do

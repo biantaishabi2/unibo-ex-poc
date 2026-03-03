@@ -40,10 +40,6 @@ defmodule UniboV4.Marketing.AutomationParticipant do
       allow_nil? false
       public? true
     end
-    attribute :campaign_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :state, :atom do
       constraints one_of: [:running, :completed, :unlinked, :error]
       default :running

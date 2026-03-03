@@ -190,7 +190,6 @@ defmodule UniboV4.Maintenance.Vehicle do
       require_atomic? false
     end
     update :change_driver do
-      argument :driver_id, :uuid
       # TODO: 不支持的 change effect compute_model_fields
       # TODO: 不支持的 change effect create_assignment_log
       change fn changeset, _context ->
@@ -205,7 +204,6 @@ defmodule UniboV4.Maintenance.Vehicle do
       require_atomic? false
     end
     update :set_future_driver do
-      argument :future_driver_id, :uuid
       # TODO: 不支持的 change effect compute_model_fields
       # TODO: 不支持的 change effect set_plan_to_change
       change fn changeset, _context ->
@@ -220,7 +218,6 @@ defmodule UniboV4.Maintenance.Vehicle do
       require_atomic? false
     end
     update :change_state do
-      argument :state_id, :uuid
       # TODO: 不支持的 change effect compute_model_fields
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

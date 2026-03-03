@@ -172,7 +172,6 @@ defmodule UniboV4.Maintenance.MaintenanceRequest do
       require_atomic? false
     end
     update :change_stage do
-      argument :stage_id, :uuid
       # skipped: validate conditional_required :repeat_until (incompatible with bulk update atomic path)
       # TODO: 不支持的 change effect reset_attribute
       change set_attribute(:close_date, &DateTime.utc_now/0)

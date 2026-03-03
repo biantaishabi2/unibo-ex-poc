@@ -32,15 +32,7 @@ defmodule UniboV4.Knowledge.ArticleVersion do
 
   attributes do
     uuid_primary_key :id
-    attribute :article_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :body, :string do
-      allow_nil? false
-      public? true
-    end
-    attribute :version_uid, :uuid do
       allow_nil? false
       public? true
     end
@@ -75,7 +67,7 @@ defmodule UniboV4.Knowledge.ArticleVersion do
     defaults [:read, :update]
     create :create do
       primary? true
-      accept [:article_id, :body, :version_uid, :type]
+      accept [:body, :type]
       argument :article_id, :uuid, allow_nil?: false
       change manage_relationship(:article_id, :article, type: :append, on_lookup: :relate)
       validate present(:article_id)

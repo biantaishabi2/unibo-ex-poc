@@ -149,15 +149,20 @@ defmodule UniboV4.BDD.DataFactory do
               Map.put(acc, arg_name, [])
 
             type when type in [:append, :append_and_remove] ->
-              # append 只是引用已有记录，不会循环，每次创建独立记录
+              # append 引用已有记录；检查 visited 防止循环依赖
               dest = rel.destination
-              create_action = find_create_action(dest)
 
-              if not is_nil(create_action) and Code.ensure_loaded?(dest) do
-                record = create_record!(dest, create_action.name, visited: visited)
-                Map.put(acc, arg_name, record.id)
-              else
+              if MapSet.member?(visited, dest) do
                 acc
+              else
+                create_action = find_create_action(dest)
+
+                if not is_nil(create_action) and Code.ensure_loaded?(dest) do
+                  record = create_record!(dest, create_action.name, visited: visited)
+                  Map.put(acc, arg_name, record.id)
+                else
+                  acc
+                end
               end
 
             _ ->

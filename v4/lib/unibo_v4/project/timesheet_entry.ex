@@ -102,7 +102,6 @@ defmodule UniboV4.Project.TimesheetEntry do
     update :update do
       primary? true
       accept [:hours, :name, :description]
-      argument :task_id, :uuid
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate owner_or_role :employee_user_id (incompatible with bulk update atomic path)
       # TODO: 不支持的 change effect compute

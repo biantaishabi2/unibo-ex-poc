@@ -22,7 +22,6 @@ defmodule UniboV4.Maintenance.RepairOrderLine do
 
   attributes do
     uuid_primary_key :id
-    attribute :repair_order_id, :uuid, public?: true
   end
 
   relationships do

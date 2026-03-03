@@ -69,7 +69,6 @@ defmodule UniboV4.Studio.App do
     end
     attribute :version, :string, public?: true
     attribute :access_role_ids, :string, public?: true
-    attribute :created_by_id, :integer, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

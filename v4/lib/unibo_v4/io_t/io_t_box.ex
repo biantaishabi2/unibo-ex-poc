@@ -77,8 +77,6 @@ defmodule UniboV4.IoT.IoTBox do
     end
     attribute :network_info, :string, public?: true
     attribute :paired_at, :utc_datetime, public?: true
-    attribute :paired_by_user_id, :integer, public?: true
-    attribute :org_id, :integer, public?: true
   end
 
   calculations do
@@ -94,9 +92,11 @@ defmodule UniboV4.IoT.IoTBox do
     belongs_to :paired_by, UniboV4.IoT.User do
       public? true
       source_attribute :paired_by_user_id
+      attribute_type :integer
     end
     belongs_to :org, UniboV4.IoT.Org do
       public? true
+      attribute_type :integer
     end
   end
 
@@ -104,7 +104,7 @@ defmodule UniboV4.IoT.IoTBox do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :ip_address, :identifier, :firmware_version, :connection_type, :auto_update, :network_info, :org_id]
+      accept [:name, :ip_address, :identifier, :firmware_version, :connection_type, :auto_update, :network_info]
       validate present(:name)
       validate present(:identifier)
       change fn changeset, _context ->

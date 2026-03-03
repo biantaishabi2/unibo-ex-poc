@@ -38,10 +38,6 @@ defmodule UniboV4.POS.RestaurantTable do
 
   attributes do
     uuid_primary_key :id
-    attribute :floor_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :name, :string do
       allow_nil? false
       public? true

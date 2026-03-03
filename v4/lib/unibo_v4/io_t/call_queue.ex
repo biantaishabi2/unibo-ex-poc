@@ -83,17 +83,12 @@ defmodule UniboV4.IoT.CallQueue do
       default false
       public? true
     end
-    attribute :music_on_hold_id, :integer, public?: true
     attribute :wrapup_time_seconds, :integer do
       default 15
       public? true
     end
     attribute :sla_target_seconds, :integer do
       default 20
-      public? true
-    end
-    attribute :org_id, :integer do
-      allow_nil? false
       public? true
     end
   end
@@ -117,9 +112,11 @@ defmodule UniboV4.IoT.CallQueue do
     belongs_to :org, UniboV4.IoT.Org do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     belongs_to :music_on_hold, UniboV4.IoT.Media do
       public? true
+      attribute_type :integer
     end
   end
 
@@ -127,7 +124,7 @@ defmodule UniboV4.IoT.CallQueue do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:name, :ring_strategy, :timeout_seconds, :max_wait_seconds, :max_callers, :voicemail_enabled, :overflow_action, :callback_enabled, :announce_position, :announce_wait_time, :music_on_hold_id, :wrapup_time_seconds, :sla_target_seconds, :org_id]
+      accept [:name, :ring_strategy, :timeout_seconds, :max_wait_seconds, :max_callers, :voicemail_enabled, :overflow_action, :callback_enabled, :announce_position, :announce_wait_time, :wrapup_time_seconds, :sla_target_seconds]
       argument :org_id, :uuid, allow_nil?: false
       change manage_relationship(:org_id, :org, type: :append, on_lookup: :relate)
       validate present(:name)
@@ -143,7 +140,7 @@ defmodule UniboV4.IoT.CallQueue do
     end
     update :update do
       primary? true
-      accept [:name, :ring_strategy, :timeout_seconds, :max_wait_seconds, :max_callers, :voicemail_enabled, :overflow_action, :callback_enabled, :announce_position, :announce_wait_time, :music_on_hold_id, :wrapup_time_seconds, :sla_target_seconds]
+      accept [:name, :ring_strategy, :timeout_seconds, :max_wait_seconds, :max_callers, :voicemail_enabled, :overflow_action, :callback_enabled, :announce_position, :announce_wait_time, :wrapup_time_seconds, :sla_target_seconds]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

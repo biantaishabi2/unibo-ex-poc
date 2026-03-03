@@ -64,7 +64,6 @@ defmodule UniboV4.Project.Task do
       allow_nil? false
       public? true
     end
-    attribute :project_id, :string, public?: true
     attribute :stage_id, :string do
       allow_nil? false
       public? true
@@ -86,7 +85,6 @@ defmodule UniboV4.Project.Task do
     end
     attribute :user_ids, :string, public?: true
     attribute :partner_id, :string, public?: true
-    attribute :parent_id, :string, public?: true
     attribute :milestone_id, :string, public?: true
     attribute :date_assign, :utc_datetime, public?: true
     attribute :date_deadline, :date, public?: true
@@ -141,7 +139,7 @@ defmodule UniboV4.Project.Task do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :priority, :date_deadline, :allocated_hours, :description, :parent_id, :milestone_id, :tag_ids, :recurring_task, :kanban_state]
+      accept [:name, :priority, :date_deadline, :allocated_hours, :description, :milestone_id, :tag_ids, :recurring_task, :kanban_state]
       argument :project_id, :uuid
       validate present(:name)
       # TODO: 不支持的 action 内校验规则 no_circular_dependency
@@ -161,7 +159,7 @@ defmodule UniboV4.Project.Task do
     end
     update :update do
       primary? true
-      accept [:name, :state, :priority, :date_deadline, :allocated_hours, :description, :stage_id, :user_ids, :parent_id, :milestone_id, :tag_ids, :kanban_state, :project_id]
+      accept [:name, :state, :priority, :date_deadline, :allocated_hours, :description, :stage_id, :user_ids, :milestone_id, :tag_ids, :kanban_state]
       argument :depend_on_ids, :uuid
       # skipped: validate no_circular_dependency :depend_on_ids (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)

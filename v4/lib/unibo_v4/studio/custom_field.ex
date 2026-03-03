@@ -50,10 +50,6 @@ defmodule UniboV4.Studio.CustomField do
       allow_nil? false
       public? true
     end
-    attribute :model_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :name, :string do
       allow_nil? false
       public? true
@@ -77,7 +73,6 @@ defmodule UniboV4.Studio.CustomField do
     end
     attribute :default_value, :string, public?: true
     attribute :selection_options, :string, public?: true
-    attribute :related_model_id, :integer, public?: true
     attribute :related_field_name, :string, public?: true
     attribute :compute_formula, :string, public?: true
     attribute :compute_dependencies, :string, public?: true
@@ -102,9 +97,11 @@ defmodule UniboV4.Studio.CustomField do
     belongs_to :model, UniboV4.Studio.CustomModel do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     belongs_to :related_model, UniboV4.Studio.CustomModel do
       public? true
+      attribute_type :integer
     end
   end
 
@@ -112,7 +109,7 @@ defmodule UniboV4.Studio.CustomField do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:name, :label, :field_type, :required, :readonly, :default_value, :selection_options, :related_model_id, :related_field_name, :compute_formula, :compute_dependencies, :validation_rules, :widget_hint, :sequence, :is_indexed]
+      accept [:name, :label, :field_type, :required, :readonly, :default_value, :selection_options, :related_field_name, :compute_formula, :compute_dependencies, :validation_rules, :widget_hint, :sequence, :is_indexed]
       argument :model_id, :integer, allow_nil?: false
       change manage_relationship(:model_id, :model, type: :append, on_lookup: :relate)
       # TODO: 不支持的 action 内校验规则 format

@@ -36,10 +36,6 @@ defmodule UniboV4.Communication.MailGroupModeration do
 
   attributes do
     uuid_primary_key :id
-    attribute :mail_group_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :email, :string do
       allow_nil? false
       public? true

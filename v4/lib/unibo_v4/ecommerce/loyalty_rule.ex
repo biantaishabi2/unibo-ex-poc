@@ -34,10 +34,6 @@ defmodule UniboV4.Ecommerce.LoyaltyRule do
 
   attributes do
     uuid_primary_key :id
-    attribute :program_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :code, :string, public?: true
     attribute :minimum_qty, :integer do
       default 0

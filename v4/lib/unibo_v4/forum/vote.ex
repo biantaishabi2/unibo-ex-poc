@@ -37,8 +37,6 @@ defmodule UniboV4.Forum.Vote do
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
-    attribute :user_id, :uuid, public?: true
-    attribute :post_id, :uuid, public?: true
   end
 
   relationships do

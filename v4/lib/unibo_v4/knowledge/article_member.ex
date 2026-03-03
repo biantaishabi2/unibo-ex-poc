@@ -33,12 +33,6 @@ defmodule UniboV4.Knowledge.ArticleMember do
 
   attributes do
     uuid_primary_key :id
-    attribute :article_id, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :partner_id, :uuid, public?: true
-    attribute :group_id, :uuid, public?: true
     attribute :based_on, :atom do
       allow_nil? false
       constraints one_of: [:partner, :group]
@@ -70,7 +64,7 @@ defmodule UniboV4.Knowledge.ArticleMember do
     defaults [:destroy, :read]
     create :create do
       primary? true
-      accept [:article_id, :partner_id, :group_id, :based_on, :permission]
+      accept [:based_on, :permission]
       argument :article_id, :uuid, allow_nil?: false
       change manage_relationship(:article_id, :article, type: :append, on_lookup: :relate)
       validate present(:partner_id)

@@ -112,8 +112,6 @@ defmodule UniboV4.Project.PlanningSlot do
     update :update do
       primary? true
       accept [:start_datetime, :end_datetime, :state, :allow_overlap]
-      argument :project_id, :uuid
-      argument :role_id, :uuid
       # skipped: validate compare :end_datetime (incompatible with bulk update atomic path)
       # skipped: validate no_overlap : (incompatible with bulk update atomic path)
       # TODO: 不支持的 change effect compute

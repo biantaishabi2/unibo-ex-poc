@@ -58,13 +58,6 @@ defmodule UniboV4.Documents.Document do
       constraints one_of: [:binary, :url, :empty, :folder]
       public? true
     end
-    attribute :folder_id, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :owner_id, :uuid, public?: true
-    attribute :partner_id, :uuid, public?: true
-    attribute :attachment_id, :uuid, public?: true
     attribute :url, :string, public?: true
     attribute :lock_uid, :uuid, public?: true
     attribute :active, :boolean do
@@ -72,7 +65,6 @@ defmodule UniboV4.Documents.Document do
       default true
       public? true
     end
-    attribute :company_id, :uuid, public?: true
     attribute :res_model, :string, public?: true
     attribute :res_id, :integer, public?: true
     attribute :description, :string, public?: true
@@ -143,7 +135,7 @@ defmodule UniboV4.Documents.Document do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:name, :type, :folder_id, :owner_id, :partner_id, :url, :description, :original_filename, :matching_algorithm]
+      accept [:name, :type, :url, :description, :original_filename, :matching_algorithm]
       argument :folder_id, :uuid, allow_nil?: false
       change manage_relationship(:folder_id, :folder, type: :append, on_lookup: :relate)
       validate present(:name)
@@ -164,7 +156,7 @@ defmodule UniboV4.Documents.Document do
     end
     update :update do
       primary? true
-      accept [:name, :description, :partner_id, :owner_id, :folder_id, :url]
+      accept [:name, :description, :url]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -177,7 +169,7 @@ defmodule UniboV4.Documents.Document do
       require_atomic? false
     end
     update :upload do
-      accept [:attachment_id, :original_filename]
+      accept [:original_filename]
       # skipped: validate present :attachment_id (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :type)

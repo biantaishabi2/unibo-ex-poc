@@ -37,13 +37,11 @@ defmodule UniboV4.Documents.Folder do
 
   attributes do
     uuid_primary_key :id
-    attribute :parent_folder_id, :uuid, public?: true
     attribute :user_specific, :boolean do
       default false
       public? true
     end
     attribute :sequence, :integer, public?: true
-    attribute :company_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -79,7 +77,7 @@ defmodule UniboV4.Documents.Folder do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:parent_folder_id, :user_specific, :sequence, :company_id]
+      accept [:user_specific, :sequence]
       # TODO: 不支持的 action 内校验规则 custom
       # TODO: 不支持的 action 内校验规则 custom
       change fn changeset, _context ->
@@ -94,7 +92,7 @@ defmodule UniboV4.Documents.Folder do
     end
     update :update do
       primary? true
-      accept [:parent_folder_id, :user_specific, :sequence]
+      accept [:user_specific, :sequence]
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
       change fn changeset, _context ->

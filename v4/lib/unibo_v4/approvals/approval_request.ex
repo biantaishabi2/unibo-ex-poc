@@ -67,14 +67,6 @@ defmodule UniboV4.Approvals.ApprovalRequest do
       allow_nil? false
       public? true
     end
-    attribute :category_id, :integer do
-      allow_nil? false
-      public? true
-    end
-    attribute :requester_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :status, :atom do
       allow_nil? false
       constraints one_of: [:new, :pending, :approved, :refused, :cancel]
@@ -83,10 +75,6 @@ defmodule UniboV4.Approvals.ApprovalRequest do
     end
     attribute :request_date, :date, public?: true
     attribute :date_confirmed, :utc_datetime, public?: true
-    attribute :company_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :metadata, :string, public?: true
     attribute :reason, :string, public?: true
     attribute :attachment_ids, {:array, :string}, public?: true
@@ -103,6 +91,7 @@ defmodule UniboV4.Approvals.ApprovalRequest do
     belongs_to :category, UniboV4.Approvals.ApprovalCategory do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     belongs_to :requester, UniboV4.Approvals.User do
       public? true
@@ -111,6 +100,7 @@ defmodule UniboV4.Approvals.ApprovalRequest do
     belongs_to :company, UniboV4.Approvals.Company do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     has_many :approvers, UniboV4.Approvals.Approver do
       public? true

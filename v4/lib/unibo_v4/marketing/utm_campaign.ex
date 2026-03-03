@@ -54,7 +54,6 @@ defmodule UniboV4.Marketing.UtmCampaign do
       default true
       public? true
     end
-    attribute :stage_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

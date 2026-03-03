@@ -40,10 +40,6 @@ defmodule UniboV4.Documents.Facet do
       allow_nil? false
       public? true
     end
-    attribute :folder_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :sequence, :integer, public?: true
     attribute :tooltip, :string, public?: true
   end
@@ -62,7 +58,7 @@ defmodule UniboV4.Documents.Facet do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :folder_id, :sequence, :tooltip]
+      accept [:name, :sequence, :tooltip]
       argument :folder_id, :uuid, allow_nil?: false
       change manage_relationship(:folder_id, :folder, type: :append, on_lookup: :relate)
       validate present(:name)

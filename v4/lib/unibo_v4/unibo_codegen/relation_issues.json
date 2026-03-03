@@ -1,4 +1,14 @@
 {
-  "total": 0,
-  "issues": []
+  "total": 1,
+  "issues": [
+    {
+      "domain": "Currency",
+      "entity": "Currency",
+      "relationship": "category",
+      "relation_type": "belongs_to",
+      "target": "UomCategory",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: UomCategory"
+    }
+  ]
 }

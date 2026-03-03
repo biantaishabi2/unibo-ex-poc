@@ -38,14 +38,6 @@ defmodule UniboV4.IoT.EventLog do
       allow_nil? false
       public? true
     end
-    attribute :device_id, :integer do
-      allow_nil? false
-      public? true
-    end
-    attribute :box_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :event_type, :string do
       allow_nil? false
       public? true
@@ -59,7 +51,6 @@ defmodule UniboV4.IoT.EventLog do
       default false
       public? true
     end
-    attribute :trigger_rule_id, :integer, public?: true
     attribute :action_result, :atom do
       constraints one_of: [:success, :failed, :skipped, :cooldown]
       public? true
@@ -78,13 +69,16 @@ defmodule UniboV4.IoT.EventLog do
     belongs_to :device, UniboV4.IoT.IoTDevice do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     belongs_to :box, UniboV4.IoT.IoTBox do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     belongs_to :trigger_rule, UniboV4.IoT.TriggerRule do
       public? true
+      attribute_type :integer
     end
   end
 
@@ -92,7 +86,7 @@ defmodule UniboV4.IoT.EventLog do
     defaults [:read]
     create :create do
       primary? true
-      accept [:device_id, :box_id, :event_type, :payload]
+      accept [:event_type, :payload]
       argument :device_id, :uuid, allow_nil?: false
       change manage_relationship(:device_id, :device, type: :append, on_lookup: :relate)
       argument :box_id, :uuid, allow_nil?: false
@@ -112,7 +106,7 @@ defmodule UniboV4.IoT.EventLog do
     end
     update :mark_processed do
       primary? true
-      accept [:trigger_rule_id, :action_result, :action_error_message, :processing_time_ms]
+      accept [:action_result, :action_error_message, :processing_time_ms]
       change set_attribute(:processed, true)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

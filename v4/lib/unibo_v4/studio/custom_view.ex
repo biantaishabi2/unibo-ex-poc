@@ -41,10 +41,6 @@ defmodule UniboV4.Studio.CustomView do
       allow_nil? false
       public? true
     end
-    attribute :model_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :name, :string do
       allow_nil? false
       public? true
@@ -71,7 +67,6 @@ defmodule UniboV4.Studio.CustomView do
       default :collaborative
       public? true
     end
-    attribute :created_by_id, :integer, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -80,6 +75,7 @@ defmodule UniboV4.Studio.CustomView do
     belongs_to :model, UniboV4.Studio.CustomModel do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     belongs_to :created_by, UniboV4.Studio.User do
       public? true

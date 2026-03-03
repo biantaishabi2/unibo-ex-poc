@@ -46,7 +46,6 @@ defmodule UniboV4.Documents.Share do
       constraints one_of: [:ids, :domain]
       public? true
     end
-    attribute :folder_id, :uuid, public?: true
     attribute :access_token, :string, public?: true
     attribute :date_deadline, :date, public?: true
     attribute :action, :atom do
@@ -54,13 +53,10 @@ defmodule UniboV4.Documents.Share do
       constraints one_of: [:download, :download_upload]
       public? true
     end
-    attribute :partner_id, :uuid, public?: true
-    attribute :owner_id, :uuid, public?: true
     attribute :email_drop, :boolean do
       default false
       public? true
     end
-    attribute :alias_id, :uuid, public?: true
     attribute :activity_option, :atom do
       constraints one_of: [:nothing, :mark_done, :schedule]
       public? true
@@ -106,7 +102,7 @@ defmodule UniboV4.Documents.Share do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:name, :type, :folder_id, :date_deadline, :action, :partner_id, :owner_id, :email_drop, :activity_option]
+      accept [:name, :type, :date_deadline, :action, :email_drop, :activity_option]
       argument :document_ids, {:array, :string}
       validate present(:type)
       validate present(:action)
@@ -128,7 +124,7 @@ defmodule UniboV4.Documents.Share do
     end
     update :update do
       primary? true
-      accept [:name, :date_deadline, :action, :partner_id, :owner_id, :email_drop, :activity_option]
+      accept [:name, :date_deadline, :action, :email_drop, :activity_option]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

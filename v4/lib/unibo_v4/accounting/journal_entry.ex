@@ -61,9 +61,7 @@ defmodule UniboV4.Accounting.JournalEntry do
     attribute :invoice_date, :date, public?: true
     attribute :invoice_date_due, :date, public?: true
     attribute :description, :string, public?: true
-    attribute :journal_id, :uuid, public?: true
     attribute :currency_id, :uuid, public?: true
-    attribute :partner_id, :uuid, public?: true
     attribute :fiscal_position_id, :uuid, public?: true
     attribute :invoice_origin, :string, public?: true
     attribute :ref, :string, public?: true
@@ -109,7 +107,7 @@ defmodule UniboV4.Accounting.JournalEntry do
     defaults [:read]
     create :create do
       primary? true
-      accept [:entry_number, :move_type, :entry_date, :invoice_date, :invoice_date_due, :description, :notes, :journal_id, :currency_id, :partner_id, :fiscal_position_id, :invoice_origin, :ref]
+      accept [:entry_number, :move_type, :entry_date, :invoice_date, :invoice_date_due, :description, :notes, :currency_id, :fiscal_position_id, :invoice_origin, :ref]
       argument :lines, {:array, :string}, allow_nil?: false
       change manage_relationship(:lines, :lines, type: :create)
       validate present(:entry_number)

@@ -22,10 +22,6 @@ defmodule UniboV4.Marketing.EventLeadRuleEventType do
 
   attributes do
     uuid_primary_key :id
-    attribute :event_lead_rule_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :event_type_id, :uuid do
       allow_nil? false
       public? true

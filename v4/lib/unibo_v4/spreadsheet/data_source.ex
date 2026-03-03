@@ -41,10 +41,6 @@ defmodule UniboV4.Spreadsheet.DataSource do
       allow_nil? false
       public? true
     end
-    attribute :document_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :type, :atom do
       allow_nil? false
       constraints one_of: [:list, :pivot, :chart, :global_filter]
@@ -91,6 +87,7 @@ defmodule UniboV4.Spreadsheet.DataSource do
     belongs_to :document, UniboV4.Spreadsheet.SpreadsheetDocument do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
   end
 

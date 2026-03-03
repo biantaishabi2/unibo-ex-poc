@@ -42,7 +42,6 @@ defmodule UniboV4.Inventory.StockMoveLine do
       allow_nil? false
       public? true
     end
-    attribute :lot_id, :uuid, public?: true
     attribute :lot_name, :string, public?: true
     attribute :package_id, :uuid, public?: true
     attribute :result_package_id, :uuid, public?: true
@@ -104,7 +103,7 @@ defmodule UniboV4.Inventory.StockMoveLine do
     end
     update :update do
       primary? true
-      accept [:quantity, :lot_id, :lot_name, :result_package_id]
+      accept [:quantity, :lot_name, :result_package_id]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

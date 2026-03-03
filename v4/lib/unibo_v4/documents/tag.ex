@@ -40,10 +40,6 @@ defmodule UniboV4.Documents.Tag do
       allow_nil? false
       public? true
     end
-    attribute :facet_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :sequence, :integer, public?: true
     attribute :color, :integer, public?: true
   end
@@ -63,7 +59,7 @@ defmodule UniboV4.Documents.Tag do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:name, :facet_id, :sequence, :color]
+      accept [:name, :sequence, :color]
       argument :facet_id, :uuid, allow_nil?: false
       change manage_relationship(:facet_id, :facet, type: :append, on_lookup: :relate)
       validate present(:name)

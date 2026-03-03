@@ -70,12 +70,6 @@ defmodule UniboV4.IoT.VoIPCall do
       constraints one_of: [:answered, :no_answer, :busy, :failed, :voicemail, :cancelled]
       public? true
     end
-    attribute :user_id, :integer, public?: true
-    attribute :org_id, :integer do
-      allow_nil? false
-      public? true
-    end
-    attribute :provider_id, :integer, public?: true
     attribute :start_time, :utc_datetime, public?: true
     attribute :end_time, :utc_datetime, public?: true
     attribute :recording_url, :string, public?: true
@@ -88,13 +82,8 @@ defmodule UniboV4.IoT.VoIPCall do
     attribute :notes, :string, public?: true
     attribute :tags, :string, public?: true
     attribute :sip_call_id, :string, public?: true
-    attribute :linked_contact_id, :integer, public?: true
-    attribute :linked_lead_id, :integer, public?: true
-    attribute :linked_ticket_id, :integer, public?: true
     attribute :linked_model, :string, public?: true
     attribute :linked_record_id, :integer, public?: true
-    attribute :queue_id, :integer, public?: true
-    attribute :transfer_from_call_id, :integer, public?: true
   end
 
   calculations do
@@ -106,29 +95,37 @@ defmodule UniboV4.IoT.VoIPCall do
   relationships do
     belongs_to :user, UniboV4.IoT.User do
       public? true
+      attribute_type :integer
     end
     belongs_to :org, UniboV4.IoT.Org do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     belongs_to :provider, UniboV4.IoT.VoIPProvider do
       public? true
+      attribute_type :integer
     end
     belongs_to :linked_contact, UniboV4.IoT.Contact do
       public? true
+      attribute_type :integer
     end
     belongs_to :linked_lead, UniboV4.IoT.CrmLead do
       public? true
+      attribute_type :integer
     end
     belongs_to :linked_ticket, UniboV4.IoT.HelpdeskTicket do
       public? true
+      attribute_type :integer
     end
     belongs_to :queue, UniboV4.IoT.CallQueue do
       public? true
+      attribute_type :integer
     end
     belongs_to :transfer_from, UniboV4.IoT.VoIPCall do
       public? true
       source_attribute :transfer_from_call_id
+      attribute_type :integer
     end
   end
 
@@ -136,7 +133,7 @@ defmodule UniboV4.IoT.VoIPCall do
     defaults [:read]
     create :create do
       primary? true
-      accept [:caller, :callee, :direction, :user_id, :org_id, :queue_id, :sip_call_id]
+      accept [:caller, :callee, :direction, :sip_call_id]
       argument :org_id, :uuid, allow_nil?: false
       change manage_relationship(:org_id, :org, type: :append, on_lookup: :relate)
       validate present(:caller)

@@ -93,7 +93,6 @@ defmodule UniboV4.Knowledge.Article do
       default :draft
       public? true
     end
-    attribute :parent_id, :uuid, public?: true
     attribute :sequence, :integer do
       allow_nil? false
       default 0
@@ -123,18 +122,8 @@ defmodule UniboV4.Knowledge.Article do
       public? true
     end
     attribute :trashed_date, :utc_datetime, public?: true
-    attribute :last_edition_uid, :uuid, public?: true
     attribute :last_edition_date, :utc_datetime, public?: true
-    attribute :locked_by, :uuid, public?: true
     attribute :locked_at, :utc_datetime, public?: true
-    attribute :create_uid, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :write_uid, :uuid do
-      allow_nil? false
-      public? true
-    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -194,7 +183,7 @@ defmodule UniboV4.Knowledge.Article do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :body, :parent_id, :sequence, :category, :icon, :cover_image_id, :is_template]
+      accept [:name, :body, :sequence, :category, :icon, :cover_image_id, :is_template]
       argument :members, {:array, :map}, default: []
       change manage_relationship(:members, :members, type: :create)
       validate present(:name)

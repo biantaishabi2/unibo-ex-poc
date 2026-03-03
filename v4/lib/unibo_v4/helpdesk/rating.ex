@@ -64,7 +64,6 @@ defmodule UniboV4.Helpdesk.Rating do
       public? true
     end
     attribute :access_token, :string, public?: true
-    attribute :helpdesk_ticket_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -86,7 +85,7 @@ defmodule UniboV4.Helpdesk.Rating do
     defaults [:read]
     create :create do
       primary? true
-      accept [:res_model, :res_id, :parent_res_model, :parent_res_id, :rating, :feedback, :helpdesk_ticket_id]
+      accept [:res_model, :res_id, :parent_res_model, :parent_res_id, :rating, :feedback]
       argument :rated_partner_id, :uuid
       argument :partner_id, :uuid
       validate present(:res_model)

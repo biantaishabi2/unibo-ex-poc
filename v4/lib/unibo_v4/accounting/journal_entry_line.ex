@@ -47,7 +47,6 @@ defmodule UniboV4.Accounting.JournalEntryLine do
     end
     attribute :description, :string, public?: true
     attribute :currency_id, :uuid, public?: true
-    attribute :partner_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -88,7 +87,7 @@ defmodule UniboV4.Accounting.JournalEntryLine do
     defaults [:read]
     create :create do
       primary? true
-      accept [:debit_amount, :credit_amount, :amount_currency, :display_type, :description, :currency_id, :partner_id]
+      accept [:debit_amount, :credit_amount, :amount_currency, :display_type, :description, :currency_id]
       argument :gl_account_id, :uuid, allow_nil?: false
       argument :journal_entry_id, :uuid, allow_nil?: false
       change manage_relationship(:journal_entry_id, :journal_entry, type: :append, on_lookup: :relate)

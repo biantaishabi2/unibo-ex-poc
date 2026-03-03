@@ -53,10 +53,6 @@ defmodule UniboV4.Marketing.MailingListMember do
       default 0
       public? true
     end
-    attribute :mailing_list_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :subscribed_date, :date, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
