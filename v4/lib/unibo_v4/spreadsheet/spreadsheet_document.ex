@@ -46,10 +46,6 @@ defmodule UniboV4.Spreadsheet.SpreadsheetDocument do
       allow_nil? false
       public? true
     end
-    attribute :owner_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :is_template, :boolean do
       default false
       public? true

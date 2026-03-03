@@ -40,10 +40,6 @@ defmodule UniboV4.IoT.IoTDevice do
       allow_nil? false
       public? true
     end
-    attribute :iot_box_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :name, :string do
       allow_nil? false
       default "auto_gen"
@@ -93,6 +89,7 @@ defmodule UniboV4.IoT.IoTDevice do
     belongs_to :iot_box, UniboV4.IoT.IoTBox do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     has_many :trigger_rules, UniboV4.IoT.TriggerRule do
       public? true
@@ -108,7 +105,7 @@ defmodule UniboV4.IoT.IoTDevice do
     defaults [:read]
     create :upsert do
       primary? true
-      accept [:iot_box_id, :name, :identifier, :device_type, :connection, :driver_name, :capabilities, :configuration, :manufacturer, :model]
+      accept [:name, :identifier, :device_type, :connection, :driver_name, :capabilities, :configuration, :manufacturer, :model]
       argument :iot_box_id, :uuid, allow_nil?: false
       change manage_relationship(:iot_box_id, :iot_box, type: :append, on_lookup: :relate)
       validate present(:identifier)

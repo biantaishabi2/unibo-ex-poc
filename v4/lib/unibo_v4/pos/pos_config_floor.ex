@@ -34,14 +34,6 @@ defmodule UniboV4.POS.PosConfigFloor do
 
   attributes do
     uuid_primary_key :id
-    attribute :config_id, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :floor_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

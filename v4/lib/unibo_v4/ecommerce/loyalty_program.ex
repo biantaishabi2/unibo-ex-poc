@@ -72,7 +72,6 @@ defmodule UniboV4.Ecommerce.LoyaltyProgram do
       public? true
     end
     attribute :max_usage, :integer, public?: true
-    attribute :website_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

@@ -107,10 +107,6 @@ defmodule UniboV4.Purchasing.PurchaseOrder do
       allow_nil? false
       public? true
     end
-    attribute :company_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :fiscal_position_id, :uuid, public?: true
     attribute :payment_term_id, :uuid, public?: true
     attribute :receipt_status, :atom do
@@ -172,7 +168,7 @@ defmodule UniboV4.Purchasing.PurchaseOrder do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :date_order, :currency_id, :company_id, :fiscal_position_id, :payment_term_id, :shipping_address, :notes]
+      accept [:name, :date_order, :currency_id, :fiscal_position_id, :payment_term_id, :shipping_address, :notes]
       argument :date_planned, :utc_datetime
       argument :order_lines, {:array, :string}, allow_nil?: false
       argument :supplier_id, :uuid, allow_nil?: false

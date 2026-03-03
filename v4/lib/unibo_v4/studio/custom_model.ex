@@ -62,7 +62,6 @@ defmodule UniboV4.Studio.CustomModel do
       public? true
     end
     attribute :description, :string, public?: true
-    attribute :inherits_model_id, :integer, public?: true
     attribute :table_name, :string do
       allow_nil? false
       public? true
@@ -78,7 +77,6 @@ defmodule UniboV4.Studio.CustomModel do
       default :draft
       public? true
     end
-    attribute :created_by_id, :integer, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -86,6 +84,7 @@ defmodule UniboV4.Studio.CustomModel do
   relationships do
     belongs_to :inherits_model, UniboV4.Studio.CustomModel do
       public? true
+      attribute_type :integer
     end
     belongs_to :created_by, UniboV4.Studio.User do
       public? true

@@ -50,7 +50,6 @@ defmodule UniboV4.Helpdesk.FieldServiceOrder do
       default false
       public? true
     end
-    attribute :helpdesk_ticket_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

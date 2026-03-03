@@ -57,14 +57,6 @@ defmodule UniboV4.Approvals.Approver do
       allow_nil? false
       public? true
     end
-    attribute :user_id, :integer do
-      allow_nil? false
-      public? true
-    end
-    attribute :request_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :status, :atom do
       allow_nil? false
       constraints one_of: [:new, :pending, :approved, :refused, :cancel]
@@ -85,7 +77,6 @@ defmodule UniboV4.Approvals.Approver do
       public? true
     end
     attribute :sequence_order, :integer, public?: true
-    attribute :delegated_from_id, :integer, public?: true
     attribute :delegation_state, :atom do
       constraints one_of: [:pending, :resolved]
       public? true
@@ -102,6 +93,7 @@ defmodule UniboV4.Approvals.Approver do
     belongs_to :request, UniboV4.Approvals.ApprovalRequest do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     belongs_to :delegated_from, UniboV4.Approvals.User do
       public? true
@@ -112,7 +104,7 @@ defmodule UniboV4.Approvals.Approver do
     defaults [:read]
     create :create do
       primary? true
-      accept [:user_id, :required, :role, :can_edit, :sequence_order]
+      accept [:required, :role, :can_edit, :sequence_order]
       argument :request_id, :integer, allow_nil?: false
       argument :user_id, :uuid, allow_nil?: false
       change manage_relationship(:user_id, :user, type: :append, on_lookup: :relate)

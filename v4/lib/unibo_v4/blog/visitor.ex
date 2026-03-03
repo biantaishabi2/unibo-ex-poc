@@ -44,7 +44,6 @@ defmodule UniboV4.Blog.Visitor do
       allow_nil? false
       public? true
     end
-    attribute :partner_id, :uuid, public?: true
     attribute :visit_count, :integer do
       default 0
       public? true
@@ -78,7 +77,7 @@ defmodule UniboV4.Blog.Visitor do
   actions do
     defaults [:read]
     create :upsert do
-      accept [:access_token, :partner_id, :country_id, :lang_id, :timezone]
+      accept [:access_token, :country_id, :lang_id, :timezone]
       validate present(:access_token)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

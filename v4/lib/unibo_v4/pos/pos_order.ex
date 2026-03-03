@@ -50,11 +50,6 @@ defmodule UniboV4.POS.PosOrder do
       allow_nil? false
       public? true
     end
-    attribute :session_id, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :partner_id, :uuid, public?: true
     attribute :status, :atom do
       constraints one_of: [:draft, :paid, :done, :invoiced, :cancel]
       default :draft
@@ -69,20 +64,13 @@ defmodule UniboV4.POS.PosOrder do
       default 0
       public? true
     end
-    attribute :currency_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :currency_rate, :decimal, public?: true
-    attribute :fiscal_position_id, :uuid, public?: true
     attribute :is_invoiced, :boolean, public?: true
     attribute :is_refunded, :boolean, public?: true
-    attribute :table_id, :uuid, public?: true
     attribute :customer_count, :integer do
       default 0
       public? true
     end
-    attribute :refunded_order_id, :uuid, public?: true
     attribute :margin, :decimal, public?: true
     attribute :margin_percent, :decimal, public?: true
     attribute :order_date, :utc_datetime do
@@ -133,7 +121,7 @@ defmodule UniboV4.POS.PosOrder do
     defaults [:read]
     create :create do
       primary? true
-      accept [:order_number, :order_date, :discount_amount, :currency_id, :fiscal_position_id, :partner_id, :customer_count, :notes]
+      accept [:order_number, :order_date, :discount_amount, :customer_count, :notes]
       argument :items, {:array, :string}, allow_nil?: false
       argument :session_id, :uuid, allow_nil?: false
       argument :table_id, :uuid
@@ -218,7 +206,6 @@ defmodule UniboV4.POS.PosOrder do
       require_atomic? false
     end
     update :invoice do
-      accept [:partner_id]
       # skipped: validate present :partner_id (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

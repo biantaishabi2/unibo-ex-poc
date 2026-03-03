@@ -71,16 +71,13 @@ defmodule UniboV4.IoT.VoIPProvider do
       default false
       public? true
     end
-    attribute :org_id, :integer do
-      allow_nil? false
-      public? true
-    end
   end
 
   relationships do
     belongs_to :org, UniboV4.IoT.Org do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     has_many :calls, UniboV4.IoT.VoIPCall do
       public? true
@@ -92,7 +89,7 @@ defmodule UniboV4.IoT.VoIPProvider do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:name, :sip_server, :sip_port, :transport, :domain, :outbound_proxy, :stun_server, :turn_server, :turn_username, :turn_password, :is_default, :org_id]
+      accept [:name, :sip_server, :sip_port, :transport, :domain, :outbound_proxy, :stun_server, :turn_server, :turn_username, :turn_password, :is_default]
       argument :org_id, :uuid, allow_nil?: false
       change manage_relationship(:org_id, :org, type: :append, on_lookup: :relate)
       validate present(:name)

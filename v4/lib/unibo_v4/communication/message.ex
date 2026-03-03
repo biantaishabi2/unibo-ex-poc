@@ -67,10 +67,8 @@ defmodule UniboV4.Communication.Message do
       allow_nil? false
       public? true
     end
-    attribute :parent_id, :string, public?: true
     attribute :model, :string, public?: true
     attribute :res_id, :integer, public?: true
-    attribute :author_id, :string, public?: true
     attribute :email_from, :string, public?: true
     attribute :partner_ids, :string, public?: true
     attribute :starred_partner_ids, :string, public?: true
@@ -111,7 +109,7 @@ defmodule UniboV4.Communication.Message do
     defaults [:read]
     create :create do
       primary? true
-      accept [:content, :subject, :message_type, :subtype_id, :is_internal, :is_pinned, :reply_to_force_new, :parent_id, :model, :res_id, :email_from, :partner_ids, :attachment_ids]
+      accept [:content, :subject, :message_type, :subtype_id, :is_internal, :is_pinned, :reply_to_force_new, :model, :res_id, :email_from, :partner_ids, :attachment_ids]
       argument :channel_id, :uuid
       # TODO: 不支持的 action 内校验规则 strip_fields_for_non_employee
       # TODO: 不支持的 action 内校验规则 force_option

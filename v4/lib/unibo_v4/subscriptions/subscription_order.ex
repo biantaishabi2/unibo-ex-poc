@@ -197,10 +197,6 @@ defmodule UniboV4.Subscriptions.SubscriptionOrder do
     update :update do
       primary? true
       accept [:end_date, :next_invoice_date]
-      argument :payment_token_id, :uuid
-      argument :pricelist_id, :uuid
-      argument :team_id, :uuid
-      argument :stage_id, :uuid
       argument :lines, {:array, :map}, default: []
       change manage_relationship(:lines, :lines, on_lookup: :relate, on_no_match: :create, on_match: :update)
       change fn changeset, _context ->

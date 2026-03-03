@@ -63,15 +63,10 @@ defmodule UniboV4.Rental.RentalOrderLine do
       default 0
       public? true
     end
-    attribute :product_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :product_uom_qty, :float do
       allow_nil? false
       public? true
     end
-    attribute :pricing_rule_id, :uuid, public?: true
     attribute :duration_unit, :atom do
       constraints one_of: [:hour, :day, :week, :month, :year]
       public? true

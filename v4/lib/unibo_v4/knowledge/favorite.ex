@@ -33,14 +33,6 @@ defmodule UniboV4.Knowledge.Favorite do
 
   attributes do
     uuid_primary_key :id
-    attribute :article_id, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :user_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :sequence, :integer do
       allow_nil? false
       default 0
@@ -64,7 +56,7 @@ defmodule UniboV4.Knowledge.Favorite do
     defaults [:destroy, :read]
     create :create do
       primary? true
-      accept [:article_id, :user_id, :sequence]
+      accept [:sequence]
       argument :article_id, :uuid, allow_nil?: false
       change manage_relationship(:article_id, :article, type: :append, on_lookup: :relate)
       argument :user_id, :uuid, allow_nil?: false

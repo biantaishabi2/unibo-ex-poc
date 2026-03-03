@@ -47,8 +47,6 @@ defmodule UniboV4.Currency.CurrencyRate do
     end
     attribute :thru_date, :date, public?: true
     attribute :rate_source, :string, public?: true
-    attribute :from_currency_id, :uuid, public?: true
-    attribute :to_currency_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -66,7 +64,7 @@ defmodule UniboV4.Currency.CurrencyRate do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:rate, :effective_date, :thru_date, :rate_source, :from_currency_id, :to_currency_id]
+      accept [:rate, :effective_date, :thru_date, :rate_source]
       validate present(:rate)
       validate present(:effective_date)
       change fn changeset, _context ->

@@ -32,14 +32,6 @@ defmodule UniboV4.POS.PosPayment do
 
   attributes do
     uuid_primary_key :id
-    attribute :order_id, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :payment_method_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :amount, :decimal do
       allow_nil? false
       public? true
@@ -73,7 +65,7 @@ defmodule UniboV4.POS.PosPayment do
     defaults [:read, :update]
     create :create do
       primary? true
-      accept [:payment_method_id, :amount, :is_change, :reference_number, :card_type, :cardholder_name, :transaction_id, :payment_status, :ticket]
+      accept [:amount, :is_change, :reference_number, :card_type, :cardholder_name, :transaction_id, :payment_status, :ticket]
       argument :order_id, :uuid, allow_nil?: false
       change manage_relationship(:order_id, :order, type: :append, on_lookup: :relate)
       argument :payment_method_id, :uuid, allow_nil?: false

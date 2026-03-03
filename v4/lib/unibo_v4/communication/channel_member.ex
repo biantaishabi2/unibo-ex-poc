@@ -42,12 +42,7 @@ defmodule UniboV4.Communication.ChannelMember do
 
   attributes do
     uuid_primary_key :id
-    attribute :channel_id, :string do
-      allow_nil? false
-      public? true
-    end
     attribute :partner_id, :string, public?: true
-    attribute :guest_id, :string, public?: true
     attribute :role, :atom do
       constraints one_of: [:admin, :member]
       default :member
@@ -74,8 +69,6 @@ defmodule UniboV4.Communication.ChannelMember do
     attribute :mute_until_dt, :utc_datetime, public?: true
     attribute :last_interest_dt, :utc_datetime, public?: true
     attribute :last_seen_dt, :utc_datetime, public?: true
-    attribute :seen_message_id, :string, public?: true
-    attribute :fetched_message_id, :string, public?: true
     attribute :rtc_inviting_session_id, :string, public?: true
     attribute :joined_date, :date do
       allow_nil? false
@@ -154,7 +147,6 @@ defmodule UniboV4.Communication.ChannelMember do
       end
     end
     update :mark_seen do
-      accept [:seen_message_id]
       # skipped: validate concurrent_safe : (incompatible with bulk update atomic path)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
@@ -168,7 +160,6 @@ defmodule UniboV4.Communication.ChannelMember do
       require_atomic? false
     end
     update :mark_fetched do
-      accept [:fetched_message_id]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

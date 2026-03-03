@@ -55,7 +55,6 @@ defmodule UniboV4.Lunch.LunchSupplier do
       allow_nil? false
       public? true
     end
-    attribute :responsible_id, :uuid, public?: true
     attribute :send_by, :atom do
       allow_nil? false
       constraints one_of: [:phone, :email]

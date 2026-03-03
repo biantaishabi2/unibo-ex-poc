@@ -61,14 +61,6 @@ defmodule UniboV4.Marketing.AutomationTrace do
       default false
       public? true
     end
-    attribute :activity_id, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :participant_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

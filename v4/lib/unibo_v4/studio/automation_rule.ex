@@ -50,10 +50,6 @@ defmodule UniboV4.Studio.AutomationRule do
       allow_nil? false
       public? true
     end
-    attribute :model_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :trigger_type, :atom do
       allow_nil? false
       constraints one_of: [:on_create, :on_write, :on_create_or_write, :on_delete, :on_time, :on_condition, :on_webhook, :manual]
@@ -96,6 +92,7 @@ defmodule UniboV4.Studio.AutomationRule do
     belongs_to :model, UniboV4.Studio.CustomModel do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
   end
 

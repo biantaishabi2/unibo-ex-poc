@@ -38,10 +38,6 @@ defmodule UniboV4.HR.Skill do
       allow_nil? false
       public? true
     end
-    attribute :skill_type_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :description, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
@@ -60,7 +56,7 @@ defmodule UniboV4.HR.Skill do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :skill_type_id, :description]
+      accept [:name, :description]
       validate present(:name)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

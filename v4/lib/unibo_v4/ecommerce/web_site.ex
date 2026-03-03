@@ -43,10 +43,6 @@ defmodule UniboV4.Ecommerce.WebSite do
       public? true
     end
     attribute :domain_name, :string, public?: true
-    attribute :company_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :default_lang_id, :uuid do
       allow_nil? false
       public? true
@@ -134,7 +130,7 @@ defmodule UniboV4.Ecommerce.WebSite do
     defaults [:read]
     create :create do
       primary? true
-      accept [:site_code, :name, :domain_name, :description, :company_id, :default_lang_id, :homepage_url, :prevent_zero_price_sale, :cart_abandoned_delay, :show_line_subtotals_tax_selection]
+      accept [:site_code, :name, :domain_name, :description, :default_lang_id, :homepage_url, :prevent_zero_price_sale, :cart_abandoned_delay, :show_line_subtotals_tax_selection]
       validate present(:site_code)
       validate present(:name)
       # TODO: 不支持的 change effect auto_create_homepage

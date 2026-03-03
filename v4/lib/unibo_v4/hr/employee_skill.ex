@@ -34,14 +34,6 @@ defmodule UniboV4.HR.EmployeeSkill do
 
   attributes do
     uuid_primary_key :id
-    attribute :employee_id, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :skill_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

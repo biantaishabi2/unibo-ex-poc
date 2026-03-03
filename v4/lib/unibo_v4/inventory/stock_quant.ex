@@ -50,10 +50,6 @@ defmodule UniboV4.Inventory.StockQuant do
       allow_nil? false
       public? true
     end
-    attribute :location_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :product_code, :string do
       allow_nil? false
       public? true
@@ -77,7 +73,6 @@ defmodule UniboV4.Inventory.StockQuant do
     attribute :inventory_diff_quantity, :decimal, public?: true
     attribute :unit_cost, :decimal, public?: true
     attribute :lot_number, :string, public?: true
-    attribute :lot_id, :uuid, public?: true
     attribute :package_id, :uuid, public?: true
     attribute :owner_id, :uuid, public?: true
     attribute :in_date, :utc_datetime do

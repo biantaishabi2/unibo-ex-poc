@@ -96,7 +96,6 @@ defmodule UniboV4.Sign.SignItem do
     update :update do
       primary? true
       accept [:type, :page, :pos_x, :pos_y, :width, :height, :required, :placeholder]
-      argument :role_id, :uuid
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

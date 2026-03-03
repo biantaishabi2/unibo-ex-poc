@@ -116,7 +116,6 @@ defmodule UniboV4.Helpdesk.HelpdeskTicket do
       default 0
       public? true
     end
-    attribute :team_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

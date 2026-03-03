@@ -34,11 +34,6 @@ defmodule UniboV4.Communication.MailGroupMember do
 
   attributes do
     uuid_primary_key :id
-    attribute :mail_group_id, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :partner_id, :uuid, public?: true
     attribute :email, :string, public?: true
     attribute :email_normalized, :string, public?: true
     create_timestamp :inserted_at

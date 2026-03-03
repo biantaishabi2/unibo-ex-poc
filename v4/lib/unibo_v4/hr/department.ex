@@ -96,7 +96,6 @@ defmodule UniboV4.HR.Department do
     update :update do
       primary? true
       accept [:name, :description, :is_active]
-      argument :manager_id, :uuid
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate immutable :department_code (incompatible with bulk update atomic path)
       # TODO: 不支持的 change effect custom

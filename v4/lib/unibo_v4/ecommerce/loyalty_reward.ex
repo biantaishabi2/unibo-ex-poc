@@ -34,10 +34,6 @@ defmodule UniboV4.Ecommerce.LoyaltyReward do
 
   attributes do
     uuid_primary_key :id
-    attribute :program_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :reward_type, :atom do
       constraints one_of: [:discount, :product, :free_shipping]
       default :discount

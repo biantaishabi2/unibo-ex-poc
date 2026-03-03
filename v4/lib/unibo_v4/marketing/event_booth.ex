@@ -51,14 +51,6 @@ defmodule UniboV4.Marketing.EventBooth do
     attribute :contact_name, :string, public?: true
     attribute :contact_email, :string, public?: true
     attribute :contact_phone, :string, public?: true
-    attribute :booth_category_id, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :event_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

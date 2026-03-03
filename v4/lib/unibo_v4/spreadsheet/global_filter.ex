@@ -41,10 +41,6 @@ defmodule UniboV4.Spreadsheet.GlobalFilter do
       allow_nil? false
       public? true
     end
-    attribute :document_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :name, :string do
       allow_nil? false
       public? true
@@ -77,6 +73,7 @@ defmodule UniboV4.Spreadsheet.GlobalFilter do
     belongs_to :document, UniboV4.Spreadsheet.SpreadsheetDocument do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
   end
 

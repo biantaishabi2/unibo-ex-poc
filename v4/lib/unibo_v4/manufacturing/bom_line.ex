@@ -53,7 +53,6 @@ defmodule UniboV4.Manufacturing.BomLine do
       default "PCS"
       public? true
     end
-    attribute :operation_id, :uuid, public?: true
     attribute :manual_consumption, :boolean do
       default false
       public? true
@@ -78,7 +77,7 @@ defmodule UniboV4.Manufacturing.BomLine do
     defaults [:read]
     create :create do
       primary? true
-      accept [:product_id, :component_name, :component_code, :product_qty, :product_uom_id, :unit, :operation_id, :manual_consumption, :sequence]
+      accept [:product_id, :component_name, :component_code, :product_qty, :product_uom_id, :unit, :manual_consumption, :sequence]
       argument :bom_id, :uuid, allow_nil?: false
       change manage_relationship(:bom_id, :bom, type: :append, on_lookup: :relate)
       change fn changeset, _context ->
@@ -93,7 +92,7 @@ defmodule UniboV4.Manufacturing.BomLine do
     end
     update :update do
       primary? true
-      accept [:product_qty, :product_uom_id, :unit, :operation_id, :manual_consumption, :sequence]
+      accept [:product_qty, :product_uom_id, :unit, :manual_consumption, :sequence]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

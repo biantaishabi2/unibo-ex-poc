@@ -46,14 +46,6 @@ defmodule UniboV4.IoT.QueueMember do
       allow_nil? false
       public? true
     end
-    attribute :queue_id, :integer do
-      allow_nil? false
-      public? true
-    end
-    attribute :user_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :priority, :integer do
       default 0
       public? true
@@ -87,10 +79,12 @@ defmodule UniboV4.IoT.QueueMember do
     belongs_to :queue, UniboV4.IoT.CallQueue do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     belongs_to :user, UniboV4.IoT.User do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
   end
 
@@ -98,7 +92,7 @@ defmodule UniboV4.IoT.QueueMember do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:queue_id, :user_id, :priority, :penalty]
+      accept [:priority, :penalty]
       argument :queue_id, :uuid, allow_nil?: false
       change manage_relationship(:queue_id, :queue, type: :append, on_lookup: :relate)
       argument :user_id, :uuid, allow_nil?: false

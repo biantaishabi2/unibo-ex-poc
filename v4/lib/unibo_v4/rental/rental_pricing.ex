@@ -54,7 +54,6 @@ defmodule UniboV4.Rental.RentalPricing do
       allow_nil? false
       public? true
     end
-    attribute :pricelist_id, :uuid, public?: true
     attribute :currency_id, :uuid do
       allow_nil? false
       public? true
@@ -86,13 +85,13 @@ defmodule UniboV4.Rental.RentalPricing do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:product_tmpl_id, :duration, :unit, :price, :pricelist_id, :currency_id, :company_id]
+      accept [:product_tmpl_id, :duration, :unit, :price, :currency_id, :company_id]
       argument :product_template_id, :uuid, allow_nil?: false
       change manage_relationship(:product_template_id, :product_template, type: :append, on_lookup: :relate)
     end
     update :update do
       primary? true
-      accept [:duration, :unit, :price, :pricelist_id, :active]
+      accept [:duration, :unit, :price, :active]
     end
   end
 

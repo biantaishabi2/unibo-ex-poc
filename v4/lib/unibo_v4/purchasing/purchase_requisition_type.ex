@@ -50,7 +50,6 @@ defmodule UniboV4.Purchasing.PurchaseRequisitionType do
       allow_nil? false
       public? true
     end
-    attribute :parent_type_id, :string, public?: true
     attribute :has_table, :boolean do
       default false
       public? true
@@ -96,7 +95,7 @@ defmodule UniboV4.Purchasing.PurchaseRequisitionType do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :description, :sequence, :exclusive, :quantity_copy, :line_copy, :active, :parent_type_id, :has_table]
+      accept [:name, :description, :sequence, :exclusive, :quantity_copy, :line_copy, :active, :has_table]
       validate present(:name)
       validate present(:description)
       change fn changeset, _context ->
@@ -123,7 +122,7 @@ defmodule UniboV4.Purchasing.PurchaseRequisitionType do
     end
     update :update do
       primary? true
-      accept [:name, :description, :sequence, :exclusive, :quantity_copy, :line_copy, :active, :parent_type_id, :has_table]
+      accept [:name, :description, :sequence, :exclusive, :quantity_copy, :line_copy, :active, :has_table]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

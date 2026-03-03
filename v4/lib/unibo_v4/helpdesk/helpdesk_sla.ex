@@ -57,7 +57,6 @@ defmodule UniboV4.Helpdesk.HelpdeskSLA do
       default true
       public? true
     end
-    attribute :team_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

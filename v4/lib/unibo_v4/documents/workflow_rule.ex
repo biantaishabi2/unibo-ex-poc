@@ -43,21 +43,12 @@ defmodule UniboV4.Documents.WorkflowRule do
       public? true
     end
     attribute :note, :string, public?: true
-    attribute :folder_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :condition_type, :atom do
       allow_nil? false
       constraints one_of: [:criteria, :domain]
       public? true
     end
     attribute :domain, :string, public?: true
-    attribute :partner_id, :uuid, public?: true
-    attribute :owner_id, :uuid, public?: true
-    attribute :folder_action_id, :uuid, public?: true
-    attribute :partner_action_id, :uuid, public?: true
-    attribute :owner_action_id, :uuid, public?: true
     attribute :create_model, :atom do
       constraints one_of: [:link_to_record, :vendor_bill, :customer_invoice, :vendor_refund, :customer_refund, :sign_direct, :sign_request, :product, :project_task]
       public? true
@@ -66,9 +57,7 @@ defmodule UniboV4.Documents.WorkflowRule do
       constraints one_of: [:nothing, :mark_done, :schedule]
       public? true
     end
-    attribute :activity_type_id, :uuid, public?: true
     attribute :activity_summary, :string, public?: true
-    attribute :activity_user_id, :uuid, public?: true
     attribute :activity_date_deadline_range, :integer, public?: true
     attribute :activity_note, :string, public?: true
     attribute :trigger_type, :atom do
@@ -129,7 +118,7 @@ defmodule UniboV4.Documents.WorkflowRule do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:name, :note, :folder_id, :condition_type, :domain, :partner_id, :owner_id, :folder_action_id, :partner_action_id, :owner_action_id, :create_model, :activity_option, :activity_type_id, :activity_summary, :activity_user_id, :activity_date_deadline_range, :activity_note, :trigger_type, :sequence]
+      accept [:name, :note, :condition_type, :domain, :create_model, :activity_option, :activity_summary, :activity_date_deadline_range, :activity_note, :trigger_type, :sequence]
       argument :folder_id, :uuid, allow_nil?: false
       change manage_relationship(:folder_id, :folder, type: :append, on_lookup: :relate)
       validate present(:name)
@@ -149,7 +138,7 @@ defmodule UniboV4.Documents.WorkflowRule do
     end
     update :update do
       primary? true
-      accept [:name, :note, :condition_type, :domain, :partner_id, :owner_id, :folder_action_id, :partner_action_id, :owner_action_id, :create_model, :activity_option, :activity_type_id, :activity_summary, :activity_user_id, :activity_date_deadline_range, :activity_note, :trigger_type, :sequence]
+      accept [:name, :note, :condition_type, :domain, :create_model, :activity_option, :activity_summary, :activity_date_deadline_range, :activity_note, :trigger_type, :sequence]
       # skipped: validate present :activity_type_id (incompatible with bulk update atomic path)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

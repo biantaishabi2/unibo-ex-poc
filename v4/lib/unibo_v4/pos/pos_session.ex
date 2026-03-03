@@ -42,14 +42,6 @@ defmodule UniboV4.POS.PosSession do
       allow_nil? false
       public? true
     end
-    attribute :config_id, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :cashier_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :status, :atom do
       constraints one_of: [:opening, :open, :closing, :closed]
       default :opening
@@ -93,7 +85,7 @@ defmodule UniboV4.POS.PosSession do
     defaults [:read]
     create :create do
       primary? true
-      accept [:session_code, :config_id, :opening_balance, :open_date, :rescue, :notes]
+      accept [:session_code, :opening_balance, :open_date, :rescue, :notes]
       validate present(:session_code)
       # TODO: 不支持的 action 内校验规则 custom
       # TODO: 不支持的 action 内校验规则 custom

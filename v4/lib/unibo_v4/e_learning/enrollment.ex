@@ -57,8 +57,6 @@ defmodule UniboV4.ELearning.Enrollment do
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
-    attribute :channel_id, :uuid, public?: true
-    attribute :partner_id, :uuid, public?: true
   end
 
   calculations do

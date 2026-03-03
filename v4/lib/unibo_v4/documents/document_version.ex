@@ -22,10 +22,6 @@ defmodule UniboV4.Documents.DocumentVersion do
 
   attributes do
     uuid_primary_key :id
-    attribute :document_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :attachment_id, :uuid, public?: true
   end
 

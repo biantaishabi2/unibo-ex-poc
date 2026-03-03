@@ -22,7 +22,6 @@ defmodule UniboV4.Helpdesk.TimesheetEntry do
 
   attributes do
     uuid_primary_key :id
-    attribute :helpdesk_ticket_id, :uuid, public?: true
   end
 
   relationships do

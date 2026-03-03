@@ -58,8 +58,6 @@ defmodule UniboV4.Marketing.EventLeadRule do
       public? true
     end
     attribute :event_registration_filter, :string, public?: true
-    attribute :event_id, :uuid, public?: true
-    attribute :company_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

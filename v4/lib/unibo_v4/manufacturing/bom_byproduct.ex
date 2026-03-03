@@ -41,7 +41,6 @@ defmodule UniboV4.Manufacturing.BomByproduct do
       allow_nil? false
       public? true
     end
-    attribute :operation_id, :uuid, public?: true
     attribute :cost_share, :decimal do
       default 0
       public? true
@@ -64,7 +63,7 @@ defmodule UniboV4.Manufacturing.BomByproduct do
     defaults [:read]
     create :create do
       primary? true
-      accept [:product_id, :product_qty, :product_uom_id, :operation_id, :cost_share]
+      accept [:product_id, :product_qty, :product_uom_id, :cost_share]
       argument :bom_id, :uuid, allow_nil?: false
       change manage_relationship(:bom_id, :bom, type: :append, on_lookup: :relate)
       # TODO: 不支持的 action 内校验规则 custom
@@ -81,7 +80,7 @@ defmodule UniboV4.Manufacturing.BomByproduct do
     end
     update :update do
       primary? true
-      accept [:product_qty, :product_uom_id, :operation_id, :cost_share]
+      accept [:product_qty, :product_uom_id, :cost_share]
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
       change fn changeset, _context ->

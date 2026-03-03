@@ -29,14 +29,6 @@ defmodule UniboV4.POS.PosOrderLine do
 
   attributes do
     uuid_primary_key :id
-    attribute :order_id, :uuid do
-      allow_nil? false
-      public? true
-    end
-    attribute :product_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     attribute :product_name, :string do
       allow_nil? false
       public? true
@@ -60,7 +52,6 @@ defmodule UniboV4.POS.PosOrderLine do
     attribute :cost_price, :decimal, public?: true
     attribute :margin, :decimal, public?: true
     attribute :margin_percent, :decimal, public?: true
-    attribute :refunded_orderline_id, :uuid, public?: true
     attribute :note, :string, public?: true
     attribute :lot_name, :string, public?: true
     create_timestamp :inserted_at
@@ -89,7 +80,7 @@ defmodule UniboV4.POS.PosOrderLine do
     defaults [:read]
     create :create do
       primary? true
-      accept [:product_id, :product_name, :product_code, :quantity, :unit_price, :discount, :tax_ids, :cost_price, :note, :lot_name]
+      accept [:product_name, :product_code, :quantity, :unit_price, :discount, :tax_ids, :cost_price, :note, :lot_name]
       argument :order_id, :uuid, allow_nil?: false
       change manage_relationship(:order_id, :order, type: :append, on_lookup: :relate)
       argument :product_id, :uuid, allow_nil?: false

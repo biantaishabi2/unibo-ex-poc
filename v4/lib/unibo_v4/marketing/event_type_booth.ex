@@ -42,10 +42,6 @@ defmodule UniboV4.Marketing.EventTypeBooth do
       allow_nil? false
       public? true
     end
-    attribute :booth_category_id, :uuid do
-      allow_nil? false
-      public? true
-    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

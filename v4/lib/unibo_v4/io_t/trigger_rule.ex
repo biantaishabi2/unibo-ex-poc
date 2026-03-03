@@ -47,10 +47,6 @@ defmodule UniboV4.IoT.TriggerRule do
       public? true
     end
     attribute :description, :string, public?: true
-    attribute :device_id, :integer do
-      allow_nil? false
-      public? true
-    end
     attribute :event_type, :atom do
       allow_nil? false
       constraints one_of: [:scan, :weight_stable, :button_press, :measurement, :temperature_alert]
@@ -108,6 +104,7 @@ defmodule UniboV4.IoT.TriggerRule do
     belongs_to :device, UniboV4.IoT.IoTDevice do
       public? true
       allow_nil? false
+      attribute_type :integer
     end
     has_many :event_logs, UniboV4.IoT.EventLog do
       public? true
@@ -119,7 +116,7 @@ defmodule UniboV4.IoT.TriggerRule do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :description, :device_id, :event_type, :condition, :action_type, :action_config, :is_active, :priority, :stop_on_match, :cooldown_seconds, :error_action]
+      accept [:name, :description, :event_type, :condition, :action_type, :action_config, :is_active, :priority, :stop_on_match, :cooldown_seconds, :error_action]
       argument :device_id, :uuid, allow_nil?: false
       change manage_relationship(:device_id, :device, type: :append, on_lookup: :relate)
       validate present(:name)
