@@ -1,7 +1,7 @@
-defmodule UniboV4.Analytic.Analytic.Partner do
+defmodule UniboV4.Analytic.Partner do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Analytic.Analytic,
+    domain: UniboV4.Analytic,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 

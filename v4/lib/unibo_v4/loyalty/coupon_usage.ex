@@ -1,7 +1,7 @@
-defmodule UniboV4.Loyalty.Loyalty.CouponUsage do
+defmodule UniboV4.Loyalty.CouponUsage do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Loyalty.Loyalty,
+    domain: UniboV4.Loyalty,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -36,16 +36,9 @@ defmodule UniboV4.Loyalty.Loyalty.CouponUsage do
   end
 
   relationships do
-    belongs_to :coupon, UniboV4.Loyalty.Loyalty.Coupon do
+    belongs_to :coupon, UniboV4.Loyalty.Coupon do
       public? true
       allow_nil? false
-    end
-    belongs_to :partner, UniboV4.Loyalty.Loyalty.ResPartner do
-      public? true
-      allow_nil? false
-    end
-    belongs_to :order, UniboV4.Loyalty.Loyalty.SaleOrder do
-      public? true
     end
   end
 
@@ -58,7 +51,6 @@ defmodule UniboV4.Loyalty.Loyalty.CouponUsage do
       argument :partner_id, :uuid, allow_nil?: false
       argument :order_id, :uuid
       change manage_relationship(:coupon_id, :coupon, type: :append, on_lookup: :relate)
-      change manage_relationship(:partner_id, :partner, type: :append, on_lookup: :relate)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

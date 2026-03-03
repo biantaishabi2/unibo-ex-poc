@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Repair.Repair.RepairTag do
+defmodule UniboV4.Repair.RepairTag do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Repair.Repair,
+    domain: UniboV4.Repair,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -50,7 +50,7 @@ defmodule UniboV4.Repair.Repair.RepairTag do
   end
 
   relationships do
-    has_many :repair_tickets, UniboV4.Repair.Repair.RepairTicket do
+    has_many :repair_tickets, UniboV4.Repair.RepairTicket do
       public? true
     end
   end

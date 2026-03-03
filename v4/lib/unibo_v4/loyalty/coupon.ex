@@ -12,13 +12,13 @@
 #   apply --> cancel_coupon
 #   cancel_coupon --> [*] : cancelled
 # ```
-defmodule UniboV4.Loyalty.Loyalty.Coupon do
+defmodule UniboV4.Loyalty.Coupon do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Loyalty.Loyalty,
+    domain: UniboV4.Loyalty,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Loyalty.Loyalty.Coupon.Notifier]
+    notifiers: [UniboV4.Loyalty.Coupon.Notifier]
 
   postgres do
     table "loyalty_coupons"
@@ -93,15 +93,15 @@ defmodule UniboV4.Loyalty.Loyalty.Coupon do
   end
 
   relationships do
-    belongs_to :program, UniboV4.Loyalty.Loyalty.LoyaltyProgram do
+    belongs_to :program, UniboV4.Loyalty.LoyaltyProgram do
       public? true
       allow_nil? false
     end
-    has_many :usages, UniboV4.Loyalty.Loyalty.CouponUsage do
+    has_many :usages, UniboV4.Loyalty.CouponUsage do
       public? true
       destination_attribute :coupon_id
     end
-    has_many :bound_partners, UniboV4.Loyalty.Loyalty.CouponBoundParty do
+    has_many :bound_partners, UniboV4.Loyalty.CouponBoundParty do
       public? true
       destination_attribute :coupon_id
     end

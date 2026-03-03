@@ -4,7 +4,7 @@
   "domains": {
     "Accounting": {
       "input_hashes": {
-        "/tmp/unibo_models/accounting/accounting.ubo.yaml": "sha256:abec9aaf928f3e62b62eb9afcebc99b9f13898ebc628415d7450c0908f1672b3"
+        "/tmp/models_all_47/accounting/accounting.ubo.yaml": "sha256:244b3cdb4c179641dcc74bc4ed2b78bb762afd1fa2b8ec27beb98473f5c8fd55"
       },
       "output_files": [
         "unibo_v4/accounting/accounting.ex",
@@ -44,11 +44,41 @@
       ],
       "entity_count": 17,
       "notifier_count": 4,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "finance"
+    },
+    "Analytic": {
+      "input_hashes": {
+        "/tmp/models_all_47/analytic/analytic.ubo.yaml": "sha256:2f5bd4a1d52cc86a600ffd5e5d2c09ea25b16d1fdc4fcff8f55a909ab0b60c94"
+      },
+      "output_files": [
+        "unibo_v4/analytic/analytic.ex",
+        "unibo_v4/analytic/analytic_account.ex",
+        "unibo_v4/analytic/analytic_account_notifier.ex",
+        "unibo_v4/analytic/analytic_distribution.ex",
+        "unibo_v4/analytic/analytic_distribution_notifier.ex",
+        "unibo_v4/analytic/analytic_line.ex",
+        "unibo_v4/analytic/analytic_line_notifier.ex",
+        "unibo_v4/analytic/analytic_plan.ex",
+        "unibo_v4/analytic/company.ex",
+        "unibo_v4/analytic/currency.ex",
+        "unibo_v4/analytic/employee.ex",
+        "unibo_v4/analytic/journal_entry_line.ex",
+        "unibo_v4/analytic/partner.ex",
+        "unibo_v4/analytic/product.ex",
+        "unibo_v4/analytic/workflows/analytic_account_analytic_account_lifecycle.ex",
+        "unibo_v4/analytic/workflows/analytic_distribution_analytic_distribution_setup.ex",
+        "unibo_v4/analytic/workflows/analytic_line_analytic_line_manual.ex",
+        "unibo_v4/analytic/workflows/analytic_plan_analytic_plan_lifecycle.ex"
+      ],
+      "entity_count": 10,
+      "notifier_count": 3,
+      "has_policy_entities": false,
+      "subdomain": "finance"
     },
     "Approvals": {
       "input_hashes": {
-        "/tmp/unibo_models/approvals/approvals.ubo.yaml": "sha256:53fe571bddac7f61585e71c2a5855521a158bd52db24087d6963f3682aaa1dad"
+        "/tmp/models_all_47/approvals/approvals.ubo.yaml": "sha256:528fc321ad9d7467b7ba9cc3757f866024e66f21863140cf822730f77d78f901"
       },
       "output_files": [
         "unibo_v4/approvals/approval_category.ex",
@@ -70,11 +100,36 @@
       ],
       "entity_count": 5,
       "notifier_count": 2,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "platform"
+    },
+    "Barcode": {
+      "input_hashes": {
+        "/tmp/models_all_47/barcode/barcode.ubo.yaml": "sha256:b763a8a42743e692a3deb487adc764235faf36d8c8270efd278d8ba21b779f5b"
+      },
+      "output_files": [
+        "unibo_v4/barcode/barcode.ex",
+        "unibo_v4/barcode/barcode_mapping.ex",
+        "unibo_v4/barcode/barcode_mapping_notifier.ex",
+        "unibo_v4/barcode/barcode_nomenclature.ex",
+        "unibo_v4/barcode/barcode_nomenclature_translation.ex",
+        "unibo_v4/barcode/barcode_rule.ex",
+        "unibo_v4/barcode/barcode_rule_translation.ex",
+        "unibo_v4/barcode/gs1_application_identifier.ex",
+        "unibo_v4/barcode/gs1_application_identifier_translation.ex",
+        "unibo_v4/barcode/workflows/barcode_mapping_mapping_lifecycle.ex",
+        "unibo_v4/barcode/workflows/barcode_nomenclature_nomenclature_lifecycle.ex",
+        "unibo_v4/barcode/workflows/barcode_rule_rule_lifecycle.ex",
+        "unibo_v4/barcode/workflows/gs1_application_identifier_gs1_ai_maintain_flow.ex"
+      ],
+      "entity_count": 4,
+      "notifier_count": 1,
+      "has_policy_entities": false,
+      "subdomain": "purchasing"
     },
     "Blog": {
       "input_hashes": {
-        "/tmp/unibo_models/blog/blog.ubo.yaml": "sha256:2e5e533427ccdfb9ea41633d227d1cc70ccb937b4482fc8ed492c93e7ec6672f"
+        "/tmp/models_all_47/blog/blog.ubo.yaml": "sha256:1e402e4a0291de1028b0c258a76006d576106568c6ce6dfd2bcd00c9d11ef252"
       },
       "output_files": [
         "unibo_v4/blog/blog.ex",
@@ -95,11 +150,12 @@
       ],
       "entity_count": 8,
       "notifier_count": 2,
-      "has_policy_entities": true
+      "has_policy_entities": true,
+      "subdomain": "knowledge"
     },
     "CRM": {
       "input_hashes": {
-        "/tmp/unibo_models/crm/crm.ubo.yaml": "sha256:e1e23ca627e74472a4905badddaf0ed3b0538b64057f447b6499653b0b2a6e34"
+        "/tmp/models_all_47/crm/crm.ubo.yaml": "sha256:3023431c59c1710d1e3ac79ee773a9c68380eba45d767982618b3f63c6bfc6e7"
       },
       "output_files": [
         "unibo_v4/crm/activity.ex",
@@ -125,11 +181,45 @@
       ],
       "entity_count": 11,
       "notifier_count": 1,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "sales"
+    },
+    "Calendar": {
+      "input_hashes": {
+        "/tmp/models_all_47/calendar/calendar.ubo.yaml": "sha256:bcc5d0e60c27b389c45f2e7bb9d6d8b06714c2a99f3b1b575c7e024c91f8556b"
+      },
+      "output_files": [
+        "unibo_v4/calendar/attendee.ex",
+        "unibo_v4/calendar/calendar.ex",
+        "unibo_v4/calendar/calendar_domain.ex",
+        "unibo_v4/calendar/calendar_event.ex",
+        "unibo_v4/calendar/calendar_event_notifier.ex",
+        "unibo_v4/calendar/calendar_event_translation.ex",
+        "unibo_v4/calendar/calendar_exception.ex",
+        "unibo_v4/calendar/calendar_exception_translation.ex",
+        "unibo_v4/calendar/calendar_translation.ex",
+        "unibo_v4/calendar/week_exception.ex",
+        "unibo_v4/calendar/week_exception_translation.ex",
+        "unibo_v4/calendar/week_template.ex",
+        "unibo_v4/calendar/week_template_translation.ex",
+        "unibo_v4/calendar/work_schedule.ex",
+        "unibo_v4/calendar/work_schedule_translation.ex",
+        "unibo_v4/calendar/workflows/attendee_attendee_response_flow.ex",
+        "unibo_v4/calendar/workflows/calendar_calendar_container_lifecycle_flow.ex",
+        "unibo_v4/calendar/workflows/calendar_event_calendar_event_lifecycle_flow.ex",
+        "unibo_v4/calendar/workflows/calendar_exception_calendar_exception_manage_flow.ex",
+        "unibo_v4/calendar/workflows/week_exception_week_exception_manage_flow.ex",
+        "unibo_v4/calendar/workflows/week_template_week_template_maintain_flow.ex",
+        "unibo_v4/calendar/workflows/work_schedule_work_schedule_lifecycle_flow.ex"
+      ],
+      "entity_count": 7,
+      "notifier_count": 1,
+      "has_policy_entities": false,
+      "subdomain": "calendar"
     },
     "Communication": {
       "input_hashes": {
-        "/tmp/unibo_models/communication/communication.ubo.yaml": "sha256:9725acc9a19919b12542a63affcc3d2fceeb563d9533e547a4ef9cd9921feee7"
+        "/tmp/models_all_47/communication/communication.ubo.yaml": "sha256:a10b8f5b6eafe005e73703ffac8a9aafce9aa7519025ee78c2ed9461efc43cae"
       },
       "output_files": [
         "unibo_v4/communication/attachment.ex",
@@ -156,11 +246,12 @@
       ],
       "entity_count": 13,
       "notifier_count": 0,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "marketing"
     },
     "Currency": {
       "input_hashes": {
-        "/tmp/unibo_models/currency/currency.ubo.yaml": "sha256:96b4fd34d9d546f441c41d8428920ceae228a07ddb3b44b778b6818a7a126fde"
+        "/tmp/models_all_47/currency/currency.ubo.yaml": "sha256:fbcafefe2b0674d5c94cdbd18ff6b149e76cb2a900d0bf864509a7979f71fe45"
       },
       "output_files": [
         "unibo_v4/currency/currency.ex",
@@ -172,11 +263,12 @@
       ],
       "entity_count": 2,
       "notifier_count": 0,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "finance"
     },
     "DataRecycle": {
       "input_hashes": {
-        "/tmp/unibo_models/data_recycle/data_recycle.ubo.yaml": "sha256:568efed36c0d030aa5ae7e493f0711bdde5e3caa71b59fafc613ee6b643bac90"
+        "/tmp/models_all_47/data_recycle/data_recycle.ubo.yaml": "sha256:e01161ab7a5c509b89a259e47001703f3c828303b4ebcc83d2f1b38ead664bea"
       },
       "output_files": [
         "unibo_v4/data_recycle/data_recycle.ex",
@@ -190,11 +282,56 @@
       ],
       "entity_count": 4,
       "notifier_count": 0,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "platform"
+    },
+    "Delivery": {
+      "input_hashes": {
+        "/tmp/models_all_47/delivery/delivery.ubo.yaml": "sha256:eb837e937de83b113bf15746d4a8c7ec7bd694994c3a197d8bc6a953b8f20e57"
+      },
+      "output_files": [
+        "unibo_v4/delivery/carrier_shipment_method.ex",
+        "unibo_v4/delivery/delivery.ex",
+        "unibo_v4/delivery/delivery_domain.ex",
+        "unibo_v4/delivery/facility.ex",
+        "unibo_v4/delivery/fixed_asset.ex",
+        "unibo_v4/delivery/party.ex",
+        "unibo_v4/delivery/product.ex",
+        "unibo_v4/delivery/shipment.ex",
+        "unibo_v4/delivery/shipment_box_type.ex",
+        "unibo_v4/delivery/shipment_cost_estimate.ex",
+        "unibo_v4/delivery/shipment_item.ex",
+        "unibo_v4/delivery/shipment_method_type.ex",
+        "unibo_v4/delivery/shipment_notifier.ex",
+        "unibo_v4/delivery/shipment_package.ex",
+        "unibo_v4/delivery/shipment_package_content.ex",
+        "unibo_v4/delivery/shipment_package_route_seg.ex",
+        "unibo_v4/delivery/shipment_route_segment.ex",
+        "unibo_v4/delivery/shipment_route_segment_notifier.ex",
+        "unibo_v4/delivery/shipment_status.ex",
+        "unibo_v4/delivery/shipment_type.ex",
+        "unibo_v4/delivery/workflows/carrier_shipment_method_carrier_method_bind_flow.ex",
+        "unibo_v4/delivery/workflows/delivery_delivery_trip_flow.ex",
+        "unibo_v4/delivery/workflows/shipment_box_type_shipment_box_type_maintain_flow.ex",
+        "unibo_v4/delivery/workflows/shipment_cost_estimate_cost_estimate_maintain_flow.ex",
+        "unibo_v4/delivery/workflows/shipment_item_shipment_item_flow.ex",
+        "unibo_v4/delivery/workflows/shipment_method_type_shipment_method_type_maintain_flow.ex",
+        "unibo_v4/delivery/workflows/shipment_package_content_shipment_package_content_flow.ex",
+        "unibo_v4/delivery/workflows/shipment_package_route_seg_package_route_seg_flow.ex",
+        "unibo_v4/delivery/workflows/shipment_package_shipment_package_flow.ex",
+        "unibo_v4/delivery/workflows/shipment_route_segment_route_segment_flow.ex",
+        "unibo_v4/delivery/workflows/shipment_shipment_lifecycle_flow.ex",
+        "unibo_v4/delivery/workflows/shipment_status_shipment_status_record_flow.ex",
+        "unibo_v4/delivery/workflows/shipment_type_shipment_type_maintain_flow.ex"
+      ],
+      "entity_count": 17,
+      "notifier_count": 2,
+      "has_policy_entities": false,
+      "subdomain": "purchasing"
     },
     "Documents": {
       "input_hashes": {
-        "/tmp/unibo_models/documents/documents.ubo.yaml": "sha256:779f6d8dbe8061ebf9d72244dcfc5ac17c7eb3eed90a21ae8666b3ef497a9626"
+        "/tmp/models_all_47/documents/documents.ubo.yaml": "sha256:6a99d62405ed58859673b16f3fef184859ae3e187c25ed6054e50d5c96427586"
       },
       "output_files": [
         "unibo_v4/documents/activity_type.ex",
@@ -234,11 +371,12 @@
       ],
       "entity_count": 26,
       "notifier_count": 1,
-      "has_policy_entities": true
+      "has_policy_entities": true,
+      "subdomain": "knowledge"
     },
     "ELearning": {
       "input_hashes": {
-        "/tmp/unibo_models/elearning/elearning.ubo.yaml": "sha256:567c767fc0a11669d1c675ba4d02b85b0c8f2ff92c702b3fc1854d024e1c19f7"
+        "/tmp/models_all_47/elearning/elearning.ubo.yaml": "sha256:1f9b4bbc433a15e45ede48801a59a4b298abd6678a1ee02a901a84dd0e05f1b6"
       },
       "output_files": [
         "unibo_v4/e_learning/course.ex",
@@ -257,11 +395,12 @@
       ],
       "entity_count": 5,
       "notifier_count": 3,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "learning"
     },
     "Ecommerce": {
       "input_hashes": {
-        "/tmp/unibo_models/ecommerce/ecommerce.ubo.yaml": "sha256:afdaa386ba9d08deb5011041876bc69b2bf7a39db70429cfbf89fcdf23fe27da"
+        "/tmp/models_all_47/ecommerce/ecommerce.ubo.yaml": "sha256:d2ca8dfe865f59378ddcb56f2746c78cf7222aeff28f31e8c6244e618afca43b"
       },
       "output_files": [
         "unibo_v4/ecommerce/catalog.ex",
@@ -312,11 +451,43 @@
       ],
       "entity_count": 24,
       "notifier_count": 4,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "sales"
+    },
+    "Events": {
+      "input_hashes": {
+        "/tmp/models_all_47/events/events.ubo.yaml": "sha256:1163e15aeb364afbde388f23bb575ebbe02694938ba86c4a0e5c627d450ae6ad"
+      },
+      "output_files": [
+        "unibo_v4/events/event.ex",
+        "unibo_v4/events/event_booth.ex",
+        "unibo_v4/events/event_booth_translation.ex",
+        "unibo_v4/events/event_notifier.ex",
+        "unibo_v4/events/event_registration.ex",
+        "unibo_v4/events/event_registration_notifier.ex",
+        "unibo_v4/events/event_stage.ex",
+        "unibo_v4/events/event_stage_translation.ex",
+        "unibo_v4/events/event_ticket.ex",
+        "unibo_v4/events/event_ticket_translation.ex",
+        "unibo_v4/events/event_translation.ex",
+        "unibo_v4/events/event_type.ex",
+        "unibo_v4/events/event_type_translation.ex",
+        "unibo_v4/events/events.ex",
+        "unibo_v4/events/workflows/event_booth_booth_lifecycle.ex",
+        "unibo_v4/events/workflows/event_event_lifecycle.ex",
+        "unibo_v4/events/workflows/event_registration_registration_lifecycle.ex",
+        "unibo_v4/events/workflows/event_stage_stage_lifecycle.ex",
+        "unibo_v4/events/workflows/event_ticket_ticket_lifecycle.ex",
+        "unibo_v4/events/workflows/event_type_event_type_lifecycle.ex"
+      ],
+      "entity_count": 6,
+      "notifier_count": 2,
+      "has_policy_entities": false,
+      "subdomain": "marketing"
     },
     "Expenses": {
       "input_hashes": {
-        "/tmp/unibo_models/expenses/expenses.ubo.yaml": "sha256:a9dbe8aa6d598b2d772d4c1bc25cf9cf1e2442fb818435a40799bee0993be3b3"
+        "/tmp/models_all_47/expenses/expenses.ubo.yaml": "sha256:0eb4eb7a764475278c99579c71e6e0541b7b5667a0d6d55c04c8b766da66b359"
       },
       "output_files": [
         "unibo_v4/expenses/account.ex",
@@ -342,11 +513,42 @@
       ],
       "entity_count": 14,
       "notifier_count": 1,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "finance"
+    },
+    "Fleet": {
+      "input_hashes": {
+        "/tmp/models_all_47/fleet/fleet.ubo.yaml": "sha256:59ad075374841a0bbfe7d2bd96251616fe81897ab163137efb4a6988f0b76a83"
+      },
+      "output_files": [
+        "unibo_v4/fleet/driver.ex",
+        "unibo_v4/fleet/fleet.ex",
+        "unibo_v4/fleet/fleet_vehicle.ex",
+        "unibo_v4/fleet/fleet_vehicle_notifier.ex",
+        "unibo_v4/fleet/fleet_vehicle_type.ex",
+        "unibo_v4/fleet/fleet_vehicle_type_translation.ex",
+        "unibo_v4/fleet/hr_employee.ex",
+        "unibo_v4/fleet/vehicle_assignment.ex",
+        "unibo_v4/fleet/vehicle_assignment_notifier.ex",
+        "unibo_v4/fleet/vehicle_contract.ex",
+        "unibo_v4/fleet/vehicle_contract_notifier.ex",
+        "unibo_v4/fleet/vehicle_service.ex",
+        "unibo_v4/fleet/vehicle_service_notifier.ex",
+        "unibo_v4/fleet/workflows/driver_driver_lifecycle.ex",
+        "unibo_v4/fleet/workflows/fleet_vehicle_fleet_vehicle_lifecycle.ex",
+        "unibo_v4/fleet/workflows/fleet_vehicle_type_fleet_vehicle_type_lifecycle.ex",
+        "unibo_v4/fleet/workflows/vehicle_assignment_vehicle_assignment_flow.ex",
+        "unibo_v4/fleet/workflows/vehicle_contract_vehicle_contract_flow.ex",
+        "unibo_v4/fleet/workflows/vehicle_service_vehicle_service_flow.ex"
+      ],
+      "entity_count": 7,
+      "notifier_count": 4,
+      "has_policy_entities": false,
+      "subdomain": "hr"
     },
     "Forum": {
       "input_hashes": {
-        "/tmp/unibo_models/forum/forum.ubo.yaml": "sha256:680b036a866a9afe28445c80d2cb7bc2c9f5378211cfba71875f833d62b3f4aa"
+        "/tmp/models_all_47/forum/forum.ubo.yaml": "sha256:95e42d8a559c5b84837de3ba248e2279590266ec5a3214645fd65caefe2a8eaa"
       },
       "output_files": [
         "unibo_v4/forum/forum.ex",
@@ -366,11 +568,12 @@
       ],
       "entity_count": 7,
       "notifier_count": 2,
-      "has_policy_entities": true
+      "has_policy_entities": true,
+      "subdomain": "knowledge"
     },
     "Gamification": {
       "input_hashes": {
-        "/tmp/unibo_models/gamification/gamification.ubo.yaml": "sha256:51094a0c0d3d66ff09163693020c0a9d790fe4923eef5e16dfc40a831c2e67c0"
+        "/tmp/models_all_47/gamification/gamification.ubo.yaml": "sha256:b7f1158c33045d5e2d6bcde21a3fb3effb43cf0ec8cc76354c5c09202a760402"
       },
       "output_files": [
         "unibo_v4/gamification/badge.ex",
@@ -405,11 +608,12 @@
       ],
       "entity_count": 13,
       "notifier_count": 3,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "engagement"
     },
     "HR": {
       "input_hashes": {
-        "/tmp/unibo_models/hr/hr.ubo.yaml": "sha256:5f8d2794a824f97f76727cd776f5c46c144fdbb5b617ad85b397c9e44d6f2c10"
+        "/tmp/models_all_47/hr/hr.ubo.yaml": "sha256:2a68500c3db8e50cf1c4b1d8651777f235b806fbdd893142940158af064df979"
       },
       "output_files": [
         "unibo_v4/hr/applicant_skill.ex",
@@ -479,11 +683,12 @@
       ],
       "entity_count": 26,
       "notifier_count": 7,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "hr"
     },
     "Helpdesk": {
       "input_hashes": {
-        "/tmp/unibo_models/helpdesk/helpdesk.ubo.yaml": "sha256:796591555763147d7b2b15fc3c0285358a7a47eb17255371c06fd84db0217a21"
+        "/tmp/models_all_47/helpdesk/helpdesk.ubo.yaml": "sha256:0fb713b984fea26eb7db2002279e78a42bbc3c654f1d04956a14770ab086cca1"
       },
       "output_files": [
         "unibo_v4/helpdesk/appointment.ex",
@@ -526,11 +731,12 @@
       ],
       "entity_count": 25,
       "notifier_count": 2,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "project"
     },
     "Inventory": {
       "input_hashes": {
-        "/tmp/unibo_models/inventory/inventory.ubo.yaml": "sha256:3351628dd341b8c3977182ec9a00699c1ccc3d62c0b8a7566d79eca40b72c3d5"
+        "/tmp/models_all_47/inventory/inventory.ubo.yaml": "sha256:4409d9c5aef88c1c370bd99460f6d0ebb386a84a88f6dd55444b841625f38c77"
       },
       "output_files": [
         "unibo_v4/inventory/inventory.ex",
@@ -573,11 +779,12 @@
       ],
       "entity_count": 16,
       "notifier_count": 2,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "purchasing"
     },
     "IoT": {
       "input_hashes": {
-        "/tmp/unibo_models/iot/iot.ubo.yaml": "sha256:f822cf34e8dc55533eca0b93242f53b41f10096c6dc506313db5af0a5fe61ece"
+        "/tmp/models_all_47/iot/iot.ubo.yaml": "sha256:1ae66184284942b7955f6669703bb47a4f9fc203f2d8e4a0d520e06ce020d44d"
       },
       "output_files": [
         "unibo_v4/io_t/call_queue.ex",
@@ -608,11 +815,12 @@
       ],
       "entity_count": 14,
       "notifier_count": 2,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "platform"
     },
     "Knowledge": {
       "input_hashes": {
-        "/tmp/unibo_models/knowledge/knowledge.ubo.yaml": "sha256:3a29bc9d08862ba19c30e5ac821ada6acc93d1e24494f361114dfa9b627d7d6f"
+        "/tmp/models_all_47/knowledge/knowledge.ubo.yaml": "sha256:ae019d0a0f3547d864f98c9ee8fa0d36454170e1ebfe308f256ea5c6df52f989"
       },
       "output_files": [
         "unibo_v4/knowledge/article.ex",
@@ -633,11 +841,12 @@
       ],
       "entity_count": 8,
       "notifier_count": 1,
-      "has_policy_entities": true
+      "has_policy_entities": true,
+      "subdomain": "knowledge"
     },
     "LiveChat": {
       "input_hashes": {
-        "/tmp/unibo_models/livechat/livechat.ubo.yaml": "sha256:80814ce4efb81387df5e42ecb674983689e31a0aa9038f8882d590c56bbd3aae"
+        "/tmp/models_all_47/livechat/livechat.ubo.yaml": "sha256:71959df67619236b967c142bfc89511b83231bf6ecabc04a14f6837fd25abd4d"
       },
       "output_files": [
         "unibo_v4/live_chat/channel_rule.ex",
@@ -657,11 +866,50 @@
       ],
       "entity_count": 9,
       "notifier_count": 1,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "marketing"
+    },
+    "Loyalty": {
+      "input_hashes": {
+        "/tmp/models_all_47/loyalty/loyalty.ubo.yaml": "sha256:037916edd2bd39e9cb7008fd7f0e252c4c03209f2bd9f8f4e6785bf80bb75738"
+      },
+      "output_files": [
+        "unibo_v4/loyalty/coupon.ex",
+        "unibo_v4/loyalty/coupon_bound_party.ex",
+        "unibo_v4/loyalty/coupon_notifier.ex",
+        "unibo_v4/loyalty/coupon_usage.ex",
+        "unibo_v4/loyalty/gift_card.ex",
+        "unibo_v4/loyalty/gift_card_notifier.ex",
+        "unibo_v4/loyalty/gift_card_transaction.ex",
+        "unibo_v4/loyalty/loyalty.ex",
+        "unibo_v4/loyalty/loyalty_card.ex",
+        "unibo_v4/loyalty/loyalty_card_notifier.ex",
+        "unibo_v4/loyalty/loyalty_program.ex",
+        "unibo_v4/loyalty/loyalty_program_notifier.ex",
+        "unibo_v4/loyalty/loyalty_program_translation.ex",
+        "unibo_v4/loyalty/loyalty_reward.ex",
+        "unibo_v4/loyalty/loyalty_reward_translation.ex",
+        "unibo_v4/loyalty/loyalty_rule.ex",
+        "unibo_v4/loyalty/loyalty_rule_translation.ex",
+        "unibo_v4/loyalty/loyalty_transaction.ex",
+        "unibo_v4/loyalty/loyalty_transaction_notifier.ex",
+        "unibo_v4/loyalty/workflows/coupon_coupon_lifecycle_flow.ex",
+        "unibo_v4/loyalty/workflows/gift_card_giftcard_lifecycle_flow.ex",
+        "unibo_v4/loyalty/workflows/gift_card_transaction_giftcard_transaction_flow.ex",
+        "unibo_v4/loyalty/workflows/loyalty_card_card_lifecycle_flow.ex",
+        "unibo_v4/loyalty/workflows/loyalty_program_program_lifecycle_flow.ex",
+        "unibo_v4/loyalty/workflows/loyalty_reward_reward_lifecycle_flow.ex",
+        "unibo_v4/loyalty/workflows/loyalty_rule_rule_lifecycle_flow.ex",
+        "unibo_v4/loyalty/workflows/loyalty_transaction_transaction_flow.ex"
+      ],
+      "entity_count": 10,
+      "notifier_count": 5,
+      "has_policy_entities": false,
+      "subdomain": "sales"
     },
     "Lunch": {
       "input_hashes": {
-        "/tmp/unibo_models/lunch/lunch.ubo.yaml": "sha256:931203204c1ecedf299f39591460e9f205a343bf74a513770bd136eb0616185c"
+        "/tmp/models_all_47/lunch/lunch.ubo.yaml": "sha256:d6927b88d911ced6546ebadb8107f6c2254e8cb434a6b297191ea6feca3e2a11"
       },
       "output_files": [
         "unibo_v4/lunch/lunch.ex",
@@ -692,11 +940,12 @@
       ],
       "entity_count": 13,
       "notifier_count": 2,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "hr"
     },
     "Maintenance": {
       "input_hashes": {
-        "/tmp/unibo_models/maintenance/maintenance.ubo.yaml": "sha256:8b5b95f22f08e687e78db073140f27b6bf7b38b4ed3cdf4053579f47cdab306e"
+        "/tmp/models_all_47/maintenance/maintenance.ubo.yaml": "sha256:09d89d306ab95bbd0c1ca229eb119b898ffd5a173157e733c6c8af397c66c0e3"
       },
       "output_files": [
         "unibo_v4/maintenance/assignment_log.ex",
@@ -751,11 +1000,12 @@
       ],
       "entity_count": 31,
       "notifier_count": 2,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "production"
     },
     "Manufacturing": {
       "input_hashes": {
-        "/tmp/unibo_models/manufacturing/manufacturing.ubo.yaml": "sha256:e944d77e766a198a4bff055fd8d354aefd2f9fd8f8c7a35964f11dadacd99261"
+        "/tmp/models_all_47/manufacturing/manufacturing.ubo.yaml": "sha256:0d70b33ea8f1aea5aee7edac91bdbe9c5841e7102a3a422a19db0295663206f7"
       },
       "output_files": [
         "unibo_v4/manufacturing/bill_of_materials.ex",
@@ -785,11 +1035,12 @@
       ],
       "entity_count": 13,
       "notifier_count": 1,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "production"
     },
     "Marketing": {
       "input_hashes": {
-        "/tmp/unibo_models/marketing/marketing.ubo.yaml": "sha256:ebfbc90bbbd3c71b35b4e6a6c08dadf68bf771d96f688c7f464c58adcf14bf35"
+        "/tmp/models_all_47/marketing/marketing.ubo.yaml": "sha256:b48a4be675a6f0787f7a492903c0f869c2581daf011e68a24db8bcf1449c1303"
       },
       "output_files": [
         "unibo_v4/marketing/automation_activity.ex",
@@ -864,11 +1115,12 @@
       ],
       "entity_count": 35,
       "notifier_count": 5,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "marketing"
     },
     "Membership": {
       "input_hashes": {
-        "/tmp/unibo_models/membership/membership.ubo.yaml": "sha256:c6cfe528c7f0c284a53f27b03cb474e5b1e0f0197fe5fb752215dc569ce88e5a"
+        "/tmp/models_all_47/membership/membership.ubo.yaml": "sha256:b71b0db392ca537ac14e47fb086eba5001fdd0c2631ed6ce36d74238d3681de1"
       },
       "output_files": [
         "unibo_v4/membership/membership.ex",
@@ -883,11 +1135,12 @@
       ],
       "entity_count": 4,
       "notifier_count": 1,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "engagement"
     },
     "PLM": {
       "input_hashes": {
-        "/tmp/unibo_models/plm/plm.ubo.yaml": "sha256:b85f12ab908eaaf5f56bf63f1567f66f668836a92b3ccee5c225ec357c3c612d"
+        "/tmp/models_all_47/plm/plm.ubo.yaml": "sha256:18f58515a6fed151a4bd7571265297c3ba68eec69795fadf9f312229d7cce836"
       },
       "output_files": [
         "unibo_v4/plm/bom_revision.ex",
@@ -916,11 +1169,12 @@
       ],
       "entity_count": 12,
       "notifier_count": 1,
-      "has_policy_entities": true
+      "has_policy_entities": true,
+      "subdomain": "production"
     },
     "POS": {
       "input_hashes": {
-        "/tmp/unibo_models/pos/pos.ubo.yaml": "sha256:97d54780f21300e3b69d3acf702dcf778b29f7cbd83b249daf2b8fcdf9ebd5df"
+        "/tmp/models_all_47/pos/pos.ubo.yaml": "sha256:388cb13d962b759bbba3c848ccfc24a2d11a1991d182969d803cfd57a84ed440"
       },
       "output_files": [
         "unibo_v4/pos/currency.ex",
@@ -949,11 +1203,44 @@
       ],
       "entity_count": 14,
       "notifier_count": 0,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "sales"
+    },
+    "Payment": {
+      "input_hashes": {
+        "/tmp/models_all_47/payment/payment.ubo.yaml": "sha256:d86a98444a502cfb8fe6e5a5814216f505b9bb7e7d48cd554730c08710d8df38"
+      },
+      "output_files": [
+        "unibo_v4/payment/invoice.ex",
+        "unibo_v4/payment/party.ex",
+        "unibo_v4/payment/payment.ex",
+        "unibo_v4/payment/payment_application.ex",
+        "unibo_v4/payment/payment_domain.ex",
+        "unibo_v4/payment/payment_gateway_response.ex",
+        "unibo_v4/payment/payment_method.ex",
+        "unibo_v4/payment/payment_notifier.ex",
+        "unibo_v4/payment/payment_provider.ex",
+        "unibo_v4/payment/payment_refund.ex",
+        "unibo_v4/payment/payment_refund_notifier.ex",
+        "unibo_v4/payment/payment_token.ex",
+        "unibo_v4/payment/payment_type.ex",
+        "unibo_v4/payment/workflows/payment_application_payment_application_flow.ex",
+        "unibo_v4/payment/workflows/payment_gateway_response_gateway_response_record_flow.ex",
+        "unibo_v4/payment/workflows/payment_method_payment_method_lifecycle.ex",
+        "unibo_v4/payment/workflows/payment_payment_lifecycle.ex",
+        "unibo_v4/payment/workflows/payment_provider_payment_provider_lifecycle.ex",
+        "unibo_v4/payment/workflows/payment_refund_refund_lifecycle.ex",
+        "unibo_v4/payment/workflows/payment_token_token_lifecycle.ex",
+        "unibo_v4/payment/workflows/payment_type_payment_type_lifecycle.ex"
+      ],
+      "entity_count": 10,
+      "notifier_count": 2,
+      "has_policy_entities": false,
+      "subdomain": "finance"
     },
     "Project": {
       "input_hashes": {
-        "/tmp/unibo_models/project/project.ubo.yaml": "sha256:8b491b3db12a57a8db78e7526a9d7bd2589f1b7b04ffba3146bd0f0ee9519ae8"
+        "/tmp/models_all_47/project/project.ubo.yaml": "sha256:cce72eff3f2ff4aa34282631e86c7bc7d0248df324812c5aad5bdd84308cab58"
       },
       "output_files": [
         "unibo_v4/project/employee.ex",
@@ -992,11 +1279,12 @@
       ],
       "entity_count": 15,
       "notifier_count": 3,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "project"
     },
     "Purchasing": {
       "input_hashes": {
-        "/tmp/unibo_models/purchasing/purchasing.ubo.yaml": "sha256:9bf1e70bf94d32796d5a143e74b55d21c1a6f2475a60e9ad1cb2e5f3f9759c53"
+        "/tmp/models_all_47/purchasing/purchasing.ubo.yaml": "sha256:4b07c493f684020965ab46b2ff0b5f312b19711e477a1e4c4194999634e2543a"
       },
       "output_files": [
         "unibo_v4/purchasing/account_move.ex",
@@ -1036,11 +1324,12 @@
       ],
       "entity_count": 16,
       "notifier_count": 4,
-      "has_policy_entities": true
+      "has_policy_entities": true,
+      "subdomain": "purchasing"
     },
     "Quality": {
       "input_hashes": {
-        "/tmp/unibo_models/quality/quality.ubo.yaml": "sha256:5dafcb8b214c1a17c070313b8fb752aad43821f75ec3236dfeefc3e0a4ed825a"
+        "/tmp/models_all_47/quality/quality.ubo.yaml": "sha256:f18870161d68dcd35b1dd067d721f743990f7d8e86c132532069e6c1a51d3c3c"
       },
       "output_files": [
         "unibo_v4/quality/company.ex",
@@ -1072,11 +1361,36 @@
       ],
       "entity_count": 17,
       "notifier_count": 2,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "production"
+    },
+    "Rating": {
+      "input_hashes": {
+        "/tmp/models_all_47/rating/rating.ubo.yaml": "sha256:81c88138a3f409375bd9a222441b30b4b6e350051ca917dce8e8f90b3241883a"
+      },
+      "output_files": [
+        "unibo_v4/rating/rating.ex",
+        "unibo_v4/rating/rating_criteria.ex",
+        "unibo_v4/rating/rating_criteria_translation.ex",
+        "unibo_v4/rating/rating_domain.ex",
+        "unibo_v4/rating/rating_notifier.ex",
+        "unibo_v4/rating/rating_score.ex",
+        "unibo_v4/rating/rating_summary.ex",
+        "unibo_v4/rating/rating_summary_notifier.ex",
+        "unibo_v4/rating/rating_type.ex",
+        "unibo_v4/rating/rating_type_translation.ex",
+        "unibo_v4/rating/workflows/rating_criteria_rating_criteria_lifecycle.ex",
+        "unibo_v4/rating/workflows/rating_rating_review_flow.ex",
+        "unibo_v4/rating/workflows/rating_type_rating_type_lifecycle.ex"
+      ],
+      "entity_count": 5,
+      "notifier_count": 2,
+      "has_policy_entities": false,
+      "subdomain": "sales"
     },
     "Rental": {
       "input_hashes": {
-        "/tmp/unibo_models/rental/rental.ubo.yaml": "sha256:50f39782940f8555b34af124403a8f9811abe58c4f267c2b040f4f389e475a5a"
+        "/tmp/models_all_47/rental/rental.ubo.yaml": "sha256:075c9b9b95edf9e097e7fac8ef82a664f0b1381fa70147b442b232135c8f83b9"
       },
       "output_files": [
         "unibo_v4/rental/customer.ex",
@@ -1097,11 +1411,35 @@
       ],
       "entity_count": 9,
       "notifier_count": 1,
-      "has_policy_entities": true
+      "has_policy_entities": true,
+      "subdomain": "sales"
+    },
+    "Repair": {
+      "input_hashes": {
+        "/tmp/models_all_47/repair/repair.ubo.yaml": "sha256:516f554459a024bc3da95ab1e0d05d80b625b22faf131d2360b043a04dd9a85c"
+      },
+      "output_files": [
+        "unibo_v4/repair/repair.ex",
+        "unibo_v4/repair/repair_fee.ex",
+        "unibo_v4/repair/repair_line.ex",
+        "unibo_v4/repair/repair_tag.ex",
+        "unibo_v4/repair/repair_ticket.ex",
+        "unibo_v4/repair/repair_ticket_notifier.ex",
+        "unibo_v4/repair/warranty.ex",
+        "unibo_v4/repair/workflows/repair_fee_repair_fee_maintain_flow.ex",
+        "unibo_v4/repair/workflows/repair_line_repair_line_maintain_flow.ex",
+        "unibo_v4/repair/workflows/repair_tag_repair_tag_maintain_flow.ex",
+        "unibo_v4/repair/workflows/repair_ticket_repair_ticket_lifecycle.ex",
+        "unibo_v4/repair/workflows/warranty_warranty_maintain_flow.ex"
+      ],
+      "entity_count": 5,
+      "notifier_count": 1,
+      "has_policy_entities": false,
+      "subdomain": "production"
     },
     "Sales": {
       "input_hashes": {
-        "/tmp/unibo_models/sales/sales.ubo.yaml": "sha256:ae00e3d2197d65fdf657e23b314e79c382db42ecdf1c34fee49a4a3adae72dd0"
+        "/tmp/models_all_47/sales/sales.ubo.yaml": "sha256:60c9c17ab759c0808430347335d67d7bc25e494fb0deca7d3c0202210bc8a4cb"
       },
       "output_files": [
         "unibo_v4/sales/customer.ex",
@@ -1138,11 +1476,12 @@
       ],
       "entity_count": 14,
       "notifier_count": 4,
-      "has_policy_entities": true
+      "has_policy_entities": true,
+      "subdomain": "sales"
     },
     "Sign": {
       "input_hashes": {
-        "/tmp/unibo_models/sign/sign.ubo.yaml": "sha256:d24dc0c02bca2c84f6a116d80a2d448dbbb48a01db19337266d8b7b4fae970e6"
+        "/tmp/models_all_47/sign/sign.ubo.yaml": "sha256:6e13546ae0a69cc038f6fcbf95c74c0c5eb28d3794d14f3721becc0320a428ed"
       },
       "output_files": [
         "unibo_v4/sign/sign.ex",
@@ -1163,11 +1502,12 @@
       ],
       "entity_count": 7,
       "notifier_count": 1,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "knowledge"
     },
     "Spreadsheet": {
       "input_hashes": {
-        "/tmp/unibo_models/spreadsheet/spreadsheet.ubo.yaml": "sha256:12238e9557470784f1add43be50bf4311441b7b74d8d4bf30fdef237a649b495"
+        "/tmp/models_all_47/spreadsheet/spreadsheet.ubo.yaml": "sha256:e08b1de2e005d752f5b9ff9dab04eb101f6d3689e0d66dd2b364458409e1744f"
       },
       "output_files": [
         "unibo_v4/spreadsheet/data_source.ex",
@@ -1183,11 +1523,12 @@
       ],
       "entity_count": 5,
       "notifier_count": 0,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "platform"
     },
     "Studio": {
       "input_hashes": {
-        "/tmp/unibo_models/studio/studio.ubo.yaml": "sha256:e426f372f68772e8332b47d836d02c9e33745e3848dd4e09e439f6e7c57a1171"
+        "/tmp/models_all_47/studio/studio.ubo.yaml": "sha256:c5bfd15753e9b534be69f419b55497dfba5f7fdcb74cfdd9571c8e4da2e74e52"
       },
       "output_files": [
         "unibo_v4/studio/app.ex",
@@ -1206,11 +1547,12 @@
       ],
       "entity_count": 6,
       "notifier_count": 1,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "platform"
     },
     "Subscriptions": {
       "input_hashes": {
-        "/tmp/unibo_models/subscriptions/subscriptions.ubo.yaml": "sha256:25092411066a9fe53c517b3e264090e2e274cdd33a2ee746fe3a23fce68ab2fb"
+        "/tmp/models_all_47/subscriptions/subscriptions.ubo.yaml": "sha256:114f9af7ee026ad26ce8a87258ea263a373fddef01ab96e2d5d3d4a55f92025b"
       },
       "output_files": [
         "unibo_v4/subscriptions/close_reason.ex",
@@ -1242,11 +1584,12 @@
       ],
       "entity_count": 15,
       "notifier_count": 1,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "sales"
     },
     "Survey": {
       "input_hashes": {
-        "/tmp/unibo_models/survey/survey.ubo.yaml": "sha256:c9167203c306ccc0a3a2945a96514bc3127cfc1300e2ee5f90d600d7839342e8"
+        "/tmp/models_all_47/survey/survey.ubo.yaml": "sha256:1899c342938ac8e003c9f997c396f8ff5bde938aacc4bd91bbcb320e1caa2fb4"
       },
       "output_files": [
         "unibo_v4/survey/answer.ex",
@@ -1268,11 +1611,12 @@
       ],
       "entity_count": 7,
       "notifier_count": 2,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "knowledge"
     },
     "Uom": {
       "input_hashes": {
-        "/tmp/unibo_models/uom/uom.ubo.yaml": "sha256:46b388b1b75bd80626a25d0f3c48e227fd29f11782f4b2d232ea5affd1cd3993"
+        "/tmp/models_all_47/uom/uom.ubo.yaml": "sha256:e2a008e339d3da2f2fa36a1035f141bce4fc0509f9f34b0ca15820941f518c68"
       },
       "output_files": [
         "unibo_v4/uom/uom.ex",
@@ -1285,7 +1629,8 @@
       ],
       "entity_count": 2,
       "notifier_count": 0,
-      "has_policy_entities": false
+      "has_policy_entities": false,
+      "subdomain": "purchasing"
     }
   }
 }

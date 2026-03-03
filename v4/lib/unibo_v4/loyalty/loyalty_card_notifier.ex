@@ -1,4 +1,4 @@
-defmodule UniboV4.Loyalty.Loyalty.LoyaltyCard.Notifier do
+defmodule UniboV4.Loyalty.LoyaltyCard.Notifier do
   use Ash.Notifier
 
   @impl true
@@ -10,7 +10,7 @@ defmodule UniboV4.Loyalty.Loyalty.LoyaltyCard.Notifier do
     end
 
     if topic do
-      Phoenix.PubSub.broadcast(UniboV4.Loyalty.PubSub, topic, {action_name, notification.data})
+      Phoenix.PubSub.broadcast(UniboV4.PubSub, topic, {action_name, notification.data})
     end
 
     :ok

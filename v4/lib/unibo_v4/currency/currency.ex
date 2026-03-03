@@ -71,9 +71,6 @@ defmodule UniboV4.Currency.Currency do
   end
 
   relationships do
-    belongs_to :category, UniboV4.Uom.UomCategory do
-      public? true
-    end
     has_many :from_rates, UniboV4.Currency.CurrencyRate do
       public? true
       destination_attribute :from_currency_id

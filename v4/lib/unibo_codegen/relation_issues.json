@@ -1,5 +1,5 @@
 {
-  "total": 1,
+  "total": 27,
   "issues": [
     {
       "domain": "Currency",
@@ -9,6 +9,240 @@
       "target": "UomCategory",
       "reason_code": "missing_target_entity_belongs_to",
       "reason": "belongs_to 目标实体不存在或未在当前模型中定义: UomCategory"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventBooth",
+      "relationship": "tenant",
+      "relation_type": "belongs_to",
+      "target": "User",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: User"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventRegistration",
+      "relationship": "attendee",
+      "relation_type": "belongs_to",
+      "target": "User",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: User"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventStage",
+      "relationship": "speaker",
+      "relation_type": "belongs_to",
+      "target": "User",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: User"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "FleetVehicleType",
+      "relationship": "vehicles",
+      "relation_type": "has_many",
+      "target": "FleetVehicle",
+      "reason_code": "missing_destination_foreign_key",
+      "reason": "目标实体 FleetVehicle 缺少外键字段 fleet_vehicle_type_id（且未找到可匹配的 belongs_to 映射）"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "CouponBoundParty",
+      "relationship": "partner",
+      "relation_type": "belongs_to",
+      "target": "ResPartner",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ResPartner"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "CouponUsage",
+      "relationship": "order",
+      "relation_type": "belongs_to",
+      "target": "SaleOrder",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: SaleOrder"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "CouponUsage",
+      "relationship": "partner",
+      "relation_type": "belongs_to",
+      "target": "ResPartner",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ResPartner"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "GiftCard",
+      "relationship": "owner",
+      "relation_type": "belongs_to",
+      "target": "ResPartner",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ResPartner"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "GiftCardTransaction",
+      "relationship": "operator",
+      "relation_type": "belongs_to",
+      "target": "ResUser",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ResUser"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyCard",
+      "relationship": "partner",
+      "relation_type": "belongs_to",
+      "target": "ResPartner",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ResPartner"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyReward",
+      "relationship": "free_product",
+      "relation_type": "belongs_to",
+      "target": "ProductTemplate",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ProductTemplate"
+    },
+    {
+      "domain": "Loyalty",
+      "entity": "LoyaltyTransaction",
+      "relationship": "partner",
+      "relation_type": "belongs_to",
+      "target": "ResPartner",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ResPartner"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairLine",
+      "relationship": "product",
+      "relation_type": "belongs_to",
+      "target": "Product",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Product"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairLine",
+      "relationship": "technician",
+      "relation_type": "belongs_to",
+      "target": "User",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: User"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTag",
+      "relationship": "repair_tickets",
+      "relation_type": "has_many",
+      "target": "RepairTicket",
+      "reason_code": "missing_destination_foreign_key",
+      "reason": "目标实体 RepairTicket 缺少外键字段 repair_tag_id（且未找到可匹配的 belongs_to 映射）"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "relationship": "company",
+      "relation_type": "belongs_to",
+      "target": "Company",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Company"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "relationship": "customer",
+      "relation_type": "belongs_to",
+      "target": "Customer",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Customer"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "relationship": "facility",
+      "relation_type": "belongs_to",
+      "target": "Facility",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Facility"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "relationship": "product",
+      "relation_type": "belongs_to",
+      "target": "Product",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Product"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "relationship": "sales_order",
+      "relation_type": "belongs_to",
+      "target": "SalesOrder",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: SalesOrder"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "relationship": "tags",
+      "relation_type": "has_many",
+      "target": "RepairTag",
+      "reason_code": "missing_destination_foreign_key",
+      "reason": "目标实体 RepairTag 缺少外键字段 repair_ticket_id（且未找到可匹配的 belongs_to 映射）"
+    },
+    {
+      "domain": "Repair",
+      "entity": "RepairTicket",
+      "relationship": "technician",
+      "relation_type": "belongs_to",
+      "target": "User",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: User"
+    },
+    {
+      "domain": "Repair",
+      "entity": "Warranty",
+      "relationship": "company",
+      "relation_type": "belongs_to",
+      "target": "Company",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Company"
+    },
+    {
+      "domain": "Repair",
+      "entity": "Warranty",
+      "relationship": "customer",
+      "relation_type": "belongs_to",
+      "target": "Customer",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Customer"
+    },
+    {
+      "domain": "Repair",
+      "entity": "Warranty",
+      "relationship": "product",
+      "relation_type": "belongs_to",
+      "target": "Product",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Product"
+    },
+    {
+      "domain": "Repair",
+      "entity": "Warranty",
+      "relationship": "sales_order",
+      "relation_type": "belongs_to",
+      "target": "SalesOrder",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: SalesOrder"
     }
   ]
 }

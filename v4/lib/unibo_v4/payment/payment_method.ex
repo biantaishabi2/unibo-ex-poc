@@ -15,10 +15,10 @@
 #   expire --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Payment.Payment.PaymentMethod do
+defmodule UniboV4.Payment.PaymentMethod do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Payment.Payment,
+    domain: UniboV4.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -65,14 +65,14 @@ defmodule UniboV4.Payment.Payment.PaymentMethod do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Payment.Payment.Party do
+    belongs_to :party, UniboV4.Payment.Party do
       public? true
     end
-    has_many :payments, UniboV4.Payment.Payment.Payment do
+    has_many :payments, UniboV4.Payment.Payment do
       public? true
       destination_attribute :payment_method_id
     end
-    has_many :gateway_responses, UniboV4.Payment.Payment.PaymentGatewayResponse do
+    has_many :gateway_responses, UniboV4.Payment.PaymentGatewayResponse do
       public? true
       destination_attribute :payment_method_id
     end

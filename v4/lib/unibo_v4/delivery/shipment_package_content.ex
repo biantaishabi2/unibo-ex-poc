@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Delivery.Delivery.ShipmentPackageContent do
+defmodule UniboV4.Delivery.ShipmentPackageContent do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Delivery.Delivery,
+    domain: UniboV4.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -43,14 +43,14 @@ defmodule UniboV4.Delivery.Delivery.ShipmentPackageContent do
   end
 
   relationships do
-    belongs_to :shipment, UniboV4.Delivery.Delivery.Shipment do
+    belongs_to :shipment, UniboV4.Delivery.Shipment do
       public? true
     end
-    belongs_to :shipment_package, UniboV4.Delivery.Delivery.ShipmentPackage do
+    belongs_to :shipment_package, UniboV4.Delivery.ShipmentPackage do
       public? true
       source_attribute :shipment_package_seq_id
     end
-    belongs_to :shipment_item, UniboV4.Delivery.Delivery.ShipmentItem do
+    belongs_to :shipment_item, UniboV4.Delivery.ShipmentItem do
       public? true
       source_attribute :shipment_item_seq_id
     end

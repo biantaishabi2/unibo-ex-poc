@@ -1,4 +1,4 @@
-defmodule UniboV4.Events.Events.EventTypeTranslation do
+defmodule UniboV4.Events.EventTypeTranslation do
   use Ash.Resource,
     otp_app: :unibo_v4,
     data_layer: AshPostgres.DataLayer
@@ -24,7 +24,7 @@ defmodule UniboV4.Events.Events.EventTypeTranslation do
   end
 
   relationships do
-    belongs_to :event_type, UniboV4.Events.Events.EventType do
+    belongs_to :event_type, UniboV4.Events.EventType do
       public? true
       allow_nil? false
     end

@@ -1,4 +1,4 @@
-defmodule UniboV4.Calendar.Calendar do
+defmodule UniboV4.Calendar do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,18 +7,18 @@ defmodule UniboV4.Calendar.Calendar do
   end
 
   resources do
-    resource UniboV4.Calendar.Calendar.Calendar
-    resource UniboV4.Calendar.Calendar.CalendarTranslation
-    resource UniboV4.Calendar.Calendar.CalendarEvent
-    resource UniboV4.Calendar.Calendar.CalendarEventTranslation
-    resource UniboV4.Calendar.Calendar.Attendee
-    resource UniboV4.Calendar.Calendar.WorkSchedule
-    resource UniboV4.Calendar.Calendar.WorkScheduleTranslation
-    resource UniboV4.Calendar.Calendar.WeekTemplate
-    resource UniboV4.Calendar.Calendar.WeekTemplateTranslation
-    resource UniboV4.Calendar.Calendar.CalendarException
-    resource UniboV4.Calendar.Calendar.CalendarExceptionTranslation
-    resource UniboV4.Calendar.Calendar.WeekException
-    resource UniboV4.Calendar.Calendar.WeekExceptionTranslation
+    resource UniboV4.Calendar.Calendar
+    resource UniboV4.Calendar.CalendarTranslation
+    resource UniboV4.Calendar.CalendarEvent
+    resource UniboV4.Calendar.CalendarEventTranslation
+    resource UniboV4.Calendar.Attendee
+    resource UniboV4.Calendar.WorkSchedule
+    resource UniboV4.Calendar.WorkScheduleTranslation
+    resource UniboV4.Calendar.WeekTemplate
+    resource UniboV4.Calendar.WeekTemplateTranslation
+    resource UniboV4.Calendar.CalendarException
+    resource UniboV4.Calendar.CalendarExceptionTranslation
+    resource UniboV4.Calendar.WeekException
+    resource UniboV4.Calendar.WeekExceptionTranslation
   end
 end

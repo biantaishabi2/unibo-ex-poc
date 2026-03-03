@@ -9,10 +9,10 @@
 #   release --> reserve
 #   release --> destroy
 # ```
-defmodule UniboV4.Events.Events.EventBooth do
+defmodule UniboV4.Events.EventBooth do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Events.Events,
+    domain: UniboV4.Events,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -61,6 +61,7 @@ defmodule UniboV4.Events.Events.EventBooth do
       default :available
       public? true
     end
+    attribute :tenant_id, :string, public?: true
     attribute :reserved_at, :utc_datetime, public?: true
     attribute :notes, :string, public?: true
     create_timestamp :inserted_at
@@ -68,14 +69,11 @@ defmodule UniboV4.Events.Events.EventBooth do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Events.Events.Event do
+    belongs_to :event, UniboV4.Events.Event do
       public? true
       allow_nil? false
     end
-    belongs_to :tenant, UniboV4.Events.Events.User do
-      public? true
-    end
-    has_many :translations, UniboV4.Events.Events.EventBoothTranslation, public?: true
+    has_many :translations, UniboV4.Events.EventBoothTranslation, public?: true
   end
 
   actions do
@@ -112,6 +110,7 @@ defmodule UniboV4.Events.Events.EventBooth do
       require_atomic? false
     end
     update :reserve do
+      accept [:tenant_id]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
         if current == :available do

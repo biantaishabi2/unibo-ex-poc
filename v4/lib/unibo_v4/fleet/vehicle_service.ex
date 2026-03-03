@@ -9,13 +9,13 @@
 #   complete --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Fleet.Fleet.VehicleService do
+defmodule UniboV4.Fleet.VehicleService do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Fleet.Fleet,
+    domain: UniboV4.Fleet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Fleet.Fleet.VehicleService.Notifier]
+    notifiers: [UniboV4.Fleet.VehicleService.Notifier]
 
   postgres do
     table "fleet_vehicle_services"
@@ -67,7 +67,7 @@ defmodule UniboV4.Fleet.Fleet.VehicleService do
   end
 
   relationships do
-    belongs_to :fleet_vehicle, UniboV4.Fleet.Fleet.FleetVehicle do
+    belongs_to :fleet_vehicle, UniboV4.Fleet.FleetVehicle do
       public? true
       allow_nil? false
     end

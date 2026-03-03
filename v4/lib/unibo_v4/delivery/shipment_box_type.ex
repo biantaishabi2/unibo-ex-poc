@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Delivery.Delivery.ShipmentBoxType do
+defmodule UniboV4.Delivery.ShipmentBoxType do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Delivery.Delivery,
+    domain: UniboV4.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -55,7 +55,7 @@ defmodule UniboV4.Delivery.Delivery.ShipmentBoxType do
   end
 
   relationships do
-    has_many :packages, UniboV4.Delivery.Delivery.ShipmentPackage do
+    has_many :packages, UniboV4.Delivery.ShipmentPackage do
       public? true
       destination_attribute :shipment_box_type_id
     end

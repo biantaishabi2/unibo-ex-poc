@@ -4,10 +4,10 @@
 #   [*] --> create
 #   create --> [*]
 # ```
-defmodule UniboV4.Delivery.Delivery.ShipmentStatus do
+defmodule UniboV4.Delivery.ShipmentStatus do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Delivery.Delivery,
+    domain: UniboV4.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -43,7 +43,7 @@ defmodule UniboV4.Delivery.Delivery.ShipmentStatus do
   end
 
   relationships do
-    belongs_to :shipment, UniboV4.Delivery.Delivery.Shipment do
+    belongs_to :shipment, UniboV4.Delivery.Shipment do
       public? true
     end
   end

@@ -1,4 +1,4 @@
-defmodule UniboV4.Events.Events.EventRegistration.Notifier do
+defmodule UniboV4.Events.EventRegistration.Notifier do
   use Ash.Notifier
 
   @impl true
@@ -10,7 +10,7 @@ defmodule UniboV4.Events.Events.EventRegistration.Notifier do
     end
 
     if topic do
-      Phoenix.PubSub.broadcast(UniboV4.Events.PubSub, topic, {action_name, notification.data})
+      Phoenix.PubSub.broadcast(UniboV4.PubSub, topic, {action_name, notification.data})
     end
 
     :ok

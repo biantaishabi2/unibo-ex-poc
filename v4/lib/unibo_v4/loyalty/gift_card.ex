@@ -18,13 +18,13 @@
 #   cancel_card --> [*]
 #   expire_card --> [*]
 # ```
-defmodule UniboV4.Loyalty.Loyalty.GiftCard do
+defmodule UniboV4.Loyalty.GiftCard do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Loyalty.Loyalty,
+    domain: UniboV4.Loyalty,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Loyalty.Loyalty.GiftCard.Notifier]
+    notifiers: [UniboV4.Loyalty.GiftCard.Notifier]
 
   postgres do
     table "loyalty_gift_cards"
@@ -92,13 +92,10 @@ defmodule UniboV4.Loyalty.Loyalty.GiftCard do
   end
 
   relationships do
-    belongs_to :program, UniboV4.Loyalty.Loyalty.LoyaltyProgram do
+    belongs_to :program, UniboV4.Loyalty.LoyaltyProgram do
       public? true
     end
-    belongs_to :owner, UniboV4.Loyalty.Loyalty.ResPartner do
-      public? true
-    end
-    has_many :transactions, UniboV4.Loyalty.Loyalty.GiftCardTransaction do
+    has_many :transactions, UniboV4.Loyalty.GiftCardTransaction do
       public? true
       destination_attribute :gift_card_id
     end
