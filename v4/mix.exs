@@ -65,7 +65,8 @@ defmodule UniboV4.MixProject do
       {:absinthe, "~> 1.7.0"},
       {:absinthe_plug, "~> 1.5"},
       # UniBO 运行时库
-      {:unibo_i18n_runtime, path: "../../unibo/targets/elixir/unibo_i18n_runtime"}
+      {:unibo_i18n_runtime, path: "../../unibo/targets/elixir/unibo_i18n_runtime"},
+      {:unibo_bdd_runtime, path: "../../unibo/targets/elixir/unibo_bdd_runtime", only: :test}
     ]
   end
 

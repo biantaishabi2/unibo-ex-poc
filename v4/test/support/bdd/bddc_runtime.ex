@@ -11,8 +11,6 @@ defmodule UniboV4.BDDC.Runtime do
         MapSet.new() |> MapSet.union(@common_module.capabilities())
       end
 
-      # For runtime.caps.sync: keep an explicit, machine-readable pattern surface.
-      # When you add new instructions, append a clause here.
       def __caps_sync_fixture__(tuple) do
         case tuple do
           {:given, :create_temp_dir} -> :ok
