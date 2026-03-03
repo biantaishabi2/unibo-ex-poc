@@ -10,58 +10,13 @@ import Config
 config :unibo_v4,
   ecto_repos: [UniboV4.Repo],
   generators: [timestamp_type: :utc_datetime],
+  # 仅保留手写域；编译器生成的域在 application.ex 启动时动态合并
   ash_domains: [
-    # 本地认证域（不由编译器生成）
-    UniboV4.Accounts,
-    # 以下由 UniBO 编译器自动生成（compile-project --emit-domain-registry）
-    UniboV4.Accounting,
-    UniboV4.Analytic,
-    UniboV4.Approvals,
-    UniboV4.Barcode,
-    UniboV4.Blog,
-    UniboV4.CRM,
-    UniboV4.Calendar,
-    UniboV4.Communication,
-    UniboV4.Currency,
-    UniboV4.DataRecycle,
-    UniboV4.Delivery,
-    UniboV4.Documents,
-    UniboV4.ELearning,
-    UniboV4.Ecommerce,
-    UniboV4.Events,
-    UniboV4.Expenses,
-    UniboV4.Fleet,
-    UniboV4.Forum,
-    UniboV4.Gamification,
-    UniboV4.HR,
-    UniboV4.Helpdesk,
-    UniboV4.Inventory,
-    UniboV4.IoT,
-    UniboV4.Knowledge,
-    UniboV4.LiveChat,
-    UniboV4.Loyalty,
-    UniboV4.Lunch,
-    UniboV4.Maintenance,
-    UniboV4.Manufacturing,
-    UniboV4.Marketing,
-    UniboV4.Membership,
-    UniboV4.PLM,
-    UniboV4.POS,
-    UniboV4.Payment,
-    UniboV4.Project,
-    UniboV4.Purchasing,
-    UniboV4.Quality,
-    UniboV4.Rating,
-    UniboV4.Rental,
-    UniboV4.Repair,
-    UniboV4.Sales,
-    UniboV4.Sign,
-    UniboV4.Spreadsheet,
-    UniboV4.Studio,
-    UniboV4.Subscriptions,
-    UniboV4.Survey,
-    UniboV4.Uom
+    UniboV4.Accounts
   ]
+
+# 允许编译器生成的域模块不在 config 中列出（运行时动态注册）
+config :ash, :validate_domain_config_inclusion?, false
 
 # Configures the endpoint
 config :unibo_v4, UniboV4Web.Endpoint,
