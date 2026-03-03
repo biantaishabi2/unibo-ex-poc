@@ -11,24 +11,56 @@ config :unibo_v4,
   ecto_repos: [UniboV4.Repo],
   generators: [timestamp_type: :utc_datetime],
   ash_domains: [
+    # 认证（不暴露 GraphQL）
     UniboV4.Accounts,
+    # 采购供应链
     UniboV4.Purchasing,
-    UniboV4.Sales,
-    UniboV4.Accounting,
     UniboV4.Inventory,
+    UniboV4.Uom,
+    # 销售客户
+    UniboV4.Sales,
+    UniboV4.CRM,
+    UniboV4.Ecommerce,
+    UniboV4.POS,
+    UniboV4.Subscriptions,
+    UniboV4.Rental,
+    # 财务
+    UniboV4.Accounting,
+    UniboV4.Expenses,
+    UniboV4.Currency,
+    # 生产质量
     UniboV4.Manufacturing,
     UniboV4.Maintenance,
-    UniboV4.CRM,
-    UniboV4.POS,
-    UniboV4.Expenses,
+    UniboV4.PLM,
+    UniboV4.Quality,
+    # 人事行政
     UniboV4.HR,
+    UniboV4.Lunch,
+    # 项目协作
     UniboV4.Project,
     UniboV4.Helpdesk,
+    # 营销传播
     UniboV4.Marketing,
-    UniboV4.Ecommerce,
     UniboV4.Communication,
-    UniboV4.Currency,
-    UniboV4.Uom
+    UniboV4.LiveChat,
+    # 知识内容
+    UniboV4.Knowledge,
+    UniboV4.Blog,
+    UniboV4.Forum,
+    UniboV4.Documents,
+    UniboV4.Survey,
+    UniboV4.Sign,
+    # 在线学习
+    UniboV4.ELearning,
+    # 用户互动
+    UniboV4.Gamification,
+    UniboV4.Membership,
+    # 平台工具
+    UniboV4.Approvals,
+    UniboV4.DataRecycle,
+    UniboV4.Spreadsheet,
+    UniboV4.Studio,
+    UniboV4.IoT
   ]
 
 # Configures the endpoint
