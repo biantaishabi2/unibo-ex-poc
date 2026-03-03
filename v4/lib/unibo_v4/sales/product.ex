@@ -40,6 +40,10 @@ defmodule UniboV4.Sales.Product do
 
   actions do
     defaults [:read, :update]
+    create :create do
+      primary? true
+      accept [:product_code, :name]
+    end
     read :list do
     end
     read :search do

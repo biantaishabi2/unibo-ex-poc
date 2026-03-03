@@ -27,6 +27,10 @@ defmodule UniboV4.Inventory.RemovalStrategy do
 
   actions do
     defaults [:read, :update]
+    create :create do
+      primary? true
+      accept [:name]
+    end
   end
 
 end

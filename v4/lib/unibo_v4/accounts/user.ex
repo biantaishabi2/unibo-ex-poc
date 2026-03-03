@@ -11,14 +11,18 @@ defmodule UniboV4.Accounts.User do
 
   attributes do
     uuid_primary_key :id
-    attribute :name, :string, allow_nil?: false
-    attribute :email, :string, allow_nil?: false
+    attribute :name, :string, allow_nil?: false, public?: true
+    attribute :email, :string, allow_nil?: false, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   actions do
-    defaults [:read, :create, :update]
+    defaults [:read, :update]
+    create :create do
+      primary? true
+      accept [:name, :email]
+    end
   end
 
   identities do

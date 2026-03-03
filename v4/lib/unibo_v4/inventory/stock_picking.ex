@@ -100,7 +100,7 @@ defmodule UniboV4.Inventory.StockPicking do
     defaults [:read]
     create :create do
       primary? true
-      accept [:origin, :picking_type, :move_type, :priority, :notes]
+      accept [:name, :origin, :picking_type, :move_type, :priority, :notes]
       argument :move_ids, {:array, :string}, allow_nil?: false
       argument :warehouse_id, :uuid, allow_nil?: false
       argument :source_location_id, :uuid, allow_nil?: false

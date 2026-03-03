@@ -28,6 +28,10 @@ defmodule UniboV4.Accounting.Journal do
 
   actions do
     defaults [:read, :update]
+    create :create do
+      primary? true
+      accept [:code, :name]
+    end
   end
 
 end

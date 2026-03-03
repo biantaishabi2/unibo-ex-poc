@@ -68,7 +68,7 @@ defmodule UniboV4.Inventory.LandedCost do
     defaults [:read]
     create :create do
       primary? true
-      accept [:date, :description]
+      accept [:name, :date, :description]
       argument :cost_lines, {:array, :map}, default: []
       change manage_relationship(:cost_lines, :cost_lines, type: :create)
       validate present(:date)

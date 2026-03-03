@@ -33,6 +33,10 @@ defmodule UniboV4.CRM.CalendarEvent do
 
   actions do
     defaults [:read, :update]
+    create :create do
+      primary? true
+      accept [:name]
+    end
   end
 
 end

@@ -136,34 +136,38 @@ defmodule UniboV4.BDD.DataFactory do
 
   # 为 action argument 生成值
   defp generate_argument_value(arg) do
-    type_name = ash_type_name(arg.type)
+    constraints = arg.constraints || []
 
-    case type_name do
-      {:array, _inner} -> []
-      :string -> "test_#{random_hex(4)}"
-      :integer -> 1
-      :decimal -> Decimal.new("100.00")
-      :boolean -> true
-      :atom -> :default
-      :uuid -> Ash.UUID.generate()
-      :map -> %{}
-      _ -> "test_#{random_hex(4)}"
+    # 优先处理 one_of 约束
+    case Keyword.get(constraints, :one_of) do
+      [first | _] ->
+        first
+
+      _ ->
+        type_name = ash_type_name(arg.type)
+
+        case type_name do
+          {:array, _inner} -> []
+          :string -> "test_#{random_hex(4)}"
+          :integer -> 1
+          :decimal -> Decimal.new("100.00")
+          :float -> 100.0
+          :boolean -> true
+          :atom -> :default
+          :uuid -> Ash.UUID.generate()
+          :map -> %{}
+          :date -> Date.utc_today()
+          :utc_datetime -> DateTime.utc_now() |> DateTime.truncate(:second)
+          :utc_datetime_usec -> DateTime.utc_now()
+          :naive_datetime -> NaiveDateTime.utc_now() |> NaiveDateTime.truncate(:second)
+          _ -> "test_#{random_hex(4)}"
+        end
     end
   end
 
   # 如果 action 使用 relate_actor，创建一个 actor
   defp maybe_create_actor(resource, action, visited) do
-    if AshIntrospector.uses_actor?(resource, action.name) do
-      find_and_create_actor(resource, visited)
-    else
-      nil
-    end
-  end
-
-  # 查找并创建一个可用的 actor（User 资源）
-  defp find_and_create_actor(resource, visited) do
-    # 从 relate_actor 关系中找到 actor 的目标资源
-    actor_rel = find_actor_relationship(resource)
+    actor_rel = find_actor_relationship(resource, action)
 
     if actor_rel do
       dest = actor_rel.destination
@@ -184,17 +188,22 @@ defmodule UniboV4.BDD.DataFactory do
     end
   end
 
-  # 查找 relate_actor 指向的关系
-  defp find_actor_relationship(resource) do
-    # 遍历 resource 的 belongs_to 关系，找到名称包含 "created_by" 或 "user" 的
-    resource
-    |> AshIntrospector.belongs_to_relationships()
-    |> Enum.find(fn rel ->
-      name = to_string(rel.name)
-      String.contains?(name, "created_by") or
-        String.contains?(name, "user") or
-        String.contains?(name, "actor")
-    end)
+  # 从 action 的 relate_actor change 中精确找到 actor 关系
+  defp find_actor_relationship(resource, action) do
+    relate_actor_change =
+      Enum.find(action.changes, fn
+        %{change: {Ash.Resource.Change.RelateActor, _}} -> true
+        _ -> false
+      end)
+
+    case relate_actor_change do
+      %{change: {Ash.Resource.Change.RelateActor, opts}} ->
+        rel_name = Keyword.get(opts, :relationship)
+        Enum.find(Ash.Resource.Info.relationships(resource), &(&1.name == rel_name))
+
+      _ ->
+        nil
+    end
   end
 
   # 为属性生成合法值

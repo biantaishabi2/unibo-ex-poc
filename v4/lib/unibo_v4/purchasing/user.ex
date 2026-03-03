@@ -39,6 +39,10 @@ defmodule UniboV4.Purchasing.User do
 
   actions do
     defaults [:read, :update]
+    create :create do
+      primary? true
+      accept [:name]
+    end
     read :list do
     end
     read :search do

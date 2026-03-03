@@ -56,7 +56,7 @@ defmodule UniboV4.POS.PosOrder do
     defaults [:read]
     create :create do
       primary? true
-      accept [:order_number, :order_date, :discount_amount, :notes]
+      accept [:order_number, :total_amount, :order_date, :discount_amount, :notes]
       argument :items, {:array, :string}, allow_nil?: false
       argument :session_id, :uuid, allow_nil?: false
       change manage_relationship(:items, :items, type: :create)

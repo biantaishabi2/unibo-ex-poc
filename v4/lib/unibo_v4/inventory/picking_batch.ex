@@ -63,7 +63,7 @@ defmodule UniboV4.Inventory.PickingBatch do
     defaults [:read]
     create :create do
       primary? true
-      accept [:is_wave]
+      accept [:name, :is_wave]
       argument :responsible_id, :uuid
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
