@@ -32,31 +32,11 @@ defmodule UniboV4.CRM.Lead do
     otp_app: :unibo_v4,
     domain: UniboV4.CRM,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.CRM.Lead.Notifier]
 
   postgres do
     table "crm_leads"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :crm_lead
-
-    queries do
-      get :get_crm_lead, :read
-      list :list_crm_leads, :read
-    end
-
-    mutations do
-      create :create_crm_lead, :create
-      update :update_crm_lead, :update
-      update :convert_opportunity_crm_lead, :convert_opportunity
-      update :win_crm_lead, :win
-      update :lose_crm_lead, :lose
-      update :assign_salesperson_crm_lead, :assign_salesperson
-    end
-
   end
 
   attributes do

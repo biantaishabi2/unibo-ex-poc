@@ -2,22 +2,11 @@ defmodule UniboV4.Delivery.Facility do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Delivery,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "delivery_facilities"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :delivery_facility
-
-    queries do
-      get :get_delivery_facility, :read
-      list :list_delivery_facilitys, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Delivery.Facility do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

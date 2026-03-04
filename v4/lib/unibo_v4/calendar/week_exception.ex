@@ -9,27 +9,11 @@ defmodule UniboV4.Calendar.WeekException do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Calendar,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "calendar_week_exceptions"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :calendar_week_exception
-
-    queries do
-      get :get_calendar_week_exception, :read
-      list :list_calendar_week_exceptions, :read
-    end
-
-    mutations do
-      create :create_add_calendar_week_exception, :add
-      destroy :delete_remove_calendar_week_exception, :remove
-    end
-
   end
 
   attributes do
@@ -59,7 +43,7 @@ defmodule UniboV4.Calendar.WeekException do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :add do
       primary? true
       accept [:start_date, :end_date, :description]

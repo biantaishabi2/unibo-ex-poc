@@ -12,28 +12,11 @@ defmodule UniboV4.Blog.Blog do
     otp_app: :unibo_v4,
     domain: UniboV4.Blog,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Blog.Blog.Notifier]
 
   postgres do
     table "blog_blogs"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :blog_blog
-
-    queries do
-      get :get_blog_blog, :read
-      list :list_blog_blogs, :read
-    end
-
-    mutations do
-      create :create_blog_blog, :create
-      update :update_blog_blog, :update
-      update :archive_blog_blog, :archive
-    end
-
   end
 
   attributes do

@@ -12,28 +12,11 @@ defmodule UniboV4.Calendar.Attendee do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Calendar,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "calendar_attendees"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :calendar_attendee
-
-    queries do
-      get :get_calendar_attendee, :read
-      list :list_calendar_attendees, :read
-    end
-
-    mutations do
-      create :create_invite_calendar_attendee, :invite
-      update :update_response_calendar_attendee, :update_response
-      destroy :delete_remove_calendar_attendee, :remove
-    end
-
   end
 
   attributes do

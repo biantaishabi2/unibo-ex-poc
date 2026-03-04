@@ -9,27 +9,11 @@ defmodule UniboV4.Survey.UserInputLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Survey,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "survey_user_input_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :survey_user_input_line
-
-    queries do
-      get :get_survey_user_input_line, :read
-      list :list_survey_user_input_lines, :read
-    end
-
-    mutations do
-      create :create_survey_user_input_line, :create
-      destroy :delete_survey_user_input_line, :destroy
-    end
-
   end
 
   attributes do
@@ -68,7 +52,7 @@ defmodule UniboV4.Survey.UserInputLine do
   end
 
   actions do
-    defaults [:read, :destroy, :update]
+    defaults [:read, :destroy]
     create :create do
       primary? true
       accept [:answer_type, :value_text_box, :value_char_box, :value_numerical_box, :value_date, :value_datetime]

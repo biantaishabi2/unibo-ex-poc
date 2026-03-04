@@ -9,27 +9,11 @@ defmodule UniboV4.Manufacturing.RoutingOperation do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Manufacturing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "manufacturing_routing_operations"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :manufacturing_routing_operation
-
-    queries do
-      get :get_manufacturing_routing_operation, :read
-      list :list_manufacturing_routing_operations, :read
-    end
-
-    mutations do
-      create :create_manufacturing_routing_operation, :create
-      update :update_manufacturing_routing_operation, :update
-    end
-
   end
 
   attributes do

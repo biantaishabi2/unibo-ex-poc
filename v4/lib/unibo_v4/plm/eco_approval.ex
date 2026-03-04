@@ -12,28 +12,11 @@ defmodule UniboV4.PLM.EcoApproval do
     otp_app: :unibo_v4,
     domain: UniboV4.PLM,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     authorizers: [Ash.Policy.Authorizer]
 
   postgres do
     table "plm_eco_approvals"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :plm_eco_approval
-
-    queries do
-      get :get_plm_eco_approval, :read
-      list :list_plm_eco_approvals, :read
-    end
-
-    mutations do
-      create :create_plm_eco_approval, :create
-      update :approve_plm_eco_approval, :approve
-      update :reject_plm_eco_approval, :reject
-    end
-
   end
 
   attributes do
@@ -88,7 +71,6 @@ defmodule UniboV4.PLM.EcoApproval do
       end
     end
     update :approve do
-      primary? true
       accept []
       # skipped: validate custom : (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->
@@ -142,10 +124,13 @@ defmodule UniboV4.PLM.EcoApproval do
 
   policies do
     policy action(:approve) do
-      authorize_if expr(id == approver_id)
+      authorize_if expr(actor.id == approver_id)
     end
     policy action(:reject) do
-      authorize_if expr(id == approver_id)
+      authorize_if expr(actor.id == approver_id)
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

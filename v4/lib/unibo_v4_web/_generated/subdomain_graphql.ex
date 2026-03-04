@@ -3,19 +3,7 @@ defmodule UniboV4Web.Generated.SubdomainGraphql do
 
   @doc "返回子域名 → Schema 模块的映射"
   def subdomains do
-    %{
-      calendar: UniboV4Web.Generated.Schema.Calendar,
-      engagement: UniboV4Web.Generated.Schema.Engagement,
-      finance: UniboV4Web.Generated.Schema.Finance,
-      hr: UniboV4Web.Generated.Schema.Hr,
-      knowledge: UniboV4Web.Generated.Schema.Knowledge,
-      learning: UniboV4Web.Generated.Schema.Learning,
-      marketing: UniboV4Web.Generated.Schema.Marketing,
-      platform: UniboV4Web.Generated.Schema.Platform,
-      production: UniboV4Web.Generated.Schema.Production,
-      project: UniboV4Web.Generated.Schema.Project,
-      purchasing: UniboV4Web.Generated.Schema.Purchasing,
-      sales: UniboV4Web.Generated.Schema.Sales,
-    }
+    # GraphQL schemas 暂时禁用 — 等编译器修复 graphql 暴露后重新生成
+    %{}
   end
 end

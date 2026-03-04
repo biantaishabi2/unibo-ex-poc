@@ -12,37 +12,15 @@ defmodule UniboV4.Communication.ChannelMember do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Communication,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "communication_channel_members"
     repo UniboV4.Repo
   end
 
-  graphql do
-    type :communication_channel_member
-
-    queries do
-      get :get_communication_channel_member, :read
-      list :list_communication_channel_members, :read
-      get :get_load_more_members_communication_channel_member, :load_more_members
-      list :list_load_more_members_communication_channel_members, :load_more_members
-    end
-
-    mutations do
-      create :create_communication_channel_member, :create
-      update :update_communication_channel_member, :update
-      update :mark_seen_communication_channel_member, :mark_seen
-      update :mark_fetched_communication_channel_member, :mark_fetched
-      destroy :delete_communication_channel_member, :destroy
-    end
-
-  end
-
   attributes do
     uuid_primary_key :id
-    attribute :partner_id, :string, public?: true
     attribute :role, :atom do
       constraints one_of: [:admin, :member]
       default :member
@@ -69,7 +47,7 @@ defmodule UniboV4.Communication.ChannelMember do
     attribute :mute_until_dt, :utc_datetime, public?: true
     attribute :last_interest_dt, :utc_datetime, public?: true
     attribute :last_seen_dt, :utc_datetime, public?: true
-    attribute :rtc_inviting_session_id, :string, public?: true
+    attribute :rtc_inviting_session_id, :uuid, public?: true
     attribute :joined_date, :date do
       allow_nil? false
       default &Date.utc_today/0
@@ -94,6 +72,9 @@ defmodule UniboV4.Communication.ChannelMember do
       public? true
     end
     belongs_to :fetched_message, UniboV4.Communication.Message do
+      public? true
+    end
+    belongs_to :partner, UniboV4.Communication.User do
       public? true
     end
   end

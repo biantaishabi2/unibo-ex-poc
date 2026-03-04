@@ -10,28 +10,11 @@ defmodule UniboV4.IoT.VoIPProvider do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.IoT,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "io_t_vo_ip_providers"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :io_t_vo_ip_provider
-
-    queries do
-      get :get_io_t_vo_ip_provider, :read
-      list :list_io_t_vo_ip_providers, :read
-    end
-
-    mutations do
-      create :create_io_t_vo_ip_provider, :create
-      update :update_io_t_vo_ip_provider, :update
-      destroy :delete_io_t_vo_ip_provider, :destroy
-    end
-
   end
 
   attributes do
@@ -90,7 +73,7 @@ defmodule UniboV4.IoT.VoIPProvider do
     create :create do
       primary? true
       accept [:name, :sip_server, :sip_port, :transport, :domain, :outbound_proxy, :stun_server, :turn_server, :turn_username, :turn_password, :is_default]
-      argument :org_id, :uuid, allow_nil?: false
+      argument :org_id, :integer, allow_nil?: false
       change manage_relationship(:org_id, :org, type: :append, on_lookup: :relate)
       validate present(:name)
       validate present(:sip_server)

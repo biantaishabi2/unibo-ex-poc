@@ -32,32 +32,11 @@ defmodule UniboV4.Calendar.CalendarEvent do
     otp_app: :unibo_v4,
     domain: UniboV4.Calendar,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Calendar.CalendarEvent.Notifier]
 
   postgres do
     table "calendar_events"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :calendar_calendar_event
-
-    queries do
-      get :get_calendar_calendar_event, :read
-      list :list_calendar_calendar_events, :read
-    end
-
-    mutations do
-      create :create_calendar_calendar_event, :create
-      update :update_calendar_calendar_event, :update
-      update :confirm_calendar_calendar_event, :confirm
-      update :cancel_calendar_calendar_event, :cancel
-      update :revert_to_draft_calendar_calendar_event, :revert_to_draft
-      update :mark_tentative_calendar_calendar_event, :mark_tentative
-      destroy :delete_calendar_calendar_event, :destroy
-    end
-
   end
 
   attributes do

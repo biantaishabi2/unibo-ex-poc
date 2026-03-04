@@ -11,27 +11,11 @@ defmodule UniboV4.Marketing.SmsTemplate do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "marketing_sms_templates"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_sms_template
-
-    queries do
-      get :get_marketing_sms_template, :read
-      list :list_marketing_sms_templates, :read
-    end
-
-    mutations do
-      create :create_marketing_sms_template, :create
-      update :update_marketing_sms_template, :update
-    end
-
   end
 
   attributes do

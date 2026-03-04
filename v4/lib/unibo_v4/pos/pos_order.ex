@@ -16,32 +16,11 @@ defmodule UniboV4.POS.PosOrder do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.POS,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "pos_orders"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :pos_pos_order
-
-    queries do
-      get :get_pos_pos_order, :read
-      list :list_pos_pos_orders, :read
-    end
-
-    mutations do
-      create :create_create_pos_pos_order, :create
-      create :create_refund_pos_pos_order, :refund
-      update :pay_pos_pos_order, :pay
-      update :done_pos_pos_order, :done
-      update :invoice_pos_pos_order, :invoice
-      update :cancel_pos_pos_order, :cancel
-      destroy :delete_pos_pos_order, :destroy
-    end
-
   end
 
   attributes do
@@ -154,7 +133,6 @@ defmodule UniboV4.POS.PosOrder do
       end
     end
     update :pay do
-      primary? true
       accept []
       argument :payments, {:array, :string}, allow_nil?: false
       # skipped: validate custom : (incompatible with bulk update atomic path)

@@ -9,22 +9,11 @@ defmodule UniboV4.Sales.ReturnItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Sales,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "sales_return_items"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sales_return_item
-
-    mutations do
-      create :create_sales_return_item, :create
-      update :update_sales_return_item, :update
-    end
-
   end
 
   attributes do
@@ -60,7 +49,6 @@ defmodule UniboV4.Sales.ReturnItem do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:product_name, :description, :return_quantity, :return_price, :refund_amount, :return_reason, :return_type, :return_item_type_id, :status_id]

@@ -13,33 +13,11 @@ defmodule UniboV4.Marketing.Mailing do
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Marketing.Mailing.Notifier]
 
   postgres do
     table "marketing_mailings"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_mailing
-
-    queries do
-      get :get_marketing_mailing, :read
-      list :list_marketing_mailings, :read
-    end
-
-    mutations do
-      create :create_marketing_mailing, :create
-      update :update_marketing_mailing, :update
-      update :launch_marketing_mailing, :launch
-      update :schedule_marketing_mailing, :schedule
-      update :put_in_queue_marketing_mailing, :put_in_queue
-      update :cancel_marketing_mailing, :cancel
-      update :retry_failed_marketing_mailing, :retry_failed
-      update :send_winner_mailing_marketing_mailing, :send_winner_mailing
-    end
-
   end
 
   attributes do

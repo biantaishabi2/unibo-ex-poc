@@ -9,27 +9,11 @@ defmodule UniboV4.HR.ResumeLineType do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "hr_resume_line_types"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_resume_line_type
-
-    queries do
-      get :get_hr_resume_line_type, :read
-      list :list_hr_resume_line_types, :read
-    end
-
-    mutations do
-      create :create_hr_resume_line_type, :create
-      update :update_hr_resume_line_type, :update
-    end
-
   end
 
   attributes do

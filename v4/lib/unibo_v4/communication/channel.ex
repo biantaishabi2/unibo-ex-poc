@@ -11,28 +11,11 @@ defmodule UniboV4.Communication.Channel do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Communication,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "communication_channels"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :communication_channel
-
-    queries do
-      get :get_communication_channel, :read
-      list :list_communication_channels, :read
-    end
-
-    mutations do
-      create :create_communication_channel, :create
-      update :update_communication_channel, :update
-      update :archive_communication_channel, :archive
-    end
-
   end
 
   attributes do
@@ -60,7 +43,7 @@ defmodule UniboV4.Communication.Channel do
       default false
       public? true
     end
-    attribute :group_public_id, :string, public?: true
+    attribute :group_public_id, :uuid, public?: true
     attribute :group_ids, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
@@ -86,7 +69,7 @@ defmodule UniboV4.Communication.Channel do
       # TODO: 不支持的 action 内校验规则 applicable_only_when
       # TODO: 不支持的 action 内校验规则 applicable_only_when
       change relate_actor(:created_by)
-      change set_attribute(:group_public_id, :"base.group_user")
+      # skipped: set_attribute :group_public_id 引用外部数据 base.group_user
       # TODO: 不支持的 change effect generate
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

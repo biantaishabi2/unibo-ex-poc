@@ -9,27 +9,11 @@ defmodule UniboV4.Spreadsheet.Revision do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Spreadsheet,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "spreadsheet_revisions"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :spreadsheet_revision
-
-    queries do
-      get :get_spreadsheet_revision, :read
-      list :list_spreadsheet_revisions, :read
-    end
-
-    mutations do
-      create :create_apply_revision_spreadsheet_revision, :apply_revision
-      create :create_create_snapshot_spreadsheet_revision, :create_snapshot
-    end
-
   end
 
   attributes do
@@ -67,7 +51,7 @@ defmodule UniboV4.Spreadsheet.Revision do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :apply_revision do
       primary? true
       accept [:commands, :type]

@@ -14,7 +14,6 @@ defmodule UniboV4.Events.EventRegistration do
     otp_app: :unibo_v4,
     domain: UniboV4.Events,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Events.EventRegistration.Notifier]
 
   postgres do
@@ -22,29 +21,9 @@ defmodule UniboV4.Events.EventRegistration do
     repo UniboV4.Repo
   end
 
-  graphql do
-    type :events_event_registration
-
-    queries do
-      get :get_events_event_registration, :read
-      list :list_events_event_registrations, :read
-    end
-
-    mutations do
-      create :create_register_events_event_registration, :register
-      update :confirm_events_event_registration, :confirm
-      update :check_in_events_event_registration, :check_in
-      update :cancel_events_event_registration, :cancel
-    end
-
-  end
-
   attributes do
     uuid_primary_key :id
-    attribute :attendee_id, :string do
-      allow_nil? false
-      public? true
-    end
+    attribute :attendee_id, :uuid, public?: true
     attribute :role, :atom do
       allow_nil? false
       constraints one_of: [:attendee, :speaker, :organizer]
@@ -109,7 +88,6 @@ defmodule UniboV4.Events.EventRegistration do
       end
     end
     update :confirm do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

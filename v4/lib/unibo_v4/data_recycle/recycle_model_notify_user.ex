@@ -9,27 +9,11 @@ defmodule UniboV4.DataRecycle.RecycleModelNotifyUser do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.DataRecycle,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "data_recycle_recycle_model_notify_users"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :data_recycle_recycle_model_notify_user
-
-    queries do
-      get :get_data_recycle_recycle_model_notify_user, :read
-      list :list_data_recycle_recycle_model_notify_users, :read
-    end
-
-    mutations do
-      create :create_data_recycle_recycle_model_notify_user, :create
-      destroy :delete_data_recycle_recycle_model_notify_user, :destroy
-    end
-
   end
 
   attributes do
@@ -48,7 +32,7 @@ defmodule UniboV4.DataRecycle.RecycleModelNotifyUser do
   end
 
   actions do
-    defaults [:read, :destroy, :update]
+    defaults [:read, :destroy]
     create :create do
       primary? true
       accept []

@@ -11,29 +11,11 @@ defmodule UniboV4.POS.PosSession do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.POS,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "pos_sessions"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :pos_pos_session
-
-    queries do
-      get :get_pos_pos_session, :read
-      list :list_pos_pos_sessions, :read
-    end
-
-    mutations do
-      create :create_pos_pos_session, :create
-      update :open_pos_pos_session, :open
-      update :start_close_pos_pos_session, :start_close
-      update :close_pos_pos_session, :close
-    end
-
   end
 
   attributes do
@@ -101,7 +83,6 @@ defmodule UniboV4.POS.PosSession do
       end
     end
     update :open do
-      primary? true
       accept [:opening_balance]
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom :open_date (incompatible with bulk update atomic path)

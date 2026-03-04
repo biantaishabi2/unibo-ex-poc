@@ -17,32 +17,11 @@ defmodule UniboV4.Lunch.LunchOrder do
     otp_app: :unibo_v4,
     domain: UniboV4.Lunch,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Lunch.LunchOrder.Notifier]
 
   postgres do
     table "lunch_orders"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :lunch_lunch_order
-
-    queries do
-      get :get_lunch_lunch_order, :read
-      list :list_lunch_lunch_orders, :read
-    end
-
-    mutations do
-      create :create_lunch_lunch_order, :create
-      update :update_quantity_lunch_lunch_order, :update_quantity
-      update :action_order_lunch_lunch_order, :action_order
-      update :action_send_lunch_lunch_order, :action_send
-      update :action_confirm_lunch_lunch_order, :action_confirm
-      update :action_cancel_lunch_lunch_order, :action_cancel
-      update :action_reset_lunch_lunch_order, :action_reset
-    end
-
   end
 
   attributes do
@@ -94,14 +73,17 @@ defmodule UniboV4.Lunch.LunchOrder do
     many_to_many :topping_ids_1, UniboV4.Lunch.LunchTopping do
       public? true
       through UniboV4.Lunch.LunchOrderTopping1Link
+      destination_attribute_on_join_resource :topping_id
     end
     many_to_many :topping_ids_2, UniboV4.Lunch.LunchTopping do
       public? true
       through UniboV4.Lunch.LunchOrderTopping2Link
+      destination_attribute_on_join_resource :topping_id
     end
     many_to_many :topping_ids_3, UniboV4.Lunch.LunchTopping do
       public? true
       through UniboV4.Lunch.LunchOrderTopping3Link
+      destination_attribute_on_join_resource :topping_id
     end
   end
 
@@ -131,7 +113,6 @@ defmodule UniboV4.Lunch.LunchOrder do
       end
     end
     update :update_quantity do
-      primary? true
       accept [:quantity]
       # TODO: 不支持的 change effect deactivate_when_zero
       change fn changeset, _context ->

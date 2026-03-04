@@ -2,22 +2,11 @@ defmodule UniboV4.Documents.WorkflowRuleTagActionLink do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Documents,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "documents_workflow_rule_tag_action_links"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :documents_workflow_rule_tag_action_link
-
-    queries do
-      get :get_documents_workflow_rule_tag_action_link, :read
-      list :list_documents_workflow_rule_tag_action_links, :read
-    end
-
   end
 
   attributes do
@@ -36,7 +25,7 @@ defmodule UniboV4.Documents.WorkflowRuleTagActionLink do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

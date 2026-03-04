@@ -13,30 +13,11 @@ defmodule UniboV4.Events.EventBooth do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Events,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "events_event_booths"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :events_event_booth
-
-    queries do
-      get :get_events_event_booth, :read
-      list :list_events_event_booths, :read
-    end
-
-    mutations do
-      create :create_events_event_booth, :create
-      update :update_events_event_booth, :update
-      update :reserve_events_event_booth, :reserve
-      update :release_events_event_booth, :release
-      destroy :delete_events_event_booth, :destroy
-    end
-
   end
 
   attributes do
@@ -61,7 +42,7 @@ defmodule UniboV4.Events.EventBooth do
       default :available
       public? true
     end
-    attribute :tenant_id, :string, public?: true
+    attribute :tenant_id, :uuid, public?: true
     attribute :reserved_at, :utc_datetime, public?: true
     attribute :notes, :string, public?: true
     create_timestamp :inserted_at

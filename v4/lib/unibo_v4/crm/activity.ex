@@ -15,29 +15,11 @@ defmodule UniboV4.CRM.Activity do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.CRM,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "crm_activities"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :crm_activity
-
-    queries do
-      get :get_crm_activity, :read
-      list :list_crm_activitys, :read
-    end
-
-    mutations do
-      create :create_crm_activity, :create
-      update :update_crm_activity, :update
-      update :complete_crm_activity, :complete
-      update :cancel_crm_activity, :cancel
-    end
-
   end
 
   attributes do

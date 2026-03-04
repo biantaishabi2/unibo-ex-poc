@@ -2,22 +2,11 @@ defmodule UniboV4.Ecommerce.ProductTemplatePublicCategoryLink do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Ecommerce,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "ecommerce_product_template_public_category_links"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :ecommerce_product_template_public_category_link
-
-    queries do
-      get :get_ecommerce_product_template_public_category_link, :read
-      list :list_ecommerce_product_template_public_category_links, :read
-    end
-
   end
 
   attributes do
@@ -36,7 +25,7 @@ defmodule UniboV4.Ecommerce.ProductTemplatePublicCategoryLink do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

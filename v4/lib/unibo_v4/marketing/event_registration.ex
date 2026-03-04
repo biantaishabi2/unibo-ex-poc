@@ -16,30 +16,11 @@ defmodule UniboV4.Marketing.EventRegistration do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "marketing_event_registrations"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_event_registration
-
-    queries do
-      get :get_marketing_event_registration, :read
-      list :list_marketing_event_registrations, :read
-    end
-
-    mutations do
-      create :create_marketing_event_registration, :create
-      update :confirm_marketing_event_registration, :confirm
-      update :set_done_marketing_event_registration, :set_done
-      update :cancel_marketing_event_registration, :cancel
-      update :set_previous_state_marketing_event_registration, :set_previous_state
-    end
-
   end
 
   attributes do
@@ -105,7 +86,6 @@ defmodule UniboV4.Marketing.EventRegistration do
       end
     end
     update :confirm do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

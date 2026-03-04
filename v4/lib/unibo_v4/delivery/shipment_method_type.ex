@@ -11,28 +11,11 @@ defmodule UniboV4.Delivery.ShipmentMethodType do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Delivery,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "delivery_shipment_method_types"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :delivery_shipment_method_type
-
-    queries do
-      get :get_delivery_shipment_method_type, :read
-      list :list_delivery_shipment_method_types, :read
-    end
-
-    mutations do
-      create :create_delivery_shipment_method_type, :create
-      update :update_delivery_shipment_method_type, :update
-      destroy :delete_delivery_shipment_method_type, :destroy
-    end
-
   end
 
   attributes do

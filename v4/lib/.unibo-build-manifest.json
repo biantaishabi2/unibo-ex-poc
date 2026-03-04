@@ -4,7 +4,7 @@
   "domains": {
     "Accounting": {
       "input_hashes": {
-        "models/accounting/accounting.ubo.yaml": "sha256:244b3cdb4c179641dcc74bc4ed2b78bb762afd1fa2b8ec27beb98473f5c8fd55"
+        "/tmp/models-no-ofbiz/accounting/accounting.ubo.yaml": "sha256:244b3cdb4c179641dcc74bc4ed2b78bb762afd1fa2b8ec27beb98473f5c8fd55"
       },
       "output_files": [
         "unibo_v4/accounting/accounting.ex",
@@ -49,7 +49,7 @@
     },
     "Analytic": {
       "input_hashes": {
-        "models/analytic/analytic.ubo.yaml": "sha256:2f5bd4a1d52cc86a600ffd5e5d2c09ea25b16d1fdc4fcff8f55a909ab0b60c94"
+        "/tmp/models-no-ofbiz/analytic/analytic.ubo.yaml": "sha256:2f5bd4a1d52cc86a600ffd5e5d2c09ea25b16d1fdc4fcff8f55a909ab0b60c94"
       },
       "output_files": [
         "unibo_v4/analytic/analytic.ex",
@@ -78,7 +78,7 @@
     },
     "Approvals": {
       "input_hashes": {
-        "models/approvals/approvals.ubo.yaml": "sha256:528fc321ad9d7467b7ba9cc3757f866024e66f21863140cf822730f77d78f901"
+        "/tmp/models-no-ofbiz/approvals/approvals.ubo.yaml": "sha256:528fc321ad9d7467b7ba9cc3757f866024e66f21863140cf822730f77d78f901"
       },
       "output_files": [
         "unibo_v4/approvals/approval_category.ex",
@@ -105,7 +105,7 @@
     },
     "Barcode": {
       "input_hashes": {
-        "models/barcode/barcode.ubo.yaml": "sha256:b763a8a42743e692a3deb487adc764235faf36d8c8270efd278d8ba21b779f5b"
+        "/tmp/models-no-ofbiz/barcode/barcode.ubo.yaml": "sha256:b763a8a42743e692a3deb487adc764235faf36d8c8270efd278d8ba21b779f5b"
       },
       "output_files": [
         "unibo_v4/barcode/barcode.ex",
@@ -129,7 +129,7 @@
     },
     "Blog": {
       "input_hashes": {
-        "models/blog/blog.ubo.yaml": "sha256:1e402e4a0291de1028b0c258a76006d576106568c6ce6dfd2bcd00c9d11ef252"
+        "/tmp/models-no-ofbiz/blog/blog.ubo.yaml": "sha256:1e402e4a0291de1028b0c258a76006d576106568c6ce6dfd2bcd00c9d11ef252"
       },
       "output_files": [
         "unibo_v4/blog/blog.ex",
@@ -155,7 +155,7 @@
     },
     "CRM": {
       "input_hashes": {
-        "models/crm/crm.ubo.yaml": "sha256:3023431c59c1710d1e3ac79ee773a9c68380eba45d767982618b3f63c6bfc6e7"
+        "/tmp/models-no-ofbiz/crm/crm.ubo.yaml": "sha256:3023431c59c1710d1e3ac79ee773a9c68380eba45d767982618b3f63c6bfc6e7"
       },
       "output_files": [
         "unibo_v4/crm/activity.ex",
@@ -186,7 +186,7 @@
     },
     "Calendar": {
       "input_hashes": {
-        "models/calendar/calendar.ubo.yaml": "sha256:bcc5d0e60c27b389c45f2e7bb9d6d8b06714c2a99f3b1b575c7e024c91f8556b"
+        "/tmp/models-no-ofbiz/calendar/calendar.ubo.yaml": "sha256:bcc5d0e60c27b389c45f2e7bb9d6d8b06714c2a99f3b1b575c7e024c91f8556b"
       },
       "output_files": [
         "unibo_v4/calendar/attendee.ex",
@@ -219,7 +219,7 @@
     },
     "Communication": {
       "input_hashes": {
-        "models/communication/communication.ubo.yaml": "sha256:a10b8f5b6eafe005e73703ffac8a9aafce9aa7519025ee78c2ed9461efc43cae"
+        "/tmp/models-no-ofbiz/communication/communication.ubo.yaml": "sha256:a10b8f5b6eafe005e73703ffac8a9aafce9aa7519025ee78c2ed9461efc43cae"
       },
       "output_files": [
         "unibo_v4/communication/attachment.ex",
@@ -251,7 +251,7 @@
     },
     "Currency": {
       "input_hashes": {
-        "models/currency/currency.ubo.yaml": "sha256:fbcafefe2b0674d5c94cdbd18ff6b149e76cb2a900d0bf864509a7979f71fe45"
+        "/tmp/models-no-ofbiz/currency/currency.ubo.yaml": "sha256:fbcafefe2b0674d5c94cdbd18ff6b149e76cb2a900d0bf864509a7979f71fe45"
       },
       "output_files": [
         "unibo_v4/currency/currency.ex",
@@ -264,11 +264,14 @@
       "entity_count": 2,
       "notifier_count": 0,
       "has_policy_entities": false,
-      "subdomain": "finance"
+      "subdomain": "finance",
+      "cross_domain_refs": [
+        "Uom"
+      ]
     },
     "DataRecycle": {
       "input_hashes": {
-        "models/data_recycle/data_recycle.ubo.yaml": "sha256:e01161ab7a5c509b89a259e47001703f3c828303b4ebcc83d2f1b38ead664bea"
+        "/tmp/models-no-ofbiz/data_recycle/data_recycle.ubo.yaml": "sha256:e01161ab7a5c509b89a259e47001703f3c828303b4ebcc83d2f1b38ead664bea"
       },
       "output_files": [
         "unibo_v4/data_recycle/data_recycle.ex",
@@ -287,7 +290,7 @@
     },
     "Delivery": {
       "input_hashes": {
-        "models/delivery/delivery.ubo.yaml": "sha256:eb837e937de83b113bf15746d4a8c7ec7bd694994c3a197d8bc6a953b8f20e57"
+        "/tmp/models-no-ofbiz/delivery/delivery.ubo.yaml": "sha256:eb837e937de83b113bf15746d4a8c7ec7bd694994c3a197d8bc6a953b8f20e57"
       },
       "output_files": [
         "unibo_v4/delivery/carrier_shipment_method.ex",
@@ -331,7 +334,7 @@
     },
     "Documents": {
       "input_hashes": {
-        "models/documents/documents.ubo.yaml": "sha256:6a99d62405ed58859673b16f3fef184859ae3e187c25ed6054e50d5c96427586"
+        "/tmp/models-no-ofbiz/documents/documents.ubo.yaml": "sha256:6a99d62405ed58859673b16f3fef184859ae3e187c25ed6054e50d5c96427586"
       },
       "output_files": [
         "unibo_v4/documents/activity_type.ex",
@@ -376,7 +379,7 @@
     },
     "ELearning": {
       "input_hashes": {
-        "models/elearning/elearning.ubo.yaml": "sha256:1f9b4bbc433a15e45ede48801a59a4b298abd6678a1ee02a901a84dd0e05f1b6"
+        "/tmp/models-no-ofbiz/elearning/elearning.ubo.yaml": "sha256:1f9b4bbc433a15e45ede48801a59a4b298abd6678a1ee02a901a84dd0e05f1b6"
       },
       "output_files": [
         "unibo_v4/e_learning/course.ex",
@@ -400,7 +403,7 @@
     },
     "Ecommerce": {
       "input_hashes": {
-        "models/ecommerce/ecommerce.ubo.yaml": "sha256:d2ca8dfe865f59378ddcb56f2746c78cf7222aeff28f31e8c6244e618afca43b"
+        "/tmp/models-no-ofbiz/ecommerce/ecommerce.ubo.yaml": "sha256:d2ca8dfe865f59378ddcb56f2746c78cf7222aeff28f31e8c6244e618afca43b"
       },
       "output_files": [
         "unibo_v4/ecommerce/catalog.ex",
@@ -456,7 +459,7 @@
     },
     "Events": {
       "input_hashes": {
-        "models/events/events.ubo.yaml": "sha256:1163e15aeb364afbde388f23bb575ebbe02694938ba86c4a0e5c627d450ae6ad"
+        "/tmp/models-no-ofbiz/events/events.ubo.yaml": "sha256:1163e15aeb364afbde388f23bb575ebbe02694938ba86c4a0e5c627d450ae6ad"
       },
       "output_files": [
         "unibo_v4/events/event.ex",
@@ -487,7 +490,7 @@
     },
     "Expenses": {
       "input_hashes": {
-        "models/expenses/expenses.ubo.yaml": "sha256:0eb4eb7a764475278c99579c71e6e0541b7b5667a0d6d55c04c8b766da66b359"
+        "/tmp/models-no-ofbiz/expenses/expenses.ubo.yaml": "sha256:0eb4eb7a764475278c99579c71e6e0541b7b5667a0d6d55c04c8b766da66b359"
       },
       "output_files": [
         "unibo_v4/expenses/account.ex",
@@ -518,7 +521,7 @@
     },
     "Fleet": {
       "input_hashes": {
-        "models/fleet/fleet.ubo.yaml": "sha256:59ad075374841a0bbfe7d2bd96251616fe81897ab163137efb4a6988f0b76a83"
+        "/tmp/models-no-ofbiz/fleet/fleet.ubo.yaml": "sha256:59ad075374841a0bbfe7d2bd96251616fe81897ab163137efb4a6988f0b76a83"
       },
       "output_files": [
         "unibo_v4/fleet/driver.ex",
@@ -548,7 +551,7 @@
     },
     "Forum": {
       "input_hashes": {
-        "models/forum/forum.ubo.yaml": "sha256:95e42d8a559c5b84837de3ba248e2279590266ec5a3214645fd65caefe2a8eaa"
+        "/tmp/models-no-ofbiz/forum/forum.ubo.yaml": "sha256:95e42d8a559c5b84837de3ba248e2279590266ec5a3214645fd65caefe2a8eaa"
       },
       "output_files": [
         "unibo_v4/forum/forum.ex",
@@ -573,7 +576,7 @@
     },
     "Gamification": {
       "input_hashes": {
-        "models/gamification/gamification.ubo.yaml": "sha256:b7f1158c33045d5e2d6bcde21a3fb3effb43cf0ec8cc76354c5c09202a760402"
+        "/tmp/models-no-ofbiz/gamification/gamification.ubo.yaml": "sha256:b7f1158c33045d5e2d6bcde21a3fb3effb43cf0ec8cc76354c5c09202a760402"
       },
       "output_files": [
         "unibo_v4/gamification/badge.ex",
@@ -613,7 +616,7 @@
     },
     "HR": {
       "input_hashes": {
-        "models/hr/hr.ubo.yaml": "sha256:2a68500c3db8e50cf1c4b1d8651777f235b806fbdd893142940158af064df979"
+        "/tmp/models-no-ofbiz/hr/hr.ubo.yaml": "sha256:2a68500c3db8e50cf1c4b1d8651777f235b806fbdd893142940158af064df979"
       },
       "output_files": [
         "unibo_v4/hr/applicant_skill.ex",
@@ -688,7 +691,7 @@
     },
     "Helpdesk": {
       "input_hashes": {
-        "models/helpdesk/helpdesk.ubo.yaml": "sha256:0fb713b984fea26eb7db2002279e78a42bbc3c654f1d04956a14770ab086cca1"
+        "/tmp/models-no-ofbiz/helpdesk/helpdesk.ubo.yaml": "sha256:0fb713b984fea26eb7db2002279e78a42bbc3c654f1d04956a14770ab086cca1"
       },
       "output_files": [
         "unibo_v4/helpdesk/appointment.ex",
@@ -736,7 +739,7 @@
     },
     "Inventory": {
       "input_hashes": {
-        "models/inventory/inventory.ubo.yaml": "sha256:4409d9c5aef88c1c370bd99460f6d0ebb386a84a88f6dd55444b841625f38c77"
+        "/tmp/models-no-ofbiz/inventory/inventory.ubo.yaml": "sha256:4409d9c5aef88c1c370bd99460f6d0ebb386a84a88f6dd55444b841625f38c77"
       },
       "output_files": [
         "unibo_v4/inventory/inventory.ex",
@@ -784,7 +787,7 @@
     },
     "IoT": {
       "input_hashes": {
-        "models/iot/iot.ubo.yaml": "sha256:1ae66184284942b7955f6669703bb47a4f9fc203f2d8e4a0d520e06ce020d44d"
+        "/tmp/models-no-ofbiz/iot/iot.ubo.yaml": "sha256:1ae66184284942b7955f6669703bb47a4f9fc203f2d8e4a0d520e06ce020d44d"
       },
       "output_files": [
         "unibo_v4/io_t/call_queue.ex",
@@ -820,7 +823,7 @@
     },
     "Knowledge": {
       "input_hashes": {
-        "models/knowledge/knowledge.ubo.yaml": "sha256:ae019d0a0f3547d864f98c9ee8fa0d36454170e1ebfe308f256ea5c6df52f989"
+        "/tmp/models-no-ofbiz/knowledge/knowledge.ubo.yaml": "sha256:ae019d0a0f3547d864f98c9ee8fa0d36454170e1ebfe308f256ea5c6df52f989"
       },
       "output_files": [
         "unibo_v4/knowledge/article.ex",
@@ -844,34 +847,9 @@
       "has_policy_entities": true,
       "subdomain": "knowledge"
     },
-    "LiveChat": {
-      "input_hashes": {
-        "models/livechat/livechat.ubo.yaml": "sha256:71959df67619236b967c142bfc89511b83231bf6ecabc04a14f6837fd25abd4d"
-      },
-      "output_files": [
-        "unibo_v4/live_chat/channel_rule.ex",
-        "unibo_v4/live_chat/channel_rule_country_link.ex",
-        "unibo_v4/live_chat/chat_session.ex",
-        "unibo_v4/live_chat/chat_session_notifier.ex",
-        "unibo_v4/live_chat/chatbot_script.ex",
-        "unibo_v4/live_chat/chatbot_script_step.ex",
-        "unibo_v4/live_chat/country.ex",
-        "unibo_v4/live_chat/live_chat.ex",
-        "unibo_v4/live_chat/live_chat_channel.ex",
-        "unibo_v4/live_chat/live_chat_channel_user_link.ex",
-        "unibo_v4/live_chat/user.ex",
-        "unibo_v4/live_chat/workflows/channel_rule_channel_rule_maintain_flow.ex",
-        "unibo_v4/live_chat/workflows/chat_session_chat_session_lifecycle.ex",
-        "unibo_v4/live_chat/workflows/live_chat_channel_livechat_channel_maintain_flow.ex"
-      ],
-      "entity_count": 9,
-      "notifier_count": 1,
-      "has_policy_entities": false,
-      "subdomain": "marketing"
-    },
     "Loyalty": {
       "input_hashes": {
-        "models/loyalty/loyalty.ubo.yaml": "sha256:037916edd2bd39e9cb7008fd7f0e252c4c03209f2bd9f8f4e6785bf80bb75738"
+        "/tmp/models-no-ofbiz/loyalty/loyalty.ubo.yaml": "sha256:037916edd2bd39e9cb7008fd7f0e252c4c03209f2bd9f8f4e6785bf80bb75738"
       },
       "output_files": [
         "unibo_v4/loyalty/coupon.ex",
@@ -909,7 +887,7 @@
     },
     "Lunch": {
       "input_hashes": {
-        "models/lunch/lunch.ubo.yaml": "sha256:d6927b88d911ced6546ebadb8107f6c2254e8cb434a6b297191ea6feca3e2a11"
+        "/tmp/models-no-ofbiz/lunch/lunch.ubo.yaml": "sha256:d6927b88d911ced6546ebadb8107f6c2254e8cb434a6b297191ea6feca3e2a11"
       },
       "output_files": [
         "unibo_v4/lunch/lunch.ex",
@@ -945,7 +923,7 @@
     },
     "Maintenance": {
       "input_hashes": {
-        "models/maintenance/maintenance.ubo.yaml": "sha256:09d89d306ab95bbd0c1ca229eb119b898ffd5a173157e733c6c8af397c66c0e3"
+        "/tmp/models-no-ofbiz/maintenance/maintenance.ubo.yaml": "sha256:09d89d306ab95bbd0c1ca229eb119b898ffd5a173157e733c6c8af397c66c0e3"
       },
       "output_files": [
         "unibo_v4/maintenance/assignment_log.ex",
@@ -1005,7 +983,7 @@
     },
     "Manufacturing": {
       "input_hashes": {
-        "models/manufacturing/manufacturing.ubo.yaml": "sha256:0d70b33ea8f1aea5aee7edac91bdbe9c5841e7102a3a422a19db0295663206f7"
+        "/tmp/models-no-ofbiz/manufacturing/manufacturing.ubo.yaml": "sha256:0d70b33ea8f1aea5aee7edac91bdbe9c5841e7102a3a422a19db0295663206f7"
       },
       "output_files": [
         "unibo_v4/manufacturing/bill_of_materials.ex",
@@ -1040,7 +1018,7 @@
     },
     "Marketing": {
       "input_hashes": {
-        "models/marketing/marketing.ubo.yaml": "sha256:b48a4be675a6f0787f7a492903c0f869c2581daf011e68a24db8bcf1449c1303"
+        "/tmp/models-no-ofbiz/marketing/marketing.ubo.yaml": "sha256:b48a4be675a6f0787f7a492903c0f869c2581daf011e68a24db8bcf1449c1303"
       },
       "output_files": [
         "unibo_v4/marketing/automation_activity.ex",
@@ -1120,7 +1098,7 @@
     },
     "Membership": {
       "input_hashes": {
-        "models/membership/membership.ubo.yaml": "sha256:b71b0db392ca537ac14e47fb086eba5001fdd0c2631ed6ce36d74238d3681de1"
+        "/tmp/models-no-ofbiz/membership/membership.ubo.yaml": "sha256:b71b0db392ca537ac14e47fb086eba5001fdd0c2631ed6ce36d74238d3681de1"
       },
       "output_files": [
         "unibo_v4/membership/membership.ex",
@@ -1140,7 +1118,7 @@
     },
     "PLM": {
       "input_hashes": {
-        "models/plm/plm.ubo.yaml": "sha256:18f58515a6fed151a4bd7571265297c3ba68eec69795fadf9f312229d7cce836"
+        "/tmp/models-no-ofbiz/plm/plm.ubo.yaml": "sha256:18f58515a6fed151a4bd7571265297c3ba68eec69795fadf9f312229d7cce836"
       },
       "output_files": [
         "unibo_v4/plm/bom_revision.ex",
@@ -1174,7 +1152,7 @@
     },
     "POS": {
       "input_hashes": {
-        "models/pos/pos.ubo.yaml": "sha256:388cb13d962b759bbba3c848ccfc24a2d11a1991d182969d803cfd57a84ed440"
+        "/tmp/models-no-ofbiz/pos/pos.ubo.yaml": "sha256:388cb13d962b759bbba3c848ccfc24a2d11a1991d182969d803cfd57a84ed440"
       },
       "output_files": [
         "unibo_v4/pos/currency.ex",
@@ -1208,7 +1186,7 @@
     },
     "Payment": {
       "input_hashes": {
-        "models/payment/payment.ubo.yaml": "sha256:d86a98444a502cfb8fe6e5a5814216f505b9bb7e7d48cd554730c08710d8df38"
+        "/tmp/models-no-ofbiz/payment/payment.ubo.yaml": "sha256:d86a98444a502cfb8fe6e5a5814216f505b9bb7e7d48cd554730c08710d8df38"
       },
       "output_files": [
         "unibo_v4/payment/invoice.ex",
@@ -1240,7 +1218,7 @@
     },
     "Project": {
       "input_hashes": {
-        "models/project/project.ubo.yaml": "sha256:cce72eff3f2ff4aa34282631e86c7bc7d0248df324812c5aad5bdd84308cab58"
+        "/tmp/models-no-ofbiz/project/project.ubo.yaml": "sha256:cce72eff3f2ff4aa34282631e86c7bc7d0248df324812c5aad5bdd84308cab58"
       },
       "output_files": [
         "unibo_v4/project/employee.ex",
@@ -1284,7 +1262,7 @@
     },
     "Purchasing": {
       "input_hashes": {
-        "models/purchasing/purchasing.ubo.yaml": "sha256:4b07c493f684020965ab46b2ff0b5f312b19711e477a1e4c4194999634e2543a"
+        "/tmp/models-no-ofbiz/purchasing/purchasing.ubo.yaml": "sha256:4b07c493f684020965ab46b2ff0b5f312b19711e477a1e4c4194999634e2543a"
       },
       "output_files": [
         "unibo_v4/purchasing/account_move.ex",
@@ -1327,46 +1305,9 @@
       "has_policy_entities": true,
       "subdomain": "purchasing"
     },
-    "Quality": {
-      "input_hashes": {
-        "models/quality/quality.ubo.yaml": "sha256:f18870161d68dcd35b1dd067d721f743990f7d8e86c132532069e6c1a51d3c3c"
-      },
-      "output_files": [
-        "unibo_v4/quality/company.ex",
-        "unibo_v4/quality/lot.ex",
-        "unibo_v4/quality/maintenance_request.ex",
-        "unibo_v4/quality/partner.ex",
-        "unibo_v4/quality/product.ex",
-        "unibo_v4/quality/quality.ex",
-        "unibo_v4/quality/quality_alert.ex",
-        "unibo_v4/quality/quality_alert_notifier.ex",
-        "unibo_v4/quality/quality_check.ex",
-        "unibo_v4/quality/quality_check_notifier.ex",
-        "unibo_v4/quality/quality_point.ex",
-        "unibo_v4/quality/quality_point_product_link.ex",
-        "unibo_v4/quality/quality_reason.ex",
-        "unibo_v4/quality/quality_tag.ex",
-        "unibo_v4/quality/quality_team.ex",
-        "unibo_v4/quality/quality_team_member_link.ex",
-        "unibo_v4/quality/user.ex",
-        "unibo_v4/quality/work_order_operation.ex",
-        "unibo_v4/quality/workcenter.ex",
-        "unibo_v4/quality/workflows/quality_alert_alert_lifecycle.ex",
-        "unibo_v4/quality/workflows/quality_check_quality_check_lifecycle.ex",
-        "unibo_v4/quality/workflows/quality_point_quality_point_lifecycle.ex",
-        "unibo_v4/quality/workflows/quality_reason_quality_reason_maintain_flow.ex",
-        "unibo_v4/quality/workflows/quality_tag_quality_tag_maintain_flow.ex",
-        "unibo_v4/quality/workflows/quality_team_quality_team_maintain_flow.ex",
-        "unibo_v4/quality/worksheet_template.ex"
-      ],
-      "entity_count": 17,
-      "notifier_count": 2,
-      "has_policy_entities": false,
-      "subdomain": "production"
-    },
     "Rating": {
       "input_hashes": {
-        "models/rating/rating.ubo.yaml": "sha256:81c88138a3f409375bd9a222441b30b4b6e350051ca917dce8e8f90b3241883a"
+        "/tmp/models-no-ofbiz/rating/rating.ubo.yaml": "sha256:81c88138a3f409375bd9a222441b30b4b6e350051ca917dce8e8f90b3241883a"
       },
       "output_files": [
         "unibo_v4/rating/rating.ex",
@@ -1390,7 +1331,7 @@
     },
     "Rental": {
       "input_hashes": {
-        "models/rental/rental.ubo.yaml": "sha256:075c9b9b95edf9e097e7fac8ef82a664f0b1381fa70147b442b232135c8f83b9"
+        "/tmp/models-no-ofbiz/rental/rental.ubo.yaml": "sha256:075c9b9b95edf9e097e7fac8ef82a664f0b1381fa70147b442b232135c8f83b9"
       },
       "output_files": [
         "unibo_v4/rental/customer.ex",
@@ -1416,7 +1357,7 @@
     },
     "Repair": {
       "input_hashes": {
-        "models/repair/repair.ubo.yaml": "sha256:516f554459a024bc3da95ab1e0d05d80b625b22faf131d2360b043a04dd9a85c"
+        "/tmp/models-no-ofbiz/repair/repair.ubo.yaml": "sha256:516f554459a024bc3da95ab1e0d05d80b625b22faf131d2360b043a04dd9a85c"
       },
       "output_files": [
         "unibo_v4/repair/repair.ex",
@@ -1439,7 +1380,7 @@
     },
     "Sales": {
       "input_hashes": {
-        "models/sales/sales.ubo.yaml": "sha256:60c9c17ab759c0808430347335d67d7bc25e494fb0deca7d3c0202210bc8a4cb"
+        "/tmp/models-no-ofbiz/sales/sales.ubo.yaml": "sha256:60c9c17ab759c0808430347335d67d7bc25e494fb0deca7d3c0202210bc8a4cb"
       },
       "output_files": [
         "unibo_v4/sales/customer.ex",
@@ -1481,7 +1422,7 @@
     },
     "Sign": {
       "input_hashes": {
-        "models/sign/sign.ubo.yaml": "sha256:6e13546ae0a69cc038f6fcbf95c74c0c5eb28d3794d14f3721becc0320a428ed"
+        "/tmp/models-no-ofbiz/sign/sign.ubo.yaml": "sha256:6e13546ae0a69cc038f6fcbf95c74c0c5eb28d3794d14f3721becc0320a428ed"
       },
       "output_files": [
         "unibo_v4/sign/sign.ex",
@@ -1507,7 +1448,7 @@
     },
     "Spreadsheet": {
       "input_hashes": {
-        "models/spreadsheet/spreadsheet.ubo.yaml": "sha256:e08b1de2e005d752f5b9ff9dab04eb101f6d3689e0d66dd2b364458409e1744f"
+        "/tmp/models-no-ofbiz/spreadsheet/spreadsheet.ubo.yaml": "sha256:e08b1de2e005d752f5b9ff9dab04eb101f6d3689e0d66dd2b364458409e1744f"
       },
       "output_files": [
         "unibo_v4/spreadsheet/data_source.ex",
@@ -1528,7 +1469,7 @@
     },
     "Studio": {
       "input_hashes": {
-        "models/studio/studio.ubo.yaml": "sha256:c5bfd15753e9b534be69f419b55497dfba5f7fdcb74cfdd9571c8e4da2e74e52"
+        "/tmp/models-no-ofbiz/studio/studio.ubo.yaml": "sha256:c5bfd15753e9b534be69f419b55497dfba5f7fdcb74cfdd9571c8e4da2e74e52"
       },
       "output_files": [
         "unibo_v4/studio/app.ex",
@@ -1552,7 +1493,7 @@
     },
     "Subscriptions": {
       "input_hashes": {
-        "models/subscriptions/subscriptions.ubo.yaml": "sha256:114f9af7ee026ad26ce8a87258ea263a373fddef01ab96e2d5d3d4a55f92025b"
+        "/tmp/models-no-ofbiz/subscriptions/subscriptions.ubo.yaml": "sha256:114f9af7ee026ad26ce8a87258ea263a373fddef01ab96e2d5d3d4a55f92025b"
       },
       "output_files": [
         "unibo_v4/subscriptions/close_reason.ex",
@@ -1589,7 +1530,7 @@
     },
     "Survey": {
       "input_hashes": {
-        "models/survey/survey.ubo.yaml": "sha256:1899c342938ac8e003c9f997c396f8ff5bde938aacc4bd91bbcb320e1caa2fb4"
+        "/tmp/models-no-ofbiz/survey/survey.ubo.yaml": "sha256:1899c342938ac8e003c9f997c396f8ff5bde938aacc4bd91bbcb320e1caa2fb4"
       },
       "output_files": [
         "unibo_v4/survey/answer.ex",
@@ -1616,7 +1557,7 @@
     },
     "Uom": {
       "input_hashes": {
-        "models/uom/uom.ubo.yaml": "sha256:e2a008e339d3da2f2fa36a1035f141bce4fc0509f9f34b0ca15820941f518c68"
+        "/tmp/models-no-ofbiz/uom/uom.ubo.yaml": "sha256:e2a008e339d3da2f2fa36a1035f141bce4fc0509f9f34b0ca15820941f518c68"
       },
       "output_files": [
         "unibo_v4/uom/uom.ex",

@@ -9,22 +9,11 @@ defmodule UniboV4.POS.PosOrderLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.POS,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "pos_order_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :pos_pos_order_line
-
-    mutations do
-      create :create_pos_pos_order_line, :create
-      update :update_pos_pos_order_line, :update
-    end
-
   end
 
   attributes do
@@ -77,7 +66,6 @@ defmodule UniboV4.POS.PosOrderLine do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:product_name, :product_code, :quantity, :unit_price, :discount, :tax_ids, :cost_price, :note, :lot_name]

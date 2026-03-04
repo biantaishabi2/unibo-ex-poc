@@ -16,31 +16,11 @@ defmodule UniboV4.Marketing.Event do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "marketing_events"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_event
-
-    queries do
-      get :get_marketing_event, :read
-      list :list_marketing_events, :read
-    end
-
-    mutations do
-      create :create_marketing_event, :create
-      update :update_marketing_event, :update
-      update :publish_marketing_event, :publish
-      update :complete_marketing_event, :complete
-      update :cancel_marketing_event, :cancel
-      update :set_done_marketing_event, :set_done
-    end
-
   end
 
   attributes do

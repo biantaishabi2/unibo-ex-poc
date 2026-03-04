@@ -16,29 +16,11 @@ defmodule UniboV4.Barcode.BarcodeMapping do
     otp_app: :unibo_v4,
     domain: UniboV4.Barcode,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Barcode.BarcodeMapping.Notifier]
 
   postgres do
     table "barcode_mappings"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :barcode_barcode_mapping
-
-    queries do
-      get :get_barcode_barcode_mapping, :read
-      list :list_barcode_barcode_mappings, :read
-    end
-
-    mutations do
-      create :create_register_barcode_barcode_mapping, :register
-      update :update_barcode_barcode_mapping, :update
-      update :deactivate_barcode_barcode_mapping, :deactivate
-      destroy :delete_barcode_barcode_mapping, :destroy
-    end
-
   end
 
   attributes do

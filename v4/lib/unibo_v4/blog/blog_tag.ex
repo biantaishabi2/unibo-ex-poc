@@ -2,22 +2,11 @@ defmodule UniboV4.Blog.BlogTag do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Blog,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "blog_tags"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :blog_blog_tag
-
-    queries do
-      get :get_blog_blog_tag, :read
-      list :list_blog_blog_tags, :read
-    end
-
   end
 
   attributes do
@@ -32,7 +21,7 @@ defmodule UniboV4.Blog.BlogTag do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

@@ -10,28 +10,11 @@ defmodule UniboV4.Gamification.ChallengeLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Gamification,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "gamification_challenge_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :gamification_challenge_line
-
-    queries do
-      get :get_gamification_challenge_line, :read
-      list :list_gamification_challenge_lines, :read
-    end
-
-    mutations do
-      create :create_gamification_challenge_line, :create
-      update :update_gamification_challenge_line, :update
-      destroy :delete_gamification_challenge_line, :destroy
-    end
-
   end
 
   attributes do

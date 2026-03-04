@@ -22,30 +22,11 @@ defmodule UniboV4.DataRecycle.RecycleModel do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.DataRecycle,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "data_recycle_recycle_models"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :data_recycle_recycle_model
-
-    queries do
-      get :get_data_recycle_recycle_model, :read
-      list :list_data_recycle_recycle_models, :read
-    end
-
-    mutations do
-      create :create_data_recycle_recycle_model, :create
-      update :update_data_recycle_recycle_model, :update
-      update :recycle_records_action_data_recycle_recycle_model, :recycle_records_action
-      update :cron_recycle_data_recycle_recycle_model, :cron_recycle
-      destroy :delete_data_recycle_recycle_model, :destroy
-    end
-
   end
 
   attributes do
@@ -116,6 +97,7 @@ defmodule UniboV4.DataRecycle.RecycleModel do
     many_to_many :notify_users, UniboV4.DataRecycle.ResUser do
       public? true
       through UniboV4.DataRecycle.RecycleModelNotifyUser
+      destination_attribute_on_join_resource :user_id
     end
   end
 

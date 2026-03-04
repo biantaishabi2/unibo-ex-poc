@@ -36,32 +36,11 @@ defmodule UniboV4.Ecommerce.ShoppingCart do
     otp_app: :unibo_v4,
     domain: UniboV4.Ecommerce,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Ecommerce.ShoppingCart.Notifier]
 
   postgres do
     table "ecommerce_shopping_carts"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :ecommerce_shopping_cart
-
-    queries do
-      get :get_ecommerce_shopping_cart, :read
-      list :list_ecommerce_shopping_carts, :read
-    end
-
-    mutations do
-      create :create_ecommerce_shopping_cart, :create
-      update :update_ecommerce_shopping_cart, :update
-      update :convert_ecommerce_shopping_cart, :convert
-      update :cart_update_ecommerce_shopping_cart, :cart_update
-      update :recover_ecommerce_shopping_cart, :recover
-      update :update_pricelist_ecommerce_shopping_cart, :update_pricelist
-      update :select_carrier_ecommerce_shopping_cart, :select_carrier
-    end
-
   end
 
   attributes do

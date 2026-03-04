@@ -11,28 +11,11 @@ defmodule UniboV4.Currency.CurrencyRate do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Currency,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "currency_rates"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :currency_currency_rate
-
-    queries do
-      get :get_currency_currency_rate, :read
-      list :list_currency_currency_rates, :read
-    end
-
-    mutations do
-      create :create_currency_currency_rate, :create
-      update :update_currency_currency_rate, :update
-      destroy :delete_currency_currency_rate, :destroy
-    end
-
   end
 
   attributes do

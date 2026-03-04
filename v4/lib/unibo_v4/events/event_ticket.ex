@@ -13,29 +13,11 @@ defmodule UniboV4.Events.EventTicket do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Events,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "events_event_tickets"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :events_event_ticket
-
-    queries do
-      get :get_events_event_ticket, :read
-      list :list_events_event_tickets, :read
-    end
-
-    mutations do
-      create :create_events_event_ticket, :create
-      update :update_events_event_ticket, :update
-      update :close_sales_events_event_ticket, :close_sales
-      destroy :delete_events_event_ticket, :destroy
-    end
-
   end
 
   attributes do

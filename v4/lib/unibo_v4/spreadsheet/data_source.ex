@@ -11,28 +11,11 @@ defmodule UniboV4.Spreadsheet.DataSource do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Spreadsheet,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "spreadsheet_data_sources"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :spreadsheet_data_source
-
-    queries do
-      get :get_spreadsheet_data_source, :read
-      list :list_spreadsheet_data_sources, :read
-    end
-
-    mutations do
-      create :create_spreadsheet_data_source, :create
-      update :update_spreadsheet_data_source, :update
-      destroy :delete_spreadsheet_data_source, :destroy
-    end
-
   end
 
   attributes do

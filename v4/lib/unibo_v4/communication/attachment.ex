@@ -2,22 +2,11 @@ defmodule UniboV4.Communication.Attachment do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Communication,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "communication_attachments"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :communication_attachment
-
-    queries do
-      get :get_communication_attachment, :read
-      list :list_communication_attachments, :read
-    end
-
   end
 
   attributes do
@@ -32,7 +21,7 @@ defmodule UniboV4.Communication.Attachment do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

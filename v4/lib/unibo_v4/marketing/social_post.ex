@@ -16,30 +16,11 @@ defmodule UniboV4.Marketing.SocialPost do
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Marketing.SocialPost.Notifier]
 
   postgres do
     table "marketing_social_posts"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_social_post
-
-    queries do
-      get :get_marketing_social_post, :read
-      list :list_marketing_social_posts, :read
-    end
-
-    mutations do
-      create :create_marketing_social_post, :create
-      update :update_marketing_social_post, :update
-      update :publish_now_marketing_social_post, :publish_now
-      update :schedule_marketing_social_post, :schedule
-      update :sync_stats_marketing_social_post, :sync_stats
-    end
-
   end
 
   attributes do

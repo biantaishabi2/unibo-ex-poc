@@ -2,22 +2,11 @@ defmodule UniboV4.Analytic.Company do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Analytic,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "analytic_companies"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :analytic_company
-
-    queries do
-      get :get_analytic_company, :read
-      list :list_analytic_companys, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Analytic.Company do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

@@ -19,31 +19,11 @@ defmodule UniboV4.Gamification.Goal do
     otp_app: :unibo_v4,
     domain: UniboV4.Gamification,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Gamification.Goal.Notifier]
 
   postgres do
     table "gamification_goals"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :gamification_goal
-
-    queries do
-      get :get_gamification_goal, :read
-      list :list_gamification_goals, :read
-    end
-
-    mutations do
-      create :create_gamification_goal, :create
-      update :update_gamification_goal, :update
-      update :action_start_gamification_goal, :action_start
-      update :action_reach_gamification_goal, :action_reach
-      update :action_fail_gamification_goal, :action_fail
-      update :action_cancel_gamification_goal, :action_cancel
-    end
-
   end
 
   attributes do

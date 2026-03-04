@@ -14,31 +14,11 @@ defmodule UniboV4.IoT.VoIPCall do
     otp_app: :unibo_v4,
     domain: UniboV4.IoT,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.IoT.VoIPCall.Notifier]
 
   postgres do
     table "io_t_vo_ip_calls"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :io_t_vo_ip_call
-
-    queries do
-      get :get_io_t_vo_ip_call, :read
-      list :list_io_t_vo_ip_calls, :read
-    end
-
-    mutations do
-      create :create_io_t_vo_ip_call, :create
-      update :answer_io_t_vo_ip_call, :answer
-      update :end_call_io_t_vo_ip_call, :end_call
-      update :miss_io_t_vo_ip_call, :miss
-      update :to_voicemail_io_t_vo_ip_call, :to_voicemail
-      update :add_note_io_t_vo_ip_call, :add_note
-    end
-
   end
 
   attributes do
@@ -134,7 +114,7 @@ defmodule UniboV4.IoT.VoIPCall do
     create :create do
       primary? true
       accept [:caller, :callee, :direction, :sip_call_id]
-      argument :org_id, :uuid, allow_nil?: false
+      argument :org_id, :integer, allow_nil?: false
       change manage_relationship(:org_id, :org, type: :append, on_lookup: :relate)
       validate present(:caller)
       validate present(:callee)
@@ -149,7 +129,6 @@ defmodule UniboV4.IoT.VoIPCall do
       end
     end
     update :answer do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)
@@ -186,7 +165,7 @@ defmodule UniboV4.IoT.VoIPCall do
       # message: "只有振铃或通话中的通话可以结束"
       change set_attribute(:state, :completed)
       change set_attribute(:end_time, &DateTime.utc_now/0)
-      # TODO: 跨实体聚合表达式暂不支持
+      # skipped: set_attribute :duration 是 calculation
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

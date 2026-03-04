@@ -10,27 +10,11 @@ defmodule UniboV4.Loyalty.LoyaltyTransaction do
     otp_app: :unibo_v4,
     domain: UniboV4.Loyalty,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Loyalty.LoyaltyTransaction.Notifier]
 
   postgres do
     table "loyalty_transactions"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :loyalty_loyalty_transaction
-
-    queries do
-      get :get_loyalty_loyalty_transaction, :read
-      list :list_loyalty_loyalty_transactions, :read
-    end
-
-    mutations do
-      create :create_loyalty_loyalty_transaction, :create
-      update :cancel_transaction_loyalty_loyalty_transaction, :cancel_transaction
-    end
-
   end
 
   attributes do
@@ -94,7 +78,6 @@ defmodule UniboV4.Loyalty.LoyaltyTransaction do
       end
     end
     update :cancel_transaction do
-      primary? true
       accept [:note]
       change set_attribute(:lifecycle_status, :cancelled)
       change fn changeset, _context ->

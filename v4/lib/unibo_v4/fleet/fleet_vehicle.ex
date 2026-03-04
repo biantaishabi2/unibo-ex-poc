@@ -12,28 +12,11 @@ defmodule UniboV4.Fleet.FleetVehicle do
     otp_app: :unibo_v4,
     domain: UniboV4.Fleet,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Fleet.FleetVehicle.Notifier]
 
   postgres do
     table "fleet_vehicles"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :fleet_fleet_vehicle
-
-    queries do
-      get :get_fleet_fleet_vehicle, :read
-      list :list_fleet_fleet_vehicles, :read
-    end
-
-    mutations do
-      create :create_fleet_fleet_vehicle, :create
-      update :update_fleet_fleet_vehicle, :update
-      update :decommission_fleet_fleet_vehicle, :decommission
-    end
-
   end
 
   attributes do

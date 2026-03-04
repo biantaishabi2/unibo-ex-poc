@@ -12,28 +12,11 @@ defmodule UniboV4.Subscriptions.SubscriptionOrderLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Subscriptions,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "subscriptions_subscription_order_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :subscriptions_subscription_order_line
-
-    queries do
-      get :get_subscriptions_subscription_order_line, :read
-      list :list_subscriptions_subscription_order_lines, :read
-    end
-
-    mutations do
-      create :create_subscriptions_subscription_order_line, :create
-      update :update_subscriptions_subscription_order_line, :update
-      destroy :delete_subscriptions_subscription_order_line, :destroy
-    end
-
   end
 
   attributes do
@@ -79,6 +62,7 @@ defmodule UniboV4.Subscriptions.SubscriptionOrderLine do
     many_to_many :tax_ids, UniboV4.Subscriptions.Tax do
       public? true
       through UniboV4.Subscriptions.SubscriptionOrderLineTaxLink
+      source_attribute_on_join_resource :order_line_id
     end
   end
 
@@ -91,17 +75,7 @@ defmodule UniboV4.Subscriptions.SubscriptionOrderLine do
       argument :order_id, :uuid, allow_nil?: false
       change manage_relationship(:order_id, :order, type: :append, on_lookup: :relate)
       change manage_relationship(:product_id, :product, type: :append, on_lookup: :relate)
-      change fn changeset, _context ->
-        quantity = Ash.Changeset.get_attribute(changeset, :quantity)
-        price_unit = Ash.Changeset.get_attribute(changeset, :price_unit)
-        discount = Ash.Changeset.get_attribute(changeset, :discount)
-
-        if quantity && price_unit && discount do
-          Ash.Changeset.force_change_attribute(changeset, :price_subtotal, Decimal.mult(quantity, Decimal.mult(price_unit, Decimal.sub(1, Decimal.div(discount, 100)))))
-        else
-          changeset
-        end
-      end
+      # skipped: set_attribute :price_subtotal 是 calculation
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -115,17 +89,7 @@ defmodule UniboV4.Subscriptions.SubscriptionOrderLine do
     update :update do
       primary? true
       accept [:quantity, :price_unit, :discount]
-      change fn changeset, _context ->
-        quantity = Ash.Changeset.get_attribute(changeset, :quantity)
-        price_unit = Ash.Changeset.get_attribute(changeset, :price_unit)
-        discount = Ash.Changeset.get_attribute(changeset, :discount)
-
-        if quantity && price_unit && discount do
-          Ash.Changeset.force_change_attribute(changeset, :price_subtotal, Decimal.mult(quantity, Decimal.mult(price_unit, Decimal.sub(1, Decimal.div(discount, 100)))))
-        else
-          changeset
-        end
-      end
+      # skipped: set_attribute :price_subtotal 是 calculation
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

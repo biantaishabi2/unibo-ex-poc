@@ -2,22 +2,11 @@ defmodule UniboV4.Helpdesk.HelpdeskTag do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Helpdesk,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "helpdesk_tags"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :helpdesk_helpdesk_tag
-
-    queries do
-      get :get_helpdesk_helpdesk_tag, :read
-      list :list_helpdesk_helpdesk_tags, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Helpdesk.HelpdeskTag do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

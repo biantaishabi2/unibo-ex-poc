@@ -2,22 +2,11 @@ defmodule UniboV4.Expenses.Employee do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Expenses,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "expenses_employees"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :expenses_employee
-
-    queries do
-      get :get_expenses_employee, :read
-      list :list_expenses_employees, :read
-    end
-
   end
 
   attributes do
@@ -27,7 +16,7 @@ defmodule UniboV4.Expenses.Employee do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

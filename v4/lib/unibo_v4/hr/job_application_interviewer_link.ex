@@ -2,22 +2,11 @@ defmodule UniboV4.HR.JobApplicationInterviewerLink do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "hr_job_application_interviewer_links"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_job_application_interviewer_link
-
-    queries do
-      get :get_hr_job_application_interviewer_link, :read
-      list :list_hr_job_application_interviewer_links, :read
-    end
-
   end
 
   attributes do
@@ -36,7 +25,7 @@ defmodule UniboV4.HR.JobApplicationInterviewerLink do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

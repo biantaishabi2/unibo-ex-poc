@@ -2,22 +2,11 @@ defmodule UniboV4.Survey.Partner do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Survey,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "survey_partners"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :survey_partner
-
-    queries do
-      get :get_survey_partner, :read
-      list :list_survey_partners, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Survey.Partner do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

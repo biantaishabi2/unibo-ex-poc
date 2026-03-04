@@ -11,28 +11,11 @@ defmodule UniboV4.Repair.RepairTag do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Repair,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "repair_tags"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :repair_repair_tag
-
-    queries do
-      get :get_repair_repair_tag, :read
-      list :list_repair_repair_tags, :read
-    end
-
-    mutations do
-      create :create_repair_repair_tag, :create
-      update :update_repair_repair_tag, :update
-      destroy :delete_repair_repair_tag, :destroy
-    end
-
   end
 
   attributes do
@@ -47,12 +30,6 @@ defmodule UniboV4.Repair.RepairTag do
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
-  end
-
-  relationships do
-    has_many :repair_tickets, UniboV4.Repair.RepairTicket do
-      public? true
-    end
   end
 
   actions do

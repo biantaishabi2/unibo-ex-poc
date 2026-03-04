@@ -13,29 +13,11 @@ defmodule UniboV4.Marketing.SmsMessage do
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Marketing.SmsMessage.Notifier]
 
   postgres do
     table "marketing_sms_messages"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_sms_message
-
-    queries do
-      get :get_marketing_sms_message, :read
-      list :list_marketing_sms_messages, :read
-    end
-
-    mutations do
-      create :create_marketing_sms_message, :create
-      update :send_marketing_sms_message, :send
-      update :cancel_marketing_sms_message, :cancel
-      update :resend_failed_marketing_sms_message, :resend_failed
-    end
-
   end
 
   attributes do
@@ -98,7 +80,6 @@ defmodule UniboV4.Marketing.SmsMessage do
       end
     end
     update :send do
-      primary? true
       accept []
       # skipped: validate present :number (incompatible with bulk update atomic path)
       # skipped: validate present :body (incompatible with bulk update atomic path)

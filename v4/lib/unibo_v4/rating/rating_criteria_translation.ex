@@ -1,6 +1,7 @@
 defmodule UniboV4.Rating.RatingCriteriaTranslation do
   use Ash.Resource,
     otp_app: :unibo_v4,
+    domain: UniboV4.Rating,
     data_layer: AshPostgres.DataLayer
 
   postgres do

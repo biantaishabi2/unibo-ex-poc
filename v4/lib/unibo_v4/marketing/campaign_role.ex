@@ -9,27 +9,11 @@ defmodule UniboV4.Marketing.CampaignRole do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "marketing_campaign_roles"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_campaign_role
-
-    queries do
-      get :get_marketing_campaign_role, :read
-      list :list_marketing_campaign_roles, :read
-    end
-
-    mutations do
-      create :create_marketing_campaign_role, :create
-      destroy :delete_marketing_campaign_role, :destroy
-    end
-
   end
 
   attributes do
@@ -54,7 +38,7 @@ defmodule UniboV4.Marketing.CampaignRole do
   end
 
   actions do
-    defaults [:read, :destroy, :update]
+    defaults [:read, :destroy]
     create :create do
       primary? true
       accept [:role]

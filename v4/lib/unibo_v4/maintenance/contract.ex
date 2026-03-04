@@ -13,30 +13,11 @@ defmodule UniboV4.Maintenance.Contract do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Maintenance,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "maintenance_contracts"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :maintenance_contract
-
-    queries do
-      get :get_maintenance_contract, :read
-      list :list_maintenance_contracts, :read
-    end
-
-    mutations do
-      create :create_maintenance_contract, :create
-      update :action_open_maintenance_contract, :action_open
-      update :action_expire_maintenance_contract, :action_expire
-      update :action_close_maintenance_contract, :action_close
-      update :action_draft_maintenance_contract, :action_draft
-    end
-
   end
 
   attributes do
@@ -106,7 +87,6 @@ defmodule UniboV4.Maintenance.Contract do
       end
     end
     update :action_open do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)

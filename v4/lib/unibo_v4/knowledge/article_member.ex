@@ -12,23 +12,11 @@ defmodule UniboV4.Knowledge.ArticleMember do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Knowledge,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "knowledge_article_members"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :knowledge_article_member
-
-    mutations do
-      create :create_knowledge_article_member, :create
-      update :update_knowledge_article_member, :update
-      destroy :delete_knowledge_article_member, :destroy
-    end
-
   end
 
   attributes do
@@ -61,7 +49,7 @@ defmodule UniboV4.Knowledge.ArticleMember do
   end
 
   actions do
-    defaults [:destroy, :read]
+    defaults [:destroy]
     create :create do
       primary? true
       accept [:based_on, :permission]

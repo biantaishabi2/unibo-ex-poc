@@ -10,28 +10,11 @@ defmodule UniboV4.Events.EventType do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Events,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "events_event_types"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :events_event_type
-
-    queries do
-      get :get_events_event_type, :read
-      list :list_events_event_types, :read
-    end
-
-    mutations do
-      create :create_events_event_type, :create
-      update :update_events_event_type, :update
-      destroy :delete_events_event_type, :destroy
-    end
-
   end
 
   attributes do
@@ -40,7 +23,7 @@ defmodule UniboV4.Events.EventType do
       allow_nil? false
       public? true
     end
-    attribute :parent_type_id, :string, public?: true
+    attribute :parent_type_id, :uuid, public?: true
     attribute :code, :string do
       allow_nil? false
       public? true

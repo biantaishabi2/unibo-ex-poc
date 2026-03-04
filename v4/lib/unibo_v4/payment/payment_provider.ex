@@ -21,30 +21,11 @@ defmodule UniboV4.Payment.PaymentProvider do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Payment,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "payment_providers"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :payment_payment_provider
-
-    queries do
-      get :get_payment_payment_provider, :read
-      list :list_payment_payment_providers, :read
-    end
-
-    mutations do
-      create :create_payment_payment_provider, :create
-      update :update_payment_payment_provider, :update
-      update :activate_payment_payment_provider, :activate
-      update :toggle_test_mode_payment_payment_provider, :toggle_test_mode
-      destroy :delete_payment_payment_provider, :destroy
-    end
-
   end
 
   attributes do

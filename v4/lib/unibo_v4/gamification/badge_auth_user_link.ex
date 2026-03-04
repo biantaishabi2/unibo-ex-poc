@@ -2,22 +2,11 @@ defmodule UniboV4.Gamification.BadgeAuthUserLink do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Gamification,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "gamification_badge_auth_user_links"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :gamification_badge_auth_user_link
-
-    queries do
-      get :get_gamification_badge_auth_user_link, :read
-      list :list_gamification_badge_auth_user_links, :read
-    end
-
   end
 
   attributes do
@@ -36,7 +25,7 @@ defmodule UniboV4.Gamification.BadgeAuthUserLink do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

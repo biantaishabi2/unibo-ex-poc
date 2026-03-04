@@ -11,28 +11,11 @@ defmodule UniboV4.Marketing.EventMailSchedule do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "marketing_event_mail_schedules"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_event_mail_schedule
-
-    queries do
-      get :get_marketing_event_mail_schedule, :read
-      list :list_marketing_event_mail_schedules, :read
-    end
-
-    mutations do
-      create :create_marketing_event_mail_schedule, :create
-      update :update_marketing_event_mail_schedule, :update
-      destroy :delete_marketing_event_mail_schedule, :destroy
-    end
-
   end
 
   attributes do

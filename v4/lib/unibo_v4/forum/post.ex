@@ -38,37 +38,12 @@ defmodule UniboV4.Forum.Post do
     otp_app: :unibo_v4,
     domain: UniboV4.Forum,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     authorizers: [Ash.Policy.Authorizer],
     notifiers: [UniboV4.Forum.Post.Notifier]
 
   postgres do
     table "forum_posts"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :forum_post
-
-    queries do
-      get :get_forum_post, :read
-      list :list_forum_posts, :read
-    end
-
-    mutations do
-      create :create_forum_post, :create
-      update :update_forum_post, :update
-      update :close_forum_post, :close
-      update :reopen_forum_post, :reopen
-      update :flag_forum_post, :flag
-      update :mark_offensive_forum_post, :mark_offensive
-      update :validate_forum_post, :validate
-      update :accept_answer_forum_post, :accept_answer
-      update :unaccept_answer_forum_post, :unaccept_answer
-      update :toggle_favourite_forum_post, :toggle_favourite
-      destroy :delete_forum_post, :destroy
-    end
-
   end
 
   attributes do
@@ -314,7 +289,7 @@ defmodule UniboV4.Forum.Post do
     end
     update :accept_answer do
       accept []
-      # skipped: validate present :parent_id (incompatible with bulk update atomic path)
+      # skipped: validate present(:parent_id) — field not found
       change set_attribute(:is_correct, true)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
@@ -329,7 +304,7 @@ defmodule UniboV4.Forum.Post do
     end
     update :unaccept_answer do
       accept []
-      # skipped: validate present :parent_id (incompatible with bulk update atomic path)
+      # skipped: validate present(:parent_id) — field not found
       change set_attribute(:is_correct, false)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
@@ -359,25 +334,25 @@ defmodule UniboV4.Forum.Post do
 
   policies do
     policy always() do
-      authorize_if expr(is_admin)
+      authorize_if expr(actor.is_admin)
     end
     policy action_type(:read) do
       authorize_if always()
     end
     policy action_type(:create) do
-      authorize_if expr(karma >= karma_ask or karma >= karma_answer)
+      authorize_if expr(actor.karma >= forum.karma_ask or actor.karma >= forum.karma_answer)
     end
     policy action_type(:update) do
-      authorize_if expr(id == create_uid_id and karma >= karma_edit_own)
+      authorize_if expr(actor.id == create_uid_id and actor.karma >= forum.karma_edit_own)
     end
     policy action_type(:update) do
-      authorize_if expr(karma >= karma_edit_all)
+      authorize_if expr(actor.karma >= forum.karma_edit_all)
     end
     policy action_type(:destroy) do
-      authorize_if expr(id == create_uid_id and karma >= karma_unlink_own)
+      authorize_if expr(actor.id == create_uid_id and actor.karma >= forum.karma_unlink_own)
     end
     policy action_type(:destroy) do
-      authorize_if expr(karma >= karma_unlink_all)
+      authorize_if expr(actor.karma >= forum.karma_unlink_all)
     end
   end
 

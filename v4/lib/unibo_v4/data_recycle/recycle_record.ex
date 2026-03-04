@@ -11,28 +11,11 @@ defmodule UniboV4.DataRecycle.RecycleRecord do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.DataRecycle,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "data_recycle_recycle_records"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :data_recycle_recycle_record
-
-    queries do
-      get :get_data_recycle_recycle_record, :read
-      list :list_data_recycle_recycle_records, :read
-    end
-
-    mutations do
-      create :create_data_recycle_recycle_record, :create
-      update :validate_data_recycle_recycle_record, :validate
-      update :discard_data_recycle_recycle_record, :discard
-    end
-
   end
 
   attributes do
@@ -77,7 +60,6 @@ defmodule UniboV4.DataRecycle.RecycleRecord do
       end
     end
     update :validate do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :active)

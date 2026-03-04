@@ -2,22 +2,11 @@ defmodule UniboV4.Payment.Party do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Payment,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "payment_parties"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :payment_party
-
-    queries do
-      get :get_payment_party, :read
-      list :list_payment_partys, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Payment.Party do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

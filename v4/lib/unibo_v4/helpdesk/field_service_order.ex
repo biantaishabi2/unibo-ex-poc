@@ -12,28 +12,11 @@ defmodule UniboV4.Helpdesk.FieldServiceOrder do
     otp_app: :unibo_v4,
     domain: UniboV4.Helpdesk,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Helpdesk.FieldServiceOrder.Notifier]
 
   postgres do
     table "helpdesk_field_service_orders"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :helpdesk_field_service_order
-
-    queries do
-      get :get_helpdesk_field_service_order, :read
-      list :list_helpdesk_field_service_orders, :read
-    end
-
-    mutations do
-      create :create_helpdesk_field_service_order, :create
-      update :schedule_helpdesk_field_service_order, :schedule
-      update :complete_helpdesk_field_service_order, :complete
-    end
-
   end
 
   attributes do
@@ -96,7 +79,6 @@ defmodule UniboV4.Helpdesk.FieldServiceOrder do
       end
     end
     update :schedule do
-      primary? true
       accept [:planned_date_begin, :planned_date_end]
       argument :user_id, :uuid
       change fn changeset, _context ->

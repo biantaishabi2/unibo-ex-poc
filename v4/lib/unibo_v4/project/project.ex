@@ -28,33 +28,11 @@ defmodule UniboV4.Project.Project do
     otp_app: :unibo_v4,
     domain: UniboV4.Project,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Project.Project.Notifier]
 
   postgres do
     table "project_projects"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :project_project
-
-    queries do
-      get :get_project_project, :read
-      list :list_project_projects, :read
-    end
-
-    mutations do
-      create :create_create_project_project, :create
-      create :create_copy_project_project, :copy
-      update :update_project_project, :update
-      update :start_project_project, :start
-      update :complete_project_project, :complete
-      update :archive_project_project, :archive
-      update :unarchive_project_project, :unarchive
-      destroy :delete_project_project, :destroy
-    end
-
   end
 
   attributes do
@@ -67,10 +45,7 @@ defmodule UniboV4.Project.Project do
       allow_nil? false
       public? true
     end
-    attribute :stage_id, :string do
-      allow_nil? false
-      public? true
-    end
+    attribute :stage_id, :uuid, public?: true
     attribute :active, :boolean do
       allow_nil? false
       default true
@@ -86,12 +61,9 @@ defmodule UniboV4.Project.Project do
       default :to_define
       public? true
     end
-    attribute :analytic_account_id, :string, public?: true
-    attribute :partner_id, :string, public?: true
-    attribute :company_id, :string do
-      allow_nil? false
-      public? true
-    end
+    attribute :analytic_account_id, :uuid, public?: true
+    attribute :partner_id, :uuid, public?: true
+    attribute :company_id, :uuid, public?: true
     attribute :allow_task_dependencies, :boolean do
       default false
       public? true
@@ -108,7 +80,7 @@ defmodule UniboV4.Project.Project do
       default "Tasks"
       public? true
     end
-    attribute :resource_calendar_id, :string, public?: true
+    attribute :resource_calendar_id, :uuid, public?: true
     attribute :start_date, :date, public?: true
     attribute :end_date, :date, public?: true
     attribute :color, :integer do

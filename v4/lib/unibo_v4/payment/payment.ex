@@ -26,34 +26,11 @@ defmodule UniboV4.Payment.Payment do
     otp_app: :unibo_v4,
     domain: UniboV4.Payment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Payment.Payment.Notifier]
 
   postgres do
     table "payment_payments"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :payment_payment
-
-    queries do
-      get :get_payment_payment, :read
-      list :list_payment_payments, :read
-    end
-
-    mutations do
-      create :create_payment_payment, :create
-      update :update_payment_payment, :update
-      update :submit_payment_payment, :submit
-      update :authorize_payment_payment, :authorize
-      update :capture_payment_payment, :capture
-      update :mark_failed_payment_payment, :mark_failed
-      update :cancel_payment_payment, :cancel
-      update :refund_payment_payment, :refund
-      destroy :delete_payment_payment, :destroy
-    end
-
   end
 
   attributes do

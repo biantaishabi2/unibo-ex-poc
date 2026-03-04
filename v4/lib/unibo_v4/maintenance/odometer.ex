@@ -8,26 +8,11 @@ defmodule UniboV4.Maintenance.Odometer do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Maintenance,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "maintenance_odometers"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :maintenance_odometer
-
-    queries do
-      get :get_maintenance_odometer, :read
-      list :list_maintenance_odometers, :read
-    end
-
-    mutations do
-      create :create_maintenance_odometer, :create
-    end
-
   end
 
   attributes do
@@ -59,7 +44,7 @@ defmodule UniboV4.Maintenance.Odometer do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       primary? true
       accept [:value, :date]

@@ -15,30 +15,11 @@ defmodule UniboV4.Delivery.Delivery do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Delivery,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "delivery_deliveries"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :delivery_delivery
-
-    queries do
-      get :get_delivery_delivery, :read
-      list :list_delivery_deliverys, :read
-    end
-
-    mutations do
-      create :create_delivery_delivery, :create
-      update :update_delivery_delivery, :update
-      update :start_delivery_delivery, :start
-      update :arrive_delivery_delivery, :arrive
-      destroy :delete_delivery_delivery, :destroy
-    end
-
   end
 
   attributes do

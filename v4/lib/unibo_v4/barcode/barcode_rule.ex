@@ -15,29 +15,11 @@ defmodule UniboV4.Barcode.BarcodeRule do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Barcode,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "barcode_rules"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :barcode_barcode_rule
-
-    queries do
-      get :get_barcode_barcode_rule, :read
-      list :list_barcode_barcode_rules, :read
-    end
-
-    mutations do
-      create :create_barcode_barcode_rule, :create
-      update :update_barcode_barcode_rule, :update
-      update :reorder_barcode_barcode_rule, :reorder
-      destroy :delete_barcode_barcode_rule, :destroy
-    end
-
   end
 
   attributes do

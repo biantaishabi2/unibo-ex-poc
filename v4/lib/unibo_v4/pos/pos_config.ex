@@ -9,27 +9,11 @@ defmodule UniboV4.POS.PosConfig do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.POS,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "pos_configs"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :pos_pos_config
-
-    queries do
-      get :get_pos_pos_config, :read
-      list :list_pos_pos_configs, :read
-    end
-
-    mutations do
-      create :create_pos_pos_config, :create
-      update :update_pos_pos_config, :update
-    end
-
   end
 
   attributes do
@@ -74,6 +58,8 @@ defmodule UniboV4.POS.PosConfig do
     many_to_many :floors, UniboV4.POS.RestaurantFloor do
       public? true
       through UniboV4.POS.PosConfigFloor
+      source_attribute_on_join_resource :config_id
+      destination_attribute_on_join_resource :floor_id
     end
   end
 

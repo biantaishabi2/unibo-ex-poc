@@ -15,41 +15,11 @@ defmodule UniboV4.Purchasing.Supplier do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Purchasing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "purchasing_suppliers"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :purchasing_supplier
-
-    queries do
-      get :get_purchasing_supplier, :read
-      list :list_purchasing_suppliers, :read
-      get :get_list_purchasing_supplier, :list
-      list :list_list_purchasing_suppliers, :list
-      get :get_search_purchasing_supplier, :search
-      list :list_search_purchasing_suppliers, :search
-      get :get_get_purchasing_supplier, :get
-      list :list_get_purchasing_suppliers, :get
-      get :get_preview_purchasing_supplier, :preview
-      list :list_preview_purchasing_suppliers, :preview
-      get :get_compute_purchasing_supplier, :compute
-      list :list_compute_purchasing_suppliers, :compute
-      get :get_lookup_purchasing_supplier, :lookup
-      list :list_lookup_purchasing_suppliers, :lookup
-    end
-
-    mutations do
-      create :create_purchasing_supplier, :create
-      update :update_purchasing_supplier, :update
-      update :activate_purchasing_supplier, :activate
-      update :block_purchasing_supplier, :block
-    end
-
   end
 
   attributes do

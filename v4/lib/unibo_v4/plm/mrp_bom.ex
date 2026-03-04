@@ -2,22 +2,11 @@ defmodule UniboV4.PLM.MrpBom do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.PLM,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "plm_mrp_boms"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :plm_mrp_bom
-
-    queries do
-      get :get_plm_mrp_bom, :read
-      list :list_plm_mrp_boms, :read
-    end
-
   end
 
   attributes do
@@ -29,7 +18,7 @@ defmodule UniboV4.PLM.MrpBom do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

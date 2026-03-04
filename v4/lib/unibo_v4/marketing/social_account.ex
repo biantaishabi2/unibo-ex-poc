@@ -13,29 +13,11 @@ defmodule UniboV4.Marketing.SocialAccount do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "marketing_social_accounts"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_social_account
-
-    queries do
-      get :get_marketing_social_account, :read
-      list :list_marketing_social_accounts, :read
-    end
-
-    mutations do
-      create :create_marketing_social_account, :create
-      update :connect_marketing_social_account, :connect
-      update :disconnect_marketing_social_account, :disconnect
-      update :refresh_token_marketing_social_account, :refresh_token
-    end
-
   end
 
   attributes do
@@ -90,7 +72,6 @@ defmodule UniboV4.Marketing.SocialAccount do
       end
     end
     update :connect do
-      primary? true
       accept []
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # TODO: 不支持的 change effect custom

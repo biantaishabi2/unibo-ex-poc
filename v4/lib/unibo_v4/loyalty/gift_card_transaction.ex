@@ -8,26 +8,11 @@ defmodule UniboV4.Loyalty.GiftCardTransaction do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Loyalty,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "loyalty_gift_card_transactions"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :loyalty_gift_card_transaction
-
-    queries do
-      get :get_loyalty_gift_card_transaction, :read
-      list :list_loyalty_gift_card_transactions, :read
-    end
-
-    mutations do
-      create :create_loyalty_gift_card_transaction, :create
-    end
-
   end
 
   attributes do
@@ -58,7 +43,7 @@ defmodule UniboV4.Loyalty.GiftCardTransaction do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       primary? true
       accept [:transaction_type, :amount, :balance_after, :reference_id, :note]

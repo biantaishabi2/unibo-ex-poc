@@ -9,27 +9,11 @@ defmodule UniboV4.Inventory.StockMoveLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Inventory,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "inventory_stock_move_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :inventory_stock_move_line
-
-    queries do
-      get :get_inventory_stock_move_line, :read
-      list :list_inventory_stock_move_lines, :read
-    end
-
-    mutations do
-      create :create_inventory_stock_move_line, :create
-      update :update_inventory_stock_move_line, :update
-    end
-
   end
 
   attributes do

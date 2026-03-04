@@ -2,22 +2,11 @@ defmodule UniboV4.POS.Partner do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.POS,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "pos_partners"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :pos_partner
-
-    queries do
-      get :get_pos_partner, :read
-      list :list_pos_partners, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.POS.Partner do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

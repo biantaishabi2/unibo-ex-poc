@@ -11,28 +11,11 @@ defmodule UniboV4.Rating.RatingType do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Rating,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "rating_types"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :rating_rating_type
-
-    queries do
-      get :get_rating_rating_type, :read
-      list :list_rating_rating_types, :read
-    end
-
-    mutations do
-      create :create_rating_rating_type, :create
-      update :update_rating_rating_type, :update
-      destroy :delete_rating_rating_type, :destroy
-    end
-
   end
 
   attributes do

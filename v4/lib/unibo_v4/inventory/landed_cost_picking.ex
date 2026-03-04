@@ -8,26 +8,11 @@ defmodule UniboV4.Inventory.LandedCostPicking do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Inventory,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "inventory_landed_cost_pickings"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :inventory_landed_cost_picking
-
-    queries do
-      get :get_inventory_landed_cost_picking, :read
-      list :list_inventory_landed_cost_pickings, :read
-    end
-
-    mutations do
-      create :create_inventory_landed_cost_picking, :create
-    end
-
   end
 
   attributes do
@@ -46,7 +31,7 @@ defmodule UniboV4.Inventory.LandedCostPicking do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       primary? true
       accept []

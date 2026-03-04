@@ -17,30 +17,11 @@ defmodule UniboV4.Gamification.Challenge do
     otp_app: :unibo_v4,
     domain: UniboV4.Gamification,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Gamification.Challenge.Notifier]
 
   postgres do
     table "gamification_challenges"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :gamification_challenge
-
-    queries do
-      get :get_gamification_challenge, :read
-      list :list_gamification_challenges, :read
-    end
-
-    mutations do
-      create :create_gamification_challenge, :create
-      update :update_gamification_challenge, :update
-      update :action_start_gamification_challenge, :action_start
-      update :action_check_gamification_challenge, :action_check
-      update :action_done_gamification_challenge, :action_done
-    end
-
   end
 
   attributes do
@@ -121,10 +102,12 @@ defmodule UniboV4.Gamification.Challenge do
     many_to_many :user_ids, UniboV4.Gamification.ResUser do
       public? true
       through UniboV4.Gamification.ChallengeUserLink
+      destination_attribute_on_join_resource :user_id
     end
     many_to_many :invited_user_ids, UniboV4.Gamification.ResUser do
       public? true
       through UniboV4.Gamification.ChallengeInvitedUserLink
+      destination_attribute_on_join_resource :user_id
     end
     has_many :translations, UniboV4.Gamification.ChallengeTranslation, public?: true
   end

@@ -20,30 +20,11 @@ defmodule UniboV4.Ecommerce.WebPage do
     otp_app: :unibo_v4,
     domain: UniboV4.Ecommerce,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Ecommerce.WebPage.Notifier]
 
   postgres do
     table "ecommerce_web_pages"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :ecommerce_web_page
-
-    queries do
-      get :get_ecommerce_web_page, :read
-      list :list_ecommerce_web_pages, :read
-    end
-
-    mutations do
-      create :create_create_ecommerce_web_page, :create
-      create :create_clone_page_ecommerce_web_page, :clone_page
-      update :update_ecommerce_web_page, :update
-      update :publish_ecommerce_web_page, :publish
-      update :unpublish_ecommerce_web_page, :unpublish
-    end
-
   end
 
   attributes do

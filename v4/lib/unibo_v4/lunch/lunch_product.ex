@@ -17,29 +17,11 @@ defmodule UniboV4.Lunch.LunchProduct do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Lunch,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "lunch_products"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :lunch_lunch_product
-
-    queries do
-      get :get_lunch_lunch_product, :read
-      list :list_lunch_lunch_products, :read
-    end
-
-    mutations do
-      create :create_lunch_lunch_product, :create
-      update :update_lunch_lunch_product, :update
-      update :toggle_favorite_lunch_lunch_product, :toggle_favorite
-      destroy :delete_lunch_lunch_product, :destroy
-    end
-
   end
 
   attributes do

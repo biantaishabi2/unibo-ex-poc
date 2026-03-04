@@ -1,6 +1,7 @@
 defmodule UniboV4.Barcode.BarcodeNomenclatureTranslation do
   use Ash.Resource,
     otp_app: :unibo_v4,
+    domain: UniboV4.Barcode,
     data_layer: AshPostgres.DataLayer
 
   postgres do

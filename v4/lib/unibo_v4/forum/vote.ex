@@ -10,22 +10,11 @@ defmodule UniboV4.Forum.Vote do
     otp_app: :unibo_v4,
     domain: UniboV4.Forum,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Forum.Vote.Notifier]
 
   postgres do
     table "forum_votes"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :forum_vote
-
-    mutations do
-      create :create_forum_vote, :create
-      update :update_forum_vote, :update
-    end
-
   end
 
   attributes do
@@ -57,7 +46,6 @@ defmodule UniboV4.Forum.Vote do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:vote]

@@ -2,22 +2,11 @@ defmodule UniboV4.Ecommerce.MailTemplate do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Ecommerce,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "ecommerce_mail_templates"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :ecommerce_mail_template
-
-    queries do
-      get :get_ecommerce_mail_template, :read
-      list :list_ecommerce_mail_templates, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Ecommerce.MailTemplate do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

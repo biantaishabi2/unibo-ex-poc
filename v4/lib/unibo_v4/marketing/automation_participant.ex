@@ -8,26 +8,11 @@ defmodule UniboV4.Marketing.AutomationParticipant do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "marketing_automation_participants"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_automation_participant
-
-    queries do
-      get :get_marketing_automation_participant, :read
-      list :list_marketing_automation_participants, :read
-    end
-
-    mutations do
-      create :create_marketing_automation_participant, :create
-    end
-
   end
 
   attributes do
@@ -72,7 +57,7 @@ defmodule UniboV4.Marketing.AutomationParticipant do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       primary? true
       accept [:record_id, :model_id, :is_test]

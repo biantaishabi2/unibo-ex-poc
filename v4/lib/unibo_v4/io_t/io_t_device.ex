@@ -10,28 +10,11 @@ defmodule UniboV4.IoT.IoTDevice do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.IoT,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "io_t_devices"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :io_t_io_t_device
-
-    queries do
-      get :get_io_t_io_t_device, :read
-      list :list_io_t_io_t_devices, :read
-    end
-
-    mutations do
-      create :create_upsert_io_t_io_t_device, :upsert
-      update :update_io_t_io_t_device, :update
-      update :update_value_io_t_io_t_device, :update_value
-    end
-
   end
 
   attributes do
@@ -106,7 +89,7 @@ defmodule UniboV4.IoT.IoTDevice do
     create :upsert do
       primary? true
       accept [:name, :identifier, :device_type, :connection, :driver_name, :capabilities, :configuration, :manufacturer, :model]
-      argument :iot_box_id, :uuid, allow_nil?: false
+      argument :iot_box_id, :integer, allow_nil?: false
       change manage_relationship(:iot_box_id, :iot_box, type: :append, on_lookup: :relate)
       validate present(:identifier)
       validate present(:iot_box_id)

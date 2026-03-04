@@ -12,28 +12,11 @@ defmodule UniboV4.Repair.RepairFee do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Repair,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "repair_fees"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :repair_repair_fee
-
-    queries do
-      get :get_repair_repair_fee, :read
-      list :list_repair_repair_fees, :read
-    end
-
-    mutations do
-      create :create_repair_repair_fee, :create
-      update :update_repair_repair_fee, :update
-      destroy :delete_repair_repair_fee, :destroy
-    end
-
   end
 
   attributes do

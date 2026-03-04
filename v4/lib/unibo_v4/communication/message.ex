@@ -12,29 +12,11 @@ defmodule UniboV4.Communication.Message do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Communication,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "communication_messages"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :communication_message
-
-    queries do
-      get :get_communication_message, :read
-      list :list_communication_messages, :read
-    end
-
-    mutations do
-      create :create_communication_message, :create
-      update :update_communication_message, :update
-      update :toggle_star_communication_message, :toggle_star
-      destroy :delete_communication_message, :destroy
-    end
-
   end
 
   attributes do
@@ -49,7 +31,7 @@ defmodule UniboV4.Communication.Message do
       default :comment
       public? true
     end
-    attribute :subtype_id, :string, public?: true
+    attribute :subtype_id, :uuid, public?: true
     attribute :is_internal, :boolean do
       default false
       public? true
@@ -132,7 +114,6 @@ defmodule UniboV4.Communication.Message do
       end
     end
     update :update do
-      primary? true
       accept [:content, :is_pinned, :starred_partner_ids, :attachment_ids]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

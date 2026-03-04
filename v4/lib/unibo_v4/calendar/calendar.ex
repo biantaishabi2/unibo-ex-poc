@@ -12,28 +12,11 @@ defmodule UniboV4.Calendar.Calendar do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Calendar,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "calendar_calendars"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :calendar_calendar
-
-    queries do
-      get :get_calendar_calendar, :read
-      list :list_calendar_calendars, :read
-    end
-
-    mutations do
-      create :create_calendar_calendar, :create
-      update :update_calendar_calendar, :update
-      destroy :delete_calendar_calendar, :destroy
-    end
-
   end
 
   attributes do

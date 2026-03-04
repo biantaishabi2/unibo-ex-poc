@@ -9,27 +9,11 @@ defmodule UniboV4.Accounting.FullReconcile do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Accounting,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "accounting_full_reconciles"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :accounting_full_reconcile
-
-    queries do
-      get :get_accounting_full_reconcile, :read
-      list :list_accounting_full_reconciles, :read
-    end
-
-    mutations do
-      create :create_accounting_full_reconcile, :create
-      destroy :delete_accounting_full_reconcile, :destroy
-    end
-
   end
 
   attributes do
@@ -48,7 +32,7 @@ defmodule UniboV4.Accounting.FullReconcile do
   end
 
   actions do
-    defaults [:read, :destroy, :update]
+    defaults [:read, :destroy]
     create :create do
       primary? true
       accept []

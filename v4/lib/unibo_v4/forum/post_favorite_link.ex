@@ -2,22 +2,11 @@ defmodule UniboV4.Forum.PostFavoriteLink do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Forum,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "forum_post_favorite_links"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :forum_post_favorite_link
-
-    queries do
-      get :get_forum_post_favorite_link, :read
-      list :list_forum_post_favorite_links, :read
-    end
-
   end
 
   attributes do
@@ -36,7 +25,7 @@ defmodule UniboV4.Forum.PostFavoriteLink do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

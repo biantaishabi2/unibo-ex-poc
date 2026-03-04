@@ -17,31 +17,11 @@ defmodule UniboV4.Maintenance.RepairOrder do
     otp_app: :unibo_v4,
     domain: UniboV4.Maintenance,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Maintenance.RepairOrder.Notifier]
 
   postgres do
     table "maintenance_repair_orders"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :maintenance_repair_order
-
-    queries do
-      get :get_maintenance_repair_order, :read
-      list :list_maintenance_repair_orders, :read
-    end
-
-    mutations do
-      create :create_maintenance_repair_order, :create
-      update :confirm_maintenance_repair_order, :confirm
-      update :start_repair_maintenance_repair_order, :start_repair
-      update :complete_repair_maintenance_repair_order, :complete_repair
-      update :cancel_maintenance_repair_order, :cancel
-      update :reset_to_draft_maintenance_repair_order, :reset_to_draft
-    end
-
   end
 
   attributes do
@@ -151,7 +131,6 @@ defmodule UniboV4.Maintenance.RepairOrder do
       end
     end
     update :confirm do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)

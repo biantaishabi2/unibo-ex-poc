@@ -10,23 +10,11 @@ defmodule UniboV4.Sign.SignItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Sign,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "sign_items"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sign_sign_item
-
-    mutations do
-      create :create_sign_sign_item, :create
-      update :update_sign_sign_item, :update
-      destroy :delete_sign_sign_item, :destroy
-    end
-
   end
 
   attributes do
@@ -75,7 +63,7 @@ defmodule UniboV4.Sign.SignItem do
   end
 
   actions do
-    defaults [:destroy, :read]
+    defaults [:destroy]
     create :create do
       primary? true
       accept [:type, :page, :pos_x, :pos_y, :width, :height, :required, :placeholder]

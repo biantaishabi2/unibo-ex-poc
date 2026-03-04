@@ -2,22 +2,11 @@ defmodule UniboV4.Expenses.ExpenseLineTaxLink do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Expenses,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "expenses_expense_line_tax_links"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :expenses_expense_line_tax_link
-
-    queries do
-      get :get_expenses_expense_line_tax_link, :read
-      list :list_expenses_expense_line_tax_links, :read
-    end
-
   end
 
   attributes do
@@ -36,7 +25,7 @@ defmodule UniboV4.Expenses.ExpenseLineTaxLink do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

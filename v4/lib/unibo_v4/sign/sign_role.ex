@@ -10,28 +10,11 @@ defmodule UniboV4.Sign.SignRole do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Sign,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "sign_roles"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sign_sign_role
-
-    queries do
-      get :get_sign_sign_role, :read
-      list :list_sign_sign_roles, :read
-    end
-
-    mutations do
-      create :create_sign_sign_role, :create
-      update :update_sign_sign_role, :update
-      destroy :delete_sign_sign_role, :destroy
-    end
-
   end
 
   attributes do

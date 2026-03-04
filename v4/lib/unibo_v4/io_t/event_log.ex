@@ -9,27 +9,11 @@ defmodule UniboV4.IoT.EventLog do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.IoT,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "io_t_event_logs"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :io_t_event_log
-
-    queries do
-      get :get_io_t_event_log, :read
-      list :list_io_t_event_logs, :read
-    end
-
-    mutations do
-      create :create_io_t_event_log, :create
-      update :mark_processed_io_t_event_log, :mark_processed
-    end
-
   end
 
   attributes do
@@ -87,9 +71,9 @@ defmodule UniboV4.IoT.EventLog do
     create :create do
       primary? true
       accept [:event_type, :payload]
-      argument :device_id, :uuid, allow_nil?: false
+      argument :device_id, :integer, allow_nil?: false
       change manage_relationship(:device_id, :device, type: :append, on_lookup: :relate)
-      argument :box_id, :uuid, allow_nil?: false
+      argument :box_id, :integer, allow_nil?: false
       change manage_relationship(:box_id, :box, type: :append, on_lookup: :relate)
       validate present(:device_id)
       validate present(:event_type)
@@ -105,7 +89,6 @@ defmodule UniboV4.IoT.EventLog do
       end
     end
     update :mark_processed do
-      primary? true
       accept [:action_result, :action_error_message, :processing_time_ms]
       change set_attribute(:processed, true)
       change fn changeset, _context ->

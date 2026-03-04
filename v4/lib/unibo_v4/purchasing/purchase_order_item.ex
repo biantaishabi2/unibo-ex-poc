@@ -9,22 +9,11 @@ defmodule UniboV4.Purchasing.PurchaseOrderItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Purchasing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "purchasing_purchase_order_items"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :purchasing_purchase_order_item
-
-    mutations do
-      create :create_purchasing_purchase_order_item, :create
-      update :update_purchasing_purchase_order_item, :update
-    end
-
   end
 
   attributes do
@@ -62,7 +51,6 @@ defmodule UniboV4.Purchasing.PurchaseOrderItem do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:product_name, :product_code, :quantity, :unit_price]

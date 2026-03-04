@@ -14,29 +14,11 @@ defmodule UniboV4.Payment.PaymentToken do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Payment,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "payment_tokens"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :payment_payment_token
-
-    queries do
-      get :get_payment_payment_token, :read
-      list :list_payment_payment_tokens, :read
-    end
-
-    mutations do
-      create :create_payment_payment_token, :create
-      update :update_payment_payment_token, :update
-      update :revoke_payment_payment_token, :revoke
-      update :expire_payment_payment_token, :expire
-    end
-
   end
 
   attributes do

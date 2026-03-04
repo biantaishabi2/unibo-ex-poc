@@ -17,32 +17,12 @@ defmodule UniboV4.Blog.BlogPost do
     otp_app: :unibo_v4,
     domain: UniboV4.Blog,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     authorizers: [Ash.Policy.Authorizer],
     notifiers: [UniboV4.Blog.BlogPost.Notifier]
 
   postgres do
     table "blog_posts"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :blog_blog_post
-
-    queries do
-      get :get_blog_blog_post, :read
-      list :list_blog_blog_posts, :read
-    end
-
-    mutations do
-      create :create_blog_blog_post, :create
-      update :update_blog_blog_post, :update
-      update :publish_blog_blog_post, :publish
-      update :unpublish_blog_blog_post, :unpublish
-      update :archive_blog_blog_post, :archive
-      update :unarchive_blog_blog_post, :unarchive
-    end
-
   end
 
   attributes do
@@ -100,7 +80,7 @@ defmodule UniboV4.Blog.BlogPost do
       argument :blog_id, :uuid, allow_nil?: false
       change manage_relationship(:blog_id, :blog, type: :append, on_lookup: :relate)
       validate present(:name)
-      change relate_actor(:author_id)
+      change relate_actor(:author)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -225,7 +205,10 @@ defmodule UniboV4.Blog.BlogPost do
 
   policies do
     policy action_type(:read) do
-      authorize_if expr(is_published == true or role in [:designer, :admin])
+      authorize_if expr(is_published == true or actor.role in [:designer, :admin])
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

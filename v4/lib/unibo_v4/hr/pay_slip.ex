@@ -21,31 +21,11 @@ defmodule UniboV4.HR.PaySlip do
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.HR.PaySlip.Notifier]
 
   postgres do
     table "hr_pay_slips"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_pay_slip
-
-    queries do
-      get :get_hr_pay_slip, :read
-      list :list_hr_pay_slips, :read
-    end
-
-    mutations do
-      create :create_hr_pay_slip, :create
-      update :compute_sheet_hr_pay_slip, :compute_sheet
-      update :action_payslip_done_hr_pay_slip, :action_payslip_done
-      update :action_payslip_paid_hr_pay_slip, :action_payslip_paid
-      update :action_payslip_cancel_hr_pay_slip, :action_payslip_cancel
-      update :refund_sheet_hr_pay_slip, :refund_sheet
-    end
-
   end
 
   attributes do
@@ -116,7 +96,6 @@ defmodule UniboV4.HR.PaySlip do
       end
     end
     update :compute_sheet do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

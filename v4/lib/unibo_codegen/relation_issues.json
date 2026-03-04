@@ -1,14 +1,50 @@
 {
-  "total": 27,
+  "total": 38,
   "issues": [
     {
-      "domain": "Currency",
-      "entity": "Currency",
-      "relationship": "category",
+      "domain": "Communication",
+      "entity": "Channel",
+      "relationship": "group_public",
       "relation_type": "belongs_to",
-      "target": "UomCategory",
+      "target": "Group",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: UomCategory"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: Group"
+    },
+    {
+      "domain": "Communication",
+      "entity": "ChannelMember",
+      "relationship": "rtc_inviting_session",
+      "relation_type": "belongs_to",
+      "target": "RTCSession",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: RTCSession"
+    },
+    {
+      "domain": "Communication",
+      "entity": "Message",
+      "relationship": "subtype",
+      "relation_type": "belongs_to",
+      "target": "MessageSubtype",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: MessageSubtype"
+    },
+    {
+      "domain": "Events",
+      "entity": "Event",
+      "relationship": "organizer",
+      "relation_type": "belongs_to",
+      "target": "User",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: User"
+    },
+    {
+      "domain": "Events",
+      "entity": "Event",
+      "relationship": "venue",
+      "relation_type": "belongs_to",
+      "target": "Facility",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: Facility"
     },
     {
       "domain": "Events",
@@ -17,7 +53,7 @@
       "relation_type": "belongs_to",
       "target": "User",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: User"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: User"
     },
     {
       "domain": "Events",
@@ -26,7 +62,7 @@
       "relation_type": "belongs_to",
       "target": "User",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: User"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: User"
     },
     {
       "domain": "Events",
@@ -35,7 +71,7 @@
       "relation_type": "belongs_to",
       "target": "User",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: User"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: User"
     },
     {
       "domain": "Fleet",
@@ -53,7 +89,7 @@
       "relation_type": "belongs_to",
       "target": "ResPartner",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ResPartner"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: ResPartner"
     },
     {
       "domain": "Loyalty",
@@ -62,7 +98,7 @@
       "relation_type": "belongs_to",
       "target": "SaleOrder",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: SaleOrder"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: SaleOrder"
     },
     {
       "domain": "Loyalty",
@@ -71,7 +107,7 @@
       "relation_type": "belongs_to",
       "target": "ResPartner",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ResPartner"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: ResPartner"
     },
     {
       "domain": "Loyalty",
@@ -80,7 +116,7 @@
       "relation_type": "belongs_to",
       "target": "ResPartner",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ResPartner"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: ResPartner"
     },
     {
       "domain": "Loyalty",
@@ -89,7 +125,7 @@
       "relation_type": "belongs_to",
       "target": "ResUser",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ResUser"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: ResUser"
     },
     {
       "domain": "Loyalty",
@@ -98,7 +134,7 @@
       "relation_type": "belongs_to",
       "target": "ResPartner",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ResPartner"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: ResPartner"
     },
     {
       "domain": "Loyalty",
@@ -107,7 +143,7 @@
       "relation_type": "belongs_to",
       "target": "ProductTemplate",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ProductTemplate"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: ProductTemplate"
     },
     {
       "domain": "Loyalty",
@@ -116,7 +152,70 @@
       "relation_type": "belongs_to",
       "target": "ResPartner",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: ResPartner"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: ResPartner"
+    },
+    {
+      "domain": "Project",
+      "entity": "Project",
+      "relationship": "analytic_account",
+      "relation_type": "belongs_to",
+      "target": "AnalyticAccount",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: AnalyticAccount"
+    },
+    {
+      "domain": "Project",
+      "entity": "Project",
+      "relationship": "company",
+      "relation_type": "belongs_to",
+      "target": "Company",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: Company"
+    },
+    {
+      "domain": "Project",
+      "entity": "Project",
+      "relationship": "partner",
+      "relation_type": "belongs_to",
+      "target": "Partner",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: Partner"
+    },
+    {
+      "domain": "Project",
+      "entity": "Project",
+      "relationship": "resource_calendar",
+      "relation_type": "belongs_to",
+      "target": "ResourceCalendar",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: ResourceCalendar"
+    },
+    {
+      "domain": "Project",
+      "entity": "Project",
+      "relationship": "stage",
+      "relation_type": "belongs_to",
+      "target": "ProjectStage",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: ProjectStage"
+    },
+    {
+      "domain": "Project",
+      "entity": "Task",
+      "relationship": "partner",
+      "relation_type": "belongs_to",
+      "target": "Partner",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: Partner"
+    },
+    {
+      "domain": "Project",
+      "entity": "Task",
+      "relationship": "recurrence",
+      "relation_type": "belongs_to",
+      "target": "TaskRecurrence",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: TaskRecurrence"
     },
     {
       "domain": "Repair",
@@ -125,7 +224,7 @@
       "relation_type": "belongs_to",
       "target": "Product",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Product"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: Product"
     },
     {
       "domain": "Repair",
@@ -134,7 +233,7 @@
       "relation_type": "belongs_to",
       "target": "User",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: User"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: User"
     },
     {
       "domain": "Repair",
@@ -152,7 +251,7 @@
       "relation_type": "belongs_to",
       "target": "Company",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Company"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: Company"
     },
     {
       "domain": "Repair",
@@ -161,7 +260,7 @@
       "relation_type": "belongs_to",
       "target": "Customer",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Customer"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: Customer"
     },
     {
       "domain": "Repair",
@@ -170,7 +269,7 @@
       "relation_type": "belongs_to",
       "target": "Facility",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Facility"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: Facility"
     },
     {
       "domain": "Repair",
@@ -179,7 +278,7 @@
       "relation_type": "belongs_to",
       "target": "Product",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Product"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: Product"
     },
     {
       "domain": "Repair",
@@ -188,7 +287,7 @@
       "relation_type": "belongs_to",
       "target": "SalesOrder",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: SalesOrder"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: SalesOrder"
     },
     {
       "domain": "Repair",
@@ -206,7 +305,7 @@
       "relation_type": "belongs_to",
       "target": "User",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: User"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: User"
     },
     {
       "domain": "Repair",
@@ -215,7 +314,7 @@
       "relation_type": "belongs_to",
       "target": "Company",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Company"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: Company"
     },
     {
       "domain": "Repair",
@@ -224,7 +323,7 @@
       "relation_type": "belongs_to",
       "target": "Customer",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Customer"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: Customer"
     },
     {
       "domain": "Repair",
@@ -233,7 +332,7 @@
       "relation_type": "belongs_to",
       "target": "Product",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: Product"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: Product"
     },
     {
       "domain": "Repair",
@@ -242,7 +341,7 @@
       "relation_type": "belongs_to",
       "target": "SalesOrder",
       "reason_code": "missing_target_entity_belongs_to",
-      "reason": "belongs_to 目标实体不存在或未在当前模型中定义: SalesOrder"
+      "reason": "belongs_to 目标实体不存在或未在当前模型中定义（降级为属性）: SalesOrder"
     }
   ]
 }

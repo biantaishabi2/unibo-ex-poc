@@ -13,29 +13,11 @@ defmodule UniboV4.Maintenance.ServiceLog do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Maintenance,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "maintenance_service_logs"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :maintenance_service_log
-
-    queries do
-      get :get_maintenance_service_log, :read
-      list :list_maintenance_service_logs, :read
-    end
-
-    mutations do
-      create :create_maintenance_service_log, :create
-      update :start_maintenance_service_log, :start
-      update :complete_maintenance_service_log, :complete
-      update :cancel_maintenance_service_log, :cancel
-    end
-
   end
 
   attributes do
@@ -100,7 +82,6 @@ defmodule UniboV4.Maintenance.ServiceLog do
       end
     end
     update :start do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)

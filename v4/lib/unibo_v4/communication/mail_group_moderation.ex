@@ -10,28 +10,11 @@ defmodule UniboV4.Communication.MailGroupModeration do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Communication,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "communication_mail_group_moderations"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :communication_mail_group_moderation
-
-    queries do
-      get :get_communication_mail_group_moderation, :read
-      list :list_communication_mail_group_moderations, :read
-    end
-
-    mutations do
-      create :create_communication_mail_group_moderation, :create
-      update :update_communication_mail_group_moderation, :update
-      destroy :delete_communication_mail_group_moderation, :destroy
-    end
-
   end
 
   attributes do

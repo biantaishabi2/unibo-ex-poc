@@ -9,27 +9,11 @@ defmodule UniboV4.Maintenance.VehicleState do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Maintenance,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "maintenance_vehicle_states"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :maintenance_vehicle_state
-
-    queries do
-      get :get_maintenance_vehicle_state, :read
-      list :list_maintenance_vehicle_states, :read
-    end
-
-    mutations do
-      create :create_maintenance_vehicle_state, :create
-      update :update_maintenance_vehicle_state, :update
-    end
-
   end
 
   attributes do

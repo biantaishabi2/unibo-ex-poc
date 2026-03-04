@@ -12,28 +12,11 @@ defmodule UniboV4.Lunch.LunchTopping do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Lunch,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "lunch_toppings"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :lunch_lunch_topping
-
-    queries do
-      get :get_lunch_lunch_topping, :read
-      list :list_lunch_lunch_toppings, :read
-    end
-
-    mutations do
-      create :create_lunch_lunch_topping, :create
-      update :update_lunch_lunch_topping, :update
-      destroy :delete_lunch_lunch_topping, :destroy
-    end
-
   end
 
   attributes do
@@ -100,7 +83,7 @@ defmodule UniboV4.Lunch.LunchTopping do
 
   validations do
     validate compare(:price, greater_than_or_equal_to: 0)
-    validate one_of(:topping_category, [])
+    validate one_of(:topping_category, [1, 2, 3])
   end
 
 end

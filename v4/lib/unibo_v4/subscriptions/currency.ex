@@ -2,22 +2,11 @@ defmodule UniboV4.Subscriptions.Currency do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Subscriptions,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "subscriptions_currencies"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :subscriptions_currency
-
-    queries do
-      get :get_subscriptions_currency, :read
-      list :list_subscriptions_currencys, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Subscriptions.Currency do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

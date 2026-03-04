@@ -9,27 +9,11 @@ defmodule UniboV4.CRM.LeadStage do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.CRM,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "crm_lead_stages"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :crm_lead_stage
-
-    queries do
-      get :get_crm_lead_stage, :read
-      list :list_crm_lead_stages, :read
-    end
-
-    mutations do
-      create :create_crm_lead_stage, :create
-      update :update_crm_lead_stage, :update
-    end
-
   end
 
   attributes do

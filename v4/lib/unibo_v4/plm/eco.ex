@@ -14,30 +14,11 @@ defmodule UniboV4.PLM.Eco do
     otp_app: :unibo_v4,
     domain: UniboV4.PLM,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.PLM.Eco.Notifier]
 
   postgres do
     table "plm_ecos"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :plm_eco
-
-    queries do
-      get :get_plm_eco, :read
-      list :list_plm_ecos, :read
-    end
-
-    mutations do
-      create :create_plm_eco, :create
-      update :update_plm_eco, :update
-      update :advance_stage_plm_eco, :advance_stage
-      update :apply_changes_plm_eco, :apply_changes
-      update :rebase_plm_eco, :rebase
-    end
-
   end
 
   attributes do

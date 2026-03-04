@@ -12,28 +12,11 @@ defmodule UniboV4.POS.RestaurantTable do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.POS,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "pos_restaurant_tables"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :pos_restaurant_table
-
-    queries do
-      get :get_pos_restaurant_table, :read
-      list :list_pos_restaurant_tables, :read
-    end
-
-    mutations do
-      create :create_pos_restaurant_table, :create
-      update :update_pos_restaurant_table, :update
-      destroy :delete_pos_restaurant_table, :destroy
-    end
-
   end
 
   attributes do

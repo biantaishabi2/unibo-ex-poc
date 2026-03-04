@@ -14,29 +14,11 @@ defmodule UniboV4.Subscriptions.SubscriptionPlan do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Subscriptions,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "subscriptions_subscription_plans"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :subscriptions_subscription_plan
-
-    queries do
-      get :get_subscriptions_subscription_plan, :read
-      list :list_subscriptions_subscription_plans, :read
-    end
-
-    mutations do
-      create :create_subscriptions_subscription_plan, :create
-      update :update_subscriptions_subscription_plan, :update
-      update :deactivate_subscriptions_subscription_plan, :deactivate
-      update :activate_subscriptions_subscription_plan, :activate
-    end
-
   end
 
   attributes do

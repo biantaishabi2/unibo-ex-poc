@@ -30,31 +30,11 @@ defmodule UniboV4.Approvals.ApprovalRequest do
     otp_app: :unibo_v4,
     domain: UniboV4.Approvals,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Approvals.ApprovalRequest.Notifier]
 
   postgres do
     table "approvals_approval_requests"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :approvals_approval_request
-
-    queries do
-      get :get_approvals_approval_request, :read
-      list :list_approvals_approval_requests, :read
-    end
-
-    mutations do
-      create :create_approvals_approval_request, :create
-      update :submit_approvals_approval_request, :submit
-      update :approve_approvals_approval_request, :approve
-      update :refuse_approvals_approval_request, :refuse
-      update :cancel_approvals_approval_request, :cancel
-      update :draft_approvals_approval_request, :draft
-    end
-
   end
 
   attributes do
@@ -134,7 +114,6 @@ defmodule UniboV4.Approvals.ApprovalRequest do
       end
     end
     update :submit do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

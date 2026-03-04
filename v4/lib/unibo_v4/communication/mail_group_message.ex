@@ -12,30 +12,11 @@ defmodule UniboV4.Communication.MailGroupMessage do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Communication,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "communication_mail_group_messages"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :communication_mail_group_message
-
-    queries do
-      get :get_communication_mail_group_message, :read
-      list :list_communication_mail_group_messages, :read
-    end
-
-    mutations do
-      create :create_communication_mail_group_message, :create
-      update :moderate_accept_communication_mail_group_message, :moderate_accept
-      update :moderate_reject_communication_mail_group_message, :moderate_reject
-      update :moderate_allow_communication_mail_group_message, :moderate_allow
-      update :moderate_ban_communication_mail_group_message, :moderate_ban
-    end
-
   end
 
   attributes do
@@ -91,7 +72,6 @@ defmodule UniboV4.Communication.MailGroupMessage do
       end
     end
     update :moderate_accept do
-      primary? true
       accept [:moderation_status]
       # skipped: validate custom : (incompatible with bulk update atomic path)
       change set_attribute(:moderation_status, :accepted)

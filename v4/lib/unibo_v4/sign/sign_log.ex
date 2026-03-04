@@ -9,26 +9,11 @@ defmodule UniboV4.Sign.SignLog do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Sign,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "sign_logs"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sign_sign_log
-
-    queries do
-      get :get_sign_sign_log, :read
-      list :list_sign_sign_logs, :read
-    end
-
-    mutations do
-      create :create_sign_sign_log, :create
-    end
-
   end
 
   attributes do
@@ -66,7 +51,7 @@ defmodule UniboV4.Sign.SignLog do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       primary? true
       accept [:action, :ip_address, :user_agent, :note, :metadata]

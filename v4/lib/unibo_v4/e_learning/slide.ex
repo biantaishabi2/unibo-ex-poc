@@ -20,30 +20,11 @@ defmodule UniboV4.ELearning.Slide do
     otp_app: :unibo_v4,
     domain: UniboV4.ELearning,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.ELearning.Slide.Notifier]
 
   postgres do
     table "e_learning_slides"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :e_learning_slide
-
-    queries do
-      get :get_e_learning_slide, :read
-      list :list_e_learning_slides, :read
-    end
-
-    mutations do
-      create :create_e_learning_slide, :create
-      update :update_e_learning_slide, :update
-      update :publish_e_learning_slide, :publish
-      update :unpublish_e_learning_slide, :unpublish
-      destroy :delete_e_learning_slide, :destroy
-    end
-
   end
 
   attributes do

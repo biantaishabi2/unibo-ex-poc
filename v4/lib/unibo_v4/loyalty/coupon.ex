@@ -17,30 +17,11 @@ defmodule UniboV4.Loyalty.Coupon do
     otp_app: :unibo_v4,
     domain: UniboV4.Loyalty,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Loyalty.Coupon.Notifier]
 
   postgres do
     table "loyalty_coupons"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :loyalty_coupon
-
-    queries do
-      get :get_loyalty_coupon, :read
-      list :list_loyalty_coupons, :read
-    end
-
-    mutations do
-      create :create_loyalty_coupon, :create
-      update :update_loyalty_coupon, :update
-      update :apply_loyalty_coupon, :apply
-      update :cancel_coupon_loyalty_coupon, :cancel_coupon
-      destroy :delete_loyalty_coupon, :destroy
-    end
-
   end
 
   attributes do

@@ -13,41 +13,12 @@ defmodule UniboV4.Purchasing.ProductSupplierinfo do
     otp_app: :unibo_v4,
     domain: UniboV4.Purchasing,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     authorizers: [Ash.Policy.Authorizer],
     notifiers: [UniboV4.Purchasing.ProductSupplierinfo.Notifier]
 
   postgres do
     table "purchasing_product_supplierinfos"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :purchasing_product_supplierinfo
-
-    queries do
-      get :get_purchasing_product_supplierinfo, :read
-      list :list_purchasing_product_supplierinfos, :read
-      get :get_list_purchasing_product_supplierinfo, :list
-      list :list_list_purchasing_product_supplierinfos, :list
-      get :get_search_purchasing_product_supplierinfo, :search
-      list :list_search_purchasing_product_supplierinfos, :search
-      get :get_get_purchasing_product_supplierinfo, :get
-      list :list_get_purchasing_product_supplierinfos, :get
-      get :get_preview_purchasing_product_supplierinfo, :preview
-      list :list_preview_purchasing_product_supplierinfos, :preview
-      get :get_compute_purchasing_product_supplierinfo, :compute
-      list :list_compute_purchasing_product_supplierinfos, :compute
-      get :get_lookup_purchasing_product_supplierinfo, :lookup
-      list :list_lookup_purchasing_product_supplierinfos, :lookup
-    end
-
-    mutations do
-      create :create_purchasing_product_supplierinfo, :create
-      update :update_purchasing_product_supplierinfo, :update
-      destroy :delete_purchasing_product_supplierinfo, :destroy
-    end
-
   end
 
   attributes do
@@ -168,6 +139,9 @@ defmodule UniboV4.Purchasing.ProductSupplierinfo do
 
   policies do
     policy action_type(:create) do
+      authorize_if always()
+    end
+    policy always() do
       authorize_if always()
     end
   end

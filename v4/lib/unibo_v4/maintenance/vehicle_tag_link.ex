@@ -2,22 +2,11 @@ defmodule UniboV4.Maintenance.VehicleTagLink do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Maintenance,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "maintenance_vehicle_tag_links"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :maintenance_vehicle_tag_link
-
-    queries do
-      get :get_maintenance_vehicle_tag_link, :read
-      list :list_maintenance_vehicle_tag_links, :read
-    end
-
   end
 
   attributes do
@@ -37,7 +26,7 @@ defmodule UniboV4.Maintenance.VehicleTagLink do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

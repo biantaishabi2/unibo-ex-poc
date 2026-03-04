@@ -9,27 +9,11 @@ defmodule UniboV4.Accounting.PartialReconcile do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Accounting,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "accounting_partial_reconciles"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :accounting_partial_reconcile
-
-    queries do
-      get :get_accounting_partial_reconcile, :read
-      list :list_accounting_partial_reconciles, :read
-    end
-
-    mutations do
-      create :create_accounting_partial_reconcile, :create
-      destroy :delete_accounting_partial_reconcile, :destroy
-    end
-
   end
 
   attributes do
@@ -59,7 +43,7 @@ defmodule UniboV4.Accounting.PartialReconcile do
   end
 
   actions do
-    defaults [:read, :destroy, :update]
+    defaults [:read, :destroy]
     create :create do
       primary? true
       accept [:amount, :debit_amount_currency, :credit_amount_currency]

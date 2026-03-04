@@ -12,28 +12,11 @@ defmodule UniboV4.Analytic.AnalyticPlan do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Analytic,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "analytic_plans"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :analytic_analytic_plan
-
-    queries do
-      get :get_analytic_analytic_plan, :read
-      list :list_analytic_analytic_plans, :read
-    end
-
-    mutations do
-      create :create_analytic_analytic_plan, :create
-      update :update_analytic_analytic_plan, :update
-      update :deactivate_analytic_analytic_plan, :deactivate
-    end
-
   end
 
   attributes do

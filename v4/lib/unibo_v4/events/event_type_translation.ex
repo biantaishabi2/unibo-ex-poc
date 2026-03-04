@@ -1,6 +1,7 @@
 defmodule UniboV4.Events.EventTypeTranslation do
   use Ash.Resource,
     otp_app: :unibo_v4,
+    domain: UniboV4.Events,
     data_layer: AshPostgres.DataLayer
 
   postgres do

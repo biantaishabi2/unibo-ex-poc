@@ -2,22 +2,11 @@ defmodule UniboV4.Lunch.User do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Lunch,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "lunch_users"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :lunch_user
-
-    queries do
-      get :get_lunch_user, :read
-      list :list_lunch_users, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Lunch.User do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

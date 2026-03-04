@@ -2,22 +2,11 @@ defmodule UniboV4.PLM.EcoTypeStageLink do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.PLM,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "plm_eco_type_stage_links"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :plm_eco_type_stage_link
-
-    queries do
-      get :get_plm_eco_type_stage_link, :read
-      list :list_plm_eco_type_stage_links, :read
-    end
-
   end
 
   attributes do
@@ -36,7 +25,7 @@ defmodule UniboV4.PLM.EcoTypeStageLink do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

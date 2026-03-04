@@ -2,22 +2,11 @@ defmodule UniboV4.Expenses.PaymentMethodLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Expenses,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "expenses_payment_method_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :expenses_payment_method_line
-
-    queries do
-      get :get_expenses_payment_method_line, :read
-      list :list_expenses_payment_method_lines, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Expenses.PaymentMethodLine do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

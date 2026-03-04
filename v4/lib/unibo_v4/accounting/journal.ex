@@ -2,22 +2,11 @@ defmodule UniboV4.Accounting.Journal do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Accounting,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "accounting_journals"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :accounting_journal
-
-    queries do
-      get :get_accounting_journal, :read
-      list :list_accounting_journals, :read
-    end
-
   end
 
   attributes do
@@ -27,7 +16,7 @@ defmodule UniboV4.Accounting.Journal do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

@@ -12,28 +12,11 @@ defmodule UniboV4.Repair.RepairLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Repair,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "repair_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :repair_repair_line
-
-    queries do
-      get :get_repair_repair_line, :read
-      list :list_repair_repair_lines, :read
-    end
-
-    mutations do
-      create :create_repair_repair_line, :create
-      update :update_repair_repair_line, :update
-      destroy :delete_repair_repair_line, :destroy
-    end
-
   end
 
   attributes do

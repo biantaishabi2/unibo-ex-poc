@@ -2,22 +2,11 @@ defmodule UniboV4.Marketing.EventLeadRuleEventType do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "marketing_event_lead_rule_event_types"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_event_lead_rule_event_type
-
-    queries do
-      get :get_marketing_event_lead_rule_event_type, :read
-      list :list_marketing_event_lead_rule_event_types, :read
-    end
-
   end
 
   attributes do
@@ -37,7 +26,7 @@ defmodule UniboV4.Marketing.EventLeadRuleEventType do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

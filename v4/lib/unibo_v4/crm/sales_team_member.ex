@@ -2,28 +2,11 @@ defmodule UniboV4.CRM.SalesTeamMember do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.CRM,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "crm_sales_team_members"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :crm_sales_team_member
-
-    queries do
-      get :get_crm_sales_team_member, :read
-      list :list_crm_sales_team_members, :read
-    end
-
-    mutations do
-      create :create_crm_sales_team_member, :create
-      update :update_crm_sales_team_member, :update
-      destroy :delete_crm_sales_team_member, :destroy
-    end
-
   end
 
   attributes do

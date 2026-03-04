@@ -19,31 +19,11 @@ defmodule UniboV4.Sign.SignRequest do
     otp_app: :unibo_v4,
     domain: UniboV4.Sign,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Sign.SignRequest.Notifier]
 
   postgres do
     table "sign_requests"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sign_sign_request
-
-    queries do
-      get :get_sign_sign_request, :read
-      list :list_sign_sign_requests, :read
-    end
-
-    mutations do
-      create :create_sign_sign_request, :create
-      update :send_sign_sign_request, :send
-      update :cancel_sign_sign_request, :cancel
-      update :recall_sign_sign_request, :recall
-      update :expire_sign_sign_request, :expire
-      update :complete_sign_sign_request, :complete
-    end
-
   end
 
   attributes do
@@ -121,7 +101,6 @@ defmodule UniboV4.Sign.SignRequest do
       end
     end
     update :send do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)

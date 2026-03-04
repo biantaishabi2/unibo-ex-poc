@@ -12,28 +12,11 @@ defmodule UniboV4.Knowledge.Tag do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Knowledge,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "knowledge_tags"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :knowledge_tag
-
-    queries do
-      get :get_knowledge_tag, :read
-      list :list_knowledge_tags, :read
-    end
-
-    mutations do
-      create :create_knowledge_tag, :create
-      update :update_knowledge_tag, :update
-      destroy :delete_knowledge_tag, :destroy
-    end
-
   end
 
   attributes do

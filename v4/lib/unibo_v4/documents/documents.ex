@@ -1,10 +1,5 @@
 defmodule UniboV4.Documents do
-  use Ash.Domain,
-    extensions: [AshGraphql.Domain]
-
-  graphql do
-    authorize? false
-  end
+  use Ash.Domain
 
   resources do
     resource UniboV4.Documents.Document

@@ -16,30 +16,11 @@ defmodule UniboV4.Rating.Rating do
     otp_app: :unibo_v4,
     domain: UniboV4.Rating,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Rating.Rating.Notifier]
 
   postgres do
     table "rating_ratings"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :rating_rating
-
-    queries do
-      get :get_rating_rating, :read
-      list :list_rating_ratings, :read
-    end
-
-    mutations do
-      create :create_submit_rating_rating, :submit
-      update :update_rating_rating, :update
-      update :approve_rating_rating, :approve
-      update :reject_rating_rating, :reject
-      update :flag_rating_rating, :flag
-    end
-
   end
 
   attributes do
@@ -112,7 +93,6 @@ defmodule UniboV4.Rating.Rating do
       end
     end
     update :update do
-      primary? true
       accept [:score, :comment, :is_anonymous]
       # skipped: validate attribute_equals :status (incompatible with bulk update atomic path)
       change fn changeset, _context ->
@@ -177,7 +157,7 @@ defmodule UniboV4.Rating.Rating do
   end
 
   validations do
-    validate compare(:score, greater_than_or_equal_to: 1.0, less_than_or_equal_to: 5.0)
+    validate compare(:score, greater_than_or_equal_to: Decimal.new("1"), less_than_or_equal_to: Decimal.new("5"))
   end
 
   identities do

@@ -8,26 +8,11 @@ defmodule UniboV4.POS.PosPayment do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.POS,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "pos_payments"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :pos_pos_payment
-
-    queries do
-      get :get_pos_pos_payment, :read
-      list :list_pos_pos_payments, :read
-    end
-
-    mutations do
-      create :create_pos_pos_payment, :create
-    end
-
   end
 
   attributes do
@@ -62,7 +47,7 @@ defmodule UniboV4.POS.PosPayment do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       primary? true
       accept [:amount, :is_change, :reference_number, :card_type, :cardholder_name, :transaction_id, :payment_status, :ticket]

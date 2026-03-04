@@ -46,35 +46,11 @@ defmodule UniboV4.Subscriptions.SubscriptionOrder do
     otp_app: :unibo_v4,
     domain: UniboV4.Subscriptions,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Subscriptions.SubscriptionOrder.Notifier]
 
   postgres do
     table "subscriptions_subscription_orders"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :subscriptions_subscription_order
-
-    queries do
-      get :get_subscriptions_subscription_order, :read
-      list :list_subscriptions_subscription_orders, :read
-    end
-
-    mutations do
-      create :create_create_subscriptions_subscription_order, :create
-      create :create_action_renew_subscriptions_subscription_order, :action_renew
-      update :update_subscriptions_subscription_order, :update
-      update :action_confirm_subscriptions_subscription_order, :action_confirm
-      update :action_pause_subscriptions_subscription_order, :action_pause
-      update :action_resume_subscriptions_subscription_order, :action_resume
-      update :action_close_subscriptions_subscription_order, :action_close
-      update :action_upsell_subscriptions_subscription_order, :action_upsell
-      update :mark_payment_exception_subscriptions_subscription_order, :mark_payment_exception
-      update :clear_payment_exception_subscriptions_subscription_order, :clear_payment_exception
-    end
-
   end
 
   attributes do
@@ -316,8 +292,8 @@ defmodule UniboV4.Subscriptions.SubscriptionOrder do
       argument :currency_id, :uuid, allow_nil?: false
       change manage_relationship(:currency_id, :currency, type: :append, on_lookup: :relate)
       validate present(:name)
+      # precondition: requires subscription_state=:closed
       validate attribute_equals(:subscription_state, :closed)
-      # message: "只有已关闭状态可以续订"
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

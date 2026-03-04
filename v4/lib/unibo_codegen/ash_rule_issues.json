@@ -1,7 +1,7 @@
 {
-  "total": 1105,
-  "errors": 0,
-  "warnings": 1105,
+  "total": 1161,
+  "errors": 80,
+  "warnings": 1081,
   "issues": [
     {
       "domain": "Accounting",
@@ -310,6 +310,14 @@
     {
       "domain": "Approvals",
       "entity": "ApprovalRequest",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 requester_id 类型 :integer 与目标 User PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Approvals",
+      "entity": "ApprovalRequest",
       "action": "approve",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -354,6 +362,22 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Approvals",
+      "entity": "Approver",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 delegated_from_id 类型 :integer 与目标 User PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Approvals",
+      "entity": "Approver",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 user_id 类型 :integer 与目标 User PK 类型 :uuid 不匹配"
     },
     {
       "domain": "Approvals",
@@ -1014,6 +1038,46 @@
     {
       "domain": "Communication",
       "entity": "ChannelMember",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 channel_id 类型 :string 与目标 Channel PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Communication",
+      "entity": "ChannelMember",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 fetched_message_id 类型 :string 与目标 Message PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Communication",
+      "entity": "ChannelMember",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 guest_id 类型 :string 与目标 Guest PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Communication",
+      "entity": "ChannelMember",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 partner_id 类型 :string 与目标 User PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Communication",
+      "entity": "ChannelMember",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 seen_message_id 类型 :string 与目标 Message PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Communication",
+      "entity": "ChannelMember",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -1150,6 +1214,22 @@
     {
       "domain": "Communication",
       "entity": "Message",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 author_id 类型 :string 与目标 User PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Communication",
+      "entity": "Message",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 parent_id 类型 :string 与目标 Message PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Communication",
+      "entity": "Message",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -1178,6 +1258,14 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Currency",
+      "entity": "Currency",
+      "action": null,
+      "rule_code": "cross_domain_fk",
+      "severity": "warning",
+      "reason": "关系 category 引用跨域目标 Uom.UomCategory，无法校验目标实体是否存在"
     },
     {
       "domain": "Currency",
@@ -1278,6 +1366,22 @@
     {
       "domain": "Delivery",
       "entity": "CarrierShipmentMethod",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 party_id 类型 :string 与目标 Party PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "CarrierShipmentMethod",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_method_type_id 类型 :string 与目标 ShipmentMethodType PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "CarrierShipmentMethod",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -1290,6 +1394,30 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Delivery",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 dest_facility_id 类型 :string 与目标 Facility PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Delivery",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 fixed_asset_id 类型 :string 与目标 FixedAsset PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Delivery",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 origin_facility_id 类型 :string 与目标 Facility PK 类型 :uuid 不匹配"
     },
     {
       "domain": "Delivery",
@@ -1322,6 +1450,46 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Shipment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 destination_facility_id 类型 :string 与目标 Facility PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Shipment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 origin_facility_id 类型 :string 与目标 Facility PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Shipment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 party_id_from 类型 :string 与目标 Party PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Shipment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 party_id_to 类型 :string 与目标 Party PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "Shipment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_type_id 类型 :string 与目标 ShipmentType PK 类型 :uuid 不匹配"
     },
     {
       "domain": "Delivery",
@@ -1406,6 +1574,30 @@
     {
       "domain": "Delivery",
       "entity": "ShipmentCostEstimate",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 carrier_party_id 类型 :string 与目标 Party PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentCostEstimate",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 party_id 类型 :string 与目标 Party PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentCostEstimate",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_method_type_id 类型 :string 与目标 ShipmentMethodType PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentCostEstimate",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -1422,6 +1614,22 @@
     {
       "domain": "Delivery",
       "entity": "ShipmentItem",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 product_id 类型 :string 与目标 Product PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentItem",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_id 类型 :string 与目标 Shipment PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentItem",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -1454,6 +1662,22 @@
     {
       "domain": "Delivery",
       "entity": "ShipmentPackage",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_box_type_id 类型 :string 与目标 ShipmentBoxType PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackage",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_id 类型 :string 与目标 Shipment PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackage",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -1470,6 +1694,30 @@
     {
       "domain": "Delivery",
       "entity": "ShipmentPackageContent",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_id 类型 :string 与目标 Shipment PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackageContent",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_item_seq_id 类型 :string 与目标 ShipmentItem PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackageContent",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_package_seq_id 类型 :string 与目标 ShipmentPackage PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackageContent",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -1482,6 +1730,30 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackageRouteSeg",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_id 类型 :string 与目标 Shipment PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackageRouteSeg",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_package_seq_id 类型 :string 与目标 ShipmentPackage PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentPackageRouteSeg",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_route_segment_id 类型 :string 与目标 ShipmentRouteSegment PK 类型 :uuid 不匹配"
     },
     {
       "domain": "Delivery",
@@ -1514,6 +1786,54 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentRouteSegment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 carrier_party_id 类型 :string 与目标 Party PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentRouteSegment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 delivery_id 类型 :string 与目标 Delivery PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentRouteSegment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 dest_facility_id 类型 :string 与目标 Facility PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentRouteSegment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 origin_facility_id 类型 :string 与目标 Facility PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentRouteSegment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_id 类型 :string 与目标 Shipment PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentRouteSegment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_method_type_id 类型 :string 与目标 ShipmentMethodType PK 类型 :uuid 不匹配"
     },
     {
       "domain": "Delivery",
@@ -1558,10 +1878,26 @@
     {
       "domain": "Delivery",
       "entity": "ShipmentStatus",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 shipment_id 类型 :string 与目标 Shipment PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentStatus",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Delivery",
+      "entity": "ShipmentType",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 parent_type_id 类型 :string 与目标 ShipmentType PK 类型 :uuid 不匹配"
     },
     {
       "domain": "Delivery",
@@ -1706,6 +2042,14 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Documents",
+      "entity": "Share",
+      "action": "upload_via_share",
+      "rule_code": "present_field_not_found",
+      "severity": "error",
+      "reason": "validate present(:document_ids) 引用的字段在实体中不存在"
     },
     {
       "domain": "Documents",
@@ -2262,6 +2606,22 @@
     {
       "domain": "Events",
       "entity": "Event",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 event_type_id 类型 :string 与目标 EventType PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Events",
+      "entity": "Event",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 parent_event_id 类型 :string 与目标 Event PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Events",
+      "entity": "Event",
       "action": "archive",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -2326,6 +2686,22 @@
     {
       "domain": "Events",
       "entity": "EventBooth",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 event_id 类型 :string 与目标 Event PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventBooth",
+      "action": null,
+      "rule_code": "tenancy_dsl_missing",
+      "severity": "warning",
+      "reason": "检测到 tenant_id 字段，但未声明 tenancy DSL；请显式声明 tenancy.strategy/tenancy.attribute"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventBooth",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -2354,6 +2730,22 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventRegistration",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 event_id 类型 :string 与目标 Event PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventRegistration",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 ticket_id 类型 :string 与目标 EventTicket PK 类型 :uuid 不匹配"
     },
     {
       "domain": "Events",
@@ -2390,6 +2782,14 @@
     {
       "domain": "Events",
       "entity": "EventStage",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 event_id 类型 :string 与目标 Event PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventStage",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -2402,6 +2802,14 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Events",
+      "entity": "EventTicket",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 event_id 类型 :string 与目标 Event PK 类型 :uuid 不匹配"
     },
     {
       "domain": "Events",
@@ -2510,6 +2918,14 @@
     {
       "domain": "Expenses",
       "entity": "ExpenseReport",
+      "action": "post",
+      "rule_code": "present_field_not_found",
+      "severity": "error",
+      "reason": "validate present(:employee_journal_id) 引用的字段在实体中不存在"
+    },
+    {
+      "domain": "Expenses",
+      "entity": "ExpenseReport",
       "action": "refuse",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -2614,6 +3030,22 @@
     {
       "domain": "Fleet",
       "entity": "VehicleAssignment",
+      "action": "assign",
+      "rule_code": "present_field_not_found",
+      "severity": "error",
+      "reason": "validate present(:driver_id) 引用的字段在实体中不存在"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleAssignment",
+      "action": "assign",
+      "rule_code": "present_field_not_found",
+      "severity": "error",
+      "reason": "validate present(:fleet_vehicle_id) 引用的字段在实体中不存在"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleAssignment",
       "action": "return",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -2642,6 +3074,14 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleContract",
+      "action": "create",
+      "rule_code": "present_field_not_found",
+      "severity": "error",
+      "reason": "validate present(:fleet_vehicle_id) 引用的字段在实体中不存在"
     },
     {
       "domain": "Fleet",
@@ -2686,6 +3126,14 @@
     {
       "domain": "Fleet",
       "entity": "VehicleService",
+      "action": "schedule",
+      "rule_code": "present_field_not_found",
+      "severity": "error",
+      "reason": "validate present(:fleet_vehicle_id) 引用的字段在实体中不存在"
+    },
+    {
+      "domain": "Fleet",
+      "entity": "VehicleService",
       "action": "start",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -2714,6 +3162,14 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Forum",
+      "entity": "Post",
+      "action": "accept_answer",
+      "rule_code": "present_field_not_found",
+      "severity": "error",
+      "reason": "validate present(:parent_id) 引用的字段在实体中不存在"
     },
     {
       "domain": "Forum",
@@ -2770,6 +3226,14 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Forum",
+      "entity": "Post",
+      "action": "unaccept_answer",
+      "rule_code": "present_field_not_found",
+      "severity": "error",
+      "reason": "validate present(:parent_id) 引用的字段在实体中不存在"
     },
     {
       "domain": "Forum",
@@ -4502,70 +4966,6 @@
     {
       "domain": "Knowledge",
       "entity": "Tag",
-      "action": "update",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "LiveChat",
-      "entity": "ChannelRule",
-      "action": "create",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
-    },
-    {
-      "domain": "LiveChat",
-      "entity": "ChannelRule",
-      "action": "update",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "LiveChat",
-      "entity": "ChatSession",
-      "action": "close",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "LiveChat",
-      "entity": "ChatSession",
-      "action": "create",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
-    },
-    {
-      "domain": "LiveChat",
-      "entity": "LiveChatChannel",
-      "action": "create",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
-    },
-    {
-      "domain": "LiveChat",
-      "entity": "LiveChatChannel",
-      "action": "join",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "LiveChat",
-      "entity": "LiveChatChannel",
-      "action": "quit",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "LiveChat",
-      "entity": "LiveChatChannel",
       "action": "update",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -6686,6 +7086,46 @@
     {
       "domain": "Payment",
       "entity": "Payment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 party_id_from 类型 :string 与目标 Party PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Payment",
+      "entity": "Payment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 party_id_to 类型 :string 与目标 Party PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Payment",
+      "entity": "Payment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 payment_gateway_response_id 类型 :string 与目标 PaymentGatewayResponse PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Payment",
+      "entity": "Payment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 payment_method_id 类型 :string 与目标 PaymentMethod PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Payment",
+      "entity": "Payment",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 payment_type_id 类型 :string 与目标 PaymentType PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Payment",
+      "entity": "Payment",
       "action": "authorize",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -6750,6 +7190,30 @@
     {
       "domain": "Payment",
       "entity": "PaymentApplication",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 invoice_id 类型 :string 与目标 Invoice PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentApplication",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 payment_id 类型 :string 与目标 Payment PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentApplication",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 to_payment_id 类型 :string 与目标 Payment PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentApplication",
       "action": "apply_to_account",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -6782,6 +7246,22 @@
     {
       "domain": "Payment",
       "entity": "PaymentGatewayResponse",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 payment_method_id 类型 :string 与目标 PaymentMethod PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentGatewayResponse",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 payment_provider_id 类型 :string 与目标 PaymentProvider PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentGatewayResponse",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -6794,6 +7274,14 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentMethod",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 party_id 类型 :string 与目标 Party PK 类型 :uuid 不匹配"
     },
     {
       "domain": "Payment",
@@ -6862,6 +7350,14 @@
     {
       "domain": "Payment",
       "entity": "PaymentRefund",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 payment_id 类型 :string 与目标 Payment PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentRefund",
       "action": "approve",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -6894,6 +7390,22 @@
     {
       "domain": "Payment",
       "entity": "PaymentToken",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 party_id 类型 :string 与目标 Party PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentToken",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 provider_id 类型 :string 与目标 PaymentProvider PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentToken",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -6922,6 +7434,14 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Payment",
+      "entity": "PaymentType",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 parent_type_id 类型 :string 与目标 PaymentType PK 类型 :uuid 不匹配"
     },
     {
       "domain": "Payment",
@@ -7050,6 +7570,38 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Project",
+      "entity": "Task",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 milestone_id 类型 :string 与目标 Milestone PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Project",
+      "entity": "Task",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 parent_id 类型 :string 与目标 Task PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Project",
+      "entity": "Task",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 project_id 类型 :string 与目标 Project PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Project",
+      "entity": "Task",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 stage_id 类型 :string 与目标 TaskStage PK 类型 :uuid 不匹配"
     },
     {
       "domain": "Project",
@@ -7422,6 +7974,14 @@
     {
       "domain": "Purchasing",
       "entity": "PurchaseRequisitionType",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 parent_type_id 类型 :string 与目标 PurchaseRequisitionType PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Purchasing",
+      "entity": "PurchaseRequisitionType",
       "action": "create",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -7478,150 +8038,6 @@
     {
       "domain": "Purchasing",
       "entity": "SupplierProduct",
-      "action": "update",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityAlert",
-      "action": "confirm",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityAlert",
-      "action": "create",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityAlert",
-      "action": "done",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityAlert",
-      "action": "start_progress",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityAlert",
-      "action": "update",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityCheck",
-      "action": "create",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityCheck",
-      "action": "do_fail",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityCheck",
-      "action": "do_pass",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityPoint",
-      "action": "activate",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityPoint",
-      "action": "create",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityPoint",
-      "action": "deactivate",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityPoint",
-      "action": "update",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityReason",
-      "action": "create",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityReason",
-      "action": "update",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityTag",
-      "action": "create",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityTag",
-      "action": "update",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityTeam",
-      "action": "create",
-      "rule_code": "action_requires_non_atomic",
-      "severity": "warning",
-      "reason": "检测到动态变更（expr/when/call），当前仅对 update action 自动设置 require_atomic? false"
-    },
-    {
-      "domain": "Quality",
-      "entity": "QualityTeam",
       "action": "update",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -8358,6 +8774,14 @@
     {
       "domain": "Spreadsheet",
       "entity": "Revision",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 user_id 类型 :integer 与目标 User PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Spreadsheet",
+      "entity": "Revision",
       "action": "apply_revision",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -8402,6 +8826,14 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Studio",
+      "entity": "App",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 created_by_id 类型 :integer 与目标 User PK 类型 :uuid 不匹配"
     },
     {
       "domain": "Studio",
@@ -8494,6 +8926,14 @@
     {
       "domain": "Studio",
       "entity": "CustomModel",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 created_by_id 类型 :integer 与目标 User PK 类型 :uuid 不匹配"
+    },
+    {
+      "domain": "Studio",
+      "entity": "CustomModel",
       "action": "activate",
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
@@ -8538,6 +8978,14 @@
       "rule_code": "action_requires_non_atomic",
       "severity": "warning",
       "reason": "检测到动态变更（expr/when/call），编译器已自动添加 require_atomic? false"
+    },
+    {
+      "domain": "Studio",
+      "entity": "CustomView",
+      "action": null,
+      "rule_code": "fk_type_mismatch",
+      "severity": "error",
+      "reason": "FK 属性 created_by_id 类型 :integer 与目标 User PK 类型 :uuid 不匹配"
     },
     {
       "domain": "Studio",

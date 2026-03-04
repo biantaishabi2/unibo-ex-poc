@@ -15,29 +15,11 @@ defmodule UniboV4.Ecommerce.Theme do
     otp_app: :unibo_v4,
     domain: UniboV4.Ecommerce,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Ecommerce.Theme.Notifier]
 
   postgres do
     table "ecommerce_themes"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :ecommerce_theme
-
-    queries do
-      get :get_ecommerce_theme, :read
-      list :list_ecommerce_themes, :read
-    end
-
-    mutations do
-      create :create_ecommerce_theme, :create
-      update :update_ecommerce_theme, :update
-      update :apply_ecommerce_theme, :apply
-      update :switch_ecommerce_theme, :switch
-    end
-
   end
 
   attributes do

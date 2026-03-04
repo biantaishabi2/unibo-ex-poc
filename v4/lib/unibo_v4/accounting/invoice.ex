@@ -14,29 +14,11 @@ defmodule UniboV4.Accounting.Invoice do
     otp_app: :unibo_v4,
     domain: UniboV4.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Accounting.Invoice.Notifier]
 
   postgres do
     table "accounting_invoices"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :accounting_invoice
-
-    queries do
-      get :get_accounting_invoice, :read
-      list :list_accounting_invoices, :read
-    end
-
-    mutations do
-      create :create_accounting_invoice, :create
-      update :approve_accounting_invoice, :approve
-      update :send_accounting_invoice, :send
-      update :void_accounting_invoice, :void
-    end
-
   end
 
   attributes do
@@ -103,7 +85,6 @@ defmodule UniboV4.Accounting.Invoice do
       # TODO: 跨实体聚合表达式暂不支持
     end
     update :approve do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

@@ -15,42 +15,11 @@ defmodule UniboV4.Sales.Return do
     otp_app: :unibo_v4,
     domain: UniboV4.Sales,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Sales.Return.Notifier]
 
   postgres do
     table "sales_returns"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sales_return
-
-    queries do
-      get :get_sales_return, :read
-      list :list_sales_returns, :read
-      get :get_list_sales_return, :list
-      list :list_list_sales_returns, :list
-      get :get_search_sales_return, :search
-      list :list_search_sales_returns, :search
-      get :get_get_sales_return, :get
-      list :list_get_sales_returns, :get
-      get :get_preview_sales_return, :preview
-      list :list_preview_sales_returns, :preview
-      get :get_compute_sales_return, :compute
-      list :list_compute_sales_returns, :compute
-      get :get_lookup_sales_return, :lookup
-      list :list_lookup_sales_returns, :lookup
-    end
-
-    mutations do
-      create :create_sales_return, :create
-      update :approve_sales_return, :approve
-      update :receive_sales_return, :receive
-      update :complete_sales_return, :complete
-      update :cancel_sales_return, :cancel
-    end
-
   end
 
   attributes do
@@ -129,7 +98,6 @@ defmodule UniboV4.Sales.Return do
     read :lookup do
     end
     update :approve do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

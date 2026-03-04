@@ -12,28 +12,11 @@ defmodule UniboV4.Fleet.VehicleAssignment do
     otp_app: :unibo_v4,
     domain: UniboV4.Fleet,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Fleet.VehicleAssignment.Notifier]
 
   postgres do
     table "fleet_vehicle_assignments"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :fleet_vehicle_assignment
-
-    queries do
-      get :get_fleet_vehicle_assignment, :read
-      list :list_fleet_vehicle_assignments, :read
-    end
-
-    mutations do
-      create :create_assign_fleet_vehicle_assignment, :assign
-      update :return_fleet_vehicle_assignment, :return
-      update :transfer_fleet_vehicle_assignment, :transfer
-    end
-
   end
 
   attributes do
@@ -73,8 +56,8 @@ defmodule UniboV4.Fleet.VehicleAssignment do
       change manage_relationship(:fleet_vehicle_id, :fleet_vehicle, type: :append, on_lookup: :relate)
       argument :driver_id, :uuid, allow_nil?: false
       change manage_relationship(:driver_id, :driver, type: :append, on_lookup: :relate)
-      validate present(:fleet_vehicle_id)
-      validate present(:driver_id)
+      # skipped: validate present(:fleet_vehicle_id) — field not found
+      # skipped: validate present(:driver_id) — field not found
       validate present(:from_date)
       # TODO: 不支持的 action 内校验规则 custom
       change set_attribute(:status, :active)
@@ -90,7 +73,6 @@ defmodule UniboV4.Fleet.VehicleAssignment do
       end
     end
     update :return do
-      primary? true
       accept [:to_date, :notes]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

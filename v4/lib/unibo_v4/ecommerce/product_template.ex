@@ -21,31 +21,11 @@ defmodule UniboV4.Ecommerce.ProductTemplate do
     otp_app: :unibo_v4,
     domain: UniboV4.Ecommerce,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Ecommerce.ProductTemplate.Notifier]
 
   postgres do
     table "ecommerce_product_templates"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :ecommerce_product_template
-
-    queries do
-      get :get_ecommerce_product_template, :read
-      list :list_ecommerce_product_templates, :read
-    end
-
-    mutations do
-      create :create_ecommerce_product_template, :create
-      update :update_ecommerce_product_template, :update
-      update :publish_ecommerce_product_template, :publish
-      update :unpublish_ecommerce_product_template, :unpublish
-      update :discontinue_ecommerce_product_template, :discontinue
-      update :reactivate_ecommerce_product_template, :reactivate
-    end
-
   end
 
   attributes do
@@ -125,10 +105,14 @@ defmodule UniboV4.Ecommerce.ProductTemplate do
     many_to_many :alternative_products, UniboV4.Ecommerce.ProductTemplate do
       public? true
       through UniboV4.Ecommerce.ProductTemplateAlternativeLink
+      source_attribute_on_join_resource :alternative_product_id
+      destination_attribute_on_join_resource :alternative_product_id
     end
     many_to_many :accessory_products, UniboV4.Ecommerce.ProductTemplate do
       public? true
       through UniboV4.Ecommerce.ProductTemplateAccessoryLink
+      source_attribute_on_join_resource :accessory_product_id
+      destination_attribute_on_join_resource :accessory_product_id
     end
     belongs_to :base_unit, UniboV4.Ecommerce.UOM do
       public? true

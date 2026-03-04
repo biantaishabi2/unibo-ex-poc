@@ -8,26 +8,11 @@ defmodule UniboV4.Knowledge.ArticleVersion do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Knowledge,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "knowledge_article_versions"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :knowledge_article_version
-
-    queries do
-      get :get_knowledge_article_version, :read
-      list :list_knowledge_article_versions, :read
-    end
-
-    mutations do
-      create :create_knowledge_article_version, :create
-    end
-
   end
 
   attributes do
@@ -64,7 +49,7 @@ defmodule UniboV4.Knowledge.ArticleVersion do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       primary? true
       accept [:body, :type]

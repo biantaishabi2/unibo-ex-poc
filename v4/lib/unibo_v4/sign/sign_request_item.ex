@@ -12,25 +12,11 @@ defmodule UniboV4.Sign.SignRequestItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Sign,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "sign_request_items"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sign_sign_request_item
-
-    mutations do
-      create :create_sign_sign_request_item, :create
-      update :send_sign_sign_request_item, :send
-      update :sign_sign_sign_request_item, :sign
-      update :refuse_sign_sign_request_item, :refuse
-      update :reset_sign_sign_request_item, :reset
-    end
-
   end
 
   attributes do
@@ -68,7 +54,6 @@ defmodule UniboV4.Sign.SignRequestItem do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:signing_order, :signer_email, :sms_number]
@@ -89,7 +74,6 @@ defmodule UniboV4.Sign.SignRequestItem do
       end
     end
     update :send do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)

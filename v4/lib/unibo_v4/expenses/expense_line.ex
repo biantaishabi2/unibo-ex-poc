@@ -10,23 +10,11 @@ defmodule UniboV4.Expenses.ExpenseLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Expenses,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "expenses_expense_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :expenses_expense_line
-
-    mutations do
-      create :create_expenses_expense_line, :create
-      update :update_expenses_expense_line, :update
-      update :split_expenses_expense_line, :split
-    end
-
   end
 
   attributes do
@@ -97,7 +85,6 @@ defmodule UniboV4.Expenses.ExpenseLine do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:description, :quantity, :price_unit, :expense_date, :receipt_reference, :payment_mode, :currency_rate, :analytic_distribution, :notes]

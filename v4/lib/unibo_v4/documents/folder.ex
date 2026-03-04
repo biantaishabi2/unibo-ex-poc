@@ -11,28 +11,11 @@ defmodule UniboV4.Documents.Folder do
     otp_app: :unibo_v4,
     domain: UniboV4.Documents,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     authorizers: [Ash.Policy.Authorizer]
 
   postgres do
     table "documents_folders"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :documents_folder
-
-    queries do
-      get :get_documents_folder, :read
-      list :list_documents_folders, :read
-    end
-
-    mutations do
-      create :create_documents_folder, :create
-      update :update_documents_folder, :update
-      destroy :delete_documents_folder, :destroy
-    end
-
   end
 
   attributes do
@@ -110,10 +93,13 @@ defmodule UniboV4.Documents.Folder do
 
   policies do
     policy action_type(:read) do
-      authorize_if expr(role == :admin or expr(fragment("? && ?", groups, read_groups)))
+      authorize_if expr(actor.role == :admin or expr(fragment("? && ?", actor.groups, read_groups)))
     end
     policy action_type(:update) do
-      authorize_if expr(role == :admin or expr(fragment("? && ?", groups, write_groups)))
+      authorize_if expr(actor.role == :admin or expr(fragment("? && ?", actor.groups, write_groups)))
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

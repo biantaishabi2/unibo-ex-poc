@@ -2,23 +2,11 @@ defmodule UniboV4.CRM.ContactAddress do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.CRM,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "crm_contact_addresses"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :crm_contact_address
-
-    mutations do
-      create :create_crm_contact_address, :create
-      update :update_crm_contact_address, :update
-      destroy :delete_crm_contact_address, :destroy
-    end
-
   end
 
   attributes do
@@ -52,7 +40,7 @@ defmodule UniboV4.CRM.ContactAddress do
   end
 
   actions do
-    defaults [:destroy, :read]
+    defaults [:destroy]
     create :create do
       primary? true
       accept [:address_type, :street, :city, :state, :postal_code, :country, :is_primary]

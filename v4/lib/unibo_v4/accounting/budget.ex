@@ -13,29 +13,11 @@ defmodule UniboV4.Accounting.Budget do
     otp_app: :unibo_v4,
     domain: UniboV4.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Accounting.Budget.Notifier]
 
   postgres do
     table "accounting_budgets"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :accounting_budget
-
-    queries do
-      get :get_accounting_budget, :read
-      list :list_accounting_budgets, :read
-    end
-
-    mutations do
-      create :create_accounting_budget, :create
-      update :submit_accounting_budget, :submit
-      update :approve_accounting_budget, :approve
-      update :reject_accounting_budget, :reject
-    end
-
   end
 
   attributes do
@@ -85,7 +67,6 @@ defmodule UniboV4.Accounting.Budget do
       # TODO: 跨实体聚合表达式暂不支持
     end
     update :submit do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

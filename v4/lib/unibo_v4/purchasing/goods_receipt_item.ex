@@ -9,22 +9,11 @@ defmodule UniboV4.Purchasing.GoodsReceiptItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Purchasing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "purchasing_goods_receipt_items"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :purchasing_goods_receipt_item
-
-    mutations do
-      create :create_purchasing_goods_receipt_item, :create
-      update :update_purchasing_goods_receipt_item, :update
-    end
-
   end
 
   attributes do
@@ -55,7 +44,6 @@ defmodule UniboV4.Purchasing.GoodsReceiptItem do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:product_name, :quantity_received, :quantity_accepted, :quantity_rejected, :rejection_reason]

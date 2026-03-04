@@ -11,28 +11,11 @@ defmodule UniboV4.Spreadsheet.GlobalFilter do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Spreadsheet,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "spreadsheet_global_filters"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :spreadsheet_global_filter
-
-    queries do
-      get :get_spreadsheet_global_filter, :read
-      list :list_spreadsheet_global_filters, :read
-    end
-
-    mutations do
-      create :create_spreadsheet_global_filter, :create
-      update :update_spreadsheet_global_filter, :update
-      destroy :delete_spreadsheet_global_filter, :destroy
-    end
-
   end
 
   attributes do

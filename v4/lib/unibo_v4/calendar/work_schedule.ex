@@ -19,30 +19,11 @@ defmodule UniboV4.Calendar.WorkSchedule do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Calendar,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "calendar_work_schedules"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :calendar_work_schedule
-
-    queries do
-      get :get_calendar_work_schedule, :read
-      list :list_calendar_work_schedules, :read
-    end
-
-    mutations do
-      create :create_calendar_work_schedule, :create
-      update :update_calendar_work_schedule, :update
-      update :activate_calendar_work_schedule, :activate
-      update :deactivate_calendar_work_schedule, :deactivate
-      destroy :delete_calendar_work_schedule, :destroy
-    end
-
   end
 
   attributes do

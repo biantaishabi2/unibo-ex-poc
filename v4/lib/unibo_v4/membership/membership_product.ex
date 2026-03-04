@@ -9,27 +9,11 @@ defmodule UniboV4.Membership.MembershipProduct do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Membership,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "membership_products"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :membership_membership_product
-
-    queries do
-      get :get_membership_membership_product, :read
-      list :list_membership_membership_products, :read
-    end
-
-    mutations do
-      create :create_membership_membership_product, :create
-      update :update_membership_membership_product, :update
-    end
-
   end
 
   attributes do

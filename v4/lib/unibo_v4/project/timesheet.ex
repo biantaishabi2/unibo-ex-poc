@@ -19,29 +19,11 @@ defmodule UniboV4.Project.Timesheet do
     otp_app: :unibo_v4,
     domain: UniboV4.Project,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Project.Timesheet.Notifier]
 
   postgres do
     table "project_timesheets"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :project_timesheet
-
-    queries do
-      get :get_project_timesheet, :read
-      list :list_project_timesheets, :read
-    end
-
-    mutations do
-      create :create_project_timesheet, :create
-      update :submit_project_timesheet, :submit
-      update :approve_project_timesheet, :approve
-      update :reject_project_timesheet, :reject
-    end
-
   end
 
   attributes do
@@ -93,7 +75,6 @@ defmodule UniboV4.Project.Timesheet do
       end
     end
     update :submit do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

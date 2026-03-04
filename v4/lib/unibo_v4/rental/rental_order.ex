@@ -15,33 +15,12 @@ defmodule UniboV4.Rental.RentalOrder do
     otp_app: :unibo_v4,
     domain: UniboV4.Rental,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     authorizers: [Ash.Policy.Authorizer],
     notifiers: [UniboV4.Rental.RentalOrder.Notifier]
 
   postgres do
     table "rental_orders"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :rental_rental_order
-
-    queries do
-      get :get_rental_rental_order, :read
-      list :list_rental_rental_orders, :read
-    end
-
-    mutations do
-      create :create_rental_rental_order, :create
-      update :update_rental_rental_order, :update
-      update :action_confirm_rental_rental_order, :action_confirm
-      update :action_pickup_rental_rental_order, :action_pickup
-      update :action_return_rental_rental_order, :action_return
-      update :action_done_rental_rental_order, :action_done
-      update :action_cancel_rental_rental_order, :action_cancel
-    end
-
   end
 
   attributes do
@@ -219,13 +198,16 @@ defmodule UniboV4.Rental.RentalOrder do
 
   policies do
     policy action_type(:create) do
-      authorize_if expr(role in [:rental_agent, :admin])
+      authorize_if expr(actor.role in [:rental_agent, :admin])
     end
     policy action_type(:read) do
       authorize_if always()
     end
     policy action_type(:update) do
-      authorize_if expr(role == :admin or id == created_by_id)
+      authorize_if expr(actor.role == :admin or actor.id == created_by_id)
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

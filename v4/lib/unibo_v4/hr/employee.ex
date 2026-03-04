@@ -13,30 +13,11 @@ defmodule UniboV4.HR.Employee do
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.HR.Employee.Notifier]
 
   postgres do
     table "hr_employees"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_employee
-
-    queries do
-      get :get_hr_employee, :read
-      list :list_hr_employees, :read
-    end
-
-    mutations do
-      create :create_hr_employee, :create
-      update :update_hr_employee, :update
-      update :terminate_hr_employee, :terminate
-      update :suspend_hr_employee, :suspend
-      update :reactivate_hr_employee, :reactivate
-    end
-
   end
 
   attributes do

@@ -20,30 +20,11 @@ defmodule UniboV4.Barcode.BarcodeNomenclature do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Barcode,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "barcode_nomenclatures"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :barcode_barcode_nomenclature
-
-    queries do
-      get :get_barcode_barcode_nomenclature, :read
-      list :list_barcode_barcode_nomenclatures, :read
-    end
-
-    mutations do
-      create :create_barcode_barcode_nomenclature, :create
-      update :update_barcode_barcode_nomenclature, :update
-      update :activate_barcode_barcode_nomenclature, :activate
-      update :deactivate_barcode_barcode_nomenclature, :deactivate
-      destroy :delete_barcode_barcode_nomenclature, :destroy
-    end
-
   end
 
   attributes do

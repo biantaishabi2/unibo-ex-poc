@@ -11,28 +11,11 @@ defmodule UniboV4.Barcode.GS1ApplicationIdentifier do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Barcode,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "barcode_gs1_application_identifiers"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :barcode_gs1_application_identifier
-
-    queries do
-      get :get_barcode_gs1_application_identifier, :read
-      list :list_barcode_gs1_application_identifiers, :read
-    end
-
-    mutations do
-      create :create_barcode_gs1_application_identifier, :create
-      update :update_barcode_gs1_application_identifier, :update
-      destroy :delete_barcode_gs1_application_identifier, :destroy
-    end
-
   end
 
   attributes do
@@ -63,7 +46,7 @@ defmodule UniboV4.Barcode.GS1ApplicationIdentifier do
       public? true
       destination_attribute :gs1_ai_id
     end
-    has_many :translations, UniboV4.Barcode.Gs1ApplicationIdentifierTranslation, public?: true
+    has_many :translations, UniboV4.Barcode.GS1ApplicationIdentifierTranslation, public?: true
   end
 
   actions do

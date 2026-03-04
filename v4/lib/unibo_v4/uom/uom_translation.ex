@@ -1,6 +1,7 @@
 defmodule UniboV4.Uom.UomTranslation do
   use Ash.Resource,
     otp_app: :unibo_v4,
+    domain: UniboV4.Uom,
     data_layer: AshPostgres.DataLayer
 
   postgres do

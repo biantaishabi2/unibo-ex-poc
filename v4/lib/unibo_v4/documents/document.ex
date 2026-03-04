@@ -17,34 +17,11 @@ defmodule UniboV4.Documents.Document do
     otp_app: :unibo_v4,
     domain: UniboV4.Documents,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Documents.Document.Notifier]
 
   postgres do
     table "documents_documents"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :documents_document
-
-    queries do
-      get :get_documents_document, :read
-      list :list_documents_documents, :read
-    end
-
-    mutations do
-      create :create_documents_document, :create
-      update :update_documents_document, :update
-      update :upload_documents_document, :upload
-      update :lock_documents_document, :lock
-      update :unlock_documents_document, :unlock
-      update :archive_documents_document, :archive
-      update :restore_documents_document, :restore
-      update :toggle_favorite_documents_document, :toggle_favorite
-      destroy :delete_documents_document, :destroy
-    end
-
   end
 
   attributes do
@@ -142,8 +119,8 @@ defmodule UniboV4.Documents.Document do
       validate present(:type)
       validate present(:folder_id)
       # message: "每个文档必须属于一个文件夹"
-      change relate_actor(:owner_id)
-      change relate_actor(:create_uid)
+      change relate_actor(:owner)
+      # relate_actor :create_uid — 无对应关系，跳过
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -196,7 +173,7 @@ defmodule UniboV4.Documents.Document do
     update :lock do
       accept []
       # skipped: validate custom :lock_uid (incompatible with bulk update atomic path)
-      change relate_actor(:lock_uid)
+      # relate_actor :lock_uid — 无对应关系，跳过
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

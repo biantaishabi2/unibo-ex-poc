@@ -12,40 +12,11 @@ defmodule UniboV4.Sales.DeliveryPriceRule do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Sales,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "sales_delivery_price_rules"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sales_delivery_price_rule
-
-    queries do
-      get :get_sales_delivery_price_rule, :read
-      list :list_sales_delivery_price_rules, :read
-      get :get_list_sales_delivery_price_rule, :list
-      list :list_list_sales_delivery_price_rules, :list
-      get :get_search_sales_delivery_price_rule, :search
-      list :list_search_sales_delivery_price_rules, :search
-      get :get_get_sales_delivery_price_rule, :get
-      list :list_get_sales_delivery_price_rules, :get
-      get :get_preview_sales_delivery_price_rule, :preview
-      list :list_preview_sales_delivery_price_rules, :preview
-      get :get_compute_sales_delivery_price_rule, :compute
-      list :list_compute_sales_delivery_price_rules, :compute
-      get :get_lookup_sales_delivery_price_rule, :lookup
-      list :list_lookup_sales_delivery_price_rules, :lookup
-    end
-
-    mutations do
-      create :create_sales_delivery_price_rule, :create
-      update :update_sales_delivery_price_rule, :update
-      destroy :delete_sales_delivery_price_rule, :destroy
-    end
-
   end
 
   attributes do

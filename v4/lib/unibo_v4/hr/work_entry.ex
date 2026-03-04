@@ -17,28 +17,11 @@ defmodule UniboV4.HR.WorkEntry do
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.HR.WorkEntry.Notifier]
 
   postgres do
     table "hr_work_entries"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_work_entry
-
-    queries do
-      get :get_hr_work_entry, :read
-      list :list_hr_work_entrys, :read
-    end
-
-    mutations do
-      create :create_hr_work_entry, :create
-      update :action_validate_hr_work_entry, :action_validate
-      update :action_cancel_hr_work_entry, :action_cancel
-    end
-
   end
 
   attributes do
@@ -98,7 +81,6 @@ defmodule UniboV4.HR.WorkEntry do
       end
     end
     update :action_validate do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)

@@ -18,30 +18,11 @@ defmodule UniboV4.Studio.App do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Studio,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "studio_apps"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :studio_app
-
-    queries do
-      get :get_studio_app, :read
-      list :list_studio_apps, :read
-    end
-
-    mutations do
-      create :create_studio_app, :create
-      update :update_studio_app, :update
-      update :publish_studio_app, :publish
-      update :unpublish_studio_app, :unpublish
-      destroy :delete_studio_app, :destroy
-    end
-
   end
 
   attributes do

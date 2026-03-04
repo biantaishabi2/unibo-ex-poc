@@ -11,28 +11,11 @@ defmodule UniboV4.Fleet.FleetVehicleType do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Fleet,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "fleet_vehicle_types"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :fleet_fleet_vehicle_type
-
-    queries do
-      get :get_fleet_fleet_vehicle_type, :read
-      list :list_fleet_fleet_vehicle_types, :read
-    end
-
-    mutations do
-      create :create_fleet_fleet_vehicle_type, :create
-      update :update_fleet_fleet_vehicle_type, :update
-      destroy :delete_fleet_fleet_vehicle_type, :destroy
-    end
-
   end
 
   attributes do
@@ -48,10 +31,6 @@ defmodule UniboV4.Fleet.FleetVehicleType do
   end
 
   relationships do
-    has_many :vehicles, UniboV4.Fleet.FleetVehicle do
-      public? true
-      destination_attribute :fleet_vehicle_type_id
-    end
     has_many :translations, UniboV4.Fleet.FleetVehicleTypeTranslation, public?: true
   end
 

@@ -2,22 +2,11 @@ defmodule UniboV4.Lunch.LunchOrderTopping1Link do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Lunch,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "lunch_order_topping1_links"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :lunch_lunch_order_topping1_link
-
-    queries do
-      get :get_lunch_lunch_order_topping1_link, :read
-      list :list_lunch_lunch_order_topping1_links, :read
-    end
-
   end
 
   attributes do
@@ -36,7 +25,7 @@ defmodule UniboV4.Lunch.LunchOrderTopping1Link do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

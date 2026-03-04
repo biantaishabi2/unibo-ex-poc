@@ -16,40 +16,11 @@ defmodule UniboV4.Sales.DeliveryCarrier do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Sales,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "sales_delivery_carriers"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sales_delivery_carrier
-
-    queries do
-      get :get_sales_delivery_carrier, :read
-      list :list_sales_delivery_carriers, :read
-      get :get_list_sales_delivery_carrier, :list
-      list :list_list_sales_delivery_carriers, :list
-      get :get_search_sales_delivery_carrier, :search
-      list :list_search_sales_delivery_carriers, :search
-      get :get_get_sales_delivery_carrier, :get
-      list :list_get_sales_delivery_carriers, :get
-      get :get_preview_sales_delivery_carrier, :preview
-      list :list_preview_sales_delivery_carriers, :preview
-      get :get_compute_sales_delivery_carrier, :compute
-      list :list_compute_sales_delivery_carriers, :compute
-      get :get_lookup_sales_delivery_carrier, :lookup
-      list :list_lookup_sales_delivery_carriers, :lookup
-    end
-
-    mutations do
-      create :create_sales_delivery_carrier, :create
-      update :update_sales_delivery_carrier, :update
-      destroy :delete_sales_delivery_carrier, :destroy
-    end
-
   end
 
   attributes do

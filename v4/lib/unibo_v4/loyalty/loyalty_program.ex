@@ -17,31 +17,11 @@ defmodule UniboV4.Loyalty.LoyaltyProgram do
     otp_app: :unibo_v4,
     domain: UniboV4.Loyalty,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Loyalty.LoyaltyProgram.Notifier]
 
   postgres do
     table "loyalty_programs"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :loyalty_loyalty_program
-
-    queries do
-      get :get_loyalty_loyalty_program, :read
-      list :list_loyalty_loyalty_programs, :read
-    end
-
-    mutations do
-      create :create_loyalty_loyalty_program, :create
-      update :update_loyalty_loyalty_program, :update
-      update :activate_loyalty_loyalty_program, :activate
-      update :pause_loyalty_loyalty_program, :pause
-      update :expire_loyalty_loyalty_program, :expire
-      destroy :delete_loyalty_loyalty_program, :destroy
-    end
-
   end
 
   attributes do

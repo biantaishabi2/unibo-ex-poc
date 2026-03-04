@@ -23,32 +23,11 @@ defmodule UniboV4.Loyalty.GiftCard do
     otp_app: :unibo_v4,
     domain: UniboV4.Loyalty,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Loyalty.GiftCard.Notifier]
 
   postgres do
     table "loyalty_gift_cards"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :loyalty_gift_card
-
-    queries do
-      get :get_loyalty_gift_card, :read
-      list :list_loyalty_gift_cards, :read
-    end
-
-    mutations do
-      create :create_loyalty_gift_card, :create
-      update :activate_loyalty_gift_card, :activate
-      update :topup_loyalty_gift_card, :topup
-      update :charge_loyalty_gift_card, :charge
-      update :cancel_card_loyalty_gift_card, :cancel_card
-      update :expire_card_loyalty_gift_card, :expire_card
-      destroy :delete_loyalty_gift_card, :destroy
-    end
-
   end
 
   attributes do
@@ -119,7 +98,6 @@ defmodule UniboV4.Loyalty.GiftCard do
       end
     end
     update :activate do
-      primary? true
       accept []
       argument :owner_id, :uuid, allow_nil?: false
       argument :from_date, :utc_datetime

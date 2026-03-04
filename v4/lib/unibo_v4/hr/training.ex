@@ -11,29 +11,11 @@ defmodule UniboV4.HR.Training do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "hr_trainings"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_training
-
-    queries do
-      get :get_hr_training, :read
-      list :list_hr_trainings, :read
-    end
-
-    mutations do
-      create :create_hr_training, :create
-      update :start_hr_training, :start
-      update :complete_hr_training, :complete
-      update :cancel_hr_training, :cancel
-    end
-
   end
 
   attributes do
@@ -93,7 +75,6 @@ defmodule UniboV4.HR.Training do
       end
     end
     update :start do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

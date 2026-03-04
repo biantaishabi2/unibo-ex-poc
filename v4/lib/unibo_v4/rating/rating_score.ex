@@ -2,26 +2,11 @@ defmodule UniboV4.Rating.RatingScore do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Rating,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "rating_scores"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :rating_rating_score
-
-    queries do
-      get :get_rating_rating_score, :read
-      list :list_rating_rating_scores, :read
-    end
-
-    mutations do
-      create :create_submit_rating_rating_score, :submit
-    end
-
   end
 
   attributes do
@@ -47,7 +32,7 @@ defmodule UniboV4.Rating.RatingScore do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :submit do
       primary? true
       accept [:score, :comment]
@@ -71,7 +56,7 @@ defmodule UniboV4.Rating.RatingScore do
   end
 
   validations do
-    validate compare(:score, greater_than_or_equal_to: 1.0, less_than_or_equal_to: 5.0)
+    validate compare(:score, greater_than_or_equal_to: Decimal.new("1"), less_than_or_equal_to: Decimal.new("5"))
   end
 
   identities do

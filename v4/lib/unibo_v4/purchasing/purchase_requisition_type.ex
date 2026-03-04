@@ -9,39 +9,11 @@ defmodule UniboV4.Purchasing.PurchaseRequisitionType do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Purchasing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "purchasing_purchase_requisition_types"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :purchasing_purchase_requisition_type
-
-    queries do
-      get :get_purchasing_purchase_requisition_type, :read
-      list :list_purchasing_purchase_requisition_types, :read
-      get :get_list_purchasing_purchase_requisition_type, :list
-      list :list_list_purchasing_purchase_requisition_types, :list
-      get :get_search_purchasing_purchase_requisition_type, :search
-      list :list_search_purchasing_purchase_requisition_types, :search
-      get :get_get_purchasing_purchase_requisition_type, :get
-      list :list_get_purchasing_purchase_requisition_types, :get
-      get :get_preview_purchasing_purchase_requisition_type, :preview
-      list :list_preview_purchasing_purchase_requisition_types, :preview
-      get :get_compute_purchasing_purchase_requisition_type, :compute
-      list :list_compute_purchasing_purchase_requisition_types, :compute
-      get :get_lookup_purchasing_purchase_requisition_type, :lookup
-      list :list_lookup_purchasing_purchase_requisition_types, :lookup
-    end
-
-    mutations do
-      create :create_purchasing_purchase_requisition_type, :create
-      update :update_purchasing_purchase_requisition_type, :update
-    end
-
   end
 
   attributes do

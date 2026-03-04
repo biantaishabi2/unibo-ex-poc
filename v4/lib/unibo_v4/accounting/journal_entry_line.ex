@@ -9,22 +9,11 @@ defmodule UniboV4.Accounting.JournalEntryLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Accounting,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "accounting_journal_entry_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :accounting_journal_entry_line
-
-    mutations do
-      create :create_accounting_journal_entry_line, :create
-      update :update_accounting_journal_entry_line, :update
-    end
-
   end
 
   attributes do
@@ -84,7 +73,6 @@ defmodule UniboV4.Accounting.JournalEntryLine do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:debit_amount, :credit_amount, :amount_currency, :display_type, :description, :currency_id]

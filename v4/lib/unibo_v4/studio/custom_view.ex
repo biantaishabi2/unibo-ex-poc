@@ -11,28 +11,11 @@ defmodule UniboV4.Studio.CustomView do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Studio,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "studio_custom_views"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :studio_custom_view
-
-    queries do
-      get :get_studio_custom_view, :read
-      list :list_studio_custom_views, :read
-    end
-
-    mutations do
-      create :create_studio_custom_view, :create
-      update :update_studio_custom_view, :update
-      destroy :delete_studio_custom_view, :destroy
-    end
-
   end
 
   attributes do

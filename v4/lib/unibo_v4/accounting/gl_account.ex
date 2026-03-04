@@ -12,28 +12,11 @@ defmodule UniboV4.Accounting.GlAccount do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Accounting,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "accounting_gl_accounts"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :accounting_gl_account
-
-    queries do
-      get :get_accounting_gl_account, :read
-      list :list_accounting_gl_accounts, :read
-    end
-
-    mutations do
-      create :create_accounting_gl_account, :create
-      update :update_accounting_gl_account, :update
-      update :deactivate_accounting_gl_account, :deactivate
-    end
-
   end
 
   attributes do

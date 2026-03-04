@@ -11,40 +11,11 @@ defmodule UniboV4.Purchasing.GoodsReceipt do
     otp_app: :unibo_v4,
     domain: UniboV4.Purchasing,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Purchasing.GoodsReceipt.Notifier]
 
   postgres do
     table "purchasing_goods_receipts"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :purchasing_goods_receipt
-
-    queries do
-      get :get_purchasing_goods_receipt, :read
-      list :list_purchasing_goods_receipts, :read
-      get :get_list_purchasing_goods_receipt, :list
-      list :list_list_purchasing_goods_receipts, :list
-      get :get_search_purchasing_goods_receipt, :search
-      list :list_search_purchasing_goods_receipts, :search
-      get :get_get_purchasing_goods_receipt, :get
-      list :list_get_purchasing_goods_receipts, :get
-      get :get_preview_purchasing_goods_receipt, :preview
-      list :list_preview_purchasing_goods_receipts, :preview
-      get :get_compute_purchasing_goods_receipt, :compute
-      list :list_compute_purchasing_goods_receipts, :compute
-      get :get_lookup_purchasing_goods_receipt, :lookup
-      list :list_lookup_purchasing_goods_receipts, :lookup
-    end
-
-    mutations do
-      create :create_purchasing_goods_receipt, :create
-      update :confirm_purchasing_goods_receipt, :confirm
-      update :cancel_purchasing_goods_receipt, :cancel
-    end
-
   end
 
   attributes do
@@ -115,7 +86,6 @@ defmodule UniboV4.Purchasing.GoodsReceipt do
     read :lookup do
     end
     update :confirm do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

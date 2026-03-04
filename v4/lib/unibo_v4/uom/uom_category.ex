@@ -9,27 +9,11 @@ defmodule UniboV4.Uom.UomCategory do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Uom,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "uom_categories"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :uom_uom_category
-
-    queries do
-      get :get_uom_uom_category, :read
-      list :list_uom_uom_categorys, :read
-    end
-
-    mutations do
-      create :create_uom_uom_category, :create
-      update :update_uom_uom_category, :update
-    end
-
   end
 
   attributes do

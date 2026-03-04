@@ -30,44 +30,12 @@ defmodule UniboV4.Sales.SalesOrder do
     otp_app: :unibo_v4,
     domain: UniboV4.Sales,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     authorizers: [Ash.Policy.Authorizer],
     notifiers: [UniboV4.Sales.SalesOrder.Notifier]
 
   postgres do
     table "sales_orders"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sales_sales_order
-
-    queries do
-      get :get_sales_sales_order, :read
-      list :list_sales_sales_orders, :read
-      get :get_list_sales_sales_order, :list
-      list :list_list_sales_sales_orders, :list
-      get :get_search_sales_sales_order, :search
-      list :list_search_sales_sales_orders, :search
-      get :get_get_sales_sales_order, :get
-      list :list_get_sales_sales_orders, :get
-      get :get_preview_sales_sales_order, :preview
-      list :list_preview_sales_sales_orders, :preview
-      get :get_compute_sales_sales_order, :compute
-      list :list_compute_sales_sales_orders, :compute
-      get :get_lookup_sales_sales_order, :lookup
-      list :list_lookup_sales_sales_orders, :lookup
-    end
-
-    mutations do
-      create :create_sales_sales_order, :create
-      update :action_quotation_send_sales_sales_order, :action_quotation_send
-      update :action_confirm_sales_sales_order, :action_confirm
-      update :action_done_sales_sales_order, :action_done
-      update :action_cancel_sales_sales_order, :action_cancel
-      update :action_draft_sales_sales_order, :action_draft
-    end
-
   end
 
   attributes do
@@ -172,7 +140,6 @@ defmodule UniboV4.Sales.SalesOrder do
     read :lookup do
     end
     update :action_quotation_send do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)
@@ -291,8 +258,8 @@ defmodule UniboV4.Sales.SalesOrder do
     end
     action :create_invoices do
       argument :final, :boolean
+      # precondition: requires state=:sale
       validate attribute_equals(:state, :sale)
-      # message: "只能对已确认订单创建发票"
       # TODO: 不支持的 action 内校验规则 custom
       # TODO: generic action 不支持 change，需要用 run
     end
@@ -309,9 +276,12 @@ defmodule UniboV4.Sales.SalesOrder do
 
   policies do
     policy action_type(:create) do
-      authorize_if expr(role in [:sales_rep, :admin])
+      authorize_if expr(actor.role in [:sales_rep, :admin])
     end
     policy action_type(:read) do
+      authorize_if always()
+    end
+    policy always() do
       authorize_if always()
     end
   end

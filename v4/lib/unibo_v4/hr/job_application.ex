@@ -20,31 +20,11 @@ defmodule UniboV4.HR.JobApplication do
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.HR.JobApplication.Notifier]
 
   postgres do
     table "hr_job_applications"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_job_application
-
-    queries do
-      get :get_hr_job_application, :read
-      list :list_hr_job_applications, :read
-    end
-
-    mutations do
-      create :create_hr_job_application, :create
-      update :advance_hr_job_application, :advance
-      update :reject_hr_job_application, :reject
-      update :hire_hr_job_application, :hire
-      update :reset_hr_job_application, :reset
-      update :archive_hr_job_application, :archive
-    end
-
   end
 
   attributes do
@@ -115,7 +95,6 @@ defmodule UniboV4.HR.JobApplication do
       end
     end
     update :advance do
-      primary? true
       accept [:status]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

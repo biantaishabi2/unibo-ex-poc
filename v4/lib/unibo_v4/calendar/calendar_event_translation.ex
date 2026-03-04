@@ -1,6 +1,7 @@
 defmodule UniboV4.Calendar.CalendarEventTranslation do
   use Ash.Resource,
     otp_app: :unibo_v4,
+    domain: UniboV4.Calendar,
     data_layer: AshPostgres.DataLayer
 
   postgres do

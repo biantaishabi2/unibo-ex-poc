@@ -11,31 +11,11 @@ defmodule UniboV4.Manufacturing.BillOfMaterials do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Manufacturing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "manufacturing_bill_of_materialses"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :manufacturing_bill_of_materials
-
-    queries do
-      get :get_manufacturing_bill_of_materials, :read
-      list :list_manufacturing_bill_of_materialss, :read
-      get :get_explode_manufacturing_bill_of_materials, :explode
-      list :list_explode_manufacturing_bill_of_materialss, :explode
-    end
-
-    mutations do
-      create :create_manufacturing_bill_of_materials, :create
-      update :update_manufacturing_bill_of_materials, :update
-      update :activate_manufacturing_bill_of_materials, :activate
-      update :obsolete_manufacturing_bill_of_materials, :obsolete
-    end
-
   end
 
   attributes do

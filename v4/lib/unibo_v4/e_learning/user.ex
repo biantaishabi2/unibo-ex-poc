@@ -2,22 +2,11 @@ defmodule UniboV4.ELearning.User do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.ELearning,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "e_learning_users"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :e_learning_user
-
-    queries do
-      get :get_e_learning_user, :read
-      list :list_e_learning_users, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.ELearning.User do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

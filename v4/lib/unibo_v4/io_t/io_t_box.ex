@@ -12,29 +12,11 @@ defmodule UniboV4.IoT.IoTBox do
     otp_app: :unibo_v4,
     domain: UniboV4.IoT,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.IoT.IoTBox.Notifier]
 
   postgres do
     table "io_t_boxes"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :io_t_io_t_box
-
-    queries do
-      get :get_io_t_io_t_box, :read
-      list :list_io_t_io_t_boxs, :read
-    end
-
-    mutations do
-      create :create_io_t_io_t_box, :create
-      update :update_io_t_io_t_box, :update
-      update :register_box_io_t_io_t_box, :register_box
-      update :heartbeat_io_t_io_t_box, :heartbeat
-    end
-
   end
 
   attributes do

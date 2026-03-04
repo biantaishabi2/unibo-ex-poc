@@ -9,27 +9,11 @@ defmodule UniboV4.Expenses.ExpenseCategory do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Expenses,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "expenses_expense_categories"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :expenses_expense_category
-
-    queries do
-      get :get_expenses_expense_category, :read
-      list :list_expenses_expense_categorys, :read
-    end
-
-    mutations do
-      create :create_expenses_expense_category, :create
-      update :update_expenses_expense_category, :update
-    end
-
   end
 
   attributes do

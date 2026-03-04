@@ -26,31 +26,11 @@ defmodule UniboV4.Loyalty.LoyaltyCard do
     otp_app: :unibo_v4,
     domain: UniboV4.Loyalty,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Loyalty.LoyaltyCard.Notifier]
 
   postgres do
     table "loyalty_cards"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :loyalty_loyalty_card
-
-    queries do
-      get :get_loyalty_loyalty_card, :read
-      list :list_loyalty_loyalty_cards, :read
-    end
-
-    mutations do
-      create :create_loyalty_loyalty_card, :create
-      update :earn_points_loyalty_loyalty_card, :earn_points
-      update :redeem_points_loyalty_loyalty_card, :redeem_points
-      update :freeze_loyalty_loyalty_card, :freeze
-      update :unfreeze_loyalty_loyalty_card, :unfreeze
-      update :expire_card_loyalty_loyalty_card, :expire_card
-    end
-
   end
 
   attributes do
@@ -113,7 +93,6 @@ defmodule UniboV4.Loyalty.LoyaltyCard do
       end
     end
     update :earn_points do
-      primary? true
       accept [:points_balance, :lifetime_points_earned]
       argument :points_delta, :decimal, allow_nil?: false
       argument :order_id, :uuid

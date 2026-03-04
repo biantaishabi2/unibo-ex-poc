@@ -9,27 +9,11 @@ defmodule UniboV4.HR.Attendance do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "hr_attendances"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_attendance
-
-    queries do
-      get :get_hr_attendance, :read
-      list :list_hr_attendances, :read
-    end
-
-    mutations do
-      create :create_hr_attendance, :create
-      update :check_out_hr_attendance, :check_out
-    end
-
   end
 
   attributes do
@@ -80,7 +64,6 @@ defmodule UniboV4.HR.Attendance do
       end
     end
     update :check_out do
-      primary? true
       accept [:check_out]
       # skipped: validate compare :check_out (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)

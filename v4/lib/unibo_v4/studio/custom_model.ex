@@ -20,31 +20,11 @@ defmodule UniboV4.Studio.CustomModel do
     otp_app: :unibo_v4,
     domain: UniboV4.Studio,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Studio.CustomModel.Notifier]
 
   postgres do
     table "studio_custom_models"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :studio_custom_model
-
-    queries do
-      get :get_studio_custom_model, :read
-      list :list_studio_custom_models, :read
-    end
-
-    mutations do
-      create :create_studio_custom_model, :create
-      update :update_studio_custom_model, :update
-      update :activate_studio_custom_model, :activate
-      update :archive_studio_custom_model, :archive
-      update :reactivate_studio_custom_model, :reactivate
-      destroy :delete_studio_custom_model, :destroy
-    end
-
   end
 
   attributes do

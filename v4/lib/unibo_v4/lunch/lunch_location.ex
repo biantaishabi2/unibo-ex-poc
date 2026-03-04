@@ -9,27 +9,11 @@ defmodule UniboV4.Lunch.LunchLocation do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Lunch,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "lunch_locations"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :lunch_lunch_location
-
-    queries do
-      get :get_lunch_lunch_location, :read
-      list :list_lunch_lunch_locations, :read
-    end
-
-    mutations do
-      create :create_lunch_lunch_location, :create
-      update :update_lunch_lunch_location, :update
-    end
-
   end
 
   attributes do

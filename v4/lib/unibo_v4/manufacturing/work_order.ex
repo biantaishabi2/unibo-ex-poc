@@ -14,32 +14,11 @@ defmodule UniboV4.Manufacturing.WorkOrder do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Manufacturing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "manufacturing_work_orders"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :manufacturing_work_order
-
-    queries do
-      get :get_manufacturing_work_order, :read
-      list :list_manufacturing_work_orders, :read
-    end
-
-    mutations do
-      create :create_manufacturing_work_order, :create
-      update :start_manufacturing_work_order, :start
-      update :pause_manufacturing_work_order, :pause
-      update :resume_manufacturing_work_order, :resume
-      update :finish_manufacturing_work_order, :finish
-      update :complete_manufacturing_work_order, :complete
-      update :cancel_manufacturing_work_order, :cancel
-    end
-
   end
 
   attributes do
@@ -87,10 +66,14 @@ defmodule UniboV4.Manufacturing.WorkOrder do
     many_to_many :blocked_by_workorder_ids, UniboV4.Manufacturing.WorkOrder do
       public? true
       through UniboV4.Manufacturing.WorkOrderDependencyLink
+      source_attribute_on_join_resource :needed_by_workorder_id
+      destination_attribute_on_join_resource :needed_by_workorder_id
     end
     many_to_many :needed_by_workorder_ids, UniboV4.Manufacturing.WorkOrder do
       public? true
       through UniboV4.Manufacturing.WorkOrderDependencyLink
+      source_attribute_on_join_resource :needed_by_workorder_id
+      destination_attribute_on_join_resource :needed_by_workorder_id
     end
     has_many :time_ids, UniboV4.Manufacturing.WorkcenterProductivity do
       public? true
@@ -118,7 +101,6 @@ defmodule UniboV4.Manufacturing.WorkOrder do
       end
     end
     update :start do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -139,7 +121,7 @@ defmodule UniboV4.Manufacturing.WorkOrder do
       end
       # message: "只有待处理状态可以开始（兼容旧逻辑）"
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change set_attribute(:status, :progress)
+      # skipped: set_attribute :status 是 calculation，不是 attribute
       # TODO: 不支持的 change effect create_record
       # TODO: 不支持的 change effect cross_module_call
       change fn changeset, _context ->
@@ -190,7 +172,7 @@ defmodule UniboV4.Manufacturing.WorkOrder do
         end
       end
       # message: "只有进行中状态可以完成"
-      change set_attribute(:status, :done)
+      # skipped: set_attribute :status 是 calculation，不是 attribute
       # TODO: 不支持的 change effect custom
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
@@ -214,7 +196,7 @@ defmodule UniboV4.Manufacturing.WorkOrder do
         end
       end
       # message: "只有进行中状态可以完成"
-      change set_attribute(:status, :done)
+      # skipped: set_attribute :status 是 calculation，不是 attribute
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -228,7 +210,7 @@ defmodule UniboV4.Manufacturing.WorkOrder do
     end
     update :cancel do
       accept []
-      change set_attribute(:status, :cancelled)
+      # skipped: set_attribute :status 是 calculation，不是 attribute
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

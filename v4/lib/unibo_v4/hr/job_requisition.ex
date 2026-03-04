@@ -19,29 +19,11 @@ defmodule UniboV4.HR.JobRequisition do
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.HR.JobRequisition.Notifier]
 
   postgres do
     table "hr_job_requisitions"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_job_requisition
-
-    queries do
-      get :get_hr_job_requisition, :read
-      list :list_hr_job_requisitions, :read
-    end
-
-    mutations do
-      create :create_hr_job_requisition, :create
-      update :open_hr_job_requisition, :open
-      update :close_hr_job_requisition, :close
-      update :cancel_hr_job_requisition, :cancel
-    end
-
   end
 
   attributes do
@@ -102,7 +84,6 @@ defmodule UniboV4.HR.JobRequisition do
       end
     end
     update :open do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

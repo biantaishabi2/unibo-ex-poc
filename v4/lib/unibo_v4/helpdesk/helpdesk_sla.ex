@@ -9,27 +9,11 @@ defmodule UniboV4.Helpdesk.HelpdeskSLA do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Helpdesk,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "helpdesk_slas"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :helpdesk_helpdesk_sla
-
-    queries do
-      get :get_helpdesk_helpdesk_sla, :read
-      list :list_helpdesk_helpdesk_slas, :read
-    end
-
-    mutations do
-      create :create_helpdesk_helpdesk_sla, :create
-      update :update_helpdesk_helpdesk_sla, :update
-    end
-
   end
 
   attributes do

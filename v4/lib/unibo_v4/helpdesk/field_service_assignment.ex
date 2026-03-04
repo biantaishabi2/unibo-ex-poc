@@ -9,27 +9,11 @@ defmodule UniboV4.Helpdesk.FieldServiceAssignment do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Helpdesk,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "helpdesk_field_service_assignments"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :helpdesk_field_service_assignment
-
-    queries do
-      get :get_helpdesk_field_service_assignment, :read
-      list :list_helpdesk_field_service_assignments, :read
-    end
-
-    mutations do
-      create :create_helpdesk_field_service_assignment, :create
-      destroy :delete_helpdesk_field_service_assignment, :destroy
-    end
-
   end
 
   attributes do
@@ -59,7 +43,7 @@ defmodule UniboV4.Helpdesk.FieldServiceAssignment do
   end
 
   actions do
-    defaults [:read, :destroy, :update]
+    defaults [:read, :destroy]
     create :create do
       primary? true
       accept [:role, :from_date, :thru_date]

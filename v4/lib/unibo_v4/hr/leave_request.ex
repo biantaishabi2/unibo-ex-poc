@@ -14,31 +14,11 @@ defmodule UniboV4.HR.LeaveRequest do
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.HR.LeaveRequest.Notifier]
 
   postgres do
     table "hr_leave_requests"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_leave_request
-
-    queries do
-      get :get_hr_leave_request, :read
-      list :list_hr_leave_requests, :read
-    end
-
-    mutations do
-      create :create_hr_leave_request, :create
-      update :action_confirm_hr_leave_request, :action_confirm
-      update :action_approve_hr_leave_request, :action_approve
-      update :action_validate_hr_leave_request, :action_validate
-      update :action_refuse_hr_leave_request, :action_refuse
-      update :action_draft_hr_leave_request, :action_draft
-    end
-
   end
 
   attributes do
@@ -101,7 +81,6 @@ defmodule UniboV4.HR.LeaveRequest do
       end
     end
     update :action_confirm do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

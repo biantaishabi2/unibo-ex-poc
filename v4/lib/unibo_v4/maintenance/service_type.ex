@@ -9,27 +9,11 @@ defmodule UniboV4.Maintenance.ServiceType do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Maintenance,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "maintenance_service_types"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :maintenance_service_type
-
-    queries do
-      get :get_maintenance_service_type, :read
-      list :list_maintenance_service_types, :read
-    end
-
-    mutations do
-      create :create_maintenance_service_type, :create
-      update :update_maintenance_service_type, :update
-    end
-
   end
 
   attributes do

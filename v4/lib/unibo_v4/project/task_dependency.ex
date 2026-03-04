@@ -9,27 +9,11 @@ defmodule UniboV4.Project.TaskDependency do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Project,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "project_task_dependencies"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :project_task_dependency
-
-    queries do
-      get :get_project_task_dependency, :read
-      list :list_project_task_dependencys, :read
-    end
-
-    mutations do
-      create :create_project_task_dependency, :create
-      destroy :delete_project_task_dependency, :destroy
-    end
-
   end
 
   attributes do
@@ -55,7 +39,7 @@ defmodule UniboV4.Project.TaskDependency do
   end
 
   actions do
-    defaults [:read, :destroy, :update]
+    defaults [:read, :destroy]
     create :create do
       primary? true
       accept [:dependency_type]

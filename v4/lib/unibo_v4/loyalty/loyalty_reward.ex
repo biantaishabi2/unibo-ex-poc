@@ -10,28 +10,11 @@ defmodule UniboV4.Loyalty.LoyaltyReward do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Loyalty,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "loyalty_rewards"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :loyalty_loyalty_reward
-
-    queries do
-      get :get_loyalty_loyalty_reward, :read
-      list :list_loyalty_loyalty_rewards, :read
-    end
-
-    mutations do
-      create :create_loyalty_loyalty_reward, :create
-      update :update_loyalty_loyalty_reward, :update
-      destroy :delete_loyalty_loyalty_reward, :destroy
-    end
-
   end
 
   attributes do

@@ -9,27 +9,11 @@ defmodule UniboV4.Maintenance.MaintenanceStage do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Maintenance,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "maintenance_stages"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :maintenance_maintenance_stage
-
-    queries do
-      get :get_maintenance_maintenance_stage, :read
-      list :list_maintenance_maintenance_stages, :read
-    end
-
-    mutations do
-      create :create_maintenance_maintenance_stage, :create
-      update :update_maintenance_maintenance_stage, :update
-    end
-
   end
 
   attributes do

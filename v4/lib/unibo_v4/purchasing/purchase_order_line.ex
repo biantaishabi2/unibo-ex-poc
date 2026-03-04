@@ -9,39 +9,11 @@ defmodule UniboV4.Purchasing.PurchaseOrderLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Purchasing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "purchasing_purchase_order_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :purchasing_purchase_order_line
-
-    queries do
-      get :get_purchasing_purchase_order_line, :read
-      list :list_purchasing_purchase_order_lines, :read
-      get :get_list_purchasing_purchase_order_line, :list
-      list :list_list_purchasing_purchase_order_lines, :list
-      get :get_search_purchasing_purchase_order_line, :search
-      list :list_search_purchasing_purchase_order_lines, :search
-      get :get_get_purchasing_purchase_order_line, :get
-      list :list_get_purchasing_purchase_order_lines, :get
-      get :get_preview_purchasing_purchase_order_line, :preview
-      list :list_preview_purchasing_purchase_order_lines, :preview
-      get :get_compute_purchasing_purchase_order_line, :compute
-      list :list_compute_purchasing_purchase_order_lines, :compute
-      get :get_lookup_purchasing_purchase_order_line, :lookup
-      list :list_lookup_purchasing_purchase_order_lines, :lookup
-    end
-
-    mutations do
-      create :create_purchasing_purchase_order_line, :create
-      update :update_purchasing_purchase_order_line, :update
-    end
-
   end
 
   attributes do

@@ -11,29 +11,11 @@ defmodule UniboV4.Sign.SignTemplate do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Sign,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "sign_templates"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sign_sign_template
-
-    queries do
-      get :get_sign_sign_template, :read
-      list :list_sign_sign_templates, :read
-    end
-
-    mutations do
-      create :create_sign_sign_template, :create
-      update :update_sign_sign_template, :update
-      update :archive_sign_sign_template, :archive
-      update :activate_sign_sign_template, :activate
-    end
-
   end
 
   attributes do

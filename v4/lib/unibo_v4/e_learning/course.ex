@@ -21,31 +21,11 @@ defmodule UniboV4.ELearning.Course do
     otp_app: :unibo_v4,
     domain: UniboV4.ELearning,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.ELearning.Course.Notifier]
 
   postgres do
     table "e_learning_courses"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :e_learning_course
-
-    queries do
-      get :get_e_learning_course, :read
-      list :list_e_learning_courses, :read
-    end
-
-    mutations do
-      create :create_e_learning_course, :create
-      update :update_e_learning_course, :update
-      update :publish_e_learning_course, :publish
-      update :unpublish_e_learning_course, :unpublish
-      update :archive_e_learning_course, :archive
-      update :restore_e_learning_course, :restore
-    end
-
   end
 
   attributes do

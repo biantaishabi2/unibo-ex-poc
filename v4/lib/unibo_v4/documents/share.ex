@@ -11,31 +11,11 @@ defmodule UniboV4.Documents.Share do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Documents,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "documents_shares"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :documents_share
-
-    queries do
-      get :get_documents_share, :read
-      list :list_documents_shares, :read
-      get :get_access_documents_share, :access
-      list :list_access_documents_shares, :access
-    end
-
-    mutations do
-      create :create_create_documents_share, :create
-      create :create_upload_via_share_documents_share, :upload_via_share
-      update :update_documents_share, :update
-      destroy :delete_documents_share, :destroy
-    end
-
   end
 
   attributes do
@@ -110,7 +90,7 @@ defmodule UniboV4.Documents.Share do
       # message: "type=domain 时必须指定文件夹"
       validate present(:document_ids)
       # message: "type=ids 时必须指定文档列表"
-      change relate_actor(:create_uid)
+      # relate_actor :create_uid — 无对应关系，跳过
       # TODO: 跨实体聚合表达式暂不支持
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
@@ -147,9 +127,8 @@ defmodule UniboV4.Documents.Share do
       validate present(:action)
       validate present(:folder_id)
       # message: "type=domain 时必须指定文件夹"
-      validate present(:document_ids)
-      # message: "type=ids 时必须指定文档列表"
-      change relate_actor(:create_uid)
+      # skipped: validate present(:document_ids) — field not found
+      # relate_actor :create_uid — 无对应关系，跳过
       # TODO: 跨实体聚合表达式暂不支持
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

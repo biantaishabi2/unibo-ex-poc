@@ -12,28 +12,11 @@ defmodule UniboV4.Subscriptions.CloseReason do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Subscriptions,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "subscriptions_close_reasons"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :subscriptions_close_reason
-
-    queries do
-      get :get_subscriptions_close_reason, :read
-      list :list_subscriptions_close_reasons, :read
-    end
-
-    mutations do
-      create :create_subscriptions_close_reason, :create
-      update :update_subscriptions_close_reason, :update
-      destroy :delete_subscriptions_close_reason, :destroy
-    end
-
   end
 
   attributes do

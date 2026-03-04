@@ -13,25 +13,11 @@ defmodule UniboV4.Rental.RentalOrderLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Rental,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "rental_order_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :rental_rental_order_line
-
-    mutations do
-      create :create_rental_rental_order_line, :create
-      update :update_rental_rental_order_line, :update
-      update :validate_pickup_rental_rental_order_line, :validate_pickup
-      update :validate_return_rental_rental_order_line, :validate_return
-      update :finalize_rental_rental_order_line, :finalize
-    end
-
   end
 
   attributes do
@@ -100,7 +86,6 @@ defmodule UniboV4.Rental.RentalOrderLine do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:is_rental, :pickup_date, :return_date, :product_uom_qty, :duration_unit]

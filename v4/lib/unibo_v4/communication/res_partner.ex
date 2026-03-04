@@ -2,22 +2,11 @@ defmodule UniboV4.Communication.ResPartner do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Communication,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "communication_res_partners"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :communication_res_partner
-
-    queries do
-      get :get_communication_res_partner, :read
-      list :list_communication_res_partners, :read
-    end
-
   end
 
   attributes do
@@ -33,7 +22,7 @@ defmodule UniboV4.Communication.ResPartner do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

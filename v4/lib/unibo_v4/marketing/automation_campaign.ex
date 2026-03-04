@@ -13,29 +13,11 @@ defmodule UniboV4.Marketing.AutomationCampaign do
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Marketing.AutomationCampaign.Notifier]
 
   postgres do
     table "marketing_automation_campaigns"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_automation_campaign
-
-    queries do
-      get :get_marketing_automation_campaign, :read
-      list :list_marketing_automation_campaigns, :read
-    end
-
-    mutations do
-      create :create_marketing_automation_campaign, :create
-      update :update_marketing_automation_campaign, :update
-      update :start_campaign_marketing_automation_campaign, :start_campaign
-      update :stop_campaign_marketing_automation_campaign, :stop_campaign
-    end
-
   end
 
   attributes do

@@ -19,29 +19,11 @@ defmodule UniboV4.Approvals.ApprovalCategory do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Approvals,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "approvals_approval_categories"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :approvals_approval_category
-
-    queries do
-      get :get_approvals_approval_category, :read
-      list :list_approvals_approval_categorys, :read
-    end
-
-    mutations do
-      create :create_approvals_approval_category, :create
-      update :update_approvals_approval_category, :update
-      update :activate_approvals_approval_category, :activate
-      update :deactivate_approvals_approval_category, :deactivate
-    end
-
   end
 
   attributes do

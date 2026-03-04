@@ -2,22 +2,11 @@ defmodule UniboV4.Rental.Customer do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Rental,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "rental_customers"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :rental_customer
-
-    queries do
-      get :get_rental_customer, :read
-      list :list_rental_customers, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Rental.Customer do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

@@ -9,27 +9,11 @@ defmodule UniboV4.Project.Milestone do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Project,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "project_milestones"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :project_milestone
-
-    queries do
-      get :get_project_milestone, :read
-      list :list_project_milestones, :read
-    end
-
-    mutations do
-      create :create_project_milestone, :create
-      update :reach_project_milestone, :reach
-    end
-
   end
 
   attributes do
@@ -81,7 +65,6 @@ defmodule UniboV4.Project.Milestone do
       end
     end
     update :reach do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :is_reached)

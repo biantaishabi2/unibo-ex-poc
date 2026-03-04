@@ -9,27 +9,11 @@ defmodule UniboV4.Forum.Forum do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Forum,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "forum_forums"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :forum_forum
-
-    queries do
-      get :get_forum_forum, :read
-      list :list_forum_forums, :read
-    end
-
-    mutations do
-      create :create_forum_forum, :create
-      update :update_forum_forum, :update
-    end
-
   end
 
   attributes do

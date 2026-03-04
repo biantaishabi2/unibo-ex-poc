@@ -9,22 +9,11 @@ defmodule UniboV4.Manufacturing.BomByproduct do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Manufacturing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "manufacturing_bom_byproducts"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :manufacturing_bom_byproduct
-
-    mutations do
-      create :create_manufacturing_bom_byproduct, :create
-      update :update_manufacturing_bom_byproduct, :update
-    end
-
   end
 
   attributes do
@@ -60,7 +49,6 @@ defmodule UniboV4.Manufacturing.BomByproduct do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:product_id, :product_qty, :product_uom_id, :cost_share]

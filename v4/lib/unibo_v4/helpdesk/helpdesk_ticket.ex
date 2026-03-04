@@ -38,34 +38,11 @@ defmodule UniboV4.Helpdesk.HelpdeskTicket do
     otp_app: :unibo_v4,
     domain: UniboV4.Helpdesk,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Helpdesk.HelpdeskTicket.Notifier]
 
   postgres do
     table "helpdesk_tickets"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :helpdesk_helpdesk_ticket
-
-    queries do
-      get :get_helpdesk_helpdesk_ticket, :read
-      list :list_helpdesk_helpdesk_tickets, :read
-    end
-
-    mutations do
-      create :create_helpdesk_helpdesk_ticket, :create
-      update :assign_helpdesk_helpdesk_ticket, :assign
-      update :change_stage_helpdesk_helpdesk_ticket, :change_stage
-      update :resolve_helpdesk_helpdesk_ticket, :resolve
-      update :close_helpdesk_helpdesk_ticket, :close
-      update :reopen_helpdesk_helpdesk_ticket, :reopen
-      update :archive_helpdesk_helpdesk_ticket, :archive
-      update :update_priority_helpdesk_helpdesk_ticket, :update_priority
-      update :plan_intervention_helpdesk_helpdesk_ticket, :plan_intervention
-    end
-
   end
 
   attributes do
@@ -198,7 +175,6 @@ defmodule UniboV4.Helpdesk.HelpdeskTicket do
       end
     end
     update :assign do
-      primary? true
       accept []
       argument :user_id, :uuid, allow_nil?: false
       change set_attribute(:assign_date, &DateTime.utc_now/0)

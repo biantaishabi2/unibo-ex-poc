@@ -18,31 +18,11 @@ defmodule UniboV4.Delivery.ShipmentRouteSegment do
     otp_app: :unibo_v4,
     domain: UniboV4.Delivery,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Delivery.ShipmentRouteSegment.Notifier]
 
   postgres do
     table "delivery_shipment_route_segments"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :delivery_shipment_route_segment
-
-    queries do
-      get :get_delivery_shipment_route_segment, :read
-      list :list_delivery_shipment_route_segments, :read
-    end
-
-    mutations do
-      create :create_delivery_shipment_route_segment, :create
-      update :update_delivery_shipment_route_segment, :update
-      update :confirm_shipment_delivery_shipment_route_segment, :confirm_shipment
-      update :update_tracking_delivery_shipment_route_segment, :update_tracking
-      update :record_cost_delivery_shipment_route_segment, :record_cost
-      destroy :delete_delivery_shipment_route_segment, :destroy
-    end
-
   end
 
   attributes do

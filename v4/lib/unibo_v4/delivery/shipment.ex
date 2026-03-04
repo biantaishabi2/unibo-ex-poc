@@ -22,34 +22,11 @@ defmodule UniboV4.Delivery.Shipment do
     otp_app: :unibo_v4,
     domain: UniboV4.Delivery,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Delivery.Shipment.Notifier]
 
   postgres do
     table "delivery_shipments"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :delivery_shipment
-
-    queries do
-      get :get_delivery_shipment, :read
-      list :list_delivery_shipments, :read
-    end
-
-    mutations do
-      create :create_delivery_shipment, :create
-      update :update_delivery_shipment, :update
-      update :submit_delivery_shipment, :submit
-      update :pick_delivery_shipment, :pick
-      update :pack_delivery_shipment, :pack
-      update :ship_delivery_shipment, :ship
-      update :deliver_delivery_shipment, :deliver
-      update :cancel_delivery_shipment, :cancel
-      destroy :delete_delivery_shipment, :destroy
-    end
-
   end
 
   attributes do

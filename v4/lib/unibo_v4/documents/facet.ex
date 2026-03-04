@@ -10,28 +10,11 @@ defmodule UniboV4.Documents.Facet do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Documents,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "documents_facets"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :documents_facet
-
-    queries do
-      get :get_documents_facet, :read
-      list :list_documents_facets, :read
-    end
-
-    mutations do
-      create :create_documents_facet, :create
-      update :update_documents_facet, :update
-      destroy :delete_documents_facet, :destroy
-    end
-
   end
 
   attributes do

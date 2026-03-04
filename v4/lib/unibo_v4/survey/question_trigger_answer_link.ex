@@ -2,22 +2,11 @@ defmodule UniboV4.Survey.QuestionTriggerAnswerLink do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Survey,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "survey_question_trigger_answer_links"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :survey_question_trigger_answer_link
-
-    queries do
-      get :get_survey_question_trigger_answer_link, :read
-      list :list_survey_question_trigger_answer_links, :read
-    end
-
   end
 
   attributes do
@@ -36,7 +25,7 @@ defmodule UniboV4.Survey.QuestionTriggerAnswerLink do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

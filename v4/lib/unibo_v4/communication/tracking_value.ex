@@ -2,22 +2,11 @@ defmodule UniboV4.Communication.TrackingValue do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Communication,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "communication_tracking_values"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :communication_tracking_value
-
-    queries do
-      get :get_communication_tracking_value, :read
-      list :list_communication_tracking_values, :read
-    end
-
   end
 
   attributes do
@@ -32,7 +21,7 @@ defmodule UniboV4.Communication.TrackingValue do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

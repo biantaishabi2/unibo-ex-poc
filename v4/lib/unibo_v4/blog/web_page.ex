@@ -12,29 +12,11 @@ defmodule UniboV4.Blog.WebPage do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Blog,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "blog_web_pages"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :blog_web_page
-
-    queries do
-      get :get_blog_web_page, :read
-      list :list_blog_web_pages, :read
-    end
-
-    mutations do
-      create :create_blog_web_page, :create
-      update :update_blog_web_page, :update
-      update :publish_blog_web_page, :publish
-      update :unpublish_blog_web_page, :unpublish
-    end
-
   end
 
   attributes do

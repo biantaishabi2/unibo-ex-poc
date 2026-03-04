@@ -9,22 +9,11 @@ defmodule UniboV4.Accounting.InvoiceItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Accounting,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "accounting_invoice_items"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :accounting_invoice_item
-
-    mutations do
-      create :create_accounting_invoice_item, :create
-      update :update_accounting_invoice_item, :update
-    end
-
   end
 
   attributes do
@@ -77,7 +66,6 @@ defmodule UniboV4.Accounting.InvoiceItem do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:description, :quantity, :unit_price, :tax_rate, :taxable_flag, :invoice_item_type_id, :seq_id, :product_id, :tax_auth_party_id, :tax_auth_geo_id]

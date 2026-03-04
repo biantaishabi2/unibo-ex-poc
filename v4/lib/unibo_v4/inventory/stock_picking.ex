@@ -20,30 +20,11 @@ defmodule UniboV4.Inventory.StockPicking do
     otp_app: :unibo_v4,
     domain: UniboV4.Inventory,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Inventory.StockPicking.Notifier]
 
   postgres do
     table "inventory_stock_pickings"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :inventory_stock_picking
-
-    queries do
-      get :get_inventory_stock_picking, :read
-      list :list_inventory_stock_pickings, :read
-    end
-
-    mutations do
-      create :create_inventory_stock_picking, :create
-      update :action_confirm_inventory_stock_picking, :action_confirm
-      update :action_assign_inventory_stock_picking, :action_assign
-      update :button_validate_inventory_stock_picking, :button_validate
-      update :action_cancel_inventory_stock_picking, :action_cancel
-    end
-
   end
 
   attributes do
@@ -139,7 +120,6 @@ defmodule UniboV4.Inventory.StockPicking do
       end
     end
     update :action_confirm do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)

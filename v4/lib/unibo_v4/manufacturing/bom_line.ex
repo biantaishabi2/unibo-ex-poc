@@ -9,22 +9,11 @@ defmodule UniboV4.Manufacturing.BomLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Manufacturing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "manufacturing_bom_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :manufacturing_bom_line
-
-    mutations do
-      create :create_manufacturing_bom_line, :create
-      update :update_manufacturing_bom_line, :update
-    end
-
   end
 
   attributes do
@@ -74,7 +63,6 @@ defmodule UniboV4.Manufacturing.BomLine do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:product_id, :component_name, :component_code, :product_qty, :product_uom_id, :unit, :manual_consumption, :sequence]

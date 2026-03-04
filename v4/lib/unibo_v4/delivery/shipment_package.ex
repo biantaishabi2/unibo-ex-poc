@@ -11,28 +11,11 @@ defmodule UniboV4.Delivery.ShipmentPackage do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Delivery,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "delivery_shipment_packages"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :delivery_shipment_package
-
-    queries do
-      get :get_delivery_shipment_package, :read
-      list :list_delivery_shipment_packages, :read
-    end
-
-    mutations do
-      create :create_delivery_shipment_package, :create
-      update :update_delivery_shipment_package, :update
-      destroy :delete_delivery_shipment_package, :destroy
-    end
-
   end
 
   attributes do

@@ -12,28 +12,11 @@ defmodule UniboV4.Forum.Tag do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Forum,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "forum_tags"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :forum_tag
-
-    queries do
-      get :get_forum_tag, :read
-      list :list_forum_tags, :read
-    end
-
-    mutations do
-      create :create_forum_tag, :create
-      update :update_forum_tag, :update
-      destroy :delete_forum_tag, :destroy
-    end
-
   end
 
   attributes do

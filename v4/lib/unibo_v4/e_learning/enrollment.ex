@@ -14,29 +14,11 @@ defmodule UniboV4.ELearning.Enrollment do
     otp_app: :unibo_v4,
     domain: UniboV4.ELearning,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.ELearning.Enrollment.Notifier]
 
   postgres do
     table "e_learning_enrollments"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :e_learning_enrollment
-
-    queries do
-      get :get_e_learning_enrollment, :read
-      list :list_e_learning_enrollments, :read
-    end
-
-    mutations do
-      create :create_e_learning_enrollment, :create
-      update :join_e_learning_enrollment, :join
-      update :recompute_completion_e_learning_enrollment, :recompute_completion
-      destroy :delete_e_learning_enrollment, :destroy
-    end
-
   end
 
   attributes do
@@ -99,7 +81,6 @@ defmodule UniboV4.ELearning.Enrollment do
       end
     end
     update :join do
-      primary? true
       accept []
       # skipped: validate custom : (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->

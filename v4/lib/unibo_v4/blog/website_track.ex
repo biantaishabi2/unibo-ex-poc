@@ -2,22 +2,11 @@ defmodule UniboV4.Blog.WebsiteTrack do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Blog,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "blog_website_tracks"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :blog_website_track
-
-    queries do
-      get :get_blog_website_track, :read
-      list :list_blog_website_tracks, :read
-    end
-
   end
 
   attributes do
@@ -32,7 +21,7 @@ defmodule UniboV4.Blog.WebsiteTrack do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

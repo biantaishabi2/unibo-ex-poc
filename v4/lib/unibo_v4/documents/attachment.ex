@@ -2,22 +2,11 @@ defmodule UniboV4.Documents.Attachment do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Documents,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "documents_attachments"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :documents_attachment
-
-    queries do
-      get :get_documents_attachment, :read
-      list :list_documents_attachments, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Documents.Attachment do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

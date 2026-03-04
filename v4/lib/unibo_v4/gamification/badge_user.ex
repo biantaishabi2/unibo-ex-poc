@@ -10,27 +10,11 @@ defmodule UniboV4.Gamification.BadgeUser do
     otp_app: :unibo_v4,
     domain: UniboV4.Gamification,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Gamification.BadgeUser.Notifier]
 
   postgres do
     table "gamification_badge_users"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :gamification_badge_user
-
-    queries do
-      get :get_gamification_badge_user, :read
-      list :list_gamification_badge_users, :read
-    end
-
-    mutations do
-      create :create_gamification_badge_user, :create
-      destroy :delete_gamification_badge_user, :destroy
-    end
-
   end
 
   attributes do
@@ -58,7 +42,7 @@ defmodule UniboV4.Gamification.BadgeUser do
   end
 
   actions do
-    defaults [:read, :destroy, :update]
+    defaults [:read, :destroy]
     create :create do
       primary? true
       accept [:comment]

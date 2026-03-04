@@ -19,30 +19,11 @@ defmodule UniboV4.Survey.Survey do
     otp_app: :unibo_v4,
     domain: UniboV4.Survey,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Survey.Survey.Notifier]
 
   postgres do
     table "survey_surveys"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :survey_survey
-
-    queries do
-      get :get_survey_survey, :read
-      list :list_survey_surveys, :read
-    end
-
-    mutations do
-      create :create_survey_survey, :create
-      update :update_survey_survey, :update
-      update :action_open_survey_survey, :action_open
-      update :action_close_survey_survey, :action_close
-      update :action_draft_survey_survey, :action_draft
-    end
-
   end
 
   attributes do

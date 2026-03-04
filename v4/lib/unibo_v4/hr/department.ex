@@ -9,27 +9,11 @@ defmodule UniboV4.HR.Department do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "hr_departments"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_department
-
-    queries do
-      get :get_hr_department, :read
-      list :list_hr_departments, :read
-    end
-
-    mutations do
-      create :create_hr_department, :create
-      update :update_hr_department, :update
-    end
-
   end
 
   attributes do

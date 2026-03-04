@@ -15,29 +15,11 @@ defmodule UniboV4.Rating.RatingCriteria do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Rating,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "rating_criterias"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :rating_rating_criteria
-
-    queries do
-      get :get_rating_rating_criteria, :read
-      list :list_rating_rating_criterias, :read
-    end
-
-    mutations do
-      create :create_rating_rating_criteria, :create
-      update :update_rating_rating_criteria, :update
-      update :reorder_rating_rating_criteria, :reorder
-      destroy :delete_rating_rating_criteria, :destroy
-    end
-
   end
 
   attributes do

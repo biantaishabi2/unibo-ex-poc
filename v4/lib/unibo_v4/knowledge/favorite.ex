@@ -12,23 +12,11 @@ defmodule UniboV4.Knowledge.Favorite do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Knowledge,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "knowledge_favorites"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :knowledge_favorite
-
-    mutations do
-      create :create_knowledge_favorite, :create
-      update :reorder_knowledge_favorite, :reorder
-      destroy :delete_knowledge_favorite, :destroy
-    end
-
   end
 
   attributes do
@@ -53,7 +41,7 @@ defmodule UniboV4.Knowledge.Favorite do
   end
 
   actions do
-    defaults [:destroy, :read]
+    defaults [:destroy]
     create :create do
       primary? true
       accept [:sequence]
@@ -74,7 +62,6 @@ defmodule UniboV4.Knowledge.Favorite do
       end
     end
     update :reorder do
-      primary? true
       accept [:sequence]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

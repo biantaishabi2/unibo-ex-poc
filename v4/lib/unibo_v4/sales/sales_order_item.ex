@@ -9,22 +9,11 @@ defmodule UniboV4.Sales.SalesOrderItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Sales,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "sales_order_items"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sales_sales_order_item
-
-    mutations do
-      create :create_sales_sales_order_item, :create
-      update :update_sales_sales_order_item, :update
-    end
-
   end
 
   attributes do
@@ -96,7 +85,6 @@ defmodule UniboV4.Sales.SalesOrderItem do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:item_description, :product_name, :product_code, :quantity, :unit_price, :discount_rate, :order_item_type_id, :seq_id, :estimated_delivery_date, :comments, :status_id, :is_promo]

@@ -12,28 +12,11 @@ defmodule UniboV4.Helpdesk.Rating do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Helpdesk,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "helpdesk_ratings"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :helpdesk_rating
-
-    queries do
-      get :get_helpdesk_rating, :read
-      list :list_helpdesk_ratings, :read
-    end
-
-    mutations do
-      create :create_helpdesk_rating, :create
-      update :update_helpdesk_rating, :update
-      update :reset_helpdesk_rating, :reset
-    end
-
   end
 
   attributes do

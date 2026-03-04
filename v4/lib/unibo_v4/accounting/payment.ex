@@ -12,29 +12,11 @@ defmodule UniboV4.Accounting.Payment do
     otp_app: :unibo_v4,
     domain: UniboV4.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Accounting.Payment.Notifier]
 
   postgres do
     table "accounting_payments"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :accounting_payment
-
-    queries do
-      get :get_accounting_payment, :read
-      list :list_accounting_payments, :read
-    end
-
-    mutations do
-      create :create_accounting_payment, :create
-      update :post_accounting_payment, :post
-      update :cancel_accounting_payment, :cancel
-      update :reset_to_draft_accounting_payment, :reset_to_draft
-    end
-
   end
 
   attributes do
@@ -119,7 +101,6 @@ defmodule UniboV4.Accounting.Payment do
       change relate_actor(:created_by)
     end
     update :post do
-      primary? true
       accept []
       # skipped: validate compare :amount (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->

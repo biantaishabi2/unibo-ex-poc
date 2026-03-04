@@ -11,28 +11,11 @@ defmodule UniboV4.Maintenance.EquipmentCategory do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Maintenance,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "maintenance_equipment_categories"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :maintenance_equipment_category
-
-    queries do
-      get :get_maintenance_equipment_category, :read
-      list :list_maintenance_equipment_categorys, :read
-    end
-
-    mutations do
-      create :create_maintenance_equipment_category, :create
-      update :update_maintenance_equipment_category, :update
-      destroy :delete_maintenance_equipment_category, :destroy
-    end
-
   end
 
   attributes do

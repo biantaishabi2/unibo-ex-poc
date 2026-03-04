@@ -11,28 +11,11 @@ defmodule UniboV4.Marketing.AutomationActivity do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "marketing_automation_activities"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_automation_activity
-
-    queries do
-      get :get_marketing_automation_activity, :read
-      list :list_marketing_automation_activitys, :read
-    end
-
-    mutations do
-      create :create_marketing_automation_activity, :create
-      update :update_marketing_automation_activity, :update
-      destroy :delete_marketing_automation_activity, :destroy
-    end
-
   end
 
   attributes do

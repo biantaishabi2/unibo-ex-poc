@@ -10,28 +10,11 @@ defmodule UniboV4.IoT.CallQueue do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.IoT,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "io_t_call_queues"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :io_t_call_queue
-
-    queries do
-      get :get_io_t_call_queue, :read
-      list :list_io_t_call_queues, :read
-    end
-
-    mutations do
-      create :create_io_t_call_queue, :create
-      update :update_io_t_call_queue, :update
-      destroy :delete_io_t_call_queue, :destroy
-    end
-
   end
 
   attributes do
@@ -125,7 +108,7 @@ defmodule UniboV4.IoT.CallQueue do
     create :create do
       primary? true
       accept [:name, :ring_strategy, :timeout_seconds, :max_wait_seconds, :max_callers, :voicemail_enabled, :overflow_action, :callback_enabled, :announce_position, :announce_wait_time, :wrapup_time_seconds, :sla_target_seconds]
-      argument :org_id, :uuid, allow_nil?: false
+      argument :org_id, :integer, allow_nil?: false
       change manage_relationship(:org_id, :org, type: :append, on_lookup: :relate)
       validate present(:name)
       change fn changeset, _context ->

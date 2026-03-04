@@ -15,30 +15,11 @@ defmodule UniboV4.Delivery.ShipmentPackageRouteSeg do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Delivery,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "delivery_shipment_package_route_segs"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :delivery_shipment_package_route_seg
-
-    queries do
-      get :get_delivery_shipment_package_route_seg, :read
-      list :list_delivery_shipment_package_route_segs, :read
-    end
-
-    mutations do
-      create :create_delivery_shipment_package_route_seg, :create
-      update :update_label_delivery_shipment_package_route_seg, :update_label
-      update :update_cost_delivery_shipment_package_route_seg, :update_cost
-      update :mark_printed_delivery_shipment_package_route_seg, :mark_printed
-      destroy :delete_delivery_shipment_package_route_seg, :destroy
-    end
-
   end
 
   attributes do
@@ -94,7 +75,6 @@ defmodule UniboV4.Delivery.ShipmentPackageRouteSeg do
       end
     end
     update :update_label do
-      primary? true
       accept [:label_image, :label_html, :label_printed]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

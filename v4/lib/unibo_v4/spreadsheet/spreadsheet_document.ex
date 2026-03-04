@@ -11,29 +11,11 @@ defmodule UniboV4.Spreadsheet.SpreadsheetDocument do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Spreadsheet,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "spreadsheet_documents"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :spreadsheet_spreadsheet_document
-
-    queries do
-      get :get_spreadsheet_spreadsheet_document, :read
-      list :list_spreadsheet_spreadsheet_documents, :read
-    end
-
-    mutations do
-      create :create_create_spreadsheet_spreadsheet_document, :create
-      create :create_create_from_template_spreadsheet_spreadsheet_document, :create_from_template
-      update :update_spreadsheet_spreadsheet_document, :update
-      destroy :delete_spreadsheet_spreadsheet_document, :destroy
-    end
-
   end
 
   attributes do

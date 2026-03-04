@@ -42,49 +42,12 @@ defmodule UniboV4.Purchasing.PurchaseOrder do
     otp_app: :unibo_v4,
     domain: UniboV4.Purchasing,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     authorizers: [Ash.Policy.Authorizer],
     notifiers: [UniboV4.Purchasing.PurchaseOrder.Notifier]
 
   postgres do
     table "purchasing_purchase_orders"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :purchasing_purchase_order
-
-    queries do
-      get :get_purchasing_purchase_order, :read
-      list :list_purchasing_purchase_orders, :read
-      get :get_list_purchasing_purchase_order, :list
-      list :list_list_purchasing_purchase_orders, :list
-      get :get_search_purchasing_purchase_order, :search
-      list :list_search_purchasing_purchase_orders, :search
-      get :get_get_purchasing_purchase_order, :get
-      list :list_get_purchasing_purchase_orders, :get
-      get :get_preview_purchasing_purchase_order, :preview
-      list :list_preview_purchasing_purchase_orders, :preview
-      get :get_compute_purchasing_purchase_order, :compute
-      list :list_compute_purchasing_purchase_orders, :compute
-      get :get_lookup_purchasing_purchase_order, :lookup
-      list :list_lookup_purchasing_purchase_orders, :lookup
-    end
-
-    mutations do
-      create :create_create_purchasing_purchase_order, :create
-      create :create_action_create_invoice_purchasing_purchase_order, :action_create_invoice
-      update :update_purchasing_purchase_order, :update
-      update :print_quotation_purchasing_purchase_order, :print_quotation
-      update :send_rfq_purchasing_purchase_order, :send_rfq
-      update :button_confirm_purchasing_purchase_order, :button_confirm
-      update :button_approve_purchasing_purchase_order, :button_approve
-      update :button_done_purchasing_purchase_order, :button_done
-      update :button_unlock_purchasing_purchase_order, :button_unlock
-      update :button_cancel_purchasing_purchase_order, :button_cancel
-      update :button_draft_purchasing_purchase_order, :button_draft
-    end
-
   end
 
   attributes do
@@ -407,8 +370,8 @@ defmodule UniboV4.Purchasing.PurchaseOrder do
       validate present(:name)
       # TODO: 不支持的 action 内校验规则 custom
       # TODO: 不支持的 action 内校验规则 custom
+      # precondition: requires invoice_status=:to_invoice
       validate attribute_equals(:invoice_status, :to_invoice)
-      # message: "当前无待开票内容，无法创建发票"
       change relate_actor(:created_by)
       # TODO: 不支持的 change effect call
       # TODO: 不支持的 change effect call
@@ -437,16 +400,19 @@ defmodule UniboV4.Purchasing.PurchaseOrder do
 
   policies do
     policy action_type(:create) do
-      authorize_if expr(role in [:buyer, :admin])
+      authorize_if expr(actor.role in [:buyer, :admin])
     end
     policy action_type(:read) do
       authorize_if always()
     end
     policy action_type(:update) do
-      authorize_if expr(role == :admin or id == created_by_id)
+      authorize_if expr(actor.role == :admin or actor.id == created_by_id)
     end
     policy action(:button_approve) do
-      authorize_if expr(role == :purchase_manager or unknown_func())
+      authorize_if expr(actor.role == :purchase_manager or unknown_func())
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

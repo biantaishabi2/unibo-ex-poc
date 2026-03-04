@@ -9,27 +9,11 @@ defmodule UniboV4.Inventory.LandedCostLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Inventory,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "inventory_landed_cost_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :inventory_landed_cost_line
-
-    queries do
-      get :get_inventory_landed_cost_line, :read
-      list :list_inventory_landed_cost_lines, :read
-    end
-
-    mutations do
-      create :create_inventory_landed_cost_line, :create
-      update :update_inventory_landed_cost_line, :update
-    end
-
   end
 
   attributes do

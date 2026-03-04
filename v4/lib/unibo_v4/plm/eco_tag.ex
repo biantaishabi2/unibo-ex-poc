@@ -8,26 +8,11 @@ defmodule UniboV4.PLM.EcoTag do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.PLM,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "plm_eco_tags"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :plm_eco_tag
-
-    queries do
-      get :get_plm_eco_tag, :read
-      list :list_plm_eco_tags, :read
-    end
-
-    mutations do
-      create :create_plm_eco_tag, :create
-    end
-
   end
 
   attributes do
@@ -42,7 +27,7 @@ defmodule UniboV4.PLM.EcoTag do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       primary? true
       accept [:name, :color]

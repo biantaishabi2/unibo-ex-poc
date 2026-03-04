@@ -9,27 +9,11 @@ defmodule UniboV4.Ecommerce.ProductPrice do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Ecommerce,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "ecommerce_product_prices"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :ecommerce_product_price
-
-    queries do
-      get :get_ecommerce_product_price, :read
-      list :list_ecommerce_product_prices, :read
-    end
-
-    mutations do
-      create :create_ecommerce_product_price, :create
-      update :update_ecommerce_product_price, :update
-    end
-
   end
 
   attributes do

@@ -21,43 +21,11 @@ defmodule UniboV4.Purchasing.PurchaseRequisition do
     otp_app: :unibo_v4,
     domain: UniboV4.Purchasing,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Purchasing.PurchaseRequisition.Notifier]
 
   postgres do
     table "purchasing_purchase_requisitions"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :purchasing_purchase_requisition
-
-    queries do
-      get :get_purchasing_purchase_requisition, :read
-      list :list_purchasing_purchase_requisitions, :read
-      get :get_list_purchasing_purchase_requisition, :list
-      list :list_list_purchasing_purchase_requisitions, :list
-      get :get_search_purchasing_purchase_requisition, :search
-      list :list_search_purchasing_purchase_requisitions, :search
-      get :get_get_purchasing_purchase_requisition, :get
-      list :list_get_purchasing_purchase_requisitions, :get
-      get :get_preview_purchasing_purchase_requisition, :preview
-      list :list_preview_purchasing_purchase_requisitions, :preview
-      get :get_compute_purchasing_purchase_requisition, :compute
-      list :list_compute_purchasing_purchase_requisitions, :compute
-      get :get_lookup_purchasing_purchase_requisition, :lookup
-      list :list_lookup_purchasing_purchase_requisitions, :lookup
-    end
-
-    mutations do
-      create :create_purchasing_purchase_requisition, :create
-      update :action_in_progress_purchasing_purchase_requisition, :action_in_progress
-      update :action_open_purchasing_purchase_requisition, :action_open
-      update :action_done_purchasing_purchase_requisition, :action_done
-      update :action_cancel_purchasing_purchase_requisition, :action_cancel
-      update :action_draft_purchasing_purchase_requisition, :action_draft
-    end
-
   end
 
   attributes do
@@ -141,7 +109,6 @@ defmodule UniboV4.Purchasing.PurchaseRequisition do
     read :lookup do
     end
     update :action_in_progress do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)

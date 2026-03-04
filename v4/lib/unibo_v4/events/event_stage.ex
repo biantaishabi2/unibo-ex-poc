@@ -10,28 +10,11 @@ defmodule UniboV4.Events.EventStage do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Events,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "events_event_stages"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :events_event_stage
-
-    queries do
-      get :get_events_event_stage, :read
-      list :list_events_event_stages, :read
-    end
-
-    mutations do
-      create :create_events_event_stage, :create
-      update :update_events_event_stage, :update
-      destroy :delete_events_event_stage, :destroy
-    end
-
   end
 
   attributes do
@@ -50,7 +33,7 @@ defmodule UniboV4.Events.EventStage do
       public? true
     end
     attribute :speaker_name, :string, public?: true
-    attribute :speaker_id, :string, public?: true
+    attribute :speaker_id, :uuid, public?: true
     attribute :topic, :string, public?: true
     attribute :location, :string, public?: true
     attribute :sequence, :integer do

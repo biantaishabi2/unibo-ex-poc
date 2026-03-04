@@ -10,28 +10,11 @@ defmodule UniboV4.Survey.Answer do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Survey,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "survey_answers"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :survey_answer
-
-    queries do
-      get :get_survey_answer, :read
-      list :list_survey_answers, :read
-    end
-
-    mutations do
-      create :create_survey_answer, :create
-      update :update_survey_answer, :update
-      destroy :delete_survey_answer, :destroy
-    end
-
   end
 
   attributes do

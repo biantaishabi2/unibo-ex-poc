@@ -9,31 +9,11 @@ defmodule UniboV4.Uom.Uom do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Uom,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "uom_uoms"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :uom_uom
-
-    queries do
-      get :get_uom_uom, :read
-      list :list_uom_uoms, :read
-      get :get_compute_quantity_uom_uom, :compute_quantity
-      list :list_compute_quantity_uom_uoms, :compute_quantity
-      get :get_compute_price_uom_uom, :compute_price
-      list :list_compute_price_uom_uoms, :compute_price
-    end
-
-    mutations do
-      create :create_uom_uom, :create
-      update :update_uom_uom, :update
-    end
-
   end
 
   attributes do

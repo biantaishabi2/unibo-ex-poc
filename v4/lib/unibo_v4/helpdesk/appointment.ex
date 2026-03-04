@@ -13,29 +13,11 @@ defmodule UniboV4.Helpdesk.Appointment do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Helpdesk,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "helpdesk_appointments"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :helpdesk_appointment
-
-    queries do
-      get :get_helpdesk_appointment, :read
-      list :list_helpdesk_appointments, :read
-    end
-
-    mutations do
-      create :create_helpdesk_appointment, :create
-      update :confirm_helpdesk_appointment, :confirm
-      update :complete_helpdesk_appointment, :complete
-      update :cancel_helpdesk_appointment, :cancel
-    end
-
   end
 
   attributes do
@@ -88,7 +70,6 @@ defmodule UniboV4.Helpdesk.Appointment do
       end
     end
     update :confirm do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

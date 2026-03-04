@@ -14,29 +14,11 @@ defmodule UniboV4.Fleet.VehicleService do
     otp_app: :unibo_v4,
     domain: UniboV4.Fleet,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Fleet.VehicleService.Notifier]
 
   postgres do
     table "fleet_vehicle_services"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :fleet_vehicle_service
-
-    queries do
-      get :get_fleet_vehicle_service, :read
-      list :list_fleet_vehicle_services, :read
-    end
-
-    mutations do
-      create :create_schedule_fleet_vehicle_service, :schedule
-      update :start_fleet_vehicle_service, :start
-      update :complete_fleet_vehicle_service, :complete
-      update :cancel_fleet_vehicle_service, :cancel
-    end
-
   end
 
   attributes do
@@ -80,7 +62,7 @@ defmodule UniboV4.Fleet.VehicleService do
       accept [:service_type, :scheduled_date, :odometer_at_service, :interval_quantity, :interval_uom_id, :vendor, :notes]
       argument :fleet_vehicle_id, :uuid, allow_nil?: false
       change manage_relationship(:fleet_vehicle_id, :fleet_vehicle, type: :append, on_lookup: :relate)
-      validate present(:fleet_vehicle_id)
+      # skipped: validate present(:fleet_vehicle_id) — field not found
       validate present(:service_type)
       validate present(:scheduled_date)
       change fn changeset, _context ->
@@ -94,7 +76,6 @@ defmodule UniboV4.Fleet.VehicleService do
       end
     end
     update :start do
-      primary? true
       accept [:notes]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

@@ -9,22 +9,11 @@ defmodule UniboV4.Manufacturing.WorkcenterProductivity do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Manufacturing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "manufacturing_workcenter_productivities"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :manufacturing_workcenter_productivity
-
-    mutations do
-      create :create_manufacturing_workcenter_productivity, :create
-      update :update_manufacturing_workcenter_productivity, :update
-    end
-
   end
 
   attributes do
@@ -56,7 +45,6 @@ defmodule UniboV4.Manufacturing.WorkcenterProductivity do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:date_start, :date_end, :loss_type]

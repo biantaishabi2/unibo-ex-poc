@@ -13,29 +13,11 @@ defmodule UniboV4.Accounting.JournalEntry do
     otp_app: :unibo_v4,
     domain: UniboV4.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Accounting.JournalEntry.Notifier]
 
   postgres do
     table "accounting_journal_entries"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :accounting_journal_entry
-
-    queries do
-      get :get_accounting_journal_entry, :read
-      list :list_accounting_journal_entrys, :read
-    end
-
-    mutations do
-      create :create_accounting_journal_entry, :create
-      update :post_accounting_journal_entry, :post
-      update :cancel_accounting_journal_entry, :cancel
-      update :reset_to_draft_accounting_journal_entry, :reset_to_draft
-    end
-
   end
 
   attributes do
@@ -128,7 +110,6 @@ defmodule UniboV4.Accounting.JournalEntry do
       end
     end
     update :post do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

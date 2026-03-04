@@ -21,33 +21,11 @@ defmodule UniboV4.Events.Event do
     otp_app: :unibo_v4,
     domain: UniboV4.Events,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Events.Event.Notifier]
 
   postgres do
     table "events_events"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :events_event
-
-    queries do
-      get :get_events_event, :read
-      list :list_events_events, :read
-    end
-
-    mutations do
-      create :create_events_event, :create
-      update :update_events_event, :update
-      update :publish_events_event, :publish
-      update :start_events_event, :start
-      update :complete_events_event, :complete
-      update :cancel_events_event, :cancel
-      update :archive_events_event, :archive
-      destroy :delete_events_event, :destroy
-    end
-
   end
 
   attributes do
@@ -74,7 +52,7 @@ defmodule UniboV4.Events.Event do
     attribute :actual_start_date, :utc_datetime, public?: true
     attribute :actual_end_date, :utc_datetime, public?: true
     attribute :location, :string, public?: true
-    attribute :venue_id, :string, public?: true
+    attribute :venue_id, :uuid, public?: true
     attribute :capacity, :integer, public?: true
     attribute :registration_deadline, :utc_datetime, public?: true
     attribute :is_online, :boolean do
@@ -95,7 +73,7 @@ defmodule UniboV4.Events.Event do
     attribute :total_budget, :decimal, public?: true
     attribute :budget_currency_id, :string, public?: true
     attribute :special_terms, :string, public?: true
-    attribute :organizer_id, :string, public?: true
+    attribute :organizer_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end

@@ -12,29 +12,11 @@ defmodule UniboV4.Marketing.EventBooth do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "marketing_event_booths"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_event_booth
-
-    queries do
-      get :get_marketing_event_booth, :read
-      list :list_marketing_event_booths, :read
-    end
-
-    mutations do
-      create :create_marketing_event_booth, :create
-      update :update_marketing_event_booth, :update
-      update :confirm_marketing_event_booth, :confirm
-      update :release_marketing_event_booth, :release
-    end
-
   end
 
   attributes do

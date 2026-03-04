@@ -12,28 +12,11 @@ defmodule UniboV4.Analytic.AnalyticLine do
     otp_app: :unibo_v4,
     domain: UniboV4.Analytic,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Analytic.AnalyticLine.Notifier]
 
   postgres do
     table "analytic_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :analytic_analytic_line
-
-    queries do
-      get :get_analytic_analytic_line, :read
-      list :list_analytic_analytic_lines, :read
-    end
-
-    mutations do
-      create :create_analytic_analytic_line, :create
-      update :update_analytic_analytic_line, :update
-      destroy :delete_analytic_analytic_line, :destroy
-    end
-
   end
 
   attributes do

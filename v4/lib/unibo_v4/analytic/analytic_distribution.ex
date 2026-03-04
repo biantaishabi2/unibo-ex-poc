@@ -12,28 +12,11 @@ defmodule UniboV4.Analytic.AnalyticDistribution do
     otp_app: :unibo_v4,
     domain: UniboV4.Analytic,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Analytic.AnalyticDistribution.Notifier]
 
   postgres do
     table "analytic_distributions"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :analytic_analytic_distribution
-
-    queries do
-      get :get_analytic_analytic_distribution, :read
-      list :list_analytic_analytic_distributions, :read
-    end
-
-    mutations do
-      create :create_analytic_analytic_distribution, :create
-      update :update_analytic_analytic_distribution, :update
-      destroy :delete_analytic_analytic_distribution, :destroy
-    end
-
   end
 
   attributes do

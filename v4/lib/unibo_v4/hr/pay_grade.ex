@@ -9,27 +9,11 @@ defmodule UniboV4.HR.PayGrade do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "hr_pay_grades"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_pay_grade
-
-    queries do
-      get :get_hr_pay_grade, :read
-      list :list_hr_pay_grades, :read
-    end
-
-    mutations do
-      create :create_hr_pay_grade, :create
-      update :update_hr_pay_grade, :update
-    end
-
   end
 
   attributes do

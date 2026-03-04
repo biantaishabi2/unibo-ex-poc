@@ -9,22 +9,11 @@ defmodule UniboV4.Sales.QuoteItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Sales,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "sales_quote_items"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sales_quote_item
-
-    mutations do
-      create :create_sales_quote_item, :create
-      update :update_sales_quote_item, :update
-    end
-
   end
 
   attributes do
@@ -66,7 +55,6 @@ defmodule UniboV4.Sales.QuoteItem do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:product_name, :product_code, :quantity, :quote_unit_price, :comments, :estimated_delivery_date, :seq_id, :is_promo, :lead_time_days]

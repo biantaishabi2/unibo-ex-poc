@@ -9,27 +9,11 @@ defmodule UniboV4.Ecommerce.Catalog do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Ecommerce,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "ecommerce_catalogs"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :ecommerce_catalog
-
-    queries do
-      get :get_ecommerce_catalog, :read
-      list :list_ecommerce_catalogs, :read
-    end
-
-    mutations do
-      create :create_ecommerce_catalog, :create
-      update :update_ecommerce_catalog, :update
-    end
-
   end
 
   attributes do

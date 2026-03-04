@@ -12,28 +12,11 @@ defmodule UniboV4.CRM.Contact do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.CRM,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "crm_contacts"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :crm_contact
-
-    queries do
-      get :get_crm_contact, :read
-      list :list_crm_contacts, :read
-    end
-
-    mutations do
-      create :create_crm_contact, :create
-      update :update_crm_contact, :update
-      destroy :delete_crm_contact, :destroy
-    end
-
   end
 
   attributes do

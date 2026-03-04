@@ -16,29 +16,11 @@ defmodule UniboV4.Maintenance.MaintenanceRequest do
     otp_app: :unibo_v4,
     domain: UniboV4.Maintenance,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Maintenance.MaintenanceRequest.Notifier]
 
   postgres do
     table "maintenance_requests"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :maintenance_maintenance_request
-
-    queries do
-      get :get_maintenance_maintenance_request, :read
-      list :list_maintenance_maintenance_requests, :read
-    end
-
-    mutations do
-      create :create_maintenance_maintenance_request, :create
-      update :update_maintenance_maintenance_request, :update
-      update :change_stage_maintenance_maintenance_request, :change_stage
-      update :cancel_maintenance_maintenance_request, :cancel
-    end
-
   end
 
   attributes do

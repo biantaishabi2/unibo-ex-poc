@@ -21,31 +21,11 @@ defmodule UniboV4.Inventory.StockMove do
     otp_app: :unibo_v4,
     domain: UniboV4.Inventory,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Inventory.StockMove.Notifier]
 
   postgres do
     table "inventory_stock_moves"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :inventory_stock_move
-
-    queries do
-      get :get_inventory_stock_move, :read
-      list :list_inventory_stock_moves, :read
-    end
-
-    mutations do
-      create :create_inventory_stock_move, :create
-      update :action_confirm_inventory_stock_move, :action_confirm
-      update :action_assign_inventory_stock_move, :action_assign
-      update :action_done_inventory_stock_move, :action_done
-      update :action_cancel_inventory_stock_move, :action_cancel
-      update :trigger_assign_inventory_stock_move, :trigger_assign
-    end
-
   end
 
   attributes do
@@ -122,10 +102,14 @@ defmodule UniboV4.Inventory.StockMove do
     many_to_many :move_orig_ids, UniboV4.Inventory.StockMove do
       public? true
       through UniboV4.Inventory.StockMoveDependencyLink
+      source_attribute_on_join_resource :move_orig_id
+      destination_attribute_on_join_resource :move_orig_id
     end
     many_to_many :move_dest_ids, UniboV4.Inventory.StockMove do
       public? true
       through UniboV4.Inventory.StockMoveDependencyLink
+      source_attribute_on_join_resource :move_orig_id
+      destination_attribute_on_join_resource :move_orig_id
     end
     has_many :valuation_adjustment_lines, UniboV4.Inventory.ValuationAdjustmentLine do
       public? true
@@ -160,7 +144,6 @@ defmodule UniboV4.Inventory.StockMove do
       end
     end
     update :action_confirm do
-      primary? true
       accept []
       argument :merge, :boolean
       change fn changeset, _ctx ->

@@ -9,27 +9,11 @@ defmodule UniboV4.Lunch.LunchCashMove do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Lunch,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "lunch_cash_moves"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :lunch_lunch_cash_move
-
-    queries do
-      get :get_lunch_lunch_cash_move, :read
-      list :list_lunch_lunch_cash_moves, :read
-    end
-
-    mutations do
-      create :create_lunch_lunch_cash_move, :create
-      destroy :delete_lunch_lunch_cash_move, :destroy
-    end
-
   end
 
   attributes do
@@ -59,7 +43,7 @@ defmodule UniboV4.Lunch.LunchCashMove do
   end
 
   actions do
-    defaults [:read, :destroy, :update]
+    defaults [:read, :destroy]
     create :create do
       primary? true
       accept [:amount, :date, :description]

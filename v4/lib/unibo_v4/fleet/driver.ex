@@ -11,28 +11,11 @@ defmodule UniboV4.Fleet.Driver do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Fleet,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "fleet_drivers"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :fleet_driver
-
-    queries do
-      get :get_fleet_driver, :read
-      list :list_fleet_drivers, :read
-    end
-
-    mutations do
-      create :create_fleet_driver, :create
-      update :update_fleet_driver, :update
-      update :deactivate_fleet_driver, :deactivate
-    end
-
   end
 
   attributes do

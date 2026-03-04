@@ -9,27 +9,11 @@ defmodule UniboV4.Marketing.UtmTag do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "marketing_utm_tags"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_utm_tag
-
-    queries do
-      get :get_marketing_utm_tag, :read
-      list :list_marketing_utm_tags, :read
-    end
-
-    mutations do
-      create :create_marketing_utm_tag, :create
-      update :update_marketing_utm_tag, :update
-    end
-
   end
 
   attributes do

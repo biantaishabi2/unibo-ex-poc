@@ -9,27 +9,11 @@ defmodule UniboV4.Accounting.BillingAccount do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Accounting,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "accounting_billing_accounts"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :accounting_billing_account
-
-    queries do
-      get :get_accounting_billing_account, :read
-      list :list_accounting_billing_accounts, :read
-    end
-
-    mutations do
-      create :create_accounting_billing_account, :create
-      update :update_accounting_billing_account, :update
-    end
-
   end
 
   attributes do

@@ -9,22 +9,11 @@ defmodule UniboV4.Inventory.StockPickingItem do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Inventory,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "inventory_stock_picking_items"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :inventory_stock_picking_item
-
-    mutations do
-      create :create_inventory_stock_picking_item, :create
-      update :update_inventory_stock_picking_item, :update
-    end
-
   end
 
   attributes do
@@ -54,7 +43,6 @@ defmodule UniboV4.Inventory.StockPickingItem do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:product_name, :product_code, :quantity_planned]

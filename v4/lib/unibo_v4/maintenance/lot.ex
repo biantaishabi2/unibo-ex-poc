@@ -2,22 +2,11 @@ defmodule UniboV4.Maintenance.Lot do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Maintenance,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "maintenance_lots"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :maintenance_lot
-
-    queries do
-      get :get_maintenance_lot, :read
-      list :list_maintenance_lots, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Maintenance.Lot do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

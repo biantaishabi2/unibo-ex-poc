@@ -1,10 +1,5 @@
 defmodule UniboV4.Studio do
-  use Ash.Domain,
-    extensions: [AshGraphql.Domain]
-
-  graphql do
-    authorize? false
-  end
+  use Ash.Domain
 
   resources do
     resource UniboV4.Studio.CustomModel

@@ -3,26 +3,11 @@ defmodule UniboV4.Rating.RatingSummary do
     otp_app: :unibo_v4,
     domain: UniboV4.Rating,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Rating.RatingSummary.Notifier]
 
   postgres do
     table "rating_summaries"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :rating_rating_summary
-
-    queries do
-      get :get_rating_rating_summary, :read
-      list :list_rating_rating_summarys, :read
-    end
-
-    mutations do
-      update :recalculate_rating_rating_summary, :recalculate
-    end
-
   end
 
   attributes do
@@ -75,7 +60,6 @@ defmodule UniboV4.Rating.RatingSummary do
   actions do
     defaults [:read]
     update :recalculate do
-      primary? true
       accept [:average_score, :total_count, :star_1_count, :star_2_count, :star_3_count, :star_4_count, :star_5_count, :last_rating_at]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

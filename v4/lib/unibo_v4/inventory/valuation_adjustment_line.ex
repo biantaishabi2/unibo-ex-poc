@@ -8,26 +8,11 @@ defmodule UniboV4.Inventory.ValuationAdjustmentLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Inventory,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "inventory_valuation_adjustment_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :inventory_valuation_adjustment_line
-
-    queries do
-      get :get_inventory_valuation_adjustment_line, :read
-      list :list_inventory_valuation_adjustment_lines, :read
-    end
-
-    mutations do
-      create :create_inventory_valuation_adjustment_line, :create
-    end
-
   end
 
   attributes do
@@ -61,7 +46,7 @@ defmodule UniboV4.Inventory.ValuationAdjustmentLine do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       primary? true
       accept [:quantity, :weight, :volume, :former_cost, :additional_landed_cost]

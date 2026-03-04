@@ -11,29 +11,11 @@ defmodule UniboV4.Membership.MembershipLine do
     otp_app: :unibo_v4,
     domain: UniboV4.Membership,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Membership.MembershipLine.Notifier]
 
   postgres do
     table "membership_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :membership_membership_line
-
-    queries do
-      get :get_membership_membership_line, :read
-      list :list_membership_membership_lines, :read
-    end
-
-    mutations do
-      create :create_membership_membership_line, :create
-      update :update_membership_membership_line, :update
-      update :cancel_membership_membership_line, :cancel
-      update :renew_membership_membership_line, :renew
-    end
-
   end
 
   attributes do

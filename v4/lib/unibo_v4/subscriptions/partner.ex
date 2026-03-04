@@ -2,22 +2,11 @@ defmodule UniboV4.Subscriptions.Partner do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Subscriptions,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "subscriptions_partners"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :subscriptions_partner
-
-    queries do
-      get :get_subscriptions_partner, :read
-      list :list_subscriptions_partners, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Subscriptions.Partner do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

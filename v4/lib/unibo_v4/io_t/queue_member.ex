@@ -13,31 +13,11 @@ defmodule UniboV4.IoT.QueueMember do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.IoT,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "io_t_queue_members"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :io_t_queue_member
-
-    queries do
-      get :get_io_t_queue_member, :read
-      list :list_io_t_queue_members, :read
-    end
-
-    mutations do
-      create :create_io_t_queue_member, :create
-      update :update_io_t_queue_member, :update
-      update :pause_io_t_queue_member, :pause
-      update :unpause_io_t_queue_member, :unpause
-      update :record_call_io_t_queue_member, :record_call
-      destroy :delete_io_t_queue_member, :destroy
-    end
-
   end
 
   attributes do
@@ -93,9 +73,9 @@ defmodule UniboV4.IoT.QueueMember do
     create :create do
       primary? true
       accept [:priority, :penalty]
-      argument :queue_id, :uuid, allow_nil?: false
+      argument :queue_id, :integer, allow_nil?: false
       change manage_relationship(:queue_id, :queue, type: :append, on_lookup: :relate)
-      argument :user_id, :uuid, allow_nil?: false
+      argument :user_id, :integer, allow_nil?: false
       change manage_relationship(:user_id, :user, type: :append, on_lookup: :relate)
       validate present(:queue_id)
       validate present(:user_id)

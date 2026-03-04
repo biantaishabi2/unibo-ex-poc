@@ -15,29 +15,11 @@ defmodule UniboV4.Fleet.VehicleContract do
     otp_app: :unibo_v4,
     domain: UniboV4.Fleet,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Fleet.VehicleContract.Notifier]
 
   postgres do
     table "fleet_vehicle_contracts"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :fleet_vehicle_contract
-
-    queries do
-      get :get_fleet_vehicle_contract, :read
-      list :list_fleet_vehicle_contracts, :read
-    end
-
-    mutations do
-      create :create_fleet_vehicle_contract, :create
-      update :activate_fleet_vehicle_contract, :activate
-      update :renew_fleet_vehicle_contract, :renew
-      update :terminate_fleet_vehicle_contract, :terminate
-    end
-
   end
 
   attributes do
@@ -89,7 +71,7 @@ defmodule UniboV4.Fleet.VehicleContract do
       accept [:contract_type, :start_date, :end_date, :vendor, :contract_number, :amount, :recurring_cost, :recurring_period, :notes]
       argument :fleet_vehicle_id, :uuid, allow_nil?: false
       change manage_relationship(:fleet_vehicle_id, :fleet_vehicle, type: :append, on_lookup: :relate)
-      validate present(:fleet_vehicle_id)
+      # skipped: validate present(:fleet_vehicle_id) — field not found
       validate present(:contract_type)
       validate present(:start_date)
       change fn changeset, _context ->
@@ -103,7 +85,6 @@ defmodule UniboV4.Fleet.VehicleContract do
       end
     end
     update :activate do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

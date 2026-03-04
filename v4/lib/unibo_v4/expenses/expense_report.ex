@@ -24,32 +24,11 @@ defmodule UniboV4.Expenses.ExpenseReport do
     otp_app: :unibo_v4,
     domain: UniboV4.Expenses,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Expenses.ExpenseReport.Notifier]
 
   postgres do
     table "expenses_expense_reports"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :expenses_expense_report
-
-    queries do
-      get :get_expenses_expense_report, :read
-      list :list_expenses_expense_reports, :read
-    end
-
-    mutations do
-      create :create_expenses_expense_report, :create
-      update :submit_expenses_expense_report, :submit
-      update :approve_expenses_expense_report, :approve
-      update :refuse_expenses_expense_report, :refuse
-      update :post_expenses_expense_report, :post
-      update :register_payment_expenses_expense_report, :register_payment
-      update :reset_expenses_expense_report, :reset
-    end
-
   end
 
   attributes do
@@ -150,7 +129,6 @@ defmodule UniboV4.Expenses.ExpenseReport do
       end
     end
     update :submit do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)
@@ -245,7 +223,7 @@ defmodule UniboV4.Expenses.ExpenseReport do
       end
       # message: "只有已审批状态可以过账"
       # skipped: validate present :employee_work_email (incompatible with bulk update atomic path)
-      # skipped: validate present :employee_journal_id (incompatible with bulk update atomic path)
+      # skipped: validate present(:employee_journal_id) — field not found
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

@@ -17,31 +17,11 @@ defmodule UniboV4.Inventory.StockQuant do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Inventory,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "inventory_stock_quants"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :inventory_stock_quant
-
-    queries do
-      get :get_inventory_stock_quant, :read
-      list :list_inventory_stock_quants, :read
-      get :get_get_reserve_quantity_inventory_stock_quant, :get_reserve_quantity
-      list :list_get_reserve_quantity_inventory_stock_quants, :get_reserve_quantity
-    end
-
-    mutations do
-      create :create_inventory_stock_quant, :create
-      update :update_inventory_stock_quant, :update
-      update :update_available_quantity_inventory_stock_quant, :update_available_quantity
-      update :apply_inventory_inventory_stock_quant, :apply_inventory
-    end
-
   end
 
   attributes do

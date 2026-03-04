@@ -8,26 +8,11 @@ defmodule UniboV4.Subscriptions.SubscriptionLog do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Subscriptions,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "subscriptions_subscription_logs"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :subscriptions_subscription_log
-
-    queries do
-      get :get_subscriptions_subscription_log, :read
-      list :list_subscriptions_subscription_logs, :read
-    end
-
-    mutations do
-      create :create_subscriptions_subscription_log, :create
-    end
-
   end
 
   attributes do
@@ -72,7 +57,7 @@ defmodule UniboV4.Subscriptions.SubscriptionLog do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       primary? true
       accept [:event_type, :event_date, :amount_signed, :mrr_before, :mrr_after, :reason]

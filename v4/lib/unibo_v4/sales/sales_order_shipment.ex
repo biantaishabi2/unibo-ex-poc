@@ -11,40 +11,11 @@ defmodule UniboV4.Sales.SalesOrderShipment do
     otp_app: :unibo_v4,
     domain: UniboV4.Sales,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Sales.SalesOrderShipment.Notifier]
 
   postgres do
     table "sales_order_shipments"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sales_sales_order_shipment
-
-    queries do
-      get :get_sales_sales_order_shipment, :read
-      list :list_sales_sales_order_shipments, :read
-      get :get_list_sales_sales_order_shipment, :list
-      list :list_list_sales_sales_order_shipments, :list
-      get :get_search_sales_sales_order_shipment, :search
-      list :list_search_sales_sales_order_shipments, :search
-      get :get_get_sales_sales_order_shipment, :get
-      list :list_get_sales_sales_order_shipments, :get
-      get :get_preview_sales_sales_order_shipment, :preview
-      list :list_preview_sales_sales_order_shipments, :preview
-      get :get_compute_sales_sales_order_shipment, :compute
-      list :list_compute_sales_sales_order_shipments, :compute
-      get :get_lookup_sales_sales_order_shipment, :lookup
-      list :list_lookup_sales_sales_order_shipments, :lookup
-    end
-
-    mutations do
-      create :create_sales_sales_order_shipment, :create
-      update :ship_sales_sales_order_shipment, :ship
-      update :deliver_sales_sales_order_shipment, :deliver
-    end
-
   end
 
   attributes do
@@ -110,7 +81,6 @@ defmodule UniboV4.Sales.SalesOrderShipment do
     read :lookup do
     end
     update :ship do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

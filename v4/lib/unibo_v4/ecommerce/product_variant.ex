@@ -11,28 +11,11 @@ defmodule UniboV4.Ecommerce.ProductVariant do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Ecommerce,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "ecommerce_product_variants"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :ecommerce_product_variant
-
-    queries do
-      get :get_ecommerce_product_variant, :read
-      list :list_ecommerce_product_variants, :read
-    end
-
-    mutations do
-      create :create_create_ecommerce_product_variant, :create
-      create :create_create_dynamic_variant_ecommerce_product_variant, :create_dynamic_variant
-      update :update_ecommerce_product_variant, :update
-    end
-
   end
 
   attributes do

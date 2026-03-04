@@ -11,28 +11,11 @@ defmodule UniboV4.Repair.Warranty do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Repair,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "repair_warranties"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :repair_warranty
-
-    queries do
-      get :get_repair_warranty, :read
-      list :list_repair_warrantys, :read
-    end
-
-    mutations do
-      create :create_repair_warranty, :create
-      update :update_repair_warranty, :update
-      destroy :delete_repair_warranty, :destroy
-    end
-
   end
 
   attributes do

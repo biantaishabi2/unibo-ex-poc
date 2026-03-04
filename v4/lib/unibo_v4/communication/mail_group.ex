@@ -12,30 +12,11 @@ defmodule UniboV4.Communication.MailGroup do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Communication,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "communication_mail_groups"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :communication_mail_group
-
-    queries do
-      get :get_communication_mail_group, :read
-      list :list_communication_mail_groups, :read
-    end
-
-    mutations do
-      create :create_communication_mail_group, :create
-      update :update_communication_mail_group, :update
-      update :join_communication_mail_group, :join
-      update :leave_communication_mail_group, :leave
-      destroy :delete_communication_mail_group, :destroy
-    end
-
   end
 
   attributes do

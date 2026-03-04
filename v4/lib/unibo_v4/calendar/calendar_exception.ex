@@ -9,27 +9,11 @@ defmodule UniboV4.Calendar.CalendarException do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Calendar,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "calendar_exceptions"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :calendar_calendar_exception
-
-    queries do
-      get :get_calendar_calendar_exception, :read
-      list :list_calendar_calendar_exceptions, :read
-    end
-
-    mutations do
-      create :create_add_calendar_calendar_exception, :add
-      destroy :delete_remove_calendar_calendar_exception, :remove
-    end
-
   end
 
   attributes do
@@ -60,7 +44,7 @@ defmodule UniboV4.Calendar.CalendarException do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :add do
       primary? true
       accept [:exception_date, :exception_type, :description, :exception_capacity, :start_time, :end_time]

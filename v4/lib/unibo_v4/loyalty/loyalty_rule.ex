@@ -10,28 +10,11 @@ defmodule UniboV4.Loyalty.LoyaltyRule do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Loyalty,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "loyalty_rules"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :loyalty_loyalty_rule
-
-    queries do
-      get :get_loyalty_loyalty_rule, :read
-      list :list_loyalty_loyalty_rules, :read
-    end
-
-    mutations do
-      create :create_loyalty_loyalty_rule, :create
-      update :update_loyalty_loyalty_rule, :update
-      destroy :delete_loyalty_loyalty_rule, :destroy
-    end
-
   end
 
   attributes do

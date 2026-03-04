@@ -11,29 +11,11 @@ defmodule UniboV4.Documents.WorkflowRule do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Documents,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "documents_workflow_rules"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :documents_workflow_rule
-
-    queries do
-      get :get_documents_workflow_rule, :read
-      list :list_documents_workflow_rules, :read
-    end
-
-    mutations do
-      create :create_documents_workflow_rule, :create
-      update :update_documents_workflow_rule, :update
-      update :execute_documents_workflow_rule, :execute
-      destroy :delete_documents_workflow_rule, :destroy
-    end
-
   end
 
   attributes do

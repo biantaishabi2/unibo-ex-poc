@@ -15,29 +15,11 @@ defmodule UniboV4.Studio.AutomationRule do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Studio,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "studio_automation_rules"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :studio_automation_rule
-
-    queries do
-      get :get_studio_automation_rule, :read
-      list :list_studio_automation_rules, :read
-    end
-
-    mutations do
-      create :create_studio_automation_rule, :create
-      update :update_studio_automation_rule, :update
-      update :execute_studio_automation_rule, :execute
-      destroy :delete_studio_automation_rule, :destroy
-    end
-
   end
 
   attributes do

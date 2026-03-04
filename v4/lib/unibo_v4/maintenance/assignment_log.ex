@@ -8,26 +8,11 @@ defmodule UniboV4.Maintenance.AssignmentLog do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Maintenance,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "maintenance_assignment_logs"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :maintenance_assignment_log
-
-    queries do
-      get :get_maintenance_assignment_log, :read
-      list :list_maintenance_assignment_logs, :read
-    end
-
-    mutations do
-      create :create_maintenance_assignment_log, :create
-    end
-
   end
 
   attributes do
@@ -49,7 +34,7 @@ defmodule UniboV4.Maintenance.AssignmentLog do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       primary? true
       accept [:date_start, :date_end]

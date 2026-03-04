@@ -9,27 +9,11 @@ defmodule UniboV4.HR.EmployeeLocation do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "hr_employee_locations"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_employee_location
-
-    queries do
-      get :get_hr_employee_location, :read
-      list :list_hr_employee_locations, :read
-    end
-
-    mutations do
-      create :create_hr_employee_location, :create
-      update :update_hr_employee_location, :update
-    end
-
   end
 
   attributes do

@@ -13,28 +13,11 @@ defmodule UniboV4.Analytic.AnalyticAccount do
     otp_app: :unibo_v4,
     domain: UniboV4.Analytic,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Analytic.AnalyticAccount.Notifier]
 
   postgres do
     table "analytic_accounts"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :analytic_analytic_account
-
-    queries do
-      get :get_analytic_analytic_account, :read
-      list :list_analytic_analytic_accounts, :read
-    end
-
-    mutations do
-      create :create_analytic_analytic_account, :create
-      update :update_analytic_analytic_account, :update
-      update :deactivate_analytic_analytic_account, :deactivate
-    end
-
   end
 
   attributes do

@@ -9,27 +9,11 @@ defmodule UniboV4.Inventory.Warehouse do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Inventory,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "inventory_warehouses"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :inventory_warehouse
-
-    queries do
-      get :get_inventory_warehouse, :read
-      list :list_inventory_warehouses, :read
-    end
-
-    mutations do
-      create :create_inventory_warehouse, :create
-      update :update_inventory_warehouse, :update
-    end
-
   end
 
   attributes do

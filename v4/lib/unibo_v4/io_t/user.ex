@@ -2,22 +2,11 @@ defmodule UniboV4.IoT.User do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.IoT,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "io_t_users"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :io_t_user
-
-    queries do
-      get :get_io_t_user, :read
-      list :list_io_t_users, :read
-    end
-
   end
 
   attributes do
@@ -30,7 +19,7 @@ defmodule UniboV4.IoT.User do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

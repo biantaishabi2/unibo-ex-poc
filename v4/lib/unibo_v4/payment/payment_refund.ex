@@ -13,29 +13,11 @@ defmodule UniboV4.Payment.PaymentRefund do
     otp_app: :unibo_v4,
     domain: UniboV4.Payment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Payment.PaymentRefund.Notifier]
 
   postgres do
     table "payment_refunds"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :payment_payment_refund
-
-    queries do
-      get :get_payment_payment_refund, :read
-      list :list_payment_payment_refunds, :read
-    end
-
-    mutations do
-      create :create_payment_payment_refund, :create
-      update :approve_payment_payment_refund, :approve
-      update :process_payment_payment_refund, :process
-      update :reject_payment_payment_refund, :reject
-    end
-
   end
 
   attributes do
@@ -84,7 +66,6 @@ defmodule UniboV4.Payment.PaymentRefund do
       end
     end
     update :approve do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

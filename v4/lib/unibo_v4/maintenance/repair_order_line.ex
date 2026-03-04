@@ -2,22 +2,11 @@ defmodule UniboV4.Maintenance.RepairOrderLine do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Maintenance,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "maintenance_repair_order_lines"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :maintenance_repair_order_line
-
-    queries do
-      get :get_maintenance_repair_order_line, :read
-      list :list_maintenance_repair_order_lines, :read
-    end
-
   end
 
   attributes do
@@ -31,7 +20,7 @@ defmodule UniboV4.Maintenance.RepairOrderLine do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

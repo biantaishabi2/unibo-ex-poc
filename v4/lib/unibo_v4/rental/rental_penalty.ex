@@ -11,28 +11,11 @@ defmodule UniboV4.Rental.RentalPenalty do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Rental,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "rental_penalties"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :rental_rental_penalty
-
-    queries do
-      get :get_rental_rental_penalty, :read
-      list :list_rental_rental_penaltys, :read
-    end
-
-    mutations do
-      create :create_rental_rental_penalty, :create
-      update :update_rental_rental_penalty, :update
-      destroy :delete_rental_rental_penalty, :destroy
-    end
-
   end
 
   attributes do

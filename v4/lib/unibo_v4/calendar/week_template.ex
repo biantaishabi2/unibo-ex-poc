@@ -11,28 +11,11 @@ defmodule UniboV4.Calendar.WeekTemplate do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Calendar,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "calendar_week_templates"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :calendar_week_template
-
-    queries do
-      get :get_calendar_week_template, :read
-      list :list_calendar_week_templates, :read
-    end
-
-    mutations do
-      create :create_calendar_week_template, :create
-      update :update_calendar_week_template, :update
-      destroy :delete_calendar_week_template, :destroy
-    end
-
   end
 
   attributes do

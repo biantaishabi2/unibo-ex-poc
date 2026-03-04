@@ -2,22 +2,11 @@ defmodule UniboV4.Inventory.RemovalStrategy do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Inventory,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "inventory_removal_strategies"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :inventory_removal_strategy
-
-    queries do
-      get :get_inventory_removal_strategy, :read
-      list :list_inventory_removal_strategys, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Inventory.RemovalStrategy do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

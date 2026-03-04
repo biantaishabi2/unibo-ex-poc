@@ -9,22 +9,11 @@ defmodule UniboV4.Project.TimesheetEntry do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Project,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "project_timesheet_entries"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :project_timesheet_entry
-
-    mutations do
-      create :create_project_timesheet_entry, :create
-      update :update_project_timesheet_entry, :update
-    end
-
   end
 
   attributes do
@@ -70,7 +59,6 @@ defmodule UniboV4.Project.TimesheetEntry do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:date, :hours, :work_date, :name, :description]

@@ -9,27 +9,11 @@ defmodule UniboV4.Ecommerce.WebSite do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Ecommerce,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "ecommerce_web_sites"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :ecommerce_web_site
-
-    queries do
-      get :get_ecommerce_web_site, :read
-      list :list_ecommerce_web_sites, :read
-    end
-
-    mutations do
-      create :create_ecommerce_web_site, :create
-      update :update_ecommerce_web_site, :update
-    end
-
   end
 
   attributes do

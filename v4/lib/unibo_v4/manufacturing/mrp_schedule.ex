@@ -8,26 +8,11 @@ defmodule UniboV4.Manufacturing.MrpSchedule do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Manufacturing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "manufacturing_mrp_schedules"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :manufacturing_mrp_schedule
-
-    queries do
-      get :get_manufacturing_mrp_schedule, :read
-      list :list_manufacturing_mrp_schedules, :read
-    end
-
-    mutations do
-      create :create_manufacturing_mrp_schedule, :create
-    end
-
   end
 
   attributes do
@@ -55,7 +40,7 @@ defmodule UniboV4.Manufacturing.MrpSchedule do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       primary? true
       accept [:product_code, :event_type, :quantity, :event_date, :description]

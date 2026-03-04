@@ -15,30 +15,11 @@ defmodule UniboV4.Payment.PaymentApplication do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Payment,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "payment_applications"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :payment_payment_application
-
-    queries do
-      get :get_payment_payment_application, :read
-      list :list_payment_payment_applications, :read
-    end
-
-    mutations do
-      create :create_create_payment_payment_application, :create
-      create :create_apply_to_invoice_payment_payment_application, :apply_to_invoice
-      create :create_apply_to_account_payment_payment_application, :apply_to_account
-      update :update_payment_payment_application, :update
-      destroy :delete_payment_payment_application, :destroy
-    end
-
   end
 
   attributes do

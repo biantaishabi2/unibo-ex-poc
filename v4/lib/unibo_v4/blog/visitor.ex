@@ -13,29 +13,11 @@ defmodule UniboV4.Blog.Visitor do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Blog,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "blog_visitors"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :blog_visitor
-
-    queries do
-      get :get_blog_visitor, :read
-      list :list_blog_visitors, :read
-    end
-
-    mutations do
-      create :create_upsert_blog_visitor, :upsert
-      update :track_visit_blog_visitor, :track_visit
-      update :merge_blog_visitor, :merge
-      destroy :delete_cleanup_blog_visitor, :cleanup
-    end
-
   end
 
   attributes do
@@ -90,7 +72,6 @@ defmodule UniboV4.Blog.Visitor do
       end
     end
     update :track_visit do
-      primary? true
       accept []
       change fn changeset, _context ->
         visit_count = Ash.Changeset.get_attribute(changeset, :visit_count)

@@ -16,29 +16,11 @@ defmodule UniboV4.Project.PlanningSlot do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Project,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "project_planning_slots"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :project_planning_slot
-
-    queries do
-      get :get_project_planning_slot, :read
-      list :list_project_planning_slots, :read
-    end
-
-    mutations do
-      create :create_create_project_planning_slot, :create
-      create :create_create_from_template_project_planning_slot, :create_from_template
-      update :update_project_planning_slot, :update
-      update :publish_project_planning_slot, :publish
-    end
-
   end
 
   attributes do

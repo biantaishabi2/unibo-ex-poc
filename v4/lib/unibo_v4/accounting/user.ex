@@ -2,22 +2,11 @@ defmodule UniboV4.Accounting.User do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Accounting,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "accounting_users"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :accounting_user
-
-    queries do
-      get :get_accounting_user, :read
-      list :list_accounting_users, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Accounting.User do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

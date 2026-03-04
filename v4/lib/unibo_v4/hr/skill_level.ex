@@ -9,27 +9,11 @@ defmodule UniboV4.HR.SkillLevel do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "hr_skill_levels"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_skill_level
-
-    queries do
-      get :get_hr_skill_level, :read
-      list :list_hr_skill_levels, :read
-    end
-
-    mutations do
-      create :create_hr_skill_level, :create
-      update :update_hr_skill_level, :update
-    end
-
   end
 
   attributes do

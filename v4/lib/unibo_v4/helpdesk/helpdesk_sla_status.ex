@@ -16,30 +16,11 @@ defmodule UniboV4.Helpdesk.HelpdeskSLAStatus do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Helpdesk,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "helpdesk_sla_statuses"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :helpdesk_helpdesk_sla_status
-
-    queries do
-      get :get_helpdesk_helpdesk_sla_status, :read
-      list :list_helpdesk_helpdesk_sla_statuss, :read
-    end
-
-    mutations do
-      create :create_helpdesk_helpdesk_sla_status, :create
-      update :check_and_update_helpdesk_helpdesk_sla_status, :check_and_update
-      update :mark_reached_helpdesk_helpdesk_sla_status, :mark_reached
-      update :mark_failed_helpdesk_helpdesk_sla_status, :mark_failed
-      update :accumulate_excluded_time_helpdesk_helpdesk_sla_status, :accumulate_excluded_time
-    end
-
   end
 
   attributes do
@@ -98,7 +79,6 @@ defmodule UniboV4.Helpdesk.HelpdeskSLAStatus do
       end
     end
     update :check_and_update do
-      primary? true
       accept []
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

@@ -9,27 +9,11 @@ defmodule UniboV4.Marketing.UtmStage do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Marketing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "marketing_utm_stages"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :marketing_utm_stage
-
-    queries do
-      get :get_marketing_utm_stage, :read
-      list :list_marketing_utm_stages, :read
-    end
-
-    mutations do
-      create :create_marketing_utm_stage, :create
-      update :update_marketing_utm_stage, :update
-    end
-
   end
 
   attributes do

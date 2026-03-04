@@ -12,40 +12,11 @@ defmodule UniboV4.Sales.Customer do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Sales,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "sales_customers"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :sales_customer
-
-    queries do
-      get :get_sales_customer, :read
-      list :list_sales_customers, :read
-      get :get_list_sales_customer, :list
-      list :list_list_sales_customers, :list
-      get :get_search_sales_customer, :search
-      list :list_search_sales_customers, :search
-      get :get_get_sales_customer, :get
-      list :list_get_sales_customers, :get
-      get :get_preview_sales_customer, :preview
-      list :list_preview_sales_customers, :preview
-      get :get_compute_sales_customer, :compute
-      list :list_compute_sales_customers, :compute
-      get :get_lookup_sales_customer, :lookup
-      list :list_lookup_sales_customers, :lookup
-    end
-
-    mutations do
-      create :create_sales_customer, :create
-      update :update_sales_customer, :update
-      update :block_sales_customer, :block
-    end
-
   end
 
   attributes do

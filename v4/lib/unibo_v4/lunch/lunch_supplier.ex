@@ -22,31 +22,11 @@ defmodule UniboV4.Lunch.LunchSupplier do
     otp_app: :unibo_v4,
     domain: UniboV4.Lunch,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Lunch.LunchSupplier.Notifier]
 
   postgres do
     table "lunch_suppliers"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :lunch_lunch_supplier
-
-    queries do
-      get :get_lunch_lunch_supplier, :read
-      list :list_lunch_lunch_suppliers, :read
-    end
-
-    mutations do
-      create :create_lunch_lunch_supplier, :create
-      update :update_lunch_lunch_supplier, :update
-      update :send_orders_lunch_lunch_supplier, :send_orders
-      update :confirm_orders_lunch_lunch_supplier, :confirm_orders
-      update :archive_lunch_lunch_supplier, :archive
-      update :unarchive_lunch_lunch_supplier, :unarchive
-    end
-
   end
 
   attributes do

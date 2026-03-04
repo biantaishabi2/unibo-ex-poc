@@ -10,28 +10,11 @@ defmodule UniboV4.Gamification.Badge do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Gamification,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "gamification_badges"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :gamification_badge
-
-    queries do
-      get :get_gamification_badge, :read
-      list :list_gamification_badges, :read
-    end
-
-    mutations do
-      create :create_gamification_badge, :create
-      update :update_gamification_badge, :update
-      destroy :delete_gamification_badge, :destroy
-    end
-
   end
 
   attributes do
@@ -82,10 +65,13 @@ defmodule UniboV4.Gamification.Badge do
     many_to_many :rule_auth_user_ids, UniboV4.Gamification.ResUser do
       public? true
       through UniboV4.Gamification.BadgeAuthUserLink
+      destination_attribute_on_join_resource :user_id
     end
     many_to_many :rule_auth_badge_ids, UniboV4.Gamification.Badge do
       public? true
       through UniboV4.Gamification.BadgeAuthBadgeLink
+      source_attribute_on_join_resource :required_badge_id
+      destination_attribute_on_join_resource :required_badge_id
     end
     has_many :translations, UniboV4.Gamification.BadgeTranslation, public?: true
   end

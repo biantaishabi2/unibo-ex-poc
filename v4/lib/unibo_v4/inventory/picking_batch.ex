@@ -20,31 +20,11 @@ defmodule UniboV4.Inventory.PickingBatch do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Inventory,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "inventory_picking_batches"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :inventory_picking_batch
-
-    queries do
-      get :get_inventory_picking_batch, :read
-      list :list_inventory_picking_batchs, :read
-    end
-
-    mutations do
-      create :create_inventory_picking_batch, :create
-      update :update_inventory_picking_batch, :update
-      update :action_confirm_inventory_picking_batch, :action_confirm
-      update :action_done_inventory_picking_batch, :action_done
-      update :action_cancel_inventory_picking_batch, :action_cancel
-      update :action_assign_inventory_picking_batch, :action_assign
-    end
-
   end
 
   attributes do

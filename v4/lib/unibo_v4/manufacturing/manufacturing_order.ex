@@ -16,33 +16,11 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder do
     otp_app: :unibo_v4,
     domain: UniboV4.Manufacturing,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Manufacturing.ManufacturingOrder.Notifier]
 
   postgres do
     table "manufacturing_orders"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :manufacturing_manufacturing_order
-
-    queries do
-      get :get_manufacturing_manufacturing_order, :read
-      list :list_manufacturing_manufacturing_orders, :read
-    end
-
-    mutations do
-      create :create_manufacturing_manufacturing_order, :create
-      update :confirm_manufacturing_manufacturing_order, :confirm
-      update :start_manufacturing_manufacturing_order, :start
-      update :produce_manufacturing_manufacturing_order, :produce
-      update :mark_done_manufacturing_manufacturing_order, :mark_done
-      update :complete_manufacturing_manufacturing_order, :complete
-      update :cancel_manufacturing_manufacturing_order, :cancel
-      update :split_production_manufacturing_manufacturing_order, :split_production
-    end
-
   end
 
   attributes do
@@ -162,7 +140,6 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder do
       end
     end
     update :confirm do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -174,7 +151,7 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder do
       end
       # message: "只有草稿状态可以确认"
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change set_attribute(:status, :confirmed)
+      # skipped: set_attribute :status 是 calculation，不是 attribute
       # TODO: 不支持的 change effect inherit_attribute
       # TODO: 不支持的 change effect cross_module_call
       # TODO: 不支持的 change effect cross_module_call
@@ -203,7 +180,7 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder do
         end
       end
       # message: "只有已确认状态可以开始"
-      change set_attribute(:status, :progress)
+      # skipped: set_attribute :status 是 calculation，不是 attribute
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -249,7 +226,7 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder do
         end
       end
       # message: "只有待关闭状态可以完工入库"
-      change set_attribute(:status, :done)
+      # skipped: set_attribute :status 是 calculation，不是 attribute
       # TODO: 不支持的 change effect custom
       # TODO: 不支持的 change effect custom
       # TODO: 不支持的 change effect custom
@@ -279,7 +256,7 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder do
         end
       end
       # message: "只有进行中状态可以完成"
-      change set_attribute(:status, :done)
+      # skipped: set_attribute :status 是 calculation，不是 attribute
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -302,7 +279,7 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder do
         end
       end
       # message: "非完工状态才可取消"
-      change set_attribute(:status, :cancelled)
+      # skipped: set_attribute :status 是 calculation，不是 attribute
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

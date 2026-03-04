@@ -11,28 +11,11 @@ defmodule UniboV4.Delivery.CarrierShipmentMethod do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Delivery,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "delivery_carrier_shipment_methods"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :delivery_carrier_shipment_method
-
-    queries do
-      get :get_delivery_carrier_shipment_method, :read
-      list :list_delivery_carrier_shipment_methods, :read
-    end
-
-    mutations do
-      create :create_delivery_carrier_shipment_method, :create
-      update :update_delivery_carrier_shipment_method, :update
-      destroy :delete_delivery_carrier_shipment_method, :destroy
-    end
-
   end
 
   attributes do

@@ -17,32 +17,11 @@ defmodule UniboV4.Repair.RepairTicket do
     otp_app: :unibo_v4,
     domain: UniboV4.Repair,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Repair.RepairTicket.Notifier]
 
   postgres do
     table "repair_tickets"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :repair_repair_ticket
-
-    queries do
-      get :get_repair_repair_ticket, :read
-      list :list_repair_repair_tickets, :read
-    end
-
-    mutations do
-      create :create_repair_repair_ticket, :create
-      update :update_repair_repair_ticket, :update
-      update :confirm_repair_repair_ticket, :confirm
-      update :start_repair_repair_repair_ticket, :start_repair
-      update :complete_repair_repair_repair_ticket, :complete_repair
-      update :deliver_repair_repair_ticket, :deliver
-      update :cancel_repair_repair_ticket, :cancel
-    end
-
   end
 
   attributes do
@@ -80,9 +59,6 @@ defmodule UniboV4.Repair.RepairTicket do
     has_many :repair_fees, UniboV4.Repair.RepairFee do
       public? true
       destination_attribute :repair_ticket_id
-    end
-    has_many :tags, UniboV4.Repair.RepairTag do
-      public? true
     end
   end
 

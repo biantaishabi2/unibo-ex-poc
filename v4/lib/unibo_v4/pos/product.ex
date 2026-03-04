@@ -2,22 +2,11 @@ defmodule UniboV4.POS.Product do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.POS,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "pos_products"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :pos_product
-
-    queries do
-      get :get_pos_product, :read
-      list :list_pos_products, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.POS.Product do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

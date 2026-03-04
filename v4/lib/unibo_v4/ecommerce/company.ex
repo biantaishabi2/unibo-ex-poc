@@ -2,22 +2,11 @@ defmodule UniboV4.Ecommerce.Company do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Ecommerce,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "ecommerce_companies"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :ecommerce_company
-
-    queries do
-      get :get_ecommerce_company, :read
-      list :list_ecommerce_companys, :read
-    end
-
   end
 
   attributes do
@@ -26,7 +15,7 @@ defmodule UniboV4.Ecommerce.Company do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
   end
 
 end

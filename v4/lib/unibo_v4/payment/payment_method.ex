@@ -19,30 +19,11 @@ defmodule UniboV4.Payment.PaymentMethod do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Payment,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "payment_methods"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :payment_payment_method
-
-    queries do
-      get :get_payment_payment_method, :read
-      list :list_payment_payment_methods, :read
-    end
-
-    mutations do
-      create :create_payment_payment_method, :create
-      update :update_payment_payment_method, :update
-      update :set_default_payment_payment_method, :set_default
-      update :expire_payment_payment_method, :expire
-      destroy :delete_payment_payment_method, :destroy
-    end
-
   end
 
   attributes do

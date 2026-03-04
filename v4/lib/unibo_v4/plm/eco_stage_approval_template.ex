@@ -9,22 +9,11 @@ defmodule UniboV4.PLM.EcoStageApprovalTemplate do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.PLM,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "plm_eco_stage_approval_templates"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :plm_eco_stage_approval_template
-
-    mutations do
-      create :create_plm_eco_stage_approval_template, :create
-      update :update_plm_eco_stage_approval_template, :update
-    end
-
   end
 
   attributes do
@@ -51,7 +40,6 @@ defmodule UniboV4.PLM.EcoStageApprovalTemplate do
   end
 
   actions do
-    defaults [:read]
     create :create do
       primary? true
       accept [:role, :approver_id, :approval_type]

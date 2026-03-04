@@ -2,27 +2,11 @@ defmodule UniboV4.Loyalty.CouponBoundParty do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Loyalty,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "loyalty_coupon_bound_parties"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :loyalty_coupon_bound_party
-
-    queries do
-      get :get_loyalty_coupon_bound_party, :read
-      list :list_loyalty_coupon_bound_partys, :read
-    end
-
-    mutations do
-      create :create_loyalty_coupon_bound_party, :create
-      destroy :delete_loyalty_coupon_bound_party, :destroy
-    end
-
   end
 
   attributes do
@@ -38,7 +22,7 @@ defmodule UniboV4.Loyalty.CouponBoundParty do
   end
 
   actions do
-    defaults [:read, :destroy, :update]
+    defaults [:read, :destroy]
     create :create do
       primary? true
       argument :coupon_id, :uuid, allow_nil?: false

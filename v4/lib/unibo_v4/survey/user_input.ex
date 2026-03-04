@@ -11,28 +11,11 @@ defmodule UniboV4.Survey.UserInput do
     otp_app: :unibo_v4,
     domain: UniboV4.Survey,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.Survey.UserInput.Notifier]
 
   postgres do
     table "survey_user_inputs"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :survey_user_input
-
-    queries do
-      get :get_survey_user_input, :read
-      list :list_survey_user_inputs, :read
-    end
-
-    mutations do
-      create :create_survey_user_input, :create
-      update :mark_in_progress_survey_user_input, :mark_in_progress
-      update :mark_done_survey_user_input, :mark_done
-    end
-
   end
 
   attributes do
@@ -96,7 +79,6 @@ defmodule UniboV4.Survey.UserInput do
       end
     end
     update :mark_in_progress do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)

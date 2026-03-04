@@ -11,29 +11,11 @@ defmodule UniboV4.Manufacturing.WorkCenter do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Manufacturing,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "manufacturing_work_centers"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :manufacturing_work_center
-
-    queries do
-      get :get_manufacturing_work_center, :read
-      list :list_manufacturing_work_centers, :read
-    end
-
-    mutations do
-      create :create_manufacturing_work_center, :create
-      update :update_manufacturing_work_center, :update
-      update :block_manufacturing_work_center, :block
-      update :unblock_manufacturing_work_center, :unblock
-    end
-
   end
 
   attributes do

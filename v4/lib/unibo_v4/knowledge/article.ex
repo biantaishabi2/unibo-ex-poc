@@ -43,38 +43,12 @@ defmodule UniboV4.Knowledge.Article do
     otp_app: :unibo_v4,
     domain: UniboV4.Knowledge,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     authorizers: [Ash.Policy.Authorizer],
     notifiers: [UniboV4.Knowledge.Article.Notifier]
 
   postgres do
     table "knowledge_articles"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :knowledge_article
-
-    queries do
-      get :get_knowledge_article, :read
-      list :list_knowledge_articles, :read
-    end
-
-    mutations do
-      create :create_create_knowledge_article, :create
-      create :create_action_copy_knowledge_article, :action_copy
-      update :update_knowledge_article, :update
-      update :action_publish_knowledge_article, :action_publish
-      update :action_unpublish_knowledge_article, :action_unpublish
-      update :action_archive_knowledge_article, :action_archive
-      update :action_restore_state_knowledge_article, :action_restore_state
-      update :action_trash_knowledge_article, :action_trash
-      update :action_restore_trash_knowledge_article, :action_restore_trash
-      update :action_lock_knowledge_article, :action_lock
-      update :action_unlock_knowledge_article, :action_unlock
-      update :action_move_knowledge_article, :action_move
-    end
-
   end
 
   attributes do
@@ -187,8 +161,8 @@ defmodule UniboV4.Knowledge.Article do
       argument :members, {:array, :map}, default: []
       change manage_relationship(:members, :members, type: :create)
       validate present(:name)
-      change relate_actor(:create_uid)
-      change relate_actor(:write_uid)
+      change relate_actor(:creator)
+      change relate_actor(:last_writer)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -205,7 +179,7 @@ defmodule UniboV4.Knowledge.Article do
       argument :members, {:array, :map}, default: []
       change manage_relationship(:members, :members, on_lookup: :relate, on_no_match: :create, on_match: :update)
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change relate_actor(:write_uid)
+      change relate_actor(:last_writer)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -229,7 +203,7 @@ defmodule UniboV4.Knowledge.Article do
       end
       # message: "只有草稿状态可以发布"
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change relate_actor(:write_uid)
+      change relate_actor(:last_writer)
       change set_attribute(:state, :published)
       # TODO: 不支持的 change effect custom
       change fn changeset, _context ->
@@ -255,7 +229,7 @@ defmodule UniboV4.Knowledge.Article do
       end
       # message: "只有已发布状态可以撤销发布"
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change relate_actor(:write_uid)
+      change relate_actor(:last_writer)
       change set_attribute(:state, :draft)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
@@ -280,7 +254,7 @@ defmodule UniboV4.Knowledge.Article do
       end
       # message: "只有已发布状态可以归档"
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change relate_actor(:write_uid)
+      change relate_actor(:last_writer)
       change set_attribute(:state, :archived)
       # TODO: 不支持的 change effect custom
       # TODO: 不支持的 change effect custom
@@ -307,7 +281,7 @@ defmodule UniboV4.Knowledge.Article do
       end
       # message: "只有已归档状态可以恢复"
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change relate_actor(:write_uid)
+      change relate_actor(:last_writer)
       change set_attribute(:state, :draft)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
@@ -325,7 +299,7 @@ defmodule UniboV4.Knowledge.Article do
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change relate_actor(:write_uid)
+      change relate_actor(:last_writer)
       change set_attribute(:active, false)
       # TODO: 跨实体聚合表达式暂不支持
       # TODO: 不支持的 change effect custom
@@ -345,7 +319,7 @@ defmodule UniboV4.Knowledge.Article do
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change relate_actor(:write_uid)
+      change relate_actor(:last_writer)
       change set_attribute(:active, true)
       # TODO: 不支持的 change effect custom
       change fn changeset, _context ->
@@ -362,9 +336,9 @@ defmodule UniboV4.Knowledge.Article do
     update :action_lock do
       accept []
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change relate_actor(:write_uid)
+      change relate_actor(:last_writer)
       change set_attribute(:is_locked, true)
-      change relate_actor(:locked_by)
+      change relate_actor(:locker)
       # TODO: 跨实体聚合表达式暂不支持
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
@@ -380,7 +354,7 @@ defmodule UniboV4.Knowledge.Article do
     update :action_unlock do
       accept []
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change relate_actor(:write_uid)
+      change relate_actor(:last_writer)
       change set_attribute(:is_locked, false)
       # TODO: 不支持的 change effect custom
       change fn changeset, _context ->
@@ -398,7 +372,7 @@ defmodule UniboV4.Knowledge.Article do
       argument :new_parent_id, :uuid
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change relate_actor(:write_uid)
+      change relate_actor(:last_writer)
       # TODO: 不支持的 change effect custom
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
@@ -416,8 +390,8 @@ defmodule UniboV4.Knowledge.Article do
       argument :members, {:array, :map}, default: []
       change manage_relationship(:members, :members, type: :create)
       validate present(:name)
-      change relate_actor(:create_uid)
-      change relate_actor(:write_uid)
+      change relate_actor(:creator)
+      change relate_actor(:last_writer)
       # TODO: 不支持的 change effect custom
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
@@ -440,6 +414,9 @@ defmodule UniboV4.Knowledge.Article do
     end
     policy action_type(:destroy) do
       authorize_if expr(check_access(data, actor, :owner))
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

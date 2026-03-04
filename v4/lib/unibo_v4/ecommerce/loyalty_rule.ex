@@ -9,27 +9,11 @@ defmodule UniboV4.Ecommerce.LoyaltyRule do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Ecommerce,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "ecommerce_loyalty_rules"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :ecommerce_loyalty_rule
-
-    queries do
-      get :get_ecommerce_loyalty_rule, :read
-      list :list_ecommerce_loyalty_rules, :read
-    end
-
-    mutations do
-      create :create_ecommerce_loyalty_rule, :create
-      update :update_ecommerce_loyalty_rule, :update
-    end
-
   end
 
   attributes do

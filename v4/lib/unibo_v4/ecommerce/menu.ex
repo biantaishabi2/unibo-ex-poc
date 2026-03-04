@@ -9,27 +9,11 @@ defmodule UniboV4.Ecommerce.Menu do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Ecommerce,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "ecommerce_menus"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :ecommerce_menu
-
-    queries do
-      get :get_ecommerce_menu, :read
-      list :list_ecommerce_menus, :read
-    end
-
-    mutations do
-      create :create_ecommerce_menu, :create
-      update :update_ecommerce_menu, :update
-    end
-
   end
 
   attributes do

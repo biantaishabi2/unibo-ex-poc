@@ -1,6 +1,7 @@
 defmodule UniboV4.Loyalty.LoyaltyRewardTranslation do
   use Ash.Resource,
     otp_app: :unibo_v4,
+    domain: UniboV4.Loyalty,
     data_layer: AshPostgres.DataLayer
 
   postgres do

@@ -11,29 +11,11 @@ defmodule UniboV4.IoT.TriggerRule do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.IoT,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "io_t_trigger_rules"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :io_t_trigger_rule
-
-    queries do
-      get :get_io_t_trigger_rule, :read
-      list :list_io_t_trigger_rules, :read
-    end
-
-    mutations do
-      create :create_io_t_trigger_rule, :create
-      update :update_io_t_trigger_rule, :update
-      update :activate_io_t_trigger_rule, :activate
-      update :deactivate_io_t_trigger_rule, :deactivate
-    end
-
   end
 
   attributes do
@@ -117,7 +99,7 @@ defmodule UniboV4.IoT.TriggerRule do
     create :create do
       primary? true
       accept [:name, :description, :event_type, :condition, :action_type, :action_config, :is_active, :priority, :stop_on_match, :cooldown_seconds, :error_action]
-      argument :device_id, :uuid, allow_nil?: false
+      argument :device_id, :integer, allow_nil?: false
       change manage_relationship(:device_id, :device, type: :append, on_lookup: :relate)
       validate present(:name)
       validate present(:device_id)

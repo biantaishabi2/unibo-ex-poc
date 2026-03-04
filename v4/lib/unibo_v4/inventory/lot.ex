@@ -9,27 +9,11 @@ defmodule UniboV4.Inventory.Lot do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Inventory,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "inventory_lots"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :inventory_lot
-
-    queries do
-      get :get_inventory_lot, :read
-      list :list_inventory_lots, :read
-    end
-
-    mutations do
-      create :create_inventory_lot, :create
-      update :update_inventory_lot, :update
-    end
-
   end
 
   attributes do

@@ -8,26 +8,11 @@ defmodule UniboV4.Gamification.KarmaTracking do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Gamification,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "gamification_karma_trackings"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :gamification_karma_tracking
-
-    queries do
-      get :get_gamification_karma_tracking, :read
-      list :list_gamification_karma_trackings, :read
-    end
-
-    mutations do
-      create :create_gamification_karma_tracking, :create
-    end
-
   end
 
   attributes do
@@ -62,7 +47,7 @@ defmodule UniboV4.Gamification.KarmaTracking do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       primary? true
       accept [:old_value, :new_value, :consolidated, :tracking_date, :reason]

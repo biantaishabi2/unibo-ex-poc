@@ -18,30 +18,11 @@ defmodule UniboV4.Studio.CustomField do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Studio,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "studio_custom_fields"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :studio_custom_field
-
-    queries do
-      get :get_studio_custom_field, :read
-      list :list_studio_custom_fields, :read
-    end
-
-    mutations do
-      create :create_studio_custom_field, :create
-      update :update_studio_custom_field, :update
-      update :activate_studio_custom_field, :activate
-      update :archive_studio_custom_field, :archive
-      destroy :delete_studio_custom_field, :destroy
-    end
-
   end
 
   attributes do

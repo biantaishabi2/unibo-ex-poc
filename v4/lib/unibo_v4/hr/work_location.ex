@@ -9,27 +9,11 @@ defmodule UniboV4.HR.WorkLocation do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "hr_work_locations"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_work_location
-
-    queries do
-      get :get_hr_work_location, :read
-      list :list_hr_work_locations, :read
-    end
-
-    mutations do
-      create :create_hr_work_location, :create
-      update :update_hr_work_location, :update
-    end
-
   end
 
   attributes do

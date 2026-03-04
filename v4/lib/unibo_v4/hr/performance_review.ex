@@ -20,30 +20,11 @@ defmodule UniboV4.HR.PerformanceReview do
     otp_app: :unibo_v4,
     domain: UniboV4.HR,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
     notifiers: [UniboV4.HR.PerformanceReview.Notifier]
 
   postgres do
     table "hr_performance_reviews"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :hr_performance_review
-
-    queries do
-      get :get_hr_performance_review, :read
-      list :list_hr_performance_reviews, :read
-    end
-
-    mutations do
-      create :create_hr_performance_review, :create
-      update :action_confirm_hr_performance_review, :action_confirm
-      update :action_done_hr_performance_review, :action_done
-      update :action_cancel_hr_performance_review, :action_cancel
-      update :action_back_hr_performance_review, :action_back
-    end
-
   end
 
   attributes do
@@ -101,7 +82,6 @@ defmodule UniboV4.HR.PerformanceReview do
       end
     end
     update :action_confirm do
-      primary? true
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)

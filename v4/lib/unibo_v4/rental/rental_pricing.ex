@@ -11,28 +11,11 @@ defmodule UniboV4.Rental.RentalPricing do
   use Ash.Resource,
     otp_app: :unibo_v4,
     domain: UniboV4.Rental,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   postgres do
     table "rental_pricings"
     repo UniboV4.Repo
-  end
-
-  graphql do
-    type :rental_rental_pricing
-
-    queries do
-      get :get_rental_rental_pricing, :read
-      list :list_rental_rental_pricings, :read
-    end
-
-    mutations do
-      create :create_rental_rental_pricing, :create
-      update :update_rental_rental_pricing, :update
-      destroy :delete_rental_rental_pricing, :destroy
-    end
-
   end
 
   attributes do
