@@ -1,0 +1,5 @@
+module: FLEET_VEHICLE_ASSIGNMENT
+contract: VehicleAssignment.transfer action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 VehicleAssignment 的动作 transfer 触发副作用 / WHEN 执行动作 transfer / THEN 变更副作用应完整生效且状态一致

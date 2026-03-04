@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT
+contract: Shipment.deliver event contract
+edge_class: event_contract
+source_file: models/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 Shipment 的动作 deliver 完成 / WHEN 触发事件发布 / THEN 应广播 topic `delivery.shipment.delivered`

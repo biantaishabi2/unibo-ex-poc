@@ -1,0 +1,5 @@
+module: PAYMENT_PAYMENT_GATEWAY_RESPONSE
+contract: PaymentGatewayResponse.create action contract
+edge_class: action_contract
+source_file: models/payment/payment.ubo.yaml
+source_summary: GIVEN 实体 PaymentGatewayResponse 的动作 create 可执行，accept=[payment_service_type_enum_id, order_payment_preference_id, payment_method_type_id, payment_method_id, payment_provider_id, trans_code_enum_id, amount, currency_uom_id, reference_num, alt_reference, sub_reference, gateway_code, gateway_flag, gateway_avs_result, gateway_cv_result, gateway_score_result, gateway_message, transaction_date, result_declined, result_nsf, result_bad_expire, result_bad_card_number]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 记录授权响应（gateway_code=00，result_declined=false）；create 记录拒绝响应（result_declined=true）；create 记录退款响应（payment_service_type_enum_id=refund）

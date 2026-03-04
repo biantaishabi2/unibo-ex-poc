@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT_PACKAGE
+contract: ShipmentPackage.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 ShipmentPackage 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建包裹 -> update 修改重量尺寸 -> destroy 删除

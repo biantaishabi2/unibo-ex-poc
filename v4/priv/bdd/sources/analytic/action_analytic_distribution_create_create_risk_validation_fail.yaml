@@ -1,0 +1,5 @@
+module: ANALYTIC_ANALYTIC_DISTRIBUTION
+contract: AnalyticDistribution.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/analytic/analytic.ubo.yaml
+source_summary: GIVEN 实体 AnalyticDistribution 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：move_line 分摊到两个账户各50%，create 两条 AnalyticDistribution(percentage=50)，校验通过；create 第三条 percentage=30，导致总和=130，被 [R-ANL-004] 拒绝

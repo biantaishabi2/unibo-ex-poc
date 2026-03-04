@@ -1,0 +1,5 @@
+module: BARCODE_GS1_APPLICATION_IDENTIFIER
+contract: GS1ApplicationIdentifier.gs1_ai_maintain_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/barcode/barcode.ubo.yaml
+source_summary: GIVEN 实体 GS1ApplicationIdentifier 定义工作流 gs1_ai_maintain_flow / WHEN 按主路径执行 create -> update -> destroy / THEN 主流程应可达并保持顺序一致

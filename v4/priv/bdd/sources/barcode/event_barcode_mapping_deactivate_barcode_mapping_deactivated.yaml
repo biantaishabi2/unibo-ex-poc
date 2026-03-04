@@ -1,0 +1,5 @@
+module: BARCODE_BARCODE_MAPPING
+contract: BarcodeMapping.deactivate event contract
+edge_class: event_contract
+source_file: models/barcode/barcode.ubo.yaml
+source_summary: GIVEN 实体 BarcodeMapping 的动作 deactivate 完成 / WHEN 触发事件发布 / THEN 应广播 topic `barcode.mapping.deactivated`

@@ -1,0 +1,5 @@
+module: FLEET_FLEET_VEHICLE_TYPE
+contract: FleetVehicleType.fleet_vehicle_type_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 FleetVehicleType 定义工作流 fleet_vehicle_type_lifecycle / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束

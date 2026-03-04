@@ -1,0 +1,5 @@
+module: ANALYTIC_ANALYTIC_ACCOUNT
+contract: AnalyticAccount.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/analytic/analytic.ubo.yaml
+source_summary: GIVEN 实体 AnalyticAccount 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 分析账户，parent_id 指向同一 plan 下的上级账户，update 修改负责人和有效期；create 时 parent_id 指向自身，被 [R-ANL-002] 自引用校验拒绝

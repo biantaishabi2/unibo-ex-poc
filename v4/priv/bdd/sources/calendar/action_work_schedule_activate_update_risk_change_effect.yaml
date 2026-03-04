@@ -1,0 +1,5 @@
+module: CALENDAR_WORK_SCHEDULE
+contract: WorkSchedule.activate action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 WorkSchedule 的动作 activate 触发副作用 / WHEN 执行动作 activate / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建工作日历 -> update 修改 -> activate 启用 -> deactivate 停用

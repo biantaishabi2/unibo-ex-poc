@@ -1,0 +1,5 @@
+module: EVENTS_EVENT
+contract: Event.event_lifecycle workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/events/events.ubo.yaml
+source_summary: GIVEN 实体 Event 定义工作流 event_lifecycle / WHEN 按主路径执行 create -> publish -> start -> complete -> cancel -> archive -> destroy / THEN 主流程应可达并保持顺序一致

@@ -1,0 +1,5 @@
+module: CALENDAR_CALENDAR_EVENT
+contract: CalendarEvent.calendar_event_lifecycle_flow workflow contract
+edge_class: workflow_contract
+source_file: models/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 CalendarEvent 定义工作流 calendar_event_lifecycle_flow / WHEN 按步骤执行 create -> update -> confirm -> cancel -> revert_to_draft -> mark_tentative -> destroy / THEN 流程顺序应满足声明约束

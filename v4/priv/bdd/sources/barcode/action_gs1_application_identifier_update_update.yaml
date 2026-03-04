@@ -1,0 +1,5 @@
+module: BARCODE_GS1_APPLICATION_IDENTIFIER
+contract: GS1ApplicationIdentifier.update action contract
+edge_class: action_contract
+source_file: models/barcode/barcode.ubo.yaml
+source_summary: GIVEN 实体 GS1ApplicationIdentifier 的动作 update 可执行，accept=[name, data_type, fixed_length, max_length, pattern, description]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束

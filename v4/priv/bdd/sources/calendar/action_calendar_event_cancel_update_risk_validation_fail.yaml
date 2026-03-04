@@ -1,0 +1,5 @@
+module: CALENDAR_CALENDAR_EVENT
+contract: CalendarEvent.cancel action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 CalendarEvent 的动作 cancel 输入非法 / WHEN 执行动作 cancel / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建日历事件 -> update 修改事件 -> confirm 确认事件 -> destroy 删除事件；create 创建重复会议 -> update 修改单次实例 -> cancel 取消事件

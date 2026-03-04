@@ -1,0 +1,5 @@
+module: BARCODE_GS1_APPLICATION_IDENTIFIER
+contract: GS1ApplicationIdentifier.gs1_ai_maintain_flow workflow contract (risk:branch_or_exception)
+edge_class: workflow_contract
+source_file: models/barcode/barcode.ubo.yaml
+source_summary: GIVEN 实体 GS1ApplicationIdentifier 的工作流 gs1_ai_maintain_flow 存在分支或异常可能 / WHEN 执行分支路径 / THEN 流程应可恢复并保持状态一致

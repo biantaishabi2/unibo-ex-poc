@@ -1,0 +1,5 @@
+module: EVENTS_EVENT_TICKET
+contract: EventTicket.close_sales action contract (risk:success)
+edge_class: action_contract
+source_file: models/events/events.ubo.yaml
+source_summary: GIVEN 实体 EventTicket 的动作 close_sales 可执行 / WHEN 执行动作 close_sales / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create -> update -> close_sales（创建票种、调整价格、关闭售票）

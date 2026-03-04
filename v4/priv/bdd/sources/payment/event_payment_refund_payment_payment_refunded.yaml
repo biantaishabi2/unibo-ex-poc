@@ -1,0 +1,5 @@
+module: PAYMENT_PAYMENT
+contract: Payment.refund event contract
+edge_class: event_contract
+source_file: models/payment/payment.ubo.yaml
+source_summary: GIVEN 实体 Payment 的动作 refund 完成 / WHEN 触发事件发布 / THEN 应广播 topic `payment.payment.refunded`

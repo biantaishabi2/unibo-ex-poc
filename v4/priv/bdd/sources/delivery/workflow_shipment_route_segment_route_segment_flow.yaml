@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT_ROUTE_SEGMENT
+contract: ShipmentRouteSegment.route_segment_flow workflow contract
+edge_class: workflow_contract
+source_file: models/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 ShipmentRouteSegment 定义工作流 route_segment_flow / WHEN 按步骤执行 create -> confirm_shipment -> update_tracking -> record_cost -> update -> destroy / THEN 流程顺序应满足声明约束

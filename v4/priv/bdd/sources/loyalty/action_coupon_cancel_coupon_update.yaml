@@ -1,0 +1,5 @@
+module: LOYALTY_COUPON
+contract: Coupon.cancel_coupon action contract
+edge_class: action_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 Coupon 的动作 cancel_coupon 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 cancel_coupon / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束

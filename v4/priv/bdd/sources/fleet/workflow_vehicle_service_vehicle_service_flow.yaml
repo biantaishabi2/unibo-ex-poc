@@ -1,0 +1,5 @@
+module: FLEET_VEHICLE_SERVICE
+contract: VehicleService.vehicle_service_flow workflow contract
+edge_class: workflow_contract
+source_file: models/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 VehicleService 定义工作流 vehicle_service_flow / WHEN 按步骤执行 schedule -> start -> complete -> cancel / THEN 流程顺序应满足声明约束

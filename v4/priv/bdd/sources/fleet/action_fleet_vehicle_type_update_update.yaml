@@ -1,0 +1,5 @@
+module: FLEET_FLEET_VEHICLE_TYPE
+contract: FleetVehicleType.update action contract
+edge_class: action_contract
+source_file: models/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 FleetVehicleType 的动作 update 可执行，accept=[name, description, parent_type_id]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束

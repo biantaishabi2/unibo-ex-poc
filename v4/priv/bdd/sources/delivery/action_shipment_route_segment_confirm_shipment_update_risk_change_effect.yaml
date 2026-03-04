@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT_ROUTE_SEGMENT
+contract: ShipmentRouteSegment.confirm_shipment action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 ShipmentRouteSegment 的动作 confirm_shipment 触发副作用 / WHEN 执行动作 confirm_shipment / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建路段 -> confirm_shipment 接单 -> update_tracking 更新追踪号 -> record_cost 录入费用

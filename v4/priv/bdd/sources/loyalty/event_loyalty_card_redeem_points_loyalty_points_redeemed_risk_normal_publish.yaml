@@ -1,0 +1,5 @@
+module: LOYALTY_LOYALTY_CARD
+contract: LoyaltyCard.redeem_points event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 LoyaltyCard 动作 redeem_points 触发事件 / WHEN 发布 topic `loyalty.points.redeemed` / THEN 消费方应收到一次有效通知

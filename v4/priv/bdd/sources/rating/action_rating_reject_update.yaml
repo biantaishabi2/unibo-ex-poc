@@ -1,0 +1,5 @@
+module: RATING_RATING
+contract: Rating.reject action contract
+edge_class: action_contract
+source_file: models/rating/rating.ubo.yaml
+source_summary: GIVEN 实体 Rating 的动作 reject 可执行，accept=[rejection_reason]，args=[无显式参数] / WHEN 执行动作 reject / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：submit 提交评价 -> reject 审核拒绝

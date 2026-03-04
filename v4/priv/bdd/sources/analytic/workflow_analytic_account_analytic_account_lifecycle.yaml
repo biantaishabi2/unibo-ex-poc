@@ -1,0 +1,5 @@
+module: ANALYTIC_ANALYTIC_ACCOUNT
+contract: AnalyticAccount.analytic_account_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/analytic/analytic.ubo.yaml
+source_summary: GIVEN 实体 AnalyticAccount 定义工作流 analytic_account_lifecycle / WHEN 按步骤执行 create -> update -> deactivate / THEN 流程顺序应满足声明约束

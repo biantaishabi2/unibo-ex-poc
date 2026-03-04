@@ -1,0 +1,5 @@
+module: EVENTS_EVENT_REGISTRATION
+contract: EventRegistration.check_in event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/events/events.ubo.yaml
+source_summary: GIVEN 实体 EventRegistration 动作 check_in 事件被重复投递 / WHEN 重放 topic `events.registration.checked_in` / THEN 消费方处理应保持幂等且无重复副作用

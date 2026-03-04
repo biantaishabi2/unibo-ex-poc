@@ -1,0 +1,5 @@
+module: RATING_RATING_CRITERIA
+contract: RatingCriteria.rating_criteria_lifecycle workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/rating/rating.ubo.yaml
+source_summary: GIVEN 实体 RatingCriteria 定义工作流 rating_criteria_lifecycle / WHEN 按主路径执行 create -> update -> reorder -> destroy / THEN 主流程应可达并保持顺序一致

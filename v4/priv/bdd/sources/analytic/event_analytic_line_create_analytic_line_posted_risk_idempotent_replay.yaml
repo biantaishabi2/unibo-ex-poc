@@ -1,0 +1,5 @@
+module: ANALYTIC_ANALYTIC_LINE
+contract: AnalyticLine.create event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/analytic/analytic.ubo.yaml
+source_summary: GIVEN 实体 AnalyticLine 动作 create 事件被重复投递 / WHEN 重放 topic `analytic.line.posted` / THEN 消费方处理应保持幂等且无重复副作用

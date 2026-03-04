@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT
+contract: Shipment.ship action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 Shipment 的动作 ship 触发副作用 / WHEN 执行动作 ship / THEN 变更副作用应完整生效且状态一致

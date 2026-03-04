@@ -1,0 +1,5 @@
+module: FLEET_VEHICLE_ASSIGNMENT
+contract: VehicleAssignment.assign action contract (risk:success)
+edge_class: action_contract
+source_file: models/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 VehicleAssignment 的动作 assign 可执行 / WHEN 执行动作 assign / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：assign 分配车辆 -> return 归还车辆；assign 分配车辆 -> transfer 转移车辆

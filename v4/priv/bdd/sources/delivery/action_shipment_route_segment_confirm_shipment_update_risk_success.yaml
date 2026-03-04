@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT_ROUTE_SEGMENT
+contract: ShipmentRouteSegment.confirm_shipment action contract (risk:success)
+edge_class: action_contract
+source_file: models/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 ShipmentRouteSegment 的动作 confirm_shipment 可执行 / WHEN 执行动作 confirm_shipment / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 创建路段 -> confirm_shipment 接单 -> update_tracking 更新追踪号 -> record_cost 录入费用

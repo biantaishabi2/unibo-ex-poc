@@ -1,0 +1,5 @@
+module: BARCODE_BARCODE_NOMENCLATURE
+contract: BarcodeNomenclature.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/barcode/barcode.ubo.yaml
+source_summary: 'GIVEN 实体 BarcodeNomenclature 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create{is_gs1_compliant: true} 创建GS1命名法 -> 添加GS1解析规则'

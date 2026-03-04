@@ -1,0 +1,5 @@
+module: REPAIR_REPAIR_LINE
+contract: RepairLine.create action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/repair/repair.ubo.yaml
+source_summary: GIVEN 实体 RepairLine 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 添加零件明细 -> update 更新零件用量 -> destroy 删除明细；create 添加工时明细 -> update 更新工时

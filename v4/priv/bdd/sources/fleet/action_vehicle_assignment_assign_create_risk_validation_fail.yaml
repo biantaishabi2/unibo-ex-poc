@@ -1,0 +1,5 @@
+module: FLEET_VEHICLE_ASSIGNMENT
+contract: VehicleAssignment.assign action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 VehicleAssignment 的动作 assign 输入非法 / WHEN 执行动作 assign / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：assign 分配车辆 -> return 归还车辆；assign 分配车辆 -> transfer 转移车辆

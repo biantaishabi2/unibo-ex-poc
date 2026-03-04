@@ -1,0 +1,5 @@
+module: REPAIR_REPAIR_TAG
+contract: RepairTag.create action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/repair/repair.ubo.yaml
+source_summary: GIVEN 实体 RepairTag 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建标签 -> update 修改标签颜色 -> destroy 删除标签

@@ -1,0 +1,5 @@
+module: REPAIR_REPAIR_TICKET
+contract: RepairTicket.confirm event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/repair/repair.ubo.yaml
+source_summary: GIVEN 实体 RepairTicket 动作 confirm 事件被重复投递 / WHEN 重放 topic `repair.ticket.confirmed` / THEN 消费方处理应保持幂等且无重复副作用

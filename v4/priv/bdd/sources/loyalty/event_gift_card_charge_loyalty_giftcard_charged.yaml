@@ -1,0 +1,5 @@
+module: LOYALTY_GIFT_CARD
+contract: GiftCard.charge event contract
+edge_class: event_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 GiftCard 的动作 charge 完成 / WHEN 触发事件发布 / THEN 应广播 topic `loyalty.giftcard.charged`

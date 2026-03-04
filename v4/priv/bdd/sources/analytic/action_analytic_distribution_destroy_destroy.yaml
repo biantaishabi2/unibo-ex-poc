@@ -1,0 +1,5 @@
+module: ANALYTIC_ANALYTIC_DISTRIBUTION
+contract: AnalyticDistribution.destroy action contract
+edge_class: action_contract
+source_file: models/analytic/analytic.ubo.yaml
+source_summary: GIVEN 实体 AnalyticDistribution 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：destroy 一条分摊记录后总和=50，被 [R-ANL-004] 拒绝（除非同时调整另一条）

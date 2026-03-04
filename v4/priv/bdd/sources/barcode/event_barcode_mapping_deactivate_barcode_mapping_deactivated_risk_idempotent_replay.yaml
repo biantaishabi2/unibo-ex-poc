@@ -1,0 +1,5 @@
+module: BARCODE_BARCODE_MAPPING
+contract: BarcodeMapping.deactivate event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/barcode/barcode.ubo.yaml
+source_summary: GIVEN 实体 BarcodeMapping 动作 deactivate 事件被重复投递 / WHEN 重放 topic `barcode.mapping.deactivated` / THEN 消费方处理应保持幂等且无重复副作用

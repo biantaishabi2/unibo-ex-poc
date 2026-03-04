@@ -1,0 +1,5 @@
+module: REPAIR_REPAIR_TICKET
+contract: RepairTicket.start_repair action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/repair/repair.ubo.yaml
+source_summary: GIVEN 实体 RepairTicket 的动作 start_repair 输入非法 / WHEN 执行动作 start_repair / THEN 应返回校验失败且不产生持久化副作用

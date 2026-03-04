@@ -1,0 +1,5 @@
+module: LOYALTY_GIFT_CARD
+contract: GiftCard.topup event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 GiftCard 动作 topup 触发事件 / WHEN 发布 topic `loyalty.giftcard.topup` / THEN 消费方应收到一次有效通知

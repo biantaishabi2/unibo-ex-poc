@@ -1,0 +1,5 @@
+module: PAYMENT_PAYMENT_TOKEN
+contract: PaymentToken.token_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/payment/payment.ubo.yaml
+source_summary: GIVEN 实体 PaymentToken 定义工作流 token_lifecycle / WHEN 按步骤执行 create -> update -> revoke -> expire / THEN 流程顺序应满足声明约束

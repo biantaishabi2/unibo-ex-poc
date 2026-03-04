@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT_BOX_TYPE
+contract: ShipmentBoxType.shipment_box_type_maintain_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 ShipmentBoxType 定义工作流 shipment_box_type_maintain_flow / WHEN 按主路径执行 create -> update -> destroy / THEN 主流程应可达并保持顺序一致

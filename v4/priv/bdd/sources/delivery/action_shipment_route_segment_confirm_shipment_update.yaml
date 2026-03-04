@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT_ROUTE_SEGMENT
+contract: ShipmentRouteSegment.confirm_shipment action contract
+edge_class: action_contract
+source_file: models/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 ShipmentRouteSegment 的动作 confirm_shipment 可执行，accept=[carrier_service_status_id, tracking_id_number]，args=[无显式参数] / WHEN 执行动作 confirm_shipment / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建路段 -> confirm_shipment 接单 -> update_tracking 更新追踪号 -> record_cost 录入费用

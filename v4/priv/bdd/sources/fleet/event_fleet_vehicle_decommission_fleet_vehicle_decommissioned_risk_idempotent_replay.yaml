@@ -1,0 +1,5 @@
+module: FLEET_FLEET_VEHICLE
+contract: FleetVehicle.decommission event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 FleetVehicle 动作 decommission 事件被重复投递 / WHEN 重放 topic `fleet.vehicle.decommissioned` / THEN 消费方处理应保持幂等且无重复副作用

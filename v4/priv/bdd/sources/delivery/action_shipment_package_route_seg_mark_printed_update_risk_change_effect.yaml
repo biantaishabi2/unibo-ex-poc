@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT_PACKAGE_ROUTE_SEG
+contract: ShipmentPackageRouteSeg.mark_printed action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 ShipmentPackageRouteSeg 的动作 mark_printed 触发副作用 / WHEN 执行动作 mark_printed / THEN 变更副作用应完整生效且状态一致

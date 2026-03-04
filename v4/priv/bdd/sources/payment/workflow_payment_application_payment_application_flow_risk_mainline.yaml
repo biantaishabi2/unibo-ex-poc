@@ -1,0 +1,5 @@
+module: PAYMENT_PAYMENT_APPLICATION
+contract: PaymentApplication.payment_application_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/payment/payment.ubo.yaml
+source_summary: GIVEN 实体 PaymentApplication 定义工作流 payment_application_flow / WHEN 按主路径执行 create -> apply_to_invoice -> apply_to_account -> update -> destroy / THEN 主流程应可达并保持顺序一致

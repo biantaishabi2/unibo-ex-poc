@@ -1,0 +1,5 @@
+module: LOYALTY_GIFT_CARD
+contract: GiftCard.activate action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 GiftCard 的动作 activate 输入非法 / WHEN 执行动作 activate / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create -> activate -> topup(200) -> charge(150) -> charge(50) -> status=depleted；create(reloadable=false) -> activate -> topup 应报错；create -> activate -> cancel_card

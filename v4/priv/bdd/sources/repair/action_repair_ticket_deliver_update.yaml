@@ -1,0 +1,5 @@
+module: REPAIR_REPAIR_TICKET
+contract: RepairTicket.deliver action contract
+edge_class: action_contract
+source_file: models/repair/repair.ubo.yaml
+source_summary: GIVEN 实体 RepairTicket 的动作 deliver 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 deliver / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束

@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT_ROUTE_SEGMENT
+contract: ShipmentRouteSegment.update_tracking event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 ShipmentRouteSegment 动作 update_tracking 事件被重复投递 / WHEN 重放 topic `delivery.tracking.updated` / THEN 消费方处理应保持幂等且无重复副作用

@@ -1,0 +1,5 @@
+module: EVENTS_EVENT_REGISTRATION
+contract: EventRegistration.register action contract
+edge_class: action_contract
+source_file: models/events/events.ubo.yaml
+source_summary: GIVEN 实体 EventRegistration 的动作 register 可执行，accept=[event_id, attendee_id, role, ticket_id, comments, must_rsvp]，args=[无显式参数] / WHEN 执行动作 register / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：register 容量已满时返回 capacity_exceeded

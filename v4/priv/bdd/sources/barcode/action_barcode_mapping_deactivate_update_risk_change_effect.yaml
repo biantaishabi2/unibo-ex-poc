@@ -1,0 +1,5 @@
+module: BARCODE_BARCODE_MAPPING
+contract: BarcodeMapping.deactivate action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/barcode/barcode.ubo.yaml
+source_summary: 'GIVEN 实体 BarcodeMapping 的动作 deactivate 触发副作用 / WHEN 执行动作 deactivate / THEN 变更副作用应完整生效且状态一致 / 补充场景：register 注册条码映射{barcode_value: ''6901234567890'', resource_type: :product} -> update 修改关联 -> deactivate 停用'

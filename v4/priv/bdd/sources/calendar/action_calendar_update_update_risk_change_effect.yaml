@@ -1,0 +1,5 @@
+module: CALENDAR_CALENDAR
+contract: Calendar.update action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 Calendar 的动作 update 触发副作用 / WHEN 执行动作 update / THEN 变更副作用应完整生效且状态一致

@@ -1,0 +1,5 @@
+module: FLEET_VEHICLE_CONTRACT
+contract: VehicleContract.terminate action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 VehicleContract 的动作 terminate 输入非法 / WHEN 执行动作 terminate / THEN 应返回校验失败且不产生持久化副作用

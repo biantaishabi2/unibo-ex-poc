@@ -1,0 +1,5 @@
+module: CALENDAR_CALENDAR
+contract: Calendar.create action contract
+edge_class: action_contract
+source_file: models/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 Calendar 的动作 create 可执行，accept=[name, description, color, owner_id, calendar_type, is_default, active]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建日历 -> update 修改日历 -> destroy 删除日历

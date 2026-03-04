@@ -1,0 +1,5 @@
+module: ANALYTIC_ANALYTIC_LINE
+contract: AnalyticLine.create action contract
+edge_class: action_contract
+source_file: models/analytic/analytic.ubo.yaml
+source_summary: GIVEN 实体 AnalyticLine 的动作 create 可执行，accept=[date, name, amount, unit_amount, account_id, partner_id, currency_id, product_id, employee_id]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 手动分析行（date=2025-01-15, amount=-5000, account=研发部门），余额自动重算；create 时 account_id 指向已停用账户，被 [R-ANL-003] 拒绝

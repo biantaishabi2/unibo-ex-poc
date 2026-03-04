@@ -1,0 +1,5 @@
+module: CALENDAR_CALENDAR_EVENT
+contract: CalendarEvent.cancel action contract
+edge_class: action_contract
+source_file: models/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 CalendarEvent 的动作 cancel 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 cancel / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 创建日历事件 -> update 修改事件 -> confirm 确认事件 -> destroy 删除事件；create 创建重复会议 -> update 修改单次实例 -> cancel 取消事件

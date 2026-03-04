@@ -1,0 +1,5 @@
+module: FLEET_VEHICLE_SERVICE
+contract: VehicleService.complete action contract (risk:success)
+edge_class: action_contract
+source_file: models/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 VehicleService 的动作 complete 可执行 / WHEN 执行动作 complete / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：schedule 预约服务 -> start 开始服务 -> complete 完成服务；schedule 预约服务 -> complete 直接完成服务

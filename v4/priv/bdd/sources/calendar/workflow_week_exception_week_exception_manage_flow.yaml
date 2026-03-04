@@ -1,0 +1,5 @@
+module: CALENDAR_WEEK_EXCEPTION
+contract: WeekException.week_exception_manage_flow workflow contract
+edge_class: workflow_contract
+source_file: models/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 WeekException 定义工作流 week_exception_manage_flow / WHEN 按步骤执行 add -> remove / THEN 流程顺序应满足声明约束

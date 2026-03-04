@@ -1,0 +1,5 @@
+module: PAYMENT_PAYMENT
+contract: Payment.mark_failed action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/payment/payment.ubo.yaml
+source_summary: GIVEN 实体 Payment 的动作 mark_failed 输入非法 / WHEN 执行动作 mark_failed / THEN 应返回校验失败且不产生持久化副作用

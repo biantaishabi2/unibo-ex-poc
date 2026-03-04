@@ -1,0 +1,5 @@
+module: CALENDAR_CALENDAR_EXCEPTION
+contract: CalendarException.add action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 CalendarException 的动作 add 输入非法 / WHEN 执行动作 add / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：add 添加节假日例外 -> remove 移除例外；add 添加调休工作日 -> remove 移除例外

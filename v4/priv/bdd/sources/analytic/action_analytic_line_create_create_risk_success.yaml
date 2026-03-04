@@ -1,0 +1,5 @@
+module: ANALYTIC_ANALYTIC_LINE
+contract: AnalyticLine.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/analytic/analytic.ubo.yaml
+source_summary: GIVEN 实体 AnalyticLine 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 手动分析行（date=2025-01-15, amount=-5000, account=研发部门），余额自动重算；create 时 account_id 指向已停用账户，被 [R-ANL-003] 拒绝

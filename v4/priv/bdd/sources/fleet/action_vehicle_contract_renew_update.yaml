@@ -1,0 +1,5 @@
+module: FLEET_VEHICLE_CONTRACT
+contract: VehicleContract.renew action contract
+edge_class: action_contract
+source_file: models/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 VehicleContract 的动作 renew 可执行，accept=[end_date, amount, recurring_cost, notes]，args=[无显式参数] / WHEN 执行动作 renew / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束

@@ -1,0 +1,5 @@
+module: LOYALTY_LOYALTY_CARD
+contract: LoyaltyCard.card_lifecycle_flow workflow contract
+edge_class: workflow_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 LoyaltyCard 定义工作流 card_lifecycle_flow / WHEN 按步骤执行 create -> earn_points -> redeem_points -> freeze -> unfreeze -> expire_card / THEN 流程顺序应满足声明约束

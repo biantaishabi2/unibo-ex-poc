@@ -1,0 +1,5 @@
+module: PAYMENT_PAYMENT_GATEWAY_RESPONSE
+contract: PaymentGatewayResponse.create action contract (risk:success)
+edge_class: action_contract
+source_file: models/payment/payment.ubo.yaml
+source_summary: GIVEN 实体 PaymentGatewayResponse 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 记录授权响应（gateway_code=00，result_declined=false）；create 记录拒绝响应（result_declined=true）；create 记录退款响应（payment_service_type_enum_id=refund）

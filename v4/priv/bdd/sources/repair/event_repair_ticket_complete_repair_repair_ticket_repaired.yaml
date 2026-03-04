@@ -1,0 +1,5 @@
+module: REPAIR_REPAIR_TICKET
+contract: RepairTicket.complete_repair event contract
+edge_class: event_contract
+source_file: models/repair/repair.ubo.yaml
+source_summary: GIVEN 实体 RepairTicket 的动作 complete_repair 完成 / WHEN 触发事件发布 / THEN 应广播 topic `repair.ticket.repaired`

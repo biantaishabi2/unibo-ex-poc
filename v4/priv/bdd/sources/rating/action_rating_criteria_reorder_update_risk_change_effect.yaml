@@ -1,0 +1,5 @@
+module: RATING_RATING_CRITERIA
+contract: RatingCriteria.reorder action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/rating/rating.ubo.yaml
+source_summary: GIVEN 实体 RatingCriteria 的动作 reorder 触发副作用 / WHEN 执行动作 reorder / THEN 变更副作用应完整生效且状态一致

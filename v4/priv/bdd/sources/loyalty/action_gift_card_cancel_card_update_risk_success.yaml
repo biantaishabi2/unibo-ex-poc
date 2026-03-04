@@ -1,0 +1,5 @@
+module: LOYALTY_GIFT_CARD
+contract: GiftCard.cancel_card action contract (risk:success)
+edge_class: action_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 GiftCard 的动作 cancel_card 可执行 / WHEN 执行动作 cancel_card / THEN 成功路径应满足业务约束并持久化结果

@@ -1,0 +1,5 @@
+module: CALENDAR_CALENDAR_EVENT
+contract: CalendarEvent.update event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 CalendarEvent 动作 update 事件被重复投递 / WHEN 重放 topic `calendar.event.rescheduled` / THEN 消费方处理应保持幂等且无重复副作用

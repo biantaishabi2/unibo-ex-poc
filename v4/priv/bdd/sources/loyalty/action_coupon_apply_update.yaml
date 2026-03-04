@@ -1,0 +1,5 @@
+module: LOYALTY_COUPON
+contract: Coupon.apply action contract
+edge_class: action_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 Coupon 的动作 apply 可执行，accept=[used_count]，args=[order_id:uuid!, partner_id:uuid] / WHEN 执行动作 apply / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create(public, percent, 10%) -> apply(order_1) -> apply(order_2)；create(one_time) -> apply -> apply 第二次应报错；create -> cancel_coupon -> apply 应被拒绝

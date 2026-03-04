@@ -1,0 +1,5 @@
+module: EVENTS_EVENT_BOOTH
+contract: EventBooth.update action contract
+edge_class: action_contract
+source_file: models/events/events.ubo.yaml
+source_summary: GIVEN 实体 EventBooth 的动作 update 可执行，accept=[name, area, rental_price, notes]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效

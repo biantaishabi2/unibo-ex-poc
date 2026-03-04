@@ -1,0 +1,5 @@
+module: RATING_RATING
+contract: Rating.flag action contract
+edge_class: action_contract
+source_file: models/rating/rating.ubo.yaml
+source_summary: GIVEN 实体 Rating 的动作 flag 可执行，accept=[flag_reason]，args=[无显式参数] / WHEN 执行动作 flag / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

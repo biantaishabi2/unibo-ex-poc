@@ -1,0 +1,5 @@
+module: LOYALTY_GIFT_CARD_TRANSACTION
+contract: GiftCardTransaction.giftcard_transaction_flow workflow contract
+edge_class: workflow_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 GiftCardTransaction 定义工作流 giftcard_transaction_flow / WHEN 按步骤执行 create / THEN 流程顺序应满足声明约束

@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT_ROUTE_SEGMENT
+contract: ShipmentRouteSegment.record_cost action contract
+edge_class: action_contract
+source_file: models/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 ShipmentRouteSegment 的动作 record_cost 可执行，accept=[actual_transport_cost, actual_service_cost, actual_other_cost, actual_cost, currency_uom_id, billing_weight, billing_weight_uom_id]，args=[无显式参数] / WHEN 执行动作 record_cost / THEN 状态变更与副作用应生效，应符合工作流步骤约束

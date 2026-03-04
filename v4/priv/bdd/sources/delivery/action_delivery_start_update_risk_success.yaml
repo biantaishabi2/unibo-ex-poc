@@ -1,0 +1,5 @@
+module: DELIVERY_DELIVERY
+contract: Delivery.start action contract (risk:success)
+edge_class: action_contract
+source_file: models/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 Delivery 的动作 start 可执行 / WHEN 执行动作 start / THEN 成功路径应满足业务约束并持久化结果

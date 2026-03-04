@@ -1,0 +1,5 @@
+module: EVENTS_EVENT
+contract: Event.cancel event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/events/events.ubo.yaml
+source_summary: GIVEN 实体 Event 动作 cancel 触发事件 / WHEN 发布 topic `events.event.cancelled` / THEN 消费方应收到一次有效通知

@@ -1,0 +1,5 @@
+module: PAYMENT_PAYMENT_REFUND
+contract: PaymentRefund.process event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/payment/payment.ubo.yaml
+source_summary: GIVEN 实体 PaymentRefund 动作 process 触发事件 / WHEN 发布 topic `payment.refund.processed` / THEN 消费方应收到一次有效通知

@@ -1,0 +1,5 @@
+module: LOYALTY_COUPON
+contract: Coupon.apply action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 Coupon 的动作 apply 触发副作用 / WHEN 执行动作 apply / THEN 变更副作用应完整生效且状态一致 / 补充场景：create(public, percent, 10%) -> apply(order_1) -> apply(order_2)；create(one_time) -> apply -> apply 第二次应报错；create -> cancel_coupon -> apply 应被拒绝

@@ -1,0 +1,5 @@
+module: FLEET_VEHICLE_CONTRACT
+contract: VehicleContract.renew event contract
+edge_class: event_contract
+source_file: models/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 VehicleContract 的动作 renew 完成 / WHEN 触发事件发布 / THEN 应广播 topic `fleet.contract.renewed`

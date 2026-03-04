@@ -1,0 +1,5 @@
+module: EVENTS_EVENT
+contract: Event.cancel action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: models/events/events.ubo.yaml
+source_summary: GIVEN 实体 Event 的动作 cancel 输入非法 / WHEN 执行动作 cancel / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：cancel 已发布且有报名者的活动，状态变为 cancelled，所有报名者通知

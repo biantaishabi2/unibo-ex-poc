@@ -1,0 +1,5 @@
+module: LOYALTY_GIFT_CARD
+contract: GiftCard.charge event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 GiftCard 动作 charge 事件被重复投递 / WHEN 重放 topic `loyalty.giftcard.charged` / THEN 消费方处理应保持幂等且无重复副作用

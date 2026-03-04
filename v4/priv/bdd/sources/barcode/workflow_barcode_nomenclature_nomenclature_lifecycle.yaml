@@ -1,0 +1,5 @@
+module: BARCODE_BARCODE_NOMENCLATURE
+contract: BarcodeNomenclature.nomenclature_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/barcode/barcode.ubo.yaml
+source_summary: GIVEN 实体 BarcodeNomenclature 定义工作流 nomenclature_lifecycle / WHEN 按步骤执行 create -> update -> activate -> deactivate -> destroy / THEN 流程顺序应满足声明约束

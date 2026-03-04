@@ -1,0 +1,5 @@
+module: CALENDAR_ATTENDEE
+contract: Attendee.invite action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 Attendee 的动作 invite 触发副作用 / WHEN 执行动作 invite / THEN 变更副作用应完整生效且状态一致 / 补充场景：invite 邀请参与者 -> update_response 接受邀请 -> remove 移除参与者；invite 邀请参与者 -> update_response 拒绝邀请

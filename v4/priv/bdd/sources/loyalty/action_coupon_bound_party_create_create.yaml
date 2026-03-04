@@ -1,0 +1,5 @@
+module: LOYALTY_COUPON_BOUND_PARTY
+contract: CouponBoundParty.create action contract
+edge_class: action_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 CouponBoundParty 的动作 create 可执行，accept=[(未声明)]，args=[coupon_id:uuid!, partner_id:uuid!] / WHEN 执行动作 create / THEN 状态变更与副作用应生效

@@ -1,0 +1,5 @@
+module: EVENTS_EVENT
+contract: Event.update action contract
+edge_class: action_contract
+source_file: models/events/events.ubo.yaml
+source_summary: GIVEN 实体 Event 的动作 update 可执行，accept=[name, description, event_type_id, start_date, end_date, location, venue_id, capacity, registration_deadline, is_online, cover_image_url, detail_url, streaming_url, priority, send_notification_email, total_budget, budget_currency_id, special_terms, organizer_id]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效

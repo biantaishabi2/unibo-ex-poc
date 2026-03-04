@@ -1,0 +1,5 @@
+module: CALENDAR_ATTENDEE
+contract: Attendee.attendee_response_flow workflow contract
+edge_class: workflow_contract
+source_file: models/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 Attendee 定义工作流 attendee_response_flow / WHEN 按步骤执行 invite -> update_response -> remove / THEN 流程顺序应满足声明约束

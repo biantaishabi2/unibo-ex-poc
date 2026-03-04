@@ -1,0 +1,5 @@
+module: EVENTS_EVENT
+contract: Event.archive action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/events/events.ubo.yaml
+source_summary: GIVEN 实体 Event 的动作 archive 触发副作用 / WHEN 执行动作 archive / THEN 变更副作用应完整生效且状态一致 / 补充场景：create -> publish -> start -> complete -> archive（活动完整生命周期）；create -> publish -> cancel -> archive（活动发布后取消并归档）

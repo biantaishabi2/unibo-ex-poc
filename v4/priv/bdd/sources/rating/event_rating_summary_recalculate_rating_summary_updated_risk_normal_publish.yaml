@@ -1,0 +1,5 @@
+module: RATING_RATING_SUMMARY
+contract: RatingSummary.recalculate event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: models/rating/rating.ubo.yaml
+source_summary: GIVEN 实体 RatingSummary 动作 recalculate 触发事件 / WHEN 发布 topic `rating.summary.updated` / THEN 消费方应收到一次有效通知

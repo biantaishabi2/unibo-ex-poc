@@ -1,0 +1,5 @@
+module: EVENTS_EVENT
+contract: Event.complete action contract
+edge_class: action_contract
+source_file: models/events/events.ubo.yaml
+source_summary: GIVEN 实体 Event 的动作 complete 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 complete / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

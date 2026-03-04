@@ -1,0 +1,5 @@
+module: LOYALTY_COUPON
+contract: Coupon.cancel_coupon event contract
+edge_class: event_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 Coupon 的动作 cancel_coupon 完成 / WHEN 触发事件发布 / THEN 应广播 topic `loyalty.coupon.cancelled`

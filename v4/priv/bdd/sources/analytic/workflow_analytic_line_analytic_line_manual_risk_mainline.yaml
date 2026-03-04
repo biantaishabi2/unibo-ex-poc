@@ -1,0 +1,5 @@
+module: ANALYTIC_ANALYTIC_LINE
+contract: AnalyticLine.analytic_line_manual workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/analytic/analytic.ubo.yaml
+source_summary: GIVEN 实体 AnalyticLine 定义工作流 analytic_line_manual / WHEN 按主路径执行 create -> update -> destroy / THEN 主流程应可达并保持顺序一致

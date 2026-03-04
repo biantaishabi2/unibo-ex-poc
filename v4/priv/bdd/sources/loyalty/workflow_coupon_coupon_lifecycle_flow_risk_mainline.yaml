@@ -1,0 +1,5 @@
+module: LOYALTY_COUPON
+contract: Coupon.coupon_lifecycle_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 Coupon 定义工作流 coupon_lifecycle_flow / WHEN 按主路径执行 create -> update -> apply -> cancel_coupon / THEN 主流程应可达并保持顺序一致

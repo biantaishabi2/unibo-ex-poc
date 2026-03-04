@@ -1,0 +1,5 @@
+module: ANALYTIC_ANALYTIC_LINE
+contract: AnalyticLine.destroy action contract
+edge_class: action_contract
+source_file: models/analytic/analytic.ubo.yaml
+source_summary: GIVEN 实体 AnalyticLine 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：destroy 时 move_line 已过账，被 [R-ANL-007] 拒绝

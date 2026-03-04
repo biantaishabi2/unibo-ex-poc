@@ -1,0 +1,5 @@
+module: EVENTS_EVENT
+contract: Event.publish event contract
+edge_class: event_contract
+source_file: models/events/events.ubo.yaml
+source_summary: GIVEN 实体 Event 的动作 publish 完成 / WHEN 触发事件发布 / THEN 应广播 topic `events.event.published`

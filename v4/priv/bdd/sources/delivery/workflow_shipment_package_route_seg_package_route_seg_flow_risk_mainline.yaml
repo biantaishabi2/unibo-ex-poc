@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT_PACKAGE_ROUTE_SEG
+contract: ShipmentPackageRouteSeg.package_route_seg_flow workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: models/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 ShipmentPackageRouteSeg 定义工作流 package_route_seg_flow / WHEN 按主路径执行 create -> update_label -> mark_printed -> update_cost -> destroy / THEN 主流程应可达并保持顺序一致

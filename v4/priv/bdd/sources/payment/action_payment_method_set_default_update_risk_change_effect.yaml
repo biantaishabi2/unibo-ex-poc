@@ -1,0 +1,5 @@
+module: PAYMENT_PAYMENT_METHOD
+contract: PaymentMethod.set_default action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/payment/payment.ubo.yaml
+source_summary: GIVEN 实体 PaymentMethod 的动作 set_default 触发副作用 / WHEN 执行动作 set_default / THEN 变更副作用应完整生效且状态一致
