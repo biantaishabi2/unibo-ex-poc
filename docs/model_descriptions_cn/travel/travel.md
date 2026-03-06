@@ -649,6 +649,10 @@
 #### 工作流
 - 流程：travel_order_lifecycle：创建订单 -> 更新 -> 确认报价 -> 提交订单 -> submit_waitlist -> mark_payment_succeeded -> mark_booked -> fulfill_waitlist -> cancel_waitlist -> 请求取消 -> 审批取消 -> 请求变更 -> 确认变更 -> 标记已完成 -> 标记订单失败 -> 删除（统一酒旅订单生命周期，覆盖 train 候补与改签分支；退款由 Payment 域处理）
 
+#### 集成契约
+- 付款获取，绑定动作：提交订单 / submit_waitlist；模式：同步；请求字段：订单无、应付金额、币种、客户编号、booking_mode；响应字段：付款编号、付款状态、captured_amount、供应商追踪编号；错误码：付款已拒绝（不可重试）、付款超时（可重试）、付款风险已驳回（不可重试）；说明：提交订单后触发支付捕获契约，失败时按声明错误码驱动补偿路径
+- supplier_booking_submit，绑定动作：mark_payment_succeeded；模式：async；请求字段：订单无、产品类型、traveler_count、供应商订单参考；错误码：供应商超时（可重试）、supplier_inventory_unavailable（不可重试）；异步配置：队列 travel_supplier_booking，超时 120000ms；说明：支付成功后异步提交供应商预订，失败时回滚 booking_pending 并转失败处理
+
 ## 实体：TravelFulfillment（聚合根）
 
 - 说明：统一酒旅履约聚合，承接预订确认、发券出票、候补兑现、乘车使用和失败结果；可选关联 Delivery::Shipment
@@ -718,4 +722,9 @@
 
 #### 工作流
 - 流程：travel_fulfillment_lifecycle：创建履行 -> 更新 -> confirm_booking -> 问题凭单或工单 -> 标记包含使用 -> 完成履行 -> 取消履行 -> 失败履行 -> 删除（统一酒旅履约生命周期）
+
+#### 集成契约
+- supplier_confirm_booking，绑定动作：confirm_booking；模式：同步；请求字段：travel_order_id、履行类型、supplier_booking_ref；响应字段：确认状态、supplier_booking_ref、confirmation_payload；错误码：supplier_booking_rejected（不可重试）、供应商超时（可重试）；说明：预订确认同步契约，失败时需保留 pending 并可重试或转 fail_fulfillment
+- 供应商问题文档，绑定动作：问题凭单或工单；模式：同步；请求字段：travel_order_id、履行类型、ticket_passenger_infos；响应字段：问题状态、凭单或工单参考、ticket_refs；错误码：问题失败（不可重试）、问题超时（可重试）；说明：发券出票同步契约，失败时走 fail_fulfillment 并记录 failure_reason
+- supplier_cancel_booking，绑定动作：取消履行；模式：async；请求字段：travel_order_id、supplier_booking_ref；错误码：取消超时（可重试）、取消已驳回（不可重试）；异步配置：队列 travel_supplier_cancel，超时 60000ms；说明：取消履约异步契约，失败时通过补偿任务做二次撤销
 
