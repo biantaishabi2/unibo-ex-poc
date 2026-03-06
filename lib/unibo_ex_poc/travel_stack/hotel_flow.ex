@@ -64,7 +64,8 @@ defmodule UniboExPoc.TravelStack.HotelFlow do
   end
 
   defp adapter_compatible?(adapter) do
-    function_exported?(adapter, :book, 3) and
+    Code.ensure_loaded?(adapter) and
+      function_exported?(adapter, :book, 3) and
       function_exported?(adapter, :query_booking_status, 2) and
       function_exported?(adapter, :pull_incremental_updates, 2)
   end
