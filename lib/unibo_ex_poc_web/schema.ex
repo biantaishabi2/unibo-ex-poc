@@ -7,7 +7,12 @@ defmodule UniboExPocWeb.Schema do
   use Absinthe.Schema
 
   use AshGraphql,
-    domains: [UniboExPoc.Purchasing, UniboExPoc.PurchasingV2, UniboExPoc.PurchasingV3]
+    domains: [
+      UniboExPoc.Purchasing,
+      UniboExPoc.PurchasingV2,
+      UniboExPoc.PurchasingV3,
+      UniboExPoc.Travel.Travel
+    ]
 
   import_types(Absinthe.Plug.Types)
 

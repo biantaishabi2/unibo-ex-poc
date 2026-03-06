@@ -5,7 +5,7 @@ defmodule UniboExPoc.Travel.HotelFlowTest do
   alias UniboExPoc.Travel.Travel.TravelFulfillment
   alias UniboExPoc.Travel.Travel.TravelOrder
 
-  test "hotel 最小闭环可以从 quote 走到 booking confirmed" do
+  test "HotelFlow 仅作为测试辅助时，hotel 闭环可从 quote 走到 booking confirmed" do
     input = %{
       context: %{
         user_id: "user-1",

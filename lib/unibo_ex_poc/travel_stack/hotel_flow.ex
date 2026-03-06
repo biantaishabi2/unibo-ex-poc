@@ -1,7 +1,9 @@
 defmodule UniboExPoc.TravelStack.HotelFlow do
   @moduledoc """
-  hotel 场景的最小闭环：
-  宿主上下文 -> 宿主预检/报价 -> 宿主支付 -> supplier booking -> travel order/fulfillment 结果。
+  hotel 场景的测试辅助闭环。
+
+  该模块仅用于宿主 bridge 合约相关测试，不作为 travel 的主集成入口。
+  travel 主路径以 compile-project 产出的 Ash + GraphQL schema 为准。
   """
 
   alias UniboExPoc.Travel.Travel.TravelFulfillment
@@ -13,12 +15,18 @@ defmodule UniboExPoc.TravelStack.HotelFlow do
   alias UniboExPoc.TravelSupplier.HotelBookingRequest
   alias UniboExPoc.TravelSupplier.HotelMockAdapter
 
+  @doc """
+  测试辅助下单流程：返回宿主侧预检/支付与 supplier mock 结果。
+  """
   @spec book(map(), keyword()) :: {:ok, map()} | {:error, term()}
   def book(input, opts \\ []) do
     with {:ok, context} <- CallerContext.normalize(Map.fetch!(input, :context)),
          config <- HostConfig.new(Map.fetch!(input, :host_config)),
          order_attrs <- Map.put(Map.fetch!(input, :order), :product_type, :hotel),
-         quote <- EligibilityOrQuote.build(order_attrs, context, config, available_points: Keyword.get(opts, :available_points, 0)),
+         quote <-
+           EligibilityOrQuote.build(order_attrs, context, config,
+             available_points: Keyword.get(opts, :available_points, 0)
+           ),
          true <- quote.allowed? or {:error, quote.reason},
          {:ok, payment} <-
            PaymentExecution.execute(
