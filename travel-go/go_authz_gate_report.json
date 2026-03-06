@@ -1,0 +1,20 @@
+{
+  "generated_at_unix": 1772794654,
+  "profile": "compat",
+  "blocked": false,
+  "policy_regression": {
+    "detected_total": 0,
+    "effective_total": 0,
+    "deny_to_allow_total": 0,
+    "condition_weakened_total": 0,
+    "items": []
+  },
+  "feature_control": {
+    "total": 0,
+    "unsupported_total": 0,
+    "error_total": 0,
+    "warning_total": 0,
+    "issues": []
+  },
+  "reasons": []
+}

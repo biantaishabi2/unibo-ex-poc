@@ -1,0 +1,1295 @@
+{
+  "total": 86,
+  "entries": [
+    {
+      "name": "unibo_travel_hotel_offer_action_create",
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_hotel_offer_action_read",
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_hotel_offer_action_update",
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_hotel_offer_action_activate",
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "source_kind": "action",
+      "source_name": "activate",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_hotel_offer_action_deactivate",
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "source_kind": "action",
+      "source_name": "deactivate",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_hotel_offer_action_expire",
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "source_kind": "action",
+      "source_name": "expire",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_hotel_offer_action_destroy",
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "source_kind": "action",
+      "source_name": "destroy",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_hotel_offer_event_activate_travel_catalog_hotel_offer_activated",
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "source_kind": "event",
+      "source_name": "activate#travel.catalog.hotel_offer.activated",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_hotel_offer_event_deactivate_travel_catalog_hotel_offer_deactivated",
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "source_kind": "event",
+      "source_name": "deactivate#travel.catalog.hotel_offer.deactivated",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_hotel_offer_event_expire_travel_catalog_hotel_offer_expired",
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "source_kind": "event",
+      "source_name": "expire#travel.catalog.hotel_offer.expired",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_hotel_offer_workflow_hotel_offer_lifecycle",
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "source_kind": "workflow",
+      "source_name": "hotel_offer_lifecycle",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_flight_offer_action_create",
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_flight_offer_action_read",
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_flight_offer_action_update",
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_flight_offer_action_activate",
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "source_kind": "action",
+      "source_name": "activate",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_flight_offer_action_deactivate",
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "source_kind": "action",
+      "source_name": "deactivate",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_flight_offer_action_expire",
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "source_kind": "action",
+      "source_name": "expire",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_flight_offer_action_destroy",
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "source_kind": "action",
+      "source_name": "destroy",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_flight_offer_event_activate_travel_catalog_flight_offer_activated",
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "source_kind": "event",
+      "source_name": "activate#travel.catalog.flight_offer.activated",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_flight_offer_event_deactivate_travel_catalog_flight_offer_deactivated",
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "source_kind": "event",
+      "source_name": "deactivate#travel.catalog.flight_offer.deactivated",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_flight_offer_event_expire_travel_catalog_flight_offer_expired",
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "source_kind": "event",
+      "source_name": "expire#travel.catalog.flight_offer.expired",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_flight_offer_workflow_flight_offer_lifecycle",
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "source_kind": "workflow",
+      "source_name": "flight_offer_lifecycle",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_vacation_offer_action_create",
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_vacation_offer_action_read",
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_vacation_offer_action_update",
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_vacation_offer_action_activate",
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "source_kind": "action",
+      "source_name": "activate",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_vacation_offer_action_deactivate",
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "source_kind": "action",
+      "source_name": "deactivate",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_vacation_offer_action_expire",
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "source_kind": "action",
+      "source_name": "expire",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_vacation_offer_action_destroy",
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "source_kind": "action",
+      "source_name": "destroy",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_vacation_offer_event_activate_travel_catalog_vacation_offer_activated",
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "source_kind": "event",
+      "source_name": "activate#travel.catalog.vacation_offer.activated",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_vacation_offer_event_deactivate_travel_catalog_vacation_offer_deactivated",
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "source_kind": "event",
+      "source_name": "deactivate#travel.catalog.vacation_offer.deactivated",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_vacation_offer_event_expire_travel_catalog_vacation_offer_expired",
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "source_kind": "event",
+      "source_name": "expire#travel.catalog.vacation_offer.expired",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_vacation_offer_workflow_vacation_offer_lifecycle",
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "source_kind": "workflow",
+      "source_name": "vacation_offer_lifecycle",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_train_offer_action_create",
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "source_kind": "action",
+      "source_name": "create",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_train_offer_action_read",
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_train_offer_action_update",
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_train_offer_action_activate",
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "source_kind": "action",
+      "source_name": "activate",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_train_offer_action_deactivate",
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "source_kind": "action",
+      "source_name": "deactivate",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_train_offer_action_expire",
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "source_kind": "action",
+      "source_name": "expire",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_train_offer_action_destroy",
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "source_kind": "action",
+      "source_name": "destroy",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_train_offer_event_activate_travel_catalog_train_offer_activated",
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "source_kind": "event",
+      "source_name": "activate#travel.catalog.train_offer.activated",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_train_offer_event_deactivate_travel_catalog_train_offer_deactivated",
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "source_kind": "event",
+      "source_name": "deactivate#travel.catalog.train_offer.deactivated",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_train_offer_event_expire_travel_catalog_train_offer_expired",
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "source_kind": "event",
+      "source_name": "expire#travel.catalog.train_offer.expired",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_train_offer_workflow_train_offer_lifecycle",
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "source_kind": "workflow",
+      "source_name": "train_offer_lifecycle",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_create_order",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "create_order",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_read",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_update",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_confirm_quote",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "confirm_quote",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_submit_order",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "submit_order",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_submit_waitlist",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "submit_waitlist",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_mark_payment_succeeded",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "mark_payment_succeeded",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_mark_booked",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "mark_booked",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_fulfill_waitlist",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "fulfill_waitlist",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_mark_completed",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "mark_completed",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_request_cancel",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "request_cancel",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_cancel_waitlist",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "cancel_waitlist",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_approve_cancel",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "approve_cancel",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_request_change",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "request_change",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_confirm_change",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "confirm_change",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_mark_order_failed",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "mark_order_failed",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_action_destroy",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "action",
+      "source_name": "destroy",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_event_submit_order_travel_order_submitted",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "event",
+      "source_name": "submit_order#travel.order.submitted",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_event_submit_waitlist_travel_order_waitlist_submitted",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "event",
+      "source_name": "submit_waitlist#travel.order.waitlist_submitted",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_event_mark_payment_succeeded_travel_order_payment_confirmed",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "event",
+      "source_name": "mark_payment_succeeded#travel.order.payment_confirmed",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_event_fulfill_waitlist_travel_order_waitlist_fulfilled",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "event",
+      "source_name": "fulfill_waitlist#travel.order.waitlist_fulfilled",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_event_cancel_waitlist_travel_order_waitlist_cancelled",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "event",
+      "source_name": "cancel_waitlist#travel.order.waitlist_cancelled",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_event_approve_cancel_travel_order_cancelled",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "event",
+      "source_name": "approve_cancel#travel.order.cancelled",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_event_confirm_change_travel_order_change_confirmed",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "event",
+      "source_name": "confirm_change#travel.order.change_confirmed",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_event_mark_order_failed_travel_order_failed",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "event",
+      "source_name": "mark_order_failed#travel.order.failed",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_order_workflow_travel_order_lifecycle",
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "source_kind": "workflow",
+      "source_name": "travel_order_lifecycle",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_action_create_fulfillment",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "action",
+      "source_name": "create_fulfillment",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_action_read",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "action",
+      "source_name": "read",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_action_update",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "action",
+      "source_name": "update",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_action_confirm_booking",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "action",
+      "source_name": "confirm_booking",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_action_issue_voucher_or_ticket",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "action",
+      "source_name": "issue_voucher_or_ticket",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_action_mark_in_use",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "action",
+      "source_name": "mark_in_use",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_action_complete_fulfillment",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "action",
+      "source_name": "complete_fulfillment",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_action_cancel_fulfillment",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "action",
+      "source_name": "cancel_fulfillment",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_action_fail_fulfillment",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "action",
+      "source_name": "fail_fulfillment",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_action_destroy",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "action",
+      "source_name": "destroy",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_event_confirm_booking_travel_fulfillment_confirmed",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "event",
+      "source_name": "confirm_booking#travel.fulfillment.confirmed",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_event_issue_voucher_or_ticket_travel_fulfillment_issued",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "event",
+      "source_name": "issue_voucher_or_ticket#travel.fulfillment.issued",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_event_complete_fulfillment_travel_fulfillment_completed",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "event",
+      "source_name": "complete_fulfillment#travel.fulfillment.completed",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_event_cancel_fulfillment_travel_fulfillment_cancelled",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "event",
+      "source_name": "cancel_fulfillment#travel.fulfillment.cancelled",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_event_fail_fulfillment_travel_fulfillment_failed",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "event",
+      "source_name": "fail_fulfillment#travel.fulfillment.failed",
+      "kind": "then",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    },
+    {
+      "name": "unibo_travel_travel_fulfillment_workflow_travel_fulfillment_lifecycle",
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "source_kind": "workflow",
+      "source_name": "travel_fulfillment_lifecycle",
+      "kind": "when",
+      "dedup_index": 0,
+      "args": {},
+      "scopes": [
+        "integration",
+        "e2e"
+      ],
+      "boundary": "service"
+    }
+  ]
+}

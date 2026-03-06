@@ -1,0 +1,49 @@
+schema:
+  - ent.graphql
+  - directives.graphql
+exec:
+  filename: graph/generated.go
+  package: graph
+model:
+  filename: graph/model/models_gen.go
+  package: model
+resolver:
+  layout: follow-schema
+  dir: graph
+  package: graph
+
+autobind:
+  - github.com/biantaishabi2/unibo-ex-poc/travel-go/ent
+  - github.com/99designs/gqlgen/graphql
+
+models:
+  UUID:
+    model:
+      - github.com/google/uuid.UUID
+  Time:
+    model:
+      - time.Time
+  Cursor:
+    model:
+      - github.com/biantaishabi2/unibo-ex-poc/travel-go/ent.Cursor
+  Node:
+    model:
+      - github.com/biantaishabi2/unibo-ex-poc/travel-go/ent.Noder
+  HotelOffer:
+    model:
+      - github.com/biantaishabi2/unibo-ex-poc/travel-go/ent.HotelOffer
+  FlightOffer:
+    model:
+      - github.com/biantaishabi2/unibo-ex-poc/travel-go/ent.FlightOffer
+  VacationOffer:
+    model:
+      - github.com/biantaishabi2/unibo-ex-poc/travel-go/ent.VacationOffer
+  TrainOffer:
+    model:
+      - github.com/biantaishabi2/unibo-ex-poc/travel-go/ent.TrainOffer
+  TravelOrder:
+    model:
+      - github.com/biantaishabi2/unibo-ex-poc/travel-go/ent.TravelOrder
+  TravelFulfillment:
+    model:
+      - github.com/biantaishabi2/unibo-ex-poc/travel-go/ent.TravelFulfillment

@@ -1,0 +1,381 @@
+directive @goField(forceResolver: Boolean, name: String, omittable: Boolean) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION
+directive @goModel(model: String, models: [String!], forceGenerate: Boolean) on OBJECT | INPUT_OBJECT | SCALAR | ENUM | INTERFACE | UNION
+"""
+Define a Relay Cursor type:
+https://relay.dev/graphql/connections.htm#sec-Cursor
+"""
+scalar Cursor
+type FlightOffer implements Node {
+  id: ID!
+  tenantID: UUID!
+  hostShopID: UUID
+  supplierCode: String!
+  itineraryCode: String!
+  flightNo: String!
+  departureAirportCode: String!
+  arrivalAirportCode: String!
+  departureAt: Time!
+  arrivalAt: Time!
+  cabinClass: String!
+  fareFamily: String
+  listedPrice: Float!
+  settlementPrice: Float
+  currency: String
+  seatsAvailable: Int
+  baggagePolicy: String
+  refundChangePolicy: String
+  saleStatus: FlightOfferSaleStatus
+  insertedAt: Time!
+  updatedAt: Time!
+  orders: [TravelOrder!]
+}
+"""
+FlightOfferSaleStatus is enum for the field sale_status
+"""
+enum FlightOfferSaleStatus @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/flightoffer.SaleStatus") {
+  draft
+  active
+  inactive
+  expired
+}
+type HotelOffer implements Node {
+  id: ID!
+  tenantID: UUID!
+  hostShopID: UUID
+  supplierCode: String!
+  hotelCode: String!
+  hotelName: String!
+  cityCode: String!
+  roomTypeCode: String!
+  ratePlanCode: String!
+  checkinDate: Time!
+  checkoutDate: Time!
+  listedPrice: Float!
+  settlementPrice: Float
+  currency: String
+  inventoryCount: Int
+  cancellationPolicy: String
+  guaranteePolicy: String
+  saleStatus: HotelOfferSaleStatus
+  insertedAt: Time!
+  updatedAt: Time!
+  orders: [TravelOrder!]
+}
+"""
+HotelOfferSaleStatus is enum for the field sale_status
+"""
+enum HotelOfferSaleStatus @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/hoteloffer.SaleStatus") {
+  draft
+  active
+  inactive
+  expired
+}
+"""
+An object with an ID.
+Follows the [Relay Global Object Identification Specification](https://relay.dev/graphql/objectidentification.htm)
+"""
+interface Node @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent.Noder") {
+  """
+  The id of the object.
+  """
+  id: ID!
+}
+"""
+Possible directions in which to order a list of items when provided an `orderBy` argument.
+"""
+enum OrderDirection {
+  """
+  Specifies an ascending order for a given `orderBy` argument.
+  """
+  ASC
+  """
+  Specifies a descending order for a given `orderBy` argument.
+  """
+  DESC
+}
+"""
+Information about pagination in a connection.
+https://relay.dev/graphql/connections.htm#sec-undefined.PageInfo
+"""
+type PageInfo {
+  """
+  When paginating forwards, are there more items?
+  """
+  hasNextPage: Boolean!
+  """
+  When paginating backwards, are there more items?
+  """
+  hasPreviousPage: Boolean!
+  """
+  When paginating backwards, the cursor to continue.
+  """
+  startCursor: Cursor
+  """
+  When paginating forwards, the cursor to continue.
+  """
+  endCursor: Cursor
+}
+type Query {
+  """
+  Fetches an object given its ID.
+  """
+  node(
+    """
+    ID of the object.
+    """
+    id: ID!
+  ): Node
+  """
+  Lookup nodes by a list of IDs.
+  """
+  nodes(
+    """
+    The list of node IDs.
+    """
+    ids: [ID!]!
+  ): [Node]!
+}
+"""
+The builtin Time type
+"""
+scalar Time
+type TrainOffer implements Node {
+  id: ID!
+  tenantID: UUID!
+  hostShopID: UUID
+  supplierCode: String!
+  trainNo: String!
+  departureStationCode: String!
+  departureStationName: String!
+  arrivalStationCode: String!
+  arrivalStationName: String!
+  travelDate: Time!
+  departureAt: Time!
+  arrivalAt: Time!
+  seatClass: String!
+  seatCode: String!
+  isNoSeat: Boolean
+  inventoryStatus: TrainOfferInventoryStatus
+  waitlistSupported: Boolean
+  listedPrice: Float!
+  settlementPrice: Float
+  currency: String
+  bookingRulesSnapshot: String
+  changeRulesSnapshot: String
+  refundRulesSnapshot: String
+  saleStatus: TrainOfferSaleStatus
+  insertedAt: Time!
+  updatedAt: Time!
+  orders: [TravelOrder!]
+}
+"""
+TrainOfferInventoryStatus is enum for the field inventory_status
+"""
+enum TrainOfferInventoryStatus @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/trainoffer.InventoryStatus") {
+  available
+  waitlist_only
+  sold_out
+  unavailable
+}
+"""
+TrainOfferSaleStatus is enum for the field sale_status
+"""
+enum TrainOfferSaleStatus @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/trainoffer.SaleStatus") {
+  draft
+  active
+  inactive
+  expired
+}
+type TravelFulfillment implements Node {
+  id: ID!
+  tenantID: UUID!
+  travelOrderID: ID!
+  shipmentID: UUID
+  fulfillmentType: TravelFulfillmentFulfillmentType
+  status: TravelFulfillmentStatus
+  supplierBookingRef: String
+  voucherOrTicketRef: String
+  ticketRefs: String
+  waitlistResult: TravelFulfillmentWaitlistResult
+  changeResult: TravelFulfillmentChangeResult
+  boardingStatus: TravelFulfillmentBoardingStatus
+  confirmationPayload: String
+  failureReason: String
+  usedAt: Time
+  insertedAt: Time!
+  updatedAt: Time!
+  order: TravelOrder!
+}
+"""
+TravelFulfillmentBoardingStatus is enum for the field boarding_status
+"""
+enum TravelFulfillmentBoardingStatus @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/travelfulfillment.BoardingStatus") {
+  not_started
+  boarded
+  completed
+}
+"""
+TravelFulfillmentChangeResult is enum for the field change_result
+"""
+enum TravelFulfillmentChangeResult @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/travelfulfillment.ChangeResult") {
+  none
+  pending
+  changed
+  failed
+}
+"""
+TravelFulfillmentFulfillmentType is enum for the field fulfillment_type
+"""
+enum TravelFulfillmentFulfillmentType @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/travelfulfillment.FulfillmentType") {
+  reserve_room
+  issue_ticket
+  issue_voucher
+  issue_train_ticket
+}
+"""
+TravelFulfillmentStatus is enum for the field status
+"""
+enum TravelFulfillmentStatus @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/travelfulfillment.Status") {
+  pending
+  confirmed
+  issued
+  in_use
+  completed
+  cancelled
+  failed
+}
+"""
+TravelFulfillmentWaitlistResult is enum for the field waitlist_result
+"""
+enum TravelFulfillmentWaitlistResult @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/travelfulfillment.WaitlistResult") {
+  none
+  pending
+  fulfilled
+  cancelled
+  failed
+}
+type TravelOrder implements Node {
+  id: ID!
+  tenantID: UUID!
+  hostShopID: UUID
+  hotelOfferID: ID
+  flightOfferID: ID
+  vacationOfferID: ID
+  trainOfferID: ID
+  orderNo: String!
+  productType: TravelOrderProductType
+  bookingMode: TravelOrderBookingMode
+  customerID: UUID!
+  paymentID: UUID
+  contactName: String!
+  contactPhone: String!
+  travelerCount: Int
+  totalAmount: Float!
+  pointsToUse: Int
+  pointsDeductionAmount: Float
+  currency: String
+  status: TravelOrderStatus
+  changeStatus: TravelOrderChangeStatus
+  waitlistStatus: TravelOrderWaitlistStatus
+  originalOrderRef: String
+  ticketPassengerInfos: String
+  seatSelectionSnapshot: String
+  supplierOrderRef: String
+  insertedAt: Time!
+  updatedAt: Time!
+  hotelOffer: HotelOffer
+  flightOffer: FlightOffer
+  vacationOffer: VacationOffer
+  trainOffer: TrainOffer
+  fulfillments: [TravelFulfillment!]
+}
+"""
+TravelOrderBookingMode is enum for the field booking_mode
+"""
+enum TravelOrderBookingMode @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/travelorder.BookingMode") {
+  standard
+  waitlist
+}
+"""
+TravelOrderChangeStatus is enum for the field change_status
+"""
+enum TravelOrderChangeStatus @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/travelorder.ChangeStatus") {
+  none
+  pending
+  changed
+  failed
+}
+"""
+TravelOrderProductType is enum for the field product_type
+"""
+enum TravelOrderProductType @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/travelorder.ProductType") {
+  hotel
+  flight
+  vacation
+  train
+}
+"""
+TravelOrderStatus is enum for the field status
+"""
+enum TravelOrderStatus @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/travelorder.Status") {
+  draft
+  quoted
+  submitted
+  booking_pending
+  booked
+  cancel_pending
+  cancelled
+  completed
+  failed
+}
+"""
+TravelOrderWaitlistStatus is enum for the field waitlist_status
+"""
+enum TravelOrderWaitlistStatus @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/travelorder.WaitlistStatus") {
+  none
+  pending
+  fulfilled
+  cancelled
+  failed
+}
+type VacationOffer implements Node {
+  id: ID!
+  tenantID: UUID!
+  hostShopID: UUID
+  supplierCode: String!
+  packageCode: String!
+  packageName: String!
+  packageType: VacationOfferPackageType
+  departureCityCode: String!
+  destinationCode: String!
+  startDate: Time!
+  endDate: Time!
+  listedPrice: Float!
+  settlementPrice: Float
+  currency: String
+  inventoryCount: Int
+  bookingRules: String
+  cancellationPolicy: String
+  saleStatus: VacationOfferSaleStatus
+  insertedAt: Time!
+  updatedAt: Time!
+  orders: [TravelOrder!]
+}
+"""
+VacationOfferPackageType is enum for the field package_type
+"""
+enum VacationOfferPackageType @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/vacationoffer.PackageType") {
+  group_tour
+  free_travel
+  ticket_hotel
+  custom
+}
+"""
+VacationOfferSaleStatus is enum for the field sale_status
+"""
+enum VacationOfferSaleStatus @goModel(model: "github.com/biantaishabi2/unibo-ex-poc/travel-go/ent/vacationoffer.SaleStatus") {
+  draft
+  active
+  inactive
+  expired
+}

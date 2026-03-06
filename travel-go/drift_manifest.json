@@ -1,0 +1,28 @@
+{
+  "generator": "unibo-go",
+  "files": {
+    "bdd/instruction_manifest.json": "9b01de3f4b127caefb0137594c807b2d6e67d97918d85f24caa685aa950346cc",
+    "bdd/runtime/helpers.go": "9aca65d72585298cd37cdbc6a8e97e596a5f7e728de924791e8c79098f7e5e04",
+    "bdd/runtime/hooks.go": "6805c9d4e174070ab439f9890e7398368595382469c2b2d26304eb6bc2d49c64",
+    "bdd/runtime/runtime.go": "1754c52493808227267c0aa793fdd97c88062b82894baea35803fc3e298ce550",
+    "bdd/runtime/seed.go": "d5b7364181bd5ba2f7962432281ea0281cd227b13c67b2a8c8667b075e3cedfc",
+    "features/flight_offer.feature": "74684c2b6eb78c2d3a6e271820227d35715ba3ded726fa413a0380d584e04e41",
+    "features/hotel_offer.feature": "423ac72a05f5de139eae1a1b805196a0bb538f461ca4a7dfd13502ac2cfb0903",
+    "features/train_offer.feature": "96b6b0d231354f9e657eba8bc193a891de9bfd27864375bd1364614e37bb8061",
+    "features/travel_fulfillment.feature": "e317bd99e8aa91e3aff5ce3e29b8bbabde4bb1aa3dfdcfac0834d0f38870f684",
+    "features/travel_order.feature": "7dfd16df06fd953d34666eea827c3fdcd893e58c685c6c6a9d68c5dc248dbd29",
+    "features/vacation_offer.feature": "353f99393f5105cbff90dc4af74fd245c25f0e4872a8a5e738325efa78297e47",
+    "go.mod": "c4c915f4ad5a9db94b1ae260579a653480066a82c5a59540b137d1ee00cdc749",
+    "main.go": "73fb0e79f0b7d1266ac654943f631cadadd2c5d2f92613bad4c85818ea778c95",
+    "runtime/config.go": "c4012b29c475460c2b29d7be37e0e6817545ab324b57eaea848551747ff4c2ae",
+    "steps/flight_offer_steps_test.go": "b84f83ad36949ea0992bccb43699552aa5ce60cfb21fc980b8bec45998364e0f",
+    "steps/hotel_offer_steps_test.go": "21f6a8cd552e6b1335a01c0a9056b0a3eb14f645144a7e610c28ea1cd73b3a43",
+    "steps/train_offer_steps_test.go": "ac3c9544cff64af2e1310db1a1c50f6bdf135c5fb0a5f8739fbfd548f32c5e3b",
+    "steps/travel_fulfillment_steps_test.go": "6ca49b9c4e1cab5864469333fef04fa3a4018f790e88d3635368307ddbb25879",
+    "steps/travel_order_steps_test.go": "c33f4c8f3af7d80a7333230ae99f7a6d94ee1aaf727f0c4df861fe691801345d",
+    "steps/vacation_offer_steps_test.go": "0befb8d04b43f9791e990c27bce48ee04489ba33c1c9bfe64238d9184986105e",
+    "studio/runtime_publish_boundary.compat.json": "9bc19fd78affa15210b98cf523c1b18e3f8856bc28afa41815e833d93f6c15e5",
+    "studio/runtime_publish_boundary.strict.json": "d73335ed3cf945623172dea45009dfa58b416f0ceac62030e3459efff07f9e58",
+    "testutil/factory.go": "0779927a6e94270153d203c5e88034f3b4582dee878d7cab17d3ca9f952bc74b"
+  }
+}

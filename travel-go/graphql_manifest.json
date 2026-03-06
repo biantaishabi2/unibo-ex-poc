@@ -1,0 +1,226 @@
+{
+  "entities": [
+    {
+      "name": "FlightOffer",
+      "queries": [
+        "flightOffer",
+        "flightOffers"
+      ],
+      "mutations": [
+        "createFlightOffer",
+        "updateFlightOffer",
+        "deleteFlightOffer"
+      ],
+      "fields": [
+        "id",
+        "tenant_id",
+        "host_shop_id",
+        "supplier_code",
+        "itinerary_code",
+        "flight_no",
+        "departure_airport_code",
+        "arrival_airport_code",
+        "departure_at",
+        "arrival_at",
+        "cabin_class",
+        "fare_family",
+        "listed_price",
+        "settlement_price",
+        "currency",
+        "seats_available",
+        "baggage_policy",
+        "refund_change_policy",
+        "sale_status",
+        "inserted_at",
+        "updated_at"
+      ],
+      "directives": {}
+    },
+    {
+      "name": "HotelOffer",
+      "queries": [
+        "hotelOffer",
+        "hotelOffers"
+      ],
+      "mutations": [
+        "createHotelOffer",
+        "updateHotelOffer",
+        "deleteHotelOffer"
+      ],
+      "fields": [
+        "id",
+        "tenant_id",
+        "host_shop_id",
+        "supplier_code",
+        "hotel_code",
+        "hotel_name",
+        "city_code",
+        "room_type_code",
+        "rate_plan_code",
+        "checkin_date",
+        "checkout_date",
+        "listed_price",
+        "settlement_price",
+        "currency",
+        "inventory_count",
+        "cancellation_policy",
+        "guarantee_policy",
+        "sale_status",
+        "inserted_at",
+        "updated_at"
+      ],
+      "directives": {}
+    },
+    {
+      "name": "TrainOffer",
+      "queries": [
+        "trainOffer",
+        "trainOffers"
+      ],
+      "mutations": [
+        "createTrainOffer",
+        "updateTrainOffer",
+        "deleteTrainOffer"
+      ],
+      "fields": [
+        "id",
+        "tenant_id",
+        "host_shop_id",
+        "supplier_code",
+        "train_no",
+        "departure_station_code",
+        "departure_station_name",
+        "arrival_station_code",
+        "arrival_station_name",
+        "travel_date",
+        "departure_at",
+        "arrival_at",
+        "seat_class",
+        "seat_code",
+        "is_no_seat",
+        "inventory_status",
+        "waitlist_supported",
+        "listed_price",
+        "settlement_price",
+        "currency",
+        "booking_rules_snapshot",
+        "change_rules_snapshot",
+        "refund_rules_snapshot",
+        "sale_status",
+        "inserted_at",
+        "updated_at"
+      ],
+      "directives": {}
+    },
+    {
+      "name": "TravelFulfillment",
+      "queries": [
+        "travelFulfillment",
+        "travelFulfillments"
+      ],
+      "mutations": [
+        "createTravelFulfillment",
+        "updateTravelFulfillment",
+        "deleteTravelFulfillment"
+      ],
+      "fields": [
+        "id",
+        "tenant_id",
+        "travel_order_id",
+        "shipment_id",
+        "fulfillment_type",
+        "status",
+        "supplier_booking_ref",
+        "voucher_or_ticket_ref",
+        "ticket_refs",
+        "waitlist_result",
+        "change_result",
+        "boarding_status",
+        "confirmation_payload",
+        "failure_reason",
+        "used_at",
+        "inserted_at",
+        "updated_at"
+      ],
+      "directives": {}
+    },
+    {
+      "name": "TravelOrder",
+      "queries": [
+        "travelOrder",
+        "travelOrders"
+      ],
+      "mutations": [
+        "createTravelOrder",
+        "updateTravelOrder",
+        "deleteTravelOrder"
+      ],
+      "fields": [
+        "id",
+        "tenant_id",
+        "host_shop_id",
+        "hotel_offer_id",
+        "flight_offer_id",
+        "vacation_offer_id",
+        "train_offer_id",
+        "order_no",
+        "product_type",
+        "booking_mode",
+        "customer_id",
+        "payment_id",
+        "contact_name",
+        "contact_phone",
+        "traveler_count",
+        "total_amount",
+        "points_to_use",
+        "points_deduction_amount",
+        "currency",
+        "status",
+        "change_status",
+        "waitlist_status",
+        "original_order_ref",
+        "ticket_passenger_infos",
+        "seat_selection_snapshot",
+        "supplier_order_ref",
+        "inserted_at",
+        "updated_at"
+      ],
+      "directives": {}
+    },
+    {
+      "name": "VacationOffer",
+      "queries": [
+        "vacationOffer",
+        "vacationOffers"
+      ],
+      "mutations": [
+        "createVacationOffer",
+        "updateVacationOffer",
+        "deleteVacationOffer"
+      ],
+      "fields": [
+        "id",
+        "tenant_id",
+        "host_shop_id",
+        "supplier_code",
+        "package_code",
+        "package_name",
+        "package_type",
+        "departure_city_code",
+        "destination_code",
+        "start_date",
+        "end_date",
+        "listed_price",
+        "settlement_price",
+        "currency",
+        "inventory_count",
+        "booking_rules",
+        "cancellation_policy",
+        "sale_status",
+        "inserted_at",
+        "updated_at"
+      ],
+      "directives": {}
+    }
+  ]
+}

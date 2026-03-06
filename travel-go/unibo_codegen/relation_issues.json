@@ -1,0 +1,32 @@
+{
+  "total": 3,
+  "issues": [
+    {
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "relationship": "shipment",
+      "relation_type": "belongs_to",
+      "target": "Shipment",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前域定义（且未通过 target_domain 解析）: Shipment"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "relationship": "customer",
+      "relation_type": "belongs_to",
+      "target": "Customer",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前域定义（且未通过 target_domain 解析）: Customer"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "relationship": "payment",
+      "relation_type": "belongs_to",
+      "target": "Payment",
+      "reason_code": "missing_target_entity_belongs_to",
+      "reason": "belongs_to 目标实体不存在或未在当前域定义（且未通过 target_domain 解析）: Payment"
+    }
+  ]
+}

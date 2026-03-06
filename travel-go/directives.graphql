@@ -1,0 +1,5 @@
+scalar UUID
+
+directive @hasRole(roles: [String!]!) on FIELD_DEFINITION
+directive @abac(rule: String!) on FIELD_DEFINITION
+directive @sensitive on FIELD_DEFINITION
