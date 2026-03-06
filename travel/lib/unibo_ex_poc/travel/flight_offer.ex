@@ -1,4 +1,4 @@
-# Workflow: vacation_offer_lifecycle — 度假 offer 生命周期
+# Workflow: flight_offer_lifecycle — 机票 offer 生命周期
 # ```mermaid
 # stateDiagram-v2
 #   [*] --> create
@@ -13,20 +13,20 @@
 #   expire --> [*] : expired
 #   destroy --> [*]
 # ```
-defmodule UniboExPoc.Travel.Travel.VacationOffer do
+defmodule UniboExPoc.Travel.Travel.FlightOffer do
   use Ash.Resource,
-    otp_app: :unibo_ex_poc,
+    otp_app: :travel,
     domain: UniboExPoc.Travel.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboExPoc.Travel.Travel.VacationOffer.Notifier]
+    notifiers: [UniboExPoc.Travel.Travel.FlightOffer.Notifier]
 
   resource do
-    description "度假可售 offer，承载套餐、出发日期和预订规则快照"
+    description "机票可售 offer，承载航班、舱位、票规和库存快照"
   end
 
   postgres do
-    table "travel_vacation_offers"
+    table "travel_flight_offers"
     repo UniboExPoc.Repo
   end
 
@@ -36,20 +36,20 @@ defmodule UniboExPoc.Travel.Travel.VacationOffer do
   end
 
   graphql do
-    type :travel_vacation_offer
+    type :travel_flight_offer
 
     queries do
-      get :get_travel_vacation_offer, :read
-      list :list_travel_vacation_offers, :read
+      get :get_travel_flight_offer, :read
+      list :list_travel_flight_offers, :read
     end
 
     mutations do
-      create :create_travel_vacation_offer, :create
-      update :update_travel_vacation_offer, :update
-      update :activate_travel_vacation_offer, :activate
-      update :deactivate_travel_vacation_offer, :deactivate
-      update :expire_travel_vacation_offer, :expire
-      destroy :delete_travel_vacation_offer, :destroy
+      create :create_travel_flight_offer, :create
+      update :update_travel_flight_offer, :update
+      update :activate_travel_flight_offer, :activate
+      update :deactivate_travel_flight_offer, :deactivate
+      update :expire_travel_flight_offer, :expire
+      destroy :delete_travel_flight_offer, :destroy
     end
 
   end
@@ -69,41 +69,44 @@ defmodule UniboExPoc.Travel.Travel.VacationOffer do
       public? true
       description "供应商编码"
     end
-    attribute :package_code, :string do
+    attribute :itinerary_code, :string do
       allow_nil? false
       public? true
-      description "套餐编码"
+      description "行程编码"
     end
-    attribute :package_name, :string do
+    attribute :flight_no, :string do
       allow_nil? false
       public? true
-      description "套餐名称"
+      description "航班号"
     end
-    attribute :package_type, :atom do
-      constraints one_of: [:group_tour, :free_travel, :ticket_hotel, :custom]
-      default :group_tour
-      public? true
-      description "套餐类型"
-    end
-    attribute :departure_city_code, :string do
+    attribute :departure_airport_code, :string do
       allow_nil? false
       public? true
-      description "出发城市编码"
+      description "出发机场编码"
     end
-    attribute :destination_code, :string do
+    attribute :arrival_airport_code, :string do
       allow_nil? false
       public? true
-      description "目的地编码"
+      description "到达机场编码"
     end
-    attribute :start_date, :date do
+    attribute :departure_at, :utc_datetime do
       allow_nil? false
       public? true
-      description "出行开始日期"
+      description "起飞时间"
     end
-    attribute :end_date, :date do
+    attribute :arrival_at, :utc_datetime do
       allow_nil? false
       public? true
-      description "出行结束日期"
+      description "到达时间"
+    end
+    attribute :cabin_class, :string do
+      allow_nil? false
+      public? true
+      description "舱等"
+    end
+    attribute :fare_family, :string do
+      public? true
+      description "运价族"
     end
     attribute :listed_price, :decimal do
       allow_nil? false
@@ -118,18 +121,18 @@ defmodule UniboExPoc.Travel.Travel.VacationOffer do
       default "CNY"
       public? true
     end
-    attribute :inventory_count, :integer do
+    attribute :seats_available, :integer do
       default 0
       public? true
-      description "可售库存快照"
+      description "可售座位快照"
     end
-    attribute :booking_rules, :string do
+    attribute :baggage_policy, :string do
       public? true
-      description "预订规则快照"
+      description "行李规则快照"
     end
-    attribute :cancellation_policy, :string do
+    attribute :refund_change_policy, :string do
       public? true
-      description "取消规则快照"
+      description "退改规则快照"
     end
     attribute :sale_status, :atom do
       constraints one_of: [:draft, :active, :inactive, :expired]
@@ -144,7 +147,7 @@ defmodule UniboExPoc.Travel.Travel.VacationOffer do
   relationships do
     has_many :orders, UniboExPoc.Travel.Travel.TravelOrder do
       public? true
-      destination_attribute :vacation_offer_id
+      destination_attribute :flight_offer_id
     end
   end
 
@@ -152,13 +155,14 @@ defmodule UniboExPoc.Travel.Travel.VacationOffer do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:tenant_id, :host_shop_id, :supplier_code, :package_code, :package_name, :package_type, :departure_city_code, :destination_code, :start_date, :end_date, :listed_price, :settlement_price, :currency, :inventory_count, :booking_rules, :cancellation_policy, :sale_status]
+      accept [:tenant_id, :host_shop_id, :supplier_code, :itinerary_code, :flight_no, :departure_airport_code, :arrival_airport_code, :departure_at, :arrival_at, :cabin_class, :fare_family, :listed_price, :settlement_price, :currency, :seats_available, :baggage_policy, :refund_change_policy, :sale_status]
       validate present(:tenant_id)
       validate present(:supplier_code)
-      validate present(:package_code)
-      validate present(:package_name)
-      validate present(:departure_city_code)
-      validate present(:destination_code)
+      validate present(:itinerary_code)
+      validate present(:flight_no)
+      validate present(:departure_airport_code)
+      validate present(:arrival_airport_code)
+      validate present(:cabin_class)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -171,7 +175,7 @@ defmodule UniboExPoc.Travel.Travel.VacationOffer do
     end
     update :update do
       primary? true
-      accept [:package_name, :package_type, :listed_price, :settlement_price, :currency, :inventory_count, :booking_rules, :cancellation_policy]
+      accept [:listed_price, :settlement_price, :currency, :seats_available, :baggage_policy, :refund_change_policy, :fare_family]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -257,11 +261,11 @@ defmodule UniboExPoc.Travel.Travel.VacationOffer do
   validations do
     validate compare(:listed_price, greater_than_or_equal_to: 0)
     validate compare(:settlement_price, greater_than_or_equal_to: 0)
-    validate compare(:inventory_count, greater_than_or_equal_to: 0)
+    validate compare(:seats_available, greater_than_or_equal_to: 0)
   end
 
   identities do
-    identity :unique_vacation_offer_snapshot, [:tenant_id, :supplier_code, :package_code, :start_date, :end_date]
+    identity :unique_flight_offer_snapshot, [:tenant_id, :supplier_code, :itinerary_code, :flight_no, :departure_at, :cabin_class]
   end
 
 

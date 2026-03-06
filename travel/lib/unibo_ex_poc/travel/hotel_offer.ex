@@ -15,7 +15,7 @@
 # ```
 defmodule UniboExPoc.Travel.Travel.HotelOffer do
   use Ash.Resource,
-    otp_app: :unibo_ex_poc,
+    otp_app: :travel,
     domain: UniboExPoc.Travel.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],

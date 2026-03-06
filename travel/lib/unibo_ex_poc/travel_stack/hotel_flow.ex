@@ -67,7 +67,7 @@ defmodule UniboExPoc.TravelStack.HotelFlow do
   end
 
   defp bridge_spec(input, opts) do
-    base_bridge = Application.get_env(:unibo_ex_poc, :travel_host_bridge, DefaultBridge)
+    base_bridge = Application.get_env(:travel, :travel_host_bridge, DefaultBridge)
 
     {bridge, configured_bridge_opts} =
       case Keyword.get(opts, :bridge, base_bridge) do

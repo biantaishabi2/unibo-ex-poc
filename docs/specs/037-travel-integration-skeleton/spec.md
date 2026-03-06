@@ -1,7 +1,7 @@
 # Specification: Travel Independent Stack In POC
 
 ## Overview
-在 POC 根应用中独立落一套 `travel` stack，不依赖 `v4`，直接把主仓 canonical travel model 编译接入，并在外层补 `host contract / host config / supplier adapter`。
+在 POC 仓库中独立落一套顶层 `travel/` 工程，不依赖 `v4`，直接把主仓 canonical travel model 编译接入，并在外层补 `host contract / host config / supplier adapter`。
 
 ## Workflow Type
 feature
@@ -10,8 +10,8 @@ feature
 
 **In scope**：
 - 明确 `v4` 不参与本次 travel POC
-- 把主仓 `models/travel/travel.ubo.yaml` 编译到 POC 根应用
-- 在 POC 根应用中建立独立 `travel` 目录与模块边界
+- 把主仓 `models/travel/travel.ubo.yaml` 编译到 `travel/` 工程
+- 在 POC 中建立顶层独立 `travel/` 目录与模块边界
 - 定义宿主 `shop -> travel sidecar` 的 `CallerContext` 能力契约
 - 定义 `travel -> host` 的 `EligibilityOrQuote` / `PaymentExecution` 能力契约
 - 定义 `travel -> supplier` 的 hotel adapter skeleton
@@ -25,7 +25,7 @@ feature
 - canonical domain model 再次改形
 
 ## Success Criteria
-- POC 根应用中存在独立 `travel` stack，且不依赖 `v4`
+- POC 顶层存在独立 `travel/` 工程，且不依赖 `v4`
 - 主仓 canonical travel model 已编译进入 POC
 - `CallerContext` 结构固定，可被 travel sidecar 消费
 - `EligibilityOrQuote` 能表达 travel 开关、积分支付、混合支付、可用性结果
@@ -42,10 +42,10 @@ feature
 
 ## Files to Modify
 - `docs/specs/037-travel-integration-skeleton/spec.md`
-- `lib/unibo_ex_poc/travel/**`
-- `lib/unibo_ex_poc/travel_host/**`
-- `lib/unibo_ex_poc/travel_supplier/**`
-- `test/unibo_ex_poc/travel/**`
+- `travel/lib/unibo_ex_poc/travel/**`
+- `travel/lib/unibo_ex_poc/travel_host/**`
+- `travel/lib/unibo_ex_poc/travel_supplier/**`
+- `travel/test/unibo_ex_poc/travel/**`
 
 ## Files to Reference
 - `../unibo/models/travel/travel.ubo.yaml`
@@ -65,7 +65,7 @@ cd ../unibo_ex_poc-feat-37 && PORT=4005 mix phx.server
 ```
 
 ## QA Acceptance Criteria
-- TC-TRAVEL-STACK-01: 主仓 travel model 能编译进 POC 根应用
+- TC-TRAVEL-STACK-01: 主仓 travel model 能编译进顶层 `travel/` 工程
 - TC-TRAVEL-HOST-01: 宿主上下文能归一化为 `CallerContext`
 - TC-TRAVEL-HOST-02: 宿主配置变更会影响 `EligibilityOrQuote`
 - TC-TRAVEL-SUPPLIER-01: hotel canonical payload 能映射到 supplier adapter request
