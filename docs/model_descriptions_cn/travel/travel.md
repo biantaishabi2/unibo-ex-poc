@@ -556,7 +556,7 @@
 - 变更状态：枚举，默认值 无，可选值：无 / 待处理 / 变更 / 失败
 - waitlist_status：枚举，默认值 无，可选值：无 / 待处理 / fulfilled / 已取消 / 失败
 - 原始订单参考：文本，说明 改签链路引用的原订单号或原票号
-- 乘车人信息快照（ticket_passenger_infos）：映射
+- 出票乘客信息：映射，说明 乘车人信息快照
 - 选座与席别偏好快照（seat_selection_snapshot）：映射
 - 供应商订单参考：文本，说明 供应商订单号
 - 创建时间：日期时间（自动生成）
@@ -577,9 +577,9 @@
 ### Conduct（行为声明）
 
 #### 操作
-- 创建订单（类型：创建），可写字段：租户编号、host_shop_id、hotel_offer_id、flight_offer_id、假期录用通知编号、train_offer_id、订单无、产品类型、客户编号、联系人、联系电话、traveler_count、合计金额、积分使用、积分扣款金额、币种、ticket_passenger_infos、seat_selection_snapshot
+- 创建订单（类型：创建），可写字段：租户编号、host_shop_id、hotel_offer_id、flight_offer_id、假期录用通知编号、train_offer_id、订单无、产品类型、客户编号、联系人、联系电话、traveler_count、合计金额、积分使用、积分扣款金额、币种、出票乘客信息、seat_selection_snapshot
 - 查询
-- 更新，可写字段：联系人、联系电话、traveler_count、ticket_passenger_infos、seat_selection_snapshot
+- 更新，可写字段：联系人、联系电话、traveler_count、出票乘客信息、seat_selection_snapshot
 - 确认报价（类型：更新）
 - 提交订单（类型：更新）
 - submit_waitlist（类型：更新）
@@ -650,8 +650,10 @@
 - 流程：travel_order_lifecycle：创建订单 -> 更新 -> 确认报价 -> 提交订单 -> submit_waitlist -> mark_payment_succeeded -> mark_booked -> fulfill_waitlist -> cancel_waitlist -> 请求取消 -> 审批取消 -> 请求变更 -> 确认变更 -> 标记已完成 -> 标记订单失败 -> 删除（统一酒旅订单生命周期，覆盖 train 候补与改签分支；退款由 Payment 域处理）
 
 #### 集成契约
-- 付款获取，绑定动作：提交订单 / submit_waitlist；模式：同步；请求字段：订单无、应付金额、币种、客户编号、booking_mode；响应字段：付款编号、付款状态、captured_amount、供应商追踪编号；错误码：付款已拒绝（不可重试）、付款超时（可重试）、付款风险已驳回（不可重试）；说明：提交订单后触发支付捕获契约，失败时按声明错误码驱动补偿路径
-- supplier_booking_submit，绑定动作：mark_payment_succeeded；模式：async；请求字段：订单无、产品类型、traveler_count、供应商订单参考；错误码：供应商超时（可重试）、supplier_inventory_unavailable（不可重试）；异步配置：队列 travel_supplier_booking，超时 120000ms；说明：支付成功后异步提交供应商预订，失败时回滚 booking_pending 并转失败处理
+- 宿主商城上下文解析，绑定动作：创建订单；模式：同步；请求字段：租户编号、host_shop_id、客户编号；响应字段：context_verified、current_shop_id、成员编号、enterprise_id；错误码：宿主上下文不存在（不可重试）、宿主上下文超时（可重试）；说明：创建订单时调用宿主 shop caller context 契约，校验并回填当前商城/会员上下文
+- 宿主商城可支付性预检，绑定动作：确认报价；模式：同步；请求字段：租户编号、host_shop_id、客户编号、产品类型、合计金额、积分使用、币种；响应字段：travel_enabled、积分付款允许、mixed_payment_allowed、可用积分、recommended_payment_mode、报价追踪编号；错误码：宿主预检驳回（不可重试）、宿主预检超时（可重试）；说明：报价确认阶段调用宿主 shop eligibility/quote 契约，返回可支付性与积分策略语义
+- 宿主支付执行，绑定动作：提交订单 / submit_waitlist；模式：同步；请求字段：订单无、应付金额、币种、客户编号、host_shop_id、booking_mode；响应字段：付款编号、付款状态、captured_amount、供应商追踪编号；错误码：付款已拒绝（不可重试）、付款超时（可重试）、付款风险已驳回（不可重试）；说明：提交订单后调用宿主 shop payment execution 契约，失败时按声明错误码驱动补偿路径
+- 供应商预订提交，绑定动作：mark_payment_succeeded；模式：async；请求字段：订单无、产品类型、traveler_count、供应商订单参考；错误码：供应商超时（可重试）、supplier_inventory_unavailable（不可重试）；异步配置：队列 travel_supplier_booking，超时 120000ms；说明：支付成功后异步提交供应商预订，失败时回滚 booking_pending 并转失败处理
 
 ## 实体：TravelFulfillment（聚合根）
 
@@ -667,8 +669,8 @@
 - 履行类型：枚举，默认值 reserve_room，可选值：reserve_room / 问题工单 / 问题凭单 / issue_train_ticket
 - 状态：枚举，默认值 待处理，可选值：待处理 / 已确认 / 签发 / 包含使用 / 已完成 / 已取消 / 失败
 - 供应商预订号（supplier_booking_ref）：文本
-- 凭单或工单参考：文本，说明 凭证号或票号
-- 多张票号、座席和乘客映射结果（ticket_refs）：映射
+- 凭证或票据参考：文本，说明 凭证号或票号
+- 票据引用：映射，说明 多张票号、座席和乘客映射结果
 - train 候补兑现结果（waitlist_result）：枚举，默认值 无，可选值：无 / 待处理 / fulfilled / 已取消 / 失败
 - 变更结果：枚举，默认值 无，可选值：无 / 待处理 / 变更 / 失败，说明 train 改签结果
 - train 乘车状态（boarding_status）：枚举，默认值 非开始，可选值：非开始 / boarded / 已完成
@@ -687,9 +689,9 @@
 #### 操作
 - 创建履行（类型：创建），可写字段：租户编号、travel_order_id、履行类型、supplier_booking_ref
 - 查询
-- 更新，可写字段：supplier_booking_ref、凭单或工单参考、ticket_refs、confirmation_payload、失败原因
+- 更新，可写字段：supplier_booking_ref、凭证或票据参考、票据引用、confirmation_payload、失败原因
 - confirm_booking（类型：更新）
-- 问题凭单或工单（类型：更新）
+- 发券或出票（类型：更新）
 - 标记包含使用（类型：更新），可写字段：已用
 - 完成履行（类型：更新）
 - 取消履行（类型：更新）
@@ -700,31 +702,31 @@
 - 创建履行时，租户编号 不能为空
 - 创建履行时，travel_order_id 不能为空
 - confirm_booking／失败履行／取消履行时，只有 pending 履约可以确认、失败或取消
-- 问题凭单或工单时，只有 confirmed 履约可以 issue_voucher_or_ticket
+- 发券或出票时，只有 confirmed 履约可以 issue_voucher_or_ticket
 - 标记包含使用时，只有 issued 履约可以 mark_in_use
 - 完成履行时，只有 issued 或 in_use 履约可以 complete_fulfillment
 
 #### 变更
 - 在 confirm_booking 时，将 状态 设为 已确认
-- 在 问题凭单或工单 时，将 状态 设为 签发
+- 在 发券或出票 时，将 状态 设为 签发
 - 在 标记包含使用 时，将 状态 设为 包含使用
 - 在 完成履行 时，将 状态 设为 已完成
 - 在 取消履行 时，将 状态 设为 已取消
 - 在 失败履行 时，将 状态 设为 失败
-- 在 创建履行 / 更新 / confirm_booking / 问题凭单或工单 / 标记包含使用 / 完成履行 / 取消履行 / 失败履行 / 删除 时，将 编号 设为 编号
+- 在 创建履行 / 更新 / confirm_booking / 发券或出票 / 标记包含使用 / 完成履行 / 取消履行 / 失败履行 / 删除 时，将 编号 设为 编号
 
 #### 事件
 - 事件：confirm_booking -> travel.履行.已确认
-- 事件：问题凭单或工单 -> travel.履行.签发
+- 事件：发券或出票 -> travel.履行.签发
 - 事件：完成履行 -> travel.履行.已完成
 - 事件：取消履行 -> travel.履行.已取消
 - 事件：失败履行 -> travel.履行.失败
 
 #### 工作流
-- 流程：travel_fulfillment_lifecycle：创建履行 -> 更新 -> confirm_booking -> 问题凭单或工单 -> 标记包含使用 -> 完成履行 -> 取消履行 -> 失败履行 -> 删除（统一酒旅履约生命周期）
+- 流程：travel_fulfillment_lifecycle：创建履行 -> 更新 -> confirm_booking -> 发券或出票 -> 标记包含使用 -> 完成履行 -> 取消履行 -> 失败履行 -> 删除（统一酒旅履约生命周期）
 
 #### 集成契约
-- supplier_confirm_booking，绑定动作：confirm_booking；模式：同步；请求字段：travel_order_id、履行类型、supplier_booking_ref；响应字段：确认状态、supplier_booking_ref、confirmation_payload；错误码：supplier_booking_rejected（不可重试）、供应商超时（可重试）；说明：预订确认同步契约，失败时需保留 pending 并可重试或转 fail_fulfillment
-- 供应商问题文档，绑定动作：问题凭单或工单；模式：同步；请求字段：travel_order_id、履行类型、ticket_passenger_infos；响应字段：问题状态、凭单或工单参考、ticket_refs；错误码：问题失败（不可重试）、问题超时（可重试）；说明：发券出票同步契约，失败时走 fail_fulfillment 并记录 failure_reason
-- supplier_cancel_booking，绑定动作：取消履行；模式：async；请求字段：travel_order_id、supplier_booking_ref；错误码：取消超时（可重试）、取消已驳回（不可重试）；异步配置：队列 travel_supplier_cancel，超时 60000ms；说明：取消履约异步契约，失败时通过补偿任务做二次撤销
+- 供应商预订确认，绑定动作：confirm_booking；模式：同步；请求字段：travel_order_id、履行类型、supplier_booking_ref；响应字段：确认状态、supplier_booking_ref、confirmation_payload；错误码：supplier_booking_rejected（不可重试）、供应商超时（可重试）；说明：预订确认同步契约，失败时需保留 pending 并可重试或转 fail_fulfillment
+- 供应商发券出票，绑定动作：发券或出票；模式：同步；请求字段：travel_order_id、履行类型、出票乘客信息；响应字段：发券出票状态、凭证或票据参考、票据引用；错误码：发券出票失败（不可重试）、发券出票超时（可重试）；说明：发券出票同步契约，失败时走 fail_fulfillment 并记录 failure_reason
+- 供应商取消预订，绑定动作：取消履行；模式：async；请求字段：travel_order_id、supplier_booking_ref；错误码：取消超时（可重试）、取消已驳回（不可重试）；异步配置：队列 travel_supplier_cancel，超时 60000ms；说明：取消履约异步契约，失败时通过补偿任务做二次撤销
 
