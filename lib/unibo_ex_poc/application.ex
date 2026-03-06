@@ -12,6 +12,9 @@ defmodule UniboExPoc.Application do
       UniboExPoc.Repo,
       {DNSCluster, query: Application.get_env(:unibo_ex_poc, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: UniboExPoc.PubSub},
+      Supervisor.child_spec({Phoenix.PubSub, name: UniboExPoc.Travel.PubSub},
+        id: UniboExPoc.Travel.PubSub
+      ),
       # Start a worker by calling: UniboExPoc.Worker.start_link(arg)
       # {UniboExPoc.Worker, arg},
       # Start to serve requests, typically the last entry
