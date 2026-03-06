@@ -1,4 +1,4 @@
-# Workflow: flight_offer_lifecycle — 机票 offer 生命周期
+# Workflow: train_offer_lifecycle — 火车票 offer 生命周期
 # ```mermaid
 # stateDiagram-v2
 #   [*] --> create
@@ -13,20 +13,20 @@
 #   expire --> [*] : expired
 #   destroy --> [*]
 # ```
-defmodule UniboExPoc.Travel.FlightOffer do
+defmodule UniboExPoc.Travel.TrainOffer do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboExPoc.Travel.FlightOffer.Notifier]
+    notifiers: [UniboExPoc.Travel.TrainOffer.Notifier]
 
   resource do
-    description "机票可售 offer，承载航班、舱位、票规和库存快照"
+    description "火车票可售 offer，承载车次、席别、候补和退改规则快照"
   end
 
   postgres do
-    table "travel_flight_offers"
+    table "travel_train_offers"
     repo UniboExPoc.Repo
   end
 
@@ -36,20 +36,20 @@ defmodule UniboExPoc.Travel.FlightOffer do
   end
 
   graphql do
-    type :travel_flight_offer
+    type :travel_train_offer
 
     queries do
-      get :get_travel_flight_offer, :read
-      list :list_travel_flight_offers, :read
+      get :get_travel_train_offer, :read
+      list :list_travel_train_offers, :read
     end
 
     mutations do
-      create :create_travel_flight_offer, :create
-      update :update_travel_flight_offer, :update
-      update :activate_travel_flight_offer, :activate
-      update :deactivate_travel_flight_offer, :deactivate
-      update :expire_travel_flight_offer, :expire
-      destroy :delete_travel_flight_offer, :destroy
+      create :create_travel_train_offer, :create
+      update :update_travel_train_offer, :update
+      update :activate_travel_train_offer, :activate
+      update :deactivate_travel_train_offer, :deactivate
+      update :expire_travel_train_offer, :expire
+      destroy :delete_travel_train_offer, :destroy
     end
 
   end
@@ -69,44 +69,71 @@ defmodule UniboExPoc.Travel.FlightOffer do
       public? true
       description "供应商编码"
     end
-    attribute :itinerary_code, :string do
+    attribute :train_no, :string do
       allow_nil? false
       public? true
-      description "行程编码"
+      description "车次号"
     end
-    attribute :flight_no, :string do
+    attribute :departure_station_code, :string do
       allow_nil? false
       public? true
-      description "航班号"
+      description "出发站编码"
     end
-    attribute :departure_airport_code, :string do
+    attribute :departure_station_name, :string do
       allow_nil? false
       public? true
-      description "出发机场编码"
+      description "出发站名称"
     end
-    attribute :arrival_airport_code, :string do
+    attribute :arrival_station_code, :string do
       allow_nil? false
       public? true
-      description "到达机场编码"
+      description "到达站编码"
+    end
+    attribute :arrival_station_name, :string do
+      allow_nil? false
+      public? true
+      description "到达站名称"
+    end
+    attribute :travel_date, :date do
+      allow_nil? false
+      public? true
+      description "乘车日期"
     end
     attribute :departure_at, :utc_datetime do
       allow_nil? false
       public? true
-      description "起飞时间"
+      description "发车时间"
     end
     attribute :arrival_at, :utc_datetime do
       allow_nil? false
       public? true
       description "到达时间"
     end
-    attribute :cabin_class, :string do
+    attribute :seat_class, :string do
       allow_nil? false
       public? true
-      description "舱等"
+      description "席别名称"
     end
-    attribute :fare_family, :string do
+    attribute :seat_code, :string do
+      allow_nil? false
       public? true
-      description "运价族"
+      description "席别编码"
+    end
+    attribute :is_no_seat, :boolean do
+      default false
+      public? true
+      description "是否无座票"
+    end
+    attribute :inventory_status, :atom do
+      constraints one_of: [:available, :waitlist_only, :sold_out, :unavailable]
+      default :unavailable
+      public? true
+      description "余票或候补可用状态"
+    end
+    attribute :waitlist_supported, :boolean do
+      default false
+      public? true
+      description "是否支持候补"
     end
     attribute :listed_price, :decimal do
       allow_nil? false
@@ -121,23 +148,23 @@ defmodule UniboExPoc.Travel.FlightOffer do
       default "CNY"
       public? true
     end
-    attribute :seats_available, :integer do
-      default 0
+    attribute :booking_rules_snapshot, :string do
       public? true
-      description "可售座位快照"
+      description "预订规则快照"
     end
-    attribute :baggage_policy, :string do
+    attribute :change_rules_snapshot, :string do
       public? true
-      description "行李规则快照"
+      description "改签规则快照"
     end
-    attribute :refund_change_policy, :string do
+    attribute :refund_rules_snapshot, :string do
       public? true
-      description "退改规则快照"
+      description "退票规则快照"
     end
     attribute :sale_status, :atom do
       constraints one_of: [:draft, :active, :inactive, :expired]
       default :draft
       public? true
+      description "可售状态"
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
@@ -145,21 +172,15 @@ defmodule UniboExPoc.Travel.FlightOffer do
   end
 
   relationships do
-    belongs_to :departure_airport_ref, UniboExPoc.Ecommerce.TravelAirport do
+    belongs_to :departure_station_ref, UniboExPoc.Ecommerce.TravelStation do
       public? false
     end
-    belongs_to :arrival_airport_ref, UniboExPoc.Ecommerce.TravelAirport do
-      public? false
-    end
-    belongs_to :airline_ref, UniboExPoc.Ecommerce.TravelAirline do
-      public? false
-    end
-    belongs_to :cabin_class_ref, UniboExPoc.Ecommerce.TravelCabinClass do
+    belongs_to :arrival_station_ref, UniboExPoc.Ecommerce.TravelStation do
       public? false
     end
     has_many :orders, UniboExPoc.Travel.TravelOrder do
       public? true
-      destination_attribute :flight_offer_id
+      destination_attribute :train_offer_id
     end
   end
 
@@ -167,14 +188,14 @@ defmodule UniboExPoc.Travel.FlightOffer do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:tenant_id, :host_shop_id, :supplier_code, :itinerary_code, :flight_no, :departure_airport_code, :arrival_airport_code, :departure_at, :arrival_at, :cabin_class, :fare_family, :listed_price, :settlement_price, :currency, :seats_available, :baggage_policy, :refund_change_policy, :sale_status]
+      accept [:tenant_id, :host_shop_id, :supplier_code, :train_no, :departure_station_code, :departure_station_name, :arrival_station_code, :arrival_station_name, :travel_date, :departure_at, :arrival_at, :seat_class, :seat_code, :is_no_seat, :inventory_status, :waitlist_supported, :listed_price, :settlement_price, :currency, :booking_rules_snapshot, :change_rules_snapshot, :refund_rules_snapshot, :sale_status]
       validate present(:tenant_id)
       validate present(:supplier_code)
-      validate present(:itinerary_code)
-      validate present(:flight_no)
-      validate present(:departure_airport_code)
-      validate present(:arrival_airport_code)
-      validate present(:cabin_class)
+      validate present(:train_no)
+      validate present(:departure_station_code)
+      validate present(:arrival_station_code)
+      validate present(:seat_class)
+      validate present(:seat_code)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -187,7 +208,7 @@ defmodule UniboExPoc.Travel.FlightOffer do
     end
     update :update do
       primary? true
-      accept [:listed_price, :settlement_price, :currency, :seats_available, :baggage_policy, :refund_change_policy, :fare_family]
+      accept [:departure_station_name, :arrival_station_name, :departure_at, :arrival_at, :seat_class, :is_no_seat, :inventory_status, :waitlist_supported, :listed_price, :settlement_price, :currency, :booking_rules_snapshot, :change_rules_snapshot, :refund_rules_snapshot]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -273,11 +294,10 @@ defmodule UniboExPoc.Travel.FlightOffer do
   validations do
     validate compare(:listed_price, greater_than_or_equal_to: 0)
     validate compare(:settlement_price, greater_than_or_equal_to: 0)
-    validate compare(:seats_available, greater_than_or_equal_to: 0)
   end
 
   identities do
-    identity :unique_flight_offer_snapshot, [:tenant_id, :supplier_code, :itinerary_code, :flight_no, :departure_at, :cabin_class]
+    identity :unique_train_offer_snapshot, [:tenant_id, :supplier_code, :train_no, :departure_station_code, :arrival_station_code, :travel_date, :seat_code, :is_no_seat]
   end
 
   paper_trail do

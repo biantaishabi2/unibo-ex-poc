@@ -13,13 +13,13 @@
 #   expire --> [*] : expired
 #   destroy --> [*]
 # ```
-defmodule UniboExPoc.Travel.Travel.VacationOffer do
+defmodule UniboExPoc.Travel.VacationOffer do
   use Ash.Resource,
-    otp_app: :travel,
-    domain: UniboExPoc.Travel.Travel,
+    otp_app: :unibo_ex_poc,
+    domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
-    notifiers: [UniboExPoc.Travel.Travel.VacationOffer.Notifier]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
+    notifiers: [UniboExPoc.Travel.VacationOffer.Notifier]
 
   resource do
     description "度假可售 offer，承载套餐、出发日期和预订规则快照"
@@ -142,7 +142,13 @@ defmodule UniboExPoc.Travel.Travel.VacationOffer do
   end
 
   relationships do
-    has_many :orders, UniboExPoc.Travel.Travel.TravelOrder do
+    belongs_to :departure_city_ref, UniboExPoc.Ecommerce.TravelCity do
+      public? false
+    end
+    belongs_to :destination_ref, UniboExPoc.Ecommerce.TravelCity do
+      public? false
+    end
+    has_many :orders, UniboExPoc.Travel.TravelOrder do
       public? true
       destination_attribute :vacation_offer_id
     end
@@ -264,5 +270,14 @@ defmodule UniboExPoc.Travel.Travel.VacationOffer do
     identity :unique_vacation_offer_snapshot, [:tenant_id, :supplier_code, :package_code, :start_date, :end_date]
   end
 
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
+  end
+
+  archive do
+    archive_related [:orders]
+  end
 
 end

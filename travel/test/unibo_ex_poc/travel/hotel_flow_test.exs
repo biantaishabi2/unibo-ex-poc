@@ -3,8 +3,8 @@ defmodule UniboExPoc.Travel.HotelFlowTest do
 
   alias UniboExPoc.TestSupport.FakeShopTransport
   alias UniboExPoc.TravelStack.HotelFlow
-  alias UniboExPoc.Travel.Travel.TravelFulfillment
-  alias UniboExPoc.Travel.Travel.TravelOrder
+  alias UniboExPoc.Travel.TravelFulfillment
+  alias UniboExPoc.Travel.TravelOrder
   alias UniboExPoc.TravelHost.ShopBridgeClient
 
   test "HotelFlow 仅作为测试辅助时，hotel 闭环可通过 DefaultBridge 跑通" do

@@ -6,8 +6,8 @@ defmodule UniboExPoc.TravelStack.HotelFlow do
   travel 主路径以 compile-project 产出的 Ash + GraphQL schema 为准。
   """
 
-  alias UniboExPoc.Travel.Travel.TravelFulfillment
-  alias UniboExPoc.Travel.Travel.TravelOrder
+  alias UniboExPoc.Travel.TravelFulfillment
+  alias UniboExPoc.Travel.TravelOrder
   alias UniboExPoc.TravelHost.DefaultBridge
   alias UniboExPoc.TravelSupplier.HotelBookingRequest
   alias UniboExPoc.TravelSupplier.HotelMockAdapter

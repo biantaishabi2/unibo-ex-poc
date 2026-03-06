@@ -1,10 +1,10 @@
-defmodule UniboExPoc.Travel.Travel.Workflows.TravelFulfillment.TravelFulfillmentLifecycleWorkflow do
+defmodule UniboExPoc.Travel.Workflows.TravelFulfillment.TravelFulfillmentLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboExPoc.Travel.Travel.TravelFulfillment
+  alias UniboExPoc.Travel.TravelFulfillment
 
   def steps do
     [:create_fulfillment, :update, :confirm_booking, :issue_voucher_or_ticket, :mark_in_use, :complete_fulfillment, :cancel_fulfillment, :fail_fulfillment, :destroy]

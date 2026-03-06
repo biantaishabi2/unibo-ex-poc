@@ -1,0 +1,111 @@
+# 从 YAML 模型自动生成 — 验证消息翻译模板
+# UniBO Compiler — Gettext Errors POT
+
+#. domain: Travel, entity: HotelOffer, validation: compare
+msgid "listed_price 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, validation: compare
+msgid "settlement_price 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, validation: compare
+msgid "inventory_count 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, validation: one_of, on: activate
+msgid "只有草稿或停用中的 offer 可以 activate"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, validation: one_of, on: deactivate, expire
+msgid "只有 active 状态的 offer 可以 deactivate 或 expire"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer, validation: compare
+msgid "seats_available 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: exactly_one_of, on: create_order
+msgid "hotel_offer_id、flight_offer_id、vacation_offer_id、train_offer_id 必须四选一"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: conditional_present, on: create_order
+msgid "hotel 订单必须绑定 hotel_offer_id"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: conditional_present, on: create_order
+msgid "flight 订单必须绑定 flight_offer_id"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: conditional_present, on: create_order
+msgid "vacation 订单必须绑定 vacation_offer_id"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: conditional_present, on: create_order
+msgid "train 订单必须绑定 train_offer_id"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: compare
+msgid "traveler_count 至少为 1"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: compare
+msgid "total_amount 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: compare
+msgid "points_to_use 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: compare
+msgid "points_deduction_amount 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: confirm_quote
+msgid "只有 draft 订单可以 confirm_quote"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: submit_order, submit_waitlist
+msgid "只有 quoted 订单可以提交普通购票或候补"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: mark_payment_succeeded, mark_order_failed
+msgid "只有 submitted 订单可以进入支付成功或失败结果"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: mark_booked, fulfill_waitlist, cancel_waitlist
+msgid "只有 booking_pending 订单可以完成出票、兑现候补或取消候补"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: mark_completed, request_cancel, request_change
+msgid "只有 booked 订单可以完成、取消或改签"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: approve_cancel
+msgid "只有 cancel_pending 订单可以 approve_cancel"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: fulfill_waitlist, cancel_waitlist
+msgid "只有 waitlist_pending 的订单可以兑现或取消候补"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: confirm_change
+msgid "只有 change_pending 的订单可以 confirm_change"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, validation: one_of, on: confirm_booking, fail_fulfillment, cancel_fulfillment
+msgid "只有 pending 履约可以确认、失败或取消"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, validation: one_of, on: issue_voucher_or_ticket
+msgid "只有 confirmed 履约可以 issue_voucher_or_ticket"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, validation: one_of, on: mark_in_use
+msgid "只有 issued 履约可以 mark_in_use"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, validation: one_of, on: complete_fulfillment
+msgid "只有 issued 或 in_use 履约可以 complete_fulfillment"
+msgstr ""
+

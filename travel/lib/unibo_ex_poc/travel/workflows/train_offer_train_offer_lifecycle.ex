@@ -1,17 +1,17 @@
-defmodule UniboExPoc.Travel.Workflows.FlightOffer.FlightOfferLifecycleWorkflow do
+defmodule UniboExPoc.Travel.Workflows.TrainOffer.TrainOfferLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboExPoc.Travel.FlightOffer
+  alias UniboExPoc.Travel.TrainOffer
 
   def steps do
     [:create, :update, :activate, :deactivate, :expire, :destroy]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["update","activate","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["activate","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":["deactivate","expire"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"activate"},{"idempotency_key":null,"next":["activate"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"deactivate"},{"idempotency_key":null,"next":["destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"expire"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy"}],"workflow":"flight_offer_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["update","activate","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["activate","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":["deactivate","expire"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"activate"},{"idempotency_key":null,"next":["activate"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"deactivate"},{"idempotency_key":null,"next":["destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"expire"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy"}],"workflow":"train_offer_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -99,7 +99,7 @@ defmodule UniboExPoc.Travel.Workflows.FlightOffer.FlightOfferLifecycleWorkflow d
 
     case step do
       :create ->
-        Ash.create(Ash.Changeset.for_create(FlightOffer, :create, params), ash_opts)
+        Ash.create(Ash.Changeset.for_create(TrainOffer, :create, params), ash_opts)
       :update ->
         Ash.update(Ash.Changeset.for_update(record, :update, params), ash_opts)
       :activate ->

@@ -1,10 +1,10 @@
-defmodule UniboExPoc.Travel.Travel.Workflows.HotelOffer.HotelOfferLifecycleWorkflow do
+defmodule UniboExPoc.Travel.Workflows.HotelOffer.HotelOfferLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboExPoc.Travel.Travel.HotelOffer
+  alias UniboExPoc.Travel.HotelOffer
 
   def steps do
     [:create, :update, :activate, :deactivate, :expire, :destroy]
