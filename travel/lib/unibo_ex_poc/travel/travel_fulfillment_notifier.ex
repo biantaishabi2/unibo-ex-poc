@@ -1,4 +1,4 @@
-defmodule UniboExPoc.Travel.Travel.TravelFulfillment.Notifier do
+defmodule UniboExPoc.Travel.TravelFulfillment.Notifier do
   use Ash.Notifier
 
   @impl true
@@ -13,7 +13,7 @@ defmodule UniboExPoc.Travel.Travel.TravelFulfillment.Notifier do
     end
 
     if topic do
-      Phoenix.PubSub.broadcast(UniboExPoc.Travel.PubSub, topic, {action_name, notification.data})
+      Phoenix.PubSub.broadcast(UniboExPoc.PubSub, topic, {action_name, notification.data})
     end
 
     :ok

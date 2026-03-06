@@ -20,16 +20,16 @@
 #   fail_fulfillment --> [*] : failed
 #   destroy --> [*]
 # ```
-defmodule UniboExPoc.Travel.Travel.TravelFulfillment do
+defmodule UniboExPoc.Travel.TravelFulfillment do
   use Ash.Resource,
-    otp_app: :travel,
-    domain: UniboExPoc.Travel.Travel,
+    otp_app: :unibo_ex_poc,
+    domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource],
-    notifiers: [UniboExPoc.Travel.Travel.TravelFulfillment.Notifier]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
+    notifiers: [UniboExPoc.Travel.TravelFulfillment.Notifier]
 
   resource do
-    description "统一酒旅履约聚合，承接预订确认、发券出票、使用和失败结果"
+    description "统一酒旅履约聚合，承接预订确认、发券出票、候补兑现、乘车使用和失败结果；可选关联 Delivery::Shipment"
   end
 
   postgres do
@@ -71,7 +71,7 @@ defmodule UniboExPoc.Travel.Travel.TravelFulfillment do
       public? true
     end
     attribute :fulfillment_type, :atom do
-      constraints one_of: [:reserve_room, :issue_ticket, :issue_voucher]
+      constraints one_of: [:reserve_room, :issue_ticket, :issue_voucher, :issue_train_ticket]
       default :reserve_room
       public? true
     end
@@ -87,6 +87,28 @@ defmodule UniboExPoc.Travel.Travel.TravelFulfillment do
     attribute :voucher_or_ticket_ref, :string do
       public? true
       description "凭证号或票号"
+    end
+    attribute :ticket_refs, :map do
+      public? true
+      description "多张票号、座席和乘客映射结果"
+    end
+    attribute :waitlist_result, :atom do
+      constraints one_of: [:none, :pending, :fulfilled, :cancelled, :failed]
+      default :none
+      public? true
+      description "train 候补兑现结果"
+    end
+    attribute :change_result, :atom do
+      constraints one_of: [:none, :pending, :changed, :failed]
+      default :none
+      public? true
+      description "train 改签结果"
+    end
+    attribute :boarding_status, :atom do
+      constraints one_of: [:not_started, :boarded, :completed]
+      default :not_started
+      public? true
+      description "train 乘车状态"
     end
     attribute :confirmation_payload, :string do
       public? true
@@ -106,9 +128,12 @@ defmodule UniboExPoc.Travel.Travel.TravelFulfillment do
   end
 
   relationships do
-    belongs_to :order, UniboExPoc.Travel.Travel.TravelOrder do
+    belongs_to :order, UniboExPoc.Travel.TravelOrder do
       public? true
       source_attribute :travel_order_id
+    end
+    belongs_to :shipment, UniboExPoc.Delivery.Shipment do
+      public? false
     end
   end
 
@@ -131,7 +156,7 @@ defmodule UniboExPoc.Travel.Travel.TravelFulfillment do
     end
     update :update do
       primary? true
-      accept [:supplier_booking_ref, :voucher_or_ticket_ref, :confirmation_payload, :failure_reason]
+      accept [:supplier_booking_ref, :voucher_or_ticket_ref, :ticket_refs, :confirmation_payload, :failure_reason]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -281,6 +306,15 @@ defmodule UniboExPoc.Travel.Travel.TravelFulfillment do
       end
       require_atomic? false
     end
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
+  end
+
+  archive do
   end
 
 end

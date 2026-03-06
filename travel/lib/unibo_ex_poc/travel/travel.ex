@@ -1,4 +1,4 @@
-defmodule UniboExPoc.Travel.Travel do
+defmodule UniboExPoc.Travel do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,10 +7,17 @@ defmodule UniboExPoc.Travel.Travel do
   end
 
   resources do
-    resource UniboExPoc.Travel.Travel.HotelOffer
-    resource UniboExPoc.Travel.Travel.FlightOffer
-    resource UniboExPoc.Travel.Travel.VacationOffer
-    resource UniboExPoc.Travel.Travel.TravelOrder
-    resource UniboExPoc.Travel.Travel.TravelFulfillment
+    resource UniboExPoc.Travel.HotelOffer
+    resource UniboExPoc.Travel.HotelOffer.Version
+    resource UniboExPoc.Travel.FlightOffer
+    resource UniboExPoc.Travel.FlightOffer.Version
+    resource UniboExPoc.Travel.VacationOffer
+    resource UniboExPoc.Travel.VacationOffer.Version
+    resource UniboExPoc.Travel.TrainOffer
+    resource UniboExPoc.Travel.TrainOffer.Version
+    resource UniboExPoc.Travel.TravelOrder
+    resource UniboExPoc.Travel.TravelOrder.Version
+    resource UniboExPoc.Travel.TravelFulfillment
+    resource UniboExPoc.Travel.TravelFulfillment.Version
   end
 end

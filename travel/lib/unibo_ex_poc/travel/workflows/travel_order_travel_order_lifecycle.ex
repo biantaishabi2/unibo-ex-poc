@@ -1,17 +1,17 @@
-defmodule UniboExPoc.Travel.Travel.Workflows.TravelOrder.TravelOrderLifecycleWorkflow do
+defmodule UniboExPoc.Travel.Workflows.TravelOrder.TravelOrderLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboExPoc.Travel.Travel.TravelOrder
+  alias UniboExPoc.Travel.TravelOrder
 
   def steps do
-    [:create_order, :update, :confirm_quote, :submit_order, :mark_payment_succeeded, :mark_booked, :request_cancel, :approve_cancel, :request_refund, :complete_refund, :mark_completed, :mark_order_failed, :destroy]
+    [:create_order, :update, :confirm_quote, :submit_order, :submit_waitlist, :mark_payment_succeeded, :mark_booked, :fulfill_waitlist, :cancel_waitlist, :request_cancel, :approve_cancel, :request_change, :confirm_change, :mark_completed, :mark_order_failed, :destroy]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["update","confirm_quote","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create_order"},{"idempotency_key":null,"next":["confirm_quote","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":["submit_order"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"confirm_quote"},{"idempotency_key":null,"next":["mark_payment_succeeded","mark_order_failed"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit_order"},{"idempotency_key":null,"next":["mark_booked"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_payment_succeeded"},{"idempotency_key":null,"next":["mark_completed","request_cancel","request_refund"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_booked"},{"idempotency_key":null,"next":["approve_cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"request_cancel"},{"idempotency_key":null,"next":["request_refund"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"approve_cancel"},{"idempotency_key":null,"next":["complete_refund"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"request_refund"},{"idempotency_key":null,"next":["mark_completed"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"complete_refund"},{"idempotency_key":null,"next":["mark_order_failed"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_completed"},{"idempotency_key":null,"next":["destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_order_failed"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy"}],"workflow":"travel_order_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["update","confirm_quote","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create_order"},{"idempotency_key":null,"next":["confirm_quote","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":["submit_order","submit_waitlist"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"confirm_quote"},{"idempotency_key":null,"next":["mark_payment_succeeded","mark_order_failed"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit_order"},{"idempotency_key":null,"next":["mark_payment_succeeded","mark_order_failed"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit_waitlist"},{"idempotency_key":null,"next":["mark_booked","fulfill_waitlist","cancel_waitlist"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_payment_succeeded"},{"idempotency_key":null,"next":["mark_completed","request_cancel","request_change"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_booked"},{"idempotency_key":null,"next":["mark_completed","request_cancel","request_change"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"fulfill_waitlist"},{"idempotency_key":null,"next":["request_cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"cancel_waitlist"},{"idempotency_key":null,"next":["approve_cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"request_cancel"},{"idempotency_key":null,"next":["request_change"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"approve_cancel"},{"idempotency_key":null,"next":["confirm_change"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"request_change"},{"idempotency_key":null,"next":["mark_completed"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"confirm_change"},{"idempotency_key":null,"next":["mark_order_failed"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_completed"},{"idempotency_key":null,"next":["destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_order_failed"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy"}],"workflow":"travel_order_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -106,18 +106,24 @@ defmodule UniboExPoc.Travel.Travel.Workflows.TravelOrder.TravelOrderLifecycleWor
         Ash.update(Ash.Changeset.for_update(record, :confirm_quote, params), ash_opts)
       :submit_order ->
         Ash.update(Ash.Changeset.for_update(record, :submit_order, params), ash_opts)
+      :submit_waitlist ->
+        Ash.update(Ash.Changeset.for_update(record, :submit_waitlist, params), ash_opts)
       :mark_payment_succeeded ->
         Ash.update(Ash.Changeset.for_update(record, :mark_payment_succeeded, params), ash_opts)
       :mark_booked ->
         Ash.update(Ash.Changeset.for_update(record, :mark_booked, params), ash_opts)
+      :fulfill_waitlist ->
+        Ash.update(Ash.Changeset.for_update(record, :fulfill_waitlist, params), ash_opts)
+      :cancel_waitlist ->
+        Ash.update(Ash.Changeset.for_update(record, :cancel_waitlist, params), ash_opts)
       :request_cancel ->
         Ash.update(Ash.Changeset.for_update(record, :request_cancel, params), ash_opts)
       :approve_cancel ->
         Ash.update(Ash.Changeset.for_update(record, :approve_cancel, params), ash_opts)
-      :request_refund ->
-        Ash.update(Ash.Changeset.for_update(record, :request_refund, params), ash_opts)
-      :complete_refund ->
-        Ash.update(Ash.Changeset.for_update(record, :complete_refund, params), ash_opts)
+      :request_change ->
+        Ash.update(Ash.Changeset.for_update(record, :request_change, params), ash_opts)
+      :confirm_change ->
+        Ash.update(Ash.Changeset.for_update(record, :confirm_change, params), ash_opts)
       :mark_completed ->
         Ash.update(Ash.Changeset.for_update(record, :mark_completed, params), ash_opts)
       :mark_order_failed ->
@@ -150,14 +156,17 @@ defmodule UniboExPoc.Travel.Travel.Workflows.TravelOrder.TravelOrderLifecycleWor
     case step do
       :create_order -> [:update, :confirm_quote, :destroy]
       :update -> [:confirm_quote, :destroy]
-      :confirm_quote -> [:submit_order]
+      :confirm_quote -> [:submit_order, :submit_waitlist]
       :submit_order -> [:mark_payment_succeeded, :mark_order_failed]
-      :mark_payment_succeeded -> [:mark_booked]
-      :mark_booked -> [:mark_completed, :request_cancel, :request_refund]
+      :submit_waitlist -> [:mark_payment_succeeded, :mark_order_failed]
+      :mark_payment_succeeded -> [:mark_booked, :fulfill_waitlist, :cancel_waitlist]
+      :mark_booked -> [:mark_completed, :request_cancel, :request_change]
+      :fulfill_waitlist -> [:mark_completed, :request_cancel, :request_change]
+      :cancel_waitlist -> [:request_cancel]
       :request_cancel -> [:approve_cancel]
-      :approve_cancel -> [:request_refund]
-      :request_refund -> [:complete_refund]
-      :complete_refund -> [:mark_completed]
+      :approve_cancel -> [:request_change]
+      :request_change -> [:confirm_change]
+      :confirm_change -> [:mark_completed]
       :mark_completed -> [:mark_order_failed]
       :mark_order_failed -> [:destroy]
       :destroy -> []
@@ -171,12 +180,15 @@ defmodule UniboExPoc.Travel.Travel.Workflows.TravelOrder.TravelOrderLifecycleWor
       :update -> []
       :confirm_quote -> []
       :submit_order -> []
+      :submit_waitlist -> []
       :mark_payment_succeeded -> []
       :mark_booked -> []
+      :fulfill_waitlist -> []
+      :cancel_waitlist -> []
       :request_cancel -> []
       :approve_cancel -> []
-      :request_refund -> []
-      :complete_refund -> []
+      :request_change -> []
+      :confirm_change -> []
       :mark_completed -> []
       :mark_order_failed -> []
       :destroy -> []
@@ -190,12 +202,15 @@ defmodule UniboExPoc.Travel.Travel.Workflows.TravelOrder.TravelOrderLifecycleWor
       :update -> nil
       :confirm_quote -> nil
       :submit_order -> nil
+      :submit_waitlist -> nil
       :mark_payment_succeeded -> nil
       :mark_booked -> nil
+      :fulfill_waitlist -> nil
+      :cancel_waitlist -> nil
       :request_cancel -> nil
       :approve_cancel -> nil
-      :request_refund -> nil
-      :complete_refund -> nil
+      :request_change -> nil
+      :confirm_change -> nil
       :mark_completed -> nil
       :mark_order_failed -> nil
       :destroy -> nil
@@ -209,12 +224,15 @@ defmodule UniboExPoc.Travel.Travel.Workflows.TravelOrder.TravelOrderLifecycleWor
       :update -> false
       :confirm_quote -> false
       :submit_order -> false
+      :submit_waitlist -> false
       :mark_payment_succeeded -> false
       :mark_booked -> false
+      :fulfill_waitlist -> false
+      :cancel_waitlist -> false
       :request_cancel -> false
       :approve_cancel -> false
-      :request_refund -> false
-      :complete_refund -> false
+      :request_change -> false
+      :confirm_change -> false
       :mark_completed -> false
       :mark_order_failed -> false
       :destroy -> false
@@ -228,12 +246,15 @@ defmodule UniboExPoc.Travel.Travel.Workflows.TravelOrder.TravelOrderLifecycleWor
       :update -> %{max_attempts: 1, backoff_ms: 0}
       :confirm_quote -> %{max_attempts: 1, backoff_ms: 0}
       :submit_order -> %{max_attempts: 1, backoff_ms: 0}
+      :submit_waitlist -> %{max_attempts: 1, backoff_ms: 0}
       :mark_payment_succeeded -> %{max_attempts: 1, backoff_ms: 0}
       :mark_booked -> %{max_attempts: 1, backoff_ms: 0}
+      :fulfill_waitlist -> %{max_attempts: 1, backoff_ms: 0}
+      :cancel_waitlist -> %{max_attempts: 1, backoff_ms: 0}
       :request_cancel -> %{max_attempts: 1, backoff_ms: 0}
       :approve_cancel -> %{max_attempts: 1, backoff_ms: 0}
-      :request_refund -> %{max_attempts: 1, backoff_ms: 0}
-      :complete_refund -> %{max_attempts: 1, backoff_ms: 0}
+      :request_change -> %{max_attempts: 1, backoff_ms: 0}
+      :confirm_change -> %{max_attempts: 1, backoff_ms: 0}
       :mark_completed -> %{max_attempts: 1, backoff_ms: 0}
       :mark_order_failed -> %{max_attempts: 1, backoff_ms: 0}
       :destroy -> %{max_attempts: 1, backoff_ms: 0}
@@ -247,12 +268,15 @@ defmodule UniboExPoc.Travel.Travel.Workflows.TravelOrder.TravelOrderLifecycleWor
       :update -> nil
       :confirm_quote -> nil
       :submit_order -> nil
+      :submit_waitlist -> nil
       :mark_payment_succeeded -> nil
       :mark_booked -> nil
+      :fulfill_waitlist -> nil
+      :cancel_waitlist -> nil
       :request_cancel -> nil
       :approve_cancel -> nil
-      :request_refund -> nil
-      :complete_refund -> nil
+      :request_change -> nil
+      :confirm_change -> nil
       :mark_completed -> nil
       :mark_order_failed -> nil
       :destroy -> nil

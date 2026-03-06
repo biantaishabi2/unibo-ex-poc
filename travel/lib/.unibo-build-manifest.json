@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "compiler_version": "0.1.0",
+  "domains": {
+    "Travel": {
+      "input_hashes": {
+        "models/travel/travel.ubo.yaml": "sha256:b3f5dfb25ea90c34cf7a183a243011a8ccbc08d4ad138708838abb7fe85692d3"
+      },
+      "output_files": [
+        "unibo_ex_poc/travel/flight_offer.ex",
+        "unibo_ex_poc/travel/flight_offer_notifier.ex",
+        "unibo_ex_poc/travel/hotel_offer.ex",
+        "unibo_ex_poc/travel/hotel_offer_notifier.ex",
+        "unibo_ex_poc/travel/train_offer.ex",
+        "unibo_ex_poc/travel/train_offer_notifier.ex",
+        "unibo_ex_poc/travel/travel.ex",
+        "unibo_ex_poc/travel/travel_fulfillment.ex",
+        "unibo_ex_poc/travel/travel_fulfillment_notifier.ex",
+        "unibo_ex_poc/travel/travel_order.ex",
+        "unibo_ex_poc/travel/travel_order_notifier.ex",
+        "unibo_ex_poc/travel/vacation_offer.ex",
+        "unibo_ex_poc/travel/vacation_offer_notifier.ex",
+        "unibo_ex_poc/travel/workflows/flight_offer_flight_offer_lifecycle.ex",
+        "unibo_ex_poc/travel/workflows/hotel_offer_hotel_offer_lifecycle.ex",
+        "unibo_ex_poc/travel/workflows/train_offer_train_offer_lifecycle.ex",
+        "unibo_ex_poc/travel/workflows/travel_fulfillment_travel_fulfillment_lifecycle.ex",
+        "unibo_ex_poc/travel/workflows/travel_order_travel_order_lifecycle.ex",
+        "unibo_ex_poc/travel/workflows/vacation_offer_vacation_offer_lifecycle.ex"
+      ],
+      "entity_count": 6,
+      "notifier_count": 6,
+      "has_policy_entities": false,
+      "subdomain": "services",
+      "cross_domain_refs": [
+        "Delivery",
+        "Ecommerce",
+        "Payment",
+        "Sales"
+      ]
+    }
+  }
+}
