@@ -726,7 +726,7 @@
 - 流程：travel_fulfillment_lifecycle：创建履行 -> 更新 -> confirm_booking -> 发券或出票 -> 标记包含使用 -> 完成履行 -> 取消履行 -> 失败履行 -> 删除（统一酒旅履约生命周期）
 
 #### 集成契约
-- 供应商预订确认，绑定动作：confirm_booking；模式：同步；请求字段：travel_order_id、履行类型、supplier_booking_ref；响应字段：确认状态、supplier_booking_ref、confirmation_payload；错误码：supplier_booking_rejected（不可重试）、供应商超时（可重试）；说明：预订确认同步契约，失败时需保留 pending 并可重试或转 fail_fulfillment
+- 供应商预订确认，绑定动作：confirm_booking；模式：同步；请求字段：travel_order_id、履行类型、supplier_booking_ref；响应字段：确认状态、supplier_booking_ref、confirmation_payload；错误码：supplier_booking_rejected（不可重试）、供应商超时（可重试）；说明：预订确认同步契约，前置依赖 TravelOrder 已完成 shop_caller_context_resolve、shop_eligibility_quote、payment_capture；失败时需保留 pending 并可重试或转 fail_fulfillment
 - 供应商发券出票，绑定动作：发券或出票；模式：同步；请求字段：travel_order_id、履行类型、出票乘客信息；响应字段：发券出票状态、凭证或票据参考、票据引用；错误码：发券出票失败（不可重试）、发券出票超时（可重试）；说明：发券出票同步契约，失败时走 fail_fulfillment 并记录 failure_reason
 - 供应商取消预订，绑定动作：取消履行；模式：async；请求字段：travel_order_id、supplier_booking_ref；错误码：取消超时（可重试）、取消已驳回（不可重试）；异步配置：队列 travel_supplier_cancel，超时 60000ms；说明：取消履约异步契约，失败时通过补偿任务做二次撤销
 
