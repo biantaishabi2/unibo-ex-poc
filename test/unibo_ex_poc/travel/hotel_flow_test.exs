@@ -7,7 +7,7 @@ defmodule UniboExPoc.Travel.HotelFlowTest do
   alias UniboExPoc.Travel.Travel.TravelOrder
   alias UniboExPoc.TravelHost.ShopBridgeClient
 
-  test "hotel 最小闭环可以通过 DefaultBridge 从 quote 走到 booking confirmed" do
+  test "HotelFlow 仅作为测试辅助时，hotel 闭环可通过 DefaultBridge 跑通" do
     input = %{
       context: %{
         user_id: "user-1",
