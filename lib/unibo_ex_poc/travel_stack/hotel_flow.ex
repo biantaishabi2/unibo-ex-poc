@@ -15,10 +15,16 @@ defmodule UniboExPoc.TravelStack.HotelFlow do
 
   @spec book(map(), keyword()) :: {:ok, map()} | {:error, term()}
   def book(input, opts \\ []) do
+    adapter = Keyword.get(opts, :supplier_adapter, HotelMockAdapter)
+    adapter_opts = Keyword.get(opts, :supplier_adapter_opts, [])
+
     with {:ok, context} <- CallerContext.normalize(Map.fetch!(input, :context)),
          config <- HostConfig.new(Map.fetch!(input, :host_config)),
          order_attrs <- Map.put(Map.fetch!(input, :order), :product_type, :hotel),
-         quote <- EligibilityOrQuote.build(order_attrs, context, config, available_points: Keyword.get(opts, :available_points, 0)),
+         quote <-
+           EligibilityOrQuote.build(order_attrs, context, config,
+             available_points: Keyword.get(opts, :available_points, 0)
+           ),
          true <- quote.allowed? or {:error, quote.reason},
          {:ok, payment} <-
            PaymentExecution.execute(
@@ -28,7 +34,8 @@ defmodule UniboExPoc.TravelStack.HotelFlow do
            ),
          :approved <- payment.status,
          supplier_request <- HotelBookingRequest.from_order(order_attrs, context),
-         {:ok, supplier_result} <- HotelMockAdapter.book(supplier_request, payment) do
+         true <- adapter_compatible?(adapter) or {:error, :invalid_supplier_adapter},
+         {:ok, supplier_result} <- adapter.book(supplier_request, payment, adapter_opts) do
       {:ok,
        %{
          context: context,
@@ -54,5 +61,11 @@ defmodule UniboExPoc.TravelStack.HotelFlow do
       {:error, reason} -> {:error, reason}
       :declined -> {:error, :payment_declined}
     end
+  end
+
+  defp adapter_compatible?(adapter) do
+    function_exported?(adapter, :book, 3) and
+      function_exported?(adapter, :query_booking_status, 2) and
+      function_exported?(adapter, :pull_incremental_updates, 2)
   end
 end
