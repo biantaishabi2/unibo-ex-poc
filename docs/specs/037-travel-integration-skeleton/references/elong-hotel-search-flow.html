@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/resources/plugins/jquery-ui/css/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="/resources/plugins/jquery-jsonview/jquery.jsonview.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/common.css" />
+
+<!-- èªå®ä¹æ ·å¼ -->
+<link rel="stylesheet" type="text/css" href="/resources/css/doc.css" />
+
+<!-- uedit è¯­è¨å­ç¬¦æ¯æ -->
+<link rel="stylesheet" type="text/css" href="/resources/plugins/uedit/third-party/SyntaxHighlighter/shCoreDefault.css" />
+
+<link rel="stylesheet" href="/resources/plugins/layui/css/layui.css"><script>
+        var languageData = {};
+        try{
+          languageData = JSON.parse('')
+        }catch (e){
+          languageData = {};
+        }
+        class I18n{
+          /**@private */
+          static _map = languageData;
+          static t  = function(code,defaultValue){
+            let val = I18n._map[code];
+            if (!val){
+              val = defaultValue;
+            }
+            return val;
+          }
+        }
+    </script>
+    <script type="text/javascript" src="/resources/plugins/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/resources/plugins/jquery-ui/jquery-ui.js"></script>
+<script type="text/javascript" src="/resources/plugins/jquery-ui/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="/resources/plugins/jquery-jsonview/jquery.jsonview.js"></script>
+<script type="text/javascript" src="/resources/js/common/common.js"></script>
+<script type="text/javascript" src="/resources/js/common/page_common.js"></script>
+<script type="text/javascript" src="/resources/js/common/json2.js"></script>
+
+<script type="text/javascript" src="/resources/plugins/layui/layui.all.js"></script>
+
+<script src="//m.elongstatic.com/static/xlog-innerh5/0.0.4/index.js"></script>
+<script type="text/javascript" src="/resources/js/doc/xlog.js"></script>
+
+<!-- uedit è¯­è¨å­ç¬¦æ¯æ -->
+<script type="text/javascript" src="/resources/plugins/uedit/third-party/SyntaxHighlighter/shCore.js"></script>
+<script type="text/javascript">
+   SyntaxHighlighter.all();
+</script>
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d718e319d906403bf5447f9252396808";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+<title>实时搜索流程-艺龙开放平台</title>
+    
+    <link rel="shortcut icon" href="/favicon.ico"/>
+</head>
+<body>
+<!-- 顶部导航 -->
+<div class="open-hd">
+    <input type="hidden" id="expId" value="138000160001"/>
+    <input type="hidden" id="dotUrl" value="//open.elong.com"/>
+
+    <div class="open-hd-bd">
+        <h1><a href="/"><img alt="艺龙旅行网" src="/resources/images/logo.png" class="logo"></a></h1>
+        <ul class="hd-nav clear">
+            <li id="liHome"><a class="nav-item" href="/">首页</a></li>
+            <li id="liGudie"><a class="nav-item" href="/doc/info/plat-guide-intrduce">合作指南</a></li>
+            <li id="liDoc"><!-- hover添加'active'显示子菜单 -->
+                <a class="nav-item" href="/doc/info/cn-main-branch-main">开发文档</a>
+</li>
+            <li><a class="nav-item" href="/user/personalcenter/index">个人中心</a></li><!-- 添加'active'当前页 -->
+            </ul>
+    </div>
+</div>
+
+<!-- 顶部导航 end -->
+<div id="id-alert" class="webim-item-contain" action="" style="display:none">
+    <div class="webim-output-wrapper">
+
+    </div>
+    <div class="layui-form-item layui-form-text" style="margin: 0px;">
+        <textarea id="faq-content" name="content" placeholder="亲，请用一句话描述您要问的问题， 小艺会为您解答的哦"
+                  class="layui-textarea" maxlength="140" style="min-height: 30px;resize: none;"
+                  onkeydown="clickWebImBtn(event)"
+                  lay-verify="required|content"></textarea>
+    </div>
+    <div class="layui-input-block webim-btn-wrapper">
+        <button class="layui-btn layui-btn-normal webim-btn-send" id="webim-send" data-dot="138000030008">发送问题</button>
+    </div>
+</div>
+
+<script charset="UTF-8" src="//open.elong.com/user/assets/js/model/dot/fg.js"></script>
+<script type="text/javascript" charset="UTF-8" src="//open.elong.com/user/assets/js/model/dot/dot.js"></script>
+<script type="text/javascript" src="/resources/js/common/_header.js"></script>
+
+
+<!-- 悬浮问题提示 end -->
+<div class="wrap container-con">
+
+    <div class="search-wrap">
+            <div class="search-con">
+                <div class="form">
+                    <input id="docSearchText" type="text" class="text" placeholder="输入关键词搜索">
+                    <!-- 点击添加 'active' -->
+                    <a class="button" onclick="locSearch()" target="_blank" data-dot="138000190001">搜索</a> <i
+                        class="icon icon-search"></i>
+                </div>
+            </div>
+            </div>
+
+        <!-- 弹出层 -->
+
+    <div class="wrap-main pt25">
+            
+
+
+
+<!-- 使用StringEscapeUtils.escapeHtml4(s)防止xss攻击 -->
+<input type="hidden" id="platType" value=""/>
+<input type="hidden" id="menuType" value="3"/>
+
+<div class="side">
+   <h2 id="hMenuTypeName">酒店</h2>
+   <div class="side-nav">
+       <ul id="ulMenu">
+        </ul>
+    </div>
+</div>
+
+<script type="text/javascript" src="/resources/js/common/left_nav.js?v=1772787571631"></script>
+
+
+
+<div class="container-main container-middle">
+    <div class="title-box">
+        <h2 class="pb5">实时搜索流程<span>更新时间：2026/01/08 13:48</span></h2>
+    </div>
+    <div class="container-text">
+        <div class="content">
+            <h3>基本流程</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;实时搜索模式，是指通过艺龙搜索接口获取酒店产品详情、房态库存和产品价格等信息。</p><p><span style="text-wrap-mode: wrap;"><br/></span></p><p>&nbsp;&nbsp;&nbsp;&nbsp;下面流程图中使用的不同颜色:黄色代表必选接口，绿色代表备选接口，（第一部分 hotel.list 已废弃，请使用备选接口）</p><p style="text-align:center"><img src="http://api.elongstatic.com/open/%E5%AE%9E%E6%97%B6%E6%A8%A1%E5%BC%8F-http.png" alt="实时搜索模式.png"/></p><p class="MsoListParagraph">1.&nbsp;&nbsp;&nbsp;&nbsp; 获取符合搜索条件的酒店列表</p><p class="MsoListParagraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;通过 hotel.static.city 获取城市信息</p><p class="MsoListParagraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;通过 hotel.static.list 获取每个城市下的酒店</p><p class="MsoListParagraph">&nbsp; &nbsp; &nbsp; &nbsp;通过 hotel.static.info 获取酒店明细信息，包括房型、图片、设施等</p><p class="MsoListParagraph">&nbsp; &nbsp; &nbsp; 周期调用并将以上信息存储到本地，减少每次调用返回的数据包大小，提升性能。</p><p class="MsoListParagraph"><br/></p><p class="MsoListParagraph">2.&nbsp; &nbsp; 获取酒店的库存、价格、规则等信息</p><p class="MsoListParagraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;(可选)通过 hotel.rate.min 接口拉取酒店最小价格，为列表页使用<br/></p><p class="MsoListParagraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 详情搜索 hotel.detail 接口用来获取产品、库存、价格信息。</p><p class="MsoListParagraph"><br/></p><p class="MsoListParagraph">3.&nbsp;&nbsp;&nbsp;&nbsp; 订单流程-创建订单之前</p><p class="MsoListParagraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 订单创建之前进行各项信息校验，是为了及时将错误信息反馈给用户，同时也提高了创建订单时的成功率。</p><p class="MsoListParagraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 数据校验 hotel.data.validate 是创建订单之前进行订单数据校验的接口。在进入订单填写页之前，调用此接口校验房态库存、总价等信息。</p><p class="MsoListParagraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;此外还有一些其他校验接口来提升用户体验，确保下单支付的一次性成功率，这些接口都是可选的。</p><p class="MsoListParagraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 信用卡验证 common.creditcard.validate 也可以在用户输入信用卡时进行异步校验。</p><p class="MsoListParagraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hotel.data.validate 用于校验产品价格和库存是否有效，一般用于用户点击下单时，在调用 hotel.order.create 之前使用。</p><p class="MsoListParagraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hotel.data.booking 用法和 hotel.data.validate 类似，只是还可以校验产品有效性，也可以用户在填写页增加或减少房间数量时调用，用来展示房间数量变更后的新价格、规则、餐食等信息展示给用户。</p><p class="MsoListParagraph"><br/></p><p class="MsoListParagraph">4.&nbsp;&nbsp;&nbsp;&nbsp; 订单流程-创建订单</p><p class="MsoListParagraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用 hotel.order.create 接口，相关字段从 hotel.detail 接口的返回值中获取。</p><p class="MsoListParagraph">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;创建订单可以选择同时成单及支付，也可以选择仅创建订单。仅创建订单不需要填写支付信息，但是需要在最晚支付时间前调用 hotel.order.pay 接口进行支付。</p><p class="MsoListParagraph"><br/></p><p class="MsoListParagraph">5.&nbsp;&nbsp;&nbsp;&nbsp; 订单运营</p><p>&nbsp; &nbsp; &nbsp; &nbsp;需要调用 hotel.incr.order 实时更新订单状态，以便处理自己的业务或者向用户展示。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;hotel.order.create 会返回最晚取消时间，在此之前可以调用 hotel.order.cancel 来取消订单。</p><p>&nbsp; &nbsp; &nbsp; &nbsp;订单创建成功后，可以通过 hotel.order.feedback 让用户反馈入住状态（非必须、但建议使用）。</p><p class="MsoListParagraph">&nbsp; &nbsp; &nbsp; &nbsp;查询订单详情使用hotel.order.detail。当订单详情中出现了确认反馈时间点 ConfirmPoint 的时候，如果觉得这个时间太长，可以使用 hotel.order.promote 进行催确认。</p><p class="MsoListParagraph">&nbsp; &nbsp; &nbsp; &nbsp;老订单状态变化为特定状态(已结账、删除、NoShow、删除另换酒店)时使用关联订单接口 hotel.order.related 可以查询新的订单信息，关联订单的产生及详细说明查看该接口的文档。<br/></p><p class="MsoListParagraph"><br/></p><h3>扩展流程</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图中 hotel.incr.data 已经废弃<br/></p><p style="text-align:center"><img src="http://api.elongstatic.com/open/%E5%AE%9E%E6%97%B6%E6%89%A9%E5%B1%95%E6%A8%A1%E5%BC%8F-http.png" alt="实时搜索模式图2.png"/></p><p>1. 如果想要与自有酒店进行整合，则必须使用静态接口，并周期性更新。通过周期调用(分酒店给予不同周期) hotel.crawl.detail 接口获取产品、价格、库存等动态信息，存储到本地，自建搜索以便与自有酒店的数据整合在一起供用户使用。本地缓存数据做列表页数据可以缓存时间长点，详情页面建议不超过10分钟。（深度阅读：<a href="/faq/detail?id=92&plt=2" target="_blank" style="color: rgb(84, 141, 212); text-decoration: underline;"><span style="color: rgb(84, 141, 212);">建议抓取策略</span></a>）</p><p>2. 用户选择某一酒店后通过hotel.detail接口实时获取并展现酒店详情及产品、库存、价格等动态信息。同时也可以利用这些信息更新列表本地缓存。</p><p><br/></p>
+        </div>
+    </div>
+</div>
+
+<!-- 右侧定位栏 -->
+<div id="left-nav" class="map-nav" style="display:none">
+</div>
+<script type="text/javascript" src="/resources/js/doc/index.js"></script>
+        </div>
+    </div>
+<!-- 底部导航 -->
+<div class="footer">
+    <div class="footer_info">
+            <dl>
+                <dt>加盟合作</dt>
+                <dd><a href="http://hotel.elong.com/union/join.html#?" title="酒店加盟">酒店加盟</a></dd>
+                <dd><a href="http://open.elong.com/" title="艺龙开放平台">开放平台</a></dd>
+                <dd><a href="http://promotion.elong.com/hotel/cn/elongagent/elongagent.html" title="旅游产品代理合作">代理合作</a>
+                </dd>
+                <dd><a href="http://promotion.elong.com/web/adservice/adservice.html" title="在线广告服务">广告服务</a>
+                </dd>
+                <dd><a href="http://ebooking.elong.com/ebkauth/login" title="艺龙商家中心">商家中心</a></dd>
+            </dl>
+            <dl>
+                <dt>关于同程旅行</dt>
+                <dd><a href="http://www.elong.com/" title="关于同程旅行网">关于同程旅行</a></dd>
+                <dd><a href="http://hotel.elong.com/directory/" title="酒店大全">酒店大全</a></dd>
+                <dd><a href="http://ihotel.elong.com/sitemap/" title="国际酒店">国际酒店</a></dd>
+                <dd><a href="http://promotion.elong.com/index/cn/2017/campus2017/index.html"
+                       title="校园招聘">校园招聘</a></dd>
+                <dd><a href="http://promotion.elong.com/web/contact/contact.html" title="联系艺龙旅行网">联系我们</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt>同程旅行APP下载</dt>
+                <dd class="pt10"><i class="icon footer_info_app"></i></dd>
+            </dl>
+            <dl>
+                <dt>同程旅行官方微信</dt>
+                <dd class="pt10"><i class="icon footer_info_wx"></i></dd>
+            </dl>
+            <dl style="width: 20%">
+                <dt>同程商家荟微信公众号</dt>
+                <dd class="pt10"><i class="footer_info_sjh_gzh"></i></dd>
+            </dl>
+        </div>
+    <div class="clear"></div>
+    <div class="footer_copy">&copy; 1999 - 2017 eLong, Inc or its affiliates. All Rights Reserved. <a href="#">京ICP证010011号</a>京公网安备<a
+            href="#">11010502026059号</a><i class="icon"></i></div>
+    <div class="footer_safe">
+            <a class="icon qua-1"
+               href="https://seal.verisign.com/splash?form_file=fdf/splash.fdf&amp;dn=SECURE.ELONG.COM&amp;lang=zh_cn"
+               target="_blank" alt="SSL加密认证" title="SSL加密认证">SSL加密认证</a>
+            <a class="icon qua-2"
+               href="http://www.atsec.cn/cn/pci-attestation/Elong-PCIAttestation-atsec-PCI-DSS-C-01128.jpg"
+               title="艺龙网通过PCI认证" alt="艺龙网通过PCI认证" target="_blank">同程旅行网通过PCI认证</a>
+            <a class="icon qua-3" href="http://www.itrust.org.cn/yz/pjwx.asp?wm=1802034050" target="_blank"
+               alt="信赖商业计划" title="信赖商业计划">信用评级</a>
+            <a class="icon qua-4"
+               href="https://ss.knet.cn/verifyseal.dll?sn=e14021111010646180fggu000000&amp;ct=df&amp;a=1&amp;pa=500267"
+               target="_blank" title="可信用网站身份验证" alt="可信用网站身份验证">可信用网站身份验证</a>
+            <a class="icon qua-5" href="http://search.szfw.org/cert/l/CX20120918001652001722" target="_blank"
+               title="诚信示范企业" alt="诚信示范企业">诚信示范企业</a>
+        </div>
+    </div>
+<!-- 底部导航 end -->
+</body>
+
+</html>

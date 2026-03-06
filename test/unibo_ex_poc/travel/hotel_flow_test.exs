@@ -102,8 +102,9 @@ defmodule UniboExPoc.Travel.HotelFlowTest do
            }
          }},
       quote: fn payload ->
-        assert payload.order["order_no"] == "travel-002"
+        assert payload.caller_context.member_id == "member-2"
         assert payload.quote_request.available_points == 500
+        assert payload.order["order_no"] == "travel-002"
 
         {:ok,
          %{
