@@ -1,4 +1,4 @@
-defmodule UniboV4.Fleet.Fleet do
+defmodule UniboV4.Fleet do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,13 +7,13 @@ defmodule UniboV4.Fleet.Fleet do
   end
 
   resources do
-    resource UniboV4.Fleet.Fleet.FleetVehicle
-    resource UniboV4.Fleet.Fleet.FleetVehicleType
-    resource UniboV4.Fleet.Fleet.FleetVehicleTypeTranslation
-    resource UniboV4.Fleet.Fleet.Driver
-    resource UniboV4.Fleet.Fleet.VehicleAssignment
-    resource UniboV4.Fleet.Fleet.VehicleService
-    resource UniboV4.Fleet.Fleet.VehicleContract
-    resource UniboV4.Fleet.Fleet.HrEmployee
+    resource UniboV4.Fleet.FleetVehicle
+    resource UniboV4.Fleet.FleetVehicleType
+    resource UniboV4.Fleet.FleetVehicleTypeTranslation
+    resource UniboV4.Fleet.Driver
+    resource UniboV4.Fleet.VehicleAssignment
+    resource UniboV4.Fleet.VehicleService
+    resource UniboV4.Fleet.VehicleContract
+    resource UniboV4.Fleet.HrEmployee
   end
 end

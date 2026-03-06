@@ -1,4 +1,4 @@
-defmodule UniboV4.Fleet.Fleet.FleetVehicle.Notifier do
+defmodule UniboV4.Fleet.FleetVehicle.Notifier do
   use Ash.Notifier
 
   @impl true
@@ -9,7 +9,7 @@ defmodule UniboV4.Fleet.Fleet.FleetVehicle.Notifier do
     end
 
     if topic do
-      Phoenix.PubSub.broadcast(UniboV4.Fleet.PubSub, topic, {action_name, notification.data})
+      Phoenix.PubSub.broadcast(UniboV4.PubSub, topic, {action_name, notification.data})
     end
 
     :ok

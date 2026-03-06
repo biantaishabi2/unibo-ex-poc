@@ -16,13 +16,13 @@
 #   archive --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Events.Events.Event do
+defmodule UniboV4.Events.Event do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Events.Events,
+    domain: UniboV4.Events,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Events.Events.Event.Notifier]
+    notifiers: [UniboV4.Events.Event.Notifier]
 
   postgres do
     table "events_events"
@@ -74,7 +74,7 @@ defmodule UniboV4.Events.Events.Event do
     attribute :actual_start_date, :utc_datetime, public?: true
     attribute :actual_end_date, :utc_datetime, public?: true
     attribute :location, :string, public?: true
-    attribute :venue_id, :string, public?: true
+    attribute :venue_id, :uuid, public?: true
     attribute :capacity, :integer, public?: true
     attribute :registration_deadline, :utc_datetime, public?: true
     attribute :is_online, :boolean do
@@ -95,40 +95,40 @@ defmodule UniboV4.Events.Events.Event do
     attribute :total_budget, :decimal, public?: true
     attribute :budget_currency_id, :string, public?: true
     attribute :special_terms, :string, public?: true
-    attribute :organizer_id, :string, public?: true
+    attribute :organizer_id, :uuid, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
 
   relationships do
-    belongs_to :event_type, UniboV4.Events.Events.EventType do
+    belongs_to :event_type, UniboV4.Events.EventType do
       public? true
       allow_nil? false
     end
-    has_many :registrations, UniboV4.Events.Events.EventRegistration do
+    has_many :registrations, UniboV4.Events.EventRegistration do
       public? true
       destination_attribute :event_id
     end
-    has_many :tickets, UniboV4.Events.Events.EventTicket do
+    has_many :tickets, UniboV4.Events.EventTicket do
       public? true
       destination_attribute :event_id
     end
-    has_many :booths, UniboV4.Events.Events.EventBooth do
+    has_many :booths, UniboV4.Events.EventBooth do
       public? true
       destination_attribute :event_id
     end
-    has_many :stages, UniboV4.Events.Events.EventStage do
+    has_many :stages, UniboV4.Events.EventStage do
       public? true
       destination_attribute :event_id
     end
-    belongs_to :parent_event, UniboV4.Events.Events.Event do
+    belongs_to :parent_event, UniboV4.Events.Event do
       public? true
     end
-    has_many :sub_events, UniboV4.Events.Events.Event do
+    has_many :sub_events, UniboV4.Events.Event do
       public? true
       destination_attribute :parent_event_id
     end
-    has_many :translations, UniboV4.Events.Events.EventTranslation, public?: true
+    has_many :translations, UniboV4.Events.EventTranslation, public?: true
   end
 
   actions do

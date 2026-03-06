@@ -64,10 +64,6 @@ defmodule UniboV4.Project.Task do
       allow_nil? false
       public? true
     end
-    attribute :stage_id, :string do
-      allow_nil? false
-      public? true
-    end
     attribute :state, :atom do
       constraints one_of: [:"01_in_progress", :"02_changes_requested", :"03_approved", :"04_waiting_normal", :"1_done", :"1_canceled"]
       default :"01_in_progress"
@@ -84,8 +80,7 @@ defmodule UniboV4.Project.Task do
       public? true
     end
     attribute :user_ids, :string, public?: true
-    attribute :partner_id, :string, public?: true
-    attribute :milestone_id, :string, public?: true
+    attribute :partner_id, :uuid, public?: true
     attribute :date_assign, :utc_datetime, public?: true
     attribute :date_deadline, :date, public?: true
     attribute :date_end, :utc_datetime, public?: true
@@ -98,7 +93,7 @@ defmodule UniboV4.Project.Task do
       default false
       public? true
     end
-    attribute :recurrence_id, :string, public?: true
+    attribute :recurrence_id, :uuid, public?: true
     attribute :tag_ids, :string, public?: true
     attribute :description, :string, public?: true
     create_timestamp :inserted_at
@@ -133,14 +128,23 @@ defmodule UniboV4.Project.Task do
     has_many :timesheet_ids, UniboV4.Project.TimesheetEntry do
       public? true
     end
+    belongs_to :stage, UniboV4.Project.TaskStage do
+      public? true
+      allow_nil? false
+    end
+    belongs_to :milestone, UniboV4.Project.Milestone do
+      public? true
+    end
   end
 
   actions do
     defaults [:read]
     create :create do
       primary? true
-      accept [:name, :priority, :date_deadline, :allocated_hours, :description, :milestone_id, :tag_ids, :recurring_task, :kanban_state]
+      accept [:name, :priority, :date_deadline, :allocated_hours, :description, :tag_ids, :recurring_task, :kanban_state]
       argument :project_id, :uuid
+      argument :stage_id, :uuid, allow_nil?: false
+      change manage_relationship(:stage_id, :stage, type: :append, on_lookup: :relate)
       validate present(:name)
       # TODO: 不支持的 action 内校验规则 no_circular_dependency
       # TODO: 不支持的 action 内校验规则 custom
@@ -159,7 +163,7 @@ defmodule UniboV4.Project.Task do
     end
     update :update do
       primary? true
-      accept [:name, :state, :priority, :date_deadline, :allocated_hours, :description, :stage_id, :user_ids, :milestone_id, :tag_ids, :kanban_state]
+      accept [:name, :state, :priority, :date_deadline, :allocated_hours, :description, :user_ids, :tag_ids, :kanban_state]
       argument :depend_on_ids, :uuid
       # skipped: validate no_circular_dependency :depend_on_ids (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
@@ -257,7 +261,6 @@ defmodule UniboV4.Project.Task do
       require_atomic? false
     end
     update :reopen do
-      accept [:stage_id]
       # skipped: validate no_circular_dependency :depend_on_ids (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
@@ -282,6 +285,8 @@ defmodule UniboV4.Project.Task do
     end
     create :copy do
       accept []
+      argument :stage_id, :uuid, allow_nil?: false
+      change manage_relationship(:stage_id, :stage, type: :append, on_lookup: :relate)
       validate present(:name)
       # TODO: 不支持的 action 内校验规则 no_circular_dependency
       # TODO: 不支持的 action 内校验规则 custom

@@ -5,13 +5,13 @@
 #   create --> cancel_transaction
 #   cancel_transaction --> [*] : cancelled
 # ```
-defmodule UniboV4.Loyalty.Loyalty.LoyaltyTransaction do
+defmodule UniboV4.Loyalty.LoyaltyTransaction do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Loyalty.Loyalty,
+    domain: UniboV4.Loyalty,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Loyalty.Loyalty.LoyaltyTransaction.Notifier]
+    notifiers: [UniboV4.Loyalty.LoyaltyTransaction.Notifier]
 
   postgres do
     table "loyalty_transactions"
@@ -63,16 +63,12 @@ defmodule UniboV4.Loyalty.Loyalty.LoyaltyTransaction do
   end
 
   relationships do
-    belongs_to :card, UniboV4.Loyalty.Loyalty.LoyaltyCard do
+    belongs_to :card, UniboV4.Loyalty.LoyaltyCard do
       public? true
       allow_nil? false
     end
-    belongs_to :reward, UniboV4.Loyalty.Loyalty.LoyaltyReward do
+    belongs_to :reward, UniboV4.Loyalty.LoyaltyReward do
       public? true
-    end
-    belongs_to :partner, UniboV4.Loyalty.Loyalty.ResPartner do
-      public? true
-      allow_nil? false
     end
   end
 
@@ -85,7 +81,6 @@ defmodule UniboV4.Loyalty.Loyalty.LoyaltyTransaction do
       argument :partner_id, :uuid, allow_nil?: false
       argument :reward_id, :uuid
       change manage_relationship(:card_id, :card, type: :append, on_lookup: :relate)
-      change manage_relationship(:partner_id, :partner, type: :append, on_lookup: :relate)
       validate present(:points_delta)
       validate present(:transaction_type)
       change fn changeset, _context ->

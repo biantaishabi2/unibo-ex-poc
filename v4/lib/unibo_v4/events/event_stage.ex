@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Events.Events.EventStage do
+defmodule UniboV4.Events.EventStage do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Events.Events,
+    domain: UniboV4.Events,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -50,6 +50,7 @@ defmodule UniboV4.Events.Events.EventStage do
       public? true
     end
     attribute :speaker_name, :string, public?: true
+    attribute :speaker_id, :uuid, public?: true
     attribute :topic, :string, public?: true
     attribute :location, :string, public?: true
     attribute :sequence, :integer do
@@ -61,21 +62,18 @@ defmodule UniboV4.Events.Events.EventStage do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Events.Events.Event do
+    belongs_to :event, UniboV4.Events.Event do
       public? true
       allow_nil? false
     end
-    belongs_to :speaker, UniboV4.Events.Events.User do
-      public? true
-    end
-    has_many :translations, UniboV4.Events.Events.EventStageTranslation, public?: true
+    has_many :translations, UniboV4.Events.EventStageTranslation, public?: true
   end
 
   actions do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:name, :description, :start_time, :end_time, :speaker_name, :topic, :location, :sequence]
+      accept [:name, :description, :start_time, :end_time, :speaker_name, :speaker_id, :topic, :location, :sequence]
       argument :event_id, :uuid, allow_nil?: false
       change manage_relationship(:event_id, :event, type: :append, on_lookup: :relate)
       validate present(:event_id)
@@ -95,7 +93,7 @@ defmodule UniboV4.Events.Events.EventStage do
     end
     update :update do
       primary? true
-      accept [:name, :description, :start_time, :end_time, :speaker_name, :topic, :location, :sequence]
+      accept [:name, :description, :start_time, :end_time, :speaker_name, :speaker_id, :topic, :location, :sequence]
       # skipped: validate compare :end_time (incompatible with bulk update atomic path)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

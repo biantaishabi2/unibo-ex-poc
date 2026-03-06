@@ -21,13 +21,13 @@
 #   cancel --> [*] : cancelled
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Payment.Payment.Payment do
+defmodule UniboV4.Payment.Payment do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Payment.Payment,
+    domain: UniboV4.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Payment.Payment.Payment.Notifier]
+    notifiers: [UniboV4.Payment.Payment.Notifier]
 
   postgres do
     table "payment_payments"
@@ -94,29 +94,29 @@ defmodule UniboV4.Payment.Payment.Payment do
   end
 
   relationships do
-    belongs_to :payment_type, UniboV4.Payment.Payment.PaymentType do
+    belongs_to :payment_type, UniboV4.Payment.PaymentType do
       public? true
     end
-    belongs_to :payment_method, UniboV4.Payment.Payment.PaymentMethod do
+    belongs_to :payment_method, UniboV4.Payment.PaymentMethod do
       public? true
     end
-    belongs_to :gateway_response, UniboV4.Payment.Payment.PaymentGatewayResponse do
+    belongs_to :gateway_response, UniboV4.Payment.PaymentGatewayResponse do
       public? true
       source_attribute :payment_gateway_response_id
     end
-    belongs_to :from_party, UniboV4.Payment.Payment.Party do
+    belongs_to :from_party, UniboV4.Payment.Party do
       public? true
       source_attribute :party_id_from
     end
-    belongs_to :to_party, UniboV4.Payment.Payment.Party do
+    belongs_to :to_party, UniboV4.Payment.Party do
       public? true
       source_attribute :party_id_to
     end
-    has_many :applications, UniboV4.Payment.Payment.PaymentApplication do
+    has_many :applications, UniboV4.Payment.PaymentApplication do
       public? true
       destination_attribute :payment_id
     end
-    has_many :refunds, UniboV4.Payment.Payment.PaymentRefund do
+    has_many :refunds, UniboV4.Payment.PaymentRefund do
       public? true
       destination_attribute :payment_id
     end

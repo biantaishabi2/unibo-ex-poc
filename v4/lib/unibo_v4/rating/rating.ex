@@ -11,13 +11,13 @@
 #   reject --> [*]
 #   flag --> [*]
 # ```
-defmodule UniboV4.Rating.Rating.Rating do
+defmodule UniboV4.Rating.Rating do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Rating.Rating,
+    domain: UniboV4.Rating,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Rating.Rating.Rating.Notifier]
+    notifiers: [UniboV4.Rating.Rating.Notifier]
 
   postgres do
     table "rating_ratings"
@@ -80,10 +80,10 @@ defmodule UniboV4.Rating.Rating.Rating do
   end
 
   relationships do
-    belongs_to :rating_type, UniboV4.Rating.Rating.RatingType do
+    belongs_to :rating_type, UniboV4.Rating.RatingType do
       public? true
     end
-    has_many :scores, UniboV4.Rating.Rating.RatingScore do
+    has_many :scores, UniboV4.Rating.RatingScore do
       public? true
       destination_attribute :rating_id
     end

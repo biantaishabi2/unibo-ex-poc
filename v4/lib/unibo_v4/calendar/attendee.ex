@@ -8,10 +8,10 @@
 #   update_response --> remove
 #   remove --> [*]
 # ```
-defmodule UniboV4.Calendar.Calendar.Attendee do
+defmodule UniboV4.Calendar.Attendee do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Calendar.Calendar,
+    domain: UniboV4.Calendar,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -68,7 +68,7 @@ defmodule UniboV4.Calendar.Calendar.Attendee do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Calendar.Calendar.CalendarEvent do
+    belongs_to :event, UniboV4.Calendar.CalendarEvent do
       public? true
       allow_nil? false
     end

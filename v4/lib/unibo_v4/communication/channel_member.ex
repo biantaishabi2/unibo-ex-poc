@@ -42,7 +42,6 @@ defmodule UniboV4.Communication.ChannelMember do
 
   attributes do
     uuid_primary_key :id
-    attribute :partner_id, :string, public?: true
     attribute :role, :atom do
       constraints one_of: [:admin, :member]
       default :member
@@ -69,7 +68,7 @@ defmodule UniboV4.Communication.ChannelMember do
     attribute :mute_until_dt, :utc_datetime, public?: true
     attribute :last_interest_dt, :utc_datetime, public?: true
     attribute :last_seen_dt, :utc_datetime, public?: true
-    attribute :rtc_inviting_session_id, :string, public?: true
+    attribute :rtc_inviting_session_id, :uuid, public?: true
     attribute :joined_date, :date do
       allow_nil? false
       default &Date.utc_today/0
@@ -94,6 +93,9 @@ defmodule UniboV4.Communication.ChannelMember do
       public? true
     end
     belongs_to :fetched_message, UniboV4.Communication.Message do
+      public? true
+    end
+    belongs_to :partner, UniboV4.Communication.User do
       public? true
     end
   end

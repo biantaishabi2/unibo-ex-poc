@@ -1,4 +1,4 @@
-defmodule UniboV4.Analytic.Analytic do
+defmodule UniboV4.Analytic do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,15 +7,15 @@ defmodule UniboV4.Analytic.Analytic do
   end
 
   resources do
-    resource UniboV4.Analytic.Analytic.AnalyticPlan
-    resource UniboV4.Analytic.Analytic.AnalyticAccount
-    resource UniboV4.Analytic.Analytic.AnalyticLine
-    resource UniboV4.Analytic.Analytic.AnalyticDistribution
-    resource UniboV4.Analytic.Analytic.Partner
-    resource UniboV4.Analytic.Analytic.JournalEntryLine
-    resource UniboV4.Analytic.Analytic.Currency
-    resource UniboV4.Analytic.Analytic.Product
-    resource UniboV4.Analytic.Analytic.Employee
-    resource UniboV4.Analytic.Analytic.Company
+    resource UniboV4.Analytic.AnalyticPlan
+    resource UniboV4.Analytic.AnalyticAccount
+    resource UniboV4.Analytic.AnalyticLine
+    resource UniboV4.Analytic.AnalyticDistribution
+    resource UniboV4.Analytic.Partner
+    resource UniboV4.Analytic.JournalEntryLine
+    resource UniboV4.Analytic.Currency
+    resource UniboV4.Analytic.Product
+    resource UniboV4.Analytic.Employee
+    resource UniboV4.Analytic.Company
   end
 end

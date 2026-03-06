@@ -60,7 +60,7 @@ defmodule UniboV4.Communication.Channel do
       default false
       public? true
     end
-    attribute :group_public_id, :string, public?: true
+    attribute :group_public_id, :uuid, public?: true
     attribute :group_ids, :string, public?: true
     create_timestamp :inserted_at
     update_timestamp :updated_at

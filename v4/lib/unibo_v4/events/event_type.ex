@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Events.Events.EventType do
+defmodule UniboV4.Events.EventType do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Events.Events,
+    domain: UniboV4.Events,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -40,7 +40,7 @@ defmodule UniboV4.Events.Events.EventType do
       allow_nil? false
       public? true
     end
-    attribute :parent_type_id, :string, public?: true
+    attribute :parent_type_id, :uuid, public?: true
     attribute :code, :string do
       allow_nil? false
       public? true
@@ -50,15 +50,15 @@ defmodule UniboV4.Events.Events.EventType do
   end
 
   relationships do
-    has_many :events, UniboV4.Events.Events.Event do
+    has_many :events, UniboV4.Events.Event do
       public? true
       destination_attribute :event_type_id
     end
-    has_many :children, UniboV4.Events.Events.EventType do
+    has_many :children, UniboV4.Events.EventType do
       public? true
       destination_attribute :parent_type_id
     end
-    has_many :translations, UniboV4.Events.Events.EventTypeTranslation, public?: true
+    has_many :translations, UniboV4.Events.EventTypeTranslation, public?: true
   end
 
   actions do

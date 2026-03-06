@@ -1,7 +1,7 @@
-defmodule UniboV4.Rating.Rating.RatingScore do
+defmodule UniboV4.Rating.RatingScore do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Rating.Rating,
+    domain: UniboV4.Rating,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -36,11 +36,11 @@ defmodule UniboV4.Rating.Rating.RatingScore do
   end
 
   relationships do
-    belongs_to :rating, UniboV4.Rating.Rating.Rating do
+    belongs_to :rating, UniboV4.Rating.Rating do
       public? true
       allow_nil? false
     end
-    belongs_to :criteria, UniboV4.Rating.Rating.RatingCriteria do
+    belongs_to :criteria, UniboV4.Rating.RatingCriteria do
       public? true
       allow_nil? false
     end

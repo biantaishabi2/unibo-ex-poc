@@ -49,7 +49,7 @@ defmodule UniboV4.Communication.Message do
       default :comment
       public? true
     end
-    attribute :subtype_id, :string, public?: true
+    attribute :subtype_id, :uuid, public?: true
     attribute :is_internal, :boolean do
       default false
       public? true

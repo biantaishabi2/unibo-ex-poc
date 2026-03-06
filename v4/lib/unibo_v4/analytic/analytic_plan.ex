@@ -8,10 +8,10 @@
 #   update --> deactivate
 #   deactivate --> [*]
 # ```
-defmodule UniboV4.Analytic.Analytic.AnalyticPlan do
+defmodule UniboV4.Analytic.AnalyticPlan do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Analytic.Analytic,
+    domain: UniboV4.Analytic,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -62,7 +62,7 @@ defmodule UniboV4.Analytic.Analytic.AnalyticPlan do
   end
 
   relationships do
-    has_many :accounts, UniboV4.Analytic.Analytic.AnalyticAccount do
+    has_many :accounts, UniboV4.Analytic.AnalyticAccount do
       public? true
       destination_attribute :plan_id
     end

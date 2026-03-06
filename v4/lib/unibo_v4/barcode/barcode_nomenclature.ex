@@ -16,10 +16,10 @@
 #   deactivate --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Barcode.Barcode.BarcodeNomenclature do
+defmodule UniboV4.Barcode.BarcodeNomenclature do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Barcode.Barcode,
+    domain: UniboV4.Barcode,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -75,11 +75,11 @@ defmodule UniboV4.Barcode.Barcode.BarcodeNomenclature do
   end
 
   relationships do
-    has_many :rules, UniboV4.Barcode.Barcode.BarcodeRule do
+    has_many :rules, UniboV4.Barcode.BarcodeRule do
       public? true
       destination_attribute :nomenclature_id
     end
-    has_many :translations, UniboV4.Barcode.Barcode.BarcodeNomenclatureTranslation, public?: true
+    has_many :translations, UniboV4.Barcode.BarcodeNomenclatureTranslation, public?: true
   end
 
   actions do

@@ -9,13 +9,13 @@
 #   check_in --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Events.Events.EventRegistration do
+defmodule UniboV4.Events.EventRegistration do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Events.Events,
+    domain: UniboV4.Events,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Events.Events.EventRegistration.Notifier]
+    notifiers: [UniboV4.Events.EventRegistration.Notifier]
 
   postgres do
     table "events_event_registrations"
@@ -41,6 +41,7 @@ defmodule UniboV4.Events.Events.EventRegistration do
 
   attributes do
     uuid_primary_key :id
+    attribute :attendee_id, :uuid, public?: true
     attribute :role, :atom do
       allow_nil? false
       constraints one_of: [:attendee, :speaker, :organizer]
@@ -74,15 +75,11 @@ defmodule UniboV4.Events.Events.EventRegistration do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Events.Events.Event do
+    belongs_to :event, UniboV4.Events.Event do
       public? true
       allow_nil? false
     end
-    belongs_to :attendee, UniboV4.Events.Events.User do
-      public? true
-      allow_nil? false
-    end
-    belongs_to :ticket, UniboV4.Events.Events.EventTicket do
+    belongs_to :ticket, UniboV4.Events.EventTicket do
       public? true
     end
   end
@@ -91,11 +88,9 @@ defmodule UniboV4.Events.Events.EventRegistration do
     defaults [:read]
     create :register do
       primary? true
-      accept [:role, :comments, :must_rsvp]
+      accept [:attendee_id, :role, :comments, :must_rsvp]
       argument :event_id, :uuid, allow_nil?: false
       change manage_relationship(:event_id, :event, type: :append, on_lookup: :relate)
-      argument :attendee_id, :uuid, allow_nil?: false
-      change manage_relationship(:attendee_id, :attendee, type: :append, on_lookup: :relate)
       validate present(:event_id)
       validate present(:attendee_id)
       # TODO: 不支持的 action 内校验规则 custom

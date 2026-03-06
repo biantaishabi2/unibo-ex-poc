@@ -7,13 +7,13 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Analytic.Analytic.AnalyticDistribution do
+defmodule UniboV4.Analytic.AnalyticDistribution do
   use Ash.Resource,
     otp_app: :unibo_v4,
-    domain: UniboV4.Analytic.Analytic,
+    domain: UniboV4.Analytic,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    notifiers: [UniboV4.Analytic.Analytic.AnalyticDistribution.Notifier]
+    notifiers: [UniboV4.Analytic.AnalyticDistribution.Notifier]
 
   postgres do
     table "analytic_distributions"
@@ -47,11 +47,11 @@ defmodule UniboV4.Analytic.Analytic.AnalyticDistribution do
   end
 
   relationships do
-    belongs_to :move_line, UniboV4.Analytic.Analytic.JournalEntryLine do
+    belongs_to :move_line, UniboV4.Analytic.JournalEntryLine do
       public? true
       allow_nil? false
     end
-    belongs_to :account, UniboV4.Analytic.Analytic.AnalyticAccount do
+    belongs_to :account, UniboV4.Analytic.AnalyticAccount do
       public? true
       allow_nil? false
     end

@@ -67,10 +67,7 @@ defmodule UniboV4.Project.Project do
       allow_nil? false
       public? true
     end
-    attribute :stage_id, :string do
-      allow_nil? false
-      public? true
-    end
+    attribute :stage_id, :uuid, public?: true
     attribute :active, :boolean do
       allow_nil? false
       default true
@@ -86,12 +83,9 @@ defmodule UniboV4.Project.Project do
       default :to_define
       public? true
     end
-    attribute :analytic_account_id, :string, public?: true
-    attribute :partner_id, :string, public?: true
-    attribute :company_id, :string do
-      allow_nil? false
-      public? true
-    end
+    attribute :analytic_account_id, :uuid, public?: true
+    attribute :partner_id, :uuid, public?: true
+    attribute :company_id, :uuid, public?: true
     attribute :allow_task_dependencies, :boolean do
       default false
       public? true
@@ -108,7 +102,7 @@ defmodule UniboV4.Project.Project do
       default "Tasks"
       public? true
     end
-    attribute :resource_calendar_id, :string, public?: true
+    attribute :resource_calendar_id, :uuid, public?: true
     attribute :start_date, :date, public?: true
     attribute :end_date, :date, public?: true
     attribute :color, :integer do
