@@ -20,6 +20,33 @@ if System.get_env("PHX_SERVER") do
   config :unibo_ex_poc, UniboExPocWeb.Endpoint, server: true
 end
 
+shop_bridge_base_url = System.get_env("SHOP_BRIDGE_BASE_URL")
+
+if is_binary(shop_bridge_base_url) and shop_bridge_base_url != "" do
+  shop_bridge_headers =
+    System.get_env("SHOP_BRIDGE_HEADERS", "")
+    |> String.split(",", trim: true)
+    |> Enum.map(fn pair ->
+      case String.split(pair, "=", parts: 2) do
+        [key, value] -> {String.trim(key), String.trim(value)}
+        [key] -> {String.trim(key), ""}
+      end
+    end)
+
+  config :unibo_ex_poc, :travel_host_shop_bridge,
+    base_url: shop_bridge_base_url,
+    headers: shop_bridge_headers
+
+  config :unibo_ex_poc,
+         :travel_host_bridge,
+         {UniboExPoc.TravelHost.ShopBridgeClient,
+          transport: UniboExPoc.TravelHost.HTTPTransport,
+          transport_opts: [
+            base_url: shop_bridge_base_url,
+            headers: shop_bridge_headers
+          ]}
+end
+
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||
