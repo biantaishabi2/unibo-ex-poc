@@ -19,13 +19,16 @@ config :unibo_ex_poc,
   generators: [timestamp_type: :utc_datetime]
 
 config :unibo_ex_poc, :travel_host_shop_bridge,
+  bridge_client: UniboExPoc.TravelHost.ShopBridgeClient,
+  transport: UniboExPoc.TravelHost.HTTPTransport,
   base_url: nil,
   endpoint_paths: %{
     resolve_context: "/internal/api/travel_host_bridge/resolve_context",
     quote: "/internal/api/travel_host_bridge/quote",
     execute_payment: "/internal/api/travel_host_bridge/execute_payment"
   },
-  headers: []
+  headers: [],
+  http_options: []
 
 config :unibo_ex_poc, UniboExPocWeb.Graphql.RuntimeConfig,
   source: :default,

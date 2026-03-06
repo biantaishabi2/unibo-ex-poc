@@ -44,11 +44,7 @@ defmodule UniboExPoc.TravelHost.ShopBridgeClient do
   @impl true
   def execute_payment(method, %EligibilityOrQuote{} = quote, opts) do
     request = %{
-      payment_request: %{
-        method: to_string(method),
-        external_ref: Keyword.get(opts, :external_ref),
-        metadata: Map.new(Keyword.get(opts, :payment_request, %{}))
-      },
+      payment_request: payment_request_payload(method, opts),
       eligibility_or_quote: quote_payload(quote)
     }
 
@@ -107,6 +103,45 @@ defmodule UniboExPoc.TravelHost.ShopBridgeClient do
       recommended_payment_method: to_string(quote.recommended_payment_method)
     }
   end
+
+  defp payment_request_payload(method, opts) do
+    raw_payment_request = normalize_map_like(Keyword.get(opts, :payment_request, %{}))
+    nested_metadata = normalize_map_like(fetch_value(raw_payment_request, [:metadata]))
+
+    metadata =
+      raw_payment_request
+      |> Map.drop([
+        :metadata,
+        "metadata",
+        :external_ref,
+        "external_ref",
+        :order_id,
+        "order_id",
+        :method,
+        "method"
+      ])
+      |> Map.merge(nested_metadata)
+
+    %{
+      method: to_string(method),
+      external_ref:
+        blank_to_nil(Keyword.get(opts, :external_ref)) ||
+          blank_to_nil(fetch_value(raw_payment_request, [:external_ref, :order_id])),
+      metadata: metadata
+    }
+  end
+
+  defp normalize_map_like(value) when is_map(value), do: value
+
+  defp normalize_map_like(value) when is_list(value) do
+    if Keyword.keyword?(value) do
+      Map.new(value)
+    else
+      %{}
+    end
+  end
+
+  defp normalize_map_like(_value), do: %{}
 
   defp normalize_order_payload(order_attrs) when is_map(order_attrs) do
     order_attrs
@@ -167,9 +202,17 @@ defmodule UniboExPoc.TravelHost.ShopBridgeClient do
 
   defp fetch_integer(payload, keys, default) do
     case fetch_value(payload, keys) do
-      value when is_integer(value) -> value
-      value when is_binary(value) and value != "" -> String.to_integer(value)
-      _other -> default
+      value when is_integer(value) ->
+        value
+
+      value when is_binary(value) and value != "" ->
+        case Integer.parse(value) do
+          {integer, ""} -> integer
+          _other -> default
+        end
+
+      _other ->
+        default
     end
   end
 
@@ -183,14 +226,31 @@ defmodule UniboExPoc.TravelHost.ShopBridgeClient do
 
   defp fetch_method(payload, keys, default) do
     case fetch_value(payload, keys) do
-      value when value in [:cash, :points, :mixed, :unavailable] -> value
-      "cash" -> :cash
-      "points" -> :points
-      "mixed" -> :mixed
-      "unavailable" -> :unavailable
-      _other -> default
+      value when value in [:cash, :points, :mixed, :unavailable, :wechat] ->
+        normalize_method(value)
+
+      "cash" ->
+        :cash
+
+      "points" ->
+        :points
+
+      "mixed" ->
+        :mixed
+
+      "unavailable" ->
+        :unavailable
+
+      "wechat" ->
+        :cash
+
+      _other ->
+        default
     end
   end
+
+  defp normalize_method(:wechat), do: :cash
+  defp normalize_method(method), do: method
 
   defp fetch_product_type(payload, keys, default) do
     case fetch_value(payload, keys) do
@@ -237,4 +297,19 @@ defmodule UniboExPoc.TravelHost.ShopBridgeClient do
   end
 
   defp fetch_value(_payload, []), do: nil
+
+  defp blank_to_nil(nil), do: nil
+  defp blank_to_nil(""), do: nil
+
+  defp blank_to_nil(value) when is_binary(value) do
+    trimmed = String.trim(value)
+
+    if trimmed == "" do
+      nil
+    else
+      trimmed
+    end
+  end
+
+  defp blank_to_nil(value), do: value
 end

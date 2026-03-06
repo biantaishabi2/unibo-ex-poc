@@ -40,4 +40,26 @@ defmodule UniboExPoc.Travel.HTTPTransportTest do
                end
              )
   end
+
+  test "request 支持 endpoint_paths 覆盖并透传 http_options" do
+    assert {:ok, %{"payment_execution" => %{"status" => "approved"}}} =
+             HTTPTransport.request(
+               :execute_payment,
+               %{payment_request: %{method: "mixed"}},
+               base_url: "http://shop.local",
+               endpoint_paths: %{execute_payment: "/internal/travel_bridge/pay"},
+               http_options: [timeout: 3_000],
+               http_client: fn url, _headers, body, http_opts ->
+                 assert url == "http://shop.local/internal/travel_bridge/pay"
+                 assert Jason.decode!(body) == %{"payment_request" => %{"method" => "mixed"}}
+                 assert http_opts == [timeout: 3_000]
+
+                 {:ok,
+                  %{
+                    status: 200,
+                    body: ~s({"payment_execution":{"status":"approved"}})
+                  }}
+               end
+             )
+  end
 end

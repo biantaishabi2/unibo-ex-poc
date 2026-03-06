@@ -20,30 +20,73 @@ if System.get_env("PHX_SERVER") do
   config :unibo_ex_poc, UniboExPocWeb.Endpoint, server: true
 end
 
-shop_bridge_base_url = System.get_env("SHOP_BRIDGE_BASE_URL")
+shop_bridge_config = Application.get_env(:unibo_ex_poc, :travel_host_shop_bridge, [])
+
+shop_bridge_base_url =
+  case System.get_env("SHOP_BRIDGE_BASE_URL") do
+    value when is_binary(value) and value != "" -> value
+    _other -> Keyword.get(shop_bridge_config, :base_url)
+  end
 
 if is_binary(shop_bridge_base_url) and shop_bridge_base_url != "" do
-  shop_bridge_headers =
+  shop_bridge_headers_from_env =
     System.get_env("SHOP_BRIDGE_HEADERS", "")
     |> String.split(",", trim: true)
-    |> Enum.map(fn pair ->
+    |> Enum.reduce([], fn pair, acc ->
       case String.split(pair, "=", parts: 2) do
-        [key, value] -> {String.trim(key), String.trim(value)}
-        [key] -> {String.trim(key), ""}
+        [raw_key, value] ->
+          key = String.trim(raw_key)
+
+          if key == "" do
+            acc
+          else
+            [{key, String.trim(value)} | acc]
+          end
+
+        [raw_key] ->
+          key = String.trim(raw_key)
+
+          if key == "" do
+            acc
+          else
+            [{key, ""} | acc]
+          end
+
+        _other ->
+          acc
       end
     end)
+    |> Enum.reverse()
+
+  shop_bridge_headers =
+    Keyword.get(shop_bridge_config, :headers, []) ++ shop_bridge_headers_from_env
+
+  shop_bridge_endpoint_paths = Keyword.get(shop_bridge_config, :endpoint_paths, %{})
+  shop_bridge_http_options = Keyword.get(shop_bridge_config, :http_options, [])
+
+  shop_bridge_bridge_client =
+    Keyword.get(shop_bridge_config, :bridge_client, UniboExPoc.TravelHost.ShopBridgeClient)
+
+  shop_bridge_transport =
+    Keyword.get(shop_bridge_config, :transport, UniboExPoc.TravelHost.HTTPTransport)
 
   config :unibo_ex_poc, :travel_host_shop_bridge,
+    bridge_client: shop_bridge_bridge_client,
+    transport: shop_bridge_transport,
     base_url: shop_bridge_base_url,
-    headers: shop_bridge_headers
+    endpoint_paths: shop_bridge_endpoint_paths,
+    headers: shop_bridge_headers,
+    http_options: shop_bridge_http_options
 
   config :unibo_ex_poc,
          :travel_host_bridge,
-         {UniboExPoc.TravelHost.ShopBridgeClient,
-          transport: UniboExPoc.TravelHost.HTTPTransport,
+         {shop_bridge_bridge_client,
+          transport: shop_bridge_transport,
           transport_opts: [
             base_url: shop_bridge_base_url,
-            headers: shop_bridge_headers
+            endpoint_paths: shop_bridge_endpoint_paths,
+            headers: shop_bridge_headers,
+            http_options: shop_bridge_http_options
           ]}
 end
 

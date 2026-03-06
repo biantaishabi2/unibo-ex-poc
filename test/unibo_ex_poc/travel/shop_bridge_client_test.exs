@@ -134,13 +134,16 @@ defmodule UniboExPoc.Travel.ShopBridgeClientTest do
                  responses: %{
                    execute_payment: fn payload ->
                      assert payload.payment_request.method == "mixed"
+                     assert payload.payment_request.external_ref == "order-001"
+                     assert payload.payment_request.metadata.payment_environment == "H5"
+                     assert payload.payment_request.metadata.scene == "hotel_order"
                      assert payload.eligibility_or_quote.points_requested == 800
 
                      {:ok,
                       %{
                         payment_execution: %{
                           status: "approved",
-                          method: "mixed",
+                          method: "wechat",
                           external_ref: "pay-001",
                           points_used: 800,
                           points_deduction_amount: "8.00",
@@ -150,12 +153,16 @@ defmodule UniboExPoc.Travel.ShopBridgeClientTest do
                    end
                  }
                ],
-               payment_request: %{scene: "hotel_order"}
+               payment_request: %{
+                 order_id: "order-001",
+                 payment_environment: "H5",
+                 scene: "hotel_order"
+               }
              )
 
     assert_received {:fake_shop_transport, :execute_payment, _payload}
     assert payment.status == :approved
-    assert payment.method == :mixed
+    assert payment.method == :cash
     assert payment.external_ref == "pay-001"
     assert payment.points_used == 800
     assert Decimal.equal?(payment.cash_amount, Decimal.new("92.00"))
