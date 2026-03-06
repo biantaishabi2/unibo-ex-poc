@@ -17,8 +17,10 @@ defmodule UniboExPoc.TravelStack.HotelFlow do
   """
   @spec book(map(), keyword()) :: {:ok, map()} | {:error, term()}
   def book(input, opts \\ []) do
+    adapter = Keyword.get(opts, :supplier_adapter, HotelMockAdapter)
+    adapter_opts = Keyword.get(opts, :supplier_adapter_opts, [])
+
     {bridge, bridge_opts} = bridge_spec(input, opts)
-    supplier_adapter = Keyword.get(opts, :supplier_adapter, HotelMockAdapter)
 
     with {:ok, context} <- bridge.resolve_context(Map.fetch!(input, :context), bridge_opts),
          order_attrs <- Map.put(Map.fetch!(input, :order), :product_type, :hotel),
@@ -28,7 +30,8 @@ defmodule UniboExPoc.TravelStack.HotelFlow do
            bridge.execute_payment(payment_method(opts, quote), quote, bridge_opts),
          :approved <- payment.status,
          supplier_request <- HotelBookingRequest.from_order(order_attrs, context),
-         {:ok, supplier_result} <- supplier_adapter.book(supplier_request, payment) do
+         true <- adapter_compatible?(adapter) or {:error, :invalid_supplier_adapter},
+         {:ok, supplier_result} <- adapter.book(supplier_request, payment, adapter_opts) do
       {:ok,
        %{
          context: context,
@@ -54,6 +57,13 @@ defmodule UniboExPoc.TravelStack.HotelFlow do
       {:error, reason} -> {:error, reason}
       :declined -> {:error, :payment_declined}
     end
+  end
+
+  defp adapter_compatible?(adapter) do
+    Code.ensure_loaded?(adapter) and
+      function_exported?(adapter, :book, 3) and
+      function_exported?(adapter, :query_booking_status, 2) and
+      function_exported?(adapter, :pull_incremental_updates, 2)
   end
 
   defp bridge_spec(input, opts) do
