@@ -15,6 +15,7 @@ config :unibo_ex_poc,
     UniboExPoc.PurchasingV3,
     UniboExPoc.Travel.Travel
   ],
+  travel_host_bridge: UniboExPoc.TravelHost.DefaultBridge,
   generators: [timestamp_type: :utc_datetime]
 
 config :unibo_ex_poc, UniboExPocWeb.Graphql.RuntimeConfig,
