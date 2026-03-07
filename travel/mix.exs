@@ -59,7 +59,7 @@ defmodule Travel.MixProject do
        ref: "c7e4696750d0e6d5936918f8bfeb073bc1b372f4",
        sparse: "targets/elixir/unibo_graphql_runtime"},
       {:ash_paper_trail, "~> 0.5"},
-      {:ash_archival, "~> 2.0"}
+      {:ash_archival, "~> 2.0"},
     ]
   end
 

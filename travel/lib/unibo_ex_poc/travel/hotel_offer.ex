@@ -145,13 +145,13 @@ defmodule UniboExPoc.Travel.HotelOffer do
 
   relationships do
     belongs_to :city_ref, UniboExPoc.Ecommerce.TravelCity do
-      public? false
+      public? true
     end
-    belongs_to :hotel_ref, UniboExPoc.Ecommerce.TravelHotel do
-      public? false
+    belongs_to :hotel_ref, UniboExPoc.Travel.TravelHotel do
+      public? true
     end
-    belongs_to :room_type_ref, UniboExPoc.Ecommerce.TravelRoomType do
-      public? false
+    belongs_to :room_type_ref, UniboExPoc.Travel.TravelRoomType do
+      public? true
     end
     has_many :orders, UniboExPoc.Travel.TravelOrder do
       public? true

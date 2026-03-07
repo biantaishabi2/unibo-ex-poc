@@ -2,7 +2,14 @@ import Config
 
 config :travel,
   ecto_repos: [UniboExPoc.Repo],
-  ash_domains: [UniboExPoc.Travel],
+  ash_domains: [
+    UniboExPoc.Delivery,
+    UniboExPoc.Ecommerce,
+    UniboExPoc.Payment,
+    UniboExPoc.Sales,
+    UniboExPoc.Travel,
+    UniboExPoc.Website
+  ],
   travel_host_bridge: UniboExPoc.TravelHost.DefaultBridge,
   generators: [timestamp_type: :utc_datetime]
 

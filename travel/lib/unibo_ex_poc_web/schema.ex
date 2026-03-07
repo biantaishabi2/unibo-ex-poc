@@ -3,7 +3,12 @@ defmodule UniboExPocWeb.Schema do
 
   use AshGraphql,
     domains: [
+      UniboExPoc.Delivery,
+      UniboExPoc.Ecommerce,
+      UniboExPoc.Payment,
+      UniboExPoc.Sales,
       UniboExPoc.Travel,
+      UniboExPoc.Website,
     ]
 
   query do

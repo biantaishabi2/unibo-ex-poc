@@ -133,7 +133,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       source_attribute :travel_order_id
     end
     belongs_to :shipment, UniboExPoc.Delivery.Shipment do
-      public? false
+      public? true
     end
   end
 
@@ -189,6 +189,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
           changeset
         end
       end
+      change UniboExPoc.Travel.Integrations.TravelFulfillment.ConfirmBookingSupplierConfirmBookingBridge
       require_atomic? false
     end
     update :issue_voucher_or_ticket do
@@ -212,6 +213,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
           changeset
         end
       end
+      change UniboExPoc.Travel.Integrations.TravelFulfillment.IssueVoucherOrTicketSupplierIssueDocumentBridge
       require_atomic? false
     end
     update :mark_in_use do
@@ -281,6 +283,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
           changeset
         end
       end
+      change UniboExPoc.Travel.Integrations.TravelFulfillment.CancelFulfillmentSupplierCancelBookingBridge
       require_atomic? false
     end
     update :fail_fulfillment do

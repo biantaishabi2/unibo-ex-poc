@@ -143,10 +143,10 @@ defmodule UniboExPoc.Travel.VacationOffer do
 
   relationships do
     belongs_to :departure_city_ref, UniboExPoc.Ecommerce.TravelCity do
-      public? false
+      public? true
     end
     belongs_to :destination_ref, UniboExPoc.Ecommerce.TravelCity do
-      public? false
+      public? true
     end
     has_many :orders, UniboExPoc.Travel.TravelOrder do
       public? true

@@ -5,7 +5,7 @@ defmodule UniboExPoc.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      {DNSCluster, query: Application.get_env(:travel, :dns_cluster_query) || :ignore},
+      {DNSCluster, query: Application.get_env(:unibo_ex_poc, :dns_cluster_query) || :ignore},
       UniboExPoc.Repo,
       {Phoenix.PubSub, name: UniboExPoc.PubSub},
       UniboExPocWeb.Telemetry,

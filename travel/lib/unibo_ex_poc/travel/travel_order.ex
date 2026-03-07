@@ -199,10 +199,10 @@ defmodule UniboExPoc.Travel.TravelOrder do
       destination_attribute :travel_order_id
     end
     belongs_to :customer, UniboExPoc.Sales.Customer do
-      public? false
+      public? true
     end
     belongs_to :payment, UniboExPoc.Payment.Payment do
-      public? false
+      public? true
     end
   end
 
@@ -234,6 +234,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
           changeset
         end
       end
+      change UniboExPoc.Travel.Integrations.TravelOrder.CreateOrderShopCallerContextResolveBridge
     end
     update :update do
       primary? true
@@ -270,6 +271,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
           changeset
         end
       end
+      change UniboExPoc.Travel.Integrations.TravelOrder.ConfirmQuoteShopEligibilityQuoteBridge
       require_atomic? false
     end
     update :submit_order do
@@ -293,6 +295,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
           changeset
         end
       end
+      change UniboExPoc.Travel.Integrations.TravelOrder.SubmitOrderPaymentCaptureBridge
       require_atomic? false
     end
     update :submit_waitlist do
@@ -318,6 +321,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
           changeset
         end
       end
+      change UniboExPoc.Travel.Integrations.TravelOrder.SubmitWaitlistPaymentCaptureBridge
       require_atomic? false
     end
     update :mark_payment_succeeded do
@@ -341,6 +345,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
           changeset
         end
       end
+      change UniboExPoc.Travel.Integrations.TravelOrder.MarkPaymentSucceededSupplierBookingSubmitBridge
       require_atomic? false
     end
     update :mark_booked do

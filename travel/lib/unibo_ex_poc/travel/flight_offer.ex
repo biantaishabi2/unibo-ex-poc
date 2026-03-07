@@ -145,17 +145,17 @@ defmodule UniboExPoc.Travel.FlightOffer do
   end
 
   relationships do
-    belongs_to :departure_airport_ref, UniboExPoc.Ecommerce.TravelAirport do
-      public? false
+    belongs_to :departure_airport_ref, UniboExPoc.Travel.TravelAirport do
+      public? true
     end
-    belongs_to :arrival_airport_ref, UniboExPoc.Ecommerce.TravelAirport do
-      public? false
+    belongs_to :arrival_airport_ref, UniboExPoc.Travel.TravelAirport do
+      public? true
     end
-    belongs_to :airline_ref, UniboExPoc.Ecommerce.TravelAirline do
-      public? false
+    belongs_to :airline_ref, UniboExPoc.Travel.TravelAirline do
+      public? true
     end
-    belongs_to :cabin_class_ref, UniboExPoc.Ecommerce.TravelCabinClass do
-      public? false
+    belongs_to :cabin_class_ref, UniboExPoc.Travel.TravelCabinClass do
+      public? true
     end
     has_many :orders, UniboExPoc.Travel.TravelOrder do
       public? true
