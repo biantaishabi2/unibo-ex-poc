@@ -5,6 +5,13 @@ defmodule UniboExPocWeb.Schema do
     domains: [
       UniboExPoc.Delivery,
       UniboExPoc.Ecommerce,
+      UniboExPoc.Ofbiz.Accounting,
+      UniboExPoc.Ofbiz.Common,
+      UniboExPoc.Ofbiz.Content,
+      UniboExPoc.Ofbiz.Order,
+      UniboExPoc.Ofbiz.Party,
+      UniboExPoc.Ofbiz.Product,
+      UniboExPoc.Ofbiz.Shipment,
       UniboExPoc.Payment,
       UniboExPoc.Sales,
       UniboExPoc.Travel,

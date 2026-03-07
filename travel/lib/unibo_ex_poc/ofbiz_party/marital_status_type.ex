@@ -1,0 +1,70 @@
+defmodule UniboExPoc.Ofbiz.Party.MaritalStatusType do
+  use Ash.Resource,
+    otp_app: :unibo_ex_poc,
+    domain: UniboExPoc.Ofbiz.Party,
+    data_layer: AshPostgres.DataLayer,
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+
+  resource do
+    description "Marital Status Type."
+  end
+
+  postgres do
+    table "party_marital_status_types"
+    repo UniboExPoc.Repo
+  end
+
+  graphql do
+    type :party_marital_status_type
+
+    queries do
+      get :get_party_marital_status_type, :read
+      list :list_party_marital_status_types, :read
+    end
+
+    mutations do
+      create :create_party_marital_status_type, :create
+      update :update_party_marital_status_type, :update
+      destroy :delete_party_marital_status_type, :destroy
+    end
+
+  end
+
+  attributes do
+    uuid_primary_key :id
+    attribute :marital_status_type_id, :string do
+      public? true
+      description "婚姻状况类型编号"
+    end
+    attribute :has_table, :boolean do
+      public? true
+      description "有表"
+    end
+    attribute :description, :string do
+      public? true
+      description "说明"
+    end
+    attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
+  end
+
+  relationships do
+    belongs_to :parent_marital_status_type, UniboExPoc.Ofbiz.Party.MaritalStatusType do
+      public? true
+      source_attribute :parent_type_id
+    end
+  end
+
+  actions do
+    defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
+  end
+
+  archive do
+  end
+
+end

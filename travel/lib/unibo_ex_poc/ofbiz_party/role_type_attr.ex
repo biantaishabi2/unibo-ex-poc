@@ -1,0 +1,76 @@
+defmodule UniboExPoc.Ofbiz.Party.RoleTypeAttr do
+  use Ash.Resource,
+    otp_app: :unibo_ex_poc,
+    domain: UniboExPoc.Ofbiz.Party,
+    data_layer: AshPostgres.DataLayer,
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+
+  postgres do
+    table "party_role_type_attrs"
+    repo UniboExPoc.Repo
+  end
+
+  graphql do
+    type :party_role_type_attr
+
+    queries do
+      get :get_party_role_type_attr, :read
+      list :list_party_role_type_attrs, :read
+    end
+
+    mutations do
+      create :create_party_role_type_attr, :create
+      update :update_party_role_type_attr, :update
+      destroy :delete_party_role_type_attr, :destroy
+    end
+
+  end
+
+  attributes do
+    attribute :attr_name, :string do
+      allow_nil? false
+      primary_key? true
+      allow_nil? false
+      public? true
+      description "属性名"
+    end
+    attribute :description, :string do
+      public? true
+      description "说明"
+    end
+    attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
+  end
+
+  relationships do
+    belongs_to :role_type, UniboExPoc.Ofbiz.Party.RoleType do
+      public? true
+    end
+    has_many :party_role, UniboExPoc.Ofbiz.Party.PartyRole do
+      public? true
+      destination_attribute :role_type_id
+    end
+    has_many :valid_from_party_relationship_type, UniboExPoc.Ofbiz.Party.PartyRelationshipType do
+      public? true
+      destination_attribute :role_type_id_valid_from
+    end
+    has_many :valid_to_party_relationship_type, UniboExPoc.Ofbiz.Party.PartyRelationshipType do
+      public? true
+      destination_attribute :role_type_id_valid_to
+    end
+  end
+
+  actions do
+    defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
+  end
+
+  archive do
+    archive_related [:party_role, :valid_from_party_relationship_type, :valid_to_party_relationship_type]
+  end
+
+end

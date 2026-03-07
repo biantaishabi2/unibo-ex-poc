@@ -1,0 +1,49 @@
+defmodule UniboExPoc.Ofbiz.Product.VarianceReason do
+  use Ash.Resource,
+    otp_app: :unibo_ex_poc,
+    domain: UniboExPoc.Ofbiz.Product,
+    data_layer: AshPostgres.DataLayer,
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+
+  postgres do
+    table "product_variance_reasons"
+    repo UniboExPoc.Repo
+  end
+
+  graphql do
+    type :product_variance_reason
+
+    queries do
+      get :get_product_variance_reason, :read
+      list :list_product_variance_reasons, :read
+    end
+
+    mutations do
+      create :create_product_variance_reason, :create
+      update :update_product_variance_reason, :update
+      destroy :delete_product_variance_reason, :destroy
+    end
+
+  end
+
+  attributes do
+    uuid_primary_key :id
+    attribute :variance_reason_id, :string, public?: true
+    attribute :description, :string, public?: true
+    attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
+  end
+
+  actions do
+    defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
+  end
+
+  archive do
+  end
+
+end

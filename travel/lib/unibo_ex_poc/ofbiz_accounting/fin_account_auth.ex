@@ -1,0 +1,59 @@
+defmodule UniboExPoc.Ofbiz.Accounting.FinAccountAuth do
+  use Ash.Resource,
+    otp_app: :unibo_ex_poc,
+    domain: UniboExPoc.Ofbiz.Accounting,
+    data_layer: AshPostgres.DataLayer,
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+
+  postgres do
+    table "accounting_fin_account_auths"
+    repo UniboExPoc.Repo
+  end
+
+  graphql do
+    type :accounting_fin_account_auth
+
+    queries do
+      get :get_accounting_fin_account_auth, :read
+      list :list_accounting_fin_account_auths, :read
+    end
+
+    mutations do
+      create :create_accounting_fin_account_auth, :create
+      update :update_accounting_fin_account_auth, :update
+      destroy :delete_accounting_fin_account_auth, :destroy
+    end
+
+  end
+
+  attributes do
+    uuid_primary_key :id
+    attribute :fin_account_auth_id, :string, public?: true
+    attribute :amount, :decimal, public?: true
+    attribute :currency_uom_id, :string, public?: true
+    attribute :authorization_date, :utc_datetime, public?: true
+    attribute :from_date, :utc_datetime, public?: true
+    attribute :thru_date, :utc_datetime, public?: true
+    attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
+  end
+
+  relationships do
+    belongs_to :fin_account, UniboExPoc.Ofbiz.Accounting.FinAccount do
+      public? true
+    end
+  end
+
+  actions do
+    defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
+  end
+
+  archive do
+  end
+
+end

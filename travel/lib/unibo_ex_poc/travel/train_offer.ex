@@ -172,11 +172,11 @@ defmodule UniboExPoc.Travel.TrainOffer do
   end
 
   relationships do
-    belongs_to :departure_station_ref, UniboExPoc.Ecommerce.TravelStation do
-      public? false
+    belongs_to :departure_station_ref, UniboExPoc.Travel.TravelStation do
+      public? true
     end
-    belongs_to :arrival_station_ref, UniboExPoc.Ecommerce.TravelStation do
-      public? false
+    belongs_to :arrival_station_ref, UniboExPoc.Travel.TravelStation do
+      public? true
     end
     has_many :orders, UniboExPoc.Travel.TravelOrder do
       public? true
