@@ -6,7 +6,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductCostComponentCalc do
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
-    table "product_cost_component_calcs"
+    table "product_product_cost_component_calcs"
     repo UniboExPoc.Repo
   end
 

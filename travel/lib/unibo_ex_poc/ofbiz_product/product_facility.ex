@@ -6,7 +6,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFacility do
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
-    table "product_facilities"
+    table "product_product_facilities"
     repo UniboExPoc.Repo
   end
 

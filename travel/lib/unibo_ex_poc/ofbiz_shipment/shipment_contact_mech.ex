@@ -6,7 +6,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentContactMech do
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
-    table "shipment_contact_meches"
+    table "shipment_shipment_contact_meches"
     repo UniboExPoc.Repo
   end
 

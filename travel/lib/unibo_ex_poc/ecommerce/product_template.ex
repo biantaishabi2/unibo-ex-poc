@@ -140,10 +140,14 @@ defmodule UniboExPoc.Ecommerce.ProductTemplate do
     many_to_many :alternative_products, UniboExPoc.Ecommerce.ProductTemplate do
       public? true
       through UniboExPoc.Ecommerce.ProductTemplateAlternativeLink
+      source_attribute_on_join_resource :alternative_product_id
+      destination_attribute_on_join_resource :alternative_product_id
     end
     many_to_many :accessory_products, UniboExPoc.Ecommerce.ProductTemplate do
       public? true
       through UniboExPoc.Ecommerce.ProductTemplateAccessoryLink
+      source_attribute_on_join_resource :accessory_product_id
+      destination_attribute_on_join_resource :accessory_product_id
     end
     belongs_to :base_unit, UniboExPoc.Ecommerce.UOM do
       public? true

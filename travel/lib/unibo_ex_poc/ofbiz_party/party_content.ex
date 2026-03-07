@@ -6,7 +6,7 @@ defmodule UniboExPoc.Ofbiz.Party.PartyContent do
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
-    table "party_contents"
+    table "party_party_contents"
     repo UniboExPoc.Repo
   end
 

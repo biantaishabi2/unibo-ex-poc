@@ -6,7 +6,7 @@ defmodule UniboExPoc.Ofbiz.Party.PartyGeoPoint do
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
-    table "party_geo_points"
+    table "party_party_geo_points"
     repo UniboExPoc.Repo
   end
 

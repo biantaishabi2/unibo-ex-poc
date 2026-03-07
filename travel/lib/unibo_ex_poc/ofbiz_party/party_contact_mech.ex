@@ -6,7 +6,7 @@ defmodule UniboExPoc.Ofbiz.Party.PartyContactMech do
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
-    table "party_contact_meches"
+    table "party_party_contact_meches"
     repo UniboExPoc.Repo
   end
 
