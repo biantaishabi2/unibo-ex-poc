@@ -27,7 +27,17 @@ defmodule UniboExPoc.Ofbiz.Product.ProdConfItemContent do
   end
 
   attributes do
+    attribute :config_item_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :content_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :conf_item_content_type_id, :uuid do
       allow_nil? false
       primary_key? true
       public? true
@@ -45,10 +55,12 @@ defmodule UniboExPoc.Ofbiz.Product.ProdConfItemContent do
     belongs_to :product_config_item, UniboExPoc.Ofbiz.Product.ProductConfigItem do
       public? true
       source_attribute :config_item_id
+      define_attribute? false
     end
     belongs_to :prod_conf_item_content_type, UniboExPoc.Ofbiz.Product.ProdConfItemContentType do
       public? true
       source_attribute :conf_item_content_type_id
+      define_attribute? false
     end
   end
 

@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Shipment.ItemIssuanceRole do
   end
 
   attributes do
+    attribute :item_issuance_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :party_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :role_type_id, :string do
       allow_nil? false
       primary_key? true
@@ -38,10 +48,12 @@ defmodule UniboExPoc.Ofbiz.Shipment.ItemIssuanceRole do
   relationships do
     belongs_to :item_issuance, UniboExPoc.Ofbiz.Shipment.ItemIssuance do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :party, UniboExPoc.Ofbiz.Shipment.Party do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

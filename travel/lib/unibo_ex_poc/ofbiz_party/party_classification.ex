@@ -27,6 +27,18 @@ defmodule UniboExPoc.Ofbiz.Party.PartyClassification do
   end
 
   attributes do
+    attribute :party_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方编号"
+    end
+    attribute :party_classification_group_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方分类组编号"
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -43,9 +55,11 @@ defmodule UniboExPoc.Ofbiz.Party.PartyClassification do
   relationships do
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
+      define_attribute? false
     end
     belongs_to :party_classification_group, UniboExPoc.Ofbiz.Party.PartyClassificationGroup do
       public? true
+      define_attribute? false
     end
   end
 

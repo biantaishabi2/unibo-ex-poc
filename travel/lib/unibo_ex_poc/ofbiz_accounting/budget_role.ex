@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetRole do
   end
 
   attributes do
+    attribute :budget_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
@@ -43,6 +48,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetRole do
   relationships do
     belongs_to :budget, UniboExPoc.Ofbiz.Accounting.Budget do
       public? true
+      define_attribute? false
     end
   end
 

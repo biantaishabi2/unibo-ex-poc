@@ -27,7 +27,17 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPaymentMethodType do
   end
 
   attributes do
+    attribute :product_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :payment_method_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :product_price_purpose_id, :uuid do
       allow_nil? false
       primary_key? true
       public? true
@@ -45,9 +55,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPaymentMethodType do
   relationships do
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
+      define_attribute? false
     end
     belongs_to :product_price_purpose, UniboExPoc.Ofbiz.Product.ProductPricePurpose do
       public? true
+      define_attribute? false
     end
   end
 

@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityGroupRollup do
   end
 
   attributes do
+    attribute :facility_group_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :parent_facility_group_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -41,9 +51,11 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityGroupRollup do
     belongs_to :current_facility_group, UniboExPoc.Ofbiz.Product.FacilityGroup do
       public? true
       source_attribute :facility_group_id
+      define_attribute? false
     end
     belongs_to :parent_facility_group, UniboExPoc.Ofbiz.Product.FacilityGroup do
       public? true
+      define_attribute? false
     end
   end
 

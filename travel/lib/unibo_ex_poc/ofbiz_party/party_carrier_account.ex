@@ -27,6 +27,18 @@ defmodule UniboExPoc.Ofbiz.Party.PartyCarrierAccount do
   end
 
   attributes do
+    attribute :party_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方编号"
+    end
+    attribute :carrier_party_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "承运商参与方编号"
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -47,9 +59,11 @@ defmodule UniboExPoc.Ofbiz.Party.PartyCarrierAccount do
   relationships do
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
+      define_attribute? false
     end
     belongs_to :carrier_party, UniboExPoc.Ofbiz.Party.Party do
       public? true
+      define_attribute? false
     end
   end
 

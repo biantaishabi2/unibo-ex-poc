@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Content.DocumentTypeAttr do
   end
 
   attributes do
+    attribute :document_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Content.DocumentTypeAttr do
   relationships do
     belongs_to :document_type, UniboExPoc.Ofbiz.Content.DocumentType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

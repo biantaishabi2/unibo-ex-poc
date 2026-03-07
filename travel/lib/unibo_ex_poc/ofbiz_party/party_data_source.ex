@@ -27,6 +27,18 @@ defmodule UniboExPoc.Ofbiz.Party.PartyDataSource do
   end
 
   attributes do
+    attribute :party_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方编号"
+    end
+    attribute :data_source_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "数据来源编号"
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -51,9 +63,11 @@ defmodule UniboExPoc.Ofbiz.Party.PartyDataSource do
   relationships do
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
+      define_attribute? false
     end
     belongs_to :data_source, UniboExPoc.Ofbiz.Party.DataSource do
       public? true
+      define_attribute? false
     end
   end
 

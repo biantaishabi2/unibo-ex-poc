@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductKeyword do
   end
 
   attributes do
+    attribute :product_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :keyword, :string do
       allow_nil? false
       primary_key? true
@@ -45,6 +50,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductKeyword do
   relationships do
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
+      define_attribute? false
     end
   end
 

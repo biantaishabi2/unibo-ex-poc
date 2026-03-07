@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Product.ProductSubscriptionResource do
   end
 
   attributes do
+    attribute :product_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :subscription_resource_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -75,9 +85,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductSubscriptionResource do
   relationships do
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
+      define_attribute? false
     end
     belongs_to :subscription_resource, UniboExPoc.Ofbiz.Product.SubscriptionResource do
       public? true
+      define_attribute? false
     end
   end
 

@@ -32,6 +32,11 @@ defmodule UniboExPoc.Ofbiz.Order.DesiredFeature do
       primary_key? true
       public? true
     end
+    attribute :requirement_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :product_feature_id, :string, public?: true
     attribute :optional_ind, :boolean, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
@@ -40,6 +45,7 @@ defmodule UniboExPoc.Ofbiz.Order.DesiredFeature do
   relationships do
     belongs_to :requirement, UniboExPoc.Ofbiz.Order.Requirement do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

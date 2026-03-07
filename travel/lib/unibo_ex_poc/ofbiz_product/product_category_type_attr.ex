@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductCategoryTypeAttr do
   end
 
   attributes do
+    attribute :product_category_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductCategoryTypeAttr do
   relationships do
     belongs_to :product_category_type, UniboExPoc.Ofbiz.Product.ProductCategoryType do
       public? true
+      define_attribute? false
     end
   end
 

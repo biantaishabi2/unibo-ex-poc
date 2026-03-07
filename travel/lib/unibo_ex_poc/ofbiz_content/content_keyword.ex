@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Content.ContentKeyword do
   end
 
   attributes do
+    attribute :content_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :keyword, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Content.ContentKeyword do
   relationships do
     belongs_to :content, UniboExPoc.Ofbiz.Content.Content do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

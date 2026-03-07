@@ -32,6 +32,11 @@ defmodule UniboExPoc.Ofbiz.Content.WebAnalyticsConfig do
       primary_key? true
       public? true
     end
+    attribute :web_analytics_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :web_analytics_code, :string do
       public? true
       description "在此处复制分析 javascript 代码，不包括开始和结束的 <script> 标签"
@@ -42,6 +47,7 @@ defmodule UniboExPoc.Ofbiz.Content.WebAnalyticsConfig do
   relationships do
     belongs_to :web_analytics_type, UniboExPoc.Ofbiz.Content.WebAnalyticsType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

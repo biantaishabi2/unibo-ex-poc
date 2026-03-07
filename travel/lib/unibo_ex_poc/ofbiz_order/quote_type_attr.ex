@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteTypeAttr do
   end
 
   attributes do
+    attribute :quote_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteTypeAttr do
   relationships do
     belongs_to :quote_type, UniboExPoc.Ofbiz.Order.QuoteType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Order.WorkRequirementFulfillment do
   end
 
   attributes do
+    attribute :requirement_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :work_effort_id, :string do
       allow_nil? false
       primary_key? true
@@ -38,6 +43,7 @@ defmodule UniboExPoc.Ofbiz.Order.WorkRequirementFulfillment do
   relationships do
     belongs_to :requirement, UniboExPoc.Ofbiz.Order.Requirement do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :work_req_fulf_type, UniboExPoc.Ofbiz.Order.WorkReqFulfType do

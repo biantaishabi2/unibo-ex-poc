@@ -27,6 +27,24 @@ defmodule UniboExPoc.Ofbiz.Party.PartyContent do
   end
 
   attributes do
+    attribute :party_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方编号"
+    end
+    attribute :content_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "内容编号"
+    end
+    attribute :party_content_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方内容类型编号"
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -43,12 +61,15 @@ defmodule UniboExPoc.Ofbiz.Party.PartyContent do
   relationships do
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
+      define_attribute? false
     end
     belongs_to :content, UniboExPoc.Ofbiz.Party.Content do
       public? true
+      define_attribute? false
     end
     belongs_to :party_content_type, UniboExPoc.Ofbiz.Party.PartyContentType do
       public? true
+      define_attribute? false
     end
   end
 

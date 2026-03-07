@@ -31,6 +31,11 @@ defmodule UniboExPoc.Ofbiz.Common.PortalPageColumn do
   end
 
   attributes do
+    attribute :portal_page_id, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
     attribute :column_seq_id, :string do
       primary_key? true
       allow_nil? false
@@ -44,6 +49,7 @@ defmodule UniboExPoc.Ofbiz.Common.PortalPageColumn do
   relationships do
     belongs_to :portal_page, UniboExPoc.Ofbiz.Common.PortalPage do
       public? true
+      define_attribute? false
     end
   end
 

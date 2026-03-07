@@ -27,6 +27,12 @@ defmodule UniboExPoc.Ofbiz.Party.PartyTypeAttr do
   end
 
   attributes do
+    attribute :party_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方类型编号"
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -43,6 +49,7 @@ defmodule UniboExPoc.Ofbiz.Party.PartyTypeAttr do
   relationships do
     belongs_to :party_type, UniboExPoc.Ofbiz.Party.PartyType do
       public? true
+      define_attribute? false
     end
     has_many :party, UniboExPoc.Ofbiz.Party.Party do
       public? true

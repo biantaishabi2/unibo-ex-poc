@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetTypeAttr do
   end
 
   attributes do
+    attribute :fixed_asset_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetTypeAttr do
   relationships do
     belongs_to :fixed_asset_type, UniboExPoc.Ofbiz.Accounting.FixedAssetType do
       public? true
+      define_attribute? false
     end
   end
 

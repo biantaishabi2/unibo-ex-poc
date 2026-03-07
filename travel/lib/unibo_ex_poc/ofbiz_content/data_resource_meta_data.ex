@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Content.DataResourceMetaData do
   end
 
   attributes do
+    attribute :data_resource_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :meta_data_predicate_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :meta_data_value, :string, public?: true
     attribute :data_source_id, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
@@ -35,10 +45,12 @@ defmodule UniboExPoc.Ofbiz.Content.DataResourceMetaData do
   relationships do
     belongs_to :data_resource, UniboExPoc.Ofbiz.Content.DataResource do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :meta_data_predicate, UniboExPoc.Ofbiz.Content.MetaDataPredicate do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemDetail do
   end
 
   attributes do
+    attribute :inventory_item_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :inventory_item_detail_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -57,6 +62,7 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemDetail do
   relationships do
     belongs_to :inventory_item, UniboExPoc.Ofbiz.Product.InventoryItem do
       public? true
+      define_attribute? false
     end
     belongs_to :physical_inventory, UniboExPoc.Ofbiz.Product.PhysicalInventory do
       public? true

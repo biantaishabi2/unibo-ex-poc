@@ -27,6 +27,21 @@ defmodule UniboExPoc.Ofbiz.Product.ProductAssoc do
   end
 
   attributes do
+    attribute :product_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :product_id_to, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :product_assoc_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -47,14 +62,17 @@ defmodule UniboExPoc.Ofbiz.Product.ProductAssoc do
   relationships do
     belongs_to :product_assoc_type, UniboExPoc.Ofbiz.Product.ProductAssocType do
       public? true
+      define_attribute? false
     end
     belongs_to :main_product, UniboExPoc.Ofbiz.Product.Product do
       public? true
       source_attribute :product_id
+      define_attribute? false
     end
     belongs_to :assoc_product, UniboExPoc.Ofbiz.Product.Product do
       public? true
       source_attribute :product_id_to
+      define_attribute? false
     end
   end
 

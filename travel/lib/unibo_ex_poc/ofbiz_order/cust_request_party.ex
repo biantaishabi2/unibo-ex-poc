@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Order.CustRequestParty do
   end
 
   attributes do
+    attribute :cust_request_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
@@ -49,6 +54,7 @@ defmodule UniboExPoc.Ofbiz.Order.CustRequestParty do
   relationships do
     belongs_to :cust_request, UniboExPoc.Ofbiz.Order.CustRequest do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

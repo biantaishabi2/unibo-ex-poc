@@ -37,6 +37,11 @@ defmodule UniboExPoc.Ofbiz.Order.RequirementBudgetAllocation do
       primary_key? true
       public? true
     end
+    attribute :requirement_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :amount, :decimal, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -44,6 +49,7 @@ defmodule UniboExPoc.Ofbiz.Order.RequirementBudgetAllocation do
   relationships do
     belongs_to :requirement, UniboExPoc.Ofbiz.Order.Requirement do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

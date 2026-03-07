@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Order.RequirementTypeAttr do
   end
 
   attributes do
+    attribute :requirement_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Order.RequirementTypeAttr do
   relationships do
     belongs_to :requirement_type, UniboExPoc.Ofbiz.Order.RequirementType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

@@ -32,6 +32,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.PartyRate do
       primary_key? true
       public? true
     end
+    attribute :rate_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :default_rate, :boolean, public?: true
     attribute :percentage_used, :float do
       public? true
@@ -49,6 +54,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.PartyRate do
   relationships do
     belongs_to :rate_type, UniboExPoc.Ofbiz.Accounting.RateType do
       public? true
+      define_attribute? false
     end
   end
 

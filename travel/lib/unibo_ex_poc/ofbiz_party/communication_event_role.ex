@@ -27,18 +27,39 @@ defmodule UniboExPoc.Ofbiz.Party.CommunicationEventRole do
   end
 
   attributes do
+    attribute :communication_event_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "沟通活动编号"
+    end
+    attribute :party_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方编号"
+    end
+    attribute :role_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "角色类型编号"
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
     belongs_to :communication_event, UniboExPoc.Ofbiz.Party.CommunicationEvent do
       public? true
+      define_attribute? false
     end
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
+      define_attribute? false
     end
     belongs_to :role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
+      define_attribute? false
     end
     belongs_to :contact_mech, UniboExPoc.Ofbiz.Party.ContactMech do
       public? true

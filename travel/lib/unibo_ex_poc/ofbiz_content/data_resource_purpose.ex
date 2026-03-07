@@ -27,16 +27,28 @@ defmodule UniboExPoc.Ofbiz.Content.DataResourcePurpose do
   end
 
   attributes do
+    attribute :data_resource_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :content_purpose_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
     belongs_to :data_resource, UniboExPoc.Ofbiz.Content.DataResource do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :content_purpose_type, UniboExPoc.Ofbiz.Content.ContentPurposeType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

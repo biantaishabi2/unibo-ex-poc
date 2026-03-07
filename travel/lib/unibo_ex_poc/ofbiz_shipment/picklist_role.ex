@@ -27,6 +27,21 @@ defmodule UniboExPoc.Ofbiz.Shipment.PicklistRole do
   end
 
   attributes do
+    attribute :picklist_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :party_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :role_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -39,15 +54,18 @@ defmodule UniboExPoc.Ofbiz.Shipment.PicklistRole do
   relationships do
     belongs_to :picklist, UniboExPoc.Ofbiz.Shipment.Picklist do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :role_type, UniboExPoc.Ofbiz.Shipment.RoleType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :party_name_view, UniboExPoc.Ofbiz.Shipment.Party do
       public? true
       source_attribute :party_id
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :created_by_user_login_rel, UniboExPoc.Ofbiz.Shipment.UserLogin do

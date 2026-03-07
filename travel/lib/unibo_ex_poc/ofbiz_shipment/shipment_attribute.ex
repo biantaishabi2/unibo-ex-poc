@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentAttribute do
   end
 
   attributes do
+    attribute :shipment_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -40,6 +45,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentAttribute do
   relationships do
     belongs_to :shipment, UniboExPoc.Ofbiz.Shipment.Shipment do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

@@ -31,6 +31,16 @@ defmodule UniboExPoc.Ofbiz.Common.UomConversionDated do
   end
 
   attributes do
+    attribute :uom_id, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
+    attribute :uom_id_to, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       primary_key? true
       allow_nil? false
@@ -47,10 +57,12 @@ defmodule UniboExPoc.Ofbiz.Common.UomConversionDated do
     belongs_to :dated_main_uom, UniboExPoc.Ofbiz.Common.Uom do
       public? true
       source_attribute :uom_id
+      define_attribute? false
     end
     belongs_to :dated_conv_to_uom, UniboExPoc.Ofbiz.Common.Uom do
       public? true
       source_attribute :uom_id_to
+      define_attribute? false
     end
     belongs_to :uom_custom_method_custom_method, UniboExPoc.Ofbiz.Common.CustomMethod do
       public? true

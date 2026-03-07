@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Content.DataResourceTypeAttr do
   end
 
   attributes do
+    attribute :data_resource_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Content.DataResourceTypeAttr do
   relationships do
     belongs_to :data_resource_type, UniboExPoc.Ofbiz.Content.DataResourceType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

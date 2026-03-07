@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceContactMech do
   end
 
   attributes do
+    attribute :invoice_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :contact_mech_purpose_type_id, :string do
       allow_nil? false
       primary_key? true
@@ -43,6 +48,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceContactMech do
   relationships do
     belongs_to :invoice, UniboExPoc.Ofbiz.Accounting.Invoice do
       public? true
+      define_attribute? false
     end
   end
 

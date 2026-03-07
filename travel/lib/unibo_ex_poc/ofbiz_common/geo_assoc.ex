@@ -31,6 +31,18 @@ defmodule UniboExPoc.Ofbiz.Common.GeoAssoc do
   end
 
   attributes do
+    attribute :geo_id, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+      description "The enclosed geo"
+    end
+    attribute :geo_id_to, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+      description "The enclosing geo"
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -38,10 +50,12 @@ defmodule UniboExPoc.Ofbiz.Common.GeoAssoc do
     belongs_to :main_geo, UniboExPoc.Ofbiz.Common.Geo do
       public? true
       source_attribute :geo_id
+      define_attribute? false
     end
     belongs_to :assoc_geo, UniboExPoc.Ofbiz.Common.Geo do
       public? true
       source_attribute :geo_id_to
+      define_attribute? false
     end
     belongs_to :geo_assoc_type, UniboExPoc.Ofbiz.Common.GeoAssocType do
       public? true

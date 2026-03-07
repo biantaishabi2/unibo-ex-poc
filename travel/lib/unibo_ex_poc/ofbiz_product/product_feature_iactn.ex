@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFeatureIactn do
   end
 
   attributes do
+    attribute :product_feature_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :product_feature_id_to, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :product_id, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -38,10 +48,12 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFeatureIactn do
     belongs_to :main_product_feature, UniboExPoc.Ofbiz.Product.ProductFeature do
       public? true
       source_attribute :product_feature_id
+      define_attribute? false
     end
     belongs_to :assoc_product_feature, UniboExPoc.Ofbiz.Product.ProductFeature do
       public? true
       source_attribute :product_feature_id_to
+      define_attribute? false
     end
   end
 

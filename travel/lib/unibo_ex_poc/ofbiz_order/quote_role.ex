@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteRole do
   end
 
   attributes do
+    attribute :quote_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
@@ -45,6 +50,7 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteRole do
   relationships do
     belongs_to :quote, UniboExPoc.Ofbiz.Order.Quote do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

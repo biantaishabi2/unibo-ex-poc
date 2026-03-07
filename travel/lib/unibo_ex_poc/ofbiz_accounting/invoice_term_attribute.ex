@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceTermAttribute do
   end
 
   attributes do
+    attribute :invoice_term_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -40,6 +45,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceTermAttribute do
   relationships do
     belongs_to :invoice_term, UniboExPoc.Ofbiz.Accounting.InvoiceTerm do
       public? true
+      define_attribute? false
     end
   end
 

@@ -27,11 +27,23 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementGeographicalApplic do
   end
 
   attributes do
+    attribute :agreement_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "协议编号"
+    end
     attribute :agreement_item_seq_id, :string do
       allow_nil? false
       primary_key? true
       public? true
       description "协议项序列编号"
+    end
+    attribute :geo_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "地理编号"
     end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -39,9 +51,11 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementGeographicalApplic do
   relationships do
     belongs_to :agreement, UniboExPoc.Ofbiz.Party.Agreement do
       public? true
+      define_attribute? false
     end
     belongs_to :geo, UniboExPoc.Ofbiz.Party.Geo do
       public? true
+      define_attribute? false
     end
   end
 

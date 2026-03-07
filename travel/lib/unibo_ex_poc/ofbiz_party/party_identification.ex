@@ -27,6 +27,18 @@ defmodule UniboExPoc.Ofbiz.Party.PartyIdentification do
   end
 
   attributes do
+    attribute :party_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方编号"
+    end
+    attribute :party_identification_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方标识类型编号"
+    end
     attribute :id_value, :string do
       public? true
       description "编号值"
@@ -37,9 +49,11 @@ defmodule UniboExPoc.Ofbiz.Party.PartyIdentification do
   relationships do
     belongs_to :party_identification_type, UniboExPoc.Ofbiz.Party.PartyIdentificationType do
       public? true
+      define_attribute? false
     end
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
+      define_attribute? false
     end
   end
 

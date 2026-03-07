@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Order.CommunicationEventReturn do
   end
 
   attributes do
+    attribute :return_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :communication_event_id, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Order.CommunicationEventReturn do
     belongs_to :return_header, UniboExPoc.Ofbiz.Order.ReturnHeader do
       public? true
       source_attribute :return_id
+      define_attribute? false
       attribute_type :string
     end
   end

@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Content.ContentTypeAttr do
   end
 
   attributes do
+    attribute :content_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Content.ContentTypeAttr do
   relationships do
     belongs_to :content_type, UniboExPoc.Ofbiz.Content.ContentType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

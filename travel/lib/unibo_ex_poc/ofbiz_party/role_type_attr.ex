@@ -27,6 +27,12 @@ defmodule UniboExPoc.Ofbiz.Party.RoleTypeAttr do
   end
 
   attributes do
+    attribute :role_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "角色类型编号"
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -43,6 +49,7 @@ defmodule UniboExPoc.Ofbiz.Party.RoleTypeAttr do
   relationships do
     belongs_to :role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
+      define_attribute? false
     end
     has_many :party_role, UniboExPoc.Ofbiz.Party.PartyRole do
       public? true

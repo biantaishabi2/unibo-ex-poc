@@ -32,6 +32,16 @@ defmodule UniboExPoc.Ofbiz.Content.WebSiteContent do
       primary_key? true
       public? true
     end
+    attribute :content_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :web_site_content_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -44,10 +54,12 @@ defmodule UniboExPoc.Ofbiz.Content.WebSiteContent do
   relationships do
     belongs_to :content, UniboExPoc.Ofbiz.Content.Content do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :web_site_content_type, UniboExPoc.Ofbiz.Content.WebSiteContentType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

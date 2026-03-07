@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentReceiptRole do
   end
 
   attributes do
+    attribute :receipt_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :party_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :role_type_id, :string do
       allow_nil? false
       primary_key? true
@@ -39,10 +49,12 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentReceiptRole do
     belongs_to :shipment_receipt, UniboExPoc.Ofbiz.Shipment.ShipmentReceipt do
       public? true
       source_attribute :receipt_id
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :party, UniboExPoc.Ofbiz.Shipment.Party do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

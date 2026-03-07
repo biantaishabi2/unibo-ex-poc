@@ -32,6 +32,16 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemTempRes do
       primary_key? true
       public? true
     end
+    attribute :product_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :product_store_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :quantity, :decimal, public?: true
     attribute :reserved_date, :utc_datetime, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
@@ -40,9 +50,11 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemTempRes do
   relationships do
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
+      define_attribute? false
     end
     belongs_to :product_store, UniboExPoc.Ofbiz.Product.ProductStore do
       public? true
+      define_attribute? false
     end
   end
 

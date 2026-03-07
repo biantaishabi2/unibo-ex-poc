@@ -31,6 +31,16 @@ defmodule UniboExPoc.Ofbiz.Common.UomConversion do
   end
 
   attributes do
+    attribute :uom_id, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
+    attribute :uom_id_to, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
     attribute :conversion_factor, :float, public?: true
     attribute :decimal_scale, :integer, public?: true
     attribute :rounding_mode, :string, public?: true
@@ -41,10 +51,12 @@ defmodule UniboExPoc.Ofbiz.Common.UomConversion do
     belongs_to :main_uom, UniboExPoc.Ofbiz.Common.Uom do
       public? true
       source_attribute :uom_id
+      define_attribute? false
     end
     belongs_to :conv_to_uom, UniboExPoc.Ofbiz.Common.Uom do
       public? true
       source_attribute :uom_id_to
+      define_attribute? false
     end
     belongs_to :uom_custom_method_custom_method, UniboExPoc.Ofbiz.Common.CustomMethod do
       public? true

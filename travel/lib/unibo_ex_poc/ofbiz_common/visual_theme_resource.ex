@@ -32,6 +32,16 @@ defmodule UniboExPoc.Ofbiz.Common.VisualThemeResource do
   end
 
   attributes do
+    attribute :visual_theme_id, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
+    attribute :resource_type_enum_id, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
     attribute :sequence_id, :string do
       primary_key? true
       allow_nil? false
@@ -48,10 +58,12 @@ defmodule UniboExPoc.Ofbiz.Common.VisualThemeResource do
   relationships do
     belongs_to :visual_theme, UniboExPoc.Ofbiz.Common.VisualTheme do
       public? true
+      define_attribute? false
     end
     belongs_to :enumeration, UniboExPoc.Ofbiz.Common.Enumeration do
       public? true
       source_attribute :resource_type_enum_id
+      define_attribute? false
     end
   end
 

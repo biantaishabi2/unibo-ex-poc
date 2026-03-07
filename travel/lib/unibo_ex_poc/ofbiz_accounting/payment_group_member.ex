@@ -31,6 +31,16 @@ defmodule UniboExPoc.Ofbiz.Accounting.PaymentGroupMember do
   end
 
   attributes do
+    attribute :payment_group_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :payment_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -44,9 +54,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.PaymentGroupMember do
   relationships do
     belongs_to :payment_group, UniboExPoc.Ofbiz.Accounting.PaymentGroup do
       public? true
+      define_attribute? false
     end
     belongs_to :payment, UniboExPoc.Ofbiz.Accounting.Payment do
       public? true
+      define_attribute? false
     end
   end
 

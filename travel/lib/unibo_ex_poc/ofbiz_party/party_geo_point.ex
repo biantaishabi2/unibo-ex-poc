@@ -27,6 +27,18 @@ defmodule UniboExPoc.Ofbiz.Party.PartyGeoPoint do
   end
 
   attributes do
+    attribute :party_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方编号"
+    end
+    attribute :geo_point_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "地理坐标编号"
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -43,9 +55,11 @@ defmodule UniboExPoc.Ofbiz.Party.PartyGeoPoint do
   relationships do
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
+      define_attribute? false
     end
     belongs_to :geo_point, UniboExPoc.Ofbiz.Party.GeoPoint do
       public? true
+      define_attribute? false
     end
   end
 

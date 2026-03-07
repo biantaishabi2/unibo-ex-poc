@@ -27,15 +27,29 @@ defmodule UniboExPoc.Ofbiz.Party.ValidContactMechRole do
   end
 
   attributes do
+    attribute :role_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "角色类型编号"
+    end
+    attribute :contact_mech_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "联系方式类型编号"
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
     belongs_to :role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
+      define_attribute? false
     end
     belongs_to :contact_mech_type, UniboExPoc.Ofbiz.Party.ContactMechType do
       public? true
+      define_attribute? false
     end
   end
 

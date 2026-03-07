@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentPackageRouteSeg do
   end
 
   attributes do
+    attribute :shipment_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :shipment_package_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -55,6 +60,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentPackageRouteSeg do
   relationships do
     belongs_to :shipment, UniboExPoc.Ofbiz.Shipment.Shipment do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :currency_uom, UniboExPoc.Ofbiz.Shipment.Uom do

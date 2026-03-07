@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPromoAction do
   end
 
   attributes do
+    attribute :product_promo_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :product_promo_rule_id, :string do
       allow_nil? false
       primary_key? true
@@ -52,6 +57,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPromoAction do
   relationships do
     belongs_to :product_promo, UniboExPoc.Ofbiz.Product.ProductPromo do
       public? true
+      define_attribute? false
     end
   end
 

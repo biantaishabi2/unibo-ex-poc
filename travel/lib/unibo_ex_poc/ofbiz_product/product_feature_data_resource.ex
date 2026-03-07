@@ -32,12 +32,18 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFeatureDataResource do
       primary_key? true
       public? true
     end
+    attribute :product_feature_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
     belongs_to :product_feature, UniboExPoc.Ofbiz.Product.ProductFeature do
       public? true
+      define_attribute? false
     end
   end
 

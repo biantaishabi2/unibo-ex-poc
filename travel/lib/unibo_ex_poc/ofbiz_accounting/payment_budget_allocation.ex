@@ -27,7 +27,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.PaymentBudgetAllocation do
   end
 
   attributes do
+    attribute :budget_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :budget_item_seq_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :payment_id, :uuid do
       allow_nil? false
       primary_key? true
       public? true
@@ -39,9 +49,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.PaymentBudgetAllocation do
   relationships do
     belongs_to :budget, UniboExPoc.Ofbiz.Accounting.Budget do
       public? true
+      define_attribute? false
     end
     belongs_to :payment, UniboExPoc.Ofbiz.Accounting.Payment do
       public? true
+      define_attribute? false
     end
   end
 

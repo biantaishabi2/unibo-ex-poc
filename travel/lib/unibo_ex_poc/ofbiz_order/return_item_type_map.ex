@@ -36,6 +36,11 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemTypeMap do
       primary_key? true
       public? true
     end
+    attribute :return_header_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -46,6 +51,7 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemTypeMap do
     end
     belongs_to :return_header_type, UniboExPoc.Ofbiz.Order.ReturnHeaderType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :return_adjustment_type, UniboExPoc.Ofbiz.Order.ReturnAdjustmentType do

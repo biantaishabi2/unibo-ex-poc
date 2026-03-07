@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Content.ContentSearchConstraint do
   end
 
   attributes do
+    attribute :content_search_result_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :constraint_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -47,6 +52,7 @@ defmodule UniboExPoc.Ofbiz.Content.ContentSearchConstraint do
   relationships do
     belongs_to :content_search_result, UniboExPoc.Ofbiz.Content.ContentSearchResult do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

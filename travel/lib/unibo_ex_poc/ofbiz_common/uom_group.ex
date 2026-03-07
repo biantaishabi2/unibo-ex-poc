@@ -36,12 +36,18 @@ defmodule UniboExPoc.Ofbiz.Common.UomGroup do
       allow_nil? false
       public? true
     end
+    attribute :uom_id, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
     belongs_to :uom, UniboExPoc.Ofbiz.Common.Uom do
       public? true
+      define_attribute? false
     end
   end
 

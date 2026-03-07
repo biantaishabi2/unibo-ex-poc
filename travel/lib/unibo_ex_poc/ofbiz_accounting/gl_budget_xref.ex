@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlBudgetXref do
   end
 
   attributes do
+    attribute :gl_account_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :budget_item_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -40,9 +50,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlBudgetXref do
   relationships do
     belongs_to :gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
+      define_attribute? false
     end
     belongs_to :budget_item_type, UniboExPoc.Ofbiz.Accounting.BudgetItemType do
       public? true
+      define_attribute? false
     end
   end
 

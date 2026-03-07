@@ -31,15 +31,27 @@ defmodule UniboExPoc.Ofbiz.Common.PortletPortletCategory do
   end
 
   attributes do
+    attribute :portal_portlet_id, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
+    attribute :portlet_category_id, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
     belongs_to :portal_portlet, UniboExPoc.Ofbiz.Common.PortalPortlet do
       public? true
+      define_attribute? false
     end
     belongs_to :portlet_category, UniboExPoc.Ofbiz.Common.PortletCategory do
       public? true
+      define_attribute? false
     end
   end
 

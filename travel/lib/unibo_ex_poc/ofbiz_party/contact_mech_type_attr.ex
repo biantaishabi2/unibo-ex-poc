@@ -27,6 +27,12 @@ defmodule UniboExPoc.Ofbiz.Party.ContactMechTypeAttr do
   end
 
   attributes do
+    attribute :contact_mech_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "联系方式类型编号"
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -43,6 +49,7 @@ defmodule UniboExPoc.Ofbiz.Party.ContactMechTypeAttr do
   relationships do
     belongs_to :contact_mech_type, UniboExPoc.Ofbiz.Party.ContactMechType do
       public? true
+      define_attribute? false
     end
     has_many :contact_mech, UniboExPoc.Ofbiz.Party.ContactMech do
       public? true

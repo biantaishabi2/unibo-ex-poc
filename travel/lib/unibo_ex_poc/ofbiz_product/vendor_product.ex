@@ -31,7 +31,17 @@ defmodule UniboExPoc.Ofbiz.Product.VendorProduct do
   end
 
   attributes do
+    attribute :product_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :vendor_party_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :product_store_group_id, :uuid do
       allow_nil? false
       primary_key? true
       public? true
@@ -42,9 +52,11 @@ defmodule UniboExPoc.Ofbiz.Product.VendorProduct do
   relationships do
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
+      define_attribute? false
     end
     belongs_to :product_store_group, UniboExPoc.Ofbiz.Product.ProductStoreGroup do
       public? true
+      define_attribute? false
     end
   end
 

@@ -31,6 +31,16 @@ defmodule UniboExPoc.Ofbiz.Common.PortalPagePortlet do
   end
 
   attributes do
+    attribute :portal_page_id, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
+    attribute :portal_portlet_id, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
     attribute :portlet_seq_id, :string do
       primary_key? true
       allow_nil? false
@@ -45,9 +55,11 @@ defmodule UniboExPoc.Ofbiz.Common.PortalPagePortlet do
   relationships do
     belongs_to :portal_page, UniboExPoc.Ofbiz.Common.PortalPage do
       public? true
+      define_attribute? false
     end
     belongs_to :portal_portlet, UniboExPoc.Ofbiz.Common.PortalPortlet do
       public? true
+      define_attribute? false
     end
     belongs_to :portal_page_column, UniboExPoc.Ofbiz.Common.PortalPageColumn do
       public? true

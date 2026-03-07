@@ -27,11 +27,23 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementPromoAppl do
   end
 
   attributes do
+    attribute :agreement_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "协议编号"
+    end
     attribute :agreement_item_seq_id, :string do
       allow_nil? false
       primary_key? true
       public? true
       description "协议项序列编号"
+    end
+    attribute :product_promo_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "产品促销编号"
     end
     attribute :from_date, :utc_datetime do
       allow_nil? false
@@ -53,9 +65,11 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementPromoAppl do
   relationships do
     belongs_to :product_promo, UniboExPoc.Ofbiz.Party.ProductPromo do
       public? true
+      define_attribute? false
     end
     belongs_to :agreement, UniboExPoc.Ofbiz.Party.Agreement do
       public? true
+      define_attribute? false
     end
   end
 

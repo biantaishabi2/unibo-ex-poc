@@ -27,6 +27,12 @@ defmodule UniboExPoc.Ofbiz.Party.PartyNameHistory do
   end
 
   attributes do
+    attribute :party_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方编号"
+    end
     attribute :change_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -63,6 +69,7 @@ defmodule UniboExPoc.Ofbiz.Party.PartyNameHistory do
   relationships do
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
+      define_attribute? false
     end
   end
 

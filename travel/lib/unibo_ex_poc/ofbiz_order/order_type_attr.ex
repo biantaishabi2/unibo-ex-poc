@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Order.OrderTypeAttr do
   end
 
   attributes do
+    attribute :order_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Order.OrderTypeAttr do
   relationships do
     belongs_to :order_type, UniboExPoc.Ofbiz.Order.OrderType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Content.SurveyQuestionOption do
   end
 
   attributes do
+    attribute :survey_question_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :survey_option_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -45,6 +50,7 @@ defmodule UniboExPoc.Ofbiz.Content.SurveyQuestionOption do
   relationships do
     belongs_to :survey_question, UniboExPoc.Ofbiz.Content.SurveyQuestion do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

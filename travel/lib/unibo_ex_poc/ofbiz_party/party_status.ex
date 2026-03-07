@@ -27,6 +27,18 @@ defmodule UniboExPoc.Ofbiz.Party.PartyStatus do
   end
 
   attributes do
+    attribute :status_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "状态编号"
+    end
+    attribute :party_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方编号"
+    end
     attribute :status_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -40,9 +52,11 @@ defmodule UniboExPoc.Ofbiz.Party.PartyStatus do
     belongs_to :status_item, UniboExPoc.Ofbiz.Party.StatusItem do
       public? true
       source_attribute :status_id
+      define_attribute? false
     end
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
+      define_attribute? false
     end
     belongs_to :change_by_user_login, UniboExPoc.Ofbiz.Party.UserLogin do
       public? true

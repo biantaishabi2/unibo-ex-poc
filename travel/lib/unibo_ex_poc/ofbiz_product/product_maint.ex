@@ -31,6 +31,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductMaint do
   end
 
   attributes do
+    attribute :product_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :product_maint_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -56,6 +61,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductMaint do
   relationships do
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
+      define_attribute? false
     end
     belongs_to :product_maint_type, UniboExPoc.Ofbiz.Product.ProductMaintType do
       public? true

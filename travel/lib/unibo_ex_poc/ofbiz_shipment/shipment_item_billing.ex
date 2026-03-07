@@ -27,7 +27,17 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentItemBilling do
   end
 
   attributes do
+    attribute :shipment_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :shipment_item_seq_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :invoice_id, :string do
       allow_nil? false
       primary_key? true
       public? true
@@ -43,10 +53,12 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentItemBilling do
   relationships do
     belongs_to :shipment, UniboExPoc.Ofbiz.Shipment.Shipment do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :invoice, UniboExPoc.Ofbiz.Shipment.Invoice do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

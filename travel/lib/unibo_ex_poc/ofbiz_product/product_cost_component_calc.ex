@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Product.ProductCostComponentCalc do
   end
 
   attributes do
+    attribute :product_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :cost_component_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -40,9 +50,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductCostComponentCalc do
   relationships do
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
+      define_attribute? false
     end
     belongs_to :cost_component_type, UniboExPoc.Ofbiz.Product.CostComponentType do
       public? true
+      define_attribute? false
     end
     belongs_to :cost_component_calc, UniboExPoc.Ofbiz.Product.CostComponentCalc do
       public? true

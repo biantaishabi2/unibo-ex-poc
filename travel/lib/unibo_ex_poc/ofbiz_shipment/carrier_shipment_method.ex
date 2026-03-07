@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Shipment.CarrierShipmentMethod do
   end
 
   attributes do
+    attribute :shipment_method_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :party_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :role_type_id, :string do
       allow_nil? false
       primary_key? true
@@ -40,10 +50,12 @@ defmodule UniboExPoc.Ofbiz.Shipment.CarrierShipmentMethod do
   relationships do
     belongs_to :shipment_method_type, UniboExPoc.Ofbiz.Shipment.ShipmentMethodType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :party, UniboExPoc.Ofbiz.Shipment.Party do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

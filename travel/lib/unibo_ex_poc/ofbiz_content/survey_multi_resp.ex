@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Content.SurveyMultiResp do
   end
 
   attributes do
+    attribute :survey_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :survey_multi_resp_id, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Content.SurveyMultiResp do
   relationships do
     belongs_to :survey, UniboExPoc.Ofbiz.Content.Survey do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

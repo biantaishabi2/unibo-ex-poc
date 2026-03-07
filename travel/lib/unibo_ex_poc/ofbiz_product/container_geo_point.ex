@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.ContainerGeoPoint do
   end
 
   attributes do
+    attribute :container_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :geo_point_id, :string do
       allow_nil? false
       primary_key? true
@@ -44,6 +49,7 @@ defmodule UniboExPoc.Ofbiz.Product.ContainerGeoPoint do
   relationships do
     belongs_to :container, UniboExPoc.Ofbiz.Product.Container do
       public? true
+      define_attribute? false
     end
   end
 

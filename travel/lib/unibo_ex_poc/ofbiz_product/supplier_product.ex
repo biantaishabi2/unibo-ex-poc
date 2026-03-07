@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.SupplierProduct do
   end
 
   attributes do
+    attribute :product_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
@@ -66,6 +71,7 @@ defmodule UniboExPoc.Ofbiz.Product.SupplierProduct do
   relationships do
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
+      define_attribute? false
     end
     belongs_to :supplier_pref_order, UniboExPoc.Ofbiz.Product.SupplierPrefOrder do
       public? true

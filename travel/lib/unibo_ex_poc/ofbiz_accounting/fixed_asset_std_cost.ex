@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetStdCost do
   end
 
   attributes do
+    attribute :fixed_asset_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :fixed_asset_std_cost_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -41,9 +51,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetStdCost do
   relationships do
     belongs_to :fixed_asset, UniboExPoc.Ofbiz.Accounting.FixedAsset do
       public? true
+      define_attribute? false
     end
     belongs_to :fixed_asset_std_cost_type, UniboExPoc.Ofbiz.Accounting.FixedAssetStdCostType do
       public? true
+      define_attribute? false
     end
   end
 

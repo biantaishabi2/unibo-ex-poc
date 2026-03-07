@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemVariance do
   end
 
   attributes do
+    attribute :inventory_item_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :physical_inventory_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :available_to_promise_var, :decimal, public?: true
     attribute :quantity_on_hand_var, :decimal, public?: true
     attribute :comments, :string, public?: true
@@ -36,12 +46,14 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemVariance do
   relationships do
     belongs_to :physical_inventory, UniboExPoc.Ofbiz.Product.PhysicalInventory do
       public? true
+      define_attribute? false
     end
     belongs_to :variance_reason, UniboExPoc.Ofbiz.Product.VarianceReason do
       public? true
     end
     belongs_to :inventory_item, UniboExPoc.Ofbiz.Product.InventoryItem do
       public? true
+      define_attribute? false
     end
   end
 

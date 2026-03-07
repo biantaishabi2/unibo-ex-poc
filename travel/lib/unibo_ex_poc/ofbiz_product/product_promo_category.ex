@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPromoCategory do
   end
 
   attributes do
+    attribute :product_promo_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :product_promo_rule_id, :string do
       allow_nil? false
       primary_key? true
@@ -38,6 +43,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPromoCategory do
       public? true
     end
     attribute :product_promo_cond_seq_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :product_category_id, :uuid do
       allow_nil? false
       primary_key? true
       public? true
@@ -55,9 +65,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPromoCategory do
   relationships do
     belongs_to :product_promo, UniboExPoc.Ofbiz.Product.ProductPromo do
       public? true
+      define_attribute? false
     end
     belongs_to :product_category, UniboExPoc.Ofbiz.Product.ProductCategory do
       public? true
+      define_attribute? false
     end
   end
 

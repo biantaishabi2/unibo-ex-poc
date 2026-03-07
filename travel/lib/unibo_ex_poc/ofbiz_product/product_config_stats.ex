@@ -32,6 +32,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductConfigStats do
       primary_key? true
       public? true
     end
+    attribute :product_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :num_of_confs, :integer, public?: true
     attribute :config_type_id, :string do
       public? true
@@ -44,6 +49,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductConfigStats do
     belongs_to :product_product, UniboExPoc.Ofbiz.Product.Product do
       public? true
       source_attribute :product_id
+      define_attribute? false
     end
   end
 

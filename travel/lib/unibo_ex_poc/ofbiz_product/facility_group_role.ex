@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityGroupRole do
   end
 
   attributes do
+    attribute :facility_group_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
@@ -43,6 +48,7 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityGroupRole do
   relationships do
     belongs_to :facility_group, UniboExPoc.Ofbiz.Product.FacilityGroup do
       public? true
+      define_attribute? false
     end
   end
 

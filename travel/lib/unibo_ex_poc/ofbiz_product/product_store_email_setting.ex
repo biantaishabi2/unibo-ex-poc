@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreEmailSetting do
   end
 
   attributes do
+    attribute :product_store_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :email_type, :string do
       allow_nil? false
       primary_key? true
@@ -51,6 +56,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreEmailSetting do
   relationships do
     belongs_to :product_store, UniboExPoc.Ofbiz.Product.ProductStore do
       public? true
+      define_attribute? false
     end
   end
 

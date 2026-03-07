@@ -27,16 +27,30 @@ defmodule UniboExPoc.Ofbiz.Party.PartyNote do
   end
 
   attributes do
+    attribute :party_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方编号"
+    end
+    attribute :note_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "备注编号"
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
+      define_attribute? false
     end
     belongs_to :note_data, UniboExPoc.Ofbiz.Party.NoteData do
       public? true
       source_attribute :note_id
+      define_attribute? false
     end
   end
 

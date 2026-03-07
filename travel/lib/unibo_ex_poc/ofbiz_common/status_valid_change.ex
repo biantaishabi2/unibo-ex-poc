@@ -31,6 +31,16 @@ defmodule UniboExPoc.Ofbiz.Common.StatusValidChange do
   end
 
   attributes do
+    attribute :status_id, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
+    attribute :status_id_to, :uuid do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
     attribute :condition_expression, :string, public?: true
     attribute :transition_name, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
@@ -40,10 +50,12 @@ defmodule UniboExPoc.Ofbiz.Common.StatusValidChange do
     belongs_to :main_status_item, UniboExPoc.Ofbiz.Common.StatusItem do
       public? true
       source_attribute :status_id
+      define_attribute? false
     end
     belongs_to :to_status_item, UniboExPoc.Ofbiz.Common.StatusItem do
       public? true
       source_attribute :status_id_to
+      define_attribute? false
     end
   end
 

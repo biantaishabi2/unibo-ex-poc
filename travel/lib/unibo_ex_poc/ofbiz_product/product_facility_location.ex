@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFacilityLocation do
   end
 
   attributes do
+    attribute :product_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :facility_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :location_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -40,9 +50,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFacilityLocation do
   relationships do
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
+      define_attribute? false
     end
     belongs_to :facility, UniboExPoc.Ofbiz.Product.Facility do
       public? true
+      define_attribute? false
     end
   end
 

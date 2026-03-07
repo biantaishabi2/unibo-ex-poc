@@ -32,6 +32,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetScenarioApplication do
       primary_key? true
       public? true
     end
+    attribute :budget_scenario_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :budget_item_seq_id, :string, public?: true
     attribute :amount_change, :decimal, public?: true
     attribute :percentage_change, :decimal, public?: true
@@ -41,6 +46,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetScenarioApplication do
   relationships do
     belongs_to :budget_scenario, UniboExPoc.Ofbiz.Accounting.BudgetScenario do
       public? true
+      define_attribute? false
     end
     belongs_to :budget, UniboExPoc.Ofbiz.Accounting.Budget do
       public? true

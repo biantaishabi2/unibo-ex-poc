@@ -27,6 +27,21 @@ defmodule UniboExPoc.Ofbiz.Product.ProdCatalogCategory do
   end
 
   attributes do
+    attribute :prod_catalog_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :product_category_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :prod_catalog_category_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -40,12 +55,15 @@ defmodule UniboExPoc.Ofbiz.Product.ProdCatalogCategory do
   relationships do
     belongs_to :prod_catalog, UniboExPoc.Ofbiz.Product.ProdCatalog do
       public? true
+      define_attribute? false
     end
     belongs_to :product_category, UniboExPoc.Ofbiz.Product.ProductCategory do
       public? true
+      define_attribute? false
     end
     belongs_to :prod_catalog_category_type, UniboExPoc.Ofbiz.Product.ProdCatalogCategoryType do
       public? true
+      define_attribute? false
     end
   end
 

@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.SubscriptionCommEvent do
   end
 
   attributes do
+    attribute :subscription_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :communication_event_id, :string do
       allow_nil? false
       primary_key? true
@@ -38,6 +43,7 @@ defmodule UniboExPoc.Ofbiz.Product.SubscriptionCommEvent do
   relationships do
     belongs_to :subscription, UniboExPoc.Ofbiz.Product.Subscription do
       public? true
+      define_attribute? false
     end
   end
 

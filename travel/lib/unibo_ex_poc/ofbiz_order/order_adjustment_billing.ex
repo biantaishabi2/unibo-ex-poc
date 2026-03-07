@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Order.OrderAdjustmentBilling do
   end
 
   attributes do
+    attribute :order_adjustment_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :invoice_id, :string do
       allow_nil? false
       primary_key? true
@@ -44,6 +49,7 @@ defmodule UniboExPoc.Ofbiz.Order.OrderAdjustmentBilling do
   relationships do
     belongs_to :order_adjustment, UniboExPoc.Ofbiz.Order.OrderAdjustment do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

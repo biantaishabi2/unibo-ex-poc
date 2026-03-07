@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Shipment.PicklistStatus do
   end
 
   attributes do
+    attribute :picklist_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :status_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -38,6 +43,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.PicklistStatus do
   relationships do
     belongs_to :picklist, UniboExPoc.Ofbiz.Shipment.Picklist do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :change_user_login, UniboExPoc.Ofbiz.Shipment.UserLogin do

@@ -32,6 +32,11 @@ defmodule UniboExPoc.Ofbiz.Order.OldOrderBlacklist do
       primary_key? true
       public? true
     end
+    attribute :order_blacklist_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Order.OldOrderBlacklist do
     belongs_to :old_order_blacklist_type, UniboExPoc.Ofbiz.Order.OldOrderBlacklistType do
       public? true
       source_attribute :order_blacklist_type_id
+      define_attribute? false
       attribute_type :string
     end
   end

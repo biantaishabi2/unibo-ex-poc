@@ -27,6 +27,18 @@ defmodule UniboExPoc.Ofbiz.Party.PostalAddressBoundary do
   end
 
   attributes do
+    attribute :contact_mech_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "联系方式编号"
+    end
+    attribute :geo_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "地理编号"
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -34,9 +46,11 @@ defmodule UniboExPoc.Ofbiz.Party.PostalAddressBoundary do
     belongs_to :postal_address, UniboExPoc.Ofbiz.Party.PostalAddress do
       public? true
       source_attribute :contact_mech_id
+      define_attribute? false
     end
     belongs_to :geo, UniboExPoc.Ofbiz.Party.Geo do
       public? true
+      define_attribute? false
     end
   end
 

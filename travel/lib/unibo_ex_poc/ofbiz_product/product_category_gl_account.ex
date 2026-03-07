@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductCategoryGlAccount do
   end
 
   attributes do
+    attribute :product_category_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :organization_party_id, :string do
       allow_nil? false
       primary_key? true
@@ -44,6 +49,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductCategoryGlAccount do
   relationships do
     belongs_to :product_category, UniboExPoc.Ofbiz.Product.ProductCategory do
       public? true
+      define_attribute? false
     end
   end
 

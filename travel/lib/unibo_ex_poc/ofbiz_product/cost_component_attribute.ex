@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.CostComponentAttribute do
   end
 
   attributes do
+    attribute :cost_component_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -40,6 +45,7 @@ defmodule UniboExPoc.Ofbiz.Product.CostComponentAttribute do
   relationships do
     belongs_to :cost_component, UniboExPoc.Ofbiz.Product.CostComponent do
       public? true
+      define_attribute? false
     end
   end
 

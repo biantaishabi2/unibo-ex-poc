@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemShipment do
   end
 
   attributes do
+    attribute :return_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :return_item_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -50,6 +55,7 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemShipment do
     belongs_to :return_header, UniboExPoc.Ofbiz.Order.ReturnHeader do
       public? true
       source_attribute :return_id
+      define_attribute? false
       attribute_type :string
     end
   end

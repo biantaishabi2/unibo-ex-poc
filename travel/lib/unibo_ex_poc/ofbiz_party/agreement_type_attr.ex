@@ -27,6 +27,12 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementTypeAttr do
   end
 
   attributes do
+    attribute :agreement_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "协议类型编号"
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -43,6 +49,7 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementTypeAttr do
   relationships do
     belongs_to :agreement_type, UniboExPoc.Ofbiz.Party.AgreementType do
       public? true
+      define_attribute? false
     end
     has_many :agreement, UniboExPoc.Ofbiz.Party.Agreement do
       public? true

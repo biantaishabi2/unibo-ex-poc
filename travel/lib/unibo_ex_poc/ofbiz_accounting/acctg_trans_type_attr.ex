@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.AcctgTransTypeAttr do
   end
 
   attributes do
+    attribute :acctg_trans_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.AcctgTransTypeAttr do
   relationships do
     belongs_to :acctg_trans_type, UniboExPoc.Ofbiz.Accounting.AcctgTransType do
       public? true
+      define_attribute? false
     end
   end
 

@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityAttribute do
   end
 
   attributes do
+    attribute :facility_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -40,6 +45,7 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityAttribute do
   relationships do
     belongs_to :facility, UniboExPoc.Ofbiz.Product.Facility do
       public? true
+      define_attribute? false
     end
   end
 

@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPriceCond do
   end
 
   attributes do
+    attribute :product_price_rule_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :product_price_cond_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -41,6 +46,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPriceCond do
   relationships do
     belongs_to :product_price_rule, UniboExPoc.Ofbiz.Product.ProductPriceRule do
       public? true
+      define_attribute? false
     end
   end
 

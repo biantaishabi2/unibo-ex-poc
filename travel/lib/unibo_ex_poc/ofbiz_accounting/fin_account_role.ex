@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.FinAccountRole do
   end
 
   attributes do
+    attribute :fin_account_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
@@ -49,6 +54,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.FinAccountRole do
   relationships do
     belongs_to :fin_account, UniboExPoc.Ofbiz.Accounting.FinAccount do
       public? true
+      define_attribute? false
     end
   end
 

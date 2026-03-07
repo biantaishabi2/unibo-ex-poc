@@ -42,6 +42,16 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentTimeEstimate do
       primary_key? true
       public? true
     end
+    attribute :geo_id_to, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :geo_id_from, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -57,11 +67,13 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentTimeEstimate do
     belongs_to :to_geo, UniboExPoc.Ofbiz.Shipment.Geo do
       public? true
       source_attribute :geo_id_to
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :from_geo, UniboExPoc.Ofbiz.Shipment.Geo do
       public? true
       source_attribute :geo_id_from
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :time_unit_uom, UniboExPoc.Ofbiz.Shipment.Uom do

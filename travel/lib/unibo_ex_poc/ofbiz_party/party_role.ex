@@ -27,15 +27,29 @@ defmodule UniboExPoc.Ofbiz.Party.PartyRole do
   end
 
   attributes do
+    attribute :party_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方编号"
+    end
+    attribute :role_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "角色类型编号"
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
+      define_attribute? false
     end
     belongs_to :role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
+      define_attribute? false
     end
     has_many :role_type_attr, UniboExPoc.Ofbiz.Party.RoleTypeAttr do
       public? true

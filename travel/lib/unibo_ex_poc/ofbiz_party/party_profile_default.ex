@@ -27,6 +27,18 @@ defmodule UniboExPoc.Ofbiz.Party.PartyProfileDefault do
   end
 
   attributes do
+    attribute :party_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "参与方编号"
+    end
+    attribute :product_store_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "产品店铺编号"
+    end
     attribute :default_ship_addr, :string do
       public? true
       description "默认收货地址"
@@ -49,9 +61,11 @@ defmodule UniboExPoc.Ofbiz.Party.PartyProfileDefault do
   relationships do
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
+      define_attribute? false
     end
     belongs_to :product_store, UniboExPoc.Ofbiz.Party.ProductStore do
       public? true
+      define_attribute? false
     end
   end
 

@@ -27,6 +27,17 @@ defmodule UniboExPoc.Ofbiz.Product.ProductCategoryRollup do
   end
 
   attributes do
+    attribute :product_category_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :parent_product_category_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "父分类；应该是ProductCategory或ProductCategoryRollup中已设置的productCategoryId之一"
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -41,9 +52,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductCategoryRollup do
     belongs_to :current_product_category, UniboExPoc.Ofbiz.Product.ProductCategory do
       public? true
       source_attribute :product_category_id
+      define_attribute? false
     end
     belongs_to :parent_product_category, UniboExPoc.Ofbiz.Product.ProductCategory do
       public? true
+      define_attribute? false
     end
   end
 

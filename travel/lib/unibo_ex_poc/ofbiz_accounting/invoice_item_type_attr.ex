@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItemTypeAttr do
   end
 
   attributes do
+    attribute :invoice_item_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItemTypeAttr do
   relationships do
     belongs_to :invoice_item_type, UniboExPoc.Ofbiz.Accounting.InvoiceItemType do
       public? true
+      define_attribute? false
     end
   end
 

@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFacility do
   end
 
   attributes do
+    attribute :product_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :facility_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :minimum_stock, :decimal, public?: true
     attribute :reorder_quantity, :decimal, public?: true
     attribute :days_to_ship, :integer, public?: true
@@ -42,9 +52,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFacility do
   relationships do
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
+      define_attribute? false
     end
     belongs_to :facility, UniboExPoc.Ofbiz.Product.Facility do
       public? true
+      define_attribute? false
     end
   end
 

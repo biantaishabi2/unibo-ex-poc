@@ -32,6 +32,11 @@ defmodule UniboExPoc.Ofbiz.Product.SupplierProductFeature do
       primary_key? true
       public? true
     end
+    attribute :product_feature_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :description, :string, public?: true
     attribute :uom_id, :string, public?: true
     attribute :id_code, :string, public?: true
@@ -41,6 +46,7 @@ defmodule UniboExPoc.Ofbiz.Product.SupplierProductFeature do
   relationships do
     belongs_to :product_feature, UniboExPoc.Ofbiz.Product.ProductFeature do
       public? true
+      define_attribute? false
     end
   end
 

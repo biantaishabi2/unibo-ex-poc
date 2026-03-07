@@ -27,6 +27,18 @@ defmodule UniboExPoc.Ofbiz.Party.CommEventContentAssoc do
   end
 
   attributes do
+    attribute :content_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "内容编号"
+    end
+    attribute :communication_event_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "沟通活动编号"
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -48,9 +60,11 @@ defmodule UniboExPoc.Ofbiz.Party.CommEventContentAssoc do
     belongs_to :from_content, UniboExPoc.Ofbiz.Party.Content do
       public? true
       source_attribute :content_id
+      define_attribute? false
     end
     belongs_to :communication_event, UniboExPoc.Ofbiz.Party.CommunicationEvent do
       public? true
+      define_attribute? false
     end
     belongs_to :comm_content_assoc_type, UniboExPoc.Ofbiz.Party.CommContentAssocType do
       public? true

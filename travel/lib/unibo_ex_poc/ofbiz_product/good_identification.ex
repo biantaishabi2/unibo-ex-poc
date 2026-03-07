@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Product.GoodIdentification do
   end
 
   attributes do
+    attribute :good_identification_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :product_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :id_value, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -34,9 +44,11 @@ defmodule UniboExPoc.Ofbiz.Product.GoodIdentification do
   relationships do
     belongs_to :good_identification_type, UniboExPoc.Ofbiz.Product.GoodIdentificationType do
       public? true
+      define_attribute? false
     end
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
+      define_attribute? false
     end
   end
 

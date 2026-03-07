@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetItem do
   end
 
   attributes do
+    attribute :budget_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :budget_item_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -41,6 +46,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetItem do
   relationships do
     belongs_to :budget, UniboExPoc.Ofbiz.Accounting.Budget do
       public? true
+      define_attribute? false
     end
     belongs_to :budget_item_type, UniboExPoc.Ofbiz.Accounting.BudgetItemType do
       public? true

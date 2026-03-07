@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Content.ContentPurpose do
   end
 
   attributes do
+    attribute :content_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :content_purpose_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :sequence_num, :integer, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -34,10 +44,12 @@ defmodule UniboExPoc.Ofbiz.Content.ContentPurpose do
   relationships do
     belongs_to :content, UniboExPoc.Ofbiz.Content.Content do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :content_purpose_type, UniboExPoc.Ofbiz.Content.ContentPurposeType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

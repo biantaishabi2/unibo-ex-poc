@@ -27,6 +27,18 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementStatus do
   end
 
   attributes do
+    attribute :agreement_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "协议编号"
+    end
+    attribute :status_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "状态编号"
+    end
     attribute :status_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -43,10 +55,12 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementStatus do
   relationships do
     belongs_to :agreement, UniboExPoc.Ofbiz.Party.Agreement do
       public? true
+      define_attribute? false
     end
     belongs_to :status_item, UniboExPoc.Ofbiz.Party.StatusItem do
       public? true
       source_attribute :status_id
+      define_attribute? false
     end
     belongs_to :change_by_user_login, UniboExPoc.Ofbiz.Party.UserLogin do
       public? true

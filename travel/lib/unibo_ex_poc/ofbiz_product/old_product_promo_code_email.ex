@@ -31,6 +31,11 @@ defmodule UniboExPoc.Ofbiz.Product.OldProductPromoCodeEmail do
   end
 
   attributes do
+    attribute :product_promo_code_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :email_address, :string do
       allow_nil? false
       primary_key? true
@@ -42,6 +47,7 @@ defmodule UniboExPoc.Ofbiz.Product.OldProductPromoCodeEmail do
   relationships do
     belongs_to :product_promo_code, UniboExPoc.Ofbiz.Product.ProductPromoCode do
       public? true
+      define_attribute? false
     end
   end
 

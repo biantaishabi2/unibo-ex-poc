@@ -27,6 +27,23 @@ defmodule UniboExPoc.Ofbiz.Content.ContentAssoc do
   end
 
   attributes do
+    attribute :content_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "父级内容"
+    end
+    attribute :content_id_to, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+      description "子级或从属内容"
+    end
+    attribute :content_assoc_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -49,15 +66,18 @@ defmodule UniboExPoc.Ofbiz.Content.ContentAssoc do
     belongs_to :from_content, UniboExPoc.Ofbiz.Content.Content do
       public? true
       source_attribute :content_id
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :to_content, UniboExPoc.Ofbiz.Content.Content do
       public? true
       source_attribute :content_id_to
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :content_assoc_type, UniboExPoc.Ofbiz.Content.ContentAssocType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :content_assoc_predicate, UniboExPoc.Ofbiz.Content.ContentAssocPredicate do

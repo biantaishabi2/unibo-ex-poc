@@ -27,6 +27,11 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemTypeAttr do
   end
 
   attributes do
+    attribute :inventory_item_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -39,6 +44,7 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemTypeAttr do
   relationships do
     belongs_to :inventory_item_type, UniboExPoc.Ofbiz.Product.InventoryItemType do
       public? true
+      define_attribute? false
     end
   end
 

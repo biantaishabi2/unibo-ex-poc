@@ -32,6 +32,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductConfigConfig do
       primary_key? true
       public? true
     end
+    attribute :config_item_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :sequence_num, :integer do
       allow_nil? false
       primary_key? true
@@ -51,6 +56,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductConfigConfig do
     belongs_to :config_item_product_config_item, UniboExPoc.Ofbiz.Product.ProductConfigItem do
       public? true
       source_attribute :config_item_id
+      define_attribute? false
     end
   end
 

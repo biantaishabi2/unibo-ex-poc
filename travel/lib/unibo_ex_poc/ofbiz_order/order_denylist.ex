@@ -32,12 +32,18 @@ defmodule UniboExPoc.Ofbiz.Order.OrderDenylist do
       primary_key? true
       public? true
     end
+    attribute :order_denylist_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
     belongs_to :order_denylist_type, UniboExPoc.Ofbiz.Order.OrderDenylistType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

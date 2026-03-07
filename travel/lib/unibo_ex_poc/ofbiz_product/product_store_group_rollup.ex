@@ -27,6 +27,16 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreGroupRollup do
   end
 
   attributes do
+    attribute :product_store_group_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :parent_group_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -41,10 +51,12 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreGroupRollup do
     belongs_to :current_product_store_group, UniboExPoc.Ofbiz.Product.ProductStoreGroup do
       public? true
       source_attribute :product_store_group_id
+      define_attribute? false
     end
     belongs_to :parent_product_store_group, UniboExPoc.Ofbiz.Product.ProductStoreGroup do
       public? true
       source_attribute :parent_group_id
+      define_attribute? false
     end
   end
 

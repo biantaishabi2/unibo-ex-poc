@@ -27,12 +27,23 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentContactMech do
   end
 
   attributes do
+    attribute :shipment_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
+    attribute :shipment_contact_mech_type_id, :string do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
     belongs_to :shipment, UniboExPoc.Ofbiz.Shipment.Shipment do
       public? true
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :contact_mech, UniboExPoc.Ofbiz.Shipment.ContactMech do
@@ -41,6 +52,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentContactMech do
     end
     belongs_to :shipment_contact_mech_type, UniboExPoc.Ofbiz.Shipment.ShipmentContactMechType do
       public? true
+      define_attribute? false
       attribute_type :string
     end
   end

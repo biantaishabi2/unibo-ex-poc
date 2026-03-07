@@ -31,6 +31,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.ProductAverageCost do
   end
 
   attributes do
+    attribute :product_average_cost_type_id, :uuid do
+      allow_nil? false
+      primary_key? true
+      public? true
+    end
     attribute :organization_party_id, :string do
       allow_nil? false
       primary_key? true
@@ -59,6 +64,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.ProductAverageCost do
   relationships do
     belongs_to :product_average_cost_type, UniboExPoc.Ofbiz.Accounting.ProductAverageCostType do
       public? true
+      define_attribute? false
     end
   end
 
