@@ -92,10 +92,12 @@ defmodule UniboExPoc.Payment.PaymentMethod do
     end
     has_many :payments, UniboExPoc.Payment.Payment do
       public? true
+      source_attribute :party_id
       destination_attribute :payment_method_id
     end
     has_many :gateway_responses, UniboExPoc.Payment.PaymentGatewayResponse do
       public? true
+      source_attribute :party_id
       destination_attribute :payment_method_id
     end
   end

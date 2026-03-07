@@ -51,10 +51,12 @@ defmodule UniboExPoc.Ofbiz.Party.RoleTypeAttr do
     end
     has_many :valid_from_party_relationship_type, UniboExPoc.Ofbiz.Party.PartyRelationshipType do
       public? true
+      source_attribute :role_type_id
       destination_attribute :role_type_id_valid_from
     end
     has_many :valid_to_party_relationship_type, UniboExPoc.Ofbiz.Party.PartyRelationshipType do
       public? true
+      source_attribute :role_type_id
       destination_attribute :role_type_id_valid_to
     end
   end

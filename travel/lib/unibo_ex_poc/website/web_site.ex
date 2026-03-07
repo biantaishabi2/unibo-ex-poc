@@ -153,10 +153,12 @@ defmodule UniboExPoc.Website.WebSite do
   relationships do
     has_many :pages, UniboExPoc.Website.WebPage do
       public? true
+      source_attribute :company_id
       destination_attribute :website_id
     end
     has_many :menus, UniboExPoc.Website.Menu do
       public? true
+      source_attribute :company_id
       destination_attribute :website_id
     end
     belongs_to :company, UniboExPoc.Website.Company do

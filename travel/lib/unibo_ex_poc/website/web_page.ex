@@ -126,6 +126,7 @@ defmodule UniboExPoc.Website.WebPage do
     end
     has_many :menus, UniboExPoc.Website.Menu do
       public? true
+      source_attribute :website_id
       destination_attribute :page_id
     end
   end

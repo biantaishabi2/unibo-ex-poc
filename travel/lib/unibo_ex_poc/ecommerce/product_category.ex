@@ -61,6 +61,7 @@ defmodule UniboExPoc.Ecommerce.ProductCategory do
     end
     has_many :products, UniboExPoc.Ecommerce.ProductTemplate do
       public? true
+      source_attribute :parent_id
       destination_attribute :category_id
     end
   end
