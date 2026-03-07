@@ -93,6 +93,7 @@ defmodule UniboExPoc.Ofbiz.Content.Content do
     end
     has_many :content_assocs_to, UniboExPoc.Ofbiz.Content.ContentAssoc do
       public? true
+      source_attribute :decorator_content_id
       destination_attribute :content_id_to
     end
   end
