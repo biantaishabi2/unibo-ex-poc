@@ -7,7 +7,7 @@
 # ```
 defmodule UniboExPoc.Sales.QuoteItem do
   use Ash.Resource,
-    otp_app: :unibo_ex_poc,
+    otp_app: :travel,
     domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]

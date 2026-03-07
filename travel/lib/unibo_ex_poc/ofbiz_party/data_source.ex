@@ -1,6 +1,6 @@
 defmodule UniboExPoc.Ofbiz.Party.DataSource do
   use Ash.Resource,
-    otp_app: :unibo_ex_poc,
+    otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer
 

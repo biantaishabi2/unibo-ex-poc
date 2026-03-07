@@ -1,6 +1,6 @@
 defmodule UniboExPoc.Ecommerce.ProductTemplateTranslation do
   use Ash.Resource,
-    otp_app: :unibo_ex_poc,
+    otp_app: :travel,
     domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer
 

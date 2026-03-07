@@ -3,7 +3,7 @@ defmodule UniboExPoc.Travel.Integration.Runtime do
 
   @error_code_provider_not_found "provider_not_found"
   @error_code_declared_error "integration_declared_error"
-  @otp_app :unibo_ex_poc
+  @otp_app :travel
 
   def dispatch_sync(request) when is_map(request) do
     provider = normalize_text(fetch(request, :provider, ""))

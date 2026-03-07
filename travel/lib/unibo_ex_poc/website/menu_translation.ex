@@ -1,6 +1,6 @@
 defmodule UniboExPoc.Website.MenuTranslation do
   use Ash.Resource,
-    otp_app: :unibo_ex_poc,
+    otp_app: :travel,
     domain: UniboExPoc.Website,
     data_layer: AshPostgres.DataLayer
 

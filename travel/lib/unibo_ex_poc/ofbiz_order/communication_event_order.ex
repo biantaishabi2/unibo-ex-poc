@@ -1,6 +1,6 @@
 defmodule UniboExPoc.Ofbiz.Order.CommunicationEventOrder do
   use Ash.Resource,
-    otp_app: :unibo_ex_poc,
+    otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]

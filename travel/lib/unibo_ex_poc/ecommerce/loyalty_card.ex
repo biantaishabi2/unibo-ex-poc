@@ -16,7 +16,7 @@
 # ```
 defmodule UniboExPoc.Ecommerce.LoyaltyCard do
   use Ash.Resource,
-    otp_app: :unibo_ex_poc,
+    otp_app: :travel,
     domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]

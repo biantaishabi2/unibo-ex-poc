@@ -1,6 +1,6 @@
 defmodule UniboExPoc.Ofbiz.Shipment.RoleType do
   use Ash.Resource,
-    otp_app: :unibo_ex_poc,
+    otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer
 

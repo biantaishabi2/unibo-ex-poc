@@ -1,6 +1,6 @@
 defmodule UniboExPoc.Ofbiz.Accounting.AcctgTransEntry do
   use Ash.Resource,
-    otp_app: :unibo_ex_poc,
+    otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
