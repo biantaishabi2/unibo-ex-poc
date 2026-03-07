@@ -365,7 +365,12 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceTax do
   defp to_number(true), do: 1.0
   defp to_number(false), do: 0.0
   defp to_number(nil), do: 0.0
-  defp to_number(value) when is_binary(value), do: case Float.parse(value) do {num, _} -> num; :error -> 0.0 end
+  defp to_number(value) when is_binary(value) do
+    case Float.parse(value) do
+      {num, _} -> num
+      :error -> 0.0
+    end
+  end
   defp to_number(_), do: 0.0
 
   defp to_string_safe(nil), do: ""
