@@ -405,5 +405,4 @@ defmodule UniboExPoc.Sales.Changes.Quote.ComputeTotalAmount do
     end
   end
   defp cast_datetime(_), do: {:error, :invalid_datetime}
-  end
 end

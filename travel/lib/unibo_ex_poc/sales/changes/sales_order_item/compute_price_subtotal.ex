@@ -404,5 +404,4 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
     end
   end
   defp cast_datetime(_), do: {:error, :invalid_datetime}
-  end
 end
