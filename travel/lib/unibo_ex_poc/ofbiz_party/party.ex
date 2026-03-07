@@ -44,17 +44,9 @@ defmodule UniboExPoc.Ofbiz.Party.Party do
       public? true
       description "创建日期"
     end
-    attribute :created_by_user_login, :uuid do
-      public? true
-      description "创建用户登录"
-    end
     attribute :last_modified_date, :utc_datetime do
       public? true
       description "最近修改日期"
-    end
-    attribute :last_modified_by_user_login, :uuid do
-      public? true
-      description "最近修改用户登录"
     end
     attribute :is_unread, :boolean do
       public? true
@@ -67,15 +59,13 @@ defmodule UniboExPoc.Ofbiz.Party.Party do
     belongs_to :party_type, UniboExPoc.Ofbiz.Party.PartyType do
       public? true
     end
-    belongs_to :created_by_user_login, UniboExPoc.Ofbiz.Party.UserLogin do
+    belongs_to :created_by_user_login_rel, UniboExPoc.Ofbiz.Party.UserLogin do
       public? true
       source_attribute :created_by_user_login
-      define_attribute? false
     end
-    belongs_to :last_modified_by_user_login, UniboExPoc.Ofbiz.Party.UserLogin do
+    belongs_to :last_modified_by_user_login_rel, UniboExPoc.Ofbiz.Party.UserLogin do
       public? true
       source_attribute :last_modified_by_user_login
-      define_attribute? false
     end
     belongs_to :uom, UniboExPoc.Ofbiz.Party.Uom do
       public? true

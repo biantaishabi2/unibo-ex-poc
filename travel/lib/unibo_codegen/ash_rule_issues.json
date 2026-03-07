@@ -1,7 +1,7 @@
 {
-  "total": 369,
+  "total": 375,
   "errors": 0,
-  "warnings": 369,
+  "warnings": 375,
   "issues": [
     {
       "domain": "Accounting",
@@ -713,6 +713,24 @@
       "path": "entities.ZipSalesTaxLookup",
       "severity": "warning",
       "reason": "实体主键为 [zip_code, state_code, city, county, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Common",
+      "entity": "CountryCapital",
+      "action": null,
+      "rule_code": "relationship_name_auto_renamed",
+      "path": "entities.CountryCapital",
+      "severity": "warning",
+      "reason": "关系 `country_code` 与字段命名冲突，已自动重命名为 `country_code_rel`"
+    },
+    {
+      "domain": "Common",
+      "entity": "CountryTeleCode",
+      "action": null,
+      "rule_code": "relationship_name_auto_renamed",
+      "path": "entities.CountryTeleCode",
+      "severity": "warning",
+      "reason": "关系 `country_code` 与字段命名冲突，已自动重命名为 `country_code_rel`"
     },
     {
       "domain": "Common",
@@ -2012,6 +2030,24 @@
     },
     {
       "domain": "Party",
+      "entity": "Party",
+      "action": null,
+      "rule_code": "relationship_name_auto_renamed",
+      "path": "entities.Party",
+      "severity": "warning",
+      "reason": "关系 `created_by_user_login` 与字段命名冲突，已自动重命名为 `created_by_user_login_rel`"
+    },
+    {
+      "domain": "Party",
+      "entity": "Party",
+      "action": null,
+      "rule_code": "relationship_name_auto_renamed",
+      "path": "entities.Party",
+      "severity": "warning",
+      "reason": "关系 `last_modified_by_user_login` 与字段命名冲突，已自动重命名为 `last_modified_by_user_login_rel`"
+    },
+    {
+      "domain": "Party",
       "entity": "PartyAttribute",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
@@ -3197,6 +3233,24 @@
       "path": "entities.PicklistRole",
       "severity": "warning",
       "reason": "实体主键为 [picklist_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Shipment",
+      "entity": "PicklistRole",
+      "action": null,
+      "rule_code": "relationship_name_auto_renamed",
+      "path": "entities.PicklistRole",
+      "severity": "warning",
+      "reason": "关系 `created_by_user_login` 与字段命名冲突，已自动重命名为 `created_by_user_login_rel`"
+    },
+    {
+      "domain": "Shipment",
+      "entity": "PicklistRole",
+      "action": null,
+      "rule_code": "relationship_name_auto_renamed",
+      "path": "entities.PicklistRole",
+      "severity": "warning",
+      "reason": "关系 `last_modified_by_user_login` 与字段命名冲突，已自动重命名为 `last_modified_by_user_login_rel`"
     },
     {
       "domain": "Shipment",

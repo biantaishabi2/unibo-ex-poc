@@ -32,16 +32,14 @@ defmodule UniboExPoc.Ofbiz.Common.CountryTeleCode do
 
   attributes do
     uuid_primary_key :id
-    attribute :country_code, :uuid, public?: true
     attribute :tele_code, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
-    belongs_to :country_code, UniboExPoc.Ofbiz.Common.CountryCode do
+    belongs_to :country_code_rel, UniboExPoc.Ofbiz.Common.CountryCode do
       public? true
       source_attribute :country_code
-      define_attribute? false
     end
   end
 
