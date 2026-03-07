@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.OldProductPromoCodeEmail do
     otp_app: :unibo_ex_poc,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   resource do
     description "自分支版本起已弃用：即将推出的分支。请改用ProdPromoCodeContactMech"
@@ -47,12 +47,6 @@ defmodule UniboExPoc.Ofbiz.Product.OldProductPromoCodeEmail do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

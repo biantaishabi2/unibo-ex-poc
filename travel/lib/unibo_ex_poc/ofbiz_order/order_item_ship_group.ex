@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Order.OrderItemShipGroup do
     otp_app: :unibo_ex_poc,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "order_item_ship_groups"
@@ -66,12 +66,6 @@ defmodule UniboExPoc.Ofbiz.Order.OrderItemShipGroup do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

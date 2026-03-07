@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductRole do
     otp_app: :unibo_ex_poc,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "product_roles"
@@ -59,12 +59,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductRole do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

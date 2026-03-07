@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.OldPicklistStatusHistory do
     otp_app: :unibo_ex_poc,
     domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   resource do
     description "已弃用：自分支发布后弃用。请改用 PicklistStatus"
@@ -62,12 +62,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.OldPicklistStatusHistory do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

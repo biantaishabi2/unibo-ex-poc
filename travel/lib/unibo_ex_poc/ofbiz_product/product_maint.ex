@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductMaint do
     otp_app: :unibo_ex_poc,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   resource do
     description "用于指定定期维护的详细信息"
@@ -68,12 +68,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductMaint do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

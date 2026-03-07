@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.CarrierShipmentBoxType do
     otp_app: :unibo_ex_poc,
     domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_carrier_shipment_box_types"
@@ -45,12 +45,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.CarrierShipmentBoxType do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

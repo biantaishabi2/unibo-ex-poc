@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Party.ContactMechTypePurpose do
     otp_app: :unibo_ex_poc,
     domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   resource do
     description "定义哪些联系方式用途类型适用于哪些联系方式类型"
@@ -45,12 +45,6 @@ defmodule UniboExPoc.Ofbiz.Party.ContactMechTypePurpose do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do
