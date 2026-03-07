@@ -9,14 +9,14 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
 
   @impl true
   def change(changeset, _opts, _context) do
-    case eval(@expr, changeset) do
+    case eval_expr(@expr, changeset) do
       {:ok, value} -> Ash.Changeset.force_change_attribute(changeset, @field, value)
       _ -> changeset
     end
   end
 
   # 中文注释：通过轻量解释器让 set_attribute + expr 生成可执行 Change，避免占位 TODO。
-  defp eval(%{op: op, args: args} = expr, changeset) when is_binary(op) do
+  defp eval_expr(%{op: op, args: args} = expr, changeset) when is_binary(op) do
     case op do
       "ref" -> {:ok, resolve_ref(changeset, args)}
       "add" -> eval_binary_numeric(args, changeset, &Kernel.+/2)
@@ -51,20 +51,20 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
     end
   end
 
-  defp eval(%{} = map, changeset) do
+  defp eval_expr(%{} = map, changeset) do
     map
     |> Enum.reduce_while({:ok, %{}}, fn {k, v}, {:ok, acc} ->
-      case eval(v, changeset) do
+      case eval_expr(v, changeset) do
         {:ok, value} -> {:cont, {:ok, Map.put(acc, k, value)}}
         err -> {:halt, err}
       end
     end)
   end
 
-  defp eval(list, changeset) when is_list(list) do
+  defp eval_expr(list, changeset) when is_list(list) do
     list
     |> Enum.reduce_while({:ok, []}, fn item, {:ok, acc} ->
-      case eval(item, changeset) do
+      case eval_expr(item, changeset) do
         {:ok, value} -> {:cont, {:ok, [value | acc]}}
         err -> {:halt, err}
       end
@@ -75,77 +75,77 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
     end
   end
 
-  defp eval(value, _changeset), do: {:ok, value}
+  defp eval_expr(value, _changeset), do: {:ok, value}
 
   defp eval_binary_numeric([left, right], changeset, op) do
-    with {:ok, l} <- eval(left, changeset),
-         {:ok, r} <- eval(right, changeset) do
+    with {:ok, l} <- eval_expr(left, changeset),
+         {:ok, r} <- eval_expr(right, changeset) do
       {:ok, op.(to_number(l), to_number(r))}
     end
   end
   defp eval_binary_numeric(_, _changeset, _op), do: {:error, :invalid_args}
 
   defp eval_binary_compare([left, right], changeset, op) do
-    with {:ok, l} <- eval(left, changeset),
-         {:ok, r} <- eval(right, changeset) do
+    with {:ok, l} <- eval_expr(left, changeset),
+         {:ok, r} <- eval_expr(right, changeset) do
       {:ok, op.(normalize_compare(l), normalize_compare(r))}
     end
   end
   defp eval_binary_compare(_, _changeset, _op), do: {:error, :invalid_args}
 
   defp eval_binary_logic([left, right], changeset, op) do
-    with {:ok, l} <- eval(left, changeset),
-         {:ok, r} <- eval(right, changeset) do
+    with {:ok, l} <- eval_expr(left, changeset),
+         {:ok, r} <- eval_expr(right, changeset) do
       {:ok, op.(truthy?(l), truthy?(r))}
     end
   end
   defp eval_binary_logic(_, _changeset, _op), do: {:error, :invalid_args}
 
   defp eval_not([arg], changeset) do
-    with {:ok, v} <- eval(arg, changeset), do: {:ok, not truthy?(v)}
+    with {:ok, v} <- eval_expr(arg, changeset), do: {:ok, not truthy?(v)}
   end
   defp eval_not(_, _changeset), do: {:error, :invalid_args}
 
   defp eval_neg([arg], changeset) do
-    with {:ok, v} <- eval(arg, changeset), do: {:ok, -to_number(v)}
+    with {:ok, v} <- eval_expr(arg, changeset), do: {:ok, -to_number(v)}
   end
   defp eval_neg(_, _changeset), do: {:error, :invalid_args}
 
   defp eval_abs([arg], changeset) do
-    with {:ok, v} <- eval(arg, changeset), do: {:ok, Kernel.abs(to_number(v))}
+    with {:ok, v} <- eval_expr(arg, changeset), do: {:ok, Kernel.abs(to_number(v))}
   end
   defp eval_abs(_, _changeset), do: {:error, :invalid_args}
 
-  defp eval_literal([arg], changeset), do: eval(arg, changeset)
+  defp eval_literal([arg], changeset), do: eval_expr(arg, changeset)
   defp eval_literal(args, changeset) when is_list(args) do
     case args do
       [] -> {:ok, nil}
-      [head | _] -> eval(head, changeset)
+      [head | _] -> eval_expr(head, changeset)
     end
   end
   defp eval_literal(_, _changeset), do: {:error, :invalid_args}
 
   defp eval_concat(args, changeset) when is_list(args) do
-    with {:ok, values} <- eval(args, changeset) do
+    with {:ok, values} <- eval_expr(args, changeset) do
       {:ok, Enum.map_join(values, "", &to_string_safe/1)}
     end
   end
   defp eval_concat(_, _changeset), do: {:error, :invalid_args}
 
   defp eval_present([arg], changeset) do
-    with {:ok, value} <- eval(arg, changeset), do: {:ok, truthy?(value)}
+    with {:ok, value} <- eval_expr(arg, changeset), do: {:ok, truthy?(value)}
   end
   defp eval_present(_, _changeset), do: {:error, :invalid_args}
 
-  defp eval_filter([items_expr, _predicate], changeset), do: eval(items_expr, changeset)
+  defp eval_filter([items_expr, _predicate], changeset), do: eval_expr(items_expr, changeset)
   defp eval_filter(_, _changeset), do: {:error, :invalid_args}
 
   defp eval_if([cond, then_expr], changeset) do
     eval_if([cond, then_expr, nil], changeset)
   end
   defp eval_if([cond, then_expr, else_expr], changeset) do
-    with {:ok, cond_value} <- eval(cond, changeset) do
-      if truthy?(cond_value), do: eval(then_expr, changeset), else: eval(else_expr, changeset)
+    with {:ok, cond_value} <- eval_expr(cond, changeset) do
+      if truthy?(cond_value), do: eval_expr(then_expr, changeset), else: eval_expr(else_expr, changeset)
     end
   end
   defp eval_if(_, _changeset), do: {:error, :invalid_args}
@@ -154,8 +154,8 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
     Enum.reduce_while(branches, {:ok, nil}, fn branch, _acc ->
       case branch do
         [cond_expr, val_expr] ->
-          with {:ok, cond_value} <- eval(cond_expr, changeset) do
-            if truthy?(cond_value), do: {:halt, eval(val_expr, changeset)}, else: {:cont, {:ok, nil}}
+          with {:ok, cond_value} <- eval_expr(cond_expr, changeset) do
+            if truthy?(cond_value), do: {:halt, eval_expr(val_expr, changeset)}, else: {:cont, {:ok, nil}}
           else
             err -> {:halt, err}
           end
@@ -167,7 +167,7 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
 
   defp eval_coalesce(args, changeset) when is_list(args) do
     Enum.reduce_while(args, {:ok, nil}, fn arg, _acc ->
-      case eval(arg, changeset) do
+      case eval_expr(arg, changeset) do
         {:ok, nil} -> {:cont, {:ok, nil}}
         {:ok, value} -> {:halt, {:ok, value}}
         err -> {:halt, err}
@@ -177,8 +177,8 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
   defp eval_coalesce(_, _changeset), do: {:error, :invalid_args}
 
   defp eval_in([left, right], changeset) do
-    with {:ok, lv} <- eval(left, changeset),
-         {:ok, rv} <- eval(right, changeset) do
+    with {:ok, lv} <- eval_expr(left, changeset),
+         {:ok, rv} <- eval_expr(right, changeset) do
       list = if is_list(rv), do: rv, else: [rv]
       {:ok, Enum.any?(list, fn item -> normalize_compare(item) == normalize_compare(lv) end)}
     end
@@ -191,7 +191,7 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
     named_args = Map.get(expr, :args, %{})
     case {module, method} do
       {"currency", "convert"} ->
-        eval(Map.get(named_args, :amount, 0), changeset)
+        eval_expr(Map.get(named_args, :amount, 0), changeset)
       {"approval", "approval_allowed"} ->
         {:ok, false}
       {"product", "compute_price_unit"} ->
@@ -209,7 +209,7 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
   defp eval_recent(_args, _changeset), do: {:ok, []}
 
   defp eval_most_frequent([values_expr, field], changeset) do
-    with {:ok, values} <- eval(values_expr, changeset) do
+    with {:ok, values} <- eval_expr(values_expr, changeset) do
       key = to_string_safe(field)
       value =
         values
@@ -237,21 +237,21 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
   defp eval_list_func("now_precise", [], _changeset), do: {:ok, DateTime.utc_now()}
   defp eval_list_func("generate_uuid", [], _changeset), do: {:ok, Ecto.UUID.generate()}
   defp eval_list_func("uuid_v4", [], _changeset), do: {:ok, Ecto.UUID.generate()}
-  defp eval_list_func("sum", [target], changeset), do: with({:ok, value} <- eval(target, changeset), do: {:ok, enum_sum(value)})
-  defp eval_list_func("count", [target], changeset), do: with({:ok, value} <- eval(target, changeset), do: {:ok, enum_count(value)})
-  defp eval_list_func("avg", [target], changeset), do: with({:ok, value} <- eval(target, changeset), do: {:ok, enum_avg(value)})
-  defp eval_list_func("max", [target], changeset), do: with({:ok, value} <- eval(target, changeset), do: {:ok, enum_max(value)})
-  defp eval_list_func("min", [target], changeset), do: with({:ok, value} <- eval(target, changeset), do: {:ok, enum_min(value)})
-  defp eval_list_func("abs", [target], changeset), do: with({:ok, value} <- eval(target, changeset), do: {:ok, Kernel.abs(to_number(value))})
-  defp eval_list_func("round", [target], changeset), do: with({:ok, value} <- eval(target, changeset), do: {:ok, Float.round(to_number(value))})
+  defp eval_list_func("sum", [target], changeset), do: with({:ok, value} <- eval_expr(target, changeset), do: {:ok, enum_sum(value)})
+  defp eval_list_func("count", [target], changeset), do: with({:ok, value} <- eval_expr(target, changeset), do: {:ok, enum_count(value)})
+  defp eval_list_func("avg", [target], changeset), do: with({:ok, value} <- eval_expr(target, changeset), do: {:ok, enum_avg(value)})
+  defp eval_list_func("max", [target], changeset), do: with({:ok, value} <- eval_expr(target, changeset), do: {:ok, enum_max(value)})
+  defp eval_list_func("min", [target], changeset), do: with({:ok, value} <- eval_expr(target, changeset), do: {:ok, enum_min(value)})
+  defp eval_list_func("abs", [target], changeset), do: with({:ok, value} <- eval_expr(target, changeset), do: {:ok, Kernel.abs(to_number(value))})
+  defp eval_list_func("round", [target], changeset), do: with({:ok, value} <- eval_expr(target, changeset), do: {:ok, Float.round(to_number(value))})
   defp eval_list_func("concat", parts, changeset) do
-    with {:ok, values} <- eval(parts, changeset) do
+    with {:ok, values} <- eval_expr(parts, changeset) do
       {:ok, Enum.map_join(values, "", &to_string_safe/1)}
     end
   end
   defp eval_list_func("add_days", [base, days], changeset) do
-    with {:ok, base_value} <- eval(base, changeset),
-         {:ok, days_value} <- eval(days, changeset) do
+    with {:ok, base_value} <- eval_expr(base, changeset),
+         {:ok, days_value} <- eval_expr(days, changeset) do
       days_int = trunc(to_number(days_value))
       case base_value do
         %Date{} = d -> {:ok, Date.add(d, days_int)}
@@ -261,8 +261,8 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
     end
   end
   defp eval_list_func("datetime_diff_seconds", [left, right], changeset) do
-    with {:ok, left_value} <- eval(left, changeset),
-         {:ok, right_value} <- eval(right, changeset),
+    with {:ok, left_value} <- eval_expr(left, changeset),
+         {:ok, right_value} <- eval_expr(right, changeset),
          {:ok, left_dt} <- cast_datetime(left_value),
          {:ok, right_dt} <- cast_datetime(right_value) do
       {:ok, DateTime.diff(left_dt, right_dt, :second)}
@@ -274,13 +274,13 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
     eval_list_func("datetime_diff_seconds", [end_expr, start_expr], changeset)
   end
   defp eval_list_func("sha256_chain", parts, changeset) do
-    with {:ok, values} <- eval(parts, changeset) do
+    with {:ok, values} <- eval_expr(parts, changeset) do
       payload = Enum.map_join(values, "|", &to_string_safe/1)
       {:ok, :crypto.hash(:sha256, payload) |> Base.encode16(case: :lower)}
     end
   end
   defp eval_list_func("direction_sign", [move_type_expr], changeset) do
-    with {:ok, move_type} <- eval(move_type_expr, changeset) do
+    with {:ok, move_type} <- eval_expr(move_type_expr, changeset) do
       sign =
         case to_string_safe(move_type) do
           "out_refund" -> -1
@@ -292,14 +292,14 @@ defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
     end
   end
   defp eval_list_func("last_closed_session_balance", [_config_id], _changeset), do: {:ok, 0}
-  defp eval_list_func("tax_exclude", [amount_expr, _tax_expr], changeset), do: eval(amount_expr, changeset)
+  defp eval_list_func("tax_exclude", [amount_expr, _tax_expr], changeset), do: eval_expr(amount_expr, changeset)
   defp eval_list_func(_name, _args, _changeset), do: {:error, :unsupported_func}
 
   defp eval_named_func("tax_compute", expr, named_args, changeset) do
-    with {:ok, price} <- eval(Map.get(named_args, :price, 0), changeset),
-         {:ok, qty} <- eval(Map.get(named_args, :qty, 0), changeset),
-         {:ok, discount} <- eval(Map.get(named_args, :discount, 0), changeset),
-         {:ok, taxes} <- eval(Map.get(named_args, :taxes, []), changeset) do
+    with {:ok, price} <- eval_expr(Map.get(named_args, :price, 0), changeset),
+         {:ok, qty} <- eval_expr(Map.get(named_args, :qty, 0), changeset),
+         {:ok, discount} <- eval_expr(Map.get(named_args, :discount, 0), changeset),
+         {:ok, taxes} <- eval_expr(Map.get(named_args, :taxes, []), changeset) do
       price_num = to_number(price)
       qty_num = to_number(qty)
       discount_num = to_number(discount)
