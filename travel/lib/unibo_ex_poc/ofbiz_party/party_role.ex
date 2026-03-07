@@ -39,10 +39,12 @@ defmodule UniboExPoc.Ofbiz.Party.PartyRole do
     end
     has_many :role_type_attr, UniboExPoc.Ofbiz.Party.RoleTypeAttr do
       public? true
+      source_attribute :role_type_id
       destination_attribute :role_type_id
     end
     has_many :party_attribute, UniboExPoc.Ofbiz.Party.PartyAttribute do
       public? true
+      source_attribute :party_id
       destination_attribute :party_id
     end
   end

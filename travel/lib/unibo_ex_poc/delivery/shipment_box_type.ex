@@ -90,6 +90,7 @@ defmodule UniboExPoc.Delivery.ShipmentBoxType do
   relationships do
     has_many :packages, UniboExPoc.Delivery.ShipmentPackage do
       public? true
+      source_attribute :shipment_box_type_id
       destination_attribute :shipment_box_type_id
     end
   end

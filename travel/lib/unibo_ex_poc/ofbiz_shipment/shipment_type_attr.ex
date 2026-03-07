@@ -43,6 +43,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentTypeAttr do
     end
     has_many :shipment, UniboExPoc.Ofbiz.Shipment.Shipment do
       public? true
+      source_attribute :shipment_type_id
       destination_attribute :shipment_type_id
     end
   end

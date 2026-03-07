@@ -61,6 +61,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentPackage do
     end
     has_many :carrier_shipment_box_type, UniboExPoc.Ofbiz.Shipment.CarrierShipmentBoxType do
       public? true
+      source_attribute :shipment_box_type_id
       destination_attribute :shipment_box_type_id
     end
     belongs_to :dimension_uom, UniboExPoc.Ofbiz.Shipment.Uom do

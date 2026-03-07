@@ -46,6 +46,7 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementTypeAttr do
     end
     has_many :agreement, UniboExPoc.Ofbiz.Party.Agreement do
       public? true
+      source_attribute :agreement_type_id
       destination_attribute :agreement_type_id
     end
   end

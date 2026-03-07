@@ -96,6 +96,7 @@ defmodule UniboExPoc.Delivery.Delivery do
     end
     has_many :route_segments, UniboExPoc.Delivery.ShipmentRouteSegment do
       public? true
+      source_attribute :delivery_id
       destination_attribute :delivery_id
     end
   end

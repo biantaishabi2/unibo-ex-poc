@@ -177,18 +177,22 @@ defmodule UniboExPoc.Delivery.Shipment do
     end
     has_many :shipment_items, UniboExPoc.Delivery.ShipmentItem do
       public? true
+      source_attribute :shipment_id
       destination_attribute :shipment_id
     end
     has_many :shipment_packages, UniboExPoc.Delivery.ShipmentPackage do
       public? true
+      source_attribute :shipment_id
       destination_attribute :shipment_id
     end
     has_many :route_segments, UniboExPoc.Delivery.ShipmentRouteSegment do
       public? true
+      source_attribute :shipment_id
       destination_attribute :shipment_id
     end
     has_many :status_history, UniboExPoc.Delivery.ShipmentStatus do
       public? true
+      source_attribute :shipment_id
       destination_attribute :shipment_id
     end
   end

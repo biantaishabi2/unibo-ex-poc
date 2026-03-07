@@ -96,6 +96,7 @@ defmodule UniboExPoc.Website.Menu do
     end
     has_many :children, UniboExPoc.Website.Menu do
       public? true
+      source_attribute :parent_id
       destination_attribute :parent_id
     end
     has_many :translations, UniboExPoc.Website.MenuTranslation, public?: true

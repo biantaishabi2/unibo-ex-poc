@@ -46,6 +46,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentGatewayConfigType do
     end
     has_many :sibling_shipment_gateway_config_type, UniboExPoc.Ofbiz.Shipment.ShipmentGatewayConfigType do
       public? true
+      source_attribute :parent_type_id
       destination_attribute :parent_type_id
     end
   end

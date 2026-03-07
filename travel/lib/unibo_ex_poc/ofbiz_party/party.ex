@@ -77,6 +77,7 @@ defmodule UniboExPoc.Ofbiz.Party.Party do
     end
     has_many :party_type_attr, UniboExPoc.Ofbiz.Party.PartyTypeAttr do
       public? true
+      source_attribute :party_type_id
       destination_attribute :party_type_id
     end
     belongs_to :data_source, UniboExPoc.Ofbiz.Party.DataSource do

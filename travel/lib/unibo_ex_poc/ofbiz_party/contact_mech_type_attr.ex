@@ -46,6 +46,7 @@ defmodule UniboExPoc.Ofbiz.Party.ContactMechTypeAttr do
     end
     has_many :contact_mech, UniboExPoc.Ofbiz.Party.ContactMech do
       public? true
+      source_attribute :contact_mech_type_id
       destination_attribute :contact_mech_type_id
     end
   end
