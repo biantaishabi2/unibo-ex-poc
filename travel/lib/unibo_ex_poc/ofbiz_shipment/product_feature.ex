@@ -2,8 +2,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.ProductFeature do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
     domain: UniboExPoc.Ofbiz.Shipment,
-    data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource]
+    data_layer: AshPostgres.DataLayer
 
   resource do
     description "占位实体（Batch B2 关系补全）"
@@ -12,11 +11,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.ProductFeature do
   postgres do
     table "shipment_product_features"
     repo UniboExPoc.Repo
-  end
-
-  graphql do
-    type :shipment_product_feature
-
   end
 
   attributes do
