@@ -52,6 +52,7 @@ defmodule UniboExPoc.Ofbiz.Common.PortalPagePortlet do
     belongs_to :portal_page_column, UniboExPoc.Ofbiz.Common.PortalPageColumn do
       public? true
       source_attribute :portal_page_id
+      define_attribute? false
     end
   end
 

@@ -71,10 +71,12 @@ defmodule UniboExPoc.Ofbiz.Party.PartyContactMech do
     belongs_to :person, UniboExPoc.Ofbiz.Party.Person do
       public? true
       source_attribute :party_id
+      define_attribute? false
     end
     belongs_to :party_group, UniboExPoc.Ofbiz.Party.PartyGroup do
       public? true
       source_attribute :party_id
+      define_attribute? false
     end
     belongs_to :role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
@@ -85,10 +87,12 @@ defmodule UniboExPoc.Ofbiz.Party.PartyContactMech do
     belongs_to :telecom_number, UniboExPoc.Ofbiz.Party.TelecomNumber do
       public? true
       source_attribute :contact_mech_id
+      define_attribute? false
     end
     belongs_to :postal_address, UniboExPoc.Ofbiz.Party.PostalAddress do
       public? true
       source_attribute :contact_mech_id
+      define_attribute? false
     end
   end
 

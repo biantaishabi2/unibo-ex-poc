@@ -51,6 +51,7 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemTypeMap do
     belongs_to :return_adjustment_type, UniboExPoc.Ofbiz.Order.ReturnAdjustmentType do
       public? true
       source_attribute :return_item_type_id
+      define_attribute? false
       attribute_type :string
     end
   end

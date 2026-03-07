@@ -93,6 +93,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.Shipment do
     belongs_to :origin_postal_address, UniboExPoc.Ofbiz.Shipment.PostalAddress do
       public? true
       source_attribute :origin_contact_mech_id
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :origin_telecom_number, UniboExPoc.Ofbiz.Shipment.TelecomNumber do
@@ -102,6 +103,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.Shipment do
     belongs_to :destination_postal_address, UniboExPoc.Ofbiz.Shipment.PostalAddress do
       public? true
       source_attribute :destination_contact_mech_id
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :destination_telecom_number, UniboExPoc.Ofbiz.Shipment.TelecomNumber do
@@ -134,11 +136,13 @@ defmodule UniboExPoc.Ofbiz.Shipment.Shipment do
     belongs_to :to_person, UniboExPoc.Ofbiz.Shipment.Person do
       public? true
       source_attribute :party_id_to
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :to_party_group, UniboExPoc.Ofbiz.Shipment.PartyGroup do
       public? true
       source_attribute :party_id_to
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :from_party, UniboExPoc.Ofbiz.Shipment.Party do
@@ -149,11 +153,13 @@ defmodule UniboExPoc.Ofbiz.Shipment.Shipment do
     belongs_to :from_person, UniboExPoc.Ofbiz.Shipment.Person do
       public? true
       source_attribute :party_id_from
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :from_party_group, UniboExPoc.Ofbiz.Shipment.PartyGroup do
       public? true
       source_attribute :party_id_from
+      define_attribute? false
       attribute_type :string
     end
     has_many :shipment_manifest_view, UniboExPoc.Ofbiz.Shipment.ShipmentItem do

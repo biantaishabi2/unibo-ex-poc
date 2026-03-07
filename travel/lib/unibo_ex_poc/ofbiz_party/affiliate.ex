@@ -70,6 +70,7 @@ defmodule UniboExPoc.Ofbiz.Party.Affiliate do
     belongs_to :party_group, UniboExPoc.Ofbiz.Party.PartyGroup do
       public? true
       source_attribute :party_id
+      define_attribute? false
     end
   end
 
