@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Product.SupplierProduct do
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :available_from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :available_thru_date, :utc_datetime, public?: true
@@ -44,7 +42,6 @@ defmodule UniboExPoc.Ofbiz.Product.SupplierProduct do
     attribute :minimum_order_quantity, :decimal do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :order_qty_increments, :decimal, public?: true
@@ -57,7 +54,6 @@ defmodule UniboExPoc.Ofbiz.Product.SupplierProduct do
     attribute :currency_uom_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :supplier_product_name, :string, public?: true

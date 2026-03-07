@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlReconciliationEntry do
     attribute :acctg_trans_entry_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :reconciled_amount, :decimal, public?: true

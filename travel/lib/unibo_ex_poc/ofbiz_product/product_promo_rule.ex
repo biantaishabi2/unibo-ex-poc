@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPromoRule do
     attribute :product_promo_rule_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :rule_name, :string, public?: true

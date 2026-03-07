@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Order.OrderItemContactMech do
     attribute :order_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :contact_mech_purpose_type_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :contact_mech_id, :string, public?: true

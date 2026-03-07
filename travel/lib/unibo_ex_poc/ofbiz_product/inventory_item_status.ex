@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemStatus do
     attribute :status_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :status_datetime, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :status_end_datetime, :utc_datetime, public?: true

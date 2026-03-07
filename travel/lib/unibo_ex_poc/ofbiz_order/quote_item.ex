@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteItem do
     attribute :quote_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :product_id, :string, public?: true

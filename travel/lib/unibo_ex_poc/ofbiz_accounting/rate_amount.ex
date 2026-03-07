@@ -30,37 +30,31 @@ defmodule UniboExPoc.Ofbiz.Accounting.RateAmount do
     attribute :rate_currency_uom_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :period_type_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :work_effort_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :empl_position_type_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "描述费率金额何时有效。如果为空，立即有效。"
     end

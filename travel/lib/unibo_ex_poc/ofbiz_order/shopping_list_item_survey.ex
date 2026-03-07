@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Order.ShoppingListItemSurvey do
     attribute :shopping_list_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :survey_response_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false

@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetMaint do
     attribute :maint_hist_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :status_id, :string, public?: true

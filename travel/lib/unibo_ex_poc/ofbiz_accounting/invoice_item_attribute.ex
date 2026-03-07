@@ -30,19 +30,16 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItemAttribute do
     attribute :invoice_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :invoice_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :attr_value, :string, public?: true

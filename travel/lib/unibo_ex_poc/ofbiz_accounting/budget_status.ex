@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetStatus do
     attribute :status_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :status_date, :utc_datetime, public?: true

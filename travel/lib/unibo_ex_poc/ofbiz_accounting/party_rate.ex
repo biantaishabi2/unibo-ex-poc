@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.PartyRate do
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :default_rate, :boolean, public?: true
@@ -41,7 +40,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.PartyRate do
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :thru_date, :utc_datetime, public?: true

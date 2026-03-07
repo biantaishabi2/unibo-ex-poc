@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Order.OrderItemShipGroup do
     attribute :ship_group_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :shipment_method_type_id, :string, public?: true

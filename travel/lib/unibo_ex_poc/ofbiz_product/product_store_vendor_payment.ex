@@ -34,19 +34,16 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreVendorPayment do
     attribute :vendor_party_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :payment_method_type_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :credit_card_enum_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "如果不适用于paymentMethodTypeId，使用\"_NA_\""
     end

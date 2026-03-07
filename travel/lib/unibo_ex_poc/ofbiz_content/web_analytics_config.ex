@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Content.WebAnalyticsConfig do
     attribute :web_site_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :web_analytics_code, :string do

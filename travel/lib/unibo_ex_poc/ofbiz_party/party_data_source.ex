@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Party.PartyDataSource do
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "来源日期"
     end

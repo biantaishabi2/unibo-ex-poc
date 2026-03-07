@@ -30,19 +30,16 @@ defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetMeter do
     attribute :fixed_asset_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :product_meter_type_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :reading_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :meter_value, :decimal, public?: true

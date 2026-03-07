@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductCostComponentCalc do
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :sequence_num, :integer, public?: true

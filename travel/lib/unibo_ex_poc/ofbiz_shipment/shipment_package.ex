@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentPackage do
     attribute :shipment_package_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :date_created, :utc_datetime, public?: true

@@ -30,19 +30,16 @@ defmodule UniboExPoc.Ofbiz.Order.ShoppingListItemAttribute do
     attribute :shopping_list_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :shopping_list_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :attr_value, :string, public?: true

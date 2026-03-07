@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteRole do
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :role_type_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :from_date, :utc_datetime, public?: true

@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Party.PartyNeed do
     attribute :party_need_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "参与方需求编号"
     end

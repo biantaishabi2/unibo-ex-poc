@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Content.SurveyResponseAnswer do
     attribute :survey_multi_resp_col_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "需要这个来支持不同多响应列的多个响应；如果不属于多响应，则为 _NA_"
     end

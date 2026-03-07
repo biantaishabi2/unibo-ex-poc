@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.TaxAuthority do
     attribute :tax_auth_geo_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :tax_auth_party_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :require_tax_id_for_exemption, :boolean, public?: true

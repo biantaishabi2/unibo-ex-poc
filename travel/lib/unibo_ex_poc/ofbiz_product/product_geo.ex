@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductGeo do
     attribute :geo_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :product_geo_enum_id, :string, public?: true

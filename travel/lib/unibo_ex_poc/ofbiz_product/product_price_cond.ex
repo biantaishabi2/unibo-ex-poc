@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPriceCond do
     attribute :product_price_cond_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :input_param_enum_id, :string, public?: true

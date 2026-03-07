@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Order.AllocationPlanHeader do
     attribute :plan_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :product_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :plan_name, :string, public?: true

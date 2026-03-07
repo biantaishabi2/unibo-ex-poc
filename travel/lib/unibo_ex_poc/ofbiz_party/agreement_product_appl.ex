@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementProductAppl do
     attribute :agreement_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "协议项序列编号"
     end

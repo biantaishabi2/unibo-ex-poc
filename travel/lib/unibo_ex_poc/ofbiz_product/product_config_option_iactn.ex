@@ -30,19 +30,16 @@ defmodule UniboExPoc.Ofbiz.Product.ProductConfigOptionIactn do
     attribute :config_option_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :config_option_id_to, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :sequence_num, :integer do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       generated? true
       public? true
     end

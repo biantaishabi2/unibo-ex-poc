@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementStatus do
     attribute :status_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "状态日期"
     end

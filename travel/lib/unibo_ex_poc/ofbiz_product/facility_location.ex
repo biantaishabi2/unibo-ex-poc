@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityLocation do
     attribute :location_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :location_type_enum_id, :string, public?: true

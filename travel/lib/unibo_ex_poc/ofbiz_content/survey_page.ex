@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Content.SurveyPage do
     attribute :survey_page_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :page_name, :string, public?: true

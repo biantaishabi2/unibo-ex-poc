@@ -30,14 +30,12 @@ defmodule UniboExPoc.Ofbiz.Product.ProductConfig do
     attribute :sequence_num, :integer do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       generated? true
       public? true
     end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :description, :string, public?: true

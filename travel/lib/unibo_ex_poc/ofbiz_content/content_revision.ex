@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Content.ContentRevision do
     attribute :content_revision_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :committed_by_party_id, :string, public?: true

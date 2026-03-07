@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentPackageRouteSeg do
     attribute :shipment_package_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :shipment_route_segment_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :tracking_code, :string, public?: true

@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.CreditCardTypeGlAccount do
     attribute :card_type, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :organization_party_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :gl_account_id, :string, public?: true

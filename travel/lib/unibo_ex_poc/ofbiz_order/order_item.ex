@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Order.OrderItem do
     attribute :order_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :external_id, :string, public?: true

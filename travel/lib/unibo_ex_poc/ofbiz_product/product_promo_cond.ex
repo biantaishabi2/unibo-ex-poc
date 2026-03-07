@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPromoCond do
     attribute :product_promo_rule_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :product_promo_cond_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :custom_method_id, :string, public?: true

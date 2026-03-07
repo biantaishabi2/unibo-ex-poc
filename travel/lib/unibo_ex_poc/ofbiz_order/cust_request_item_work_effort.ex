@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Order.CustRequestItemWorkEffort do
     attribute :cust_request_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :work_effort_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false

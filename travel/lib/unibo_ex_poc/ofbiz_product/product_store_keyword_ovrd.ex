@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreKeywordOvrd do
     attribute :keyword, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :thru_date, :utc_datetime, public?: true

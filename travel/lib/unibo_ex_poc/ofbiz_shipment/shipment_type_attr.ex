@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentTypeAttr do
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :description, :string, public?: true

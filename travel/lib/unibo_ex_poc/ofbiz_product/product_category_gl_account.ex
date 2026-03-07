@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductCategoryGlAccount do
     attribute :organization_party_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :gl_account_type_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :gl_account_id, :string, public?: true

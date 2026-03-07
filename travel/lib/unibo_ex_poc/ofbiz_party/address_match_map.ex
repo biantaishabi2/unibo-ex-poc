@@ -30,14 +30,12 @@ defmodule UniboExPoc.Ofbiz.Party.AddressMatchMap do
     attribute :map_key, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "映射键"
     end
     attribute :map_value, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "映射值"
     end

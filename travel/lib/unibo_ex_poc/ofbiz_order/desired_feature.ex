@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Order.DesiredFeature do
     attribute :desired_feature_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :product_feature_id, :string, public?: true

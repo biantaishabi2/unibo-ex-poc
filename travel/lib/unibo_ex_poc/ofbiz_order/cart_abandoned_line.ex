@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Order.CartAbandonedLine do
     attribute :visit_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :cart_abandoned_line_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :product_id, :string, public?: true

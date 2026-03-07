@@ -30,25 +30,21 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPromoCategory do
     attribute :product_promo_rule_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :product_promo_action_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :product_promo_cond_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :and_group_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :product_promo_appl_enum_id, :string, public?: true

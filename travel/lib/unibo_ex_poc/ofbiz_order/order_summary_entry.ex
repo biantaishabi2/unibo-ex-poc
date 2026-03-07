@@ -30,19 +30,16 @@ defmodule UniboExPoc.Ofbiz.Order.OrderSummaryEntry do
     attribute :entry_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :product_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :facility_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :total_quantity, :decimal, public?: true

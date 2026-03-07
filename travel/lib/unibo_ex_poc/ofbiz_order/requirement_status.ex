@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Order.RequirementStatus do
     attribute :status_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :status_date, :utc_datetime, public?: true

@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetRevisionImpact do
     attribute :budget_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :revision_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :revised_amount, :decimal, public?: true

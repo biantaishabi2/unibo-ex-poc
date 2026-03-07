@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetReview do
     attribute :budget_review_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :review_date, :utc_datetime, public?: true

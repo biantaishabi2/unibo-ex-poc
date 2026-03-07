@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Content.ContentKeyword do
     attribute :keyword, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :relevancy_weight, :integer, public?: true

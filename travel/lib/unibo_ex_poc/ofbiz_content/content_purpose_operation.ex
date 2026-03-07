@@ -30,19 +30,16 @@ defmodule UniboExPoc.Ofbiz.Content.ContentPurposeOperation do
     attribute :role_type_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :status_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :privilege_enum_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false

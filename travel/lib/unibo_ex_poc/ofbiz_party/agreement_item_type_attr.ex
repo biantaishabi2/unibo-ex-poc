@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementItemTypeAttr do
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "属性名"
     end

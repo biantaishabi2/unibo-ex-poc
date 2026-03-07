@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteCoefficient do
     attribute :coeff_name, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :coeff_value, :decimal, public?: true

@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPriceAction do
     attribute :product_price_action_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :amount, :decimal, public?: true

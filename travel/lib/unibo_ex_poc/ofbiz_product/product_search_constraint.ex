@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductSearchConstraint do
     attribute :constraint_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :constraint_name, :string, public?: true

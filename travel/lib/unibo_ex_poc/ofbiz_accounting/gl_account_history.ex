@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlAccountHistory do
     attribute :organization_party_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :custom_time_period_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :opening_balance, :decimal, public?: true

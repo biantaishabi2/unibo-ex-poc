@@ -30,49 +30,42 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementEmploymentAppl do
     attribute :agreement_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "协议编号"
     end
     attribute :agreement_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "协议项序列编号"
     end
     attribute :party_id_from, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "参与方编号来源"
     end
     attribute :party_id_to, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "参与方编号"
     end
     attribute :role_type_id_from, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "角色类型编号来源"
     end
     attribute :role_type_id_to, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "角色类型编号"
     end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "来源日期"
     end

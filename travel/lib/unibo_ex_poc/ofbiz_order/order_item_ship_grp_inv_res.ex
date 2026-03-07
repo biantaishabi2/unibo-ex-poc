@@ -30,19 +30,16 @@ defmodule UniboExPoc.Ofbiz.Order.OrderItemShipGrpInvRes do
     attribute :ship_group_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :order_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :inventory_item_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :reserve_order_enum_id, :string, public?: true

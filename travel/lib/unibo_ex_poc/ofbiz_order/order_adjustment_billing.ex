@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Order.OrderAdjustmentBilling do
     attribute :invoice_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :invoice_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :amount, :decimal, public?: true

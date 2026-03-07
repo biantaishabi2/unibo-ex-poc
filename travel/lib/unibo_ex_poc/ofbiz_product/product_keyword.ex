@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductKeyword do
     attribute :keyword, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :keyword_type_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :relevancy_weight, :integer, public?: true

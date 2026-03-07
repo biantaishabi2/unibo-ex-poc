@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Order.OrderDeliverySchedule do
     attribute :order_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :estimated_ready_date, :utc_datetime, public?: true

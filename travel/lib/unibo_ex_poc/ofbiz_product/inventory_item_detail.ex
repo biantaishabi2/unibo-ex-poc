@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemDetail do
     attribute :inventory_item_detail_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :effective_date, :utc_datetime, public?: true

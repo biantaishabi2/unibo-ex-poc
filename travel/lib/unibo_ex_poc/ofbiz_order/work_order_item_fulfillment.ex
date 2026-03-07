@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Order.WorkOrderItemFulfillment do
     attribute :work_effort_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :order_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :ship_group_seq_id, :string, public?: true

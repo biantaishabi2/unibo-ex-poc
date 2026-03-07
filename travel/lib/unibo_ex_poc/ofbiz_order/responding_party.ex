@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Order.RespondingParty do
     attribute :responding_party_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :contact_mech_id, :string, public?: true

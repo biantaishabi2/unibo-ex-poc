@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Content.SurveyMultiResp do
     attribute :survey_multi_resp_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :multi_resp_title, :string, public?: true

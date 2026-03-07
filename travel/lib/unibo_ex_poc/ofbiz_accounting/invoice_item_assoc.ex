@@ -30,31 +30,26 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItemAssoc do
     attribute :invoice_id_from, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :invoice_item_seq_id_from, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :invoice_id_to, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :invoice_item_seq_id_to, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :thru_date, :utc_datetime, public?: true

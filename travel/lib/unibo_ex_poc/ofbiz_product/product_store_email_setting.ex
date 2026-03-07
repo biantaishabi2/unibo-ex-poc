@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreEmailSetting do
     attribute :email_type, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :body_screen_location, :string do

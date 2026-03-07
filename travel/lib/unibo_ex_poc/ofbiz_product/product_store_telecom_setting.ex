@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreTelecomSetting do
     attribute :telecom_method_type_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :telecom_msg_type_enum_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :telecom_custom_method_id, :string, public?: true

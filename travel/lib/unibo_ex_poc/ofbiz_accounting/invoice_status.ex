@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceStatus do
     attribute :status_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :status_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :change_by_user_login_id, :string, public?: true

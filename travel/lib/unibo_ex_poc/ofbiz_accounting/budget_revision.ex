@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetRevision do
     attribute :revision_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :date_revised, :utc_datetime, public?: true

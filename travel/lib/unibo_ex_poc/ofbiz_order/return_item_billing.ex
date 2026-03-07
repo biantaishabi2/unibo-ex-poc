@@ -30,19 +30,16 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemBilling do
     attribute :return_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :invoice_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :invoice_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :shipment_receipt_id, :string, public?: true

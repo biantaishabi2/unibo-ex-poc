@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreFinActSetting do
     attribute :fin_account_type_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :require_pin_code, :boolean, public?: true

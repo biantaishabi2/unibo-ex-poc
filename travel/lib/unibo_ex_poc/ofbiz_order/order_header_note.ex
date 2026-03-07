@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Order.OrderHeaderNote do
     attribute :note_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :internal_note, :boolean, public?: true

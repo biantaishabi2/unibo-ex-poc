@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItemTypeMap do
     attribute :invoice_item_map_key, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false

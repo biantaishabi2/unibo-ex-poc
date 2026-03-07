@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductConfigStats do
     attribute :config_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :num_of_confs, :integer, public?: true

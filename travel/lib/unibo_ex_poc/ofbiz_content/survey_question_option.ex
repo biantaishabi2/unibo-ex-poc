@@ -30,7 +30,6 @@ defmodule UniboExPoc.Ofbiz.Content.SurveyQuestionOption do
     attribute :survey_option_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :description, :string, public?: true

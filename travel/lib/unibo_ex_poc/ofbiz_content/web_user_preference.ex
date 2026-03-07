@@ -30,19 +30,16 @@ defmodule UniboExPoc.Ofbiz.Content.WebUserPreference do
     attribute :user_login_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :visit_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
       description "能够为当前会话中未登录的用户保存偏好设置"
     end

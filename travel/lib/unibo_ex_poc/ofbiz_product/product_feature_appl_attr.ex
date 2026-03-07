@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFeatureApplAttr do
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :attr_value, :string, public?: true

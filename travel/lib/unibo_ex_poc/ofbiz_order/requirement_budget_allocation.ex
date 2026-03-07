@@ -30,13 +30,11 @@ defmodule UniboExPoc.Ofbiz.Order.RequirementBudgetAllocation do
     attribute :budget_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :budget_item_seq_id, :string do
       allow_nil? false
       primary_key? true
-      allow_nil? false
       public? true
     end
     attribute :amount, :decimal, public?: true
