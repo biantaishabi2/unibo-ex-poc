@@ -12,33 +12,24 @@ defmodule UniboExPoc.Ofbiz.Content do
     resource UniboExPoc.Ofbiz.Content.ContentApproval
     resource UniboExPoc.Ofbiz.Content.ContentApproval.Version
     resource UniboExPoc.Ofbiz.Content.ContentAssoc
-    resource UniboExPoc.Ofbiz.Content.ContentAssoc.Version
     resource UniboExPoc.Ofbiz.Content.ContentAssocPredicate
     resource UniboExPoc.Ofbiz.Content.ContentAssocPredicate.Version
     resource UniboExPoc.Ofbiz.Content.ContentAssocType
     resource UniboExPoc.Ofbiz.Content.ContentAssocType.Version
     resource UniboExPoc.Ofbiz.Content.ContentAttribute
-    resource UniboExPoc.Ofbiz.Content.ContentAttribute.Version
     resource UniboExPoc.Ofbiz.Content.ContentMetaData
-    resource UniboExPoc.Ofbiz.Content.ContentMetaData.Version
     resource UniboExPoc.Ofbiz.Content.ContentOperation
     resource UniboExPoc.Ofbiz.Content.ContentOperation.Version
     resource UniboExPoc.Ofbiz.Content.ContentPurpose
-    resource UniboExPoc.Ofbiz.Content.ContentPurpose.Version
     resource UniboExPoc.Ofbiz.Content.ContentPurposeOperation
-    resource UniboExPoc.Ofbiz.Content.ContentPurposeOperation.Version
     resource UniboExPoc.Ofbiz.Content.ContentPurposeType
     resource UniboExPoc.Ofbiz.Content.ContentPurposeType.Version
     resource UniboExPoc.Ofbiz.Content.ContentRevision
-    resource UniboExPoc.Ofbiz.Content.ContentRevision.Version
     resource UniboExPoc.Ofbiz.Content.ContentRevisionItem
-    resource UniboExPoc.Ofbiz.Content.ContentRevisionItem.Version
     resource UniboExPoc.Ofbiz.Content.ContentRole
-    resource UniboExPoc.Ofbiz.Content.ContentRole.Version
     resource UniboExPoc.Ofbiz.Content.ContentType
     resource UniboExPoc.Ofbiz.Content.ContentType.Version
     resource UniboExPoc.Ofbiz.Content.ContentTypeAttr
-    resource UniboExPoc.Ofbiz.Content.ContentTypeAttr.Version
     resource UniboExPoc.Ofbiz.Content.AudioDataResource
     resource UniboExPoc.Ofbiz.Content.AudioDataResource.Version
     resource UniboExPoc.Ofbiz.Content.CharacterSet
@@ -48,17 +39,12 @@ defmodule UniboExPoc.Ofbiz.Content do
     resource UniboExPoc.Ofbiz.Content.DataResource
     resource UniboExPoc.Ofbiz.Content.DataResource.Version
     resource UniboExPoc.Ofbiz.Content.DataResourceAttribute
-    resource UniboExPoc.Ofbiz.Content.DataResourceAttribute.Version
     resource UniboExPoc.Ofbiz.Content.DataResourceMetaData
-    resource UniboExPoc.Ofbiz.Content.DataResourceMetaData.Version
     resource UniboExPoc.Ofbiz.Content.DataResourcePurpose
-    resource UniboExPoc.Ofbiz.Content.DataResourcePurpose.Version
     resource UniboExPoc.Ofbiz.Content.DataResourceRole
-    resource UniboExPoc.Ofbiz.Content.DataResourceRole.Version
     resource UniboExPoc.Ofbiz.Content.DataResourceType
     resource UniboExPoc.Ofbiz.Content.DataResourceType.Version
     resource UniboExPoc.Ofbiz.Content.DataResourceTypeAttr
-    resource UniboExPoc.Ofbiz.Content.DataResourceTypeAttr.Version
     resource UniboExPoc.Ofbiz.Content.DataTemplateType
     resource UniboExPoc.Ofbiz.Content.DataTemplateType.Version
     resource UniboExPoc.Ofbiz.Content.ElectronicText
@@ -80,59 +66,43 @@ defmodule UniboExPoc.Ofbiz.Content do
     resource UniboExPoc.Ofbiz.Content.Document
     resource UniboExPoc.Ofbiz.Content.Document.Version
     resource UniboExPoc.Ofbiz.Content.DocumentAttribute
-    resource UniboExPoc.Ofbiz.Content.DocumentAttribute.Version
     resource UniboExPoc.Ofbiz.Content.DocumentType
     resource UniboExPoc.Ofbiz.Content.DocumentType.Version
     resource UniboExPoc.Ofbiz.Content.DocumentTypeAttr
-    resource UniboExPoc.Ofbiz.Content.DocumentTypeAttr.Version
     resource UniboExPoc.Ofbiz.Content.WebPreferenceType
     resource UniboExPoc.Ofbiz.Content.WebPreferenceType.Version
     resource UniboExPoc.Ofbiz.Content.WebUserPreference
-    resource UniboExPoc.Ofbiz.Content.WebUserPreference.Version
     resource UniboExPoc.Ofbiz.Content.Survey
     resource UniboExPoc.Ofbiz.Content.Survey.Version
     resource UniboExPoc.Ofbiz.Content.SurveyApplType
     resource UniboExPoc.Ofbiz.Content.SurveyApplType.Version
     resource UniboExPoc.Ofbiz.Content.SurveyMultiResp
-    resource UniboExPoc.Ofbiz.Content.SurveyMultiResp.Version
     resource UniboExPoc.Ofbiz.Content.SurveyMultiRespColumn
-    resource UniboExPoc.Ofbiz.Content.SurveyMultiRespColumn.Version
     resource UniboExPoc.Ofbiz.Content.SurveyPage
-    resource UniboExPoc.Ofbiz.Content.SurveyPage.Version
     resource UniboExPoc.Ofbiz.Content.SurveyQuestion
     resource UniboExPoc.Ofbiz.Content.SurveyQuestion.Version
     resource UniboExPoc.Ofbiz.Content.SurveyQuestionAppl
-    resource UniboExPoc.Ofbiz.Content.SurveyQuestionAppl.Version
     resource UniboExPoc.Ofbiz.Content.SurveyQuestionCategory
     resource UniboExPoc.Ofbiz.Content.SurveyQuestionCategory.Version
     resource UniboExPoc.Ofbiz.Content.SurveyQuestionOption
-    resource UniboExPoc.Ofbiz.Content.SurveyQuestionOption.Version
     resource UniboExPoc.Ofbiz.Content.SurveyQuestionType
     resource UniboExPoc.Ofbiz.Content.SurveyQuestionType.Version
     resource UniboExPoc.Ofbiz.Content.SurveyResponse
     resource UniboExPoc.Ofbiz.Content.SurveyResponse.Version
     resource UniboExPoc.Ofbiz.Content.SurveyResponseAnswer
-    resource UniboExPoc.Ofbiz.Content.SurveyResponseAnswer.Version
     resource UniboExPoc.Ofbiz.Content.SurveyTrigger
-    resource UniboExPoc.Ofbiz.Content.SurveyTrigger.Version
     resource UniboExPoc.Ofbiz.Content.WebSiteContent
-    resource UniboExPoc.Ofbiz.Content.WebSiteContent.Version
     resource UniboExPoc.Ofbiz.Content.WebSiteContentType
     resource UniboExPoc.Ofbiz.Content.WebSiteContentType.Version
     resource UniboExPoc.Ofbiz.Content.WebSitePathAlias
-    resource UniboExPoc.Ofbiz.Content.WebSitePathAlias.Version
     resource UniboExPoc.Ofbiz.Content.WebSitePublishPoint
     resource UniboExPoc.Ofbiz.Content.WebSitePublishPoint.Version
     resource UniboExPoc.Ofbiz.Content.WebSiteRole
-    resource UniboExPoc.Ofbiz.Content.WebSiteRole.Version
     resource UniboExPoc.Ofbiz.Content.ContentKeyword
-    resource UniboExPoc.Ofbiz.Content.ContentKeyword.Version
     resource UniboExPoc.Ofbiz.Content.ContentSearchConstraint
-    resource UniboExPoc.Ofbiz.Content.ContentSearchConstraint.Version
     resource UniboExPoc.Ofbiz.Content.ContentSearchResult
     resource UniboExPoc.Ofbiz.Content.ContentSearchResult.Version
     resource UniboExPoc.Ofbiz.Content.WebAnalyticsConfig
-    resource UniboExPoc.Ofbiz.Content.WebAnalyticsConfig.Version
     resource UniboExPoc.Ofbiz.Content.WebAnalyticsType
     resource UniboExPoc.Ofbiz.Content.WebAnalyticsType.Version
   end
