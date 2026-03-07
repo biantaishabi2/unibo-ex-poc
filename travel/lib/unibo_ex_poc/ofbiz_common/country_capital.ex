@@ -32,6 +32,7 @@ defmodule UniboExPoc.Ofbiz.Common.CountryCapital do
 
   attributes do
     uuid_primary_key :id
+    attribute :country_code, :uuid, public?: true
     attribute :country_capital, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -40,6 +41,7 @@ defmodule UniboExPoc.Ofbiz.Common.CountryCapital do
     belongs_to :country_code, UniboExPoc.Ofbiz.Common.CountryCode do
       public? true
       source_attribute :country_code
+      define_attribute? false
     end
   end
 

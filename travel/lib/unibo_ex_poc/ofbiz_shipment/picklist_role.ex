@@ -33,6 +33,8 @@ defmodule UniboExPoc.Ofbiz.Shipment.PicklistRole do
       public? true
     end
     attribute :thru_date, :utc_datetime, public?: true
+    attribute :created_by_user_login, :string, public?: true
+    attribute :last_modified_by_user_login, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -53,11 +55,13 @@ defmodule UniboExPoc.Ofbiz.Shipment.PicklistRole do
     belongs_to :created_by_user_login, UniboExPoc.Ofbiz.Shipment.UserLogin do
       public? true
       source_attribute :created_by_user_login
+      define_attribute? false
       attribute_type :string
     end
     belongs_to :last_modified_by_user_login, UniboExPoc.Ofbiz.Shipment.UserLogin do
       public? true
       source_attribute :last_modified_by_user_login
+      define_attribute? false
       attribute_type :string
     end
   end
