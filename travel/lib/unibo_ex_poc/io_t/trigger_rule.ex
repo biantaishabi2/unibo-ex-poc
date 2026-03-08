@@ -122,7 +122,7 @@ defmodule UniboExPoc.IoT.TriggerRule do
 
   calculations do
     calculate :success_rate, :decimal, expr((execution_count / (execution_count + error_count)))
-    calculate :is_in_cooldown, :boolean, expr(datetime_diff(now, last_triggered_at) < cooldown_seconds)
+    calculate :is_in_cooldown, :boolean, expr(datetime_diff("now", last_triggered_at) < cooldown_seconds)
   end
 
   relationships do

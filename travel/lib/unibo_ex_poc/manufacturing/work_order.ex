@@ -107,14 +107,14 @@ defmodule UniboExPoc.Manufacturing.WorkOrder do
     many_to_many :blocked_by_workorder_ids, UniboExPoc.Manufacturing.WorkOrder do
       public? true
       through UniboExPoc.Manufacturing.WorkOrderDependencyLink
-      source_attribute_on_join_resource :needed_by_workorder_id
-      destination_attribute_on_join_resource :needed_by_workorder_id
+      source_attribute_on_join_resource :blocked_by_workorder_id
+      destination_attribute_on_join_resource :blocked_by_workorder_id
     end
     many_to_many :needed_by_workorder_ids, UniboExPoc.Manufacturing.WorkOrder do
       public? true
       through UniboExPoc.Manufacturing.WorkOrderDependencyLink
-      source_attribute_on_join_resource :needed_by_workorder_id
-      destination_attribute_on_join_resource :needed_by_workorder_id
+      source_attribute_on_join_resource :blocked_by_workorder_id
+      destination_attribute_on_join_resource :blocked_by_workorder_id
     end
     has_many :time_ids, UniboExPoc.Manufacturing.WorkcenterProductivity do
       public? true

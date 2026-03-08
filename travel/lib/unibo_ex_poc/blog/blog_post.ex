@@ -98,7 +98,7 @@ defmodule UniboExPoc.Blog.BlogPost do
   calculations do
     calculate :post_date, :utc_datetime, {UniboExPoc.Blog.Calculations.BlogPost.PostDate, []}
     calculate :teaser, :string, expr(strip_tags_truncate(content, 200))
-    calculate :website_url, :string, expr(format(/blog/{}/{}, blog.name, name))
+    calculate :website_url, :string, expr(format("/blog/{}/{}", blog.name, name))
   end
 
   relationships do

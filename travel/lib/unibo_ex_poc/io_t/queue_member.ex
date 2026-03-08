@@ -95,7 +95,7 @@ defmodule UniboExPoc.IoT.QueueMember do
 
   calculations do
     calculate :is_available, :boolean, expr((paused == false and user.voip_user_config == false))
-    calculate :idle_time, :integer, expr(datetime_diff_seconds(now, last_call_at))
+    calculate :idle_time, :integer, expr(datetime_diff_seconds("now", last_call_at))
   end
 
   relationships do

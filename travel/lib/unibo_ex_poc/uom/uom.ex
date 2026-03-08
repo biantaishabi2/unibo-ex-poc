@@ -94,7 +94,7 @@ defmodule UniboExPoc.Uom.Uom do
       accept [:name, :factor, :rounding, :uom_type, :active]
       argument :category_id, :uuid, allow_nil?: false
       change manage_relationship(:category_id, :category, type: :append, on_lookup: :relate)
-      validate attribute_does_not_equal(:factor, :0)
+      validate attribute_does_not_equal(:factor, 0)
       validate compare(:factor, equal_to: 1)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

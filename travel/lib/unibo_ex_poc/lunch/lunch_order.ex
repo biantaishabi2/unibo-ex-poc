@@ -85,7 +85,7 @@ defmodule UniboExPoc.Lunch.LunchOrder do
 
   calculations do
     calculate :price, :decimal, expr((quantity * (product.price + sum_topping_prices(topping_ids_1, topping_ids_2, topping_ids_3))))
-    calculate :display_toppings, :string, expr(join_names( + , topping_ids_1, topping_ids_2, topping_ids_3))
+    calculate :display_toppings, :string, expr(join_names(" + ", topping_ids_1, topping_ids_2, topping_ids_3))
     calculate :available_today, :boolean, expr(product.supplier)
     calculate :order_deadline_passed, :boolean, expr(product.supplier)
   end

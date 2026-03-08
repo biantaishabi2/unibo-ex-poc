@@ -71,9 +71,9 @@ defmodule UniboExPoc.Analytic.AnalyticAccount do
   end
 
   calculations do
-    calculate :balance, :decimal, expr(sum_related(analytic_lines, amount))
-    calculate :debit, :decimal, expr(sum_related_filtered(analytic_lines, amount, amount > 0))
-    calculate :credit, :decimal, expr(sum_related_filtered(analytic_lines, amount, amount < 0))
+    calculate :balance, :decimal, expr(sum_related(analytic_lines, "amount"))
+    calculate :debit, :decimal, expr(sum_related_filtered(analytic_lines, "amount", amount > 0))
+    calculate :credit, :decimal, expr(sum_related_filtered(analytic_lines, "amount", amount < 0))
   end
 
   relationships do
@@ -110,7 +110,7 @@ defmodule UniboExPoc.Analytic.AnalyticAccount do
       change manage_relationship(:plan_id, :plan, type: :append, on_lookup: :relate)
       validate present(:name)
       validate present(:plan_id)
-      validate attribute_does_not_equal(:parent_id, ::id)
+      validate attribute_does_not_equal(:parent_id, :id)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

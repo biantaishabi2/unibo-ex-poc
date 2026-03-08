@@ -63,7 +63,7 @@ defmodule UniboExPoc.Lunch.LunchTopping do
   end
 
   calculations do
-    calculate :display_name, :string, expr(name <>  ( <> format_currency(price) <> ))
+    calculate :display_name, :string, expr(name <> " (" <> format_currency(price) <> ")")
   end
 
   relationships do

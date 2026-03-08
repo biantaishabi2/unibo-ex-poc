@@ -117,7 +117,7 @@ defmodule UniboExPoc.IoT.IoTDevice do
 
   calculations do
     calculate :is_online, :boolean, {UniboExPoc.IoT.Calculations.IoTDevice.IsOnline, []}
-    calculate :time_since_last_event, :integer, expr(datetime_diff(now, last_event_at))
+    calculate :time_since_last_event, :integer, expr(datetime_diff("now", last_event_at))
   end
 
   relationships do
@@ -153,7 +153,7 @@ defmodule UniboExPoc.IoT.IoTDevice do
         identifier = Ash.Changeset.get_attribute(changeset, :identifier)
 
         if device_type && identifier do
-          Ash.Changeset.force_change_attribute(changeset, :name, device_type <> - <> identifier)
+          Ash.Changeset.force_change_attribute(changeset, :name, device_type <> "-" <> identifier)
         else
           changeset
         end

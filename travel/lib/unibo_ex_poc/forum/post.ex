@@ -127,7 +127,7 @@ defmodule UniboExPoc.Forum.Post do
 
   calculations do
     calculate :plain_content, :string, expr(truncate(html2plaintext(content), 500))
-    calculate :website_url, :string, expr(format(/forum/{}/{}, forum.slug, slug))
+    calculate :website_url, :string, expr(format("/forum/{}/{}", forum.slug, slug))
     calculate :vote_count, :integer, expr(sum(votes, field: :vote, query: [filter: expr(true)]))
     calculate :user_vote, :integer, expr(coalesce(0))
     calculate :favourite_count, :integer, expr(count(favourites, query: [filter: expr(true)]))

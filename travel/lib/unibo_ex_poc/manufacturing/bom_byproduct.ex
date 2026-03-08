@@ -74,7 +74,7 @@ defmodule UniboExPoc.Manufacturing.BomByproduct do
       accept [:product_id, :product_qty, :product_uom_id, :operation_id, :cost_share]
       argument :bom_id, :uuid, allow_nil?: false
       change manage_relationship(:bom_id, :bom, type: :append, on_lookup: :relate)
-      validate attribute_does_not_equal(:product_id, ::bom_product_id)
+      validate attribute_does_not_equal(:product_id, :bom_product_id)
       # message: "副产品不能与 BOM 主产品相同"
       validate compare(:cost_share, less_than_or_equal_to: 100)
       # message: "所有副产品 cost_share 总和不得超过 100%（主产品 + 全部副产品 = 100%）"

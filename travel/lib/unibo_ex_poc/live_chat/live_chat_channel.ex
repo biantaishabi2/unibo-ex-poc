@@ -93,7 +93,7 @@ defmodule UniboExPoc.LiveChat.LiveChatChannel do
   end
 
   calculations do
-    calculate :web_page, :string, expr(/im_livechat/support/ <> id)
+    calculate :web_page, :string, expr("/im_livechat/support/" <> id)
     calculate :are_you_inside, :boolean, {UniboExPoc.LiveChat.Calculations.LiveChatChannel.AreYouInside, []}
     calculate :available_operator_ids, {:array, :string}, {UniboExPoc.LiveChat.Calculations.LiveChatChannel.AvailableOperatorIds, []}
     calculate :nbr_channel, :integer, expr(count(sessions, query: [filter: expr(true)]))

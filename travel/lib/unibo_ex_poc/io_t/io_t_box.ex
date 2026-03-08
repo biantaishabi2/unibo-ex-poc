@@ -110,7 +110,7 @@ defmodule UniboExPoc.IoT.IoTBox do
 
   calculations do
     calculate :device_count, :integer, expr(count(devices, query: [filter: expr(true)]))
-    calculate :is_stale, :boolean, expr(datetime_diff(now, last_heartbeat_at) > 300)
+    calculate :is_stale, :boolean, expr(datetime_diff("now", last_heartbeat_at) > 300)
   end
 
   relationships do

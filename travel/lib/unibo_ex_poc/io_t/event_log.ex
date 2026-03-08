@@ -77,7 +77,7 @@ defmodule UniboExPoc.IoT.EventLog do
 
   calculations do
     calculate :is_error, :boolean, expr(action_result == failed)
-    calculate :age_days, :integer, expr(datetime_diff_days(now, created_at))
+    calculate :age_days, :integer, expr(datetime_diff_days("now", created_at))
   end
 
   relationships do

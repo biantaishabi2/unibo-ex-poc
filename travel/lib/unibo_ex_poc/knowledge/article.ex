@@ -158,10 +158,10 @@ defmodule UniboExPoc.Knowledge.Article do
   calculations do
     calculate :full_name, :string, expr(recursive_join(parent(name), name, %{separator: " / ", max_depth: 10}))
     calculate :root_article_id, :uuid, expr(root_ancestor(parent_id))
-    calculate :article_url, :string, expr(format(/knowledge/article/{}-{}, id, slugify(name)))
+    calculate :article_url, :string, expr(format("/knowledge/article/{}-{}", id, slugify(name)))
     calculate :body_short, :string, expr(truncate(strip_tags(body), 200))
-    calculate :has_write_access, :boolean, expr(check_access(self, current_user, write))
-    calculate :has_read_access, :boolean, expr(check_access(self, current_user, read))
+    calculate :has_write_access, :boolean, expr(check_access(self, current_user, "write"))
+    calculate :has_read_access, :boolean, expr(check_access(self, current_user, "read"))
     calculate :is_favorite, :boolean, expr(exists(favorites, user_id == actor.id))
     calculate :version_count, :integer, expr(count(versions, query: [filter: expr(true)]))
     calculate :favorite_count, :integer, expr(count(favorites, query: [filter: expr(true)]))

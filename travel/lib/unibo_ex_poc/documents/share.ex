@@ -92,7 +92,7 @@ defmodule UniboExPoc.Documents.Share do
   end
 
   calculations do
-    calculate :full_url, :string, expr(base_url <> /document/share/ <> id <> / <> access_token)
+    calculate :full_url, :string, expr(base_url <> "/document/share/" <> id <> "/" <> access_token)
     calculate :state, :atom, expr(if((date_deadline == nil or date_deadline >= today()), live, expired))
   end
 

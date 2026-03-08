@@ -144,10 +144,14 @@ defmodule UniboExPoc.Project.Task do
     many_to_many :depend_on_ids, UniboExPoc.Project.Task do
       public? true
       through UniboExPoc.Project.TaskDependency
+      source_attribute_on_join_resource :depends_on_id
+      destination_attribute_on_join_resource :depends_on_id
     end
     many_to_many :dependent_ids, UniboExPoc.Project.Task do
       public? true
       through UniboExPoc.Project.TaskDependency
+      source_attribute_on_join_resource :depends_on_id
+      destination_attribute_on_join_resource :depends_on_id
     end
     has_many :assignments, UniboExPoc.Project.TaskAssignment do
       public? true
