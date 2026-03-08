@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnContactMech do
   end
 
   attributes do
-    attribute :return_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :contact_mech_purpose_type_id, :string do
       allow_nil? false
       primary_key? true
@@ -49,7 +44,6 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnContactMech do
     belongs_to :return_header, UniboExPoc.Ofbiz.Order.ReturnHeader do
       public? true
       source_attribute :return_id
-      define_attribute? false
       attribute_type :string
     end
   end

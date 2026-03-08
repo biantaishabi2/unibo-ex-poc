@@ -130,6 +130,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
   relationships do
     belongs_to :order, UniboExPoc.Travel.TravelOrder do
       public? true
+      allow_nil? false
       source_attribute :travel_order_id
     end
     belongs_to :shipment, UniboExPoc.Delivery.Shipment do
@@ -141,9 +142,10 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
     defaults [:read, :destroy]
     create :create_fulfillment do
       primary? true
-      accept [:tenant_id, :fulfillment_type, :supplier_booking_ref]
+      accept [:tenant_id, :travel_order_id, :fulfillment_type, :supplier_booking_ref]
+      argument :order_id, :uuid, allow_nil?: false
+      change manage_relationship(:order_id, :order, type: :append, on_lookup: :relate)
       validate present(:tenant_id)
-      validate present(:travel_order_id)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

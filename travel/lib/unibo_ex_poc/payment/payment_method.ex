@@ -106,7 +106,7 @@ defmodule UniboExPoc.Payment.PaymentMethod do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:payment_method_type_id, :description, :gl_account_id, :fin_account_id, :from_date, :thru_date, :is_default]
+      accept [:party_id, :payment_method_type_id, :description, :gl_account_id, :fin_account_id, :from_date, :thru_date, :is_default]
       validate present(:party_id)
       validate present(:payment_method_type_id)
       change fn changeset, _context ->

@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Party.RoleTypeAttr do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_role_type_attrs"
@@ -27,12 +27,6 @@ defmodule UniboExPoc.Ofbiz.Party.RoleTypeAttr do
   end
 
   attributes do
-    attribute :role_type_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "角色类型编号"
-    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -49,22 +43,6 @@ defmodule UniboExPoc.Ofbiz.Party.RoleTypeAttr do
   relationships do
     belongs_to :role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
-      define_attribute? false
-    end
-    has_many :party_role, UniboExPoc.Ofbiz.Party.PartyRole do
-      public? true
-      source_attribute :role_type_id
-      destination_attribute :role_type_id
-    end
-    has_many :valid_from_party_relationship_type, UniboExPoc.Ofbiz.Party.PartyRelationshipType do
-      public? true
-      source_attribute :role_type_id
-      destination_attribute :role_type_id_valid_from
-    end
-    has_many :valid_to_party_relationship_type, UniboExPoc.Ofbiz.Party.PartyRelationshipType do
-      public? true
-      source_attribute :role_type_id
-      destination_attribute :role_type_id_valid_to
     end
   end
 
@@ -72,8 +50,13 @@ defmodule UniboExPoc.Ofbiz.Party.RoleTypeAttr do
     defaults [:read, :create, :update, :destroy]
   end
 
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
+  end
+
   archive do
-    archive_related [:party_role, :valid_from_party_relationship_type, :valid_to_party_relationship_type]
   end
 
 end

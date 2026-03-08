@@ -59,11 +59,11 @@ defmodule UniboExPoc.Ofbiz.Party.Party do
     belongs_to :party_type, UniboExPoc.Ofbiz.Party.PartyType do
       public? true
     end
-    belongs_to :created_by_user_login_rel, UniboExPoc.Ofbiz.Party.UserLogin do
+    belongs_to :created_by_user, UniboExPoc.Ofbiz.Party.UserLogin do
       public? true
       source_attribute :created_by_user_login
     end
-    belongs_to :last_modified_by_user_login_rel, UniboExPoc.Ofbiz.Party.UserLogin do
+    belongs_to :last_modified_by_user, UniboExPoc.Ofbiz.Party.UserLogin do
       public? true
       source_attribute :last_modified_by_user_login
     end
@@ -74,11 +74,6 @@ defmodule UniboExPoc.Ofbiz.Party.Party do
     belongs_to :status_item, UniboExPoc.Ofbiz.Party.StatusItem do
       public? true
       source_attribute :status_id
-    end
-    has_many :party_type_attr, UniboExPoc.Ofbiz.Party.PartyTypeAttr do
-      public? true
-      source_attribute :party_type_id
-      destination_attribute :party_type_id
     end
     belongs_to :data_source, UniboExPoc.Ofbiz.Party.DataSource do
       public? true
@@ -96,7 +91,6 @@ defmodule UniboExPoc.Ofbiz.Party.Party do
   end
 
   archive do
-    archive_related [:party_type_attr]
   end
 
 end

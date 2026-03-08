@@ -172,10 +172,10 @@ defmodule UniboExPoc.Travel.TrainOffer do
   end
 
   relationships do
-    belongs_to :departure_station_ref, UniboExPoc.Travel.TravelStation do
+    belongs_to :departure_station_ref, UniboExPoc.Ecommerce.TravelStation do
       public? true
     end
-    belongs_to :arrival_station_ref, UniboExPoc.Travel.TravelStation do
+    belongs_to :arrival_station_ref, UniboExPoc.Ecommerce.TravelStation do
       public? true
     end
     has_many :orders, UniboExPoc.Travel.TravelOrder do
@@ -188,7 +188,7 @@ defmodule UniboExPoc.Travel.TrainOffer do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:tenant_id, :host_shop_id, :supplier_code, :train_no, :departure_station_code, :departure_station_name, :arrival_station_code, :arrival_station_name, :travel_date, :departure_at, :arrival_at, :seat_class, :seat_code, :is_no_seat, :inventory_status, :waitlist_supported, :listed_price, :settlement_price, :currency, :booking_rules_snapshot, :change_rules_snapshot, :refund_rules_snapshot, :sale_status]
+      accept [:tenant_id, :host_shop_id, :supplier_code, :train_no, :departure_station_code, :departure_station_ref_id, :departure_station_name, :arrival_station_code, :arrival_station_ref_id, :arrival_station_name, :travel_date, :departure_at, :arrival_at, :seat_class, :seat_code, :is_no_seat, :inventory_status, :waitlist_supported, :listed_price, :settlement_price, :currency, :booking_rules_snapshot, :change_rules_snapshot, :refund_rules_snapshot, :sale_status]
       validate present(:tenant_id)
       validate present(:supplier_code)
       validate present(:train_no)
@@ -208,7 +208,7 @@ defmodule UniboExPoc.Travel.TrainOffer do
     end
     update :update do
       primary? true
-      accept [:departure_station_name, :arrival_station_name, :departure_at, :arrival_at, :seat_class, :is_no_seat, :inventory_status, :waitlist_supported, :listed_price, :settlement_price, :currency, :booking_rules_snapshot, :change_rules_snapshot, :refund_rules_snapshot]
+      accept [:departure_station_ref_id, :arrival_station_ref_id, :departure_station_name, :arrival_station_name, :departure_at, :arrival_at, :seat_class, :is_no_seat, :inventory_status, :waitlist_supported, :listed_price, :settlement_price, :currency, :booking_rules_snapshot, :change_rules_snapshot, :refund_rules_snapshot]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

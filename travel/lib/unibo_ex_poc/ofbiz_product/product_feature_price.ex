@@ -32,11 +32,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFeaturePrice do
       primary_key? true
       public? true
     end
-    attribute :product_price_type_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :currency_uom_id, :string do
       allow_nil? false
       primary_key? true
@@ -59,7 +54,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFeaturePrice do
   relationships do
     belongs_to :product_price_type, UniboExPoc.Ofbiz.Product.ProductPriceType do
       public? true
-      define_attribute? false
     end
   end
 

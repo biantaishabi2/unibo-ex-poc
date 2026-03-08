@@ -27,9 +27,9 @@ defmodule UniboExPoc.Sales do
     resource UniboExPoc.Sales.DeliveryCarrier.Version
     resource UniboExPoc.Sales.DeliveryPriceRule
     resource UniboExPoc.Sales.DeliveryPriceRule.Version
-    resource UniboExPoc.Sales.User
     resource UniboExPoc.Sales.Product
     resource UniboExPoc.Sales.Tax
     resource UniboExPoc.Sales.SalesOrderItemTaxRel
+    resource UniboExPoc.Sales.Party
   end
 end

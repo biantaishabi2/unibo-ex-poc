@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteItem do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_quote_items"
@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteItem do
   end
 
   attributes do
-    attribute :quote_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :quote_item_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -61,7 +56,6 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteItem do
   relationships do
     belongs_to :quote, UniboExPoc.Ofbiz.Order.Quote do
       public? true
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :cust_request, UniboExPoc.Ofbiz.Order.CustRequest do
@@ -72,6 +66,12 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteItem do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

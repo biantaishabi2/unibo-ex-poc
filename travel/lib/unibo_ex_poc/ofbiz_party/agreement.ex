@@ -82,11 +82,6 @@ defmodule UniboExPoc.Ofbiz.Party.Agreement do
     belongs_to :agreement_type, UniboExPoc.Ofbiz.Party.AgreementType do
       public? true
     end
-    has_many :agreement_type_attr, UniboExPoc.Ofbiz.Party.AgreementTypeAttr do
-      public? true
-      source_attribute :agreement_type_id
-      destination_attribute :agreement_type_id
-    end
   end
 
   actions do
@@ -100,7 +95,6 @@ defmodule UniboExPoc.Ofbiz.Party.Agreement do
   end
 
   archive do
-    archive_related [:agreement_type_attr]
   end
 
 end

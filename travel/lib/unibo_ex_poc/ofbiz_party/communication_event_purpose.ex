@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Party.CommunicationEventPurpose do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_communication_event_purposes"
@@ -27,18 +27,7 @@ defmodule UniboExPoc.Ofbiz.Party.CommunicationEventPurpose do
   end
 
   attributes do
-    attribute :communication_event_prp_typ_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "通信事件目的类型编号"
-    end
-    attribute :communication_event_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "沟通活动编号"
-    end
+    uuid_primary_key :id
     attribute :description, :string do
       public? true
       description "说明"
@@ -49,16 +38,20 @@ defmodule UniboExPoc.Ofbiz.Party.CommunicationEventPurpose do
   relationships do
     belongs_to :communication_event, UniboExPoc.Ofbiz.Party.CommunicationEvent do
       public? true
-      define_attribute? false
     end
     belongs_to :communication_event_prp_typ, UniboExPoc.Ofbiz.Party.CommunicationEventPrpTyp do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

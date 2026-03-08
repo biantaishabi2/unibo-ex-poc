@@ -27,22 +27,12 @@ defmodule UniboExPoc.Ofbiz.Order.OrderItemAssoc do
   end
 
   attributes do
-    attribute :order_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :order_item_seq_id, :string do
       allow_nil? false
       primary_key? true
       public? true
     end
     attribute :ship_group_seq_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :to_order_id, :string do
       allow_nil? false
       primary_key? true
       public? true
@@ -57,11 +47,6 @@ defmodule UniboExPoc.Ofbiz.Order.OrderItemAssoc do
       primary_key? true
       public? true
     end
-    attribute :order_item_assoc_type_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :quantity, :decimal, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -69,19 +54,16 @@ defmodule UniboExPoc.Ofbiz.Order.OrderItemAssoc do
   relationships do
     belongs_to :order_item_assoc_type, UniboExPoc.Ofbiz.Order.OrderItemAssocType do
       public? true
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :from_order_header, UniboExPoc.Ofbiz.Order.OrderHeader do
       public? true
       source_attribute :order_id
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :to_order_header, UniboExPoc.Ofbiz.Order.OrderHeader do
       public? true
       source_attribute :to_order_id
-      define_attribute? false
       attribute_type :string
     end
   end

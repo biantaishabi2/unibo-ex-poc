@@ -27,27 +27,12 @@ defmodule UniboExPoc.Ofbiz.Shipment.PicklistItem do
   end
 
   attributes do
-    attribute :picklist_bin_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :order_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :order_item_seq_id, :string do
       allow_nil? false
       primary_key? true
       public? true
     end
     attribute :ship_group_seq_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :inventory_item_id, :string do
       allow_nil? false
       primary_key? true
       public? true
@@ -59,13 +44,11 @@ defmodule UniboExPoc.Ofbiz.Shipment.PicklistItem do
   relationships do
     belongs_to :picklist_bin, UniboExPoc.Ofbiz.Shipment.PicklistBin do
       public? true
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :order_header, UniboExPoc.Ofbiz.Shipment.OrderHeader do
       public? true
       source_attribute :order_id
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :status_item, UniboExPoc.Ofbiz.Shipment.StatusItem do
@@ -75,7 +58,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.PicklistItem do
     end
     belongs_to :inventory_item, UniboExPoc.Ofbiz.Shipment.InventoryItem do
       public? true
-      define_attribute? false
       attribute_type :string
     end
   end

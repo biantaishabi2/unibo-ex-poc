@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.CarrierShipmentBoxType do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_carrier_shipment_box_types"
@@ -27,16 +27,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.CarrierShipmentBoxType do
   end
 
   attributes do
-    attribute :shipment_box_type_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :party_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
+    uuid_primary_key :id
     attribute :packaging_type_code, :string, public?: true
     attribute :oversize_code, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
@@ -45,18 +36,22 @@ defmodule UniboExPoc.Ofbiz.Shipment.CarrierShipmentBoxType do
   relationships do
     belongs_to :shipment_box_type, UniboExPoc.Ofbiz.Shipment.ShipmentBoxType do
       public? true
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :party, UniboExPoc.Ofbiz.Shipment.Party do
       public? true
-      define_attribute? false
       attribute_type :string
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

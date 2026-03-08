@@ -158,7 +158,7 @@ defmodule UniboExPoc.Travel.VacationOffer do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:tenant_id, :host_shop_id, :supplier_code, :package_code, :package_name, :package_type, :departure_city_code, :destination_code, :start_date, :end_date, :listed_price, :settlement_price, :currency, :inventory_count, :booking_rules, :cancellation_policy, :sale_status]
+      accept [:tenant_id, :host_shop_id, :supplier_code, :package_code, :package_name, :package_type, :departure_city_code, :departure_city_ref_id, :destination_code, :destination_ref_id, :start_date, :end_date, :listed_price, :settlement_price, :currency, :inventory_count, :booking_rules, :cancellation_policy, :sale_status]
       validate present(:tenant_id)
       validate present(:supplier_code)
       validate present(:package_code)
@@ -177,7 +177,7 @@ defmodule UniboExPoc.Travel.VacationOffer do
     end
     update :update do
       primary? true
-      accept [:package_name, :package_type, :listed_price, :settlement_price, :currency, :inventory_count, :booking_rules, :cancellation_policy]
+      accept [:package_name, :package_type, :departure_city_ref_id, :destination_ref_id, :listed_price, :settlement_price, :currency, :inventory_count, :booking_rules, :cancellation_policy]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

@@ -84,8 +84,9 @@ defmodule UniboExPoc.Sales.SalesOrderShipment do
       public? true
       allow_nil? false
     end
-    belongs_to :shipped_by, UniboExPoc.Sales.User do
+    belongs_to :shipped_by, UniboExPoc.Sales.Party do
       public? true
+      source_attribute :shipped_by_party_id
     end
   end
 

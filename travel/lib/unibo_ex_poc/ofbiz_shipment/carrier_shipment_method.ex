@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.CarrierShipmentMethod do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_carrier_shipment_methods"
@@ -27,16 +27,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.CarrierShipmentMethod do
   end
 
   attributes do
-    attribute :shipment_method_type_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :party_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :role_type_id, :string do
       allow_nil? false
       primary_key? true
@@ -50,18 +40,22 @@ defmodule UniboExPoc.Ofbiz.Shipment.CarrierShipmentMethod do
   relationships do
     belongs_to :shipment_method_type, UniboExPoc.Ofbiz.Shipment.ShipmentMethodType do
       public? true
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :party, UniboExPoc.Ofbiz.Shipment.Party do
       public? true
-      define_attribute? false
       attribute_type :string
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

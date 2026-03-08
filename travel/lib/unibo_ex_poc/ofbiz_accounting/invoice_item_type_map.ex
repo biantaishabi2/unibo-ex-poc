@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItemTypeMap do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_invoice_item_type_maps"
@@ -32,11 +32,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItemTypeMap do
       primary_key? true
       public? true
     end
-    attribute :invoice_type_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -46,12 +41,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItemTypeMap do
     end
     belongs_to :invoice_type, UniboExPoc.Ofbiz.Accounting.InvoiceType do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

@@ -81,7 +81,7 @@ defmodule UniboExPoc.Payment.PaymentType do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:payment_type_id, :has_table, :description]
+      accept [:payment_type_id, :parent_type_id, :has_table, :description]
       validate present(:payment_type_id)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

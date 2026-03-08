@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Common.SystemProperty do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   resource do
     description "Defines a System Property"
@@ -31,16 +31,9 @@ defmodule UniboExPoc.Ofbiz.Common.SystemProperty do
   end
 
   attributes do
-    attribute :system_resource_id, :string do
-      primary_key? true
-      allow_nil? false
-      public? true
-    end
-    attribute :system_property_id, :string do
-      primary_key? true
-      allow_nil? false
-      public? true
-    end
+    uuid_primary_key :id
+    attribute :system_resource_id, :string, public?: true
+    attribute :system_property_id, :string, public?: true
     attribute :system_property_value, :string, public?: true
     attribute :description, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
@@ -48,6 +41,16 @@ defmodule UniboExPoc.Ofbiz.Common.SystemProperty do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  identities do
+    identity :unique_system_property, [:system_resource_id, :system_property_id]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

@@ -145,10 +145,10 @@ defmodule UniboExPoc.Travel.FlightOffer do
   end
 
   relationships do
-    belongs_to :departure_airport_ref, UniboExPoc.Travel.TravelAirport do
+    belongs_to :departure_airport_ref, UniboExPoc.Ecommerce.TravelAirport do
       public? true
     end
-    belongs_to :arrival_airport_ref, UniboExPoc.Travel.TravelAirport do
+    belongs_to :arrival_airport_ref, UniboExPoc.Ecommerce.TravelAirport do
       public? true
     end
     belongs_to :airline_ref, UniboExPoc.Travel.TravelAirline do
@@ -167,7 +167,7 @@ defmodule UniboExPoc.Travel.FlightOffer do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:tenant_id, :host_shop_id, :supplier_code, :itinerary_code, :flight_no, :departure_airport_code, :arrival_airport_code, :departure_at, :arrival_at, :cabin_class, :fare_family, :listed_price, :settlement_price, :currency, :seats_available, :baggage_policy, :refund_change_policy, :sale_status]
+      accept [:tenant_id, :host_shop_id, :supplier_code, :itinerary_code, :flight_no, :airline_ref_id, :departure_airport_code, :departure_airport_ref_id, :arrival_airport_code, :arrival_airport_ref_id, :departure_at, :arrival_at, :cabin_class, :cabin_class_ref_id, :fare_family, :listed_price, :settlement_price, :currency, :seats_available, :baggage_policy, :refund_change_policy, :sale_status]
       validate present(:tenant_id)
       validate present(:supplier_code)
       validate present(:itinerary_code)
@@ -187,7 +187,7 @@ defmodule UniboExPoc.Travel.FlightOffer do
     end
     update :update do
       primary? true
-      accept [:listed_price, :settlement_price, :currency, :seats_available, :baggage_policy, :refund_change_policy, :fare_family]
+      accept [:airline_ref_id, :departure_airport_ref_id, :arrival_airport_ref_id, :cabin_class_ref_id, :listed_price, :settlement_price, :currency, :seats_available, :baggage_policy, :refund_change_policy, :fare_family]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

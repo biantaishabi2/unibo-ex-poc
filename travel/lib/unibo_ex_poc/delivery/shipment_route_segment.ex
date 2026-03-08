@@ -203,7 +203,7 @@ defmodule UniboExPoc.Delivery.ShipmentRouteSegment do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:shipment_route_segment_id, :estimated_start_date, :estimated_arrival_date]
+      accept [:shipment_id, :shipment_route_segment_id, :delivery_id, :carrier_party_id, :shipment_method_type_id, :origin_facility_id, :dest_facility_id, :estimated_start_date, :estimated_arrival_date]
       validate present(:shipment_id)
       validate present(:shipment_route_segment_id)
       change fn changeset, _context ->

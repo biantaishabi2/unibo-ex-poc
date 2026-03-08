@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Party.ContactMechAttribute do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_contact_mech_attributes"
@@ -27,12 +27,6 @@ defmodule UniboExPoc.Ofbiz.Party.ContactMechAttribute do
   end
 
   attributes do
-    attribute :contact_mech_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "联系方式编号"
-    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -53,12 +47,17 @@ defmodule UniboExPoc.Ofbiz.Party.ContactMechAttribute do
   relationships do
     belongs_to :contact_mech, UniboExPoc.Ofbiz.Party.ContactMech do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

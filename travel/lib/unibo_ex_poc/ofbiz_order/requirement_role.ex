@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Order.RequirementRole do
   end
 
   attributes do
-    attribute :requirement_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
@@ -54,7 +49,6 @@ defmodule UniboExPoc.Ofbiz.Order.RequirementRole do
   relationships do
     belongs_to :requirement, UniboExPoc.Ofbiz.Order.Requirement do
       public? true
-      define_attribute? false
       attribute_type :string
     end
   end

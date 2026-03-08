@@ -14,7 +14,12 @@ defmodule UniboExPoc.Application do
       UniboExPoc.Repo,
       {Phoenix.PubSub, name: UniboExPoc.PubSub},
       UniboExPocWeb.Telemetry,
-      UniboExPocWeb.Endpoint
+      UniboExPocWeb.Endpoint,
+      UniboExPoc.PolicyAudit.Store,
+      UniboExPoc.PolicyAudit.Telemetry,
+      UniboExPoc.AsyncRuntime.Store,
+      UniboExPoc.AsyncRuntime.Queue,
+      UniboExPoc.AsyncRuntime.Telemetry
     ]
 
     opts = [strategy: :one_for_one, name: UniboExPoc.Supervisor]

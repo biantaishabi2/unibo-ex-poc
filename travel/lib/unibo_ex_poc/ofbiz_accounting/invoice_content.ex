@@ -27,16 +27,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceContent do
   end
 
   attributes do
-    attribute :invoice_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :invoice_content_type_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :content_id, :string do
       allow_nil? false
       primary_key? true
@@ -54,11 +44,9 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceContent do
   relationships do
     belongs_to :invoice, UniboExPoc.Ofbiz.Accounting.Invoice do
       public? true
-      define_attribute? false
     end
     belongs_to :invoice_content_type, UniboExPoc.Ofbiz.Accounting.InvoiceContentType do
       public? true
-      define_attribute? false
     end
   end
 

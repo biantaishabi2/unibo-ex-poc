@@ -73,7 +73,7 @@ defmodule UniboExPoc.Delivery.CarrierShipmentMethod do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:role_type_id, :sequence_number, :carrier_service_code]
+      accept [:shipment_method_type_id, :party_id, :role_type_id, :sequence_number, :carrier_service_code]
       validate present(:shipment_method_type_id)
       validate present(:party_id)
       change fn changeset, _context ->

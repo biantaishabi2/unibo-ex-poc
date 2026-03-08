@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Party.PartyInvitationGroupAssoc do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_invitation_group_assocs"
@@ -27,18 +27,7 @@ defmodule UniboExPoc.Ofbiz.Party.PartyInvitationGroupAssoc do
   end
 
   attributes do
-    attribute :party_invitation_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "参与方邀请编号"
-    end
-    attribute :party_id_to, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "参与方编号"
-    end
+    uuid_primary_key :id
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -46,7 +35,6 @@ defmodule UniboExPoc.Ofbiz.Party.PartyInvitationGroupAssoc do
     belongs_to :to_party_group, UniboExPoc.Ofbiz.Party.PartyGroup do
       public? true
       source_attribute :party_id_to
-      define_attribute? false
     end
     belongs_to :to_party, UniboExPoc.Ofbiz.Party.Party do
       public? true
@@ -55,12 +43,17 @@ defmodule UniboExPoc.Ofbiz.Party.PartyInvitationGroupAssoc do
     end
     belongs_to :party_invitation, UniboExPoc.Ofbiz.Party.PartyInvitation do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

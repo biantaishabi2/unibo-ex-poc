@@ -96,8 +96,9 @@ defmodule UniboExPoc.Sales.Quote do
       public? true
       allow_nil? false
     end
-    belongs_to :created_by, UniboExPoc.Sales.User do
+    belongs_to :created_by, UniboExPoc.Sales.Party do
       public? true
+      source_attribute :created_by_party_id
     end
   end
 

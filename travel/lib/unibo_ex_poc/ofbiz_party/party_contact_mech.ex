@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Party.PartyContactMech do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_party_contact_meches"
@@ -27,18 +27,6 @@ defmodule UniboExPoc.Ofbiz.Party.PartyContactMech do
   end
 
   attributes do
-    attribute :party_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "参与方编号"
-    end
-    attribute :contact_mech_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "联系方式编号"
-    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -79,7 +67,6 @@ defmodule UniboExPoc.Ofbiz.Party.PartyContactMech do
   relationships do
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
-      define_attribute? false
     end
     belongs_to :person, UniboExPoc.Ofbiz.Party.Person do
       public? true
@@ -96,7 +83,6 @@ defmodule UniboExPoc.Ofbiz.Party.PartyContactMech do
     end
     belongs_to :contact_mech, UniboExPoc.Ofbiz.Party.ContactMech do
       public? true
-      define_attribute? false
     end
     belongs_to :telecom_number, UniboExPoc.Ofbiz.Party.TelecomNumber do
       public? true
@@ -112,6 +98,12 @@ defmodule UniboExPoc.Ofbiz.Party.PartyContactMech do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

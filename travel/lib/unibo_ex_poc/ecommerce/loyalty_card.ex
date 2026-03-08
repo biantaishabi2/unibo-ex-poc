@@ -70,8 +70,9 @@ defmodule UniboExPoc.Ecommerce.LoyaltyCard do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboExPoc.Ecommerce.User do
+    belongs_to :partner, UniboExPoc.Ecommerce.Party do
       public? true
+      source_attribute :partner_party_id
     end
   end
 

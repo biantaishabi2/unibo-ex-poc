@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItem do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_invoice_items"
@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItem do
   end
 
   attributes do
-    attribute :invoice_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :invoice_item_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -63,7 +58,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItem do
     end
     belongs_to :invoice, UniboExPoc.Ofbiz.Accounting.Invoice do
       public? true
-      define_attribute? false
     end
     belongs_to :override_gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
@@ -76,6 +70,12 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItem do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

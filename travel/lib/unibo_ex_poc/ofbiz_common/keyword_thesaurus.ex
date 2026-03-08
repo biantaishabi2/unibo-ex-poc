@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Common.KeywordThesaurus do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "common_keyword_thesauruss"
@@ -27,16 +27,9 @@ defmodule UniboExPoc.Ofbiz.Common.KeywordThesaurus do
   end
 
   attributes do
-    attribute :entered_keyword, :string do
-      primary_key? true
-      allow_nil? false
-      public? true
-    end
-    attribute :alternate_keyword, :string do
-      primary_key? true
-      allow_nil? false
-      public? true
-    end
+    uuid_primary_key :id
+    attribute :entered_keyword, :string, public?: true
+    attribute :alternate_keyword, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -49,6 +42,16 @@ defmodule UniboExPoc.Ofbiz.Common.KeywordThesaurus do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  identities do
+    identity :unique_entered_alternate, [:entered_keyword, :alternate_keyword]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

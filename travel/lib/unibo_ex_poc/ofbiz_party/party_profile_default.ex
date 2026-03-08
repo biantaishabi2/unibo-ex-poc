@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Party.PartyProfileDefault do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_profile_defaults"
@@ -27,18 +27,7 @@ defmodule UniboExPoc.Ofbiz.Party.PartyProfileDefault do
   end
 
   attributes do
-    attribute :party_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "参与方编号"
-    end
-    attribute :product_store_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "产品店铺编号"
-    end
+    uuid_primary_key :id
     attribute :default_ship_addr, :string do
       public? true
       description "默认收货地址"
@@ -61,16 +50,20 @@ defmodule UniboExPoc.Ofbiz.Party.PartyProfileDefault do
   relationships do
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
-      define_attribute? false
     end
     belongs_to :product_store, UniboExPoc.Ofbiz.Party.ProductStore do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

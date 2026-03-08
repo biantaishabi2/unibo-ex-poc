@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Party.PartyGeoPoint do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_party_geo_points"
@@ -27,18 +27,6 @@ defmodule UniboExPoc.Ofbiz.Party.PartyGeoPoint do
   end
 
   attributes do
-    attribute :party_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "参与方编号"
-    end
-    attribute :geo_point_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "地理坐标编号"
-    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -55,16 +43,20 @@ defmodule UniboExPoc.Ofbiz.Party.PartyGeoPoint do
   relationships do
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
-      define_attribute? false
     end
     belongs_to :geo_point, UniboExPoc.Ofbiz.Party.GeoPoint do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

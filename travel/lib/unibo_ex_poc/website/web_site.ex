@@ -153,16 +153,17 @@ defmodule UniboExPoc.Website.WebSite do
   relationships do
     has_many :pages, UniboExPoc.Website.WebPage do
       public? true
-      source_attribute :company_id
+      source_attribute :company_party_id
       destination_attribute :website_id
     end
     has_many :menus, UniboExPoc.Website.Menu do
       public? true
-      source_attribute :company_id
+      source_attribute :company_party_id
       destination_attribute :website_id
     end
-    belongs_to :company, UniboExPoc.Website.Company do
+    belongs_to :company, UniboExPoc.Website.Party do
       public? true
+      source_attribute :company_party_id
     end
   end
 
@@ -171,6 +172,7 @@ defmodule UniboExPoc.Website.WebSite do
     create :create do
       primary? true
       accept [:site_code, :name, :domain_name, :description, :default_lang_id, :homepage_url]
+      argument :company_id, :uuid
       validate present(:site_code)
       validate present(:name)
       change UniboExPoc.Website.Changes.WebSite.CreateCall1

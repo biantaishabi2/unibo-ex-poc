@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Order.ShoppingListItemSurvey do
   end
 
   attributes do
-    attribute :shopping_list_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :shopping_list_item_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -48,7 +43,6 @@ defmodule UniboExPoc.Ofbiz.Order.ShoppingListItemSurvey do
   relationships do
     belongs_to :shopping_list, UniboExPoc.Ofbiz.Order.ShoppingList do
       public? true
-      define_attribute? false
       attribute_type :string
     end
   end

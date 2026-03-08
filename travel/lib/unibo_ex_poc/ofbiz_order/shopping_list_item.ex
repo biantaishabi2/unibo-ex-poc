@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Order.ShoppingListItem do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_shopping_list_items"
@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Order.ShoppingListItem do
   end
 
   attributes do
-    attribute :shopping_list_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :shopping_list_item_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -51,13 +46,18 @@ defmodule UniboExPoc.Ofbiz.Order.ShoppingListItem do
   relationships do
     belongs_to :shopping_list, UniboExPoc.Ofbiz.Order.ShoppingList do
       public? true
-      define_attribute? false
       attribute_type :string
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

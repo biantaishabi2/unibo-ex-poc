@@ -159,7 +159,7 @@ defmodule UniboExPoc.Payment.Payment do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:payment_method_type_id, :payment_preference_id, :status, :effective_date, :payment_ref_num, :amount, :currency_uom_id, :actual_currency_amount, :actual_currency_uom_id, :comments, :fin_account_trans_id, :override_gl_account_id]
+      accept [:payment_type_id, :payment_method_type_id, :payment_method_id, :payment_preference_id, :party_id_from, :party_id_to, :status, :effective_date, :payment_ref_num, :amount, :currency_uom_id, :actual_currency_amount, :actual_currency_uom_id, :comments, :fin_account_trans_id, :override_gl_account_id]
       validate present(:payment_type_id)
       validate present(:party_id_from)
       validate present(:party_id_to)
@@ -215,7 +215,7 @@ defmodule UniboExPoc.Payment.Payment do
     end
     update :authorize do
       description "授权支付，状态从 pending 变为 authorized"
-      accept [:payment_ref_num]
+      accept [:payment_ref_num, :payment_gateway_response_id]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
         if current == :pending do
@@ -239,7 +239,7 @@ defmodule UniboExPoc.Payment.Payment do
     end
     update :capture do
       description "捕获/扣款，状态从 authorized 变为 captured"
-      accept [:payment_ref_num]
+      accept [:payment_ref_num, :payment_gateway_response_id]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
         if current == :authorized do

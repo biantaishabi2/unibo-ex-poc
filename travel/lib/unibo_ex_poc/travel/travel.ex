@@ -7,10 +7,6 @@ defmodule UniboExPoc.Travel do
   end
 
   resources do
-    resource UniboExPoc.Travel.TravelAirport
-    resource UniboExPoc.Travel.TravelAirport.Version
-    resource UniboExPoc.Travel.TravelStation
-    resource UniboExPoc.Travel.TravelStation.Version
     resource UniboExPoc.Travel.TravelHotel
     resource UniboExPoc.Travel.TravelHotel.Version
     resource UniboExPoc.Travel.TravelRoomType

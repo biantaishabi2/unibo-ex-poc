@@ -79,8 +79,8 @@ defmodule UniboExPoc.Website.Menu do
   end
 
   calculations do
-    calculate :is_visible, :boolean, expr(url == url)
-    calculate :is_active_highlight, :boolean, expr(url == request_url)
+    calculate :is_visible, :boolean, {UniboExPoc.Website.Calculations.Menu.IsVisible, []}
+    calculate :is_active_highlight, :boolean, {UniboExPoc.Website.Calculations.Menu.IsActiveHighlight, []}
     calculate :get_tree, :string, expr(name)
   end
 

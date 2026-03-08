@@ -10,24 +10,30 @@ defmodule UniboExPoc.Ofbiz.Product do
     resource UniboExPoc.Ofbiz.Product.ProdCatalog
     resource UniboExPoc.Ofbiz.Product.ProdCatalog.Version
     resource UniboExPoc.Ofbiz.Product.ProdCatalogCategory
+    resource UniboExPoc.Ofbiz.Product.ProdCatalogCategory.Version
     resource UniboExPoc.Ofbiz.Product.ProdCatalogCategoryType
     resource UniboExPoc.Ofbiz.Product.ProdCatalogCategoryType.Version
     resource UniboExPoc.Ofbiz.Product.ProdCatalogInvFacility
+    resource UniboExPoc.Ofbiz.Product.ProdCatalogInvFacility.Version
     resource UniboExPoc.Ofbiz.Product.ProdCatalogRole
     resource UniboExPoc.Ofbiz.Product.ProductCategory
     resource UniboExPoc.Ofbiz.Product.ProductCategory.Version
     resource UniboExPoc.Ofbiz.Product.ProductCategoryAttribute
+    resource UniboExPoc.Ofbiz.Product.ProductCategoryAttribute.Version
     resource UniboExPoc.Ofbiz.Product.ProductCategoryContent
     resource UniboExPoc.Ofbiz.Product.ProductCategoryContentType
     resource UniboExPoc.Ofbiz.Product.ProductCategoryContentType.Version
     resource UniboExPoc.Ofbiz.Product.ProductCategoryGlAccount
     resource UniboExPoc.Ofbiz.Product.ProductCategoryLink
     resource UniboExPoc.Ofbiz.Product.ProductCategoryMember
+    resource UniboExPoc.Ofbiz.Product.ProductCategoryMember.Version
     resource UniboExPoc.Ofbiz.Product.ProductCategoryRole
     resource UniboExPoc.Ofbiz.Product.ProductCategoryRollup
+    resource UniboExPoc.Ofbiz.Product.ProductCategoryRollup.Version
     resource UniboExPoc.Ofbiz.Product.ProductCategoryType
     resource UniboExPoc.Ofbiz.Product.ProductCategoryType.Version
     resource UniboExPoc.Ofbiz.Product.ProductCategoryTypeAttr
+    resource UniboExPoc.Ofbiz.Product.ProductCategoryTypeAttr.Version
     resource UniboExPoc.Ofbiz.Product.ProductConfig
     resource UniboExPoc.Ofbiz.Product.ProductConfigItem
     resource UniboExPoc.Ofbiz.Product.ProductConfigItem.Version
@@ -35,20 +41,26 @@ defmodule UniboExPoc.Ofbiz.Product do
     resource UniboExPoc.Ofbiz.Product.ProdConfItemContentType
     resource UniboExPoc.Ofbiz.Product.ProdConfItemContentType.Version
     resource UniboExPoc.Ofbiz.Product.ProductConfigOption
+    resource UniboExPoc.Ofbiz.Product.ProductConfigOption.Version
     resource UniboExPoc.Ofbiz.Product.ProductConfigOptionIactn
     resource UniboExPoc.Ofbiz.Product.ProductConfigProduct
+    resource UniboExPoc.Ofbiz.Product.ProductConfigProduct.Version
     resource UniboExPoc.Ofbiz.Product.ProductConfigConfig
     resource UniboExPoc.Ofbiz.Product.ProductConfigStats
+    resource UniboExPoc.Ofbiz.Product.ProductConfigStats.Version
     resource UniboExPoc.Ofbiz.Product.ConfigOptionProductOption
     resource UniboExPoc.Ofbiz.Product.CostComponent
     resource UniboExPoc.Ofbiz.Product.CostComponent.Version
     resource UniboExPoc.Ofbiz.Product.CostComponentAttribute
+    resource UniboExPoc.Ofbiz.Product.CostComponentAttribute.Version
     resource UniboExPoc.Ofbiz.Product.CostComponentType
     resource UniboExPoc.Ofbiz.Product.CostComponentType.Version
     resource UniboExPoc.Ofbiz.Product.CostComponentTypeAttr
+    resource UniboExPoc.Ofbiz.Product.CostComponentTypeAttr.Version
     resource UniboExPoc.Ofbiz.Product.CostComponentCalc
     resource UniboExPoc.Ofbiz.Product.CostComponentCalc.Version
     resource UniboExPoc.Ofbiz.Product.ProductCostComponentCalc
+    resource UniboExPoc.Ofbiz.Product.ProductCostComponentCalc.Version
     resource UniboExPoc.Ofbiz.Product.Container
     resource UniboExPoc.Ofbiz.Product.Container.Version
     resource UniboExPoc.Ofbiz.Product.ContainerType
@@ -57,6 +69,7 @@ defmodule UniboExPoc.Ofbiz.Product do
     resource UniboExPoc.Ofbiz.Product.Facility
     resource UniboExPoc.Ofbiz.Product.Facility.Version
     resource UniboExPoc.Ofbiz.Product.FacilityAttribute
+    resource UniboExPoc.Ofbiz.Product.FacilityAttribute.Version
     resource UniboExPoc.Ofbiz.Product.FacilityCalendar
     resource UniboExPoc.Ofbiz.Product.FacilityCalendarType
     resource UniboExPoc.Ofbiz.Product.FacilityCalendarType.Version
@@ -66,37 +79,50 @@ defmodule UniboExPoc.Ofbiz.Product do
     resource UniboExPoc.Ofbiz.Product.FacilityGroup
     resource UniboExPoc.Ofbiz.Product.FacilityGroup.Version
     resource UniboExPoc.Ofbiz.Product.FacilityGroupMember
+    resource UniboExPoc.Ofbiz.Product.FacilityGroupMember.Version
     resource UniboExPoc.Ofbiz.Product.FacilityGroupRole
     resource UniboExPoc.Ofbiz.Product.FacilityGroupRollup
+    resource UniboExPoc.Ofbiz.Product.FacilityGroupRollup.Version
     resource UniboExPoc.Ofbiz.Product.FacilityGroupType
     resource UniboExPoc.Ofbiz.Product.FacilityGroupType.Version
     resource UniboExPoc.Ofbiz.Product.FacilityLocation
+    resource UniboExPoc.Ofbiz.Product.FacilityLocation.Version
     resource UniboExPoc.Ofbiz.Product.FacilityLocationGeoPoint
     resource UniboExPoc.Ofbiz.Product.FacilityParty
     resource UniboExPoc.Ofbiz.Product.FacilityContent
     resource UniboExPoc.Ofbiz.Product.FacilityType
     resource UniboExPoc.Ofbiz.Product.FacilityType.Version
     resource UniboExPoc.Ofbiz.Product.FacilityTypeAttr
+    resource UniboExPoc.Ofbiz.Product.FacilityTypeAttr.Version
     resource UniboExPoc.Ofbiz.Product.ProductFacility
+    resource UniboExPoc.Ofbiz.Product.ProductFacility.Version
     resource UniboExPoc.Ofbiz.Product.FacilityAssocType
     resource UniboExPoc.Ofbiz.Product.FacilityAssocType.Version
     resource UniboExPoc.Ofbiz.Product.ProductFacilityAssoc
+    resource UniboExPoc.Ofbiz.Product.ProductFacilityAssoc.Version
     resource UniboExPoc.Ofbiz.Product.ProductFacilityLocation
+    resource UniboExPoc.Ofbiz.Product.ProductFacilityLocation.Version
     resource UniboExPoc.Ofbiz.Product.ProductFeature
     resource UniboExPoc.Ofbiz.Product.ProductFeature.Version
     resource UniboExPoc.Ofbiz.Product.ProductFeatureAppl
+    resource UniboExPoc.Ofbiz.Product.ProductFeatureAppl.Version
     resource UniboExPoc.Ofbiz.Product.ProductFeatureApplType
     resource UniboExPoc.Ofbiz.Product.ProductFeatureApplType.Version
     resource UniboExPoc.Ofbiz.Product.ProductFeatureApplAttr
     resource UniboExPoc.Ofbiz.Product.ProductFeatureCategory
     resource UniboExPoc.Ofbiz.Product.ProductFeatureCategory.Version
     resource UniboExPoc.Ofbiz.Product.ProductFeatureCategoryAppl
+    resource UniboExPoc.Ofbiz.Product.ProductFeatureCategoryAppl.Version
     resource UniboExPoc.Ofbiz.Product.ProductFeatureCatGrpAppl
+    resource UniboExPoc.Ofbiz.Product.ProductFeatureCatGrpAppl.Version
     resource UniboExPoc.Ofbiz.Product.ProductFeatureDataResource
+    resource UniboExPoc.Ofbiz.Product.ProductFeatureDataResource.Version
     resource UniboExPoc.Ofbiz.Product.ProductFeatureGroup
     resource UniboExPoc.Ofbiz.Product.ProductFeatureGroup.Version
     resource UniboExPoc.Ofbiz.Product.ProductFeatureGroupAppl
+    resource UniboExPoc.Ofbiz.Product.ProductFeatureGroupAppl.Version
     resource UniboExPoc.Ofbiz.Product.ProductFeatureIactn
+    resource UniboExPoc.Ofbiz.Product.ProductFeatureIactn.Version
     resource UniboExPoc.Ofbiz.Product.ProductFeatureIactnType
     resource UniboExPoc.Ofbiz.Product.ProductFeatureIactnType.Version
     resource UniboExPoc.Ofbiz.Product.ProductFeatureType
@@ -105,18 +131,24 @@ defmodule UniboExPoc.Ofbiz.Product do
     resource UniboExPoc.Ofbiz.Product.InventoryItem
     resource UniboExPoc.Ofbiz.Product.InventoryItem.Version
     resource UniboExPoc.Ofbiz.Product.InventoryItemAttribute
+    resource UniboExPoc.Ofbiz.Product.InventoryItemAttribute.Version
     resource UniboExPoc.Ofbiz.Product.InventoryItemDetail
+    resource UniboExPoc.Ofbiz.Product.InventoryItemDetail.Version
     resource UniboExPoc.Ofbiz.Product.InventoryItemStatus
     resource UniboExPoc.Ofbiz.Product.InventoryItemTempRes
+    resource UniboExPoc.Ofbiz.Product.InventoryItemTempRes.Version
     resource UniboExPoc.Ofbiz.Product.InventoryItemType
     resource UniboExPoc.Ofbiz.Product.InventoryItemType.Version
     resource UniboExPoc.Ofbiz.Product.InventoryItemTypeAttr
+    resource UniboExPoc.Ofbiz.Product.InventoryItemTypeAttr.Version
     resource UniboExPoc.Ofbiz.Product.InventoryItemVariance
+    resource UniboExPoc.Ofbiz.Product.InventoryItemVariance.Version
     resource UniboExPoc.Ofbiz.Product.InventoryItemLabelType
     resource UniboExPoc.Ofbiz.Product.InventoryItemLabelType.Version
     resource UniboExPoc.Ofbiz.Product.InventoryItemLabel
     resource UniboExPoc.Ofbiz.Product.InventoryItemLabel.Version
     resource UniboExPoc.Ofbiz.Product.InventoryItemLabelAppl
+    resource UniboExPoc.Ofbiz.Product.InventoryItemLabelAppl.Version
     resource UniboExPoc.Ofbiz.Product.InventoryTransfer
     resource UniboExPoc.Ofbiz.Product.InventoryTransfer.Version
     resource UniboExPoc.Ofbiz.Product.Lot
@@ -128,6 +160,7 @@ defmodule UniboExPoc.Ofbiz.Product do
     resource UniboExPoc.Ofbiz.Product.ProductPaymentMethodType
     resource UniboExPoc.Ofbiz.Product.ProductPrice
     resource UniboExPoc.Ofbiz.Product.ProductPriceAction
+    resource UniboExPoc.Ofbiz.Product.ProductPriceAction.Version
     resource UniboExPoc.Ofbiz.Product.ProductPriceActionType
     resource UniboExPoc.Ofbiz.Product.ProductPriceActionType.Version
     resource UniboExPoc.Ofbiz.Product.ProductPriceAutoNotice
@@ -135,6 +168,7 @@ defmodule UniboExPoc.Ofbiz.Product do
     resource UniboExPoc.Ofbiz.Product.ProductPriceChange
     resource UniboExPoc.Ofbiz.Product.ProductPriceChange.Version
     resource UniboExPoc.Ofbiz.Product.ProductPriceCond
+    resource UniboExPoc.Ofbiz.Product.ProductPriceCond.Version
     resource UniboExPoc.Ofbiz.Product.ProductPricePurpose
     resource UniboExPoc.Ofbiz.Product.ProductPricePurpose.Version
     resource UniboExPoc.Ofbiz.Product.ProductPriceRule
@@ -148,38 +182,47 @@ defmodule UniboExPoc.Ofbiz.Product do
     resource UniboExPoc.Ofbiz.Product.SaleType
     resource UniboExPoc.Ofbiz.Product.SaleType.Version
     resource UniboExPoc.Ofbiz.Product.GoodIdentification
+    resource UniboExPoc.Ofbiz.Product.GoodIdentification.Version
     resource UniboExPoc.Ofbiz.Product.GoodIdentificationType
     resource UniboExPoc.Ofbiz.Product.GoodIdentificationType.Version
     resource UniboExPoc.Ofbiz.Product.Product
     resource UniboExPoc.Ofbiz.Product.Product.Version
     resource UniboExPoc.Ofbiz.Product.ProductAssoc
+    resource UniboExPoc.Ofbiz.Product.ProductAssoc.Version
     resource UniboExPoc.Ofbiz.Product.ProductAssocType
     resource UniboExPoc.Ofbiz.Product.ProductAssocType.Version
     resource UniboExPoc.Ofbiz.Product.ProductRole
     resource UniboExPoc.Ofbiz.Product.ProductAttribute
+    resource UniboExPoc.Ofbiz.Product.ProductAttribute.Version
     resource UniboExPoc.Ofbiz.Product.ProductCalculatedInfo
     resource UniboExPoc.Ofbiz.Product.ProductCalculatedInfo.Version
     resource UniboExPoc.Ofbiz.Product.ProductContent
     resource UniboExPoc.Ofbiz.Product.ProductContentType
     resource UniboExPoc.Ofbiz.Product.ProductContentType.Version
     resource UniboExPoc.Ofbiz.Product.ProductGeo
+    resource UniboExPoc.Ofbiz.Product.ProductGeo.Version
     resource UniboExPoc.Ofbiz.Product.ProductGlAccount
     resource UniboExPoc.Ofbiz.Product.ProductKeyword
     resource UniboExPoc.Ofbiz.Product.ProductMeter
+    resource UniboExPoc.Ofbiz.Product.ProductMeter.Version
     resource UniboExPoc.Ofbiz.Product.ProductMeterType
     resource UniboExPoc.Ofbiz.Product.ProductMeterType.Version
     resource UniboExPoc.Ofbiz.Product.ProductMaint
+    resource UniboExPoc.Ofbiz.Product.ProductMaint.Version
     resource UniboExPoc.Ofbiz.Product.ProductMaintType
     resource UniboExPoc.Ofbiz.Product.ProductMaintType.Version
     resource UniboExPoc.Ofbiz.Product.ProductReview
     resource UniboExPoc.Ofbiz.Product.ProductReview.Version
     resource UniboExPoc.Ofbiz.Product.ProductSearchConstraint
+    resource UniboExPoc.Ofbiz.Product.ProductSearchConstraint.Version
     resource UniboExPoc.Ofbiz.Product.ProductSearchResult
     resource UniboExPoc.Ofbiz.Product.ProductSearchResult.Version
     resource UniboExPoc.Ofbiz.Product.ProductType
     resource UniboExPoc.Ofbiz.Product.ProductType.Version
     resource UniboExPoc.Ofbiz.Product.ProductTypeAttr
+    resource UniboExPoc.Ofbiz.Product.ProductTypeAttr.Version
     resource UniboExPoc.Ofbiz.Product.VendorProduct
+    resource UniboExPoc.Ofbiz.Product.VendorProduct.Version
     resource UniboExPoc.Ofbiz.Product.ProductPromo
     resource UniboExPoc.Ofbiz.Product.ProductPromo.Version
     resource UniboExPoc.Ofbiz.Product.ProductPromoAction
@@ -187,28 +230,39 @@ defmodule UniboExPoc.Ofbiz.Product do
     resource UniboExPoc.Ofbiz.Product.ProductPromoCode
     resource UniboExPoc.Ofbiz.Product.ProductPromoCode.Version
     resource UniboExPoc.Ofbiz.Product.OldProductPromoCodeEmail
+    resource UniboExPoc.Ofbiz.Product.OldProductPromoCodeEmail.Version
     resource UniboExPoc.Ofbiz.Product.ProdPromoCodeContactMech
+    resource UniboExPoc.Ofbiz.Product.ProdPromoCodeContactMech.Version
     resource UniboExPoc.Ofbiz.Product.ProductPromoCodeParty
+    resource UniboExPoc.Ofbiz.Product.ProductPromoCodeParty.Version
     resource UniboExPoc.Ofbiz.Product.ProductPromoCond
     resource UniboExPoc.Ofbiz.Product.ProductPromoProduct
     resource UniboExPoc.Ofbiz.Product.ProductPromoRule
+    resource UniboExPoc.Ofbiz.Product.ProductPromoRule.Version
     resource UniboExPoc.Ofbiz.Product.ProductPromoUse
     resource UniboExPoc.Ofbiz.Product.ProductStore
     resource UniboExPoc.Ofbiz.Product.ProductStore.Version
     resource UniboExPoc.Ofbiz.Product.ProductStoreCatalog
+    resource UniboExPoc.Ofbiz.Product.ProductStoreCatalog.Version
     resource UniboExPoc.Ofbiz.Product.ProductStoreEmailSetting
+    resource UniboExPoc.Ofbiz.Product.ProductStoreEmailSetting.Version
     resource UniboExPoc.Ofbiz.Product.ProductStoreFinActSetting
+    resource UniboExPoc.Ofbiz.Product.ProductStoreFinActSetting.Version
     resource UniboExPoc.Ofbiz.Product.ProductStoreFacility
+    resource UniboExPoc.Ofbiz.Product.ProductStoreFacility.Version
     resource UniboExPoc.Ofbiz.Product.ProductStoreGroup
     resource UniboExPoc.Ofbiz.Product.ProductStoreGroup.Version
     resource UniboExPoc.Ofbiz.Product.ProductStoreGroupMember
+    resource UniboExPoc.Ofbiz.Product.ProductStoreGroupMember.Version
     resource UniboExPoc.Ofbiz.Product.ProductStoreGroupRole
     resource UniboExPoc.Ofbiz.Product.ProductStoreGroupRollup
+    resource UniboExPoc.Ofbiz.Product.ProductStoreGroupRollup.Version
     resource UniboExPoc.Ofbiz.Product.ProductStoreGroupType
     resource UniboExPoc.Ofbiz.Product.ProductStoreGroupType.Version
     resource UniboExPoc.Ofbiz.Product.ProductStoreKeywordOvrd
     resource UniboExPoc.Ofbiz.Product.ProductStorePaymentSetting
     resource UniboExPoc.Ofbiz.Product.ProductStorePromoAppl
+    resource UniboExPoc.Ofbiz.Product.ProductStorePromoAppl.Version
     resource UniboExPoc.Ofbiz.Product.ProductStoreRole
     resource UniboExPoc.Ofbiz.Product.ProductStoreShipmentMeth
     resource UniboExPoc.Ofbiz.Product.ProductStoreShipmentMeth.Version
@@ -217,18 +271,23 @@ defmodule UniboExPoc.Ofbiz.Product do
     resource UniboExPoc.Ofbiz.Product.ProductStoreVendorPayment
     resource UniboExPoc.Ofbiz.Product.ProductStoreVendorShipment
     resource UniboExPoc.Ofbiz.Product.ProductSubscriptionResource
+    resource UniboExPoc.Ofbiz.Product.ProductSubscriptionResource.Version
     resource UniboExPoc.Ofbiz.Product.Subscription
     resource UniboExPoc.Ofbiz.Product.Subscription.Version
     resource UniboExPoc.Ofbiz.Product.SubscriptionActivity
     resource UniboExPoc.Ofbiz.Product.SubscriptionActivity.Version
     resource UniboExPoc.Ofbiz.Product.SubscriptionAttribute
+    resource UniboExPoc.Ofbiz.Product.SubscriptionAttribute.Version
     resource UniboExPoc.Ofbiz.Product.SubscriptionFulfillmentPiece
+    resource UniboExPoc.Ofbiz.Product.SubscriptionFulfillmentPiece.Version
     resource UniboExPoc.Ofbiz.Product.SubscriptionResource
     resource UniboExPoc.Ofbiz.Product.SubscriptionResource.Version
     resource UniboExPoc.Ofbiz.Product.SubscriptionType
     resource UniboExPoc.Ofbiz.Product.SubscriptionType.Version
     resource UniboExPoc.Ofbiz.Product.SubscriptionTypeAttr
+    resource UniboExPoc.Ofbiz.Product.SubscriptionTypeAttr.Version
     resource UniboExPoc.Ofbiz.Product.SubscriptionCommEvent
+    resource UniboExPoc.Ofbiz.Product.SubscriptionCommEvent.Version
     resource UniboExPoc.Ofbiz.Product.MarketInterest
     resource UniboExPoc.Ofbiz.Product.ReorderGuideline
     resource UniboExPoc.Ofbiz.Product.ReorderGuideline.Version
@@ -236,6 +295,7 @@ defmodule UniboExPoc.Ofbiz.Product do
     resource UniboExPoc.Ofbiz.Product.SupplierPrefOrder.Version
     resource UniboExPoc.Ofbiz.Product.SupplierProduct
     resource UniboExPoc.Ofbiz.Product.SupplierProductFeature
+    resource UniboExPoc.Ofbiz.Product.SupplierProductFeature.Version
     resource UniboExPoc.Ofbiz.Product.SupplierRatingType
     resource UniboExPoc.Ofbiz.Product.SupplierRatingType.Version
     resource UniboExPoc.Ofbiz.Product.ProductPromoContent

@@ -27,16 +27,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.PaymentContent do
   end
 
   attributes do
-    attribute :payment_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :payment_content_type_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :content_id, :string do
       allow_nil? false
       primary_key? true
@@ -54,11 +44,9 @@ defmodule UniboExPoc.Ofbiz.Accounting.PaymentContent do
   relationships do
     belongs_to :payment, UniboExPoc.Ofbiz.Accounting.Payment do
       public? true
-      define_attribute? false
     end
     belongs_to :payment_content_type, UniboExPoc.Ofbiz.Accounting.PaymentContentType do
       public? true
-      define_attribute? false
     end
   end
 

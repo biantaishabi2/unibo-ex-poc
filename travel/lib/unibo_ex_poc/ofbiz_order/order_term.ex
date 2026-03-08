@@ -32,11 +32,6 @@ defmodule UniboExPoc.Ofbiz.Order.OrderTerm do
       primary_key? true
       public? true
     end
-    attribute :order_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :order_item_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -54,7 +49,6 @@ defmodule UniboExPoc.Ofbiz.Order.OrderTerm do
     belongs_to :order_header, UniboExPoc.Ofbiz.Order.OrderHeader do
       public? true
       source_attribute :order_id
-      define_attribute? false
       attribute_type :string
     end
   end

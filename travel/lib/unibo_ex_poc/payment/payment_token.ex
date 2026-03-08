@@ -91,7 +91,7 @@ defmodule UniboExPoc.Payment.PaymentToken do
     defaults [:read]
     create :create do
       primary? true
-      accept [:token_reference, :card_last_four, :card_brand, :expiry_date, :is_default]
+      accept [:party_id, :provider_id, :token_reference, :card_last_four, :card_brand, :expiry_date, :is_default]
       validate present(:party_id)
       validate present(:provider_id)
       validate present(:token_reference)

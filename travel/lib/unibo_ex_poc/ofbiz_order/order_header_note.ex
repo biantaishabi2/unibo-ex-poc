@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Order.OrderHeaderNote do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_header_notes"
@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Order.OrderHeaderNote do
   end
 
   attributes do
-    attribute :order_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :note_id, :string do
       allow_nil? false
       primary_key? true
@@ -45,13 +40,18 @@ defmodule UniboExPoc.Ofbiz.Order.OrderHeaderNote do
     belongs_to :order_header, UniboExPoc.Ofbiz.Order.OrderHeader do
       public? true
       source_attribute :order_id
-      define_attribute? false
       attribute_type :string
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

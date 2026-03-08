@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemVariance do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_inventory_item_variances"
@@ -27,16 +27,7 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemVariance do
   end
 
   attributes do
-    attribute :inventory_item_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :physical_inventory_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
+    uuid_primary_key :id
     attribute :available_to_promise_var, :decimal, public?: true
     attribute :quantity_on_hand_var, :decimal, public?: true
     attribute :comments, :string, public?: true
@@ -46,19 +37,23 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemVariance do
   relationships do
     belongs_to :physical_inventory, UniboExPoc.Ofbiz.Product.PhysicalInventory do
       public? true
-      define_attribute? false
     end
     belongs_to :variance_reason, UniboExPoc.Ofbiz.Product.VarianceReason do
       public? true
     end
     belongs_to :inventory_item, UniboExPoc.Ofbiz.Product.InventoryItem do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

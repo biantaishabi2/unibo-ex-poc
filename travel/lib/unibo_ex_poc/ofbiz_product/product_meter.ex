@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductMeter do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_meters"
@@ -27,17 +27,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductMeter do
   end
 
   attributes do
-    attribute :product_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :product_meter_type_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "作为主键的一部分，因为机器上的不同计量器应具有不同的类型"
-    end
+    uuid_primary_key :id
     attribute :meter_uom_id, :string do
       public? true
       description "在此实体上而不是ProductMeterType实体上，以获得更多灵活性；例如能够查找所有速度计，无论其主要单位如何"
@@ -49,16 +39,20 @@ defmodule UniboExPoc.Ofbiz.Product.ProductMeter do
   relationships do
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
-      define_attribute? false
     end
     belongs_to :product_meter_type, UniboExPoc.Ofbiz.Product.ProductMeterType do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

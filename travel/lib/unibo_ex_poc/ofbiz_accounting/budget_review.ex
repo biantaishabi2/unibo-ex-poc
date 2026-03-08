@@ -27,22 +27,12 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetReview do
   end
 
   attributes do
-    attribute :budget_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :budget_review_id, :string do
       allow_nil? false
       primary_key? true
       public? true
     end
     attribute :party_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :budget_review_result_type_id, :uuid do
       allow_nil? false
       primary_key? true
       public? true
@@ -54,11 +44,9 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetReview do
   relationships do
     belongs_to :budget, UniboExPoc.Ofbiz.Accounting.Budget do
       public? true
-      define_attribute? false
     end
     belongs_to :budget_review_result_type, UniboExPoc.Ofbiz.Accounting.BudgetReviewResultType do
       public? true
-      define_attribute? false
     end
   end
 

@@ -10,28 +10,38 @@ defmodule UniboExPoc.Ofbiz.Order do
     resource UniboExPoc.Ofbiz.Order.OrderAdjustment
     resource UniboExPoc.Ofbiz.Order.OrderAdjustment.Version
     resource UniboExPoc.Ofbiz.Order.OrderAdjustmentAttribute
+    resource UniboExPoc.Ofbiz.Order.OrderAdjustmentAttribute.Version
     resource UniboExPoc.Ofbiz.Order.OrderAdjustmentType
     resource UniboExPoc.Ofbiz.Order.OrderAdjustmentType.Version
     resource UniboExPoc.Ofbiz.Order.OrderAdjustmentBilling
     resource UniboExPoc.Ofbiz.Order.OrderAdjustmentTypeAttr
+    resource UniboExPoc.Ofbiz.Order.OrderAdjustmentTypeAttr.Version
     resource UniboExPoc.Ofbiz.Order.OrderAttribute
+    resource UniboExPoc.Ofbiz.Order.OrderAttribute.Version
     resource UniboExPoc.Ofbiz.Order.OldOrderBlacklist
+    resource UniboExPoc.Ofbiz.Order.OldOrderBlacklist.Version
     resource UniboExPoc.Ofbiz.Order.OldOrderBlacklistType
     resource UniboExPoc.Ofbiz.Order.OldOrderBlacklistType.Version
     resource UniboExPoc.Ofbiz.Order.OrderDenylist
+    resource UniboExPoc.Ofbiz.Order.OrderDenylist.Version
     resource UniboExPoc.Ofbiz.Order.OrderDenylistType
     resource UniboExPoc.Ofbiz.Order.OrderDenylistType.Version
     resource UniboExPoc.Ofbiz.Order.CommunicationEventOrder
+    resource UniboExPoc.Ofbiz.Order.CommunicationEventOrder.Version
     resource UniboExPoc.Ofbiz.Order.OrderContactMech
     resource UniboExPoc.Ofbiz.Order.OrderContent
     resource UniboExPoc.Ofbiz.Order.OrderContentType
     resource UniboExPoc.Ofbiz.Order.OrderContentType.Version
     resource UniboExPoc.Ofbiz.Order.OrderDeliverySchedule
+    resource UniboExPoc.Ofbiz.Order.OrderDeliverySchedule.Version
     resource UniboExPoc.Ofbiz.Order.OrderHeader
     resource UniboExPoc.Ofbiz.Order.OrderHeader.Version
     resource UniboExPoc.Ofbiz.Order.OrderHeaderNote
+    resource UniboExPoc.Ofbiz.Order.OrderHeaderNote.Version
     resource UniboExPoc.Ofbiz.Order.OrderHeaderWorkEffort
+    resource UniboExPoc.Ofbiz.Order.OrderHeaderWorkEffort.Version
     resource UniboExPoc.Ofbiz.Order.OrderItem
+    resource UniboExPoc.Ofbiz.Order.OrderItem.Version
     resource UniboExPoc.Ofbiz.Order.OrderItemAssoc
     resource UniboExPoc.Ofbiz.Order.OrderItemAssocType
     resource UniboExPoc.Ofbiz.Order.OrderItemAssocType.Version
@@ -41,21 +51,25 @@ defmodule UniboExPoc.Ofbiz.Order do
     resource UniboExPoc.Ofbiz.Order.OrderItemChange.Version
     resource UniboExPoc.Ofbiz.Order.OrderItemContactMech
     resource UniboExPoc.Ofbiz.Order.OrderItemGroup
+    resource UniboExPoc.Ofbiz.Order.OrderItemGroup.Version
     resource UniboExPoc.Ofbiz.Order.OrderItemGroupOrder
     resource UniboExPoc.Ofbiz.Order.OrderItemPriceInfo
     resource UniboExPoc.Ofbiz.Order.OrderItemPriceInfo.Version
     resource UniboExPoc.Ofbiz.Order.OrderItemRole
     resource UniboExPoc.Ofbiz.Order.OrderItemShipGroup
+    resource UniboExPoc.Ofbiz.Order.OrderItemShipGroup.Version
     resource UniboExPoc.Ofbiz.Order.OrderItemShipGroupAssoc
     resource UniboExPoc.Ofbiz.Order.OrderItemShipGrpInvRes
     resource UniboExPoc.Ofbiz.Order.OrderItemType
     resource UniboExPoc.Ofbiz.Order.OrderItemType.Version
     resource UniboExPoc.Ofbiz.Order.OrderItemTypeAttr
+    resource UniboExPoc.Ofbiz.Order.OrderItemTypeAttr.Version
     resource UniboExPoc.Ofbiz.Order.OrderNotification
     resource UniboExPoc.Ofbiz.Order.OrderNotification.Version
     resource UniboExPoc.Ofbiz.Order.OrderPaymentPreference
     resource UniboExPoc.Ofbiz.Order.OrderPaymentPreference.Version
     resource UniboExPoc.Ofbiz.Order.OrderProductPromoCode
+    resource UniboExPoc.Ofbiz.Order.OrderProductPromoCode.Version
     resource UniboExPoc.Ofbiz.Order.OrderRole
     resource UniboExPoc.Ofbiz.Order.OrderShipment
     resource UniboExPoc.Ofbiz.Order.OrderStatus
@@ -66,32 +80,43 @@ defmodule UniboExPoc.Ofbiz.Order do
     resource UniboExPoc.Ofbiz.Order.OrderType
     resource UniboExPoc.Ofbiz.Order.OrderType.Version
     resource UniboExPoc.Ofbiz.Order.OrderTypeAttr
+    resource UniboExPoc.Ofbiz.Order.OrderTypeAttr.Version
     resource UniboExPoc.Ofbiz.Order.ProductOrderItem
     resource UniboExPoc.Ofbiz.Order.WorkOrderItemFulfillment
     resource UniboExPoc.Ofbiz.Order.Quote
     resource UniboExPoc.Ofbiz.Order.Quote.Version
     resource UniboExPoc.Ofbiz.Order.QuoteAttribute
+    resource UniboExPoc.Ofbiz.Order.QuoteAttribute.Version
     resource UniboExPoc.Ofbiz.Order.QuoteCoefficient
+    resource UniboExPoc.Ofbiz.Order.QuoteCoefficient.Version
     resource UniboExPoc.Ofbiz.Order.QuoteItem
+    resource UniboExPoc.Ofbiz.Order.QuoteItem.Version
     resource UniboExPoc.Ofbiz.Order.QuoteNote
+    resource UniboExPoc.Ofbiz.Order.QuoteNote.Version
     resource UniboExPoc.Ofbiz.Order.QuoteRole
     resource UniboExPoc.Ofbiz.Order.QuoteTerm
     resource UniboExPoc.Ofbiz.Order.QuoteTermAttribute
     resource UniboExPoc.Ofbiz.Order.QuoteType
     resource UniboExPoc.Ofbiz.Order.QuoteType.Version
     resource UniboExPoc.Ofbiz.Order.QuoteTypeAttr
+    resource UniboExPoc.Ofbiz.Order.QuoteTypeAttr.Version
     resource UniboExPoc.Ofbiz.Order.QuoteWorkEffort
+    resource UniboExPoc.Ofbiz.Order.QuoteWorkEffort.Version
     resource UniboExPoc.Ofbiz.Order.QuoteAdjustment
     resource UniboExPoc.Ofbiz.Order.QuoteAdjustment.Version
     resource UniboExPoc.Ofbiz.Order.CustRequest
     resource UniboExPoc.Ofbiz.Order.CustRequest.Version
     resource UniboExPoc.Ofbiz.Order.CustRequestAttribute
+    resource UniboExPoc.Ofbiz.Order.CustRequestAttribute.Version
     resource UniboExPoc.Ofbiz.Order.CustRequestCategory
     resource UniboExPoc.Ofbiz.Order.CustRequestCategory.Version
     resource UniboExPoc.Ofbiz.Order.CustRequestCommEvent
+    resource UniboExPoc.Ofbiz.Order.CustRequestCommEvent.Version
     resource UniboExPoc.Ofbiz.Order.CustRequestContent
     resource UniboExPoc.Ofbiz.Order.CustRequestItem
+    resource UniboExPoc.Ofbiz.Order.CustRequestItem.Version
     resource UniboExPoc.Ofbiz.Order.CustRequestNote
+    resource UniboExPoc.Ofbiz.Order.CustRequestNote.Version
     resource UniboExPoc.Ofbiz.Order.CustRequestItemNote
     resource UniboExPoc.Ofbiz.Order.CustRequestItemWorkEffort
     resource UniboExPoc.Ofbiz.Order.CustRequestResolution
@@ -102,23 +127,32 @@ defmodule UniboExPoc.Ofbiz.Order do
     resource UniboExPoc.Ofbiz.Order.CustRequestType
     resource UniboExPoc.Ofbiz.Order.CustRequestType.Version
     resource UniboExPoc.Ofbiz.Order.CustRequestTypeAttr
+    resource UniboExPoc.Ofbiz.Order.CustRequestTypeAttr.Version
     resource UniboExPoc.Ofbiz.Order.CustRequestWorkEffort
+    resource UniboExPoc.Ofbiz.Order.CustRequestWorkEffort.Version
     resource UniboExPoc.Ofbiz.Order.RespondingParty
     resource UniboExPoc.Ofbiz.Order.DesiredFeature
+    resource UniboExPoc.Ofbiz.Order.DesiredFeature.Version
     resource UniboExPoc.Ofbiz.Order.OrderRequirementCommitment
+    resource UniboExPoc.Ofbiz.Order.OrderRequirementCommitment.Version
     resource UniboExPoc.Ofbiz.Order.Requirement
     resource UniboExPoc.Ofbiz.Order.Requirement.Version
     resource UniboExPoc.Ofbiz.Order.RequirementAttribute
+    resource UniboExPoc.Ofbiz.Order.RequirementAttribute.Version
     resource UniboExPoc.Ofbiz.Order.RequirementBudgetAllocation
     resource UniboExPoc.Ofbiz.Order.RequirementCustRequest
+    resource UniboExPoc.Ofbiz.Order.RequirementCustRequest.Version
     resource UniboExPoc.Ofbiz.Order.RequirementRole
     resource UniboExPoc.Ofbiz.Order.RequirementStatus
+    resource UniboExPoc.Ofbiz.Order.RequirementStatus.Version
     resource UniboExPoc.Ofbiz.Order.RequirementType
     resource UniboExPoc.Ofbiz.Order.RequirementType.Version
     resource UniboExPoc.Ofbiz.Order.RequirementTypeAttr
+    resource UniboExPoc.Ofbiz.Order.RequirementTypeAttr.Version
     resource UniboExPoc.Ofbiz.Order.WorkReqFulfType
     resource UniboExPoc.Ofbiz.Order.WorkReqFulfType.Version
     resource UniboExPoc.Ofbiz.Order.WorkRequirementFulfillment
+    resource UniboExPoc.Ofbiz.Order.WorkRequirementFulfillment.Version
     resource UniboExPoc.Ofbiz.Order.ReturnAdjustment
     resource UniboExPoc.Ofbiz.Order.ReturnAdjustment.Version
     resource UniboExPoc.Ofbiz.Order.ReturnAdjustmentType
@@ -128,11 +162,13 @@ defmodule UniboExPoc.Ofbiz.Order do
     resource UniboExPoc.Ofbiz.Order.ReturnHeaderType
     resource UniboExPoc.Ofbiz.Order.ReturnHeaderType.Version
     resource UniboExPoc.Ofbiz.Order.ReturnItem
+    resource UniboExPoc.Ofbiz.Order.ReturnItem.Version
     resource UniboExPoc.Ofbiz.Order.ReturnItemResponse
     resource UniboExPoc.Ofbiz.Order.ReturnItemResponse.Version
     resource UniboExPoc.Ofbiz.Order.ReturnItemType
     resource UniboExPoc.Ofbiz.Order.ReturnItemType.Version
     resource UniboExPoc.Ofbiz.Order.ReturnItemTypeMap
+    resource UniboExPoc.Ofbiz.Order.ReturnItemTypeMap.Version
     resource UniboExPoc.Ofbiz.Order.ReturnReason
     resource UniboExPoc.Ofbiz.Order.ReturnReason.Version
     resource UniboExPoc.Ofbiz.Order.ReturnStatus
@@ -143,15 +179,18 @@ defmodule UniboExPoc.Ofbiz.Order do
     resource UniboExPoc.Ofbiz.Order.ReturnItemShipment
     resource UniboExPoc.Ofbiz.Order.ReturnContactMech
     resource UniboExPoc.Ofbiz.Order.CommunicationEventReturn
+    resource UniboExPoc.Ofbiz.Order.CommunicationEventReturn.Version
     resource UniboExPoc.Ofbiz.Order.CartAbandonedLine
     resource UniboExPoc.Ofbiz.Order.ShoppingList
     resource UniboExPoc.Ofbiz.Order.ShoppingList.Version
     resource UniboExPoc.Ofbiz.Order.ShoppingListItem
+    resource UniboExPoc.Ofbiz.Order.ShoppingListItem.Version
     resource UniboExPoc.Ofbiz.Order.ShoppingListItemAttribute
     resource UniboExPoc.Ofbiz.Order.ShoppingListItemSurvey
     resource UniboExPoc.Ofbiz.Order.ShoppingListType
     resource UniboExPoc.Ofbiz.Order.ShoppingListType.Version
     resource UniboExPoc.Ofbiz.Order.ShoppingListWorkEffort
+    resource UniboExPoc.Ofbiz.Order.ShoppingListWorkEffort.Version
     resource UniboExPoc.Ofbiz.Order.AllocationPlanType
     resource UniboExPoc.Ofbiz.Order.AllocationPlanType.Version
     resource UniboExPoc.Ofbiz.Order.AllocationPlanHeader

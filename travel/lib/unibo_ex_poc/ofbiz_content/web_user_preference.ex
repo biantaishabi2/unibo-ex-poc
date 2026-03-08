@@ -43,11 +43,6 @@ defmodule UniboExPoc.Ofbiz.Content.WebUserPreference do
       public? true
       description "能够为当前会话中未登录的用户保存偏好设置"
     end
-    attribute :web_preference_type_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :web_preference_value, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -55,7 +50,6 @@ defmodule UniboExPoc.Ofbiz.Content.WebUserPreference do
   relationships do
     belongs_to :web_preference_type, UniboExPoc.Ofbiz.Content.WebPreferenceType do
       public? true
-      define_attribute? false
       attribute_type :string
     end
   end

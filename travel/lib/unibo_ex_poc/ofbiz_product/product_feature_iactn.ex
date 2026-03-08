@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFeatureIactn do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_feature_iactns"
@@ -27,16 +27,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFeatureIactn do
   end
 
   attributes do
-    attribute :product_feature_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :product_feature_id_to, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
+    uuid_primary_key :id
     attribute :product_id, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -48,17 +39,21 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFeatureIactn do
     belongs_to :main_product_feature, UniboExPoc.Ofbiz.Product.ProductFeature do
       public? true
       source_attribute :product_feature_id
-      define_attribute? false
     end
     belongs_to :assoc_product_feature, UniboExPoc.Ofbiz.Product.ProductFeature do
       public? true
       source_attribute :product_feature_id_to
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

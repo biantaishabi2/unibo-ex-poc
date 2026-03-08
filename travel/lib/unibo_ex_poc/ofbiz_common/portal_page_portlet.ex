@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Common.PortalPagePortlet do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   resource do
     description "Defines Portlets included into Portal Pages"
@@ -31,16 +31,6 @@ defmodule UniboExPoc.Ofbiz.Common.PortalPagePortlet do
   end
 
   attributes do
-    attribute :portal_page_id, :uuid do
-      primary_key? true
-      allow_nil? false
-      public? true
-    end
-    attribute :portal_portlet_id, :uuid do
-      primary_key? true
-      allow_nil? false
-      public? true
-    end
     attribute :portlet_seq_id, :string do
       primary_key? true
       allow_nil? false
@@ -55,21 +45,26 @@ defmodule UniboExPoc.Ofbiz.Common.PortalPagePortlet do
   relationships do
     belongs_to :portal_page, UniboExPoc.Ofbiz.Common.PortalPage do
       public? true
-      define_attribute? false
     end
     belongs_to :portal_portlet, UniboExPoc.Ofbiz.Common.PortalPortlet do
       public? true
-      define_attribute? false
     end
     belongs_to :portal_page_column, UniboExPoc.Ofbiz.Common.PortalPageColumn do
       public? true
       source_attribute :portal_page_id
       define_attribute? false
+      attribute_type :string
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

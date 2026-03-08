@@ -27,29 +27,11 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementContent do
   end
 
   attributes do
-    attribute :agreement_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "协议编号"
-    end
     attribute :agreement_item_seq_id, :string do
       allow_nil? false
       primary_key? true
       public? true
       description "协议项序列编号"
-    end
-    attribute :agreement_content_type_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "协议内容类型编号"
-    end
-    attribute :content_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "内容编号"
     end
     attribute :from_date, :utc_datetime do
       allow_nil? false
@@ -67,15 +49,12 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementContent do
   relationships do
     belongs_to :agreement, UniboExPoc.Ofbiz.Party.Agreement do
       public? true
-      define_attribute? false
     end
     belongs_to :content, UniboExPoc.Ofbiz.Party.Content do
       public? true
-      define_attribute? false
     end
     belongs_to :agreement_content_type, UniboExPoc.Ofbiz.Party.AgreementContentType do
       public? true
-      define_attribute? false
     end
   end
 

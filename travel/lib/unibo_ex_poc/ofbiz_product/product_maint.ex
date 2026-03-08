@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductMaint do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   resource do
     description "用于指定定期维护的详细信息"
@@ -31,11 +31,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductMaint do
   end
 
   attributes do
-    attribute :product_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :product_maint_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -61,7 +56,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductMaint do
   relationships do
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
-      define_attribute? false
     end
     belongs_to :product_maint_type, UniboExPoc.Ofbiz.Product.ProductMaintType do
       public? true
@@ -74,6 +68,12 @@ defmodule UniboExPoc.Ofbiz.Product.ProductMaint do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

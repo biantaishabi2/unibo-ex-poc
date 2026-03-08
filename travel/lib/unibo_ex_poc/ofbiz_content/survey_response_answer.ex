@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Content.SurveyResponseAnswer do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_survey_response_answers"
@@ -27,16 +27,6 @@ defmodule UniboExPoc.Ofbiz.Content.SurveyResponseAnswer do
   end
 
   attributes do
-    attribute :survey_response_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :survey_question_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :survey_multi_resp_col_id, :string do
       allow_nil? false
       primary_key? true
@@ -66,12 +56,10 @@ defmodule UniboExPoc.Ofbiz.Content.SurveyResponseAnswer do
   relationships do
     belongs_to :survey_response, UniboExPoc.Ofbiz.Content.SurveyResponse do
       public? true
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :survey_question, UniboExPoc.Ofbiz.Content.SurveyQuestion do
       public? true
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :content, UniboExPoc.Ofbiz.Content.Content do
@@ -82,6 +70,12 @@ defmodule UniboExPoc.Ofbiz.Content.SurveyResponseAnswer do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

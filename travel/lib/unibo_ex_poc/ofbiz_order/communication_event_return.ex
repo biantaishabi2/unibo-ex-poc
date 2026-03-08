@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Order.CommunicationEventReturn do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_communication_event_returns"
@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Order.CommunicationEventReturn do
   end
 
   attributes do
-    attribute :return_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :communication_event_id, :string do
       allow_nil? false
       primary_key? true
@@ -44,13 +39,18 @@ defmodule UniboExPoc.Ofbiz.Order.CommunicationEventReturn do
     belongs_to :return_header, UniboExPoc.Ofbiz.Order.ReturnHeader do
       public? true
       source_attribute :return_id
-      define_attribute? false
       attribute_type :string
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

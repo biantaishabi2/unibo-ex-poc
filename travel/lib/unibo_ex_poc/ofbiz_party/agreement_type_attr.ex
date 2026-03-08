@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementTypeAttr do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_agreement_type_attrs"
@@ -27,12 +27,6 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementTypeAttr do
   end
 
   attributes do
-    attribute :agreement_type_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "协议类型编号"
-    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -49,12 +43,6 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementTypeAttr do
   relationships do
     belongs_to :agreement_type, UniboExPoc.Ofbiz.Party.AgreementType do
       public? true
-      define_attribute? false
-    end
-    has_many :agreement, UniboExPoc.Ofbiz.Party.Agreement do
-      public? true
-      source_attribute :agreement_type_id
-      destination_attribute :agreement_type_id
     end
   end
 
@@ -62,8 +50,13 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementTypeAttr do
     defaults [:read, :create, :update, :destroy]
   end
 
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
+  end
+
   archive do
-    archive_related [:agreement]
   end
 
 end

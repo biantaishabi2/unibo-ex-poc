@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Common.PortletAttribute do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   resource do
     description "Allows to set different attribute values for each instance of the same portlet"
@@ -31,26 +31,10 @@ defmodule UniboExPoc.Ofbiz.Common.PortletAttribute do
   end
 
   attributes do
-    attribute :portal_page_id, :string do
-      primary_key? true
-      allow_nil? false
-      public? true
-    end
-    attribute :portal_portlet_id, :uuid do
-      primary_key? true
-      allow_nil? false
-      public? true
-    end
-    attribute :portlet_seq_id, :string do
-      primary_key? true
-      allow_nil? false
-      public? true
-    end
-    attribute :attr_name, :string do
-      primary_key? true
-      allow_nil? false
-      public? true
-    end
+    uuid_primary_key :id
+    attribute :portal_page_id, :string, public?: true
+    attribute :portlet_seq_id, :string, public?: true
+    attribute :attr_name, :string, public?: true
     attribute :attr_value, :string, public?: true
     attribute :attr_description, :string, public?: true
     attribute :attr_type, :string, public?: true
@@ -60,12 +44,21 @@ defmodule UniboExPoc.Ofbiz.Common.PortletAttribute do
   relationships do
     belongs_to :portal_portlet, UniboExPoc.Ofbiz.Common.PortalPortlet do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  identities do
+    identity :unique_portlet_attr, [:portal_page_id, :portlet_seq_id, :attr_name]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

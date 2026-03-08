@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityGroupMember do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_facility_group_members"
@@ -27,16 +27,6 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityGroupMember do
   end
 
   attributes do
-    attribute :facility_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :facility_group_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -50,16 +40,20 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityGroupMember do
   relationships do
     belongs_to :facility, UniboExPoc.Ofbiz.Product.Facility do
       public? true
-      define_attribute? false
     end
     belongs_to :facility_group, UniboExPoc.Ofbiz.Product.FacilityGroup do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

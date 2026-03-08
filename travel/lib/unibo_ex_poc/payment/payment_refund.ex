@@ -83,7 +83,7 @@ defmodule UniboExPoc.Payment.PaymentRefund do
     defaults [:read]
     create :create do
       primary? true
-      accept [:amount, :reason, :refund_method]
+      accept [:payment_id, :amount, :reason, :refund_method]
       argument :payment_id, :uuid, allow_nil?: false
       change manage_relationship(:payment_id, :payment, type: :append, on_lookup: :relate)
       validate present(:payment_id)

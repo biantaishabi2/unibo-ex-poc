@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductGlAccount do
   end
 
   attributes do
-    attribute :product_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :organization_party_id, :string do
       allow_nil? false
       primary_key? true
@@ -49,7 +44,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductGlAccount do
   relationships do
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
-      define_attribute? false
     end
   end
 

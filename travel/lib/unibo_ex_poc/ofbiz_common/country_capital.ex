@@ -37,7 +37,7 @@ defmodule UniboExPoc.Ofbiz.Common.CountryCapital do
   end
 
   relationships do
-    belongs_to :country_code_rel, UniboExPoc.Ofbiz.Common.CountryCode do
+    belongs_to :country_code_ref, UniboExPoc.Ofbiz.Common.CountryCode do
       public? true
       source_attribute :country_code
     end

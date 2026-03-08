@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Common.UserPreference do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   resource do
     description "The UserPreference entity contains one entry per preference per
@@ -34,14 +34,9 @@ defmodule UniboExPoc.Ofbiz.Common.UserPreference do
   end
 
   attributes do
-    attribute :user_login_id, :string do
-      primary_key? true
-      allow_nil? false
-      public? true
-    end
+    uuid_primary_key :id
+    attribute :user_login_id, :string, public?: true
     attribute :user_pref_type_id, :string do
-      primary_key? true
-      allow_nil? false
       public? true
       description "A unique identifier for this preference"
     end
@@ -64,6 +59,16 @@ defmodule UniboExPoc.Ofbiz.Common.UserPreference do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  identities do
+    identity :unique_user_pref, [:user_login_id, :user_pref_type_id]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

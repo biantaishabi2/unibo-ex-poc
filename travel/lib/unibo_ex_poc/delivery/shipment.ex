@@ -201,7 +201,7 @@ defmodule UniboExPoc.Delivery.Shipment do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:shipment_id, :primary_order_id, :estimated_ship_date, :estimated_arrival_date, :handling_instructions, :currency_uom_id, :estimated_ship_cost]
+      accept [:shipment_id, :shipment_type_id, :primary_order_id, :origin_facility_id, :destination_facility_id, :party_id_to, :party_id_from, :estimated_ship_date, :estimated_arrival_date, :handling_instructions, :currency_uom_id, :estimated_ship_cost]
       validate present(:shipment_type_id)
       change set_attribute(:status_id, :SHIPMENT_INPUT)
       change fn changeset, _context ->

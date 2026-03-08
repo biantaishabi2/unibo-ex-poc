@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Common.VisualThemeResource do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   resource do
     description "The VisualThemeResource entity contains visual theme
@@ -32,16 +32,6 @@ defmodule UniboExPoc.Ofbiz.Common.VisualThemeResource do
   end
 
   attributes do
-    attribute :visual_theme_id, :uuid do
-      primary_key? true
-      allow_nil? false
-      public? true
-    end
-    attribute :resource_type_enum_id, :uuid do
-      primary_key? true
-      allow_nil? false
-      public? true
-    end
     attribute :sequence_id, :string do
       primary_key? true
       allow_nil? false
@@ -58,17 +48,21 @@ defmodule UniboExPoc.Ofbiz.Common.VisualThemeResource do
   relationships do
     belongs_to :visual_theme, UniboExPoc.Ofbiz.Common.VisualTheme do
       public? true
-      define_attribute? false
     end
     belongs_to :enumeration, UniboExPoc.Ofbiz.Common.Enumeration do
       public? true
       source_attribute :resource_type_enum_id
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

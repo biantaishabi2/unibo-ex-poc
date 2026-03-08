@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityCarrierShipment do
   end
 
   attributes do
-    attribute :facility_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
@@ -53,7 +48,6 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityCarrierShipment do
   relationships do
     belongs_to :facility, UniboExPoc.Ofbiz.Product.Facility do
       public? true
-      define_attribute? false
     end
   end
 

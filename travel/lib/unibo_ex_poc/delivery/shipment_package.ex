@@ -107,7 +107,7 @@ defmodule UniboExPoc.Delivery.ShipmentPackage do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:shipment_package_seq_id, :weight, :weight_uom_id, :box_length, :box_height, :box_width, :dimension_uom_id, :insured_value]
+      accept [:shipment_id, :shipment_package_seq_id, :shipment_box_type_id, :weight, :weight_uom_id, :box_length, :box_height, :box_width, :dimension_uom_id, :insured_value]
       validate present(:shipment_id)
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)

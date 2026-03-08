@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceRole do
   end
 
   attributes do
-    attribute :invoice_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
@@ -50,7 +45,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceRole do
   relationships do
     belongs_to :invoice, UniboExPoc.Ofbiz.Accounting.Invoice do
       public? true
-      define_attribute? false
     end
   end
 

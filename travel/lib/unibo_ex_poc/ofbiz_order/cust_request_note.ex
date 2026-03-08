@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Order.CustRequestNote do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_cust_request_notes"
@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Order.CustRequestNote do
   end
 
   attributes do
-    attribute :cust_request_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :note_id, :string do
       allow_nil? false
       primary_key? true
@@ -43,13 +38,18 @@ defmodule UniboExPoc.Ofbiz.Order.CustRequestNote do
   relationships do
     belongs_to :cust_request, UniboExPoc.Ofbiz.Order.CustRequest do
       public? true
-      define_attribute? false
       attribute_type :string
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

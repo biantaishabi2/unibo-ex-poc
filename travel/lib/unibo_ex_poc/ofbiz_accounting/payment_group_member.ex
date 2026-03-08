@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.PaymentGroupMember do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   resource do
     description "付款分组 Member"
@@ -31,16 +31,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.PaymentGroupMember do
   end
 
   attributes do
-    attribute :payment_group_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :payment_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -54,16 +44,20 @@ defmodule UniboExPoc.Ofbiz.Accounting.PaymentGroupMember do
   relationships do
     belongs_to :payment_group, UniboExPoc.Ofbiz.Accounting.PaymentGroup do
       public? true
-      define_attribute? false
     end
     belongs_to :payment, UniboExPoc.Ofbiz.Accounting.Payment do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

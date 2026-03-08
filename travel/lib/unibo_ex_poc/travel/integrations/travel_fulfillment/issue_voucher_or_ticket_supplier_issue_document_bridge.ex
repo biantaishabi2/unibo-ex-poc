@@ -9,15 +9,15 @@ defmodule UniboExPoc.Travel.Integrations.TravelFulfillment.IssueVoucherOrTicketS
 
   @impl true
   def change(changeset, _opts, context) do
-    request_id = Map.get(context, :request_id) || "travel_fulfillment.issue_voucher_or_ticket.supplier_issue_document"
+    request_id = resolve_context_path(context, "correlation.request_id") || Map.get(context, :request_id) || "travel_fulfillment.issue_voucher_or_ticket.supplier_issue_document"
     payload =
       %{
         "entity" => "travel_fulfillment",
         "action" => "issue_voucher_or_ticket",
         "integration" => "supplier_issue_document",
         "resource" => inspect(changeset.resource),
-        "tenant" => Map.get(context, :tenant) || Map.get(context, :tenant_id),
-        "actor" => inspect(Map.get(context, :actor))
+        "tenant" => resolve_context_path(context, "scope.tenant.id") || Map.get(context, :tenant) || Map.get(context, :tenant_id),
+        "actor" => inspect(Map.get(context, :actor) || resolve_context_path(context, "principal"))
       }
       |> Map.merge(resolve_request_payload(changeset, context))
 
@@ -70,12 +70,18 @@ defmodule UniboExPoc.Travel.Integrations.TravelFulfillment.IssueVoucherOrTicketS
       ["arg", key] -> Ash.Changeset.get_argument(changeset, String.to_atom(key))
       ["attr", key] -> Ash.Changeset.get_attribute(changeset, String.to_atom(key))
       ["attribute", key] -> Ash.Changeset.get_attribute(changeset, String.to_atom(key))
-      ["context", key] -> fetch(context, String.to_atom(key), nil)
+      ["context", key] -> resolve_context_path(context, key)
       ["literal", value] -> value
       _ -> nil
     end
   end
   defp resolve_source(_changeset, _context, _source_path), do: nil
+
+  defp resolve_context_path(context, key_path) when is_map(context) and is_binary(key_path) do
+    keys = String.split(key_path, ".", trim: true)
+    fetch_path(context, keys)
+  end
+  defp resolve_context_path(_context, _key_path), do: nil
 
   defp put_payload(map, [], _value), do: map
   defp put_payload(map, [key], value), do: Map.put(map, key, value)
@@ -87,16 +93,18 @@ defmodule UniboExPoc.Travel.Integrations.TravelFulfillment.IssueVoucherOrTicketS
 
   defp fetch_path(data, []), do: data
   defp fetch_path(data, [key | rest]) when is_map(data) do
-    key_atom = String.to_atom(key)
+    lookup_map = normalize_lookup_map(data)
     value =
       cond do
-        Map.has_key?(data, key) -> Map.get(data, key)
-        Map.has_key?(data, key_atom) -> Map.get(data, key_atom)
-        true -> nil
+        Map.has_key?(lookup_map, key) -> Map.get(lookup_map, key)
+        true -> case Enum.reduce_while(lookup_map, :not_found, fn {existing_key, existing_value}, _acc -> if to_string(existing_key) == key, do: {:halt, {:found, existing_value}}, else: {:cont, :not_found} end) do {:found, resolved} -> resolved; _ -> nil end
       end
     fetch_path(value, rest)
   end
   defp fetch_path(_data, _path), do: nil
+  defp normalize_lookup_map(data) when is_struct(data), do: Map.from_struct(data)
+  defp normalize_lookup_map(data) when is_map(data), do: data
+  defp normalize_lookup_map(_data), do: %{}
 
   defp fetch(map, key, default) when is_map(map) do
     string_key = Atom.to_string(key)

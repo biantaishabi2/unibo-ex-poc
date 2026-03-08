@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemLabelAppl do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_inventory_item_label_appls"
@@ -27,16 +27,7 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemLabelAppl do
   end
 
   attributes do
-    attribute :inventory_item_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :inventory_item_label_type_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
+    uuid_primary_key :id
     attribute :sequence_num, :integer, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -44,11 +35,9 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemLabelAppl do
   relationships do
     belongs_to :inventory_item, UniboExPoc.Ofbiz.Product.InventoryItem do
       public? true
-      define_attribute? false
     end
     belongs_to :inventory_item_label_type, UniboExPoc.Ofbiz.Product.InventoryItemLabelType do
       public? true
-      define_attribute? false
     end
     belongs_to :inventory_item_label, UniboExPoc.Ofbiz.Product.InventoryItemLabel do
       public? true
@@ -57,6 +46,12 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemLabelAppl do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

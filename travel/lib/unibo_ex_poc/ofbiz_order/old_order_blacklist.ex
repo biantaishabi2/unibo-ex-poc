@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Order.OldOrderBlacklist do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_old_order_blacklists"
@@ -32,11 +32,6 @@ defmodule UniboExPoc.Ofbiz.Order.OldOrderBlacklist do
       primary_key? true
       public? true
     end
-    attribute :order_blacklist_type_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -44,13 +39,18 @@ defmodule UniboExPoc.Ofbiz.Order.OldOrderBlacklist do
     belongs_to :old_order_blacklist_type, UniboExPoc.Ofbiz.Order.OldOrderBlacklistType do
       public? true
       source_attribute :order_blacklist_type_id
-      define_attribute? false
       attribute_type :string
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

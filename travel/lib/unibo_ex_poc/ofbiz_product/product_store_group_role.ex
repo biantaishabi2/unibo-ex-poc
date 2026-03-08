@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreGroupRole do
   end
 
   attributes do
-    attribute :product_store_group_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
@@ -48,7 +43,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreGroupRole do
   relationships do
     belongs_to :product_store_group, UniboExPoc.Ofbiz.Product.ProductStoreGroup do
       public? true
-      define_attribute? false
     end
   end
 

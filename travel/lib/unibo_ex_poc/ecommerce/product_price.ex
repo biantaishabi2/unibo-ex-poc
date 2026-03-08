@@ -61,7 +61,7 @@ defmodule UniboExPoc.Ecommerce.ProductPrice do
   end
 
   calculations do
-    calculate :is_active, :boolean, expr(((now() >= from_date) and (now() <= thru_date)))
+    calculate :is_active, :boolean, {UniboExPoc.Ecommerce.Calculations.ProductPrice.IsActive, []}
     calculate :effective_price, :decimal, expr(amount)
   end
 

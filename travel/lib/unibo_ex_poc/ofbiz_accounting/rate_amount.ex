@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.RateAmount do
   end
 
   attributes do
-    attribute :rate_type_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :rate_currency_uom_id, :string do
       allow_nil? false
       primary_key? true
@@ -74,7 +69,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.RateAmount do
   relationships do
     belongs_to :rate_type, UniboExPoc.Ofbiz.Accounting.RateType do
       public? true
-      define_attribute? false
     end
   end
 

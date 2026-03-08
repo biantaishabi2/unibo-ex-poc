@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlReconciliationEntry do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_gl_reconciliation_entries"
@@ -27,16 +27,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlReconciliationEntry do
   end
 
   attributes do
-    attribute :gl_reconciliation_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :acctg_trans_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :acctg_trans_entry_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -49,16 +39,20 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlReconciliationEntry do
   relationships do
     belongs_to :gl_reconciliation, UniboExPoc.Ofbiz.Accounting.GlReconciliation do
       public? true
-      define_attribute? false
     end
     belongs_to :acctg_trans, UniboExPoc.Ofbiz.Accounting.AcctgTrans do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

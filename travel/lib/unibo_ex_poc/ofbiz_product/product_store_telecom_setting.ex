@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreTelecomSetting do
   end
 
   attributes do
-    attribute :product_store_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :telecom_method_type_id, :string do
       allow_nil? false
       primary_key? true
@@ -50,7 +45,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreTelecomSetting do
   relationships do
     belongs_to :product_store, UniboExPoc.Ofbiz.Product.ProductStore do
       public? true
-      define_attribute? false
     end
   end
 

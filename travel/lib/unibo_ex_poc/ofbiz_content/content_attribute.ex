@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Content.ContentAttribute do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_attributes"
@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Content.ContentAttribute do
   end
 
   attributes do
-    attribute :content_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :attr_name, :string do
       allow_nil? false
       primary_key? true
@@ -45,13 +40,18 @@ defmodule UniboExPoc.Ofbiz.Content.ContentAttribute do
   relationships do
     belongs_to :content, UniboExPoc.Ofbiz.Content.Content do
       public? true
-      define_attribute? false
       attribute_type :string
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

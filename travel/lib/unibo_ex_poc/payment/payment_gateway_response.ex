@@ -150,7 +150,7 @@ defmodule UniboExPoc.Payment.PaymentGatewayResponse do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:payment_service_type_enum_id, :order_payment_preference_id, :payment_method_type_id, :trans_code_enum_id, :amount, :currency_uom_id, :reference_num, :alt_reference, :sub_reference, :gateway_code, :gateway_flag, :gateway_avs_result, :gateway_cv_result, :gateway_score_result, :gateway_message, :transaction_date, :result_declined, :result_nsf, :result_bad_expire, :result_bad_card_number]
+      accept [:payment_service_type_enum_id, :order_payment_preference_id, :payment_method_type_id, :payment_method_id, :payment_provider_id, :trans_code_enum_id, :amount, :currency_uom_id, :reference_num, :alt_reference, :sub_reference, :gateway_code, :gateway_flag, :gateway_avs_result, :gateway_cv_result, :gateway_score_result, :gateway_message, :transaction_date, :result_declined, :result_nsf, :result_bad_expire, :result_bad_card_number]
       validate present(:payment_service_type_enum_id)
       validate present(:amount)
       validate present(:currency_uom_id)

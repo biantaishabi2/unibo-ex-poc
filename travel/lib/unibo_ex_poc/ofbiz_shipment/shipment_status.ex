@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentStatus do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_statuses"
@@ -27,16 +27,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentStatus do
   end
 
   attributes do
-    attribute :status_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :shipment_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
+    uuid_primary_key :id
     attribute :status_date, :utc_datetime, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -45,12 +36,10 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentStatus do
     belongs_to :status_item, UniboExPoc.Ofbiz.Shipment.StatusItem do
       public? true
       source_attribute :status_id
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :shipment, UniboExPoc.Ofbiz.Shipment.Shipment do
       public? true
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :change_by_user_login, UniboExPoc.Ofbiz.Shipment.UserLogin do
@@ -61,6 +50,12 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentStatus do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

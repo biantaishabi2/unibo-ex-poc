@@ -66,7 +66,7 @@ defmodule UniboExPoc.Travel.TravelRoomType do
     defaults [:read]
     create :create do
       primary? true
-      accept [:room_type_code, :room_type_name, :hotel_code, :bed_type, :status]
+      accept [:room_type_code, :room_type_name, :hotel_id, :hotel_code, :bed_type, :status]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 
@@ -79,7 +79,7 @@ defmodule UniboExPoc.Travel.TravelRoomType do
     end
     update :update do
       primary? true
-      accept [:room_type_name, :hotel_code, :bed_type, :status]
+      accept [:room_type_name, :hotel_id, :hotel_code, :bed_type, :status]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

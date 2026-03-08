@@ -32,11 +32,6 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteTerm do
       primary_key? true
       public? true
     end
-    attribute :quote_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :quote_item_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -53,7 +48,6 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteTerm do
   relationships do
     belongs_to :quote, UniboExPoc.Ofbiz.Order.Quote do
       public? true
-      define_attribute? false
       attribute_type :string
     end
   end

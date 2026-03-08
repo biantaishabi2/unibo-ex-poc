@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreCatalog do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_store_catalogs"
@@ -27,16 +27,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreCatalog do
   end
 
   attributes do
-    attribute :product_store_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :prod_catalog_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -50,16 +40,20 @@ defmodule UniboExPoc.Ofbiz.Product.ProductStoreCatalog do
   relationships do
     belongs_to :product_store, UniboExPoc.Ofbiz.Product.ProductStore do
       public? true
-      define_attribute? false
     end
     belongs_to :prod_catalog, UniboExPoc.Ofbiz.Product.ProdCatalog do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPromoProduct do
   end
 
   attributes do
-    attribute :product_promo_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :product_promo_rule_id, :string do
       allow_nil? false
       primary_key? true
@@ -47,11 +42,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPromoProduct do
       primary_key? true
       public? true
     end
-    attribute :product_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :product_promo_appl_enum_id, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -59,11 +49,9 @@ defmodule UniboExPoc.Ofbiz.Product.ProductPromoProduct do
   relationships do
     belongs_to :product_promo, UniboExPoc.Ofbiz.Product.ProductPromo do
       public? true
-      define_attribute? false
     end
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
-      define_attribute? false
     end
   end
 

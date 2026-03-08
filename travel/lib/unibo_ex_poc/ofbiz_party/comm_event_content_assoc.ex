@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Party.CommEventContentAssoc do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_comm_event_content_assocs"
@@ -27,18 +27,6 @@ defmodule UniboExPoc.Ofbiz.Party.CommEventContentAssoc do
   end
 
   attributes do
-    attribute :content_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "内容编号"
-    end
-    attribute :communication_event_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "沟通活动编号"
-    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -60,11 +48,9 @@ defmodule UniboExPoc.Ofbiz.Party.CommEventContentAssoc do
     belongs_to :from_content, UniboExPoc.Ofbiz.Party.Content do
       public? true
       source_attribute :content_id
-      define_attribute? false
     end
     belongs_to :communication_event, UniboExPoc.Ofbiz.Party.CommunicationEvent do
       public? true
-      define_attribute? false
     end
     belongs_to :comm_content_assoc_type, UniboExPoc.Ofbiz.Party.CommContentAssocType do
       public? true
@@ -73,6 +59,12 @@ defmodule UniboExPoc.Ofbiz.Party.CommEventContentAssoc do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

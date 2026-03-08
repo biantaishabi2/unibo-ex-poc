@@ -27,16 +27,6 @@ defmodule UniboExPoc.Ofbiz.Content.ContentPurposeOperation do
   end
 
   attributes do
-    attribute :content_purpose_type_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :content_operation_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :role_type_id, :string do
       allow_nil? false
       primary_key? true
@@ -58,12 +48,10 @@ defmodule UniboExPoc.Ofbiz.Content.ContentPurposeOperation do
   relationships do
     belongs_to :content_purpose_type, UniboExPoc.Ofbiz.Content.ContentPurposeType do
       public? true
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :content_operation, UniboExPoc.Ofbiz.Content.ContentOperation do
       public? true
-      define_attribute? false
       attribute_type :string
     end
   end

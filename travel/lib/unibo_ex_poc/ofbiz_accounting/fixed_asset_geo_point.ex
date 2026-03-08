@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetGeoPoint do
   end
 
   attributes do
-    attribute :fixed_asset_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :geo_point_id, :string do
       allow_nil? false
       primary_key? true
@@ -49,7 +44,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetGeoPoint do
   relationships do
     belongs_to :fixed_asset, UniboExPoc.Ofbiz.Accounting.FixedAsset do
       public? true
-      define_attribute? false
     end
   end
 

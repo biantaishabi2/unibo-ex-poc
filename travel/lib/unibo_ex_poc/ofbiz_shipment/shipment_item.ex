@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentItem do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_items"
@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentItem do
   end
 
   attributes do
-    attribute :shipment_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :shipment_item_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -45,7 +40,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentItem do
   relationships do
     belongs_to :shipment, UniboExPoc.Ofbiz.Shipment.Shipment do
       public? true
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :product, UniboExPoc.Ofbiz.Shipment.Product do
@@ -56,6 +50,12 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentItem do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

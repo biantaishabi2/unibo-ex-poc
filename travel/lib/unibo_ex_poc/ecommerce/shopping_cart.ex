@@ -95,13 +95,14 @@ defmodule UniboExPoc.Ecommerce.ShoppingCart do
   calculations do
     calculate :total_amount, :decimal, expr(sum(visible_lines, field: :price_total, query: [filter: expr(true)]))
     calculate :item_count, :integer, expr(sum(visible_lines, field: :product_uom_qty, query: [filter: expr(true)]))
-    calculate :is_abandoned, :boolean, expr(status == active and age > website.cart_abandoned_delay)
-    calculate :only_services, :boolean, expr(all(lines.product.type == 'service'))
+    calculate :is_abandoned, :boolean, {UniboExPoc.Ecommerce.Calculations.ShoppingCart.IsAbandoned, []}
+    calculate :only_services, :boolean, {UniboExPoc.Ecommerce.Calculations.ShoppingCart.OnlyServices, []}
   end
 
   relationships do
-    belongs_to :owner, UniboExPoc.Ecommerce.User do
+    belongs_to :owner, UniboExPoc.Ecommerce.Party do
       public? true
+      source_attribute :owner_party_id
     end
     belongs_to :website, UniboExPoc.Ecommerce.WebSite do
       public? true

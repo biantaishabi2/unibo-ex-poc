@@ -10,28 +10,37 @@ defmodule UniboExPoc.Ofbiz.Accounting do
     resource UniboExPoc.Ofbiz.Accounting.Budget
     resource UniboExPoc.Ofbiz.Accounting.Budget.Version
     resource UniboExPoc.Ofbiz.Accounting.BudgetAttribute
+    resource UniboExPoc.Ofbiz.Accounting.BudgetAttribute.Version
     resource UniboExPoc.Ofbiz.Accounting.BudgetItem
+    resource UniboExPoc.Ofbiz.Accounting.BudgetItem.Version
     resource UniboExPoc.Ofbiz.Accounting.BudgetItemAttribute
     resource UniboExPoc.Ofbiz.Accounting.BudgetItemType
     resource UniboExPoc.Ofbiz.Accounting.BudgetItemType.Version
     resource UniboExPoc.Ofbiz.Accounting.BudgetItemTypeAttr
+    resource UniboExPoc.Ofbiz.Accounting.BudgetItemTypeAttr.Version
     resource UniboExPoc.Ofbiz.Accounting.BudgetReview
     resource UniboExPoc.Ofbiz.Accounting.BudgetReviewResultType
     resource UniboExPoc.Ofbiz.Accounting.BudgetReviewResultType.Version
     resource UniboExPoc.Ofbiz.Accounting.BudgetRevision
+    resource UniboExPoc.Ofbiz.Accounting.BudgetRevision.Version
     resource UniboExPoc.Ofbiz.Accounting.BudgetRevisionImpact
     resource UniboExPoc.Ofbiz.Accounting.BudgetRole
     resource UniboExPoc.Ofbiz.Accounting.BudgetScenario
     resource UniboExPoc.Ofbiz.Accounting.BudgetScenario.Version
     resource UniboExPoc.Ofbiz.Accounting.BudgetScenarioApplication
+    resource UniboExPoc.Ofbiz.Accounting.BudgetScenarioApplication.Version
     resource UniboExPoc.Ofbiz.Accounting.BudgetScenarioRule
+    resource UniboExPoc.Ofbiz.Accounting.BudgetScenarioRule.Version
     resource UniboExPoc.Ofbiz.Accounting.BudgetStatus
+    resource UniboExPoc.Ofbiz.Accounting.BudgetStatus.Version
     resource UniboExPoc.Ofbiz.Accounting.BudgetType
     resource UniboExPoc.Ofbiz.Accounting.BudgetType.Version
     resource UniboExPoc.Ofbiz.Accounting.BudgetTypeAttr
+    resource UniboExPoc.Ofbiz.Accounting.BudgetTypeAttr.Version
     resource UniboExPoc.Ofbiz.Accounting.FinAccount
     resource UniboExPoc.Ofbiz.Accounting.FinAccount.Version
     resource UniboExPoc.Ofbiz.Accounting.FinAccountAttribute
+    resource UniboExPoc.Ofbiz.Accounting.FinAccountAttribute.Version
     resource UniboExPoc.Ofbiz.Accounting.FinAccountAuth
     resource UniboExPoc.Ofbiz.Accounting.FinAccountAuth.Version
     resource UniboExPoc.Ofbiz.Accounting.FinAccountRole
@@ -39,34 +48,46 @@ defmodule UniboExPoc.Ofbiz.Accounting do
     resource UniboExPoc.Ofbiz.Accounting.FinAccountTrans
     resource UniboExPoc.Ofbiz.Accounting.FinAccountTrans.Version
     resource UniboExPoc.Ofbiz.Accounting.FinAccountTransAttribute
+    resource UniboExPoc.Ofbiz.Accounting.FinAccountTransAttribute.Version
     resource UniboExPoc.Ofbiz.Accounting.FinAccountTransType
     resource UniboExPoc.Ofbiz.Accounting.FinAccountTransType.Version
     resource UniboExPoc.Ofbiz.Accounting.FinAccountTransTypeAttr
+    resource UniboExPoc.Ofbiz.Accounting.FinAccountTransTypeAttr.Version
     resource UniboExPoc.Ofbiz.Accounting.FinAccountType
     resource UniboExPoc.Ofbiz.Accounting.FinAccountType.Version
     resource UniboExPoc.Ofbiz.Accounting.FinAccountTypeAttr
+    resource UniboExPoc.Ofbiz.Accounting.FinAccountTypeAttr.Version
     resource UniboExPoc.Ofbiz.Accounting.FinAccountTypeGlAccount
+    resource UniboExPoc.Ofbiz.Accounting.FinAccountTypeGlAccount.Version
     resource UniboExPoc.Ofbiz.Accounting.FixedAsset
     resource UniboExPoc.Ofbiz.Accounting.FixedAsset.Version
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetAttribute
+    resource UniboExPoc.Ofbiz.Accounting.FixedAssetAttribute.Version
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetDepMethod
+    resource UniboExPoc.Ofbiz.Accounting.FixedAssetDepMethod.Version
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetGeoPoint
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetIdent
+    resource UniboExPoc.Ofbiz.Accounting.FixedAssetIdent.Version
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetIdentType
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetIdentType.Version
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetMaint
+    resource UniboExPoc.Ofbiz.Accounting.FixedAssetMaint.Version
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetMeter
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetProduct
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetProductType
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetProductType.Version
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetTypeGlAccount
+    resource UniboExPoc.Ofbiz.Accounting.FixedAssetTypeGlAccount.Version
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetRegistration
+    resource UniboExPoc.Ofbiz.Accounting.FixedAssetRegistration.Version
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetStdCost
+    resource UniboExPoc.Ofbiz.Accounting.FixedAssetStdCost.Version
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetStdCostType
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetStdCostType.Version
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetType
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetType.Version
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetTypeAttr
+    resource UniboExPoc.Ofbiz.Accounting.FixedAssetTypeAttr.Version
     resource UniboExPoc.Ofbiz.Accounting.PartyFixedAssetAssignment
     resource UniboExPoc.Ofbiz.Accounting.FixedAssetMaintOrder
     resource UniboExPoc.Ofbiz.Accounting.AccommodationClass
@@ -80,11 +101,13 @@ defmodule UniboExPoc.Ofbiz.Accounting do
     resource UniboExPoc.Ofbiz.Accounting.Invoice
     resource UniboExPoc.Ofbiz.Accounting.Invoice.Version
     resource UniboExPoc.Ofbiz.Accounting.InvoiceAttribute
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceAttribute.Version
     resource UniboExPoc.Ofbiz.Accounting.InvoiceContent
     resource UniboExPoc.Ofbiz.Accounting.InvoiceContentType
     resource UniboExPoc.Ofbiz.Accounting.InvoiceContentType.Version
     resource UniboExPoc.Ofbiz.Accounting.InvoiceContactMech
     resource UniboExPoc.Ofbiz.Accounting.InvoiceItem
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceItem.Version
     resource UniboExPoc.Ofbiz.Accounting.InvoiceItemAssoc
     resource UniboExPoc.Ofbiz.Accounting.InvoiceItemAssocType
     resource UniboExPoc.Ofbiz.Accounting.InvoiceItemAssocType.Version
@@ -92,26 +115,35 @@ defmodule UniboExPoc.Ofbiz.Accounting do
     resource UniboExPoc.Ofbiz.Accounting.InvoiceItemType
     resource UniboExPoc.Ofbiz.Accounting.InvoiceItemType.Version
     resource UniboExPoc.Ofbiz.Accounting.InvoiceItemTypeAttr
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceItemTypeAttr.Version
     resource UniboExPoc.Ofbiz.Accounting.InvoiceItemTypeGlAccount
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceItemTypeGlAccount.Version
     resource UniboExPoc.Ofbiz.Accounting.InvoiceItemTypeMap
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceItemTypeMap.Version
     resource UniboExPoc.Ofbiz.Accounting.InvoiceRole
     resource UniboExPoc.Ofbiz.Accounting.InvoiceStatus
     resource UniboExPoc.Ofbiz.Accounting.InvoiceTerm
     resource UniboExPoc.Ofbiz.Accounting.InvoiceTerm.Version
     resource UniboExPoc.Ofbiz.Accounting.InvoiceTermAttribute
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceTermAttribute.Version
     resource UniboExPoc.Ofbiz.Accounting.InvoiceType
     resource UniboExPoc.Ofbiz.Accounting.InvoiceType.Version
     resource UniboExPoc.Ofbiz.Accounting.InvoiceTypeAttr
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceTypeAttr.Version
     resource UniboExPoc.Ofbiz.Accounting.InvoiceNote
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceNote.Version
     resource UniboExPoc.Ofbiz.Accounting.AcctgTrans
     resource UniboExPoc.Ofbiz.Accounting.AcctgTrans.Version
     resource UniboExPoc.Ofbiz.Accounting.AcctgTransAttribute
+    resource UniboExPoc.Ofbiz.Accounting.AcctgTransAttribute.Version
     resource UniboExPoc.Ofbiz.Accounting.AcctgTransEntry
+    resource UniboExPoc.Ofbiz.Accounting.AcctgTransEntry.Version
     resource UniboExPoc.Ofbiz.Accounting.AcctgTransEntryType
     resource UniboExPoc.Ofbiz.Accounting.AcctgTransEntryType.Version
     resource UniboExPoc.Ofbiz.Accounting.AcctgTransType
     resource UniboExPoc.Ofbiz.Accounting.AcctgTransType.Version
     resource UniboExPoc.Ofbiz.Accounting.AcctgTransTypeAttr
+    resource UniboExPoc.Ofbiz.Accounting.AcctgTransTypeAttr.Version
     resource UniboExPoc.Ofbiz.Accounting.GlAccount
     resource UniboExPoc.Ofbiz.Accounting.GlAccount.Version
     resource UniboExPoc.Ofbiz.Accounting.GlAccountClass
@@ -119,15 +151,19 @@ defmodule UniboExPoc.Ofbiz.Accounting do
     resource UniboExPoc.Ofbiz.Accounting.GlAccountGroup
     resource UniboExPoc.Ofbiz.Accounting.GlAccountGroup.Version
     resource UniboExPoc.Ofbiz.Accounting.GlAccountGroupMember
+    resource UniboExPoc.Ofbiz.Accounting.GlAccountGroupMember.Version
     resource UniboExPoc.Ofbiz.Accounting.GlAccountGroupType
     resource UniboExPoc.Ofbiz.Accounting.GlAccountGroupType.Version
     resource UniboExPoc.Ofbiz.Accounting.GlAccountHistory
     resource UniboExPoc.Ofbiz.Accounting.GlAccountOrganization
+    resource UniboExPoc.Ofbiz.Accounting.GlAccountOrganization.Version
     resource UniboExPoc.Ofbiz.Accounting.GlAccountRole
     resource UniboExPoc.Ofbiz.Accounting.GlAccountType
     resource UniboExPoc.Ofbiz.Accounting.GlAccountType.Version
     resource UniboExPoc.Ofbiz.Accounting.GlAccountTypeDefault
+    resource UniboExPoc.Ofbiz.Accounting.GlAccountTypeDefault.Version
     resource UniboExPoc.Ofbiz.Accounting.GlBudgetXref
+    resource UniboExPoc.Ofbiz.Accounting.GlBudgetXref.Version
     resource UniboExPoc.Ofbiz.Accounting.GlFiscalType
     resource UniboExPoc.Ofbiz.Accounting.GlFiscalType.Version
     resource UniboExPoc.Ofbiz.Accounting.GlJournal
@@ -135,6 +171,7 @@ defmodule UniboExPoc.Ofbiz.Accounting do
     resource UniboExPoc.Ofbiz.Accounting.GlReconciliation
     resource UniboExPoc.Ofbiz.Accounting.GlReconciliation.Version
     resource UniboExPoc.Ofbiz.Accounting.GlReconciliationEntry
+    resource UniboExPoc.Ofbiz.Accounting.GlReconciliationEntry.Version
     resource UniboExPoc.Ofbiz.Accounting.GlResourceType
     resource UniboExPoc.Ofbiz.Accounting.GlResourceType.Version
     resource UniboExPoc.Ofbiz.Accounting.GlXbrlClass
@@ -155,6 +192,7 @@ defmodule UniboExPoc.Ofbiz.Accounting do
     resource UniboExPoc.Ofbiz.Accounting.BillingAccountTerm
     resource UniboExPoc.Ofbiz.Accounting.BillingAccountTerm.Version
     resource UniboExPoc.Ofbiz.Accounting.BillingAccountTermAttr
+    resource UniboExPoc.Ofbiz.Accounting.BillingAccountTermAttr.Version
     resource UniboExPoc.Ofbiz.Accounting.CreditCard
     resource UniboExPoc.Ofbiz.Accounting.CreditCard.Version
     resource UniboExPoc.Ofbiz.Accounting.CreditCardTypeGlAccount
@@ -175,7 +213,9 @@ defmodule UniboExPoc.Ofbiz.Accounting do
     resource UniboExPoc.Ofbiz.Accounting.PaymentApplication
     resource UniboExPoc.Ofbiz.Accounting.PaymentApplication.Version
     resource UniboExPoc.Ofbiz.Accounting.PaymentAttribute
+    resource UniboExPoc.Ofbiz.Accounting.PaymentAttribute.Version
     resource UniboExPoc.Ofbiz.Accounting.PaymentBudgetAllocation
+    resource UniboExPoc.Ofbiz.Accounting.PaymentBudgetAllocation.Version
     resource UniboExPoc.Ofbiz.Accounting.PaymentContent
     resource UniboExPoc.Ofbiz.Accounting.PaymentContentType
     resource UniboExPoc.Ofbiz.Accounting.PaymentContentType.Version
@@ -184,10 +224,13 @@ defmodule UniboExPoc.Ofbiz.Accounting do
     resource UniboExPoc.Ofbiz.Accounting.PaymentMethodType
     resource UniboExPoc.Ofbiz.Accounting.PaymentMethodType.Version
     resource UniboExPoc.Ofbiz.Accounting.PaymentMethodTypeGlAccount
+    resource UniboExPoc.Ofbiz.Accounting.PaymentMethodTypeGlAccount.Version
     resource UniboExPoc.Ofbiz.Accounting.PaymentType
     resource UniboExPoc.Ofbiz.Accounting.PaymentType.Version
     resource UniboExPoc.Ofbiz.Accounting.PaymentTypeAttr
+    resource UniboExPoc.Ofbiz.Accounting.PaymentTypeAttr.Version
     resource UniboExPoc.Ofbiz.Accounting.PaymentGlAccountTypeMap
+    resource UniboExPoc.Ofbiz.Accounting.PaymentGlAccountTypeMap.Version
     resource UniboExPoc.Ofbiz.Accounting.PaymentGatewayConfigType
     resource UniboExPoc.Ofbiz.Accounting.PaymentGatewayConfigType.Version
     resource UniboExPoc.Ofbiz.Accounting.PaymentGatewayConfig
@@ -221,6 +264,7 @@ defmodule UniboExPoc.Ofbiz.Accounting do
     resource UniboExPoc.Ofbiz.Accounting.PaymentGroupType
     resource UniboExPoc.Ofbiz.Accounting.PaymentGroupType.Version
     resource UniboExPoc.Ofbiz.Accounting.PaymentGroupMember
+    resource UniboExPoc.Ofbiz.Accounting.PaymentGroupMember.Version
     resource UniboExPoc.Ofbiz.Accounting.PayPalPaymentMethod
     resource UniboExPoc.Ofbiz.Accounting.PayPalPaymentMethod.Version
     resource UniboExPoc.Ofbiz.Accounting.ValueLinkKey
@@ -246,6 +290,7 @@ defmodule UniboExPoc.Ofbiz.Accounting do
     resource UniboExPoc.Ofbiz.Accounting.GlAccountCategory
     resource UniboExPoc.Ofbiz.Accounting.GlAccountCategory.Version
     resource UniboExPoc.Ofbiz.Accounting.GlAccountCategoryMember
+    resource UniboExPoc.Ofbiz.Accounting.GlAccountCategoryMember.Version
     resource UniboExPoc.Ofbiz.Accounting.GlAccountCategoryType
     resource UniboExPoc.Ofbiz.Accounting.GlAccountCategoryType.Version
   end

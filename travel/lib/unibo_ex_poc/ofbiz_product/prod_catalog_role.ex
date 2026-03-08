@@ -37,11 +37,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProdCatalogRole do
       primary_key? true
       public? true
     end
-    attribute :prod_catalog_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -55,7 +50,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProdCatalogRole do
   relationships do
     belongs_to :prod_catalog, UniboExPoc.Ofbiz.Product.ProdCatalog do
       public? true
-      define_attribute? false
     end
   end
 

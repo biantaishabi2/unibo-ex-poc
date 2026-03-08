@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetTypeGlAccount do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_fixed_asset_type_gl_accounts"
@@ -27,18 +27,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetTypeGlAccount do
   end
 
   attributes do
-    attribute :fixed_asset_type_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "映射的固定资产类型。此字段可设置为_NA_以为所有类型或特定资产定义映射（由fixedAssetId字段中的id指定）。"
-    end
-    attribute :fixed_asset_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "映射的固定资产id。此字段可设置为_NA_以为给定类型的所有资产定义映射（由fixedAssetTypeId字段中的id指定）。"
-    end
     attribute :organization_party_id, :string do
       allow_nil? false
       primary_key? true
@@ -50,11 +38,9 @@ defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetTypeGlAccount do
   relationships do
     belongs_to :fixed_asset_type, UniboExPoc.Ofbiz.Accounting.FixedAssetType do
       public? true
-      define_attribute? false
     end
     belongs_to :fixed_asset, UniboExPoc.Ofbiz.Accounting.FixedAsset do
       public? true
-      define_attribute? false
     end
     belongs_to :asset_gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
@@ -77,6 +63,12 @@ defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetTypeGlAccount do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

@@ -79,7 +79,7 @@ defmodule UniboExPoc.Delivery.ShipmentType do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:shipment_type_id, :description, :has_table]
+      accept [:shipment_type_id, :parent_type_id, :description, :has_table]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

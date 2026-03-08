@@ -27,17 +27,7 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityCalendar do
   end
 
   attributes do
-    attribute :facility_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :calendar_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :facility_calendar_type_id, :uuid do
       allow_nil? false
       primary_key? true
       public? true
@@ -54,11 +44,9 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityCalendar do
   relationships do
     belongs_to :facility, UniboExPoc.Ofbiz.Product.Facility do
       public? true
-      define_attribute? false
     end
     belongs_to :facility_calendar_type, UniboExPoc.Ofbiz.Product.FacilityCalendarType do
       public? true
-      define_attribute? false
     end
   end
 

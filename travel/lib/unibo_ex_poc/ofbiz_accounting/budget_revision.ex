@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetRevision do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_budget_revisions"
@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetRevision do
   end
 
   attributes do
-    attribute :budget_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :revision_seq_id, :string do
       allow_nil? false
       primary_key? true
@@ -44,12 +39,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetRevision do
   relationships do
     belongs_to :budget, UniboExPoc.Ofbiz.Accounting.Budget do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

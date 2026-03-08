@@ -68,7 +68,7 @@ defmodule UniboExPoc.Delivery.ShipmentPackageContent do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:quantity]
+      accept [:shipment_id, :shipment_package_seq_id, :shipment_item_seq_id, :quantity]
       validate present(:shipment_id)
       validate present(:shipment_package_seq_id)
       validate present(:shipment_item_seq_id)

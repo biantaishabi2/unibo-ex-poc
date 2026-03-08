@@ -28,6 +28,7 @@ defmodule UniboExPoc.Ofbiz.Common do
     resource UniboExPoc.Ofbiz.Common.Geo
     resource UniboExPoc.Ofbiz.Common.Geo.Version
     resource UniboExPoc.Ofbiz.Common.GeoAssoc
+    resource UniboExPoc.Ofbiz.Common.GeoAssoc.Version
     resource UniboExPoc.Ofbiz.Common.GeoAssocType
     resource UniboExPoc.Ofbiz.Common.GeoAssocType.Version
     resource UniboExPoc.Ofbiz.Common.GeoPoint
@@ -35,6 +36,7 @@ defmodule UniboExPoc.Ofbiz.Common do
     resource UniboExPoc.Ofbiz.Common.GeoType
     resource UniboExPoc.Ofbiz.Common.GeoType.Version
     resource UniboExPoc.Ofbiz.Common.KeywordThesaurus
+    resource UniboExPoc.Ofbiz.Common.KeywordThesaurus.Version
     resource UniboExPoc.Ofbiz.Common.StandardLanguage
     resource UniboExPoc.Ofbiz.Common.StandardLanguage.Version
     resource UniboExPoc.Ofbiz.Common.CustomMethod
@@ -52,14 +54,19 @@ defmodule UniboExPoc.Ofbiz.Common do
     resource UniboExPoc.Ofbiz.Common.StatusType
     resource UniboExPoc.Ofbiz.Common.StatusType.Version
     resource UniboExPoc.Ofbiz.Common.StatusValidChange
+    resource UniboExPoc.Ofbiz.Common.StatusValidChange.Version
     resource UniboExPoc.Ofbiz.Common.Uom
     resource UniboExPoc.Ofbiz.Common.Uom.Version
     resource UniboExPoc.Ofbiz.Common.UomConversion
+    resource UniboExPoc.Ofbiz.Common.UomConversion.Version
     resource UniboExPoc.Ofbiz.Common.UomConversionDated
+    resource UniboExPoc.Ofbiz.Common.UomConversionDated.Version
     resource UniboExPoc.Ofbiz.Common.UomGroup
+    resource UniboExPoc.Ofbiz.Common.UomGroup.Version
     resource UniboExPoc.Ofbiz.Common.UomType
     resource UniboExPoc.Ofbiz.Common.UomType.Version
     resource UniboExPoc.Ofbiz.Common.UserPreference
+    resource UniboExPoc.Ofbiz.Common.UserPreference.Version
     resource UniboExPoc.Ofbiz.Common.UserPrefGroupType
     resource UniboExPoc.Ofbiz.Common.UserPrefGroupType.Version
     resource UniboExPoc.Ofbiz.Common.CustomScreen
@@ -71,17 +78,23 @@ defmodule UniboExPoc.Ofbiz.Common do
     resource UniboExPoc.Ofbiz.Common.VisualTheme
     resource UniboExPoc.Ofbiz.Common.VisualTheme.Version
     resource UniboExPoc.Ofbiz.Common.VisualThemeResource
+    resource UniboExPoc.Ofbiz.Common.VisualThemeResource.Version
     resource UniboExPoc.Ofbiz.Common.PortalPortlet
     resource UniboExPoc.Ofbiz.Common.PortalPortlet.Version
     resource UniboExPoc.Ofbiz.Common.PortletCategory
     resource UniboExPoc.Ofbiz.Common.PortletCategory.Version
     resource UniboExPoc.Ofbiz.Common.PortletPortletCategory
+    resource UniboExPoc.Ofbiz.Common.PortletPortletCategory.Version
     resource UniboExPoc.Ofbiz.Common.PortalPage
     resource UniboExPoc.Ofbiz.Common.PortalPage.Version
     resource UniboExPoc.Ofbiz.Common.PortalPageColumn
+    resource UniboExPoc.Ofbiz.Common.PortalPageColumn.Version
     resource UniboExPoc.Ofbiz.Common.PortalPagePortlet
+    resource UniboExPoc.Ofbiz.Common.PortalPagePortlet.Version
     resource UniboExPoc.Ofbiz.Common.PortletAttribute
+    resource UniboExPoc.Ofbiz.Common.PortletAttribute.Version
     resource UniboExPoc.Ofbiz.Common.SystemProperty
+    resource UniboExPoc.Ofbiz.Common.SystemProperty.Version
     resource UniboExPoc.Ofbiz.Common.TelecomMethodType
     resource UniboExPoc.Ofbiz.Common.TelecomMethodType.Version
     resource UniboExPoc.Ofbiz.Common.TelecomGatewayConfig

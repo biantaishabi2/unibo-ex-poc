@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlAccountGroupMember do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_gl_account_group_members"
@@ -27,35 +27,30 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlAccountGroupMember do
   end
 
   attributes do
-    attribute :gl_account_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :gl_account_group_type_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
+    uuid_primary_key :id
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
     belongs_to :gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
-      define_attribute? false
     end
     belongs_to :gl_account_group, UniboExPoc.Ofbiz.Accounting.GlAccountGroup do
       public? true
     end
     belongs_to :gl_account_group_type, UniboExPoc.Ofbiz.Accounting.GlAccountGroupType do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

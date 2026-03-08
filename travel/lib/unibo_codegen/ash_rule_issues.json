@@ -1,35 +1,8 @@
 {
-  "total": 375,
+  "total": 154,
   "errors": 0,
-  "warnings": 375,
+  "warnings": 154,
   "issues": [
-    {
-      "domain": "Accounting",
-      "entity": "AcctgTransAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AcctgTransAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [acctg_trans_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "AcctgTransEntry",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AcctgTransEntry",
-      "severity": "warning",
-      "reason": "实体主键为 [acctg_trans_id, acctg_trans_entry_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "AcctgTransTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AcctgTransTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [acctg_trans_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
     {
       "domain": "Accounting",
       "entity": "BillingAccountRole",
@@ -37,34 +10,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.BillingAccountRole",
       "severity": "warning",
-      "reason": "实体主键为 [billing_account_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "BillingAccountTermAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.BillingAccountTermAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [billing_account_term_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "BudgetAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.BudgetAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [budget_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "BudgetItem",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.BudgetItem",
-      "severity": "warning",
-      "reason": "实体主键为 [budget_id, budget_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -77,30 +23,12 @@
     },
     {
       "domain": "Accounting",
-      "entity": "BudgetItemTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.BudgetItemTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [budget_item_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
       "entity": "BudgetReview",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.BudgetReview",
       "severity": "warning",
-      "reason": "实体主键为 [budget_id, budget_review_id, party_id, budget_review_result_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "BudgetRevision",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.BudgetRevision",
-      "severity": "warning",
-      "reason": "实体主键为 [budget_id, revision_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [budget_review_id, party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -109,7 +37,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.BudgetRevisionImpact",
       "severity": "warning",
-      "reason": "实体主键为 [budget_id, budget_item_seq_id, revision_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [budget_item_seq_id, revision_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -118,43 +46,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.BudgetRole",
       "severity": "warning",
-      "reason": "实体主键为 [budget_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "BudgetScenarioApplication",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.BudgetScenarioApplication",
-      "severity": "warning",
-      "reason": "实体主键为 [budget_scenario_applic_id, budget_scenario_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "BudgetScenarioRule",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.BudgetScenarioRule",
-      "severity": "warning",
-      "reason": "实体主键为 [budget_scenario_id, budget_item_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "BudgetStatus",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.BudgetStatus",
-      "severity": "warning",
-      "reason": "实体主键为 [budget_id, status_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "BudgetTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.BudgetTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [budget_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -167,21 +59,12 @@
     },
     {
       "domain": "Accounting",
-      "entity": "FinAccountAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FinAccountAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [fin_account_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
       "entity": "FinAccountRole",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.FinAccountRole",
       "severity": "warning",
-      "reason": "实体主键为 [fin_account_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -190,61 +73,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.FinAccountStatus",
       "severity": "warning",
-      "reason": "实体主键为 [fin_account_id, status_id, status_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "FinAccountTransAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FinAccountTransAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [fin_account_trans_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "FinAccountTransTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FinAccountTransTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [fin_account_trans_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "FinAccountTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FinAccountTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [fin_account_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "FinAccountTypeGlAccount",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FinAccountTypeGlAccount",
-      "severity": "warning",
-      "reason": "实体主键为 [fin_account_type_id, organization_party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "FixedAssetAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FixedAssetAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [fixed_asset_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "FixedAssetDepMethod",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FixedAssetDepMethod",
-      "severity": "warning",
-      "reason": "实体主键为 [depreciation_custom_method_id, fixed_asset_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [status_id, status_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -253,25 +82,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.FixedAssetGeoPoint",
       "severity": "warning",
-      "reason": "实体主键为 [fixed_asset_id, geo_point_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "FixedAssetIdent",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FixedAssetIdent",
-      "severity": "warning",
-      "reason": "实体主键为 [fixed_asset_id, fixed_asset_ident_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "FixedAssetMaint",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FixedAssetMaint",
-      "severity": "warning",
-      "reason": "实体主键为 [fixed_asset_id, maint_hist_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [geo_point_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -280,7 +91,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.FixedAssetMaintOrder",
       "severity": "warning",
-      "reason": "实体主键为 [fixed_asset_id, maint_hist_seq_id, order_id, order_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [maint_hist_seq_id, order_id, order_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -298,61 +109,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.FixedAssetProduct",
       "severity": "warning",
-      "reason": "实体主键为 [fixed_asset_id, product_id, fixed_asset_product_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "FixedAssetRegistration",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FixedAssetRegistration",
-      "severity": "warning",
-      "reason": "实体主键为 [fixed_asset_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "FixedAssetStdCost",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FixedAssetStdCost",
-      "severity": "warning",
-      "reason": "实体主键为 [fixed_asset_id, fixed_asset_std_cost_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "FixedAssetTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FixedAssetTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [fixed_asset_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "FixedAssetTypeGlAccount",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FixedAssetTypeGlAccount",
-      "severity": "warning",
-      "reason": "实体主键为 [fixed_asset_type_id, fixed_asset_id, organization_party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "GlAccountCategoryMember",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.GlAccountCategoryMember",
-      "severity": "warning",
-      "reason": "实体主键为 [gl_account_id, gl_account_category_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "GlAccountGroupMember",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.GlAccountGroupMember",
-      "severity": "warning",
-      "reason": "实体主键为 [gl_account_id, gl_account_group_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [product_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -361,16 +118,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.GlAccountHistory",
       "severity": "warning",
-      "reason": "实体主键为 [gl_account_id, organization_party_id, custom_time_period_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "GlAccountOrganization",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.GlAccountOrganization",
-      "severity": "warning",
-      "reason": "实体主键为 [gl_account_id, organization_party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [organization_party_id, custom_time_period_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -379,43 +127,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.GlAccountRole",
       "severity": "warning",
-      "reason": "实体主键为 [gl_account_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "GlAccountTypeDefault",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.GlAccountTypeDefault",
-      "severity": "warning",
-      "reason": "实体主键为 [gl_account_type_id, organization_party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "GlBudgetXref",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.GlBudgetXref",
-      "severity": "warning",
-      "reason": "实体主键为 [gl_account_id, budget_item_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "GlReconciliationEntry",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.GlReconciliationEntry",
-      "severity": "warning",
-      "reason": "实体主键为 [gl_reconciliation_id, acctg_trans_id, acctg_trans_entry_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "InvoiceAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InvoiceAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [invoice_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -424,7 +136,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.InvoiceContactMech",
       "severity": "warning",
-      "reason": "实体主键为 [invoice_id, contact_mech_purpose_type_id, contact_mech_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [contact_mech_purpose_type_id, contact_mech_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -433,16 +145,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.InvoiceContent",
       "severity": "warning",
-      "reason": "实体主键为 [invoice_id, invoice_content_type_id, content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "InvoiceItem",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InvoiceItem",
-      "severity": "warning",
-      "reason": "实体主键为 [invoice_id, invoice_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -451,7 +154,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.InvoiceItemAssoc",
       "severity": "warning",
-      "reason": "实体主键为 [invoice_id_from, invoice_item_seq_id_from, invoice_id_to, invoice_item_seq_id_to, invoice_item_assoc_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [invoice_id_from, invoice_item_seq_id_from, invoice_id_to, invoice_item_seq_id_to, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -464,48 +167,12 @@
     },
     {
       "domain": "Accounting",
-      "entity": "InvoiceItemTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InvoiceItemTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [invoice_item_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "InvoiceItemTypeGlAccount",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InvoiceItemTypeGlAccount",
-      "severity": "warning",
-      "reason": "实体主键为 [invoice_item_type_id, organization_party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "InvoiceItemTypeMap",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InvoiceItemTypeMap",
-      "severity": "warning",
-      "reason": "实体主键为 [invoice_item_map_key, invoice_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "InvoiceNote",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InvoiceNote",
-      "severity": "warning",
-      "reason": "实体主键为 [invoice_id, note_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
       "entity": "InvoiceRole",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.InvoiceRole",
       "severity": "warning",
-      "reason": "实体主键为 [invoice_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -514,25 +181,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.InvoiceStatus",
       "severity": "warning",
-      "reason": "实体主键为 [status_id, invoice_id, status_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "InvoiceTermAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InvoiceTermAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [invoice_term_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "InvoiceTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InvoiceTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [invoice_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [status_id, status_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -541,7 +190,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.PartyFixedAssetAssignment",
       "severity": "warning",
-      "reason": "实体主键为 [party_id, role_type_id, fixed_asset_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -550,7 +199,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.PartyGlAccount",
       "severity": "warning",
-      "reason": "实体主键为 [organization_party_id, party_id, role_type_id, gl_account_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [organization_party_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -559,7 +208,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.PartyRate",
       "severity": "warning",
-      "reason": "实体主键为 [party_id, rate_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -572,66 +221,12 @@
     },
     {
       "domain": "Accounting",
-      "entity": "PaymentAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PaymentAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [payment_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "PaymentBudgetAllocation",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PaymentBudgetAllocation",
-      "severity": "warning",
-      "reason": "实体主键为 [budget_id, budget_item_seq_id, payment_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
       "entity": "PaymentContent",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.PaymentContent",
       "severity": "warning",
-      "reason": "实体主键为 [payment_id, payment_content_type_id, content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "PaymentGlAccountTypeMap",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PaymentGlAccountTypeMap",
-      "severity": "warning",
-      "reason": "实体主键为 [payment_type_id, organization_party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "PaymentGroupMember",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PaymentGroupMember",
-      "severity": "warning",
-      "reason": "实体主键为 [payment_group_id, payment_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "PaymentMethodTypeGlAccount",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PaymentMethodTypeGlAccount",
-      "severity": "warning",
-      "reason": "实体主键为 [payment_method_type_id, organization_party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Accounting",
-      "entity": "PaymentTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PaymentTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [payment_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -640,7 +235,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductAverageCost",
       "severity": "warning",
-      "reason": "实体主键为 [product_average_cost_type_id, organization_party_id, product_id, facility_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [organization_party_id, product_id, facility_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -649,7 +244,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.RateAmount",
       "severity": "warning",
-      "reason": "实体主键为 [rate_type_id, rate_currency_uom_id, period_type_id, work_effort_id, party_id, empl_position_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [rate_currency_uom_id, period_type_id, work_effort_id, party_id, empl_position_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Accounting",
@@ -715,202 +310,13 @@
       "reason": "实体主键为 [zip_code, state_code, city, county, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
-      "domain": "Common",
-      "entity": "CountryCapital",
-      "action": null,
-      "rule_code": "relationship_name_auto_renamed",
-      "path": "entities.CountryCapital",
-      "severity": "warning",
-      "reason": "关系 `country_code` 与字段命名冲突，已自动重命名为 `country_code_rel`"
-    },
-    {
-      "domain": "Common",
-      "entity": "CountryTeleCode",
-      "action": null,
-      "rule_code": "relationship_name_auto_renamed",
-      "path": "entities.CountryTeleCode",
-      "severity": "warning",
-      "reason": "关系 `country_code` 与字段命名冲突，已自动重命名为 `country_code_rel`"
-    },
-    {
-      "domain": "Common",
-      "entity": "GeoAssoc",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.GeoAssoc",
-      "severity": "warning",
-      "reason": "实体主键为 [geo_id, geo_id_to]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Common",
-      "entity": "KeywordThesaurus",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.KeywordThesaurus",
-      "severity": "warning",
-      "reason": "实体主键为 [entered_keyword, alternate_keyword]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Common",
-      "entity": "PortalPageColumn",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PortalPageColumn",
-      "severity": "warning",
-      "reason": "实体主键为 [portal_page_id, column_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Common",
-      "entity": "PortalPagePortlet",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PortalPagePortlet",
-      "severity": "warning",
-      "reason": "实体主键为 [portal_page_id, portal_portlet_id, portlet_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Common",
-      "entity": "PortletAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PortletAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [portal_page_id, portal_portlet_id, portlet_seq_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Common",
-      "entity": "PortletPortletCategory",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PortletPortletCategory",
-      "severity": "warning",
-      "reason": "实体主键为 [portal_portlet_id, portlet_category_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Common",
-      "entity": "StatusValidChange",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.StatusValidChange",
-      "severity": "warning",
-      "reason": "实体主键为 [status_id, status_id_to]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Common",
-      "entity": "SystemProperty",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SystemProperty",
-      "severity": "warning",
-      "reason": "实体主键为 [system_resource_id, system_property_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Common",
-      "entity": "UomConversion",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.UomConversion",
-      "severity": "warning",
-      "reason": "实体主键为 [uom_id, uom_id_to]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Common",
-      "entity": "UomConversionDated",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.UomConversionDated",
-      "severity": "warning",
-      "reason": "实体主键为 [uom_id, uom_id_to, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Common",
-      "entity": "UomGroup",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.UomGroup",
-      "severity": "warning",
-      "reason": "实体主键为 [uom_group_id, uom_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Common",
-      "entity": "UserPreference",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.UserPreference",
-      "severity": "warning",
-      "reason": "实体主键为 [user_login_id, user_pref_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Common",
-      "entity": "VisualThemeResource",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.VisualThemeResource",
-      "severity": "warning",
-      "reason": "实体主键为 [visual_theme_id, resource_type_enum_id, sequence_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "ContentAssoc",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContentAssoc",
-      "severity": "warning",
-      "reason": "实体主键为 [content_id, content_id_to, content_assoc_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "ContentAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContentAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [content_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "ContentKeyword",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContentKeyword",
-      "severity": "warning",
-      "reason": "实体主键为 [content_id, keyword]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "ContentMetaData",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContentMetaData",
-      "severity": "warning",
-      "reason": "实体主键为 [content_id, meta_data_predicate_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "ContentPurpose",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContentPurpose",
-      "severity": "warning",
-      "reason": "实体主键为 [content_id, content_purpose_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
       "domain": "Content",
       "entity": "ContentPurposeOperation",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ContentPurposeOperation",
       "severity": "warning",
-      "reason": "实体主键为 [content_purpose_type_id, content_operation_id, role_type_id, status_id, privilege_enum_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "ContentRevision",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContentRevision",
-      "severity": "warning",
-      "reason": "实体主键为 [content_id, content_revision_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [role_type_id, status_id, privilege_enum_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Content",
@@ -928,52 +334,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ContentRole",
       "severity": "warning",
-      "reason": "实体主键为 [content_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "ContentSearchConstraint",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContentSearchConstraint",
-      "severity": "warning",
-      "reason": "实体主键为 [content_search_result_id, constraint_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "ContentTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContentTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [content_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "DataResourceAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.DataResourceAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [data_resource_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "DataResourceMetaData",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.DataResourceMetaData",
-      "severity": "warning",
-      "reason": "实体主键为 [data_resource_id, meta_data_predicate_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "DataResourcePurpose",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.DataResourcePurpose",
-      "severity": "warning",
-      "reason": "实体主键为 [data_resource_id, content_purpose_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Content",
@@ -982,43 +343,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.DataResourceRole",
       "severity": "warning",
-      "reason": "实体主键为 [data_resource_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "DataResourceTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.DataResourceTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [data_resource_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "DocumentAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.DocumentAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [document_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "DocumentTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.DocumentTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [document_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "SurveyMultiResp",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SurveyMultiResp",
-      "severity": "warning",
-      "reason": "实体主键为 [survey_id, survey_multi_resp_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Content",
@@ -1031,66 +356,12 @@
     },
     {
       "domain": "Content",
-      "entity": "SurveyPage",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SurveyPage",
-      "severity": "warning",
-      "reason": "实体主键为 [survey_id, survey_page_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "SurveyQuestionAppl",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SurveyQuestionAppl",
-      "severity": "warning",
-      "reason": "实体主键为 [survey_id, survey_question_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "SurveyQuestionOption",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SurveyQuestionOption",
-      "severity": "warning",
-      "reason": "实体主键为 [survey_question_id, survey_option_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "SurveyResponseAnswer",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SurveyResponseAnswer",
-      "severity": "warning",
-      "reason": "实体主键为 [survey_response_id, survey_question_id, survey_multi_resp_col_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "SurveyTrigger",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SurveyTrigger",
-      "severity": "warning",
-      "reason": "实体主键为 [survey_id, survey_appl_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
-      "entity": "WebAnalyticsConfig",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.WebAnalyticsConfig",
-      "severity": "warning",
-      "reason": "实体主键为 [web_site_id, web_analytics_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Content",
       "entity": "WebSiteContent",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.WebSiteContent",
       "severity": "warning",
-      "reason": "实体主键为 [web_site_id, content_id, web_site_content_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [web_site_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Content",
@@ -1117,7 +388,187 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.WebUserPreference",
       "severity": "warning",
-      "reason": "实体主键为 [user_login_id, party_id, visit_id, web_preference_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [user_login_id, party_id, visit_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "HumanRes",
+      "entity": "Employment",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.Employment",
+      "severity": "warning",
+      "reason": "实体主键为 [role_type_id_from, role_type_id_to, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "HumanRes",
+      "entity": "PartyBenefit",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.PartyBenefit",
+      "severity": "warning",
+      "reason": "实体主键为 [role_type_id_from, role_type_id_to, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "HumanRes",
+      "entity": "PayHistory",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.PayHistory",
+      "severity": "warning",
+      "reason": "实体主键为 [role_type_id_from, role_type_id_to, party_id_from, party_id_to, empl_from_date, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "HumanRes",
+      "entity": "PayrollPreference",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.PayrollPreference",
+      "severity": "warning",
+      "reason": "实体主键为 [role_type_id, payroll_preference_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "HumanRes",
+      "entity": "PerfReview",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.PerfReview",
+      "severity": "warning",
+      "reason": "实体主键为 [employee_role_type_id, perf_review_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "HumanRes",
+      "entity": "PerfReviewItem",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.PerfReviewItem",
+      "severity": "warning",
+      "reason": "实体主键为 [employee_role_type_id, perf_review_id, perf_review_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "HumanRes",
+      "entity": "PerformanceNote",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.PerformanceNote",
+      "severity": "warning",
+      "reason": "实体主键为 [role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "HumanRes",
+      "entity": "SalaryStep",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.SalaryStep",
+      "severity": "warning",
+      "reason": "实体主键为 [salary_step_seq_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Manufacturing",
+      "entity": "MrpEvent",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.MrpEvent",
+      "severity": "warning",
+      "reason": "实体主键为 [mrp_id, product_id, event_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Marketing",
+      "entity": "ContactListCommStatus",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.ContactListCommStatus",
+      "severity": "warning",
+      "reason": "实体主键为 [communication_event_id, contact_mech_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Marketing",
+      "entity": "ContactListParty",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.ContactListParty",
+      "severity": "warning",
+      "reason": "实体主键为 [party_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Marketing",
+      "entity": "ContactListPartyStatus",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.ContactListPartyStatus",
+      "severity": "warning",
+      "reason": "实体主键为 [contact_list_id, party_id, from_date, status_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Marketing",
+      "entity": "MarketingCampaignPrice",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.MarketingCampaignPrice",
+      "severity": "warning",
+      "reason": "实体主键为 [product_price_rule_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Marketing",
+      "entity": "MarketingCampaignPromo",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.MarketingCampaignPromo",
+      "severity": "warning",
+      "reason": "实体主键为 [product_promo_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Marketing",
+      "entity": "MarketingCampaignRole",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.MarketingCampaignRole",
+      "severity": "warning",
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Marketing",
+      "entity": "SalesOpportunityRole",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.SalesOpportunityRole",
+      "severity": "warning",
+      "reason": "实体主键为 [party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Marketing",
+      "entity": "SegmentGroupRole",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.SegmentGroupRole",
+      "severity": "warning",
+      "reason": "实体主键为 [party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Marketing",
+      "entity": "TrackingCodeOrderReturn",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.TrackingCodeOrderReturn",
+      "severity": "warning",
+      "reason": "实体主键为 [return_id, order_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Marketing",
+      "entity": "TrackingCodeVisit",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.TrackingCodeVisit",
+      "severity": "warning",
+      "reason": "实体主键为 [visit_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Marketing",
+      "entity": "WebSiteContactList",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.WebSiteContactList",
+      "severity": "warning",
+      "reason": "实体主键为 [web_site_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1148,57 +599,12 @@
     },
     {
       "domain": "Order",
-      "entity": "CommunicationEventOrder",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CommunicationEventOrder",
-      "severity": "warning",
-      "reason": "实体主键为 [order_id, communication_event_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "CommunicationEventReturn",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CommunicationEventReturn",
-      "severity": "warning",
-      "reason": "实体主键为 [return_id, communication_event_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "CustRequestAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CustRequestAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [cust_request_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "CustRequestCommEvent",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CustRequestCommEvent",
-      "severity": "warning",
-      "reason": "实体主键为 [cust_request_id, communication_event_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
       "entity": "CustRequestContent",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.CustRequestContent",
       "severity": "warning",
-      "reason": "实体主键为 [cust_request_id, content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "CustRequestItem",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CustRequestItem",
-      "severity": "warning",
-      "reason": "实体主键为 [cust_request_id, cust_request_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1216,16 +622,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.CustRequestItemWorkEffort",
       "severity": "warning",
-      "reason": "实体主键为 [cust_request_id, cust_request_item_seq_id, work_effort_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "CustRequestNote",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CustRequestNote",
-      "severity": "warning",
-      "reason": "实体主键为 [cust_request_id, note_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [cust_request_item_seq_id, work_effort_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1234,52 +631,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.CustRequestParty",
       "severity": "warning",
-      "reason": "实体主键为 [cust_request_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "CustRequestTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CustRequestTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [cust_request_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "CustRequestWorkEffort",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CustRequestWorkEffort",
-      "severity": "warning",
-      "reason": "实体主键为 [cust_request_id, work_effort_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "DesiredFeature",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.DesiredFeature",
-      "severity": "warning",
-      "reason": "实体主键为 [desired_feature_id, requirement_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OldOrderBlacklist",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OldOrderBlacklist",
-      "severity": "warning",
-      "reason": "实体主键为 [blacklist_string, order_blacklist_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OrderAdjustmentAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderAdjustmentAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [order_adjustment_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1288,25 +640,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.OrderAdjustmentBilling",
       "severity": "warning",
-      "reason": "实体主键为 [order_adjustment_id, invoice_id, invoice_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OrderAdjustmentTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderAdjustmentTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [order_adjustment_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OrderAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [order_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [invoice_id, invoice_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1315,7 +649,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.OrderContactMech",
       "severity": "warning",
-      "reason": "实体主键为 [order_id, contact_mech_purpose_type_id, contact_mech_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [contact_mech_purpose_type_id, contact_mech_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1324,52 +658,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.OrderContent",
       "severity": "warning",
-      "reason": "实体主键为 [order_id, order_item_seq_id, content_id, order_content_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OrderDeliverySchedule",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderDeliverySchedule",
-      "severity": "warning",
-      "reason": "实体主键为 [order_id, order_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OrderDenylist",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderDenylist",
-      "severity": "warning",
-      "reason": "实体主键为 [denylist_string, order_denylist_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OrderHeaderNote",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderHeaderNote",
-      "severity": "warning",
-      "reason": "实体主键为 [order_id, note_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OrderHeaderWorkEffort",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderHeaderWorkEffort",
-      "severity": "warning",
-      "reason": "实体主键为 [order_id, work_effort_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OrderItem",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderItem",
-      "severity": "warning",
-      "reason": "实体主键为 [order_id, order_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [order_item_seq_id, content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1378,7 +667,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.OrderItemAssoc",
       "severity": "warning",
-      "reason": "实体主键为 [order_id, order_item_seq_id, ship_group_seq_id, to_order_id, to_order_item_seq_id, to_ship_group_seq_id, order_item_assoc_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [order_item_seq_id, ship_group_seq_id, to_order_item_seq_id, to_ship_group_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1396,7 +685,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.OrderItemBilling",
       "severity": "warning",
-      "reason": "实体主键为 [order_id, order_item_seq_id, invoice_id, invoice_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [order_item_seq_id, invoice_id, invoice_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1405,16 +694,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.OrderItemContactMech",
       "severity": "warning",
-      "reason": "实体主键为 [order_id, order_item_seq_id, contact_mech_purpose_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OrderItemGroup",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderItemGroup",
-      "severity": "warning",
-      "reason": "实体主键为 [order_id, order_item_group_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [order_item_seq_id, contact_mech_purpose_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1432,16 +712,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.OrderItemRole",
       "severity": "warning",
-      "reason": "实体主键为 [order_id, order_item_seq_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OrderItemShipGroup",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderItemShipGroup",
-      "severity": "warning",
-      "reason": "实体主键为 [order_id, ship_group_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [order_item_seq_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1450,7 +721,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.OrderItemShipGroupAssoc",
       "severity": "warning",
-      "reason": "实体主键为 [order_id, order_item_seq_id, ship_group_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [order_item_seq_id, ship_group_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1459,34 +730,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.OrderItemShipGrpInvRes",
       "severity": "warning",
-      "reason": "实体主键为 [order_id, ship_group_seq_id, order_item_seq_id, inventory_item_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OrderItemTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderItemTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [order_item_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OrderProductPromoCode",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderProductPromoCode",
-      "severity": "warning",
-      "reason": "实体主键为 [order_id, product_promo_code_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "OrderRequirementCommitment",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderRequirementCommitment",
-      "severity": "warning",
-      "reason": "实体主键为 [order_id, order_item_seq_id, requirement_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [ship_group_seq_id, order_item_seq_id, inventory_item_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1495,7 +739,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.OrderRole",
       "severity": "warning",
-      "reason": "实体主键为 [order_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1504,7 +748,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.OrderShipment",
       "severity": "warning",
-      "reason": "实体主键为 [order_id, order_item_seq_id, ship_group_seq_id, shipment_id, shipment_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [order_item_seq_id, ship_group_seq_id, shipment_id, shipment_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1522,7 +766,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.OrderTerm",
       "severity": "warning",
-      "reason": "实体主键为 [term_type_id, order_id, order_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [term_type_id, order_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1535,57 +779,12 @@
     },
     {
       "domain": "Order",
-      "entity": "OrderTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OrderTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [order_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
       "entity": "ProductOrderItem",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductOrderItem",
       "severity": "warning",
-      "reason": "实体主键为 [order_id, order_item_seq_id, engagement_id, engagement_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "QuoteAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.QuoteAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [quote_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "QuoteCoefficient",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.QuoteCoefficient",
-      "severity": "warning",
-      "reason": "实体主键为 [quote_id, coeff_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "QuoteItem",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.QuoteItem",
-      "severity": "warning",
-      "reason": "实体主键为 [quote_id, quote_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "QuoteNote",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.QuoteNote",
-      "severity": "warning",
-      "reason": "实体主键为 [quote_id, note_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [order_item_seq_id, engagement_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1594,7 +793,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.QuoteRole",
       "severity": "warning",
-      "reason": "实体主键为 [quote_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1603,7 +802,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.QuoteTerm",
       "severity": "warning",
-      "reason": "实体主键为 [term_type_id, quote_id, quote_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [term_type_id, quote_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1616,48 +815,12 @@
     },
     {
       "domain": "Order",
-      "entity": "QuoteTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.QuoteTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [quote_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "QuoteWorkEffort",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.QuoteWorkEffort",
-      "severity": "warning",
-      "reason": "实体主键为 [quote_id, work_effort_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "RequirementAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.RequirementAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [requirement_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
       "entity": "RequirementBudgetAllocation",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.RequirementBudgetAllocation",
       "severity": "warning",
-      "reason": "实体主键为 [budget_id, budget_item_seq_id, requirement_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "RequirementCustRequest",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.RequirementCustRequest",
-      "severity": "warning",
-      "reason": "实体主键为 [cust_request_id, cust_request_item_seq_id, requirement_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [budget_id, budget_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1666,25 +829,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.RequirementRole",
       "severity": "warning",
-      "reason": "实体主键为 [requirement_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "RequirementStatus",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.RequirementStatus",
-      "severity": "warning",
-      "reason": "实体主键为 [requirement_id, status_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "RequirementTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.RequirementTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [requirement_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1693,7 +838,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.RespondingParty",
       "severity": "warning",
-      "reason": "实体主键为 [responding_party_seq_id, cust_request_id, party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [responding_party_seq_id, party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1702,16 +847,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ReturnContactMech",
       "severity": "warning",
-      "reason": "实体主键为 [return_id, contact_mech_purpose_type_id, contact_mech_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "ReturnItem",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ReturnItem",
-      "severity": "warning",
-      "reason": "实体主键为 [return_id, return_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [contact_mech_purpose_type_id, contact_mech_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1720,7 +856,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ReturnItemBilling",
       "severity": "warning",
-      "reason": "实体主键为 [return_id, return_item_seq_id, invoice_id, invoice_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [return_item_seq_id, invoice_id, invoice_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1729,25 +865,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ReturnItemShipment",
       "severity": "warning",
-      "reason": "实体主键为 [return_id, return_item_seq_id, shipment_id, shipment_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "ReturnItemTypeMap",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ReturnItemTypeMap",
-      "severity": "warning",
-      "reason": "实体主键为 [return_item_map_key, return_header_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "ShoppingListItem",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ShoppingListItem",
-      "severity": "warning",
-      "reason": "实体主键为 [shopping_list_id, shopping_list_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [return_item_seq_id, shipment_id, shipment_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1765,16 +883,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ShoppingListItemSurvey",
       "severity": "warning",
-      "reason": "实体主键为 [shopping_list_id, shopping_list_item_seq_id, survey_response_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "ShoppingListWorkEffort",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ShoppingListWorkEffort",
-      "severity": "warning",
-      "reason": "实体主键为 [shopping_list_id, work_effort_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [shopping_list_item_seq_id, survey_response_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1783,16 +892,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.WorkOrderItemFulfillment",
       "severity": "warning",
-      "reason": "实体主键为 [work_effort_id, order_id, order_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Order",
-      "entity": "WorkRequirementFulfillment",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.WorkRequirementFulfillment",
-      "severity": "warning",
-      "reason": "实体主键为 [requirement_id, work_effort_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [work_effort_id, order_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Party",
@@ -1805,21 +905,12 @@
     },
     {
       "domain": "Party",
-      "entity": "AgreementAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AgreementAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [agreement_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
       "entity": "AgreementContent",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.AgreementContent",
       "severity": "warning",
-      "reason": "实体主键为 [agreement_id, agreement_item_seq_id, agreement_content_type_id, content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [agreement_item_seq_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Party",
@@ -1832,33 +923,6 @@
     },
     {
       "domain": "Party",
-      "entity": "AgreementFacilityAppl",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AgreementFacilityAppl",
-      "severity": "warning",
-      "reason": "实体主键为 [agreement_id, agreement_item_seq_id, facility_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "AgreementGeographicalApplic",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AgreementGeographicalApplic",
-      "severity": "warning",
-      "reason": "实体主键为 [agreement_id, agreement_item_seq_id, geo_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "AgreementItem",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AgreementItem",
-      "severity": "warning",
-      "reason": "实体主键为 [agreement_id, agreement_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
       "entity": "AgreementItemAttribute",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
@@ -1868,390 +932,12 @@
     },
     {
       "domain": "Party",
-      "entity": "AgreementItemTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AgreementItemTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [agreement_item_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "AgreementPartyApplic",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AgreementPartyApplic",
-      "severity": "warning",
-      "reason": "实体主键为 [agreement_id, agreement_item_seq_id, party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "AgreementProductAppl",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AgreementProductAppl",
-      "severity": "warning",
-      "reason": "实体主键为 [agreement_id, agreement_item_seq_id, product_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
       "entity": "AgreementPromoAppl",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.AgreementPromoAppl",
       "severity": "warning",
-      "reason": "实体主键为 [agreement_id, agreement_item_seq_id, product_promo_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "AgreementRole",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AgreementRole",
-      "severity": "warning",
-      "reason": "实体主键为 [agreement_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "AgreementStatus",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AgreementStatus",
-      "severity": "warning",
-      "reason": "实体主键为 [agreement_id, status_id, status_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "AgreementTermAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AgreementTermAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [agreement_term_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "AgreementTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AgreementTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [agreement_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "AgreementWorkEffortApplic",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.AgreementWorkEffortApplic",
-      "severity": "warning",
-      "reason": "实体主键为 [agreement_id, agreement_item_seq_id, work_effort_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "CommEventContentAssoc",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CommEventContentAssoc",
-      "severity": "warning",
-      "reason": "实体主键为 [content_id, communication_event_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "CommunicationEventProduct",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CommunicationEventProduct",
-      "severity": "warning",
-      "reason": "实体主键为 [product_id, communication_event_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "CommunicationEventPurpose",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CommunicationEventPurpose",
-      "severity": "warning",
-      "reason": "实体主键为 [communication_event_prp_typ_id, communication_event_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "CommunicationEventRole",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CommunicationEventRole",
-      "severity": "warning",
-      "reason": "实体主键为 [communication_event_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "ContactMechAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContactMechAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [contact_mech_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "ContactMechLink",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContactMechLink",
-      "severity": "warning",
-      "reason": "实体主键为 [contact_mech_id_from, contact_mech_id_to]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "ContactMechTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContactMechTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [contact_mech_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "ContactMechTypePurpose",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContactMechTypePurpose",
-      "severity": "warning",
-      "reason": "实体主键为 [contact_mech_type_id, contact_mech_purpose_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "MaritalStatus",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.MaritalStatus",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, marital_status_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "Party",
-      "action": null,
-      "rule_code": "relationship_name_auto_renamed",
-      "path": "entities.Party",
-      "severity": "warning",
-      "reason": "关系 `created_by_user_login` 与字段命名冲突，已自动重命名为 `created_by_user_login_rel`"
-    },
-    {
-      "domain": "Party",
-      "entity": "Party",
-      "action": null,
-      "rule_code": "relationship_name_auto_renamed",
-      "path": "entities.Party",
-      "severity": "warning",
-      "reason": "关系 `last_modified_by_user_login` 与字段命名冲突，已自动重命名为 `last_modified_by_user_login_rel`"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyCarrierAccount",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyCarrierAccount",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, carrier_party_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyClassification",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyClassification",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, party_classification_group_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyContactMech",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyContactMech",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, contact_mech_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyContactMechPurpose",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyContactMechPurpose",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, contact_mech_id, contact_mech_purpose_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyContent",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyContent",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, content_id, party_content_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyDataSource",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyDataSource",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, data_source_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyGeoPoint",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyGeoPoint",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, geo_point_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyIdentification",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyIdentification",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, party_identification_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyInvitationGroupAssoc",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyInvitationGroupAssoc",
-      "severity": "warning",
-      "reason": "实体主键为 [party_invitation_id, party_id_to]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyInvitationRoleAssoc",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyInvitationRoleAssoc",
-      "severity": "warning",
-      "reason": "实体主键为 [party_invitation_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyNameHistory",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyNameHistory",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, change_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyNeed",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyNeed",
-      "severity": "warning",
-      "reason": "实体主键为 [party_need_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyNote",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyNote",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, note_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyProfileDefault",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyProfileDefault",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, product_store_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyRelationship",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyRelationship",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id_from, party_id_to, role_type_id_from, role_type_id_to, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyRole",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyRole",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyStatus",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyStatus",
-      "severity": "warning",
-      "reason": "实体主键为 [status_id, party_id, status_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PartyTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [party_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "PostalAddressBoundary",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PostalAddressBoundary",
-      "severity": "warning",
-      "reason": "实体主键为 [contact_mech_id, geo_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "RoleTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.RoleTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [role_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "TermTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.TermTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [term_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Party",
-      "entity": "ValidContactMechRole",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ValidContactMechRole",
-      "severity": "warning",
-      "reason": "实体主键为 [role_type_id, contact_mech_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [agreement_item_seq_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2269,34 +955,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ContainerGeoPoint",
       "severity": "warning",
-      "reason": "实体主键为 [container_id, geo_point_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "CostComponentAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CostComponentAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [cost_component_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "CostComponentTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CostComponentTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [cost_component_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "FacilityAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FacilityAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [facility_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [geo_point_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2305,7 +964,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.FacilityCalendar",
       "severity": "warning",
-      "reason": "实体主键为 [facility_id, calendar_id, facility_calendar_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [calendar_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2314,7 +973,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.FacilityCarrierShipment",
       "severity": "warning",
-      "reason": "实体主键为 [facility_id, party_id, role_type_id, shipment_method_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, shipment_method_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2323,7 +982,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.FacilityContactMech",
       "severity": "warning",
-      "reason": "实体主键为 [facility_id, contact_mech_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [contact_mech_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2332,7 +991,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.FacilityContactMechPurpose",
       "severity": "warning",
-      "reason": "实体主键为 [facility_id, contact_mech_id, contact_mech_purpose_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [contact_mech_id, contact_mech_purpose_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2341,16 +1000,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.FacilityContent",
       "severity": "warning",
-      "reason": "实体主键为 [facility_id, content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "FacilityGroupMember",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FacilityGroupMember",
-      "severity": "warning",
-      "reason": "实体主键为 [facility_id, facility_group_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2359,25 +1009,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.FacilityGroupRole",
       "severity": "warning",
-      "reason": "实体主键为 [facility_group_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "FacilityGroupRollup",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FacilityGroupRollup",
-      "severity": "warning",
-      "reason": "实体主键为 [facility_group_id, parent_facility_group_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "FacilityLocation",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FacilityLocation",
-      "severity": "warning",
-      "reason": "实体主键为 [facility_id, location_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2395,52 +1027,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.FacilityParty",
       "severity": "warning",
-      "reason": "实体主键为 [facility_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "FacilityTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.FacilityTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [facility_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "GoodIdentification",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.GoodIdentification",
-      "severity": "warning",
-      "reason": "实体主键为 [good_identification_type_id, product_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "InventoryItemAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InventoryItemAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [inventory_item_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "InventoryItemDetail",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InventoryItemDetail",
-      "severity": "warning",
-      "reason": "实体主键为 [inventory_item_id, inventory_item_detail_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "InventoryItemLabelAppl",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InventoryItemLabelAppl",
-      "severity": "warning",
-      "reason": "实体主键为 [inventory_item_id, inventory_item_label_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2449,34 +1036,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.InventoryItemStatus",
       "severity": "warning",
-      "reason": "实体主键为 [inventory_item_id, status_id, status_datetime]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "InventoryItemTempRes",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InventoryItemTempRes",
-      "severity": "warning",
-      "reason": "实体主键为 [visit_id, product_id, product_store_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "InventoryItemTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InventoryItemTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [inventory_item_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "InventoryItemVariance",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.InventoryItemVariance",
-      "severity": "warning",
-      "reason": "实体主键为 [inventory_item_id, physical_inventory_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [status_id, status_datetime]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2485,34 +1045,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.MarketInterest",
       "severity": "warning",
-      "reason": "实体主键为 [product_category_id, party_classification_group_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "OldProductPromoCodeEmail",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OldProductPromoCodeEmail",
-      "severity": "warning",
-      "reason": "实体主键为 [product_promo_code_id, email_address]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProdCatalogCategory",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProdCatalogCategory",
-      "severity": "warning",
-      "reason": "实体主键为 [prod_catalog_id, product_category_id, prod_catalog_category_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProdCatalogInvFacility",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProdCatalogInvFacility",
-      "severity": "warning",
-      "reason": "实体主键为 [prod_catalog_id, facility_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_classification_group_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2521,7 +1054,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProdCatalogRole",
       "severity": "warning",
-      "reason": "实体主键为 [party_id, role_type_id, prod_catalog_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2530,43 +1063,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProdConfItemContent",
       "severity": "warning",
-      "reason": "实体主键为 [config_item_id, content_id, conf_item_content_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProdPromoCodeContactMech",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProdPromoCodeContactMech",
-      "severity": "warning",
-      "reason": "实体主键为 [product_promo_code_id, contact_mech_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductAssoc",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductAssoc",
-      "severity": "warning",
-      "reason": "实体主键为 [product_id, product_id_to, product_assoc_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [product_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductCategoryAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductCategoryAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [product_category_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2575,7 +1072,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductCategoryContent",
       "severity": "warning",
-      "reason": "实体主键为 [product_category_id, content_id, prod_cat_content_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2584,7 +1081,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductCategoryGlAccount",
       "severity": "warning",
-      "reason": "实体主键为 [product_category_id, organization_party_id, gl_account_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [organization_party_id, gl_account_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2593,16 +1090,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductCategoryLink",
       "severity": "warning",
-      "reason": "实体主键为 [product_category_id, link_seq_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductCategoryMember",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductCategoryMember",
-      "severity": "warning",
-      "reason": "实体主键为 [product_category_id, product_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [link_seq_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2611,25 +1099,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductCategoryRole",
       "severity": "warning",
-      "reason": "实体主键为 [product_category_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductCategoryRollup",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductCategoryRollup",
-      "severity": "warning",
-      "reason": "实体主键为 [product_category_id, parent_product_category_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductCategoryTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductCategoryTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [product_category_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2638,7 +1108,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductConfig",
       "severity": "warning",
-      "reason": "实体主键为 [product_id, config_item_id, sequence_num, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [sequence_num, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2647,16 +1117,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductConfigConfig",
       "severity": "warning",
-      "reason": "实体主键为 [config_id, config_item_id, sequence_num, config_option_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductConfigOption",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductConfigOption",
-      "severity": "warning",
-      "reason": "实体主键为 [config_item_id, config_option_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [config_id, sequence_num, config_option_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2665,25 +1126,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductConfigOptionIactn",
       "severity": "warning",
-      "reason": "实体主键为 [config_item_id, config_option_id, config_item_id_to, config_option_id_to, sequence_num]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductConfigProduct",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductConfigProduct",
-      "severity": "warning",
-      "reason": "实体主键为 [config_item_id, config_option_id, product_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductConfigStats",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductConfigStats",
-      "severity": "warning",
-      "reason": "实体主键为 [config_id, product_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [config_option_id, config_option_id_to, sequence_num]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2692,52 +1135,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductContent",
       "severity": "warning",
-      "reason": "实体主键为 [product_id, content_id, product_content_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductCostComponentCalc",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductCostComponentCalc",
-      "severity": "warning",
-      "reason": "实体主键为 [product_id, cost_component_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductFacility",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductFacility",
-      "severity": "warning",
-      "reason": "实体主键为 [product_id, facility_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductFacilityAssoc",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductFacilityAssoc",
-      "severity": "warning",
-      "reason": "实体主键为 [product_id, facility_id, facility_id_to, facility_assoc_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductFacilityLocation",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductFacilityLocation",
-      "severity": "warning",
-      "reason": "实体主键为 [product_id, facility_id, location_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductFeatureAppl",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductFeatureAppl",
-      "severity": "warning",
-      "reason": "实体主键为 [product_id, product_feature_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2746,52 +1144,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductFeatureApplAttr",
       "severity": "warning",
-      "reason": "实体主键为 [product_id, product_feature_id, from_date, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductFeatureCatGrpAppl",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductFeatureCatGrpAppl",
-      "severity": "warning",
-      "reason": "实体主键为 [product_category_id, product_feature_group_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductFeatureCategoryAppl",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductFeatureCategoryAppl",
-      "severity": "warning",
-      "reason": "实体主键为 [product_category_id, product_feature_category_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductFeatureDataResource",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductFeatureDataResource",
-      "severity": "warning",
-      "reason": "实体主键为 [data_resource_id, product_feature_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductFeatureGroupAppl",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductFeatureGroupAppl",
-      "severity": "warning",
-      "reason": "实体主键为 [product_feature_group_id, product_feature_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductFeatureIactn",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductFeatureIactn",
-      "severity": "warning",
-      "reason": "实体主键为 [product_feature_id, product_feature_id_to]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [from_date, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2800,16 +1153,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductFeaturePrice",
       "severity": "warning",
-      "reason": "实体主键为 [product_feature_id, product_price_type_id, currency_uom_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductGeo",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductGeo",
-      "severity": "warning",
-      "reason": "实体主键为 [product_id, geo_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [product_feature_id, currency_uom_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2818,7 +1162,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductGlAccount",
       "severity": "warning",
-      "reason": "实体主键为 [product_id, organization_party_id, gl_account_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [organization_party_id, gl_account_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2827,25 +1171,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductKeyword",
       "severity": "warning",
-      "reason": "实体主键为 [product_id, keyword, keyword_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductMaint",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductMaint",
-      "severity": "warning",
-      "reason": "实体主键为 [product_id, product_maint_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductMeter",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductMeter",
-      "severity": "warning",
-      "reason": "实体主键为 [product_id, product_meter_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [keyword, keyword_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2854,7 +1180,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductPaymentMethodType",
       "severity": "warning",
-      "reason": "实体主键为 [product_id, payment_method_type_id, product_price_purpose_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [payment_method_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2863,25 +1189,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductPrice",
       "severity": "warning",
-      "reason": "实体主键为 [product_id, product_price_type_id, product_price_purpose_id, currency_uom_id, product_store_group_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductPriceAction",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductPriceAction",
-      "severity": "warning",
-      "reason": "实体主键为 [product_price_rule_id, product_price_action_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductPriceCond",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductPriceCond",
-      "severity": "warning",
-      "reason": "实体主键为 [product_price_rule_id, product_price_cond_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [currency_uom_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2890,7 +1198,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductPromoAction",
       "severity": "warning",
-      "reason": "实体主键为 [product_promo_id, product_promo_rule_id, product_promo_action_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [product_promo_rule_id, product_promo_action_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2899,16 +1207,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductPromoCategory",
       "severity": "warning",
-      "reason": "实体主键为 [product_promo_id, product_promo_rule_id, product_promo_action_seq_id, product_promo_cond_seq_id, product_category_id, and_group_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductPromoCodeParty",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductPromoCodeParty",
-      "severity": "warning",
-      "reason": "实体主键为 [product_promo_code_id, party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [product_promo_rule_id, product_promo_action_seq_id, product_promo_cond_seq_id, and_group_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2917,7 +1216,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductPromoCond",
       "severity": "warning",
-      "reason": "实体主键为 [product_promo_id, product_promo_rule_id, product_promo_cond_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [product_promo_rule_id, product_promo_cond_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2926,7 +1225,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductPromoContent",
       "severity": "warning",
-      "reason": "实体主键为 [product_promo_id, content_id, product_promo_content_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [content_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2935,16 +1234,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductPromoProduct",
       "severity": "warning",
-      "reason": "实体主键为 [product_promo_id, product_promo_rule_id, product_promo_action_seq_id, product_promo_cond_seq_id, product_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductPromoRule",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductPromoRule",
-      "severity": "warning",
-      "reason": "实体主键为 [product_promo_id, product_promo_rule_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [product_promo_rule_id, product_promo_action_seq_id, product_promo_cond_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -2962,61 +1252,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductRole",
       "severity": "warning",
-      "reason": "实体主键为 [product_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductSearchConstraint",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductSearchConstraint",
-      "severity": "warning",
-      "reason": "实体主键为 [product_search_result_id, constraint_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductStoreCatalog",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductStoreCatalog",
-      "severity": "warning",
-      "reason": "实体主键为 [product_store_id, prod_catalog_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductStoreEmailSetting",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductStoreEmailSetting",
-      "severity": "warning",
-      "reason": "实体主键为 [product_store_id, email_type]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductStoreFacility",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductStoreFacility",
-      "severity": "warning",
-      "reason": "实体主键为 [product_store_id, facility_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductStoreFinActSetting",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductStoreFinActSetting",
-      "severity": "warning",
-      "reason": "实体主键为 [product_store_id, fin_account_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductStoreGroupMember",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductStoreGroupMember",
-      "severity": "warning",
-      "reason": "实体主键为 [product_store_id, product_store_group_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -3025,16 +1261,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductStoreGroupRole",
       "severity": "warning",
-      "reason": "实体主键为 [product_store_group_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductStoreGroupRollup",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductStoreGroupRollup",
-      "severity": "warning",
-      "reason": "实体主键为 [product_store_group_id, parent_group_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -3043,7 +1270,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductStoreKeywordOvrd",
       "severity": "warning",
-      "reason": "实体主键为 [product_store_id, keyword, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [keyword, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -3052,16 +1279,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductStorePaymentSetting",
       "severity": "warning",
-      "reason": "实体主键为 [product_store_id, payment_method_type_id, payment_service_type_enum_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductStorePromoAppl",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductStorePromoAppl",
-      "severity": "warning",
-      "reason": "实体主键为 [product_store_id, product_promo_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [payment_method_type_id, payment_service_type_enum_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -3070,7 +1288,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductStoreRole",
       "severity": "warning",
-      "reason": "实体主键为 [party_id, role_type_id, product_store_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -3079,7 +1297,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductStoreTelecomSetting",
       "severity": "warning",
-      "reason": "实体主键为 [product_store_id, telecom_method_type_id, telecom_msg_type_enum_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [telecom_method_type_id, telecom_msg_type_enum_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -3088,7 +1306,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductStoreVendorPayment",
       "severity": "warning",
-      "reason": "实体主键为 [product_store_id, vendor_party_id, payment_method_type_id, credit_card_enum_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [vendor_party_id, payment_method_type_id, credit_card_enum_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -3097,61 +1315,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ProductStoreVendorShipment",
       "severity": "warning",
-      "reason": "实体主键为 [product_store_id, vendor_party_id, shipment_method_type_id, carrier_party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductSubscriptionResource",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductSubscriptionResource",
-      "severity": "warning",
-      "reason": "实体主键为 [product_id, subscription_resource_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "ProductTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ProductTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [product_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "SubscriptionAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SubscriptionAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [subscription_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "SubscriptionCommEvent",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SubscriptionCommEvent",
-      "severity": "warning",
-      "reason": "实体主键为 [subscription_id, communication_event_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "SubscriptionFulfillmentPiece",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SubscriptionFulfillmentPiece",
-      "severity": "warning",
-      "reason": "实体主键为 [subscription_activity_id, subscription_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "SubscriptionTypeAttr",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SubscriptionTypeAttr",
-      "severity": "warning",
-      "reason": "实体主键为 [subscription_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [vendor_party_id, shipment_method_type_id, carrier_party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Product",
@@ -3160,61 +1324,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.SupplierProduct",
       "severity": "warning",
-      "reason": "实体主键为 [product_id, party_id, available_from_date, minimum_order_quantity, currency_uom_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "SupplierProductFeature",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SupplierProductFeature",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, product_feature_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Product",
-      "entity": "VendorProduct",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.VendorProduct",
-      "severity": "warning",
-      "reason": "实体主键为 [product_id, vendor_party_id, product_store_group_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "CarrierShipmentBoxType",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CarrierShipmentBoxType",
-      "severity": "warning",
-      "reason": "实体主键为 [shipment_box_type_id, party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "CarrierShipmentMethod",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.CarrierShipmentMethod",
-      "severity": "warning",
-      "reason": "实体主键为 [shipment_method_type_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "ItemIssuanceRole",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ItemIssuanceRole",
-      "severity": "warning",
-      "reason": "实体主键为 [item_issuance_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "OldPicklistStatusHistory",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.OldPicklistStatusHistory",
-      "severity": "warning",
-      "reason": "实体主键为 [picklist_id, change_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [party_id, available_from_date, minimum_order_quantity, currency_uom_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Shipment",
@@ -3223,70 +1333,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.PicklistItem",
       "severity": "warning",
-      "reason": "实体主键为 [picklist_bin_id, order_id, order_item_seq_id, ship_group_seq_id, inventory_item_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "PicklistRole",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PicklistRole",
-      "severity": "warning",
-      "reason": "实体主键为 [picklist_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "PicklistRole",
-      "action": null,
-      "rule_code": "relationship_name_auto_renamed",
-      "path": "entities.PicklistRole",
-      "severity": "warning",
-      "reason": "关系 `created_by_user_login` 与字段命名冲突，已自动重命名为 `created_by_user_login_rel`"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "PicklistRole",
-      "action": null,
-      "rule_code": "relationship_name_auto_renamed",
-      "path": "entities.PicklistRole",
-      "severity": "warning",
-      "reason": "关系 `last_modified_by_user_login` 与字段命名冲突，已自动重命名为 `last_modified_by_user_login_rel`"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "PicklistStatus",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PicklistStatus",
-      "severity": "warning",
-      "reason": "实体主键为 [picklist_id, status_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "ShipmentAttribute",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ShipmentAttribute",
-      "severity": "warning",
-      "reason": "实体主键为 [shipment_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "ShipmentContactMech",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ShipmentContactMech",
-      "severity": "warning",
-      "reason": "实体主键为 [shipment_id, shipment_contact_mech_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "ShipmentItem",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ShipmentItem",
-      "severity": "warning",
-      "reason": "实体主键为 [shipment_id, shipment_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [order_item_seq_id, ship_group_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Shipment",
@@ -3295,25 +1342,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ShipmentItemBilling",
       "severity": "warning",
-      "reason": "实体主键为 [shipment_id, shipment_item_seq_id, invoice_id, invoice_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "ShipmentItemFeature",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ShipmentItemFeature",
-      "severity": "warning",
-      "reason": "实体主键为 [shipment_id, shipment_item_seq_id, product_feature_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "ShipmentPackage",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ShipmentPackage",
-      "severity": "warning",
-      "reason": "实体主键为 [shipment_id, shipment_package_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [shipment_item_seq_id, invoice_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Shipment",
@@ -3322,7 +1351,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ShipmentPackageContent",
       "severity": "warning",
-      "reason": "实体主键为 [shipment_id, shipment_package_seq_id, shipment_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [shipment_package_seq_id, shipment_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Shipment",
@@ -3331,34 +1360,7 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ShipmentPackageRouteSeg",
       "severity": "warning",
-      "reason": "实体主键为 [shipment_id, shipment_package_seq_id, shipment_route_segment_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "ShipmentReceiptRole",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ShipmentReceiptRole",
-      "severity": "warning",
-      "reason": "实体主键为 [receipt_id, party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "ShipmentRouteSegment",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ShipmentRouteSegment",
-      "severity": "warning",
-      "reason": "实体主键为 [shipment_id, shipment_route_segment_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Shipment",
-      "entity": "ShipmentStatus",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ShipmentStatus",
-      "severity": "warning",
-      "reason": "实体主键为 [status_id, shipment_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [shipment_package_seq_id, shipment_route_segment_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Shipment",
@@ -3367,16 +1369,25 @@
       "rule_code": "paper_trail_composite_pk_unsupported",
       "path": "entities.ShipmentTimeEstimate",
       "severity": "warning",
-      "reason": "实体主键为 [shipment_method_type_id, party_id, role_type_id, geo_id_to, geo_id_from, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [shipment_method_type_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
-      "domain": "Shipment",
-      "entity": "ShipmentTypeAttr",
+      "domain": "WorkEffort",
+      "entity": "WorkEffortAssocAttribute",
       "action": null,
       "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ShipmentTypeAttr",
+      "path": "entities.WorkEffortAssocAttribute",
       "severity": "warning",
-      "reason": "实体主键为 [shipment_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "实体主键为 [work_effort_id_from, work_effort_id_to, work_effort_assoc_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "WorkEffort",
+      "entity": "WorkEffortTransBox",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.WorkEffortTransBox",
+      "severity": "warning",
+      "reason": "实体主键为 [to_activity_id, transition_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     }
   ]
 }

@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.SubscriptionFulfillmentPiece do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_subscription_fulfillment_pieces"
@@ -27,32 +27,27 @@ defmodule UniboExPoc.Ofbiz.Product.SubscriptionFulfillmentPiece do
   end
 
   attributes do
-    attribute :subscription_activity_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :subscription_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
+    uuid_primary_key :id
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
     belongs_to :subscription, UniboExPoc.Ofbiz.Product.Subscription do
       public? true
-      define_attribute? false
     end
     belongs_to :subscription_activity, UniboExPoc.Ofbiz.Product.SubscriptionActivity do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

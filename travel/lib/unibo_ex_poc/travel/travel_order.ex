@@ -210,13 +210,14 @@ defmodule UniboExPoc.Travel.TravelOrder do
     defaults [:read, :destroy]
     create :create_order do
       primary? true
-      accept [:tenant_id, :host_shop_id, :order_no, :product_type, :contact_name, :contact_phone, :traveler_count, :total_amount, :points_to_use, :points_deduction_amount, :currency, :ticket_passenger_infos, :seat_selection_snapshot]
+      accept [:tenant_id, :host_shop_id, :hotel_offer_id, :flight_offer_id, :vacation_offer_id, :train_offer_id, :order_no, :product_type, :customer_id, :contact_name, :contact_phone, :traveler_count, :total_amount, :points_to_use, :points_deduction_amount, :currency, :ticket_passenger_infos, :seat_selection_snapshot]
       validate present(:tenant_id)
       validate present(:order_no)
       validate present(:customer_id)
       validate present(:contact_name)
       validate present(:contact_phone)
-      # NOTE: exactly_one_of 缺少 params
+      validate present([:hotel_offer_id, :flight_offer_id, :vacation_offer_id, :train_offer_id], exactly: 1)
+      # message: "hotel_offer_id、flight_offer_id、vacation_offer_id、train_offer_id 必须四选一"
       validate present(:hotel_offer_id)
       # message: "hotel 订单必须绑定 hotel_offer_id"
       validate present(:flight_offer_id)

@@ -141,8 +141,9 @@ defmodule UniboExPoc.Sales.SalesOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :created_by, UniboExPoc.Sales.User do
+    belongs_to :created_by, UniboExPoc.Sales.Party do
       public? true
+      source_attribute :created_by_party_id
     end
     has_many :shipments, UniboExPoc.Sales.SalesOrderShipment do
       public? true

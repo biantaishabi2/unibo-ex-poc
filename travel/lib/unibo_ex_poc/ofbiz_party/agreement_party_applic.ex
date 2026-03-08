@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementPartyApplic do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_agreement_party_applics"
@@ -27,23 +27,11 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementPartyApplic do
   end
 
   attributes do
-    attribute :agreement_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "协议编号"
-    end
     attribute :agreement_item_seq_id, :string do
       allow_nil? false
       primary_key? true
       public? true
       description "协议项序列编号"
-    end
-    attribute :party_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-      description "参与方编号"
     end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -51,16 +39,20 @@ defmodule UniboExPoc.Ofbiz.Party.AgreementPartyApplic do
   relationships do
     belongs_to :agreement, UniboExPoc.Ofbiz.Party.Agreement do
       public? true
-      define_attribute? false
     end
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

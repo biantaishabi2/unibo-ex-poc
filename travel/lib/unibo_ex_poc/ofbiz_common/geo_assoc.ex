@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Common.GeoAssoc do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   resource do
     description "Geographic Boundary Association"
@@ -31,18 +31,7 @@ defmodule UniboExPoc.Ofbiz.Common.GeoAssoc do
   end
 
   attributes do
-    attribute :geo_id, :uuid do
-      primary_key? true
-      allow_nil? false
-      public? true
-      description "The enclosed geo"
-    end
-    attribute :geo_id_to, :uuid do
-      primary_key? true
-      allow_nil? false
-      public? true
-      description "The enclosing geo"
-    end
+    uuid_primary_key :id
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -50,12 +39,10 @@ defmodule UniboExPoc.Ofbiz.Common.GeoAssoc do
     belongs_to :main_geo, UniboExPoc.Ofbiz.Common.Geo do
       public? true
       source_attribute :geo_id
-      define_attribute? false
     end
     belongs_to :assoc_geo, UniboExPoc.Ofbiz.Common.Geo do
       public? true
       source_attribute :geo_id_to
-      define_attribute? false
     end
     belongs_to :geo_assoc_type, UniboExPoc.Ofbiz.Common.GeoAssocType do
       public? true
@@ -64,6 +51,12 @@ defmodule UniboExPoc.Ofbiz.Common.GeoAssoc do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

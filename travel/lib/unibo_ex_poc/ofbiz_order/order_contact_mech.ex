@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Order.OrderContactMech do
   end
 
   attributes do
-    attribute :order_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :contact_mech_purpose_type_id, :string do
       allow_nil? false
       primary_key? true
@@ -49,7 +44,6 @@ defmodule UniboExPoc.Ofbiz.Order.OrderContactMech do
     belongs_to :order_header, UniboExPoc.Ofbiz.Order.OrderHeader do
       public? true
       source_attribute :order_id
-      define_attribute? false
       attribute_type :string
     end
   end

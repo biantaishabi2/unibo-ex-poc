@@ -90,7 +90,7 @@ defmodule UniboExPoc.Payment.PaymentApplication do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:invoice_item_seq_id, :billing_account_id, :override_gl_account_id, :tax_auth_geo_id, :amount_applied]
+      accept [:payment_id, :invoice_id, :invoice_item_seq_id, :billing_account_id, :to_payment_id, :override_gl_account_id, :tax_auth_geo_id, :amount_applied]
       argument :payment_id, :uuid, allow_nil?: false
       change manage_relationship(:payment_id, :payment, type: :append, on_lookup: :relate)
       validate present(:payment_id)
@@ -121,7 +121,7 @@ defmodule UniboExPoc.Payment.PaymentApplication do
     end
     create :apply_to_invoice do
       description "将支付核销到指定发票（或发票行）"
-      accept [:invoice_item_seq_id, :amount_applied]
+      accept [:payment_id, :invoice_id, :invoice_item_seq_id, :amount_applied]
       argument :payment_id, :uuid, allow_nil?: false
       change manage_relationship(:payment_id, :payment, type: :append, on_lookup: :relate)
       validate present(:payment_id)
@@ -139,7 +139,7 @@ defmodule UniboExPoc.Payment.PaymentApplication do
     end
     create :apply_to_account do
       description "将支付核销到账单账户（余额充值）"
-      accept [:billing_account_id, :amount_applied]
+      accept [:payment_id, :billing_account_id, :amount_applied]
       argument :payment_id, :uuid, allow_nil?: false
       change manage_relationship(:payment_id, :payment, type: :append, on_lookup: :relate)
       validate present(:payment_id)

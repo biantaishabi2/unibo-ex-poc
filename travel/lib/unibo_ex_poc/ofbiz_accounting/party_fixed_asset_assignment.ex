@@ -37,11 +37,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.PartyFixedAssetAssignment do
       primary_key? true
       public? true
     end
-    attribute :fixed_asset_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :from_date, :utc_datetime do
       allow_nil? false
       primary_key? true
@@ -57,7 +52,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.PartyFixedAssetAssignment do
   relationships do
     belongs_to :fixed_asset, UniboExPoc.Ofbiz.Accounting.FixedAsset do
       public? true
-      define_attribute? false
     end
   end
 

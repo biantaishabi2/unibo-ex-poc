@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetScenarioApplication do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_budget_scenario_applications"
@@ -32,11 +32,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetScenarioApplication do
       primary_key? true
       public? true
     end
-    attribute :budget_scenario_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :budget_item_seq_id, :string, public?: true
     attribute :amount_change, :decimal, public?: true
     attribute :percentage_change, :decimal, public?: true
@@ -46,7 +41,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetScenarioApplication do
   relationships do
     belongs_to :budget_scenario, UniboExPoc.Ofbiz.Accounting.BudgetScenario do
       public? true
-      define_attribute? false
     end
     belongs_to :budget, UniboExPoc.Ofbiz.Accounting.Budget do
       public? true
@@ -55,6 +49,12 @@ defmodule UniboExPoc.Ofbiz.Accounting.BudgetScenarioApplication do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

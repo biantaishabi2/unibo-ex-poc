@@ -31,8 +31,6 @@ defmodule UniboExPoc.Ecommerce do
     resource UniboExPoc.Ecommerce.LoyaltyReward.Version
     resource UniboExPoc.Ecommerce.LoyaltyCard
     resource UniboExPoc.Ecommerce.LoyaltyCard.Version
-    resource UniboExPoc.Ecommerce.User
-    resource UniboExPoc.Ecommerce.Company
     resource UniboExPoc.Ecommerce.UOM
     resource UniboExPoc.Ecommerce.Ribbon
     resource UniboExPoc.Ecommerce.Pricelist
@@ -43,5 +41,10 @@ defmodule UniboExPoc.Ecommerce do
     resource UniboExPoc.Ecommerce.ProductTemplateAccessoryLink
     resource UniboExPoc.Ecommerce.TravelCity
     resource UniboExPoc.Ecommerce.TravelCity.Version
+    resource UniboExPoc.Ecommerce.TravelAirport
+    resource UniboExPoc.Ecommerce.TravelAirport.Version
+    resource UniboExPoc.Ecommerce.TravelStation
+    resource UniboExPoc.Ecommerce.TravelStation.Version
+    resource UniboExPoc.Ecommerce.Party
   end
 end

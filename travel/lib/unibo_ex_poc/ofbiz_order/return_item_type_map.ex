@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemTypeMap do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   resource do
     description "订单商品或orderAdjustmentTypeId和returnAdjustmentTypeId的映射。针对不同类型的退货（客户 vs. 供应商）的分别映射"
@@ -36,11 +36,6 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemTypeMap do
       primary_key? true
       public? true
     end
-    attribute :return_header_type_id, :string do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -51,7 +46,6 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemTypeMap do
     end
     belongs_to :return_header_type, UniboExPoc.Ofbiz.Order.ReturnHeaderType do
       public? true
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :return_adjustment_type, UniboExPoc.Ofbiz.Order.ReturnAdjustmentType do
@@ -64,6 +58,12 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemTypeMap do
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

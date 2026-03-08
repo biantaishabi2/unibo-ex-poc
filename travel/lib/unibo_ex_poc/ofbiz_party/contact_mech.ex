@@ -43,11 +43,6 @@ defmodule UniboExPoc.Ofbiz.Party.ContactMech do
     belongs_to :contact_mech_type, UniboExPoc.Ofbiz.Party.ContactMechType do
       public? true
     end
-    has_many :contact_mech_type_attr, UniboExPoc.Ofbiz.Party.ContactMechTypeAttr do
-      public? true
-      source_attribute :contact_mech_type_id
-      destination_attribute :contact_mech_type_id
-    end
   end
 
   actions do
@@ -61,7 +56,6 @@ defmodule UniboExPoc.Ofbiz.Party.ContactMech do
   end
 
   archive do
-    archive_related [:contact_mech_type_attr]
   end
 
 end

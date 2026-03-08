@@ -10,29 +10,38 @@ defmodule UniboExPoc.Ofbiz.Shipment do
     resource UniboExPoc.Ofbiz.Shipment.ItemIssuance
     resource UniboExPoc.Ofbiz.Shipment.ItemIssuance.Version
     resource UniboExPoc.Ofbiz.Shipment.ItemIssuanceRole
+    resource UniboExPoc.Ofbiz.Shipment.ItemIssuanceRole.Version
     resource UniboExPoc.Ofbiz.Shipment.Picklist
     resource UniboExPoc.Ofbiz.Shipment.Picklist.Version
     resource UniboExPoc.Ofbiz.Shipment.PicklistBin
     resource UniboExPoc.Ofbiz.Shipment.PicklistBin.Version
     resource UniboExPoc.Ofbiz.Shipment.PicklistItem
     resource UniboExPoc.Ofbiz.Shipment.PicklistRole
+    resource UniboExPoc.Ofbiz.Shipment.PicklistRole.Version
     resource UniboExPoc.Ofbiz.Shipment.OldPicklistStatusHistory
+    resource UniboExPoc.Ofbiz.Shipment.OldPicklistStatusHistory.Version
     resource UniboExPoc.Ofbiz.Shipment.PicklistStatus
+    resource UniboExPoc.Ofbiz.Shipment.PicklistStatus.Version
     resource UniboExPoc.Ofbiz.Shipment.RejectionReason
     resource UniboExPoc.Ofbiz.Shipment.RejectionReason.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentReceipt
     resource UniboExPoc.Ofbiz.Shipment.ShipmentReceipt.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentReceiptRole
+    resource UniboExPoc.Ofbiz.Shipment.ShipmentReceiptRole.Version
     resource UniboExPoc.Ofbiz.Shipment.CarrierShipmentMethod
+    resource UniboExPoc.Ofbiz.Shipment.CarrierShipmentMethod.Version
     resource UniboExPoc.Ofbiz.Shipment.CarrierShipmentBoxType
+    resource UniboExPoc.Ofbiz.Shipment.CarrierShipmentBoxType.Version
     resource UniboExPoc.Ofbiz.Shipment.Delivery
     resource UniboExPoc.Ofbiz.Shipment.Delivery.Version
     resource UniboExPoc.Ofbiz.Shipment.Shipment
     resource UniboExPoc.Ofbiz.Shipment.Shipment.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentAttribute
+    resource UniboExPoc.Ofbiz.Shipment.ShipmentAttribute.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentBoxType
     resource UniboExPoc.Ofbiz.Shipment.ShipmentBoxType.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentContactMech
+    resource UniboExPoc.Ofbiz.Shipment.ShipmentContactMech.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentContactMechType
     resource UniboExPoc.Ofbiz.Shipment.ShipmentContactMechType.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentCostEstimate
@@ -51,18 +60,24 @@ defmodule UniboExPoc.Ofbiz.Shipment do
     resource UniboExPoc.Ofbiz.Shipment.ShipmentGatewayUsps
     resource UniboExPoc.Ofbiz.Shipment.ShipmentGatewayUsps.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentItem
+    resource UniboExPoc.Ofbiz.Shipment.ShipmentItem.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentItemBilling
     resource UniboExPoc.Ofbiz.Shipment.ShipmentItemFeature
+    resource UniboExPoc.Ofbiz.Shipment.ShipmentItemFeature.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentMethodType
     resource UniboExPoc.Ofbiz.Shipment.ShipmentMethodType.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentPackage
+    resource UniboExPoc.Ofbiz.Shipment.ShipmentPackage.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentPackageContent
     resource UniboExPoc.Ofbiz.Shipment.ShipmentPackageRouteSeg
     resource UniboExPoc.Ofbiz.Shipment.ShipmentRouteSegment
+    resource UniboExPoc.Ofbiz.Shipment.ShipmentRouteSegment.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentStatus
+    resource UniboExPoc.Ofbiz.Shipment.ShipmentStatus.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentType
     resource UniboExPoc.Ofbiz.Shipment.ShipmentType.Version
     resource UniboExPoc.Ofbiz.Shipment.ShipmentTypeAttr
+    resource UniboExPoc.Ofbiz.Shipment.ShipmentTypeAttr.Version
     resource UniboExPoc.Ofbiz.Shipment.ShippingDocument
     resource UniboExPoc.Ofbiz.Shipment.ShippingDocument.Version
     resource UniboExPoc.Ofbiz.Shipment.ContactMech

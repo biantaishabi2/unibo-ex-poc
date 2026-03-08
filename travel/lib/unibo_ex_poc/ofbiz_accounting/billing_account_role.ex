@@ -27,11 +27,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.BillingAccountRole do
   end
 
   attributes do
-    attribute :billing_account_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :party_id, :string do
       allow_nil? false
       primary_key? true
@@ -54,7 +49,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.BillingAccountRole do
   relationships do
     belongs_to :billing_account, UniboExPoc.Ofbiz.Accounting.BillingAccount do
       public? true
-      define_attribute? false
     end
   end
 

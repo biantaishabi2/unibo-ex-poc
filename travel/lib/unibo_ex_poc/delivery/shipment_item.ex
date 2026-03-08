@@ -77,7 +77,7 @@ defmodule UniboExPoc.Delivery.ShipmentItem do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:shipment_item_seq_id, :quantity, :shipment_content_description]
+      accept [:shipment_id, :shipment_item_seq_id, :product_id, :quantity, :shipment_content_description]
       validate present(:shipment_id)
       validate compare(:quantity, greater_than: 0)
       # message: "发货数量必须大于 0"

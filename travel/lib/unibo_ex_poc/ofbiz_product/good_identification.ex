@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.GoodIdentification do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_good_identifications"
@@ -27,16 +27,7 @@ defmodule UniboExPoc.Ofbiz.Product.GoodIdentification do
   end
 
   attributes do
-    attribute :good_identification_type_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
-    attribute :product_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
+    uuid_primary_key :id
     attribute :id_value, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -44,16 +35,20 @@ defmodule UniboExPoc.Ofbiz.Product.GoodIdentification do
   relationships do
     belongs_to :good_identification_type, UniboExPoc.Ofbiz.Product.GoodIdentificationType do
       public? true
-      define_attribute? false
     end
     belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

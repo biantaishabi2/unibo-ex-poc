@@ -158,7 +158,7 @@ defmodule UniboExPoc.Delivery.ShipmentCostEstimate do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:shipment_cost_estimate_id, :carrier_role_type_id, :product_store_id, :geo_id_from, :geo_id_to, :weight_unit_price, :weight_uom_id, :weight_break_id, :quantity_unit_price, :quantity_uom_id, :quantity_break_id, :price_unit_price, :price_uom_id, :price_break_id, :order_flat_price, :order_price_percent, :order_item_flat_price, :shipping_price_percent, :oversize_unit, :oversize_price, :feature_percent, :feature_price, :product_feature_group_id]
+      accept [:shipment_cost_estimate_id, :shipment_method_type_id, :carrier_party_id, :carrier_role_type_id, :product_store_id, :geo_id_from, :geo_id_to, :weight_unit_price, :weight_uom_id, :weight_break_id, :quantity_unit_price, :quantity_uom_id, :quantity_break_id, :price_unit_price, :price_uom_id, :price_break_id, :order_flat_price, :order_price_percent, :order_item_flat_price, :shipping_price_percent, :oversize_unit, :oversize_price, :feature_percent, :feature_price, :product_feature_group_id]
       change fn changeset, _context ->
         id = Ash.Changeset.get_attribute(changeset, :id)
 

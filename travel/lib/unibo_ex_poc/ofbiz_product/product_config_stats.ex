@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductConfigStats do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_config_statses"
@@ -32,11 +32,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductConfigStats do
       primary_key? true
       public? true
     end
-    attribute :product_id, :uuid do
-      allow_nil? false
-      primary_key? true
-      public? true
-    end
     attribute :num_of_confs, :integer, public?: true
     attribute :config_type_id, :string do
       public? true
@@ -49,12 +44,17 @@ defmodule UniboExPoc.Ofbiz.Product.ProductConfigStats do
     belongs_to :product_product, UniboExPoc.Ofbiz.Product.Product do
       public? true
       source_attribute :product_id
-      define_attribute? false
     end
   end
 
   actions do
     defaults [:read, :create, :update, :destroy]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

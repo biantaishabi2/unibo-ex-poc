@@ -72,8 +72,8 @@ defmodule UniboExPoc.Ecommerce.ProductVariant do
 
   calculations do
     calculate :combination_info_price, :decimal, expr(price)
-    calculate :combination_info_has_discounted_price, :boolean, expr(list_price > pricelist_price)
-    calculate :combination_info_is_combination_possible, :boolean, expr(all attributes valid and (variant exists or can_create))
+    calculate :combination_info_has_discounted_price, :boolean, {UniboExPoc.Ecommerce.Calculations.ProductVariant.CombinationInfoHasDiscountedPrice, []}
+    calculate :combination_info_is_combination_possible, :boolean, {UniboExPoc.Ecommerce.Calculations.ProductVariant.CombinationInfoIsCombinationPossible, []}
   end
 
   relationships do

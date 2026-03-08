@@ -105,7 +105,7 @@ defmodule UniboExPoc.Delivery.Delivery do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:delivery_id, :estimated_start_date, :estimated_arrival_date, :start_mileage]
+      accept [:delivery_id, :origin_facility_id, :dest_facility_id, :estimated_start_date, :estimated_arrival_date, :fixed_asset_id, :start_mileage]
       validate present(:origin_facility_id)
       validate present(:dest_facility_id)
       change fn changeset, _context ->

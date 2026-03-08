@@ -124,11 +124,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.Shipment do
       public? true
       attribute_type :string
     end
-    has_many :shipment_type_attr, UniboExPoc.Ofbiz.Shipment.ShipmentTypeAttr do
-      public? true
-      source_attribute :shipment_type_id
-      destination_attribute :shipment_type_id
-    end
     belongs_to :to_party, UniboExPoc.Ofbiz.Shipment.Party do
       public? true
       source_attribute :party_id_to
@@ -179,7 +174,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.Shipment do
   end
 
   archive do
-    archive_related [:shipment_type_attr, :shipment_manifest_view]
+    archive_related [:shipment_manifest_view]
   end
 
 end

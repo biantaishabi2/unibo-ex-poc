@@ -115,7 +115,7 @@ defmodule UniboExPoc.Delivery.ShipmentPackageRouteSeg do
     defaults [:read, :destroy]
     create :create do
       primary? true
-      accept [:tracking_code]
+      accept [:shipment_id, :shipment_package_seq_id, :shipment_route_segment_id, :tracking_code]
       validate present(:shipment_id)
       validate present(:shipment_package_seq_id)
       validate present(:shipment_route_segment_id)

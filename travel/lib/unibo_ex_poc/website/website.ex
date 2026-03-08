@@ -14,6 +14,6 @@ defmodule UniboExPoc.Website do
     resource UniboExPoc.Website.Menu
     resource UniboExPoc.Website.MenuTranslation
     resource UniboExPoc.Website.Menu.Version
-    resource UniboExPoc.Website.Company
+    resource UniboExPoc.Website.Party
   end
 end
