@@ -107,30 +107,14 @@ defmodule UniboExPoc.Sign.SignTemplate do
       change manage_relationship(:sign_items, :sign_items, type: :create)
       validate present(:name)
       validate present(:document)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :document, :tag_ids, :is_sharing, :authorized_ids]
       argument :sign_items, {:array, :map}, default: []
       change manage_relationship(:sign_items, :sign_items, on_lookup: :relate, on_no_match: :create, on_match: :update)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :archive do
@@ -146,15 +130,7 @@ defmodule UniboExPoc.Sign.SignTemplate do
       end
       # message: "只有活跃状态可以归档"
       change set_attribute(:status, :archived)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :activate do
@@ -170,15 +146,7 @@ defmodule UniboExPoc.Sign.SignTemplate do
       end
       # message: "只有已归档状态可以启用"
       change set_attribute(:status, :active)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

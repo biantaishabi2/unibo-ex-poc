@@ -112,58 +112,26 @@ defmodule UniboExPoc.Manufacturing.WorkCenter do
       accept [:center_code, :name, :costs_hour, :capacity, :time_start, :time_stop, :time_efficiency, :resource_calendar_id, :description]
       validate present(:center_code)
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :costs_hour, :capacity, :time_start, :time_stop, :time_efficiency, :resource_calendar_id, :status, :blocked, :description]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :block do
       description "阻塞工作中心"
       accept []
       change set_attribute(:blocked, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unblock do
       description "解除阻塞"
       accept []
       change set_attribute(:blocked, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

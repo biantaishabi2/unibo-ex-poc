@@ -96,23 +96,14 @@ defmodule UniboExPoc.ELearning.Enrollment do
       argument :partner_id, :uuid, allow_nil?: false
       change manage_relationship(:channel_id, :channel, type: :append, on_lookup: :relate)
       change manage_relationship(:partner_id, :partner, type: :append, on_lookup: :relate)
-      validate present(:)
-      # message: "必须完成所有前置课程才能加入"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      # validation: prerequisite_check — 必须完成所有前置课程才能加入
+      change set_attribute(:id, expr(id))
     end
     update :join do
       description "接受邀请加入课程"
       primary? true
       accept []
-      # skipped: validate present : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :member_status)
         if current == :invited do
@@ -123,15 +114,7 @@ defmodule UniboExPoc.ELearning.Enrollment do
       end
       # message: "只有受邀状态可以执行加入操作"
       change set_attribute(:member_status, :joined)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :recompute_completion do
@@ -140,28 +123,12 @@ defmodule UniboExPoc.ELearning.Enrollment do
       change UniboExPoc.ELearning.Changes.Enrollment.ComputeCompletion
       change set_attribute(:member_status, :ongoing)
       change set_attribute(:member_status, :completed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     destroy :destroy do
       description "清理过期邀请（GC 定时任务）"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

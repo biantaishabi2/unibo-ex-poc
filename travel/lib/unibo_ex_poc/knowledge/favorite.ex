@@ -71,29 +71,13 @@ defmodule UniboExPoc.Knowledge.Favorite do
       change manage_relationship(:user_id, :user, type: :append, on_lookup: :relate)
       validate present(:article_id)
       validate present(:user_id)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :reorder do
       description "拖拽调整排序，批量更新 sequence"
       primary? true
       accept [:sequence]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

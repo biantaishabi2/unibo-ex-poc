@@ -112,15 +112,7 @@ defmodule UniboExPoc.HR.PerformanceReview do
       argument :reviewer_id, :uuid
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
       # validation: custom_check
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :action_confirm do
       description "确认评估，发送邮件通知给 employee 和 reviewer"
@@ -137,15 +129,7 @@ defmodule UniboExPoc.HR.PerformanceReview do
       # message: "只有新建状态可以确认"
       change set_attribute(:status, :pending)
       change UniboExPoc.HR.Changes.PerformanceReview.ActionConfirmCall6
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_done do
@@ -164,15 +148,7 @@ defmodule UniboExPoc.HR.PerformanceReview do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :done)
       change UniboExPoc.HR.Changes.PerformanceReview.ActionDoneCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_cancel do
@@ -188,15 +164,7 @@ defmodule UniboExPoc.HR.PerformanceReview do
       end
       # message: "只有新建或进行中状态可以取消"
       change set_attribute(:status, :cancel)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_back do
@@ -212,15 +180,7 @@ defmodule UniboExPoc.HR.PerformanceReview do
       end
       # message: "只有已取消状态可以恢复"
       change set_attribute(:status, :new)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -130,28 +130,12 @@ defmodule UniboExPoc.Gamification.Goal do
       change manage_relationship(:definition_id, :definition, type: :append, on_lookup: :relate)
       change manage_relationship(:user_id, :user, type: :append, on_lookup: :relate)
       validate present(:target_goal)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:current, :state, :to_update, :closed, :last_update, :remind_update_delay]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_start do
@@ -167,15 +151,7 @@ defmodule UniboExPoc.Gamification.Goal do
       end
       # message: "只有草稿状态可以启动"
       change set_attribute(:state, :inprogress)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_reach do
@@ -192,15 +168,7 @@ defmodule UniboExPoc.Gamification.Goal do
       # message: "只有进行中状态可以标记达成"
       change set_attribute(:state, :reached)
       change set_attribute(:closed, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_fail do
@@ -217,15 +185,7 @@ defmodule UniboExPoc.Gamification.Goal do
       # message: "只有进行中状态可以标记失败"
       change set_attribute(:state, :failed)
       change set_attribute(:closed, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_cancel do
@@ -233,15 +193,7 @@ defmodule UniboExPoc.Gamification.Goal do
       accept []
       change set_attribute(:state, :canceled)
       change set_attribute(:closed, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

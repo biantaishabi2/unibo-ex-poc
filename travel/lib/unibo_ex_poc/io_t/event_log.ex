@@ -76,7 +76,7 @@ defmodule UniboExPoc.IoT.EventLog do
   end
 
   calculations do
-    calculate :is_error, :boolean, expr(action_result == failed)
+    calculate :is_error, :boolean, expr(action_result == "failed")
     calculate :age_days, :integer, expr(datetime_diff_days("now", created_at))
   end
 
@@ -109,30 +109,14 @@ defmodule UniboExPoc.IoT.EventLog do
       validate present(:device_id)
       validate present(:event_type)
       validate present(:payload)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :mark_processed do
       description "标记为已处理"
       primary? true
       accept [:trigger_rule_id, :action_result, :action_error_message, :processing_time_ms]
       change set_attribute(:processed, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

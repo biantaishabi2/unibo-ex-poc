@@ -94,15 +94,7 @@ defmodule UniboExPoc.Project.TimesheetEntry do
       change UniboExPoc.Project.Changes.TimesheetEntry.CreateCall2
       change UniboExPoc.Project.Changes.TimesheetEntry.ComputeProjectId
       change UniboExPoc.Project.Changes.TimesheetEntry.CreateCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -112,15 +104,7 @@ defmodule UniboExPoc.Project.TimesheetEntry do
       change UniboExPoc.Project.Changes.TimesheetEntry.ComputeAmount
       change UniboExPoc.Project.Changes.TimesheetEntry.ComputeProjectId
       change UniboExPoc.Project.Changes.TimesheetEntry.UpdateCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -111,28 +111,12 @@ defmodule UniboExPoc.Inventory.StockMoveLine do
       argument :owner_id, :uuid
       change manage_relationship(:source_location_id, :source_location, type: :append, on_lookup: :relate)
       change manage_relationship(:dest_location_id, :dest_location, type: :append, on_lookup: :relate)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:quantity, :lot_id, :lot_name, :result_package_id]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

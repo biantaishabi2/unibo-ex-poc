@@ -128,7 +128,7 @@ defmodule UniboExPoc.DataRecycle.RecycleModel do
   end
 
   calculations do
-    calculate :records_to_recycle_count, :integer, expr(count(recycle_records))
+    calculate :records_to_recycle_count, :integer, expr("count(recycle_records)")
   end
 
   relationships do
@@ -150,56 +150,24 @@ defmodule UniboExPoc.DataRecycle.RecycleModel do
       validate present(:name)
       validate present(:res_model_name)
       validate present(:time_field)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :res_model_name, :domain, :time_field, :time_field_delta, :time_field_delta_unit, :recycle_mode, :recycle_action, :include_archived, :active, :notify_frequency, :notify_frequency_period]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :recycle_records_action do
       description "手动触发回收——根据规则搜索符合条件的记录，自动模式直接执行，手动模式创建待审记录"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cron_recycle do
       description "定时任务入口——扫描所有启用的规则并执行回收"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

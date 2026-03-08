@@ -114,15 +114,7 @@ defmodule UniboExPoc.Sales.Quote do
       validate present(:quote_number)
       change relate_actor(:created_by)
       change UniboExPoc.Sales.Changes.Quote.ComputeTotalAmount
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -156,15 +148,7 @@ defmodule UniboExPoc.Sales.Quote do
       end
       # message: "只有草稿状态可以发送"
       change set_attribute(:status, :submitted)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :accept do
@@ -180,15 +164,7 @@ defmodule UniboExPoc.Sales.Quote do
       end
       # message: "只有已发送状态可以接受"
       change set_attribute(:status, :accepted)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reject do
@@ -204,15 +180,7 @@ defmodule UniboExPoc.Sales.Quote do
       end
       # message: "只有已发送状态可以拒绝"
       change set_attribute(:status, :rejected)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

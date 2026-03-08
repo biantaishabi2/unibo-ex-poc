@@ -86,29 +86,13 @@ defmodule UniboExPoc.Marketing.EventMailSchedule do
       argument :event_id, :uuid, allow_nil?: false
       change manage_relationship(:event_id, :event, type: :append, on_lookup: :relate)
       validate present(:interval_type)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:interval_type, :interval_nbr, :interval_unit, :template_ref]
       change UniboExPoc.Marketing.Changes.EventMailSchedule.UpdateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

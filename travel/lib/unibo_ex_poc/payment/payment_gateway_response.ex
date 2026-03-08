@@ -155,29 +155,13 @@ defmodule UniboExPoc.Payment.PaymentGatewayResponse do
       validate present(:amount)
       validate present(:currency_uom_id)
       validate present(:transaction_date)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       description "仅允许更新网关消息补充字段，响应记录原则上不可变"
       primary? true
       accept [:gateway_message, :gateway_code, :gateway_flag]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

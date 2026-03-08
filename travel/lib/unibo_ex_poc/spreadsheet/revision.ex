@@ -92,24 +92,8 @@ defmodule UniboExPoc.Spreadsheet.Revision do
       # validation: conflict_on_mismatch
       # validation: max_revision_retention
       # validation: undo_creates_revision
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :current_revision_id, id)
-        else
-          changeset
-        end
-      end
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:current_revision_id, expr(id))
+      change set_attribute(:id, expr(id))
     end
     create :create_snapshot do
       description "创建完整文档快照修订，用于加速后续加载"
@@ -119,15 +103,7 @@ defmodule UniboExPoc.Spreadsheet.Revision do
       change manage_relationship(:document_id, :document, type: :append, on_lookup: :relate)
       change manage_relationship(:user_id, :user, type: :append, on_lookup: :relate)
       # validation: snapshot_contains_full_state
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

@@ -99,29 +99,13 @@ defmodule UniboExPoc.Fleet.Driver do
       argument :hr_employee_id, :string
       validate present(:name)
       validate present(:license_number)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :license_number, :license_type, :license_expiry_date, :phone, :status]
       argument :hr_employee_id, :string
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
@@ -137,15 +121,7 @@ defmodule UniboExPoc.Fleet.Driver do
       end
       # message: "只有在职驾驶员可以停用"
       change set_attribute(:status, :inactive)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

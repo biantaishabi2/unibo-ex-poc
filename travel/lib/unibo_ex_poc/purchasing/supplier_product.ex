@@ -101,28 +101,12 @@ defmodule UniboExPoc.Purchasing.SupplierProduct do
       accept [:product_name, :product_code, :unit_price, :currency, :min_order_quantity, :lead_time_days, :available_from, :available_thru]
       argument :supplier_id, :uuid, allow_nil?: false
       change manage_relationship(:supplier_id, :supplier, type: :append, on_lookup: :relate)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:unit_price, :currency, :min_order_quantity, :lead_time_days, :available_from, :available_thru]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     read :list do

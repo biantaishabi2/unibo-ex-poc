@@ -73,28 +73,12 @@ defmodule UniboExPoc.Travel.TravelStaticCodeMapping do
     create :create do
       primary? true
       accept [:supplier_code, :object_type, :canonical_entity, :canonical_id, :external_code, :external_name, :status]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:canonical_entity, :canonical_id, :external_name, :status]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

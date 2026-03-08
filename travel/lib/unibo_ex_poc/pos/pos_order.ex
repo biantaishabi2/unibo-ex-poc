@@ -178,35 +178,18 @@ defmodule UniboExPoc.POS.PosOrder do
       argument :currency_id, :uuid, allow_nil?: false
       change manage_relationship(:currency_id, :currency, type: :append, on_lookup: :relate)
       validate present(:order_number)
-      validate present(:)
+      # validation: immutable_non_draft
       change UniboExPoc.POS.Changes.PosOrder.ComputeAmountTotal
       change UniboExPoc.POS.Changes.PosOrder.ComputeAmountUntaxed
-      change fn changeset, _context ->
-        amount_total = Ash.Changeset.get_attribute(changeset, :amount_total)
-        amount_untaxed = Ash.Changeset.get_attribute(changeset, :amount_untaxed)
-
-        if amount_total && amount_untaxed do
-          Ash.Changeset.force_change_attribute(changeset, :amount_tax, (amount_total - amount_untaxed))
-        else
-          changeset
-        end
-      end
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:amount_tax, expr((amount_total - amount_untaxed)))
+      change set_attribute(:id, expr(id))
     end
     update :pay do
       description "标记已付款，清理并重建 payment 记录，实时模式下触发库存拣货"
       primary? true
       accept []
       argument :payments, {:array, :string}, allow_nil?: false
-      # skipped: validate present : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
         if current == :draft do
@@ -220,15 +203,7 @@ defmodule UniboExPoc.POS.PosOrder do
       change UniboExPoc.POS.Changes.PosOrder.PayCall5
       change set_attribute(:status, :paid)
       change UniboExPoc.POS.Changes.PosOrder.PayCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :done do
@@ -244,15 +219,7 @@ defmodule UniboExPoc.POS.PosOrder do
       end
       # message: "只有已付款状态可以标记完成"
       change set_attribute(:status, :done)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :invoice do
@@ -271,15 +238,7 @@ defmodule UniboExPoc.POS.PosOrder do
       change UniboExPoc.POS.Changes.PosOrder.InvoiceCall9
       change UniboExPoc.POS.Changes.PosOrder.InvoiceCall10
       change set_attribute(:status, :invoiced)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     create :refund do
@@ -293,30 +252,13 @@ defmodule UniboExPoc.POS.PosOrder do
       argument :currency_id, :uuid, allow_nil?: false
       change manage_relationship(:currency_id, :currency, type: :append, on_lookup: :relate)
       validate present(:order_number)
-      validate present(:)
+      # validation: immutable_non_draft
       change UniboExPoc.POS.Changes.PosOrder.ComputeAmountTotal
       change UniboExPoc.POS.Changes.PosOrder.ComputeAmountUntaxed
-      change fn changeset, _context ->
-        amount_total = Ash.Changeset.get_attribute(changeset, :amount_total)
-        amount_untaxed = Ash.Changeset.get_attribute(changeset, :amount_untaxed)
-
-        if amount_total && amount_untaxed do
-          Ash.Changeset.force_change_attribute(changeset, :amount_tax, (amount_total - amount_untaxed))
-        else
-          changeset
-        end
-      end
+      change set_attribute(:amount_tax, expr((amount_total - amount_untaxed)))
       change UniboExPoc.POS.Changes.PosOrder.RefundCall12
       change UniboExPoc.POS.Changes.PosOrder.RefundCall13
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :cancel do
       description "取消订单"
@@ -331,30 +273,14 @@ defmodule UniboExPoc.POS.PosOrder do
       end
       # message: "只有草稿状态可以取消"
       change set_attribute(:status, :cancel)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     destroy :destroy do
       description "删除订单（仅 draft 或 cancel 状态）"
       validate attribute_in(:status, [:draft, :cancel])
       # message: "仅草稿或取消状态可删除"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

@@ -184,39 +184,22 @@ defmodule UniboExPoc.ELearning.Course do
       primary? true
       accept [:name, :channel_type, :visibility, :enroll, :description, :description_html, :sequence, :promote_strategy, :karma_gen_channel_finish, :quiz_first_attempt_reward, :quiz_second_attempt_reward, :quiz_third_attempt_reward, :quiz_fourth_attempt_reward]
       validate present(:name)
-      validate present(:)
-      # message: "仅会员可见的课程必须设置为仅邀请注册"
+      # validation: visibility_enroll_constraint — 仅会员可见的课程必须设置为仅邀请注册
       change relate_actor(:created_by)
       change UniboExPoc.ELearning.Changes.Course.CreateCreateRelated2
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :channel_type, :visibility, :enroll, :description, :description_html, :sequence, :promote_strategy, :website_published, :karma_gen_channel_finish, :quiz_first_attempt_reward, :quiz_second_attempt_reward, :quiz_third_attempt_reward, :quiz_fourth_attempt_reward]
-      # skipped: validate present : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      # skipped: validate custom : (incompatible with bulk update atomic path)
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :publish do
       description "上线发布课程"
       accept []
-      # skipped: validate present : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :website_published)
         if current == false do
@@ -227,21 +210,13 @@ defmodule UniboExPoc.ELearning.Course do
       end
       # message: "课程已处于发布状态"
       change set_attribute(:website_published, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unpublish do
       description "取消发布课程"
       accept []
-      # skipped: validate present : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :website_published)
         if current == true do
@@ -252,45 +227,21 @@ defmodule UniboExPoc.ELearning.Course do
       end
       # message: "课程未发布，无法取消发布"
       change set_attribute(:website_published, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :archive do
       description "归档课程（先归档所有 Slide，再归档课程）"
       accept []
-      # skipped: validate present : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      # skipped: validate custom : (incompatible with bulk update atomic path)
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :restore do
       description "恢复课程（先恢复课程，再恢复 Slide）"
       accept []
-      # skipped: validate present : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      # skipped: validate custom : (incompatible with bulk update atomic path)
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

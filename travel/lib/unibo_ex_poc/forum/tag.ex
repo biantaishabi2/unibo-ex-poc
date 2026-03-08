@@ -75,30 +75,13 @@ defmodule UniboExPoc.Forum.Tag do
       argument :forum_id, :uuid, allow_nil?: false
       change manage_relationship(:forum_id, :forum, type: :append, on_lookup: :relate)
       validate present(:name)
-      validate present(:)
-      # message: "Karma 不足，无法创建标签"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      # validation: karma_check_tag_create — Karma 不足，无法创建标签
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

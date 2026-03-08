@@ -94,15 +94,7 @@ defmodule UniboExPoc.HR.Training do
       argument :skill_id, :uuid
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
       validate present(:training_name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :start do
       description "开始培训"
@@ -119,15 +111,7 @@ defmodule UniboExPoc.HR.Training do
       # message: "只有计划中的培训可以开始"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :in_progress)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete do
@@ -144,15 +128,7 @@ defmodule UniboExPoc.HR.Training do
       # message: "只有计划中或进行中的培训可以完成"
       change set_attribute(:status, :completed)
       change UniboExPoc.HR.Changes.Training.CompleteCall4
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -168,15 +144,7 @@ defmodule UniboExPoc.HR.Training do
       end
       # message: "只有计划中或进行中的培训可以取消"
       change set_attribute(:status, :cancelled)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

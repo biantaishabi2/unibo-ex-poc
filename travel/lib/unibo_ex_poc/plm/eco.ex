@@ -129,29 +129,13 @@ defmodule UniboExPoc.PLM.Eco do
       change UniboExPoc.PLM.Changes.Eco.CreateCall1
       change UniboExPoc.PLM.Changes.Eco.CreateCall2
       change relate_actor(:responsible)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :note]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :advance_stage do
@@ -159,15 +143,7 @@ defmodule UniboExPoc.PLM.Eco do
       argument :target_stage_id, :uuid, allow_nil?: false
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change UniboExPoc.PLM.Changes.Eco.AdvanceStageCall4
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :apply_changes do
@@ -179,15 +155,7 @@ defmodule UniboExPoc.PLM.Eco do
       change UniboExPoc.PLM.Changes.Eco.ApplyChangesCall5
       change UniboExPoc.PLM.Changes.Eco.ApplyChangesCall6
       change UniboExPoc.PLM.Changes.Eco.ApplyChangesCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :rebase do
@@ -195,15 +163,7 @@ defmodule UniboExPoc.PLM.Eco do
       accept []
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change UniboExPoc.PLM.Changes.Eco.RebaseCall8
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

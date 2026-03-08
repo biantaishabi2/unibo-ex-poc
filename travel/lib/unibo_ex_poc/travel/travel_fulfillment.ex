@@ -146,28 +146,12 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       argument :order_id, :uuid, allow_nil?: false
       change manage_relationship(:order_id, :order, type: :append, on_lookup: :relate)
       validate present(:tenant_id)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:supplier_booking_ref, :voucher_or_ticket_ref, :ticket_refs, :confirmation_payload, :failure_reason]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :confirm_booking do
@@ -182,15 +166,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       end
       # message: "只有 pending 履约可以确认、失败或取消"
       change set_attribute(:status, :confirmed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelFulfillment.ConfirmBookingSupplierConfirmBookingBridge
       require_atomic? false
     end
@@ -206,15 +182,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       end
       # message: "只有 confirmed 履约可以 issue_voucher_or_ticket"
       change set_attribute(:status, :issued)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelFulfillment.IssueVoucherOrTicketSupplierIssueDocumentBridge
       require_atomic? false
     end
@@ -230,15 +198,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       end
       # message: "只有 issued 履约可以 mark_in_use"
       change set_attribute(:status, :in_use)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete_fulfillment do
@@ -253,15 +213,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       end
       # message: "只有 issued 或 in_use 履约可以 complete_fulfillment"
       change set_attribute(:status, :completed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel_fulfillment do
@@ -276,15 +228,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       end
       # message: "只有 pending 履约可以确认、失败或取消"
       change set_attribute(:status, :cancelled)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelFulfillment.CancelFulfillmentSupplierCancelBookingBridge
       require_atomic? false
     end
@@ -300,15 +244,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       end
       # message: "只有 pending 履约可以确认、失败或取消"
       change set_attribute(:status, :failed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

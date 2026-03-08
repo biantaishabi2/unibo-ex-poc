@@ -121,30 +121,14 @@ defmodule UniboExPoc.Ecommerce.ShoppingCart do
       primary? true
       accept [:currency]
       change relate_actor(:owner)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:status]
       argument :total_amount, :decimal
       argument :item_count, :string
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :convert do
@@ -161,15 +145,7 @@ defmodule UniboExPoc.Ecommerce.ShoppingCart do
       # message: "只有活跃购物车可以转为订单"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :converted)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cart_update do
@@ -182,15 +158,7 @@ defmodule UniboExPoc.Ecommerce.ShoppingCart do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change UniboExPoc.Ecommerce.Changes.ShoppingCart.CartUpdateCall5
       change UniboExPoc.Ecommerce.Changes.ShoppingCart.CartUpdateCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :recover do
@@ -200,15 +168,7 @@ defmodule UniboExPoc.Ecommerce.ShoppingCart do
       argument :mode, :atom
       change set_attribute(:status, :active)
       change set_attribute(:cart_recovery_email_sent, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :update_pricelist do
@@ -216,30 +176,14 @@ defmodule UniboExPoc.Ecommerce.ShoppingCart do
       accept []
       argument :pricelist_id, :uuid, allow_nil?: false
       change UniboExPoc.Ecommerce.Changes.ShoppingCart.UpdatePricelistCall6
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :select_carrier do
       description "选择物流方式"
       accept []
       argument :carrier_id, :uuid, allow_nil?: false
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

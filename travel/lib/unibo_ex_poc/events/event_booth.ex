@@ -109,28 +109,12 @@ defmodule UniboExPoc.Events.EventBooth do
       change manage_relationship(:event_id, :event, type: :append, on_lookup: :relate)
       validate present(:event_id)
       validate present(:booth_number)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :area, :rental_price, :notes]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reserve do
@@ -148,15 +132,7 @@ defmodule UniboExPoc.Events.EventBooth do
       # skipped: validate present :tenant_id (incompatible with bulk update atomic path)
       change set_attribute(:status, :reserved)
       change UniboExPoc.Events.Changes.EventBooth.ComputeReservedAt
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :release do
@@ -172,15 +148,7 @@ defmodule UniboExPoc.Events.EventBooth do
       end
       # message: "只有已预定或已占用的展位可以释放"
       change set_attribute(:status, :available)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

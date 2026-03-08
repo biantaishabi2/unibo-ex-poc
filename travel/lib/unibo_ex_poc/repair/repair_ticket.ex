@@ -134,28 +134,12 @@ defmodule UniboExPoc.Repair.RepairTicket do
       validate present(:repair_number)
       validate present(:customer_id)
       validate present(:product_id)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:description, :internal_notes, :warranty_applicable, :warranty_expiry_date, :scheduled_date]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :confirm do
@@ -171,15 +155,7 @@ defmodule UniboExPoc.Repair.RepairTicket do
       end
       # message: "只有草稿状态可以确认"
       change set_attribute(:state, :confirmed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :start_repair do
@@ -195,15 +171,7 @@ defmodule UniboExPoc.Repair.RepairTicket do
       end
       # message: "只有已确认工单可以开始维修"
       change set_attribute(:state, :under_repair)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete_repair do
@@ -220,15 +188,7 @@ defmodule UniboExPoc.Repair.RepairTicket do
       # message: "只有维修中工单可以标记完成"
       change set_attribute(:state, :repaired)
       change set_attribute(:completion_date, &DateTime.utc_now/0)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deliver do
@@ -244,15 +204,7 @@ defmodule UniboExPoc.Repair.RepairTicket do
       end
       # message: "只有已修复工单可以交付"
       change set_attribute(:state, :done)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -268,15 +220,7 @@ defmodule UniboExPoc.Repair.RepairTicket do
       end
       # message: "只有草稿或确认状态可以取消"
       change set_attribute(:state, :cancelled)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

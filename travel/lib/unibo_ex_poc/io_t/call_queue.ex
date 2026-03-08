@@ -154,28 +154,12 @@ defmodule UniboExPoc.IoT.CallQueue do
       argument :org_id, :integer, allow_nil?: false
       change manage_relationship(:org_id, :org, type: :append, on_lookup: :relate)
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :ring_strategy, :timeout_seconds, :max_wait_seconds, :max_callers, :voicemail_enabled, :overflow_action, :callback_enabled, :announce_position, :announce_wait_time, :music_on_hold_id, :wrapup_time_seconds, :sla_target_seconds]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :login_agent do
@@ -183,15 +167,7 @@ defmodule UniboExPoc.IoT.CallQueue do
       argument :agent_user_id, :integer, allow_nil?: false
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change UniboExPoc.IoT.Changes.CallQueue.LoginAgentCreateRelated1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :logout_agent do
@@ -199,15 +175,7 @@ defmodule UniboExPoc.IoT.CallQueue do
       argument :agent_user_id, :integer, allow_nil?: false
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # cascade_destroy — 缺少 field，跳过
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

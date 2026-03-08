@@ -159,29 +159,13 @@ defmodule UniboExPoc.Fleet.FleetVehicle do
       argument :fleet_vehicle_type_id, :string
       validate present(:license_plate)
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :license_plate, :brand, :model_name, :model_year, :odometer, :fuel_type, :color, :seats, :status, :garage_id, :last_odometer_update, :next_service_date]
       argument :fleet_vehicle_type_id, :string
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :decommission do
@@ -197,15 +181,7 @@ defmodule UniboExPoc.Fleet.FleetVehicle do
       end
       # message: "只有非报废状态的车辆可以报废"
       change set_attribute(:status, :retired)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

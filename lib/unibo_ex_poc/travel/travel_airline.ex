@@ -1,0 +1,84 @@
+defmodule UniboV4.Travel.TravelAirline do
+  use Ash.Resource,
+    otp_app: :unibo_ex_poc,
+    domain: UniboV4.Travel,
+    data_layer: AshPostgres.DataLayer,
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
+
+  resource do
+    description "航司主数据（Travel 层，来源 OFBiz PartyGroup）"
+  end
+
+  postgres do
+    table "travel_airlines"
+    repo UniboV4.Repo
+  end
+
+  graphql do
+    type :travel_travel_airline
+
+    queries do
+      get :get_travel_travel_airline, :read
+      list :list_travel_travel_airlines, :read
+    end
+
+    mutations do
+      create :create_travel_travel_airline, :create
+      update :update_travel_travel_airline, :update
+    end
+
+  end
+
+  attributes do
+    uuid_primary_key :id
+    attribute :airline_code, :string do
+      allow_nil? false
+      public? true
+      description "航司规范编码"
+    end
+    attribute :airline_name, :string do
+      allow_nil? false
+      public? true
+      description "航司名称"
+    end
+    attribute :iata_code, :string do
+      public? true
+      description "IATA 二字码"
+    end
+    attribute :icao_code, :string do
+      public? true
+      description "ICAO 三字码"
+    end
+    attribute :status, :atom do
+      constraints one_of: [:active, :inactive]
+      default :active
+      public? true
+    end
+  end
+
+  actions do
+    defaults [:read]
+    create :create do
+      primary? true
+      accept [:airline_code, :airline_name, :iata_code, :icao_code, :status]
+      change set_attribute(:id, expr(id))
+    end
+    update :update do
+      primary? true
+      accept [:airline_name, :iata_code, :icao_code, :status]
+      change set_attribute(:id, expr(id))
+      require_atomic? false
+    end
+  end
+
+  identities do
+    identity :unique_airline_code, [:airline_code]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    ignore_attributes [:inserted_at, :updated_at]
+  end
+
+end

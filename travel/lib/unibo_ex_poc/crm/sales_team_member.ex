@@ -67,29 +67,13 @@ defmodule UniboExPoc.CRM.SalesTeamMember do
       validate present(:user_id)
       validate present(:team_id)
       change UniboExPoc.CRM.Changes.SalesTeamMember.CreateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:active]
       # skipped: validate relationship_required :team_id (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

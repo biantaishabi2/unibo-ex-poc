@@ -151,28 +151,12 @@ defmodule UniboExPoc.Inventory.StockQuant do
       change manage_relationship(:warehouse_id, :warehouse, type: :append, on_lookup: :relate)
       change manage_relationship(:location_id, :location, type: :append, on_lookup: :relate)
       validate present(:product_code)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:quantity, :reserved_quantity, :unit_cost]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :update_available_quantity do
@@ -186,15 +170,7 @@ defmodule UniboExPoc.Inventory.StockQuant do
       argument :owner_id, :uuid
       argument :in_date, :utc_datetime
       change UniboExPoc.Inventory.Changes.StockQuant.UpdateAvailableQuantityCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     read :get_reserve_quantity do
@@ -208,15 +184,7 @@ defmodule UniboExPoc.Inventory.StockQuant do
       description "执行盘点调整"
       accept [:inventory_quantity]
       change UniboExPoc.Inventory.Changes.StockQuant.ApplyInventoryCall2
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

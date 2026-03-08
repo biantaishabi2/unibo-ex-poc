@@ -95,29 +95,13 @@ defmodule UniboExPoc.Inventory.PickingBatch do
       primary? true
       accept [:is_wave]
       argument :responsible_id, :uuid
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:is_wave]
       argument :responsible_id, :uuid
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_confirm do
@@ -133,15 +117,7 @@ defmodule UniboExPoc.Inventory.PickingBatch do
       end
       # message: "只有草稿状态可以确认"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_done do
@@ -156,15 +132,7 @@ defmodule UniboExPoc.Inventory.PickingBatch do
         end
       end
       # message: "只有进行中状态可以验证"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_cancel do
@@ -179,15 +147,7 @@ defmodule UniboExPoc.Inventory.PickingBatch do
         end
       end
       # message: "只有草稿或进行中状态可以取消"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_assign do
@@ -202,15 +162,7 @@ defmodule UniboExPoc.Inventory.PickingBatch do
         end
       end
       # message: "只有进行中状态可以检查可用性"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

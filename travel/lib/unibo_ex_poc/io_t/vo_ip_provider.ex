@@ -136,28 +136,12 @@ defmodule UniboExPoc.IoT.VoIPProvider do
       validate present(:name)
       validate present(:sip_server)
       validate present(:domain)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :sip_server, :sip_port, :transport, :domain, :outbound_proxy, :stun_server, :turn_server, :turn_username, :turn_password, :websocket_url, :codecs, :is_default]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -156,28 +156,12 @@ balanced — 选择当前未关闭工单数量最少的可用成员
       accept [:name, :description, :alias_email, :assignment_method, :auto_assignment, :use_sla, :use_website_form, :use_customer_portal, :use_timesheet, :use_field_service, :use_customer_rating, :use_knowledge_base, :resource_calendar_id]
       validate present(:name)
       # message: "团队名称必填"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :description, :alias_email, :assignment_method, :auto_assignment, :active, :use_sla, :use_website_form, :use_customer_portal, :use_timesheet, :use_field_service, :use_customer_rating, :use_knowledge_base, :resource_calendar_id]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

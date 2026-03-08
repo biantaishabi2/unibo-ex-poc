@@ -126,15 +126,7 @@ defmodule UniboExPoc.Spreadsheet.SpreadsheetDocument do
       argument :owner_id, :uuid, allow_nil?: false
       change manage_relationship(:owner_id, :owner, type: :append, on_lookup: :relate)
       # validation: figure_id_global_unique — 图表 ID 必须跨工作表全局唯一
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -142,15 +134,7 @@ defmodule UniboExPoc.Spreadsheet.SpreadsheetDocument do
       # skipped: validate compare :is_template (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     create :create_from_template do
@@ -159,29 +143,13 @@ defmodule UniboExPoc.Spreadsheet.SpreadsheetDocument do
       argument :owner_id, :uuid, allow_nil?: false
       change manage_relationship(:owner_id, :owner, type: :append, on_lookup: :relate)
       # validation: figure_id_global_unique — 图表 ID 必须跨工作表全局唯一
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     destroy :destroy do
       description "删除文档（级联删除关联的 DataSource、GlobalFilter、Revision）"
       primary? true
       # validation: cascade_delete
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

@@ -286,28 +286,12 @@ defmodule UniboExPoc.Forum.Forum do
       primary? true
       accept [:name, :mode, :privacy, :authorized_group_id, :description, :welcome_message, :default_post_type, :default_order, :relevancy_post_vote, :relevancy_time_decay, :allow_bump, :allow_share, :allow_mark_as_offensive, :karma_gen_question_new, :karma_gen_question_upvote, :karma_gen_question_downvote, :karma_gen_answer_upvote, :karma_gen_answer_downvote, :karma_gen_answer_accepted, :karma_gen_answer_accept, :karma_gen_question_flagged, :karma_gen_answer_flagged, :karma_ask, :karma_answer, :karma_upvote, :karma_downvote, :karma_comment, :karma_edit_own, :karma_edit_all, :karma_edit_retag, :karma_close_own, :karma_close_all, :karma_unlink_own, :karma_unlink_all, :karma_tag_create, :karma_answer_accept_own, :karma_answer_accept_all, :karma_flag, :karma_moderate, :karma_dofollow, :karma_editor, :karma_user_bio, :karma_comment_convert_own, :karma_comment_convert_all]
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :mode, :privacy, :authorized_group_id, :description, :welcome_message, :default_post_type, :default_order, :relevancy_post_vote, :relevancy_time_decay, :allow_bump, :allow_share, :allow_mark_as_offensive, :karma_gen_question_new, :karma_gen_question_upvote, :karma_gen_question_downvote, :karma_gen_answer_upvote, :karma_gen_answer_downvote, :karma_gen_answer_accepted, :karma_gen_answer_accept, :karma_gen_question_flagged, :karma_gen_answer_flagged, :karma_ask, :karma_answer, :karma_upvote, :karma_downvote, :karma_comment, :karma_edit_own, :karma_edit_all, :karma_edit_retag, :karma_close_own, :karma_close_all, :karma_unlink_own, :karma_unlink_all, :karma_tag_create, :karma_answer_accept_own, :karma_answer_accept_all, :karma_flag, :karma_moderate, :karma_dofollow, :karma_editor, :karma_user_bio, :karma_comment_convert_own, :karma_comment_convert_all]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -106,15 +106,7 @@ defmodule UniboExPoc.Maintenance.ServiceLog do
       change manage_relationship(:service_type_id, :service_type, type: :append, on_lookup: :relate)
       change UniboExPoc.Maintenance.Changes.ServiceLog.CreateCall4
       change UniboExPoc.Maintenance.Changes.ServiceLog.CreateCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :start do
       description "开始服务 (new -> running)"
@@ -131,15 +123,7 @@ defmodule UniboExPoc.Maintenance.ServiceLog do
       # message: "只有新建状态可以开始"
       change set_attribute(:state, :running)
       change UniboExPoc.Maintenance.Changes.ServiceLog.StartCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete do
@@ -156,15 +140,7 @@ defmodule UniboExPoc.Maintenance.ServiceLog do
       # message: "只有进行中状态可以完成"
       change set_attribute(:state, :done)
       change UniboExPoc.Maintenance.Changes.ServiceLog.CompleteCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -181,15 +157,7 @@ defmodule UniboExPoc.Maintenance.ServiceLog do
       # message: "只有新建或进行中状态可以取消"
       change set_attribute(:state, :cancelled)
       change UniboExPoc.Maintenance.Changes.ServiceLog.CancelCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

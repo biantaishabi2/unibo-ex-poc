@@ -117,28 +117,12 @@ defmodule UniboExPoc.Marketing.AutomationCampaign do
       primary? true
       accept [:name, :model_id, :domain_filter, :unique_field_id, :allow_restart, :category_id, :fixed_cost, :publish_up, :publish_down]
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :domain_filter, :unique_field_id, :allow_restart, :category_id, :canvas_settings, :fixed_cost, :publish_up, :publish_down]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :start_campaign do
@@ -156,15 +140,7 @@ defmodule UniboExPoc.Marketing.AutomationCampaign do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate present : (incompatible with bulk update atomic path)
       change set_attribute(:state, :running)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :stop_campaign do
@@ -181,15 +157,7 @@ defmodule UniboExPoc.Marketing.AutomationCampaign do
       # message: "只有运行中状态可以停止"
       change set_attribute(:state, :stopped)
       change UniboExPoc.Marketing.Changes.AutomationCampaign.StopCampaignCall3
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

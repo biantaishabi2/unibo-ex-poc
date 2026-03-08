@@ -173,15 +173,7 @@ defmodule UniboExPoc.Gamification.Challenge do
       argument :reward_second_id, :uuid
       argument :reward_third_id, :uuid
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -191,15 +183,7 @@ defmodule UniboExPoc.Gamification.Challenge do
       argument :reward_first_id, :uuid
       argument :reward_second_id, :uuid
       argument :reward_third_id, :uuid
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_start do
@@ -215,29 +199,13 @@ defmodule UniboExPoc.Gamification.Challenge do
       end
       # message: "只有草稿状态可以启动"
       change set_attribute(:state, :inprogress)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_check do
       description "检查挑战进度并触发奖励评估"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_done do
@@ -253,15 +221,7 @@ defmodule UniboExPoc.Gamification.Challenge do
       end
       # message: "只有进行中状态可以完成"
       change set_attribute(:state, :done)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

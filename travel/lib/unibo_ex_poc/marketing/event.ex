@@ -132,15 +132,7 @@ defmodule UniboExPoc.Marketing.Event do
       argument :campaign_id, :uuid
       validate present(:event_code)
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -149,15 +141,7 @@ defmodule UniboExPoc.Marketing.Event do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:kanban_state, :normal)
       change UniboExPoc.Marketing.Changes.Event.UpdateCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :publish do
@@ -177,15 +161,7 @@ defmodule UniboExPoc.Marketing.Event do
       change set_attribute(:status, :published)
       change set_attribute(:kanban_state, :normal)
       change UniboExPoc.Marketing.Changes.Event.PublishCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete do
@@ -205,15 +181,7 @@ defmodule UniboExPoc.Marketing.Event do
       change set_attribute(:status, :completed)
       change set_attribute(:kanban_state, :normal)
       change UniboExPoc.Marketing.Changes.Event.CompleteCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -224,15 +192,7 @@ defmodule UniboExPoc.Marketing.Event do
       change set_attribute(:status, :cancelled)
       change set_attribute(:kanban_state, :normal)
       change UniboExPoc.Marketing.Changes.Event.CancelCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :set_done do
@@ -243,15 +203,7 @@ defmodule UniboExPoc.Marketing.Event do
       change set_attribute(:status, :completed)
       change set_attribute(:kanban_state, :normal)
       change UniboExPoc.Marketing.Changes.Event.SetDoneCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

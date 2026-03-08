@@ -83,28 +83,12 @@ defmodule UniboExPoc.Marketing.MailingTrace do
       argument :mailing_id, :uuid, allow_nil?: false
       change manage_relationship(:mailing_id, :mailing, type: :append, on_lookup: :relate)
       validate present(:status)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:status, :sent_datetime, :open_datetime, :links_click_datetime, :reply_datetime, :failure_type]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

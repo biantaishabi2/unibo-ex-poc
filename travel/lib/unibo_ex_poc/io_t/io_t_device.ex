@@ -148,53 +148,20 @@ defmodule UniboExPoc.IoT.IoTDevice do
       change manage_relationship(:iot_box_id, :iot_box, type: :append, on_lookup: :relate)
       validate present(:identifier)
       validate present(:iot_box_id)
-      change fn changeset, _context ->
-        device_type = Ash.Changeset.get_attribute(changeset, :device_type)
-        identifier = Ash.Changeset.get_attribute(changeset, :identifier)
-
-        if device_type && identifier do
-          Ash.Changeset.force_change_attribute(changeset, :name, device_type <> "-" <> identifier)
-        else
-          changeset
-        end
-      end
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:name, expr(device_type <> "-" <> identifier))
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :driver_name, :capabilities, :configuration]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :update_value do
       description "更新设备最新读数"
       accept [:last_value]
       change set_attribute(:last_event_at, &DateTime.utc_now/0)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -144,15 +144,7 @@ defmodule UniboExPoc.Quality.QualityCheck do
       change manage_relationship(:product_id, :product, type: :append, on_lookup: :relate)
       change manage_relationship(:company_id, :company, type: :append, on_lookup: :relate)
       validate present(:check_type)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :do_pass do
       description "执行检查——通过"
@@ -169,15 +161,7 @@ defmodule UniboExPoc.Quality.QualityCheck do
       # message: "只有待检查状态可以标记通过"
       change set_attribute(:state, :pass)
       change UniboExPoc.Quality.Changes.QualityCheck.ComputeCheckedAt
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :do_fail do
@@ -197,15 +181,7 @@ defmodule UniboExPoc.Quality.QualityCheck do
       change UniboExPoc.Quality.Changes.QualityCheck.ComputeCheckedAt
       change UniboExPoc.Quality.Changes.QualityCheck.DoFailCall5
       change UniboExPoc.Quality.Changes.QualityCheck.DoFailCall6
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

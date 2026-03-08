@@ -160,15 +160,7 @@ defmodule UniboExPoc.Documents.WorkflowRule do
       validate present(:condition_type)
       validate present(:activity_type_id)
       # message: "当 activity_option=schedule 时必须指定活动类型"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -177,30 +169,14 @@ defmodule UniboExPoc.Documents.WorkflowRule do
       argument :owner_action_id, :uuid
       argument :activity_user_id, :uuid
       # skipped: validate present :activity_type_id (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :execute do
       description "对一组文档执行此工作流规则"
       argument :document_ids, {:array, :string}, allow_nil?: false
       # skipped: validate present :activity_type_id (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

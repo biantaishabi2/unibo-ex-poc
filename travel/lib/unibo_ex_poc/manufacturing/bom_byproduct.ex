@@ -78,30 +78,14 @@ defmodule UniboExPoc.Manufacturing.BomByproduct do
       # message: "副产品不能与 BOM 主产品相同"
       validate compare(:cost_share, less_than_or_equal_to: 100)
       # message: "所有副产品 cost_share 总和不得超过 100%（主产品 + 全部副产品 = 100%）"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:product_qty, :product_uom_id, :operation_id, :cost_share]
       # skipped: validate compare :product_id (incompatible with bulk update atomic path)
       # skipped: validate compare :cost_share (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

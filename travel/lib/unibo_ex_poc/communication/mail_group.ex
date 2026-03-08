@@ -97,10 +97,10 @@ defmodule UniboExPoc.Communication.MailGroup do
   end
 
   calculations do
-    calculate :member_count, :integer, expr(count(members))
-    calculate :mail_group_message_count, :integer, expr(count(group_messages))
-    calculate :mail_group_message_moderation_count, :integer, expr(count(group_messages, filter: moderation_status == 'pending_moderation'))
-    calculate :moderation_rule_count, :integer, expr(count(moderation_rules))
+    calculate :member_count, :integer, expr("count(members)")
+    calculate :mail_group_message_count, :integer, expr("count(group_messages)")
+    calculate :mail_group_message_moderation_count, :integer, expr("count(group_messages, filter: moderation_status == 'pending_moderation')")
+    calculate :moderation_rule_count, :integer, expr("count(moderation_rules)")
   end
 
   relationships do
@@ -121,29 +121,13 @@ defmodule UniboExPoc.Communication.MailGroup do
       primary? true
       accept [:name, :description, :active, :moderation, :access_mode, :moderation_notify, :moderation_notify_msg, :moderation_guidelines, :moderation_guidelines_msg, :image_128]
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :description, :active, :moderation, :access_mode, :moderation_notify, :moderation_notify_msg, :moderation_guidelines, :moderation_guidelines_msg, :image_128]
       # skipped: validate present :name (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :join do
@@ -151,15 +135,7 @@ defmodule UniboExPoc.Communication.MailGroup do
       accept []
       # skipped: validate present :name (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :leave do
@@ -167,15 +143,7 @@ defmodule UniboExPoc.Communication.MailGroup do
       accept []
       # skipped: validate present :name (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

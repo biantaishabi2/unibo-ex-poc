@@ -114,29 +114,13 @@ defmodule UniboExPoc.Helpdesk.HelpdeskSLA do
       validate present(:reach_stage)
       # message: "必须指定目标阶段"
       # validation: reach_stage_belongs_to_team — 目标阶段必须是团队已关联的阶段
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :time_days, :time_hours, :minimum_priority, :active]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -85,29 +85,13 @@ defmodule UniboExPoc.Repair.Warranty do
       argument :sales_order_id, :uuid
       validate present(:warranty_number)
       # WARNING: compare :end_date 参数无法识别，请检查 YAML 定义
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:end_date, :terms]
       # skipped: validate compare :end_date (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

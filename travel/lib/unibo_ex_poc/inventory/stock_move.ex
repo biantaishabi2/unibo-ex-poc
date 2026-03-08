@@ -151,14 +151,14 @@ defmodule UniboExPoc.Inventory.StockMove do
     many_to_many :move_orig_ids, UniboExPoc.Inventory.StockMove do
       public? true
       through UniboExPoc.Inventory.StockMoveDependencyLink
-      source_attribute_on_join_resource :move_orig_id
-      destination_attribute_on_join_resource :move_orig_id
+      source_attribute_on_join_resource :move_dest_id
+      destination_attribute_on_join_resource :move_dest_id
     end
     many_to_many :move_dest_ids, UniboExPoc.Inventory.StockMove do
       public? true
       through UniboExPoc.Inventory.StockMoveDependencyLink
-      source_attribute_on_join_resource :move_orig_id
-      destination_attribute_on_join_resource :move_orig_id
+      source_attribute_on_join_resource :move_dest_id
+      destination_attribute_on_join_resource :move_dest_id
     end
     has_many :valuation_adjustment_lines, UniboExPoc.Inventory.ValuationAdjustmentLine do
       public? true
@@ -182,15 +182,7 @@ defmodule UniboExPoc.Inventory.StockMove do
       validate present(:product_id)
       validate compare(:product_uom_qty, greater_than: 0)
       # message: "需求数量必须大于零"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :action_confirm do
       description "确认移动，可合并同产品/同库位的 moves"
@@ -208,15 +200,7 @@ defmodule UniboExPoc.Inventory.StockMove do
       # message: "只有草稿状态可以确认"
       change set_attribute(:state, :confirmed)
       change set_attribute(:state, :waiting)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_assign do
@@ -233,15 +217,7 @@ defmodule UniboExPoc.Inventory.StockMove do
       # message: "只有已确认/部分可用/等待状态可以预留"
       change set_attribute(:state, :assigned)
       change set_attribute(:state, :partially_available)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_done do
@@ -259,15 +235,7 @@ defmodule UniboExPoc.Inventory.StockMove do
       change set_attribute(:state, :done)
       change UniboExPoc.Inventory.Changes.StockMove.ActionDoneCall6
       change UniboExPoc.Inventory.Changes.StockMove.ActionDoneCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_cancel do
@@ -275,29 +243,13 @@ defmodule UniboExPoc.Inventory.StockMove do
       accept []
       change set_attribute(:state, :cancel)
       change UniboExPoc.Inventory.Changes.StockMove.ActionCancelCall9
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :trigger_assign do
       description "触发下游 moves 的库存预留"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

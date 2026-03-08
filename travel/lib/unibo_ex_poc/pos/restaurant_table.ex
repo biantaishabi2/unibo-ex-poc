@@ -113,43 +113,18 @@ defmodule UniboExPoc.POS.RestaurantTable do
       argument :floor_id, :uuid, allow_nil?: false
       change manage_relationship(:floor_id, :floor, type: :append, on_lookup: :relate)
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :shape, :seats, :position_h, :position_v, :width, :height, :color, :active]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     destroy :destroy do
       description "删除餐桌（有活跃会话时禁止删除）"
-      validate present(:)
-      # message: "关联的 POS 配置存在活跃会话，无法删除餐桌"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      # validation: no_active_session — 关联的 POS 配置存在活跃会话，无法删除餐桌
+      change set_attribute(:id, expr(id))
     end
   end
 

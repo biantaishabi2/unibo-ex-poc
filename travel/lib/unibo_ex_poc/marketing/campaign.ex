@@ -128,28 +128,12 @@ defmodule UniboExPoc.Marketing.Campaign do
       validate present(:campaign_code)
       validate present(:name)
       change relate_actor(:created_by)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :status, :start_date, :end_date, :budget, :actual_cost, :description, :utm_campaign_id, :utm_medium_id, :utm_source_id]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :launch do
@@ -166,15 +150,7 @@ defmodule UniboExPoc.Marketing.Campaign do
       # message: "只有草稿状态可以启动"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :running)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :pause do
@@ -190,15 +166,7 @@ defmodule UniboExPoc.Marketing.Campaign do
       end
       # message: "只有运行中状态可以暂停"
       change set_attribute(:status, :paused)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :resume do
@@ -214,15 +182,7 @@ defmodule UniboExPoc.Marketing.Campaign do
       end
       # message: "只有暂停状态可以恢复"
       change set_attribute(:status, :running)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete do
@@ -238,15 +198,7 @@ defmodule UniboExPoc.Marketing.Campaign do
       end
       # message: "只有运行中或暂停状态可以完成"
       change set_attribute(:status, :completed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -264,15 +216,7 @@ defmodule UniboExPoc.Marketing.Campaign do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :cancelled)
       # cascade_destroy — 缺少 field，跳过
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

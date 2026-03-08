@@ -117,42 +117,18 @@ defmodule UniboExPoc.Lunch.LunchProduct do
       argument :category_id, :uuid, allow_nil?: false
       change manage_relationship(:supplier_id, :supplier, type: :append, on_lookup: :relate)
       change manage_relationship(:category_id, :category, type: :append, on_lookup: :relate)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :price, :description, :new_until, :image]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :toggle_favorite do
       description "切换当前用户的收藏状态"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

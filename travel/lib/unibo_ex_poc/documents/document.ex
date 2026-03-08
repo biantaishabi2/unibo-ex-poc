@@ -196,29 +196,13 @@ defmodule UniboExPoc.Documents.Document do
       # message: "每个文档必须属于一个文件夹"
       # relate_actor :owner_id — 无对应关系，跳过
       # relate_actor :create_uid — 无对应关系，跳过
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :description, :partner_id, :folder_id, :url]
       argument :owner_id, :uuid
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :upload do
@@ -236,15 +220,7 @@ defmodule UniboExPoc.Documents.Document do
       # message: "只有请求占位文档可以执行上传"
       change set_attribute(:type, :binary)
       change set_attribute(:active, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :lock do
@@ -252,30 +228,14 @@ defmodule UniboExPoc.Documents.Document do
       accept []
       # skipped: validate custom_check :lock_uid (incompatible with bulk update atomic path)
       # relate_actor :lock_uid — 无对应关系，跳过
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unlock do
       description "解锁文档"
       accept []
       # skipped: validate custom_check :lock_uid (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :archive do
@@ -291,15 +251,7 @@ defmodule UniboExPoc.Documents.Document do
       end
       # message: "只有活跃文档可以归档"
       change set_attribute(:active, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :restore do
@@ -315,29 +267,13 @@ defmodule UniboExPoc.Documents.Document do
       end
       # message: "只有已归档文档可以恢复"
       change set_attribute(:active, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :toggle_favorite do
       description "切换收藏状态"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

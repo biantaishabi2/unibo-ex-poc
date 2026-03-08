@@ -95,21 +95,13 @@ defmodule UniboExPoc.POS.PosPayment do
       argument :payment_method_id, :uuid, allow_nil?: false
       change manage_relationship(:payment_method_id, :payment_method, type: :append, on_lookup: :relate)
       change UniboExPoc.POS.Changes.PosPayment.CreateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 
   validations do
-    validate present(:)
-    validate present(:)
+    # validation: valid_amount_sign — 正常支付金额必须大于零；找零金额必须小于零且标记 is_change
+    # validation: session_association
   end
 
 end

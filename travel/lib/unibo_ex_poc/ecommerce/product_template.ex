@@ -140,14 +140,10 @@ defmodule UniboExPoc.Ecommerce.ProductTemplate do
     many_to_many :alternative_products, UniboExPoc.Ecommerce.ProductTemplate do
       public? true
       through UniboExPoc.Ecommerce.ProductTemplateAlternativeLink
-      source_attribute_on_join_resource :alternative_product_id
-      destination_attribute_on_join_resource :alternative_product_id
     end
     many_to_many :accessory_products, UniboExPoc.Ecommerce.ProductTemplate do
       public? true
       through UniboExPoc.Ecommerce.ProductTemplateAccessoryLink
-      source_attribute_on_join_resource :accessory_product_id
-      destination_attribute_on_join_resource :accessory_product_id
     end
     belongs_to :base_unit, UniboExPoc.Ecommerce.UOM do
       public? true
@@ -164,29 +160,13 @@ defmodule UniboExPoc.Ecommerce.ProductTemplate do
       validate present(:product_code)
       validate present(:name)
       change UniboExPoc.Ecommerce.Changes.ProductTemplate.CreateCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :product_type, :status, :description, :description_ecommerce, :internal_notes, :weight, :weight_unit, :is_published, :website_sequence, :website_size_x, :website_size_y, :base_unit_count]
       change UniboExPoc.Ecommerce.Changes.ProductTemplate.UpdateCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :publish do
@@ -205,15 +185,7 @@ defmodule UniboExPoc.Ecommerce.ProductTemplate do
       change set_attribute(:is_published, true)
       change set_attribute(:status, :active)
       change UniboExPoc.Ecommerce.Changes.ProductTemplate.PublishCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unpublish do
@@ -230,15 +202,7 @@ defmodule UniboExPoc.Ecommerce.ProductTemplate do
       # message: "只有活跃状态的产品可以下架或停产"
       change set_attribute(:is_published, false)
       change UniboExPoc.Ecommerce.Changes.ProductTemplate.UnpublishCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :discontinue do
@@ -256,15 +220,7 @@ defmodule UniboExPoc.Ecommerce.ProductTemplate do
       change set_attribute(:status, :discontinued)
       change set_attribute(:is_published, false)
       change UniboExPoc.Ecommerce.Changes.ProductTemplate.DiscontinueCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reactivate do
@@ -281,15 +237,7 @@ defmodule UniboExPoc.Ecommerce.ProductTemplate do
       # message: "只有已停产的产品可以重新激活"
       change set_attribute(:status, :active)
       change UniboExPoc.Ecommerce.Changes.ProductTemplate.ReactivateCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -108,56 +108,24 @@ defmodule UniboExPoc.Delivery.Delivery do
       accept [:delivery_id, :origin_facility_id, :dest_facility_id, :estimated_start_date, :estimated_arrival_date, :fixed_asset_id, :start_mileage]
       validate present(:origin_facility_id)
       validate present(:dest_facility_id)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:actual_start_date, :actual_arrival_date, :end_mileage, :fuel_used]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :start do
       description "标记行程已出发"
       accept [:actual_start_date, :start_mileage]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :arrive do
       description "标记行程已到达"
       accept [:actual_arrival_date, :end_mileage, :fuel_used]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

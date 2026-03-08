@@ -121,7 +121,7 @@ defmodule UniboExPoc.ELearning.Slide do
 
   calculations do
     calculate :is_new_slide, :boolean, expr(days_since(date_published) <= 7)
-    calculate :can_self_mark_completed, :boolean, expr(slide_category != quiz)
+    calculate :can_self_mark_completed, :boolean, expr(slide_category != "quiz")
   end
 
   relationships do
@@ -150,37 +150,20 @@ defmodule UniboExPoc.ELearning.Slide do
       argument :channel_id, :uuid, allow_nil?: false
       change manage_relationship(:channel_id, :channel, type: :append, on_lookup: :relate)
       validate present(:name)
-      validate present(:)
-      # message: "html_content 和 url 不能同时存在，article 类型使用 html_content，video/document 使用 url"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      # validation: content_exclusivity — html_content 和 url 不能同时存在，article 类型使用 html_content，video/document 使用 url
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :sequence, :is_preview, :html_content, :url, :completion_time]
-      # skipped: validate present : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      # skipped: validate custom : (incompatible with bulk update atomic path)
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :publish do
       description "发布内容项，触发通知并设置发布时间"
       accept []
-      # skipped: validate present : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :is_published)
         if current == false do
@@ -193,21 +176,13 @@ defmodule UniboExPoc.ELearning.Slide do
       change set_attribute(:is_published, true)
       change UniboExPoc.ELearning.Changes.Slide.ComputeDatePublished
       change UniboExPoc.ELearning.Changes.Slide.PublishCall4
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unpublish do
       description "取消发布，触发所有 Enrollment 完成度重算（分母变化）"
       accept []
-      # skipped: validate present : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :is_published)
         if current == true do
@@ -219,15 +194,7 @@ defmodule UniboExPoc.ELearning.Slide do
       # message: "内容项未发布，无法取消发布"
       change set_attribute(:is_published, false)
       change UniboExPoc.ELearning.Changes.Slide.UnpublishCall4
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

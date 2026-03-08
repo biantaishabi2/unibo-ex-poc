@@ -87,29 +87,13 @@ defmodule UniboExPoc.Ecommerce.LoyaltyReward do
       change manage_relationship(:program_id, :program, type: :append, on_lookup: :relate)
       validate compare(:discount, greater_than_or_equal_to: 0)
       # message: "折扣值不能为负"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:reward_type, :discount, :discount_mode, :discount_max_amount, :required_points, :description]
       # skipped: validate compare :discount (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

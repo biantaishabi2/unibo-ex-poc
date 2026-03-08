@@ -70,15 +70,7 @@ defmodule UniboExPoc.Project.TaskDependency do
       change manage_relationship(:depends_on_id, :depends_on, type: :append, on_lookup: :relate)
       validate {UniboExPoc.Project.Validations.TaskDependency.NoCircularDependency, []}
       # message: "禁止循环依赖"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

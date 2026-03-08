@@ -115,15 +115,7 @@ defmodule UniboExPoc.Analytic.AnalyticLine do
       # validation: active_account_required
       validate compare(:date, greater_than: :account_start_date)
       change UniboExPoc.Analytic.Changes.AnalyticLine.CreateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       description "仅手动行（auto_generated=false）可修改"
@@ -132,15 +124,7 @@ defmodule UniboExPoc.Analytic.AnalyticLine do
       argument :partner_id, :uuid
       # skipped: validate compare :date (incompatible with bulk update atomic path)
       change UniboExPoc.Analytic.Changes.AnalyticLine.UpdateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     destroy :destroy do
@@ -148,15 +132,7 @@ defmodule UniboExPoc.Analytic.AnalyticLine do
       primary? true
       # validation: no_delete_when_posted
       change UniboExPoc.Analytic.Changes.AnalyticLine.DestroyCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

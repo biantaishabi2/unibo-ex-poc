@@ -78,15 +78,7 @@ defmodule UniboExPoc.Project.Milestone do
       argument :project_id, :uuid, allow_nil?: false
       change manage_relationship(:project_id, :project, type: :append, on_lookup: :relate)
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :reach do
       description "标记已达成"
@@ -102,15 +94,7 @@ defmodule UniboExPoc.Project.Milestone do
       end
       # message: "只有未达成里程碑可以标记达成"
       change set_attribute(:is_reached, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

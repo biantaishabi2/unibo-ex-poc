@@ -78,15 +78,7 @@ defmodule UniboExPoc.Maintenance.Odometer do
       change manage_relationship(:vehicle_id, :vehicle, type: :append, on_lookup: :relate)
       validate compare(:value, greater_than: 0)
       # message: "里程值不能为零或空"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

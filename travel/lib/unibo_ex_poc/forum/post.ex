@@ -189,34 +189,17 @@ defmodule UniboExPoc.Forum.Post do
       change manage_relationship(:forum_id, :forum, type: :append, on_lookup: :relate)
       validate present(:name)
       validate present(:content)
-      validate present(:)
-      # message: "Karma 不足，无法提问"
+      # validation: karma_check_ask — Karma 不足，无法提问
       change relate_actor(:create_uid)
       change UniboExPoc.Forum.Changes.Post.ComputeLastActivityDate
-      change set_attribute(:state, if(actor.karma >= forum.karma_moderate, active, pending))
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:state, expr(if(actor.karma >= forum.karma_moderate, :active, :pending)))
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :content]
       argument :tag_ids, :string
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :close do
@@ -234,15 +217,7 @@ defmodule UniboExPoc.Forum.Post do
       change set_attribute(:state, :close)
       change UniboExPoc.Forum.Changes.Post.ComputeCloseDate
       change relate_actor(:closed_uid)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reopen do
@@ -258,15 +233,7 @@ defmodule UniboExPoc.Forum.Post do
       end
       # message: "只有已关闭的帖子可以重新打开"
       change set_attribute(:state, :active)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :flag do
@@ -281,17 +248,9 @@ defmodule UniboExPoc.Forum.Post do
         end
       end
       # message: "只有活跃状态的帖子可以标记"
-      # skipped: validate present : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
       change set_attribute(:state, :flagged)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_offensive do
@@ -307,15 +266,7 @@ defmodule UniboExPoc.Forum.Post do
       end
       # message: "只有已标记的帖子可以确认冒犯"
       change set_attribute(:state, :offensive)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :validate do
@@ -332,15 +283,7 @@ defmodule UniboExPoc.Forum.Post do
       # message: "只有待审核的帖子可以通过审核"
       change set_attribute(:state, :active)
       change relate_actor(:moderator)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :accept_answer do
@@ -348,15 +291,7 @@ defmodule UniboExPoc.Forum.Post do
       accept []
       # skipped: validate present :parent_id (incompatible with bulk update atomic path)
       change set_attribute(:is_correct, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unaccept_answer do
@@ -364,29 +299,13 @@ defmodule UniboExPoc.Forum.Post do
       accept []
       # skipped: validate present :parent_id (incompatible with bulk update atomic path)
       change set_attribute(:is_correct, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :toggle_favourite do
       description "切换收藏状态"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

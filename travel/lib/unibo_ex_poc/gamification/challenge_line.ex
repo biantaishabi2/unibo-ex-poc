@@ -80,28 +80,12 @@ defmodule UniboExPoc.Gamification.ChallengeLine do
       change manage_relationship(:challenge_id, :challenge, type: :append, on_lookup: :relate)
       change manage_relationship(:definition_id, :definition, type: :append, on_lookup: :relate)
       validate present(:target_goal)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:sequence, :target_goal]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

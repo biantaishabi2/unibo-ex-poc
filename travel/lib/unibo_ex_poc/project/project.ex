@@ -188,15 +188,7 @@ defmodule UniboExPoc.Project.Project do
       change UniboExPoc.Project.Changes.Project.CreateCall1
       change set_attribute(:label_tasks, :Tasks)
       change relate_actor(:manager)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -209,15 +201,7 @@ defmodule UniboExPoc.Project.Project do
       change UniboExPoc.Project.Changes.Project.UpdateCreateRelated7
       # cascade_update :state — Ash 暂无内置支持，需用 change fn 手动实现
       change set_attribute(:label_tasks, :Tasks)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :start do
@@ -240,15 +224,7 @@ defmodule UniboExPoc.Project.Project do
       # cascade_update :state — Ash 暂无内置支持，需用 change fn 手动实现
       change set_attribute(:label_tasks, :Tasks)
       change set_attribute(:last_update_status, :on_track)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete do
@@ -262,15 +238,7 @@ defmodule UniboExPoc.Project.Project do
       # cascade_update :state — Ash 暂无内置支持，需用 change fn 手动实现
       change set_attribute(:label_tasks, :Tasks)
       change set_attribute(:last_update_status, :done)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :archive do
@@ -284,15 +252,7 @@ defmodule UniboExPoc.Project.Project do
       change UniboExPoc.Project.Changes.Project.ArchiveCreateRelated7
       # cascade_update :state — Ash 暂无内置支持，需用 change fn 手动实现
       change set_attribute(:label_tasks, :Tasks)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unarchive do
@@ -306,15 +266,7 @@ defmodule UniboExPoc.Project.Project do
       change UniboExPoc.Project.Changes.Project.UnarchiveCreateRelated7
       # cascade_update :state — Ash 暂无内置支持，需用 change fn 手动实现
       change set_attribute(:label_tasks, :Tasks)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     create :copy do
@@ -332,29 +284,13 @@ defmodule UniboExPoc.Project.Project do
       change UniboExPoc.Project.Changes.Project.CopyCall10
       change set_attribute(:label_tasks, :Tasks)
       change relate_actor(:manager)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     destroy :destroy do
       description "删除项目"
       # cascade_destroy — 缺少 field，跳过
       # cascade_destroy — 缺少 field，跳过
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

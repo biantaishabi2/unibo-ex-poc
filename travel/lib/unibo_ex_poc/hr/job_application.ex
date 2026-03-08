@@ -116,15 +116,7 @@ defmodule UniboExPoc.HR.JobApplication do
       change manage_relationship(:requisition_id, :requisition, type: :append, on_lookup: :relate)
       validate present(:applicant_name)
       # validation: custom_check
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :advance do
       description "推进到下一阶段（阶段切换时 kanban_state 重置为 normal）"
@@ -140,15 +132,7 @@ defmodule UniboExPoc.HR.JobApplication do
       end
       # message: "只有在招聘推进阶段内才允许推进"
       change set_attribute(:kanban_state, :normal)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reject do
@@ -164,15 +148,7 @@ defmodule UniboExPoc.HR.JobApplication do
       end
       # message: "已录用或已拒绝的申请不能再拒绝"
       change set_attribute(:status, :rejected)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :hire do
@@ -191,15 +167,7 @@ defmodule UniboExPoc.HR.JobApplication do
       change set_attribute(:status, :hired)
       change set_attribute(:date_closed, &Date.utc_today/0)
       change UniboExPoc.HR.Changes.JobApplication.HireCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reset do
@@ -215,15 +183,7 @@ defmodule UniboExPoc.HR.JobApplication do
       end
       # message: "只有已拒绝的可以重置"
       change set_attribute(:status, :received)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :archive do
@@ -239,15 +199,7 @@ defmodule UniboExPoc.HR.JobApplication do
       end
       # message: "仅录用或拒绝后的申请允许归档"
       change set_attribute(:status, :archived)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

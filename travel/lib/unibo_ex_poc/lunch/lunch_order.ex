@@ -135,30 +135,14 @@ defmodule UniboExPoc.Lunch.LunchOrder do
       change manage_relationship(:user_id, :user, type: :append, on_lookup: :relate)
       # validation: check_topping_quantity
       change relate_actor(:user)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update_quantity do
       description "更新数量（降至0时自动停用并触发钱包校验）"
       primary? true
       accept [:quantity]
       change set_attribute(:active, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_order do
@@ -178,15 +162,7 @@ defmodule UniboExPoc.Lunch.LunchOrder do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:state, :ordered)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_send do
@@ -202,15 +178,7 @@ defmodule UniboExPoc.Lunch.LunchOrder do
       end
       # message: "只有已下单状态可以发送"
       change set_attribute(:state, :sent)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_confirm do
@@ -226,30 +194,14 @@ defmodule UniboExPoc.Lunch.LunchOrder do
       end
       # message: "只有已发送状态可以确认"
       change set_attribute(:state, :confirmed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_cancel do
       description "取消订单（任意状态 → cancelled）"
       accept []
       change set_attribute(:state, :cancelled)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_reset do
@@ -265,15 +217,7 @@ defmodule UniboExPoc.Lunch.LunchOrder do
       end
       # message: "只有已取消状态可以重置"
       change set_attribute(:state, :ordered)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

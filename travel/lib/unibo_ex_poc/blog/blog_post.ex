@@ -125,30 +125,14 @@ defmodule UniboExPoc.Blog.BlogPost do
       change manage_relationship(:blog_id, :blog, type: :append, on_lookup: :relate)
       validate present(:name)
       # relate_actor :author_id — 无对应关系，跳过
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :subtitle, :content, :cover_properties]
       argument :teaser, :string
       argument :tag_ids, :string
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :publish do
@@ -165,15 +149,7 @@ defmodule UniboExPoc.Blog.BlogPost do
       # message: "文章已经处于发布状态"
       change set_attribute(:is_published, true)
       change UniboExPoc.Blog.Changes.BlogPost.ComputePublishedDate
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unpublish do
@@ -189,15 +165,7 @@ defmodule UniboExPoc.Blog.BlogPost do
       end
       # message: "文章未发布，无法取消发布"
       change set_attribute(:is_published, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :archive do
@@ -214,15 +182,7 @@ defmodule UniboExPoc.Blog.BlogPost do
       # message: "文章已经处于归档状态"
       change set_attribute(:active, false)
       change set_attribute(:is_published, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unarchive do
@@ -238,15 +198,7 @@ defmodule UniboExPoc.Blog.BlogPost do
       end
       # message: "文章未归档，无法取消归档"
       change set_attribute(:active, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

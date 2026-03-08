@@ -96,8 +96,8 @@ defmodule UniboExPoc.Rental.RentalOrderLine do
     calculate :penalty_amount, :decimal, expr(compute_penalty(self, actual_return_date))
     calculate :is_late, :boolean, {UniboExPoc.Rental.Calculations.RentalOrderLine.IsLate, []}
     calculate :duration, :float, expr(date_diff(return_date, pickup_date, duration_unit))
-    calculate :is_pickable, :boolean, expr(rental_status == draft)
-    calculate :is_returnable, :boolean, expr((rental_status == pickup and qty_remaining > 0))
+    calculate :is_pickable, :boolean, expr(rental_status == "draft")
+    calculate :is_returnable, :boolean, expr((rental_status == "pickup" and qty_remaining > 0))
   end
 
   relationships do
@@ -144,15 +144,7 @@ defmodule UniboExPoc.Rental.RentalOrderLine do
         end
       end
       # message: "只有草稿状态可以取货"
-      change fn changeset, _context ->
-        qty_delivered = Ash.Changeset.get_attribute(changeset, :qty_delivered)
-
-        if qty_delivered do
-          Ash.Changeset.force_change_attribute(changeset, :qty_delivered, (qty_delivered + ^arg(:qty)))
-        else
-          changeset
-        end
-      end
+      change set_attribute(:qty_delivered, expr((qty_delivered + ^arg(:qty))))
       change set_attribute(:rental_status, :pickup)
       change UniboExPoc.Rental.Changes.RentalOrderLine.ValidatePickupCall8
       require_atomic? false
@@ -171,16 +163,8 @@ defmodule UniboExPoc.Rental.RentalOrderLine do
         end
       end
       # message: "只有已取货状态可以归还"
-      change fn changeset, _context ->
-        qty_returned = Ash.Changeset.get_attribute(changeset, :qty_returned)
-
-        if qty_returned do
-          Ash.Changeset.force_change_attribute(changeset, :qty_returned, (qty_returned + ^arg(:qty)))
-        else
-          changeset
-        end
-      end
-      change set_attribute(:actual_return_date, ^arg(:actual_return_date))
+      change set_attribute(:qty_returned, expr((qty_returned + ^arg(:qty))))
+      change set_attribute(:actual_return_date, expr(^arg(:actual_return_date)))
       change set_attribute(:rental_status, :return)
       change UniboExPoc.Rental.Changes.RentalOrderLine.ValidateReturnCall7
       change UniboExPoc.Rental.Changes.RentalOrderLine.ValidateReturnCall8

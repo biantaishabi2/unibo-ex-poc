@@ -145,73 +145,33 @@ defmodule UniboExPoc.Loyalty.LoyaltyProgram do
       accept [:name, :description, :program_type, :points_currency_name, :points_per_currency, :require_code, :use_limit_per_order, :use_limit_per_customer, :use_limit_per_program, :from_date, :thru_date, :portal_visible]
       validate present(:name)
       validate present(:program_type)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :description, :program_type, :points_per_currency, :use_limit_per_order, :use_limit_per_customer, :thru_date, :portal_visible]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :activate do
       description "激活计划（draft/paused -> active）"
       accept [:from_date]
       change set_attribute(:status, :active)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :pause do
       description "暂停计划（active -> paused）"
       accept []
       change set_attribute(:status, :paused)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :expire do
       description "终止计划（任意 -> expired）"
       accept [:thru_date]
       change set_attribute(:status, :expired)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

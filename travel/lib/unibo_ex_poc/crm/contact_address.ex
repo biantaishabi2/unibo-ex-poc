@@ -65,29 +65,13 @@ defmodule UniboExPoc.CRM.ContactAddress do
       change manage_relationship(:contact_id, :contact, type: :append, on_lookup: :relate)
       validate present(:contact_id)
       validate present(:contact_id)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:address_type, :street, :city, :state, :postal_code, :country, :is_primary]
       # skipped: validate relationship_required :contact_id (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

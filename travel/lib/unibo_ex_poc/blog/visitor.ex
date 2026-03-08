@@ -101,66 +101,26 @@ defmodule UniboExPoc.Blog.Visitor do
       accept [:access_token, :country_id, :lang_id, :timezone]
       argument :partner_id, :uuid
       validate present(:access_token)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :track_visit do
       description "记录一次访问，受 8 小时节流规则约束"
       primary? true
       accept []
-      change fn changeset, _context ->
-        visit_count = Ash.Changeset.get_attribute(changeset, :visit_count)
-
-        if visit_count do
-          Ash.Changeset.force_change_attribute(changeset, :visit_count, (visit_count + 1))
-        else
-          changeset
-        end
-      end
+      change set_attribute(:visit_count, expr((visit_count + 1)))
       change UniboExPoc.Blog.Changes.Visitor.ComputeLastConnectionDatetime
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :merge do
       description "用户登录时合并匿名访客数据到已认证访客记录"
       argument :target_visitor_id, :uuid, allow_nil?: false
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     destroy :cleanup do
       description "定时清理 60+ 天无活动且无 partner 关联的访客"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

@@ -107,14 +107,14 @@ defmodule UniboExPoc.Manufacturing.WorkOrder do
     many_to_many :blocked_by_workorder_ids, UniboExPoc.Manufacturing.WorkOrder do
       public? true
       through UniboExPoc.Manufacturing.WorkOrderDependencyLink
-      source_attribute_on_join_resource :blocked_by_workorder_id
-      destination_attribute_on_join_resource :blocked_by_workorder_id
+      source_attribute_on_join_resource :needed_by_workorder_id
+      destination_attribute_on_join_resource :needed_by_workorder_id
     end
     many_to_many :needed_by_workorder_ids, UniboExPoc.Manufacturing.WorkOrder do
       public? true
       through UniboExPoc.Manufacturing.WorkOrderDependencyLink
-      source_attribute_on_join_resource :blocked_by_workorder_id
-      destination_attribute_on_join_resource :blocked_by_workorder_id
+      source_attribute_on_join_resource :needed_by_workorder_id
+      destination_attribute_on_join_resource :needed_by_workorder_id
     end
     has_many :time_ids, UniboExPoc.Manufacturing.WorkcenterProductivity do
       public? true
@@ -131,15 +131,7 @@ defmodule UniboExPoc.Manufacturing.WorkOrder do
       change manage_relationship(:manufacturing_order_id, :manufacturing_order, type: :append, on_lookup: :relate)
       validate present(:name)
       # validation: no_cyclic_dependencies — 工单之间禁止循环依赖（_check_no_cyclic_dependencies）
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :start do
       description "开始工序（button_start）"
@@ -167,43 +159,19 @@ defmodule UniboExPoc.Manufacturing.WorkOrder do
       # skipped: set_attribute :status 是 calculation，不是 attribute
       change UniboExPoc.Manufacturing.Changes.WorkOrder.StartCreateRelated4
       change UniboExPoc.Manufacturing.Changes.WorkOrder.StartCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :pause do
       description "暂停工序"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :resume do
       description "恢复工序"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :finish do
@@ -220,15 +188,7 @@ defmodule UniboExPoc.Manufacturing.WorkOrder do
       # message: "只有进行中状态可以完成"
       # skipped: set_attribute :status 是 calculation，不是 attribute
       change UniboExPoc.Manufacturing.Changes.WorkOrder.FinishCall6
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete do
@@ -244,30 +204,14 @@ defmodule UniboExPoc.Manufacturing.WorkOrder do
       end
       # message: "只有进行中状态可以完成"
       # skipped: set_attribute :status 是 calculation，不是 attribute
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
       description "取消工序"
       accept []
       # skipped: set_attribute :status 是 calculation，不是 attribute
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

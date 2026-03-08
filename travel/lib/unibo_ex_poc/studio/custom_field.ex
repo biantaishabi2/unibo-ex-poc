@@ -163,28 +163,12 @@ defmodule UniboExPoc.Studio.CustomField do
       # message: "计算字段必须填写计算公式"
       validate present(:selection_options)
       # message: "选择字段必须至少包含一个选项"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:label, :required, :readonly, :default_value, :selection_options, :validation_rules, :widget_hint, :sequence]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :activate do
@@ -200,15 +184,7 @@ defmodule UniboExPoc.Studio.CustomField do
       end
       # message: "只有草稿状态可以激活"
       change set_attribute(:state, :active)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :archive do
@@ -224,15 +200,7 @@ defmodule UniboExPoc.Studio.CustomField do
       end
       # message: "只有活跃状态可以停用"
       change set_attribute(:state, :archived)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -106,7 +106,7 @@ defmodule UniboExPoc.Approvals.ApprovalRequest do
 
   calculations do
     calculate :approved_count, :integer, {UniboExPoc.Approvals.Calculations.ApprovalRequest.ApprovedCount, []}
-    calculate :all_required_approved, :boolean, expr(all(status == approved))
+    calculate :all_required_approved, :boolean, expr(all("status" == "approved"))
   end
 
   relationships do
@@ -146,15 +146,7 @@ defmodule UniboExPoc.Approvals.ApprovalRequest do
       change manage_relationship(:approvers, :approvers, type: :create)
       validate present(:name)
       change relate_actor(:requester)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :submit do
       description "提交审批"
@@ -171,15 +163,7 @@ defmodule UniboExPoc.Approvals.ApprovalRequest do
       # message: "只有草稿状态可以提交"
       change set_attribute(:status, :pending)
       change UniboExPoc.Approvals.Changes.ApprovalRequest.ComputeRequestDate
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :approve do
@@ -196,15 +180,7 @@ defmodule UniboExPoc.Approvals.ApprovalRequest do
       # message: "只有待审批状态可以通过"
       change set_attribute(:status, :approved)
       change UniboExPoc.Approvals.Changes.ApprovalRequest.ComputeDateConfirmed
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :refuse do
@@ -221,15 +197,7 @@ defmodule UniboExPoc.Approvals.ApprovalRequest do
       # message: "只有待审批状态可以拒绝"
       change set_attribute(:status, :refused)
       change UniboExPoc.Approvals.Changes.ApprovalRequest.ComputeDateConfirmed
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -245,15 +213,7 @@ defmodule UniboExPoc.Approvals.ApprovalRequest do
       end
       # message: "只有待审批状态可以取消"
       change set_attribute(:status, :cancel)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :draft do
@@ -269,15 +229,7 @@ defmodule UniboExPoc.Approvals.ApprovalRequest do
       end
       # message: "只有拒绝或取消状态可以重置为草稿"
       change set_attribute(:status, :new)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

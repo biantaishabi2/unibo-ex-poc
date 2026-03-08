@@ -77,15 +77,7 @@ defmodule UniboExPoc.Analytic.AnalyticDistribution do
       # validation: total_percentage_equals_100
       # validation: active_account_required
       change UniboExPoc.Analytic.Changes.AnalyticDistribution.CreateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -95,15 +87,7 @@ defmodule UniboExPoc.Analytic.AnalyticDistribution do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change UniboExPoc.Analytic.Changes.AnalyticDistribution.UpdateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

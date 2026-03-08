@@ -96,48 +96,14 @@ defmodule UniboExPoc.Sales.QuoteItem do
       accept [:product_name, :product_code, :quantity, :quote_unit_price, :comments, :estimated_delivery_date, :seq_id, :is_promo, :lead_time_days]
       argument :quote_id, :uuid, allow_nil?: false
       change manage_relationship(:quote_id, :quote, type: :append, on_lookup: :relate)
-      change fn changeset, _context ->
-        quantity = Ash.Changeset.get_attribute(changeset, :quantity)
-        quote_unit_price = Ash.Changeset.get_attribute(changeset, :quote_unit_price)
-
-        if quantity && quote_unit_price do
-          Ash.Changeset.force_change_attribute(changeset, :line_amount, (quantity * quote_unit_price))
-        else
-          changeset
-        end
-      end
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:line_amount, expr((quantity * quote_unit_price)))
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:quantity, :quote_unit_price, :comments, :estimated_delivery_date, :seq_id, :is_promo, :lead_time_days]
-      change fn changeset, _context ->
-        quantity = Ash.Changeset.get_attribute(changeset, :quantity)
-        quote_unit_price = Ash.Changeset.get_attribute(changeset, :quote_unit_price)
-
-        if quantity && quote_unit_price do
-          Ash.Changeset.force_change_attribute(changeset, :line_amount, (quantity * quote_unit_price))
-        else
-          changeset
-        end
-      end
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:line_amount, expr((quantity * quote_unit_price)))
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

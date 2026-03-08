@@ -164,15 +164,7 @@ defmodule UniboExPoc.Expenses.ExpenseReport do
       # WARNING: compare :expense_line_ids_company_id 缺少 params，校验定义不完整
       change relate_actor(:employee)
       change UniboExPoc.Expenses.Changes.ExpenseReport.ComputeTotalAmount
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       change UniboExPoc.Expenses.Integrations.ExpenseReport.CreatePricingFetchStandardPriceBridge
     end
     update :submit do
@@ -196,15 +188,7 @@ defmodule UniboExPoc.Expenses.ExpenseReport do
       # skipped: validate compare :expense_line_ids_employee_id (incompatible with bulk update atomic path)
       # skipped: validate compare :expense_line_ids_company_id (incompatible with bulk update atomic path)
       change set_attribute(:approval_state, :submitted)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       change UniboExPoc.Expenses.Integrations.ExpenseReport.SubmitSubmitScheduleActivityBridge
       change UniboExPoc.Expenses.Integrations.ExpenseReport.SubmitPricingFetchStandardPriceBridge
       change UniboExPoc.Expenses.Integrations.ExpenseReport.SubmitTaxComputeCallAccountTaxBridge
@@ -228,15 +212,7 @@ defmodule UniboExPoc.Expenses.ExpenseReport do
       change set_attribute(:approval_state, :approved)
       change set_attribute(:approver_id, %{op: "ref", args: ["current_user"]})
       change set_attribute(:approval_date, %{op: "func", args: ["now"]})
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       change UniboExPoc.Expenses.Integrations.ExpenseReport.ApproveApproveRefuseSendMailBridge
       require_atomic? false
     end
@@ -255,15 +231,7 @@ defmodule UniboExPoc.Expenses.ExpenseReport do
       # skipped: validate present :reason (incompatible with bulk update atomic path)
       # skipped: validate empty :account_move_ids (incompatible with bulk update atomic path)
       change set_attribute(:approval_state, :cancelled)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       change UniboExPoc.Expenses.Integrations.ExpenseReport.RefuseApproveRefuseSendMailBridge
       require_atomic? false
     end
@@ -281,15 +249,7 @@ defmodule UniboExPoc.Expenses.ExpenseReport do
       # message: "只有已审批状态可以过账"
       # skipped: validate present :employee_work_email (incompatible with bulk update atomic path)
       # skipped: validate present :employee_journal_id (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       change UniboExPoc.Expenses.Integrations.ExpenseReport.PostPostOwnAccountRegisterPaymentBridge
       change UniboExPoc.Expenses.Integrations.ExpenseReport.PostPostCompanyAccountCreatePaymentBridge
       change UniboExPoc.Expenses.Integrations.ExpenseReport.PostTaxComputeCallAccountTaxBridge
@@ -316,29 +276,13 @@ defmodule UniboExPoc.Expenses.ExpenseReport do
         end
       end
       # message: "仅员工垫付模式需要登记付款 (规则20)"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reset do
       description "重置（任意状态 → draft，已过账凭证先冲销）"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       change UniboExPoc.Expenses.Integrations.ExpenseReport.ResetResetReverseMovesBridge
       require_atomic? false
     end

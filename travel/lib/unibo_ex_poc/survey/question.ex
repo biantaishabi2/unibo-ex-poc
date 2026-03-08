@@ -150,28 +150,12 @@ defmodule UniboExPoc.Survey.Question do
       change manage_relationship(:survey_id, :survey, type: :append, on_lookup: :relate)
       validate present(:title)
       validate present(:question_type)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:title, :question_type, :sequence, :constr_mandatory, :constr_error_msg, :comments_allowed, :comment_count_as_answer, :validation_email, :validation_min_float_value, :validation_max_float_value, :validation_min_date, :validation_max_date, :matrix_subtype, :save_as_email, :save_as_nickname]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

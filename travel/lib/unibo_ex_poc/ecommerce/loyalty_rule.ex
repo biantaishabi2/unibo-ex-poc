@@ -82,29 +82,13 @@ defmodule UniboExPoc.Ecommerce.LoyaltyRule do
       argument :program_id, :uuid, allow_nil?: false
       change manage_relationship(:program_id, :program, type: :append, on_lookup: :relate)
       validate present([:code, :website_id])
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:code, :minimum_qty, :minimum_amount, :reward_point_amount, :reward_point_mode]
       # skipped: validate present : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

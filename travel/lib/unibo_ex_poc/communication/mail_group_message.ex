@@ -99,15 +99,7 @@ defmodule UniboExPoc.Communication.MailGroupMessage do
       argument :parent_message_id, :uuid
       change manage_relationship(:mail_group_id, :mail_group, type: :append, on_lookup: :relate)
       validate present(:mail_group_id)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :moderate_accept do
       description "通过消息并通知所有成员"
@@ -115,15 +107,7 @@ defmodule UniboExPoc.Communication.MailGroupMessage do
       accept [:moderation_status]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:moderation_status, :accepted)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :moderate_reject do
@@ -131,15 +115,7 @@ defmodule UniboExPoc.Communication.MailGroupMessage do
       accept [:moderation_status]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:moderation_status, :rejected)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :moderate_allow do
@@ -147,15 +123,7 @@ defmodule UniboExPoc.Communication.MailGroupMessage do
       accept [:moderation_status]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:moderation_status, :accepted)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :moderate_ban do
@@ -163,15 +131,7 @@ defmodule UniboExPoc.Communication.MailGroupMessage do
       accept [:moderation_status]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:moderation_status, :rejected)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

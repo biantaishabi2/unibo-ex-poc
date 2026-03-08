@@ -144,14 +144,10 @@ defmodule UniboExPoc.Project.Task do
     many_to_many :depend_on_ids, UniboExPoc.Project.Task do
       public? true
       through UniboExPoc.Project.TaskDependency
-      source_attribute_on_join_resource :depends_on_id
-      destination_attribute_on_join_resource :depends_on_id
     end
     many_to_many :dependent_ids, UniboExPoc.Project.Task do
       public? true
       through UniboExPoc.Project.TaskDependency
-      source_attribute_on_join_resource :depends_on_id
-      destination_attribute_on_join_resource :depends_on_id
     end
     has_many :assignments, UniboExPoc.Project.TaskAssignment do
       public? true
@@ -193,15 +189,7 @@ defmodule UniboExPoc.Project.Task do
       # validation: custom_check — 私人任务（无 project_id）不能有 parent_id
       change UniboExPoc.Project.Changes.Task.CreateCall13
       change UniboExPoc.Project.Changes.Task.CreateCall14
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -217,15 +205,7 @@ defmodule UniboExPoc.Project.Task do
       change UniboExPoc.Project.Changes.Task.UpdateCall8
       change UniboExPoc.Project.Changes.Task.UpdateCall12
       change UniboExPoc.Project.Changes.Task.UpdateCall13
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :start do
@@ -242,15 +222,7 @@ defmodule UniboExPoc.Project.Task do
       change UniboExPoc.Project.Changes.Task.StartCall12
       change UniboExPoc.Project.Changes.Task.StartCall13
       change set_attribute(:state, :"01_in_progress")
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete do
@@ -268,15 +240,7 @@ defmodule UniboExPoc.Project.Task do
       change UniboExPoc.Project.Changes.Task.CompleteCall12
       change UniboExPoc.Project.Changes.Task.CompleteCall13
       change set_attribute(:state, :"1_done")
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -294,15 +258,7 @@ defmodule UniboExPoc.Project.Task do
       change UniboExPoc.Project.Changes.Task.CancelCall12
       change UniboExPoc.Project.Changes.Task.CancelCall13
       change set_attribute(:state, :"1_canceled")
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reopen do
@@ -319,15 +275,7 @@ defmodule UniboExPoc.Project.Task do
       change UniboExPoc.Project.Changes.Task.ReopenCall12
       change UniboExPoc.Project.Changes.Task.ReopenCall13
       change set_attribute(:state, :"01_in_progress")
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     create :copy do
@@ -343,15 +291,7 @@ defmodule UniboExPoc.Project.Task do
       change UniboExPoc.Project.Changes.Task.CopyCall11
       change UniboExPoc.Project.Changes.Task.CopyCall13
       change UniboExPoc.Project.Changes.Task.CopyCall14
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :assign do
       description "分配负责人"
@@ -366,15 +306,7 @@ defmodule UniboExPoc.Project.Task do
       change UniboExPoc.Project.Changes.Task.AssignCall8
       change UniboExPoc.Project.Changes.Task.AssignCall12
       change UniboExPoc.Project.Changes.Task.AssignCall13
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

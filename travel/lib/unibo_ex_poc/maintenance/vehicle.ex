@@ -244,29 +244,13 @@ defmodule UniboExPoc.Maintenance.Vehicle do
       validate present(:vehicle_code)
       change UniboExPoc.Maintenance.Changes.Vehicle.CreateCall1
       change UniboExPoc.Maintenance.Changes.Vehicle.CreateCall3
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:license_plate, :vin_sn, :odometer_unit, :notes]
       change UniboExPoc.Maintenance.Changes.Vehicle.UpdateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :change_driver do
@@ -274,15 +258,7 @@ defmodule UniboExPoc.Maintenance.Vehicle do
       argument :driver_id, :uuid
       change UniboExPoc.Maintenance.Changes.Vehicle.ChangeDriverCall1
       change UniboExPoc.Maintenance.Changes.Vehicle.ChangeDriverCall2
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :set_future_driver do
@@ -290,30 +266,14 @@ defmodule UniboExPoc.Maintenance.Vehicle do
       argument :future_driver_id, :uuid
       change UniboExPoc.Maintenance.Changes.Vehicle.SetFutureDriverCall1
       change UniboExPoc.Maintenance.Changes.Vehicle.SetFutureDriverCall4
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :change_state do
       description "变更车辆状态"
       accept [:state_id]
       change UniboExPoc.Maintenance.Changes.Vehicle.ChangeStateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
@@ -322,15 +282,7 @@ defmodule UniboExPoc.Maintenance.Vehicle do
       change UniboExPoc.Maintenance.Changes.Vehicle.DeactivateCall1
       change set_attribute(:active, false)
       change set_attribute(:active, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :set_odometer do
@@ -339,15 +291,7 @@ defmodule UniboExPoc.Maintenance.Vehicle do
       # skipped: validate compare :odometer_value (incompatible with bulk update atomic path)
       change UniboExPoc.Maintenance.Changes.Vehicle.SetOdometerCall1
       change UniboExPoc.Maintenance.Changes.Vehicle.SetOdometerCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

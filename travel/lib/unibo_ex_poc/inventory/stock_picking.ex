@@ -157,15 +157,7 @@ defmodule UniboExPoc.Inventory.StockPicking do
       change manage_relationship(:dest_location_id, :dest_location, type: :append, on_lookup: :relate)
       change manage_relationship(:warehouse_id, :warehouse, type: :append, on_lookup: :relate)
       validate present(:picking_type)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :action_confirm do
       description "确认拣货单，对所有 draft moves 调用 _action_confirm"
@@ -181,15 +173,7 @@ defmodule UniboExPoc.Inventory.StockPicking do
       end
       # message: "只有草稿状态可以确认"
       change UniboExPoc.Inventory.Changes.StockPicking.ActionConfirmCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_assign do
@@ -205,15 +189,7 @@ defmodule UniboExPoc.Inventory.StockPicking do
       end
       # message: "只有已确认/等待/已分配状态可以检查可用性"
       change UniboExPoc.Inventory.Changes.StockPicking.ActionAssignCall2
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :button_validate do
@@ -235,15 +211,7 @@ defmodule UniboExPoc.Inventory.StockPicking do
       change set_attribute(:date_done, &DateTime.utc_now/0)
       change set_attribute(:priority, :"0")
       change set_attribute(:is_locked, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_cancel do
@@ -251,15 +219,7 @@ defmodule UniboExPoc.Inventory.StockPicking do
       accept []
       change set_attribute(:is_locked, true)
       change UniboExPoc.Inventory.Changes.StockPicking.ActionCancelCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

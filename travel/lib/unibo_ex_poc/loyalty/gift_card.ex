@@ -132,15 +132,7 @@ defmodule UniboExPoc.Loyalty.GiftCard do
       accept [:card_code, :pin_code, :initial_balance, :currency_id, :from_date, :thru_date, :reloadable, :is_physical]
       argument :program_id, :uuid
       validate present(:card_code)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :activate do
       description "激活礼品卡，设置持卡人（inactive -> active）"
@@ -149,15 +141,7 @@ defmodule UniboExPoc.Loyalty.GiftCard do
       argument :owner_id, :uuid, allow_nil?: false
       argument :from_date, :utc_datetime
       change set_attribute(:status, :active)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :topup do
@@ -165,15 +149,7 @@ defmodule UniboExPoc.Loyalty.GiftCard do
       accept [:current_balance]
       argument :amount, :decimal, allow_nil?: false
       argument :payment_ref, :string
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :charge do
@@ -181,45 +157,21 @@ defmodule UniboExPoc.Loyalty.GiftCard do
       accept [:current_balance]
       argument :amount, :decimal, allow_nil?: false
       argument :order_id, :uuid
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel_card do
       description "作废礼品卡（active -> cancelled），余额退款逻辑由外部服务处理"
       accept []
       change set_attribute(:status, :cancelled)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :expire_card do
       description "到期处理（active/depleted -> expired）"
       accept []
       change set_attribute(:status, :expired)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

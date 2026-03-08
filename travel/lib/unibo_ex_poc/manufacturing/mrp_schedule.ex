@@ -65,15 +65,7 @@ defmodule UniboExPoc.Manufacturing.MrpSchedule do
       primary? true
       accept [:product_code, :event_type, :quantity, :event_date, :description]
       validate present(:product_code)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

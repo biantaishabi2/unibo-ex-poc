@@ -114,15 +114,7 @@ defmodule UniboExPoc.Sign.SignRequestItem do
       change manage_relationship(:request_id, :request, type: :append, on_lookup: :relate)
       change manage_relationship(:role_id, :role, type: :append, on_lookup: :relate)
       change UniboExPoc.Sign.Changes.SignRequestItem.ComputeAccessToken
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :send do
       description "随 SignRequest 发送（状态 draft → sent）"
@@ -138,15 +130,7 @@ defmodule UniboExPoc.Sign.SignRequestItem do
       end
       # message: "只有草稿状态可以发送"
       change set_attribute(:state, :sent)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :sign do
@@ -166,16 +150,8 @@ defmodule UniboExPoc.Sign.SignRequestItem do
       # message: "只有已发送状态可以签署"
       change set_attribute(:state, :completed)
       change UniboExPoc.Sign.Changes.SignRequestItem.ComputeSignedAt
-      change set_attribute(:signer_ip, ^arg(:signer_ip))
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:signer_ip, expr(^arg(:signer_ip)))
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :refuse do
@@ -191,16 +167,8 @@ defmodule UniboExPoc.Sign.SignRequestItem do
       end
       # message: "只有已发送状态可以拒签"
       change set_attribute(:state, :refused)
-      change set_attribute(:refuse_reason, ^arg(:refuse_reason))
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:refuse_reason, expr(^arg(:refuse_reason)))
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reset do
@@ -208,15 +176,7 @@ defmodule UniboExPoc.Sign.SignRequestItem do
       accept []
       change UniboExPoc.Sign.Changes.SignRequestItem.ComputeAccessToken
       change set_attribute(:state, :draft)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

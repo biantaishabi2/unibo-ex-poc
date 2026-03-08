@@ -88,29 +88,13 @@ defmodule UniboExPoc.Maintenance.EquipmentCategory do
       change manage_relationship(:company_id, :company, type: :append, on_lookup: :relate)
       validate present(:name)
       change UniboExPoc.Maintenance.Changes.EquipmentCategory.CreateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :alias_name]
       change UniboExPoc.Maintenance.Changes.EquipmentCategory.UpdateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -91,28 +91,12 @@ defmodule UniboExPoc.Subscriptions.SubscriptionPlan do
       accept [:name, :billing_period_unit, :billing_period_value, :auto_close_limit, :active]
       validate present(:name)
       validate present(:billing_period_unit)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :billing_period_unit, :billing_period_value, :auto_close_limit, :active]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
@@ -128,15 +112,7 @@ defmodule UniboExPoc.Subscriptions.SubscriptionPlan do
       end
       # message: "只有启用状态可以停用"
       change set_attribute(:active, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :activate do
@@ -152,15 +128,7 @@ defmodule UniboExPoc.Subscriptions.SubscriptionPlan do
       end
       # message: "只有停用状态可以启用"
       change set_attribute(:active, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -113,28 +113,12 @@ defmodule UniboExPoc.Marketing.SocialPost do
       argument :campaign_id, :uuid
       argument :account_ids, {:array, :string}
       validate present(:content)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:content, :media_ids, :platform_specific, :scheduled_date]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :publish_now do
@@ -155,15 +139,7 @@ defmodule UniboExPoc.Marketing.SocialPost do
       change UniboExPoc.Marketing.Changes.SocialPost.PublishNowCall2
       change set_attribute(:status, :posted)
       change set_attribute(:published_date, &DateTime.utc_now/0)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :schedule do
@@ -182,15 +158,7 @@ defmodule UniboExPoc.Marketing.SocialPost do
       # skipped: validate present : (incompatible with bulk update atomic path)
       # skipped: validate compare :schedule_date (incompatible with bulk update atomic path)
       change set_attribute(:status, :scheduled)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :sync_stats do
@@ -206,15 +174,7 @@ defmodule UniboExPoc.Marketing.SocialPost do
       end
       # message: "只有已发布状态可以同步统计"
       change UniboExPoc.Marketing.Changes.SocialPost.SyncStatsCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

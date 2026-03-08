@@ -109,15 +109,7 @@ defmodule UniboExPoc.Purchasing.PurchaseRequisitionType do
       accept [:name, :description, :sequence, :exclusive, :quantity_copy, :line_copy, :active, :parent_type_id, :has_table]
       validate present(:name)
       validate present(:description)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -140,15 +132,7 @@ defmodule UniboExPoc.Purchasing.PurchaseRequisitionType do
     update :update do
       primary? true
       accept [:name, :description, :sequence, :exclusive, :quantity_copy, :line_copy, :active, :parent_type_id, :has_table]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

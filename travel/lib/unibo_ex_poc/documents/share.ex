@@ -93,7 +93,7 @@ defmodule UniboExPoc.Documents.Share do
 
   calculations do
     calculate :full_url, :string, expr(base_url <> "/document/share/" <> id <> "/" <> access_token)
-    calculate :state, :atom, expr(if((date_deadline == nil or date_deadline >= today()), live, expired))
+    calculate :state, :atom, expr(if((date_deadline == nil or date_deadline >= today()), :live, :expired))
   end
 
   relationships do
@@ -137,29 +137,13 @@ defmodule UniboExPoc.Documents.Share do
       # message: "type=domain 时必须指定文件夹"
       # relate_actor :create_uid — 无对应关系，跳过
       change UniboExPoc.Documents.Changes.Share.ComputeAccessToken
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :date_deadline, :action, :partner_id, :email_drop, :activity_option]
       argument :owner_id, :uuid
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     read :access do
@@ -177,15 +161,7 @@ defmodule UniboExPoc.Documents.Share do
       # message: "type=domain 时必须指定文件夹"
       # relate_actor :create_uid — 无对应关系，跳过
       change UniboExPoc.Documents.Changes.Share.ComputeAccessToken
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

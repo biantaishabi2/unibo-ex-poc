@@ -135,67 +135,27 @@ defmodule UniboExPoc.IoT.VoIPUserConfig do
       change manage_relationship(:org_id, :org, type: :append, on_lookup: :relate)
       validate present(:org_id)
       validate present([:user_id])
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:extension, :sip_login, :sip_secret, :auto_answer, :ring_timeout, :outgoing_caller_id, :voicemail_enabled]
       argument :provider_id, :integer
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :toggle_dnd do
       description "切换免打扰状态"
       accept []
-      change fn changeset, _context ->
-        dnd = Ash.Changeset.get_attribute(changeset, :dnd)
-
-        if dnd do
-          Ash.Changeset.force_change_attribute(changeset, :dnd, not dnd)
-        else
-          changeset
-        end
-      end
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:dnd, expr(not dnd))
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :set_forwarding do
       description "设置呼叫转发规则"
       accept [:forward_on_busy, :forward_on_no_answer, :forward_unconditional, :follow_me_enabled, :follow_me_number]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

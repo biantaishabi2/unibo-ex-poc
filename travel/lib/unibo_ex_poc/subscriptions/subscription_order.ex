@@ -206,30 +206,14 @@ defmodule UniboExPoc.Subscriptions.SubscriptionOrder do
       change manage_relationship(:salesperson_id, :salesperson, type: :append, on_lookup: :relate)
       change manage_relationship(:currency_id, :currency, type: :append, on_lookup: :relate)
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:end_date, :next_invoice_date, :payment_token_id, :pricelist_id, :team_id, :stage_id]
       argument :lines, {:array, :map}, default: []
       change manage_relationship(:lines, :lines, on_lookup: :relate, on_no_match: :create, on_match: :update)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_confirm do
@@ -245,15 +229,7 @@ defmodule UniboExPoc.Subscriptions.SubscriptionOrder do
       end
       # message: "只有草稿状态可以确认"
       change set_attribute(:subscription_state, :in_progress)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_pause do
@@ -269,15 +245,7 @@ defmodule UniboExPoc.Subscriptions.SubscriptionOrder do
       end
       # message: "只有进行中状态可以暂停"
       change set_attribute(:subscription_state, :paused)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_resume do
@@ -293,15 +261,7 @@ defmodule UniboExPoc.Subscriptions.SubscriptionOrder do
       end
       # message: "只有暂停状态可以恢复"
       change set_attribute(:subscription_state, :in_progress)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_close do
@@ -318,15 +278,7 @@ defmodule UniboExPoc.Subscriptions.SubscriptionOrder do
       # message: "只有进行中状态可以关闭"
       change set_attribute(:subscription_state, :closed)
       change UniboExPoc.Subscriptions.Changes.SubscriptionOrder.ComputeCloseDate
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     create :action_renew do
@@ -345,15 +297,7 @@ defmodule UniboExPoc.Subscriptions.SubscriptionOrder do
       validate present(:name)
       # precondition: requires subscription_state=:closed
       validate attribute_equals(:subscription_state, :closed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :action_upsell do
       description "升级/加购，生成差价报价单"
@@ -367,15 +311,7 @@ defmodule UniboExPoc.Subscriptions.SubscriptionOrder do
         end
       end
       # message: "只有进行中状态可以升级"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_payment_exception do
@@ -383,30 +319,14 @@ defmodule UniboExPoc.Subscriptions.SubscriptionOrder do
       accept []
       change set_attribute(:payment_exception, true)
       change UniboExPoc.Subscriptions.Changes.SubscriptionOrder.ComputeFirstPaymentFailureDate
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :clear_payment_exception do
       description "清除支付异常（重试扣款成功后）"
       accept []
       change set_attribute(:payment_exception, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

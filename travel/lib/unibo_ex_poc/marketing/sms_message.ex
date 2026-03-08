@@ -96,15 +96,7 @@ defmodule UniboExPoc.Marketing.SmsMessage do
       argument :campaign_id, :uuid
       validate present(:number)
       validate present(:body)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :send do
       description "发送短信（outgoing → process → pending/sent/error）"
@@ -126,15 +118,7 @@ defmodule UniboExPoc.Marketing.SmsMessage do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :process)
       change UniboExPoc.Marketing.Changes.SmsMessage.SendCall2
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -150,15 +134,7 @@ defmodule UniboExPoc.Marketing.SmsMessage do
       end
       # message: "只有待发送状态可以取消"
       change set_attribute(:status, :canceled)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :resend_failed do
@@ -175,15 +151,7 @@ defmodule UniboExPoc.Marketing.SmsMessage do
       # message: "只有错误状态可以重试"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :outgoing)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

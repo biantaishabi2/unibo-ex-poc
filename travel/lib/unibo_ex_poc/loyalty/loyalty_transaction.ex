@@ -106,30 +106,14 @@ defmodule UniboExPoc.Loyalty.LoyaltyTransaction do
       change manage_relationship(:card_id, :card, type: :append, on_lookup: :relate)
       validate present(:points_delta)
       validate present(:transaction_type)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :cancel_transaction do
       description "撤销流水（confirmed -> cancelled），同步回滚积分卡余额"
       primary? true
       accept [:note]
       change set_attribute(:lifecycle_status, :cancelled)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

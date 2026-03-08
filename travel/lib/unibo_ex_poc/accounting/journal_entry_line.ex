@@ -120,32 +120,14 @@ defmodule UniboExPoc.Accounting.JournalEntryLine do
       # message: "借方金额不能为负"
       validate compare(:credit_amount, greater_than_or_equal_to: 0)
       # message: "贷方金额不能为负"
-      change fn changeset, _context ->
-        debit_amount = Ash.Changeset.get_attribute(changeset, :debit_amount)
-        credit_amount = Ash.Changeset.get_attribute(changeset, :credit_amount)
-
-        if debit_amount && credit_amount do
-          Ash.Changeset.force_change_attribute(changeset, :balance, (debit_amount - credit_amount))
-        else
-          changeset
-        end
-      end
+      change set_attribute(:balance, expr((debit_amount - credit_amount)))
     end
     update :update do
       primary? true
       accept [:debit_amount, :credit_amount, :amount_currency, :description]
       # skipped: validate compare :debit_amount (incompatible with bulk update atomic path)
       # skipped: validate compare :credit_amount (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        debit_amount = Ash.Changeset.get_attribute(changeset, :debit_amount)
-        credit_amount = Ash.Changeset.get_attribute(changeset, :credit_amount)
-
-        if debit_amount && credit_amount do
-          Ash.Changeset.force_change_attribute(changeset, :balance, (debit_amount - credit_amount))
-        else
-          changeset
-        end
-      end
+      change set_attribute(:balance, expr((debit_amount - credit_amount)))
       require_atomic? false
     end
   end

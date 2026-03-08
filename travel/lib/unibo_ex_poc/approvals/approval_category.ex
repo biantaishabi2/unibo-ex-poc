@@ -146,29 +146,13 @@ defmodule UniboExPoc.Approvals.ApprovalCategory do
       change manage_relationship(:company_id, :company, type: :append, on_lookup: :relate)
       validate present(:name)
       # validation: valid_field_config
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :description, :sequence_code, :automated_sequence, :approval_minimum, :manager_approval, :exclusive_user, :requester_document, :field_config, :approval_mode, :routing_rules, :escalation_config]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :activate do
@@ -185,15 +169,7 @@ defmodule UniboExPoc.Approvals.ApprovalCategory do
       end
       # message: "只有停用状态可以启用"
       change set_attribute(:is_active, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
@@ -210,15 +186,7 @@ defmodule UniboExPoc.Approvals.ApprovalCategory do
       end
       # message: "只有启用状态可以停用"
       change set_attribute(:is_active, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

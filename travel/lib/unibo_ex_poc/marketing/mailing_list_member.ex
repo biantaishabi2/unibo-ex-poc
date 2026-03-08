@@ -80,45 +80,21 @@ defmodule UniboExPoc.Marketing.MailingListMember do
       change manage_relationship(:mailing_list_id, :mailing_list, type: :append, on_lookup: :relate)
       validate present(:email)
       # validation: public_list_only
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :subscribe do
       description "订阅（重新激活已退订成员）"
       primary? true
       accept []
       change set_attribute(:status, :subscribed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unsubscribe do
       description "退订"
       accept []
       change set_attribute(:status, :unsubscribed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -123,29 +123,13 @@ defmodule UniboExPoc.IoT.QueueMember do
       change manage_relationship(:user_id, :user, type: :append, on_lookup: :relate)
       validate present(:queue_id)
       validate present(:user_id)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:priority, :penalty]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :pause do
@@ -162,16 +146,8 @@ defmodule UniboExPoc.IoT.QueueMember do
       # message: "已暂停成员不能重复暂停"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:paused, true)
-      change set_attribute(:paused_reason, ^arg(:reason))
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:paused_reason, expr(^arg(:reason)))
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unpause do
@@ -188,15 +164,7 @@ defmodule UniboExPoc.IoT.QueueMember do
       # message: "仅暂停中的成员允许恢复接听"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:paused, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :record_call do
@@ -204,36 +172,10 @@ defmodule UniboExPoc.IoT.QueueMember do
       argument :talk_duration, :integer, allow_nil?: false
       # skipped: validate compare :duration (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        calls_taken = Ash.Changeset.get_attribute(changeset, :calls_taken)
-
-        if calls_taken do
-          Ash.Changeset.force_change_attribute(changeset, :calls_taken, (calls_taken + 1))
-        else
-          changeset
-        end
-      end
+      change set_attribute(:calls_taken, expr((calls_taken + 1)))
       change set_attribute(:last_call_at, &DateTime.utc_now/0)
-      change fn changeset, _context ->
-        avg_talk_time = Ash.Changeset.get_attribute(changeset, :avg_talk_time)
-        calls_taken = Ash.Changeset.get_attribute(changeset, :calls_taken)
-        calls_taken = Ash.Changeset.get_attribute(changeset, :calls_taken)
-
-        if avg_talk_time && calls_taken && calls_taken do
-          Ash.Changeset.force_change_attribute(changeset, :avg_talk_time, (((avg_talk_time * (calls_taken - 1)) + ^arg(:talk_duration)) / calls_taken))
-        else
-          changeset
-        end
-      end
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:avg_talk_time, expr((((avg_talk_time * (calls_taken - 1)) + ^arg(:talk_duration)) / calls_taken)))
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

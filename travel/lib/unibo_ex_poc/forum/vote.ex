@@ -73,34 +73,16 @@ defmodule UniboExPoc.Forum.Vote do
       argument :user_id, :uuid, allow_nil?: false
       change manage_relationship(:user_id, :user, type: :append, on_lookup: :relate)
       validate present(:vote)
-      validate present(:)
-      # message: "Karma 不足，无法点赞"
-      validate present(:)
-      # message: "Karma 不足，无法点踩"
+      # validation: karma_check_upvote — Karma 不足，无法点赞
+      # validation: karma_check_downvote — Karma 不足，无法点踩
       change relate_actor(:user)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       description "更改投票（含切换和取消逻辑）"
       primary? true
       accept [:vote]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

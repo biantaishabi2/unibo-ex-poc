@@ -141,15 +141,7 @@ defmodule UniboExPoc.Website.WebPage do
       validate present(:name)
       # validation: url_unique_per_website — URL 在同一 website_id 内必须唯一
       change UniboExPoc.Website.Changes.WebPage.CreateCall3
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -160,15 +152,7 @@ defmodule UniboExPoc.Website.WebPage do
       change UniboExPoc.Website.Changes.WebPage.UpdateCall5
       change UniboExPoc.Website.Changes.WebPage.UpdateCall6
       change UniboExPoc.Website.Changes.WebPage.UpdateCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :publish do
@@ -181,15 +165,7 @@ defmodule UniboExPoc.Website.WebPage do
       change UniboExPoc.Website.Changes.WebPage.PublishCall5
       change UniboExPoc.Website.Changes.WebPage.PublishCall6
       change UniboExPoc.Website.Changes.WebPage.PublishCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unpublish do
@@ -202,15 +178,7 @@ defmodule UniboExPoc.Website.WebPage do
       change UniboExPoc.Website.Changes.WebPage.UnpublishCall5
       change UniboExPoc.Website.Changes.WebPage.UnpublishCall6
       change UniboExPoc.Website.Changes.WebPage.UnpublishCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     create :clone_page do
@@ -221,15 +189,7 @@ defmodule UniboExPoc.Website.WebPage do
       validate present(:name)
       # validation: url_unique_per_website — URL 在同一 website_id 内必须唯一
       change UniboExPoc.Website.Changes.WebPage.ClonePageCall3
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

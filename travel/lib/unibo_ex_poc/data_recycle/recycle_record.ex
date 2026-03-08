@@ -78,15 +78,7 @@ defmodule UniboExPoc.DataRecycle.RecycleRecord do
       argument :recycle_model_id, :uuid, allow_nil?: false
       change manage_relationship(:recycle_model_id, :recycle_model, type: :append, on_lookup: :relate)
       validate present(:res_id)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :validate do
       description "确认回收——执行归档或删除原始记录"
@@ -101,15 +93,7 @@ defmodule UniboExPoc.DataRecycle.RecycleRecord do
         end
       end
       # message: "仅活跃待回收记录可执行确认或忽略"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :discard do
@@ -125,15 +109,7 @@ defmodule UniboExPoc.DataRecycle.RecycleRecord do
       end
       # message: "仅活跃待回收记录可执行确认或忽略"
       change set_attribute(:active, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

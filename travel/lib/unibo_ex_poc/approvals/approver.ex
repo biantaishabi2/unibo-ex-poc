@@ -139,15 +139,7 @@ defmodule UniboExPoc.Approvals.Approver do
       argument :user_id, :uuid, allow_nil?: false
       change manage_relationship(:user_id, :user, type: :append, on_lookup: :relate)
       change manage_relationship(:request_id, :request, type: :append, on_lookup: :relate)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :approve do
       description "审批通过"
@@ -164,15 +156,7 @@ defmodule UniboExPoc.Approvals.Approver do
       # message: "只有待审批状态可以通过"
       change set_attribute(:status, :approved)
       change UniboExPoc.Approvals.Changes.Approver.ComputeApprovalDate
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :refuse do
@@ -189,45 +173,21 @@ defmodule UniboExPoc.Approvals.Approver do
       # message: "只有待审批状态可以拒绝"
       change set_attribute(:status, :refused)
       change UniboExPoc.Approvals.Changes.Approver.ComputeApprovalDate
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
       description "取消（随 request 取消批量设置）"
       accept []
       change set_attribute(:status, :cancel)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :draft do
       description "重置为初始状态（随 request 重置批量设置）"
       accept []
       change set_attribute(:status, :new)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

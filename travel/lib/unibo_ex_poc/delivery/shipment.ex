@@ -204,103 +204,47 @@ defmodule UniboExPoc.Delivery.Shipment do
       accept [:shipment_id, :shipment_type_id, :primary_order_id, :origin_facility_id, :destination_facility_id, :party_id_to, :party_id_from, :estimated_ship_date, :estimated_arrival_date, :handling_instructions, :currency_uom_id, :estimated_ship_cost]
       validate present(:shipment_type_id)
       change set_attribute(:status_id, :SHIPMENT_INPUT)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:status_id, :handling_instructions, :estimated_ship_date, :estimated_arrival_date, :additional_shipping_charge]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :submit do
       description "提交待处理（-> SHIPMENT_INPUT）"
       accept []
       change set_attribute(:status_id, :SHIPMENT_INPUT)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :pick do
       description "确认拣货（-> SHIPMENT_SCHEDULED）"
       accept []
       change set_attribute(:status_id, :SHIPMENT_SCHEDULED)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :pack do
       description "确认打包（-> SHIPMENT_PACKED）"
       accept []
       change set_attribute(:status_id, :SHIPMENT_PACKED)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :ship do
       description "标记已发出（-> SHIPMENT_SHIPPED）"
       accept []
       change set_attribute(:status_id, :SHIPMENT_SHIPPED)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deliver do
       description "标记已收货（-> SHIPMENT_DELIVERED）"
       accept []
       change set_attribute(:status_id, :SHIPMENT_DELIVERED)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -316,15 +260,7 @@ defmodule UniboExPoc.Delivery.Shipment do
       end
       # message: "已发出的发货单不能直接取消，需走逆向退货流程"
       change set_attribute(:status_id, :SHIPMENT_CANCELLED)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

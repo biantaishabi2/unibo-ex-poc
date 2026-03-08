@@ -66,15 +66,7 @@ defmodule UniboExPoc.Delivery.ShipmentStatus do
       accept [:shipment_id, :status_id, :status_date, :change_by_user_login_id]
       validate present(:shipment_id)
       validate present(:status_id)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

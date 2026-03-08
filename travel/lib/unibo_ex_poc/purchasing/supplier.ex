@@ -126,15 +126,7 @@ defmodule UniboExPoc.Purchasing.Supplier do
       accept [:supplier_code, :name, :contact_name, :contact_phone, :contact_email, :address, :payment_terms, :tax_id, :purchase_warn, :purchase_warn_msg, :parent_id, :notes]
       validate present(:supplier_code)
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -158,15 +150,7 @@ defmodule UniboExPoc.Purchasing.Supplier do
       primary? true
       accept [:name, :contact_name, :contact_phone, :contact_email, :address, :payment_terms, :tax_id, :purchase_warn, :purchase_warn_msg, :notes, :status]
       # skipped: validate present :name (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :activate do
@@ -183,15 +167,7 @@ defmodule UniboExPoc.Purchasing.Supplier do
       end
       # message: "只有非活跃或冻结状态可以启用"
       change set_attribute(:status, :active)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :block do
@@ -208,15 +184,7 @@ defmodule UniboExPoc.Purchasing.Supplier do
       end
       # message: "只有活跃状态可以冻结"
       change set_attribute(:status, :blocked)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

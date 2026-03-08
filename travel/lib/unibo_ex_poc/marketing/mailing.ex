@@ -146,15 +146,7 @@ defmodule UniboExPoc.Marketing.Mailing do
       argument :contact_list_ids, {:array, :string}
       validate present(:name)
       validate present(:subject)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -168,15 +160,7 @@ defmodule UniboExPoc.Marketing.Mailing do
         end
       end
       # message: "草稿状态才允许编辑或取消"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :launch do
@@ -205,15 +189,7 @@ defmodule UniboExPoc.Marketing.Mailing do
       change set_attribute(:status, :in_queue)
       change UniboExPoc.Marketing.Changes.Mailing.LaunchCall5
       change UniboExPoc.Marketing.Changes.Mailing.LaunchCall6
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :schedule do
@@ -240,15 +216,7 @@ defmodule UniboExPoc.Marketing.Mailing do
       # skipped: validate compare :schedule_date (incompatible with bulk update atomic path)
       # skipped: validate present : (incompatible with bulk update atomic path)
       change set_attribute(:status, :in_queue)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :put_in_queue do
@@ -275,15 +243,7 @@ defmodule UniboExPoc.Marketing.Mailing do
       change set_attribute(:status, :in_queue)
       change UniboExPoc.Marketing.Changes.Mailing.PutInQueueCall5
       change UniboExPoc.Marketing.Changes.Mailing.PutInQueueCall6
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -300,15 +260,7 @@ defmodule UniboExPoc.Marketing.Mailing do
       # message: "草稿状态才允许编辑或取消"
       change set_attribute(:status, :draft)
       change UniboExPoc.Marketing.Changes.Mailing.CancelCall4
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :retry_failed do
@@ -324,15 +276,7 @@ defmodule UniboExPoc.Marketing.Mailing do
       end
       # message: "草稿状态才允许编辑或取消"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :send_winner_mailing do
@@ -356,15 +300,7 @@ defmodule UniboExPoc.Marketing.Mailing do
         end
       end
       # message: "仅已结束批次允许发送 A/B 胜出版本"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -128,30 +128,14 @@ defmodule UniboExPoc.Rating.Rating do
       validate present(:reviewer_id)
       change set_attribute(:status, :pending_approval)
       change UniboExPoc.Rating.Changes.Rating.ComputeSubmittedAt
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       description "修改评价内容（仅 pending_approval 状态可修改）"
       primary? true
       accept [:score, :comment, :is_anonymous]
       # skipped: validate attribute_equals :status (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :approve do
@@ -160,15 +144,7 @@ defmodule UniboExPoc.Rating.Rating do
       # skipped: validate attribute_equals :status (incompatible with bulk update atomic path)
       change set_attribute(:status, :published)
       change UniboExPoc.Rating.Changes.Rating.ComputePublishedAt
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reject do
@@ -177,15 +153,7 @@ defmodule UniboExPoc.Rating.Rating do
       # skipped: validate attribute_equals :status (incompatible with bulk update atomic path)
       # skipped: validate present :rejection_reason (incompatible with bulk update atomic path)
       change set_attribute(:status, :rejected)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :flag do
@@ -194,15 +162,7 @@ defmodule UniboExPoc.Rating.Rating do
       # skipped: validate attribute_equals :status (incompatible with bulk update atomic path)
       # skipped: validate present :flag_reason (incompatible with bulk update atomic path)
       change set_attribute(:status, :flagged)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

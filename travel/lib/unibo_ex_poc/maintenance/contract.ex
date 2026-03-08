@@ -119,15 +119,7 @@ defmodule UniboExPoc.Maintenance.Contract do
       accept [:amount, :start_date, :expiration_date, :cost_generated, :cost_frequency]
       argument :vehicle_id, :uuid, allow_nil?: false
       change manage_relationship(:vehicle_id, :vehicle, type: :append, on_lookup: :relate)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :action_open do
       description "生效 (futur -> open)"
@@ -145,15 +137,7 @@ defmodule UniboExPoc.Maintenance.Contract do
       change set_attribute(:state, :open)
       change UniboExPoc.Maintenance.Changes.Contract.ActionOpenCall5
       change UniboExPoc.Maintenance.Changes.Contract.ActionOpenCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_expire do
@@ -171,15 +155,7 @@ defmodule UniboExPoc.Maintenance.Contract do
       change set_attribute(:state, :expired)
       change UniboExPoc.Maintenance.Changes.Contract.ActionExpireCall5
       change UniboExPoc.Maintenance.Changes.Contract.ActionExpireCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_close do
@@ -197,15 +173,7 @@ defmodule UniboExPoc.Maintenance.Contract do
       change set_attribute(:state, :closed)
       change UniboExPoc.Maintenance.Changes.Contract.ActionCloseCall5
       change UniboExPoc.Maintenance.Changes.Contract.ActionCloseCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_draft do
@@ -223,15 +191,7 @@ defmodule UniboExPoc.Maintenance.Contract do
       change set_attribute(:state, :futur)
       change UniboExPoc.Maintenance.Changes.Contract.ActionDraftCall5
       change UniboExPoc.Maintenance.Changes.Contract.ActionDraftCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

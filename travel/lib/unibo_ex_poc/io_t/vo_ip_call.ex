@@ -215,29 +215,13 @@ defmodule UniboExPoc.IoT.VoIPCall do
       change manage_relationship(:org_id, :org, type: :append, on_lookup: :relate)
       validate present(:caller)
       validate present(:callee)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:notes, :tags, :linked_contact_id, :linked_lead_id, :linked_ticket_id, :linked_model, :linked_record_id]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :answer do
@@ -255,15 +239,7 @@ defmodule UniboExPoc.IoT.VoIPCall do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:state, :in_progress)
       change set_attribute(:start_time, &DateTime.utc_now/0)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :end_call do
@@ -282,15 +258,7 @@ defmodule UniboExPoc.IoT.VoIPCall do
       change set_attribute(:state, :completed)
       change set_attribute(:end_time, &DateTime.utc_now/0)
       change UniboExPoc.IoT.Changes.VoIpCall.ComputeDuration
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :miss do
@@ -298,15 +266,7 @@ defmodule UniboExPoc.IoT.VoIPCall do
       accept []
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:state, :missed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :to_voicemail do
@@ -323,30 +283,14 @@ defmodule UniboExPoc.IoT.VoIPCall do
       # message: "只有未接通话可以转语音信箱"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:state, :voicemail)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :add_note do
       description "添加备注"
       accept [:notes, :tags]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :hold do
@@ -364,15 +308,7 @@ defmodule UniboExPoc.IoT.VoIPCall do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:state, :on_hold)
       change set_attribute(:hold_started_at, &DateTime.utc_now/0)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unhold do
@@ -390,15 +326,7 @@ defmodule UniboExPoc.IoT.VoIPCall do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:state, :in_progress)
       change UniboExPoc.IoT.Changes.VoIpCall.ComputeHoldDuration
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :transfer do
@@ -415,20 +343,12 @@ defmodule UniboExPoc.IoT.VoIPCall do
       end
       # message: "只有通话中或保持中的通话可以转接"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change set_attribute(:transfer_to, ^arg(:target_number))
-      change set_attribute(:transfer_type, ^arg(:transfer_mode))
+      change set_attribute(:transfer_to, expr(^arg(:target_number)))
+      change set_attribute(:transfer_type, expr(^arg(:transfer_mode)))
       change set_attribute(:state, :completed)
       change set_attribute(:end_time, &DateTime.utc_now/0)
       change UniboExPoc.IoT.Changes.VoIpCall.ComputeDuration
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

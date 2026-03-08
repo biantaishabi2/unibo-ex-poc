@@ -165,28 +165,12 @@ defmodule UniboExPoc.Payment.Payment do
       validate present(:party_id_to)
       validate present(:amount)
       validate present(:currency_uom_id)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:payment_ref_num, :comments, :override_gl_account_id]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :submit do
@@ -202,15 +186,7 @@ defmodule UniboExPoc.Payment.Payment do
       end
       # message: "只有草稿状态可以提交"
       change set_attribute(:status, :pending)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :authorize do
@@ -226,15 +202,7 @@ defmodule UniboExPoc.Payment.Payment do
       end
       # message: "只有待处理状态可以授权"
       change set_attribute(:status, :authorized)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :capture do
@@ -250,15 +218,7 @@ defmodule UniboExPoc.Payment.Payment do
       end
       # message: "只有已授权状态可以捕获扣款"
       change set_attribute(:status, :captured)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_failed do
@@ -274,15 +234,7 @@ defmodule UniboExPoc.Payment.Payment do
       end
       # message: "只有待处理或已授权状态可以标记失败"
       change set_attribute(:status, :failed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -298,15 +250,7 @@ defmodule UniboExPoc.Payment.Payment do
       end
       # message: "已捕获/已退款/已失败的支付不能取消"
       change set_attribute(:status, :cancelled)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :refund do
@@ -322,15 +266,7 @@ defmodule UniboExPoc.Payment.Payment do
       end
       # message: "只有已捕获状态可以退款"
       change set_attribute(:status, :refunded)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

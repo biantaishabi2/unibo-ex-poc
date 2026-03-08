@@ -127,60 +127,28 @@ defmodule UniboExPoc.LiveChat.LiveChatChannel do
       change manage_relationship(:rule_ids, :rule_ids, type: :create)
       validate present(:name)
       change UniboExPoc.LiveChat.Changes.LiveChatChannel.CreateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :button_text, :default_message, :input_placeholder, :header_background_color, :title_color, :button_background_color, :button_text_color, :image]
       argument :rule_ids, {:array, :map}, default: []
       change manage_relationship(:rule_ids, :rule_ids, on_lookup: :relate, on_no_match: :create, on_match: :update)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :join do
       description "当前用户加入操作员列表"
       accept []
       change UniboExPoc.LiveChat.Changes.LiveChatChannel.JoinCall2
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :quit do
       description "当前用户退出操作员列表"
       accept []
       change UniboExPoc.LiveChat.Changes.LiveChatChannel.QuitCall3
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     read :get_livechat_info do

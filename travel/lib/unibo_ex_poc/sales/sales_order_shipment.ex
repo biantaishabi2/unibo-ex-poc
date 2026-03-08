@@ -99,15 +99,7 @@ defmodule UniboExPoc.Sales.SalesOrderShipment do
       change manage_relationship(:sales_order_id, :sales_order, type: :append, on_lookup: :relate)
       validate present(:shipment_number)
       change relate_actor(:shipped_by)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -141,15 +133,7 @@ defmodule UniboExPoc.Sales.SalesOrderShipment do
       end
       # message: "只有草稿状态可以发货"
       change set_attribute(:status, :shipped)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deliver do
@@ -165,15 +149,7 @@ defmodule UniboExPoc.Sales.SalesOrderShipment do
       end
       # message: "只有已发货状态可以标记送达"
       change set_attribute(:status, :delivered)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

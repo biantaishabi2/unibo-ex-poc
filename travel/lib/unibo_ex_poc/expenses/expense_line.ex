@@ -149,41 +149,17 @@ defmodule UniboExPoc.Expenses.ExpenseLine do
       validate present(:product_id)
       # message: "费用类型不能为空"
       change UniboExPoc.Expenses.Changes.ExpenseLine.CreateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:description, :quantity, :price_unit, :expense_date, :receipt_reference, :payment_mode, :currency_rate, :analytic_distribution, :notes]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :split do
       description "费用拆分（50/50 拆为两条明细）(规则35)"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

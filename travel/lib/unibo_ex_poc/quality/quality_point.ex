@@ -171,15 +171,7 @@ defmodule UniboExPoc.Quality.QualityPoint do
       # message: "worksheet 类型需要选择工作表模板"
       validate present(:work_order_operation_id)
       # message: "工序关联仅在制造操作类型下有效"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -189,15 +181,7 @@ defmodule UniboExPoc.Quality.QualityPoint do
       # skipped: validate present :tolerance_max (incompatible with bulk update atomic path)
       # skipped: validate present :worksheet_template_id (incompatible with bulk update atomic path)
       # skipped: validate present :work_order_operation_id (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :activate do
@@ -218,15 +202,7 @@ defmodule UniboExPoc.Quality.QualityPoint do
       end
       # message: "只有已禁用的控制点可以启用"
       change set_attribute(:active, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
@@ -247,15 +223,7 @@ defmodule UniboExPoc.Quality.QualityPoint do
       end
       # message: "只有已启用的控制点可以禁用"
       change set_attribute(:active, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     action :trigger_checks do

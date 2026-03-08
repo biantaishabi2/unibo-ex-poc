@@ -103,15 +103,7 @@ defmodule UniboExPoc.Marketing.SocialAccount do
       accept [:name, :platform, :platform_account_id]
       validate present(:name)
       validate present(:platform)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :connect do
       description "OAuth 授权连接"
@@ -119,30 +111,14 @@ defmodule UniboExPoc.Marketing.SocialAccount do
       accept []
       # skipped: validate unique : (incompatible with bulk update atomic path)
       change UniboExPoc.Marketing.Changes.SocialAccount.ConnectCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :disconnect do
       description "断开连接"
       accept []
       change set_attribute(:is_active, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :refresh_token do
@@ -159,15 +135,7 @@ defmodule UniboExPoc.Marketing.SocialAccount do
       end
       # message: "只有启用的账户可以刷新令牌"
       change UniboExPoc.Marketing.Changes.SocialAccount.RefreshTokenCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -107,21 +107,13 @@ defmodule UniboExPoc.ELearning.SlideProgress do
       change manage_relationship(:slide_id, :slide, type: :append, on_lookup: :relate)
       change manage_relationship(:channel_id, :channel, type: :append, on_lookup: :relate)
       change manage_relationship(:partner_id, :partner, type: :append, on_lookup: :relate)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :mark_completed do
       description "手动标记完成（非测验类型）"
       primary? true
       accept []
-      # skipped: validate present : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :completed)
         if current == false do
@@ -133,15 +125,7 @@ defmodule UniboExPoc.ELearning.SlideProgress do
       # message: "该内容项已标记为完成"
       change set_attribute(:completed, true)
       change UniboExPoc.ELearning.Changes.SlideProgress.MarkCompletedCall6
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_uncompleted do
@@ -158,15 +142,7 @@ defmodule UniboExPoc.ELearning.SlideProgress do
       # message: "该内容项尚未完成"
       change set_attribute(:completed, false)
       change UniboExPoc.ELearning.Changes.SlideProgress.MarkUncompletedCall6
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete_quiz do
@@ -181,22 +157,14 @@ defmodule UniboExPoc.ELearning.SlideProgress do
         end
       end
       # message: "该内容项已标记为完成"
-      # skipped: validate present : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
       change set_attribute(:completed, true)
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :quiz_attempts_count) || 0
         Ash.Changeset.force_change_attribute(changeset, :quiz_attempts_count, current + 1)
       end
       change UniboExPoc.ELearning.Changes.SlideProgress.CompleteQuizCall6
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_like do
@@ -204,15 +172,7 @@ defmodule UniboExPoc.ELearning.SlideProgress do
       accept []
       change UniboExPoc.ELearning.Changes.SlideProgress.ActionLikeCall4
       change UniboExPoc.ELearning.Changes.SlideProgress.ActionLikeCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_dislike do
@@ -220,15 +180,7 @@ defmodule UniboExPoc.ELearning.SlideProgress do
       accept []
       change UniboExPoc.ELearning.Changes.SlideProgress.ActionDislikeCall5
       change UniboExPoc.ELearning.Changes.SlideProgress.ActionDislikeCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

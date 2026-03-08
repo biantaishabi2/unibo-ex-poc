@@ -100,15 +100,7 @@ defmodule UniboExPoc.Helpdesk.HelpdeskSLAStatus do
       change manage_relationship(:sla_id, :sla, type: :append, on_lookup: :relate)
       validate present(:ticket)
       validate present(:sla)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :check_and_update do
       description "R25: 在每次阶段变更时调用，遍历工单所有 in_progress 的 SLA 追踪记录并更新状态
@@ -117,15 +109,7 @@ R27: 判定失败 — now > deadline 且尚未达到目标阶段
 "
       primary? true
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_reached do
@@ -141,15 +125,7 @@ R27: 判定失败 — now > deadline 且尚未达到目标阶段
       end
       # message: "只有 in_progress 状态的 SLA 追踪记录可以更新（终态不可逆）"
       change set_attribute(:status, :reached)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_failed do
@@ -165,29 +141,13 @@ R27: 判定失败 — now > deadline 且尚未达到目标阶段
       end
       # message: "只有 in_progress 状态的 SLA 追踪记录可以更新（终态不可逆）"
       change set_attribute(:status, :failed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :accumulate_excluded_time do
       description "R29 工单进入/离开排除阶段时累加暂停工作时间"
       accept [:excluded_time_hours]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

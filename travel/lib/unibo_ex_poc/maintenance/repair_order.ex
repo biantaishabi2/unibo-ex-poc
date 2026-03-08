@@ -169,15 +169,7 @@ late: 库存不足且预测无法按期到货
       change manage_relationship(:location_dest_id, :location_dest, type: :append, on_lookup: :relate)
       validate present(:repair_number)
       change UniboExPoc.Maintenance.Changes.RepairOrder.CreateCall15
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :confirm do
       description "确认维修 (draft -> confirmed)"
@@ -198,15 +190,7 @@ late: 库存不足且预测无法按期到货
       change UniboExPoc.Maintenance.Changes.RepairOrder.ConfirmCall2
       change UniboExPoc.Maintenance.Changes.RepairOrder.ConfirmCall15
       change UniboExPoc.Maintenance.Changes.RepairOrder.ConfirmCall16
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :start_repair do
@@ -224,15 +208,7 @@ late: 库存不足且预测无法按期到货
       change set_attribute(:state, :under_repair)
       change UniboExPoc.Maintenance.Changes.RepairOrder.StartRepairCall15
       change UniboExPoc.Maintenance.Changes.RepairOrder.StartRepairCall16
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete_repair do
@@ -254,15 +230,7 @@ late: 库存不足且预测无法按期到货
       change UniboExPoc.Maintenance.Changes.RepairOrder.CompleteRepairCall8
       change UniboExPoc.Maintenance.Changes.RepairOrder.CompleteRepairCall15
       change UniboExPoc.Maintenance.Changes.RepairOrder.CompleteRepairCall16
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -273,15 +241,7 @@ late: 库存不足且预测无法按期到货
       change set_attribute(:state, :cancel)
       change UniboExPoc.Maintenance.Changes.RepairOrder.CancelCall15
       change UniboExPoc.Maintenance.Changes.RepairOrder.CancelCall16
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reset_to_draft do
@@ -301,15 +261,7 @@ late: 库存不足且预测无法按期到货
       change set_attribute(:state, :draft)
       change UniboExPoc.Maintenance.Changes.RepairOrder.ResetToDraftCall15
       change UniboExPoc.Maintenance.Changes.RepairOrder.ResetToDraftCall16
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

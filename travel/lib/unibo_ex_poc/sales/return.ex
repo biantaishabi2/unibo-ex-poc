@@ -115,15 +115,7 @@ defmodule UniboExPoc.Sales.Return do
       validate present(:return_number)
       validate present(:reason)
       change UniboExPoc.Sales.Changes.Return.ComputeTotalRefundAmount
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -157,15 +149,7 @@ defmodule UniboExPoc.Sales.Return do
       end
       # message: "只有已申请状态可以审批"
       change set_attribute(:status, :approved)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :receive do
@@ -181,15 +165,7 @@ defmodule UniboExPoc.Sales.Return do
       end
       # message: "只有已审批状态可以收货"
       change set_attribute(:status, :received)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete do
@@ -205,15 +181,7 @@ defmodule UniboExPoc.Sales.Return do
       end
       # message: "只有已收货状态可以完成"
       change set_attribute(:status, :completed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -229,15 +197,7 @@ defmodule UniboExPoc.Sales.Return do
       end
       # message: "只有已申请状态可以取消"
       change set_attribute(:status, :cancelled)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

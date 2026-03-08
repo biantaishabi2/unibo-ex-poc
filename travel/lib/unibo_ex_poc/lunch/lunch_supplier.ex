@@ -193,56 +193,24 @@ defmodule UniboExPoc.Lunch.LunchSupplier do
       change manage_relationship(:partner_id, :partner, type: :append, on_lookup: :relate)
       validate present(:name)
       validate present(:send_by)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :send_by, :automatic_email_time, :moment, :tz, :mon, :tue, :wed, :thu, :fri, :sat, :sun, :recurrency_end_date, :topping_label_1, :topping_quantity_1, :topping_label_2, :topping_quantity_2, :topping_label_3, :topping_quantity_3]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :send_orders do
       description "批量发送当日订单给供应商（邮件方式调用自动邮件；电话方式逐条标记sent）"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :confirm_orders do
       description "批量确认当日所有sent状态订单"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :archive do
@@ -259,15 +227,7 @@ defmodule UniboExPoc.Lunch.LunchSupplier do
       # message: "只有启用状态的供应商可以归档"
       change set_attribute(:active, false)
       change set_attribute(:active, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unarchive do
@@ -283,15 +243,7 @@ defmodule UniboExPoc.Lunch.LunchSupplier do
       end
       # message: "只有已归档状态的供应商可以取消归档"
       change set_attribute(:active, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -110,15 +110,7 @@ defmodule UniboExPoc.Survey.UserInput do
       change manage_relationship(:survey_id, :survey, type: :append, on_lookup: :relate)
       argument :lines, {:array, :map}, default: []
       change manage_relationship(:lines, :lines, type: :create)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :mark_in_progress do
       description "开始答题"
@@ -135,15 +127,7 @@ defmodule UniboExPoc.Survey.UserInput do
       # message: "只有新建状态可以开始答题"
       change set_attribute(:state, :in_progress)
       change UniboExPoc.Survey.Changes.UserInput.ComputeStartDatetime
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_done do
@@ -160,15 +144,7 @@ defmodule UniboExPoc.Survey.UserInput do
       # message: "只有进行中状态可以完成答题"
       change set_attribute(:state, :done)
       change UniboExPoc.Survey.Changes.UserInput.ComputeEndDatetime
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

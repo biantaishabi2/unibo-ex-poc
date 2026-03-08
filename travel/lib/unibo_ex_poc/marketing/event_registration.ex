@@ -111,15 +111,7 @@ defmodule UniboExPoc.Marketing.EventRegistration do
       change manage_relationship(:event_id, :event, type: :append, on_lookup: :relate)
       validate present(:attendee_name)
       # validation: ticket_belongs_to_event
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :confirm do
       description "确认报名（draft → open）"
@@ -139,15 +131,7 @@ defmodule UniboExPoc.Marketing.EventRegistration do
       change set_attribute(:status, :open)
       change UniboExPoc.Marketing.Changes.EventRegistration.ConfirmCall5
       change UniboExPoc.Marketing.Changes.EventRegistration.ConfirmCall6
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :set_done do
@@ -156,30 +140,14 @@ defmodule UniboExPoc.Marketing.EventRegistration do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :done)
       change set_attribute(:date_closed, &DateTime.utc_now/0)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
       description "取消报名"
       accept []
       change set_attribute(:status, :cancel)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :set_previous_state do
@@ -194,15 +162,7 @@ defmodule UniboExPoc.Marketing.EventRegistration do
         end
       end
       # message: "仅 open/done 状态允许回滚"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     action :register_attendee do

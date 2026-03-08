@@ -94,29 +94,13 @@ defmodule UniboExPoc.Marketing.EventBooth do
       argument :partner_id, :uuid
       change manage_relationship(:event_id, :event, type: :append, on_lookup: :relate)
       change manage_relationship(:booth_category_id, :booth_category, type: :append, on_lookup: :relate)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :contact_name, :contact_email, :contact_phone]
       argument :partner_id, :uuid
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :confirm do
@@ -135,15 +119,7 @@ defmodule UniboExPoc.Marketing.EventBooth do
       change set_attribute(:state, :unavailable)
       change UniboExPoc.Marketing.Changes.EventBooth.ConfirmCall3
       change UniboExPoc.Marketing.Changes.EventBooth.ConfirmCall4
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :release do
@@ -159,15 +135,7 @@ defmodule UniboExPoc.Marketing.EventBooth do
       end
       # message: "只有已预订状态的展位可以释放"
       change set_attribute(:state, :available)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -103,15 +103,7 @@ defmodule UniboExPoc.HR.WorkEntry do
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
       validate present(:date_start)
       change UniboExPoc.HR.Changes.WorkEntry.CreateCall3
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :action_validate do
       description "验证工时条目，冲突检测后设置 state=validated"
@@ -129,15 +121,7 @@ defmodule UniboExPoc.HR.WorkEntry do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:state, :validated)
       change UniboExPoc.HR.Changes.WorkEntry.ActionValidateCall3
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_cancel do
@@ -153,15 +137,7 @@ defmodule UniboExPoc.HR.WorkEntry do
       end
       # message: "只有草稿或冲突状态可以取消"
       change set_attribute(:state, :cancelled)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

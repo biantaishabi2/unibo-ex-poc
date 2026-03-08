@@ -91,15 +91,7 @@ defmodule UniboExPoc.Project.Timesheet do
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
       change relate_actor(:employee)
       change UniboExPoc.Project.Changes.Timesheet.ComputeTotalHours
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :submit do
       description "提交审批"
@@ -115,15 +107,7 @@ defmodule UniboExPoc.Project.Timesheet do
       end
       # message: "只有草稿状态可以提交"
       change set_attribute(:status, :submitted)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :approve do
@@ -139,15 +123,7 @@ defmodule UniboExPoc.Project.Timesheet do
       end
       # message: "只有已提交状态可以审批"
       change set_attribute(:status, :approved)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reject do
@@ -163,15 +139,7 @@ defmodule UniboExPoc.Project.Timesheet do
       end
       # message: "只有已提交状态可以驳回"
       change set_attribute(:status, :rejected)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

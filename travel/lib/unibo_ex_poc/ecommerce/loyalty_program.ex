@@ -126,30 +126,14 @@ defmodule UniboExPoc.Ecommerce.LoyaltyProgram do
       argument :website_id, :uuid
       validate present(:name)
       # validation: max_usage_required_when_limited
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :program_type, :active, :sale_ok, :ecommerce_ok, :trigger, :applies_on, :date_from, :date_to, :limit_usage, :max_usage]
       argument :website_id, :uuid
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

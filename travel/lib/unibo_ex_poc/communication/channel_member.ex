@@ -139,71 +139,31 @@ defmodule UniboExPoc.Communication.ChannelMember do
       validate present([:partner_id, :guest_id], exactly: 1)
       # message: "partner_id 和 guest_id 必须二选一，不能同时为空或同时有值"
       change UniboExPoc.Communication.Changes.ChannelMember.CreateCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:fold_state, :is_minimized, :is_pinned, :custom_channel_name, :custom_notifications, :mute_until_dt]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     destroy :destroy do
       description "删除成员记录 + 广播离开事件 + 发布系统消息（CM-R5 unfollow）"
       primary? true
       change UniboExPoc.Communication.Changes.ChannelMember.DestroyCall4
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :mark_seen do
       description "标记已读位置（使用 FOR NO KEY UPDATE SQL 锁避免并发冲突）"
       accept [:seen_message_id]
       # skipped: validate concurrent_safe : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_fetched do
       description "标记已获取位置"
       accept [:fetched_message_id]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     read :load_more_members do

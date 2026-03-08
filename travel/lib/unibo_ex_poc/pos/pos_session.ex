@@ -112,25 +112,16 @@ defmodule UniboExPoc.POS.PosSession do
       primary? true
       accept [:session_code, :config_id, :opening_balance, :open_date, :rescue, :notes]
       validate present(:session_code)
-      validate present(:)
-      # message: "每个终端同一时刻最多一个非救援的活跃会话"
+      # validation: unique_active_session — 每个终端同一时刻最多一个非救援的活跃会话
       # validation: after_lock_date — 开启日期必须晚于公司会计锁定日期
       change relate_actor(:cashier)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :open do
       description "打开会话，期初余额默认继承同 config 上一个 closed 会话的 closing_balance_counted"
       primary? true
       accept [:opening_balance]
-      # skipped: validate present : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom :open_date (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -143,15 +134,7 @@ defmodule UniboExPoc.POS.PosSession do
       # message: "只有开启中状态可以打开"
       change UniboExPoc.POS.Changes.PosSession.ComputeOpeningBalance
       change set_attribute(:status, :open)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :start_close do
@@ -166,17 +149,9 @@ defmodule UniboExPoc.POS.PosSession do
         end
       end
       # message: "只有已打开状态可以开始关闭"
-      # skipped: validate present : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
       change set_attribute(:status, :closing)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :close do
@@ -191,7 +166,7 @@ defmodule UniboExPoc.POS.PosSession do
         end
       end
       # message: "只有关闭中状态可以关闭"
-      # skipped: validate present : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
       change set_attribute(:status, :closed)
       change UniboExPoc.POS.Changes.PosSession.ComputeCloseDate
       change UniboExPoc.POS.Changes.PosSession.CloseCall7
@@ -200,15 +175,7 @@ defmodule UniboExPoc.POS.PosSession do
       change UniboExPoc.POS.Changes.PosSession.CloseCall10
       change UniboExPoc.POS.Changes.PosSession.CloseCall11
       change UniboExPoc.POS.Changes.PosSession.CloseCall12
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

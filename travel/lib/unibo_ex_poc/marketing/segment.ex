@@ -66,29 +66,13 @@ defmodule UniboExPoc.Marketing.Segment do
       accept [:name, :description, :criteria]
       validate present(:name)
       # validation: valid_json_criteria
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :description, :criteria, :member_count]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :refresh_count do
@@ -96,15 +80,7 @@ defmodule UniboExPoc.Marketing.Segment do
       accept []
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change UniboExPoc.Marketing.Changes.Segment.RefreshCountCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

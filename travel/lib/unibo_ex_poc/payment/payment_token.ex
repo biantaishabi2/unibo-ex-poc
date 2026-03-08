@@ -95,28 +95,12 @@ defmodule UniboExPoc.Payment.PaymentToken do
       validate present(:party_id)
       validate present(:provider_id)
       validate present(:token_reference)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:is_default, :expiry_date]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :revoke do
@@ -132,15 +116,7 @@ defmodule UniboExPoc.Payment.PaymentToken do
       end
       # message: "只有活跃状态的令牌可以吊销"
       change set_attribute(:status, :revoked)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :expire do
@@ -156,15 +132,7 @@ defmodule UniboExPoc.Payment.PaymentToken do
       end
       # message: "只有活跃状态的令牌可以标记过期"
       change set_attribute(:status, :expired)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

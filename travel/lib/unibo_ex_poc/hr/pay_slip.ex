@@ -126,15 +126,7 @@ defmodule UniboExPoc.HR.PaySlip do
       change manage_relationship(:contract_id, :contract, type: :append, on_lookup: :relate)
       validate present(:payslip_number)
       # validation: custom_check
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :compute_sheet do
       description "计算薪资（按 SalaryRule 顺序执行），从 draft 进入 verify"
@@ -150,15 +142,7 @@ defmodule UniboExPoc.HR.PaySlip do
       end
       # message: "只有草稿状态可以计算薪资"
       change set_attribute(:status, :verify)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_payslip_done do
@@ -175,15 +159,7 @@ defmodule UniboExPoc.HR.PaySlip do
       # message: "只有已核验状态可以确认"
       change set_attribute(:status, :done)
       change UniboExPoc.HR.Changes.PaySlip.ActionPayslipDoneCall8
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_payslip_paid do
@@ -200,15 +176,7 @@ defmodule UniboExPoc.HR.PaySlip do
       # message: "只有已确认状态可以标记发放"
       change set_attribute(:status, :paid)
       change set_attribute(:pay_date, &Date.utc_today/0)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_payslip_cancel do
@@ -224,15 +192,7 @@ defmodule UniboExPoc.HR.PaySlip do
       end
       # message: "只有草稿或核验状态可以取消"
       change set_attribute(:status, :cancel)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :refund_sheet do
@@ -249,15 +209,7 @@ defmodule UniboExPoc.HR.PaySlip do
       # message: "只有已取消状态可以冲红"
       change set_attribute(:status, :draft)
       change set_attribute(:credit_note, true)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

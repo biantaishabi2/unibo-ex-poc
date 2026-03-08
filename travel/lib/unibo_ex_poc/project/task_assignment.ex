@@ -75,15 +75,7 @@ defmodule UniboExPoc.Project.TaskAssignment do
       change manage_relationship(:assignee_id, :assignee, type: :append, on_lookup: :relate)
       validate present(:from_date)
       # message: "分配开始日期不能为空"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

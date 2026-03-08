@@ -190,15 +190,7 @@ defmodule UniboExPoc.Manufacturing.ManufacturingOrder do
       accept [:order_number, :product_id, :product_name, :product_code, :product_qty, :product_uom_id, :quantity, :planned_start_date, :planned_end_date, :date_start, :date_finished, :location_src_id, :location_dest_id, :company_id, :notes]
       argument :bom_id, :uuid
       validate present(:order_number)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :confirm do
       description "确认工单（action_confirm）"
@@ -221,15 +213,7 @@ defmodule UniboExPoc.Manufacturing.ManufacturingOrder do
       change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.ConfirmCall8
       change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.ConfirmCall9
       change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.ConfirmCall10
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :start do
@@ -245,15 +229,7 @@ defmodule UniboExPoc.Manufacturing.ManufacturingOrder do
       end
       # message: "只有已确认状态可以开始"
       # skipped: set_attribute :status 是 calculation，不是 attribute
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :produce do
@@ -269,15 +245,7 @@ defmodule UniboExPoc.Manufacturing.ManufacturingOrder do
       end
       # message: "只有进行中状态可以记录产出"
       # skipped: validate compare :qty_producing (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_done do
@@ -300,15 +268,7 @@ defmodule UniboExPoc.Manufacturing.ManufacturingOrder do
       change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall15
       change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall16
       change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall17
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete do
@@ -324,15 +284,7 @@ defmodule UniboExPoc.Manufacturing.ManufacturingOrder do
       end
       # message: "只有进行中状态可以完成"
       # skipped: set_attribute :status 是 calculation，不是 attribute
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -348,29 +300,13 @@ defmodule UniboExPoc.Manufacturing.ManufacturingOrder do
       end
       # message: "非完工状态才可取消"
       # skipped: set_attribute :status 是 calculation，不是 attribute
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :split_production do
       description "创建欠产工单（_split_productions），为未完成数量创建后续 MO"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -92,60 +92,27 @@ defmodule UniboExPoc.POS.RestaurantFloor do
       primary? true
       accept [:name, :background_image, :background_color, :sequence, :active]
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :background_image, :background_color, :sequence, :active]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
       description "停用楼层，级联停用所有餐桌（需先检查无草稿订单）"
       accept []
-      # skipped: validate present : (incompatible with bulk update atomic path)
+      # skipped: validate custom : (incompatible with bulk update atomic path)
       change set_attribute(:active, false)
       change UniboExPoc.POS.Changes.RestaurantFloor.DeactivateCall2
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     destroy :destroy do
       description "删除楼层（有活跃会话时禁止删除）"
-      validate present(:)
-      # message: "关联的 POS 配置存在活跃会话，无法删除楼层"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      # validation: no_active_session — 关联的 POS 配置存在活跃会话，无法删除楼层
+      change set_attribute(:id, expr(id))
     end
   end
 

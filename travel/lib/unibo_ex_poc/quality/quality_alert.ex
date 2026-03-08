@@ -166,28 +166,12 @@ defmodule UniboExPoc.Quality.QualityAlert do
       argument :partner_id, :uuid
       change manage_relationship(:company_id, :company, type: :append, on_lookup: :relate)
       validate present(:title)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:title, :priority, :rca_method, :description, :corrective_action, :preventive_action, :verification_date, :verification_result]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :confirm do
@@ -205,15 +189,7 @@ defmodule UniboExPoc.Quality.QualityAlert do
       change set_attribute(:stage, :confirmed)
       change UniboExPoc.Quality.Changes.QualityAlert.ComputeDateAssign
       change UniboExPoc.Quality.Changes.QualityAlert.ConfirmCall6
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :start_progress do
@@ -231,15 +207,7 @@ defmodule UniboExPoc.Quality.QualityAlert do
       # message: "只有已确认状态可以开始处理"
       change set_attribute(:stage, :in_progress)
       change UniboExPoc.Quality.Changes.QualityAlert.StartProgressCall8
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :done do
@@ -258,15 +226,7 @@ defmodule UniboExPoc.Quality.QualityAlert do
       # skipped: validate present :preventive_action (incompatible with bulk update atomic path)
       change set_attribute(:stage, :done)
       change UniboExPoc.Quality.Changes.QualityAlert.ComputeDateClose
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     action :create_maintenance_request do

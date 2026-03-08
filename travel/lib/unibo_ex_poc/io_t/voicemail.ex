@@ -116,15 +116,7 @@ defmodule UniboExPoc.IoT.Voicemail do
       validate present(:caller)
       validate present(:org_id)
       validate present([:user_id])
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :mark_read do
       description "标记已读"
@@ -140,15 +132,7 @@ defmodule UniboExPoc.IoT.Voicemail do
       end
       # message: "只有未读留言可以标记已读"
       change set_attribute(:state, :read)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :archive do
@@ -164,29 +148,13 @@ defmodule UniboExPoc.IoT.Voicemail do
       end
       # message: "只有未读或已读留言可以归档"
       change set_attribute(:state, :archived)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :transcribe do
       description "更新转写内容"
       accept [:transcription, :transcription_status]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

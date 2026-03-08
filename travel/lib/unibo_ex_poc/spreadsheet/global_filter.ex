@@ -109,15 +109,7 @@ defmodule UniboExPoc.Spreadsheet.GlobalFilter do
       # validation: valid_matching_fields — field_matchings 中指定了不存在的字段
       validate present([:name, :document_id])
       # message: "筛选器名称在同一文档内必须唯一"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -127,15 +119,7 @@ defmodule UniboExPoc.Spreadsheet.GlobalFilter do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate present : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     action :apply_filter do

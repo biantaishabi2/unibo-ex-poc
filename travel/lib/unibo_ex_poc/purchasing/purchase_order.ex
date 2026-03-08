@@ -200,15 +200,7 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
       # validation: check_order_line_company_id — 订单行中产品的公司必须与订单公司一致
       # validation: supplier_purchase_warn_block — 该供应商已被设置为采购阻止，无法选择
       change relate_actor(:created_by)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -236,15 +228,7 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
       change manage_relationship(:order_lines, :order_lines, on_lookup: :relate, on_no_match: :create, on_match: :update)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :print_quotation do
@@ -262,15 +246,7 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
       end
       # message: "只有草稿状态可以打印报价单"
       change set_attribute(:status, :sent)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :send_rfq do
@@ -278,15 +254,7 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
       accept []
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :button_confirm do
@@ -307,15 +275,7 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
       change UniboExPoc.Purchasing.Changes.PurchaseOrder.ComputeStatus
       change UniboExPoc.Purchasing.Changes.PurchaseOrder.ButtonConfirmCall12
       change UniboExPoc.Purchasing.Changes.PurchaseOrder.ButtonConfirmCall13
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :button_approve do
@@ -335,15 +295,7 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
       change set_attribute(:status, :purchase)
       change UniboExPoc.Purchasing.Changes.PurchaseOrder.ComputeDateApprove
       change UniboExPoc.Purchasing.Changes.PurchaseOrder.ComputeStatus
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :button_done do
@@ -361,15 +313,7 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :done)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :button_unlock do
@@ -387,15 +331,7 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :purchase)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :button_cancel do
@@ -406,15 +342,7 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :cancel)
       change set_attribute(:mail_reminder_confirmed, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :button_draft do
@@ -423,15 +351,7 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :draft)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     create :action_create_invoice do
@@ -449,15 +369,7 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
       change relate_actor(:created_by)
       change UniboExPoc.Purchasing.Changes.PurchaseOrder.ActionCreateInvoiceCall14
       change UniboExPoc.Purchasing.Changes.PurchaseOrder.ActionCreateInvoiceCall15
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

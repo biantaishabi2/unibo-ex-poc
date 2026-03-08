@@ -86,30 +86,14 @@ defmodule UniboExPoc.PLM.EcoStage do
       argument :approval_template_ids, {:array, :map}, default: []
       change manage_relationship(:approval_template_ids, :approval_template_ids, type: :create)
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :sequence, :folded, :allow_apply, :is_final]
       argument :approval_template_ids, {:array, :map}, default: []
       change manage_relationship(:approval_template_ids, :approval_template_ids, on_lookup: :relate, on_no_match: :create, on_match: :update)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

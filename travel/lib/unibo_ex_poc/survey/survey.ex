@@ -175,28 +175,12 @@ defmodule UniboExPoc.Survey.Survey do
       primary? true
       accept [:title, :survey_type, :access_mode, :users_login_required, :questions_layout, :questions_selection, :random_questions_count, :scoring_type, :scoring_success_min, :is_time_limited, :time_limit, :is_attempts_limited, :attempts_limit, :certification_give_badge]
       validate present(:title)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:title, :survey_type, :access_mode, :users_login_required, :questions_layout, :questions_selection, :random_questions_count, :scoring_type, :scoring_success_min, :is_time_limited, :time_limit, :is_attempts_limited, :attempts_limit, :certification_give_badge]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_open do
@@ -212,15 +196,7 @@ defmodule UniboExPoc.Survey.Survey do
       end
       # message: "只有草稿状态可以发布"
       change set_attribute(:state, :open)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_close do
@@ -236,15 +212,7 @@ defmodule UniboExPoc.Survey.Survey do
       end
       # message: "只有已发布状态可以关闭"
       change set_attribute(:state, :closed)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_draft do
@@ -260,15 +228,7 @@ defmodule UniboExPoc.Survey.Survey do
       end
       # message: "只有已关闭状态可以重置为草稿"
       change set_attribute(:state, :draft)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

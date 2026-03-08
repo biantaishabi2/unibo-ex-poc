@@ -156,28 +156,12 @@ defmodule UniboExPoc.Purchasing.ProductSupplierinfo do
       validate present(:product_tmpl_id)
       change UniboExPoc.Purchasing.Changes.ProductSupplierinfo.ComputePartnerId
       change UniboExPoc.Purchasing.Changes.ProductSupplierinfo.ComputeLastPrice
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:last_price, :currency_uom_id, :minimum_order_quantity, :standard_lead_time_days, :discount, :available_from_date, :available_thru_date, :sequence, :supplier_product_name, :can_drop_ship, :shipping_price, :comments]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     read :list do

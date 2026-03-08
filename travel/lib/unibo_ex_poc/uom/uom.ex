@@ -96,30 +96,14 @@ defmodule UniboExPoc.Uom.Uom do
       change manage_relationship(:category_id, :category, type: :append, on_lookup: :relate)
       validate attribute_does_not_equal(:factor, 0)
       validate compare(:factor, equal_to: 1)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :factor, :rounding, :uom_type, :active]
       # skipped: validate compare :factor (incompatible with bulk update atomic path)
       # skipped: validate compare :factor (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     read :compute_quantity do

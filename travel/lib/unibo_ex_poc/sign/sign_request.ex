@@ -151,15 +151,7 @@ defmodule UniboExPoc.Sign.SignRequest do
       change relate_actor(:requester)
       change UniboExPoc.Sign.Changes.SignRequest.ComputeAccessToken
       change UniboExPoc.Sign.Changes.SignRequest.ComputeExpiresAt
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :send do
       description "发送签名请求给签署方"
@@ -176,15 +168,7 @@ defmodule UniboExPoc.Sign.SignRequest do
       # message: "只有草稿状态可以发送"
       # skipped: validate compare :request_items (incompatible with bulk update atomic path)
       change set_attribute(:state, :sent)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -200,15 +184,7 @@ defmodule UniboExPoc.Sign.SignRequest do
       end
       # message: "只有草稿或已发送状态可以取消"
       change set_attribute(:state, :canceled)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :recall do
@@ -224,15 +200,7 @@ defmodule UniboExPoc.Sign.SignRequest do
       end
       # message: "只有已发送状态可以撤回"
       change set_attribute(:state, :draft)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :expire do
@@ -248,15 +216,7 @@ defmodule UniboExPoc.Sign.SignRequest do
       end
       # message: "只有已发送状态可以过期"
       change set_attribute(:state, :expired)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete do
@@ -273,15 +233,7 @@ defmodule UniboExPoc.Sign.SignRequest do
       # message: "只有已发送状态可以完成"
       change set_attribute(:state, :signed)
       change UniboExPoc.Sign.Changes.SignRequest.ComputeCompletionDate
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

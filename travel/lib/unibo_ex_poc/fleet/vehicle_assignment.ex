@@ -92,15 +92,7 @@ defmodule UniboExPoc.Fleet.VehicleAssignment do
       # validation: custom_check — 该车辆已分配给其他驾驶员
       change set_attribute(:status, :active)
       change UniboExPoc.Fleet.Changes.VehicleAssignment.AssignCall2
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :return do
       description "归还车辆"
@@ -117,15 +109,7 @@ defmodule UniboExPoc.Fleet.VehicleAssignment do
       # message: "只有活跃的分配可以归还或转移"
       change set_attribute(:status, :returned)
       change UniboExPoc.Fleet.Changes.VehicleAssignment.ReturnCall4
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :transfer do
@@ -141,15 +125,7 @@ defmodule UniboExPoc.Fleet.VehicleAssignment do
       end
       # message: "只有活跃的分配可以归还或转移"
       change set_attribute(:status, :transferred)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

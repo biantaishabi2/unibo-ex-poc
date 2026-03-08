@@ -182,15 +182,7 @@ defmodule UniboExPoc.Helpdesk.FieldServiceOrder do
       validate present(:stage)
       # message: "必须指定阶段"
       change UniboExPoc.Helpdesk.Changes.FieldServiceOrder.CreateCall3
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :schedule do
       description "R33: 调度排期，基于：
@@ -202,15 +194,7 @@ defmodule UniboExPoc.Helpdesk.FieldServiceOrder do
       accept [:planned_date_begin, :planned_date_end, :allocated_hours, :date_deadline]
       argument :user_id, :uuid
       argument :stage_id, :uuid
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :start_timer do
@@ -218,45 +202,21 @@ defmodule UniboExPoc.Helpdesk.FieldServiceOrder do
       accept []
       argument :stage_id, :uuid, allow_nil?: false
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :stop_timer do
       description "停止计时器，记录本次工时"
       accept []
       change UniboExPoc.Helpdesk.Changes.FieldServiceOrder.StopTimerCall7
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :add_material do
       description "添加物料行（通过回调在 FsmMaterialLine 上创建）"
       accept []
       # skipped: validate state_guard :stage (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :fill_worksheet do
@@ -264,29 +224,13 @@ defmodule UniboExPoc.Helpdesk.FieldServiceOrder do
       accept []
       argument :worksheet_template_id, :uuid
       # skipped: validate present :worksheet_template (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :sign do
       description "客户签名确认"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_done do
@@ -301,15 +245,7 @@ R35: on_field_service_task_done 检查 all_done?
       change UniboExPoc.Helpdesk.Changes.FieldServiceOrder.MarkDoneCall4
       change UniboExPoc.Helpdesk.Changes.FieldServiceOrder.MarkDoneCall5
       change UniboExPoc.Helpdesk.Changes.FieldServiceOrder.MarkDoneCall6
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -318,15 +254,7 @@ R35: on_field_service_task_done 检查 all_done?
       argument :stage_id, :uuid, allow_nil?: false
       # skipped: validate state_guard :stage (incompatible with bulk update atomic path)
       change set_attribute(:fsm_done, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

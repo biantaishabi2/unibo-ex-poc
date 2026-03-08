@@ -62,15 +62,7 @@ defmodule UniboExPoc.Inventory.LandedCostPicking do
       # message: "到岸成本ID不能为空"
       validate present(:picking_id)
       # message: "拣货单ID不能为空"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

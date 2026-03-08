@@ -1,0 +1,2339 @@
+# 从 YAML 模型自动生成 — 验证消息翻译模板
+# UniBO Compiler — Gettext Errors POT
+
+#. domain: Accounting, entity: GlAccount, validation: one_of, on: deactivate
+msgid "只有活跃科目可以停用"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, validation: one_of, on: post
+msgid "只有草稿凭证可以过账"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, validation: one_of, on: cancel
+msgid "只有已过账凭证可以取消"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, validation: one_of, on: reset_to_draft
+msgid "只有已取消或已过账凭证可以重置为草稿"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntryLine, validation: compare, on: create, update
+msgid "借方金额不能为负"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntryLine, validation: compare, on: create, update
+msgid "贷方金额不能为负"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, validation: one_of, on: approve
+msgid "只有草稿发票可以审批"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, validation: one_of, on: send
+msgid "只有已审批发票可以发送"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, validation: one_of, on: void
+msgid "只有草稿或已审批发票可以作废"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, validation: compare, on: create, update
+msgid "数量必须大于零"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, validation: compare, on: create, post
+msgid "[R-PAY-001] 付款金额不能为负"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, validation: one_of, on: post
+msgid "只有草稿状态可以确认"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, validation: one_of, on: cancel
+msgid "只有已过账状态可以取消"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, validation: one_of, on: reset_to_draft
+msgid "只有已取消状态可以重置为草稿"
+msgstr ""
+
+#. domain: Accounting, entity: PaymentApplication, validation: compare, on: create
+msgid "核销金额必须大于零"
+msgstr ""
+
+#. domain: Accounting, entity: Budget, validation: one_of, on: submit
+msgid "只有草稿状态可以提交"
+msgstr ""
+
+#. domain: Accounting, entity: Budget, validation: one_of, on: approve
+msgid "只有已提交状态可以审批"
+msgstr ""
+
+#. domain: Accounting, entity: Budget, validation: one_of, on: reject
+msgid "只有已提交状态可以驳回"
+msgstr ""
+
+#. domain: Accounting, entity: BudgetItem, validation: compare, on: create, update
+msgid "预算金额必须大于零"
+msgstr ""
+
+#. domain: Accounting, entity: BillingAccount, validation: compare, on: create, update
+msgid "信用额度不能为负"
+msgstr ""
+
+#. domain: Analytic, entity: AnalyticDistribution, validation: compare, on: create, update
+msgid "分摊百分比必须在 0~100 之间"
+msgstr ""
+
+#. domain: Approvals, entity: ApprovalCategory, validation: compare
+msgid "最少通过人数不能为负数"
+msgstr ""
+
+#. domain: Approvals, entity: ApprovalCategory, validation: one_of, on: activate
+msgid "只有停用状态可以启用"
+msgstr ""
+
+#. domain: Approvals, entity: ApprovalCategory, validation: one_of, on: deactivate
+msgid "只有启用状态可以停用"
+msgstr ""
+
+#. domain: Approvals, entity: ApprovalRequest, validation: one_of, on: approve
+msgid "只有待审批状态可以通过"
+msgstr ""
+
+#. domain: Approvals, entity: ApprovalRequest, validation: one_of, on: refuse
+msgid "只有待审批状态可以拒绝"
+msgstr ""
+
+#. domain: Approvals, entity: ApprovalRequest, validation: one_of, on: cancel
+msgid "只有待审批状态可以取消"
+msgstr ""
+
+#. domain: Approvals, entity: ApprovalRequest, validation: one_of, on: draft
+msgid "只有拒绝或取消状态可以重置为草稿"
+msgstr ""
+
+#. domain: Barcode, entity: BarcodeRule, validation: compare
+msgid "优先级必须为正整数"
+msgstr ""
+
+#. domain: Blog, entity: Blog, validation: one_of, on: archive
+msgid "只有活跃状态的博客可以归档"
+msgstr ""
+
+#. domain: Blog, entity: BlogPost, validation: one_of, on: publish
+msgid "文章已经处于发布状态"
+msgstr ""
+
+#. domain: Blog, entity: BlogPost, validation: one_of, on: unpublish
+msgid "文章未发布，无法取消发布"
+msgstr ""
+
+#. domain: Blog, entity: BlogPost, validation: one_of, on: archive
+msgid "文章已经处于归档状态"
+msgstr ""
+
+#. domain: Blog, entity: BlogPost, validation: one_of, on: unarchive
+msgid "文章未归档，无法取消归档"
+msgstr ""
+
+#. domain: Calendar, entity: CalendarEvent, validation: compare
+msgid "结束时间必须晚于开始时间"
+msgstr ""
+
+#. domain: Calendar, entity: WeekException, validation: compare
+msgid "结束日期必须晚于开始日期"
+msgstr ""
+
+#. domain: Communication, entity: Channel, validation: readonly_after_create
+msgid "频道类型创建后不可变更"
+msgstr ""
+
+#. domain: Communication, entity: Channel, validation: readonly_after_create
+msgid "邀请令牌创建后不可变更"
+msgstr ""
+
+#. domain: Communication, entity: Channel, validation: applicable_only_when, on: create, update
+msgid "公开访问权限组仅 channel 类型可设置"
+msgstr ""
+
+#. domain: Communication, entity: Channel, validation: applicable_only_when, on: create, update
+msgid "自动订阅用户组仅 channel 类型可设置"
+msgstr ""
+
+#. domain: Communication, entity: Channel, validation: max_members, on: add_members
+msgid "私聊频道最多 2 个成员"
+msgstr ""
+
+#. domain: Communication, entity: Channel, validation: prevent_destroy
+msgid "Whole Company 系统频道不可删除"
+msgstr ""
+
+#. domain: Communication, entity: Channel, validation: one_of, on: archive
+msgid "只有活跃频道可以归档"
+msgstr ""
+
+#. domain: Communication, entity: ChannelMember, validation: exactly_one_of, on: create
+msgid "partner_id 和 guest_id 必须二选一，不能同时为空或同时有值"
+msgstr ""
+
+#. domain: CRM, entity: Lead, validation: one_of, on: convert_opportunity
+msgid "只有 lead 类型才能转为 opportunity"
+msgstr ""
+
+#. domain: CRM, entity: Lead, validation: compare, on: win
+msgid "只有活跃商机可以赢单"
+msgstr ""
+
+#. domain: CRM, entity: Lead, validation: compare, on: lose
+msgid "只有活跃商机可以标记丢失"
+msgstr ""
+
+#. domain: CRM, entity: Activity, validation: one_of, on: complete
+msgid "只有计划中的活动可以完成"
+msgstr ""
+
+#. domain: CRM, entity: Activity, validation: one_of, on: cancel
+msgid "只有计划中的活动可以取消"
+msgstr ""
+
+#. domain: CRM, entity: SalesForecast, validation: compare
+msgid "预测金额必须大于零"
+msgstr ""
+
+#. domain: Currency, entity: CurrencyRate, validation: compare
+msgid "汇率必须为正数"
+msgstr ""
+
+#. domain: DataRecycle, entity: RecycleModel, validation: inclusion
+msgid "回收动作只能是 archive 或 delete"
+msgstr ""
+
+#. domain: DataRecycle, entity: RecycleRecord, validation: one_of, on: validate, discard
+msgid "仅活跃待回收记录可执行确认或忽略"
+msgstr ""
+
+#. domain: DataRecycle, entity: RecycleModelNotifyUser, validation: custom, on: create
+msgid "recycle_model_id 和 user_id 必须传入"
+msgstr ""
+
+#. domain: DataRecycle, entity: RecycleModelNotifyUser, validation: custom, on: destroy
+msgid "仅已存在的通知关联可删除"
+msgstr ""
+
+#. domain: Delivery, entity: Shipment, validation: one_of, on: cancel
+msgid "已发出的发货单不能直接取消，需走逆向退货流程"
+msgstr ""
+
+#. domain: Delivery, entity: ShipmentItem, validation: compare, on: create, update
+msgid "发货数量必须大于 0"
+msgstr ""
+
+#. domain: Delivery, entity: ShipmentPackageContent, validation: compare, on: create, update
+msgid "装入数量必须大于 0"
+msgstr ""
+
+#. domain: Documents, entity: Document, validation: present, on: create
+msgid "每个文档必须属于一个文件夹"
+msgstr ""
+
+#. domain: Documents, entity: Document, validation: present, on: upload
+msgid "上传时必须提供附件"
+msgstr ""
+
+#. domain: Documents, entity: Document, validation: one_of, on: upload
+msgid "只有请求占位文档可以执行上传"
+msgstr ""
+
+#. domain: Documents, entity: Document, validation: custom, on: lock
+msgid "文档已被锁定"
+msgstr ""
+
+#. domain: Documents, entity: Document, validation: custom, on: unlock
+msgid "仅锁定用户和管理员可解锁"
+msgstr ""
+
+#. domain: Documents, entity: Document, validation: one_of, on: archive
+msgid "只有活跃文档可以归档"
+msgstr ""
+
+#. domain: Documents, entity: Document, validation: one_of, on: restore
+msgid "只有已归档文档可以恢复"
+msgstr ""
+
+#. domain: Documents, entity: Tag, validation: present, on: create
+msgid "每个 Tag 必须属于一个 Facet"
+msgstr ""
+
+#. domain: Documents, entity: Facet, validation: present, on: create
+msgid "每个 Facet 必须关联到一个文件夹"
+msgstr ""
+
+#. domain: Documents, entity: WorkflowRule, validation: present, on: create, update
+msgid "当 activity_option=schedule 时必须指定活动类型"
+msgstr ""
+
+#. domain: Documents, entity: Share, validation: present, on: create
+msgid "type=domain 时必须指定文件夹"
+msgstr ""
+
+#. domain: Ecommerce, entity: ProductTemplate, validation: one_of, on: publish
+msgid "只有草稿状态的产品可以上架"
+msgstr ""
+
+#. domain: Ecommerce, entity: ProductTemplate, validation: one_of, on: unpublish, discontinue
+msgid "只有活跃状态的产品可以下架或停产"
+msgstr ""
+
+#. domain: Ecommerce, entity: ProductTemplate, validation: one_of, on: reactivate
+msgid "只有已停产的产品可以重新激活"
+msgstr ""
+
+#. domain: Ecommerce, entity: ProductTemplate, validation: custom, on: publish
+msgid "上架前必须至少有一个 active 的变体"
+msgstr ""
+
+#. domain: Ecommerce, entity: ProductVariant, validation: compare
+msgid "价格不能为负"
+msgstr ""
+
+#. domain: Ecommerce, entity: ShoppingCart, validation: one_of, on: convert
+msgid "只有活跃购物车可以转为订单"
+msgstr ""
+
+#. domain: Ecommerce, entity: ShoppingCart, validation: custom, on: convert
+msgid "支付前校验：调用 _is_cart_ready() 钩子 + 非服务订单必须选择配送方式"
+msgstr ""
+
+#. domain: Ecommerce, entity: ShoppingCart, validation: custom, on: cart_update
+msgid "当 website.prevent_zero_price_sale=true 时，拒绝加入价格为 0 的产品"
+msgstr ""
+
+#. domain: Ecommerce, entity: LoyaltyReward, validation: compare
+msgid "兑换所需积分必须大于 0"
+msgstr ""
+
+#. domain: Ecommerce, entity: LoyaltyReward, validation: compare, on: create, update
+msgid "折扣值不能为负"
+msgstr ""
+
+#. domain: Ecommerce, entity: LoyaltyCard, validation: compare
+msgid "积分余额不能为负"
+msgstr ""
+
+#. domain: Ecommerce, entity: LoyaltyCard, validation: custom, on: add_points
+msgid "已过期的积分卡不能增加积分"
+msgstr ""
+
+#. domain: ELearning, entity: Course, validation: custom, on: create, update
+msgid "仅会员可见的课程必须设置为仅邀请注册"
+msgstr ""
+
+#. domain: ELearning, entity: Course, validation: one_of, on: publish
+msgid "课程已处于发布状态"
+msgstr ""
+
+#. domain: ELearning, entity: Course, validation: one_of, on: unpublish
+msgid "课程未发布，无法取消发布"
+msgstr ""
+
+#. domain: ELearning, entity: Slide, validation: custom, on: create, update
+msgid "html_content 和 url 不能同时存在，article 类型使用 html_content，video/document 使用 url"
+msgstr ""
+
+#. domain: ELearning, entity: Slide, validation: one_of, on: publish
+msgid "内容项已处于发布状态"
+msgstr ""
+
+#. domain: ELearning, entity: Slide, validation: one_of, on: unpublish
+msgid "内容项未发布，无法取消发布"
+msgstr ""
+
+#. domain: ELearning, entity: Enrollment, validation: custom, on: create, join
+msgid "必须完成所有前置课程才能加入"
+msgstr ""
+
+#. domain: ELearning, entity: Enrollment, validation: one_of, on: join
+msgid "只有受邀状态可以执行加入操作"
+msgstr ""
+
+#. domain: ELearning, entity: SlideProgress, validation: custom, on: mark_completed
+msgid "测验类型内容不能手动标记完成，必须通过答题完成"
+msgstr ""
+
+#. domain: ELearning, entity: SlideProgress, validation: one_of, on: mark_completed, complete_quiz
+msgid "该内容项已标记为完成"
+msgstr ""
+
+#. domain: ELearning, entity: SlideProgress, validation: one_of, on: mark_uncompleted
+msgid "该内容项尚未完成"
+msgstr ""
+
+#. domain: ELearning, entity: SlideProgress, validation: custom, on: complete_quiz
+msgid "只有测验类型才能通过答题完成"
+msgstr ""
+
+#. domain: Events, entity: Event, validation: one_of, on: publish
+msgid "只有草稿状态的活动可以发布"
+msgstr ""
+
+#. domain: Events, entity: Event, validation: one_of, on: start
+msgid "只有已发布状态的活动可以开始"
+msgstr ""
+
+#. domain: Events, entity: Event, validation: one_of, on: complete
+msgid "只有进行中状态的活动可以完成"
+msgstr ""
+
+#. domain: Events, entity: Event, validation: one_of, on: cancel
+msgid "只有已发布或进行中的活动可以取消"
+msgstr ""
+
+#. domain: Events, entity: Event, validation: one_of, on: archive
+msgid "只有已完成或已取消的活动可以归档"
+msgstr ""
+
+#. domain: Events, entity: Event, validation: one_of, on: destroy
+msgid "只有草稿或已取消状态的活动可以删除"
+msgstr ""
+
+#. domain: Events, entity: EventRegistration, validation: one_of, on: confirm
+msgid "只有待确认状态可以确认"
+msgstr ""
+
+#. domain: Events, entity: EventRegistration, validation: one_of, on: check_in
+msgid "只有已确认状态可以签到"
+msgstr ""
+
+#. domain: Events, entity: EventRegistration, validation: one_of, on: cancel
+msgid "只有待确认或已确认状态可以取消"
+msgstr ""
+
+#. domain: Events, entity: EventRegistration, validation: custom, on: register
+msgid "活动名额已满，无法报名"
+msgstr ""
+
+#. domain: Events, entity: EventTicket, validation: compare, on: create, update
+msgid "票价不能为负数"
+msgstr ""
+
+#. domain: Events, entity: EventBooth, validation: one_of, on: reserve
+msgid "只有可用状态的展位可以预定"
+msgstr ""
+
+#. domain: Events, entity: EventBooth, validation: present, on: reserve
+msgid "预定展位必须指定承租方"
+msgstr ""
+
+#. domain: Events, entity: EventBooth, validation: one_of, on: release
+msgid "只有已预定或已占用的展位可以释放"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: not_empty, on: submit
+msgid "报销单必须包含至少一条费用明细 (规则1)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: all_present, on: submit
+msgid "所有费用明细必须有费用类型 (规则2)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: all_equal, on: submit
+msgid "所有费用明细必须属于同一个员工 (规则3)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: all_match, on: submit
+msgid "所有费用明细的金额不能为零 (规则4)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: authorize, on: approve
+msgid "只有指定审批人或 HR Officer 可以审批 (规则7)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: duplicate_check, on: approve
+msgid "检测到重复费用，需要显式确认后才能审批 (规则8)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: valid_distribution, on: approve
+msgid "分析分配校验不通过 (规则10)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: one_of, on: refuse
+msgid "只有已提交或已审批状态可以驳回"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: present, on: refuse
+msgid "驳回必须提供原因 (规则11)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: empty, on: refuse
+msgid "已存在会计凭证的报销单不能驳回，必须先重置 (规则12)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: one_of, on: post
+msgid "只有已审批状态可以过账"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: present, on: post
+msgid "员工必须有工作邮箱才能过账 (规则14)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: present, on: post
+msgid "采购类日记账必须设置 (规则15)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: one_of, on: register_payment
+msgid "只有已过账状态可以登记付款"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: one_of, on: register_payment
+msgid "仅员工垫付模式需要登记付款 (规则20)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: all_equal, on: create, submit
+msgid "同一张报销单的所有费用明细必须是同一支付方式 (规则26)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: all_equal, on: create, submit
+msgid "同一张报销单的所有费用明细必须属于同一员工 (规则27)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: all_equal, on: create, submit
+msgid "同一张报销单的所有费用明细必须属于同一公司 (规则28)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseReport, validation: prevent_delete
+msgid "已过账/已付款的报销单不可删除 (规则29)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseLine, validation: compare
+msgid "费用金额必须大于零 (规则30)"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseLine, validation: present, on: create
+msgid "费用类型不能为空"
+msgstr ""
+
+#. domain: Expenses, entity: ExpenseLine, validation: prevent_delete
+msgid "已过账/已付款的费用明细不可删除 (规则29)"
+msgstr ""
+
+#. domain: Fleet, entity: FleetVehicle, validation: one_of, on: decommission
+msgid "只有非报废状态的车辆可以报废"
+msgstr ""
+
+#. domain: Fleet, entity: Driver, validation: one_of, on: deactivate
+msgid "只有在职驾驶员可以停用"
+msgstr ""
+
+#. domain: Fleet, entity: VehicleAssignment, validation: custom, on: assign
+msgid "该车辆已分配给其他驾驶员"
+msgstr ""
+
+#. domain: Fleet, entity: VehicleAssignment, validation: one_of, on: return, transfer
+msgid "只有活跃的分配可以归还或转移"
+msgstr ""
+
+#. domain: Fleet, entity: VehicleService, validation: one_of, on: start
+msgid "只有已预约的服务可以开始"
+msgstr ""
+
+#. domain: Fleet, entity: VehicleService, validation: one_of, on: complete
+msgid "只有已预约或进行中的服务可以完成"
+msgstr ""
+
+#. domain: Fleet, entity: VehicleService, validation: one_of, on: cancel
+msgid "只有已预约的服务可以取消"
+msgstr ""
+
+#. domain: Fleet, entity: VehicleContract, validation: one_of, on: activate
+msgid "只有草稿状态的合同可以激活"
+msgstr ""
+
+#. domain: Fleet, entity: VehicleContract, validation: one_of, on: renew
+msgid "只有生效中或已过期的合同可以续签"
+msgstr ""
+
+#. domain: Fleet, entity: VehicleContract, validation: one_of, on: terminate
+msgid "只有草稿或生效中的合同可以终止"
+msgstr ""
+
+#. domain: Forum, entity: Post, validation: one_of, on: close
+msgid "只有活跃状态的帖子可以关闭"
+msgstr ""
+
+#. domain: Forum, entity: Post, validation: one_of, on: reopen
+msgid "只有已关闭的帖子可以重新打开"
+msgstr ""
+
+#. domain: Forum, entity: Post, validation: one_of, on: flag
+msgid "只有活跃状态的帖子可以标记"
+msgstr ""
+
+#. domain: Forum, entity: Post, validation: one_of, on: mark_offensive
+msgid "只有已标记的帖子可以确认冒犯"
+msgstr ""
+
+#. domain: Forum, entity: Post, validation: one_of, on: validate
+msgid "只有待审核的帖子可以通过审核"
+msgstr ""
+
+#. domain: Forum, entity: Post, validation: present, on: accept_answer, unaccept_answer
+msgid "只有回答可以被采纳"
+msgstr ""
+
+#. domain: Forum, entity: Post, validation: custom, on: create
+msgid "Karma 不足，无法提问"
+msgstr ""
+
+#. domain: Forum, entity: Post, validation: custom, on: flag
+msgid "Karma 不足，无法标记冒犯"
+msgstr ""
+
+#. domain: Forum, entity: Vote, validation: custom, on: create
+msgid "Karma 不足，无法点赞"
+msgstr ""
+
+#. domain: Forum, entity: Vote, validation: custom, on: create
+msgid "Karma 不足，无法点踩"
+msgstr ""
+
+#. domain: Forum, entity: Tag, validation: custom, on: create
+msgid "Karma 不足，无法创建标签"
+msgstr ""
+
+#. domain: Gamification, entity: Goal, validation: one_of, on: action_start
+msgid "只有草稿状态可以启动"
+msgstr ""
+
+#. domain: Gamification, entity: Goal, validation: one_of, on: action_reach
+msgid "只有进行中状态可以标记达成"
+msgstr ""
+
+#. domain: Gamification, entity: Goal, validation: one_of, on: action_fail
+msgid "只有进行中状态可以标记失败"
+msgstr ""
+
+#. domain: Gamification, entity: Challenge, validation: one_of, on: action_done
+msgid "只有进行中状态可以完成"
+msgstr ""
+
+#. domain: Gamification, entity: KarmaRank, validation: compare
+msgid "最低karma值必须大于0"
+msgstr ""
+
+#. domain: Helpdesk, entity: HelpdeskTicket, validation: present, on: create
+msgid "工单标题必填"
+msgstr ""
+
+#. domain: Helpdesk, entity: HelpdeskTicket, validation: present, on: create
+msgid "必须指定服务团队"
+msgstr ""
+
+#. domain: Helpdesk, entity: HelpdeskTicket, validation: present, on: create
+msgid "必须指定阶段"
+msgstr ""
+
+#. domain: Helpdesk, entity: HelpdeskTicket, validation: custom, on: close
+msgid "存在未完成的现场服务任务，无法关闭工单"
+msgstr ""
+
+#. domain: Helpdesk, entity: HelpdeskTicket, validation: custom, on: plan_intervention
+msgid "当前团队未启用现场服务功能"
+msgstr ""
+
+#. domain: Helpdesk, entity: HelpdeskTicketType, validation: present, on: create
+msgid "类型名称必填"
+msgstr ""
+
+#. domain: Helpdesk, entity: HelpdeskTeam, validation: present, on: create
+msgid "团队名称必填"
+msgstr ""
+
+#. domain: Helpdesk, entity: HelpdeskSLA, validation: present, on: create
+msgid "策略名称必填"
+msgstr ""
+
+#. domain: Helpdesk, entity: HelpdeskSLA, validation: present, on: create
+msgid "必须指定所属团队"
+msgstr ""
+
+#. domain: Helpdesk, entity: HelpdeskSLA, validation: present, on: create
+msgid "必须指定目标阶段"
+msgstr ""
+
+#. domain: Helpdesk, entity: HelpdeskSLA, validation: custom, on: create, update
+msgid "目标阶段必须是团队已关联的阶段"
+msgstr ""
+
+#. domain: Helpdesk, entity: HelpdeskSLAStatus, validation: one_of, on: mark_reached, mark_failed
+msgid "只有 in_progress 状态的 SLA 追踪记录可以更新（终态不可逆）"
+msgstr ""
+
+#. domain: Helpdesk, entity: FieldServiceOrder, validation: present, on: create
+msgid "任务标题必填"
+msgstr ""
+
+#. domain: Helpdesk, entity: FieldServiceOrder, validation: custom, on: start_timer
+msgid "当前阶段不允许启动计时器"
+msgstr ""
+
+#. domain: Helpdesk, entity: FieldServiceOrder, validation: custom, on: add_material
+msgid "已完成或已取消的任务不能添加物料"
+msgstr ""
+
+#. domain: Helpdesk, entity: FieldServiceOrder, validation: present, on: fill_worksheet
+msgid "填写工作表前必须关联工作表模板"
+msgstr ""
+
+#. domain: Helpdesk, entity: FieldServiceOrder, validation: custom, on: mark_done
+msgid "只有进行中的任务才能标记完成"
+msgstr ""
+
+#. domain: Helpdesk, entity: FieldServiceOrder, validation: custom, on: cancel
+msgid "已完成的任务不能取消"
+msgstr ""
+
+#. domain: Helpdesk, entity: FsmTaskStage, validation: present, on: create
+msgid "阶段名称必填"
+msgstr ""
+
+#. domain: Helpdesk, entity: WorksheetTemplate, validation: present, on: create
+msgid "模板名称必填"
+msgstr ""
+
+#. domain: Helpdesk, entity: Worksheet, validation: present, on: create
+msgid "必须关联现场服务任务"
+msgstr ""
+
+#. domain: Helpdesk, entity: Worksheet, validation: present, on: create
+msgid "必须指定工作表模板"
+msgstr ""
+
+#. domain: Helpdesk, entity: Worksheet, validation: present, on: sign_worksheet
+msgid "签名数据必填"
+msgstr ""
+
+#. domain: Helpdesk, entity: FsmMaterialLine, validation: present, on: create
+msgid "使用数量必填"
+msgstr ""
+
+#. domain: Helpdesk, entity: FsmMaterialLine, validation: compare, on: create, update
+msgid "使用数量必须大于 0"
+msgstr ""
+
+#. domain: Helpdesk, entity: FsmMaterialLine, validation: present, on: create
+msgid "必须指定产品"
+msgstr ""
+
+#. domain: Helpdesk, entity: FsmTimesheetEntry, validation: present, on: create
+msgid "工时日期必填"
+msgstr ""
+
+#. domain: Helpdesk, entity: FsmTimesheetEntry, validation: present, on: create
+msgid "工时小时数必填"
+msgstr ""
+
+#. domain: Helpdesk, entity: FsmTimesheetEntry, validation: compare, on: create, update
+msgid "工时小时数必须大于 0"
+msgstr ""
+
+#. domain: Helpdesk, entity: FsmTimesheetEntry, validation: present, on: create
+msgid "必须指定技术员"
+msgstr ""
+
+#. domain: Helpdesk, entity: Appointment, validation: one_of, on: confirm
+msgid "只有已排期状态可以确认"
+msgstr ""
+
+#. domain: Helpdesk, entity: Appointment, validation: one_of, on: complete
+msgid "只有已确认状态可以完成"
+msgstr ""
+
+#. domain: Helpdesk, entity: Appointment, validation: one_of, on: cancel
+msgid "只有排期或已确认状态可以取消"
+msgstr ""
+
+#. domain: HR, entity: Employee, validation: one_of, on: terminate
+msgid "只有在职或休假状态可以离职"
+msgstr ""
+
+#. domain: HR, entity: Employee, validation: one_of, on: suspend
+msgid "只有在职状态可以停职"
+msgstr ""
+
+#. domain: HR, entity: Employee, validation: one_of, on: reactivate
+msgid "只有停职状态可以复职"
+msgstr ""
+
+#. domain: HR, entity: Department, validation: immutable, on: update
+msgid "部门编号不可修改"
+msgstr ""
+
+#. domain: HR, entity: EmploymentContract, validation: one_of, on: activate
+msgid "只有草稿状态可以激活"
+msgstr ""
+
+#. domain: HR, entity: EmploymentContract, validation: one_of, on: terminate
+msgid "只有激活状态可以终止"
+msgstr ""
+
+#. domain: HR, entity: LeaveRequest, validation: compare
+msgid "开始时间必须小于等于结束时间"
+msgstr ""
+
+#. domain: HR, entity: LeaveRequest, validation: one_of, on: action_confirm
+msgid "只有草稿状态可以确认提交"
+msgstr ""
+
+#. domain: HR, entity: LeaveRequest, validation: one_of, on: action_approve
+msgid "只有已确认状态可以审批"
+msgstr ""
+
+#. domain: HR, entity: LeaveRequest, validation: one_of, on: action_validate
+msgid "只有一级审批通过状态可以二级审批"
+msgstr ""
+
+#. domain: HR, entity: LeaveRequest, validation: one_of, on: action_refuse
+msgid "已拒绝的不能再拒绝"
+msgstr ""
+
+#. domain: HR, entity: LeaveRequest, validation: one_of, on: action_draft
+msgid "只有已确认或已拒绝状态可以重置为草稿"
+msgstr ""
+
+#. domain: HR, entity: Attendance, validation: compare, on: check_out
+msgid "签退时间必须晚于签到时间"
+msgstr ""
+
+#. domain: HR, entity: PaySlip, validation: one_of, on: compute_sheet
+msgid "只有草稿状态可以计算薪资"
+msgstr ""
+
+#. domain: HR, entity: PaySlip, validation: one_of, on: action_payslip_done
+msgid "只有已核验状态可以确认"
+msgstr ""
+
+#. domain: HR, entity: PaySlip, validation: one_of, on: action_payslip_paid
+msgid "只有已确认状态可以标记发放"
+msgstr ""
+
+#. domain: HR, entity: PaySlip, validation: one_of, on: action_payslip_cancel
+msgid "只有草稿或核验状态可以取消"
+msgstr ""
+
+#. domain: HR, entity: PaySlip, validation: one_of, on: refund_sheet
+msgid "只有已取消状态可以冲红"
+msgstr ""
+
+#. domain: HR, entity: PerformanceReview, validation: one_of, on: action_confirm
+msgid "只有新建状态可以确认"
+msgstr ""
+
+#. domain: HR, entity: PerformanceReview, validation: present, on: action_done
+msgid "完成评估前必须填写综合评级"
+msgstr ""
+
+#. domain: HR, entity: PerformanceReview, validation: one_of, on: action_cancel
+msgid "只有新建或进行中状态可以取消"
+msgstr ""
+
+#. domain: HR, entity: PerformanceReview, validation: one_of, on: action_back
+msgid "只有已取消状态可以恢复"
+msgstr ""
+
+#. domain: HR, entity: JobRequisition, validation: compare
+msgid "招聘人数必须大于零"
+msgstr ""
+
+#. domain: HR, entity: JobRequisition, validation: one_of, on: open
+msgid "只有草稿状态可以发布"
+msgstr ""
+
+#. domain: HR, entity: JobRequisition, validation: one_of, on: close
+msgid "只有已发布或进行中状态可以关闭"
+msgstr ""
+
+#. domain: HR, entity: JobRequisition, validation: one_of, on: cancel
+msgid "已关闭或已取消的不能再取消"
+msgstr ""
+
+#. domain: HR, entity: JobApplication, validation: one_of, on: advance
+msgid "只有在招聘推进阶段内才允许推进"
+msgstr ""
+
+#. domain: HR, entity: JobApplication, validation: one_of, on: reject
+msgid "已录用或已拒绝的申请不能再拒绝"
+msgstr ""
+
+#. domain: HR, entity: JobApplication, validation: one_of, on: hire
+msgid "只有 offer 阶段可以录用"
+msgstr ""
+
+#. domain: HR, entity: JobApplication, validation: one_of, on: reset
+msgid "只有已拒绝的可以重置"
+msgstr ""
+
+#. domain: HR, entity: JobApplication, validation: one_of, on: archive
+msgid "仅录用或拒绝后的申请允许归档"
+msgstr ""
+
+#. domain: HR, entity: Training, validation: one_of, on: start
+msgid "只有计划中的培训可以开始"
+msgstr ""
+
+#. domain: HR, entity: Training, validation: one_of, on: complete
+msgid "只有计划中或进行中的培训可以完成"
+msgstr ""
+
+#. domain: HR, entity: Training, validation: one_of, on: cancel
+msgid "只有计划中或进行中的培训可以取消"
+msgstr ""
+
+#. domain: HR, entity: Training, validation: compare
+msgid "结束日期必须大于等于开始日期"
+msgstr ""
+
+#. domain: HR, entity: WorkEntry, validation: one_of, on: action_validate
+msgid "只有草稿状态可以验证"
+msgstr ""
+
+#. domain: HR, entity: WorkEntry, validation: one_of, on: action_cancel
+msgid "只有草稿或冲突状态可以取消"
+msgstr ""
+
+#. domain: Inventory, entity: StockPicking, validation: one_of, on: action_assign
+msgid "只有已确认/等待/已分配状态可以检查可用性"
+msgstr ""
+
+#. domain: Inventory, entity: StockPicking, validation: one_of, on: button_validate
+msgid "只有已分配或已确认状态可以验证"
+msgstr ""
+
+#. domain: Inventory, entity: StockPicking, validation: custom, on: button_validate
+msgid "不允许空转单（必须有需求量>0的move）"
+msgstr ""
+
+#. domain: Inventory, entity: StockPicking, validation: custom, on: button_validate
+msgid "追踪产品必须填写批次/序列号"
+msgstr ""
+
+#. domain: Inventory, entity: StockPicking, validation: custom, on: button_validate
+msgid "序列号产品数量必须为1"
+msgstr ""
+
+#. domain: Inventory, entity: StockMove, validation: compare, on: create
+msgid "需求数量必须大于零"
+msgstr ""
+
+#. domain: Inventory, entity: StockMove, validation: one_of, on: _action_assign
+msgid "只有已确认/部分可用/等待状态可以预留"
+msgstr ""
+
+#. domain: Inventory, entity: StockMove, validation: one_of, on: _action_done
+msgid "只有已确认/部分可用/已分配状态可以完成"
+msgstr ""
+
+#. domain: Inventory, entity: StockMoveLine, validation: compare
+msgid "实际数量不能为负"
+msgstr ""
+
+#. domain: Inventory, entity: StockMoveLine, validation: compare
+msgid "预留数量不能为负"
+msgstr ""
+
+#. domain: Inventory, entity: StockMoveLine, validation: custom
+msgid "追踪产品必须填写 lot_id 或 lot_name"
+msgstr ""
+
+#. domain: Inventory, entity: StockMoveLine, validation: custom
+msgid "序列号追踪产品 quantity 必须等于 1"
+msgstr ""
+
+#. domain: Inventory, entity: StockQuant, validation: compare
+msgid "在库数量不能为负（除非公司设置 allow_negative）"
+msgstr ""
+
+#. domain: Inventory, entity: StockQuant, validation: custom
+msgid "序列号产品预留数量必须为整数(1)"
+msgstr ""
+
+#. domain: Inventory, entity: StockPickingItem, validation: compare
+msgid "计划数量必须大于零"
+msgstr ""
+
+#. domain: Inventory, entity: PickingBatch, validation: one_of, on: action_done
+msgid "只有进行中状态可以验证"
+msgstr ""
+
+#. domain: Inventory, entity: PickingBatch, validation: one_of, on: action_cancel
+msgid "只有草稿或进行中状态可以取消"
+msgstr ""
+
+#. domain: Inventory, entity: PickingBatch, validation: one_of, on: action_assign
+msgid "只有进行中状态可以检查可用性"
+msgstr ""
+
+#. domain: Inventory, entity: PickingBatch, validation: custom, on: action_confirm
+msgid "空批次不可确认（必须包含拣货单）"
+msgstr ""
+
+#. domain: Inventory, entity: LandedCostLine, validation: compare
+msgid "成本金额必须大于零"
+msgstr ""
+
+#. domain: Inventory, entity: ValuationAdjustmentLine, validation: present, on: create
+msgid "原始成本不能为空"
+msgstr ""
+
+#. domain: Inventory, entity: ValuationAdjustmentLine, validation: compare, on: create
+msgid "附加到岸成本不能为负"
+msgstr ""
+
+#. domain: Inventory, entity: LandedCostPicking, validation: present, on: create
+msgid "到岸成本ID不能为空"
+msgstr ""
+
+#. domain: Inventory, entity: LandedCostPicking, validation: present, on: create
+msgid "拣货单ID不能为空"
+msgstr ""
+
+#. domain: IoT, entity: IoTBox, validation: one_of, on: register_box
+msgid "只有待配对状态可以注册"
+msgstr ""
+
+#. domain: IoT, entity: VoIPCall, validation: one_of, on: answer
+msgid "只有振铃中的通话可以接听"
+msgstr ""
+
+#. domain: IoT, entity: VoIPCall, validation: one_of, on: end_call
+msgid "只有振铃或通话中的通话可以结束"
+msgstr ""
+
+#. domain: IoT, entity: VoIPCall, validation: one_of, on: to_voicemail
+msgid "只有未接通话可以转语音信箱"
+msgstr ""
+
+#. domain: IoT, entity: VoIPCall, validation: one_of, on: hold
+msgid "只有通话中的通话可以保持"
+msgstr ""
+
+#. domain: IoT, entity: VoIPCall, validation: one_of, on: unhold
+msgid "只有保持中的通话可以恢复"
+msgstr ""
+
+#. domain: IoT, entity: VoIPCall, validation: one_of, on: transfer
+msgid "只有通话中或保持中的通话可以转接"
+msgstr ""
+
+#. domain: IoT, entity: CallQueue, validation: compare
+msgid "振铃超时必须大于零"
+msgstr ""
+
+#. domain: IoT, entity: CallQueue, validation: compare
+msgid "最大等待时间必须大于零"
+msgstr ""
+
+#. domain: IoT, entity: CallQueue, validation: compare
+msgid "队列容量必须大于零"
+msgstr ""
+
+#. domain: IoT, entity: QueueMember, validation: one_of, on: pause
+msgid "已暂停成员不能重复暂停"
+msgstr ""
+
+#. domain: IoT, entity: QueueMember, validation: one_of, on: unpause
+msgid "仅暂停中的成员允许恢复接听"
+msgstr ""
+
+#. domain: IoT, entity: DialPlan, validation: one_of, on: activate
+msgid "已激活的计划不能重复激活"
+msgstr ""
+
+#. domain: IoT, entity: DialPlan, validation: one_of, on: deactivate
+msgid "已停用的计划不能重复停用"
+msgstr ""
+
+#. domain: IoT, entity: Voicemail, validation: one_of, on: mark_read
+msgid "只有未读留言可以标记已读"
+msgstr ""
+
+#. domain: IoT, entity: Voicemail, validation: one_of, on: archive
+msgid "只有未读或已读留言可以归档"
+msgstr ""
+
+#. domain: IoT, entity: ConferenceRoom, validation: compare, on: create, update
+msgid "最大参会人数必须大于零"
+msgstr ""
+
+#. domain: IoT, entity: ConferenceRoom, validation: one_of, on: start_conference
+msgid "只有激活的会议室可以开始会议"
+msgstr ""
+
+#. domain: Knowledge, entity: Article, validation: one_of, on: action_unpublish
+msgid "只有已发布状态可以撤销发布"
+msgstr ""
+
+#. domain: Knowledge, entity: Article, validation: one_of, on: action_archive
+msgid "只有已发布状态可以归档"
+msgstr ""
+
+#. domain: Knowledge, entity: Article, validation: one_of, on: action_restore_state
+msgid "只有已归档状态可以恢复"
+msgstr ""
+
+#. domain: Knowledge, entity: Article, validation: policy_check, on: action_publish, action_unpublish, action_archive, action_restore_state, update
+msgid "当前用户没有写权限"
+msgstr ""
+
+#. domain: Knowledge, entity: Article, validation: policy_check, on: action_trash, action_restore_trash
+msgid "当前用户没有删除权限（需要 owner 级别）"
+msgstr ""
+
+#. domain: Knowledge, entity: Article, validation: custom, on: action_move
+msgid "不能将文章移动到自身或其后代下（循环引用）"
+msgstr ""
+
+#. domain: Knowledge, entity: Article, validation: custom, on: action_trash
+msgid "文章已在回收站中"
+msgstr ""
+
+#. domain: Knowledge, entity: Article, validation: custom, on: action_restore_trash
+msgid "文章不在回收站中"
+msgstr ""
+
+#. domain: Knowledge, entity: ArticleMember, validation: present, on: create
+msgid "based_on=partner 时 partner_id 必填"
+msgstr ""
+
+#. domain: Knowledge, entity: ArticleMember, validation: present, on: create
+msgid "based_on=group 时 group_id 必填"
+msgstr ""
+
+#. domain: Knowledge, entity: ArticleMember, validation: custom, on: create
+msgid "partner_id 和 group_id 不能同时填写"
+msgstr ""
+
+#. domain: LiveChat, entity: ChatSession, validation: one_of, on: close
+msgid "只有活跃会话可以关闭"
+msgstr ""
+
+#. domain: Loyalty, entity: LoyaltyProgram, validation: compare
+msgid "积分兑换率必须大于0"
+msgstr ""
+
+#. domain: Loyalty, entity: LoyaltyRule, validation: compare
+msgid "积分倍率必须大于0"
+msgstr ""
+
+#. domain: Loyalty, entity: Coupon, validation: compare
+msgid "折扣值必须大于0"
+msgstr ""
+
+#. domain: Loyalty, entity: GiftCard, validation: compare
+msgid "礼品卡面值必须大于0"
+msgstr ""
+
+#. domain: Loyalty, entity: GiftCard, validation: compare
+msgid "礼品卡余额不能为负"
+msgstr ""
+
+#. domain: Lunch, entity: LunchSupplier, validation: one_of, on: archive
+msgid "只有启用状态的供应商可以归档"
+msgstr ""
+
+#. domain: Lunch, entity: LunchSupplier, validation: one_of, on: unarchive
+msgid "只有已归档状态的供应商可以取消归档"
+msgstr ""
+
+#. domain: Lunch, entity: LunchProduct, validation: compare
+msgid "菜品单价不能为负数"
+msgstr ""
+
+#. domain: Lunch, entity: LunchTopping, validation: compare
+msgid "配料价格不能为负数"
+msgstr ""
+
+#. domain: Lunch, entity: LunchTopping, validation: one_of
+msgid "配料分类必须为1、2或3"
+msgstr ""
+
+#. domain: Lunch, entity: LunchOrder, validation: compare
+msgid "数量不能为负数"
+msgstr ""
+
+#. domain: Lunch, entity: LunchOrder, validation: one_of, on: action_order
+msgid "只有新建状态可以下单"
+msgstr ""
+
+#. domain: Lunch, entity: LunchOrder, validation: one_of, on: action_send
+msgid "只有已下单状态可以发送"
+msgstr ""
+
+#. domain: Lunch, entity: LunchOrder, validation: one_of, on: action_confirm
+msgid "只有已发送状态可以确认"
+msgstr ""
+
+#. domain: Lunch, entity: LunchOrder, validation: one_of, on: action_reset
+msgid "只有已取消状态可以重置"
+msgstr ""
+
+#. domain: Maintenance, entity: Equipment, validation: one_of, on: retire
+msgid "只有运行中或维护中状态可以报废"
+msgstr ""
+
+#. domain: Maintenance, entity: MaintenanceRequest, validation: present, on: create, update
+msgid "当重复类型为 until 时，截止日期必填"
+msgstr ""
+
+#. domain: Maintenance, entity: RepairOrder, validation: one_of, on: start_repair
+msgid "只有已确认状态可以开始维修"
+msgstr ""
+
+#. domain: Maintenance, entity: RepairOrder, validation: one_of, on: complete_repair
+msgid "只有维修中状态可以完成"
+msgstr ""
+
+#. domain: Maintenance, entity: Vehicle, validation: positive, on: set_odometer
+msgid "里程值不能为零或空"
+msgstr ""
+
+#. domain: Maintenance, entity: ServiceLog, validation: one_of, on: start
+msgid "只有新建状态可以开始"
+msgstr ""
+
+#. domain: Maintenance, entity: Contract, validation: one_of, on: action_open
+msgid "只有即将生效状态可以开放"
+msgstr ""
+
+#. domain: Maintenance, entity: Contract, validation: one_of, on: action_expire
+msgid "只有生效中状态可以过期"
+msgstr ""
+
+#. domain: Maintenance, entity: Contract, validation: one_of, on: action_close
+msgid "只有已过期状态可以关闭"
+msgstr ""
+
+#. domain: Maintenance, entity: Contract, validation: one_of, on: action_draft
+msgid "只有已过期状态可以重置"
+msgstr ""
+
+#. domain: Manufacturing, entity: BillOfMaterials, validation: compare
+msgid "BOM 基准产出数量必须大于零"
+msgstr ""
+
+#. domain: Manufacturing, entity: BillOfMaterials, validation: one_of, on: obsolete
+msgid "只有激活状态可以废弃"
+msgstr ""
+
+#. domain: Manufacturing, entity: BomLine, validation: compare
+msgid "用量必须大于零"
+msgstr ""
+
+#. domain: Manufacturing, entity: BomByproduct, validation: compare
+msgid "副产品数量必须大于零"
+msgstr ""
+
+#. domain: Manufacturing, entity: BomByproduct, validation: compare
+msgid "成本分摊比例必须在 0-100% 之间"
+msgstr ""
+
+#. domain: Manufacturing, entity: BomByproduct, validation: custom, on: create, update
+msgid "副产品不能与 BOM 主产品相同"
+msgstr ""
+
+#. domain: Manufacturing, entity: BomByproduct, validation: custom, on: create, update
+msgid "所有副产品 cost_share 总和不得超过 100%（主产品 + 全部副产品 = 100%）"
+msgstr ""
+
+#. domain: Manufacturing, entity: ManufacturingOrder, validation: one_of, on: start
+msgid "只有已确认状态可以开始"
+msgstr ""
+
+#. domain: Manufacturing, entity: ManufacturingOrder, validation: one_of, on: produce
+msgid "只有进行中状态可以记录产出"
+msgstr ""
+
+#. domain: Manufacturing, entity: ManufacturingOrder, validation: one_of, on: mark_done
+msgid "只有待关闭状态可以完工入库"
+msgstr ""
+
+#. domain: Manufacturing, entity: ManufacturingOrder, validation: one_of, on: cancel
+msgid "非完工状态才可取消"
+msgstr ""
+
+#. domain: Manufacturing, entity: ManufacturingOrder, validation: custom, on: confirm
+msgid "MO、BOM、产品、库位必须同属一个 company"
+msgstr ""
+
+#. domain: Manufacturing, entity: ManufacturingOrder, validation: custom, on: produce
+msgid "序列号产品的 qty_producing 必须为 1"
+msgstr ""
+
+#. domain: Manufacturing, entity: WorkOrder, validation: one_of, on: start
+msgid "只有就绪状态可以开始"
+msgstr ""
+
+#. domain: Manufacturing, entity: WorkOrder, validation: one_of, on: start
+msgid "只有待处理状态可以开始（兼容旧逻辑）"
+msgstr ""
+
+#. domain: Manufacturing, entity: WorkOrder, validation: custom, on: start
+msgid "启动工单时校验工作中心未被阻塞（blocked=False）"
+msgstr ""
+
+#. domain: Manufacturing, entity: WorkOrder, validation: custom, on: create
+msgid "工单之间禁止循环依赖（_check_no_cyclic_dependencies）"
+msgstr ""
+
+#. domain: Manufacturing, entity: WorkCenter, validation: compare
+msgid "产能必须大于零"
+msgstr ""
+
+#. domain: Manufacturing, entity: WorkCenter, validation: compare
+msgid "效率因子必须大于零"
+msgstr ""
+
+#. domain: Marketing, entity: Campaign, validation: custom, on: launch
+msgid "启动前至少关联 1 个 Mailing 或 Event"
+msgstr ""
+
+#. domain: Marketing, entity: Campaign, validation: one_of, on: pause
+msgid "只有运行中状态可以暂停"
+msgstr ""
+
+#. domain: Marketing, entity: Campaign, validation: one_of, on: resume
+msgid "只有暂停状态可以恢复"
+msgstr ""
+
+#. domain: Marketing, entity: Campaign, validation: one_of, on: complete
+msgid "只有运行中或暂停状态可以完成"
+msgstr ""
+
+#. domain: Marketing, entity: Campaign, validation: one_of, on: cancel
+msgid "已完成的活动不可取消"
+msgstr ""
+
+#. domain: Marketing, entity: Mailing, validation: one_of, on: update, cancel
+msgid "草稿状态才允许编辑或取消"
+msgstr ""
+
+#. domain: Marketing, entity: Mailing, validation: one_of, on: launch, schedule, put_in_queue
+msgid "只有草稿状态可以发送或排队"
+msgstr ""
+
+#. domain: Marketing, entity: Mailing, validation: one_of, on: send_winner_mailing
+msgid "仅已结束批次允许发送 A/B 胜出版本"
+msgstr ""
+
+#. domain: Marketing, entity: Event, validation: one_of, on: complete
+msgid "只有已发布或进行中状态可以完成"
+msgstr ""
+
+#. domain: Marketing, entity: EventRegistration, validation: one_of, on: set_previous_state
+msgid "仅 open/done 状态允许回滚"
+msgstr ""
+
+#. domain: Marketing, entity: SmsMessage, validation: one_of, on: send
+msgid "只有待发送状态可以发送"
+msgstr ""
+
+#. domain: Marketing, entity: SmsMessage, validation: one_of, on: cancel
+msgid "只有待发送状态可以取消"
+msgstr ""
+
+#. domain: Marketing, entity: SmsMessage, validation: one_of, on: resend_failed
+msgid "只有错误状态可以重试"
+msgstr ""
+
+#. domain: Marketing, entity: SocialPost, validation: one_of, on: publish_now, schedule
+msgid "只有草稿状态可以发布或排期"
+msgstr ""
+
+#. domain: Marketing, entity: SocialPost, validation: one_of, on: sync_stats
+msgid "只有已发布状态可以同步统计"
+msgstr ""
+
+#. domain: Marketing, entity: SocialAccount, validation: one_of, on: refresh_token
+msgid "只有启用的账户可以刷新令牌"
+msgstr ""
+
+#. domain: Marketing, entity: AutomationCampaign, validation: one_of, on: start_campaign
+msgid "只有草稿或已停止状态可以启动"
+msgstr ""
+
+#. domain: Marketing, entity: AutomationCampaign, validation: one_of, on: stop_campaign
+msgid "只有运行中状态可以停止"
+msgstr ""
+
+#. domain: Marketing, entity: AutomationTrace, validation: one_of, on: execute
+msgid "T-R1: 仅 scheduled 状态的 trace 可被执行"
+msgstr ""
+
+#. domain: Marketing, entity: EventBooth, validation: one_of, on: confirm
+msgid "只有可用状态的展位可以确认"
+msgstr ""
+
+#. domain: Marketing, entity: EventBooth, validation: one_of, on: release
+msgid "只有已预订状态的展位可以释放"
+msgstr ""
+
+#. domain: Membership, entity: MembershipLine, validation: compare
+msgid "会费金额不能为负数"
+msgstr ""
+
+#. domain: Organization, entity: PartyRelationship, validation: compare
+msgid "关系的发起方和接收方不能是同一主体"
+msgstr ""
+
+#. domain: Payment, entity: Payment, validation: compare
+msgid "支付金额必须大于零"
+msgstr ""
+
+#. domain: Payment, entity: Payment, validation: one_of, on: authorize
+msgid "只有待处理状态可以授权"
+msgstr ""
+
+#. domain: Payment, entity: Payment, validation: one_of, on: capture
+msgid "只有已授权状态可以捕获扣款"
+msgstr ""
+
+#. domain: Payment, entity: Payment, validation: one_of, on: refund
+msgid "只有已捕获状态可以退款"
+msgstr ""
+
+#. domain: Payment, entity: Payment, validation: one_of, on: cancel
+msgid "已捕获/已退款/已失败的支付不能取消"
+msgstr ""
+
+#. domain: Payment, entity: Payment, validation: one_of, on: mark_failed
+msgid "只有待处理或已授权状态可以标记失败"
+msgstr ""
+
+#. domain: Payment, entity: PaymentRefund, validation: compare
+msgid "退款金额必须大于零"
+msgstr ""
+
+#. domain: Payment, entity: PaymentRefund, validation: one_of, on: approve
+msgid "只有待处理状态可以审批"
+msgstr ""
+
+#. domain: Payment, entity: PaymentRefund, validation: one_of, on: process
+msgid "只有已审批状态可以处理"
+msgstr ""
+
+#. domain: Payment, entity: PaymentRefund, validation: one_of, on: reject
+msgid "只有待处理状态可以拒绝"
+msgstr ""
+
+#. domain: Payment, entity: PaymentToken, validation: one_of, on: revoke
+msgid "只有活跃状态的令牌可以吊销"
+msgstr ""
+
+#. domain: Payment, entity: PaymentToken, validation: one_of, on: expire
+msgid "只有活跃状态的令牌可以标记过期"
+msgstr ""
+
+#. domain: PLM, entity: EcoType, validation: compare, on: create, update
+msgid "每个ECO类型必须关联至少一个阶段"
+msgstr ""
+
+#. domain: PLM, entity: Eco, validation: custom, on: apply_changes
+msgid "基准 BOM 已被其他 ECO 修改，请先执行 Rebase"
+msgstr ""
+
+#. domain: PLM, entity: Eco, validation: custom, on: apply_changes
+msgid "当前阶段不允许应用变更，或存在未通过的必要审批"
+msgstr ""
+
+#. domain: PLM, entity: Eco, validation: custom, on: advance_stage, update
+msgid "终态阶段的 ECO 不可再推进或修改"
+msgstr ""
+
+#. domain: PLM, entity: EcoApproval, validation: policy_check, on: approve, reject
+msgid "只有指定的审批人可以执行审批操作"
+msgstr ""
+
+#. domain: PLM, entity: BomRevision, validation: custom, on: create, update
+msgid "同一产品同一时间只能有一个激活的 BOM"
+msgstr ""
+
+#. domain: PLM, entity: BomRevision, validation: custom, on: update
+msgid "BOM 版本号只能递增，不可回退"
+msgstr ""
+
+#. domain: POS, entity: PosSession, validation: custom, on: create, open
+msgid "每个终端同一时刻最多一个非救援的活跃会话"
+msgstr ""
+
+#. domain: POS, entity: PosSession, validation: custom, on: create, open
+msgid "开启日期必须晚于公司会计锁定日期"
+msgstr ""
+
+#. domain: POS, entity: PosSession, validation: one_of, on: open
+msgid "只有开启中状态可以打开"
+msgstr ""
+
+#. domain: POS, entity: PosSession, validation: one_of, on: start_close
+msgid "只有已打开状态可以开始关闭"
+msgstr ""
+
+#. domain: POS, entity: PosSession, validation: custom, on: start_close
+msgid "存在草稿状态订单，无法开始关闭"
+msgstr ""
+
+#. domain: POS, entity: PosSession, validation: one_of, on: close
+msgid "只有关闭中状态可以关闭"
+msgstr ""
+
+#. domain: POS, entity: PosSession, validation: custom, on: close
+msgid "存在未过账发票，无法关闭会话"
+msgstr ""
+
+#. domain: POS, entity: PosOrder, validation: custom, on: pay
+msgid "支付金额不足（允许现金舍入容差）"
+msgstr ""
+
+#. domain: POS, entity: PosOrder, validation: one_of, on: pay
+msgid "只有草稿状态可以付款"
+msgstr ""
+
+#. domain: POS, entity: PosOrder, validation: one_of, on: done
+msgid "只有已付款状态可以标记完成"
+msgstr ""
+
+#. domain: POS, entity: PosOrder, validation: present, on: invoice
+msgid "开发票必须指定客户"
+msgstr ""
+
+#. domain: POS, entity: PosOrder, validation: one_of, on: invoice
+msgid "只有完成状态可以开票"
+msgstr ""
+
+#. domain: POS, entity: PosOrder, validation: one_of, on: cancel
+msgid "只有草稿状态可以取消"
+msgstr ""
+
+#. domain: POS, entity: PosOrder, validation: one_of, on: destroy
+msgid "仅草稿或取消状态可删除"
+msgstr ""
+
+#. domain: POS, entity: PosOrderLine, validation: custom
+msgid "数量不能为零"
+msgstr ""
+
+#. domain: POS, entity: PosOrderLine, validation: compare
+msgid "单价不能为负"
+msgstr ""
+
+#. domain: POS, entity: PosOrderLine, validation: compare
+msgid "折扣不能为负"
+msgstr ""
+
+#. domain: POS, entity: PosOrderLine, validation: compare
+msgid "折扣不能超过100%"
+msgstr ""
+
+#. domain: POS, entity: PosOrderLine, validation: custom
+msgid "退款行必须关联原始订单行"
+msgstr ""
+
+#. domain: POS, entity: PosOrderLine, validation: custom
+msgid "启用批次/序列号追踪的产品必须填写 lot_name"
+msgstr ""
+
+#. domain: POS, entity: PosPayment, validation: custom
+msgid "正常支付金额必须大于零；找零金额必须小于零且标记 is_change"
+msgstr ""
+
+#. domain: POS, entity: PosConfig, validation: custom
+msgid "分单、打印账单、订单行备注功能需先启用餐饮模式"
+msgstr ""
+
+#. domain: POS, entity: RestaurantFloor, validation: custom, on: deactivate
+msgid "楼层下存在草稿订单，无法停用"
+msgstr ""
+
+#. domain: POS, entity: RestaurantFloor, validation: custom, on: destroy
+msgid "关联的 POS 配置存在活跃会话，无法删除楼层"
+msgstr ""
+
+#. domain: POS, entity: RestaurantTable, validation: compare
+msgid "座位数至少为1"
+msgstr ""
+
+#. domain: POS, entity: RestaurantTable, validation: custom, on: destroy
+msgid "关联的 POS 配置存在活跃会话，无法删除餐桌"
+msgstr ""
+
+#. domain: Project, entity: Project, validation: one_of, on: start
+msgid "只有非完成状态可以启动"
+msgstr ""
+
+#. domain: Project, entity: Project, validation: company_consistency, on: create, update
+msgid "项目各阶段、分析账户、合作伙伴的 company_id 必须与项目一致"
+msgstr ""
+
+#. domain: Project, entity: Task, validation: no_circular_dependency, on: create, update
+msgid "两个任务之间禁止循环依赖（A 阻塞 B 且 B 阻塞 A）"
+msgstr ""
+
+#. domain: Project, entity: Task, validation: custom, on: create, update
+msgid "周期性任务不能作为子任务（parent_id 必须为空）"
+msgstr ""
+
+#. domain: Project, entity: Task, validation: custom, on: create, update
+msgid "私人任务（无 project_id）不能有 parent_id"
+msgstr ""
+
+#. domain: Project, entity: Milestone, validation: one_of, on: reach
+msgid "只有未达成里程碑可以标记达成"
+msgstr ""
+
+#. domain: Project, entity: TaskAssignment, validation: present, on: create
+msgid "分配开始日期不能为空"
+msgstr ""
+
+#. domain: Project, entity: TaskDependency, validation: no_circular_dependency, on: create
+msgid "禁止循环依赖"
+msgstr ""
+
+#. domain: Project, entity: TimesheetEntry, validation: compare
+msgid "工时必须大于零"
+msgstr ""
+
+#. domain: Project, entity: TimesheetEntry, validation: custom, on: create
+msgid "私人任务（无 project_id）禁止创建工时条目"
+msgstr ""
+
+#. domain: Project, entity: TimesheetEntry, validation: custom, on: create
+msgid "员工必须在所选公司中处于激活状态"
+msgstr ""
+
+#. domain: Project, entity: TimesheetEntry, validation: custom, on: update
+msgid "已归档员工不能被分配到现有工时条目"
+msgstr ""
+
+#. domain: Project, entity: TimesheetEntry, validation: owner_or_role, on: update
+msgid "普通用户只能修改自己的工时（审批角色可绕过）"
+msgstr ""
+
+#. domain: Project, entity: PlanningSlot, validation: compare, on: create, update
+msgid "排班结束时间必须晚于开始时间"
+msgstr ""
+
+#. domain: Project, entity: PlanningSlot, validation: no_overlap, on: create, update
+msgid "同一员工在同一时段不能有重叠排班"
+msgstr ""
+
+#. domain: Purchasing, entity: Supplier, validation: one_of, on: activate
+msgid "只有非活跃或冻结状态可以启用"
+msgstr ""
+
+#. domain: Purchasing, entity: Supplier, validation: one_of, on: block
+msgid "只有活跃状态可以冻结"
+msgstr ""
+
+#. domain: Purchasing, entity: SupplierProduct, validation: compare
+msgid "单价不能为负数"
+msgstr ""
+
+#. domain: Purchasing, entity: SupplierProduct, validation: compare
+msgid "最小起订量必须大于零"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseRequisition, validation: one_of, on: action_open
+msgid "只有进行中状态可以进入投标选择"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseRequisition, validation: one_of, on: action_done
+msgid "只有开放状态可以关闭"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseRequisition, validation: one_of, on: action_cancel
+msgid "仅未完成状态的协议允许取消"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: button_confirm
+msgid "只有草稿或已发送状态可以确认"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: button_approve
+msgid "只有待审批状态可以审批通过"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: button_done
+msgid "只有采购订单状态可以锁定"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: button_unlock
+msgid "只有已锁定状态可以解锁"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrder, validation: custom, on: button_cancel
+msgid "存在非草稿/非取消状态的关联发票，无法取消订单"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: destroy
+msgid "仅已取消状态的订单允许删除"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrder, validation: custom, on: create, update
+msgid "订单行中产品的公司必须与订单公司一致"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrder, validation: custom, on: create, update
+msgid "该供应商已被设置为采购阻止，无法选择"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrder, validation: custom, on: button_confirm
+msgid "订单行的分析账户分配不合法"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: action_create_invoice
+msgid "当前无待开票内容，无法创建发票"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: print_quotation
+msgid "只有草稿状态可以打印报价单"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrderLine, validation: custom, on: create, update
+msgid "非 display 行必须填写产品、单位和计划交货日期"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrderLine, validation: custom, on: create, update
+msgid "段落/备注行的产品、单位、价格、数量、日期必须为空"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrderLine, validation: custom, on: update
+msgid "行类型创建后不允许修改"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrderLine, validation: custom, on: destroy
+msgid "采购订单或已锁定状态的订单行不可删除"
+msgstr ""
+
+#. domain: Purchasing, entity: PurchaseOrderLine, validation: custom, on: create, update
+msgid "该产品已被设置为采购阻止，无法选择"
+msgstr ""
+
+#. domain: Purchasing, entity: ProductSupplierinfo, validation: compare
+msgid "供应商报价不能为负数"
+msgstr ""
+
+#. domain: Purchasing, entity: GoodsReceiptItem, validation: compare
+msgid "收货数量必须大于零"
+msgstr ""
+
+#. domain: Quality, entity: QualityPoint, validation: present, on: create, update
+msgid "measure 类型需要填写标准值"
+msgstr ""
+
+#. domain: Quality, entity: QualityPoint, validation: present, on: create, update
+msgid "measure 类型需要填写公差下限"
+msgstr ""
+
+#. domain: Quality, entity: QualityPoint, validation: present, on: create, update
+msgid "measure 类型需要填写公差上限"
+msgstr ""
+
+#. domain: Quality, entity: QualityPoint, validation: present, on: create, update
+msgid "worksheet 类型需要选择工作表模板"
+msgstr ""
+
+#. domain: Quality, entity: QualityPoint, validation: conditional_allowed, on: create, update
+msgid "工序关联仅在制造操作类型下有效"
+msgstr ""
+
+#. domain: Quality, entity: QualityPoint, validation: one_of, on: activate
+msgid "只有已禁用的控制点可以启用"
+msgstr ""
+
+#. domain: Quality, entity: QualityPoint, validation: one_of, on: deactivate
+msgid "只有已启用的控制点可以禁用"
+msgstr ""
+
+#. domain: Quality, entity: QualityCheck, validation: one_of, on: do_pass
+msgid "只有待检查状态可以标记通过"
+msgstr ""
+
+#. domain: Quality, entity: QualityCheck, validation: one_of, on: do_fail
+msgid "只有待检查状态可以标记失败"
+msgstr ""
+
+#. domain: Quality, entity: QualityAlert, validation: one_of, on: start_progress
+msgid "只有已确认状态可以开始处理"
+msgstr ""
+
+#. domain: Quality, entity: QualityAlert, validation: one_of, on: done
+msgid "只有处理中状态可以完成"
+msgstr ""
+
+#. domain: Quality, entity: QualityAlert, validation: present, on: done
+msgid "完成前需填写纠正措施"
+msgstr ""
+
+#. domain: Quality, entity: QualityAlert, validation: present, on: done
+msgid "完成前需填写预防措施"
+msgstr ""
+
+#. domain: Quality, entity: QualityAlert, validation: one_of, on: create_maintenance_request
+msgid "只有处理中阶段可以创建维保请求"
+msgstr ""
+
+#. domain: Rating, entity: RatingCriteria, validation: compare
+msgid "权重必须为正数"
+msgstr ""
+
+#. domain: Rating, entity: Rating, validation: compare
+msgid "评分必须在 1.0 到 5.0 之间"
+msgstr ""
+
+#. domain: Rating, entity: Rating, validation: attribute_equals, on: update
+msgid "仅待审核状态的评价可修改"
+msgstr ""
+
+#. domain: Rating, entity: Rating, validation: present, on: reject
+msgid "拒绝时必须填写拒绝原因"
+msgstr ""
+
+#. domain: Rating, entity: Rating, validation: present, on: flag
+msgid "举报时必须填写举报原因"
+msgstr ""
+
+#. domain: Rental, entity: RentalOrder, validation: compare, on: create, update
+msgid "归还日期必须晚于取货日期"
+msgstr ""
+
+#. domain: Rental, entity: RentalOrder, validation: compare, on: create, update
+msgid "缓冲时间不能为负数"
+msgstr ""
+
+#. domain: Rental, entity: RentalOrder, validation: custom, on: action_confirm
+msgid "确认时至少需要一条租赁订单行"
+msgstr ""
+
+#. domain: Rental, entity: RentalOrder, validation: custom, on: action_confirm
+msgid "库存不足，无法确认订单"
+msgstr ""
+
+#. domain: Rental, entity: RentalOrder, validation: one_of, on: action_pickup
+msgid "只有已确认状态可以取货"
+msgstr ""
+
+#. domain: Rental, entity: RentalOrder, validation: one_of, on: action_return
+msgid "只有已取货状态可以归还"
+msgstr ""
+
+#. domain: Rental, entity: RentalOrder, validation: one_of, on: action_done
+msgid "只有已归还状态可以完成"
+msgstr ""
+
+#. domain: Rental, entity: RentalOrder, validation: one_of, on: action_cancel
+msgid "只有草稿或已确认状态可以取消"
+msgstr ""
+
+#. domain: Rental, entity: RentalOrderLine, validation: compare, on: validate_return
+msgid "归还数量不能超过已取货数量"
+msgstr ""
+
+#. domain: Rental, entity: RentalOrderLine, validation: custom, on: create
+msgid "该产品未启用租赁功能"
+msgstr ""
+
+#. domain: Rental, entity: RentalOrderLine, validation: one_of, on: validate_pickup
+msgid "只有草稿状态可以取货"
+msgstr ""
+
+#. domain: Rental, entity: RentalPricing, validation: compare
+msgid "租赁价格不能为负数"
+msgstr ""
+
+#. domain: Rental, entity: RentalPricing, validation: compare
+msgid "时长必须大于零"
+msgstr ""
+
+#. domain: Rental, entity: RentalPenalty, validation: compare
+msgid "每小时逾期费用不能为负数"
+msgstr ""
+
+#. domain: Rental, entity: RentalPenalty, validation: compare
+msgid "每天逾期费用不能为负数"
+msgstr ""
+
+#. domain: Rental, entity: RentalPenalty, validation: compare
+msgid "宽限期不能为负数"
+msgstr ""
+
+#. domain: Rental, entity: RentalPenalty, validation: compare
+msgid "罚金上限比例不能为负数"
+msgstr ""
+
+#. domain: Repair, entity: RepairTicket, validation: one_of, on: start_repair
+msgid "只有已确认工单可以开始维修"
+msgstr ""
+
+#. domain: Repair, entity: RepairTicket, validation: one_of, on: complete_repair
+msgid "只有维修中工单可以标记完成"
+msgstr ""
+
+#. domain: Repair, entity: RepairTicket, validation: one_of, on: deliver
+msgid "只有已修复工单可以交付"
+msgstr ""
+
+#. domain: Repair, entity: RepairTicket, validation: one_of, on: cancel
+msgid "只有草稿或确认状态可以取消"
+msgstr ""
+
+#. domain: Repair, entity: RepairLine, validation: greater_than, on: create, update
+msgid "数量必须大于 0"
+msgstr ""
+
+#. domain: Repair, entity: RepairLine, validation: one_of, on: create, update, destroy
+msgid "工单状态为 draft/confirmed/under_repair 时才允许编辑明细行"
+msgstr ""
+
+#. domain: Repair, entity: RepairFee, validation: one_of, on: create, update, destroy
+msgid "工单为 draft/confirmed/under_repair/repaired 时才可编辑费用"
+msgstr ""
+
+#. domain: Repair, entity: Warranty, validation: date_after, on: create, update
+msgid "保修到期日必须晚于开始日"
+msgstr ""
+
+#. domain: Sales, entity: Quote, validation: one_of, on: submit
+msgid "只有草稿状态可以发送"
+msgstr ""
+
+#. domain: Sales, entity: Quote, validation: one_of, on: accept
+msgid "只有已发送状态可以接受"
+msgstr ""
+
+#. domain: Sales, entity: Quote, validation: one_of, on: reject
+msgid "只有已发送状态可以拒绝"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrder, validation: present, on: create
+msgid "创建销售订单时必须包含至少一条订单行"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrder, validation: custom, on: create
+msgid "创建销售订单时必须选择客户"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrder, validation: one_of, on: action_quotation_send
+msgid "只有草稿状态可以发送报价"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrder, validation: present, on: action_confirm
+msgid "订单行不能为空"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrder, validation: custom, on: action_confirm
+msgid "税务配置校验失败"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrder, validation: custom, on: action_confirm
+msgid "分析分配校验失败"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrder, validation: one_of, on: action_done
+msgid "只有已确认(sale)状态可以锁定"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrder, validation: compare, on: action_cancel
+msgid "已锁定的订单不能取消"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrder, validation: one_of, on: create_invoices
+msgid "只能对已确认订单创建发票"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrder, validation: custom, on: create_invoices
+msgid "至少有一行的待开票数量大于0"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, validation: compare, on: create, update
+msgid "订购数量必须大于零"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, validation: compare
+msgid "折扣百分比不能超过100"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, validation: immutable, on: update
+msgid "已确认订单中已有发票或已发货的行不可修改产品"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, validation: immutable, on: update
+msgid "已锁定订单的价格、数量、折扣、税率均不可修改"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, validation: custom, on: destroy
+msgid "已确认的非预付款订单行不可删除"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderShipment, validation: one_of, on: ship
+msgid "只有草稿状态可以发货"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderShipment, validation: one_of, on: deliver
+msgid "只有已发货状态可以标记送达"
+msgstr ""
+
+#. domain: Sales, entity: Return, validation: one_of, on: approve
+msgid "只有已申请状态可以审批"
+msgstr ""
+
+#. domain: Sales, entity: Return, validation: one_of, on: receive
+msgid "只有已审批状态可以收货"
+msgstr ""
+
+#. domain: Sales, entity: Return, validation: one_of, on: complete
+msgid "只有已收货状态可以完成"
+msgstr ""
+
+#. domain: Sales, entity: Return, validation: one_of, on: cancel
+msgid "只有已申请状态可以取消"
+msgstr ""
+
+#. domain: Sales, entity: ReturnItem, validation: compare
+msgid "退货数量必须大于零"
+msgstr ""
+
+#. domain: Sales, entity: ReturnItem, validation: compare
+msgid "退货单价不能为负"
+msgstr ""
+
+#. domain: Sign, entity: SignTemplate, validation: one_of, on: archive
+msgid "只有活跃状态可以归档"
+msgstr ""
+
+#. domain: Sign, entity: SignTemplate, validation: one_of, on: activate
+msgid "只有已归档状态可以启用"
+msgstr ""
+
+#. domain: Sign, entity: SignItem, validation: compare
+msgid "页码必须大于零"
+msgstr ""
+
+#. domain: Sign, entity: SignItem, validation: compare
+msgid "X 坐标必须在 0-100 之间"
+msgstr ""
+
+#. domain: Sign, entity: SignItem, validation: compare
+msgid "Y 坐标必须在 0-100 之间"
+msgstr ""
+
+#. domain: Sign, entity: SignItem, validation: compare
+msgid "宽度必须大于零"
+msgstr ""
+
+#. domain: Sign, entity: SignItem, validation: compare
+msgid "高度必须大于零"
+msgstr ""
+
+#. domain: Sign, entity: SignRequest, validation: one_of, on: cancel
+msgid "只有草稿或已发送状态可以取消"
+msgstr ""
+
+#. domain: Sign, entity: SignRequest, validation: one_of, on: recall
+msgid "只有已发送状态可以撤回"
+msgstr ""
+
+#. domain: Sign, entity: SignRequest, validation: one_of, on: expire
+msgid "只有已发送状态可以过期"
+msgstr ""
+
+#. domain: Sign, entity: SignRequest, validation: one_of, on: complete
+msgid "只有已发送状态可以完成"
+msgstr ""
+
+#. domain: Sign, entity: SignRequest, validation: compare, on: send
+msgid "发送前必须至少有一个签署方"
+msgstr ""
+
+#. domain: Sign, entity: SignRequestItem, validation: one_of, on: sign
+msgid "只有已发送状态可以签署"
+msgstr ""
+
+#. domain: Sign, entity: SignRequestItem, validation: one_of, on: refuse
+msgid "只有已发送状态可以拒签"
+msgstr ""
+
+#. domain: Spreadsheet, entity: SpreadsheetDocument, validation: custom, on: update
+msgid "模板文档不可直接编辑，请使用\"从模板创建\""
+msgstr ""
+
+#. domain: Spreadsheet, entity: SpreadsheetDocument, validation: custom, on: update
+msgid "current_revision_id 与最新修订不一致"
+msgstr ""
+
+#. domain: Spreadsheet, entity: SpreadsheetDocument, validation: custom, on: update, create
+msgid "图表 ID 必须跨工作表全局唯一"
+msgstr ""
+
+#. domain: Spreadsheet, entity: DataSource, validation: custom, on: create, update
+msgid "source_model 不是已注册的 ERP 模型"
+msgstr ""
+
+#. domain: Spreadsheet, entity: DataSource, validation: custom, on: create, update
+msgid "透视表类型的数据源必须指定至少一个度量值"
+msgstr ""
+
+#. domain: Spreadsheet, entity: DataSource, validation: custom, on: create, update
+msgid "列表类型的数据源必须指定至少一个字段"
+msgstr ""
+
+#. domain: Spreadsheet, entity: DataSource, validation: custom, on: create, update
+msgid "分组字段的时间粒度仅支持 month、quarter、year"
+msgstr ""
+
+#. domain: Spreadsheet, entity: DataSource, validation: custom, on: create, update
+msgid "筛选条件中引用了不存在的字段"
+msgstr ""
+
+#. domain: Spreadsheet, entity: Revision, validation: custom, on: apply_revision
+msgid "parent_revision_id 与文档当前修订不一致，需客户端回滚+变换+重提"
+msgstr ""
+
+#. domain: Spreadsheet, entity: GlobalFilter, validation: custom, on: create, update
+msgid "关联类型的筛选器必须指定 source_model"
+msgstr ""
+
+#. domain: Spreadsheet, entity: GlobalFilter, validation: custom, on: create, update
+msgid "日期类型的筛选器必须指定 range_type"
+msgstr ""
+
+#. domain: Spreadsheet, entity: GlobalFilter, validation: custom, on: create, update
+msgid "field_matchings 引用了不存在的数据源"
+msgstr ""
+
+#. domain: Spreadsheet, entity: GlobalFilter, validation: custom, on: create, update
+msgid "field_matchings 中指定了不存在的字段"
+msgstr ""
+
+#. domain: Spreadsheet, entity: GlobalFilter, validation: custom, on: create, update
+msgid "筛选器名称在同一文档内必须唯一"
+msgstr ""
+
+#. domain: Studio, entity: CustomModel, validation: format, on: create
+msgid "技术名必须以 x_ 开头，以区分系统模型与用户自定义模型"
+msgstr ""
+
+#. domain: Studio, entity: CustomModel, validation: one_of, on: archive
+msgid "只有活跃状态可以停用"
+msgstr ""
+
+#. domain: Studio, entity: CustomModel, validation: one_of, on: reactivate
+msgid "只有已停用状态可以重新激活"
+msgstr ""
+
+#. domain: Studio, entity: CustomField, validation: format, on: create
+msgid "字段技术名必须以 x_ 开头"
+msgstr ""
+
+#. domain: Studio, entity: CustomField, validation: present, on: create
+msgid "关系字段必须指定关联目标模型"
+msgstr ""
+
+#. domain: Studio, entity: CustomField, validation: present, on: create
+msgid "计算字段必须填写计算公式"
+msgstr ""
+
+#. domain: Studio, entity: CustomField, validation: present, on: create
+msgid "选择字段必须至少包含一个选项"
+msgstr ""
+
+#. domain: Studio, entity: App, validation: custom, on: publish
+msgid "发布前所有引用的模型必须为 active 状态，且视图引用必须有效"
+msgstr ""
+
+#. domain: Subscriptions, entity: SubscriptionPlan, validation: compare
+msgid "周期数值必须大于零"
+msgstr ""
+
+#. domain: Subscriptions, entity: SubscriptionPlan, validation: compare
+msgid "宽限天数不能为负数"
+msgstr ""
+
+#. domain: Subscriptions, entity: SubscriptionOrder, validation: one_of, on: action_pause
+msgid "只有进行中状态可以暂停"
+msgstr ""
+
+#. domain: Subscriptions, entity: SubscriptionOrder, validation: one_of, on: action_close
+msgid "只有进行中状态可以关闭"
+msgstr ""
+
+#. domain: Subscriptions, entity: SubscriptionOrder, validation: one_of, on: action_renew
+msgid "只有已关闭状态可以续订"
+msgstr ""
+
+#. domain: Subscriptions, entity: SubscriptionOrder, validation: one_of, on: action_upsell
+msgid "只有进行中状态可以升级"
+msgstr ""
+
+#. domain: Subscriptions, entity: SubscriptionOrderLine, validation: compare
+msgid "折扣不能为负数"
+msgstr ""
+
+#. domain: Subscriptions, entity: CloseReason, validation: compare
+msgid "排序权重不能为负数"
+msgstr ""
+
+#. domain: Subscriptions, entity: SubscriptionLog, validation: custom
+msgid "amount_signed 必须等于 mrr_after - mrr_before"
+msgstr ""
+
+#. domain: Survey, entity: Survey, validation: one_of, on: action_close
+msgid "只有已发布状态可以关闭"
+msgstr ""
+
+#. domain: Survey, entity: Survey, validation: one_of, on: action_draft
+msgid "只有已关闭状态可以重置为草稿"
+msgstr ""
+
+#. domain: Survey, entity: Survey, validation: compare
+msgid "时限必须大于零"
+msgstr ""
+
+#. domain: Survey, entity: Answer, validation: compare
+msgid "R-SCO-05: 得分值不允许为负数（SQL 约束）"
+msgstr ""
+
+#. domain: Survey, entity: UserInput, validation: one_of, on: mark_in_progress
+msgid "只有新建状态可以开始答题"
+msgstr ""
+
+#. domain: Survey, entity: UserInput, validation: one_of, on: mark_done
+msgid "只有进行中状态可以完成答题"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, validation: compare
+msgid "listed_price 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, validation: compare
+msgid "settlement_price 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, validation: compare
+msgid "inventory_count 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, validation: one_of, on: activate
+msgid "只有草稿或停用中的 offer 可以 activate"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, validation: one_of, on: deactivate, expire
+msgid "只有 active 状态的 offer 可以 deactivate 或 expire"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer, validation: compare
+msgid "seats_available 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: exactly_one_of, on: create_order
+msgid "hotel_offer_id、flight_offer_id、vacation_offer_id、train_offer_id 必须四选一"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: present, on: create_order
+msgid "hotel 订单必须绑定 hotel_offer_id"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: present, on: create_order
+msgid "flight 订单必须绑定 flight_offer_id"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: present, on: create_order
+msgid "vacation 订单必须绑定 vacation_offer_id"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: present, on: create_order
+msgid "train 订单必须绑定 train_offer_id"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: compare
+msgid "traveler_count 至少为 1"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: compare
+msgid "total_amount 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: compare
+msgid "points_to_use 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: compare
+msgid "points_deduction_amount 不能为负数"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: confirm_quote
+msgid "只有 draft 订单可以 confirm_quote"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: submit_order, submit_waitlist
+msgid "只有 quoted 订单可以提交普通购票或候补"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: mark_payment_succeeded, mark_order_failed
+msgid "只有 submitted 订单可以进入支付成功或失败结果"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: mark_booked, fulfill_waitlist, cancel_waitlist
+msgid "只有 booking_pending 订单可以完成出票、兑现候补或取消候补"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: mark_completed, request_cancel, request_change
+msgid "只有 booked 订单可以完成、取消或改签"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: approve_cancel
+msgid "只有 cancel_pending 订单可以 approve_cancel"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: fulfill_waitlist, cancel_waitlist
+msgid "只有 waitlist_pending 的订单可以兑现或取消候补"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: confirm_change
+msgid "只有 change_pending 的订单可以 confirm_change"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, validation: one_of, on: confirm_booking, fail_fulfillment, cancel_fulfillment
+msgid "只有 pending 履约可以确认、失败或取消"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, validation: one_of, on: issue_voucher_or_ticket
+msgid "只有 confirmed 履约可以 issue_voucher_or_ticket"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, validation: one_of, on: mark_in_use
+msgid "只有 issued 履约可以 mark_in_use"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, validation: one_of, on: complete_fulfillment
+msgid "只有 issued 或 in_use 履约可以 complete_fulfillment"
+msgstr ""
+
+#. domain: Uom, entity: Uom, validation: compare
+msgid "舍入精度必须为正数"
+msgstr ""
+
+#. domain: Website, entity: WebPage, validation: custom, on: create, update
+msgid "URL 在同一 website_id 内必须唯一"
+msgstr ""
+
+#. domain: Website, entity: Menu, validation: custom, on: create, update
+msgid "菜单最多支持 2 级嵌套"
+msgstr ""
+
+#. domain: Website, entity: Menu, validation: custom, on: create, update
+msgid "Mega Menu 不能有父级也不能有子级"
+msgstr ""
+
+#. domain: Website, entity: Menu, validation: custom, on: update
+msgid "已有子级的菜单不能设置 parent_id"
+msgstr ""
+

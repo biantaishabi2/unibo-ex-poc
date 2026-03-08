@@ -111,15 +111,7 @@ defmodule UniboExPoc.Project.PlanningSlot do
       change UniboExPoc.Project.Changes.PlanningSlot.ComputeAllocatedHours
       change UniboExPoc.Project.Changes.PlanningSlot.CreateCall2
       change UniboExPoc.Project.Changes.PlanningSlot.CreateCall4
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -129,15 +121,7 @@ defmodule UniboExPoc.Project.PlanningSlot do
       change UniboExPoc.Project.Changes.PlanningSlot.ComputeAllocatedHours
       change UniboExPoc.Project.Changes.PlanningSlot.UpdateCall2
       change UniboExPoc.Project.Changes.PlanningSlot.UpdateCall3
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :publish do
@@ -149,15 +133,7 @@ defmodule UniboExPoc.Project.PlanningSlot do
       change UniboExPoc.Project.Changes.PlanningSlot.PublishCall2
       change UniboExPoc.Project.Changes.PlanningSlot.PublishCall3
       change set_attribute(:state, :published)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     create :create_from_template do
@@ -174,15 +150,7 @@ defmodule UniboExPoc.Project.PlanningSlot do
       change UniboExPoc.Project.Changes.PlanningSlot.CreateFromTemplateCall2
       change UniboExPoc.Project.Changes.PlanningSlot.CreateFromTemplateCall4
       change UniboExPoc.Project.Changes.PlanningSlot.CreateFromTemplateCall5
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

@@ -94,28 +94,12 @@ defmodule UniboExPoc.Sales.ReturnItem do
       accept [:product_name, :description, :return_quantity, :return_price, :refund_amount, :return_reason, :return_type, :return_item_type_id, :status_id]
       argument :return_id, :uuid, allow_nil?: false
       change manage_relationship(:return_id, :return, type: :append, on_lookup: :relate)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:return_quantity, :return_price, :refund_amount, :received_quantity, :status_id]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

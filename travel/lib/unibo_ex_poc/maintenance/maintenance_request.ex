@@ -175,30 +175,14 @@ defmodule UniboExPoc.Maintenance.MaintenanceRequest do
       change relate_actor(:owner)
       change UniboExPoc.Maintenance.Changes.MaintenanceRequest.CreateCall4
       change UniboExPoc.Maintenance.Changes.MaintenanceRequest.CreateCall9
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :priority, :kanban_state, :schedule_date, :duration, :notes, :archive]
       # skipped: validate present :repeat_until (incompatible with bulk update atomic path)
       change UniboExPoc.Maintenance.Changes.MaintenanceRequest.UpdateCall9
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :change_stage do
@@ -210,15 +194,7 @@ defmodule UniboExPoc.Maintenance.MaintenanceRequest do
       change set_attribute(:close_date, nil)
       change UniboExPoc.Maintenance.Changes.MaintenanceRequest.ChangeStageCall8
       change UniboExPoc.Maintenance.Changes.MaintenanceRequest.ChangeStageCall9
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
@@ -226,15 +202,7 @@ defmodule UniboExPoc.Maintenance.MaintenanceRequest do
       accept []
       # skipped: validate present :repeat_until (incompatible with bulk update atomic path)
       change UniboExPoc.Maintenance.Changes.MaintenanceRequest.CancelCall9
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

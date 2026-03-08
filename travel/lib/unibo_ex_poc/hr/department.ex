@@ -89,15 +89,7 @@ defmodule UniboExPoc.HR.Department do
       validate present(:department_code)
       validate present(:name)
       # validation: custom_check
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -105,15 +97,7 @@ defmodule UniboExPoc.HR.Department do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate immutable :department_code (incompatible with bulk update atomic path)
       change UniboExPoc.HR.Changes.Department.UpdateCall1
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -64,15 +64,7 @@ defmodule UniboExPoc.DataRecycle.RecycleModelNotifyUser do
       change manage_relationship(:user_id, :user, type: :append, on_lookup: :relate)
       validate present([:recycle_model_id, :user_id])
       # message: "recycle_model_id 和 user_id 必须传入"
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

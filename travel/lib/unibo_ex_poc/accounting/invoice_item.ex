@@ -113,70 +113,18 @@ defmodule UniboExPoc.Accounting.InvoiceItem do
       validate compare(:quantity, greater_than: 0)
       # message: "数量必须大于零"
       validate compare(:unit_price, greater_than_or_equal_to: 0)
-      change fn changeset, _context ->
-        quantity = Ash.Changeset.get_attribute(changeset, :quantity)
-        unit_price = Ash.Changeset.get_attribute(changeset, :unit_price)
-
-        if quantity && unit_price do
-          Ash.Changeset.force_change_attribute(changeset, :amount, (quantity * unit_price))
-        else
-          changeset
-        end
-      end
-      change fn changeset, _context ->
-        amount = Ash.Changeset.get_attribute(changeset, :amount)
-        tax_rate = Ash.Changeset.get_attribute(changeset, :tax_rate)
-
-        if amount && tax_rate do
-          Ash.Changeset.force_change_attribute(changeset, :tax_amount, ((amount * tax_rate) / 100))
-        else
-          changeset
-        end
-      end
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:amount, expr((quantity * unit_price)))
+      change set_attribute(:tax_amount, expr(((amount * tax_rate) / 100)))
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:quantity, :unit_price, :tax_rate, :taxable_flag, :invoice_item_type_id, :seq_id, :product_id]
       # skipped: validate compare :quantity (incompatible with bulk update atomic path)
       # skipped: validate compare :unit_price (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        quantity = Ash.Changeset.get_attribute(changeset, :quantity)
-        unit_price = Ash.Changeset.get_attribute(changeset, :unit_price)
-
-        if quantity && unit_price do
-          Ash.Changeset.force_change_attribute(changeset, :amount, (quantity * unit_price))
-        else
-          changeset
-        end
-      end
-      change fn changeset, _context ->
-        amount = Ash.Changeset.get_attribute(changeset, :amount)
-        tax_rate = Ash.Changeset.get_attribute(changeset, :tax_rate)
-
-        if amount && tax_rate do
-          Ash.Changeset.force_change_attribute(changeset, :tax_amount, ((amount * tax_rate) / 100))
-        else
-          changeset
-        end
-      end
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:amount, expr((quantity * unit_price)))
+      change set_attribute(:tax_amount, expr(((amount * tax_rate) / 100)))
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -228,15 +228,7 @@ R9. 来源渠道由创建方式自动设定
       change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.CreateCall9
       change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.CreateCall11
       change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.CreateCall14
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :assign do
       description "分配工单 — R1: 根据团队 assignment_method (manual/random/balanced) 分配负责人
@@ -246,15 +238,7 @@ R9. 来源渠道由创建方式自动设定
       accept []
       argument :user_id, :uuid, allow_nil?: false
       change set_attribute(:assign_date, &DateTime.utc_now/0)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :change_stage do
@@ -272,29 +256,13 @@ R9. 来源渠道由创建方式自动设定
       change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.ChangeStageCall10
       change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.ChangeStageCall11
       change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.ChangeStageCall13
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :resolve do
       description "解决工单，流转到 Solved 阶段"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :close do
@@ -305,44 +273,20 @@ R9. 来源渠道由创建方式自动设定
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:close_date, &DateTime.utc_now/0)
       change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.CloseCall12
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reopen do
       description "重新打开工单，清除 close_date，回到 New 阶段"
       accept []
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :archive do
       description "R7 归档/软删除，设置 active=false"
       accept []
       change set_attribute(:active, false)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :update_priority do
@@ -353,15 +297,7 @@ R9. 来源渠道由创建方式自动设定
       change set_attribute(:priority_update_date, &DateTime.utc_now/0)
       change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.UpdatePriorityCall9
       change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.UpdatePriorityCall11
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :plan_intervention do
@@ -372,15 +308,7 @@ R9. 来源渠道由创建方式自动设定
 "
       accept []
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

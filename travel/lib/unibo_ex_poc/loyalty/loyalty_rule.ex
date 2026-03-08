@@ -110,28 +110,12 @@ defmodule UniboExPoc.Loyalty.LoyaltyRule do
       change manage_relationship(:program_id, :program, type: :append, on_lookup: :relate)
       validate present(:rule_name)
       validate present(:cond_value)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:rule_name, :cond_value, :other_value, :points_multiplier, :bonus_points, :active, :priority]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

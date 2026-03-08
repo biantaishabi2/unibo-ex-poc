@@ -118,15 +118,7 @@ defmodule UniboExPoc.Fleet.VehicleContract do
       validate present(:fleet_vehicle_id)
       validate present(:contract_type)
       validate present(:start_date)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :activate do
       description "激活合同（draft -> active）"
@@ -142,15 +134,7 @@ defmodule UniboExPoc.Fleet.VehicleContract do
       end
       # message: "只有草稿状态的合同可以激活"
       change set_attribute(:status, :active)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :renew do
@@ -166,15 +150,7 @@ defmodule UniboExPoc.Fleet.VehicleContract do
       end
       # message: "只有生效中或已过期的合同可以续签"
       change set_attribute(:status, :active)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :terminate do
@@ -190,15 +166,7 @@ defmodule UniboExPoc.Fleet.VehicleContract do
       end
       # message: "只有草稿或生效中的合同可以终止"
       change set_attribute(:status, :terminated)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

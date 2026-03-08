@@ -91,28 +91,12 @@ defmodule UniboExPoc.Ecommerce.ProductVariant do
       argument :template_id, :uuid, allow_nil?: false
       change manage_relationship(:template_id, :template, type: :append, on_lookup: :relate)
       validate present(:sku)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :attributes_json, :price, :stock_quantity, :is_active]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     create :create_dynamic_variant do
@@ -121,15 +105,7 @@ defmodule UniboExPoc.Ecommerce.ProductVariant do
       argument :template_id, :uuid, allow_nil?: false
       change manage_relationship(:template_id, :template, type: :append, on_lookup: :relate)
       validate present(:sku)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 

@@ -135,28 +135,12 @@ defmodule UniboExPoc.IoT.IoTBox do
       accept [:name, :ip_address, :identifier, :firmware_version, :connection_type, :auto_update, :network_info, :org_id]
       validate present(:name)
       validate present(:identifier)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :ip_address, :firmware_version, :connection_type, :auto_update, :network_info]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :register_box do
@@ -174,15 +158,7 @@ defmodule UniboExPoc.IoT.IoTBox do
       change set_attribute(:status, :online)
       change set_attribute(:paired_at, &DateTime.utc_now/0)
       change relate_actor(:paired_by)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :heartbeat do
@@ -190,15 +166,7 @@ defmodule UniboExPoc.IoT.IoTBox do
       accept [:ip_address, :firmware_version, :network_info]
       change set_attribute(:last_heartbeat_at, &DateTime.utc_now/0)
       change set_attribute(:last_seen_at, &DateTime.utc_now/0)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

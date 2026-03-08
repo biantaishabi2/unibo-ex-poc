@@ -101,8 +101,6 @@ defmodule UniboExPoc.Gamification.Badge do
     many_to_many :rule_auth_badge_ids, UniboExPoc.Gamification.Badge do
       public? true
       through UniboExPoc.Gamification.BadgeAuthBadgeLink
-      source_attribute_on_join_resource :required_badge_id
-      destination_attribute_on_join_resource :required_badge_id
     end
     has_many :translations, UniboExPoc.Gamification.BadgeTranslation, public?: true
   end
@@ -113,28 +111,12 @@ defmodule UniboExPoc.Gamification.Badge do
       primary? true
       accept [:name, :active, :description, :level, :rule_auth, :rule_max, :rule_max_number]
       validate present(:name)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :active, :description, :level, :rule_auth, :rule_max, :rule_max_number]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

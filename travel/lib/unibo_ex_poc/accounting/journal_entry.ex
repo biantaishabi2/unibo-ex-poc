@@ -185,16 +185,7 @@ reversed: 仅冲销分录匹配
       change UniboExPoc.Accounting.Changes.JournalEntry.ComputeTotalCredit
       change UniboExPoc.Accounting.Changes.JournalEntry.ComputeAmountUntaxed
       change UniboExPoc.Accounting.Changes.JournalEntry.ComputeAmountTax
-      change fn changeset, _context ->
-        amount_untaxed = Ash.Changeset.get_attribute(changeset, :amount_untaxed)
-        amount_tax = Ash.Changeset.get_attribute(changeset, :amount_tax)
-
-        if amount_untaxed && amount_tax do
-          Ash.Changeset.force_change_attribute(changeset, :amount_total, (amount_untaxed + amount_tax))
-        else
-          changeset
-        end
-      end
+      change set_attribute(:amount_total, expr((amount_untaxed + amount_tax)))
     end
     update :post do
       description "过账 [R-ACC-001 ~ R-ACC-007]"
@@ -216,16 +207,7 @@ reversed: 仅冲销分录匹配
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change UniboExPoc.Accounting.Changes.JournalEntry.ComputeAmountUntaxed
       change UniboExPoc.Accounting.Changes.JournalEntry.ComputeAmountTax
-      change fn changeset, _context ->
-        amount_untaxed = Ash.Changeset.get_attribute(changeset, :amount_untaxed)
-        amount_tax = Ash.Changeset.get_attribute(changeset, :amount_tax)
-
-        if amount_untaxed && amount_tax do
-          Ash.Changeset.force_change_attribute(changeset, :amount_total, (amount_untaxed + amount_tax))
-        else
-          changeset
-        end
-      end
+      change set_attribute(:amount_total, expr((amount_untaxed + amount_tax)))
       change set_attribute(:status, :posted)
       change UniboExPoc.Accounting.Changes.JournalEntry.PostCall8
       require_atomic? false

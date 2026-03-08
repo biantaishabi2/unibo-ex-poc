@@ -103,15 +103,7 @@ defmodule UniboExPoc.HR.LeaveRequest do
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
       change manage_relationship(:leave_type_id, :leave_type, type: :append, on_lookup: :relate)
       # validation: custom_check
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :action_confirm do
       description "确认提交请假申请"
@@ -128,15 +120,7 @@ defmodule UniboExPoc.HR.LeaveRequest do
       # message: "只有草稿状态可以确认提交"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :confirm)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_approve do
@@ -157,15 +141,7 @@ defmodule UniboExPoc.HR.LeaveRequest do
       change set_attribute(:status, :validate)
       change UniboExPoc.HR.Changes.LeaveRequest.ActionApproveCall7
       change UniboExPoc.HR.Changes.LeaveRequest.ActionApproveCall8
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_validate do
@@ -185,15 +161,7 @@ defmodule UniboExPoc.HR.LeaveRequest do
       change set_attribute(:status, :validate)
       change UniboExPoc.HR.Changes.LeaveRequest.ActionValidateCall7
       change UniboExPoc.HR.Changes.LeaveRequest.ActionValidateCall8
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_refuse do
@@ -209,15 +177,7 @@ defmodule UniboExPoc.HR.LeaveRequest do
       end
       # message: "已拒绝的不能再拒绝"
       change set_attribute(:status, :refuse)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_draft do
@@ -233,15 +193,7 @@ defmodule UniboExPoc.HR.LeaveRequest do
       end
       # message: "只有已确认或已拒绝状态可以重置为草稿"
       change set_attribute(:status, :draft)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

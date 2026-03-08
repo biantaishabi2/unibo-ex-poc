@@ -185,29 +185,13 @@ defmodule UniboExPoc.HR.Employee do
       validate present(:employee_code)
       validate present(:first_name)
       # validation: custom_check
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:email, :phone, :address, :status, :notes, :employee_type, :work_permit_expiry_date]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :terminate do
@@ -227,15 +211,7 @@ defmodule UniboExPoc.HR.Employee do
       change set_attribute(:departure_date, &Date.utc_today/0)
       change set_attribute(:parent_id, nil)
       change set_attribute(:coach_id, nil)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :suspend do
@@ -252,15 +228,7 @@ defmodule UniboExPoc.HR.Employee do
       # message: "只有在职状态可以停职"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :suspended)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reactivate do
@@ -279,15 +247,7 @@ defmodule UniboExPoc.HR.Employee do
       change set_attribute(:status, :active)
       change set_attribute(:departure_date, nil)
       change set_attribute(:departure_reason, nil)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

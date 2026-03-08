@@ -114,15 +114,7 @@ defmodule UniboExPoc.Loyalty.LoyaltyCard do
       argument :program_id, :uuid, allow_nil?: false
       argument :partner_id, :uuid, allow_nil?: false
       change manage_relationship(:program_id, :program, type: :append, on_lookup: :relate)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :earn_points do
       description "增加积分（消费/活动奖励），触发 LoyaltyTransaction 写入"
@@ -131,15 +123,7 @@ defmodule UniboExPoc.Loyalty.LoyaltyCard do
       argument :points_delta, :decimal, allow_nil?: false
       argument :order_id, :uuid
       argument :reason, :string
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :redeem_points do
@@ -147,60 +131,28 @@ defmodule UniboExPoc.Loyalty.LoyaltyCard do
       accept [:points_balance]
       argument :points_delta, :decimal, allow_nil?: false
       argument :reward_id, :uuid
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :freeze do
       description "冻结积分卡（active -> frozen）"
       accept []
       change set_attribute(:status, :frozen)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :unfreeze do
       description "解冻积分卡（frozen -> active）"
       accept []
       change set_attribute(:status, :active)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :expire_card do
       description "到期处理，清零余额（active -> expired）"
       accept [:expiry_date]
       change set_attribute(:status, :expired)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

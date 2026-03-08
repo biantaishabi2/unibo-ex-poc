@@ -196,28 +196,12 @@ defmodule UniboExPoc.Travel.TrainOffer do
       validate present(:arrival_station_code)
       validate present(:seat_class)
       validate present(:seat_code)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:departure_station_ref_id, :arrival_station_ref_id, :departure_station_name, :arrival_station_name, :departure_at, :arrival_at, :seat_class, :is_no_seat, :inventory_status, :waitlist_supported, :listed_price, :settlement_price, :currency, :booking_rules_snapshot, :change_rules_snapshot, :refund_rules_snapshot]
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :activate do
@@ -232,15 +216,7 @@ defmodule UniboExPoc.Travel.TrainOffer do
       end
       # message: "只有草稿或停用中的 offer 可以 activate"
       change set_attribute(:sale_status, :active)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
@@ -255,15 +231,7 @@ defmodule UniboExPoc.Travel.TrainOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :inactive)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :expire do
@@ -278,15 +246,7 @@ defmodule UniboExPoc.Travel.TrainOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :expired)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

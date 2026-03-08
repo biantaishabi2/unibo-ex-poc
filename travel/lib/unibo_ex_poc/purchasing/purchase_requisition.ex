@@ -141,15 +141,7 @@ defmodule UniboExPoc.Purchasing.PurchaseRequisition do
       change manage_relationship(:type_id, :type, type: :append, on_lookup: :relate)
       validate present(:name)
       change relate_actor(:user)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -183,15 +175,7 @@ defmodule UniboExPoc.Purchasing.PurchaseRequisition do
       end
       # message: "只有草稿状态可以确认"
       change set_attribute(:state, :in_progress)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_open do
@@ -207,15 +191,7 @@ defmodule UniboExPoc.Purchasing.PurchaseRequisition do
       end
       # message: "只有进行中状态可以进入投标选择"
       change set_attribute(:state, :open)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_done do
@@ -231,15 +207,7 @@ defmodule UniboExPoc.Purchasing.PurchaseRequisition do
       end
       # message: "只有开放状态可以关闭"
       change set_attribute(:state, :done)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_cancel do
@@ -255,15 +223,7 @@ defmodule UniboExPoc.Purchasing.PurchaseRequisition do
       end
       # message: "仅未完成状态的协议允许取消"
       change set_attribute(:state, :cancel)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_draft do
@@ -279,15 +239,7 @@ defmodule UniboExPoc.Purchasing.PurchaseRequisition do
       end
       # message: "只有已取消状态可以重置为草稿"
       change set_attribute(:state, :draft)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

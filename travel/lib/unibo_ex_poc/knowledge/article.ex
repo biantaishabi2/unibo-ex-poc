@@ -217,15 +217,7 @@ defmodule UniboExPoc.Knowledge.Article do
       validate present(:name)
       # relate_actor :create_uid — 无对应关系，跳过
       # relate_actor :write_uid — 无对应关系，跳过
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -234,15 +226,7 @@ defmodule UniboExPoc.Knowledge.Article do
       change manage_relationship(:members, :members, on_lookup: :relate, on_no_match: :create, on_match: :update)
       # skipped: validate policy_check : (incompatible with bulk update atomic path)
       # relate_actor :write_uid — 无对应关系，跳过
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_publish do
@@ -261,15 +245,7 @@ defmodule UniboExPoc.Knowledge.Article do
       # relate_actor :write_uid — 无对应关系，跳过
       change set_attribute(:state, :published)
       change UniboExPoc.Knowledge.Changes.Article.ActionPublishCall20
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_unpublish do
@@ -287,15 +263,7 @@ defmodule UniboExPoc.Knowledge.Article do
       # skipped: validate policy_check : (incompatible with bulk update atomic path)
       # relate_actor :write_uid — 无对应关系，跳过
       change set_attribute(:state, :draft)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_archive do
@@ -315,15 +283,7 @@ defmodule UniboExPoc.Knowledge.Article do
       change set_attribute(:state, :archived)
       change UniboExPoc.Knowledge.Changes.Article.ActionArchiveCall17
       change UniboExPoc.Knowledge.Changes.Article.ActionArchiveCall20
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_restore_state do
@@ -341,15 +301,7 @@ defmodule UniboExPoc.Knowledge.Article do
       # skipped: validate policy_check : (incompatible with bulk update atomic path)
       # relate_actor :write_uid — 无对应关系，跳过
       change set_attribute(:state, :draft)
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_trash do
@@ -362,15 +314,7 @@ defmodule UniboExPoc.Knowledge.Article do
       change set_attribute(:active, false)
       change UniboExPoc.Knowledge.Changes.Article.ComputeTrashedDate
       change UniboExPoc.Knowledge.Changes.Article.ActionTrashCall18
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_restore_trash do
@@ -382,15 +326,7 @@ defmodule UniboExPoc.Knowledge.Article do
       # relate_actor :write_uid — 无对应关系，跳过
       change set_attribute(:active, true)
       change UniboExPoc.Knowledge.Changes.Article.ActionRestoreTrashCall19
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_lock do
@@ -401,15 +337,7 @@ defmodule UniboExPoc.Knowledge.Article do
       change set_attribute(:is_locked, true)
       # relate_actor :locked_by — 无对应关系，跳过
       change UniboExPoc.Knowledge.Changes.Article.ComputeLockedAt
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_unlock do
@@ -419,15 +347,7 @@ defmodule UniboExPoc.Knowledge.Article do
       # relate_actor :write_uid — 无对应关系，跳过
       change set_attribute(:is_locked, false)
       change UniboExPoc.Knowledge.Changes.Article.ActionUnlockCall20
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_move do
@@ -437,15 +357,7 @@ defmodule UniboExPoc.Knowledge.Article do
       # skipped: validate compare :parent_id (incompatible with bulk update atomic path)
       # relate_actor :write_uid — 无对应关系，跳过
       change UniboExPoc.Knowledge.Changes.Article.ActionMoveCall16
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     create :action_copy do
@@ -457,15 +369,7 @@ defmodule UniboExPoc.Knowledge.Article do
       # relate_actor :create_uid — 无对应关系，跳过
       # relate_actor :write_uid — 无对应关系，跳过
       change UniboExPoc.Knowledge.Changes.Article.ActionCopyCall21
-      change fn changeset, _context ->
-        id = Ash.Changeset.get_attribute(changeset, :id)
-
-        if id do
-          Ash.Changeset.force_change_attribute(changeset, :id, id)
-        else
-          changeset
-        end
-      end
+      change set_attribute(:id, expr(id))
     end
   end
 
