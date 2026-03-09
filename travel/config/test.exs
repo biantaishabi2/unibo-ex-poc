@@ -1,9 +1,17 @@
 import Config
 
+db_username = System.get_env("DB_USERNAME") || "postgres"
+db_password = System.get_env("DB_PASSWORD") || "postgres"
+db_hostname = System.get_env("DB_HOST") || "localhost"
+db_port =
+  System.get_env("DB_PORT", "5432")
+  |> String.to_integer()
+
 config :travel, UniboExPoc.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
+  username: db_username,
+  password: db_password,
+  hostname: db_hostname,
+  port: db_port,
   database: "travel_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 5
