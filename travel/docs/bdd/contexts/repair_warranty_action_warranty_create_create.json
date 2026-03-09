@@ -1,0 +1,7 @@
+{
+  "id": "repair_warranty_action_warranty_create_create",
+  "module": "REPAIR_WARRANTY",
+  "edge_class": "all",
+  "source_file": "repair/action_warranty_create_create.yaml",
+  "source_summary": "module: REPAIR_WARRANTY\\ncontract: Warranty.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/repair/repair.ubo.yaml\\nsource_summary: GIVEN 实体 Warranty 的动作 create 可执行，accept=[warranty_number, start_date, end_date, warranty_type, terms]，args=[customer_id:uuid!, product_id:uuid!, sales_order_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建保修记录 -> update 更新保修到期日；create 创建保修记录 -> destroy 废弃保修"
+}

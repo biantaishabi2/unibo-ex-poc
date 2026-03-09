@@ -1,0 +1,4 @@
+[SCENARIO: BDD-CHANGE_CHANGE_REQUEST-SEED-change_change_request_action_change_request_start_implementation_update] TITLE: CHANGE_CHANGE_REQUEST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="change_change_request_action_change_request_start_implementation_update" module="CHANGE_CHANGE_REQUEST"
+WHEN when_execute_seed_contract module="CHANGE_CHANGE_REQUEST"
+THEN then_seed_contract_should_hold module="CHANGE_CHANGE_REQUEST"

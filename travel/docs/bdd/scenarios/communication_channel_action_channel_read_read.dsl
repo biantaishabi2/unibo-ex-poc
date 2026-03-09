@@ -1,0 +1,4 @@
+[SCENARIO: BDD-COMMUNICATION_CHANNEL-SEED-communication_channel_action_channel_read_read] TITLE: COMMUNICATION_CHANNEL contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="communication_channel_action_channel_read_read" module="COMMUNICATION_CHANNEL"
+WHEN when_execute_seed_contract module="COMMUNICATION_CHANNEL"
+THEN then_seed_contract_should_hold module="COMMUNICATION_CHANNEL"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-INVENTORY_VALUATION_ADJUSTMENT_LINE-SEED-inventory_valuation_adjustment_line_action_valuation_adjustment_line_read_read] TITLE: INVENTORY_VALUATION_ADJUSTMENT_LINE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="inventory_valuation_adjustment_line_action_valuation_adjustment_line_read_read" module="INVENTORY_VALUATION_ADJUSTMENT_LINE"
+WHEN when_execute_seed_contract module="INVENTORY_VALUATION_ADJUSTMENT_LINE"
+THEN then_seed_contract_should_hold module="INVENTORY_VALUATION_ADJUSTMENT_LINE"

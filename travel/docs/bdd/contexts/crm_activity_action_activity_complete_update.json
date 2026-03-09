@@ -1,0 +1,7 @@
+{
+  "id": "crm_activity_action_activity_complete_update",
+  "module": "CRM_ACTIVITY",
+  "edge_class": "all",
+  "source_file": "crm/action_activity_complete_update.yaml",
+  "source_summary": "module: CRM_ACTIVITY\\ncontract: Activity.complete action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/crm/crm.ubo.yaml\\nsource_summary: GIVEN 实体 Activity 的动作 complete 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 complete / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建活动，complete 完成活动"
+}

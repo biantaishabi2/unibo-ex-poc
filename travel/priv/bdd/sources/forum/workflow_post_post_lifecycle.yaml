@@ -1,0 +1,5 @@
+module: FORUM_POST
+contract: Post.post_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/forum/forum.ubo.yaml
+source_summary: GIVEN 实体 Post 定义工作流 post_lifecycle / WHEN 按步骤执行 create -> validate -> update -> close -> reopen -> flag -> mark_offensive -> accept_answer -> unaccept_answer -> toggle_favourite -> destroy / THEN 流程顺序应满足声明约束

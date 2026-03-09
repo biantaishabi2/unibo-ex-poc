@@ -1,0 +1,7 @@
+{
+  "id": "barcode_gs1_application_identifier_workflow_gs1_application_identifier_gs1_ai_maintain_flow",
+  "module": "BARCODE_GS1_APPLICATION_IDENTIFIER",
+  "edge_class": "all",
+  "source_file": "barcode/workflow_gs1_application_identifier_gs1_ai_maintain_flow.yaml",
+  "source_summary": "module: BARCODE_GS1_APPLICATION_IDENTIFIER\\ncontract: GS1ApplicationIdentifier.gs1_ai_maintain_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/barcode/barcode.ubo.yaml\\nsource_summary: GIVEN 实体 GS1ApplicationIdentifier 定义工作流 gs1_ai_maintain_flow / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束"
+}

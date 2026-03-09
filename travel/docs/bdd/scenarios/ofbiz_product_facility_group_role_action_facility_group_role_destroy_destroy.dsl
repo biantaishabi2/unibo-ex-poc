@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_FACILITY_GROUP_ROLE-SEED-ofbiz_product_facility_group_role_action_facility_group_role_destroy_destroy] TITLE: OFBIZ_PRODUCT_FACILITY_GROUP_ROLE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_facility_group_role_action_facility_group_role_destroy_destroy" module="OFBIZ_PRODUCT_FACILITY_GROUP_ROLE"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_FACILITY_GROUP_ROLE"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_FACILITY_GROUP_ROLE"

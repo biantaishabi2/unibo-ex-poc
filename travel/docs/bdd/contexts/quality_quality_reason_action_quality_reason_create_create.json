@@ -1,0 +1,7 @@
+{
+  "id": "quality_quality_reason_action_quality_reason_create_create",
+  "module": "QUALITY_QUALITY_REASON",
+  "edge_class": "all",
+  "source_file": "quality/action_quality_reason_create_create.yaml",
+  "source_summary": "module: QUALITY_QUALITY_REASON\\ncontract: QualityReason.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/quality/quality.ubo.yaml\\nsource_summary: GIVEN 实体 QualityReason 的动作 create 可执行，accept=[name, description]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建根因 -> update 修改根因描述 -> destroy 删除根因"
+}

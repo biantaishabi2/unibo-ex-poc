@@ -1,0 +1,5 @@
+module: FLEET_FLEET_VEHICLE
+contract: FleetVehicle.decommission event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 FleetVehicle 的动作 decommission 完成 / WHEN 触发事件发布 / THEN 应广播 topic `fleet.vehicle.decommissioned`

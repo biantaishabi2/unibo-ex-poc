@@ -35,13 +35,7 @@ defmodule Travel.MixProject do
       {:floki, ">= 0.30.0", only: :test},
       {:esbuild, "~> 0.8", runtime: Mix.env() == :dev},
       {:tailwind, "~> 0.2.0", runtime: Mix.env() == :dev},
-      {:heroicons,
-       github: "tailwindlabs/heroicons",
-       tag: "v2.1.1",
-       sparse: "optimized",
-       app: false,
-       compile: false,
-       depth: 1},
+      {:heroicons, path: "vendor/heroicons_stub", app: false, compile: false},
       {:telemetry_metrics, "~> 1.0"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.26"},
@@ -55,11 +49,10 @@ defmodule Travel.MixProject do
       {:ash_graphql, "~> 1.8"},
       {:absinthe_plug, "~> 1.5"},
       {:unibo_graphql_runtime,
-       github: "biantaishabi2/unibo",
-       ref: "c7e4696750d0e6d5936918f8bfeb073bc1b372f4",
-       sparse: "targets/elixir/unibo_graphql_runtime"},
+       path: "../../unibo/targets/elixir/unibo_graphql_runtime"},
       {:ash_paper_trail, "~> 0.5"},
       {:ash_archival, "~> 2.0"},
+      {:unibo_bdd_runtime, path: "../../unibo-retest-989/targets/elixir/unibo_bdd_runtime"},
     ]
   end
 

@@ -1,0 +1,7 @@
+{
+  "id": "helpdesk_worksheet_workflow_worksheet_worksheet_lifecycle",
+  "module": "HELPDESK_WORKSHEET",
+  "edge_class": "all",
+  "source_file": "helpdesk/workflow_worksheet_worksheet_lifecycle.yaml",
+  "source_summary": "module: HELPDESK_WORKSHEET\\ncontract: Worksheet.worksheet_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml\\nsource_summary: GIVEN 实体 Worksheet 定义工作流 worksheet_lifecycle / WHEN 按步骤执行 create -> update -> sign_worksheet / THEN 流程顺序应满足声明约束"
+}

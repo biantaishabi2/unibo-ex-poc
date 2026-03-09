@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_GL_ACCOUNT_CATEGORY-SEED-ofbiz_accounting_gl_account_category_action_gl_account_category_destroy_destroy] TITLE: OFBIZ_ACCOUNTING_GL_ACCOUNT_CATEGORY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_gl_account_category_action_gl_account_category_destroy_destroy" module="OFBIZ_ACCOUNTING_GL_ACCOUNT_CATEGORY"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_GL_ACCOUNT_CATEGORY"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_GL_ACCOUNT_CATEGORY"

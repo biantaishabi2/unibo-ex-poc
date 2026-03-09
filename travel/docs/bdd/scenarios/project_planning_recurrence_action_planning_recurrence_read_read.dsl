@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PROJECT_PLANNING_RECURRENCE-SEED-project_planning_recurrence_action_planning_recurrence_read_read] TITLE: PROJECT_PLANNING_RECURRENCE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="project_planning_recurrence_action_planning_recurrence_read_read" module="PROJECT_PLANNING_RECURRENCE"
+WHEN when_execute_seed_contract module="PROJECT_PLANNING_RECURRENCE"
+THEN then_seed_contract_should_hold module="PROJECT_PLANNING_RECURRENCE"

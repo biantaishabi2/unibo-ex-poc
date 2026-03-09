@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_HUMAN_RES_PERF_REVIEW_ITEM-SEED-ofbiz_human_res_perf_review_item_action_perf_review_item_read_read] TITLE: OFBIZ_HUMAN_RES_PERF_REVIEW_ITEM contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_human_res_perf_review_item_action_perf_review_item_read_read" module="OFBIZ_HUMAN_RES_PERF_REVIEW_ITEM"
+WHEN when_execute_seed_contract module="OFBIZ_HUMAN_RES_PERF_REVIEW_ITEM"
+THEN then_seed_contract_should_hold module="OFBIZ_HUMAN_RES_PERF_REVIEW_ITEM"

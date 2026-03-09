@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_AGREEMENT_TERM-SEED-ofbiz_party_agreement_term_action_agreement_term_read_read] TITLE: OFBIZ_PARTY_AGREEMENT_TERM contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_agreement_term_action_agreement_term_read_read" module="OFBIZ_PARTY_AGREEMENT_TERM"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_AGREEMENT_TERM"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_AGREEMENT_TERM"

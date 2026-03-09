@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_DEDUCTION-SEED-ofbiz_accounting_deduction_action_deduction_read_read] TITLE: OFBIZ_ACCOUNTING_DEDUCTION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_deduction_action_deduction_read_read" module="OFBIZ_ACCOUNTING_DEDUCTION"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_DEDUCTION"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_DEDUCTION"

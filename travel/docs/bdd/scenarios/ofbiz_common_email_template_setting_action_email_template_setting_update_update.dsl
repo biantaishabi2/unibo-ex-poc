@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_COMMON_EMAIL_TEMPLATE_SETTING-SEED-ofbiz_common_email_template_setting_action_email_template_setting_update_update] TITLE: OFBIZ_COMMON_EMAIL_TEMPLATE_SETTING contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_common_email_template_setting_action_email_template_setting_update_update" module="OFBIZ_COMMON_EMAIL_TEMPLATE_SETTING"
+WHEN when_execute_seed_contract module="OFBIZ_COMMON_EMAIL_TEMPLATE_SETTING"
+THEN then_seed_contract_should_hold module="OFBIZ_COMMON_EMAIL_TEMPLATE_SETTING"

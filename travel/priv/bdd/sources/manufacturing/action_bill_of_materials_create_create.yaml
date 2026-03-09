@@ -1,0 +1,5 @@
+module: MANUFACTURING_BILL_OF_MATERIALS
+contract: BillOfMaterials.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 BillOfMaterials 的动作 create 可执行，accept=[bom_code, product_tmpl_id, product_id, product_name, product_code, product_qty, product_uom_id, type, consumption, sequence, version, description, company_id]，args=[lines:array!, byproducts:array] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_CONTENT_VIDEO_DATA_RESOURCE-SEED-ofbiz_content_video_data_resource_action_video_data_resource_create_create] TITLE: OFBIZ_CONTENT_VIDEO_DATA_RESOURCE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_content_video_data_resource_action_video_data_resource_create_create" module="OFBIZ_CONTENT_VIDEO_DATA_RESOURCE"
+WHEN when_execute_seed_contract module="OFBIZ_CONTENT_VIDEO_DATA_RESOURCE"
+THEN then_seed_contract_should_hold module="OFBIZ_CONTENT_VIDEO_DATA_RESOURCE"

@@ -1,0 +1,7 @@
+{
+  "id": "accounting_full_reconcile_action_full_reconcile_destroy_destroy",
+  "module": "ACCOUNTING_FULL_RECONCILE",
+  "edge_class": "all",
+  "source_file": "accounting/action_full_reconcile_destroy_destroy.yaml",
+  "source_summary": "module: ACCOUNTING_FULL_RECONCILE\\ncontract: FullReconcile.destroy action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/accounting/accounting.ubo.yaml\\nsource_summary: GIVEN 实体 FullReconcile 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：destroy 拆解完全核销组后重算发票 payment_state"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_CONTENT_SURVEY_RESPONSE_ANSWER-SEED-ofbiz_content_survey_response_answer_action_survey_response_answer_read_read] TITLE: OFBIZ_CONTENT_SURVEY_RESPONSE_ANSWER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_content_survey_response_answer_action_survey_response_answer_read_read" module="OFBIZ_CONTENT_SURVEY_RESPONSE_ANSWER"
+WHEN when_execute_seed_contract module="OFBIZ_CONTENT_SURVEY_RESPONSE_ANSWER"
+THEN then_seed_contract_should_hold module="OFBIZ_CONTENT_SURVEY_RESPONSE_ANSWER"

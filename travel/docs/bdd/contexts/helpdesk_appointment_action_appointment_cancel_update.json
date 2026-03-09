@@ -1,0 +1,7 @@
+{
+  "id": "helpdesk_appointment_action_appointment_cancel_update",
+  "module": "HELPDESK_APPOINTMENT",
+  "edge_class": "all",
+  "source_file": "helpdesk/action_appointment_cancel_update.yaml",
+  "source_summary": "module: HELPDESK_APPOINTMENT\\ncontract: Appointment.cancel action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml\\nsource_summary: GIVEN 实体 Appointment 的动作 cancel 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 cancel / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建预约，cancel 取消；create 新建预约，confirm 确认后 cancel 取消"
+}

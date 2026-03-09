@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SUBSCRIPTIONS_PRICELIST-SEED-subscriptions_pricelist_action_pricelist_read_read] TITLE: SUBSCRIPTIONS_PRICELIST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="subscriptions_pricelist_action_pricelist_read_read" module="SUBSCRIPTIONS_PRICELIST"
+WHEN when_execute_seed_contract module="SUBSCRIPTIONS_PRICELIST"
+THEN then_seed_contract_should_hold module="SUBSCRIPTIONS_PRICELIST"

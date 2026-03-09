@@ -1,0 +1,7 @@
+{
+  "id": "accounting_invoice_event_invoice_send_accounting_invoice_sent",
+  "module": "ACCOUNTING_INVOICE",
+  "edge_class": "all",
+  "source_file": "accounting/event_invoice_send_accounting_invoice_sent.yaml",
+  "source_summary": "module: ACCOUNTING_INVOICE\\ncontract: Invoice.send event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/accounting/accounting.ubo.yaml\\nsource_summary: GIVEN 实体 Invoice 的动作 send 完成 / WHEN 触发事件发布 / THEN 应广播 topic `accounting.invoice.sent`"
+}

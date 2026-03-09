@@ -1,0 +1,5 @@
+module: ECOMMERCE_PRODUCT_TEMPLATE
+contract: ProductTemplate.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 ProductTemplate 的动作 create 可执行，accept=[product_code, name, product_type, description, description_ecommerce, internal_notes, weight, weight_unit, base_unit_count]，args=[category_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 新建产品模板，update 修改信息，publish 上架

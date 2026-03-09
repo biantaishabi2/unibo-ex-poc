@@ -1,0 +1,5 @@
+module: IO_T_INCOMING_NUMBER
+contract: IncomingNumber.bind_destination action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 IncomingNumber 的动作 bind_destination 可执行，accept=[(未声明)]，args=[dial_plan_id:bigint, extension_user_id:bigint, voicemail_id:bigint, queue_id:bigint, conference_room_id:bigint] / WHEN 执行动作 bind_destination / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create -> update -> bind_destination -> destroy

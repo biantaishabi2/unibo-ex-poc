@@ -1,0 +1,4 @@
+[SCENARIO: BDD-COMMUNICATION_NOTIFICATION-SEED-communication_notification_action_notification_read_read] TITLE: COMMUNICATION_NOTIFICATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="communication_notification_action_notification_read_read" module="COMMUNICATION_NOTIFICATION"
+WHEN when_execute_seed_contract module="COMMUNICATION_NOTIFICATION"
+THEN then_seed_contract_should_hold module="COMMUNICATION_NOTIFICATION"

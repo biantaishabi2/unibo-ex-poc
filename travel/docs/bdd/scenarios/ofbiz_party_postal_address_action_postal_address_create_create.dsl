@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_POSTAL_ADDRESS-SEED-ofbiz_party_postal_address_action_postal_address_create_create] TITLE: OFBIZ_PARTY_POSTAL_ADDRESS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_postal_address_action_postal_address_create_create" module="OFBIZ_PARTY_POSTAL_ADDRESS"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_POSTAL_ADDRESS"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_POSTAL_ADDRESS"

@@ -1,0 +1,5 @@
+module: CRM_CONTACT
+contract: Contact.update action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 Contact 的动作 update 可执行，accept=[name, email, phone, mobile, company, job_title, contact_type, tags, notes]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：update email/phone/mobile 时 mail.thread 自动追踪变更记录

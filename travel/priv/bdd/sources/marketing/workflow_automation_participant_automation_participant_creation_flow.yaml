@@ -1,0 +1,5 @@
+module: MARKETING_AUTOMATION_PARTICIPANT
+contract: AutomationParticipant.automation_participant_creation_flow workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 AutomationParticipant 定义工作流 automation_participant_creation_flow / WHEN 按步骤执行 create / THEN 流程顺序应满足声明约束

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ECOMMERCE_PRODUCT_VARIANT-SEED-ecommerce_product_variant_action_product_variant_create_create] TITLE: ECOMMERCE_PRODUCT_VARIANT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ecommerce_product_variant_action_product_variant_create_create" module="ECOMMERCE_PRODUCT_VARIANT"
+WHEN when_execute_seed_contract module="ECOMMERCE_PRODUCT_VARIANT"
+THEN then_seed_contract_should_hold module="ECOMMERCE_PRODUCT_VARIANT"

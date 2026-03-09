@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PROJECT_PLANNING_ROLE-SEED-project_planning_role_action_planning_role_read_read] TITLE: PROJECT_PLANNING_ROLE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="project_planning_role_action_planning_role_read_read" module="PROJECT_PLANNING_ROLE"
+WHEN when_execute_seed_contract module="PROJECT_PLANNING_ROLE"
+THEN then_seed_contract_should_hold module="PROJECT_PLANNING_ROLE"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_COMMON_KEYWORD_THESAURUS-SEED-ofbiz_common_keyword_thesaurus_action_keyword_thesaurus_create_create] TITLE: OFBIZ_COMMON_KEYWORD_THESAURUS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_common_keyword_thesaurus_action_keyword_thesaurus_create_create" module="OFBIZ_COMMON_KEYWORD_THESAURUS"
+WHEN when_execute_seed_contract module="OFBIZ_COMMON_KEYWORD_THESAURUS"
+THEN then_seed_contract_should_hold module="OFBIZ_COMMON_KEYWORD_THESAURUS"

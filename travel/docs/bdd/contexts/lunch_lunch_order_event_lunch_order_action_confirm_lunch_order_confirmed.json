@@ -1,0 +1,7 @@
+{
+  "id": "lunch_lunch_order_event_lunch_order_action_confirm_lunch_order_confirmed",
+  "module": "LUNCH_LUNCH_ORDER",
+  "edge_class": "all",
+  "source_file": "lunch/event_lunch_order_action_confirm_lunch_order_confirmed.yaml",
+  "source_summary": "module: LUNCH_LUNCH_ORDER\\ncontract: LunchOrder.action_confirm event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/lunch/lunch.ubo.yaml\\nsource_summary: GIVEN 实体 LunchOrder 的动作 action_confirm 完成 / WHEN 触发事件发布 / THEN 应广播 topic `lunch.order.confirmed`"
+}

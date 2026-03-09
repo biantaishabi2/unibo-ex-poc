@@ -1,0 +1,5 @@
+module: KNOWLEDGE_ARTICLE
+contract: Article.action_archive event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/knowledge/knowledge.ubo.yaml
+source_summary: GIVEN 实体 Article 的动作 action_archive 完成 / WHEN 触发事件发布 / THEN 应广播 topic `knowledge.article.archived`

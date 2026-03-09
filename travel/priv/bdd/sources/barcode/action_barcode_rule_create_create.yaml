@@ -1,0 +1,5 @@
+module: BARCODE_BARCODE_RULE
+contract: BarcodeRule.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/barcode/barcode.ubo.yaml
+source_summary: 'GIVEN 实体 BarcodeRule 的动作 create 可执行，accept=[name, sequence, encoding, barcode_type, pattern, alias, gs1_content_type, gs1_decimal_usage]，args=[nomenclature_id:uuid!, gs1_ai_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建EAN-13产品规则 -> update 修改匹配模式 -> reorder 调整优先级；create{encoding: gs1_128, gs1_content_type: identifier} 创建GS1规则 -> 关联AI定义'

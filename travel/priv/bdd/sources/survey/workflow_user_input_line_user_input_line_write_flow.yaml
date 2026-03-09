@@ -1,0 +1,5 @@
+module: SURVEY_USER_INPUT_LINE
+contract: UserInputLine.user_input_line_write_flow workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/survey/survey.ubo.yaml
+source_summary: GIVEN 实体 UserInputLine 定义工作流 user_input_line_write_flow / WHEN 按步骤执行 create -> destroy / THEN 流程顺序应满足声明约束

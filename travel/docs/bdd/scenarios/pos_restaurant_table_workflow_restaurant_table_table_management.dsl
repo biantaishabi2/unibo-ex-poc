@@ -1,0 +1,4 @@
+[SCENARIO: BDD-POS_RESTAURANT_TABLE-SEED-pos_restaurant_table_workflow_restaurant_table_table_management] TITLE: POS_RESTAURANT_TABLE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="pos_restaurant_table_workflow_restaurant_table_table_management" module="POS_RESTAURANT_TABLE"
+WHEN when_execute_seed_contract module="POS_RESTAURANT_TABLE"
+THEN then_seed_contract_should_hold module="POS_RESTAURANT_TABLE"

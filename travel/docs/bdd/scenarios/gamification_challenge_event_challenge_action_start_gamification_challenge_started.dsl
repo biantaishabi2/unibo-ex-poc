@@ -1,0 +1,4 @@
+[SCENARIO: BDD-GAMIFICATION_CHALLENGE-SEED-gamification_challenge_event_challenge_action_start_gamification_challenge_started] TITLE: GAMIFICATION_CHALLENGE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="gamification_challenge_event_challenge_action_start_gamification_challenge_started" module="GAMIFICATION_CHALLENGE"
+WHEN when_execute_seed_contract module="GAMIFICATION_CHALLENGE"
+THEN then_seed_contract_should_hold module="GAMIFICATION_CHALLENGE"

@@ -1,0 +1,7 @@
+{
+  "id": "events_event_event_event_publish_events_event_published",
+  "module": "EVENTS_EVENT",
+  "edge_class": "all",
+  "source_file": "events/event_event_publish_events_event_published.yaml",
+  "source_summary": "module: EVENTS_EVENT\\ncontract: Event.publish event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/events/events.ubo.yaml\\nsource_summary: GIVEN 实体 Event 的动作 publish 完成 / WHEN 触发事件发布 / THEN 应广播 topic `events.event.published`"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "crm_lead_stage_workflow_lead_stage_lead_stage_management",
+  "module": "CRM_LEAD_STAGE",
+  "edge_class": "all",
+  "source_file": "crm/workflow_lead_stage_lead_stage_management.yaml",
+  "source_summary": "module: CRM_LEAD_STAGE\\ncontract: LeadStage.lead_stage_management workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/crm/crm.ubo.yaml\\nsource_summary: GIVEN 实体 LeadStage 定义工作流 lead_stage_management / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_HUMAN_RES_PARTY_SKILL-SEED-ofbiz_human_res_party_skill_action_party_skill_destroy_destroy] TITLE: OFBIZ_HUMAN_RES_PARTY_SKILL contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_human_res_party_skill_action_party_skill_destroy_destroy" module="OFBIZ_HUMAN_RES_PARTY_SKILL"
+WHEN when_execute_seed_contract module="OFBIZ_HUMAN_RES_PARTY_SKILL"
+THEN then_seed_contract_should_hold module="OFBIZ_HUMAN_RES_PARTY_SKILL"

@@ -1,0 +1,7 @@
+{
+  "id": "knowledge_article_tag_link_action_article_tag_link_read_read",
+  "module": "KNOWLEDGE_ARTICLE_TAG_LINK",
+  "edge_class": "all",
+  "source_file": "knowledge/action_article_tag_link_read_read.yaml",
+  "source_summary": "module: KNOWLEDGE_ARTICLE_TAG_LINK\\ncontract: ArticleTagLink.read action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/knowledge/knowledge.ubo.yaml\\nsource_summary: GIVEN 实体 ArticleTagLink 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 读取结果应符合查询语义"
+}

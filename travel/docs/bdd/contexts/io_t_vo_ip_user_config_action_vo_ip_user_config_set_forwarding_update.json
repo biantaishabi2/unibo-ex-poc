@@ -1,0 +1,7 @@
+{
+  "id": "io_t_vo_ip_user_config_action_vo_ip_user_config_set_forwarding_update",
+  "module": "IO_T_VO_IP_USER_CONFIG",
+  "edge_class": "all",
+  "source_file": "io_t/action_vo_ip_user_config_set_forwarding_update.yaml",
+  "source_summary": "module: IO_T_VO_IP_USER_CONFIG\\ncontract: VoIPUserConfig.set_forwarding action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml\\nsource_summary: GIVEN 实体 VoIPUserConfig 的动作 set_forwarding 可执行，accept=[forward_on_busy, forward_on_no_answer, forward_unconditional, follow_me_enabled, follow_me_number]，args=[无显式参数] / WHEN 执行动作 set_forwarding / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SALES_DELIVERY_PRICE_RULE-SEED-sales_delivery_price_rule_action_delivery_price_rule_update_update] TITLE: SALES_DELIVERY_PRICE_RULE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="sales_delivery_price_rule_action_delivery_price_rule_update_update" module="SALES_DELIVERY_PRICE_RULE"
+WHEN when_execute_seed_contract module="SALES_DELIVERY_PRICE_RULE"
+THEN then_seed_contract_should_hold module="SALES_DELIVERY_PRICE_RULE"

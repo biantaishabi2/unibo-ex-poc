@@ -1,0 +1,7 @@
+{
+  "id": "pos_pos_order_line_workflow_pos_order_line_orderline_management",
+  "module": "POS_POS_ORDER_LINE",
+  "edge_class": "all",
+  "source_file": "pos/workflow_pos_order_line_orderline_management.yaml",
+  "source_summary": "module: POS_POS_ORDER_LINE\\ncontract: PosOrderLine.orderline_management workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/pos/pos.ubo.yaml\\nsource_summary: GIVEN 实体 PosOrderLine 定义工作流 orderline_management / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束"
+}

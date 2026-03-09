@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_BUDGET-SEED-ofbiz_accounting_budget_action_budget_destroy_destroy] TITLE: OFBIZ_ACCOUNTING_BUDGET contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_budget_action_budget_destroy_destroy" module="OFBIZ_ACCOUNTING_BUDGET"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_BUDGET"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_BUDGET"

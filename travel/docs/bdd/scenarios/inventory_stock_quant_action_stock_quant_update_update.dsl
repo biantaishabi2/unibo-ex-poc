@@ -1,0 +1,4 @@
+[SCENARIO: BDD-INVENTORY_STOCK_QUANT-SEED-inventory_stock_quant_action_stock_quant_update_update] TITLE: INVENTORY_STOCK_QUANT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="inventory_stock_quant_action_stock_quant_update_update" module="INVENTORY_STOCK_QUANT"
+WHEN when_execute_seed_contract module="INVENTORY_STOCK_QUANT"
+THEN then_seed_contract_should_hold module="INVENTORY_STOCK_QUANT"

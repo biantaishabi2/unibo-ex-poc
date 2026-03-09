@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ANALYTIC_ANALYTIC_DISTRIBUTION-SEED-analytic_analytic_distribution_action_analytic_distribution_read_read] TITLE: ANALYTIC_ANALYTIC_DISTRIBUTION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="analytic_analytic_distribution_action_analytic_distribution_read_read" module="ANALYTIC_ANALYTIC_DISTRIBUTION"
+WHEN when_execute_seed_contract module="ANALYTIC_ANALYTIC_DISTRIBUTION"
+THEN then_seed_contract_should_hold module="ANALYTIC_ANALYTIC_DISTRIBUTION"

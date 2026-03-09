@@ -1,0 +1,7 @@
+{
+  "id": "barcode_barcode_mapping_action_barcode_mapping_register_create",
+  "module": "BARCODE_BARCODE_MAPPING",
+  "edge_class": "all",
+  "source_file": "barcode/action_barcode_mapping_register_create.yaml",
+  "source_summary": "module: BARCODE_BARCODE_MAPPING\\ncontract: BarcodeMapping.register action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/barcode/barcode.ubo.yaml\\nsource_summary: GIVEN 实体 BarcodeMapping 的动作 register 可执行，accept=[barcode_value, resource_type, resource_id, description]，args=[nomenclature_id:uuid] / WHEN 执行动作 register / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：register 重复barcode_value -> 拒绝，返回:barcode_already_registered"
+}

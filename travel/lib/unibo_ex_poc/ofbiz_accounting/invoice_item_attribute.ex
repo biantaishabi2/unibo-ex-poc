@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItemAttribute do
   end
 
   graphql do
-    type :accounting_invoice_item_attribute
+    type :ofbiz_accounting_invoice_item_attribute
 
     queries do
-      get :get_accounting_invoice_item_attribute, :read
-      list :list_accounting_invoice_item_attributes, :read
+      get :get_ofbiz_accounting_invoice_item_attribute, :read
+      list :list_ofbiz_accounting_invoice_item_attributes, :read
     end
 
     mutations do
-      create :create_accounting_invoice_item_attribute, :create
-      update :update_accounting_invoice_item_attribute, :update
-      destroy :delete_accounting_invoice_item_attribute, :destroy
+      create :create_ofbiz_accounting_invoice_item_attribute, :create
+      update :update_ofbiz_accounting_invoice_item_attribute, :update
+      destroy :delete_ofbiz_accounting_invoice_item_attribute, :destroy
     end
 
   end

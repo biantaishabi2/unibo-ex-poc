@@ -1,0 +1,7 @@
+{
+  "id": "io_t_io_t_device_workflow_io_t_device_iot_device_sync_flow",
+  "module": "IO_T_IO_T_DEVICE",
+  "edge_class": "all",
+  "source_file": "io_t/workflow_io_t_device_iot_device_sync_flow.yaml",
+  "source_summary": "module: IO_T_IO_T_DEVICE\\ncontract: IoTDevice.iot_device_sync_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml\\nsource_summary: GIVEN 实体 IoTDevice 定义工作流 iot_device_sync_flow / WHEN 按步骤执行 upsert -> update -> update_value / THEN 流程顺序应满足声明约束"
+}

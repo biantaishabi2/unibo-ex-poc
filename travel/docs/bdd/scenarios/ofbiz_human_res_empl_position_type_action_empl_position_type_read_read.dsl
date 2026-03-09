@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_HUMAN_RES_EMPL_POSITION_TYPE-SEED-ofbiz_human_res_empl_position_type_action_empl_position_type_read_read] TITLE: OFBIZ_HUMAN_RES_EMPL_POSITION_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_human_res_empl_position_type_action_empl_position_type_read_read" module="OFBIZ_HUMAN_RES_EMPL_POSITION_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_HUMAN_RES_EMPL_POSITION_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_HUMAN_RES_EMPL_POSITION_TYPE"

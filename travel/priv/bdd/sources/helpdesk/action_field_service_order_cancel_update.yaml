@@ -1,0 +1,5 @@
+module: HELPDESK_FIELD_SERVICE_ORDER
+contract: FieldServiceOrder.cancel action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 FieldServiceOrder 的动作 cancel 可执行，accept=[[]]，args=[stage_id:uuid!] / WHEN 执行动作 cancel / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 创建任务，schedule 排期后 cancel 取消；cancel 尝试对 done 阶段取消，校验失败

@@ -1,0 +1,5 @@
+module: MAINTENANCE_VEHICLE_MODEL
+contract: VehicleModel.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 VehicleModel 的动作 create 可执行，accept=[name, vehicle_type, transmission, model_year, electric_assistance, color, seats, doors, trailer_hook, co2, co2_standard, fuel_type, power, horsepower, horsepower_tax]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建车辆模型 -> update 修改模型参数

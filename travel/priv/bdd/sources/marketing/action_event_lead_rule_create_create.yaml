@@ -1,0 +1,5 @@
+module: MARKETING_EVENT_LEAD_RULE
+contract: EventLeadRule.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 EventLeadRule 的动作 create 可执行，accept=[name, active, lead_creation_basis, lead_creation_trigger, lead_type, event_registration_filter]，args=[event_id:uuid, company_id:uuid, lead_user_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建线索规则 -> update 修改规则配置

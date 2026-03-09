@@ -1,0 +1,7 @@
+{
+  "id": "approvals_approval_category_workflow_approval_category_approval_category_deactivate_flow",
+  "module": "APPROVALS_APPROVAL_CATEGORY",
+  "edge_class": "all",
+  "source_file": "approvals/workflow_approval_category_approval_category_deactivate_flow.yaml",
+  "source_summary": "module: APPROVALS_APPROVAL_CATEGORY\\ncontract: ApprovalCategory.approval_category_deactivate_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/approvals/approvals.ubo.yaml\\nsource_summary: GIVEN 实体 ApprovalCategory 定义工作流 approval_category_deactivate_flow / WHEN 按步骤执行 create -> update -> deactivate / THEN 流程顺序应满足声明约束"
+}

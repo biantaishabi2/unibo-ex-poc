@@ -15,17 +15,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.BillingAccount do
   end
 
   graphql do
-    type :accounting_billing_account
+    type :ofbiz_accounting_billing_account
 
     queries do
-      get :get_accounting_billing_account, :read
-      list :list_accounting_billing_accounts, :read
+      get :get_ofbiz_accounting_billing_account, :read
+      list :list_ofbiz_accounting_billing_accounts, :read
     end
 
     mutations do
-      create :create_accounting_billing_account, :create
-      update :update_accounting_billing_account, :update
-      destroy :delete_accounting_billing_account, :destroy
+      create :create_ofbiz_accounting_billing_account, :create
+      update :update_ofbiz_accounting_billing_account, :update
+      destroy :delete_ofbiz_accounting_billing_account, :destroy
     end
 
   end

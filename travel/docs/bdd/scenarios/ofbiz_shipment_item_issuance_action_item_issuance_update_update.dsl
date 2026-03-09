@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SHIPMENT_ITEM_ISSUANCE-SEED-ofbiz_shipment_item_issuance_action_item_issuance_update_update] TITLE: OFBIZ_SHIPMENT_ITEM_ISSUANCE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_shipment_item_issuance_action_item_issuance_update_update" module="OFBIZ_SHIPMENT_ITEM_ISSUANCE"
+WHEN when_execute_seed_contract module="OFBIZ_SHIPMENT_ITEM_ISSUANCE"
+THEN then_seed_contract_should_hold module="OFBIZ_SHIPMENT_ITEM_ISSUANCE"

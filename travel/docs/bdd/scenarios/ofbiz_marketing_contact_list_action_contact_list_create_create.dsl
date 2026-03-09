@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_MARKETING_CONTACT_LIST-SEED-ofbiz_marketing_contact_list_action_contact_list_create_create] TITLE: OFBIZ_MARKETING_CONTACT_LIST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_marketing_contact_list_action_contact_list_create_create" module="OFBIZ_MARKETING_CONTACT_LIST"
+WHEN when_execute_seed_contract module="OFBIZ_MARKETING_CONTACT_LIST"
+THEN then_seed_contract_should_hold module="OFBIZ_MARKETING_CONTACT_LIST"

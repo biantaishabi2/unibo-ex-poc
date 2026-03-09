@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_GL_RECONCILIATION-SEED-ofbiz_accounting_gl_reconciliation_action_gl_reconciliation_destroy_destroy] TITLE: OFBIZ_ACCOUNTING_GL_RECONCILIATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_gl_reconciliation_action_gl_reconciliation_destroy_destroy" module="OFBIZ_ACCOUNTING_GL_RECONCILIATION"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_GL_RECONCILIATION"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_GL_RECONCILIATION"

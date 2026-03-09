@@ -1,0 +1,7 @@
+{
+  "id": "project_task_stage_action_task_stage_read_read",
+  "module": "PROJECT_TASK_STAGE",
+  "edge_class": "all",
+  "source_file": "project/action_task_stage_read_read.yaml",
+  "source_summary": "module: PROJECT_TASK_STAGE\\ncontract: TaskStage.read action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/project/project.ubo.yaml\\nsource_summary: GIVEN 实体 TaskStage 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 读取结果应符合查询语义"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PURCHASING_ACCOUNT_MOVE-SEED-purchasing_account_move_action_account_move_search_read] TITLE: PURCHASING_ACCOUNT_MOVE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="purchasing_account_move_action_account_move_search_read" module="PURCHASING_ACCOUNT_MOVE"
+WHEN when_execute_seed_contract module="PURCHASING_ACCOUNT_MOVE"
+THEN then_seed_contract_should_hold module="PURCHASING_ACCOUNT_MOVE"

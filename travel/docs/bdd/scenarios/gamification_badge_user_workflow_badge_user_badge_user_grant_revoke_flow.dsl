@@ -1,0 +1,4 @@
+[SCENARIO: BDD-GAMIFICATION_BADGE_USER-SEED-gamification_badge_user_workflow_badge_user_badge_user_grant_revoke_flow] TITLE: GAMIFICATION_BADGE_USER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="gamification_badge_user_workflow_badge_user_badge_user_grant_revoke_flow" module="GAMIFICATION_BADGE_USER"
+WHEN when_execute_seed_contract module="GAMIFICATION_BADGE_USER"
+THEN then_seed_contract_should_hold module="GAMIFICATION_BADGE_USER"

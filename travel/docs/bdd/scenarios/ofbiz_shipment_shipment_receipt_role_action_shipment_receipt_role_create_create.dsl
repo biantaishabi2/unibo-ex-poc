@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SHIPMENT_SHIPMENT_RECEIPT_ROLE-SEED-ofbiz_shipment_shipment_receipt_role_action_shipment_receipt_role_create_create] TITLE: OFBIZ_SHIPMENT_SHIPMENT_RECEIPT_ROLE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_shipment_shipment_receipt_role_action_shipment_receipt_role_create_create" module="OFBIZ_SHIPMENT_SHIPMENT_RECEIPT_ROLE"
+WHEN when_execute_seed_contract module="OFBIZ_SHIPMENT_SHIPMENT_RECEIPT_ROLE"
+THEN then_seed_contract_should_hold module="OFBIZ_SHIPMENT_SHIPMENT_RECEIPT_ROLE"

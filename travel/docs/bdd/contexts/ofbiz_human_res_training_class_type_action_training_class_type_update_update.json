@@ -1,0 +1,7 @@
+{
+  "id": "ofbiz_human_res_training_class_type_action_training_class_type_update_update",
+  "module": "OFBIZ_HUMAN_RES_TRAINING_CLASS_TYPE",
+  "edge_class": "all",
+  "source_file": "ofbiz_human_res/action_training_class_type_update_update.yaml",
+  "source_summary": "module: OFBIZ_HUMAN_RES_TRAINING_CLASS_TYPE\\ncontract: TrainingClassType.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ofbiz/humanres.ubo.yaml\\nsource_summary: GIVEN 实体 TrainingClassType 的动作 update 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "purchasing_purchase_requisition_workflow_purchase_requisition_requisition_reopen_flow",
+  "module": "PURCHASING_PURCHASE_REQUISITION",
+  "edge_class": "all",
+  "source_file": "purchasing/workflow_purchase_requisition_requisition_reopen_flow.yaml",
+  "source_summary": "module: PURCHASING_PURCHASE_REQUISITION\\ncontract: PurchaseRequisition.requisition_reopen_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml\\nsource_summary: GIVEN 实体 PurchaseRequisition 定义工作流 requisition_reopen_flow / WHEN 按步骤执行 action_cancel -> action_draft -> action_in_progress / THEN 流程顺序应满足声明约束"
+}

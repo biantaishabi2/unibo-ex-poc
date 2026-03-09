@@ -1,0 +1,4 @@
+[SCENARIO: BDD-FLEET_FLEET_VEHICLE_TYPE-SEED-fleet_fleet_vehicle_type_action_fleet_vehicle_type_destroy_destroy] TITLE: FLEET_FLEET_VEHICLE_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="fleet_fleet_vehicle_type_action_fleet_vehicle_type_destroy_destroy" module="FLEET_FLEET_VEHICLE_TYPE"
+WHEN when_execute_seed_contract module="FLEET_FLEET_VEHICLE_TYPE"
+THEN then_seed_contract_should_hold module="FLEET_FLEET_VEHICLE_TYPE"

@@ -1,0 +1,7 @@
+{
+  "id": "expenses_expense_report_event_expense_report_register_payment_expenses_report_paid",
+  "module": "EXPENSES_EXPENSE_REPORT",
+  "edge_class": "all",
+  "source_file": "expenses/event_expense_report_register_payment_expenses_report_paid.yaml",
+  "source_summary": "module: EXPENSES_EXPENSE_REPORT\\ncontract: ExpenseReport.register_payment event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/expenses/expenses.ubo.yaml\\nsource_summary: GIVEN 实体 ExpenseReport 的动作 register_payment 完成 / WHEN 触发事件发布 / THEN 应广播 topic `expenses.report.paid`"
+}

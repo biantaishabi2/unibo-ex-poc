@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_FIXED_ASSET_MAINT-SEED-ofbiz_accounting_fixed_asset_maint_action_fixed_asset_maint_create_create] TITLE: OFBIZ_ACCOUNTING_FIXED_ASSET_MAINT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_fixed_asset_maint_action_fixed_asset_maint_create_create" module="OFBIZ_ACCOUNTING_FIXED_ASSET_MAINT"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_FIXED_ASSET_MAINT"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_FIXED_ASSET_MAINT"

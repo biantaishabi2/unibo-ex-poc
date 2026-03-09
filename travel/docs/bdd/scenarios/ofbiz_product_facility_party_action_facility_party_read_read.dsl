@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_FACILITY_PARTY-SEED-ofbiz_product_facility_party_action_facility_party_read_read] TITLE: OFBIZ_PRODUCT_FACILITY_PARTY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_facility_party_action_facility_party_read_read" module="OFBIZ_PRODUCT_FACILITY_PARTY"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_FACILITY_PARTY"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_FACILITY_PARTY"

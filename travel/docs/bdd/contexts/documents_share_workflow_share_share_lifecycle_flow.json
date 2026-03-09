@@ -1,0 +1,7 @@
+{
+  "id": "documents_share_workflow_share_share_lifecycle_flow",
+  "module": "DOCUMENTS_SHARE",
+  "edge_class": "all",
+  "source_file": "documents/workflow_share_share_lifecycle_flow.yaml",
+  "source_summary": "module: DOCUMENTS_SHARE\\ncontract: Share.share_lifecycle_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/documents/documents.ubo.yaml\\nsource_summary: GIVEN 实体 Share 定义工作流 share_lifecycle_flow / WHEN 按步骤执行 create -> update -> upload_via_share -> destroy / THEN 流程顺序应满足声明约束"
+}

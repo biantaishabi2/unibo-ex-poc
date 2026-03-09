@@ -1,0 +1,5 @@
+module: QUALITY_QUALITY_POINT
+contract: QualityPoint.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/quality/quality.ubo.yaml
+source_summary: GIVEN 实体 QualityPoint 的动作 create 可执行，accept=[title, operation_type, check_type, control_per, control_frequency, frequency_value, norm_value, tolerance_min, tolerance_max, instructions, failure_action, active]，args=[company_id:uuid!, team_id:uuid, responsible_id:uuid, worksheet_template_id:uuid, product_ids:array, work_order_operation_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建控制点 -> trigger_checks 自动生成质量检查

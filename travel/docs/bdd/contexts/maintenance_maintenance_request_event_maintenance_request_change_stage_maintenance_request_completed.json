@@ -1,0 +1,7 @@
+{
+  "id": "maintenance_maintenance_request_event_maintenance_request_change_stage_maintenance_request_completed",
+  "module": "MAINTENANCE_MAINTENANCE_REQUEST",
+  "edge_class": "all",
+  "source_file": "maintenance/event_maintenance_request_change_stage_maintenance_request_completed.yaml",
+  "source_summary": "module: MAINTENANCE_MAINTENANCE_REQUEST\\ncontract: MaintenanceRequest.change_stage event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml\\nsource_summary: GIVEN 实体 MaintenanceRequest 的动作 change_stage 完成 / WHEN 触发事件发布 / THEN 应广播 topic `maintenance.request.completed`"
+}

@@ -1,0 +1,5 @@
+module: OFBIZ_PRODUCT_FACILITY_TYPE
+contract: FacilityType.read action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/ofbiz/product.ubo.yaml
+source_summary: GIVEN 实体 FacilityType 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 读取结果应符合查询语义

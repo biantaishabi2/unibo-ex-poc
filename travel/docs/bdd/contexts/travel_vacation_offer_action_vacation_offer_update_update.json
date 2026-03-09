@@ -1,0 +1,7 @@
+{
+  "id": "travel_vacation_offer_action_vacation_offer_update_update",
+  "module": "TRAVEL_VACATION_OFFER",
+  "edge_class": "all",
+  "source_file": "travel/action_vacation_offer_update_update.yaml",
+  "source_summary": "module: TRAVEL_VACATION_OFFER\\ncontract: VacationOffer.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 VacationOffer 的动作 update 可执行，accept=[package_name, package_type, departure_city_ref_id, destination_ref_id, listed_price, settlement_price, currency, inventory_count, booking_rules, cancellation_policy]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

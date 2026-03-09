@@ -1,0 +1,7 @@
+{
+  "id": "spreadsheet_data_source_workflow_data_source_data_source_refresh_flow",
+  "module": "SPREADSHEET_DATA_SOURCE",
+  "edge_class": "all",
+  "source_file": "spreadsheet/workflow_data_source_data_source_refresh_flow.yaml",
+  "source_summary": "module: SPREADSHEET_DATA_SOURCE\\ncontract: DataSource.data_source_refresh_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/spreadsheet/spreadsheet.ubo.yaml\\nsource_summary: GIVEN 实体 DataSource 定义工作流 data_source_refresh_flow / WHEN 按步骤执行 create -> update -> refresh -> destroy / THEN 流程顺序应满足声明约束"
+}

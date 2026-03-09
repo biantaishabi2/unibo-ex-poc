@@ -1,0 +1,5 @@
+module: MARKETING_UTM_MEDIUM
+contract: UtmMedium.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 UtmMedium 的动作 create 可执行，accept=[name, active]，args=[无显式参数] / WHEN 执行动作 create / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建 UTM 媒介 -> update 修改媒介

@@ -1,0 +1,7 @@
+{
+  "id": "marketing_mailing_action_mailing_create_create",
+  "module": "MARKETING_MAILING",
+  "edge_class": "all",
+  "source_file": "marketing/action_mailing_create_create.yaml",
+  "source_summary": "module: MARKETING_MAILING\\ncontract: Mailing.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 Mailing 的动作 create 可执行，accept=[name, subject, body_html, preview, reply_to_mode, reply_to, ab_testing_enabled, ab_testing_pc, ab_testing_winner_selection, mailing_model_id, mailing_domain]，args=[campaign_id:uuid, contact_list_ids:array] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "helpdesk_appointment_workflow_appointment_appointment_lifecycle",
+  "module": "HELPDESK_APPOINTMENT",
+  "edge_class": "all",
+  "source_file": "helpdesk/workflow_appointment_appointment_lifecycle.yaml",
+  "source_summary": "module: HELPDESK_APPOINTMENT\\ncontract: Appointment.appointment_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml\\nsource_summary: GIVEN 实体 Appointment 定义工作流 appointment_lifecycle / WHEN 按步骤执行 create -> confirm -> complete -> cancel / THEN 流程顺序应满足声明约束"
+}

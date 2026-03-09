@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MAINTENANCE_MAINTENANCE_REQUEST-SEED-maintenance_maintenance_request_action_maintenance_request_change_stage_update] TITLE: MAINTENANCE_MAINTENANCE_REQUEST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="maintenance_maintenance_request_action_maintenance_request_change_stage_update" module="MAINTENANCE_MAINTENANCE_REQUEST"
+WHEN when_execute_seed_contract module="MAINTENANCE_MAINTENANCE_REQUEST"
+THEN then_seed_contract_should_hold module="MAINTENANCE_MAINTENANCE_REQUEST"

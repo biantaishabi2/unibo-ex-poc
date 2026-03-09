@@ -1,0 +1,4 @@
+[SCENARIO: BDD-APPROVALS_APPROVAL_CATEGORY-SEED-approvals_approval_category_action_approval_category_update_update] TITLE: APPROVALS_APPROVAL_CATEGORY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="approvals_approval_category_action_approval_category_update_update" module="APPROVALS_APPROVAL_CATEGORY"
+WHEN when_execute_seed_contract module="APPROVALS_APPROVAL_CATEGORY"
+THEN then_seed_contract_should_hold module="APPROVALS_APPROVAL_CATEGORY"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_COMMON_COUNTRY_ADDRESS_FORMAT-SEED-ofbiz_common_country_address_format_action_country_address_format_destroy_destroy] TITLE: OFBIZ_COMMON_COUNTRY_ADDRESS_FORMAT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_common_country_address_format_action_country_address_format_destroy_destroy" module="OFBIZ_COMMON_COUNTRY_ADDRESS_FORMAT"
+WHEN when_execute_seed_contract module="OFBIZ_COMMON_COUNTRY_ADDRESS_FORMAT"
+THEN then_seed_contract_should_hold module="OFBIZ_COMMON_COUNTRY_ADDRESS_FORMAT"

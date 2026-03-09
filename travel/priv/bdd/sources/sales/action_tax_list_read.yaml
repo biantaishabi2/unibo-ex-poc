@@ -1,0 +1,5 @@
+module: SALES_TAX
+contract: Tax.list action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 Tax 的动作 list 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 list / THEN 读取结果应符合查询语义

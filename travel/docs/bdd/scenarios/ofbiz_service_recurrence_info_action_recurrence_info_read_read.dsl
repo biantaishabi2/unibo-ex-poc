@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SERVICE_RECURRENCE_INFO-SEED-ofbiz_service_recurrence_info_action_recurrence_info_read_read] TITLE: OFBIZ_SERVICE_RECURRENCE_INFO contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_service_recurrence_info_action_recurrence_info_read_read" module="OFBIZ_SERVICE_RECURRENCE_INFO"
+WHEN when_execute_seed_contract module="OFBIZ_SERVICE_RECURRENCE_INFO"
+THEN then_seed_contract_should_hold module="OFBIZ_SERVICE_RECURRENCE_INFO"

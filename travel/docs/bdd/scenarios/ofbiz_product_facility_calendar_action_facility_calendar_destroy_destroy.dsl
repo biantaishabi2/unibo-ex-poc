@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_FACILITY_CALENDAR-SEED-ofbiz_product_facility_calendar_action_facility_calendar_destroy_destroy] TITLE: OFBIZ_PRODUCT_FACILITY_CALENDAR contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_facility_calendar_action_facility_calendar_destroy_destroy" module="OFBIZ_PRODUCT_FACILITY_CALENDAR"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_FACILITY_CALENDAR"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_FACILITY_CALENDAR"

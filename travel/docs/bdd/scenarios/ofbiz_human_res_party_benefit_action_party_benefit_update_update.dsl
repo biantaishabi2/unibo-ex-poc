@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_HUMAN_RES_PARTY_BENEFIT-SEED-ofbiz_human_res_party_benefit_action_party_benefit_update_update] TITLE: OFBIZ_HUMAN_RES_PARTY_BENEFIT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_human_res_party_benefit_action_party_benefit_update_update" module="OFBIZ_HUMAN_RES_PARTY_BENEFIT"
+WHEN when_execute_seed_contract module="OFBIZ_HUMAN_RES_PARTY_BENEFIT"
+THEN then_seed_contract_should_hold module="OFBIZ_HUMAN_RES_PARTY_BENEFIT"

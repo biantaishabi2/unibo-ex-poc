@@ -1,0 +1,7 @@
+{
+  "id": "fleet_vehicle_contract_action_vehicle_contract_activate_update",
+  "module": "FLEET_VEHICLE_CONTRACT",
+  "edge_class": "all",
+  "source_file": "fleet/action_vehicle_contract_activate_update.yaml",
+  "source_summary": "module: FLEET_VEHICLE_CONTRACT\\ncontract: VehicleContract.activate action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/fleet/fleet.ubo.yaml\\nsource_summary: GIVEN 实体 VehicleContract 的动作 activate 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 activate / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建合同 -> activate 激活合同 -> renew 续签合同；create 创建合同 -> activate 激活合同 -> terminate 终止合同"
+}

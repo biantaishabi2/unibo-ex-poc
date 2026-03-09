@@ -1,0 +1,5 @@
+module: POS_POS_SESSION
+contract: PosSession.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosSession 的动作 create 可执行，accept=[session_code, config_id, opening_balance, open_date, rescue, notes]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建会话，open 打开会话（继承期初余额），正常收银；create 新建救援会话（rescue=true），跳过唯一活跃会话校验

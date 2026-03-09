@@ -1,0 +1,5 @@
+module: REPAIR_REPAIR_TICKET
+contract: RepairTicket.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/repair/repair.ubo.yaml
+source_summary: GIVEN 实体 RepairTicket 的动作 create 可执行，accept=[repair_number, description, internal_notes, warranty_applicable, warranty_expiry_date, scheduled_date, currency_id]，args=[customer_id:uuid!, product_id:uuid!, sales_order_id:uuid, facility_id:uuid, technician_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

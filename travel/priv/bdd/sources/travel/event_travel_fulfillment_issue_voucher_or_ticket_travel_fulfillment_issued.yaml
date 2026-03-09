@@ -1,0 +1,5 @@
+module: TRAVEL_TRAVEL_FULFILLMENT
+contract: TravelFulfillment.issue_voucher_or_ticket event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelFulfillment 的动作 issue_voucher_or_ticket 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.fulfillment.issued`

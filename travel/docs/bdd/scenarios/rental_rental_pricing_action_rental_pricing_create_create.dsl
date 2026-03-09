@@ -1,0 +1,4 @@
+[SCENARIO: BDD-RENTAL_RENTAL_PRICING-SEED-rental_rental_pricing_action_rental_pricing_create_create] TITLE: RENTAL_RENTAL_PRICING contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="rental_rental_pricing_action_rental_pricing_create_create" module="RENTAL_RENTAL_PRICING"
+WHEN when_execute_seed_contract module="RENTAL_RENTAL_PRICING"
+THEN then_seed_contract_should_hold module="RENTAL_RENTAL_PRICING"

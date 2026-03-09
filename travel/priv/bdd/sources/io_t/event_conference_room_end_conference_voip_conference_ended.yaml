@@ -1,0 +1,5 @@
+module: IO_T_CONFERENCE_ROOM
+contract: ConferenceRoom.end_conference event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 ConferenceRoom 的动作 end_conference 完成 / WHEN 触发事件发布 / THEN 应广播 topic `voip.conference.ended`

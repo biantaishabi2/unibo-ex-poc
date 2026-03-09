@@ -1,0 +1,5 @@
+module: COMMUNICATION_CHANNEL
+contract: Channel.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/communication/communication.ubo.yaml
+source_summary: GIVEN 实体 Channel 的动作 create 可执行，accept=[name, channel_type, description, image_128, allow_public_upload, group_public_id, group_ids]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：group_ids 变更时通过 _subscribe_users_automatically() 批量从用户组创建成员记录；成员变更、新消息、typing 指示器等事件广播；视频/语音通话会话管理，SFU 服务器路由

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SERVICE_SERVICE_SEMAPHORE-SEED-ofbiz_service_service_semaphore_action_service_semaphore_update_update] TITLE: OFBIZ_SERVICE_SERVICE_SEMAPHORE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_service_service_semaphore_action_service_semaphore_update_update" module="OFBIZ_SERVICE_SERVICE_SEMAPHORE"
+WHEN when_execute_seed_contract module="OFBIZ_SERVICE_SERVICE_SEMAPHORE"
+THEN then_seed_contract_should_hold module="OFBIZ_SERVICE_SERVICE_SEMAPHORE"

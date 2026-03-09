@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Order.ShoppingListType do
   end
 
   graphql do
-    type :order_shopping_list_type
+    type :ofbiz_order_shopping_list_type
 
     queries do
-      get :get_order_shopping_list_type, :read
-      list :list_order_shopping_list_types, :read
+      get :get_ofbiz_order_shopping_list_type, :read
+      list :list_ofbiz_order_shopping_list_types, :read
     end
 
     mutations do
-      create :create_order_shopping_list_type, :create
-      update :update_order_shopping_list_type, :update
-      destroy :delete_order_shopping_list_type, :destroy
+      create :create_ofbiz_order_shopping_list_type, :create
+      update :update_ofbiz_order_shopping_list_type, :update
+      destroy :delete_ofbiz_order_shopping_list_type, :destroy
     end
 
   end

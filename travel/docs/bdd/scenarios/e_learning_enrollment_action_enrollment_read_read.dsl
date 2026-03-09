@@ -1,0 +1,4 @@
+[SCENARIO: BDD-E_LEARNING_ENROLLMENT-SEED-e_learning_enrollment_action_enrollment_read_read] TITLE: E_LEARNING_ENROLLMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="e_learning_enrollment_action_enrollment_read_read" module="E_LEARNING_ENROLLMENT"
+WHEN when_execute_seed_contract module="E_LEARNING_ENROLLMENT"
+THEN then_seed_contract_should_hold module="E_LEARNING_ENROLLMENT"

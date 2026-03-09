@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_GL_ACCOUNT_TYPE-SEED-ofbiz_accounting_gl_account_type_action_gl_account_type_read_read] TITLE: OFBIZ_ACCOUNTING_GL_ACCOUNT_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_gl_account_type_action_gl_account_type_read_read" module="OFBIZ_ACCOUNTING_GL_ACCOUNT_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_GL_ACCOUNT_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_GL_ACCOUNT_TYPE"

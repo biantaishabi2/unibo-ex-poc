@@ -1,0 +1,7 @@
+{
+  "id": "ofbiz_common_custom_screen_type_action_custom_screen_type_update_update",
+  "module": "OFBIZ_COMMON_CUSTOM_SCREEN_TYPE",
+  "edge_class": "all",
+  "source_file": "ofbiz_common/action_custom_screen_type_update_update.yaml",
+  "source_summary": "module: OFBIZ_COMMON_CUSTOM_SCREEN_TYPE\\ncontract: CustomScreenType.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ofbiz/common.ubo.yaml\\nsource_summary: GIVEN 实体 CustomScreenType 的动作 update 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效"
+}

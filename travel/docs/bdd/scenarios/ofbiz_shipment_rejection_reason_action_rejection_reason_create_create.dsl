@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SHIPMENT_REJECTION_REASON-SEED-ofbiz_shipment_rejection_reason_action_rejection_reason_create_create] TITLE: OFBIZ_SHIPMENT_REJECTION_REASON contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_shipment_rejection_reason_action_rejection_reason_create_create" module="OFBIZ_SHIPMENT_REJECTION_REASON"
+WHEN when_execute_seed_contract module="OFBIZ_SHIPMENT_REJECTION_REASON"
+THEN then_seed_contract_should_hold module="OFBIZ_SHIPMENT_REJECTION_REASON"

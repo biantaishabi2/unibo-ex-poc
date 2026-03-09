@@ -1,0 +1,4 @@
+[SCENARIO: BDD-EXPENSES_EXPENSE_LINE_TAX_LINK-SEED-expenses_expense_line_tax_link_action_expense_line_tax_link_read_read] TITLE: EXPENSES_EXPENSE_LINE_TAX_LINK contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="expenses_expense_line_tax_link_action_expense_line_tax_link_read_read" module="EXPENSES_EXPENSE_LINE_TAX_LINK"
+WHEN when_execute_seed_contract module="EXPENSES_EXPENSE_LINE_TAX_LINK"
+THEN then_seed_contract_should_hold module="EXPENSES_EXPENSE_LINE_TAX_LINK"

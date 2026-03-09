@@ -1,0 +1,5 @@
+module: PLM_BOM_REVISION
+contract: BomRevision.bom_component_delta_impact workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/plm/plm.ubo.yaml
+source_summary: GIVEN 实体 BomRevision 定义工作流 bom_component_delta_impact / WHEN 按步骤执行 detect_component_delta -> sync_procurement_stock_impact / THEN 流程顺序应满足声明约束 / 补充场景：detect_component_delta 检测组件增删 -> sync_procurement_stock_impact 同步供应链影响；新增组件→采购需求，删除组件→库存消化

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_RETURN_CONTACT_MECH-SEED-ofbiz_order_return_contact_mech_action_return_contact_mech_read_read] TITLE: OFBIZ_ORDER_RETURN_CONTACT_MECH contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_return_contact_mech_action_return_contact_mech_read_read" module="OFBIZ_ORDER_RETURN_CONTACT_MECH"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_RETURN_CONTACT_MECH"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_RETURN_CONTACT_MECH"

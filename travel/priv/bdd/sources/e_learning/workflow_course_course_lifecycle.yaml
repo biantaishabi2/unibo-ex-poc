@@ -1,0 +1,5 @@
+module: E_LEARNING_COURSE
+contract: Course.course_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Course 定义工作流 course_lifecycle / WHEN 按步骤执行 create -> update -> publish -> unpublish -> archive -> restore / THEN 流程顺序应满足声明约束

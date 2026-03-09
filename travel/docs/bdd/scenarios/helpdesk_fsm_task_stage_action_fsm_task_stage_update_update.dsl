@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HELPDESK_FSM_TASK_STAGE-SEED-helpdesk_fsm_task_stage_action_fsm_task_stage_update_update] TITLE: HELPDESK_FSM_TASK_STAGE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="helpdesk_fsm_task_stage_action_fsm_task_stage_update_update" module="HELPDESK_FSM_TASK_STAGE"
+WHEN when_execute_seed_contract module="HELPDESK_FSM_TASK_STAGE"
+THEN then_seed_contract_should_hold module="HELPDESK_FSM_TASK_STAGE"

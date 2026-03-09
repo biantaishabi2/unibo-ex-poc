@@ -1,0 +1,5 @@
+module: LOYALTY_LOYALTY_CARD
+contract: LoyaltyCard.redeem_points event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 LoyaltyCard 的动作 redeem_points 完成 / WHEN 触发事件发布 / THEN 应广播 topic `loyalty.points.redeemed`

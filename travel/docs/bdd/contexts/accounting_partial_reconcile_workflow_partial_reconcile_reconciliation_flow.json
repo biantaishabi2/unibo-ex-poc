@@ -1,0 +1,7 @@
+{
+  "id": "accounting_partial_reconcile_workflow_partial_reconcile_reconciliation_flow",
+  "module": "ACCOUNTING_PARTIAL_RECONCILE",
+  "edge_class": "all",
+  "source_file": "accounting/workflow_partial_reconcile_reconciliation_flow.yaml",
+  "source_summary": "module: ACCOUNTING_PARTIAL_RECONCILE\\ncontract: PartialReconcile.reconciliation_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/accounting/accounting.ubo.yaml\\nsource_summary: GIVEN 实体 PartialReconcile 定义工作流 reconciliation_flow / WHEN 按步骤执行 create -> destroy / THEN 流程顺序应满足声明约束"
+}

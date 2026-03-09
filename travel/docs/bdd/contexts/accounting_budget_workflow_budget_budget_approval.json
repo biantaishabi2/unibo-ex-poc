@@ -1,0 +1,7 @@
+{
+  "id": "accounting_budget_workflow_budget_budget_approval",
+  "module": "ACCOUNTING_BUDGET",
+  "edge_class": "all",
+  "source_file": "accounting/workflow_budget_budget_approval.yaml",
+  "source_summary": "module: ACCOUNTING_BUDGET\\ncontract: Budget.budget_approval workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/accounting/accounting.ubo.yaml\\nsource_summary: GIVEN 实体 Budget 定义工作流 budget_approval / WHEN 按步骤执行 create -> submit -> approve -> reject / THEN 流程顺序应满足声明约束"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PURCHASING_PURCHASE_ORDER_ITEM-SEED-purchasing_purchase_order_item_workflow_purchase_order_item_order_item_editing] TITLE: PURCHASING_PURCHASE_ORDER_ITEM contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="purchasing_purchase_order_item_workflow_purchase_order_item_order_item_editing" module="PURCHASING_PURCHASE_ORDER_ITEM"
+WHEN when_execute_seed_contract module="PURCHASING_PURCHASE_ORDER_ITEM"
+THEN then_seed_contract_should_hold module="PURCHASING_PURCHASE_ORDER_ITEM"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MAINTENANCE_STOCK_PICKING-SEED-maintenance_stock_picking_action_stock_picking_read_read] TITLE: MAINTENANCE_STOCK_PICKING contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="maintenance_stock_picking_action_stock_picking_read_read" module="MAINTENANCE_STOCK_PICKING"
+WHEN when_execute_seed_contract module="MAINTENANCE_STOCK_PICKING"
+THEN then_seed_contract_should_hold module="MAINTENANCE_STOCK_PICKING"

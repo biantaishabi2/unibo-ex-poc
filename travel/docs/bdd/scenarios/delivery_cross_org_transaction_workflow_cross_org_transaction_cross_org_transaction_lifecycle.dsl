@@ -1,0 +1,4 @@
+[SCENARIO: BDD-DELIVERY_CROSS_ORG_TRANSACTION-SEED-delivery_cross_org_transaction_workflow_cross_org_transaction_cross_org_transaction_lifecycle] TITLE: DELIVERY_CROSS_ORG_TRANSACTION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="delivery_cross_org_transaction_workflow_cross_org_transaction_cross_org_transaction_lifecycle" module="DELIVERY_CROSS_ORG_TRANSACTION"
+WHEN when_execute_seed_contract module="DELIVERY_CROSS_ORG_TRANSACTION"
+THEN then_seed_contract_should_hold module="DELIVERY_CROSS_ORG_TRANSACTION"

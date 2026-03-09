@@ -1,0 +1,7 @@
+{
+  "id": "loyalty_loyalty_program_event_loyalty_program_expire_loyalty_program_expired",
+  "module": "LOYALTY_LOYALTY_PROGRAM",
+  "edge_class": "all",
+  "source_file": "loyalty/event_loyalty_program_expire_loyalty_program_expired.yaml",
+  "source_summary": "module: LOYALTY_LOYALTY_PROGRAM\\ncontract: LoyaltyProgram.expire event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/loyalty/loyalty.ubo.yaml\\nsource_summary: GIVEN 实体 LoyaltyProgram 的动作 expire 完成 / WHEN 触发事件发布 / THEN 应广播 topic `loyalty.program.expired`"
+}

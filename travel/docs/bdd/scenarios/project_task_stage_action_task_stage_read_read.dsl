@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PROJECT_TASK_STAGE-SEED-project_task_stage_action_task_stage_read_read] TITLE: PROJECT_TASK_STAGE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="project_task_stage_action_task_stage_read_read" module="PROJECT_TASK_STAGE"
+WHEN when_execute_seed_contract module="PROJECT_TASK_STAGE"
+THEN then_seed_contract_should_hold module="PROJECT_TASK_STAGE"

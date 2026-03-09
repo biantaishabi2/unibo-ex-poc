@@ -1,0 +1,4 @@
+[SCENARIO: BDD-KNOWLEDGE_ARTICLE_MEMBER-SEED-knowledge_article_member_action_article_member_update_update] TITLE: KNOWLEDGE_ARTICLE_MEMBER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="knowledge_article_member_action_article_member_update_update" module="KNOWLEDGE_ARTICLE_MEMBER"
+WHEN when_execute_seed_contract module="KNOWLEDGE_ARTICLE_MEMBER"
+THEN then_seed_contract_should_hold module="KNOWLEDGE_ARTICLE_MEMBER"

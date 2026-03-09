@@ -1,0 +1,7 @@
+{
+  "id": "project_timesheet_event_timesheet_approve_project_timesheet_approved",
+  "module": "PROJECT_TIMESHEET",
+  "edge_class": "all",
+  "source_file": "project/event_timesheet_approve_project_timesheet_approved.yaml",
+  "source_summary": "module: PROJECT_TIMESHEET\\ncontract: Timesheet.approve event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/project/project.ubo.yaml\\nsource_summary: GIVEN 实体 Timesheet 的动作 approve 完成 / WHEN 触发事件发布 / THEN 应广播 topic `project.timesheet.approved`"
+}

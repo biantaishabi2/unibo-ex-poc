@@ -1,0 +1,4 @@
+[SCENARIO: BDD-COMMUNICATION_MAIL_GROUP_MEMBER-SEED-communication_mail_group_member_action_mail_group_member_destroy_destroy] TITLE: COMMUNICATION_MAIL_GROUP_MEMBER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="communication_mail_group_member_action_mail_group_member_destroy_destroy" module="COMMUNICATION_MAIL_GROUP_MEMBER"
+WHEN when_execute_seed_contract module="COMMUNICATION_MAIL_GROUP_MEMBER"
+THEN then_seed_contract_should_hold module="COMMUNICATION_MAIL_GROUP_MEMBER"

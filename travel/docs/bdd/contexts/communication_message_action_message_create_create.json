@@ -1,0 +1,7 @@
+{
+  "id": "communication_message_action_message_create_create",
+  "module": "COMMUNICATION_MESSAGE",
+  "edge_class": "all",
+  "source_file": "communication/action_message_create_create.yaml",
+  "source_summary": "module: COMMUNICATION_MESSAGE\\ncontract: Message.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/communication/communication.ubo.yaml\\nsource_summary: GIVEN 实体 Message 的动作 create 可执行，accept=[content, subject, message_type, subtype_id, is_internal, is_pinned, reply_to_force_new, parent_id, model, res_id, email_from, partner_ids, attachment_ids]，args=[channel_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create -> update -> toggle_star -> send_transient -> destroy；发布消息更新所有成员的 is_pinned 和 last_interest_dt；创建通知记录，分发到 Inbox/Email/Web Push/Bus 四种渠道；Base64 图片提取为附件，语音附件元数据提取；discuss.channel/new_message 实时广播；message_post() 是通用 mixin，任何业务实体都可通过 mail.thread 获得消息能力；字段变更追踪，支持按用户组过滤可见性"
+}

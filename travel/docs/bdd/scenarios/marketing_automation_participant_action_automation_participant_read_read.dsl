@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_AUTOMATION_PARTICIPANT-SEED-marketing_automation_participant_action_automation_participant_read_read] TITLE: MARKETING_AUTOMATION_PARTICIPANT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_automation_participant_action_automation_participant_read_read" module="MARKETING_AUTOMATION_PARTICIPANT"
+WHEN when_execute_seed_contract module="MARKETING_AUTOMATION_PARTICIPANT"
+THEN then_seed_contract_should_hold module="MARKETING_AUTOMATION_PARTICIPANT"

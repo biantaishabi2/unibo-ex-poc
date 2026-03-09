@@ -1,0 +1,7 @@
+{
+  "id": "maintenance_odometer_workflow_odometer_odometer_creation_flow",
+  "module": "MAINTENANCE_ODOMETER",
+  "edge_class": "all",
+  "source_file": "maintenance/workflow_odometer_odometer_creation_flow.yaml",
+  "source_summary": "module: MAINTENANCE_ODOMETER\\ncontract: Odometer.odometer_creation_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml\\nsource_summary: GIVEN 实体 Odometer 定义工作流 odometer_creation_flow / WHEN 按步骤执行 create / THEN 流程顺序应满足声明约束"
+}

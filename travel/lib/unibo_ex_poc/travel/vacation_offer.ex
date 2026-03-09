@@ -28,6 +28,7 @@ defmodule UniboExPoc.Travel.VacationOffer do
   postgres do
     table "travel_vacation_offers"
     repo UniboExPoc.Repo
+    identity_index_names unique_vacation_offer_snapshot: "idx_travel_vacation_offers_unique_vacation_offer_snapshot"
   end
 
   multitenancy do
@@ -165,12 +166,10 @@ defmodule UniboExPoc.Travel.VacationOffer do
       validate present(:package_name)
       validate present(:departure_city_code)
       validate present(:destination_code)
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:package_name, :package_type, :departure_city_ref_id, :destination_ref_id, :listed_price, :settlement_price, :currency, :inventory_count, :booking_rules, :cancellation_policy]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :activate do
@@ -185,7 +184,6 @@ defmodule UniboExPoc.Travel.VacationOffer do
       end
       # message: "只有草稿或停用中的 offer 可以 activate"
       change set_attribute(:sale_status, :active)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
@@ -200,7 +198,6 @@ defmodule UniboExPoc.Travel.VacationOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :inactive)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :expire do
@@ -215,7 +212,6 @@ defmodule UniboExPoc.Travel.VacationOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :expired)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

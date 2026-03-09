@@ -1,0 +1,7 @@
+{
+  "id": "maintenance_maintenance_request_workflow_maintenance_request_maintenance_request_lifecycle",
+  "module": "MAINTENANCE_MAINTENANCE_REQUEST",
+  "edge_class": "all",
+  "source_file": "maintenance/workflow_maintenance_request_maintenance_request_lifecycle.yaml",
+  "source_summary": "module: MAINTENANCE_MAINTENANCE_REQUEST\\ncontract: MaintenanceRequest.maintenance_request_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml\\nsource_summary: GIVEN 实体 MaintenanceRequest 定义工作流 maintenance_request_lifecycle / WHEN 按步骤执行 create -> update -> change_stage -> cancel / THEN 流程顺序应满足声明约束"
+}

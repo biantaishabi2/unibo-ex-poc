@@ -1,0 +1,5 @@
+module: CRM_CONTACT_ADDRESS
+contract: ContactAddress.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/crm/crm.ubo.yaml
+source_summary: GIVEN 实体 ContactAddress 的动作 create 可执行，accept=[address_type, street, city, state, postal_code, country, is_primary]，args=[contact_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效

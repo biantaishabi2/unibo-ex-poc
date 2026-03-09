@@ -1,0 +1,7 @@
+{
+  "id": "hr_leave_request_action_leave_request_action_refuse_update",
+  "module": "HR_LEAVE_REQUEST",
+  "edge_class": "all",
+  "source_file": "hr/action_leave_request_action_refuse_update.yaml",
+  "source_summary": "module: HR_LEAVE_REQUEST\\ncontract: LeaveRequest.action_refuse action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/hr/hr.ubo.yaml\\nsource_summary: GIVEN 实体 LeaveRequest 的动作 action_refuse 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 action_refuse / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

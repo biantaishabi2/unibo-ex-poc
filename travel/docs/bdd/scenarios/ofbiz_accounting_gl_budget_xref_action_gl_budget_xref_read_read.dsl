@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_GL_BUDGET_XREF-SEED-ofbiz_accounting_gl_budget_xref_action_gl_budget_xref_read_read] TITLE: OFBIZ_ACCOUNTING_GL_BUDGET_XREF contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_gl_budget_xref_action_gl_budget_xref_read_read" module="OFBIZ_ACCOUNTING_GL_BUDGET_XREF"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_GL_BUDGET_XREF"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_GL_BUDGET_XREF"

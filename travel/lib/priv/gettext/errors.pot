@@ -1,6 +1,70 @@
 # 从 YAML 模型自动生成 — 验证消息翻译模板
 # UniBO Compiler — Gettext Errors POT
 
+#. domain: Accounting, entity: GlAccount, validation: one_of, on: deactivate
+msgid "只有活跃科目可以停用"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, validation: one_of, on: post
+msgid "只有草稿凭证可以过账"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, validation: one_of, on: cancel
+msgid "只有已过账凭证可以取消"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, validation: one_of, on: reset_to_draft
+msgid "只有已取消或已过账凭证可以重置为草稿"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntryLine, validation: compare, on: create, update
+msgid "借方金额不能为负"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntryLine, validation: compare, on: create, update
+msgid "贷方金额不能为负"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, validation: one_of, on: approve
+msgid "只有草稿发票可以审批"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, validation: one_of, on: send
+msgid "只有已审批发票可以发送"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, validation: one_of, on: void
+msgid "只有草稿或已审批发票可以作废"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, validation: compare, on: create, update
+msgid "数量必须大于零"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, validation: compare, on: create, post
+msgid "[R-PAY-001] 付款金额不能为负"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, validation: one_of, on: post
+msgid "只有草稿状态可以确认"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, validation: one_of, on: cancel
+msgid "只有已过账状态可以取消"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, validation: one_of, on: reset_to_draft
+msgid "只有已取消状态可以重置为草稿"
+msgstr ""
+
+#. domain: Accounting, entity: PaymentApplication, validation: compare, on: create
+msgid "核销金额必须大于零"
+msgstr ""
+
+#. domain: Accounting, entity: BillingAccount, validation: compare, on: create, update
+msgid "信用额度不能为负"
+msgstr ""
+
 #. domain: Delivery, entity: Shipment, validation: one_of, on: cancel
 msgid "已发出的发货单不能直接取消，需走逆向退货流程"
 msgstr ""
@@ -11,54 +75,6 @@ msgstr ""
 
 #. domain: Delivery, entity: ShipmentPackageContent, validation: compare, on: create, update
 msgid "装入数量必须大于 0"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, validation: one_of, on: publish
-msgid "只有草稿状态的产品可以上架"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, validation: one_of, on: unpublish, discontinue
-msgid "只有活跃状态的产品可以下架或停产"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, validation: one_of, on: reactivate
-msgid "只有已停产的产品可以重新激活"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, validation: custom, on: publish
-msgid "上架前必须至少有一个 active 的变体"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductVariant, validation: compare
-msgid "价格不能为负"
-msgstr ""
-
-#. domain: Ecommerce, entity: ShoppingCart, validation: one_of, on: convert
-msgid "只有活跃购物车可以转为订单"
-msgstr ""
-
-#. domain: Ecommerce, entity: ShoppingCart, validation: custom, on: convert
-msgid "支付前校验：调用 _is_cart_ready() 钩子 + 非服务订单必须选择配送方式"
-msgstr ""
-
-#. domain: Ecommerce, entity: ShoppingCart, validation: custom, on: cart_update
-msgid "当 website.prevent_zero_price_sale=true 时，拒绝加入价格为 0 的产品"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyReward, validation: compare
-msgid "兑换所需积分必须大于 0"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyReward, validation: compare, on: create, update
-msgid "折扣值不能为负"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyCard, validation: compare
-msgid "积分余额不能为负"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyCard, validation: custom, on: add_points
-msgid "已过期的积分卡不能增加积分"
 msgstr ""
 
 #. domain: Payment, entity: Payment, validation: compare
@@ -113,10 +129,6 @@ msgstr ""
 msgid "只有活跃状态的令牌可以标记过期"
 msgstr ""
 
-#. domain: Payment, entity: PaymentApplication, validation: compare
-msgid "核销金额必须大于零"
-msgstr ""
-
 #. domain: Sales, entity: Customer, validation: one_of, on: block
 msgid "只有活跃状态可以冻结"
 msgstr ""
@@ -131,10 +143,6 @@ msgstr ""
 
 #. domain: Sales, entity: Quote, validation: one_of, on: reject
 msgid "只有已发送状态可以拒绝"
-msgstr ""
-
-#. domain: Sales, entity: QuoteItem, validation: compare
-msgid "数量必须大于零"
 msgstr ""
 
 #. domain: Sales, entity: SalesOrder, validation: present, on: create
@@ -171,10 +179,6 @@ msgstr ""
 
 #. domain: Sales, entity: SalesOrder, validation: compare, on: action_cancel
 msgid "已锁定的订单不能取消"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, validation: one_of, on: action_draft
-msgid "只有已取消状态可以重置为草稿"
 msgstr ""
 
 #. domain: Sales, entity: SalesOrder, validation: one_of, on: create_invoices
@@ -343,21 +347,5 @@ msgstr ""
 
 #. domain: Travel, entity: TravelFulfillment, validation: one_of, on: complete_fulfillment
 msgid "只有 issued 或 in_use 履约可以 complete_fulfillment"
-msgstr ""
-
-#. domain: Website, entity: WebPage, validation: custom, on: create, update
-msgid "URL 在同一 website_id 内必须唯一"
-msgstr ""
-
-#. domain: Website, entity: Menu, validation: custom, on: create, update
-msgid "菜单最多支持 2 级嵌套"
-msgstr ""
-
-#. domain: Website, entity: Menu, validation: custom, on: create, update
-msgid "Mega Menu 不能有父级也不能有子级"
-msgstr ""
-
-#. domain: Website, entity: Menu, validation: custom, on: update
-msgid "已有子级的菜单不能设置 parent_id"
 msgstr ""
 

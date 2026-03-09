@@ -1,0 +1,4 @@
+[SCENARIO: BDD-EVENTS_EVENT_REGISTRATION-SEED-events_event_registration_event_event_registration_check_in_events_registration_checked_in] TITLE: EVENTS_EVENT_REGISTRATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="events_event_registration_event_event_registration_check_in_events_registration_checked_in" module="EVENTS_EVENT_REGISTRATION"
+WHEN when_execute_seed_contract module="EVENTS_EVENT_REGISTRATION"
+THEN then_seed_contract_should_hold module="EVENTS_EVENT_REGISTRATION"

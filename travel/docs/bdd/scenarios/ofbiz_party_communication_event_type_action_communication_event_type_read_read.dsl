@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_COMMUNICATION_EVENT_TYPE-SEED-ofbiz_party_communication_event_type_action_communication_event_type_read_read] TITLE: OFBIZ_PARTY_COMMUNICATION_EVENT_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_communication_event_type_action_communication_event_type_read_read" module="OFBIZ_PARTY_COMMUNICATION_EVENT_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_COMMUNICATION_EVENT_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_COMMUNICATION_EVENT_TYPE"

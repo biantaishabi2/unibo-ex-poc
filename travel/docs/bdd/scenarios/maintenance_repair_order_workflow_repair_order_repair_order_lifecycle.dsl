@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MAINTENANCE_REPAIR_ORDER-SEED-maintenance_repair_order_workflow_repair_order_repair_order_lifecycle] TITLE: MAINTENANCE_REPAIR_ORDER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="maintenance_repair_order_workflow_repair_order_repair_order_lifecycle" module="MAINTENANCE_REPAIR_ORDER"
+WHEN when_execute_seed_contract module="MAINTENANCE_REPAIR_ORDER"
+THEN then_seed_contract_should_hold module="MAINTENANCE_REPAIR_ORDER"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-RENTAL_RENTAL_ORDER_LINE-SEED-rental_rental_order_line_action_rental_order_line_create_create] TITLE: RENTAL_RENTAL_ORDER_LINE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="rental_rental_order_line_action_rental_order_line_create_create" module="RENTAL_RENTAL_ORDER_LINE"
+WHEN when_execute_seed_contract module="RENTAL_RENTAL_ORDER_LINE"
+THEN then_seed_contract_should_hold module="RENTAL_RENTAL_ORDER_LINE"

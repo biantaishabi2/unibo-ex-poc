@@ -1,0 +1,5 @@
+module: SALES_DELIVERY_CARRIER
+contract: DeliveryCarrier.delivery_carrier_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 DeliveryCarrier 定义工作流 delivery_carrier_lifecycle / WHEN 按步骤执行 create -> update -> rate_shipment -> destroy / THEN 流程顺序应满足声明约束

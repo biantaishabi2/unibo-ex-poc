@@ -1,0 +1,4 @@
+[SCENARIO: BDD-IO_T_TRIGGER_RULE-SEED-io_t_trigger_rule_workflow_trigger_rule_trigger_rule_toggle_flow] TITLE: IO_T_TRIGGER_RULE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="io_t_trigger_rule_workflow_trigger_rule_trigger_rule_toggle_flow" module="IO_T_TRIGGER_RULE"
+WHEN when_execute_seed_contract module="IO_T_TRIGGER_RULE"
+THEN then_seed_contract_should_hold module="IO_T_TRIGGER_RULE"

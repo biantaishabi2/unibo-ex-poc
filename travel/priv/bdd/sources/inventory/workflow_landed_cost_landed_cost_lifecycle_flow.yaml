@@ -1,0 +1,5 @@
+module: INVENTORY_LANDED_COST
+contract: LandedCost.landed_cost_lifecycle_flow workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 LandedCost 定义工作流 landed_cost_lifecycle_flow / WHEN 按步骤执行 create -> update -> button_validate / THEN 流程顺序应满足声明约束

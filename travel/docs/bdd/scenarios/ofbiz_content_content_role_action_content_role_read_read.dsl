@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_CONTENT_CONTENT_ROLE-SEED-ofbiz_content_content_role_action_content_role_read_read] TITLE: OFBIZ_CONTENT_CONTENT_ROLE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_content_content_role_action_content_role_read_read" module="OFBIZ_CONTENT_CONTENT_ROLE"
+WHEN when_execute_seed_contract module="OFBIZ_CONTENT_CONTENT_ROLE"
+THEN then_seed_contract_should_hold module="OFBIZ_CONTENT_CONTENT_ROLE"

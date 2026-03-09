@@ -1,0 +1,5 @@
+module: ORGANIZATION_PARTY
+contract: Party.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/organization/organization.ubo.yaml
+source_summary: GIVEN 实体 Party 的动作 create 可执行，accept=[name, party_type, description, external_id]，args=[无显式参数] / WHEN 执行动作 create / THEN 状态变更与副作用应生效

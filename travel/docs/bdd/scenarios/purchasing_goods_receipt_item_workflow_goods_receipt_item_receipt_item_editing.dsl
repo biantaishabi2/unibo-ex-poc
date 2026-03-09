@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PURCHASING_GOODS_RECEIPT_ITEM-SEED-purchasing_goods_receipt_item_workflow_goods_receipt_item_receipt_item_editing] TITLE: PURCHASING_GOODS_RECEIPT_ITEM contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="purchasing_goods_receipt_item_workflow_goods_receipt_item_receipt_item_editing" module="PURCHASING_GOODS_RECEIPT_ITEM"
+WHEN when_execute_seed_contract module="PURCHASING_GOODS_RECEIPT_ITEM"
+THEN then_seed_contract_should_hold module="PURCHASING_GOODS_RECEIPT_ITEM"

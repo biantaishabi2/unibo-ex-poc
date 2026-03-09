@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentStatus do
   end
 
   graphql do
-    type :shipment_shipment_status
+    type :ofbiz_shipment_shipment_status
 
     queries do
-      get :get_shipment_shipment_status, :read
-      list :list_shipment_shipment_statuss, :read
+      get :get_ofbiz_shipment_shipment_status, :read
+      list :list_ofbiz_shipment_shipment_statuss, :read
     end
 
     mutations do
-      create :create_shipment_shipment_status, :create
-      update :update_shipment_shipment_status, :update
-      destroy :delete_shipment_shipment_status, :destroy
+      create :create_ofbiz_shipment_shipment_status, :create
+      update :update_ofbiz_shipment_shipment_status, :update
+      destroy :delete_ofbiz_shipment_shipment_status, :destroy
     end
 
   end

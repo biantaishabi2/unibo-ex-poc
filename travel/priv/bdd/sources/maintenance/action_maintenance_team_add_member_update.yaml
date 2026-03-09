@@ -1,0 +1,5 @@
+module: MAINTENANCE_MAINTENANCE_TEAM
+contract: MaintenanceTeam.add_member action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 MaintenanceTeam 的动作 add_member 可执行，accept=[user_id]，args=[无显式参数] / WHEN 执行动作 add_member / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建团队 -> update 修改团队名称 -> add_member 添加成员 -> remove_member 移除成员

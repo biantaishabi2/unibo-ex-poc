@@ -1,0 +1,7 @@
+{
+  "id": "ecommerce_loyalty_reward_action_loyalty_reward_update_update",
+  "module": "ECOMMERCE_LOYALTY_REWARD",
+  "edge_class": "all",
+  "source_file": "ecommerce/action_loyalty_reward_update_update.yaml",
+  "source_summary": "module: ECOMMERCE_LOYALTY_REWARD\\ncontract: LoyaltyReward.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ecommerce/ecommerce.ubo.yaml\\nsource_summary: GIVEN 实体 LoyaltyReward 的动作 update 可执行，accept=[reward_type, discount, discount_mode, discount_max_amount, required_points, description]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

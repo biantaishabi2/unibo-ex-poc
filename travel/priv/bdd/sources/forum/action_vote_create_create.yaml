@@ -1,0 +1,5 @@
+module: FORUM_VOTE
+contract: Vote.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/forum/forum.ubo.yaml
+source_summary: GIVEN 实体 Vote 的动作 create 可执行，accept=[vote]，args=[post_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 投赞成票，帖子作者获得 Karma；create 投反对票，帖子作者扣除 Karma；create 尝试给自己的帖子投票，被拒绝；create Karma 不足尝试投踩，校验失败

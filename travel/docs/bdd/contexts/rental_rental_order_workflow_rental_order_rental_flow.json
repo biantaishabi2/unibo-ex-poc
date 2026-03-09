@@ -1,0 +1,7 @@
+{
+  "id": "rental_rental_order_workflow_rental_order_rental_flow",
+  "module": "RENTAL_RENTAL_ORDER",
+  "edge_class": "all",
+  "source_file": "rental/workflow_rental_order_rental_flow.yaml",
+  "source_summary": "module: RENTAL_RENTAL_ORDER\\ncontract: RentalOrder.rental_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/rental/rental.ubo.yaml\\nsource_summary: GIVEN 实体 RentalOrder 定义工作流 rental_flow / WHEN 按步骤执行 create -> action_confirm -> action_pickup -> action_return -> action_done / THEN 流程顺序应满足声明约束"
+}

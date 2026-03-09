@@ -1,0 +1,7 @@
+{
+  "id": "hr_employee_skill_log_workflow_employee_skill_log_employee_skill_log_write_flow",
+  "module": "HR_EMPLOYEE_SKILL_LOG",
+  "edge_class": "all",
+  "source_file": "hr/workflow_employee_skill_log_employee_skill_log_write_flow.yaml",
+  "source_summary": "module: HR_EMPLOYEE_SKILL_LOG\\ncontract: EmployeeSkillLog.employee_skill_log_write_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/hr/hr.ubo.yaml\\nsource_summary: GIVEN 实体 EmployeeSkillLog 定义工作流 employee_skill_log_write_flow / WHEN 按步骤执行 create -> read / THEN 流程顺序应满足声明约束"
+}

@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.PaymentGatewayResponse do
   end
 
   graphql do
-    type :accounting_payment_gateway_response
+    type :ofbiz_accounting_payment_gateway_response
 
     queries do
-      get :get_accounting_payment_gateway_response, :read
-      list :list_accounting_payment_gateway_responses, :read
+      get :get_ofbiz_accounting_payment_gateway_response, :read
+      list :list_ofbiz_accounting_payment_gateway_responses, :read
     end
 
     mutations do
-      create :create_accounting_payment_gateway_response, :create
-      update :update_accounting_payment_gateway_response, :update
-      destroy :delete_accounting_payment_gateway_response, :destroy
+      create :create_ofbiz_accounting_payment_gateway_response, :create
+      update :update_ofbiz_accounting_payment_gateway_response, :update
+      destroy :delete_ofbiz_accounting_payment_gateway_response, :destroy
     end
 
   end

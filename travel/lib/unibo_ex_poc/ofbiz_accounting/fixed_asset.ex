@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.FixedAsset do
   end
 
   graphql do
-    type :accounting_fixed_asset
+    type :ofbiz_accounting_fixed_asset
 
     queries do
-      get :get_accounting_fixed_asset, :read
-      list :list_accounting_fixed_assets, :read
+      get :get_ofbiz_accounting_fixed_asset, :read
+      list :list_ofbiz_accounting_fixed_assets, :read
     end
 
     mutations do
-      create :create_accounting_fixed_asset, :create
-      update :update_accounting_fixed_asset, :update
-      destroy :delete_accounting_fixed_asset, :destroy
+      create :create_ofbiz_accounting_fixed_asset, :create
+      update :update_ofbiz_accounting_fixed_asset, :update
+      destroy :delete_ofbiz_accounting_fixed_asset, :destroy
     end
 
   end

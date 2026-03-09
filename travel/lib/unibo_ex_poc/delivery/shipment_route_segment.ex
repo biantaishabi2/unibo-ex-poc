@@ -205,30 +205,25 @@ defmodule UniboExPoc.Delivery.ShipmentRouteSegment do
       accept [:shipment_id, :shipment_route_segment_id, :delivery_id, :carrier_party_id, :shipment_method_type_id, :origin_facility_id, :dest_facility_id, :estimated_start_date, :estimated_arrival_date]
       validate present(:shipment_id)
       validate present(:shipment_route_segment_id)
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:tracking_id_number, :carrier_service_status_id, :actual_start_date, :actual_arrival_date, :actual_cost, :billing_weight]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :confirm_shipment do
       description "承运商接单"
       accept [:carrier_service_status_id, :tracking_id_number]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :update_tracking do
       description "更新追踪号"
       accept [:tracking_id_number, :tracking_digest]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :record_cost do
       description "录入实际费用"
       accept [:actual_transport_cost, :actual_service_cost, :actual_other_cost, :actual_cost, :currency_uom_id, :billing_weight, :billing_weight_uom_id]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

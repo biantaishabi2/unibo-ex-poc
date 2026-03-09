@@ -1,0 +1,7 @@
+{
+  "id": "website_web_page_event_web_page_publish_website_page_published",
+  "module": "WEBSITE_WEB_PAGE",
+  "edge_class": "all",
+  "source_file": "website/event_web_page_publish_website_page_published.yaml",
+  "source_summary": "module: WEBSITE_WEB_PAGE\\ncontract: WebPage.publish event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/website/website.ubo.yaml\\nsource_summary: GIVEN 实体 WebPage 的动作 publish 完成 / WHEN 触发事件发布 / THEN 应广播 topic `website.page.published`"
+}

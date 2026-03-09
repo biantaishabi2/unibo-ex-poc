@@ -1,0 +1,5 @@
+module: COMMUNICATION_CHANNEL_MEMBER
+contract: ChannelMember.update action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/communication/communication.ubo.yaml
+source_summary: GIVEN 实体 ChannelMember 的动作 update 可执行，accept=[fold_state, is_minimized, is_pinned, custom_channel_name, custom_notifications, mute_until_dt]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

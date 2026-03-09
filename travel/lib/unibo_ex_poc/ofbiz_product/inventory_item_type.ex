@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Product.InventoryItemType do
   end
 
   graphql do
-    type :product_inventory_item_type
+    type :ofbiz_product_inventory_item_type
 
     queries do
-      get :get_product_inventory_item_type, :read
-      list :list_product_inventory_item_types, :read
+      get :get_ofbiz_product_inventory_item_type, :read
+      list :list_ofbiz_product_inventory_item_types, :read
     end
 
     mutations do
-      create :create_product_inventory_item_type, :create
-      update :update_product_inventory_item_type, :update
-      destroy :delete_product_inventory_item_type, :destroy
+      create :create_ofbiz_product_inventory_item_type, :create
+      update :update_ofbiz_product_inventory_item_type, :update
+      destroy :delete_ofbiz_product_inventory_item_type, :destroy
     end
 
   end

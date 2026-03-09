@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_FACILITY_GROUP_ROLLUP-SEED-ofbiz_product_facility_group_rollup_action_facility_group_rollup_destroy_destroy] TITLE: OFBIZ_PRODUCT_FACILITY_GROUP_ROLLUP contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_facility_group_rollup_action_facility_group_rollup_destroy_destroy" module="OFBIZ_PRODUCT_FACILITY_GROUP_ROLLUP"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_FACILITY_GROUP_ROLLUP"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_FACILITY_GROUP_ROLLUP"

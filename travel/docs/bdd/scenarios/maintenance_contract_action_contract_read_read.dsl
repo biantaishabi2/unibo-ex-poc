@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MAINTENANCE_CONTRACT-SEED-maintenance_contract_action_contract_read_read] TITLE: MAINTENANCE_CONTRACT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="maintenance_contract_action_contract_read_read" module="MAINTENANCE_CONTRACT"
+WHEN when_execute_seed_contract module="MAINTENANCE_CONTRACT"
+THEN then_seed_contract_should_hold module="MAINTENANCE_CONTRACT"

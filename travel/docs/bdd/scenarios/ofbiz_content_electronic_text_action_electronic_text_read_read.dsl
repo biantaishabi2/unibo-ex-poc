@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_CONTENT_ELECTRONIC_TEXT-SEED-ofbiz_content_electronic_text_action_electronic_text_read_read] TITLE: OFBIZ_CONTENT_ELECTRONIC_TEXT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_content_electronic_text_action_electronic_text_read_read" module="OFBIZ_CONTENT_ELECTRONIC_TEXT"
+WHEN when_execute_seed_contract module="OFBIZ_CONTENT_ELECTRONIC_TEXT"
+THEN then_seed_contract_should_hold module="OFBIZ_CONTENT_ELECTRONIC_TEXT"

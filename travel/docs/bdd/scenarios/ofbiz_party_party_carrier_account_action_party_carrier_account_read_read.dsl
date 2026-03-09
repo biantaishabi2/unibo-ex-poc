@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_PARTY_CARRIER_ACCOUNT-SEED-ofbiz_party_party_carrier_account_action_party_carrier_account_read_read] TITLE: OFBIZ_PARTY_PARTY_CARRIER_ACCOUNT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_party_carrier_account_action_party_carrier_account_read_read" module="OFBIZ_PARTY_PARTY_CARRIER_ACCOUNT"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_PARTY_CARRIER_ACCOUNT"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_PARTY_CARRIER_ACCOUNT"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_SUBSCRIPTION_ACTIVITY-SEED-ofbiz_product_subscription_activity_action_subscription_activity_update_update] TITLE: OFBIZ_PRODUCT_SUBSCRIPTION_ACTIVITY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_subscription_activity_action_subscription_activity_update_update" module="OFBIZ_PRODUCT_SUBSCRIPTION_ACTIVITY"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_SUBSCRIPTION_ACTIVITY"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_SUBSCRIPTION_ACTIVITY"

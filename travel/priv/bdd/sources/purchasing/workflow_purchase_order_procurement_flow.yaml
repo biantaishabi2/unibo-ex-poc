@@ -1,0 +1,5 @@
+module: PURCHASING_PURCHASE_ORDER
+contract: PurchaseOrder.procurement_flow workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 PurchaseOrder 定义工作流 procurement_flow / WHEN 按步骤执行 create -> print_quotation -> send_rfq -> button_confirm -> button_approve -> button_done -> button_unlock -> button_cancel -> button_draft -> action_create_invoice / THEN 流程顺序应满足声明约束

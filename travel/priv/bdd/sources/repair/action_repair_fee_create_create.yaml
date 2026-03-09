@@ -1,0 +1,5 @@
+module: REPAIR_REPAIR_FEE
+contract: RepairFee.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/repair/repair.ubo.yaml
+source_summary: GIVEN 实体 RepairFee 的动作 create 可执行，accept=[fee_type, description, amount, tax_rate]，args=[repair_ticket_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 添加诊断费 -> update 更新金额；create 添加折扣 -> destroy 移除折扣

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-KNOWLEDGE_ARTICLE_VERSION-SEED-knowledge_article_version_action_article_version_create_create] TITLE: KNOWLEDGE_ARTICLE_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="knowledge_article_version_action_article_version_create_create" module="KNOWLEDGE_ARTICLE_VERSION"
+WHEN when_execute_seed_contract module="KNOWLEDGE_ARTICLE_VERSION"
+THEN then_seed_contract_should_hold module="KNOWLEDGE_ARTICLE_VERSION"

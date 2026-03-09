@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT_ROUTE_SEGMENT
+contract: ShipmentRouteSegment.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 ShipmentRouteSegment 的动作 create 可执行，accept=[shipment_id, shipment_route_segment_id, delivery_id, carrier_party_id, shipment_method_type_id, origin_facility_id, dest_facility_id, estimated_start_date, estimated_arrival_date]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建多段路线 -> update 逐段更新实际时间和费用

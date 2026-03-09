@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_PRODUCT_ORDER_ITEM-SEED-ofbiz_order_product_order_item_action_product_order_item_read_read] TITLE: OFBIZ_ORDER_PRODUCT_ORDER_ITEM contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_product_order_item_action_product_order_item_read_read" module="OFBIZ_ORDER_PRODUCT_ORDER_ITEM"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_PRODUCT_ORDER_ITEM"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_PRODUCT_ORDER_ITEM"

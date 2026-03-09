@@ -1,0 +1,5 @@
+module: HR_PAY_SLIP
+contract: PaySlip.payslip_payment_flow workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 PaySlip 定义工作流 payslip_payment_flow / WHEN 按步骤执行 create -> compute_sheet -> action_payslip_done -> action_payslip_paid / THEN 流程顺序应满足声明约束

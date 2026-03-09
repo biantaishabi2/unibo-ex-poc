@@ -1,0 +1,4 @@
+[SCENARIO: BDD-EVENTS_EVENT_TICKET-SEED-events_event_ticket_action_event_ticket_read_read] TITLE: EVENTS_EVENT_TICKET contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="events_event_ticket_action_event_ticket_read_read" module="EVENTS_EVENT_TICKET"
+WHEN when_execute_seed_contract module="EVENTS_EVENT_TICKET"
+THEN then_seed_contract_should_hold module="EVENTS_EVENT_TICKET"

@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Order.OrderType do
   end
 
   graphql do
-    type :order_order_type
+    type :ofbiz_order_order_type
 
     queries do
-      get :get_order_order_type, :read
-      list :list_order_order_types, :read
+      get :get_ofbiz_order_order_type, :read
+      list :list_ofbiz_order_order_types, :read
     end
 
     mutations do
-      create :create_order_order_type, :create
-      update :update_order_order_type, :update
-      destroy :delete_order_order_type, :destroy
+      create :create_ofbiz_order_order_type, :create
+      update :update_ofbiz_order_order_type, :update
+      destroy :delete_ofbiz_order_order_type, :destroy
     end
 
   end

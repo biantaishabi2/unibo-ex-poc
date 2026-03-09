@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_COMMON_CUSTOM_SCREEN-SEED-ofbiz_common_custom_screen_action_custom_screen_destroy_destroy] TITLE: OFBIZ_COMMON_CUSTOM_SCREEN contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_common_custom_screen_action_custom_screen_destroy_destroy" module="OFBIZ_COMMON_CUSTOM_SCREEN"
+WHEN when_execute_seed_contract module="OFBIZ_COMMON_CUSTOM_SCREEN"
+THEN then_seed_contract_should_hold module="OFBIZ_COMMON_CUSTOM_SCREEN"

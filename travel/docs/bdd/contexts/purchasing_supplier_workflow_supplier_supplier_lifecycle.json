@@ -1,0 +1,7 @@
+{
+  "id": "purchasing_supplier_workflow_supplier_supplier_lifecycle",
+  "module": "PURCHASING_SUPPLIER",
+  "edge_class": "all",
+  "source_file": "purchasing/workflow_supplier_supplier_lifecycle.yaml",
+  "source_summary": "module: PURCHASING_SUPPLIER\\ncontract: Supplier.supplier_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml\\nsource_summary: GIVEN 实体 Supplier 定义工作流 supplier_lifecycle / WHEN 按步骤执行 create -> update -> activate -> block / THEN 流程顺序应满足声明约束"
+}

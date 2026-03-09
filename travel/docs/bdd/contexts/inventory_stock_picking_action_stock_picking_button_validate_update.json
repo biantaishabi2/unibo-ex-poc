@@ -1,0 +1,7 @@
+{
+  "id": "inventory_stock_picking_action_stock_picking_button_validate_update",
+  "module": "INVENTORY_STOCK_PICKING",
+  "edge_class": "all",
+  "source_file": "inventory/action_stock_picking_button_validate_update.yaml",
+  "source_summary": "module: INVENTORY_STOCK_PICKING\\ncontract: StockPicking.button_validate action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/inventory/inventory.ubo.yaml\\nsource_summary: GIVEN 实体 StockPicking 的动作 button_validate 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 button_validate / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束"
+}

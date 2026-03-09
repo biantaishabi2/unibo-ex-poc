@@ -1,0 +1,5 @@
+module: RATING_RATING_SUMMARY
+contract: RatingSummary.recalculate action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/rating/rating.ubo.yaml
+source_summary: GIVEN 实体 RatingSummary 的动作 recalculate 可执行，accept=[average_score, total_count, star_1_count, star_2_count, star_3_count, star_4_count, star_5_count, last_rating_at]，args=[无显式参数] / WHEN 执行动作 recalculate / THEN 状态变更与副作用应生效，应触发关联事件 / 补充场景：recalculate 重新计算汇总（Rating approve 后自动触发）

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_CREDIT_CARD-SEED-ofbiz_accounting_credit_card_action_credit_card_create_create] TITLE: OFBIZ_ACCOUNTING_CREDIT_CARD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_credit_card_action_credit_card_create_create" module="OFBIZ_ACCOUNTING_CREDIT_CARD"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_CREDIT_CARD"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_CREDIT_CARD"

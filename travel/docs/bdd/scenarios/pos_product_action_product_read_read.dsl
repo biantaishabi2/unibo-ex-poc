@@ -1,0 +1,4 @@
+[SCENARIO: BDD-POS_PRODUCT-SEED-pos_product_action_product_read_read] TITLE: POS_PRODUCT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="pos_product_action_product_read_read" module="POS_PRODUCT"
+WHEN when_execute_seed_contract module="POS_PRODUCT"
+THEN then_seed_contract_should_hold module="POS_PRODUCT"

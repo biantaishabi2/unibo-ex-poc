@@ -1,0 +1,4 @@
+[SCENARIO: BDD-EXPENSES_EXPENSE_CATEGORY-SEED-expenses_expense_category_workflow_expense_category_expense_category_maintain_flow] TITLE: EXPENSES_EXPENSE_CATEGORY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="expenses_expense_category_workflow_expense_category_expense_category_maintain_flow" module="EXPENSES_EXPENSE_CATEGORY"
+WHEN when_execute_seed_contract module="EXPENSES_EXPENSE_CATEGORY"
+THEN then_seed_contract_should_hold module="EXPENSES_EXPENSE_CATEGORY"

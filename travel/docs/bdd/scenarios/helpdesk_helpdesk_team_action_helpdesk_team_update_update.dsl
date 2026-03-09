@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HELPDESK_HELPDESK_TEAM-SEED-helpdesk_helpdesk_team_action_helpdesk_team_update_update] TITLE: HELPDESK_HELPDESK_TEAM contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="helpdesk_helpdesk_team_action_helpdesk_team_update_update" module="HELPDESK_HELPDESK_TEAM"
+WHEN when_execute_seed_contract module="HELPDESK_HELPDESK_TEAM"
+THEN then_seed_contract_should_hold module="HELPDESK_HELPDESK_TEAM"

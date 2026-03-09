@@ -1,0 +1,7 @@
+{
+  "id": "helpdesk_rating_action_rating_reset_update",
+  "module": "HELPDESK_RATING",
+  "edge_class": "all",
+  "source_file": "helpdesk/action_rating_reset_update.yaml",
+  "source_summary": "module: HELPDESK_RATING\\ncontract: Rating.reset action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml\\nsource_summary: GIVEN 实体 Rating 的动作 reset 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 reset / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

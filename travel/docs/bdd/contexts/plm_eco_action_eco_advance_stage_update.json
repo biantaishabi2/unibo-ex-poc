@@ -1,0 +1,7 @@
+{
+  "id": "plm_eco_action_eco_advance_stage_update",
+  "module": "PLM_ECO",
+  "edge_class": "all",
+  "source_file": "plm/action_eco_advance_stage_update.yaml",
+  "source_summary": "module: PLM_ECO\\ncontract: Eco.advance_stage action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/plm/plm.ubo.yaml\\nsource_summary: GIVEN 实体 Eco 的动作 advance_stage 可执行，accept=[(未声明)]，args=[target_stage_id:uuid!] / WHEN 执行动作 advance_stage / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 创建 ECO -> advance_stage 推进阶段 -> apply_changes 应用变更到生产 BOM；create 创建 ECO -> advance_stage 推进阶段 -> rebase 同步最新 BOM -> advance_stage 继续推进 -> apply_changes 应用变更"
+}

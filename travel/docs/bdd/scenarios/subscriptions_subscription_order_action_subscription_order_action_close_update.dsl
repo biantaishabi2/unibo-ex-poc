@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SUBSCRIPTIONS_SUBSCRIPTION_ORDER-SEED-subscriptions_subscription_order_action_subscription_order_action_close_update] TITLE: SUBSCRIPTIONS_SUBSCRIPTION_ORDER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="subscriptions_subscription_order_action_subscription_order_action_close_update" module="SUBSCRIPTIONS_SUBSCRIPTION_ORDER"
+WHEN when_execute_seed_contract module="SUBSCRIPTIONS_SUBSCRIPTION_ORDER"
+THEN then_seed_contract_should_hold module="SUBSCRIPTIONS_SUBSCRIPTION_ORDER"

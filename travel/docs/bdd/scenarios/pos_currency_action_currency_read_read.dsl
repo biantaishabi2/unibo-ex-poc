@@ -1,0 +1,4 @@
+[SCENARIO: BDD-POS_CURRENCY-SEED-pos_currency_action_currency_read_read] TITLE: POS_CURRENCY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="pos_currency_action_currency_read_read" module="POS_CURRENCY"
+WHEN when_execute_seed_contract module="POS_CURRENCY"
+THEN then_seed_contract_should_hold module="POS_CURRENCY"

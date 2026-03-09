@@ -41,6 +41,7 @@ defmodule UniboExPoc.Sales.SalesOrder do
   postgres do
     table "sales_orders"
     repo UniboExPoc.Repo
+    identity_index_names unique_order_name: "idx_sales_orders_unique_order_name"
   end
 
   graphql do
@@ -169,7 +170,6 @@ defmodule UniboExPoc.Sales.SalesOrder do
       validate present([:partner_id])
       # message: "创建销售订单时必须选择客户"
       change relate_actor(:created_by)
-      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -203,7 +203,6 @@ defmodule UniboExPoc.Sales.SalesOrder do
       end
       # message: "只有草稿状态可以发送报价"
       change set_attribute(:state, :sent)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_confirm do
@@ -226,7 +225,6 @@ defmodule UniboExPoc.Sales.SalesOrder do
       change UniboExPoc.Sales.Changes.SalesOrder.ActionConfirmCreateRelated5
       change UniboExPoc.Sales.Changes.SalesOrder.ActionConfirmCall6
       change set_attribute(:locked, true)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_done do
@@ -243,7 +241,6 @@ defmodule UniboExPoc.Sales.SalesOrder do
       # message: "只有已确认(sale)状态可以锁定"
       change set_attribute(:state, :done)
       change set_attribute(:locked, true)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_cancel do
@@ -253,7 +250,6 @@ defmodule UniboExPoc.Sales.SalesOrder do
       change UniboExPoc.Sales.Changes.SalesOrder.ActionCancelCall10
       change UniboExPoc.Sales.Changes.SalesOrder.ActionCancelCall11
       change set_attribute(:state, :cancel)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_draft do
@@ -269,7 +265,6 @@ defmodule UniboExPoc.Sales.SalesOrder do
       end
       # message: "只有已取消状态可以重置为草稿"
       change set_attribute(:state, :draft)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     action :create_invoices do

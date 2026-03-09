@@ -15,17 +15,17 @@ defmodule UniboExPoc.Ofbiz.Common.DataSource do
   end
 
   graphql do
-    type :common_data_source
+    type :ofbiz_common_data_source
 
     queries do
-      get :get_common_data_source, :read
-      list :list_common_data_sources, :read
+      get :get_ofbiz_common_data_source, :read
+      list :list_ofbiz_common_data_sources, :read
     end
 
     mutations do
-      create :create_common_data_source, :create
-      update :update_common_data_source, :update
-      destroy :delete_common_data_source, :destroy
+      create :create_ofbiz_common_data_source, :create
+      update :update_ofbiz_common_data_source, :update
+      destroy :delete_ofbiz_common_data_source, :destroy
     end
 
   end

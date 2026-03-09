@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PROJECT_PLANNING_SLOT-SEED-project_planning_slot_action_planning_slot_create_create] TITLE: PROJECT_PLANNING_SLOT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="project_planning_slot_action_planning_slot_create_create" module="PROJECT_PLANNING_SLOT"
+WHEN when_execute_seed_contract module="PROJECT_PLANNING_SLOT"
+THEN then_seed_contract_should_hold module="PROJECT_PLANNING_SLOT"

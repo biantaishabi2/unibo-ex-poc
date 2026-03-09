@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_PRODUCT_SEARCH_RESULT-SEED-ofbiz_product_product_search_result_action_product_search_result_destroy_destroy] TITLE: OFBIZ_PRODUCT_PRODUCT_SEARCH_RESULT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_product_search_result_action_product_search_result_destroy_destroy" module="OFBIZ_PRODUCT_PRODUCT_SEARCH_RESULT"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_PRODUCT_SEARCH_RESULT"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_PRODUCT_SEARCH_RESULT"

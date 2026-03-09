@@ -1,0 +1,5 @@
+module: GAMIFICATION_KARMA_RANK
+contract: KarmaRank.karma_rank_lifecycle_flow workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/gamification/gamification.ubo.yaml
+source_summary: GIVEN 实体 KarmaRank 定义工作流 karma_rank_lifecycle_flow / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束

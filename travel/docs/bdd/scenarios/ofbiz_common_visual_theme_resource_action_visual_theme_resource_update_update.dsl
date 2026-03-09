@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_COMMON_VISUAL_THEME_RESOURCE-SEED-ofbiz_common_visual_theme_resource_action_visual_theme_resource_update_update] TITLE: OFBIZ_COMMON_VISUAL_THEME_RESOURCE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_common_visual_theme_resource_action_visual_theme_resource_update_update" module="OFBIZ_COMMON_VISUAL_THEME_RESOURCE"
+WHEN when_execute_seed_contract module="OFBIZ_COMMON_VISUAL_THEME_RESOURCE"
+THEN then_seed_contract_should_hold module="OFBIZ_COMMON_VISUAL_THEME_RESOURCE"

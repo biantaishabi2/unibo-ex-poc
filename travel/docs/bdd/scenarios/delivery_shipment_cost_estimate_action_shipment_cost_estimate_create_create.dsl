@@ -1,0 +1,4 @@
+[SCENARIO: BDD-DELIVERY_SHIPMENT_COST_ESTIMATE-SEED-delivery_shipment_cost_estimate_action_shipment_cost_estimate_create_create] TITLE: DELIVERY_SHIPMENT_COST_ESTIMATE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="delivery_shipment_cost_estimate_action_shipment_cost_estimate_create_create" module="DELIVERY_SHIPMENT_COST_ESTIMATE"
+WHEN when_execute_seed_contract module="DELIVERY_SHIPMENT_COST_ESTIMATE"
+THEN then_seed_contract_should_hold module="DELIVERY_SHIPMENT_COST_ESTIMATE"

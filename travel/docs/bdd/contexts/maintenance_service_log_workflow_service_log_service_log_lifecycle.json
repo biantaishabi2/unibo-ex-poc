@@ -1,0 +1,7 @@
+{
+  "id": "maintenance_service_log_workflow_service_log_service_log_lifecycle",
+  "module": "MAINTENANCE_SERVICE_LOG",
+  "edge_class": "all",
+  "source_file": "maintenance/workflow_service_log_service_log_lifecycle.yaml",
+  "source_summary": "module: MAINTENANCE_SERVICE_LOG\\ncontract: ServiceLog.service_log_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml\\nsource_summary: GIVEN 实体 ServiceLog 定义工作流 service_log_lifecycle / WHEN 按步骤执行 create -> start -> complete -> cancel / THEN 流程顺序应满足声明约束"
+}

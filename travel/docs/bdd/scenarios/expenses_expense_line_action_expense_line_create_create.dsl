@@ -1,0 +1,4 @@
+[SCENARIO: BDD-EXPENSES_EXPENSE_LINE-SEED-expenses_expense_line_action_expense_line_create_create] TITLE: EXPENSES_EXPENSE_LINE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="expenses_expense_line_action_expense_line_create_create" module="EXPENSES_EXPENSE_LINE"
+WHEN when_execute_seed_contract module="EXPENSES_EXPENSE_LINE"
+THEN then_seed_contract_should_hold module="EXPENSES_EXPENSE_LINE"

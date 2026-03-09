@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlJournal do
   end
 
   graphql do
-    type :accounting_gl_journal
+    type :ofbiz_accounting_gl_journal
 
     queries do
-      get :get_accounting_gl_journal, :read
-      list :list_accounting_gl_journals, :read
+      get :get_ofbiz_accounting_gl_journal, :read
+      list :list_ofbiz_accounting_gl_journals, :read
     end
 
     mutations do
-      create :create_accounting_gl_journal, :create
-      update :update_accounting_gl_journal, :update
-      destroy :delete_accounting_gl_journal, :destroy
+      create :create_ofbiz_accounting_gl_journal, :create
+      update :update_ofbiz_accounting_gl_journal, :update
+      destroy :delete_ofbiz_accounting_gl_journal, :destroy
     end
 
   end

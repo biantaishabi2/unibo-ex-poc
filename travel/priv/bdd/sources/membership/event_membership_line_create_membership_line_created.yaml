@@ -1,0 +1,5 @@
+module: MEMBERSHIP_MEMBERSHIP_LINE
+contract: MembershipLine.create event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/membership/membership.ubo.yaml
+source_summary: GIVEN 实体 MembershipLine 的动作 create 完成 / WHEN 触发事件发布 / THEN 应广播 topic `membership.line.created`

@@ -1,0 +1,7 @@
+{
+  "id": "barcode_barcode_mapping_workflow_barcode_mapping_mapping_lifecycle",
+  "module": "BARCODE_BARCODE_MAPPING",
+  "edge_class": "all",
+  "source_file": "barcode/workflow_barcode_mapping_mapping_lifecycle.yaml",
+  "source_summary": "module: BARCODE_BARCODE_MAPPING\\ncontract: BarcodeMapping.mapping_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/barcode/barcode.ubo.yaml\\nsource_summary: GIVEN 实体 BarcodeMapping 定义工作流 mapping_lifecycle / WHEN 按步骤执行 register -> update -> deactivate -> destroy / THEN 流程顺序应满足声明约束"
+}

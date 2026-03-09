@@ -1,0 +1,4 @@
+[SCENARIO: BDD-TRAVEL_TRAVEL_HOTEL-SEED-travel_travel_hotel_action_travel_hotel_create_create] TITLE: TRAVEL_TRAVEL_HOTEL contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="travel_travel_hotel_action_travel_hotel_create_create" module="TRAVEL_TRAVEL_HOTEL"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_HOTEL"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_HOTEL"

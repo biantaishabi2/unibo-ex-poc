@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HR_EMPLOYMENT_CONTRACT-SEED-hr_employment_contract_workflow_employment_contract_employment_contract_write_flow] TITLE: HR_EMPLOYMENT_CONTRACT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="hr_employment_contract_workflow_employment_contract_employment_contract_write_flow" module="HR_EMPLOYMENT_CONTRACT"
+WHEN when_execute_seed_contract module="HR_EMPLOYMENT_CONTRACT"
+THEN then_seed_contract_should_hold module="HR_EMPLOYMENT_CONTRACT"

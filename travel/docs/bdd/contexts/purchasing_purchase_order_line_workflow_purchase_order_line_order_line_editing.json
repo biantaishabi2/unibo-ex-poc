@@ -1,0 +1,7 @@
+{
+  "id": "purchasing_purchase_order_line_workflow_purchase_order_line_order_line_editing",
+  "module": "PURCHASING_PURCHASE_ORDER_LINE",
+  "edge_class": "all",
+  "source_file": "purchasing/workflow_purchase_order_line_order_line_editing.yaml",
+  "source_summary": "module: PURCHASING_PURCHASE_ORDER_LINE\\ncontract: PurchaseOrderLine.order_line_editing workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml\\nsource_summary: GIVEN 实体 PurchaseOrderLine 定义工作流 order_line_editing / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束"
+}

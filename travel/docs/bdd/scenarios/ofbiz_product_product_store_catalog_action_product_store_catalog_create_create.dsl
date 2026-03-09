@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_PRODUCT_STORE_CATALOG-SEED-ofbiz_product_product_store_catalog_action_product_store_catalog_create_create] TITLE: OFBIZ_PRODUCT_PRODUCT_STORE_CATALOG contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_product_store_catalog_action_product_store_catalog_create_create" module="OFBIZ_PRODUCT_PRODUCT_STORE_CATALOG"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_PRODUCT_STORE_CATALOG"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_PRODUCT_STORE_CATALOG"

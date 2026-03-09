@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.TaxAuthorityRateProduct do
   end
 
   graphql do
-    type :accounting_tax_authority_rate_product
+    type :ofbiz_accounting_tax_authority_rate_product
 
     queries do
-      get :get_accounting_tax_authority_rate_product, :read
-      list :list_accounting_tax_authority_rate_products, :read
+      get :get_ofbiz_accounting_tax_authority_rate_product, :read
+      list :list_ofbiz_accounting_tax_authority_rate_products, :read
     end
 
     mutations do
-      create :create_accounting_tax_authority_rate_product, :create
-      update :update_accounting_tax_authority_rate_product, :update
-      destroy :delete_accounting_tax_authority_rate_product, :destroy
+      create :create_ofbiz_accounting_tax_authority_rate_product, :create
+      update :update_ofbiz_accounting_tax_authority_rate_product, :update
+      destroy :delete_ofbiz_accounting_tax_authority_rate_product, :destroy
     end
 
   end

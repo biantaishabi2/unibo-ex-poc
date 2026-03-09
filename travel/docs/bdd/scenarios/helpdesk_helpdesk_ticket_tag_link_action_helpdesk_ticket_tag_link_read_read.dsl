@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HELPDESK_HELPDESK_TICKET_TAG_LINK-SEED-helpdesk_helpdesk_ticket_tag_link_action_helpdesk_ticket_tag_link_read_read] TITLE: HELPDESK_HELPDESK_TICKET_TAG_LINK contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="helpdesk_helpdesk_ticket_tag_link_action_helpdesk_ticket_tag_link_read_read" module="HELPDESK_HELPDESK_TICKET_TAG_LINK"
+WHEN when_execute_seed_contract module="HELPDESK_HELPDESK_TICKET_TAG_LINK"
+THEN then_seed_contract_should_hold module="HELPDESK_HELPDESK_TICKET_TAG_LINK"

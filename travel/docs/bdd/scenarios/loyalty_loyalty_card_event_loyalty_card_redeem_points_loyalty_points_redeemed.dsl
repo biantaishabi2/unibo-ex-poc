@@ -1,0 +1,4 @@
+[SCENARIO: BDD-LOYALTY_LOYALTY_CARD-SEED-loyalty_loyalty_card_event_loyalty_card_redeem_points_loyalty_points_redeemed] TITLE: LOYALTY_LOYALTY_CARD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="loyalty_loyalty_card_event_loyalty_card_redeem_points_loyalty_points_redeemed" module="LOYALTY_LOYALTY_CARD"
+WHEN when_execute_seed_contract module="LOYALTY_LOYALTY_CARD"
+THEN then_seed_contract_should_hold module="LOYALTY_LOYALTY_CARD"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SPREADSHEET_REVISION-SEED-spreadsheet_revision_action_revision_create_snapshot_create] TITLE: SPREADSHEET_REVISION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="spreadsheet_revision_action_revision_create_snapshot_create" module="SPREADSHEET_REVISION"
+WHEN when_execute_seed_contract module="SPREADSHEET_REVISION"
+THEN then_seed_contract_should_hold module="SPREADSHEET_REVISION"

@@ -1,0 +1,5 @@
+module: FLEET_FLEET_VEHICLE
+contract: FleetVehicle.update action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 FleetVehicle 的动作 update 可执行，accept=[name, license_plate, brand, model_name, model_year, odometer, fuel_type, color, seats, status, garage_id, last_odometer_update, next_service_date, fleet_vehicle_type_id]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束

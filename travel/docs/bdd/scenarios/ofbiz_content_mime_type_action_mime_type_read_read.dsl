@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_CONTENT_MIME_TYPE-SEED-ofbiz_content_mime_type_action_mime_type_read_read] TITLE: OFBIZ_CONTENT_MIME_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_content_mime_type_action_mime_type_read_read" module="OFBIZ_CONTENT_MIME_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_CONTENT_MIME_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_CONTENT_MIME_TYPE"

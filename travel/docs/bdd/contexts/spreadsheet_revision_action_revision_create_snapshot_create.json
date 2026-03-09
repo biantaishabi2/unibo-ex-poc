@@ -1,0 +1,7 @@
+{
+  "id": "spreadsheet_revision_action_revision_create_snapshot_create",
+  "module": "SPREADSHEET_REVISION",
+  "edge_class": "all",
+  "source_file": "spreadsheet/action_revision_create_snapshot_create.yaml",
+  "source_summary": "module: SPREADSHEET_REVISION\\ncontract: Revision.create_snapshot action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/spreadsheet/spreadsheet.ubo.yaml\\nsource_summary: GIVEN 实体 Revision 的动作 create_snapshot 可执行，accept=[commands]，args=[document_id:bigint!, user_id:bigint!] / WHEN 执行动作 create_snapshot / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

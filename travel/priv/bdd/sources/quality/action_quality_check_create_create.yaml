@@ -1,0 +1,5 @@
+module: QUALITY_QUALITY_CHECK
+contract: QualityCheck.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/quality/quality.ubo.yaml
+source_summary: GIVEN 实体 QualityCheck 的动作 create 可执行，accept=[check_type, qty_inspected, note, ref_type, ref_id]，args=[product_id:uuid!, company_id:uuid!, point_id:uuid, lot_id:uuid, team_id:uuid, responsible_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建检查 -> do_pass 检查通过；create 创建检查 -> do_fail 检查失败（自动创建警报）

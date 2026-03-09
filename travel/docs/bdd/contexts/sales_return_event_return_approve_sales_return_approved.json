@@ -1,0 +1,7 @@
+{
+  "id": "sales_return_event_return_approve_sales_return_approved",
+  "module": "SALES_RETURN",
+  "edge_class": "all",
+  "source_file": "sales/event_return_approve_sales_return_approved.yaml",
+  "source_summary": "module: SALES_RETURN\\ncontract: Return.approve event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/sales/sales.ubo.yaml\\nsource_summary: GIVEN 实体 Return 的动作 approve 完成 / WHEN 触发事件发布 / THEN 应广播 topic `sales.return.approved`"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "studio_custom_model_action_custom_model_archive_update",
+  "module": "STUDIO_CUSTOM_MODEL",
+  "edge_class": "all",
+  "source_file": "studio/action_custom_model_archive_update.yaml",
+  "source_summary": "module: STUDIO_CUSTOM_MODEL\\ncontract: CustomModel.archive action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/studio/studio.ubo.yaml\\nsource_summary: GIVEN 实体 CustomModel 的动作 archive 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 archive / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束"
+}

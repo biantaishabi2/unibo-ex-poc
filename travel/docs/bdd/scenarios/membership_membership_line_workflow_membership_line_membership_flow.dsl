@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MEMBERSHIP_MEMBERSHIP_LINE-SEED-membership_membership_line_workflow_membership_line_membership_flow] TITLE: MEMBERSHIP_MEMBERSHIP_LINE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="membership_membership_line_workflow_membership_line_membership_flow" module="MEMBERSHIP_MEMBERSHIP_LINE"
+WHEN when_execute_seed_contract module="MEMBERSHIP_MEMBERSHIP_LINE"
+THEN then_seed_contract_should_hold module="MEMBERSHIP_MEMBERSHIP_LINE"

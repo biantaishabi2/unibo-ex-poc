@@ -1,0 +1,7 @@
+{
+  "id": "maintenance_maintenance_schedule_action_maintenance_schedule_update_update",
+  "module": "MAINTENANCE_MAINTENANCE_SCHEDULE",
+  "edge_class": "all",
+  "source_file": "maintenance/action_maintenance_schedule_update_update.yaml",
+  "source_summary": "module: MAINTENANCE_MAINTENANCE_SCHEDULE\\ncontract: MaintenanceSchedule.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml\\nsource_summary: GIVEN 实体 MaintenanceSchedule 的动作 update 可执行，accept=[name, frequency, next_due_date, is_active, description]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

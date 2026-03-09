@@ -1,0 +1,5 @@
+module: IO_T_IO_T_BOX
+contract: IoTBox.register_box event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 IoTBox 的动作 register_box 完成 / WHEN 触发事件发布 / THEN 应广播 topic `iot.box.paired`

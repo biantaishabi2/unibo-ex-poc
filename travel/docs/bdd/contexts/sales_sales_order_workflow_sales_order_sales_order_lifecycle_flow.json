@@ -1,0 +1,7 @@
+{
+  "id": "sales_sales_order_workflow_sales_order_sales_order_lifecycle_flow",
+  "module": "SALES_SALES_ORDER",
+  "edge_class": "all",
+  "source_file": "sales/workflow_sales_order_sales_order_lifecycle_flow.yaml",
+  "source_summary": "module: SALES_SALES_ORDER\\ncontract: SalesOrder.sales_order_lifecycle_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/sales/sales.ubo.yaml\\nsource_summary: GIVEN 实体 SalesOrder 定义工作流 sales_order_lifecycle_flow / WHEN 按步骤执行 create -> action_quotation_send -> action_confirm -> create_invoices -> action_done / THEN 流程顺序应满足声明约束"
+}

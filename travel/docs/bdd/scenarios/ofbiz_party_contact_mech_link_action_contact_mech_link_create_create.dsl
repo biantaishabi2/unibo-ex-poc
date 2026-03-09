@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_CONTACT_MECH_LINK-SEED-ofbiz_party_contact_mech_link_action_contact_mech_link_create_create] TITLE: OFBIZ_PARTY_CONTACT_MECH_LINK contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_contact_mech_link_action_contact_mech_link_create_create" module="OFBIZ_PARTY_CONTACT_MECH_LINK"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_CONTACT_MECH_LINK"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_CONTACT_MECH_LINK"

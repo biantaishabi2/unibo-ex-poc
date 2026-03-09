@@ -1,0 +1,7 @@
+{
+  "id": "expenses_expense_line_action_expense_line_create_create",
+  "module": "EXPENSES_EXPENSE_LINE",
+  "edge_class": "all",
+  "source_file": "expenses/action_expense_line_create_create.yaml",
+  "source_summary": "module: EXPENSES_EXPENSE_LINE\\ncontract: ExpenseLine.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/expenses/expenses.ubo.yaml\\nsource_summary: GIVEN 实体 ExpenseLine 的动作 create 可执行，accept=[description, quantity, price_unit, expense_date, receipt_reference, payment_mode, currency_rate, analytic_distribution, notes]，args=[product_id:uuid!, employee_id:uuid!, currency_id:uuid!, tax_ids:array, category_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create -> update -> split"
+}

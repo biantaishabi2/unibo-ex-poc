@@ -1,0 +1,7 @@
+{
+  "id": "sign_sign_request_item_action_sign_request_item_sign_update",
+  "module": "SIGN_SIGN_REQUEST_ITEM",
+  "edge_class": "all",
+  "source_file": "sign/action_sign_request_item_sign_update.yaml",
+  "source_summary": "module: SIGN_SIGN_REQUEST_ITEM\\ncontract: SignRequestItem.sign action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/sign/sign.ubo.yaml\\nsource_summary: GIVEN 实体 SignRequestItem 的动作 sign 可执行，accept=[[]]，args=[signer_ip:string, latitude:float, longitude:float] / WHEN 执行动作 sign / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

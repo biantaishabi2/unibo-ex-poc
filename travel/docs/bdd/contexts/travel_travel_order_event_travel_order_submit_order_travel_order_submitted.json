@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_event_travel_order_submit_order_travel_order_submitted",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "all",
+  "source_file": "travel/event_travel_order_submit_order_travel_order_submitted.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_ORDER\\ncontract: TravelOrder.submit_order event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelOrder 的动作 submit_order 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.order.submitted`"
+}

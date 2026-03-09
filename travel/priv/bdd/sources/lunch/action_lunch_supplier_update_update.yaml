@@ -1,0 +1,5 @@
+module: LUNCH_LUNCH_SUPPLIER
+contract: LunchSupplier.update action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/lunch/lunch.ubo.yaml
+source_summary: GIVEN 实体 LunchSupplier 的动作 update 可执行，accept=[name, send_by, automatic_email_time, moment, tz, mon, tue, wed, thu, fri, sat, sun, recurrency_end_date, topping_label_1, topping_quantity_1, topping_label_2, topping_quantity_2, topping_label_3, topping_quantity_3]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束

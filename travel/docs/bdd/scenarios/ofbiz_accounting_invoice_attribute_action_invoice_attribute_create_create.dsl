@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_INVOICE_ATTRIBUTE-SEED-ofbiz_accounting_invoice_attribute_action_invoice_attribute_create_create] TITLE: OFBIZ_ACCOUNTING_INVOICE_ATTRIBUTE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_invoice_attribute_action_invoice_attribute_create_create" module="OFBIZ_ACCOUNTING_INVOICE_ATTRIBUTE"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_INVOICE_ATTRIBUTE"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_INVOICE_ATTRIBUTE"

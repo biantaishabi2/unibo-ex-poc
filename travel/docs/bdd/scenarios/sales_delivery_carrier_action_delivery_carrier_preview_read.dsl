@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SALES_DELIVERY_CARRIER-SEED-sales_delivery_carrier_action_delivery_carrier_preview_read] TITLE: SALES_DELIVERY_CARRIER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="sales_delivery_carrier_action_delivery_carrier_preview_read" module="SALES_DELIVERY_CARRIER"
+WHEN when_execute_seed_contract module="SALES_DELIVERY_CARRIER"
+THEN then_seed_contract_should_hold module="SALES_DELIVERY_CARRIER"

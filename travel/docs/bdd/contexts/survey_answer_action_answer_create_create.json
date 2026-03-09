@@ -1,0 +1,7 @@
+{
+  "id": "survey_answer_action_answer_create_create",
+  "module": "SURVEY_ANSWER",
+  "edge_class": "all",
+  "source_file": "survey/action_answer_create_create.yaml",
+  "source_summary": "module: SURVEY_ANSWER\\ncontract: Answer.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/survey/survey.ubo.yaml\\nsource_summary: GIVEN 实体 Answer 的动作 create 可执行，accept=[value, sequence, is_correct, answer_score]，args=[question_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 选项，update 修改选项文本和得分，destroy 删除选项"
+}

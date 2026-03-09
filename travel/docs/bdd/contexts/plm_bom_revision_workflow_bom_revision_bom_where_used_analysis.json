@@ -1,0 +1,7 @@
+{
+  "id": "plm_bom_revision_workflow_bom_revision_bom_where_used_analysis",
+  "module": "PLM_BOM_REVISION",
+  "edge_class": "all",
+  "source_file": "plm/workflow_bom_revision_bom_where_used_analysis.yaml",
+  "source_summary": "module: PLM_BOM_REVISION\\ncontract: BomRevision.bom_where_used_analysis workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/plm/plm.ubo.yaml\\nsource_summary: GIVEN 实体 BomRevision 定义工作流 bom_where_used_analysis / WHEN 按步骤执行 collect_component_usages -> build_recursive_bom_tree / THEN 流程顺序应满足声明约束 / 补充场景：collect_component_usages 收集组件使用 -> build_recursive_bom_tree 构建递归 BOM 树；给定零件查出引用该零件的所有 BOM（递归向上遍历）"
+}

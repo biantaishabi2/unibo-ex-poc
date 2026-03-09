@@ -1,0 +1,5 @@
+module: REPAIR_REPAIR_TICKET
+contract: RepairTicket.update action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/repair/repair.ubo.yaml
+source_summary: GIVEN 实体 RepairTicket 的动作 update 可执行，accept=[description, internal_notes, warranty_applicable, warranty_expiry_date, scheduled_date]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效

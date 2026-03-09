@@ -1,0 +1,5 @@
+module: MARKETING_EVENT_MAIL_SCHEDULE
+contract: EventMailSchedule.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 EventMailSchedule 的动作 create 可执行，accept=[interval_type, interval_nbr, interval_unit, template_ref]，args=[event_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建邮件计划 -> update 修改计划 -> destroy 删除计划

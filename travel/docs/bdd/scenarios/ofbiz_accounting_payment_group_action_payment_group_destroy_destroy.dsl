@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_PAYMENT_GROUP-SEED-ofbiz_accounting_payment_group_action_payment_group_destroy_destroy] TITLE: OFBIZ_ACCOUNTING_PAYMENT_GROUP contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_payment_group_action_payment_group_destroy_destroy" module="OFBIZ_ACCOUNTING_PAYMENT_GROUP"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_PAYMENT_GROUP"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_PAYMENT_GROUP"

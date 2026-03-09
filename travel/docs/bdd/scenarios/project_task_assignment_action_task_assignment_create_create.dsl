@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PROJECT_TASK_ASSIGNMENT-SEED-project_task_assignment_action_task_assignment_create_create] TITLE: PROJECT_TASK_ASSIGNMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="project_task_assignment_action_task_assignment_create_create" module="PROJECT_TASK_ASSIGNMENT"
+WHEN when_execute_seed_contract module="PROJECT_TASK_ASSIGNMENT"
+THEN then_seed_contract_should_hold module="PROJECT_TASK_ASSIGNMENT"

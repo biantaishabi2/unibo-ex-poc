@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_ACCTG_TRANS-SEED-ofbiz_accounting_acctg_trans_action_acctg_trans_create_create] TITLE: OFBIZ_ACCOUNTING_ACCTG_TRANS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_acctg_trans_action_acctg_trans_create_create" module="OFBIZ_ACCOUNTING_ACCTG_TRANS"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_ACCTG_TRANS"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_ACCTG_TRANS"

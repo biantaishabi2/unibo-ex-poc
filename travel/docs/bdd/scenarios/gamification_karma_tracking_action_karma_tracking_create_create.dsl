@@ -1,0 +1,4 @@
+[SCENARIO: BDD-GAMIFICATION_KARMA_TRACKING-SEED-gamification_karma_tracking_action_karma_tracking_create_create] TITLE: GAMIFICATION_KARMA_TRACKING contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="gamification_karma_tracking_action_karma_tracking_create_create" module="GAMIFICATION_KARMA_TRACKING"
+WHEN when_execute_seed_contract module="GAMIFICATION_KARMA_TRACKING"
+THEN then_seed_contract_should_hold module="GAMIFICATION_KARMA_TRACKING"

@@ -1,0 +1,7 @@
+{
+  "id": "loyalty_coupon_event_coupon_apply_loyalty_coupon_used",
+  "module": "LOYALTY_COUPON",
+  "edge_class": "all",
+  "source_file": "loyalty/event_coupon_apply_loyalty_coupon_used.yaml",
+  "source_summary": "module: LOYALTY_COUPON\\ncontract: Coupon.apply event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/loyalty/loyalty.ubo.yaml\\nsource_summary: GIVEN 实体 Coupon 的动作 apply 完成 / WHEN 触发事件发布 / THEN 应广播 topic `loyalty.coupon.used`"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ECOMMERCE_TRAVEL_CITY-SEED-ecommerce_travel_city_action_travel_city_read_read] TITLE: ECOMMERCE_TRAVEL_CITY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ecommerce_travel_city_action_travel_city_read_read" module="ECOMMERCE_TRAVEL_CITY"
+WHEN when_execute_seed_contract module="ECOMMERCE_TRAVEL_CITY"
+THEN then_seed_contract_should_hold module="ECOMMERCE_TRAVEL_CITY"

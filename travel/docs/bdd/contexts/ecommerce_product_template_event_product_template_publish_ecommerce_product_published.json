@@ -1,0 +1,7 @@
+{
+  "id": "ecommerce_product_template_event_product_template_publish_ecommerce_product_published",
+  "module": "ECOMMERCE_PRODUCT_TEMPLATE",
+  "edge_class": "all",
+  "source_file": "ecommerce/event_product_template_publish_ecommerce_product_published.yaml",
+  "source_summary": "module: ECOMMERCE_PRODUCT_TEMPLATE\\ncontract: ProductTemplate.publish event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ecommerce/ecommerce.ubo.yaml\\nsource_summary: GIVEN 实体 ProductTemplate 的动作 publish 完成 / WHEN 触发事件发布 / THEN 应广播 topic `ecommerce.product.published`"
+}

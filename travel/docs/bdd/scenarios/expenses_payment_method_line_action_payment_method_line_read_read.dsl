@@ -1,0 +1,4 @@
+[SCENARIO: BDD-EXPENSES_PAYMENT_METHOD_LINE-SEED-expenses_payment_method_line_action_payment_method_line_read_read] TITLE: EXPENSES_PAYMENT_METHOD_LINE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="expenses_payment_method_line_action_payment_method_line_read_read" module="EXPENSES_PAYMENT_METHOD_LINE"
+WHEN when_execute_seed_contract module="EXPENSES_PAYMENT_METHOD_LINE"
+THEN then_seed_contract_should_hold module="EXPENSES_PAYMENT_METHOD_LINE"

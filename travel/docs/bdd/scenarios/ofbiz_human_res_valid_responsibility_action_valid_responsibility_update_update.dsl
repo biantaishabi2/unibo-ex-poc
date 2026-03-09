@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_HUMAN_RES_VALID_RESPONSIBILITY-SEED-ofbiz_human_res_valid_responsibility_action_valid_responsibility_update_update] TITLE: OFBIZ_HUMAN_RES_VALID_RESPONSIBILITY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_human_res_valid_responsibility_action_valid_responsibility_update_update" module="OFBIZ_HUMAN_RES_VALID_RESPONSIBILITY"
+WHEN when_execute_seed_contract module="OFBIZ_HUMAN_RES_VALID_RESPONSIBILITY"
+THEN then_seed_contract_should_hold module="OFBIZ_HUMAN_RES_VALID_RESPONSIBILITY"

@@ -1,0 +1,7 @@
+{
+  "id": "manufacturing_work_order_action_work_order_pause_update",
+  "module": "MANUFACTURING_WORK_ORDER",
+  "edge_class": "all",
+  "source_file": "manufacturing/action_work_order_pause_update.yaml",
+  "source_summary": "module: MANUFACTURING_WORK_ORDER\\ncontract: WorkOrder.pause action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/manufacturing/manufacturing.ubo.yaml\\nsource_summary: GIVEN 实体 WorkOrder 的动作 pause 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 pause / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

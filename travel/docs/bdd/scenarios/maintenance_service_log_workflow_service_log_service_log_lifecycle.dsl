@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MAINTENANCE_SERVICE_LOG-SEED-maintenance_service_log_workflow_service_log_service_log_lifecycle] TITLE: MAINTENANCE_SERVICE_LOG contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="maintenance_service_log_workflow_service_log_service_log_lifecycle" module="MAINTENANCE_SERVICE_LOG"
+WHEN when_execute_seed_contract module="MAINTENANCE_SERVICE_LOG"
+THEN then_seed_contract_should_hold module="MAINTENANCE_SERVICE_LOG"

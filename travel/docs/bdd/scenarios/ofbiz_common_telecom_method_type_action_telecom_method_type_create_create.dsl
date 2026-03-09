@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_COMMON_TELECOM_METHOD_TYPE-SEED-ofbiz_common_telecom_method_type_action_telecom_method_type_create_create] TITLE: OFBIZ_COMMON_TELECOM_METHOD_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_common_telecom_method_type_action_telecom_method_type_create_create" module="OFBIZ_COMMON_TELECOM_METHOD_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_COMMON_TELECOM_METHOD_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_COMMON_TELECOM_METHOD_TYPE"

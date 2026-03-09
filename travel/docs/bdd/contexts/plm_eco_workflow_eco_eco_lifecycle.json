@@ -1,0 +1,7 @@
+{
+  "id": "plm_eco_workflow_eco_eco_lifecycle",
+  "module": "PLM_ECO",
+  "edge_class": "all",
+  "source_file": "plm/workflow_eco_eco_lifecycle.yaml",
+  "source_summary": "module: PLM_ECO\\ncontract: Eco.eco_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/plm/plm.ubo.yaml\\nsource_summary: GIVEN 实体 Eco 定义工作流 eco_lifecycle / WHEN 按步骤执行 create -> advance_stage -> apply_changes -> rebase / THEN 流程顺序应满足声明约束"
+}

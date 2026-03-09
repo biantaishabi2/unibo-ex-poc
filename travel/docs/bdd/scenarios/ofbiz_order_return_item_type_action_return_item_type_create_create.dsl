@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_RETURN_ITEM_TYPE-SEED-ofbiz_order_return_item_type_action_return_item_type_create_create] TITLE: OFBIZ_ORDER_RETURN_ITEM_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_return_item_type_action_return_item_type_create_create" module="OFBIZ_ORDER_RETURN_ITEM_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_RETURN_ITEM_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_RETURN_ITEM_TYPE"

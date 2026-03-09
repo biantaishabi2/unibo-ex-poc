@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_COMMON_PORTLET_CATEGORY-SEED-ofbiz_common_portlet_category_action_portlet_category_read_read] TITLE: OFBIZ_COMMON_PORTLET_CATEGORY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_common_portlet_category_action_portlet_category_read_read" module="OFBIZ_COMMON_PORTLET_CATEGORY"
+WHEN when_execute_seed_contract module="OFBIZ_COMMON_PORTLET_CATEGORY"
+THEN then_seed_contract_should_hold module="OFBIZ_COMMON_PORTLET_CATEGORY"

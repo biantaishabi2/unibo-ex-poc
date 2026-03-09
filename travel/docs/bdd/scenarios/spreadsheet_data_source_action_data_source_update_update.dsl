@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SPREADSHEET_DATA_SOURCE-SEED-spreadsheet_data_source_action_data_source_update_update] TITLE: SPREADSHEET_DATA_SOURCE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="spreadsheet_data_source_action_data_source_update_update" module="SPREADSHEET_DATA_SOURCE"
+WHEN when_execute_seed_contract module="SPREADSHEET_DATA_SOURCE"
+THEN then_seed_contract_should_hold module="SPREADSHEET_DATA_SOURCE"

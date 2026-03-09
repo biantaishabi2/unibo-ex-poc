@@ -1,0 +1,5 @@
+module: FLEET_VEHICLE_SERVICE
+contract: VehicleService.schedule action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 VehicleService 的动作 schedule 可执行，accept=[fleet_vehicle_id, service_type, scheduled_date, odometer_at_service, interval_quantity, interval_uom_id, vendor, notes]，args=[无显式参数] / WHEN 执行动作 schedule / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

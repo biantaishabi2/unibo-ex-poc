@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_static_code_mapping_action_travel_static_code_mapping_update_update",
+  "module": "TRAVEL_TRAVEL_STATIC_CODE_MAPPING",
+  "edge_class": "all",
+  "source_file": "travel/action_travel_static_code_mapping_update_update.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_STATIC_CODE_MAPPING\\ncontract: TravelStaticCodeMapping.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelStaticCodeMapping 的动作 update 可执行，accept=[canonical_entity, canonical_id, external_name, status]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效"
+}

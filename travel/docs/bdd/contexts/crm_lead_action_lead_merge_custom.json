@@ -1,0 +1,7 @@
+{
+  "id": "crm_lead_action_lead_merge_custom",
+  "module": "CRM_LEAD",
+  "edge_class": "all",
+  "source_file": "crm/action_lead_merge_custom.yaml",
+  "source_summary": "module: CRM_LEAD\\ncontract: Lead.merge action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/crm/crm.ubo.yaml\\nsource_summary: GIVEN 实体 Lead 的动作 merge 可执行，accept=[(未声明)]，args=[source_lead_ids:string!] / WHEN 执行动作 merge / THEN 状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：merge 合并多条线索，字段取第一个非空值，活动/日历事件迁移"
+}

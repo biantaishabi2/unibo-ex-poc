@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_INVOICE_NOTE-SEED-ofbiz_accounting_invoice_note_action_invoice_note_destroy_destroy] TITLE: OFBIZ_ACCOUNTING_INVOICE_NOTE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_invoice_note_action_invoice_note_destroy_destroy" module="OFBIZ_ACCOUNTING_INVOICE_NOTE"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_INVOICE_NOTE"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_INVOICE_NOTE"

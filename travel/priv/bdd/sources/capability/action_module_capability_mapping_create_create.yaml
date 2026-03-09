@@ -1,0 +1,5 @@
+module: CAPABILITY_MODULE_CAPABILITY_MAPPING
+contract: ModuleCapabilityMapping.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/capability/capability.ubo.yaml
+source_summary: GIVEN 实体 ModuleCapabilityMapping 的动作 create 可执行，accept=[mapping_role, rationale]，args=[business_module_id:uuid!, capability_id:uuid!] / WHEN 执行动作 create / THEN 状态变更与副作用应生效 / 补充场景：create 将 quality 绑定到 quality_runtime_sla -> create 将 purchasing、sales、delivery 绑定到对应能力

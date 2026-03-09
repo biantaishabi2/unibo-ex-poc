@@ -1,0 +1,7 @@
+{
+  "id": "rental_rental_pricing_workflow_rental_pricing_rental_pricing_maintain_flow",
+  "module": "RENTAL_RENTAL_PRICING",
+  "edge_class": "all",
+  "source_file": "rental/workflow_rental_pricing_rental_pricing_maintain_flow.yaml",
+  "source_summary": "module: RENTAL_RENTAL_PRICING\\ncontract: RentalPricing.rental_pricing_maintain_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/rental/rental.ubo.yaml\\nsource_summary: GIVEN 实体 RentalPricing 定义工作流 rental_pricing_maintain_flow / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束"
+}

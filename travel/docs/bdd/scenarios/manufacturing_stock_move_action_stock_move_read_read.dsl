@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MANUFACTURING_STOCK_MOVE-SEED-manufacturing_stock_move_action_stock_move_read_read] TITLE: MANUFACTURING_STOCK_MOVE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="manufacturing_stock_move_action_stock_move_read_read" module="MANUFACTURING_STOCK_MOVE"
+WHEN when_execute_seed_contract module="MANUFACTURING_STOCK_MOVE"
+THEN then_seed_contract_should_hold module="MANUFACTURING_STOCK_MOVE"

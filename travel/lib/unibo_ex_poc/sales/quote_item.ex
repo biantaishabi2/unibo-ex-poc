@@ -97,13 +97,11 @@ defmodule UniboExPoc.Sales.QuoteItem do
       argument :quote_id, :uuid, allow_nil?: false
       change manage_relationship(:quote_id, :quote, type: :append, on_lookup: :relate)
       change set_attribute(:line_amount, expr((quantity * quote_unit_price)))
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:quantity, :quote_unit_price, :comments, :estimated_delivery_date, :seq_id, :is_promo, :lead_time_days]
       change set_attribute(:line_amount, expr((quantity * quote_unit_price)))
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

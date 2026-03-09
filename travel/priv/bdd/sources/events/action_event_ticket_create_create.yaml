@@ -1,0 +1,5 @@
+module: EVENTS_EVENT_TICKET
+contract: EventTicket.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/events/events.ubo.yaml
+source_summary: GIVEN 实体 EventTicket 的动作 create 可执行，accept=[event_id, name, description, price, currency_id, quantity, sales_start, sales_end, max_per_order]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create -> destroy（删除未售出的票种）

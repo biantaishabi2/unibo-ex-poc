@@ -1,0 +1,7 @@
+{
+  "id": "inventory_stock_move_line_action_stock_move_line_create_create",
+  "module": "INVENTORY_STOCK_MOVE_LINE",
+  "edge_class": "all",
+  "source_file": "inventory/action_stock_move_line_create_create.yaml",
+  "source_summary": "module: INVENTORY_STOCK_MOVE_LINE\\ncontract: StockMoveLine.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/inventory/inventory.ubo.yaml\\nsource_summary: GIVEN 实体 StockMoveLine 的动作 create 可执行，accept=[product_id, product_uom_id, lot_name, quantity, reserved_uom_qty]，args=[move_id:uuid, source_location_id:uuid!, dest_location_id:uuid!, lot_id:uuid, package_id:uuid, result_package_id:uuid, owner_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 移动明细行，update 修改实际操作数量和批次"
+}

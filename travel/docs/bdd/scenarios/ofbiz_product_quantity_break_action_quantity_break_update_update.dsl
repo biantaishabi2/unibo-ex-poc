@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_QUANTITY_BREAK-SEED-ofbiz_product_quantity_break_action_quantity_break_update_update] TITLE: OFBIZ_PRODUCT_QUANTITY_BREAK contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_quantity_break_action_quantity_break_update_update" module="OFBIZ_PRODUCT_QUANTITY_BREAK"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_QUANTITY_BREAK"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_QUANTITY_BREAK"

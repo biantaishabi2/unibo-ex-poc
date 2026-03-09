@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_CONTENT_DATA_CATEGORY-SEED-ofbiz_content_data_category_action_data_category_destroy_destroy] TITLE: OFBIZ_CONTENT_DATA_CATEGORY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_content_data_category_action_data_category_destroy_destroy" module="OFBIZ_CONTENT_DATA_CATEGORY"
+WHEN when_execute_seed_contract module="OFBIZ_CONTENT_DATA_CATEGORY"
+THEN then_seed_contract_should_hold module="OFBIZ_CONTENT_DATA_CATEGORY"

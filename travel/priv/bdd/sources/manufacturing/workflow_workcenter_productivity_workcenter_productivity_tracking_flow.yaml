@@ -1,0 +1,5 @@
+module: MANUFACTURING_WORKCENTER_PRODUCTIVITY
+contract: WorkcenterProductivity.workcenter_productivity_tracking_flow workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 WorkcenterProductivity 定义工作流 workcenter_productivity_tracking_flow / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束

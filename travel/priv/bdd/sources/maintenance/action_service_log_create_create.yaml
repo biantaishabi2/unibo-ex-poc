@@ -1,0 +1,5 @@
+module: MAINTENANCE_SERVICE_LOG
+contract: ServiceLog.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 ServiceLog 的动作 create 可执行，accept=[amount, odometer_value, date, invoice_ref, notes]，args=[vehicle_id:uuid!, service_type_id:uuid!] / WHEN 执行动作 create / THEN 状态变更与副作用应生效，应符合工作流步骤约束

@@ -1,0 +1,7 @@
+{
+  "id": "io_t_voicemail_event_voicemail_transcribe_voip_voicemail_transcribed",
+  "module": "IO_T_VOICEMAIL",
+  "edge_class": "all",
+  "source_file": "io_t/event_voicemail_transcribe_voip_voicemail_transcribed.yaml",
+  "source_summary": "module: IO_T_VOICEMAIL\\ncontract: Voicemail.transcribe event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml\\nsource_summary: GIVEN 实体 Voicemail 的动作 transcribe 完成 / WHEN 触发事件发布 / THEN 应广播 topic `voip.voicemail.transcribed`"
+}

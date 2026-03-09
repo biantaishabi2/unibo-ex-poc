@@ -1,0 +1,7 @@
+{
+  "id": "ecommerce_travel_airport_action_travel_airport_update_update",
+  "module": "ECOMMERCE_TRAVEL_AIRPORT",
+  "edge_class": "all",
+  "source_file": "ecommerce/action_travel_airport_update_update.yaml",
+  "source_summary": "module: ECOMMERCE_TRAVEL_AIRPORT\\ncontract: TravelAirport.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ecommerce/ecommerce.ubo.yaml\\nsource_summary: GIVEN 实体 TravelAirport 的动作 update 可执行，accept=[airport_name, city_id, city_code, iata_code, icao_code, geo_id, status]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效"
+}

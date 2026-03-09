@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_BILLING_ACCOUNT-SEED-accounting_billing_account_workflow_billing_account_billing_account_lifecycle] TITLE: ACCOUNTING_BILLING_ACCOUNT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="accounting_billing_account_workflow_billing_account_billing_account_lifecycle" module="ACCOUNTING_BILLING_ACCOUNT"
+WHEN when_execute_seed_contract module="ACCOUNTING_BILLING_ACCOUNT"
+THEN then_seed_contract_should_hold module="ACCOUNTING_BILLING_ACCOUNT"

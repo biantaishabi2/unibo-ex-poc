@@ -1,0 +1,7 @@
+{
+  "id": "crm_lead_workflow_lead_lead_lifecycle",
+  "module": "CRM_LEAD",
+  "edge_class": "all",
+  "source_file": "crm/workflow_lead_lead_lifecycle.yaml",
+  "source_summary": "module: CRM_LEAD\\ncontract: Lead.lead_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/crm/crm.ubo.yaml\\nsource_summary: GIVEN 实体 Lead 定义工作流 lead_lifecycle / WHEN 按步骤执行 create -> convert_opportunity -> win -> lose -> assign_salesperson -> merge / THEN 流程顺序应满足声明约束"
+}

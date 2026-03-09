@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_COMMON_CUSTOM_METHOD-SEED-ofbiz_common_custom_method_action_custom_method_destroy_destroy] TITLE: OFBIZ_COMMON_CUSTOM_METHOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_common_custom_method_action_custom_method_destroy_destroy" module="OFBIZ_COMMON_CUSTOM_METHOD"
+WHEN when_execute_seed_contract module="OFBIZ_COMMON_CUSTOM_METHOD"
+THEN then_seed_contract_should_hold module="OFBIZ_COMMON_CUSTOM_METHOD"

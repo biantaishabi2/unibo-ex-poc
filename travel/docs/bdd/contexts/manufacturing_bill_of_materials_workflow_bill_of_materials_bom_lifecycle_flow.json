@@ -1,0 +1,7 @@
+{
+  "id": "manufacturing_bill_of_materials_workflow_bill_of_materials_bom_lifecycle_flow",
+  "module": "MANUFACTURING_BILL_OF_MATERIALS",
+  "edge_class": "all",
+  "source_file": "manufacturing/workflow_bill_of_materials_bom_lifecycle_flow.yaml",
+  "source_summary": "module: MANUFACTURING_BILL_OF_MATERIALS\\ncontract: BillOfMaterials.bom_lifecycle_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/manufacturing/manufacturing.ubo.yaml\\nsource_summary: GIVEN 实体 BillOfMaterials 定义工作流 bom_lifecycle_flow / WHEN 按步骤执行 create -> update -> activate -> obsolete / THEN 流程顺序应满足声明约束"
+}

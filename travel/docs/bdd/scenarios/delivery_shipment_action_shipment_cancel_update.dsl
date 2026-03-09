@@ -1,0 +1,4 @@
+[SCENARIO: BDD-DELIVERY_SHIPMENT-SEED-delivery_shipment_action_shipment_cancel_update] TITLE: DELIVERY_SHIPMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="delivery_shipment_action_shipment_cancel_update" module="DELIVERY_SHIPMENT"
+WHEN when_execute_seed_contract module="DELIVERY_SHIPMENT"
+THEN then_seed_contract_should_hold module="DELIVERY_SHIPMENT"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-LUNCH_LUNCH_CASH_MOVE-SEED-lunch_lunch_cash_move_workflow_lunch_cash_move_cashmove_management] TITLE: LUNCH_LUNCH_CASH_MOVE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="lunch_lunch_cash_move_workflow_lunch_cash_move_cashmove_management" module="LUNCH_LUNCH_CASH_MOVE"
+WHEN when_execute_seed_contract module="LUNCH_LUNCH_CASH_MOVE"
+THEN then_seed_contract_should_hold module="LUNCH_LUNCH_CASH_MOVE"

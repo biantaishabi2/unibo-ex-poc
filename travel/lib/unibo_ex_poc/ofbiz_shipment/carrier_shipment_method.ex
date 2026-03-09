@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Shipment.CarrierShipmentMethod do
   end
 
   graphql do
-    type :shipment_carrier_shipment_method
+    type :ofbiz_shipment_carrier_shipment_method
 
     queries do
-      get :get_shipment_carrier_shipment_method, :read
-      list :list_shipment_carrier_shipment_methods, :read
+      get :get_ofbiz_shipment_carrier_shipment_method, :read
+      list :list_ofbiz_shipment_carrier_shipment_methods, :read
     end
 
     mutations do
-      create :create_shipment_carrier_shipment_method, :create
-      update :update_shipment_carrier_shipment_method, :update
-      destroy :delete_shipment_carrier_shipment_method, :destroy
+      create :create_ofbiz_shipment_carrier_shipment_method, :create
+      update :update_ofbiz_shipment_carrier_shipment_method, :update
+      destroy :delete_ofbiz_shipment_carrier_shipment_method, :destroy
     end
 
   end

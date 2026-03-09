@@ -1,0 +1,7 @@
+{
+  "id": "project_project_event_project_archive_project_archived",
+  "module": "PROJECT_PROJECT",
+  "edge_class": "all",
+  "source_file": "project/event_project_archive_project_archived.yaml",
+  "source_summary": "module: PROJECT_PROJECT\\ncontract: Project.archive event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/project/project.ubo.yaml\\nsource_summary: GIVEN 实体 Project 的动作 archive 完成 / WHEN 触发事件发布 / THEN 应广播 topic `project.archived`"
+}

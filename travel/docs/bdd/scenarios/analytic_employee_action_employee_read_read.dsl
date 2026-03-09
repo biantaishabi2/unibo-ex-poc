@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ANALYTIC_EMPLOYEE-SEED-analytic_employee_action_employee_read_read] TITLE: ANALYTIC_EMPLOYEE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="analytic_employee_action_employee_read_read" module="ANALYTIC_EMPLOYEE"
+WHEN when_execute_seed_contract module="ANALYTIC_EMPLOYEE"
+THEN then_seed_contract_should_hold module="ANALYTIC_EMPLOYEE"

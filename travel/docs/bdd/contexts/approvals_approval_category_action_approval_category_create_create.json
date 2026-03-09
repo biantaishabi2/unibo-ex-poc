@@ -1,0 +1,7 @@
+{
+  "id": "approvals_approval_category_action_approval_category_create_create",
+  "module": "APPROVALS_APPROVAL_CATEGORY",
+  "edge_class": "all",
+  "source_file": "approvals/action_approval_category_create_create.yaml",
+  "source_summary": "module: APPROVALS_APPROVAL_CATEGORY\\ncontract: ApprovalCategory.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/approvals/approvals.ubo.yaml\\nsource_summary: GIVEN 实体 ApprovalCategory 的动作 create 可执行，accept=[name, description, sequence_code, automated_sequence, approval_minimum, manager_approval, exclusive_user, requester_document, field_config, approval_mode, routing_rules, escalation_config]，args=[company_id:integer!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 审批类型，update 修改审批规则，deactivate 停用"
+}

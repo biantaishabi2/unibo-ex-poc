@@ -1,0 +1,7 @@
+{
+  "id": "maintenance_vehicle_model_action_vehicle_model_update_update",
+  "module": "MAINTENANCE_VEHICLE_MODEL",
+  "edge_class": "all",
+  "source_file": "maintenance/action_vehicle_model_update_update.yaml",
+  "source_summary": "module: MAINTENANCE_VEHICLE_MODEL\\ncontract: VehicleModel.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml\\nsource_summary: GIVEN 实体 VehicleModel 的动作 update 可执行，accept=[name, vehicle_type, transmission, model_year, electric_assistance, color, seats, doors, trailer_hook, co2, co2_standard, fuel_type, power, horsepower, horsepower_tax]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

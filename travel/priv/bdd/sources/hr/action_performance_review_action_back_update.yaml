@@ -1,0 +1,5 @@
+module: HR_PERFORMANCE_REVIEW
+contract: PerformanceReview.action_back action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/hr/hr.ubo.yaml
+source_summary: GIVEN 实体 PerformanceReview 的动作 action_back 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 action_back / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 后 action_cancel，再 action_back 恢复并重新 action_confirm

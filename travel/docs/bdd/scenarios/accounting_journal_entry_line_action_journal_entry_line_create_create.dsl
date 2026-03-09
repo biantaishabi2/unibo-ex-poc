@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_JOURNAL_ENTRY_LINE-SEED-accounting_journal_entry_line_action_journal_entry_line_create_create] TITLE: ACCOUNTING_JOURNAL_ENTRY_LINE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="accounting_journal_entry_line_action_journal_entry_line_create_create" module="ACCOUNTING_JOURNAL_ENTRY_LINE"
+WHEN when_execute_seed_contract module="ACCOUNTING_JOURNAL_ENTRY_LINE"
+THEN then_seed_contract_should_hold module="ACCOUNTING_JOURNAL_ENTRY_LINE"

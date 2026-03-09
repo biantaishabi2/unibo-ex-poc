@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFeature do
   end
 
   graphql do
-    type :product_product_feature
+    type :ofbiz_product_product_feature
 
     queries do
-      get :get_product_product_feature, :read
-      list :list_product_product_features, :read
+      get :get_ofbiz_product_product_feature, :read
+      list :list_ofbiz_product_product_features, :read
     end
 
     mutations do
-      create :create_product_product_feature, :create
-      update :update_product_product_feature, :update
-      destroy :delete_product_product_feature, :destroy
+      create :create_ofbiz_product_product_feature, :create
+      update :update_ofbiz_product_product_feature, :update
+      destroy :delete_ofbiz_product_product_feature, :destroy
     end
 
   end

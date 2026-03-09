@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_GOOD_IDENTIFICATION-SEED-ofbiz_product_good_identification_action_good_identification_create_create] TITLE: OFBIZ_PRODUCT_GOOD_IDENTIFICATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_good_identification_action_good_identification_create_create" module="OFBIZ_PRODUCT_GOOD_IDENTIFICATION"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_GOOD_IDENTIFICATION"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_GOOD_IDENTIFICATION"

@@ -1,0 +1,7 @@
+{
+  "id": "documents_share_action_share_access_read",
+  "module": "DOCUMENTS_SHARE",
+  "edge_class": "all",
+  "source_file": "documents/action_share_access_read.yaml",
+  "source_summary": "module: DOCUMENTS_SHARE\\ncontract: Share.access action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/documents/documents.ubo.yaml\\nsource_summary: GIVEN 实体 Share 的动作 access 可执行，accept=[(未声明)]，args=[access_token:string!] / WHEN 执行动作 access / THEN 读取结果应符合查询语义"
+}

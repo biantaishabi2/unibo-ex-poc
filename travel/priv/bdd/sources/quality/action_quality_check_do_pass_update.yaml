@@ -1,0 +1,5 @@
+module: QUALITY_QUALITY_CHECK
+contract: QualityCheck.do_pass action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/quality/quality.ubo.yaml
+source_summary: GIVEN 实体 QualityCheck 的动作 do_pass 可执行，accept=[measure_value, picture, worksheet_data, note]，args=[无显式参数] / WHEN 执行动作 do_pass / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束

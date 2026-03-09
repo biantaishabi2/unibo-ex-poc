@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_ROLE_TYPE-SEED-ofbiz_party_role_type_action_role_type_update_update] TITLE: OFBIZ_PARTY_ROLE_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_role_type_action_role_type_update_update" module="OFBIZ_PARTY_ROLE_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_ROLE_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_ROLE_TYPE"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MANUFACTURING_BOM_LINE-SEED-manufacturing_bom_line_action_bom_line_update_update] TITLE: MANUFACTURING_BOM_LINE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="manufacturing_bom_line_action_bom_line_update_update" module="MANUFACTURING_BOM_LINE"
+WHEN when_execute_seed_contract module="MANUFACTURING_BOM_LINE"
+THEN then_seed_contract_should_hold module="MANUFACTURING_BOM_LINE"

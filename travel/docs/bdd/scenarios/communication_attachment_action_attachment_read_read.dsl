@@ -1,0 +1,4 @@
+[SCENARIO: BDD-COMMUNICATION_ATTACHMENT-SEED-communication_attachment_action_attachment_read_read] TITLE: COMMUNICATION_ATTACHMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="communication_attachment_action_attachment_read_read" module="COMMUNICATION_ATTACHMENT"
+WHEN when_execute_seed_contract module="COMMUNICATION_ATTACHMENT"
+THEN then_seed_contract_should_hold module="COMMUNICATION_ATTACHMENT"

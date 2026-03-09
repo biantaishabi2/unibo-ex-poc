@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SECURITY_USER_LOGIN_HISTORY-SEED-ofbiz_security_user_login_history_action_user_login_history_create_create] TITLE: OFBIZ_SECURITY_USER_LOGIN_HISTORY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_security_user_login_history_action_user_login_history_create_create" module="OFBIZ_SECURITY_USER_LOGIN_HISTORY"
+WHEN when_execute_seed_contract module="OFBIZ_SECURITY_USER_LOGIN_HISTORY"
+THEN then_seed_contract_should_hold module="OFBIZ_SECURITY_USER_LOGIN_HISTORY"

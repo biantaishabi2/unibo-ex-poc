@@ -1,0 +1,7 @@
+{
+  "id": "ecommerce_shopping_cart_action_shopping_cart_cart_update_update",
+  "module": "ECOMMERCE_SHOPPING_CART",
+  "edge_class": "all",
+  "source_file": "ecommerce/action_shopping_cart_cart_update_update.yaml",
+  "source_summary": "module: ECOMMERCE_SHOPPING_CART\\ncontract: ShoppingCart.cart_update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ecommerce/ecommerce.ubo.yaml\\nsource_summary: GIVEN 实体 ShoppingCart 的动作 cart_update 可执行，accept=[[]]，args=[product_id:uuid!, quantity:integer!, attributes_json:text] / WHEN 执行动作 cart_update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建购物车，cart_update 加购商品，select_carrier 选择物流，convert 转为订单；cart_update 加购后 update_pricelist 切换价格表重算价格；弃购购物车通过 recover 恢复后继续 cart_update 和 convert"
+}

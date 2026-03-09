@@ -1,0 +1,5 @@
+module: IO_T_VO_IP_CALL
+contract: VoIPCall.update action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 VoIPCall 的动作 update 可执行，accept=[notes, tags, linked_contact_id, linked_lead_id, linked_ticket_id, linked_model, linked_record_id]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

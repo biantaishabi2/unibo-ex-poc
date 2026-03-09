@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_CART_ABANDONED_LINE-SEED-ofbiz_order_cart_abandoned_line_action_cart_abandoned_line_destroy_destroy] TITLE: OFBIZ_ORDER_CART_ABANDONED_LINE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_cart_abandoned_line_action_cart_abandoned_line_destroy_destroy" module="OFBIZ_ORDER_CART_ABANDONED_LINE"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_CART_ABANDONED_LINE"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_CART_ABANDONED_LINE"

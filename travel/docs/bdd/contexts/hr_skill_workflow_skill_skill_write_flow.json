@@ -1,0 +1,7 @@
+{
+  "id": "hr_skill_workflow_skill_skill_write_flow",
+  "module": "HR_SKILL",
+  "edge_class": "all",
+  "source_file": "hr/workflow_skill_skill_write_flow.yaml",
+  "source_summary": "module: HR_SKILL\\ncontract: Skill.skill_write_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/hr/hr.ubo.yaml\\nsource_summary: GIVEN 实体 Skill 定义工作流 skill_write_flow / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束"
+}

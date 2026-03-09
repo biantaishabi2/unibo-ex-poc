@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PROJECT_TASK_DEPENDENCY-SEED-project_task_dependency_workflow_task_dependency_task_dependency_write_flow] TITLE: PROJECT_TASK_DEPENDENCY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="project_task_dependency_workflow_task_dependency_task_dependency_write_flow" module="PROJECT_TASK_DEPENDENCY"
+WHEN when_execute_seed_contract module="PROJECT_TASK_DEPENDENCY"
+THEN then_seed_contract_should_hold module="PROJECT_TASK_DEPENDENCY"

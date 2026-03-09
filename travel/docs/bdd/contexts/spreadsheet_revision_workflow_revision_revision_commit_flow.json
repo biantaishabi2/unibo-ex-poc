@@ -1,0 +1,7 @@
+{
+  "id": "spreadsheet_revision_workflow_revision_revision_commit_flow",
+  "module": "SPREADSHEET_REVISION",
+  "edge_class": "all",
+  "source_file": "spreadsheet/workflow_revision_revision_commit_flow.yaml",
+  "source_summary": "module: SPREADSHEET_REVISION\\ncontract: Revision.revision_commit_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/spreadsheet/spreadsheet.ubo.yaml\\nsource_summary: GIVEN 实体 Revision 定义工作流 revision_commit_flow / WHEN 按步骤执行 create_snapshot -> apply_revision / THEN 流程顺序应满足声明约束"
+}

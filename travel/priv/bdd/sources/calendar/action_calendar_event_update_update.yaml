@@ -1,0 +1,5 @@
+module: CALENDAR_CALENDAR_EVENT
+contract: CalendarEvent.update action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 CalendarEvent 的动作 update 可执行，accept=[title, description, status, purpose, scope, priority, show_as, location, start_datetime, end_datetime, send_notification, recurrence_rule, all_day, reminder_minutes, video_call_url, color, percent_complete, calendar_id, work_schedule_id]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束

@@ -12,6 +12,7 @@ defmodule UniboExPoc.Travel.TravelStaticCodeMapping do
   postgres do
     table "travel_static_code_mappings"
     repo UniboExPoc.Repo
+    identity_index_names unique_supplier_static_code: "idx_travel_static_code_mappings_unique_supplier_static_code"
   end
 
   graphql do
@@ -73,12 +74,10 @@ defmodule UniboExPoc.Travel.TravelStaticCodeMapping do
     create :create do
       primary? true
       accept [:supplier_code, :object_type, :canonical_entity, :canonical_id, :external_code, :external_name, :status]
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:canonical_entity, :canonical_id, :external_name, :status]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

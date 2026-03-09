@@ -1,0 +1,5 @@
+module: E_LEARNING_SLIDE
+contract: Slide.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Slide 的动作 create 可执行，accept=[name, slide_category, is_category, sequence, is_preview, html_content, url, completion_time]，args=[channel_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 创建文章类型 Slide，update 修改内容，publish 发布；create 创建视频类型 Slide（url），publish 发布，unpublish 取消发布；create 创建章节标题（is_category=true）；create html_content 和 url 同时存在时校验失败

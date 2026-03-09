@@ -1,0 +1,5 @@
+module: TRAVEL_TRAIN_OFFER
+contract: TrainOffer.train_offer_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TrainOffer 定义工作流 train_offer_lifecycle / WHEN 按步骤执行 create -> update -> activate -> deactivate -> expire -> destroy / THEN 流程顺序应满足声明约束

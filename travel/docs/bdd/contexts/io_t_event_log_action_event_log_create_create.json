@@ -1,0 +1,7 @@
+{
+  "id": "io_t_event_log_action_event_log_create_create",
+  "module": "IO_T_EVENT_LOG",
+  "edge_class": "all",
+  "source_file": "io_t/action_event_log_create_create.yaml",
+  "source_summary": "module: IO_T_EVENT_LOG\\ncontract: EventLog.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml\\nsource_summary: GIVEN 实体 EventLog 的动作 create 可执行，accept=[device_id, box_id, event_type, payload]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create -> mark_processed；每次设备事件到达；清理 30 天前已处理日志"
+}

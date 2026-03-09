@@ -1,0 +1,7 @@
+{
+  "id": "events_event_registration_event_event_registration_check_in_events_registration_checked_in",
+  "module": "EVENTS_EVENT_REGISTRATION",
+  "edge_class": "all",
+  "source_file": "events/event_event_registration_check_in_events_registration_checked_in.yaml",
+  "source_summary": "module: EVENTS_EVENT_REGISTRATION\\ncontract: EventRegistration.check_in event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/events/events.ubo.yaml\\nsource_summary: GIVEN 实体 EventRegistration 的动作 check_in 完成 / WHEN 触发事件发布 / THEN 应广播 topic `events.registration.checked_in`"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "io_t_io_t_box_event_io_t_box_heartbeat_timeout_iot_box_offline",
+  "module": "IO_T_IO_T_BOX",
+  "edge_class": "all",
+  "source_file": "io_t/event_io_t_box_heartbeat_timeout_iot_box_offline.yaml",
+  "source_summary": "module: IO_T_IO_T_BOX\\ncontract: IoTBox.heartbeat_timeout event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml\\nsource_summary: GIVEN 实体 IoTBox 的动作 heartbeat_timeout 完成 / WHEN 触发事件发布 / THEN 应广播 topic `iot.box.offline`"
+}

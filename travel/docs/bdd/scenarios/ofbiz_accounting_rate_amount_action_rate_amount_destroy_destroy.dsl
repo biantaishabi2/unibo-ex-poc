@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_RATE_AMOUNT-SEED-ofbiz_accounting_rate_amount_action_rate_amount_destroy_destroy] TITLE: OFBIZ_ACCOUNTING_RATE_AMOUNT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_rate_amount_action_rate_amount_destroy_destroy" module="OFBIZ_ACCOUNTING_RATE_AMOUNT"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_RATE_AMOUNT"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_RATE_AMOUNT"

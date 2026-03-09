@@ -1,0 +1,7 @@
+{
+  "id": "maintenance_maintenance_team_member_link_action_maintenance_team_member_link_read_read",
+  "module": "MAINTENANCE_MAINTENANCE_TEAM_MEMBER_LINK",
+  "edge_class": "all",
+  "source_file": "maintenance/action_maintenance_team_member_link_read_read.yaml",
+  "source_summary": "module: MAINTENANCE_MAINTENANCE_TEAM_MEMBER_LINK\\ncontract: MaintenanceTeamMemberLink.read action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml\\nsource_summary: GIVEN 实体 MaintenanceTeamMemberLink 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 读取结果应符合查询语义"
+}

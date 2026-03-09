@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_HUMAN_RES_UNEMPLOYMENT_CLAIM-SEED-ofbiz_human_res_unemployment_claim_action_unemployment_claim_update_update] TITLE: OFBIZ_HUMAN_RES_UNEMPLOYMENT_CLAIM contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_human_res_unemployment_claim_action_unemployment_claim_update_update" module="OFBIZ_HUMAN_RES_UNEMPLOYMENT_CLAIM"
+WHEN when_execute_seed_contract module="OFBIZ_HUMAN_RES_UNEMPLOYMENT_CLAIM"
+THEN then_seed_contract_should_hold module="OFBIZ_HUMAN_RES_UNEMPLOYMENT_CLAIM"

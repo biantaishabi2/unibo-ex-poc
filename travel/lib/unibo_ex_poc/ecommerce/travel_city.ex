@@ -12,6 +12,7 @@ defmodule UniboExPoc.Ecommerce.TravelCity do
   postgres do
     table "ecommerce_travel_cities"
     repo UniboExPoc.Repo
+    identity_index_names unique_city_code: "idx_ecommerce_travel_cities_unique_city_code"
   end
 
   graphql do
@@ -61,12 +62,10 @@ defmodule UniboExPoc.Ecommerce.TravelCity do
     create :create do
       primary? true
       accept [:city_code, :city_name, :country_code, :geo_id, :status]
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:city_name, :country_code, :geo_id, :status]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

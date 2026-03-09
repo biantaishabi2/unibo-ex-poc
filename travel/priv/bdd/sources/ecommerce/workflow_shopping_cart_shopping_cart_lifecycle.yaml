@@ -1,0 +1,5 @@
+module: ECOMMERCE_SHOPPING_CART
+contract: ShoppingCart.shopping_cart_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 ShoppingCart 定义工作流 shopping_cart_lifecycle / WHEN 按步骤执行 create -> update -> cart_update -> update_pricelist -> select_carrier -> convert -> recover / THEN 流程顺序应满足声明约束

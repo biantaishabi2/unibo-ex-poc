@@ -1,0 +1,7 @@
+{
+  "id": "plm_eco_event_eco_create_plm_eco_created",
+  "module": "PLM_ECO",
+  "edge_class": "all",
+  "source_file": "plm/event_eco_create_plm_eco_created.yaml",
+  "source_summary": "module: PLM_ECO\\ncontract: Eco.create event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/plm/plm.ubo.yaml\\nsource_summary: GIVEN 实体 Eco 的动作 create 完成 / WHEN 触发事件发布 / THEN 应广播 topic `plm.eco.created`"
+}

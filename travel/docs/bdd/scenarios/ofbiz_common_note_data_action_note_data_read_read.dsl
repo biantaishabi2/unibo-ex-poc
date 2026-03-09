@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_COMMON_NOTE_DATA-SEED-ofbiz_common_note_data_action_note_data_read_read] TITLE: OFBIZ_COMMON_NOTE_DATA contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_common_note_data_action_note_data_read_read" module="OFBIZ_COMMON_NOTE_DATA"
+WHEN when_execute_seed_contract module="OFBIZ_COMMON_NOTE_DATA"
+THEN then_seed_contract_should_hold module="OFBIZ_COMMON_NOTE_DATA"

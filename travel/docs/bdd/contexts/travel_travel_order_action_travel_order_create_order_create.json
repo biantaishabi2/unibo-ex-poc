@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_action_travel_order_create_order_create",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "all",
+  "source_file": "travel/action_travel_order_create_order_create.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_ORDER\\ncontract: TravelOrder.create_order action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelOrder 的动作 create_order 可执行，accept=[tenant_id, host_shop_id, hotel_offer_id, flight_offer_id, vacation_offer_id, train_offer_id, order_no, product_type, customer_id, contact_name, contact_phone, traveler_count, total_amount, points_to_use, points_deduction_amount, currency, ticket_passenger_infos, seat_selection_snapshot]，args=[无显式参数] / WHEN 执行动作 create_order / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create_order 创建订单 -> update 更新联系人和出行人数量 -> destroy 删除草稿"
+}

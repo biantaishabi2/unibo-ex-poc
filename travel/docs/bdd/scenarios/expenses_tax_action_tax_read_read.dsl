@@ -1,0 +1,4 @@
+[SCENARIO: BDD-EXPENSES_TAX-SEED-expenses_tax_action_tax_read_read] TITLE: EXPENSES_TAX contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="expenses_tax_action_tax_read_read" module="EXPENSES_TAX"
+WHEN when_execute_seed_contract module="EXPENSES_TAX"
+THEN then_seed_contract_should_hold module="EXPENSES_TAX"

@@ -1,0 +1,7 @@
+{
+  "id": "crm_activity_action_activity_create_create",
+  "module": "CRM_ACTIVITY",
+  "edge_class": "all",
+  "source_file": "crm/action_activity_create_create.yaml",
+  "source_summary": "module: CRM_ACTIVITY\\ncontract: Activity.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/crm/crm.ubo.yaml\\nsource_summary: GIVEN 实体 Activity 的动作 create 可执行，accept=[activity_type, subject, description, activity_date, date_deadline, duration_minutes]，args=[contact_id:uuid, lead_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 带 date_deadline 的活动，驱动 Lead kanban_state 变化"
+}

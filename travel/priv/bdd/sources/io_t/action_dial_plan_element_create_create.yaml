@@ -1,0 +1,5 @@
+module: IO_T_DIAL_PLAN_ELEMENT
+contract: DialPlanElement.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 DialPlanElement 的动作 create 可执行，accept=[dial_plan_id, element_type, position, config, config_schema_version, next_element_id, timeout_seconds, is_terminal]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create -> update -> reorder -> destroy

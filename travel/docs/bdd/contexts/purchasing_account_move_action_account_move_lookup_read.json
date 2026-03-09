@@ -1,0 +1,7 @@
+{
+  "id": "purchasing_account_move_action_account_move_lookup_read",
+  "module": "PURCHASING_ACCOUNT_MOVE",
+  "edge_class": "all",
+  "source_file": "purchasing/action_account_move_lookup_read.yaml",
+  "source_summary": "module: PURCHASING_ACCOUNT_MOVE\\ncontract: AccountMove.lookup action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml\\nsource_summary: GIVEN 实体 AccountMove 的动作 lookup 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 lookup / THEN 读取结果应符合查询语义"
+}

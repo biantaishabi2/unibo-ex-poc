@@ -1,0 +1,7 @@
+{
+  "id": "project_task_event_task_complete_project_task_completed",
+  "module": "PROJECT_TASK",
+  "edge_class": "all",
+  "source_file": "project/event_task_complete_project_task_completed.yaml",
+  "source_summary": "module: PROJECT_TASK\\ncontract: Task.complete event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/project/project.ubo.yaml\\nsource_summary: GIVEN 实体 Task 的动作 complete 完成 / WHEN 触发事件发布 / THEN 应广播 topic `project.task.completed`"
+}

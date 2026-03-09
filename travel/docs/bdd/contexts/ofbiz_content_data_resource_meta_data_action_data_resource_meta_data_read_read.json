@@ -1,0 +1,7 @@
+{
+  "id": "ofbiz_content_data_resource_meta_data_action_data_resource_meta_data_read_read",
+  "module": "OFBIZ_CONTENT_DATA_RESOURCE_META_DATA",
+  "edge_class": "all",
+  "source_file": "ofbiz_content/action_data_resource_meta_data_read_read.yaml",
+  "source_summary": "module: OFBIZ_CONTENT_DATA_RESOURCE_META_DATA\\ncontract: DataResourceMetaData.read action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ofbiz/content.ubo.yaml\\nsource_summary: GIVEN 实体 DataResourceMetaData 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 读取结果应符合查询语义"
+}

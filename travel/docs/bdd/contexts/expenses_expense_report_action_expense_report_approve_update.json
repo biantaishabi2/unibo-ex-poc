@@ -1,0 +1,7 @@
+{
+  "id": "expenses_expense_report_action_expense_report_approve_update",
+  "module": "EXPENSES_EXPENSE_REPORT",
+  "edge_class": "all",
+  "source_file": "expenses/action_expense_report_approve_update.yaml",
+  "source_summary": "module: EXPENSES_EXPENSE_REPORT\\ncontract: ExpenseReport.approve action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/expenses/expenses.ubo.yaml\\nsource_summary: GIVEN 实体 ExpenseReport 的动作 approve 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 approve / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create -> submit -> approve -> post -> register_payment；create -> submit -> refuse -> reset -> submit -> approve"
+}

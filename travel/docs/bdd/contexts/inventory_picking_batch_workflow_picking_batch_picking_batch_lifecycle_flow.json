@@ -1,0 +1,7 @@
+{
+  "id": "inventory_picking_batch_workflow_picking_batch_picking_batch_lifecycle_flow",
+  "module": "INVENTORY_PICKING_BATCH",
+  "edge_class": "all",
+  "source_file": "inventory/workflow_picking_batch_picking_batch_lifecycle_flow.yaml",
+  "source_summary": "module: INVENTORY_PICKING_BATCH\\ncontract: PickingBatch.picking_batch_lifecycle_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/inventory/inventory.ubo.yaml\\nsource_summary: GIVEN 实体 PickingBatch 定义工作流 picking_batch_lifecycle_flow / WHEN 按步骤执行 create -> update -> action_confirm -> action_assign -> action_done / THEN 流程顺序应满足声明约束"
+}

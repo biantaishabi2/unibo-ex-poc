@@ -1,0 +1,5 @@
+module: LIVE_CHAT_LIVE_CHAT_CHANNEL
+contract: LiveChatChannel.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/livechat/livechat.ubo.yaml
+source_summary: GIVEN 实体 LiveChatChannel 的动作 create 可执行，accept=[name, button_text, default_message, input_placeholder, header_background_color, title_color, button_background_color, button_text_color, image]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建客服频道 -> update 修改频道配置；create 创建客服频道 -> join 加入操作员 -> quit 退出操作员

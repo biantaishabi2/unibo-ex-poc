@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_PRIORITY_TYPE-SEED-ofbiz_party_priority_type_action_priority_type_create_create] TITLE: OFBIZ_PARTY_PRIORITY_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_priority_type_action_priority_type_create_create" module="OFBIZ_PARTY_PRIORITY_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_PRIORITY_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_PRIORITY_TYPE"

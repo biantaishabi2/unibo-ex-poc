@@ -1,0 +1,7 @@
+{
+  "id": "purchasing_goods_receipt_workflow_goods_receipt_goods_receipt_lifecycle",
+  "module": "PURCHASING_GOODS_RECEIPT",
+  "edge_class": "all",
+  "source_file": "purchasing/workflow_goods_receipt_goods_receipt_lifecycle.yaml",
+  "source_summary": "module: PURCHASING_GOODS_RECEIPT\\ncontract: GoodsReceipt.goods_receipt_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml\\nsource_summary: GIVEN 实体 GoodsReceipt 定义工作流 goods_receipt_lifecycle / WHEN 按步骤执行 create -> confirm -> cancel / THEN 流程顺序应满足声明约束"
+}

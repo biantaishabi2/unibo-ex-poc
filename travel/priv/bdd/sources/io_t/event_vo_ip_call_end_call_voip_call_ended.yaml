@@ -1,0 +1,5 @@
+module: IO_T_VO_IP_CALL
+contract: VoIPCall.end_call event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 VoIPCall 的动作 end_call 完成 / WHEN 触发事件发布 / THEN 应广播 topic `voip.call.ended`

@@ -1,0 +1,7 @@
+{
+  "id": "plm_bom_revision_workflow_bom_revision_bom_activation_sync",
+  "module": "PLM_BOM_REVISION",
+  "edge_class": "all",
+  "source_file": "plm/workflow_bom_revision_bom_activation_sync.yaml",
+  "source_summary": "module: PLM_BOM_REVISION\\ncontract: BomRevision.bom_activation_sync workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/plm/plm.ubo.yaml\\nsource_summary: GIVEN 实体 BomRevision 定义工作流 bom_activation_sync / WHEN 按步骤执行 evaluate_activation -> sync_draft_mo / THEN 流程顺序应满足声明约束 / 补充场景：evaluate_activation 评估 BOM 激活 -> sync_draft_mo 同步草稿制造单；BOM 激活时更新草稿 MO"
+}

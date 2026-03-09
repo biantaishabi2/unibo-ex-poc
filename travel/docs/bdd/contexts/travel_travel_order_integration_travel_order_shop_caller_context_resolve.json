@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_integration_travel_order_shop_caller_context_resolve",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "all",
+  "source_file": "travel/integration_travel_order_shop_caller_context_resolve.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_ORDER\\ncontract: TravelOrder.shop_caller_context_resolve integration contract\\nedge_class: integration_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelOrder 声明 integration shop_caller_context_resolve（mode=sync） / WHEN 绑定动作 [create_order] 触发外部调用 / THEN 调用结果需满足 声明错误码 shop_context_not_found, shop_context_timeout 且 业务后置条件 context_verified, current_shop_id, enterprise_id, member_id\\ndeclared_error_codes:\\n- shop_context_not_found\\n- shop_context_timeout"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-RENTAL_PARTY-SEED-rental_party_action_party_read_read] TITLE: RENTAL_PARTY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="rental_party_action_party_read_read" module="RENTAL_PARTY"
+WHEN when_execute_seed_contract module="RENTAL_PARTY"
+THEN then_seed_contract_should_hold module="RENTAL_PARTY"

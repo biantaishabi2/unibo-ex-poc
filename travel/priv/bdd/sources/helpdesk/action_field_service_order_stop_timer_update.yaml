@@ -1,0 +1,5 @@
+module: HELPDESK_FIELD_SERVICE_ORDER
+contract: FieldServiceOrder.stop_timer action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 FieldServiceOrder 的动作 stop_timer 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 stop_timer / THEN 状态变更与副作用应生效，应符合工作流步骤约束

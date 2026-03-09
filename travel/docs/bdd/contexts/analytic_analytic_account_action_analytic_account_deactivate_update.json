@@ -1,0 +1,7 @@
+{
+  "id": "analytic_analytic_account_action_analytic_account_deactivate_update",
+  "module": "ANALYTIC_ANALYTIC_ACCOUNT",
+  "edge_class": "all",
+  "source_file": "analytic/action_analytic_account_deactivate_update.yaml",
+  "source_summary": "module: ANALYTIC_ANALYTIC_ACCOUNT\\ncontract: AnalyticAccount.deactivate action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/analytic/analytic.ubo.yaml\\nsource_summary: GIVEN 实体 AnalyticAccount 的动作 deactivate 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 deactivate / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：deactivate 后，尝试新建 AnalyticLine 引用该账户被 [R-ANL-003] 拒绝"
+}

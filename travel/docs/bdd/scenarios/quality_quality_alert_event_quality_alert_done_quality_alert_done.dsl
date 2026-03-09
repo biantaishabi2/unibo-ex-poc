@@ -1,0 +1,4 @@
+[SCENARIO: BDD-QUALITY_QUALITY_ALERT-SEED-quality_quality_alert_event_quality_alert_done_quality_alert_done] TITLE: QUALITY_QUALITY_ALERT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="quality_quality_alert_event_quality_alert_done_quality_alert_done" module="QUALITY_QUALITY_ALERT"
+WHEN when_execute_seed_contract module="QUALITY_QUALITY_ALERT"
+THEN then_seed_contract_should_hold module="QUALITY_QUALITY_ALERT"

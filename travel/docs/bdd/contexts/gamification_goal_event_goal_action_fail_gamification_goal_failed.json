@@ -1,0 +1,7 @@
+{
+  "id": "gamification_goal_event_goal_action_fail_gamification_goal_failed",
+  "module": "GAMIFICATION_GOAL",
+  "edge_class": "all",
+  "source_file": "gamification/event_goal_action_fail_gamification_goal_failed.yaml",
+  "source_summary": "module: GAMIFICATION_GOAL\\ncontract: Goal.action_fail event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/gamification/gamification.ubo.yaml\\nsource_summary: GIVEN 实体 Goal 的动作 action_fail 完成 / WHEN 触发事件发布 / THEN 应广播 topic `gamification.goal.failed`"
+}

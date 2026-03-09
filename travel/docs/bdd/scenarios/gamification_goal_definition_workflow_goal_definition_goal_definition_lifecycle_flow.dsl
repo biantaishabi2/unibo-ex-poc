@@ -1,0 +1,4 @@
+[SCENARIO: BDD-GAMIFICATION_GOAL_DEFINITION-SEED-gamification_goal_definition_workflow_goal_definition_goal_definition_lifecycle_flow] TITLE: GAMIFICATION_GOAL_DEFINITION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="gamification_goal_definition_workflow_goal_definition_goal_definition_lifecycle_flow" module="GAMIFICATION_GOAL_DEFINITION"
+WHEN when_execute_seed_contract module="GAMIFICATION_GOAL_DEFINITION"
+THEN then_seed_contract_should_hold module="GAMIFICATION_GOAL_DEFINITION"

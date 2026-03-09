@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_COMMON_PORTAL_PAGE_COLUMN-SEED-ofbiz_common_portal_page_column_action_portal_page_column_read_read] TITLE: OFBIZ_COMMON_PORTAL_PAGE_COLUMN contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_common_portal_page_column_action_portal_page_column_read_read" module="OFBIZ_COMMON_PORTAL_PAGE_COLUMN"
+WHEN when_execute_seed_contract module="OFBIZ_COMMON_PORTAL_PAGE_COLUMN"
+THEN then_seed_contract_should_hold module="OFBIZ_COMMON_PORTAL_PAGE_COLUMN"

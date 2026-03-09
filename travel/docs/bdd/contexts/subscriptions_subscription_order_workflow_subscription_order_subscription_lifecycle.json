@@ -1,0 +1,7 @@
+{
+  "id": "subscriptions_subscription_order_workflow_subscription_order_subscription_lifecycle",
+  "module": "SUBSCRIPTIONS_SUBSCRIPTION_ORDER",
+  "edge_class": "all",
+  "source_file": "subscriptions/workflow_subscription_order_subscription_lifecycle.yaml",
+  "source_summary": "module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER\\ncontract: SubscriptionOrder.subscription_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/subscriptions/subscriptions.ubo.yaml\\nsource_summary: GIVEN 实体 SubscriptionOrder 定义工作流 subscription_lifecycle / WHEN 按步骤执行 create -> action_confirm -> action_pause -> action_resume -> action_close -> action_renew / THEN 流程顺序应满足声明约束"
+}

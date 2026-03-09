@@ -1,0 +1,4 @@
+[SCENARIO: BDD-CURRENCY_CURRENCY_RATE-SEED-currency_currency_rate_workflow_currency_rate_currency_rate_maintain_flow] TITLE: CURRENCY_CURRENCY_RATE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="currency_currency_rate_workflow_currency_rate_currency_rate_maintain_flow" module="CURRENCY_CURRENCY_RATE"
+WHEN when_execute_seed_contract module="CURRENCY_CURRENCY_RATE"
+THEN then_seed_contract_should_hold module="CURRENCY_CURRENCY_RATE"

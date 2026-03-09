@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ECOMMERCE_PRODUCT_CATEGORY-SEED-ecommerce_product_category_workflow_product_category_category_lifecycle] TITLE: ECOMMERCE_PRODUCT_CATEGORY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ecommerce_product_category_workflow_product_category_category_lifecycle" module="ECOMMERCE_PRODUCT_CATEGORY"
+WHEN when_execute_seed_contract module="ECOMMERCE_PRODUCT_CATEGORY"
+THEN then_seed_contract_should_hold module="ECOMMERCE_PRODUCT_CATEGORY"

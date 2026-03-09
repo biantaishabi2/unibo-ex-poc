@@ -1,0 +1,7 @@
+{
+  "id": "maintenance_repair_order_action_repair_order_complete_repair_update",
+  "module": "MAINTENANCE_REPAIR_ORDER",
+  "edge_class": "all",
+  "source_file": "maintenance/action_repair_order_complete_repair_update.yaml",
+  "source_summary": "module: MAINTENANCE_REPAIR_ORDER\\ncontract: RepairOrder.complete_repair action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml\\nsource_summary: GIVEN 实体 RepairOrder 的动作 complete_repair 可执行，accept=[actual_cost]，args=[无显式参数] / WHEN 执行动作 complete_repair / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 创建维修工单 -> confirm 确认 -> start_repair 开始维修 -> complete_repair 完成维修"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-FLEET_HR_EMPLOYEE-SEED-fleet_hr_employee_action_hr_employee_read_read] TITLE: FLEET_HR_EMPLOYEE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="fleet_hr_employee_action_hr_employee_read_read" module="FLEET_HR_EMPLOYEE"
+WHEN when_execute_seed_contract module="FLEET_HR_EMPLOYEE"
+THEN then_seed_contract_should_hold module="FLEET_HR_EMPLOYEE"

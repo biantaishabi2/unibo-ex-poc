@@ -1,0 +1,5 @@
+module: MEMBERSHIP_MEMBERSHIP_LINE
+contract: MembershipLine.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/membership/membership.ubo.yaml
+source_summary: GIVEN 实体 MembershipLine 的动作 create 可执行，accept=[date_from, date_to, date, member_price, state]，args=[partner_id:uuid!, membership_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束

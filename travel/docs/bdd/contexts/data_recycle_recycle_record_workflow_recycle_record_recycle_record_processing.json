@@ -1,0 +1,7 @@
+{
+  "id": "data_recycle_recycle_record_workflow_recycle_record_recycle_record_processing",
+  "module": "DATA_RECYCLE_RECYCLE_RECORD",
+  "edge_class": "all",
+  "source_file": "data_recycle/workflow_recycle_record_recycle_record_processing.yaml",
+  "source_summary": "module: DATA_RECYCLE_RECYCLE_RECORD\\ncontract: RecycleRecord.recycle_record_processing workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/data_recycle/data_recycle.ubo.yaml\\nsource_summary: GIVEN 实体 RecycleRecord 定义工作流 recycle_record_processing / WHEN 按步骤执行 create -> validate -> discard / THEN 流程顺序应满足声明约束"
+}

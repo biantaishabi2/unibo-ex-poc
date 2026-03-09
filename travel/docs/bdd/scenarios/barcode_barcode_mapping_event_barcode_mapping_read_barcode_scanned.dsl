@@ -1,0 +1,4 @@
+[SCENARIO: BDD-BARCODE_BARCODE_MAPPING-SEED-barcode_barcode_mapping_event_barcode_mapping_read_barcode_scanned] TITLE: BARCODE_BARCODE_MAPPING contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="barcode_barcode_mapping_event_barcode_mapping_read_barcode_scanned" module="BARCODE_BARCODE_MAPPING"
+WHEN when_execute_seed_contract module="BARCODE_BARCODE_MAPPING"
+THEN then_seed_contract_should_hold module="BARCODE_BARCODE_MAPPING"

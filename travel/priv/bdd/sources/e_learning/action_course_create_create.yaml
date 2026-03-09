@@ -1,0 +1,5 @@
+module: E_LEARNING_COURSE
+contract: Course.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Course 的动作 create 可执行，accept=[name, channel_type, visibility, enroll, description, description_html, sequence, promote_strategy, karma_gen_channel_finish, quiz_first_attempt_reward, quiz_second_attempt_reward, quiz_third_attempt_reward, quiz_fourth_attempt_reward]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 新建课程，update 修改可见性和注册策略，publish 上线发布；create 新建课程，publish 发布，unpublish 取消发布；create visibility=members 但 enroll=public 时校验失败

@@ -1,0 +1,5 @@
+module: ECOMMERCE_PRODUCT_TEMPLATE_ORG_VIEW
+contract: ProductTemplateOrgView.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/ecommerce/ecommerce.ubo.yaml
+source_summary: GIVEN 实体 ProductTemplateOrgView 的动作 create 可执行，accept=[is_sellable, lead_time_days, reorder_point, safety_stock]，args=[product_template_id:uuid!, party_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 为产品模板绑定组织视图，写入 lead_time_days/reorder_point/safety_stock

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-INVENTORY_STOCK_LOCATION-SEED-inventory_stock_location_action_stock_location_create_create] TITLE: INVENTORY_STOCK_LOCATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="inventory_stock_location_action_stock_location_create_create" module="INVENTORY_STOCK_LOCATION"
+WHEN when_execute_seed_contract module="INVENTORY_STOCK_LOCATION"
+THEN then_seed_contract_should_hold module="INVENTORY_STOCK_LOCATION"

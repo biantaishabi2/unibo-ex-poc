@@ -119,26 +119,22 @@ defmodule UniboExPoc.Delivery.ShipmentPackageRouteSeg do
       validate present(:shipment_id)
       validate present(:shipment_package_seq_id)
       validate present(:shipment_route_segment_id)
-      change set_attribute(:id, expr(id))
     end
     update :update_label do
       description "更新面单"
       primary? true
       accept [:label_image, :label_html, :label_printed]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :update_cost do
       description "更新费用"
       accept [:package_transport_cost, :package_service_cost, :package_other_cost, :cod_amount, :insured_amount, :currency_uom_id]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_printed do
       description "标记已打印面单"
       accept []
       change set_attribute(:label_printed, true)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

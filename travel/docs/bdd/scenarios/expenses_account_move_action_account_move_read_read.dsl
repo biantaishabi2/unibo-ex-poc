@@ -1,0 +1,4 @@
+[SCENARIO: BDD-EXPENSES_ACCOUNT_MOVE-SEED-expenses_account_move_action_account_move_read_read] TITLE: EXPENSES_ACCOUNT_MOVE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="expenses_account_move_action_account_move_read_read" module="EXPENSES_ACCOUNT_MOVE"
+WHEN when_execute_seed_contract module="EXPENSES_ACCOUNT_MOVE"
+THEN then_seed_contract_should_hold module="EXPENSES_ACCOUNT_MOVE"

@@ -88,7 +88,6 @@ defmodule UniboExPoc.Payment.PaymentRefund do
       change manage_relationship(:payment_id, :payment, type: :append, on_lookup: :relate)
       validate present(:payment_id)
       validate present(:amount)
-      change set_attribute(:id, expr(id))
     end
     update :approve do
       description "审批退款，状态从 pending 变为 approved"
@@ -104,7 +103,6 @@ defmodule UniboExPoc.Payment.PaymentRefund do
       end
       # message: "只有待处理状态可以审批"
       change set_attribute(:status, :approved)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :process do
@@ -120,7 +118,6 @@ defmodule UniboExPoc.Payment.PaymentRefund do
       end
       # message: "只有已审批状态可以处理"
       change set_attribute(:status, :processed)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reject do
@@ -136,7 +133,6 @@ defmodule UniboExPoc.Payment.PaymentRefund do
       end
       # message: "只有待处理状态可以拒绝"
       change set_attribute(:status, :rejected)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

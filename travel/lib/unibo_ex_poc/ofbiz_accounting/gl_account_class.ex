@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlAccountClass do
   end
 
   graphql do
-    type :accounting_gl_account_class
+    type :ofbiz_accounting_gl_account_class
 
     queries do
-      get :get_accounting_gl_account_class, :read
-      list :list_accounting_gl_account_classs, :read
+      get :get_ofbiz_accounting_gl_account_class, :read
+      list :list_ofbiz_accounting_gl_account_classs, :read
     end
 
     mutations do
-      create :create_accounting_gl_account_class, :create
-      update :update_accounting_gl_account_class, :update
-      destroy :delete_accounting_gl_account_class, :destroy
+      create :create_ofbiz_accounting_gl_account_class, :create
+      update :update_ofbiz_accounting_gl_account_class, :update
+      destroy :delete_ofbiz_accounting_gl_account_class, :destroy
     end
 
   end

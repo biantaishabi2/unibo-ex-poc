@@ -1,0 +1,5 @@
+module: PURCHASING_SUPPLIER
+contract: Supplier.block action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 Supplier 的动作 block 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 block / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：block 后不可创建新采购订单

@@ -1,0 +1,7 @@
+{
+  "id": "sales_sales_order_shipment_action_sales_order_shipment_deliver_update",
+  "module": "SALES_SALES_ORDER_SHIPMENT",
+  "edge_class": "all",
+  "source_file": "sales/action_sales_order_shipment_deliver_update.yaml",
+  "source_summary": "module: SALES_SALES_ORDER_SHIPMENT\\ncontract: SalesOrderShipment.deliver action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/sales/sales.ubo.yaml\\nsource_summary: GIVEN 实体 SalesOrderShipment 的动作 deliver 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 deliver / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：ship 仅允许草稿状态发货，deliver 仅允许已发货状态标记送达"
+}

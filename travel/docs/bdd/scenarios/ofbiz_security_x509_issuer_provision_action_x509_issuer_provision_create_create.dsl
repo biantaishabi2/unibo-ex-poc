@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SECURITY_X509_ISSUER_PROVISION-SEED-ofbiz_security_x509_issuer_provision_action_x509_issuer_provision_create_create] TITLE: OFBIZ_SECURITY_X509_ISSUER_PROVISION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_security_x509_issuer_provision_action_x509_issuer_provision_create_create" module="OFBIZ_SECURITY_X509_ISSUER_PROVISION"
+WHEN when_execute_seed_contract module="OFBIZ_SECURITY_X509_ISSUER_PROVISION"
+THEN then_seed_contract_should_hold module="OFBIZ_SECURITY_X509_ISSUER_PROVISION"

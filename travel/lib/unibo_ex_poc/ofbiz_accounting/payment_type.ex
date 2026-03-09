@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.PaymentType do
   end
 
   graphql do
-    type :accounting_payment_type
+    type :ofbiz_accounting_payment_type
 
     queries do
-      get :get_accounting_payment_type, :read
-      list :list_accounting_payment_types, :read
+      get :get_ofbiz_accounting_payment_type, :read
+      list :list_ofbiz_accounting_payment_types, :read
     end
 
     mutations do
-      create :create_accounting_payment_type, :create
-      update :update_accounting_payment_type, :update
-      destroy :delete_accounting_payment_type, :destroy
+      create :create_ofbiz_accounting_payment_type, :create
+      update :update_ofbiz_accounting_payment_type, :update
+      destroy :delete_ofbiz_accounting_payment_type, :destroy
     end
 
   end

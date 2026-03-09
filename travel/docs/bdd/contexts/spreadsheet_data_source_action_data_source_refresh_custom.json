@@ -1,0 +1,7 @@
+{
+  "id": "spreadsheet_data_source_action_data_source_refresh_custom",
+  "module": "SPREADSHEET_DATA_SOURCE",
+  "edge_class": "all",
+  "source_file": "spreadsheet/action_data_source_refresh_custom.yaml",
+  "source_summary": "module: SPREADSHEET_DATA_SOURCE\\ncontract: DataSource.refresh action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/spreadsheet/spreadsheet.ubo.yaml\\nsource_summary: GIVEN 实体 DataSource 的动作 refresh 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 refresh / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

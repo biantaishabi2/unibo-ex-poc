@@ -1,0 +1,7 @@
+{
+  "id": "analytic_analytic_account_action_analytic_account_create_create",
+  "module": "ANALYTIC_ANALYTIC_ACCOUNT",
+  "edge_class": "all",
+  "source_file": "analytic/action_analytic_account_create_create.yaml",
+  "source_summary": "module: ANALYTIC_ANALYTIC_ACCOUNT\\ncontract: AnalyticAccount.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/analytic/analytic.ubo.yaml\\nsource_summary: GIVEN 实体 AnalyticAccount 的动作 create 可执行，accept=[code, name, plan_id, parent_id, partner_id, date_start, date_stop, description]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 分析账户，parent_id 指向同一 plan 下的上级账户，update 修改负责人和有效期；create 时 parent_id 指向自身，被 [R-ANL-002] 自引用校验拒绝"
+}

@@ -1,0 +1,5 @@
+module: PAYMENT_PAYMENT
+contract: Payment.authorize action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/payment/payment.ubo.yaml
+source_summary: GIVEN 实体 Payment 的动作 authorize 可执行，accept=[payment_ref_num, payment_gateway_response_id]，args=[无显式参数] / WHEN 执行动作 authorize / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 创建支付(draft) -> submit 提交(pending) -> authorize 授权(authorized) -> capture 捕获(captured)；create -> submit -> authorize -> capture -> refund 退款(refunded)；create -> submit -> authorize -> mark_failed 标记失败(failed)

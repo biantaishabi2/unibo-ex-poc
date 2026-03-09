@@ -1,0 +1,7 @@
+{
+  "id": "rental_rental_order_action_rental_order_update_update",
+  "module": "RENTAL_RENTAL_ORDER",
+  "edge_class": "all",
+  "source_file": "rental/action_rental_order_update_update.yaml",
+  "source_summary": "module: RENTAL_RENTAL_ORDER\\ncontract: RentalOrder.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/rental/rental.ubo.yaml\\nsource_summary: GIVEN 实体 RentalOrder 的动作 update 可执行，accept=[pickup_date, return_date, padding_time, deposit_amount]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则"
+}

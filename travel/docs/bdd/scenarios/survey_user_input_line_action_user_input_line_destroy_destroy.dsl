@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SURVEY_USER_INPUT_LINE-SEED-survey_user_input_line_action_user_input_line_destroy_destroy] TITLE: SURVEY_USER_INPUT_LINE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="survey_user_input_line_action_user_input_line_destroy_destroy" module="SURVEY_USER_INPUT_LINE"
+WHEN when_execute_seed_contract module="SURVEY_USER_INPUT_LINE"
+THEN then_seed_contract_should_hold module="SURVEY_USER_INPUT_LINE"

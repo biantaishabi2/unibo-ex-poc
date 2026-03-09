@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlXbrlClass do
   end
 
   graphql do
-    type :accounting_gl_xbrl_class
+    type :ofbiz_accounting_gl_xbrl_class
 
     queries do
-      get :get_accounting_gl_xbrl_class, :read
-      list :list_accounting_gl_xbrl_classs, :read
+      get :get_ofbiz_accounting_gl_xbrl_class, :read
+      list :list_ofbiz_accounting_gl_xbrl_classs, :read
     end
 
     mutations do
-      create :create_accounting_gl_xbrl_class, :create
-      update :update_accounting_gl_xbrl_class, :update
-      destroy :delete_accounting_gl_xbrl_class, :destroy
+      create :create_ofbiz_accounting_gl_xbrl_class, :create
+      update :update_ofbiz_accounting_gl_xbrl_class, :update
+      destroy :delete_ofbiz_accounting_gl_xbrl_class, :destroy
     end
 
   end

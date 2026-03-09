@@ -1,0 +1,7 @@
+{
+  "id": "helpdesk_helpdesk_sla_workflow_helpdesk_sla_sla_policy_management",
+  "module": "HELPDESK_HELPDESK_SLA",
+  "edge_class": "all",
+  "source_file": "helpdesk/workflow_helpdesk_sla_sla_policy_management.yaml",
+  "source_summary": "module: HELPDESK_HELPDESK_SLA\\ncontract: HelpdeskSLA.sla_policy_management workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml\\nsource_summary: GIVEN 实体 HelpdeskSLA 定义工作流 sla_policy_management / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束"
+}

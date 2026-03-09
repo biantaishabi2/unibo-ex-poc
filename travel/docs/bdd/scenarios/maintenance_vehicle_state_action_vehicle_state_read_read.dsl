@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MAINTENANCE_VEHICLE_STATE-SEED-maintenance_vehicle_state_action_vehicle_state_read_read] TITLE: MAINTENANCE_VEHICLE_STATE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="maintenance_vehicle_state_action_vehicle_state_read_read" module="MAINTENANCE_VEHICLE_STATE"
+WHEN when_execute_seed_contract module="MAINTENANCE_VEHICLE_STATE"
+THEN then_seed_contract_should_hold module="MAINTENANCE_VEHICLE_STATE"

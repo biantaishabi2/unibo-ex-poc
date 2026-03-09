@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.EftAccount do
   end
 
   graphql do
-    type :accounting_eft_account
+    type :ofbiz_accounting_eft_account
 
     queries do
-      get :get_accounting_eft_account, :read
-      list :list_accounting_eft_accounts, :read
+      get :get_ofbiz_accounting_eft_account, :read
+      list :list_ofbiz_accounting_eft_accounts, :read
     end
 
     mutations do
-      create :create_accounting_eft_account, :create
-      update :update_accounting_eft_account, :update
-      destroy :delete_accounting_eft_account, :destroy
+      create :create_ofbiz_accounting_eft_account, :create
+      update :update_ofbiz_accounting_eft_account, :update
+      destroy :delete_ofbiz_accounting_eft_account, :destroy
     end
 
   end

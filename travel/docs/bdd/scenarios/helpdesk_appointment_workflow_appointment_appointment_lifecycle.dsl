@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HELPDESK_APPOINTMENT-SEED-helpdesk_appointment_workflow_appointment_appointment_lifecycle] TITLE: HELPDESK_APPOINTMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="helpdesk_appointment_workflow_appointment_appointment_lifecycle" module="HELPDESK_APPOINTMENT"
+WHEN when_execute_seed_contract module="HELPDESK_APPOINTMENT"
+THEN then_seed_contract_should_hold module="HELPDESK_APPOINTMENT"

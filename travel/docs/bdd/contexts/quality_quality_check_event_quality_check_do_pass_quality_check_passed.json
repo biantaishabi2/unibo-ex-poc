@@ -1,0 +1,7 @@
+{
+  "id": "quality_quality_check_event_quality_check_do_pass_quality_check_passed",
+  "module": "QUALITY_QUALITY_CHECK",
+  "edge_class": "all",
+  "source_file": "quality/event_quality_check_do_pass_quality_check_passed.yaml",
+  "source_summary": "module: QUALITY_QUALITY_CHECK\\ncontract: QualityCheck.do_pass event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/quality/quality.ubo.yaml\\nsource_summary: GIVEN 实体 QualityCheck 的动作 do_pass 完成 / WHEN 触发事件发布 / THEN 应广播 topic `quality.check.passed`"
+}

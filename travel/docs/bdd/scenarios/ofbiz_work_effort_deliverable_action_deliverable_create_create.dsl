@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_WORK_EFFORT_DELIVERABLE-SEED-ofbiz_work_effort_deliverable_action_deliverable_create_create] TITLE: OFBIZ_WORK_EFFORT_DELIVERABLE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_work_effort_deliverable_action_deliverable_create_create" module="OFBIZ_WORK_EFFORT_DELIVERABLE"
+WHEN when_execute_seed_contract module="OFBIZ_WORK_EFFORT_DELIVERABLE"
+THEN then_seed_contract_should_hold module="OFBIZ_WORK_EFFORT_DELIVERABLE"

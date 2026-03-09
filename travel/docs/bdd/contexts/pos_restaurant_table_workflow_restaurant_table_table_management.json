@@ -1,0 +1,7 @@
+{
+  "id": "pos_restaurant_table_workflow_restaurant_table_table_management",
+  "module": "POS_RESTAURANT_TABLE",
+  "edge_class": "all",
+  "source_file": "pos/workflow_restaurant_table_table_management.yaml",
+  "source_summary": "module: POS_RESTAURANT_TABLE\\ncontract: RestaurantTable.table_management workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/pos/pos.ubo.yaml\\nsource_summary: GIVEN 实体 RestaurantTable 定义工作流 table_management / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束"
+}

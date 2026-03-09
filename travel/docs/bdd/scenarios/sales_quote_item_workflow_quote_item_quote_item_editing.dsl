@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SALES_QUOTE_ITEM-SEED-sales_quote_item_workflow_quote_item_quote_item_editing] TITLE: SALES_QUOTE_ITEM contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="sales_quote_item_workflow_quote_item_quote_item_editing" module="SALES_QUOTE_ITEM"
+WHEN when_execute_seed_contract module="SALES_QUOTE_ITEM"
+THEN then_seed_contract_should_hold module="SALES_QUOTE_ITEM"

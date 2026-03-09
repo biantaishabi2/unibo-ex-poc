@@ -1,0 +1,5 @@
+module: DELIVERY_CROSS_ORG_TRANSACTION
+contract: CrossOrgTransaction.cross_org_transaction_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 CrossOrgTransaction 定义工作流 cross_org_transaction_lifecycle / WHEN 按步骤执行 create -> update -> confirm_source -> create_mirror_purchase_order -> mark_fulfilled -> mark_settled -> mark_failed -> cancel / THEN 流程顺序应满足声明约束

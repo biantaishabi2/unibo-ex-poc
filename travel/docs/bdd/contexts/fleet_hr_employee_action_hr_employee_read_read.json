@@ -1,0 +1,7 @@
+{
+  "id": "fleet_hr_employee_action_hr_employee_read_read",
+  "module": "FLEET_HR_EMPLOYEE",
+  "edge_class": "all",
+  "source_file": "fleet/action_hr_employee_read_read.yaml",
+  "source_summary": "module: FLEET_HR_EMPLOYEE\\ncontract: HrEmployee.read action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/fleet/fleet.ubo.yaml\\nsource_summary: GIVEN 实体 HrEmployee 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 读取结果应符合查询语义"
+}

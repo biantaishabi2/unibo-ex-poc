@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PROJECT_TIMESHEET-SEED-project_timesheet_workflow_timesheet_timesheet_reject_flow] TITLE: PROJECT_TIMESHEET contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="project_timesheet_workflow_timesheet_timesheet_reject_flow" module="PROJECT_TIMESHEET"
+WHEN when_execute_seed_contract module="PROJECT_TIMESHEET"
+THEN then_seed_contract_should_hold module="PROJECT_TIMESHEET"

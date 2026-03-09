@@ -1,0 +1,7 @@
+{
+  "id": "survey_question_workflow_question_question_write_flow",
+  "module": "SURVEY_QUESTION",
+  "edge_class": "all",
+  "source_file": "survey/workflow_question_question_write_flow.yaml",
+  "source_summary": "module: SURVEY_QUESTION\\ncontract: Question.question_write_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/survey/survey.ubo.yaml\\nsource_summary: GIVEN 实体 Question 定义工作流 question_write_flow / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束"
+}

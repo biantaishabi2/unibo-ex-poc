@@ -1,0 +1,7 @@
+{
+  "id": "manufacturing_manufacturing_order_event_manufacturing_order_mark_done_manufacturing_order_completed",
+  "module": "MANUFACTURING_MANUFACTURING_ORDER",
+  "edge_class": "all",
+  "source_file": "manufacturing/event_manufacturing_order_mark_done_manufacturing_order_completed.yaml",
+  "source_summary": "module: MANUFACTURING_MANUFACTURING_ORDER\\ncontract: ManufacturingOrder.mark_done event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/manufacturing/manufacturing.ubo.yaml\\nsource_summary: GIVEN 实体 ManufacturingOrder 的动作 mark_done 完成 / WHEN 触发事件发布 / THEN 应广播 topic `manufacturing.order.completed`"
+}

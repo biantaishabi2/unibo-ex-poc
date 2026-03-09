@@ -15,17 +15,17 @@ defmodule UniboExPoc.Ofbiz.Common.Geo do
   end
 
   graphql do
-    type :common_geo
+    type :ofbiz_common_geo
 
     queries do
-      get :get_common_geo, :read
-      list :list_common_geos, :read
+      get :get_ofbiz_common_geo, :read
+      list :list_ofbiz_common_geos, :read
     end
 
     mutations do
-      create :create_common_geo, :create
-      update :update_common_geo, :update
-      destroy :delete_common_geo, :destroy
+      create :create_ofbiz_common_geo, :create
+      update :update_ofbiz_common_geo, :update
+      destroy :delete_ofbiz_common_geo, :destroy
     end
 
   end

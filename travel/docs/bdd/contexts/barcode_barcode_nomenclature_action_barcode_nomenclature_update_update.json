@@ -1,0 +1,7 @@
+{
+  "id": "barcode_barcode_nomenclature_action_barcode_nomenclature_update_update",
+  "module": "BARCODE_BARCODE_NOMENCLATURE",
+  "edge_class": "all",
+  "source_file": "barcode/action_barcode_nomenclature_update_update.yaml",
+  "source_summary": "module: BARCODE_BARCODE_NOMENCLATURE\\ncontract: BarcodeNomenclature.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/barcode/barcode.ubo.yaml\\nsource_summary: GIVEN 实体 BarcodeNomenclature 的动作 update 可执行，accept=[name, description, is_gs1_compliant, upc_ean_conv, gs1_separator_fnc1, active]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

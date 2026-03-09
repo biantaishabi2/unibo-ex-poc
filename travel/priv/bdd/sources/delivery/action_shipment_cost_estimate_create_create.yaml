@@ -1,0 +1,5 @@
+module: DELIVERY_SHIPMENT_COST_ESTIMATE
+contract: ShipmentCostEstimate.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 ShipmentCostEstimate 的动作 create 可执行，accept=[shipment_cost_estimate_id, shipment_method_type_id, carrier_party_id, carrier_role_type_id, product_store_id, geo_id_from, geo_id_to, weight_unit_price, weight_uom_id, weight_break_id, quantity_unit_price, quantity_uom_id, quantity_break_id, price_unit_price, price_uom_id, price_break_id, order_flat_price, order_price_percent, order_item_flat_price, shipping_price_percent, oversize_unit, oversize_price, feature_percent, feature_price, product_feature_group_id]，args=[无显式参数] / WHEN 执行动作 create / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建运费规则 -> update 修改计费参数 -> destroy 删除规则

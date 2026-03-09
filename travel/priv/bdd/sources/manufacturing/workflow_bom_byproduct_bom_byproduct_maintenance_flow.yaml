@@ -1,0 +1,5 @@
+module: MANUFACTURING_BOM_BYPRODUCT
+contract: BomByproduct.bom_byproduct_maintenance_flow workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/manufacturing/manufacturing.ubo.yaml
+source_summary: GIVEN 实体 BomByproduct 定义工作流 bom_byproduct_maintenance_flow / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MAINTENANCE_MAINTENANCE_STAGE-SEED-maintenance_maintenance_stage_action_maintenance_stage_update_update] TITLE: MAINTENANCE_MAINTENANCE_STAGE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="maintenance_maintenance_stage_action_maintenance_stage_update_update" module="MAINTENANCE_MAINTENANCE_STAGE"
+WHEN when_execute_seed_contract module="MAINTENANCE_MAINTENANCE_STAGE"
+THEN then_seed_contract_should_hold module="MAINTENANCE_MAINTENANCE_STAGE"

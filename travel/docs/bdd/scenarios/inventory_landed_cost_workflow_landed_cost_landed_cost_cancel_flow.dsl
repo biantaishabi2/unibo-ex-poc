@@ -1,0 +1,4 @@
+[SCENARIO: BDD-INVENTORY_LANDED_COST-SEED-inventory_landed_cost_workflow_landed_cost_landed_cost_cancel_flow] TITLE: INVENTORY_LANDED_COST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="inventory_landed_cost_workflow_landed_cost_landed_cost_cancel_flow" module="INVENTORY_LANDED_COST"
+WHEN when_execute_seed_contract module="INVENTORY_LANDED_COST"
+THEN then_seed_contract_should_hold module="INVENTORY_LANDED_COST"

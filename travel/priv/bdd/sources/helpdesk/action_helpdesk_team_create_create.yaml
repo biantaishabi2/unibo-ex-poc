@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_TEAM
+contract: HelpdeskTeam.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskTeam 的动作 create 可执行，accept=[name, description, alias_email, assignment_method, auto_assignment, use_sla, use_website_form, use_customer_portal, use_timesheet, use_field_service, use_customer_rating, use_knowledge_base, resource_calendar_id]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建团队，update 修改分配策略和功能开关；create 新建团队，update 启用 SLA 和现场服务功能

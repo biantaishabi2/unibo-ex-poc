@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_MANUFACTURING_MRP_EVENT-SEED-ofbiz_manufacturing_mrp_event_action_mrp_event_update_update] TITLE: OFBIZ_MANUFACTURING_MRP_EVENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_manufacturing_mrp_event_action_mrp_event_update_update" module="OFBIZ_MANUFACTURING_MRP_EVENT"
+WHEN when_execute_seed_contract module="OFBIZ_MANUFACTURING_MRP_EVENT"
+THEN then_seed_contract_should_hold module="OFBIZ_MANUFACTURING_MRP_EVENT"

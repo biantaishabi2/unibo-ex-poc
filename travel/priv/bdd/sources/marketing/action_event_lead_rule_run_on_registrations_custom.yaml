@@ -1,0 +1,5 @@
+module: MARKETING_EVENT_LEAD_RULE
+contract: EventLeadRule.run_on_registrations action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 EventLeadRule 的动作 run_on_registrations 可执行，accept=[(未声明)]，args=[registration_ids:text!] / WHEN 执行动作 run_on_registrations / THEN 状态变更与副作用应生效

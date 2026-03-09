@@ -1,0 +1,4 @@
+[SCENARIO: BDD-LUNCH_LUNCH_TOPPING-SEED-lunch_lunch_topping_action_lunch_topping_create_create] TITLE: LUNCH_LUNCH_TOPPING contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="lunch_lunch_topping_action_lunch_topping_create_create" module="LUNCH_LUNCH_TOPPING"
+WHEN when_execute_seed_contract module="LUNCH_LUNCH_TOPPING"
+THEN then_seed_contract_should_hold module="LUNCH_LUNCH_TOPPING"

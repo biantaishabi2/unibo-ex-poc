@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SHIPMENT_SHIPMENT_BOX_TYPE-SEED-ofbiz_shipment_shipment_box_type_action_shipment_box_type_read_read] TITLE: OFBIZ_SHIPMENT_SHIPMENT_BOX_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_shipment_shipment_box_type_action_shipment_box_type_read_read" module="OFBIZ_SHIPMENT_SHIPMENT_BOX_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_SHIPMENT_SHIPMENT_BOX_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_SHIPMENT_SHIPMENT_BOX_TYPE"

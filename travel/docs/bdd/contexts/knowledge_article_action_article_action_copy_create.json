@@ -1,0 +1,7 @@
+{
+  "id": "knowledge_article_action_article_action_copy_create",
+  "module": "KNOWLEDGE_ARTICLE",
+  "edge_class": "all",
+  "source_file": "knowledge/action_article_action_copy_create.yaml",
+  "source_summary": "module: KNOWLEDGE_ARTICLE\\ncontract: Article.action_copy action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/knowledge/knowledge.ubo.yaml\\nsource_summary: GIVEN 实体 Article 的动作 action_copy 可执行，accept=[(未声明)]，args=[source_article_id:uuid!] / WHEN 执行动作 action_copy / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建父子文章后，action_move 调整层级，action_copy 深拷贝文章树"
+}

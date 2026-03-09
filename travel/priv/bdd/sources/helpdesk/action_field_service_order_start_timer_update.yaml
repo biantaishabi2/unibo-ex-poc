@@ -1,0 +1,5 @@
+module: HELPDESK_FIELD_SERVICE_ORDER
+contract: FieldServiceOrder.start_timer action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 FieldServiceOrder 的动作 start_timer 可执行，accept=[[]]，args=[stage_id:uuid!] / WHEN 执行动作 start_timer / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：start_timer 尝试对非 new/scheduled 阶段启动计时器，校验失败

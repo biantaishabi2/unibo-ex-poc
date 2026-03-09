@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MAINTENANCE_EQUIPMENT_CATEGORY-SEED-maintenance_equipment_category_workflow_equipment_category_equipment_category_maintain_flow] TITLE: MAINTENANCE_EQUIPMENT_CATEGORY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="maintenance_equipment_category_workflow_equipment_category_equipment_category_maintain_flow" module="MAINTENANCE_EQUIPMENT_CATEGORY"
+WHEN when_execute_seed_contract module="MAINTENANCE_EQUIPMENT_CATEGORY"
+THEN then_seed_contract_should_hold module="MAINTENANCE_EQUIPMENT_CATEGORY"

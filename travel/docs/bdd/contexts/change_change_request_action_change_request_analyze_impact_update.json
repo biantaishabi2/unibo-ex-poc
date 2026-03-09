@@ -1,0 +1,7 @@
+{
+  "id": "change_change_request_action_change_request_analyze_impact_update",
+  "module": "CHANGE_CHANGE_REQUEST",
+  "edge_class": "all",
+  "source_file": "change/action_change_request_analyze_impact_update.yaml",
+  "source_summary": "module: CHANGE_CHANGE_REQUEST\\ncontract: ChangeRequest.analyze_impact action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/change/change.ubo.yaml\\nsource_summary: GIVEN 实体 ChangeRequest 的动作 analyze_impact 可执行，accept=[impact_report]，args=[无显式参数] / WHEN 执行动作 analyze_impact / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 创建变更请求 -> analyze_impact 写入影响分析 -> approve 审批 -> start_implementation 开始实施 -> verify 写入验证结果 -> close 关闭；create 创建变更请求 -> analyze_impact 写入影响分析 -> reject 拒绝变更"
+}

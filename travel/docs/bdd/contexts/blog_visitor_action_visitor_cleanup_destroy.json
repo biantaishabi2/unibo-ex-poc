@@ -1,0 +1,7 @@
+{
+  "id": "blog_visitor_action_visitor_cleanup_destroy",
+  "module": "BLOG_VISITOR",
+  "edge_class": "all",
+  "source_file": "blog/action_visitor_cleanup_destroy.yaml",
+  "source_summary": "module: BLOG_VISITOR\\ncontract: Visitor.cleanup action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/blog/blog.ubo.yaml\\nsource_summary: GIVEN 实体 Visitor 的动作 cleanup 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 cleanup / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：upsert 创建访客 -> track_visit 记录访问 -> cleanup 清理过期访客"
+}

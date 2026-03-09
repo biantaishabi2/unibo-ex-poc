@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_HUMAN_RES_TERMINATION_REASON-SEED-ofbiz_human_res_termination_reason_action_termination_reason_create_create] TITLE: OFBIZ_HUMAN_RES_TERMINATION_REASON contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_human_res_termination_reason_action_termination_reason_create_create" module="OFBIZ_HUMAN_RES_TERMINATION_REASON"
+WHEN when_execute_seed_contract module="OFBIZ_HUMAN_RES_TERMINATION_REASON"
+THEN then_seed_contract_should_hold module="OFBIZ_HUMAN_RES_TERMINATION_REASON"

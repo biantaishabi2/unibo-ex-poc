@@ -80,13 +80,11 @@ defmodule UniboExPoc.Delivery.ShipmentItem do
       validate present(:shipment_id)
       validate compare(:quantity, greater_than: 0)
       # message: "发货数量必须大于 0"
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:quantity, :shipment_content_description]
       # skipped: validate compare :quantity (incompatible with bulk update atomic path)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

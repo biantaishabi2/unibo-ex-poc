@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_UTM_CAMPAIGN-SEED-marketing_utm_campaign_action_utm_campaign_update_update] TITLE: MARKETING_UTM_CAMPAIGN contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_utm_campaign_action_utm_campaign_update_update" module="MARKETING_UTM_CAMPAIGN"
+WHEN when_execute_seed_contract module="MARKETING_UTM_CAMPAIGN"
+THEN then_seed_contract_should_hold module="MARKETING_UTM_CAMPAIGN"

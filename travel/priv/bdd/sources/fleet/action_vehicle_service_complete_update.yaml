@@ -1,0 +1,5 @@
+module: FLEET_VEHICLE_SERVICE
+contract: VehicleService.complete action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 VehicleService 的动作 complete 可执行，accept=[completed_date, odometer_at_service, cost, notes]，args=[无显式参数] / WHEN 执行动作 complete / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：schedule 预约服务 -> start 开始服务 -> complete 完成服务；schedule 预约服务 -> complete 直接完成服务

@@ -1,0 +1,7 @@
+{
+  "id": "ofbiz_party_ftp_address_action_ftp_address_create_create",
+  "module": "OFBIZ_PARTY_FTP_ADDRESS",
+  "edge_class": "all",
+  "source_file": "ofbiz_party/action_ftp_address_create_create.yaml",
+  "source_summary": "module: OFBIZ_PARTY_FTP_ADDRESS\\ncontract: FtpAddress.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ofbiz/party.ubo.yaml\\nsource_summary: GIVEN 实体 FtpAddress 的动作 create 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 create / THEN 状态变更与副作用应生效"
+}

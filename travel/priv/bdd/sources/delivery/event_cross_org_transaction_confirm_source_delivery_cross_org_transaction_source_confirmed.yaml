@@ -1,0 +1,5 @@
+module: DELIVERY_CROSS_ORG_TRANSACTION
+contract: CrossOrgTransaction.confirm_source event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 CrossOrgTransaction 的动作 confirm_source 完成 / WHEN 触发事件发布 / THEN 应广播 topic `delivery.cross_org_transaction.source_confirmed`

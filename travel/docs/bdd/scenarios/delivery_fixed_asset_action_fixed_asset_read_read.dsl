@@ -1,0 +1,4 @@
+[SCENARIO: BDD-DELIVERY_FIXED_ASSET-SEED-delivery_fixed_asset_action_fixed_asset_read_read] TITLE: DELIVERY_FIXED_ASSET contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="delivery_fixed_asset_action_fixed_asset_read_read" module="DELIVERY_FIXED_ASSET"
+WHEN when_execute_seed_contract module="DELIVERY_FIXED_ASSET"
+THEN then_seed_contract_should_hold module="DELIVERY_FIXED_ASSET"

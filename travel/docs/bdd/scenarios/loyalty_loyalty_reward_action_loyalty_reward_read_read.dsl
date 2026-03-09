@@ -1,0 +1,4 @@
+[SCENARIO: BDD-LOYALTY_LOYALTY_REWARD-SEED-loyalty_loyalty_reward_action_loyalty_reward_read_read] TITLE: LOYALTY_LOYALTY_REWARD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="loyalty_loyalty_reward_action_loyalty_reward_read_read" module="LOYALTY_LOYALTY_REWARD"
+WHEN when_execute_seed_contract module="LOYALTY_LOYALTY_REWARD"
+THEN then_seed_contract_should_hold module="LOYALTY_LOYALTY_REWARD"

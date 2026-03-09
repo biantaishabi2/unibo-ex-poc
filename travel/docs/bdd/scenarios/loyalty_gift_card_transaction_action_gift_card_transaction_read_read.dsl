@@ -1,0 +1,4 @@
+[SCENARIO: BDD-LOYALTY_GIFT_CARD_TRANSACTION-SEED-loyalty_gift_card_transaction_action_gift_card_transaction_read_read] TITLE: LOYALTY_GIFT_CARD_TRANSACTION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="loyalty_gift_card_transaction_action_gift_card_transaction_read_read" module="LOYALTY_GIFT_CARD_TRANSACTION"
+WHEN when_execute_seed_contract module="LOYALTY_GIFT_CARD_TRANSACTION"
+THEN then_seed_contract_should_hold module="LOYALTY_GIFT_CARD_TRANSACTION"

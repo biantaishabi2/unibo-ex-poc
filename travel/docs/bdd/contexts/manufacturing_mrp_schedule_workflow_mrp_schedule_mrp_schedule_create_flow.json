@@ -1,0 +1,7 @@
+{
+  "id": "manufacturing_mrp_schedule_workflow_mrp_schedule_mrp_schedule_create_flow",
+  "module": "MANUFACTURING_MRP_SCHEDULE",
+  "edge_class": "all",
+  "source_file": "manufacturing/workflow_mrp_schedule_mrp_schedule_create_flow.yaml",
+  "source_summary": "module: MANUFACTURING_MRP_SCHEDULE\\ncontract: MrpSchedule.mrp_schedule_create_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/manufacturing/manufacturing.ubo.yaml\\nsource_summary: GIVEN 实体 MrpSchedule 定义工作流 mrp_schedule_create_flow / WHEN 按步骤执行 create / THEN 流程顺序应满足声明约束"
+}

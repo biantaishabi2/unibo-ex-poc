@@ -1,0 +1,7 @@
+{
+  "id": "loyalty_gift_card_transaction_action_gift_card_transaction_create_create",
+  "module": "LOYALTY_GIFT_CARD_TRANSACTION",
+  "edge_class": "all",
+  "source_file": "loyalty/action_gift_card_transaction_create_create.yaml",
+  "source_summary": "module: LOYALTY_GIFT_CARD_TRANSACTION\\ncontract: GiftCardTransaction.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/loyalty/loyalty.ubo.yaml\\nsource_summary: GIVEN 实体 GiftCardTransaction 的动作 create 可执行，accept=[transaction_type, amount, balance_after, reference_id, note]，args=[gift_card_id:uuid!, operator_id:uuid] / WHEN 执行动作 create / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create(topup) -> create(charge) -> create(refund)"
+}

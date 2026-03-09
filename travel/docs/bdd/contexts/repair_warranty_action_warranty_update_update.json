@@ -1,0 +1,7 @@
+{
+  "id": "repair_warranty_action_warranty_update_update",
+  "module": "REPAIR_WARRANTY",
+  "edge_class": "all",
+  "source_file": "repair/action_warranty_update_update.yaml",
+  "source_summary": "module: REPAIR_WARRANTY\\ncontract: Warranty.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/repair/repair.ubo.yaml\\nsource_summary: GIVEN 实体 Warranty 的动作 update 可执行，accept=[end_date, terms]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

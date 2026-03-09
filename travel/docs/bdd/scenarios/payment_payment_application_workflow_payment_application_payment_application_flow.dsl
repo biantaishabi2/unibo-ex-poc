@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PAYMENT_PAYMENT_APPLICATION-SEED-payment_payment_application_workflow_payment_application_payment_application_flow] TITLE: PAYMENT_PAYMENT_APPLICATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="payment_payment_application_workflow_payment_application_payment_application_flow" module="PAYMENT_PAYMENT_APPLICATION"
+WHEN when_execute_seed_contract module="PAYMENT_PAYMENT_APPLICATION"
+THEN then_seed_contract_should_hold module="PAYMENT_PAYMENT_APPLICATION"

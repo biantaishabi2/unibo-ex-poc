@@ -1,0 +1,7 @@
+{
+  "id": "live_chat_channel_rule_workflow_channel_rule_channel_rule_maintain_flow",
+  "module": "LIVE_CHAT_CHANNEL_RULE",
+  "edge_class": "all",
+  "source_file": "live_chat/workflow_channel_rule_channel_rule_maintain_flow.yaml",
+  "source_summary": "module: LIVE_CHAT_CHANNEL_RULE\\ncontract: ChannelRule.channel_rule_maintain_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/livechat/livechat.ubo.yaml\\nsource_summary: GIVEN 实体 ChannelRule 定义工作流 channel_rule_maintain_flow / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束"
+}

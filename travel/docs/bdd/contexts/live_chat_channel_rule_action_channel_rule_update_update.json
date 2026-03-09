@@ -1,0 +1,7 @@
+{
+  "id": "live_chat_channel_rule_action_channel_rule_update_update",
+  "module": "LIVE_CHAT_CHANNEL_RULE",
+  "edge_class": "all",
+  "source_file": "live_chat/action_channel_rule_update_update.yaml",
+  "source_summary": "module: LIVE_CHAT_CHANNEL_RULE\\ncontract: ChannelRule.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/livechat/livechat.ubo.yaml\\nsource_summary: GIVEN 实体 ChannelRule 的动作 update 可执行，accept=[regex_url, action, auto_popup_timer, sequence, chatbot_only_if_no_operator]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

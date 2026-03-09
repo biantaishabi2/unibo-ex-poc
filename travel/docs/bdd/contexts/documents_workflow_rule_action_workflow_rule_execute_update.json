@@ -1,0 +1,7 @@
+{
+  "id": "documents_workflow_rule_action_workflow_rule_execute_update",
+  "module": "DOCUMENTS_WORKFLOW_RULE",
+  "edge_class": "all",
+  "source_file": "documents/action_workflow_rule_execute_update.yaml",
+  "source_summary": "module: DOCUMENTS_WORKFLOW_RULE\\ncontract: WorkflowRule.execute action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/documents/documents.ubo.yaml\\nsource_summary: GIVEN 实体 WorkflowRule 的动作 execute 可执行，accept=[(未声明)]，args=[document_ids:array!] / WHEN 执行动作 execute / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

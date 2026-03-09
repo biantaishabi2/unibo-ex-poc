@@ -1,0 +1,4 @@
+[SCENARIO: BDD-LOYALTY_LOYALTY_CARD-SEED-loyalty_loyalty_card_action_loyalty_card_unfreeze_update] TITLE: LOYALTY_LOYALTY_CARD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="loyalty_loyalty_card_action_loyalty_card_unfreeze_update" module="LOYALTY_LOYALTY_CARD"
+WHEN when_execute_seed_contract module="LOYALTY_LOYALTY_CARD"
+THEN then_seed_contract_should_hold module="LOYALTY_LOYALTY_CARD"

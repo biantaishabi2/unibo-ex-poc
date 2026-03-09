@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SERVICE_JOB_MANAGER_LOCK-SEED-ofbiz_service_job_manager_lock_action_job_manager_lock_create_create] TITLE: OFBIZ_SERVICE_JOB_MANAGER_LOCK contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_service_job_manager_lock_action_job_manager_lock_create_create" module="OFBIZ_SERVICE_JOB_MANAGER_LOCK"
+WHEN when_execute_seed_contract module="OFBIZ_SERVICE_JOB_MANAGER_LOCK"
+THEN then_seed_contract_should_hold module="OFBIZ_SERVICE_JOB_MANAGER_LOCK"

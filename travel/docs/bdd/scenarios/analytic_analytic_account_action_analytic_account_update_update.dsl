@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ANALYTIC_ANALYTIC_ACCOUNT-SEED-analytic_analytic_account_action_analytic_account_update_update] TITLE: ANALYTIC_ANALYTIC_ACCOUNT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="analytic_analytic_account_action_analytic_account_update_update" module="ANALYTIC_ANALYTIC_ACCOUNT"
+WHEN when_execute_seed_contract module="ANALYTIC_ANALYTIC_ACCOUNT"
+THEN then_seed_contract_should_hold module="ANALYTIC_ANALYTIC_ACCOUNT"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-FLEET_VEHICLE_CONTRACT-SEED-fleet_vehicle_contract_action_vehicle_contract_renew_update] TITLE: FLEET_VEHICLE_CONTRACT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="fleet_vehicle_contract_action_vehicle_contract_renew_update" module="FLEET_VEHICLE_CONTRACT"
+WHEN when_execute_seed_contract module="FLEET_VEHICLE_CONTRACT"
+THEN then_seed_contract_should_hold module="FLEET_VEHICLE_CONTRACT"

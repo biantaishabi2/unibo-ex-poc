@@ -1,0 +1,4 @@
+[SCENARIO: BDD-REPAIR_REPAIR_TICKET-SEED-repair_repair_ticket_action_repair_ticket_cancel_update] TITLE: REPAIR_REPAIR_TICKET contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="repair_repair_ticket_action_repair_ticket_cancel_update" module="REPAIR_REPAIR_TICKET"
+WHEN when_execute_seed_contract module="REPAIR_REPAIR_TICKET"
+THEN then_seed_contract_should_hold module="REPAIR_REPAIR_TICKET"

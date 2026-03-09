@@ -1,0 +1,4 @@
+[SCENARIO: BDD-CALENDAR_WORK_SCHEDULE-SEED-calendar_work_schedule_action_work_schedule_activate_update] TITLE: CALENDAR_WORK_SCHEDULE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="calendar_work_schedule_action_work_schedule_activate_update" module="CALENDAR_WORK_SCHEDULE"
+WHEN when_execute_seed_contract module="CALENDAR_WORK_SCHEDULE"
+THEN then_seed_contract_should_hold module="CALENDAR_WORK_SCHEDULE"

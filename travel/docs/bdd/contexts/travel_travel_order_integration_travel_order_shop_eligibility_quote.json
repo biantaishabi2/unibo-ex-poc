@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_integration_travel_order_shop_eligibility_quote",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "all",
+  "source_file": "travel/integration_travel_order_shop_eligibility_quote.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_ORDER\\ncontract: TravelOrder.shop_eligibility_quote integration contract\\nedge_class: integration_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelOrder 声明 integration shop_eligibility_quote（mode=sync） / WHEN 绑定动作 [confirm_quote] 触发外部调用 / THEN 调用结果需满足 声明错误码 shop_quote_rejected, shop_quote_timeout 且 业务后置条件 available_points, mixed_payment_allowed, points_payment_allowed, quote_trace_id, recommended_payment_mode, travel_enabled\\ndeclared_error_codes:\\n- shop_quote_rejected\\n- shop_quote_timeout"
+}

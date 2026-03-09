@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HR_JOB_APPLICATION-SEED-hr_job_application_event_job_application_create_hr_application_received] TITLE: HR_JOB_APPLICATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="hr_job_application_event_job_application_create_hr_application_received" module="HR_JOB_APPLICATION"
+WHEN when_execute_seed_contract module="HR_JOB_APPLICATION"
+THEN then_seed_contract_should_hold module="HR_JOB_APPLICATION"

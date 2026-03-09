@@ -1,0 +1,7 @@
+{
+  "id": "survey_user_input_event_user_input_mark_done_survey_user_input_done",
+  "module": "SURVEY_USER_INPUT",
+  "edge_class": "all",
+  "source_file": "survey/event_user_input_mark_done_survey_user_input_done.yaml",
+  "source_summary": "module: SURVEY_USER_INPUT\\ncontract: UserInput.mark_done event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/survey/survey.ubo.yaml\\nsource_summary: GIVEN 实体 UserInput 的动作 mark_done 完成 / WHEN 触发事件发布 / THEN 应广播 topic `survey.user_input.done`"
+}

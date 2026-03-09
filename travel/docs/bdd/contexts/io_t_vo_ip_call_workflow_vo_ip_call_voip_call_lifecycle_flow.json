@@ -1,0 +1,7 @@
+{
+  "id": "io_t_vo_ip_call_workflow_vo_ip_call_voip_call_lifecycle_flow",
+  "module": "IO_T_VO_IP_CALL",
+  "edge_class": "all",
+  "source_file": "io_t/workflow_vo_ip_call_voip_call_lifecycle_flow.yaml",
+  "source_summary": "module: IO_T_VO_IP_CALL\\ncontract: VoIPCall.voip_call_lifecycle_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml\\nsource_summary: GIVEN 实体 VoIPCall 定义工作流 voip_call_lifecycle_flow / WHEN 按步骤执行 create -> answer -> hold -> unhold -> transfer -> add_note -> end_call -> miss -> to_voicemail -> update / THEN 流程顺序应满足声明约束"
+}

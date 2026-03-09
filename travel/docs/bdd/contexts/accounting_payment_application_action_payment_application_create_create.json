@@ -1,0 +1,7 @@
+{
+  "id": "accounting_payment_application_action_payment_application_create_create",
+  "module": "ACCOUNTING_PAYMENT_APPLICATION",
+  "edge_class": "all",
+  "source_file": "accounting/action_payment_application_create_create.yaml",
+  "source_summary": "module: ACCOUNTING_PAYMENT_APPLICATION\\ncontract: PaymentApplication.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/accounting/accounting.ubo.yaml\\nsource_summary: GIVEN 实体 PaymentApplication 的动作 create 可执行，accept=[applied_amount, notes]，args=[payment_id:uuid!, invoice_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 将付款核销到发票，destroy 撤销核销关系"
+}

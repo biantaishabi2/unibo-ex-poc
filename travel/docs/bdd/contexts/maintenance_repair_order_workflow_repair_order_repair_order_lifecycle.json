@@ -1,0 +1,7 @@
+{
+  "id": "maintenance_repair_order_workflow_repair_order_repair_order_lifecycle",
+  "module": "MAINTENANCE_REPAIR_ORDER",
+  "edge_class": "all",
+  "source_file": "maintenance/workflow_repair_order_repair_order_lifecycle.yaml",
+  "source_summary": "module: MAINTENANCE_REPAIR_ORDER\\ncontract: RepairOrder.repair_order_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml\\nsource_summary: GIVEN 实体 RepairOrder 定义工作流 repair_order_lifecycle / WHEN 按步骤执行 create -> confirm -> start_repair -> complete_repair -> cancel -> reset_to_draft / THEN 流程顺序应满足声明约束"
+}

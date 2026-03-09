@@ -1,0 +1,7 @@
+{
+  "id": "inventory_landed_cost_line_action_landed_cost_line_create_create",
+  "module": "INVENTORY_LANDED_COST_LINE",
+  "edge_class": "all",
+  "source_file": "inventory/action_landed_cost_line_create_create.yaml",
+  "source_summary": "module: INVENTORY_LANDED_COST_LINE\\ncontract: LandedCostLine.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/inventory/inventory.ubo.yaml\\nsource_summary: GIVEN 实体 LandedCostLine 的动作 create 可执行，accept=[name, price_unit, split_method]，args=[cost_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 成本行，update 修改金额和分摊方式"
+}

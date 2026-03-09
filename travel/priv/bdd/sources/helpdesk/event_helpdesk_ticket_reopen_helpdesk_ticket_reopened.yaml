@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_TICKET
+contract: HelpdeskTicket.reopen event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskTicket 的动作 reopen 完成 / WHEN 触发事件发布 / THEN 应广播 topic `helpdesk.ticket.reopened`

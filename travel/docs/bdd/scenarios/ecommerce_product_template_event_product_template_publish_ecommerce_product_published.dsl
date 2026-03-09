@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ECOMMERCE_PRODUCT_TEMPLATE-SEED-ecommerce_product_template_event_product_template_publish_ecommerce_product_published] TITLE: ECOMMERCE_PRODUCT_TEMPLATE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ecommerce_product_template_event_product_template_publish_ecommerce_product_published" module="ECOMMERCE_PRODUCT_TEMPLATE"
+WHEN when_execute_seed_contract module="ECOMMERCE_PRODUCT_TEMPLATE"
+THEN then_seed_contract_should_hold module="ECOMMERCE_PRODUCT_TEMPLATE"

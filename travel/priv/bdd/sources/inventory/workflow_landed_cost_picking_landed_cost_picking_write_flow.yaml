@@ -1,0 +1,5 @@
+module: INVENTORY_LANDED_COST_PICKING
+contract: LandedCostPicking.landed_cost_picking_write_flow workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/inventory/inventory.ubo.yaml
+source_summary: GIVEN 实体 LandedCostPicking 定义工作流 landed_cost_picking_write_flow / WHEN 按步骤执行 create / THEN 流程顺序应满足声明约束

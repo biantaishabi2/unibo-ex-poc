@@ -1,0 +1,7 @@
+{
+  "id": "communication_channel_action_channel_archive_update",
+  "module": "COMMUNICATION_CHANNEL",
+  "edge_class": "all",
+  "source_file": "communication/action_channel_archive_update.yaml",
+  "source_summary": "module: COMMUNICATION_CHANNEL\\ncontract: Channel.archive action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/communication/communication.ubo.yaml\\nsource_summary: GIVEN 实体 Channel 的动作 archive 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 archive / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

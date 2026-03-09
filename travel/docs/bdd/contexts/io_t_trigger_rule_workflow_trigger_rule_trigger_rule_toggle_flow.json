@@ -1,0 +1,7 @@
+{
+  "id": "io_t_trigger_rule_workflow_trigger_rule_trigger_rule_toggle_flow",
+  "module": "IO_T_TRIGGER_RULE",
+  "edge_class": "all",
+  "source_file": "io_t/workflow_trigger_rule_trigger_rule_toggle_flow.yaml",
+  "source_summary": "module: IO_T_TRIGGER_RULE\\ncontract: TriggerRule.trigger_rule_toggle_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml\\nsource_summary: GIVEN 实体 TriggerRule 定义工作流 trigger_rule_toggle_flow / WHEN 按步骤执行 create -> update -> activate -> deactivate / THEN 流程顺序应满足声明约束"
+}

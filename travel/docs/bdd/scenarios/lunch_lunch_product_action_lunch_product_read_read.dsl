@@ -1,0 +1,4 @@
+[SCENARIO: BDD-LUNCH_LUNCH_PRODUCT-SEED-lunch_lunch_product_action_lunch_product_read_read] TITLE: LUNCH_LUNCH_PRODUCT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="lunch_lunch_product_action_lunch_product_read_read" module="LUNCH_LUNCH_PRODUCT"
+WHEN when_execute_seed_contract module="LUNCH_LUNCH_PRODUCT"
+THEN then_seed_contract_should_hold module="LUNCH_LUNCH_PRODUCT"

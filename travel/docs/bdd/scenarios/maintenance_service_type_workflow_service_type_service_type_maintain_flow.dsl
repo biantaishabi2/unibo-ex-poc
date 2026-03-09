@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MAINTENANCE_SERVICE_TYPE-SEED-maintenance_service_type_workflow_service_type_service_type_maintain_flow] TITLE: MAINTENANCE_SERVICE_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="maintenance_service_type_workflow_service_type_service_type_maintain_flow" module="MAINTENANCE_SERVICE_TYPE"
+WHEN when_execute_seed_contract module="MAINTENANCE_SERVICE_TYPE"
+THEN then_seed_contract_should_hold module="MAINTENANCE_SERVICE_TYPE"

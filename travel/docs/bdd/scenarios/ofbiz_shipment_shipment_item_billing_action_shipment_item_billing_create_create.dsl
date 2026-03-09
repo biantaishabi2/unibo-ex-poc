@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SHIPMENT_SHIPMENT_ITEM_BILLING-SEED-ofbiz_shipment_shipment_item_billing_action_shipment_item_billing_create_create] TITLE: OFBIZ_SHIPMENT_SHIPMENT_ITEM_BILLING contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_shipment_shipment_item_billing_action_shipment_item_billing_create_create" module="OFBIZ_SHIPMENT_SHIPMENT_ITEM_BILLING"
+WHEN when_execute_seed_contract module="OFBIZ_SHIPMENT_SHIPMENT_ITEM_BILLING"
+THEN then_seed_contract_should_hold module="OFBIZ_SHIPMENT_SHIPMENT_ITEM_BILLING"

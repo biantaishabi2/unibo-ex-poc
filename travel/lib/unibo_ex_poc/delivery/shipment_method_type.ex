@@ -74,12 +74,10 @@ defmodule UniboExPoc.Delivery.ShipmentMethodType do
     create :create do
       primary? true
       accept [:shipment_method_type_id, :description, :sequence_num]
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:description, :sequence_num]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

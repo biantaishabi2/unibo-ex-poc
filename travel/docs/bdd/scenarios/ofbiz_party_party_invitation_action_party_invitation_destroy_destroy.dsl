@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_PARTY_INVITATION-SEED-ofbiz_party_party_invitation_action_party_invitation_destroy_destroy] TITLE: OFBIZ_PARTY_PARTY_INVITATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_party_invitation_action_party_invitation_destroy_destroy" module="OFBIZ_PARTY_PARTY_INVITATION"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_PARTY_INVITATION"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_PARTY_INVITATION"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_WORK_EFFORT_WORK_EFFORT_TYPE-SEED-ofbiz_work_effort_work_effort_type_action_work_effort_type_destroy_destroy] TITLE: OFBIZ_WORK_EFFORT_WORK_EFFORT_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_work_effort_work_effort_type_action_work_effort_type_destroy_destroy" module="OFBIZ_WORK_EFFORT_WORK_EFFORT_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_WORK_EFFORT_WORK_EFFORT_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_WORK_EFFORT_WORK_EFFORT_TYPE"

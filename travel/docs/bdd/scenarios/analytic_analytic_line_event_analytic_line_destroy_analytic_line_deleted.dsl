@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ANALYTIC_ANALYTIC_LINE-SEED-analytic_analytic_line_event_analytic_line_destroy_analytic_line_deleted] TITLE: ANALYTIC_ANALYTIC_LINE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="analytic_analytic_line_event_analytic_line_destroy_analytic_line_deleted" module="ANALYTIC_ANALYTIC_LINE"
+WHEN when_execute_seed_contract module="ANALYTIC_ANALYTIC_LINE"
+THEN then_seed_contract_should_hold module="ANALYTIC_ANALYTIC_LINE"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SHIPMENT_SHIPPING_DOCUMENT-SEED-ofbiz_shipment_shipping_document_action_shipping_document_update_update] TITLE: OFBIZ_SHIPMENT_SHIPPING_DOCUMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_shipment_shipping_document_action_shipping_document_update_update" module="OFBIZ_SHIPMENT_SHIPPING_DOCUMENT"
+WHEN when_execute_seed_contract module="OFBIZ_SHIPMENT_SHIPPING_DOCUMENT"
+THEN then_seed_contract_should_hold module="OFBIZ_SHIPMENT_SHIPPING_DOCUMENT"

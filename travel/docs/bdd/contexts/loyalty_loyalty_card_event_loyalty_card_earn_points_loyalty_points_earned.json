@@ -1,0 +1,7 @@
+{
+  "id": "loyalty_loyalty_card_event_loyalty_card_earn_points_loyalty_points_earned",
+  "module": "LOYALTY_LOYALTY_CARD",
+  "edge_class": "all",
+  "source_file": "loyalty/event_loyalty_card_earn_points_loyalty_points_earned.yaml",
+  "source_summary": "module: LOYALTY_LOYALTY_CARD\\ncontract: LoyaltyCard.earn_points event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/loyalty/loyalty.ubo.yaml\\nsource_summary: GIVEN 实体 LoyaltyCard 的动作 earn_points 完成 / WHEN 触发事件发布 / THEN 应广播 topic `loyalty.points.earned`"
+}

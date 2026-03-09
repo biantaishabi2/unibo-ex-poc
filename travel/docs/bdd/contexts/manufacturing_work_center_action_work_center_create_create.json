@@ -1,0 +1,7 @@
+{
+  "id": "manufacturing_work_center_action_work_center_create_create",
+  "module": "MANUFACTURING_WORK_CENTER",
+  "edge_class": "all",
+  "source_file": "manufacturing/action_work_center_create_create.yaml",
+  "source_summary": "module: MANUFACTURING_WORK_CENTER\\ncontract: WorkCenter.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/manufacturing/manufacturing.ubo.yaml\\nsource_summary: GIVEN 实体 WorkCenter 的动作 create 可执行，accept=[center_code, name, costs_hour, capacity, time_start, time_stop, time_efficiency, resource_calendar_id, description]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

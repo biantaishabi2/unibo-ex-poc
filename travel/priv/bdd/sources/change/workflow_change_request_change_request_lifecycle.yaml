@@ -1,0 +1,5 @@
+module: CHANGE_CHANGE_REQUEST
+contract: ChangeRequest.change_request_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/change/change.ubo.yaml
+source_summary: GIVEN 实体 ChangeRequest 定义工作流 change_request_lifecycle / WHEN 按步骤执行 create -> update -> analyze_impact -> approve -> start_implementation -> verify -> close -> reject / THEN 流程顺序应满足声明约束

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-QUALITY_QUALITY_POINT_ORG_VIEW-SEED-quality_quality_point_org_view_action_quality_point_org_view_update_update] TITLE: QUALITY_QUALITY_POINT_ORG_VIEW contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="quality_quality_point_org_view_action_quality_point_org_view_update_update" module="QUALITY_QUALITY_POINT_ORG_VIEW"
+WHEN when_execute_seed_contract module="QUALITY_QUALITY_POINT_ORG_VIEW"
+THEN then_seed_contract_should_hold module="QUALITY_QUALITY_POINT_ORG_VIEW"

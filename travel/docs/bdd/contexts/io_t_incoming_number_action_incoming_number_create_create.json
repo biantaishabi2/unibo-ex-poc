@@ -1,0 +1,7 @@
+{
+  "id": "io_t_incoming_number_action_incoming_number_create_create",
+  "module": "IO_T_INCOMING_NUMBER",
+  "edge_class": "all",
+  "source_file": "io_t/action_incoming_number_create_create.yaml",
+  "source_summary": "module: IO_T_INCOMING_NUMBER\\ncontract: IncomingNumber.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml\\nsource_summary: GIVEN 实体 IncomingNumber 的动作 create 可执行，accept=[number, name, country_code, city, is_active, org_id]，args=[dial_plan_id:bigint, extension_user_id:bigint, voicemail_id:bigint, queue_id:bigint, conference_room_id:bigint] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_QUOTE_NOTE-SEED-ofbiz_order_quote_note_action_quote_note_update_update] TITLE: OFBIZ_ORDER_QUOTE_NOTE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_quote_note_action_quote_note_update_update" module="OFBIZ_ORDER_QUOTE_NOTE"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_QUOTE_NOTE"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_QUOTE_NOTE"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_MARKETING_SALES_OPPORTUNITY-SEED-ofbiz_marketing_sales_opportunity_action_sales_opportunity_destroy_destroy] TITLE: OFBIZ_MARKETING_SALES_OPPORTUNITY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_marketing_sales_opportunity_action_sales_opportunity_destroy_destroy" module="OFBIZ_MARKETING_SALES_OPPORTUNITY"
+WHEN when_execute_seed_contract module="OFBIZ_MARKETING_SALES_OPPORTUNITY"
+THEN then_seed_contract_should_hold module="OFBIZ_MARKETING_SALES_OPPORTUNITY"

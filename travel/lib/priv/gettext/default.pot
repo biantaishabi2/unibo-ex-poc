@@ -1,6 +1,395 @@
 # 从 YAML 模型自动生成，请勿手动编辑
 # UniBO Compiler — Gettext POT
 
+#. domain: Accounting
+msgid "财务管理领域模型，涵盖科目、凭证、发票、付款、核销、预算"
+msgstr ""
+
+#. domain: Accounting, entity: GlAccount
+msgid "总账科目"
+msgstr ""
+
+#. domain: Accounting, entity: GlAccount, attribute: account_code
+msgid "科目编号"
+msgstr ""
+
+#. domain: Accounting, entity: GlAccount, attribute: account_name
+msgid "科目名称"
+msgstr ""
+
+#. domain: Accounting, entity: GlAccount, attribute: account_type
+msgid "科目类型（细分类型，兼容 Odoo 17 account_type）"
+msgstr ""
+
+#. domain: Accounting, entity: GlAccount, attribute: reconcile
+msgid "是否允许核销（应收/应付必须为 true）[R-GL-001]"
+msgstr ""
+
+#. domain: Accounting, entity: GlAccount, attribute: parent_account_code
+msgid "上级科目编号"
+msgstr ""
+
+#. domain: Accounting, entity: GlAccount, attribute: is_active
+msgid "是否启用；已停用科目不可用于新分录 [R-GL-002]"
+msgstr ""
+
+#. domain: Accounting, entity: GlAccount, attribute: currency_id
+msgid "外币限定（可选，限定该科目只能用某一外币记账）"
+msgstr ""
+
+#. domain: Accounting, entity: GlAccount, action: deactivate
+msgid "停用科目 [R-GL-002]"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry
+msgid "记账凭证（会计分录），涵盖普通凭证、销售发票、采购账单、收据等"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: entry_number
+msgid "凭证号，草稿时为 '/'，过账时由 journal sequence 生成 [R-ACC-007]"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: move_type
+msgid "凭证类型"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: status
+msgid "凭证状态（draft → posted → cancel，cancel → draft）"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: entry_date
+msgid "会计日期 [R-ACC-002]"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: invoice_date
+msgid "发票日期（仅 invoice 类型使用）[R-ACC-005]"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: invoice_date_due
+msgid "到期日"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: currency_id
+msgid "币种"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: fiscal_position_id
+msgid "税务位置 [R-ACC-004]"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: invoice_origin
+msgid "来源单据号（SO/PO 编号）"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: ref
+msgid "参考号"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: amount_untaxed
+msgid "未税合计（计算字段）
+公式: sign * SUM(line.balance) WHERE line.display_type IN ('product','rounding')
+sign = +1（出站）或 -1（入站）[R-DIR-001][R-DIR-002][R-DIR-003]
+"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: amount_tax
+msgid "税额合计（计算字段）
+公式: sign * SUM(line.balance) WHERE line.display_type = 'tax'
+"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: amount_total
+msgid "含税合计（计算字段）
+公式: amount_untaxed + amount_tax
+"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: amount_residual
+msgid "未付余额（计算字段）
+公式: -sign * SUM(line.amount_residual_currency) WHERE line.display_type = 'payment_term'
+"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: amount_residual_signed
+msgid "已签署未付余额（计算字段）
+公式: SUM(line.amount_residual) WHERE line.display_type = 'payment_term'
+"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: payment_state
+msgid "付款状态（计算字段）[R-REC-004]
+not_paid: 无核销记录
+partial: 存在核销但 amount_residual != 0
+in_payment: amount_residual = 0 但部分付款未匹配银行对账单
+paid: amount_residual = 0 且所有付款已匹配银行对账单
+reversed: 仅冲销分录匹配
+"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: total_debit
+msgid "借方合计"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, attribute: total_credit
+msgid "贷方合计"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, action: post
+msgid "过账 [R-ACC-001 ~ R-ACC-007]"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, action: cancel
+msgid "取消（可能生成冲销分录）"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntry, action: reset_to_draft
+msgid "重置为草稿"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntryLine
+msgid "凭证分录行"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntryLine, attribute: debit_amount
+msgid "借方金额"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntryLine, attribute: credit_amount
+msgid "贷方金额"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntryLine, attribute: balance
+msgid "计算字段: debit_amount - credit_amount"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntryLine, attribute: amount_currency
+msgid "外币金额"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntryLine, attribute: amount_residual
+msgid "未核销余额（本位币）"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntryLine, attribute: amount_residual_currency
+msgid "未核销外币余额"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntryLine, attribute: display_type
+msgid "行类型（产品行、税行、付款条件行、舍入行、备注行、分节行）"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice
+msgid "发票（应收/应付）— 业务视图，底层映射为 JournalEntry（move_type = out_invoice/in_invoice 等）"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, attribute: invoice_number
+msgid "发票号"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, attribute: invoice_type
+msgid "发票类型"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, attribute: total_amount
+msgid "发票总金额"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, attribute: paid_amount
+msgid "已付金额"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, attribute: invoice_origin
+msgid "来源单据号（SO/PO 编号），跨模块调用时由 sale/purchase 模块设置"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, action: approve
+msgid "审批发票"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, action: send
+msgid "发送发票"
+msgstr ""
+
+#. domain: Accounting, entity: Invoice, action: void
+msgid "作废发票"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem
+msgid "发票明细行（对齐 OFBiz InvoiceItem）"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, attribute: invoice_item_type_id
+msgid "发票行类型（对齐 OFBiz InvoiceItemType，如 产品/服务/税/折扣）"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, attribute: seq_id
+msgid "行序号（对齐 OFBiz invoice_item_seq_id）"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, attribute: description
+msgid "行描述（对齐 OFBiz description）"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, attribute: quantity
+msgid "数量（对齐 OFBiz quantity，类型从 integer 改为 decimal）"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, attribute: amount
+msgid "单价/行金额（对齐 OFBiz amount）"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, attribute: taxable_flag
+msgid "是否应税（对齐 OFBiz taxable_flag）"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, attribute: tax_auth_party_id
+msgid "税务机关方（对齐 OFBiz tax_auth_party_id）"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, attribute: tax_auth_geo_id
+msgid "税务地区（对齐 OFBiz tax_auth_geo_id）"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, attribute: product_id
+msgid "产品引用（对齐 OFBiz product_id）"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, attribute: unit_price
+msgid "单价（业务扩展，OFBiz 用 amount 表示单行金额）"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, attribute: tax_rate
+msgid "税率百分比（业务扩展，OFBiz 通过 TaxAuthorityRateProduct 引用）"
+msgstr ""
+
+#. domain: Accounting, entity: InvoiceItem, attribute: tax_amount
+msgid "税额（computed，业务扩展）"
+msgstr ""
+
+#. domain: Accounting, entity: Payment
+msgid "付款/收款记录。在 Odoo 中通过 _inherits 委托继承 account.move，每个 Payment 即是一个 JournalEntry"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, attribute: payment_number
+msgid "付款编号"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, attribute: payment_type
+msgid "收款(inbound) / 付款(outbound)"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, attribute: partner_type
+msgid "客户/供应商"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, attribute: status
+msgid "付款状态，由底层 move.state 驱动"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, attribute: amount
+msgid "付款金额 [R-PAY-001] 必须 >= 0"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, attribute: payment_method
+msgid "付款方式 [R-PAY-002]"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, attribute: destination_account_id
+msgid "应收/应付科目 [R-PAY-003]"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, attribute: reference_number
+msgid "银行流水号"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, attribute: is_reconciled
+msgid "计算字段 [R-REC-005]: 对方行 + 差额调整行全部已核销（发票已匹配）
+公式: ALL(line.amount_residual == 0) WHERE line IN (counterpart_lines + writeoff_lines)
+"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, attribute: is_matched
+msgid "计算字段 [R-REC-006]: 流动性行全部已核销（银行对账单已匹配）
+公式: ALL(line.amount_residual == 0) WHERE line IN (liquidity_lines)
+"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, attribute: paired_internal_transfer_payment_id
+msgid "内部调拨配对付款 [R-PAY-005]"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, action: post
+msgid "确认付款（过账底层 move）[R-PAY-003]"
+msgstr ""
+
+#. domain: Accounting, entity: Payment, action: cancel
+msgid "取消付款"
+msgstr ""
+
+#. domain: Accounting, entity: PaymentApplication
+msgid "付款与发票的核销关系"
+msgstr ""
+
+#. domain: Accounting, entity: PaymentApplication, attribute: applied_amount
+msgid "核销金额"
+msgstr ""
+
+#. domain: Accounting, entity: PartialReconcile
+msgid "部分核销记录，连接借方行与贷方行 [R-REC-001][R-REC-002]"
+msgstr ""
+
+#. domain: Accounting, entity: PartialReconcile, attribute: amount
+msgid "核销金额（本位币）"
+msgstr ""
+
+#. domain: Accounting, entity: PartialReconcile, attribute: debit_amount_currency
+msgid "借方外币核销金额"
+msgstr ""
+
+#. domain: Accounting, entity: PartialReconcile, attribute: credit_amount_currency
+msgid "贷方外币核销金额"
+msgstr ""
+
+#. domain: Accounting, entity: FullReconcile
+msgid "完全核销组，当一组行的 amount_residual 全部归零时创建 [R-REC-003]"
+msgstr ""
+
+#. domain: Accounting, entity: BillingAccount
+msgid "客户/供应商账户余额"
+msgstr ""
+
+#. domain: Accounting, entity: BillingAccount, attribute: account_number
+msgid "账户编号"
+msgstr ""
+
+#. domain: Accounting, entity: BillingAccount, attribute: account_type
+msgid "应收/应付"
+msgstr ""
+
+#. domain: Accounting, entity: BillingAccount, attribute: balance
+msgid "当前余额"
+msgstr ""
+
+#. domain: Accounting, entity: BillingAccount, attribute: credit_limit
+msgid "信用额度"
+msgstr ""
+
+#. domain: Accounting, entity: Journal
+msgid "日记账占位实体（跨域引用，最小字段）"
+msgstr ""
+
+#. domain: Accounting, entity: Tax
+msgid "税率占位实体（跨域引用，最小字段）"
+msgstr ""
+
+#. domain: Accounting, entity: JournalEntryLineTaxRel
+msgid "分录行与税率的关联占位实体"
+msgstr ""
+
+#. domain: Accounting, entity: Party
+msgid "跨域引用 Organization.Party（统一主体）"
+msgstr ""
+
 #. domain: Delivery
 msgid "物流配送域，管理发货单生命周期、运输路段追踪、包裹管理、 物流行程调度及运费估算规则。基于 OFBiz Shipment 领域建模， 覆盖 B2C/B2B 出货、采购入货、内部调拨、退货等场景。
 "
@@ -614,311 +1003,6 @@ msgstr ""
 msgid "电商领域模型，涵盖产品模板、变体、分类、价格、目录、购物车、主题"
 msgstr ""
 
-#. domain: Ecommerce, entity: ProductTemplate
-msgid "产品模板"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, attribute: product_code
-msgid "产品编号"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, attribute: description_ecommerce
-msgid "电商专用描述（HTML），写入时自动清理空标签"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, attribute: is_published
-msgid "是否上架（多站点发布）"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, attribute: website_sequence
-msgid "商城排序，步进5，支持 top/bottom/up/down 操作"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, attribute: website_size_x
-msgid "网格布局宽度"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, attribute: website_size_y
-msgid "网格布局高度"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, attribute: base_unit_count
-msgid "基础计量单位数量（用于\"每kg价格\"展示）"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, action: publish
-msgid "上架 — 同时设置 is_published=true 和 status=active；必须至少有一个 active 变体"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, action: unpublish
-msgid "下架 — 设置 is_published=false，status 保持 active"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, action: discontinue
-msgid "停产"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplate, action: reactivate
-msgid "重新激活已停产产品"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductVariant
-msgid "产品变体"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductVariant, attribute: sku
-msgid "SKU"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductVariant, attribute: attributes_json
-msgid "变体属性（JSON，如颜色/尺码）"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductVariant, action: create_dynamic_variant
-msgid "动态变体创建 — template 配置为 dynamic 模式时，根据用户选择的属性组合动态创建"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductCategory
-msgid "产品分类"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductPrice
-msgid "产品价格"
-msgstr ""
-
-#. domain: Ecommerce, entity: Catalog
-msgid "产品目录"
-msgstr ""
-
-#. domain: Ecommerce, entity: WebSite
-msgid "跨域站点占位实体"
-msgstr ""
-
-#. domain: Ecommerce, entity: Theme
-msgid "网站主题/配置器"
-msgstr ""
-
-#. domain: Ecommerce, entity: Theme, attribute: name
-msgid "主题名称"
-msgstr ""
-
-#. domain: Ecommerce, entity: Theme, attribute: module_name
-msgid "对应模块标识"
-msgstr ""
-
-#. domain: Ecommerce, entity: Theme, attribute: color_palettes
-msgid "SCSS 颜色定义（JSON）"
-msgstr ""
-
-#. domain: Ecommerce, entity: Theme, attribute: logo_attachment_id
-msgid "Logo 附件"
-msgstr ""
-
-#. domain: Ecommerce, entity: Theme, attribute: status
-msgid "主题状态"
-msgstr ""
-
-#. domain: Ecommerce, entity: Theme, action: apply
-msgid "应用主题到网站"
-msgstr ""
-
-#. domain: Ecommerce, entity: Theme, action: switch
-msgid "切换到另一个主题（当前主题变为 available）"
-msgstr ""
-
-#. domain: Ecommerce, entity: ShoppingCart
-msgid "购物车"
-msgstr ""
-
-#. domain: Ecommerce, entity: ShoppingCart, attribute: total_amount
-msgid "计算字段：sum(visible_lines.price_total)，不含物流行"
-msgstr ""
-
-#. domain: Ecommerce, entity: ShoppingCart, attribute: access_token
-msgid "用于弃购恢复链接"
-msgstr ""
-
-#. domain: Ecommerce, entity: ShoppingCart, attribute: cart_recovery_email_sent
-msgid "弃购恢复邮件是否已发送"
-msgstr ""
-
-#. domain: Ecommerce, entity: ShoppingCart, action: convert
-msgid "转为订单"
-msgstr ""
-
-#. domain: Ecommerce, entity: ShoppingCart, action: cart_update
-msgid "核心加购逻辑：(a) 校验订单处于 draft 状态 → (b) 解析产品变体 → (c) 查找已有相同产品行合并数量 → (d) 通过 _get_closest_possible_combination() 解析最近有效组合 → (e) 移除配送行后重新计算
-"
-msgstr ""
-
-#. domain: Ecommerce, entity: ShoppingCart, action: recover
-msgid "通过 access_token 恢复弃购购物车，支持 merge（合并）和 squash（覆盖）两种模式"
-msgstr ""
-
-#. domain: Ecommerce, entity: ShoppingCart, action: update_pricelist
-msgid "切换价格表并重算所有行价格"
-msgstr ""
-
-#. domain: Ecommerce, entity: ShoppingCart, action: select_carrier
-msgid "选择物流方式"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyProgram
-msgid "积分/优惠券/忠诚度计划"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyProgram, attribute: name
-msgid "计划名称"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyProgram, attribute: program_type
-msgid "计划类型"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyProgram, attribute: active
-msgid "是否启用"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyProgram, attribute: sale_ok
-msgid "是否在 POS/销售中可用"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyProgram, attribute: ecommerce_ok
-msgid "是否在电商网站可用"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyProgram, attribute: trigger
-msgid "触发方式（自动/输入促销码）"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyProgram, attribute: applies_on
-msgid "适用于当前订单/未来订单/两者"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyProgram, attribute: date_from
-msgid "有效期起始"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyProgram, attribute: date_to
-msgid "有效期结束"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyProgram, attribute: limit_usage
-msgid "是否限制总使用次数"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyProgram, attribute: max_usage
-msgid "最大使用次数（limit_usage=true 时生效）"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyRule
-msgid "积分规则（满足条件获得积分/优惠）"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyRule, attribute: code
-msgid "促销码（trigger=with_code 时使用）"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyRule, attribute: minimum_qty
-msgid "最低购买数量"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyRule, attribute: minimum_amount
-msgid "最低消费金额"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyRule, attribute: reward_point_amount
-msgid "满足条件后奖励积分数"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyRule, attribute: reward_point_mode
-msgid "积分计算方式（按单/按金额/按数量）"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyReward
-msgid "积分奖励定义（折扣/免费产品/免运费等）"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyReward, attribute: reward_type
-msgid "奖励类型"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyReward, attribute: discount
-msgid "折扣值"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyReward, attribute: discount_mode
-msgid "折扣模式"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyReward, attribute: discount_max_amount
-msgid "最大折扣金额上限"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyReward, attribute: required_points
-msgid "兑换所需积分"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyReward, attribute: description
-msgid "奖励描述"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyCard
-msgid "积分卡/优惠券实例（发放给客户）"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyCard, attribute: code
-msgid "卡号/优惠码"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyCard, attribute: points
-msgid "当前积分余额"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyCard, attribute: expiration_date
-msgid "过期日期"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyCard, action: add_points
-msgid "为积分卡增加积分"
-msgstr ""
-
-#. domain: Ecommerce, entity: LoyaltyCard, action: share
-msgid "生成优惠券分享链接"
-msgstr ""
-
-#. domain: Ecommerce, entity: UOM
-msgid "计量单位占位实体（跨域引用，最小字段）"
-msgstr ""
-
-#. domain: Ecommerce, entity: Ribbon
-msgid "角标占位实体（跨域引用，最小字段）"
-msgstr ""
-
-#. domain: Ecommerce, entity: Pricelist
-msgid "价格表占位实体（跨域引用，最小字段）"
-msgstr ""
-
-#. domain: Ecommerce, entity: MailTemplate
-msgid "邮件模板占位实体（跨域引用，最小字段）"
-msgstr ""
-
-#. domain: Ecommerce, entity: DeliveryCarrier
-msgid "物流方式占位实体（跨域引用，最小字段）"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplatePublicCategoryLink
-msgid "产品模板-前台分类桥接占位实体"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplateAlternativeLink
-msgid "产品模板-替代品桥接占位实体"
-msgstr ""
-
-#. domain: Ecommerce, entity: ProductTemplateAccessoryLink
-msgid "产品模板-配件桥接占位实体"
-msgstr ""
-
 #. domain: Ecommerce, entity: TravelCity
 msgid "旅行城市主数据（Core 层，来源 OFBiz Geo）"
 msgstr ""
@@ -975,10 +1059,6 @@ msgstr ""
 msgid "车站名称"
 msgstr ""
 
-#. domain: Ecommerce, entity: Party
-msgid "跨域引用 Organization.Party（统一主体）"
-msgstr ""
-
 #. domain: Accounting
 msgid "从 OFBiz 导入的 Accounting 领域模型"
 msgstr ""
@@ -1011,36 +1091,12 @@ msgstr ""
 msgid "与订单编号一起使用，指向表示购买产品以向账户添加资金的订单项"
 msgstr ""
 
-#. domain: Accounting, entity: FixedAssetMaint, attribute: product_maint_type_id
-msgid "如果已知产品维护序列号，可以使用该值和固定资产产品编号进行查找；对于非计划维护，直接填充"
-msgstr ""
-
-#. domain: Accounting, entity: FixedAssetMaint, attribute: product_maint_seq_id
-msgid "可选，但应填充以便确定所有计划维护中即将到来的维护任务"
-msgstr ""
-
-#. domain: Accounting, entity: FixedAssetMaint, attribute: schedule_work_effort_id
-msgid "具有预计/实际开始和完成日期等字段"
-msgstr ""
-
-#. domain: Accounting, entity: FixedAssetMaint, attribute: interval_uom_id
-msgid "间隔数量的单位；与间隔计量类型二选一；如果也进行了与间隔无关的表读数，应在固定资产计量记录中跟踪"
-msgstr ""
-
-#. domain: Accounting, entity: FixedAssetMaint, attribute: interval_meter_type_id
-msgid "间隔数量的计量类型；与间隔单位二选一"
-msgstr ""
-
 #. domain: Accounting, entity: InvoiceItem, attribute: override_org_party_id
 msgid "用于指定组织覆盖而不是使用payToPartyId"
 msgstr ""
 
 #. domain: Accounting, entity: GlAccount, attribute: external_id
 msgid "账户在外部系统中的id，该系统是账户导入/导出的地方"
-msgstr ""
-
-#. domain: Accounting, entity: ProductAverageCost
-msgid "特定公司和设施中产品平均成本的运行小计"
 msgstr ""
 
 #. domain: Accounting, entity: BillingAccount
@@ -1063,502 +1119,6 @@ msgstr ""
 msgid "参见 https://en.wikipedia.org/wiki/Bank_code"
 msgstr ""
 
-#. domain: Accounting, entity: PaymentGatewaySagePay, attribute: vendor
-msgid "供应商名称"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySagePay, attribute: production_host
-msgid "生产主机"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySagePay, attribute: testing_host
-msgid "测试主机"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySagePay, attribute: sage_pay_mode
-msgid "模式 (PRODUCTION/TEST)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySagePay, attribute: protocol_version
-msgid "协议版本"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySagePay, attribute: authentication_trans_type
-msgid "身份验证类型 (PAYMENT/AUTHENTICATE/DEFERRED)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySagePay, attribute: authentication_url
-msgid "身份验证URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySagePay, attribute: authorise_trans_type
-msgid "授权类型 (AUTHORISE/RELEASE)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySagePay, attribute: authorise_url
-msgid "授权URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySagePay, attribute: release_trans_type
-msgid "发行类型 (CANCEL/ABORT)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySagePay, attribute: release_url
-msgid "发布URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySagePay, attribute: void_url
-msgid "作废URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySagePay, attribute: refund_url
-msgid "退款URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: transaction_url
-msgid "交易URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: certificate_alias
-msgid "证书别名"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: api_version
-msgid "目标 Authorize Dot Net API 版本"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: delimited_data
-msgid "分隔数据 (TRUE|FALSE)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: delimiter_char
-msgid "分隔符字符 - 响应中使用的分隔符"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: cp_version
-msgid "卡片呈现版本"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: cp_market_type
-msgid "卡片呈现市场类型"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: cp_device_type
-msgid "卡片呈现设备类型"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: method
-msgid "方法 - CC用于信用卡处理"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: email_customer
-msgid "邮箱客户？ - 如果应该为每笔交易向客户发送邮件 (TRUE|FALSE)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: email_merchant
-msgid "邮箱商家？ - 如果应该为每笔交易向商家发送邮件 (TRUE|FALSE)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: test_mode
-msgid "测试模式 - 强制url属性为测试url，并向日志添加更多日志信息 (TRUE|FALSE)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: relay_response
-msgid "中继响应？ - 如果应该将响应中继到其他服务器 (TRUE|FALSE)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: tran_key
-msgid "交易密钥"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: user_id
-msgid "用户名 - 您的authorize.net用户ID"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: pwd
-msgid "密码 - 您的authorize.net密码"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: trans_description
-msgid "默认交易描述"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayAuthorizeNet, attribute: duplicate_window
-msgid "在指定的时间段内检查重复交易，该时间段以秒为单位指定。如果在定义的时间限制内发生重复交易，则返回错误。"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: merchant_id
-msgid "您的商家ID"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: api_version
-msgid "目标CyberSource API版本"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: production
-msgid "启用生产\"模式\" (true|false)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: keys_dir
-msgid "来自CyberSource的密钥目录（使用在线工具生成）"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: keys_file
-msgid "密钥库的名称（如果与\"merchantID\".p12不同）"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: log_enabled
-msgid "记录交易信息 (true|false)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: log_dir
-msgid "日志目录"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: log_file
-msgid "日志文件名"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: log_size
-msgid "最大日志大小 (MB)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: merchant_descr
-msgid "商家描述 - 显示在信用卡账单中"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: merchant_contact
-msgid "商家描述联系信息 - 显示在信用卡账单中"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: auto_bill
-msgid "授权中的自动账单 (true|false)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: enable_dav
-msgid "在授权中使用DAV -- 可能不再支持"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: fraud_score
-msgid "在授权中使用欺诈评分 -- 可能不再支持"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: ignore_avs
-msgid "忽略AVS结果 (true|false)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: disable_bill_avs
-msgid "禁用捕获的AVS -- 可能不再支持"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayCyberSource, attribute: avs_decline_codes
-msgid "AVS拒绝代码 -- 可能不再支持"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: certs_path
-msgid "VeriSign证书的路径"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: host_address
-msgid "支付处理器的地址"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: host_port
-msgid "支付处理器的端口"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: timeout
-msgid "超时"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: proxy_address
-msgid "代理地址"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: proxy_port
-msgid "代理端口"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: proxy_logon
-msgid "代理登录"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: proxy_password
-msgid "代理密码"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: vendor
-msgid "账户信息的供应商"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: user_id
-msgid "账户信息的PayFlow UserID"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: pwd
-msgid "账户信息的PayFlow密码"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: partner
-msgid "账户信息的PayFlow伙伴"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: check_avs
-msgid "使用地址验证"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: check_cvv2
-msgid "要求CVV2验证"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: pre_auth
-msgid "预授权付款（如果设置为N将自动捕获）"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: enable_transmit
-msgid "设置为false以不传输任何内容"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: logging_level
-msgid "日志级别"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: max_log_file_size
-msgid "最大日志文件大小"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: stack_trace_on
-msgid "堆栈跟踪打开/关闭"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: redirect_url
-msgid "快速结帐重定向URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: return_url
-msgid "快速结帐返回URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayflowPro, attribute: cancel_return_url
-msgid "快速结帐取消时返回URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: business_email
-msgid "业务电子邮件"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: api_user_name
-msgid "PayPal API用户名"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: api_password
-msgid "PayPal API密码"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: api_signature
-msgid "PayPal API签名"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: api_environment
-msgid "PayPal API环境（有效值为：live、sandbox或beta-sandbox）"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: notify_url
-msgid "通知URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: return_url
-msgid "返回URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: cancel_return_url
-msgid "取消时返回URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: image_url
-msgid "在PayPal上使用的图像URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: confirm_template
-msgid "感谢/确认订单模板（通过Freemarker呈现）"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: redirect_url
-msgid "PayPal重定向URL（沙箱/生产）"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: confirm_url
-msgid "PayPal确认URL沙箱/生产（必须配置JSSE以使用SSL）"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: shipping_callback_url
-msgid "特定于快速结帐，该结帐对我们的服务器执行回调以检索运费估计"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayPayPal, attribute: require_confirmed_shipping
-msgid "表示您要求与PayPal在档的客户的收货地址是确认的地址。"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayClearCommerce, attribute: source_id
-msgid "用于标记交易"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayClearCommerce, attribute: group_id
-msgid "用于分组交易"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayClearCommerce, attribute: client_id
-msgid "账户信息的客户端ID"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayClearCommerce, attribute: username
-msgid "账户信息的用户名"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayClearCommerce, attribute: pwd
-msgid "账户信息的密码"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayClearCommerce, attribute: user_alias
-msgid "账户信息的别名"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayClearCommerce, attribute: effective_alias
-msgid "账户信息的有效别名"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayClearCommerce, attribute: process_mode
-msgid "处理模式 (Y: 批准 / N: 拒绝 / R: 随机 / P: 生产)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayClearCommerce, attribute: server_url
-msgid "支付处理器的服务器URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayClearCommerce, attribute: enable_cvm
-msgid "启用卡验证方法 (CID, CVC, CVV2)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayWorldPay, attribute: redirect_url
-msgid "重定向URL"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayWorldPay, attribute: inst_id
-msgid "Worldpay实例ID"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayWorldPay, attribute: auth_mode
-msgid "授权模式 (A: 完全授权 / E: 预授权)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayWorldPay, attribute: fix_contact
-msgid "将在WorldPay上以不可编辑格式取代联系信息"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayWorldPay, attribute: hide_contact
-msgid "将完全隐藏联系信息"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayWorldPay, attribute: hide_currency
-msgid "这导致货币下拉菜单不被隐藏，因此固定购物者必须购买价值的货币"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayWorldPay, attribute: lang_id
-msgid "购物者的语言选择，作为2字符ISO 639代码，可选择使用由连字符分隔的2字符国家/地区代码进行区域化"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayWorldPay, attribute: no_language_menu
-msgid "如果noLanguageMenu no，这会抑制语言菜单的显示，您可以为价值安装启用语言选择"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayWorldPay, attribute: with_delivery
-msgid "显示送货地址的输入字段，withDelivery no规定它们必须填入"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayWorldPay, attribute: test_mode
-msgid "测试模式 (100: 批准 / 101: 已取消 / 0: 实时模式 (无测试))"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayOrbital, attribute: username
-msgid "账户信息的Orbital用户名"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayOrbital, attribute: connection_password
-msgid "账户信息的Orbital密码"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayOrbital, attribute: engine_class
-msgid "Orbital网关的类 - 应使用默认值 - HttpsEngine"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayOrbital, attribute: host_name_failover
-msgid "支付处理器的故障转移地址"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayOrbital, attribute: port_failover
-msgid "支付处理器的故障转移端口"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayOrbital, attribute: read_timeout_seconds
-msgid "读取超时"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayOrbital, attribute: authorization_uri
-msgid "授权URI"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayOrbital, attribute: sdk_version
-msgid "目标Orbital网关API版本"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayOrbital, attribute: ssl_socket_factory
-msgid "SSL套接字工厂 (default|strict)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewayOrbital, attribute: response_type
-msgid "响应类型 (gateway|host)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySecurePay, attribute: pwd
-msgid "账户信息的SecurePay密码"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySecurePay, attribute: process_timeout
-msgid "处理超时"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGatewaySecurePay, attribute: enable_amount_round
-msgid "启用将货币金额四舍五入到.00 (Y / N)"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGroup
-msgid "付款分组"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGroupType
-msgid "付款分组 Type"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentGroupMember
-msgid "付款分组 Member"
-msgstr ""
-
-#. domain: Accounting, entity: PayPalPaymentMethod
-msgid "PayPal付款方式详情"
-msgstr ""
-
-#. domain: Accounting, entity: RateAmount, attribute: from_date
-msgid "描述费率金额何时有效。如果为空，立即有效。"
-msgstr ""
-
-#. domain: Accounting, entity: RateAmount, attribute: thru_date
-msgid "描述费率金额何时有效。如果为空，无限期有效。"
-msgstr ""
-
-#. domain: Accounting, entity: PartyRate, attribute: percentage_used
-msgid "timeEntries中记录的实际小时数的百分比，用于任务和发票实际值，如果字段为空，将使用100%"
-msgstr ""
-
 #. domain: Common
 msgid "从 OFBiz 导入的 Common 领域模型"
 msgstr ""
@@ -1571,18 +1131,6 @@ msgstr ""
 msgid "Data Source Type"
 msgstr ""
 
-#. domain: Common, entity: EmailTemplateSetting
-msgid "Email Template Setting"
-msgstr ""
-
-#. domain: Common, entity: EmailTemplateSetting, attribute: body_screen_location
-msgid "if empty defaults to a screen based on the emailType"
-msgstr ""
-
-#. domain: Common, entity: EmailTemplateSetting, attribute: xslfo_attach_screen_location
-msgid "if specified is used to generate XSL:FO that is transformed to a PDF via Apache FOP and attached to the email"
-msgstr ""
-
 #. domain: Common, entity: Enumeration
 msgid "Enumeration"
 msgstr ""
@@ -1591,257 +1139,12 @@ msgstr ""
 msgid "Enumeration Type"
 msgstr ""
 
-#. domain: Common, entity: CountryCapital
-msgid "Country Capital"
-msgstr ""
-
-#. domain: Common, entity: CountryCode
-msgid "ISO Country Code"
-msgstr ""
-
-#. domain: Common, entity: CountryTeleCode
-msgid "Telephone Country Code"
-msgstr ""
-
 #. domain: Common, entity: Geo
 msgid "Geographic Boundary"
 msgstr ""
 
-#. domain: Common, entity: GeoAssoc
-msgid "Geographic Boundary Association"
-msgstr ""
-
-#. domain: Common, entity: GeoPoint
-msgid "Geographic Location"
-msgstr ""
-
-#. domain: Common, entity: GeoPoint, attribute: information
-msgid "To enter any related information"
-msgstr ""
-
 #. domain: Common, entity: GeoType
 msgid "Geographic Boundary Type"
-msgstr ""
-
-#. domain: Common, entity: CustomMethod
-msgid "Custom Method"
-msgstr ""
-
-#. domain: Common, entity: CustomMethodType
-msgid "Custom Method Type"
-msgstr ""
-
-#. domain: Common, entity: NoteData
-msgid "Note Data"
-msgstr ""
-
-#. domain: Common, entity: CustomTimePeriod
-msgid "Custom Time Period"
-msgstr ""
-
-#. domain: Common, entity: PeriodType
-msgid "Period Type"
-msgstr ""
-
-#. domain: Common, entity: StatusItem
-msgid "Status"
-msgstr ""
-
-#. domain: Common, entity: StatusType
-msgid "Status Type"
-msgstr ""
-
-#. domain: Common, entity: StatusValidChange
-msgid "Status Valid Change"
-msgstr ""
-
-#. domain: Common, entity: Uom
-msgid "Unit Of Measure"
-msgstr ""
-
-#. domain: Common, entity: UomConversion
-msgid "Unit Of Measure Conversion Type"
-msgstr ""
-
-#. domain: Common, entity: UomConversionDated
-msgid "Unit Of Measure Conversion Entity for those Units of Measure whose conversion values change over time (ie, currencies)"
-msgstr ""
-
-#. domain: Common, entity: UomGroup
-msgid "Unit Of Measure Group"
-msgstr ""
-
-#. domain: Common, entity: UomType
-msgid "Unit Of Measure Type"
-msgstr ""
-
-#. domain: Common, entity: UserPreference
-msgid "The UserPreference entity contains one entry per preference per
-          userLogin. User preferences are stored as key/value pairs (userPrefTypeId/userPrefValue).
-          All values are stored as strings. Value strings can be converted to
-          other data types by specifying a java data type in the userPrefDataType field."
-msgstr ""
-
-#. domain: Common, entity: UserPreference, attribute: user_pref_type_id
-msgid "A unique identifier for this preference"
-msgstr ""
-
-#. domain: Common, entity: UserPreference, attribute: user_pref_value
-msgid "Contains the value of this preference"
-msgstr ""
-
-#. domain: Common, entity: UserPreference, attribute: user_pref_data_type
-msgid "The java data type of this preference (empty = java.lang.String)"
-msgstr ""
-
-#. domain: Common, entity: UserPrefGroupType
-msgid "The UserPrefGroupType entity contains one entry per preference
-          group type."
-msgstr ""
-
-#. domain: Common, entity: CustomScreen
-msgid "Custom Screen"
-msgstr ""
-
-#. domain: Common, entity: CustomScreenType
-msgid "Custom Screen Type"
-msgstr ""
-
-#. domain: Common, entity: VisualThemeSet
-msgid "Groups toghether Visual Themes that can be used for one (or a set of) application."
-msgstr ""
-
-#. domain: Common, entity: VisualTheme
-msgid "The VisualTheme entity contains one entry per visual theme."
-msgstr ""
-
-#. domain: Common, entity: VisualThemeResource
-msgid "The VisualThemeResource entity contains visual theme
-          resources. Each visual theme can have any number of resources."
-msgstr ""
-
-#. domain: Common, entity: VisualThemeResource, attribute: sequence_id
-msgid "Controls the loading order of duplicate resource types"
-msgstr ""
-
-#. domain: Common, entity: VisualThemeResource, attribute: resource_value
-msgid "Contains the resource value"
-msgstr ""
-
-#. domain: Common, entity: PortalPortlet
-msgid "Defines a Portlet to be used in Portals"
-msgstr ""
-
-#. domain: Common, entity: PortalPortlet, attribute: security_service_name
-msgid "The service named here is used to see if current user can see the portlet on the list of available portlets; the screen that the portlet calls should also call this service to check permission and not render; the service named here must implement the \"permissionInterface\" service just like services used for service permissions"
-msgstr ""
-
-#. domain: Common, entity: PortalPortlet, attribute: security_main_action
-msgid "The main action which can be done with this portlet, possible values: CREATE UPDATE VIEW DELETE"
-msgstr ""
-
-#. domain: Common, entity: PortletCategory
-msgid "Portlet Category"
-msgstr ""
-
-#. domain: Common, entity: PortletPortletCategory
-msgid "Defines Portlets included into Categories"
-msgstr ""
-
-#. domain: Common, entity: PortalPage
-msgid "Defines a Portal Page"
-msgstr ""
-
-#. domain: Common, entity: PortalPage, attribute: original_portal_page_id
-msgid "The system portal page this page is derived from"
-msgstr ""
-
-#. domain: Common, entity: PortalPagePortlet
-msgid "Defines Portlets included into Portal Pages"
-msgstr ""
-
-#. domain: Common, entity: PortalPagePortlet, attribute: portlet_seq_id
-msgid "Identify the portalPortlet instance in case more copy of the same portalPortlet are present in the same portalPage"
-msgstr ""
-
-#. domain: Common, entity: PortletAttribute
-msgid "Allows to set different attribute values for each instance of the same portlet"
-msgstr ""
-
-#. domain: Common, entity: SystemProperty
-msgid "Defines a System Property"
-msgstr ""
-
-#. domain: Common, entity: TelecomMethodType
-msgid "Telecom Method Type"
-msgstr ""
-
-#. domain: Common, entity: TelecomGatewayConfig
-msgid "Telecom Gateway Config"
-msgstr ""
-
-#. domain: Content
-msgid "从 OFBiz 导入的 Content 领域模型"
-msgstr ""
-
-#. domain: Content, entity: Content, attribute: service_name
-msgid "已弃用：改用 customMethod 模式。保持向后兼容"
-msgstr ""
-
-#. domain: Content, entity: DataResource, attribute: object_info
-msgid "短文本的文本放在这里"
-msgstr ""
-
-#. domain: Content, entity: DataResource, attribute: related_detail_id
-msgid "根据 dataResourceTypeId，可以指向其他实体，如：调研、调研响应等"
-msgstr ""
-
-#. domain: Content, entity: DataResource, attribute: is_public
-msgid "设置为 Y 则任何人都可以下载，否则下载被限制"
-msgstr ""
-
-#. domain: Content, entity: WebUserPreference, attribute: visit_id
-msgid "能够为当前会话中未登录的用户保存偏好设置"
-msgstr ""
-
-#. domain: Content, entity: Survey, attribute: is_anonymous
-msgid "允许不登录就响应调研?"
-msgstr ""
-
-#. domain: Content, entity: Survey, attribute: allow_multiple
-msgid "允许对此调研进行多次响应（如果为 Y），或仅单个答案（如果为 N）?"
-msgstr ""
-
-#. domain: Content, entity: Survey, attribute: allow_update
-msgid "允许更改响应?"
-msgstr ""
-
-#. domain: Content, entity: Survey, attribute: acro_form_content_id
-msgid "指向具有 AcroForm 的 PDF"
-msgstr ""
-
-#. domain: Content, entity: SurveyQuestionAppl, attribute: survey_multi_resp_col_id
-msgid "用于可选地将此问题关联到多响应集中的特定列；这样可以将单个问题关联到问题/列网格中的每个单元格；这对 AcroForm 往返很有用，其中目标 PDF 需要与每个单元格关联一个问题，或甚至同一问题应用不同的 externalFieldRef 值"
-msgstr ""
-
-#. domain: Content, entity: SurveyQuestionAppl, attribute: external_field_ref
-msgid "外部字段 ID/参考；用于 AcroForms 跟踪字段 ID"
-msgstr ""
-
-#. domain: Content, entity: SurveyQuestionAppl, attribute: with_survey_question_id
-msgid "这两个 with* 字段用于指定此问题仅在已选择该选项时出现"
-msgstr ""
-
-#. domain: Content, entity: SurveyResponseAnswer, attribute: survey_multi_resp_col_id
-msgid "需要这个来支持不同多响应列的多个响应；如果不属于多响应，则为 _NA_"
-msgstr ""
-
-#. domain: Content, entity: SurveyResponseAnswer, attribute: survey_multi_resp_id
-msgid "这不是主键的一部分，但应填充以便可以更轻松地查找 SurveyMultiRespColumn"
-msgstr ""
-
-#. domain: Content, entity: WebAnalyticsConfig, attribute: web_analytics_code
-msgid "在此处复制分析 javascript 代码，不包括开始和结束的 <script> 标签"
 msgstr ""
 
 #. domain: Order
@@ -1894,10 +1197,6 @@ msgstr ""
 
 #. domain: Order, entity: OrderItem, attribute: cancel_back_order_date
 msgid "用于在过期时取消所有供应商订单"
-msgstr ""
-
-#. domain: Order, entity: OrderItemShipGroup, attribute: vendor_party_id
-msgid "用于多供应商商店，订单将被分割以使每个配送组仅与一个供应商关联（仅如适用）"
 msgstr ""
 
 #. domain: Order, entity: OrderPaymentPreference, attribute: fin_account_id
@@ -1964,440 +1263,24 @@ msgstr ""
 msgid "ReturnItemType记录ReturnItem的类型"
 msgstr ""
 
-#. domain: Order, entity: ReturnItemTypeMap
-msgid "订单商品或orderAdjustmentTypeId和returnAdjustmentTypeId的映射。针对不同类型的退货（客户 vs. 供应商）的分别映射"
-msgstr ""
-
 #. domain: Party
 msgid "从 OFBiz 导入的 Party 领域模型"
 msgstr ""
 
-#. domain: Party, entity: Addendum, attribute: id
+#. domain: Party, entity: Party, attribute: id
 msgid "编号"
 msgstr ""
 
-#. domain: Party, entity: Addendum, attribute: addendum_id
-msgid "附录编号"
-msgstr ""
-
-#. domain: Party, entity: Addendum, attribute: agreement_item_seq_id
-msgid "协议项序列编号"
-msgstr ""
-
-#. domain: Party, entity: Addendum, attribute: addendum_creation_date
-msgid "附录创建日期"
-msgstr ""
-
-#. domain: Party, entity: Addendum, attribute: addendum_effective_date
-msgid "附录生效日期"
-msgstr ""
-
-#. domain: Party, entity: Addendum, attribute: addendum_text
-msgid "附录长文本"
-msgstr ""
-
-#. domain: Party, entity: Agreement, attribute: agreement_id
-msgid "协议编号"
-msgstr ""
-
-#. domain: Party, entity: Agreement, attribute: agreement_date
-msgid "协议日期"
-msgstr ""
-
-#. domain: Party, entity: Agreement, attribute: from_date
-msgid "来源日期"
-msgstr ""
-
-#. domain: Party, entity: Agreement, attribute: thru_date
-msgid "到日期"
-msgstr ""
-
-#. domain: Party, entity: Agreement, attribute: description
-msgid "说明"
-msgstr ""
-
-#. domain: Party, entity: Agreement, attribute: text_data
-msgid "长文本数据"
-msgstr ""
-
-#. domain: Party, entity: Agreement, attribute: status_id
-msgid "状态编号"
-msgstr ""
-
-#. domain: Party, entity: AgreementAttribute, attribute: attr_name
-msgid "属性名"
-msgstr ""
-
-#. domain: Party, entity: AgreementAttribute, attribute: attr_value
-msgid "属性值"
-msgstr ""
-
-#. domain: Party, entity: AgreementAttribute, attribute: attr_description
-msgid "属性说明"
-msgstr ""
-
-#. domain: Party, entity: AgreementItem, attribute: currency_uom_id
-msgid "货币单位编号"
-msgstr ""
-
-#. domain: Party, entity: AgreementItem, attribute: agreement_text
-msgid "协议长文本"
-msgstr ""
-
-#. domain: Party, entity: AgreementItem, attribute: agreement_image
-msgid "协议图片"
-msgstr ""
-
-#. domain: Party, entity: AgreementItemType, attribute: agreement_item_type_id
-msgid "协议项类型编号"
-msgstr ""
-
-#. domain: Party, entity: AgreementItemType, attribute: has_table
-msgid "有表"
-msgstr ""
-
-#. domain: Party, entity: AgreementContentType, attribute: agreement_content_type_id
-msgid "协议内容类型编号"
-msgstr ""
-
-#. domain: Party, entity: AgreementProductAppl, attribute: price
-msgid "价格"
-msgstr ""
-
-#. domain: Party, entity: AgreementPromoAppl, attribute: sequence_num
-msgid "序列编号"
-msgstr ""
-
-#. domain: Party, entity: AgreementStatus, attribute: status_date
-msgid "状态日期"
-msgstr ""
-
-#. domain: Party, entity: AgreementStatus, attribute: comments
-msgid "评论"
-msgstr ""
-
-#. domain: Party, entity: AgreementTerm, attribute: agreement_term_id
-msgid "协议条款编号"
-msgstr ""
-
-#. domain: Party, entity: AgreementTerm, attribute: term_value
-msgid "条款值"
-msgstr ""
-
-#. domain: Party, entity: AgreementTerm, attribute: term_days
-msgid "条款天数"
-msgstr ""
-
-#. domain: Party, entity: AgreementTerm, attribute: text_value
-msgid "长文本值"
-msgstr ""
-
-#. domain: Party, entity: AgreementTerm, attribute: min_quantity
-msgid "最小数量"
-msgstr ""
-
-#. domain: Party, entity: AgreementTerm, attribute: max_quantity
-msgid "最大数量"
-msgstr ""
-
-#. domain: Party, entity: AgreementType, attribute: agreement_type_id
-msgid "协议类型编号"
-msgstr ""
-
-#. domain: Party, entity: TermType, attribute: term_type_id
-msgid "条款类型编号"
-msgstr ""
-
-#. domain: Party, entity: AgreementEmploymentAppl, attribute: party_id_from
-msgid "参与方编号来源"
-msgstr ""
-
-#. domain: Party, entity: AgreementEmploymentAppl, attribute: party_id_to
+#. domain: Party, entity: Party, attribute: party_id
 msgid "参与方编号"
-msgstr ""
-
-#. domain: Party, entity: AgreementEmploymentAppl, attribute: role_type_id_from
-msgid "角色类型编号来源"
-msgstr ""
-
-#. domain: Party, entity: AgreementEmploymentAppl, attribute: role_type_id_to
-msgid "角色类型编号"
-msgstr ""
-
-#. domain: Party, entity: CommContentAssocType, attribute: comm_content_assoc_type_id
-msgid "通信内容关联类型编号"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: communication_event_id
-msgid "沟通活动编号"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: orig_comm_event_id
-msgid "原始沟通活动编号"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: parent_comm_event_id
-msgid "父级沟通活动编号"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: entry_date
-msgid "凭证日期"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: datetime_started
-msgid "开始时间"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: datetime_ended
-msgid "结束时间"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: subject
-msgid "主题"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: content
-msgid "内容"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: note
-msgid "备注"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: header_string
-msgid "表头文本"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: from_string
-msgid "来源文本"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: to_string
-msgid "收件人"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: cc_string
-msgid "抄送"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: bcc_string
-msgid "密送"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEvent, attribute: message_id
-msgid "消息编号"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEventPrpTyp, attribute: communication_event_prp_typ_id
-msgid "通信事件目的类型编号"
-msgstr ""
-
-#. domain: Party, entity: CommunicationEventType, attribute: communication_event_type_id
-msgid "沟通活动类型编号"
-msgstr ""
-
-#. domain: Party, entity: ContactMech, attribute: contact_mech_id
-msgid "联系方式编号"
-msgstr ""
-
-#. domain: Party, entity: ContactMech, attribute: info_string
-msgid "信息文本"
-msgstr ""
-
-#. domain: Party, entity: ContactMechPurposeType, attribute: contact_mech_purpose_type_id
-msgid "联系方式用途类型编号"
-msgstr ""
-
-#. domain: Party, entity: ContactMechPurposeType, attribute: parent_type_id
-msgid "上级类型编号"
-msgstr ""
-
-#. domain: Party, entity: ContactMechType, attribute: contact_mech_type_id
-msgid "联系方式类型编号"
-msgstr ""
-
-#. domain: Party, entity: ContactMechTypePurpose
-msgid "定义哪些联系方式用途类型适用于哪些联系方式类型"
-msgstr ""
-
-#. domain: Party, entity: EmailAddressVerification
-msgid "存储邮箱地址验证的哈希值"
-msgstr ""
-
-#. domain: Party, entity: EmailAddressVerification, attribute: email_address
-msgid "邮箱地址"
-msgstr ""
-
-#. domain: Party, entity: EmailAddressVerification, attribute: verify_hash
-msgid "核实哈希"
-msgstr ""
-
-#. domain: Party, entity: PartyContactMech, attribute: allow_solicitation
-msgid "允许招揽"
-msgstr ""
-
-#. domain: Party, entity: PartyContactMech, attribute: extension
-msgid "扩展"
-msgstr ""
-
-#. domain: Party, entity: PartyContactMech, attribute: verified
-msgid "已验证"
-msgstr ""
-
-#. domain: Party, entity: PartyContactMech, attribute: years_with_contact_mech
-msgid "联系方式使用年数"
-msgstr ""
-
-#. domain: Party, entity: PartyContactMech, attribute: months_with_contact_mech
-msgid "联系方式使用月数"
-msgstr ""
-
-#. domain: Party, entity: PostalAddress, attribute: to_name
-msgid "收件人姓名"
-msgstr ""
-
-#. domain: Party, entity: PostalAddress, attribute: attn_name
-msgid "收件人名称"
-msgstr ""
-
-#. domain: Party, entity: PostalAddress, attribute: address1
-msgid "地址1"
-msgstr ""
-
-#. domain: Party, entity: PostalAddress, attribute: address2
-msgid "地址2"
-msgstr ""
-
-#. domain: Party, entity: PostalAddress, attribute: house_number
-msgid "房号"
-msgstr ""
-
-#. domain: Party, entity: PostalAddress, attribute: house_number_ext
-msgid "房号扩展"
-msgstr ""
-
-#. domain: Party, entity: PostalAddress, attribute: directions
-msgid "方向"
-msgstr ""
-
-#. domain: Party, entity: PostalAddress, attribute: city
-msgid "城市"
-msgstr ""
-
-#. domain: Party, entity: PostalAddress, attribute: postal_code
-msgid "邮政编码"
-msgstr ""
-
-#. domain: Party, entity: PostalAddress, attribute: postal_code_ext
-msgid "邮政编码扩展"
-msgstr ""
-
-#. domain: Party, entity: TelecomNumber, attribute: area_code
-msgid "地区编码"
-msgstr ""
-
-#. domain: Party, entity: TelecomNumber, attribute: contact_number
-msgid "联系单号"
-msgstr ""
-
-#. domain: Party, entity: TelecomNumber, attribute: ask_for_name
-msgid "提问名称"
-msgstr ""
-
-#. domain: Party, entity: FtpAddress, attribute: hostname
-msgid "主机名"
-msgstr ""
-
-#. domain: Party, entity: FtpAddress, attribute: port
-msgid "端口"
-msgstr ""
-
-#. domain: Party, entity: FtpAddress, attribute: username
-msgid "用户名"
-msgstr ""
-
-#. domain: Party, entity: FtpAddress, attribute: ftp_password
-msgid "FTP密码"
-msgstr ""
-
-#. domain: Party, entity: FtpAddress, attribute: binary_transfer
-msgid "二进制转账"
-msgstr ""
-
-#. domain: Party, entity: FtpAddress, attribute: file_path
-msgid "文件路径"
-msgstr ""
-
-#. domain: Party, entity: FtpAddress, attribute: zip_file
-msgid "邮编文件"
-msgstr ""
-
-#. domain: Party, entity: FtpAddress, attribute: passive_mode
-msgid "被动模式"
-msgstr ""
-
-#. domain: Party, entity: FtpAddress, attribute: default_timeout
-msgid "默认超时"
-msgstr ""
-
-#. domain: Party, entity: NeedType, attribute: need_type_id
-msgid "需求类型编号"
-msgstr ""
-
-#. domain: Party, entity: PartyNeed, attribute: party_need_id
-msgid "参与方需求编号"
-msgstr ""
-
-#. domain: Party, entity: PartyNeed, attribute: visit_id
-msgid "访问编号"
-msgstr ""
-
-#. domain: Party, entity: PartyNeed, attribute: datetime_recorded
-msgid "记录日期时间"
-msgstr ""
-
-#. domain: Party, entity: AddressMatchMap, attribute: map_key
-msgid "映射键"
-msgstr ""
-
-#. domain: Party, entity: AddressMatchMap, attribute: map_value
-msgid "映射值"
-msgstr ""
-
-#. domain: Party, entity: Affiliate, attribute: affiliate_name
-msgid "联盟名称"
-msgstr ""
-
-#. domain: Party, entity: Affiliate, attribute: affiliate_description
-msgid "联盟说明"
-msgstr ""
-
-#. domain: Party, entity: Affiliate, attribute: year_established
-msgid "建立年份"
-msgstr ""
-
-#. domain: Party, entity: Affiliate, attribute: site_type
-msgid "站点类型"
-msgstr ""
-
-#. domain: Party, entity: Affiliate, attribute: site_page_views
-msgid "站点页面浏览"
-msgstr ""
-
-#. domain: Party, entity: Affiliate, attribute: site_visitors
-msgid "站点访问者"
-msgstr ""
-
-#. domain: Party, entity: Affiliate, attribute: date_time_created
-msgid "日期时间创建"
-msgstr ""
-
-#. domain: Party, entity: Affiliate, attribute: date_time_approved
-msgid "日期时间已审批"
 msgstr ""
 
 #. domain: Party, entity: Party, attribute: external_id
 msgid "外部编号"
+msgstr ""
+
+#. domain: Party, entity: Party, attribute: description
+msgid "说明"
 msgstr ""
 
 #. domain: Party, entity: Party, attribute: created_date
@@ -2410,34 +1293,6 @@ msgstr ""
 
 #. domain: Party, entity: Party, attribute: is_unread
 msgid "未读"
-msgstr ""
-
-#. domain: Party, entity: PartyIdentification, attribute: id_value
-msgid "编号值"
-msgstr ""
-
-#. domain: Party, entity: PartyIdentificationType, attribute: party_identification_type_id
-msgid "参与方标识类型编号"
-msgstr ""
-
-#. domain: Party, entity: PartyCarrierAccount, attribute: account_number
-msgid "科目单号"
-msgstr ""
-
-#. domain: Party, entity: PartyClassificationGroup, attribute: party_classification_group_id
-msgid "参与方分类组编号"
-msgstr ""
-
-#. domain: Party, entity: PartyClassificationType, attribute: party_classification_type_id
-msgid "参与方分类类型编号"
-msgstr ""
-
-#. domain: Party, entity: PartyContentType, attribute: party_content_type_id
-msgid "参与方内容类型编号"
-msgstr ""
-
-#. domain: Party, entity: PartyDataSource, attribute: is_create
-msgid "是创建"
 msgstr ""
 
 #. domain: Party, entity: PartyGroup, attribute: group_name
@@ -2464,244 +1319,32 @@ msgstr ""
 msgid "股票代码"
 msgstr ""
 
+#. domain: Party, entity: PartyGroup, attribute: comments
+msgid "评论"
+msgstr ""
+
 #. domain: Party, entity: PartyGroup, attribute: logo_image_url
 msgid "标识图片链接"
-msgstr ""
-
-#. domain: Party, entity: PartyIcsAvsOverride, attribute: avs_decline_string
-msgid "AVS拒绝字符串"
-msgstr ""
-
-#. domain: Party, entity: PartyInvitation, attribute: party_invitation_id
-msgid "参与方邀请编号"
-msgstr ""
-
-#. domain: Party, entity: PartyInvitation, attribute: last_invite_date
-msgid "最近邀请日期"
-msgstr ""
-
-#. domain: Party, entity: PartyNameHistory, attribute: change_date
-msgid "变更日期"
-msgstr ""
-
-#. domain: Party, entity: PartyNameHistory, attribute: group_name
-msgid "仅用于参与方组（团体名称）"
-msgstr ""
-
-#. domain: Party, entity: PartyNameHistory, attribute: first_name
-msgid "名"
-msgstr ""
-
-#. domain: Party, entity: PartyNameHistory, attribute: middle_name
-msgid "中间名"
-msgstr ""
-
-#. domain: Party, entity: PartyNameHistory, attribute: last_name
-msgid "姓"
-msgstr ""
-
-#. domain: Party, entity: PartyNameHistory, attribute: personal_title
-msgid "个人称谓"
-msgstr ""
-
-#. domain: Party, entity: PartyNameHistory, attribute: suffix
-msgid "后缀"
-msgstr ""
-
-#. domain: Party, entity: PartyProfileDefault, attribute: default_ship_addr
-msgid "默认收货地址"
-msgstr ""
-
-#. domain: Party, entity: PartyProfileDefault, attribute: default_bill_addr
-msgid "默认账单地址"
-msgstr ""
-
-#. domain: Party, entity: PartyProfileDefault, attribute: default_pay_meth
-msgid "默认支付方式"
-msgstr ""
-
-#. domain: Party, entity: PartyProfileDefault, attribute: default_ship_meth
-msgid "默认发货方式"
-msgstr ""
-
-#. domain: Party, entity: PartyRelationship, attribute: relationship_name
-msgid "关系的正式名称，如公司中的职位头衔"
-msgstr ""
-
-#. domain: Party, entity: PartyRelationship, attribute: permissions_enum_id
-msgid "权限枚举编号"
-msgstr ""
-
-#. domain: Party, entity: PartyRelationship, attribute: position_title
-msgid "公司内部使用的确切职位名称"
-msgstr ""
-
-#. domain: Party, entity: PartyRelationshipType, attribute: party_relationship_type_id
-msgid "参与方关系类型编号"
-msgstr ""
-
-#. domain: Party, entity: PartyRelationshipType, attribute: party_relationship_name
-msgid "参与方关系名称"
 msgstr ""
 
 #. domain: Party, entity: PartyType, attribute: party_type_id
 msgid "参与方类型编号"
 msgstr ""
 
-#. domain: Party, entity: Person, attribute: salutation
-msgid "称谓"
+#. domain: Party, entity: PartyType, attribute: has_table
+msgid "有表"
 msgstr ""
 
-#. domain: Party, entity: Person, attribute: nickname
-msgid "昵称"
+#. domain: Party, entity: RoleType, attribute: role_type_id
+msgid "角色类型编号"
 msgstr ""
 
-#. domain: Party, entity: Person, attribute: first_name_local
-msgid "本地名字"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: middle_name_local
-msgid "本地中间名"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: last_name_local
-msgid "本地姓氏"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: other_local
-msgid "本地其他"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: member_id
-msgid "成员编号"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: gender
-msgid "性别"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: birth_date
-msgid "出生日期"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: deceased_date
-msgid "去世日期"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: height
-msgid "身高"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: weight
-msgid "重量"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: mothers_maiden_name
-msgid "母亲婚前名"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: old_marital_status_enum_id
-msgid "DEPRECATED use maritalStatusTypeId instead"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: social_security_number
-msgid "社会保险号"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: passport_number
-msgid "护照号"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: passport_expire_date
-msgid "护照过期日期"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: total_years_work_experience
-msgid "总工作年数"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: occupation
-msgid "职业"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: years_with_employer
-msgid "与雇主共事年数"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: months_with_employer
-msgid "与雇主共事月数"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: existing_customer
-msgid "现有客户"
-msgstr ""
-
-#. domain: Party, entity: Person, attribute: card_id
-msgid "卡编号"
-msgstr ""
-
-#. domain: Party, entity: PriorityType, attribute: priority_type_id
-msgid "优先级类型编号"
-msgstr ""
-
-#. domain: Party, entity: Vendor, attribute: manifest_company_name
-msgid "公司名称"
-msgstr ""
-
-#. domain: Party, entity: Vendor, attribute: manifest_company_title
-msgid "公司标题"
-msgstr ""
-
-#. domain: Party, entity: Vendor, attribute: manifest_logo_url
-msgid "标志URL"
-msgstr ""
-
-#. domain: Party, entity: Vendor, attribute: manifest_policies
-msgid "政策"
-msgstr ""
-
-#. domain: Party, entity: MaritalStatus
-msgid "Marital Status."
-msgstr ""
-
-#. domain: Party, entity: MaritalStatusType
-msgid "Marital Status Type."
-msgstr ""
-
-#. domain: Party, entity: MaritalStatusType, attribute: marital_status_type_id
-msgid "婚姻状况类型编号"
-msgstr ""
-
-#. domain: Party, entity: ContactList
+#. domain: Party, entity: DataSource
 msgid "占位实体（Batch B2 关系补全）"
 msgstr ""
 
 #. domain: Product
 msgid "从 OFBiz 导入的 Product 领域模型"
-msgstr ""
-
-#. domain: Product, entity: ProductCategoryLink, attribute: comments
-msgid "内部评论，不用于公开显示"
-msgstr ""
-
-#. domain: Product, entity: ProductCategoryLink, attribute: sequence_num
-msgid "此字段用于排序链接。linkSeqId字段不被使用，因为它是主键的一部分，无法更改"
-msgstr ""
-
-#. domain: Product, entity: ProductCategoryLink, attribute: detail_sub_screen
-msgid "此字段为可选。如果未指定，类别详情模板应使用默认值"
-msgstr ""
-
-#. domain: Product, entity: ProductConfigOptionIactn, attribute: config_iactn_type_id
-msgid "例如INCOMPATIBLE等"
-msgstr ""
-
-#. domain: Product, entity: ProductConfigStats, attribute: config_type_id
-msgid "例如HIDDEN、TEMPLATE等"
-msgstr ""
-
-#. domain: Product, entity: CostComponent, attribute: cost
-msgid "更高精度，以防是计算的数字"
 msgstr ""
 
 #. domain: Product, entity: Facility, attribute: default_days_to_ship
@@ -2714,46 +1357,6 @@ msgstr ""
 
 #. domain: Product, entity: Facility, attribute: facility_level
 msgid "定义设施的级别"
-msgstr ""
-
-#. domain: Product, entity: ProductFacility, attribute: last_inventory_count
-msgid "此字段表示产品在某个时间点的可用承诺总额，并由定时任务服务每小时定期更新"
-msgstr ""
-
-#. domain: Product, entity: InventoryItem, attribute: owner_party_id
-msgid "库存品的所有者"
-msgstr ""
-
-#. domain: Product, entity: InventoryItem, attribute: currency_uom_id
-msgid "单位成本的货币计量单位"
-msgstr ""
-
-#. domain: Product, entity: InventoryItemStatus, attribute: owner_party_id
-msgid "用于跟踪当状态改变时更改的所有者党派ID"
-msgstr ""
-
-#. domain: Product, entity: InventoryItemStatus, attribute: product_id
-msgid "用于跟踪当状态改变时更改的产品ID。换句话说，随着时间推移，项目可能由不同的产品表示（如新产品与翻新产品）"
-msgstr ""
-
-#. domain: Product, entity: ProductPrice, attribute: term_uom_id
-msgid "主要用于周期性和使用价格，指定时间/频率度量或使用单位度量（位、分钟等）"
-msgstr ""
-
-#. domain: Product, entity: ProductPrice, attribute: custom_price_calc_service
-msgid "指向CustomMethod，用于指定用于计算产品单价的服务（注：此字段的更好名称可能是priceCalcCustomMethodId）"
-msgstr ""
-
-#. domain: Product, entity: ProductPrice, attribute: price_without_tax
-msgid "如果有值，始终不包含税，无论价格是否包含税"
-msgstr ""
-
-#. domain: Product, entity: ProductPrice, attribute: price_with_tax
-msgid "如果有值，始终包含税，无论价格是否包含税"
-msgstr ""
-
-#. domain: Product, entity: ProductPrice, attribute: tax_in_price
-msgid "如果为Y，则价格字段对给定的taxAuthPartyId/taxAuthGeoId包含税"
 msgstr ""
 
 #. domain: Product, entity: Product, attribute: quantity_included
@@ -2794,46 +1397,6 @@ msgstr ""
 
 #. domain: Product, entity: Product, attribute: order_decimal_quantity
 msgid "用于指示是否可以为此产品订购小数数量。默认值为Y"
-msgstr ""
-
-#. domain: Product, entity: ProductRole, attribute: sequence_num
-msgid "一个产品可能有多个具有相同角色的相关方；此字段可用于定义与产品关联的相关方的顺序"
-msgstr ""
-
-#. domain: Product, entity: ProductMeter, attribute: meter_uom_id
-msgid "在此实体上而不是ProductMeterType实体上，以获得更多灵活性；例如能够查找所有速度计，无论其主要单位如何"
-msgstr ""
-
-#. domain: Product, entity: ProductMeterType, attribute: default_uom_id
-msgid "此字段为可选，如适用，可更好地描述计量器"
-msgstr ""
-
-#. domain: Product, entity: ProductMaint
-msgid "用于指定定期维护的详细信息"
-msgstr ""
-
-#. domain: Product, entity: ProductMaint, attribute: maint_template_work_effort_id
-msgid "维护计划模板。WorkEffort可能具有任务/故障细节的WorkEffortAssocs"
-msgstr ""
-
-#. domain: Product, entity: ProductMaint, attribute: interval_uom_id
-msgid "intervalQuantity的计量单位；如果使用此项，通常不使用intervalMeterTypeId（二者之一）"
-msgstr ""
-
-#. domain: Product, entity: ProductMaint, attribute: repeat_count
-msgid "若为0或空表示无重复限制；可用于单个ProductMaintType的多个ProductMaint记录，以处理维护间隔不均匀分布或仅需执行一次（如磨合期）的情况"
-msgstr ""
-
-#. domain: Product, entity: ProductMaintType
-msgid "用于定期和非定期维护；使用ProductMaint跟踪定期维护的详细信息"
-msgstr ""
-
-#. domain: Product, entity: VendorProduct
-msgid "与特定供应商和产品相关的信息，特别是对于多供应商商店。ProductStoreGroup的使用方式类似于ProductPrice"
-msgstr ""
-
-#. domain: Product, entity: OldProductPromoCodeEmail
-msgid "自分支版本起已弃用：即将推出的分支。请改用ProdPromoCodeContactMech"
 msgstr ""
 
 #. domain: Product, entity: ProductStore, attribute: pay_to_party_id
@@ -2944,308 +1507,8 @@ msgstr ""
 msgid "默认为N。如果为Y，则将为产品创建分配计划"
 msgstr ""
 
-#. domain: Product, entity: ProductStoreEmailSetting, attribute: body_screen_location
-msgid "如果为空，默认使用基于emailType的屏幕"
-msgstr ""
-
-#. domain: Product, entity: ProductStoreEmailSetting, attribute: xslfo_attach_screen_location
-msgid "如果指定，则用于生成XSL:FO，该FO通过Apache FOP转换为PDF并附加到电子邮件"
-msgstr ""
-
-#. domain: Product, entity: ProductStoreFinActSetting, attribute: validate_gc_fin_acct
-msgid "确定商店是否应根据FinAccount中存储的礼品卡代码验证礼品卡号。如果使用外部礼品卡提供商，请设置为N。"
-msgstr ""
-
-#. domain: Product, entity: ProductStoreFinActSetting, attribute: account_code_length
-msgid "自动生成的账户代码长度"
-msgstr ""
-
-#. domain: Product, entity: ProductStoreFinActSetting, attribute: pin_code_length
-msgid "自动生成的PIN码长度（如果需要）"
-msgstr ""
-
-#. domain: Product, entity: ProductStoreFinActSetting, attribute: account_valid_days
-msgid "此类账户的有效天数"
-msgstr ""
-
-#. domain: Product, entity: ProductStoreFinActSetting, attribute: auth_valid_days
-msgid "此类授权的有效天数"
-msgstr ""
-
-#. domain: Product, entity: ProductStoreFinActSetting, attribute: purchase_survey_id
-msgid "此调查通常用于收集信息，如买方名称、收件人、电子邮件、消息等，并且非常灵活"
-msgstr ""
-
-#. domain: Product, entity: ProductStoreFinActSetting, attribute: purch_survey_send_to
-msgid "购买调查上的字段名称，用于发送到电子邮件地址"
-msgstr ""
-
-#. domain: Product, entity: ProductStoreFinActSetting, attribute: purch_survey_copy_me
-msgid "是否应为电子邮件通知复制ProductStoreEmailSetting上的BCC"
-msgstr ""
-
-#. domain: Product, entity: ProductStoreFinActSetting, attribute: replenish_method_enum_id
-msgid "补充账户的补充方法。可以是FARP_TOP_OFF或FARP_REPLENISH_LEVEL。默认FARP_TOP_OFF"
-msgstr ""
-
-#. domain: Product, entity: ProductStorePromoAppl, attribute: manual_only
-msgid "如果设置为Y，则不自动评估促销，仅当手动添加到购物车时才进行评估。"
-msgstr ""
-
-#. domain: Product, entity: ProductStoreVendorPayment
-msgid "用于定义与商店相关的供应商将接受的支付方式（针对多供应商商店）"
-msgstr ""
-
-#. domain: Product, entity: ProductStoreVendorPayment, attribute: credit_card_enum_id
-msgid "如果不适用于paymentMethodTypeId，使用\"_NA_\""
-msgstr ""
-
-#. domain: Product, entity: ProductStoreVendorShipment
-msgid "用于定义与商店相关的供应商将接受的承运人和装运方式组合（针对多供应商商店）"
-msgstr ""
-
-#. domain: Product, entity: ProductSubscriptionResource, attribute: max_life_time
-msgid "订阅的时间长度"
-msgstr ""
-
-#. domain: Product, entity: ProductSubscriptionResource, attribute: use_time
-msgid "此订阅可使用的时间长度"
-msgstr ""
-
-#. domain: Product, entity: ProductSubscriptionResource, attribute: automatic_extend
-msgid "如果此订阅以与初始期限相同的期限自动续展"
-msgstr ""
-
-#. domain: Product, entity: ProductSubscriptionResource, attribute: cancl_autm_ext_time
-msgid "自动扩展订阅的时间段（在thruDate结束之前）"
-msgstr ""
-
-#. domain: Product, entity: ProductSubscriptionResource, attribute: cancl_autm_ext_time_uom_id
-msgid "用于订阅自动扩展的计量单位"
-msgstr ""
-
-#. domain: Product, entity: ProductSubscriptionResource, attribute: grace_period_on_expiry
-msgid "订阅过期的时间段（在thruDate结束之后）"
-msgstr ""
-
-#. domain: Product, entity: ProductSubscriptionResource, attribute: grace_period_on_expiry_uom_id
-msgid "用于订阅宽限期的计量单位"
-msgstr ""
-
-#. domain: Product, entity: Subscription, attribute: communication_event_id
-msgid "现已由以下实体替代：SubscriptionCommEvent"
-msgstr ""
-
-#. domain: Product, entity: Subscription, attribute: max_life_time
-msgid "（扩展）订阅的时间长度"
-msgstr ""
-
-#. domain: Product, entity: Subscription, attribute: expiration_completed_date
-msgid "过期完成的日期"
-msgstr ""
-
-#. domain: Product, entity: SubscriptionResource, attribute: content_id
-msgid "此订阅将代表的Content记录的ID（如果适用，请使用）"
-msgstr ""
-
-#. domain: Product, entity: SubscriptionResource, attribute: web_site_id
-msgid "此订阅将代表的WebSite记录的ID（如果适用，请使用）"
-msgstr ""
-
-#. domain: Product, entity: SubscriptionResource, attribute: service_name_on_expiry
-msgid "将在订阅过期时运行的服务的名称"
-msgstr ""
-
 #. domain: Shipment
 msgid "从 OFBiz 导入的 Shipment 领域模型"
-msgstr ""
-
-#. domain: Shipment, entity: OldPicklistStatusHistory
-msgid "已弃用：自分支发布后弃用。请改用 PicklistStatus"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayDhl, attribute: connect_url
-msgid "DHL 连接 URL"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayDhl, attribute: connect_timeout
-msgid "超时时间（秒）"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayDhl, attribute: head_version
-msgid "头部版本属性"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayDhl, attribute: head_action
-msgid "头部操作属性"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayDhl, attribute: access_user_id
-msgid "您的 DHL ShipIT 用户 ID"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayDhl, attribute: access_password
-msgid "您的 DHL ShipIT 访问密码"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayDhl, attribute: access_account_nbr
-msgid "您的 DHL ShipIT 账户号"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayDhl, attribute: access_shipping_key
-msgid "您的 DHL ShipIT 发货密钥"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayDhl, attribute: label_image_format
-msgid "标签图片格式"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayDhl, attribute: rate_estimate_template
-msgid "API 模式模板"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayFedex, attribute: connect_url
-msgid "FedEx 连接 URL"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayFedex, attribute: connect_soap_url
-msgid "FedEx Soap 连接 URL"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayFedex, attribute: access_account_nbr
-msgid "您的 FedEx 账户号"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayFedex, attribute: access_meter_number
-msgid "您的 FedEx 电表号"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayFedex, attribute: access_user_key
-msgid "您的 FedEx 用户凭证密钥"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayFedex, attribute: access_user_pwd
-msgid "您的 FedEx 用户凭证密码"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayFedex, attribute: label_image_type
-msgid "标签图片类型"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayFedex, attribute: default_dropoff_type
-msgid "默认投递方式"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayFedex, attribute: default_packaging_type
-msgid "默认包装类型"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayFedex, attribute: template_shipment
-msgid "发货模板位置"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayFedex, attribute: template_subscription
-msgid "订阅模板位置"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayFedex, attribute: rate_estimate_template
-msgid "FedEx API 费率估算模板"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: connect_url
-msgid "UPS 连接 URL"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: shipper_number
-msgid "UPS 发货人号"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: bill_shipper_account_number
-msgid "UPS 账单发货人账户号"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: access_license_number
-msgid "UPS XPCI 访问许可证号"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: access_user_id
-msgid "UPS XPCI 访问用户 ID"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: access_password
-msgid "UPS XPCI 访问密码"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: save_cert_info
-msgid "保存 UPS 认证所需文件的设置（true|false）"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: save_cert_path
-msgid "UPS 文件证书路径"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: shipper_pickup_type
-msgid "发货人默认取件方式"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: customer_classification
-msgid "客户分类"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: max_estimate_weight
-msgid "估算重量上限（分割成多个包）"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: min_estimate_weight
-msgid "包的最小重量"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: cod_allow_cod
-msgid "所有发货包裹项目来自已通过 EXT_COD 全额支付的订单"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: cod_surcharge_amount
-msgid "附加费金额"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: cod_surcharge_currency_uom_id
-msgid "附加费货币"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: cod_surcharge_apply_to_package
-msgid "附加费将应用于每个发货包裹"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: cod_funds_code
-msgid "表示 COD 付款资金类型的代码"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: default_return_label_memo
-msgid "退货标签电子邮件备忘录"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUps, attribute: default_return_label_subject
-msgid "退货标签主题"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUsps, attribute: connect_url
-msgid "USPS 连接 URL"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUsps, attribute: connect_url_labels
-msgid "USPS 标签连接 URL"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUsps, attribute: access_user_id
-msgid "USPS 访问用户 ID"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUsps, attribute: access_password
-msgid "USPS 访问密码"
-msgstr ""
-
-#. domain: Shipment, entity: ShipmentGatewayUsps, attribute: test
-msgid "测试/生产模式"
 msgstr ""
 
 #. domain: Shipment, entity: ShipmentPackage, attribute: box_length
@@ -3286,6 +1549,10 @@ msgstr ""
 
 #. domain: Payment, entity: PaymentProvider, attribute: provider_type
 msgid "网关类型标识，如 alipay、wechat、stripe 等，不硬编码枚举以支持自定义网关"
+msgstr ""
+
+#. domain: Payment, entity: PaymentProvider, attribute: is_active
+msgid "是否启用"
 msgstr ""
 
 #. domain: Payment, entity: PaymentProvider, attribute: test_mode
@@ -3402,6 +1669,10 @@ msgstr ""
 
 #. domain: Payment, entity: Payment, attribute: actual_currency_uom_id
 msgid "实际货币单位"
+msgstr ""
+
+#. domain: Payment, entity: Payment, attribute: comments
+msgid "备注"
 msgstr ""
 
 #. domain: Payment, entity: Payment, attribute: fin_account_trans_id
@@ -3656,10 +1927,6 @@ msgstr ""
 msgid "客户名称"
 msgstr ""
 
-#. domain: Sales, entity: Customer, attribute: credit_limit
-msgid "信用额度"
-msgstr ""
-
 #. domain: Sales, entity: Customer, attribute: payment_terms
 msgid "付款条件"
 msgstr ""
@@ -3722,10 +1989,6 @@ msgstr ""
 
 #. domain: Sales, entity: QuoteItem
 msgid "报价单明细行（对齐 OFBiz QuoteItem）"
-msgstr ""
-
-#. domain: Sales, entity: QuoteItem, attribute: quantity
-msgid "数量（对齐 OFBiz quantity，类型从 integer 改为 decimal）"
 msgstr ""
 
 #. domain: Sales, entity: QuoteItem, attribute: quote_unit_price
@@ -3802,10 +2065,6 @@ msgstr ""
 
 #. domain: Sales, entity: SalesOrder, attribute: invoice_status
 msgid "开票状态（聚合自订单行）"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, attribute: currency
-msgid "币种"
 msgstr ""
 
 #. domain: Sales, entity: SalesOrder, attribute: shipping_address
@@ -4006,90 +2265,6 @@ msgstr ""
 
 #. domain: Sales, entity: ReturnItem, attribute: refund_amount
 msgid "退款总额（业务扩展，可 computed = return_quantity * return_price）"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryCarrier
-msgid "配送方式/承运商，支持固定价格和基于规则的运费计算"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryCarrier, attribute: name
-msgid "配送方式名称（可翻译）"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryCarrier, attribute: active
-msgid "活跃状态"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryCarrier, attribute: sequence
-msgid "排序权重"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryCarrier, attribute: delivery_type
-msgid "运费计算方式（固定价格 / 基于规则）"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryCarrier, attribute: fixed_price
-msgid "固定运费金额"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryCarrier, attribute: free_over
-msgid "是否启用满额免运费"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryCarrier, attribute: amount
-msgid "满额免运费门槛金额"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryCarrier, attribute: margin
-msgid "运费加成百分比"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryCarrier, attribute: fixed_margin
-msgid "运费固定加成金额"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryCarrier, attribute: carrier_description
-msgid "配送方式描述（可翻译）"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryCarrier, action: rate_shipment
-msgid "计算订单运费（调用 provider 方法 + 税 + margin + free_over 判断）"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryPriceRule
-msgid "配送运费计算规则，基于重量/体积/价格/数量条件匹配并计算运费"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryPriceRule, attribute: sequence
-msgid "规则匹配优先级"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryPriceRule, attribute: variable
-msgid "条件变量（重量/体积/重量*体积/价格/数量）"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryPriceRule, attribute: operator
-msgid "比较运算符"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryPriceRule, attribute: max_value
-msgid "条件阈值"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryPriceRule, attribute: list_base_price
-msgid "基础运费"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryPriceRule, attribute: list_price
-msgid "每单位变量的附加费"
-msgstr ""
-
-#. domain: Sales, entity: DeliveryPriceRule, attribute: variable_factor
-msgid "附加费的计算因子"
-msgstr ""
-
-#. domain: Sales, entity: Tax
-msgid "税率占位实体（跨域引用，最小字段）"
 msgstr ""
 
 #. domain: Sales, entity: SalesOrderItemTaxRel
@@ -4494,197 +2669,5 @@ msgstr ""
 
 #. domain: Travel, entity: TravelFulfillment, attribute: used_at
 msgid "实际使用时间"
-msgstr ""
-
-#. domain: Website
-msgid "多站点基础设施（站点配置、页面管理、导航菜单）"
-msgstr ""
-
-#. domain: Website, entity: WebSite
-msgid "网站"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: domain_name
-msgid "域名（SQL 唯一约束，写入时自动 HTTPS + 去尾斜杠）"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: default_lang_id
-msgid "默认语言"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: homepage_url
-msgid "首页 URL"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: favicon
-msgid "网站图标，上传时自动缩放至 256x256 ICO 格式"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: logo
-msgid "网站 Logo"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: social_twitter
-msgid "Twitter 账号"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: social_facebook
-msgid "Facebook 链接"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: social_github
-msgid "GitHub 链接"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: social_linkedin
-msgid "LinkedIn 链接"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: social_youtube
-msgid "YouTube 链接"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: social_instagram
-msgid "Instagram 链接"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: social_tiktok
-msgid "TikTok 链接"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: google_analytics_key
-msgid "Google Analytics 追踪码"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: google_search_console
-msgid "Google Search Console 验证码"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: plausible_shared_key
-msgid "Plausible 分析密钥"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: cdn_activated
-msgid "CDN 开关"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: cdn_url
-msgid "CDN 基础 URL"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: cdn_filters
-msgid "CDN URL 匹配正则"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: cookies_bar
-msgid "Cookie 弹窗开关"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: custom_code_head
-msgid "自定义 head 脚本"
-msgstr ""
-
-#. domain: Website, entity: WebSite, attribute: custom_code_footer
-msgid "自定义 footer 脚本"
-msgstr ""
-
-#. domain: Website, entity: WebPage
-msgid "网站静态页面，支持 URL slugification 与定时发布"
-msgstr ""
-
-#. domain: Website, entity: WebPage, attribute: url
-msgid "页面 URL（网站内唯一）"
-msgstr ""
-
-#. domain: Website, entity: WebPage, attribute: name
-msgid "页面名称"
-msgstr ""
-
-#. domain: Website, entity: WebPage, attribute: view_id
-msgid "关联 ir.ui.view（级联删除）"
-msgstr ""
-
-#. domain: Website, entity: WebPage, attribute: website_published
-msgid "发布状态"
-msgstr ""
-
-#. domain: Website, entity: WebPage, attribute: date_publish
-msgid "定时发布时间"
-msgstr ""
-
-#. domain: Website, entity: WebPage, attribute: website_indexed
-msgid "搜索引擎索引开关"
-msgstr ""
-
-#. domain: Website, entity: WebPage, attribute: header_overlay
-msgid "页头覆盖模式"
-msgstr ""
-
-#. domain: Website, entity: WebPage, attribute: header_color
-msgid "页头颜色"
-msgstr ""
-
-#. domain: Website, entity: WebPage, attribute: header_visible
-msgid "页头可见"
-msgstr ""
-
-#. domain: Website, entity: WebPage, attribute: footer_visible
-msgid "页脚可见"
-msgstr ""
-
-#. domain: Website, entity: WebPage, attribute: visibility
-msgid "可见性控制"
-msgstr ""
-
-#. domain: Website, entity: WebPage, attribute: visibility_password
-msgid "密码保护时的密码"
-msgstr ""
-
-#. domain: Website, entity: WebPage, action: publish
-msgid "发布页面"
-msgstr ""
-
-#. domain: Website, entity: WebPage, action: unpublish
-msgid "取消发布"
-msgstr ""
-
-#. domain: Website, entity: WebPage, action: clone_page
-msgid "克隆页面（不支持跨网站菜单克隆）"
-msgstr ""
-
-#. domain: Website, entity: Menu
-msgid "网站菜单"
-msgstr ""
-
-#. domain: Website, entity: Menu, attribute: name
-msgid "菜单名称（可翻译）"
-msgstr ""
-
-#. domain: Website, entity: Menu, attribute: url
-msgid "菜单链接"
-msgstr ""
-
-#. domain: Website, entity: Menu, attribute: parent_path
-msgid "层级路径（高效查询用）"
-msgstr ""
-
-#. domain: Website, entity: Menu, attribute: sequence
-msgid "排序序号"
-msgstr ""
-
-#. domain: Website, entity: Menu, attribute: new_window
-msgid "新窗口打开"
-msgstr ""
-
-#. domain: Website, entity: Menu, attribute: is_mega_menu
-msgid "是否为 Mega Menu"
-msgstr ""
-
-#. domain: Website, entity: Menu, attribute: mega_menu_content
-msgid "Mega Menu HTML 内容"
-msgstr ""
-
-#. domain: Website, entity: Menu, attribute: mega_menu_classes
-msgid "Mega Menu CSS 类名"
 msgstr ""
 

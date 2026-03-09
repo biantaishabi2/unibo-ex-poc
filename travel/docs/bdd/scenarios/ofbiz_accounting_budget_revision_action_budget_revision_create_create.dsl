@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_BUDGET_REVISION-SEED-ofbiz_accounting_budget_revision_action_budget_revision_create_create] TITLE: OFBIZ_ACCOUNTING_BUDGET_REVISION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_budget_revision_action_budget_revision_create_create" module="OFBIZ_ACCOUNTING_BUDGET_REVISION"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_BUDGET_REVISION"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_BUDGET_REVISION"

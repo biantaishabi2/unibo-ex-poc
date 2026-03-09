@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MANUFACTURING_MANUFACTURING_ORDER-SEED-manufacturing_manufacturing_order_workflow_manufacturing_order_manufacturing_order_flow] TITLE: MANUFACTURING_MANUFACTURING_ORDER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="manufacturing_manufacturing_order_workflow_manufacturing_order_manufacturing_order_flow" module="MANUFACTURING_MANUFACTURING_ORDER"
+WHEN when_execute_seed_contract module="MANUFACTURING_MANUFACTURING_ORDER"
+THEN then_seed_contract_should_hold module="MANUFACTURING_MANUFACTURING_ORDER"

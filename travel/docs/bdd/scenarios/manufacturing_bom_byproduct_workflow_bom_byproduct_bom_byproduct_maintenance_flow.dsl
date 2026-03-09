@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MANUFACTURING_BOM_BYPRODUCT-SEED-manufacturing_bom_byproduct_workflow_bom_byproduct_bom_byproduct_maintenance_flow] TITLE: MANUFACTURING_BOM_BYPRODUCT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="manufacturing_bom_byproduct_workflow_bom_byproduct_bom_byproduct_maintenance_flow" module="MANUFACTURING_BOM_BYPRODUCT"
+WHEN when_execute_seed_contract module="MANUFACTURING_BOM_BYPRODUCT"
+THEN then_seed_contract_should_hold module="MANUFACTURING_BOM_BYPRODUCT"

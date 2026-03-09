@@ -159,7 +159,6 @@ defmodule UniboExPoc.Sales.SalesOrderItem do
       change UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal
       change UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceTax
       change set_attribute(:price_total, expr((price_subtotal + price_tax)))
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
@@ -170,7 +169,6 @@ defmodule UniboExPoc.Sales.SalesOrderItem do
       change UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal
       change UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceTax
       change set_attribute(:price_total, expr((price_subtotal + price_tax)))
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

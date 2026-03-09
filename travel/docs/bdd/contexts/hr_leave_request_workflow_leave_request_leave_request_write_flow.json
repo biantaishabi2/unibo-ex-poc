@@ -1,0 +1,7 @@
+{
+  "id": "hr_leave_request_workflow_leave_request_leave_request_write_flow",
+  "module": "HR_LEAVE_REQUEST",
+  "edge_class": "all",
+  "source_file": "hr/workflow_leave_request_leave_request_write_flow.yaml",
+  "source_summary": "module: HR_LEAVE_REQUEST\\ncontract: LeaveRequest.leave_request_write_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/hr/hr.ubo.yaml\\nsource_summary: GIVEN 实体 LeaveRequest 定义工作流 leave_request_write_flow / WHEN 按步骤执行 create -> action_confirm -> action_approve -> action_validate -> action_refuse -> action_draft / THEN 流程顺序应满足声明约束"
+}

@@ -21,6 +21,7 @@ defmodule UniboExPoc.Payment.PaymentType do
   postgres do
     table "payment_types"
     repo UniboExPoc.Repo
+    identity_index_names unique_payment_type_id: "idx_payment_types_unique_payment_type_id"
   end
 
   graphql do
@@ -83,12 +84,10 @@ defmodule UniboExPoc.Payment.PaymentType do
       primary? true
       accept [:payment_type_id, :parent_type_id, :has_table, :description]
       validate present(:payment_type_id)
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:description, :has_table]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

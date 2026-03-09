@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ECOMMERCE_LOYALTY_REWARD-SEED-ecommerce_loyalty_reward_workflow_loyalty_reward_reward_lifecycle] TITLE: ECOMMERCE_LOYALTY_REWARD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ecommerce_loyalty_reward_workflow_loyalty_reward_reward_lifecycle" module="ECOMMERCE_LOYALTY_REWARD"
+WHEN when_execute_seed_contract module="ECOMMERCE_LOYALTY_REWARD"
+THEN then_seed_contract_should_hold module="ECOMMERCE_LOYALTY_REWARD"

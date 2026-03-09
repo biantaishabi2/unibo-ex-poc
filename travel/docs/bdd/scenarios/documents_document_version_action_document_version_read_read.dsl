@@ -1,0 +1,4 @@
+[SCENARIO: BDD-DOCUMENTS_DOCUMENT_VERSION-SEED-documents_document_version_action_document_version_read_read] TITLE: DOCUMENTS_DOCUMENT_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="documents_document_version_action_document_version_read_read" module="DOCUMENTS_DOCUMENT_VERSION"
+WHEN when_execute_seed_contract module="DOCUMENTS_DOCUMENT_VERSION"
+THEN then_seed_contract_should_hold module="DOCUMENTS_DOCUMENT_VERSION"

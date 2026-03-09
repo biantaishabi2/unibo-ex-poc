@@ -1,0 +1,5 @@
+module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER
+contract: SubscriptionOrder.cron_expiry_close workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/subscriptions/subscriptions.ubo.yaml
+source_summary: GIVEN 实体 SubscriptionOrder 定义工作流 cron_expiry_close / WHEN 按步骤执行 evaluate_expiry_due -> action_close / THEN 流程顺序应满足声明约束

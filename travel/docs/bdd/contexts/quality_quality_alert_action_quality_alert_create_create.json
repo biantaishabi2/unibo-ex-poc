@@ -1,0 +1,7 @@
+{
+  "id": "quality_quality_alert_action_quality_alert_create_create",
+  "module": "QUALITY_QUALITY_ALERT",
+  "edge_class": "all",
+  "source_file": "quality/action_quality_alert_create_create.yaml",
+  "source_summary": "module: QUALITY_QUALITY_ALERT\\ncontract: QualityAlert.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/quality/quality.ubo.yaml\\nsource_summary: GIVEN 实体 QualityAlert 的动作 create 可执行，accept=[title, priority, rca_method, description, ref_type, ref_id]，args=[company_id:uuid!, product_id:uuid, lot_id:uuid, check_id:uuid, team_id:uuid, responsible_id:uuid, partner_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

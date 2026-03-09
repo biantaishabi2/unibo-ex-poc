@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_CONTENT_DATA_RESOURCE_PURPOSE-SEED-ofbiz_content_data_resource_purpose_action_data_resource_purpose_create_create] TITLE: OFBIZ_CONTENT_DATA_RESOURCE_PURPOSE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_content_data_resource_purpose_action_data_resource_purpose_create_create" module="OFBIZ_CONTENT_DATA_RESOURCE_PURPOSE"
+WHEN when_execute_seed_contract module="OFBIZ_CONTENT_DATA_RESOURCE_PURPOSE"
+THEN then_seed_contract_should_hold module="OFBIZ_CONTENT_DATA_RESOURCE_PURPOSE"

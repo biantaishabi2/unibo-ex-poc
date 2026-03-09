@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_EFT_ACCOUNT-SEED-ofbiz_accounting_eft_account_action_eft_account_update_update] TITLE: OFBIZ_ACCOUNTING_EFT_ACCOUNT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_eft_account_action_eft_account_update_update" module="OFBIZ_ACCOUNTING_EFT_ACCOUNT"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_EFT_ACCOUNT"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_EFT_ACCOUNT"

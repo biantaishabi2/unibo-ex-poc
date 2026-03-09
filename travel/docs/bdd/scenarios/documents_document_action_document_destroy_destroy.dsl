@@ -1,0 +1,4 @@
+[SCENARIO: BDD-DOCUMENTS_DOCUMENT-SEED-documents_document_action_document_destroy_destroy] TITLE: DOCUMENTS_DOCUMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="documents_document_action_document_destroy_destroy" module="DOCUMENTS_DOCUMENT"
+WHEN when_execute_seed_contract module="DOCUMENTS_DOCUMENT"
+THEN then_seed_contract_should_hold module="DOCUMENTS_DOCUMENT"

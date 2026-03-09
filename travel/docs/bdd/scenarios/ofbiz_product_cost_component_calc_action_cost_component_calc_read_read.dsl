@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_COST_COMPONENT_CALC-SEED-ofbiz_product_cost_component_calc_action_cost_component_calc_read_read] TITLE: OFBIZ_PRODUCT_COST_COMPONENT_CALC contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_cost_component_calc_action_cost_component_calc_read_read" module="OFBIZ_PRODUCT_COST_COMPONENT_CALC"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_COST_COMPONENT_CALC"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_COST_COMPONENT_CALC"

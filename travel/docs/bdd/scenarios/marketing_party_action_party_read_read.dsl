@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_PARTY-SEED-marketing_party_action_party_read_read] TITLE: MARKETING_PARTY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_party_action_party_read_read" module="MARKETING_PARTY"
+WHEN when_execute_seed_contract module="MARKETING_PARTY"
+THEN then_seed_contract_should_hold module="MARKETING_PARTY"

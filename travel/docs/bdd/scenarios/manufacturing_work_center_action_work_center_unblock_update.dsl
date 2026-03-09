@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MANUFACTURING_WORK_CENTER-SEED-manufacturing_work_center_action_work_center_unblock_update] TITLE: MANUFACTURING_WORK_CENTER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="manufacturing_work_center_action_work_center_unblock_update" module="MANUFACTURING_WORK_CENTER"
+WHEN when_execute_seed_contract module="MANUFACTURING_WORK_CENTER"
+THEN then_seed_contract_should_hold module="MANUFACTURING_WORK_CENTER"

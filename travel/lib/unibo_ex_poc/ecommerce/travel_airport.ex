@@ -12,6 +12,7 @@ defmodule UniboExPoc.Ecommerce.TravelAirport do
   postgres do
     table "ecommerce_travel_airports"
     repo UniboExPoc.Repo
+    identity_index_names unique_airport_code: "idx_ecommerce_travel_airports_unique_airport_code"
   end
 
   graphql do
@@ -75,12 +76,10 @@ defmodule UniboExPoc.Ecommerce.TravelAirport do
     create :create do
       primary? true
       accept [:airport_code, :airport_name, :city_id, :city_code, :iata_code, :icao_code, :geo_id, :status]
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:airport_name, :city_id, :city_code, :iata_code, :icao_code, :geo_id, :status]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

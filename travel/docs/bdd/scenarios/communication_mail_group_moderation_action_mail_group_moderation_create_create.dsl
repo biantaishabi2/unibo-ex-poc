@@ -1,0 +1,4 @@
+[SCENARIO: BDD-COMMUNICATION_MAIL_GROUP_MODERATION-SEED-communication_mail_group_moderation_action_mail_group_moderation_create_create] TITLE: COMMUNICATION_MAIL_GROUP_MODERATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="communication_mail_group_moderation_action_mail_group_moderation_create_create" module="COMMUNICATION_MAIL_GROUP_MODERATION"
+WHEN when_execute_seed_contract module="COMMUNICATION_MAIL_GROUP_MODERATION"
+THEN then_seed_contract_should_hold module="COMMUNICATION_MAIL_GROUP_MODERATION"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-LUNCH_LUNCH_ORDER_TOPPING2_LINK-SEED-lunch_lunch_order_topping2_link_action_lunch_order_topping2_link_read_read] TITLE: LUNCH_LUNCH_ORDER_TOPPING2_LINK contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="lunch_lunch_order_topping2_link_action_lunch_order_topping2_link_read_read" module="LUNCH_LUNCH_ORDER_TOPPING2_LINK"
+WHEN when_execute_seed_contract module="LUNCH_LUNCH_ORDER_TOPPING2_LINK"
+THEN then_seed_contract_should_hold module="LUNCH_LUNCH_ORDER_TOPPING2_LINK"

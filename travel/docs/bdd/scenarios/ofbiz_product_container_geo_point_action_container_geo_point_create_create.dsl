@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_CONTAINER_GEO_POINT-SEED-ofbiz_product_container_geo_point_action_container_geo_point_create_create] TITLE: OFBIZ_PRODUCT_CONTAINER_GEO_POINT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_container_geo_point_action_container_geo_point_create_create" module="OFBIZ_PRODUCT_CONTAINER_GEO_POINT"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_CONTAINER_GEO_POINT"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_CONTAINER_GEO_POINT"

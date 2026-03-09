@@ -1,0 +1,7 @@
+{
+  "id": "rental_rental_order_action_rental_order_action_done_update",
+  "module": "RENTAL_RENTAL_ORDER",
+  "edge_class": "all",
+  "source_file": "rental/action_rental_order_action_done_update.yaml",
+  "source_summary": "module: RENTAL_RENTAL_ORDER\\ncontract: RentalOrder.action_done action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/rental/rental.ubo.yaml\\nsource_summary: GIVEN 实体 RentalOrder 的动作 action_done 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 action_done / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束"
+}

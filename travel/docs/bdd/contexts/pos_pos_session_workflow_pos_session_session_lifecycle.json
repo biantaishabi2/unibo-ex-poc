@@ -1,0 +1,7 @@
+{
+  "id": "pos_pos_session_workflow_pos_session_session_lifecycle",
+  "module": "POS_POS_SESSION",
+  "edge_class": "all",
+  "source_file": "pos/workflow_pos_session_session_lifecycle.yaml",
+  "source_summary": "module: POS_POS_SESSION\\ncontract: PosSession.session_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/pos/pos.ubo.yaml\\nsource_summary: GIVEN 实体 PosSession 定义工作流 session_lifecycle / WHEN 按步骤执行 create -> open -> start_close -> close / THEN 流程顺序应满足声明约束"
+}

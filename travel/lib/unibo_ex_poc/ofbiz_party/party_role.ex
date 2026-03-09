@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Party.PartyRole do
   end
 
   graphql do
-    type :party_party_role
+    type :ofbiz_party_party_role
 
     queries do
-      get :get_party_party_role, :read
-      list :list_party_party_roles, :read
+      get :get_ofbiz_party_party_role, :read
+      list :list_ofbiz_party_party_roles, :read
     end
 
     mutations do
-      create :create_party_party_role, :create
-      update :update_party_party_role, :update
-      destroy :delete_party_party_role, :destroy
+      create :create_ofbiz_party_party_role, :create
+      update :update_ofbiz_party_party_role, :update
+      destroy :delete_ofbiz_party_party_role, :destroy
     end
 
   end

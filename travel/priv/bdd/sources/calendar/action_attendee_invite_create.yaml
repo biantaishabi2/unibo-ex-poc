@@ -1,0 +1,5 @@
+module: CALENDAR_ATTENDEE
+contract: Attendee.invite action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 Attendee 的动作 invite 可执行，accept=[event_id, party_id, role, is_organizer, must_rsvp, comments]，args=[无显式参数] / WHEN 执行动作 invite / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：invite 邀请参与者 -> update_response 接受邀请 -> remove 移除参与者；invite 邀请参与者 -> update_response 拒绝邀请

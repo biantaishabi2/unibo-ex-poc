@@ -1,0 +1,5 @@
+module: MARKETING_AUTOMATION_CAMPAIGN
+contract: AutomationCampaign.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 AutomationCampaign 的动作 create 可执行，accept=[name, model_id, domain_filter, unique_field_id, allow_restart, category_id, fixed_cost, publish_up, publish_down]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建自动化活动 -> update 配置规则 -> start_campaign 启动 -> stop_campaign 停止

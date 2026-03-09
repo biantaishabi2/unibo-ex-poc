@@ -46,6 +46,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
   postgres do
     table "travel_orders"
     repo UniboExPoc.Repo
+    identity_index_names unique_order_no: "idx_travel_orders_unique_order_no"
   end
 
   multitenancy do
@@ -226,13 +227,11 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "vacation 订单必须绑定 vacation_offer_id"
       validate present(:train_offer_id)
       # message: "train 订单必须绑定 train_offer_id"
-      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelOrder.CreateOrderShopCallerContextResolveBridge
     end
     update :update do
       primary? true
       accept [:contact_name, :contact_phone, :traveler_count, :ticket_passenger_infos, :seat_selection_snapshot]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :confirm_quote do
@@ -247,7 +246,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 draft 订单可以 confirm_quote"
       change set_attribute(:status, :quoted)
-      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelOrder.ConfirmQuoteShopEligibilityQuoteBridge
       require_atomic? false
     end
@@ -263,7 +261,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 quoted 订单可以提交普通购票或候补"
       change set_attribute(:status, :submitted)
-      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelOrder.SubmitOrderPaymentCaptureBridge
       require_atomic? false
     end
@@ -281,7 +278,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       change set_attribute(:status, :submitted)
       change set_attribute(:booking_mode, :waitlist)
       change set_attribute(:waitlist_status, :pending)
-      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelOrder.SubmitWaitlistPaymentCaptureBridge
       require_atomic? false
     end
@@ -297,7 +293,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 submitted 订单可以进入支付成功或失败结果"
       change set_attribute(:status, :booking_pending)
-      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelOrder.MarkPaymentSucceededSupplierBookingSubmitBridge
       require_atomic? false
     end
@@ -313,7 +308,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 booking_pending 订单可以完成出票、兑现候补或取消候补"
       change set_attribute(:status, :booked)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :fulfill_waitlist do
@@ -338,7 +332,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "只有 waitlist_pending 的订单可以兑现或取消候补"
       change set_attribute(:status, :booked)
       change set_attribute(:waitlist_status, :fulfilled)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_completed do
@@ -353,7 +346,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 booked 订单可以完成、取消或改签"
       change set_attribute(:status, :completed)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :request_cancel do
@@ -368,7 +360,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 booked 订单可以完成、取消或改签"
       change set_attribute(:status, :cancel_pending)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel_waitlist do
@@ -393,7 +384,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "只有 waitlist_pending 的订单可以兑现或取消候补"
       change set_attribute(:status, :cancelled)
       change set_attribute(:waitlist_status, :cancelled)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :approve_cancel do
@@ -408,7 +398,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 cancel_pending 订单可以 approve_cancel"
       change set_attribute(:status, :cancelled)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :request_change do
@@ -424,7 +413,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "只有 booked 订单可以完成、取消或改签"
       # skipped: validate present :original_order_ref (incompatible with bulk update atomic path)
       change set_attribute(:change_status, :pending)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :confirm_change do
@@ -440,7 +428,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "只有 change_pending 的订单可以 confirm_change"
       # skipped: validate present :original_order_ref (incompatible with bulk update atomic path)
       change set_attribute(:change_status, :changed)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_order_failed do
@@ -455,7 +442,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 submitted 订单可以进入支付成功或失败结果"
       change set_attribute(:status, :failed)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

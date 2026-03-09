@@ -1,0 +1,5 @@
+module: PURCHASING_PURCHASE_ORDER
+contract: PurchaseOrder.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 PurchaseOrder 的动作 create 可执行，accept=[name, date_order, date_planned, currency_id, company_id, fiscal_position_id, payment_term_id, shipping_address, notes]，args=[order_lines:array!, supplier_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

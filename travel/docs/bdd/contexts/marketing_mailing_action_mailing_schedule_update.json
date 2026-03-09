@@ -1,0 +1,7 @@
+{
+  "id": "marketing_mailing_action_mailing_schedule_update",
+  "module": "MARKETING_MAILING",
+  "edge_class": "all",
+  "source_file": "marketing/action_mailing_schedule_update.yaml",
+  "source_summary": "module: MARKETING_MAILING\\ncontract: Mailing.schedule action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 Mailing 的动作 schedule 可执行，accept=[schedule_date]，args=[无显式参数] / WHEN 执行动作 schedule / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束"
+}

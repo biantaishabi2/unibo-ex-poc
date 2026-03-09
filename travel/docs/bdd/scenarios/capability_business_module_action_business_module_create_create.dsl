@@ -1,0 +1,4 @@
+[SCENARIO: BDD-CAPABILITY_BUSINESS_MODULE-SEED-capability_business_module_action_business_module_create_create] TITLE: CAPABILITY_BUSINESS_MODULE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="capability_business_module_action_business_module_create_create" module="CAPABILITY_BUSINESS_MODULE"
+WHEN when_execute_seed_contract module="CAPABILITY_BUSINESS_MODULE"
+THEN then_seed_contract_should_hold module="CAPABILITY_BUSINESS_MODULE"

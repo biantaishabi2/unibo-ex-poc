@@ -1,0 +1,7 @@
+{
+  "id": "hr_job_application_workflow_job_application_recruitment_pipeline_flow",
+  "module": "HR_JOB_APPLICATION",
+  "edge_class": "all",
+  "source_file": "hr/workflow_job_application_recruitment_pipeline_flow.yaml",
+  "source_summary": "module: HR_JOB_APPLICATION\\ncontract: JobApplication.recruitment_pipeline_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/hr/hr.ubo.yaml\\nsource_summary: GIVEN 实体 JobApplication 定义工作流 recruitment_pipeline_flow / WHEN 按步骤执行 create -> advance -> hire -> archive / THEN 流程顺序应满足声明约束"
+}

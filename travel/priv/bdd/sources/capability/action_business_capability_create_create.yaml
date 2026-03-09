@@ -1,0 +1,5 @@
+module: CAPABILITY_BUSINESS_CAPABILITY
+contract: BusinessCapability.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/capability/capability.ubo.yaml
+source_summary: GIVEN 实体 BusinessCapability 的动作 create 可执行，accept=[capability_code, name, capability_level, outcome_statement]，args=[strategic_goal_id:uuid!, parent_capability_id:uuid] / WHEN 执行动作 create / THEN 状态变更与副作用应生效 / 补充场景：create 建立 enterprise_modeling_phase2_root -> create 建立 orgview_pattern、quality_runtime_sla、cross_org_transaction、change_request_management 子能力

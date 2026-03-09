@@ -1,0 +1,7 @@
+{
+  "id": "delivery_cross_org_transaction_action_cross_org_transaction_mark_settled_update",
+  "module": "DELIVERY_CROSS_ORG_TRANSACTION",
+  "edge_class": "all",
+  "source_file": "delivery/action_cross_org_transaction_mark_settled_update.yaml",
+  "source_summary": "module: DELIVERY_CROSS_ORG_TRANSACTION\\ncontract: CrossOrgTransaction.mark_settled action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/delivery/delivery.ubo.yaml\\nsource_summary: GIVEN 实体 CrossOrgTransaction 的动作 mark_settled 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 mark_settled / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束"
+}

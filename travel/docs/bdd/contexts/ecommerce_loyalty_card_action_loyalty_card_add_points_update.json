@@ -1,0 +1,7 @@
+{
+  "id": "ecommerce_loyalty_card_action_loyalty_card_add_points_update",
+  "module": "ECOMMERCE_LOYALTY_CARD",
+  "edge_class": "all",
+  "source_file": "ecommerce/action_loyalty_card_add_points_update.yaml",
+  "source_summary": "module: ECOMMERCE_LOYALTY_CARD\\ncontract: LoyaltyCard.add_points action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ecommerce/ecommerce.ubo.yaml\\nsource_summary: GIVEN 实体 LoyaltyCard 的动作 add_points 可执行，accept=[points]，args=[无显式参数] / WHEN 执行动作 add_points / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建积分卡，add_points 增加积分，share 生成分享链接；create 新建积分卡，update 修改过期日期，add_points 增加积分"
+}

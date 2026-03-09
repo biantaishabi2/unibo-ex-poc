@@ -1,0 +1,4 @@
+[SCENARIO: BDD-GAMIFICATION_BADGE_AUTH_BADGE_LINK-SEED-gamification_badge_auth_badge_link_action_badge_auth_badge_link_read_read] TITLE: GAMIFICATION_BADGE_AUTH_BADGE_LINK contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="gamification_badge_auth_badge_link_action_badge_auth_badge_link_read_read" module="GAMIFICATION_BADGE_AUTH_BADGE_LINK"
+WHEN when_execute_seed_contract module="GAMIFICATION_BADGE_AUTH_BADGE_LINK"
+THEN then_seed_contract_should_hold module="GAMIFICATION_BADGE_AUTH_BADGE_LINK"

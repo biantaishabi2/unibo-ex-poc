@@ -1,0 +1,7 @@
+{
+  "id": "ofbiz_accounting_tax_authority_category_action_tax_authority_category_create_create",
+  "module": "OFBIZ_ACCOUNTING_TAX_AUTHORITY_CATEGORY",
+  "edge_class": "all",
+  "source_file": "ofbiz_accounting/action_tax_authority_category_create_create.yaml",
+  "source_summary": "module: OFBIZ_ACCOUNTING_TAX_AUTHORITY_CATEGORY\\ncontract: TaxAuthorityCategory.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ofbiz/accounting.ubo.yaml\\nsource_summary: GIVEN 实体 TaxAuthorityCategory 的动作 create 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 create / THEN 状态变更与副作用应生效"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-BARCODE_BARCODE_RULE-SEED-barcode_barcode_rule_workflow_barcode_rule_rule_lifecycle] TITLE: BARCODE_BARCODE_RULE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="barcode_barcode_rule_workflow_barcode_rule_rule_lifecycle" module="BARCODE_BARCODE_RULE"
+WHEN when_execute_seed_contract module="BARCODE_BARCODE_RULE"
+THEN then_seed_contract_should_hold module="BARCODE_BARCODE_RULE"

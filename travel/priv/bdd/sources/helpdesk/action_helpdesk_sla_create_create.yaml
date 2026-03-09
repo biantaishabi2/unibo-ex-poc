@@ -1,0 +1,5 @@
+module: HELPDESK_HELPDESK_SLA
+contract: HelpdeskSLA.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 HelpdeskSLA 的动作 create 可执行，accept=[name, time_days, time_hours, minimum_priority]，args=[team_id:uuid!, reach_stage_id:uuid!, ticket_type_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建 SLA 策略，update 修改时效要求；create 新建 SLA 策略时 reach_stage 不属于团队关联阶段，校验失败

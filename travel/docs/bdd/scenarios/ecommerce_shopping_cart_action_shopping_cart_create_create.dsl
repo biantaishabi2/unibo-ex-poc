@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ECOMMERCE_SHOPPING_CART-SEED-ecommerce_shopping_cart_action_shopping_cart_create_create] TITLE: ECOMMERCE_SHOPPING_CART contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ecommerce_shopping_cart_action_shopping_cart_create_create" module="ECOMMERCE_SHOPPING_CART"
+WHEN when_execute_seed_contract module="ECOMMERCE_SHOPPING_CART"
+THEN then_seed_contract_should_hold module="ECOMMERCE_SHOPPING_CART"

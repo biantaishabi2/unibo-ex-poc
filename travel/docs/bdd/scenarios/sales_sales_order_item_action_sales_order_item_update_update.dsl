@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SALES_SALES_ORDER_ITEM-SEED-sales_sales_order_item_action_sales_order_item_update_update] TITLE: SALES_SALES_ORDER_ITEM contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="sales_sales_order_item_action_sales_order_item_update_update" module="SALES_SALES_ORDER_ITEM"
+WHEN when_execute_seed_contract module="SALES_SALES_ORDER_ITEM"
+THEN then_seed_contract_should_hold module="SALES_SALES_ORDER_ITEM"

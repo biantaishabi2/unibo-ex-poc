@@ -1,0 +1,5 @@
+module: APPROVALS_APPROVAL_REQUEST
+contract: ApprovalRequest.submit event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/approvals/approvals.ubo.yaml
+source_summary: GIVEN 实体 ApprovalRequest 的动作 submit 完成 / WHEN 触发事件发布 / THEN 应广播 topic `approvals.request.submitted`

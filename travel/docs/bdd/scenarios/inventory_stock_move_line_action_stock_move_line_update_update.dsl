@@ -1,0 +1,4 @@
+[SCENARIO: BDD-INVENTORY_STOCK_MOVE_LINE-SEED-inventory_stock_move_line_action_stock_move_line_update_update] TITLE: INVENTORY_STOCK_MOVE_LINE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="inventory_stock_move_line_action_stock_move_line_update_update" module="INVENTORY_STOCK_MOVE_LINE"
+WHEN when_execute_seed_contract module="INVENTORY_STOCK_MOVE_LINE"
+THEN then_seed_contract_should_hold module="INVENTORY_STOCK_MOVE_LINE"

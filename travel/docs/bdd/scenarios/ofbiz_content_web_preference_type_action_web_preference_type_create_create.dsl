@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_CONTENT_WEB_PREFERENCE_TYPE-SEED-ofbiz_content_web_preference_type_action_web_preference_type_create_create] TITLE: OFBIZ_CONTENT_WEB_PREFERENCE_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_content_web_preference_type_action_web_preference_type_create_create" module="OFBIZ_CONTENT_WEB_PREFERENCE_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_CONTENT_WEB_PREFERENCE_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_CONTENT_WEB_PREFERENCE_TYPE"

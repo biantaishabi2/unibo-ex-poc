@@ -1,0 +1,7 @@
+{
+  "id": "maintenance_assignment_log_workflow_assignment_log_assignment_log_creation_flow",
+  "module": "MAINTENANCE_ASSIGNMENT_LOG",
+  "edge_class": "all",
+  "source_file": "maintenance/workflow_assignment_log_assignment_log_creation_flow.yaml",
+  "source_summary": "module: MAINTENANCE_ASSIGNMENT_LOG\\ncontract: AssignmentLog.assignment_log_creation_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml\\nsource_summary: GIVEN 实体 AssignmentLog 定义工作流 assignment_log_creation_flow / WHEN 按步骤执行 create / THEN 流程顺序应满足声明约束"
+}

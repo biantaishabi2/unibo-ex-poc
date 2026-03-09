@@ -1,0 +1,7 @@
+{
+  "id": "subscriptions_subscription_order_action_subscription_order_create_create",
+  "module": "SUBSCRIPTIONS_SUBSCRIPTION_ORDER",
+  "edge_class": "all",
+  "source_file": "subscriptions/action_subscription_order_create_create.yaml",
+  "source_summary": "module: SUBSCRIPTIONS_SUBSCRIPTION_ORDER\\ncontract: SubscriptionOrder.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/subscriptions/subscriptions.ubo.yaml\\nsource_summary: GIVEN 实体 SubscriptionOrder 的动作 create 可执行，accept=[name, start_date, end_date, next_invoice_date]，args=[lines:array!, recurring_plan_id:uuid!, partner_id:uuid!, salesperson_id:uuid!, currency_id:uuid!, payment_token_id:uuid, pricelist_id:uuid, team_id:uuid, stage_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

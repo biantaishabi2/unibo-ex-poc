@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteItem do
   end
 
   graphql do
-    type :order_quote_item
+    type :ofbiz_order_quote_item
 
     queries do
-      get :get_order_quote_item, :read
-      list :list_order_quote_items, :read
+      get :get_ofbiz_order_quote_item, :read
+      list :list_ofbiz_order_quote_items, :read
     end
 
     mutations do
-      create :create_order_quote_item, :create
-      update :update_order_quote_item, :update
-      destroy :delete_order_quote_item, :destroy
+      create :create_ofbiz_order_quote_item, :create
+      update :update_ofbiz_order_quote_item, :update
+      destroy :delete_ofbiz_order_quote_item, :destroy
     end
 
   end

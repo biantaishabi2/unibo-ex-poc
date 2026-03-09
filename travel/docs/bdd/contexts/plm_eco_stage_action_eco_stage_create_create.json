@@ -1,0 +1,7 @@
+{
+  "id": "plm_eco_stage_action_eco_stage_create_create",
+  "module": "PLM_ECO_STAGE",
+  "edge_class": "all",
+  "source_file": "plm/action_eco_stage_create_create.yaml",
+  "source_summary": "module: PLM_ECO_STAGE\\ncontract: EcoStage.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/plm/plm.ubo.yaml\\nsource_summary: GIVEN 实体 EcoStage 的动作 create 可执行，accept=[name, sequence, folded, allow_apply, is_final]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建阶段 -> update 调整阶段配置"
+}

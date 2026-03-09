@@ -1,0 +1,5 @@
+module: FORUM_POST
+contract: Post.toggle_favourite action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/forum/forum.ubo.yaml
+source_summary: GIVEN 实体 Post 的动作 toggle_favourite 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 toggle_favourite / THEN 状态变更与副作用应生效，应符合工作流步骤约束

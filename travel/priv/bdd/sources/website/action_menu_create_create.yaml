@@ -1,0 +1,5 @@
+module: WEBSITE_MENU
+contract: Menu.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/website/website.ubo.yaml
+source_summary: GIVEN 实体 Menu 的动作 create 可执行，accept=[name, url, sequence, new_window, is_mega_menu, mega_menu_content, mega_menu_classes]，args=[website_id:uuid, page_id:uuid, parent_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建菜单项，update 修改名称、URL 和排序

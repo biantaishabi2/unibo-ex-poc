@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Shipment.Shipment do
   end
 
   graphql do
-    type :shipment_shipment
+    type :ofbiz_shipment_shipment
 
     queries do
-      get :get_shipment_shipment, :read
-      list :list_shipment_shipments, :read
+      get :get_ofbiz_shipment_shipment, :read
+      list :list_ofbiz_shipment_shipments, :read
     end
 
     mutations do
-      create :create_shipment_shipment, :create
-      update :update_shipment_shipment, :update
-      destroy :delete_shipment_shipment, :destroy
+      create :create_ofbiz_shipment_shipment, :create
+      update :update_ofbiz_shipment_shipment, :update
+      destroy :delete_ofbiz_shipment_shipment, :destroy
     end
 
   end

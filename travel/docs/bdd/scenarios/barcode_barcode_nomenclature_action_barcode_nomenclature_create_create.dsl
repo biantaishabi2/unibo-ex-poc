@@ -1,0 +1,4 @@
+[SCENARIO: BDD-BARCODE_BARCODE_NOMENCLATURE-SEED-barcode_barcode_nomenclature_action_barcode_nomenclature_create_create] TITLE: BARCODE_BARCODE_NOMENCLATURE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="barcode_barcode_nomenclature_action_barcode_nomenclature_create_create" module="BARCODE_BARCODE_NOMENCLATURE"
+WHEN when_execute_seed_contract module="BARCODE_BARCODE_NOMENCLATURE"
+THEN then_seed_contract_should_hold module="BARCODE_BARCODE_NOMENCLATURE"

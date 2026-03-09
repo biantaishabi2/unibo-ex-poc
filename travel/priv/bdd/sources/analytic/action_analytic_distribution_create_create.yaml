@@ -1,0 +1,5 @@
+module: ANALYTIC_ANALYTIC_DISTRIBUTION
+contract: AnalyticDistribution.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/analytic/analytic.ubo.yaml
+source_summary: GIVEN 实体 AnalyticDistribution 的动作 create 可执行，accept=[move_line_id, account_id, percentage]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：move_line 分摊到两个账户各50%，create 两条 AnalyticDistribution(percentage=50)，校验通过；create 第三条 percentage=30，导致总和=130，被 [R-ANL-004] 拒绝

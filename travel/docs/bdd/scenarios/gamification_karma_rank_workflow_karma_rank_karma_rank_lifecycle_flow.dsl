@@ -1,0 +1,4 @@
+[SCENARIO: BDD-GAMIFICATION_KARMA_RANK-SEED-gamification_karma_rank_workflow_karma_rank_karma_rank_lifecycle_flow] TITLE: GAMIFICATION_KARMA_RANK contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="gamification_karma_rank_workflow_karma_rank_karma_rank_lifecycle_flow" module="GAMIFICATION_KARMA_RANK"
+WHEN when_execute_seed_contract module="GAMIFICATION_KARMA_RANK"
+THEN then_seed_contract_should_hold module="GAMIFICATION_KARMA_RANK"

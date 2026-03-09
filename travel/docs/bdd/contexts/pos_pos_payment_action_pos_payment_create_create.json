@@ -1,0 +1,7 @@
+{
+  "id": "pos_pos_payment_action_pos_payment_create_create",
+  "module": "POS_POS_PAYMENT",
+  "edge_class": "all",
+  "source_file": "pos/action_pos_payment_create_create.yaml",
+  "source_summary": "module: POS_POS_PAYMENT\\ncontract: PosPayment.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/pos/pos.ubo.yaml\\nsource_summary: GIVEN 实体 PosPayment 的动作 create 可执行，accept=[payment_method_id, amount, is_change, reference_number, card_type, cardholder_name, transaction_id, payment_status, ticket]，args=[order_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建正常支付记录（amount > 0），关联订单；create 创建找零记录（amount < 0，is_change=true）；create 正常支付 amount 为负时校验失败；create 找零记录未标记 is_change 时校验失败"
+}

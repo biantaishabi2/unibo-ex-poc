@@ -1,0 +1,7 @@
+{
+  "id": "delivery_shipment_package_route_seg_action_shipment_package_route_seg_update_label_update",
+  "module": "DELIVERY_SHIPMENT_PACKAGE_ROUTE_SEG",
+  "edge_class": "all",
+  "source_file": "delivery/action_shipment_package_route_seg_update_label_update.yaml",
+  "source_summary": "module: DELIVERY_SHIPMENT_PACKAGE_ROUTE_SEG\\ncontract: ShipmentPackageRouteSeg.update_label action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/delivery/delivery.ubo.yaml\\nsource_summary: GIVEN 实体 ShipmentPackageRouteSeg 的动作 update_label 可执行，accept=[label_image, label_html, label_printed]，args=[无显式参数] / WHEN 执行动作 update_label / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

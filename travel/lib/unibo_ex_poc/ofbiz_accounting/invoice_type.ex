@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceType do
   end
 
   graphql do
-    type :accounting_invoice_type
+    type :ofbiz_accounting_invoice_type
 
     queries do
-      get :get_accounting_invoice_type, :read
-      list :list_accounting_invoice_types, :read
+      get :get_ofbiz_accounting_invoice_type, :read
+      list :list_ofbiz_accounting_invoice_types, :read
     end
 
     mutations do
-      create :create_accounting_invoice_type, :create
-      update :update_accounting_invoice_type, :update
-      destroy :delete_accounting_invoice_type, :destroy
+      create :create_ofbiz_accounting_invoice_type, :create
+      update :update_ofbiz_accounting_invoice_type, :update
+      destroy :delete_ofbiz_accounting_invoice_type, :destroy
     end
 
   end

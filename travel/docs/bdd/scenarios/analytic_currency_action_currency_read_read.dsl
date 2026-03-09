@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ANALYTIC_CURRENCY-SEED-analytic_currency_action_currency_read_read] TITLE: ANALYTIC_CURRENCY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="analytic_currency_action_currency_read_read" module="ANALYTIC_CURRENCY"
+WHEN when_execute_seed_contract module="ANALYTIC_CURRENCY"
+THEN then_seed_contract_should_hold module="ANALYTIC_CURRENCY"

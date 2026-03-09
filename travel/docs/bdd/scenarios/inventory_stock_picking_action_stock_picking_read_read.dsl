@@ -1,0 +1,4 @@
+[SCENARIO: BDD-INVENTORY_STOCK_PICKING-SEED-inventory_stock_picking_action_stock_picking_read_read] TITLE: INVENTORY_STOCK_PICKING contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="inventory_stock_picking_action_stock_picking_read_read" module="INVENTORY_STOCK_PICKING"
+WHEN when_execute_seed_contract module="INVENTORY_STOCK_PICKING"
+THEN then_seed_contract_should_hold module="INVENTORY_STOCK_PICKING"

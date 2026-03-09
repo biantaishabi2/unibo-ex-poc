@@ -1,0 +1,7 @@
+{
+  "id": "marketing_sms_message_action_sms_message_create_create",
+  "module": "MARKETING_SMS_MESSAGE",
+  "edge_class": "all",
+  "source_file": "marketing/action_sms_message_create_create.yaml",
+  "source_summary": "module: MARKETING_SMS_MESSAGE\\ncontract: SmsMessage.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 SmsMessage 的动作 create 可执行，accept=[uuid, number, body]，args=[partner_id:uuid, campaign_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 创建短信 -> send 发送短信；create 创建短信 -> send 发送短信 -> resend_failed 重发失败短信"
+}

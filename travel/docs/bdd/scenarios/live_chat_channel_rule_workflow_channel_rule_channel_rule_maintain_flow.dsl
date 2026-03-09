@@ -1,0 +1,4 @@
+[SCENARIO: BDD-LIVE_CHAT_CHANNEL_RULE-SEED-live_chat_channel_rule_workflow_channel_rule_channel_rule_maintain_flow] TITLE: LIVE_CHAT_CHANNEL_RULE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="live_chat_channel_rule_workflow_channel_rule_channel_rule_maintain_flow" module="LIVE_CHAT_CHANNEL_RULE"
+WHEN when_execute_seed_contract module="LIVE_CHAT_CHANNEL_RULE"
+THEN then_seed_contract_should_hold module="LIVE_CHAT_CHANNEL_RULE"

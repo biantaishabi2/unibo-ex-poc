@@ -1,0 +1,7 @@
+{
+  "id": "io_t_vo_ip_call_action_vo_ip_call_end_call_update",
+  "module": "IO_T_VO_IP_CALL",
+  "edge_class": "all",
+  "source_file": "io_t/action_vo_ip_call_end_call_update.yaml",
+  "source_summary": "module: IO_T_VO_IP_CALL\\ncontract: VoIPCall.end_call action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml\\nsource_summary: GIVEN 实体 VoIPCall 的动作 end_call 可执行，accept=[(未声明)]，args=[hangup_cause:string] / WHEN 执行动作 end_call / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束"
+}

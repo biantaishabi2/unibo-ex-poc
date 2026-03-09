@@ -1,0 +1,7 @@
+{
+  "id": "barcode_gs1_application_identifier_action_gs1_application_identifier_update_update",
+  "module": "BARCODE_GS1_APPLICATION_IDENTIFIER",
+  "edge_class": "all",
+  "source_file": "barcode/action_gs1_application_identifier_update_update.yaml",
+  "source_summary": "module: BARCODE_GS1_APPLICATION_IDENTIFIER\\ncontract: GS1ApplicationIdentifier.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/barcode/barcode.ubo.yaml\\nsource_summary: GIVEN 实体 GS1ApplicationIdentifier 的动作 update 可执行，accept=[name, data_type, fixed_length, max_length, pattern, description]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

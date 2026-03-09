@@ -1,0 +1,5 @@
+module: FLEET_FLEET_VEHICLE
+contract: FleetVehicle.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/fleet/fleet.ubo.yaml
+source_summary: GIVEN 实体 FleetVehicle 的动作 create 可执行，accept=[name, license_plate, brand, model_name, model_year, vin, purchase_date, acquisition_cost, fuel_type, color, seats, odometer, garage_id, fleet_vehicle_type_id]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建车辆 -> update 编辑车辆信息 -> decommission 报废车辆

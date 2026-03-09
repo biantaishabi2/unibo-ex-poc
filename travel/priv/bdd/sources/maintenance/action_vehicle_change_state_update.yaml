@@ -1,0 +1,5 @@
+module: MAINTENANCE_VEHICLE
+contract: Vehicle.change_state action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 Vehicle 的动作 change_state 可执行，accept=[state_id]，args=[无显式参数] / WHEN 执行动作 change_state / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建车辆 -> change_state 变更状态 -> deactivate 停用车辆

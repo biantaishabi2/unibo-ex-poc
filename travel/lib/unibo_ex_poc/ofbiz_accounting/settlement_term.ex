@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.SettlementTerm do
   end
 
   graphql do
-    type :accounting_settlement_term
+    type :ofbiz_accounting_settlement_term
 
     queries do
-      get :get_accounting_settlement_term, :read
-      list :list_accounting_settlement_terms, :read
+      get :get_ofbiz_accounting_settlement_term, :read
+      list :list_ofbiz_accounting_settlement_terms, :read
     end
 
     mutations do
-      create :create_accounting_settlement_term, :create
-      update :update_accounting_settlement_term, :update
-      destroy :delete_accounting_settlement_term, :destroy
+      create :create_ofbiz_accounting_settlement_term, :create
+      update :update_ofbiz_accounting_settlement_term, :update
+      destroy :delete_ofbiz_accounting_settlement_term, :destroy
     end
 
   end

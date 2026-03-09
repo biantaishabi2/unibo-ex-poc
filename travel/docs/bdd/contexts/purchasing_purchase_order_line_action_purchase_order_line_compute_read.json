@@ -1,0 +1,7 @@
+{
+  "id": "purchasing_purchase_order_line_action_purchase_order_line_compute_read",
+  "module": "PURCHASING_PURCHASE_ORDER_LINE",
+  "edge_class": "all",
+  "source_file": "purchasing/action_purchase_order_line_compute_read.yaml",
+  "source_summary": "module: PURCHASING_PURCHASE_ORDER_LINE\\ncontract: PurchaseOrderLine.compute action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml\\nsource_summary: GIVEN 实体 PurchaseOrderLine 的动作 compute 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 compute / THEN 输入应满足校验规则，读取结果应符合查询语义"
+}

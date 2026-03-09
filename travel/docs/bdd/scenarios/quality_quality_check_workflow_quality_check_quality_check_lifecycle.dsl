@@ -1,0 +1,4 @@
+[SCENARIO: BDD-QUALITY_QUALITY_CHECK-SEED-quality_quality_check_workflow_quality_check_quality_check_lifecycle] TITLE: QUALITY_QUALITY_CHECK contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="quality_quality_check_workflow_quality_check_quality_check_lifecycle" module="QUALITY_QUALITY_CHECK"
+WHEN when_execute_seed_contract module="QUALITY_QUALITY_CHECK"
+THEN then_seed_contract_should_hold module="QUALITY_QUALITY_CHECK"

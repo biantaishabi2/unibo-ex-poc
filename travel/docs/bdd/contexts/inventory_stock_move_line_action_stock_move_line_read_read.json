@@ -1,0 +1,7 @@
+{
+  "id": "inventory_stock_move_line_action_stock_move_line_read_read",
+  "module": "INVENTORY_STOCK_MOVE_LINE",
+  "edge_class": "all",
+  "source_file": "inventory/action_stock_move_line_read_read.yaml",
+  "source_summary": "module: INVENTORY_STOCK_MOVE_LINE\\ncontract: StockMoveLine.read action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/inventory/inventory.ubo.yaml\\nsource_summary: GIVEN 实体 StockMoveLine 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 输入应满足校验规则，读取结果应符合查询语义"
+}

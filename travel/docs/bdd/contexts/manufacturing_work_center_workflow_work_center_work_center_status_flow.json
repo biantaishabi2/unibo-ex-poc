@@ -1,0 +1,7 @@
+{
+  "id": "manufacturing_work_center_workflow_work_center_work_center_status_flow",
+  "module": "MANUFACTURING_WORK_CENTER",
+  "edge_class": "all",
+  "source_file": "manufacturing/workflow_work_center_work_center_status_flow.yaml",
+  "source_summary": "module: MANUFACTURING_WORK_CENTER\\ncontract: WorkCenter.work_center_status_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/manufacturing/manufacturing.ubo.yaml\\nsource_summary: GIVEN 实体 WorkCenter 定义工作流 work_center_status_flow / WHEN 按步骤执行 create -> update -> block -> unblock / THEN 流程顺序应满足声明约束"
+}

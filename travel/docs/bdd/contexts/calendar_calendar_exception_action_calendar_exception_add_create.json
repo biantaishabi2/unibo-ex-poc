@@ -1,0 +1,7 @@
+{
+  "id": "calendar_calendar_exception_action_calendar_exception_add_create",
+  "module": "CALENDAR_CALENDAR_EXCEPTION",
+  "edge_class": "all",
+  "source_file": "calendar/action_calendar_exception_add_create.yaml",
+  "source_summary": "module: CALENDAR_CALENDAR_EXCEPTION\\ncontract: CalendarException.add action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/calendar/calendar.ubo.yaml\\nsource_summary: GIVEN 实体 CalendarException 的动作 add 可执行，accept=[work_schedule_id, exception_date, exception_type, description, exception_capacity, start_time, end_time]，args=[无显式参数] / WHEN 执行动作 add / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：add 添加节假日例外 -> remove 移除例外；add 添加调休工作日 -> remove 移除例外"
+}

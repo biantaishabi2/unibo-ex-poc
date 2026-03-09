@@ -1,0 +1,7 @@
+{
+  "id": "sources_bdd_export_summary",
+  "module": "sources",
+  "edge_class": "all",
+  "source_file": "bdd_export_summary.json",
+  "source_summary": "{\\n  \"total_models\": 65,\\n  \"generated_files\": 6067,\\n  \"action_sources\": 5364,\\n  \"event_sources\": 291,\\n  \"workflow_sources\": 398,\\n  \"integration_sources\": 14,\\n  \"scenario_total\": 830,"
+}

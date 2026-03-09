@@ -1,0 +1,4 @@
+[SCENARIO: BDD-CALENDAR_WEEK_EXCEPTION-SEED-calendar_week_exception_action_week_exception_read_read] TITLE: CALENDAR_WEEK_EXCEPTION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="calendar_week_exception_action_week_exception_read_read" module="CALENDAR_WEEK_EXCEPTION"
+WHEN when_execute_seed_contract module="CALENDAR_WEEK_EXCEPTION"
+THEN then_seed_contract_should_hold module="CALENDAR_WEEK_EXCEPTION"

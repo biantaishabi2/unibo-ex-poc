@@ -1,0 +1,7 @@
+{
+  "id": "marketing_sms_template_workflow_sms_template_sms_template_maintain_flow",
+  "module": "MARKETING_SMS_TEMPLATE",
+  "edge_class": "all",
+  "source_file": "marketing/workflow_sms_template_sms_template_maintain_flow.yaml",
+  "source_summary": "module: MARKETING_SMS_TEMPLATE\\ncontract: SmsTemplate.sms_template_maintain_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 SmsTemplate 定义工作流 sms_template_maintain_flow / WHEN 按步骤执行 create -> update -> create_sidebar_action / THEN 流程顺序应满足声明约束"
+}

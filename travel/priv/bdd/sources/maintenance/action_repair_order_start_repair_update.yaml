@@ -1,0 +1,5 @@
+module: MAINTENANCE_REPAIR_ORDER
+contract: RepairOrder.start_repair action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 RepairOrder 的动作 start_repair 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 start_repair / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

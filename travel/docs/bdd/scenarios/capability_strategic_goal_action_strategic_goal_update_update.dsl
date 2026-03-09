@@ -1,0 +1,4 @@
+[SCENARIO: BDD-CAPABILITY_STRATEGIC_GOAL-SEED-capability_strategic_goal_action_strategic_goal_update_update] TITLE: CAPABILITY_STRATEGIC_GOAL contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="capability_strategic_goal_action_strategic_goal_update_update" module="CAPABILITY_STRATEGIC_GOAL"
+WHEN when_execute_seed_contract module="CAPABILITY_STRATEGIC_GOAL"
+THEN then_seed_contract_should_hold module="CAPABILITY_STRATEGIC_GOAL"

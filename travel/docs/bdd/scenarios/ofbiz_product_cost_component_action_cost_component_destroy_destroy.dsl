@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_COST_COMPONENT-SEED-ofbiz_product_cost_component_action_cost_component_destroy_destroy] TITLE: OFBIZ_PRODUCT_COST_COMPONENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_cost_component_action_cost_component_destroy_destroy" module="OFBIZ_PRODUCT_COST_COMPONENT"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_COST_COMPONENT"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_COST_COMPONENT"

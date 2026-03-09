@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SHIPMENT_SHIPMENT_GATEWAY_UPS-SEED-ofbiz_shipment_shipment_gateway_ups_action_shipment_gateway_ups_create_create] TITLE: OFBIZ_SHIPMENT_SHIPMENT_GATEWAY_UPS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_shipment_shipment_gateway_ups_action_shipment_gateway_ups_create_create" module="OFBIZ_SHIPMENT_SHIPMENT_GATEWAY_UPS"
+WHEN when_execute_seed_contract module="OFBIZ_SHIPMENT_SHIPMENT_GATEWAY_UPS"
+THEN then_seed_contract_should_hold module="OFBIZ_SHIPMENT_SHIPMENT_GATEWAY_UPS"

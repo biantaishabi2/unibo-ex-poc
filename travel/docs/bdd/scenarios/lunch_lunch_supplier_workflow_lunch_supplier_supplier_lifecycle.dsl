@@ -1,0 +1,4 @@
+[SCENARIO: BDD-LUNCH_LUNCH_SUPPLIER-SEED-lunch_lunch_supplier_workflow_lunch_supplier_supplier_lifecycle] TITLE: LUNCH_LUNCH_SUPPLIER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="lunch_lunch_supplier_workflow_lunch_supplier_supplier_lifecycle" module="LUNCH_LUNCH_SUPPLIER"
+WHEN when_execute_seed_contract module="LUNCH_LUNCH_SUPPLIER"
+THEN then_seed_contract_should_hold module="LUNCH_LUNCH_SUPPLIER"

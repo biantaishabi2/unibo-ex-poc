@@ -1,0 +1,4 @@
+[SCENARIO: BDD-IO_T_INCOMING_NUMBER-SEED-io_t_incoming_number_workflow_incoming_number_incoming_number_lifecycle] TITLE: IO_T_INCOMING_NUMBER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="io_t_incoming_number_workflow_incoming_number_incoming_number_lifecycle" module="IO_T_INCOMING_NUMBER"
+WHEN when_execute_seed_contract module="IO_T_INCOMING_NUMBER"
+THEN then_seed_contract_should_hold module="IO_T_INCOMING_NUMBER"

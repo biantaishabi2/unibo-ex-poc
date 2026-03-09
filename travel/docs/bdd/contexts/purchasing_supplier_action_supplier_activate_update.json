@@ -1,0 +1,7 @@
+{
+  "id": "purchasing_supplier_action_supplier_activate_update",
+  "module": "PURCHASING_SUPPLIER",
+  "edge_class": "all",
+  "source_file": "purchasing/action_supplier_activate_update.yaml",
+  "source_summary": "module: PURCHASING_SUPPLIER\\ncontract: Supplier.activate action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml\\nsource_summary: GIVEN 实体 Supplier 的动作 activate 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 activate / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：activate 激活供应商，block 冻结供应商"
+}

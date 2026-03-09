@@ -1,0 +1,7 @@
+{
+  "id": "e_learning_course_workflow_course_course_lifecycle",
+  "module": "E_LEARNING_COURSE",
+  "edge_class": "all",
+  "source_file": "e_learning/workflow_course_course_lifecycle.yaml",
+  "source_summary": "module: E_LEARNING_COURSE\\ncontract: Course.course_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/elearning/elearning.ubo.yaml\\nsource_summary: GIVEN 实体 Course 定义工作流 course_lifecycle / WHEN 按步骤执行 create -> update -> publish -> unpublish -> archive -> restore / THEN 流程顺序应满足声明约束"
+}

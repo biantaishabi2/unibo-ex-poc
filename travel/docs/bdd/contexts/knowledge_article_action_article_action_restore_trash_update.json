@@ -1,0 +1,7 @@
+{
+  "id": "knowledge_article_action_article_action_restore_trash_update",
+  "module": "KNOWLEDGE_ARTICLE",
+  "edge_class": "all",
+  "source_file": "knowledge/action_article_action_restore_trash_update.yaml",
+  "source_summary": "module: KNOWLEDGE_ARTICLE\\ncontract: Article.action_restore_trash action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/knowledge/knowledge.ubo.yaml\\nsource_summary: GIVEN 实体 Article 的动作 action_restore_trash 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 action_restore_trash / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建文章后，action_trash 移入回收站，action_restore_trash 恢复"
+}

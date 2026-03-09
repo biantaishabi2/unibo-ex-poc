@@ -1,0 +1,7 @@
+{
+  "id": "sign_sign_request_workflow_sign_request_sign_flow",
+  "module": "SIGN_SIGN_REQUEST",
+  "edge_class": "all",
+  "source_file": "sign/workflow_sign_request_sign_flow.yaml",
+  "source_summary": "module: SIGN_SIGN_REQUEST\\ncontract: SignRequest.sign_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/sign/sign.ubo.yaml\\nsource_summary: GIVEN 实体 SignRequest 定义工作流 sign_flow / WHEN 按步骤执行 create -> send -> complete -> cancel -> recall -> expire / THEN 流程顺序应满足声明约束"
+}

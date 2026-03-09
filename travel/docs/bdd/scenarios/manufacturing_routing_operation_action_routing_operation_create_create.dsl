@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MANUFACTURING_ROUTING_OPERATION-SEED-manufacturing_routing_operation_action_routing_operation_create_create] TITLE: MANUFACTURING_ROUTING_OPERATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="manufacturing_routing_operation_action_routing_operation_create_create" module="MANUFACTURING_ROUTING_OPERATION"
+WHEN when_execute_seed_contract module="MANUFACTURING_ROUTING_OPERATION"
+THEN then_seed_contract_should_hold module="MANUFACTURING_ROUTING_OPERATION"

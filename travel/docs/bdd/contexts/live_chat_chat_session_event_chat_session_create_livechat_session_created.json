@@ -1,0 +1,7 @@
+{
+  "id": "live_chat_chat_session_event_chat_session_create_livechat_session_created",
+  "module": "LIVE_CHAT_CHAT_SESSION",
+  "edge_class": "all",
+  "source_file": "live_chat/event_chat_session_create_livechat_session_created.yaml",
+  "source_summary": "module: LIVE_CHAT_CHAT_SESSION\\ncontract: ChatSession.create event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/livechat/livechat.ubo.yaml\\nsource_summary: GIVEN 实体 ChatSession 的动作 create 完成 / WHEN 触发事件发布 / THEN 应广播 topic `livechat.session.created`"
+}

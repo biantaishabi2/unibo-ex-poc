@@ -1,0 +1,5 @@
+module: MEMBERSHIP_MEMBERSHIP_PRODUCT
+contract: MembershipProduct.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/membership/membership.ubo.yaml
+source_summary: GIVEN 实体 MembershipProduct 的动作 create 可执行，accept=[name, membership_date_from, membership_date_to, list_price]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建会员产品 -> update 修改产品配置

@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Product.ProductCategory do
   end
 
   graphql do
-    type :product_product_category
+    type :ofbiz_product_product_category
 
     queries do
-      get :get_product_product_category, :read
-      list :list_product_product_categorys, :read
+      get :get_ofbiz_product_product_category, :read
+      list :list_ofbiz_product_product_categorys, :read
     end
 
     mutations do
-      create :create_product_product_category, :create
-      update :update_product_product_category, :update
-      destroy :delete_product_product_category, :destroy
+      create :create_ofbiz_product_product_category, :create
+      update :update_ofbiz_product_product_category, :update
+      destroy :delete_ofbiz_product_product_category, :destroy
     end
 
   end

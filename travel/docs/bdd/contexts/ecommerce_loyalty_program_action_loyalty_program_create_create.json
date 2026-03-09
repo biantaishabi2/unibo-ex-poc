@@ -1,0 +1,7 @@
+{
+  "id": "ecommerce_loyalty_program_action_loyalty_program_create_create",
+  "module": "ECOMMERCE_LOYALTY_PROGRAM",
+  "edge_class": "all",
+  "source_file": "ecommerce/action_loyalty_program_create_create.yaml",
+  "source_summary": "module: ECOMMERCE_LOYALTY_PROGRAM\\ncontract: LoyaltyProgram.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ecommerce/ecommerce.ubo.yaml\\nsource_summary: GIVEN 实体 LoyaltyProgram 的动作 create 可执行，accept=[name, program_type, active, sale_ok, ecommerce_ok, trigger, applies_on, date_from, date_to, limit_usage, max_usage]，args=[website_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建忠诚度计划，update 修改触发方式和有效期；create 新建优惠券计划并配置促销码触发"
+}

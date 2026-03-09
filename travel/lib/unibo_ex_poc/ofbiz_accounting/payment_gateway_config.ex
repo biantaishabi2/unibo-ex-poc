@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.PaymentGatewayConfig do
   end
 
   graphql do
-    type :accounting_payment_gateway_config
+    type :ofbiz_accounting_payment_gateway_config
 
     queries do
-      get :get_accounting_payment_gateway_config, :read
-      list :list_accounting_payment_gateway_configs, :read
+      get :get_ofbiz_accounting_payment_gateway_config, :read
+      list :list_ofbiz_accounting_payment_gateway_configs, :read
     end
 
     mutations do
-      create :create_accounting_payment_gateway_config, :create
-      update :update_accounting_payment_gateway_config, :update
-      destroy :delete_accounting_payment_gateway_config, :destroy
+      create :create_ofbiz_accounting_payment_gateway_config, :create
+      update :update_ofbiz_accounting_payment_gateway_config, :update
+      destroy :delete_ofbiz_accounting_payment_gateway_config, :destroy
     end
 
   end

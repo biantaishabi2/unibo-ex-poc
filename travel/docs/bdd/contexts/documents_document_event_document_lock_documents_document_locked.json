@@ -1,0 +1,7 @@
+{
+  "id": "documents_document_event_document_lock_documents_document_locked",
+  "module": "DOCUMENTS_DOCUMENT",
+  "edge_class": "all",
+  "source_file": "documents/event_document_lock_documents_document_locked.yaml",
+  "source_summary": "module: DOCUMENTS_DOCUMENT\\ncontract: Document.lock event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/documents/documents.ubo.yaml\\nsource_summary: GIVEN 实体 Document 的动作 lock 完成 / WHEN 触发事件发布 / THEN 应广播 topic `documents.document.locked`"
+}

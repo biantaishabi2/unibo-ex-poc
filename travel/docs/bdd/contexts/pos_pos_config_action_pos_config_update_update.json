@@ -1,0 +1,7 @@
+{
+  "id": "pos_pos_config_action_pos_config_update_update",
+  "module": "POS_POS_CONFIG",
+  "edge_class": "all",
+  "source_file": "pos/action_pos_config_update_update.yaml",
+  "source_summary": "module: POS_POS_CONFIG\\ncontract: PosConfig.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/pos/pos.ubo.yaml\\nsource_summary: GIVEN 实体 PosConfig 的动作 update 可执行，accept=[name, module_pos_restaurant, iface_splitbill, iface_printbill, iface_orderline_notes, set_tip_after_payment]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：update 未启用餐饮模式时开启分单功能，校验失败"
+}

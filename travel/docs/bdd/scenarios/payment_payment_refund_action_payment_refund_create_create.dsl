@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PAYMENT_PAYMENT_REFUND-SEED-payment_payment_refund_action_payment_refund_create_create] TITLE: PAYMENT_PAYMENT_REFUND contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="payment_payment_refund_action_payment_refund_create_create" module="PAYMENT_PAYMENT_REFUND"
+WHEN when_execute_seed_contract module="PAYMENT_PAYMENT_REFUND"
+THEN then_seed_contract_should_hold module="PAYMENT_PAYMENT_REFUND"

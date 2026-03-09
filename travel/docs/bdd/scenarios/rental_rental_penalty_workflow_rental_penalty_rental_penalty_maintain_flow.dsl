@@ -1,0 +1,4 @@
+[SCENARIO: BDD-RENTAL_RENTAL_PENALTY-SEED-rental_rental_penalty_workflow_rental_penalty_rental_penalty_maintain_flow] TITLE: RENTAL_RENTAL_PENALTY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="rental_rental_penalty_workflow_rental_penalty_rental_penalty_maintain_flow" module="RENTAL_RENTAL_PENALTY"
+WHEN when_execute_seed_contract module="RENTAL_RENTAL_PENALTY"
+THEN then_seed_contract_should_hold module="RENTAL_RENTAL_PENALTY"

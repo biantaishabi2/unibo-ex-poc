@@ -1,0 +1,7 @@
+{
+  "id": "plm_eco_event_eco_apply_changes_plm_eco_changes_applied",
+  "module": "PLM_ECO",
+  "edge_class": "all",
+  "source_file": "plm/event_eco_apply_changes_plm_eco_changes_applied.yaml",
+  "source_summary": "module: PLM_ECO\\ncontract: Eco.apply_changes event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/plm/plm.ubo.yaml\\nsource_summary: GIVEN 实体 Eco 的动作 apply_changes 完成 / WHEN 触发事件发布 / THEN 应广播 topic `plm.eco.changes_applied`"
+}

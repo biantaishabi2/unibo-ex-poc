@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SHIPMENT_ITEM_ISSUANCE_ROLE-SEED-ofbiz_shipment_item_issuance_role_action_item_issuance_role_read_read] TITLE: OFBIZ_SHIPMENT_ITEM_ISSUANCE_ROLE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_shipment_item_issuance_role_action_item_issuance_role_read_read" module="OFBIZ_SHIPMENT_ITEM_ISSUANCE_ROLE"
+WHEN when_execute_seed_contract module="OFBIZ_SHIPMENT_ITEM_ISSUANCE_ROLE"
+THEN then_seed_contract_should_hold module="OFBIZ_SHIPMENT_ITEM_ISSUANCE_ROLE"

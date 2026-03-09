@@ -1,0 +1,5 @@
+module: RATING_RATING_SCORE
+contract: RatingScore.submit action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/rating/rating.ubo.yaml
+source_summary: GIVEN 实体 RatingScore 的动作 submit 可执行，accept=[score, comment]，args=[rating_id:uuid!, criteria_id:uuid!] / WHEN 执行动作 submit / THEN 输入应满足校验规则，状态变更与副作用应生效 / 补充场景：submit 提交维度打分

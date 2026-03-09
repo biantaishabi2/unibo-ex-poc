@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.AcctgTransEntryType do
   end
 
   graphql do
-    type :accounting_acctg_trans_entry_type
+    type :ofbiz_accounting_acctg_trans_entry_type
 
     queries do
-      get :get_accounting_acctg_trans_entry_type, :read
-      list :list_accounting_acctg_trans_entry_types, :read
+      get :get_ofbiz_accounting_acctg_trans_entry_type, :read
+      list :list_ofbiz_accounting_acctg_trans_entry_types, :read
     end
 
     mutations do
-      create :create_accounting_acctg_trans_entry_type, :create
-      update :update_accounting_acctg_trans_entry_type, :update
-      destroy :delete_accounting_acctg_trans_entry_type, :destroy
+      create :create_ofbiz_accounting_acctg_trans_entry_type, :create
+      update :update_ofbiz_accounting_acctg_trans_entry_type, :update
+      destroy :delete_ofbiz_accounting_acctg_trans_entry_type, :destroy
     end
 
   end

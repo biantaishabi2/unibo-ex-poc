@@ -23,6 +23,7 @@ defmodule UniboExPoc.Sales.Quote do
   postgres do
     table "sales_quotes"
     repo UniboExPoc.Repo
+    identity_index_names unique_quote_number: "idx_sales_quotes_unique_quote_number"
   end
 
   graphql do
@@ -114,7 +115,6 @@ defmodule UniboExPoc.Sales.Quote do
       validate present(:quote_number)
       change relate_actor(:created_by)
       change UniboExPoc.Sales.Changes.Quote.ComputeTotalAmount
-      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -148,7 +148,6 @@ defmodule UniboExPoc.Sales.Quote do
       end
       # message: "只有草稿状态可以发送"
       change set_attribute(:status, :submitted)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :accept do
@@ -164,7 +163,6 @@ defmodule UniboExPoc.Sales.Quote do
       end
       # message: "只有已发送状态可以接受"
       change set_attribute(:status, :accepted)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reject do
@@ -180,7 +178,6 @@ defmodule UniboExPoc.Sales.Quote do
       end
       # message: "只有已发送状态可以拒绝"
       change set_attribute(:status, :rejected)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

@@ -1,0 +1,5 @@
+module: LIVE_CHAT_CHANNEL_RULE
+contract: ChannelRule.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/livechat/livechat.ubo.yaml
+source_summary: GIVEN 实体 ChannelRule 的动作 create 可执行，accept=[regex_url, action, auto_popup_timer, sequence, chatbot_only_if_no_operator]，args=[channel_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建频道规则 -> update 修改规则配置 -> destroy 删除规则

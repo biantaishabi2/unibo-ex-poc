@@ -1,0 +1,4 @@
+[SCENARIO: BDD-INVENTORY_LANDED_COST_PICKING-SEED-inventory_landed_cost_picking_action_landed_cost_picking_read_read] TITLE: INVENTORY_LANDED_COST_PICKING contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="inventory_landed_cost_picking_action_landed_cost_picking_read_read" module="INVENTORY_LANDED_COST_PICKING"
+WHEN when_execute_seed_contract module="INVENTORY_LANDED_COST_PICKING"
+THEN then_seed_contract_should_hold module="INVENTORY_LANDED_COST_PICKING"

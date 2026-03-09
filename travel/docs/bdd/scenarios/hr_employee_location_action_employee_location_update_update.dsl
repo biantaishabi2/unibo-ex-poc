@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HR_EMPLOYEE_LOCATION-SEED-hr_employee_location_action_employee_location_update_update] TITLE: HR_EMPLOYEE_LOCATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="hr_employee_location_action_employee_location_update_update" module="HR_EMPLOYEE_LOCATION"
+WHEN when_execute_seed_contract module="HR_EMPLOYEE_LOCATION"
+THEN then_seed_contract_should_hold module="HR_EMPLOYEE_LOCATION"

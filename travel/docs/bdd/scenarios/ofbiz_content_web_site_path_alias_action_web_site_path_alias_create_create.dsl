@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_CONTENT_WEB_SITE_PATH_ALIAS-SEED-ofbiz_content_web_site_path_alias_action_web_site_path_alias_create_create] TITLE: OFBIZ_CONTENT_WEB_SITE_PATH_ALIAS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_content_web_site_path_alias_action_web_site_path_alias_create_create" module="OFBIZ_CONTENT_WEB_SITE_PATH_ALIAS"
+WHEN when_execute_seed_contract module="OFBIZ_CONTENT_WEB_SITE_PATH_ALIAS"
+THEN then_seed_contract_should_hold module="OFBIZ_CONTENT_WEB_SITE_PATH_ALIAS"

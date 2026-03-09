@@ -1,0 +1,4 @@
+[SCENARIO: BDD-RENTAL_PRODUCT-SEED-rental_product_action_product_read_read] TITLE: RENTAL_PRODUCT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="rental_product_action_product_read_read" module="RENTAL_PRODUCT"
+WHEN when_execute_seed_contract module="RENTAL_PRODUCT"
+THEN then_seed_contract_should_hold module="RENTAL_PRODUCT"

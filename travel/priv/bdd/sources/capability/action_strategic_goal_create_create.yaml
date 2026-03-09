@@ -1,0 +1,5 @@
+module: CAPABILITY_STRATEGIC_GOAL
+contract: StrategicGoal.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/capability/capability.ubo.yaml
+source_summary: GIVEN 实体 StrategicGoal 的动作 create 可执行，accept=[goal_code, name, horizon, outcome_statement]，args=[无显式参数] / WHEN 执行动作 create / THEN 状态变更与副作用应生效 / 补充场景：create 建立战略目标 enterprise_modeling_phase2 -> update 调整目标说明

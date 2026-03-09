@@ -1,0 +1,5 @@
+module: BLOG_BLOG
+contract: Blog.archive event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/blog/blog.ubo.yaml
+source_summary: GIVEN 实体 Blog 的动作 archive 完成 / WHEN 触发事件发布 / THEN 应广播 topic `blog.blog.archived`

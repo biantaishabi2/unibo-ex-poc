@@ -1,0 +1,5 @@
+module: E_LEARNING_ENROLLMENT
+contract: Enrollment.destroy action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/elearning/elearning.ubo.yaml
+source_summary: GIVEN 实体 Enrollment 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：destroy 清理过期邀请（GC 定时任务）

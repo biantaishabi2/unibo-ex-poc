@@ -1,0 +1,7 @@
+{
+  "id": "expenses_expense_line_workflow_expense_line_expense_line_edit_flow",
+  "module": "EXPENSES_EXPENSE_LINE",
+  "edge_class": "all",
+  "source_file": "expenses/workflow_expense_line_expense_line_edit_flow.yaml",
+  "source_summary": "module: EXPENSES_EXPENSE_LINE\\ncontract: ExpenseLine.expense_line_edit_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/expenses/expenses.ubo.yaml\\nsource_summary: GIVEN 实体 ExpenseLine 定义工作流 expense_line_edit_flow / WHEN 按步骤执行 create -> update -> split / THEN 流程顺序应满足声明约束"
+}

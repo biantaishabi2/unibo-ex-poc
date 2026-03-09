@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PROJECT_TIMESHEET_ENTRY-SEED-project_timesheet_entry_action_timesheet_entry_update_update] TITLE: PROJECT_TIMESHEET_ENTRY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="project_timesheet_entry_action_timesheet_entry_update_update" module="PROJECT_TIMESHEET_ENTRY"
+WHEN when_execute_seed_contract module="PROJECT_TIMESHEET_ENTRY"
+THEN then_seed_contract_should_hold module="PROJECT_TIMESHEET_ENTRY"

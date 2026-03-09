@@ -1,0 +1,7 @@
+{
+  "id": "manufacturing_mrp_schedule_action_mrp_schedule_create_create",
+  "module": "MANUFACTURING_MRP_SCHEDULE",
+  "edge_class": "all",
+  "source_file": "manufacturing/action_mrp_schedule_create_create.yaml",
+  "source_summary": "module: MANUFACTURING_MRP_SCHEDULE\\ncontract: MrpSchedule.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/manufacturing/manufacturing.ubo.yaml\\nsource_summary: GIVEN 实体 MrpSchedule 的动作 create 可执行，accept=[product_code, event_type, quantity, event_date, description]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create"
+}

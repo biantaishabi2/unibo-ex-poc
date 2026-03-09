@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_ORDER_LINE
+contract: RentalOrderLine.validate_return action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalOrderLine 的动作 validate_return 可执行，accept=[(未声明)]，args=[qty:float!, actual_return_date:datetime!] / WHEN 执行动作 validate_return / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

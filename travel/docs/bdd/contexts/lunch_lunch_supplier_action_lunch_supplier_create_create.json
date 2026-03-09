@@ -1,0 +1,7 @@
+{
+  "id": "lunch_lunch_supplier_action_lunch_supplier_create_create",
+  "module": "LUNCH_LUNCH_SUPPLIER",
+  "edge_class": "all",
+  "source_file": "lunch/action_lunch_supplier_create_create.yaml",
+  "source_summary": "module: LUNCH_LUNCH_SUPPLIER\\ncontract: LunchSupplier.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/lunch/lunch.ubo.yaml\\nsource_summary: GIVEN 实体 LunchSupplier 的动作 create 可执行，accept=[name, send_by, automatic_email_time, moment, tz, mon, tue, wed, thu, fri, sat, sun, recurrency_end_date, topping_label_1, topping_quantity_1, topping_label_2, topping_quantity_2, topping_label_3, topping_quantity_3]，args=[partner_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建供应商，update 修改营业时间和配送方式"
+}

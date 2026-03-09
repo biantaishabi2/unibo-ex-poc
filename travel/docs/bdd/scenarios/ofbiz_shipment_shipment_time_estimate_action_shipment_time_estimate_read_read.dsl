@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SHIPMENT_SHIPMENT_TIME_ESTIMATE-SEED-ofbiz_shipment_shipment_time_estimate_action_shipment_time_estimate_read_read] TITLE: OFBIZ_SHIPMENT_SHIPMENT_TIME_ESTIMATE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_shipment_shipment_time_estimate_action_shipment_time_estimate_read_read" module="OFBIZ_SHIPMENT_SHIPMENT_TIME_ESTIMATE"
+WHEN when_execute_seed_contract module="OFBIZ_SHIPMENT_SHIPMENT_TIME_ESTIMATE"
+THEN then_seed_contract_should_hold module="OFBIZ_SHIPMENT_SHIPMENT_TIME_ESTIMATE"

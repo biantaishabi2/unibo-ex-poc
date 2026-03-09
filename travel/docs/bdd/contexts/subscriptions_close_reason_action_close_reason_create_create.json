@@ -1,0 +1,7 @@
+{
+  "id": "subscriptions_close_reason_action_close_reason_create_create",
+  "module": "SUBSCRIPTIONS_CLOSE_REASON",
+  "edge_class": "all",
+  "source_file": "subscriptions/action_close_reason_create_create.yaml",
+  "source_summary": "module: SUBSCRIPTIONS_CLOSE_REASON\\ncontract: CloseReason.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/subscriptions/subscriptions.ubo.yaml\\nsource_summary: GIVEN 实体 CloseReason 的动作 create 可执行，accept=[name, sequence, retention_message]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建关闭原因（含挽留话术），update 修改排序和话术；create 新建关闭原因，destroy 删除；create 排序权重为负时校验失败"
+}

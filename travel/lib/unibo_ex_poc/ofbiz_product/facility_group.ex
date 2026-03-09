@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Product.FacilityGroup do
   end
 
   graphql do
-    type :product_facility_group
+    type :ofbiz_product_facility_group
 
     queries do
-      get :get_product_facility_group, :read
-      list :list_product_facility_groups, :read
+      get :get_ofbiz_product_facility_group, :read
+      list :list_ofbiz_product_facility_groups, :read
     end
 
     mutations do
-      create :create_product_facility_group, :create
-      update :update_product_facility_group, :update
-      destroy :delete_product_facility_group, :destroy
+      create :create_ofbiz_product_facility_group, :create
+      update :update_ofbiz_product_facility_group, :update
+      destroy :delete_ofbiz_product_facility_group, :destroy
     end
 
   end

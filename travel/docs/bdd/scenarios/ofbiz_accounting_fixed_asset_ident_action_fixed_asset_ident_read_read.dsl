@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_FIXED_ASSET_IDENT-SEED-ofbiz_accounting_fixed_asset_ident_action_fixed_asset_ident_read_read] TITLE: OFBIZ_ACCOUNTING_FIXED_ASSET_IDENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_fixed_asset_ident_action_fixed_asset_ident_read_read" module="OFBIZ_ACCOUNTING_FIXED_ASSET_IDENT"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_FIXED_ASSET_IDENT"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_FIXED_ASSET_IDENT"

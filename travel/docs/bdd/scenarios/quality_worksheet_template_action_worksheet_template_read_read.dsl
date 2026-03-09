@@ -1,0 +1,4 @@
+[SCENARIO: BDD-QUALITY_WORKSHEET_TEMPLATE-SEED-quality_worksheet_template_action_worksheet_template_read_read] TITLE: QUALITY_WORKSHEET_TEMPLATE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="quality_worksheet_template_action_worksheet_template_read_read" module="QUALITY_WORKSHEET_TEMPLATE"
+WHEN when_execute_seed_contract module="QUALITY_WORKSHEET_TEMPLATE"
+THEN then_seed_contract_should_hold module="QUALITY_WORKSHEET_TEMPLATE"

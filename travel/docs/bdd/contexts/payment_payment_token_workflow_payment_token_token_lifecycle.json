@@ -1,0 +1,7 @@
+{
+  "id": "payment_payment_token_workflow_payment_token_token_lifecycle",
+  "module": "PAYMENT_PAYMENT_TOKEN",
+  "edge_class": "all",
+  "source_file": "payment/workflow_payment_token_token_lifecycle.yaml",
+  "source_summary": "module: PAYMENT_PAYMENT_TOKEN\\ncontract: PaymentToken.token_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/payment/payment.ubo.yaml\\nsource_summary: GIVEN 实体 PaymentToken 定义工作流 token_lifecycle / WHEN 按步骤执行 create -> update -> revoke -> expire / THEN 流程顺序应满足声明约束"
+}

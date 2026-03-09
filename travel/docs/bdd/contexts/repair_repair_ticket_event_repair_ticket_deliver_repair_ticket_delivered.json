@@ -1,0 +1,7 @@
+{
+  "id": "repair_repair_ticket_event_repair_ticket_deliver_repair_ticket_delivered",
+  "module": "REPAIR_REPAIR_TICKET",
+  "edge_class": "all",
+  "source_file": "repair/event_repair_ticket_deliver_repair_ticket_delivered.yaml",
+  "source_summary": "module: REPAIR_REPAIR_TICKET\\ncontract: RepairTicket.deliver event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/repair/repair.ubo.yaml\\nsource_summary: GIVEN 实体 RepairTicket 的动作 deliver 完成 / WHEN 触发事件发布 / THEN 应广播 topic `repair.ticket.delivered`"
+}

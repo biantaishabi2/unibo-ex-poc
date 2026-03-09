@@ -15,17 +15,17 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemResponse do
   end
 
   graphql do
-    type :order_return_item_response
+    type :ofbiz_order_return_item_response
 
     queries do
-      get :get_order_return_item_response, :read
-      list :list_order_return_item_responses, :read
+      get :get_ofbiz_order_return_item_response, :read
+      list :list_ofbiz_order_return_item_responses, :read
     end
 
     mutations do
-      create :create_order_return_item_response, :create
-      update :update_order_return_item_response, :update
-      destroy :delete_order_return_item_response, :destroy
+      create :create_ofbiz_order_return_item_response, :create
+      update :update_ofbiz_order_return_item_response, :update
+      destroy :delete_ofbiz_order_return_item_response, :destroy
     end
 
   end

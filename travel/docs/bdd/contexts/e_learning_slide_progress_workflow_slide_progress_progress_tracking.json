@@ -1,0 +1,7 @@
+{
+  "id": "e_learning_slide_progress_workflow_slide_progress_progress_tracking",
+  "module": "E_LEARNING_SLIDE_PROGRESS",
+  "edge_class": "all",
+  "source_file": "e_learning/workflow_slide_progress_progress_tracking.yaml",
+  "source_summary": "module: E_LEARNING_SLIDE_PROGRESS\\ncontract: SlideProgress.progress_tracking workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/elearning/elearning.ubo.yaml\\nsource_summary: GIVEN 实体 SlideProgress 定义工作流 progress_tracking / WHEN 按步骤执行 create -> mark_completed -> mark_uncompleted -> complete_quiz -> action_like -> action_dislike / THEN 流程顺序应满足声明约束"
+}

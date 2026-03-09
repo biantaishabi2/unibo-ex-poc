@@ -1,0 +1,7 @@
+{
+  "id": "manufacturing_manufacturing_order_action_manufacturing_order_produce_update",
+  "module": "MANUFACTURING_MANUFACTURING_ORDER",
+  "edge_class": "all",
+  "source_file": "manufacturing/action_manufacturing_order_produce_update.yaml",
+  "source_summary": "module: MANUFACTURING_MANUFACTURING_ORDER\\ncontract: ManufacturingOrder.produce action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/manufacturing/manufacturing.ubo.yaml\\nsource_summary: GIVEN 实体 ManufacturingOrder 的动作 produce 可执行，accept=[qty_producing]，args=[无显式参数] / WHEN 执行动作 produce / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

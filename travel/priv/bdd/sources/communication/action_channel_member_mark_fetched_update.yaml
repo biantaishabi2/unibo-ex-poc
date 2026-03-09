@@ -1,0 +1,5 @@
+module: COMMUNICATION_CHANNEL_MEMBER
+contract: ChannelMember.mark_fetched action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/communication/communication.ubo.yaml
+source_summary: GIVEN 实体 ChannelMember 的动作 mark_fetched 可执行，accept=[fetched_message_id]，args=[无显式参数] / WHEN 执行动作 mark_fetched / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

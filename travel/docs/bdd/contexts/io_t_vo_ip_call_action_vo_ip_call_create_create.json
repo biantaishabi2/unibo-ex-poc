@@ -1,0 +1,7 @@
+{
+  "id": "io_t_vo_ip_call_action_vo_ip_call_create_create",
+  "module": "IO_T_VO_IP_CALL",
+  "edge_class": "all",
+  "source_file": "io_t/action_vo_ip_call_create_create.yaml",
+  "source_summary": "module: IO_T_VO_IP_CALL\\ncontract: VoIPCall.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml\\nsource_summary: GIVEN 实体 VoIPCall 的动作 create 可执行，accept=[caller, callee, direction, user_id, org_id, queue_id, sip_call_id]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create -> miss -> to_voicemail；create -> update；来电/外呼时查找联系人；关联商机并更新活动时间；来电自动创建/关联工单；通话结束后写活动记录；通话录音控制；队列来电分配；通话状态实时推送到 UI；商机列表点击拨号；联系人页面点击拨号；报价单页面点击拨号；工单页面点击拨号"
+}

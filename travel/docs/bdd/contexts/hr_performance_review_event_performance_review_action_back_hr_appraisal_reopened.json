@@ -1,0 +1,7 @@
+{
+  "id": "hr_performance_review_event_performance_review_action_back_hr_appraisal_reopened",
+  "module": "HR_PERFORMANCE_REVIEW",
+  "edge_class": "all",
+  "source_file": "hr/event_performance_review_action_back_hr_appraisal_reopened.yaml",
+  "source_summary": "module: HR_PERFORMANCE_REVIEW\\ncontract: PerformanceReview.action_back event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/hr/hr.ubo.yaml\\nsource_summary: GIVEN 实体 PerformanceReview 的动作 action_back 完成 / WHEN 触发事件发布 / THEN 应广播 topic `hr.appraisal.reopened`"
+}

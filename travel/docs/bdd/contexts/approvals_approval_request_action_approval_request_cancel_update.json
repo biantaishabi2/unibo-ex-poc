@@ -1,0 +1,7 @@
+{
+  "id": "approvals_approval_request_action_approval_request_cancel_update",
+  "module": "APPROVALS_APPROVAL_REQUEST",
+  "edge_class": "all",
+  "source_file": "approvals/action_approval_request_cancel_update.yaml",
+  "source_summary": "module: APPROVALS_APPROVAL_REQUEST\\ncontract: ApprovalRequest.cancel action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/approvals/approvals.ubo.yaml\\nsource_summary: GIVEN 实体 ApprovalRequest 的动作 cancel 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 cancel / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 审批请求，submit 提交后 cancel 取消，draft 重置为草稿；refused/cancel → draft → 重新 submit"
+}

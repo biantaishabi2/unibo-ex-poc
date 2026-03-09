@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HELPDESK_FSM_TIMESHEET_ENTRY-SEED-helpdesk_fsm_timesheet_entry_action_fsm_timesheet_entry_update_update] TITLE: HELPDESK_FSM_TIMESHEET_ENTRY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="helpdesk_fsm_timesheet_entry_action_fsm_timesheet_entry_update_update" module="HELPDESK_FSM_TIMESHEET_ENTRY"
+WHEN when_execute_seed_contract module="HELPDESK_FSM_TIMESHEET_ENTRY"
+THEN then_seed_contract_should_hold module="HELPDESK_FSM_TIMESHEET_ENTRY"

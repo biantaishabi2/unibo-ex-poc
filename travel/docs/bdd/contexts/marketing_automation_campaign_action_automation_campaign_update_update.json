@@ -1,0 +1,7 @@
+{
+  "id": "marketing_automation_campaign_action_automation_campaign_update_update",
+  "module": "MARKETING_AUTOMATION_CAMPAIGN",
+  "edge_class": "all",
+  "source_file": "marketing/action_automation_campaign_update_update.yaml",
+  "source_summary": "module: MARKETING_AUTOMATION_CAMPAIGN\\ncontract: AutomationCampaign.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 AutomationCampaign 的动作 update 可执行，accept=[name, domain_filter, unique_field_id, allow_restart, category_id, canvas_settings, fixed_cost, publish_up, publish_down]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

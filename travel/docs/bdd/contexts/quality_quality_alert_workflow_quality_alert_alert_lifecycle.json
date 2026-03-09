@@ -1,0 +1,7 @@
+{
+  "id": "quality_quality_alert_workflow_quality_alert_alert_lifecycle",
+  "module": "QUALITY_QUALITY_ALERT",
+  "edge_class": "all",
+  "source_file": "quality/workflow_quality_alert_alert_lifecycle.yaml",
+  "source_summary": "module: QUALITY_QUALITY_ALERT\\ncontract: QualityAlert.alert_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/quality/quality.ubo.yaml\\nsource_summary: GIVEN 实体 QualityAlert 定义工作流 alert_lifecycle / WHEN 按步骤执行 create -> confirm -> start_progress -> done / THEN 流程顺序应满足声明约束"
+}

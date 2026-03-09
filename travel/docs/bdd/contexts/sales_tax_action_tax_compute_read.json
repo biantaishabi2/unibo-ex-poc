@@ -1,0 +1,7 @@
+{
+  "id": "sales_tax_action_tax_compute_read",
+  "module": "SALES_TAX",
+  "edge_class": "all",
+  "source_file": "sales/action_tax_compute_read.yaml",
+  "source_summary": "module: SALES_TAX\\ncontract: Tax.compute action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/sales/sales.ubo.yaml\\nsource_summary: GIVEN 实体 Tax 的动作 compute 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 compute / THEN 读取结果应符合查询语义"
+}

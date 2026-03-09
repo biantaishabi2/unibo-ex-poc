@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HELPDESK_WORKSHEET_TEMPLATE-SEED-helpdesk_worksheet_template_workflow_worksheet_template_worksheet_template_management] TITLE: HELPDESK_WORKSHEET_TEMPLATE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="helpdesk_worksheet_template_workflow_worksheet_template_worksheet_template_management" module="HELPDESK_WORKSHEET_TEMPLATE"
+WHEN when_execute_seed_contract module="HELPDESK_WORKSHEET_TEMPLATE"
+THEN then_seed_contract_should_hold module="HELPDESK_WORKSHEET_TEMPLATE"

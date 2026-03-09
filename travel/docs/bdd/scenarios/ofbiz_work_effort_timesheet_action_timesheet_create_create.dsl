@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_WORK_EFFORT_TIMESHEET-SEED-ofbiz_work_effort_timesheet_action_timesheet_create_create] TITLE: OFBIZ_WORK_EFFORT_TIMESHEET contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_work_effort_timesheet_action_timesheet_create_create" module="OFBIZ_WORK_EFFORT_TIMESHEET"
+WHEN when_execute_seed_contract module="OFBIZ_WORK_EFFORT_TIMESHEET"
+THEN then_seed_contract_should_hold module="OFBIZ_WORK_EFFORT_TIMESHEET"

@@ -1,0 +1,5 @@
+module: CURRENCY_CURRENCY_RATE
+contract: CurrencyRate.update action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/currency/currency.ubo.yaml
+source_summary: GIVEN 实体 CurrencyRate 的动作 update 可执行，accept=[rate, thru_date, rate_source]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

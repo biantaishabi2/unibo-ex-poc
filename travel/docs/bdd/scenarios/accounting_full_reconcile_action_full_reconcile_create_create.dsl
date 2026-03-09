@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_FULL_RECONCILE-SEED-accounting_full_reconcile_action_full_reconcile_create_create] TITLE: ACCOUNTING_FULL_RECONCILE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="accounting_full_reconcile_action_full_reconcile_create_create" module="ACCOUNTING_FULL_RECONCILE"
+WHEN when_execute_seed_contract module="ACCOUNTING_FULL_RECONCILE"
+THEN then_seed_contract_should_hold module="ACCOUNTING_FULL_RECONCILE"

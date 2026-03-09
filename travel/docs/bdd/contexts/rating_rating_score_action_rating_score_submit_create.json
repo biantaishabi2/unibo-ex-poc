@@ -1,0 +1,7 @@
+{
+  "id": "rating_rating_score_action_rating_score_submit_create",
+  "module": "RATING_RATING_SCORE",
+  "edge_class": "all",
+  "source_file": "rating/action_rating_score_submit_create.yaml",
+  "source_summary": "module: RATING_RATING_SCORE\\ncontract: RatingScore.submit action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/rating/rating.ubo.yaml\\nsource_summary: GIVEN 实体 RatingScore 的动作 submit 可执行，accept=[score, comment]，args=[rating_id:uuid!, criteria_id:uuid!] / WHEN 执行动作 submit / THEN 输入应满足校验规则，状态变更与副作用应生效 / 补充场景：submit 提交维度打分"
+}

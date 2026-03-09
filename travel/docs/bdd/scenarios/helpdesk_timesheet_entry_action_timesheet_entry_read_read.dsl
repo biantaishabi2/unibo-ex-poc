@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HELPDESK_TIMESHEET_ENTRY-SEED-helpdesk_timesheet_entry_action_timesheet_entry_read_read] TITLE: HELPDESK_TIMESHEET_ENTRY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="helpdesk_timesheet_entry_action_timesheet_entry_read_read" module="HELPDESK_TIMESHEET_ENTRY"
+WHEN when_execute_seed_contract module="HELPDESK_TIMESHEET_ENTRY"
+THEN then_seed_contract_should_hold module="HELPDESK_TIMESHEET_ENTRY"

@@ -1,0 +1,7 @@
+{
+  "id": "events_event_ticket_workflow_event_ticket_ticket_lifecycle",
+  "module": "EVENTS_EVENT_TICKET",
+  "edge_class": "all",
+  "source_file": "events/workflow_event_ticket_ticket_lifecycle.yaml",
+  "source_summary": "module: EVENTS_EVENT_TICKET\\ncontract: EventTicket.ticket_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/events/events.ubo.yaml\\nsource_summary: GIVEN 实体 EventTicket 定义工作流 ticket_lifecycle / WHEN 按步骤执行 create -> update -> close_sales / THEN 流程顺序应满足声明约束"
+}

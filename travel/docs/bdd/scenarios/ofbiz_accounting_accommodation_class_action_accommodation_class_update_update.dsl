@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_ACCOMMODATION_CLASS-SEED-ofbiz_accounting_accommodation_class_action_accommodation_class_update_update] TITLE: OFBIZ_ACCOUNTING_ACCOMMODATION_CLASS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_accommodation_class_action_accommodation_class_update_update" module="OFBIZ_ACCOUNTING_ACCOMMODATION_CLASS"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_ACCOMMODATION_CLASS"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_ACCOMMODATION_CLASS"

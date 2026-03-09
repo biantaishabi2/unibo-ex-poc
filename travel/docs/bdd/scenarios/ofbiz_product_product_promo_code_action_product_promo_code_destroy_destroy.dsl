@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_PRODUCT_PROMO_CODE-SEED-ofbiz_product_product_promo_code_action_product_promo_code_destroy_destroy] TITLE: OFBIZ_PRODUCT_PRODUCT_PROMO_CODE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_product_promo_code_action_product_promo_code_destroy_destroy" module="OFBIZ_PRODUCT_PRODUCT_PROMO_CODE"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_PRODUCT_PROMO_CODE"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_PRODUCT_PROMO_CODE"

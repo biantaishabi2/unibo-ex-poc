@@ -1,0 +1,5 @@
+module: MAINTENANCE_SERVICE_TYPE
+contract: ServiceType.service_type_maintain_flow workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 ServiceType 定义工作流 service_type_maintain_flow / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束

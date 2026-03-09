@@ -1,0 +1,7 @@
+{
+  "id": "forum_post_event_post_unaccept_answer_forum_post_answer_unaccepted",
+  "module": "FORUM_POST",
+  "edge_class": "all",
+  "source_file": "forum/event_post_unaccept_answer_forum_post_answer_unaccepted.yaml",
+  "source_summary": "module: FORUM_POST\\ncontract: Post.unaccept_answer event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/forum/forum.ubo.yaml\\nsource_summary: GIVEN 实体 Post 的动作 unaccept_answer 完成 / WHEN 触发事件发布 / THEN 应广播 topic `forum.post.answer_unaccepted`"
+}

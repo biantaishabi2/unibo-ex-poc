@@ -1,0 +1,5 @@
+module: HELPDESK_WORKSHEET
+contract: Worksheet.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 Worksheet 的动作 create 可执行，accept=[notes]，args=[service_order_id:uuid!, template_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建工作表，update 填写备注，sign_worksheet 客户签名；create 创建工作表，sign_worksheet 签名时缺少 signature 校验失败；create 创建工作表时未指定模板，校验失败

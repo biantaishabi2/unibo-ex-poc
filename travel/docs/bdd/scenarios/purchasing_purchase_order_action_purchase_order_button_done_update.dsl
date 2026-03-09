@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PURCHASING_PURCHASE_ORDER-SEED-purchasing_purchase_order_action_purchase_order_button_done_update] TITLE: PURCHASING_PURCHASE_ORDER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="purchasing_purchase_order_action_purchase_order_button_done_update" module="PURCHASING_PURCHASE_ORDER"
+WHEN when_execute_seed_contract module="PURCHASING_PURCHASE_ORDER"
+THEN then_seed_contract_should_hold module="PURCHASING_PURCHASE_ORDER"

@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Order.OrderPaymentPreference do
   end
 
   graphql do
-    type :order_order_payment_preference
+    type :ofbiz_order_order_payment_preference
 
     queries do
-      get :get_order_order_payment_preference, :read
-      list :list_order_order_payment_preferences, :read
+      get :get_ofbiz_order_order_payment_preference, :read
+      list :list_ofbiz_order_order_payment_preferences, :read
     end
 
     mutations do
-      create :create_order_order_payment_preference, :create
-      update :update_order_order_payment_preference, :update
-      destroy :delete_order_order_payment_preference, :destroy
+      create :create_ofbiz_order_order_payment_preference, :create
+      update :update_ofbiz_order_order_payment_preference, :update
+      destroy :delete_ofbiz_order_order_payment_preference, :destroy
     end
 
   end

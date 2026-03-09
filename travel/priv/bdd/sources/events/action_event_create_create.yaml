@@ -1,0 +1,5 @@
+module: EVENTS_EVENT
+contract: Event.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/events/events.ubo.yaml
+source_summary: GIVEN 实体 Event 的动作 create 可执行，accept=[name, description, event_type_id, start_date, end_date, location, venue_id, capacity, registration_deadline, is_online, cover_image_url, detail_url, streaming_url, priority, parent_event_id, send_notification_email, total_budget, budget_currency_id, special_terms, organizer_id]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create -> publish（活动已有 ticket 和 stage，发布后报名通道开放）

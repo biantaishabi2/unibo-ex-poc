@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_MARKETING_SALES_FORECAST-SEED-ofbiz_marketing_sales_forecast_action_sales_forecast_create_create] TITLE: OFBIZ_MARKETING_SALES_FORECAST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_marketing_sales_forecast_action_sales_forecast_create_create" module="OFBIZ_MARKETING_SALES_FORECAST"
+WHEN when_execute_seed_contract module="OFBIZ_MARKETING_SALES_FORECAST"
+THEN then_seed_contract_should_hold module="OFBIZ_MARKETING_SALES_FORECAST"

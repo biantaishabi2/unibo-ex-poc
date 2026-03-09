@@ -1,0 +1,7 @@
+{
+  "id": "ecommerce_pricelist_action_pricelist_read_read",
+  "module": "ECOMMERCE_PRICELIST",
+  "edge_class": "all",
+  "source_file": "ecommerce/action_pricelist_read_read.yaml",
+  "source_summary": "module: ECOMMERCE_PRICELIST\\ncontract: Pricelist.read action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ecommerce/ecommerce.ubo.yaml\\nsource_summary: GIVEN 实体 Pricelist 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 读取结果应符合查询语义"
+}

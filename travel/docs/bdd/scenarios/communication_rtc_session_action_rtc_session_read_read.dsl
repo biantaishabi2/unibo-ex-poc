@@ -1,0 +1,4 @@
+[SCENARIO: BDD-COMMUNICATION_RTC_SESSION-SEED-communication_rtc_session_action_rtc_session_read_read] TITLE: COMMUNICATION_RTC_SESSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="communication_rtc_session_action_rtc_session_read_read" module="COMMUNICATION_RTC_SESSION"
+WHEN when_execute_seed_contract module="COMMUNICATION_RTC_SESSION"
+THEN then_seed_contract_should_hold module="COMMUNICATION_RTC_SESSION"

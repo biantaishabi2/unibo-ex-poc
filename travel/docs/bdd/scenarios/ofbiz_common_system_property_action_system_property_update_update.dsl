@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_COMMON_SYSTEM_PROPERTY-SEED-ofbiz_common_system_property_action_system_property_update_update] TITLE: OFBIZ_COMMON_SYSTEM_PROPERTY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_common_system_property_action_system_property_update_update" module="OFBIZ_COMMON_SYSTEM_PROPERTY"
+WHEN when_execute_seed_contract module="OFBIZ_COMMON_SYSTEM_PROPERTY"
+THEN then_seed_contract_should_hold module="OFBIZ_COMMON_SYSTEM_PROPERTY"

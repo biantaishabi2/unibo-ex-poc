@@ -1,0 +1,5 @@
+module: EVENTS_EVENT_STAGE
+contract: EventStage.update action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/events/events.ubo.yaml
+source_summary: GIVEN 实体 EventStage 的动作 update 可执行，accept=[name, description, start_time, end_time, speaker_name, speaker_id, topic, location, sequence]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

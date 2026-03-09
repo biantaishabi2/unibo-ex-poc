@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MANUFACTURING_BILL_OF_MATERIALS-SEED-manufacturing_bill_of_materials_action_bill_of_materials_read_read] TITLE: MANUFACTURING_BILL_OF_MATERIALS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="manufacturing_bill_of_materials_action_bill_of_materials_read_read" module="MANUFACTURING_BILL_OF_MATERIALS"
+WHEN when_execute_seed_contract module="MANUFACTURING_BILL_OF_MATERIALS"
+THEN then_seed_contract_should_hold module="MANUFACTURING_BILL_OF_MATERIALS"

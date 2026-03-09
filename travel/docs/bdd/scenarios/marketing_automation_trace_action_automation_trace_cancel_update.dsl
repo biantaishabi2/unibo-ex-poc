@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MARKETING_AUTOMATION_TRACE-SEED-marketing_automation_trace_action_automation_trace_cancel_update] TITLE: MARKETING_AUTOMATION_TRACE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="marketing_automation_trace_action_automation_trace_cancel_update" module="MARKETING_AUTOMATION_TRACE"
+WHEN when_execute_seed_contract module="MARKETING_AUTOMATION_TRACE"
+THEN then_seed_contract_should_hold module="MARKETING_AUTOMATION_TRACE"

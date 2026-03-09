@@ -95,12 +95,10 @@ defmodule UniboExPoc.Payment.PaymentApplication do
       change manage_relationship(:payment_id, :payment, type: :append, on_lookup: :relate)
       validate present(:payment_id)
       validate present(:amount_applied)
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:amount_applied, :override_gl_account_id]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     create :apply_to_invoice do
@@ -111,7 +109,6 @@ defmodule UniboExPoc.Payment.PaymentApplication do
       validate present(:payment_id)
       validate present(:amount_applied)
       validate present(:invoice_id)
-      change set_attribute(:id, expr(id))
     end
     create :apply_to_account do
       description "将支付核销到账单账户（余额充值）"
@@ -121,7 +118,6 @@ defmodule UniboExPoc.Payment.PaymentApplication do
       validate present(:payment_id)
       validate present(:amount_applied)
       validate present(:billing_account_id)
-      change set_attribute(:id, expr(id))
     end
   end
 

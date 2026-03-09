@@ -1,0 +1,4 @@
+[SCENARIO: BDD-APPROVALS_APPROVER-SEED-approvals_approver_event_approver_approve_approvals_approver_approved] TITLE: APPROVALS_APPROVER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="approvals_approver_event_approver_approve_approvals_approver_approved" module="APPROVALS_APPROVER"
+WHEN when_execute_seed_contract module="APPROVALS_APPROVER"
+THEN then_seed_contract_should_hold module="APPROVALS_APPROVER"

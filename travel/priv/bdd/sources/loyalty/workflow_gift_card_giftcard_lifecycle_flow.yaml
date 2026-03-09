@@ -1,0 +1,5 @@
+module: LOYALTY_GIFT_CARD
+contract: GiftCard.giftcard_lifecycle_flow workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/loyalty/loyalty.ubo.yaml
+source_summary: GIVEN 实体 GiftCard 定义工作流 giftcard_lifecycle_flow / WHEN 按步骤执行 create -> activate -> topup -> charge -> cancel_card -> expire_card / THEN 流程顺序应满足声明约束

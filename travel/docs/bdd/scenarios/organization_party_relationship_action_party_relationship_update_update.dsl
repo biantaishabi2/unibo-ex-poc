@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ORGANIZATION_PARTY_RELATIONSHIP-SEED-organization_party_relationship_action_party_relationship_update_update] TITLE: ORGANIZATION_PARTY_RELATIONSHIP contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="organization_party_relationship_action_party_relationship_update_update" module="ORGANIZATION_PARTY_RELATIONSHIP"
+WHEN when_execute_seed_contract module="ORGANIZATION_PARTY_RELATIONSHIP"
+THEN then_seed_contract_should_hold module="ORGANIZATION_PARTY_RELATIONSHIP"

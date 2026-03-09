@@ -1,0 +1,7 @@
+{
+  "id": "ofbiz_product_facility_carrier_shipment_action_facility_carrier_shipment_destroy_destroy",
+  "module": "OFBIZ_PRODUCT_FACILITY_CARRIER_SHIPMENT",
+  "edge_class": "all",
+  "source_file": "ofbiz_product/action_facility_carrier_shipment_destroy_destroy.yaml",
+  "source_summary": "module: OFBIZ_PRODUCT_FACILITY_CARRIER_SHIPMENT\\ncontract: FacilityCarrierShipment.destroy action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ofbiz/product.ubo.yaml\\nsource_summary: GIVEN 实体 FacilityCarrierShipment 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 状态变更与副作用应生效"
+}

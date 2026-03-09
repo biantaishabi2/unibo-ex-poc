@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Party.PartyGroup do
   end
 
   graphql do
-    type :party_party_group
+    type :ofbiz_party_party_group
 
     queries do
-      get :get_party_party_group, :read
-      list :list_party_party_groups, :read
+      get :get_ofbiz_party_party_group, :read
+      list :list_ofbiz_party_party_groups, :read
     end
 
     mutations do
-      create :create_party_party_group, :create
-      update :update_party_party_group, :update
-      destroy :delete_party_party_group, :destroy
+      create :create_ofbiz_party_party_group, :create
+      update :update_ofbiz_party_party_group, :update
+      destroy :delete_ofbiz_party_party_group, :destroy
     end
 
   end

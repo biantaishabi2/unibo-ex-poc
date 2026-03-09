@@ -1,0 +1,4 @@
+[SCENARIO: BDD-QUALITY_QUALITY_REASON-SEED-quality_quality_reason_action_quality_reason_destroy_destroy] TITLE: QUALITY_QUALITY_REASON contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="quality_quality_reason_action_quality_reason_destroy_destroy" module="QUALITY_QUALITY_REASON"
+WHEN when_execute_seed_contract module="QUALITY_QUALITY_REASON"
+THEN then_seed_contract_should_hold module="QUALITY_QUALITY_REASON"

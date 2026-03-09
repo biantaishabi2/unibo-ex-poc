@@ -1,0 +1,4 @@
+[SCENARIO: BDD-CRM_SALES_TEAM_MEMBER-SEED-crm_sales_team_member_action_sales_team_member_destroy_destroy] TITLE: CRM_SALES_TEAM_MEMBER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="crm_sales_team_member_action_sales_team_member_destroy_destroy" module="CRM_SALES_TEAM_MEMBER"
+WHEN when_execute_seed_contract module="CRM_SALES_TEAM_MEMBER"
+THEN then_seed_contract_should_hold module="CRM_SALES_TEAM_MEMBER"

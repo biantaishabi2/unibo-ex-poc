@@ -1,0 +1,4 @@
+[SCENARIO: BDD-LOYALTY_COUPON_USAGE-SEED-loyalty_coupon_usage_action_coupon_usage_read_read] TITLE: LOYALTY_COUPON_USAGE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="loyalty_coupon_usage_action_coupon_usage_read_read" module="LOYALTY_COUPON_USAGE"
+WHEN when_execute_seed_contract module="LOYALTY_COUPON_USAGE"
+THEN then_seed_contract_should_hold module="LOYALTY_COUPON_USAGE"

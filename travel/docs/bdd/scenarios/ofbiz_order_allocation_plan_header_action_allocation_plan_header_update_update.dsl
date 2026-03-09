@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_ALLOCATION_PLAN_HEADER-SEED-ofbiz_order_allocation_plan_header_action_allocation_plan_header_update_update] TITLE: OFBIZ_ORDER_ALLOCATION_PLAN_HEADER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_allocation_plan_header_action_allocation_plan_header_update_update" module="OFBIZ_ORDER_ALLOCATION_PLAN_HEADER"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_ALLOCATION_PLAN_HEADER"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_ALLOCATION_PLAN_HEADER"

@@ -1,0 +1,7 @@
+{
+  "id": "blog_blog_post_workflow_blog_post_blog_post_lifecycle",
+  "module": "BLOG_BLOG_POST",
+  "edge_class": "all",
+  "source_file": "blog/workflow_blog_post_blog_post_lifecycle.yaml",
+  "source_summary": "module: BLOG_BLOG_POST\\ncontract: BlogPost.blog_post_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/blog/blog.ubo.yaml\\nsource_summary: GIVEN 实体 BlogPost 定义工作流 blog_post_lifecycle / WHEN 按步骤执行 create -> update -> publish -> unpublish -> archive -> unarchive / THEN 流程顺序应满足声明约束"
+}

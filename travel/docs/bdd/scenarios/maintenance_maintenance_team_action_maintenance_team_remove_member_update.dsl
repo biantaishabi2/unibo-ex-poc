@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MAINTENANCE_MAINTENANCE_TEAM-SEED-maintenance_maintenance_team_action_maintenance_team_remove_member_update] TITLE: MAINTENANCE_MAINTENANCE_TEAM contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="maintenance_maintenance_team_action_maintenance_team_remove_member_update" module="MAINTENANCE_MAINTENANCE_TEAM"
+WHEN when_execute_seed_contract module="MAINTENANCE_MAINTENANCE_TEAM"
+THEN then_seed_contract_should_hold module="MAINTENANCE_MAINTENANCE_TEAM"

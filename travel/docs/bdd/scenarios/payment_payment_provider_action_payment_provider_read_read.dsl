@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PAYMENT_PAYMENT_PROVIDER-SEED-payment_payment_provider_action_payment_provider_read_read] TITLE: PAYMENT_PAYMENT_PROVIDER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="payment_payment_provider_action_payment_provider_read_read" module="PAYMENT_PAYMENT_PROVIDER"
+WHEN when_execute_seed_contract module="PAYMENT_PAYMENT_PROVIDER"
+THEN then_seed_contract_should_hold module="PAYMENT_PAYMENT_PROVIDER"

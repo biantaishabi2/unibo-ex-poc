@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SPREADSHEET_GLOBAL_FILTER-SEED-spreadsheet_global_filter_workflow_global_filter_global_filter_apply_flow] TITLE: SPREADSHEET_GLOBAL_FILTER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="spreadsheet_global_filter_workflow_global_filter_global_filter_apply_flow" module="SPREADSHEET_GLOBAL_FILTER"
+WHEN when_execute_seed_contract module="SPREADSHEET_GLOBAL_FILTER"
+THEN then_seed_contract_should_hold module="SPREADSHEET_GLOBAL_FILTER"

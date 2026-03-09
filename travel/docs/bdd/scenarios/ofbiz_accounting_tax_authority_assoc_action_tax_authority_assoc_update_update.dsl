@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_TAX_AUTHORITY_ASSOC-SEED-ofbiz_accounting_tax_authority_assoc_action_tax_authority_assoc_update_update] TITLE: OFBIZ_ACCOUNTING_TAX_AUTHORITY_ASSOC contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_tax_authority_assoc_action_tax_authority_assoc_update_update" module="OFBIZ_ACCOUNTING_TAX_AUTHORITY_ASSOC"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_TAX_AUTHORITY_ASSOC"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_TAX_AUTHORITY_ASSOC"

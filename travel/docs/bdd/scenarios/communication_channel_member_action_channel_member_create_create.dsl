@@ -1,0 +1,4 @@
+[SCENARIO: BDD-COMMUNICATION_CHANNEL_MEMBER-SEED-communication_channel_member_action_channel_member_create_create] TITLE: COMMUNICATION_CHANNEL_MEMBER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="communication_channel_member_action_channel_member_create_create" module="COMMUNICATION_CHANNEL_MEMBER"
+WHEN when_execute_seed_contract module="COMMUNICATION_CHANNEL_MEMBER"
+THEN then_seed_contract_should_hold module="COMMUNICATION_CHANNEL_MEMBER"

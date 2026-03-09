@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_CONTENT_WEB_SITE_PUBLISH_POINT-SEED-ofbiz_content_web_site_publish_point_action_web_site_publish_point_read_read] TITLE: OFBIZ_CONTENT_WEB_SITE_PUBLISH_POINT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_content_web_site_publish_point_action_web_site_publish_point_read_read" module="OFBIZ_CONTENT_WEB_SITE_PUBLISH_POINT"
+WHEN when_execute_seed_contract module="OFBIZ_CONTENT_WEB_SITE_PUBLISH_POINT"
+THEN then_seed_contract_should_hold module="OFBIZ_CONTENT_WEB_SITE_PUBLISH_POINT"

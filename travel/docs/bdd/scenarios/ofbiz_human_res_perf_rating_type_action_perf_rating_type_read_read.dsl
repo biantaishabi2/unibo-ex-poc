@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_HUMAN_RES_PERF_RATING_TYPE-SEED-ofbiz_human_res_perf_rating_type_action_perf_rating_type_read_read] TITLE: OFBIZ_HUMAN_RES_PERF_RATING_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_human_res_perf_rating_type_action_perf_rating_type_read_read" module="OFBIZ_HUMAN_RES_PERF_RATING_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_HUMAN_RES_PERF_RATING_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_HUMAN_RES_PERF_RATING_TYPE"

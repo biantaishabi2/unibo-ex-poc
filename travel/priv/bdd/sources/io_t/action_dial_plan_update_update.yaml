@@ -1,0 +1,5 @@
+module: IO_T_DIAL_PLAN
+contract: DialPlan.update action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 DialPlan 的动作 update 可执行，accept=[name, description]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束

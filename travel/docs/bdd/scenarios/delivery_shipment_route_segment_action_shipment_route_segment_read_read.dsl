@@ -1,0 +1,4 @@
+[SCENARIO: BDD-DELIVERY_SHIPMENT_ROUTE_SEGMENT-SEED-delivery_shipment_route_segment_action_shipment_route_segment_read_read] TITLE: DELIVERY_SHIPMENT_ROUTE_SEGMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="delivery_shipment_route_segment_action_shipment_route_segment_read_read" module="DELIVERY_SHIPMENT_ROUTE_SEGMENT"
+WHEN when_execute_seed_contract module="DELIVERY_SHIPMENT_ROUTE_SEGMENT"
+THEN then_seed_contract_should_hold module="DELIVERY_SHIPMENT_ROUTE_SEGMENT"

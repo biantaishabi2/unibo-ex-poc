@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HR_PERFORMANCE_REVIEW-SEED-hr_performance_review_event_performance_review_action_back_hr_appraisal_reopened] TITLE: HR_PERFORMANCE_REVIEW contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="hr_performance_review_event_performance_review_action_back_hr_appraisal_reopened" module="HR_PERFORMANCE_REVIEW"
+WHEN when_execute_seed_contract module="HR_PERFORMANCE_REVIEW"
+THEN then_seed_contract_should_hold module="HR_PERFORMANCE_REVIEW"

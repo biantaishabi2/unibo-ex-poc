@@ -1,0 +1,5 @@
+module: CALENDAR_WEEK_TEMPLATE
+contract: WeekTemplate.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/calendar/calendar.ubo.yaml
+source_summary: GIVEN 实体 WeekTemplate 的动作 create 可执行，accept=[name, description, monday_start, monday_capacity, tuesday_start, tuesday_capacity, wednesday_start, wednesday_capacity, thursday_start, thursday_capacity, friday_start, friday_capacity, saturday_start, saturday_capacity, sunday_start, sunday_capacity]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建周模板 -> update 修改工时 -> destroy 删除

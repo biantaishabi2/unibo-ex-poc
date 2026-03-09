@@ -1,0 +1,4 @@
+[SCENARIO: BDD-CALENDAR_WEEK_TEMPLATE-SEED-calendar_week_template_action_week_template_create_create] TITLE: CALENDAR_WEEK_TEMPLATE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="calendar_week_template_action_week_template_create_create" module="CALENDAR_WEEK_TEMPLATE"
+WHEN when_execute_seed_contract module="CALENDAR_WEEK_TEMPLATE"
+THEN then_seed_contract_should_hold module="CALENDAR_WEEK_TEMPLATE"

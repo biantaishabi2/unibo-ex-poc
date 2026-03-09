@@ -1,0 +1,7 @@
+{
+  "id": "survey_survey_event_survey_action_close_survey_survey_closed",
+  "module": "SURVEY_SURVEY",
+  "edge_class": "all",
+  "source_file": "survey/event_survey_action_close_survey_survey_closed.yaml",
+  "source_summary": "module: SURVEY_SURVEY\\ncontract: Survey.action_close event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/survey/survey.ubo.yaml\\nsource_summary: GIVEN 实体 Survey 的动作 action_close 完成 / WHEN 触发事件发布 / THEN 应广播 topic `survey.survey.closed`"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SERVICE_TEMPORAL_EXPRESSION-SEED-ofbiz_service_temporal_expression_action_temporal_expression_update_update] TITLE: OFBIZ_SERVICE_TEMPORAL_EXPRESSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_service_temporal_expression_action_temporal_expression_update_update" module="OFBIZ_SERVICE_TEMPORAL_EXPRESSION"
+WHEN when_execute_seed_contract module="OFBIZ_SERVICE_TEMPORAL_EXPRESSION"
+THEN then_seed_contract_should_hold module="OFBIZ_SERVICE_TEMPORAL_EXPRESSION"

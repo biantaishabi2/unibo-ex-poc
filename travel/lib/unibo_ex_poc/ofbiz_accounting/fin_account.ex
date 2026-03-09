@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.FinAccount do
   end
 
   graphql do
-    type :accounting_fin_account
+    type :ofbiz_accounting_fin_account
 
     queries do
-      get :get_accounting_fin_account, :read
-      list :list_accounting_fin_accounts, :read
+      get :get_ofbiz_accounting_fin_account, :read
+      list :list_ofbiz_accounting_fin_accounts, :read
     end
 
     mutations do
-      create :create_accounting_fin_account, :create
-      update :update_accounting_fin_account, :update
-      destroy :delete_accounting_fin_account, :destroy
+      create :create_ofbiz_accounting_fin_account, :create
+      update :update_ofbiz_accounting_fin_account, :update
+      destroy :delete_ofbiz_accounting_fin_account, :destroy
     end
 
   end

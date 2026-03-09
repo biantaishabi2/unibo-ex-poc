@@ -1,0 +1,7 @@
+{
+  "id": "e_learning_course_event_course_unpublish_elearning_course_unpublished",
+  "module": "E_LEARNING_COURSE",
+  "edge_class": "all",
+  "source_file": "e_learning/event_course_unpublish_elearning_course_unpublished.yaml",
+  "source_summary": "module: E_LEARNING_COURSE\\ncontract: Course.unpublish event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/elearning/elearning.ubo.yaml\\nsource_summary: GIVEN 实体 Course 的动作 unpublish 完成 / WHEN 触发事件发布 / THEN 应广播 topic `elearning.course.unpublished`"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "capability_strategic_goal_action_strategic_goal_update_update",
+  "module": "CAPABILITY_STRATEGIC_GOAL",
+  "edge_class": "all",
+  "source_file": "capability/action_strategic_goal_update_update.yaml",
+  "source_summary": "module: CAPABILITY_STRATEGIC_GOAL\\ncontract: StrategicGoal.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/capability/capability.ubo.yaml\\nsource_summary: GIVEN 实体 StrategicGoal 的动作 update 可执行，accept=[name, horizon, outcome_statement]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效"
+}

@@ -1,0 +1,5 @@
+module: MARKETING_CAMPAIGN
+contract: Campaign.update action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 Campaign 的动作 update 可执行，accept=[name, status, start_date, end_date, budget, actual_cost, description, utm_campaign_id, utm_medium_id, utm_source_id]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束

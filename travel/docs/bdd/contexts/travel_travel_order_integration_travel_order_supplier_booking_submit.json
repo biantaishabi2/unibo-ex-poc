@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_integration_travel_order_supplier_booking_submit",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "all",
+  "source_file": "travel/integration_travel_order_supplier_booking_submit.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_ORDER\\ncontract: TravelOrder.supplier_booking_submit integration contract\\nedge_class: integration_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelOrder 声明 integration supplier_booking_submit（mode=async） / WHEN 绑定动作 [mark_payment_succeeded] 触发外部调用 / THEN 调用结果需满足 声明错误码 supplier_timeout, supplier_inventory_unavailable 且 无显式业务后置条件\\ndeclared_error_codes:\\n- supplier_timeout\\n- supplier_inventory_unavailable"
+}

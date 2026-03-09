@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HELPDESK_HELPDESK_TICKET_TYPE-SEED-helpdesk_helpdesk_ticket_type_workflow_helpdesk_ticket_type_ticket_type_management] TITLE: HELPDESK_HELPDESK_TICKET_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="helpdesk_helpdesk_ticket_type_workflow_helpdesk_ticket_type_ticket_type_management" module="HELPDESK_HELPDESK_TICKET_TYPE"
+WHEN when_execute_seed_contract module="HELPDESK_HELPDESK_TICKET_TYPE"
+THEN then_seed_contract_should_hold module="HELPDESK_HELPDESK_TICKET_TYPE"

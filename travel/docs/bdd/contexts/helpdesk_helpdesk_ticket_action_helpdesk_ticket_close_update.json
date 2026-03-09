@@ -1,0 +1,7 @@
+{
+  "id": "helpdesk_helpdesk_ticket_action_helpdesk_ticket_close_update",
+  "module": "HELPDESK_HELPDESK_TICKET",
+  "edge_class": "all",
+  "source_file": "helpdesk/action_helpdesk_ticket_close_update.yaml",
+  "source_summary": "module: HELPDESK_HELPDESK_TICKET\\ncontract: HelpdeskTicket.close action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml\\nsource_summary: GIVEN 实体 HelpdeskTicket 的动作 close 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 close / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 新建工单，plan_intervention 创建现场服务任务，close 时因 Field Service 未完成被校验拒绝；close 时存在未完成 Field Service 任务，校验失败"
+}

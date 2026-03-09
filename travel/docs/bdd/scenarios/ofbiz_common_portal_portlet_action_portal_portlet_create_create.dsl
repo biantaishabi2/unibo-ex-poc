@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_COMMON_PORTAL_PORTLET-SEED-ofbiz_common_portal_portlet_action_portal_portlet_create_create] TITLE: OFBIZ_COMMON_PORTAL_PORTLET contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_common_portal_portlet_action_portal_portlet_create_create" module="OFBIZ_COMMON_PORTAL_PORTLET"
+WHEN when_execute_seed_contract module="OFBIZ_COMMON_PORTAL_PORTLET"
+THEN then_seed_contract_should_hold module="OFBIZ_COMMON_PORTAL_PORTLET"

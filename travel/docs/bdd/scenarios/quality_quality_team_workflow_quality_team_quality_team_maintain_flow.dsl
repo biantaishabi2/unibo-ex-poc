@@ -1,0 +1,4 @@
+[SCENARIO: BDD-QUALITY_QUALITY_TEAM-SEED-quality_quality_team_workflow_quality_team_quality_team_maintain_flow] TITLE: QUALITY_QUALITY_TEAM contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="quality_quality_team_workflow_quality_team_quality_team_maintain_flow" module="QUALITY_QUALITY_TEAM"
+WHEN when_execute_seed_contract module="QUALITY_QUALITY_TEAM"
+THEN then_seed_contract_should_hold module="QUALITY_QUALITY_TEAM"

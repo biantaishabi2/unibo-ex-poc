@@ -1,0 +1,7 @@
+{
+  "id": "io_t_event_log_action_event_log_mark_processed_update",
+  "module": "IO_T_EVENT_LOG",
+  "edge_class": "all",
+  "source_file": "io_t/action_event_log_mark_processed_update.yaml",
+  "source_summary": "module: IO_T_EVENT_LOG\\ncontract: EventLog.mark_processed action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml\\nsource_summary: GIVEN 实体 EventLog 的动作 mark_processed 可执行，accept=[trigger_rule_id, action_result, action_error_message, processing_time_ms]，args=[无显式参数] / WHEN 执行动作 mark_processed / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

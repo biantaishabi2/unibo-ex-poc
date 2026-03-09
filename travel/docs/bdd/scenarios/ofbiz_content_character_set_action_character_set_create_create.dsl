@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_CONTENT_CHARACTER_SET-SEED-ofbiz_content_character_set_action_character_set_create_create] TITLE: OFBIZ_CONTENT_CHARACTER_SET contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_content_character_set_action_character_set_create_create" module="OFBIZ_CONTENT_CHARACTER_SET"
+WHEN when_execute_seed_contract module="OFBIZ_CONTENT_CHARACTER_SET"
+THEN then_seed_contract_should_hold module="OFBIZ_CONTENT_CHARACTER_SET"

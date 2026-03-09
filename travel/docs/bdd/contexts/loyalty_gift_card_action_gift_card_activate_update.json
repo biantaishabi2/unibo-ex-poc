@@ -1,0 +1,7 @@
+{
+  "id": "loyalty_gift_card_action_gift_card_activate_update",
+  "module": "LOYALTY_GIFT_CARD",
+  "edge_class": "all",
+  "source_file": "loyalty/action_gift_card_activate_update.yaml",
+  "source_summary": "module: LOYALTY_GIFT_CARD\\ncontract: GiftCard.activate action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/loyalty/loyalty.ubo.yaml\\nsource_summary: GIVEN 实体 GiftCard 的动作 activate 可执行，accept=[[]]，args=[owner_id:uuid!, from_date:datetime] / WHEN 执行动作 activate / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create -> activate -> topup(200) -> charge(150) -> charge(50) -> status=depleted；create(reloadable=false) -> activate -> topup 应报错；create -> activate -> cancel_card"
+}

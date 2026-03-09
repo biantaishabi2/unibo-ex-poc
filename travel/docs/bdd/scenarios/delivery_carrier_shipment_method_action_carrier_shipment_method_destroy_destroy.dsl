@@ -1,0 +1,4 @@
+[SCENARIO: BDD-DELIVERY_CARRIER_SHIPMENT_METHOD-SEED-delivery_carrier_shipment_method_action_carrier_shipment_method_destroy_destroy] TITLE: DELIVERY_CARRIER_SHIPMENT_METHOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="delivery_carrier_shipment_method_action_carrier_shipment_method_destroy_destroy" module="DELIVERY_CARRIER_SHIPMENT_METHOD"
+WHEN when_execute_seed_contract module="DELIVERY_CARRIER_SHIPMENT_METHOD"
+THEN then_seed_contract_should_hold module="DELIVERY_CARRIER_SHIPMENT_METHOD"

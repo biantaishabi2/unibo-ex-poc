@@ -1,0 +1,7 @@
+{
+  "id": "events_event_registration_action_event_registration_check_in_update",
+  "module": "EVENTS_EVENT_REGISTRATION",
+  "edge_class": "all",
+  "source_file": "events/action_event_registration_check_in_update.yaml",
+  "source_summary": "module: EVENTS_EVENT_REGISTRATION\\ncontract: EventRegistration.check_in action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/events/events.ubo.yaml\\nsource_summary: GIVEN 实体 EventRegistration 的动作 check_in 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 check_in / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：register -> confirm -> check_in（标准报名流程）；check_in 后 check_in_time 自动记录"
+}

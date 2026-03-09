@@ -1,0 +1,7 @@
+{
+  "id": "barcode_barcode_rule_action_barcode_rule_update_update",
+  "module": "BARCODE_BARCODE_RULE",
+  "edge_class": "all",
+  "source_file": "barcode/action_barcode_rule_update_update.yaml",
+  "source_summary": "module: BARCODE_BARCODE_RULE\\ncontract: BarcodeRule.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/barcode/barcode.ubo.yaml\\nsource_summary: GIVEN 实体 BarcodeRule 的动作 update 可执行，accept=[name, sequence, encoding, barcode_type, pattern, alias, gs1_content_type, gs1_decimal_usage]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

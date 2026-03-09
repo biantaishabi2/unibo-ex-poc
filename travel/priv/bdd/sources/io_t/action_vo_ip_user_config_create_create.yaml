@@ -1,0 +1,5 @@
+module: IO_T_VO_IP_USER_CONFIG
+contract: VoIPUserConfig.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml
+source_summary: GIVEN 实体 VoIPUserConfig 的动作 create 可执行，accept=[extension, sip_login, sip_secret, dnd, auto_answer, ring_timeout, outgoing_caller_id, forward_on_busy, forward_on_no_answer, forward_unconditional, follow_me_enabled, follow_me_number, voicemail_enabled, org_id]，args=[user_id:bigint!, provider_id:bigint] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create -> update -> toggle_dnd -> set_forwarding

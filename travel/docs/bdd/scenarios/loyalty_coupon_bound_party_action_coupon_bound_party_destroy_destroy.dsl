@@ -1,0 +1,4 @@
+[SCENARIO: BDD-LOYALTY_COUPON_BOUND_PARTY-SEED-loyalty_coupon_bound_party_action_coupon_bound_party_destroy_destroy] TITLE: LOYALTY_COUPON_BOUND_PARTY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="loyalty_coupon_bound_party_action_coupon_bound_party_destroy_destroy" module="LOYALTY_COUPON_BOUND_PARTY"
+WHEN when_execute_seed_contract module="LOYALTY_COUPON_BOUND_PARTY"
+THEN then_seed_contract_should_hold module="LOYALTY_COUPON_BOUND_PARTY"

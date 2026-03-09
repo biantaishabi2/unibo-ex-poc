@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.CreditCard do
   end
 
   graphql do
-    type :accounting_credit_card
+    type :ofbiz_accounting_credit_card
 
     queries do
-      get :get_accounting_credit_card, :read
-      list :list_accounting_credit_cards, :read
+      get :get_ofbiz_accounting_credit_card, :read
+      list :list_ofbiz_accounting_credit_cards, :read
     end
 
     mutations do
-      create :create_accounting_credit_card, :create
-      update :update_accounting_credit_card, :update
-      destroy :delete_accounting_credit_card, :destroy
+      create :create_ofbiz_accounting_credit_card, :create
+      update :update_ofbiz_accounting_credit_card, :update
+      destroy :delete_ofbiz_accounting_credit_card, :destroy
     end
 
   end

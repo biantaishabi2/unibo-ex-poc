@@ -1,0 +1,7 @@
+{
+  "id": "marketing_mailing_event_mailing_cancel_marketing_mailing_cancelled",
+  "module": "MARKETING_MAILING",
+  "edge_class": "all",
+  "source_file": "marketing/event_mailing_cancel_marketing_mailing_cancelled.yaml",
+  "source_summary": "module: MARKETING_MAILING\\ncontract: Mailing.cancel event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 Mailing 的动作 cancel 完成 / WHEN 触发事件发布 / THEN 应广播 topic `marketing.mailing.cancelled`"
+}

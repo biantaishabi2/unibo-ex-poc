@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_RETURN_REASON-SEED-ofbiz_order_return_reason_action_return_reason_read_read] TITLE: OFBIZ_ORDER_RETURN_REASON contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_return_reason_action_return_reason_read_read" module="OFBIZ_ORDER_RETURN_REASON"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_RETURN_REASON"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_RETURN_REASON"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-CAPABILITY_MODULE_CAPABILITY_MAPPING-SEED-capability_module_capability_mapping_action_module_capability_mapping_read_read] TITLE: CAPABILITY_MODULE_CAPABILITY_MAPPING contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="capability_module_capability_mapping_action_module_capability_mapping_read_read" module="CAPABILITY_MODULE_CAPABILITY_MAPPING"
+WHEN when_execute_seed_contract module="CAPABILITY_MODULE_CAPABILITY_MAPPING"
+THEN then_seed_contract_should_hold module="CAPABILITY_MODULE_CAPABILITY_MAPPING"

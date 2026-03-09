@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_MARKETING_TRACKING_CODE_VISIT-SEED-ofbiz_marketing_tracking_code_visit_action_tracking_code_visit_read_read] TITLE: OFBIZ_MARKETING_TRACKING_CODE_VISIT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_marketing_tracking_code_visit_action_tracking_code_visit_read_read" module="OFBIZ_MARKETING_TRACKING_CODE_VISIT"
+WHEN when_execute_seed_contract module="OFBIZ_MARKETING_TRACKING_CODE_VISIT"
+THEN then_seed_contract_should_hold module="OFBIZ_MARKETING_TRACKING_CODE_VISIT"

@@ -1,0 +1,5 @@
+module: MAINTENANCE_MAINTENANCE_REQUEST
+contract: MaintenanceRequest.change_stage event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 MaintenanceRequest 的动作 change_stage 完成 / WHEN 触发事件发布 / THEN 应广播 topic `maintenance.request.completed`

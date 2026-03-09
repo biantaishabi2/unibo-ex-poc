@@ -1,0 +1,7 @@
+{
+  "id": "pos_pos_order_action_pos_order_refund_create",
+  "module": "POS_POS_ORDER",
+  "edge_class": "all",
+  "source_file": "pos/action_pos_order_refund_create.yaml",
+  "source_summary": "module: POS_POS_ORDER\\ncontract: PosOrder.refund action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/pos/pos.ubo.yaml\\nsource_summary: GIVEN 实体 PosOrder 的动作 refund 可执行，accept=[[]]，args=[refund_lines:array] / WHEN 执行动作 refund / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：refund 创建退款单（部分退款），生成镜像订单"
+}

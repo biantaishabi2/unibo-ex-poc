@@ -1,0 +1,7 @@
+{
+  "id": "marketing_utm_campaign_workflow_utm_campaign_utm_campaign_maintain_flow",
+  "module": "MARKETING_UTM_CAMPAIGN",
+  "edge_class": "all",
+  "source_file": "marketing/workflow_utm_campaign_utm_campaign_maintain_flow.yaml",
+  "source_summary": "module: MARKETING_UTM_CAMPAIGN\\ncontract: UtmCampaign.utm_campaign_maintain_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 UtmCampaign 定义工作流 utm_campaign_maintain_flow / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束"
+}

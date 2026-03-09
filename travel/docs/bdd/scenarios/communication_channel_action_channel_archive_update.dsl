@@ -1,0 +1,4 @@
+[SCENARIO: BDD-COMMUNICATION_CHANNEL-SEED-communication_channel_action_channel_archive_update] TITLE: COMMUNICATION_CHANNEL contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="communication_channel_action_channel_archive_update" module="COMMUNICATION_CHANNEL"
+WHEN when_execute_seed_contract module="COMMUNICATION_CHANNEL"
+THEN then_seed_contract_should_hold module="COMMUNICATION_CHANNEL"

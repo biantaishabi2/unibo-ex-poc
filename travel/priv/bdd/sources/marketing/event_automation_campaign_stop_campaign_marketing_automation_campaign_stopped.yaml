@@ -1,0 +1,5 @@
+module: MARKETING_AUTOMATION_CAMPAIGN
+contract: AutomationCampaign.stop_campaign event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 AutomationCampaign 的动作 stop_campaign 完成 / WHEN 触发事件发布 / THEN 应广播 topic `marketing.automation.campaign.stopped`

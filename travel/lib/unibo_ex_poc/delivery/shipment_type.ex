@@ -80,12 +80,10 @@ defmodule UniboExPoc.Delivery.ShipmentType do
     create :create do
       primary? true
       accept [:shipment_type_id, :parent_type_id, :description, :has_table]
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:description]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

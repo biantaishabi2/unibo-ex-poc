@@ -1,0 +1,7 @@
+{
+  "id": "purchasing_goods_receipt_event_goods_receipt_confirm_purchasing_receipt_confirmed",
+  "module": "PURCHASING_GOODS_RECEIPT",
+  "edge_class": "all",
+  "source_file": "purchasing/event_goods_receipt_confirm_purchasing_receipt_confirmed.yaml",
+  "source_summary": "module: PURCHASING_GOODS_RECEIPT\\ncontract: GoodsReceipt.confirm event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml\\nsource_summary: GIVEN 实体 GoodsReceipt 的动作 confirm 完成 / WHEN 触发事件发布 / THEN 应广播 topic `purchasing.receipt.confirmed`"
+}

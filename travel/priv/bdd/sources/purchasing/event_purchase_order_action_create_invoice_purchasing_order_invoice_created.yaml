@@ -1,0 +1,5 @@
+module: PURCHASING_PURCHASE_ORDER
+contract: PurchaseOrder.action_create_invoice event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml
+source_summary: GIVEN 实体 PurchaseOrder 的动作 action_create_invoice 完成 / WHEN 触发事件发布 / THEN 应广播 topic `purchasing.order.invoice_created`

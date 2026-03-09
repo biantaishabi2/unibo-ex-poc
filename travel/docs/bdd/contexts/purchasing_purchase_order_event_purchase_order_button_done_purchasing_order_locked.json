@@ -1,0 +1,7 @@
+{
+  "id": "purchasing_purchase_order_event_purchase_order_button_done_purchasing_order_locked",
+  "module": "PURCHASING_PURCHASE_ORDER",
+  "edge_class": "all",
+  "source_file": "purchasing/event_purchase_order_button_done_purchasing_order_locked.yaml",
+  "source_summary": "module: PURCHASING_PURCHASE_ORDER\\ncontract: PurchaseOrder.button_done event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml\\nsource_summary: GIVEN 实体 PurchaseOrder 的动作 button_done 完成 / WHEN 触发事件发布 / THEN 应广播 topic `purchasing.order.locked`"
+}

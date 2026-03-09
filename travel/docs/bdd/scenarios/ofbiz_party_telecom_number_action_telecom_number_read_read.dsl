@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_TELECOM_NUMBER-SEED-ofbiz_party_telecom_number_action_telecom_number_read_read] TITLE: OFBIZ_PARTY_TELECOM_NUMBER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_telecom_number_action_telecom_number_read_read" module="OFBIZ_PARTY_TELECOM_NUMBER"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_TELECOM_NUMBER"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_TELECOM_NUMBER"

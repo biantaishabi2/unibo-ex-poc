@@ -107,24 +107,20 @@ defmodule UniboExPoc.Delivery.Delivery do
       accept [:delivery_id, :origin_facility_id, :dest_facility_id, :estimated_start_date, :estimated_arrival_date, :fixed_asset_id, :start_mileage]
       validate present(:origin_facility_id)
       validate present(:dest_facility_id)
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:actual_start_date, :actual_arrival_date, :end_mileage, :fuel_used]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :start do
       description "标记行程已出发"
       accept [:actual_start_date, :start_mileage]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :arrive do
       description "标记行程已到达"
       accept [:actual_arrival_date, :end_mileage, :fuel_used]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

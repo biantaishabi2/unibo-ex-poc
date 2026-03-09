@@ -1,0 +1,7 @@
+{
+  "id": "inventory_stock_quant_workflow_stock_quant_stock_quant_lifecycle_flow",
+  "module": "INVENTORY_STOCK_QUANT",
+  "edge_class": "all",
+  "source_file": "inventory/workflow_stock_quant_stock_quant_lifecycle_flow.yaml",
+  "source_summary": "module: INVENTORY_STOCK_QUANT\\ncontract: StockQuant.stock_quant_lifecycle_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/inventory/inventory.ubo.yaml\\nsource_summary: GIVEN 实体 StockQuant 定义工作流 stock_quant_lifecycle_flow / WHEN 按步骤执行 create -> update -> _update_available_quantity / THEN 流程顺序应满足声明约束"
+}

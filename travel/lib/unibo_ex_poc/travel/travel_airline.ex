@@ -12,6 +12,7 @@ defmodule UniboExPoc.Travel.TravelAirline do
   postgres do
     table "travel_airlines"
     repo UniboExPoc.Repo
+    identity_index_names unique_airline_code: "idx_travel_airlines_unique_airline_code"
   end
 
   graphql do
@@ -61,12 +62,10 @@ defmodule UniboExPoc.Travel.TravelAirline do
     create :create do
       primary? true
       accept [:airline_code, :airline_name, :iata_code, :icao_code, :status]
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:airline_name, :iata_code, :icao_code, :status]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

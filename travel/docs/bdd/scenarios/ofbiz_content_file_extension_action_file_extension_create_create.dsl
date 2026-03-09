@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_CONTENT_FILE_EXTENSION-SEED-ofbiz_content_file_extension_action_file_extension_create_create] TITLE: OFBIZ_CONTENT_FILE_EXTENSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_content_file_extension_action_file_extension_create_create" module="OFBIZ_CONTENT_FILE_EXTENSION"
+WHEN when_execute_seed_contract module="OFBIZ_CONTENT_FILE_EXTENSION"
+THEN then_seed_contract_should_hold module="OFBIZ_CONTENT_FILE_EXTENSION"

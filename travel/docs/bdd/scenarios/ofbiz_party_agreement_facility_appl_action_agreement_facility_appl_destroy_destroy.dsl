@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_AGREEMENT_FACILITY_APPL-SEED-ofbiz_party_agreement_facility_appl_action_agreement_facility_appl_destroy_destroy] TITLE: OFBIZ_PARTY_AGREEMENT_FACILITY_APPL contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_agreement_facility_appl_action_agreement_facility_appl_destroy_destroy" module="OFBIZ_PARTY_AGREEMENT_FACILITY_APPL"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_AGREEMENT_FACILITY_APPL"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_AGREEMENT_FACILITY_APPL"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SUBSCRIPTIONS_SUBSCRIPTION_PLAN-SEED-subscriptions_subscription_plan_action_subscription_plan_create_create] TITLE: SUBSCRIPTIONS_SUBSCRIPTION_PLAN contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="subscriptions_subscription_plan_action_subscription_plan_create_create" module="SUBSCRIPTIONS_SUBSCRIPTION_PLAN"
+WHEN when_execute_seed_contract module="SUBSCRIPTIONS_SUBSCRIPTION_PLAN"
+THEN then_seed_contract_should_hold module="SUBSCRIPTIONS_SUBSCRIPTION_PLAN"

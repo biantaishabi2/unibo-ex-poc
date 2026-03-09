@@ -1,0 +1,5 @@
+module: MAINTENANCE_CONTRACT
+contract: Contract.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 Contract 的动作 create 可执行，accept=[amount, start_date, expiration_date, cost_generated, cost_frequency]，args=[vehicle_id:uuid!] / WHEN 执行动作 create / THEN 状态变更与副作用应生效，应符合工作流步骤约束

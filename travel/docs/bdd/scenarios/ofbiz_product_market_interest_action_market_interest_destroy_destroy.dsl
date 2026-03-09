@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PRODUCT_MARKET_INTEREST-SEED-ofbiz_product_market_interest_action_market_interest_destroy_destroy] TITLE: OFBIZ_PRODUCT_MARKET_INTEREST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_product_market_interest_action_market_interest_destroy_destroy" module="OFBIZ_PRODUCT_MARKET_INTEREST"
+WHEN when_execute_seed_contract module="OFBIZ_PRODUCT_MARKET_INTEREST"
+THEN then_seed_contract_should_hold module="OFBIZ_PRODUCT_MARKET_INTEREST"

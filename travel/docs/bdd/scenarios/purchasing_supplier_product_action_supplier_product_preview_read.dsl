@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PURCHASING_SUPPLIER_PRODUCT-SEED-purchasing_supplier_product_action_supplier_product_preview_read] TITLE: PURCHASING_SUPPLIER_PRODUCT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="purchasing_supplier_product_action_supplier_product_preview_read" module="PURCHASING_SUPPLIER_PRODUCT"
+WHEN when_execute_seed_contract module="PURCHASING_SUPPLIER_PRODUCT"
+THEN then_seed_contract_should_hold module="PURCHASING_SUPPLIER_PRODUCT"

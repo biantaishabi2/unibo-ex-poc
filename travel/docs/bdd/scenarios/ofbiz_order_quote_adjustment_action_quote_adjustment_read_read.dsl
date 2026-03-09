@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_QUOTE_ADJUSTMENT-SEED-ofbiz_order_quote_adjustment_action_quote_adjustment_read_read] TITLE: OFBIZ_ORDER_QUOTE_ADJUSTMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_quote_adjustment_action_quote_adjustment_read_read" module="OFBIZ_ORDER_QUOTE_ADJUSTMENT"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_QUOTE_ADJUSTMENT"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_QUOTE_ADJUSTMENT"

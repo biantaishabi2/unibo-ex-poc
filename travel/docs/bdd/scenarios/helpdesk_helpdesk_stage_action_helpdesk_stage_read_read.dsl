@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HELPDESK_HELPDESK_STAGE-SEED-helpdesk_helpdesk_stage_action_helpdesk_stage_read_read] TITLE: HELPDESK_HELPDESK_STAGE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="helpdesk_helpdesk_stage_action_helpdesk_stage_read_read" module="HELPDESK_HELPDESK_STAGE"
+WHEN when_execute_seed_contract module="HELPDESK_HELPDESK_STAGE"
+THEN then_seed_contract_should_hold module="HELPDESK_HELPDESK_STAGE"

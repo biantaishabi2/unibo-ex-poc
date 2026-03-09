@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MANUFACTURING_MRP_SCHEDULE-SEED-manufacturing_mrp_schedule_action_mrp_schedule_read_read] TITLE: MANUFACTURING_MRP_SCHEDULE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="manufacturing_mrp_schedule_action_mrp_schedule_read_read" module="MANUFACTURING_MRP_SCHEDULE"
+WHEN when_execute_seed_contract module="MANUFACTURING_MRP_SCHEDULE"
+THEN then_seed_contract_should_hold module="MANUFACTURING_MRP_SCHEDULE"

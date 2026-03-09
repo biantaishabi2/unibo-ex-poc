@@ -1,0 +1,4 @@
+[SCENARIO: BDD-EXPENSES_EXPENSE_REPORT-SEED-expenses_expense_report_workflow_expense_report_expense_report_refuse_reset_flow] TITLE: EXPENSES_EXPENSE_REPORT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="expenses_expense_report_workflow_expense_report_expense_report_refuse_reset_flow" module="EXPENSES_EXPENSE_REPORT"
+WHEN when_execute_seed_contract module="EXPENSES_EXPENSE_REPORT"
+THEN then_seed_contract_should_hold module="EXPENSES_EXPENSE_REPORT"

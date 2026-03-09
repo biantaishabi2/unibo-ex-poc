@@ -22,6 +22,7 @@ defmodule UniboExPoc.Sales.Customer do
   postgres do
     table "sales_customers"
     repo UniboExPoc.Repo
+    identity_index_names unique_customer_code: "idx_sales_customers_unique_customer_code"
   end
 
   graphql do
@@ -109,7 +110,6 @@ defmodule UniboExPoc.Sales.Customer do
       accept [:customer_code, :name, :customer_type, :contact_name, :contact_phone, :contact_email, :billing_address, :shipping_address, :credit_limit, :payment_terms, :tax_id, :notes]
       validate present(:customer_code)
       validate present(:name)
-      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -133,7 +133,6 @@ defmodule UniboExPoc.Sales.Customer do
       primary? true
       accept [:name, :contact_name, :contact_phone, :contact_email, :billing_address, :shipping_address, :credit_limit, :payment_terms, :tax_id, :notes, :status]
       # skipped: validate present :name (incompatible with bulk update atomic path)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :block do
@@ -150,7 +149,6 @@ defmodule UniboExPoc.Sales.Customer do
       end
       # message: "只有活跃状态可以冻结"
       change set_attribute(:status, :blocked)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

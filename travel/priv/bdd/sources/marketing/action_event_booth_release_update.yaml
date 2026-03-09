@@ -1,0 +1,5 @@
+module: MARKETING_EVENT_BOOTH
+contract: EventBooth.release action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml
+source_summary: GIVEN 实体 EventBooth 的动作 release 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 release / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

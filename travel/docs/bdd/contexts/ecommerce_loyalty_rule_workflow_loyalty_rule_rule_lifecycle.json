@@ -1,0 +1,7 @@
+{
+  "id": "ecommerce_loyalty_rule_workflow_loyalty_rule_rule_lifecycle",
+  "module": "ECOMMERCE_LOYALTY_RULE",
+  "edge_class": "all",
+  "source_file": "ecommerce/workflow_loyalty_rule_rule_lifecycle.yaml",
+  "source_summary": "module: ECOMMERCE_LOYALTY_RULE\\ncontract: LoyaltyRule.rule_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ecommerce/ecommerce.ubo.yaml\\nsource_summary: GIVEN 实体 LoyaltyRule 定义工作流 rule_lifecycle / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束"
+}

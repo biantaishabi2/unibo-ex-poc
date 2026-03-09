@@ -1,0 +1,5 @@
+module: PLM_ECO
+contract: Eco.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/plm/plm.ubo.yaml
+source_summary: GIVEN 实体 Eco 的动作 create 可执行，accept=[name, note]，args=[type_id:uuid!, product_tmpl_id:uuid!, bom_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：应用变更后更新草稿 MO；BOM 激活/归档；更新产品当前 BOM 引用；递增产品版本号；新增组件触发采购需求；评估库存影响；ECO 类型关联项目；审批通知、活动调度；操作员反馈创建 ECO

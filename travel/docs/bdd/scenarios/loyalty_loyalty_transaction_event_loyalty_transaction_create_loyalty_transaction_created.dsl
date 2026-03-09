@@ -1,0 +1,4 @@
+[SCENARIO: BDD-LOYALTY_LOYALTY_TRANSACTION-SEED-loyalty_loyalty_transaction_event_loyalty_transaction_create_loyalty_transaction_created] TITLE: LOYALTY_LOYALTY_TRANSACTION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="loyalty_loyalty_transaction_event_loyalty_transaction_create_loyalty_transaction_created" module="LOYALTY_LOYALTY_TRANSACTION"
+WHEN when_execute_seed_contract module="LOYALTY_LOYALTY_TRANSACTION"
+THEN then_seed_contract_should_hold module="LOYALTY_LOYALTY_TRANSACTION"

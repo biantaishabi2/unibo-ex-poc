@@ -1,0 +1,7 @@
+{
+  "id": "marketing_mailing_workflow_mailing_mailing_delivery_flow",
+  "module": "MARKETING_MAILING",
+  "edge_class": "all",
+  "source_file": "marketing/workflow_mailing_mailing_delivery_flow.yaml",
+  "source_summary": "module: MARKETING_MAILING\\ncontract: Mailing.mailing_delivery_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/marketing/marketing.ubo.yaml\\nsource_summary: GIVEN 实体 Mailing 定义工作流 mailing_delivery_flow / WHEN 按步骤执行 create -> schedule -> put_in_queue -> launch -> retry_failed / THEN 流程顺序应满足声明约束"
+}

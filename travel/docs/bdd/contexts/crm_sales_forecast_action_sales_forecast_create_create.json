@@ -1,0 +1,7 @@
+{
+  "id": "crm_sales_forecast_action_sales_forecast_create_create",
+  "module": "CRM_SALES_FORECAST",
+  "edge_class": "all",
+  "source_file": "crm/action_sales_forecast_create_create.yaml",
+  "source_summary": "module: CRM_SALES_FORECAST\\ncontract: SalesForecast.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/crm/crm.ubo.yaml\\nsource_summary: GIVEN 实体 SalesForecast 的动作 create 可执行，accept=[name, period, amount, probability, recurring_revenue, recurring_revenue_monthly, currency, notes]，args=[team_id:uuid] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 新建预测，update 修改金额后 prorated_revenue 自动重算；create 带 probability 的预测，prorated_revenue 自动计算"
+}

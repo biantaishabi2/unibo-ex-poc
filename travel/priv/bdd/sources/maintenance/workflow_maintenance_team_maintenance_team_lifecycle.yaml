@@ -1,0 +1,5 @@
+module: MAINTENANCE_MAINTENANCE_TEAM
+contract: MaintenanceTeam.maintenance_team_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 MaintenanceTeam 定义工作流 maintenance_team_lifecycle / WHEN 按步骤执行 create -> update -> add_member -> remove_member / THEN 流程顺序应满足声明约束

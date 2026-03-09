@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_AGREEMENT_STATUS-SEED-ofbiz_party_agreement_status_action_agreement_status_destroy_destroy] TITLE: OFBIZ_PARTY_AGREEMENT_STATUS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_agreement_status_action_agreement_status_destroy_destroy" module="OFBIZ_PARTY_AGREEMENT_STATUS"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_AGREEMENT_STATUS"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_AGREEMENT_STATUS"

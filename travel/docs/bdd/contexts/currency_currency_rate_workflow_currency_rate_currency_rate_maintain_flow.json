@@ -1,0 +1,7 @@
+{
+  "id": "currency_currency_rate_workflow_currency_rate_currency_rate_maintain_flow",
+  "module": "CURRENCY_CURRENCY_RATE",
+  "edge_class": "all",
+  "source_file": "currency/workflow_currency_rate_currency_rate_maintain_flow.yaml",
+  "source_summary": "module: CURRENCY_CURRENCY_RATE\\ncontract: CurrencyRate.currency_rate_maintain_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/currency/currency.ubo.yaml\\nsource_summary: GIVEN 实体 CurrencyRate 定义工作流 currency_rate_maintain_flow / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束"
+}

@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteType do
   end
 
   graphql do
-    type :order_quote_type
+    type :ofbiz_order_quote_type
 
     queries do
-      get :get_order_quote_type, :read
-      list :list_order_quote_types, :read
+      get :get_ofbiz_order_quote_type, :read
+      list :list_ofbiz_order_quote_types, :read
     end
 
     mutations do
-      create :create_order_quote_type, :create
-      update :update_order_quote_type, :update
-      destroy :delete_order_quote_type, :destroy
+      create :create_ofbiz_order_quote_type, :create
+      update :update_ofbiz_order_quote_type, :update
+      destroy :delete_ofbiz_order_quote_type, :destroy
     end
 
   end

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HR_EMPLOYEE_SKILL-SEED-hr_employee_skill_workflow_employee_skill_employee_skill_write_flow] TITLE: HR_EMPLOYEE_SKILL contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="hr_employee_skill_workflow_employee_skill_employee_skill_write_flow" module="HR_EMPLOYEE_SKILL"
+WHEN when_execute_seed_contract module="HR_EMPLOYEE_SKILL"
+THEN then_seed_contract_should_hold module="HR_EMPLOYEE_SKILL"

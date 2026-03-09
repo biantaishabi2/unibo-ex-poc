@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_CONTENT_META_DATA_PREDICATE-SEED-ofbiz_content_meta_data_predicate_action_meta_data_predicate_create_create] TITLE: OFBIZ_CONTENT_META_DATA_PREDICATE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_content_meta_data_predicate_action_meta_data_predicate_create_create" module="OFBIZ_CONTENT_META_DATA_PREDICATE"
+WHEN when_execute_seed_contract module="OFBIZ_CONTENT_META_DATA_PREDICATE"
+THEN then_seed_contract_should_hold module="OFBIZ_CONTENT_META_DATA_PREDICATE"

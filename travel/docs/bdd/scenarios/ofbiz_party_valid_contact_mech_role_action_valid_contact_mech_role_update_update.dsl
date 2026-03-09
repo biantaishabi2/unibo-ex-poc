@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_VALID_CONTACT_MECH_ROLE-SEED-ofbiz_party_valid_contact_mech_role_action_valid_contact_mech_role_update_update] TITLE: OFBIZ_PARTY_VALID_CONTACT_MECH_ROLE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_valid_contact_mech_role_action_valid_contact_mech_role_update_update" module="OFBIZ_PARTY_VALID_CONTACT_MECH_ROLE"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_VALID_CONTACT_MECH_ROLE"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_VALID_CONTACT_MECH_ROLE"

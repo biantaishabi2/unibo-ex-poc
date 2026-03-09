@@ -1,0 +1,7 @@
+{
+  "id": "sales_sales_order_action_sales_order_list_read",
+  "module": "SALES_SALES_ORDER",
+  "edge_class": "all",
+  "source_file": "sales/action_sales_order_list_read.yaml",
+  "source_summary": "module: SALES_SALES_ORDER\\ncontract: SalesOrder.list action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/sales/sales.ubo.yaml\\nsource_summary: GIVEN 实体 SalesOrder 的动作 list 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 list / THEN 读取结果应符合查询语义"
+}

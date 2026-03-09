@@ -1,0 +1,7 @@
+{
+  "id": "delivery_delivery_action_delivery_arrive_update",
+  "module": "DELIVERY_DELIVERY",
+  "edge_class": "all",
+  "source_file": "delivery/action_delivery_arrive_update.yaml",
+  "source_summary": "module: DELIVERY_DELIVERY\\ncontract: Delivery.arrive action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/delivery/delivery.ubo.yaml\\nsource_summary: GIVEN 实体 Delivery 的动作 arrive 可执行，accept=[actual_arrival_date, end_mileage, fuel_used]，args=[无显式参数] / WHEN 执行动作 arrive / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建行程 -> start 出发 -> arrive 到达"
+}

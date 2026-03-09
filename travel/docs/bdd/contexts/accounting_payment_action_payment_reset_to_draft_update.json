@@ -1,0 +1,7 @@
+{
+  "id": "accounting_payment_action_payment_reset_to_draft_update",
+  "module": "ACCOUNTING_PAYMENT",
+  "edge_class": "all",
+  "source_file": "accounting/action_payment_reset_to_draft_update.yaml",
+  "source_summary": "module: ACCOUNTING_PAYMENT\\ncontract: Payment.reset_to_draft action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/accounting/accounting.ubo.yaml\\nsource_summary: GIVEN 实体 Payment 的动作 reset_to_draft 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 reset_to_draft / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

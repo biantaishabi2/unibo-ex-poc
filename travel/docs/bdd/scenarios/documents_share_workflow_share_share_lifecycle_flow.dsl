@@ -1,0 +1,4 @@
+[SCENARIO: BDD-DOCUMENTS_SHARE-SEED-documents_share_workflow_share_share_lifecycle_flow] TITLE: DOCUMENTS_SHARE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="documents_share_workflow_share_share_lifecycle_flow" module="DOCUMENTS_SHARE"
+WHEN when_execute_seed_contract module="DOCUMENTS_SHARE"
+THEN then_seed_contract_should_hold module="DOCUMENTS_SHARE"

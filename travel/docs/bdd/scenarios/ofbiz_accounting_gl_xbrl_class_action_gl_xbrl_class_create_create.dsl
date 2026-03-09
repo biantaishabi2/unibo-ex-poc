@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_GL_XBRL_CLASS-SEED-ofbiz_accounting_gl_xbrl_class_action_gl_xbrl_class_create_create] TITLE: OFBIZ_ACCOUNTING_GL_XBRL_CLASS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_gl_xbrl_class_action_gl_xbrl_class_create_create" module="OFBIZ_ACCOUNTING_GL_XBRL_CLASS"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_GL_XBRL_CLASS"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_GL_XBRL_CLASS"

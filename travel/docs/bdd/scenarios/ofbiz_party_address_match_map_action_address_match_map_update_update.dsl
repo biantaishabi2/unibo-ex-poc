@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_ADDRESS_MATCH_MAP-SEED-ofbiz_party_address_match_map_action_address_match_map_update_update] TITLE: OFBIZ_PARTY_ADDRESS_MATCH_MAP contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_address_match_map_action_address_match_map_update_update" module="OFBIZ_PARTY_ADDRESS_MATCH_MAP"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_ADDRESS_MATCH_MAP"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_ADDRESS_MATCH_MAP"

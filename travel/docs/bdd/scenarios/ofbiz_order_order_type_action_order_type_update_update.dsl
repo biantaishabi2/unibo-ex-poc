@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_ORDER_TYPE-SEED-ofbiz_order_order_type_action_order_type_update_update] TITLE: OFBIZ_ORDER_ORDER_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_order_type_action_order_type_update_update" module="OFBIZ_ORDER_ORDER_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_ORDER_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_ORDER_TYPE"

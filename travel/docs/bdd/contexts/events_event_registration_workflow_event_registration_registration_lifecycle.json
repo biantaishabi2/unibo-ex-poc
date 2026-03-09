@@ -1,0 +1,7 @@
+{
+  "id": "events_event_registration_workflow_event_registration_registration_lifecycle",
+  "module": "EVENTS_EVENT_REGISTRATION",
+  "edge_class": "all",
+  "source_file": "events/workflow_event_registration_registration_lifecycle.yaml",
+  "source_summary": "module: EVENTS_EVENT_REGISTRATION\\ncontract: EventRegistration.registration_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/events/events.ubo.yaml\\nsource_summary: GIVEN 实体 EventRegistration 定义工作流 registration_lifecycle / WHEN 按步骤执行 register -> confirm -> check_in -> cancel / THEN 流程顺序应满足声明约束"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_VALUE_LINK_KEY-SEED-ofbiz_accounting_value_link_key_action_value_link_key_destroy_destroy] TITLE: OFBIZ_ACCOUNTING_VALUE_LINK_KEY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_value_link_key_action_value_link_key_destroy_destroy" module="OFBIZ_ACCOUNTING_VALUE_LINK_KEY"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_VALUE_LINK_KEY"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_VALUE_LINK_KEY"

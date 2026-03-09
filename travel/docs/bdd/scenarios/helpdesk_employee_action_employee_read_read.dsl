@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HELPDESK_EMPLOYEE-SEED-helpdesk_employee_action_employee_read_read] TITLE: HELPDESK_EMPLOYEE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="helpdesk_employee_action_employee_read_read" module="HELPDESK_EMPLOYEE"
+WHEN when_execute_seed_contract module="HELPDESK_EMPLOYEE"
+THEN then_seed_contract_should_hold module="HELPDESK_EMPLOYEE"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_BUDGET_ITEM-SEED-accounting_budget_item_workflow_budget_item_budget_item_editing] TITLE: ACCOUNTING_BUDGET_ITEM contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="accounting_budget_item_workflow_budget_item_budget_item_editing" module="ACCOUNTING_BUDGET_ITEM"
+WHEN when_execute_seed_contract module="ACCOUNTING_BUDGET_ITEM"
+THEN then_seed_contract_should_hold module="ACCOUNTING_BUDGET_ITEM"

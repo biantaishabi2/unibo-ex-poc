@@ -1,0 +1,5 @@
+module: KNOWLEDGE_ARTICLE
+contract: Article.action_publish action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/knowledge/knowledge.ubo.yaml
+source_summary: GIVEN 实体 Article 的动作 action_publish 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 action_publish / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：create 创建文章，update 编辑正文，action_publish 发布文章；action_publish 发布后，action_unpublish 撤销发布回到草稿

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-MAINTENANCE_PARTY-SEED-maintenance_party_action_party_read_read] TITLE: MAINTENANCE_PARTY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="maintenance_party_action_party_read_read" module="MAINTENANCE_PARTY"
+WHEN when_execute_seed_contract module="MAINTENANCE_PARTY"
+THEN then_seed_contract_should_hold module="MAINTENANCE_PARTY"

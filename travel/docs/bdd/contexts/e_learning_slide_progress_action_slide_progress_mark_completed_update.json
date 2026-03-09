@@ -1,0 +1,7 @@
+{
+  "id": "e_learning_slide_progress_action_slide_progress_mark_completed_update",
+  "module": "E_LEARNING_SLIDE_PROGRESS",
+  "edge_class": "all",
+  "source_file": "e_learning/action_slide_progress_mark_completed_update.yaml",
+  "source_summary": "module: E_LEARNING_SLIDE_PROGRESS\\ncontract: SlideProgress.mark_completed action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/elearning/elearning.ubo.yaml\\nsource_summary: GIVEN 实体 SlideProgress 的动作 mark_completed 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 mark_completed / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：mark_completed 尝试对测验类型手动标记完成，校验失败；mark_completed 尝试对已完成内容标记完成，校验失败"
+}

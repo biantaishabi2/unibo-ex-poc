@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_ORDER
+contract: RentalOrder.action_cancel action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalOrder 的动作 action_cancel 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 action_cancel / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件 / 补充场景：create 创建租赁订单 -> action_confirm 确认 -> action_cancel 取消订单

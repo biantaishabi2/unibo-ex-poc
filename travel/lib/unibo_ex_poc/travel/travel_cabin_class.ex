@@ -12,6 +12,7 @@ defmodule UniboExPoc.Travel.TravelCabinClass do
   postgres do
     table "travel_cabin_classes"
     repo UniboExPoc.Repo
+    identity_index_names unique_cabin_class_code: "idx_travel_cabin_classes_unique_cabin_class_code"
   end
 
   graphql do
@@ -57,12 +58,10 @@ defmodule UniboExPoc.Travel.TravelCabinClass do
     create :create do
       primary? true
       accept [:cabin_class_code, :cabin_class_name, :cabin_rank, :status]
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:cabin_class_name, :cabin_rank, :status]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

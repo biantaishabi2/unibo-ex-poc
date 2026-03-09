@@ -1,0 +1,5 @@
+module: OFBIZ_COMMON_UOM_CONVERSION
+contract: UomConversion.update action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/ofbiz/common.ubo.yaml
+source_summary: GIVEN 实体 UomConversion 的动作 update 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 update / THEN 保留基础行为占位（建议补充 validation/change）

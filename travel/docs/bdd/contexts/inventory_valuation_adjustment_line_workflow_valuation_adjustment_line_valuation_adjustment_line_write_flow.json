@@ -1,0 +1,7 @@
+{
+  "id": "inventory_valuation_adjustment_line_workflow_valuation_adjustment_line_valuation_adjustment_line_write_flow",
+  "module": "INVENTORY_VALUATION_ADJUSTMENT_LINE",
+  "edge_class": "all",
+  "source_file": "inventory/workflow_valuation_adjustment_line_valuation_adjustment_line_write_flow.yaml",
+  "source_summary": "module: INVENTORY_VALUATION_ADJUSTMENT_LINE\\ncontract: ValuationAdjustmentLine.valuation_adjustment_line_write_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/inventory/inventory.ubo.yaml\\nsource_summary: GIVEN 实体 ValuationAdjustmentLine 定义工作流 valuation_adjustment_line_write_flow / WHEN 按步骤执行 create / THEN 流程顺序应满足声明约束"
+}

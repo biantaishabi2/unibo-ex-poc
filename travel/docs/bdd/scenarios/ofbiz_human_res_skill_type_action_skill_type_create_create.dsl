@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_HUMAN_RES_SKILL_TYPE-SEED-ofbiz_human_res_skill_type_action_skill_type_create_create] TITLE: OFBIZ_HUMAN_RES_SKILL_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_human_res_skill_type_action_skill_type_create_create" module="OFBIZ_HUMAN_RES_SKILL_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_HUMAN_RES_SKILL_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_HUMAN_RES_SKILL_TYPE"

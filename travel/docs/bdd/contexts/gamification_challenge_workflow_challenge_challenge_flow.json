@@ -1,0 +1,7 @@
+{
+  "id": "gamification_challenge_workflow_challenge_challenge_flow",
+  "module": "GAMIFICATION_CHALLENGE",
+  "edge_class": "all",
+  "source_file": "gamification/workflow_challenge_challenge_flow.yaml",
+  "source_summary": "module: GAMIFICATION_CHALLENGE\\ncontract: Challenge.challenge_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/gamification/gamification.ubo.yaml\\nsource_summary: GIVEN 实体 Challenge 定义工作流 challenge_flow / WHEN 按步骤执行 create -> update -> action_start -> action_check -> action_done / THEN 流程顺序应满足声明约束"
+}

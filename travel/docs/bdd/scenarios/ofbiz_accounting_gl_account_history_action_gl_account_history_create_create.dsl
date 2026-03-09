@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_GL_ACCOUNT_HISTORY-SEED-ofbiz_accounting_gl_account_history_action_gl_account_history_create_create] TITLE: OFBIZ_ACCOUNTING_GL_ACCOUNT_HISTORY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_gl_account_history_action_gl_account_history_create_create" module="OFBIZ_ACCOUNTING_GL_ACCOUNT_HISTORY"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_GL_ACCOUNT_HISTORY"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_GL_ACCOUNT_HISTORY"

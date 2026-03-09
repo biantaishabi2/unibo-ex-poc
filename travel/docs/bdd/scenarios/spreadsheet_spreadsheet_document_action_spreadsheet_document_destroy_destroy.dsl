@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SPREADSHEET_SPREADSHEET_DOCUMENT-SEED-spreadsheet_spreadsheet_document_action_spreadsheet_document_destroy_destroy] TITLE: SPREADSHEET_SPREADSHEET_DOCUMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="spreadsheet_spreadsheet_document_action_spreadsheet_document_destroy_destroy" module="SPREADSHEET_SPREADSHEET_DOCUMENT"
+WHEN when_execute_seed_contract module="SPREADSHEET_SPREADSHEET_DOCUMENT"
+THEN then_seed_contract_should_hold module="SPREADSHEET_SPREADSHEET_DOCUMENT"

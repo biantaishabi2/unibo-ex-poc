@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_PARTY_RATE-SEED-ofbiz_accounting_party_rate_action_party_rate_update_update] TITLE: OFBIZ_ACCOUNTING_PARTY_RATE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_party_rate_action_party_rate_update_update" module="OFBIZ_ACCOUNTING_PARTY_RATE"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_PARTY_RATE"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_PARTY_RATE"

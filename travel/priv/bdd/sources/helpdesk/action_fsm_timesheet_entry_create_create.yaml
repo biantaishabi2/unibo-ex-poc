@@ -1,0 +1,5 @@
+module: HELPDESK_FSM_TIMESHEET_ENTRY
+contract: FsmTimesheetEntry.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml
+source_summary: GIVEN 实体 FsmTimesheetEntry 的动作 create 可执行，accept=[date, hours, description]，args=[service_order_id:uuid!, technician_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 记录工时，update 修改工时小时数；create 记录工时时 hours <= 0 校验失败；create 记录工时时未指定技术员，校验失败

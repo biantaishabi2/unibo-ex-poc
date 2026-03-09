@@ -1,0 +1,7 @@
+{
+  "id": "hr_job_application_action_job_application_advance_update",
+  "module": "HR_JOB_APPLICATION",
+  "edge_class": "all",
+  "source_file": "hr/action_job_application_advance_update.yaml",
+  "source_summary": "module: HR_JOB_APPLICATION\\ncontract: JobApplication.advance action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/hr/hr.ubo.yaml\\nsource_summary: GIVEN 实体 JobApplication 的动作 advance 可执行，accept=[status]，args=[无显式参数] / WHEN 执行动作 advance / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 后 advance 到 interview，再 hire 完成录用；reject 后 reset 回 received，再次 advance 进入筛选"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "calendar_calendar_event_event_calendar_event_confirm_calendar_event_confirmed",
+  "module": "CALENDAR_CALENDAR_EVENT",
+  "edge_class": "all",
+  "source_file": "calendar/event_calendar_event_confirm_calendar_event_confirmed.yaml",
+  "source_summary": "module: CALENDAR_CALENDAR_EVENT\\ncontract: CalendarEvent.confirm event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/calendar/calendar.ubo.yaml\\nsource_summary: GIVEN 实体 CalendarEvent 的动作 confirm 完成 / WHEN 触发事件发布 / THEN 应广播 topic `calendar.event.confirmed`"
+}

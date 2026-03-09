@@ -1,0 +1,7 @@
+{
+  "id": "quality_quality_check_workflow_quality_check_quality_check_lifecycle",
+  "module": "QUALITY_QUALITY_CHECK",
+  "edge_class": "all",
+  "source_file": "quality/workflow_quality_check_quality_check_lifecycle.yaml",
+  "source_summary": "module: QUALITY_QUALITY_CHECK\\ncontract: QualityCheck.quality_check_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/quality/quality.ubo.yaml\\nsource_summary: GIVEN 实体 QualityCheck 定义工作流 quality_check_lifecycle / WHEN 按步骤执行 create -> do_pass -> do_fail / THEN 流程顺序应满足声明约束"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "purchasing_supplier_action_supplier_update_update",
+  "module": "PURCHASING_SUPPLIER",
+  "edge_class": "all",
+  "source_file": "purchasing/action_supplier_update_update.yaml",
+  "source_summary": "module: PURCHASING_SUPPLIER\\ncontract: Supplier.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml\\nsource_summary: GIVEN 实体 Supplier 的动作 update 可执行，accept=[name, contact_name, contact_phone, contact_email, address, payment_terms, tax_id, purchase_warn, purchase_warn_msg, notes, status]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "io_t_vo_ip_user_config_action_vo_ip_user_config_update_update",
+  "module": "IO_T_VO_IP_USER_CONFIG",
+  "edge_class": "all",
+  "source_file": "io_t/action_vo_ip_user_config_update_update.yaml",
+  "source_summary": "module: IO_T_VO_IP_USER_CONFIG\\ncontract: VoIPUserConfig.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/iot/iot.ubo.yaml\\nsource_summary: GIVEN 实体 VoIPUserConfig 的动作 update 可执行，accept=[extension, sip_login, sip_secret, auto_answer, ring_timeout, outgoing_caller_id, voicemail_enabled]，args=[provider_id:bigint] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

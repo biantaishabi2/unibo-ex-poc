@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_HUMAN_RES_JOB_INTERVIEW_TYPE-SEED-ofbiz_human_res_job_interview_type_action_job_interview_type_destroy_destroy] TITLE: OFBIZ_HUMAN_RES_JOB_INTERVIEW_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_human_res_job_interview_type_action_job_interview_type_destroy_destroy" module="OFBIZ_HUMAN_RES_JOB_INTERVIEW_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_HUMAN_RES_JOB_INTERVIEW_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_HUMAN_RES_JOB_INTERVIEW_TYPE"

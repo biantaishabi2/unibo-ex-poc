@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_CUST_REQUEST_STATUS-SEED-ofbiz_order_cust_request_status_action_cust_request_status_destroy_destroy] TITLE: OFBIZ_ORDER_CUST_REQUEST_STATUS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_cust_request_status_action_cust_request_status_destroy_destroy" module="OFBIZ_ORDER_CUST_REQUEST_STATUS"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_CUST_REQUEST_STATUS"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_CUST_REQUEST_STATUS"

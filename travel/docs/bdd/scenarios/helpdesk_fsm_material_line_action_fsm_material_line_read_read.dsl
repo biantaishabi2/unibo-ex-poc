@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HELPDESK_FSM_MATERIAL_LINE-SEED-helpdesk_fsm_material_line_action_fsm_material_line_read_read] TITLE: HELPDESK_FSM_MATERIAL_LINE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="helpdesk_fsm_material_line_action_fsm_material_line_read_read" module="HELPDESK_FSM_MATERIAL_LINE"
+WHEN when_execute_seed_contract module="HELPDESK_FSM_MATERIAL_LINE"
+THEN then_seed_contract_should_hold module="HELPDESK_FSM_MATERIAL_LINE"

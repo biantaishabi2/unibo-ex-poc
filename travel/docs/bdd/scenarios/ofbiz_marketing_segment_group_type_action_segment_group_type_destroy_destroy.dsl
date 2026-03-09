@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_MARKETING_SEGMENT_GROUP_TYPE-SEED-ofbiz_marketing_segment_group_type_action_segment_group_type_destroy_destroy] TITLE: OFBIZ_MARKETING_SEGMENT_GROUP_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_marketing_segment_group_type_action_segment_group_type_destroy_destroy" module="OFBIZ_MARKETING_SEGMENT_GROUP_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_MARKETING_SEGMENT_GROUP_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_MARKETING_SEGMENT_GROUP_TYPE"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_HUMAN_RES_PAYROLL_PREFERENCE-SEED-ofbiz_human_res_payroll_preference_action_payroll_preference_destroy_destroy] TITLE: OFBIZ_HUMAN_RES_PAYROLL_PREFERENCE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_human_res_payroll_preference_action_payroll_preference_destroy_destroy" module="OFBIZ_HUMAN_RES_PAYROLL_PREFERENCE"
+WHEN when_execute_seed_contract module="OFBIZ_HUMAN_RES_PAYROLL_PREFERENCE"
+THEN then_seed_contract_should_hold module="OFBIZ_HUMAN_RES_PAYROLL_PREFERENCE"

@@ -1,0 +1,5 @@
+module: MEMBERSHIP_MEMBERSHIP_PRODUCT
+contract: MembershipProduct.membership_product_maintain_flow workflow contract
+edge_class: workflow_contract
+source_file: /tmp/unibo_models_ubo_only_989/membership/membership.ubo.yaml
+source_summary: GIVEN 实体 MembershipProduct 定义工作流 membership_product_maintain_flow / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束

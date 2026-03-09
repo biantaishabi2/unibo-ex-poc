@@ -1,0 +1,7 @@
+{
+  "id": "purchasing_product_action_product_preview_read",
+  "module": "PURCHASING_PRODUCT",
+  "edge_class": "all",
+  "source_file": "purchasing/action_product_preview_read.yaml",
+  "source_summary": "module: PURCHASING_PRODUCT\\ncontract: Product.preview action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/purchasing/purchasing.ubo.yaml\\nsource_summary: GIVEN 实体 Product 的动作 preview 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 preview / THEN 读取结果应符合查询语义"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "loyalty_coupon_action_coupon_create_create",
+  "module": "LOYALTY_COUPON",
+  "edge_class": "all",
+  "source_file": "loyalty/action_coupon_create_create.yaml",
+  "source_summary": "module: LOYALTY_COUPON\\ncontract: Coupon.create action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/loyalty/loyalty.ubo.yaml\\nsource_summary: GIVEN 实体 Coupon 的动作 create 可执行，accept=[code, coupon_type, discount_type, discount_value, min_order_amount, max_discount_amount, use_limit_per_code, use_limit_per_customer, from_date, thru_date, require_email_or_party]，args=[program_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "sign_sign_role_action_sign_role_update_update",
+  "module": "SIGN_SIGN_ROLE",
+  "edge_class": "all",
+  "source_file": "sign/action_sign_role_update_update.yaml",
+  "source_summary": "module: SIGN_SIGN_ROLE\\ncontract: SignRole.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/sign/sign.ubo.yaml\\nsource_summary: GIVEN 实体 SignRole 的动作 update 可执行，accept=[name, color, is_default]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

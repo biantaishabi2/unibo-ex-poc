@@ -1,0 +1,7 @@
+{
+  "id": "hr_performance_review_workflow_performance_review_appraisal_reopen_flow",
+  "module": "HR_PERFORMANCE_REVIEW",
+  "edge_class": "all",
+  "source_file": "hr/workflow_performance_review_appraisal_reopen_flow.yaml",
+  "source_summary": "module: HR_PERFORMANCE_REVIEW\\ncontract: PerformanceReview.appraisal_reopen_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/hr/hr.ubo.yaml\\nsource_summary: GIVEN 实体 PerformanceReview 定义工作流 appraisal_reopen_flow / WHEN 按步骤执行 create -> action_cancel -> action_back -> action_confirm / THEN 流程顺序应满足声明约束"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_DESIRED_FEATURE-SEED-ofbiz_order_desired_feature_action_desired_feature_update_update] TITLE: OFBIZ_ORDER_DESIRED_FEATURE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_desired_feature_action_desired_feature_update_update" module="OFBIZ_ORDER_DESIRED_FEATURE"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_DESIRED_FEATURE"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_DESIRED_FEATURE"

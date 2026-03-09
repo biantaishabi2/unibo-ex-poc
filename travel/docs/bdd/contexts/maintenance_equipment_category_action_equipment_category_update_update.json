@@ -1,0 +1,7 @@
+{
+  "id": "maintenance_equipment_category_action_equipment_category_update_update",
+  "module": "MAINTENANCE_EQUIPMENT_CATEGORY",
+  "edge_class": "all",
+  "source_file": "maintenance/action_equipment_category_update_update.yaml",
+  "source_summary": "module: MAINTENANCE_EQUIPMENT_CATEGORY\\ncontract: EquipmentCategory.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml\\nsource_summary: GIVEN 实体 EquipmentCategory 的动作 update 可执行，accept=[name, alias_name]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

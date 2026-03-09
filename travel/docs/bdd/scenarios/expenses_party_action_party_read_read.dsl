@@ -1,0 +1,4 @@
+[SCENARIO: BDD-EXPENSES_PARTY-SEED-expenses_party_action_party_read_read] TITLE: EXPENSES_PARTY contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="expenses_party_action_party_read_read" module="EXPENSES_PARTY"
+WHEN when_execute_seed_contract module="EXPENSES_PARTY"
+THEN then_seed_contract_should_hold module="EXPENSES_PARTY"

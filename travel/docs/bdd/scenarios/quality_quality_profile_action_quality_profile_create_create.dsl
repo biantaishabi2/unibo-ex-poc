@@ -1,0 +1,4 @@
+[SCENARIO: BDD-QUALITY_QUALITY_PROFILE-SEED-quality_quality_profile_action_quality_profile_create_create] TITLE: QUALITY_QUALITY_PROFILE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="quality_quality_profile_action_quality_profile_create_create" module="QUALITY_QUALITY_PROFILE"
+WHEN when_execute_seed_contract module="QUALITY_QUALITY_PROFILE"
+THEN then_seed_contract_should_hold module="QUALITY_QUALITY_PROFILE"

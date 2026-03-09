@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ECOMMERCE_LOYALTY_CARD-SEED-ecommerce_loyalty_card_action_loyalty_card_create_create] TITLE: ECOMMERCE_LOYALTY_CARD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ecommerce_loyalty_card_action_loyalty_card_create_create" module="ECOMMERCE_LOYALTY_CARD"
+WHEN when_execute_seed_contract module="ECOMMERCE_LOYALTY_CARD"
+THEN then_seed_contract_should_hold module="ECOMMERCE_LOYALTY_CARD"

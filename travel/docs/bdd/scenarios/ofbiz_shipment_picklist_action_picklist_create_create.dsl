@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SHIPMENT_PICKLIST-SEED-ofbiz_shipment_picklist_action_picklist_create_create] TITLE: OFBIZ_SHIPMENT_PICKLIST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_shipment_picklist_action_picklist_create_create" module="OFBIZ_SHIPMENT_PICKLIST"
+WHEN when_execute_seed_contract module="OFBIZ_SHIPMENT_PICKLIST"
+THEN then_seed_contract_should_hold module="OFBIZ_SHIPMENT_PICKLIST"

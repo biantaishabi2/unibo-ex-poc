@@ -1,0 +1,7 @@
+{
+  "id": "membership_membership_line_workflow_membership_line_membership_flow",
+  "module": "MEMBERSHIP_MEMBERSHIP_LINE",
+  "edge_class": "all",
+  "source_file": "membership/workflow_membership_line_membership_flow.yaml",
+  "source_summary": "module: MEMBERSHIP_MEMBERSHIP_LINE\\ncontract: MembershipLine.membership_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/membership/membership.ubo.yaml\\nsource_summary: GIVEN 实体 MembershipLine 定义工作流 membership_flow / WHEN 按步骤执行 create -> cancel -> renew / THEN 流程顺序应满足声明约束"
+}

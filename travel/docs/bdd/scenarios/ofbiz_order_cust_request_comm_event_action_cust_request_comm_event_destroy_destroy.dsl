@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_CUST_REQUEST_COMM_EVENT-SEED-ofbiz_order_cust_request_comm_event_action_cust_request_comm_event_destroy_destroy] TITLE: OFBIZ_ORDER_CUST_REQUEST_COMM_EVENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_cust_request_comm_event_action_cust_request_comm_event_destroy_destroy" module="OFBIZ_ORDER_CUST_REQUEST_COMM_EVENT"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_CUST_REQUEST_COMM_EVENT"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_CUST_REQUEST_COMM_EVENT"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_WORK_EFFORT_WORK_EFFORT_REVIEW-SEED-ofbiz_work_effort_work_effort_review_action_work_effort_review_update_update] TITLE: OFBIZ_WORK_EFFORT_WORK_EFFORT_REVIEW contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_work_effort_work_effort_review_action_work_effort_review_update_update" module="OFBIZ_WORK_EFFORT_WORK_EFFORT_REVIEW"
+WHEN when_execute_seed_contract module="OFBIZ_WORK_EFFORT_WORK_EFFORT_REVIEW"
+THEN then_seed_contract_should_hold module="OFBIZ_WORK_EFFORT_WORK_EFFORT_REVIEW"

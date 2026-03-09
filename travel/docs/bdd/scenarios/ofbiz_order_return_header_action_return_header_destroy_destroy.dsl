@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_RETURN_HEADER-SEED-ofbiz_order_return_header_action_return_header_destroy_destroy] TITLE: OFBIZ_ORDER_RETURN_HEADER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_return_header_action_return_header_destroy_destroy" module="OFBIZ_ORDER_RETURN_HEADER"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_RETURN_HEADER"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_RETURN_HEADER"

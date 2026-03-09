@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Shipment.Picklist do
   end
 
   graphql do
-    type :shipment_picklist
+    type :ofbiz_shipment_picklist
 
     queries do
-      get :get_shipment_picklist, :read
-      list :list_shipment_picklists, :read
+      get :get_ofbiz_shipment_picklist, :read
+      list :list_ofbiz_shipment_picklists, :read
     end
 
     mutations do
-      create :create_shipment_picklist, :create
-      update :update_shipment_picklist, :update
-      destroy :delete_shipment_picklist, :destroy
+      create :create_ofbiz_shipment_picklist, :create
+      update :update_ofbiz_shipment_picklist, :update
+      destroy :delete_ofbiz_shipment_picklist, :destroy
     end
 
   end

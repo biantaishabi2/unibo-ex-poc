@@ -1,0 +1,7 @@
+{
+  "id": "sales_quote_workflow_quote_quote_lifecycle",
+  "module": "SALES_QUOTE",
+  "edge_class": "all",
+  "source_file": "sales/workflow_quote_quote_lifecycle.yaml",
+  "source_summary": "module: SALES_QUOTE\\ncontract: Quote.quote_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/sales/sales.ubo.yaml\\nsource_summary: GIVEN 实体 Quote 定义工作流 quote_lifecycle / WHEN 按步骤执行 create -> submit -> accept -> reject / THEN 流程顺序应满足声明约束"
+}

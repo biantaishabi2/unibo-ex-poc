@@ -1,0 +1,7 @@
+{
+  "id": "helpdesk_helpdesk_sla_status_workflow_helpdesk_sla_status_sla_tracking_lifecycle",
+  "module": "HELPDESK_HELPDESK_SLA_STATUS",
+  "edge_class": "all",
+  "source_file": "helpdesk/workflow_helpdesk_sla_status_sla_tracking_lifecycle.yaml",
+  "source_summary": "module: HELPDESK_HELPDESK_SLA_STATUS\\ncontract: HelpdeskSLAStatus.sla_tracking_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml\\nsource_summary: GIVEN 实体 HelpdeskSLAStatus 定义工作流 sla_tracking_lifecycle / WHEN 按步骤执行 create -> check_and_update -> mark_reached -> mark_failed -> accumulate_excluded_time / THEN 流程顺序应满足声明约束"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "communication_channel_member_action_channel_member_mark_seen_update",
+  "module": "COMMUNICATION_CHANNEL_MEMBER",
+  "edge_class": "all",
+  "source_file": "communication/action_channel_member_mark_seen_update.yaml",
+  "source_summary": "module: COMMUNICATION_CHANNEL_MEMBER\\ncontract: ChannelMember.mark_seen action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/communication/communication.ubo.yaml\\nsource_summary: GIVEN 实体 ChannelMember 的动作 mark_seen 可执行，accept=[seen_message_id]，args=[无显式参数] / WHEN 执行动作 mark_seen / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

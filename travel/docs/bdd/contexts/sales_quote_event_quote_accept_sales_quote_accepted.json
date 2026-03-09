@@ -1,0 +1,7 @@
+{
+  "id": "sales_quote_event_quote_accept_sales_quote_accepted",
+  "module": "SALES_QUOTE",
+  "edge_class": "all",
+  "source_file": "sales/event_quote_accept_sales_quote_accepted.yaml",
+  "source_summary": "module: SALES_QUOTE\\ncontract: Quote.accept event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/sales/sales.ubo.yaml\\nsource_summary: GIVEN 实体 Quote 的动作 accept 完成 / WHEN 触发事件发布 / THEN 应广播 topic `sales.quote.accepted`"
+}

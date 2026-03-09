@@ -1,0 +1,5 @@
+module: RATING_RATING_CRITERIA
+contract: RatingCriteria.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/rating/rating.ubo.yaml
+source_summary: GIVEN 实体 RatingCriteria 的动作 create 可执行，accept=[name, description, code, weight, sort_order, active]，args=[rating_type_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建评价维度 -> update 修改维度信息 -> reorder 调整排序 -> destroy 删除维度

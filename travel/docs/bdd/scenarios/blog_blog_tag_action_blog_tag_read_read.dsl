@@ -1,0 +1,4 @@
+[SCENARIO: BDD-BLOG_BLOG_TAG-SEED-blog_blog_tag_action_blog_tag_read_read] TITLE: BLOG_BLOG_TAG contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="blog_blog_tag_action_blog_tag_read_read" module="BLOG_BLOG_TAG"
+WHEN when_execute_seed_contract module="BLOG_BLOG_TAG"
+THEN then_seed_contract_should_hold module="BLOG_BLOG_TAG"

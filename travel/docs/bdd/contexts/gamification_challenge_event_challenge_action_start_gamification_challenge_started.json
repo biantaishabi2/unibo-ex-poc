@@ -1,0 +1,7 @@
+{
+  "id": "gamification_challenge_event_challenge_action_start_gamification_challenge_started",
+  "module": "GAMIFICATION_CHALLENGE",
+  "edge_class": "all",
+  "source_file": "gamification/event_challenge_action_start_gamification_challenge_started.yaml",
+  "source_summary": "module: GAMIFICATION_CHALLENGE\\ncontract: Challenge.action_start event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/gamification/gamification.ubo.yaml\\nsource_summary: GIVEN 实体 Challenge 的动作 action_start 完成 / WHEN 触发事件发布 / THEN 应广播 topic `gamification.challenge.started`"
+}

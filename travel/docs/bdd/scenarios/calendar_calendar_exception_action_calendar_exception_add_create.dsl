@@ -1,0 +1,4 @@
+[SCENARIO: BDD-CALENDAR_CALENDAR_EXCEPTION-SEED-calendar_calendar_exception_action_calendar_exception_add_create] TITLE: CALENDAR_CALENDAR_EXCEPTION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="calendar_calendar_exception_action_calendar_exception_add_create" module="CALENDAR_CALENDAR_EXCEPTION"
+WHEN when_execute_seed_contract module="CALENDAR_CALENDAR_EXCEPTION"
+THEN then_seed_contract_should_hold module="CALENDAR_CALENDAR_EXCEPTION"

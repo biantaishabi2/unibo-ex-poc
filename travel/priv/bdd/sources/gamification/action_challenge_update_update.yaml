@@ -1,0 +1,5 @@
+module: GAMIFICATION_CHALLENGE
+contract: Challenge.update action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/gamification/gamification.ubo.yaml
+source_summary: GIVEN 实体 Challenge 的动作 update 可执行，accept=[name, description, user_domain, period, start_date, end_date, reward_failure, reward_realtime, visibility_mode, report_message_frequency, remind_update_delay, challenge_category]，args=[manager_id:uuid, reward_id:uuid, reward_first_id:uuid, reward_second_id:uuid, reward_third_id:uuid] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束

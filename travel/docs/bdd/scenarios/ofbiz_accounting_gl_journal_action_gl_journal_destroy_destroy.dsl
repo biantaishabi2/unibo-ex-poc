@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ACCOUNTING_GL_JOURNAL-SEED-ofbiz_accounting_gl_journal_action_gl_journal_destroy_destroy] TITLE: OFBIZ_ACCOUNTING_GL_JOURNAL contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_accounting_gl_journal_action_gl_journal_destroy_destroy" module="OFBIZ_ACCOUNTING_GL_JOURNAL"
+WHEN when_execute_seed_contract module="OFBIZ_ACCOUNTING_GL_JOURNAL"
+THEN then_seed_contract_should_hold module="OFBIZ_ACCOUNTING_GL_JOURNAL"

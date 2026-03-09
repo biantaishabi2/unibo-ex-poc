@@ -1,0 +1,7 @@
+{
+  "id": "lunch_lunch_location_workflow_lunch_location_location_management",
+  "module": "LUNCH_LUNCH_LOCATION",
+  "edge_class": "all",
+  "source_file": "lunch/workflow_lunch_location_location_management.yaml",
+  "source_summary": "module: LUNCH_LUNCH_LOCATION\\ncontract: LunchLocation.location_management workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/lunch/lunch.ubo.yaml\\nsource_summary: GIVEN 实体 LunchLocation 定义工作流 location_management / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束"
+}

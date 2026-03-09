@@ -1,0 +1,7 @@
+{
+  "id": "sign_sign_request_event_sign_request_recall_sign_request_recalled",
+  "module": "SIGN_SIGN_REQUEST",
+  "edge_class": "all",
+  "source_file": "sign/event_sign_request_recall_sign_request_recalled.yaml",
+  "source_summary": "module: SIGN_SIGN_REQUEST\\ncontract: SignRequest.recall event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/sign/sign.ubo.yaml\\nsource_summary: GIVEN 实体 SignRequest 的动作 recall 完成 / WHEN 触发事件发布 / THEN 应广播 topic `sign.request.recalled`"
+}

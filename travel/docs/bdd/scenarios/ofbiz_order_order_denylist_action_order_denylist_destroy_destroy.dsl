@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_ORDER_DENYLIST-SEED-ofbiz_order_order_denylist_action_order_denylist_destroy_destroy] TITLE: OFBIZ_ORDER_ORDER_DENYLIST contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_order_denylist_action_order_denylist_destroy_destroy" module="OFBIZ_ORDER_ORDER_DENYLIST"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_ORDER_DENYLIST"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_ORDER_DENYLIST"

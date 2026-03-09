@@ -1,0 +1,5 @@
+module: ACCOUNTING_JOURNAL_ENTRY
+contract: JournalEntry.reset_to_draft event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 JournalEntry 的动作 reset_to_draft 完成 / WHEN 触发事件发布 / THEN 应广播 topic `accounting.journal.reset_to_draft`

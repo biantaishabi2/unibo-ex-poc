@@ -1,0 +1,7 @@
+{
+  "id": "change_change_request_action_change_request_verify_update",
+  "module": "CHANGE_CHANGE_REQUEST",
+  "edge_class": "all",
+  "source_file": "change/action_change_request_verify_update.yaml",
+  "source_summary": "module: CHANGE_CHANGE_REQUEST\\ncontract: ChangeRequest.verify action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/change/change.ubo.yaml\\nsource_summary: GIVEN 实体 ChangeRequest 的动作 verify 可执行，accept=[verification_result, verified_by_party_id]，args=[无显式参数] / WHEN 执行动作 verify / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：verify 阶段缺少 verification_result 应校验失败"
+}

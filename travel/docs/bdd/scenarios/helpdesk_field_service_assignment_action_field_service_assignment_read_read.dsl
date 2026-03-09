@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HELPDESK_FIELD_SERVICE_ASSIGNMENT-SEED-helpdesk_field_service_assignment_action_field_service_assignment_read_read] TITLE: HELPDESK_FIELD_SERVICE_ASSIGNMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="helpdesk_field_service_assignment_action_field_service_assignment_read_read" module="HELPDESK_FIELD_SERVICE_ASSIGNMENT"
+WHEN when_execute_seed_contract module="HELPDESK_FIELD_SERVICE_ASSIGNMENT"
+THEN then_seed_contract_should_hold module="HELPDESK_FIELD_SERVICE_ASSIGNMENT"

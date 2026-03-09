@@ -1,0 +1,4 @@
+[SCENARIO: BDD-COMMUNICATION_TRACKING_VALUE-SEED-communication_tracking_value_action_tracking_value_read_read] TITLE: COMMUNICATION_TRACKING_VALUE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="communication_tracking_value_action_tracking_value_read_read" module="COMMUNICATION_TRACKING_VALUE"
+WHEN when_execute_seed_contract module="COMMUNICATION_TRACKING_VALUE"
+THEN then_seed_contract_should_hold module="COMMUNICATION_TRACKING_VALUE"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_PARTY_ICS_AVS_OVERRIDE-SEED-ofbiz_party_party_ics_avs_override_action_party_ics_avs_override_create_create] TITLE: OFBIZ_PARTY_PARTY_ICS_AVS_OVERRIDE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_party_ics_avs_override_action_party_ics_avs_override_create_create" module="OFBIZ_PARTY_PARTY_ICS_AVS_OVERRIDE"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_PARTY_ICS_AVS_OVERRIDE"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_PARTY_ICS_AVS_OVERRIDE"

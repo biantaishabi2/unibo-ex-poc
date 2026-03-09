@@ -1,0 +1,7 @@
+{
+  "id": "helpdesk_field_service_order_action_field_service_order_schedule_update",
+  "module": "HELPDESK_FIELD_SERVICE_ORDER",
+  "edge_class": "all",
+  "source_file": "helpdesk/action_field_service_order_schedule_update.yaml",
+  "source_summary": "module: HELPDESK_FIELD_SERVICE_ORDER\\ncontract: FieldServiceOrder.schedule action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/helpdesk/helpdesk.ubo.yaml\\nsource_summary: GIVEN 实体 FieldServiceOrder 的动作 schedule 可执行，accept=[planned_date_begin, planned_date_end, allocated_hours, date_deadline]，args=[user_id:uuid, stage_id:uuid] / WHEN 执行动作 schedule / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

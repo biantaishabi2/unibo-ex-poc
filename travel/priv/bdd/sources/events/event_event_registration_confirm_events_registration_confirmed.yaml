@@ -1,0 +1,5 @@
+module: EVENTS_EVENT_REGISTRATION
+contract: EventRegistration.confirm event contract
+edge_class: event_contract
+source_file: /tmp/unibo_models_ubo_only_989/events/events.ubo.yaml
+source_summary: GIVEN 实体 EventRegistration 的动作 confirm 完成 / WHEN 触发事件发布 / THEN 应广播 topic `events.registration.confirmed`

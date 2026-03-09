@@ -1,0 +1,7 @@
+{
+  "id": "ofbiz_shipment_item_issuance_action_item_issuance_update_update",
+  "module": "OFBIZ_SHIPMENT_ITEM_ISSUANCE",
+  "edge_class": "all",
+  "source_file": "ofbiz_shipment/action_item_issuance_update_update.yaml",
+  "source_summary": "module: OFBIZ_SHIPMENT_ITEM_ISSUANCE\\ncontract: ItemIssuance.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/ofbiz/shipment.ubo.yaml\\nsource_summary: GIVEN 实体 ItemIssuance 的动作 update 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效"
+}

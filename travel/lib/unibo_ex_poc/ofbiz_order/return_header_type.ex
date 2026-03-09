@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnHeaderType do
   end
 
   graphql do
-    type :order_return_header_type
+    type :ofbiz_order_return_header_type
 
     queries do
-      get :get_order_return_header_type, :read
-      list :list_order_return_header_types, :read
+      get :get_ofbiz_order_return_header_type, :read
+      list :list_ofbiz_order_return_header_types, :read
     end
 
     mutations do
-      create :create_order_return_header_type, :create
-      update :update_order_return_header_type, :update
-      destroy :delete_order_return_header_type, :destroy
+      create :create_ofbiz_order_return_header_type, :create
+      update :update_ofbiz_order_return_header_type, :update
+      destroy :delete_ofbiz_order_return_header_type, :destroy
     end
 
   end

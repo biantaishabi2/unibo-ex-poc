@@ -1,0 +1,7 @@
+{
+  "id": "membership_membership_line_event_membership_line_cancel_membership_line_canceled",
+  "module": "MEMBERSHIP_MEMBERSHIP_LINE",
+  "edge_class": "all",
+  "source_file": "membership/event_membership_line_cancel_membership_line_canceled.yaml",
+  "source_summary": "module: MEMBERSHIP_MEMBERSHIP_LINE\\ncontract: MembershipLine.cancel event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/membership/membership.ubo.yaml\\nsource_summary: GIVEN 实体 MembershipLine 的动作 cancel 完成 / WHEN 触发事件发布 / THEN 应广播 topic `membership.line.canceled`"
+}

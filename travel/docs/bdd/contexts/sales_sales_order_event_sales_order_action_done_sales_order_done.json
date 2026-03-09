@@ -1,0 +1,7 @@
+{
+  "id": "sales_sales_order_event_sales_order_action_done_sales_order_done",
+  "module": "SALES_SALES_ORDER",
+  "edge_class": "all",
+  "source_file": "sales/event_sales_order_action_done_sales_order_done.yaml",
+  "source_summary": "module: SALES_SALES_ORDER\\ncontract: SalesOrder.action_done event contract\\nedge_class: event_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/sales/sales.ubo.yaml\\nsource_summary: GIVEN 实体 SalesOrder 的动作 action_done 完成 / WHEN 触发事件发布 / THEN 应广播 topic `sales.order.done`"
+}

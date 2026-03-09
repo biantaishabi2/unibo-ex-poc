@@ -1,0 +1,7 @@
+{
+  "id": "fleet_driver_workflow_driver_driver_lifecycle",
+  "module": "FLEET_DRIVER",
+  "edge_class": "all",
+  "source_file": "fleet/workflow_driver_driver_lifecycle.yaml",
+  "source_summary": "module: FLEET_DRIVER\\ncontract: Driver.driver_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/fleet/fleet.ubo.yaml\\nsource_summary: GIVEN 实体 Driver 定义工作流 driver_lifecycle / WHEN 按步骤执行 create -> update -> deactivate / THEN 流程顺序应满足声明约束"
+}

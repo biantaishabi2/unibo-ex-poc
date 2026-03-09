@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PLM_PRODUCT_TEMPLATE-SEED-plm_product_template_action_product_template_read_read] TITLE: PLM_PRODUCT_TEMPLATE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="plm_product_template_action_product_template_read_read" module="PLM_PRODUCT_TEMPLATE"
+WHEN when_execute_seed_contract module="PLM_PRODUCT_TEMPLATE"
+THEN then_seed_contract_should_hold module="PLM_PRODUCT_TEMPLATE"

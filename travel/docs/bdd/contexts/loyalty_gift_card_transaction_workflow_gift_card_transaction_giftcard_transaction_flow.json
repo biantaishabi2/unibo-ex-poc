@@ -1,0 +1,7 @@
+{
+  "id": "loyalty_gift_card_transaction_workflow_gift_card_transaction_giftcard_transaction_flow",
+  "module": "LOYALTY_GIFT_CARD_TRANSACTION",
+  "edge_class": "all",
+  "source_file": "loyalty/workflow_gift_card_transaction_giftcard_transaction_flow.yaml",
+  "source_summary": "module: LOYALTY_GIFT_CARD_TRANSACTION\\ncontract: GiftCardTransaction.giftcard_transaction_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/loyalty/loyalty.ubo.yaml\\nsource_summary: GIVEN 实体 GiftCardTransaction 定义工作流 giftcard_transaction_flow / WHEN 按步骤执行 create / THEN 流程顺序应满足声明约束"
+}

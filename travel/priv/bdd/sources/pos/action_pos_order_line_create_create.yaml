@@ -1,0 +1,5 @@
+module: POS_POS_ORDER_LINE
+contract: PosOrderLine.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/pos/pos.ubo.yaml
+source_summary: GIVEN 实体 PosOrderLine 的动作 create 可执行，accept=[product_id, product_name, product_code, quantity, unit_price, discount, tax_ids, cost_price, note, lot_name]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建订单行（正常销售），update 修改数量和折扣；create 创建退款行（quantity 为负，关联原始行）；create 数量为零时校验失败；create 单价为负时校验失败；create 折扣超过100%时校验失败；create 启用追踪产品未填 lot_name 时校验失败

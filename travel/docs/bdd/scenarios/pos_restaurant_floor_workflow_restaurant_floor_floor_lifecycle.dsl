@@ -1,0 +1,4 @@
+[SCENARIO: BDD-POS_RESTAURANT_FLOOR-SEED-pos_restaurant_floor_workflow_restaurant_floor_floor_lifecycle] TITLE: POS_RESTAURANT_FLOOR contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="pos_restaurant_floor_workflow_restaurant_floor_floor_lifecycle" module="POS_RESTAURANT_FLOOR"
+WHEN when_execute_seed_contract module="POS_RESTAURANT_FLOOR"
+THEN then_seed_contract_should_hold module="POS_RESTAURANT_FLOOR"

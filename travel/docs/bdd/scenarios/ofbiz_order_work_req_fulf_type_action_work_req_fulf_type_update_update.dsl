@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_ORDER_WORK_REQ_FULF_TYPE-SEED-ofbiz_order_work_req_fulf_type_action_work_req_fulf_type_update_update] TITLE: OFBIZ_ORDER_WORK_REQ_FULF_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_order_work_req_fulf_type_action_work_req_fulf_type_update_update" module="OFBIZ_ORDER_WORK_REQ_FULF_TYPE"
+WHEN when_execute_seed_contract module="OFBIZ_ORDER_WORK_REQ_FULF_TYPE"
+THEN then_seed_contract_should_hold module="OFBIZ_ORDER_WORK_REQ_FULF_TYPE"

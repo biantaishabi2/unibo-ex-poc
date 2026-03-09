@@ -1,0 +1,7 @@
+{
+  "id": "inventory_stock_location_workflow_stock_location_stock_location_write_flow",
+  "module": "INVENTORY_STOCK_LOCATION",
+  "edge_class": "all",
+  "source_file": "inventory/workflow_stock_location_stock_location_write_flow.yaml",
+  "source_summary": "module: INVENTORY_STOCK_LOCATION\\ncontract: StockLocation.stock_location_write_flow workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/inventory/inventory.ubo.yaml\\nsource_summary: GIVEN 实体 StockLocation 定义工作流 stock_location_write_flow / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束"
+}

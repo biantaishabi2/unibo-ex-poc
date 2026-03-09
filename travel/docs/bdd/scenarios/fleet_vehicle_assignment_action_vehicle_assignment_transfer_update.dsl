@@ -1,0 +1,4 @@
+[SCENARIO: BDD-FLEET_VEHICLE_ASSIGNMENT-SEED-fleet_vehicle_assignment_action_vehicle_assignment_transfer_update] TITLE: FLEET_VEHICLE_ASSIGNMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="fleet_vehicle_assignment_action_vehicle_assignment_transfer_update" module="FLEET_VEHICLE_ASSIGNMENT"
+WHEN when_execute_seed_contract module="FLEET_VEHICLE_ASSIGNMENT"
+THEN then_seed_contract_should_hold module="FLEET_VEHICLE_ASSIGNMENT"

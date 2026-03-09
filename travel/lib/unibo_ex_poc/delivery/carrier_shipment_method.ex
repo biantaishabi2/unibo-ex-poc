@@ -76,12 +76,10 @@ defmodule UniboExPoc.Delivery.CarrierShipmentMethod do
       accept [:shipment_method_type_id, :party_id, :role_type_id, :sequence_number, :carrier_service_code]
       validate present(:shipment_method_type_id)
       validate present(:party_id)
-      change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:sequence_number, :carrier_service_code]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

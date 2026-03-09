@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_SECURITY_PROTECTED_VIEW-SEED-ofbiz_security_protected_view_action_protected_view_read_read] TITLE: OFBIZ_SECURITY_PROTECTED_VIEW contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_security_protected_view_action_protected_view_read_read" module="OFBIZ_SECURITY_PROTECTED_VIEW"
+WHEN when_execute_seed_contract module="OFBIZ_SECURITY_PROTECTED_VIEW"
+THEN then_seed_contract_should_hold module="OFBIZ_SECURITY_PROTECTED_VIEW"

@@ -1,0 +1,7 @@
+{
+  "id": "pos_restaurant_floor_action_restaurant_floor_update_update",
+  "module": "POS_RESTAURANT_FLOOR",
+  "edge_class": "all",
+  "source_file": "pos/action_restaurant_floor_update_update.yaml",
+  "source_summary": "module: POS_RESTAURANT_FLOOR\\ncontract: RestaurantFloor.update action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/pos/pos.ubo.yaml\\nsource_summary: GIVEN 实体 RestaurantFloor 的动作 update 可执行，accept=[name, background_image, background_color, sequence, active]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

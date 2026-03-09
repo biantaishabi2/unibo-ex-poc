@@ -1,0 +1,4 @@
+[SCENARIO: BDD-OFBIZ_PARTY_PARTY_CONTACT_MECH-SEED-ofbiz_party_party_contact_mech_action_party_contact_mech_destroy_destroy] TITLE: OFBIZ_PARTY_PARTY_CONTACT_MECH contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="ofbiz_party_party_contact_mech_action_party_contact_mech_destroy_destroy" module="OFBIZ_PARTY_PARTY_CONTACT_MECH"
+WHEN when_execute_seed_contract module="OFBIZ_PARTY_PARTY_CONTACT_MECH"
+THEN then_seed_contract_should_hold module="OFBIZ_PARTY_PARTY_CONTACT_MECH"

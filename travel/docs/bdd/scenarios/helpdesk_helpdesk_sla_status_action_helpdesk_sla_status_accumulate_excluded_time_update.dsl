@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HELPDESK_HELPDESK_SLA_STATUS-SEED-helpdesk_helpdesk_sla_status_action_helpdesk_sla_status_accumulate_excluded_time_update] TITLE: HELPDESK_HELPDESK_SLA_STATUS contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="helpdesk_helpdesk_sla_status_action_helpdesk_sla_status_accumulate_excluded_time_update" module="HELPDESK_HELPDESK_SLA_STATUS"
+WHEN when_execute_seed_contract module="HELPDESK_HELPDESK_SLA_STATUS"
+THEN then_seed_contract_should_hold module="HELPDESK_HELPDESK_SLA_STATUS"

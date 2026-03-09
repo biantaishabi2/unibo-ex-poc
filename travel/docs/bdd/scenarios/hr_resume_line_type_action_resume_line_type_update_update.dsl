@@ -1,0 +1,4 @@
+[SCENARIO: BDD-HR_RESUME_LINE_TYPE-SEED-hr_resume_line_type_action_resume_line_type_update_update] TITLE: HR_RESUME_LINE_TYPE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="hr_resume_line_type_action_resume_line_type_update_update" module="HR_RESUME_LINE_TYPE"
+WHEN when_execute_seed_contract module="HR_RESUME_LINE_TYPE"
+THEN then_seed_contract_should_hold module="HR_RESUME_LINE_TYPE"

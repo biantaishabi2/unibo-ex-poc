@@ -1,0 +1,7 @@
+{
+  "id": "repair_repair_ticket_workflow_repair_ticket_repair_ticket_lifecycle",
+  "module": "REPAIR_REPAIR_TICKET",
+  "edge_class": "all",
+  "source_file": "repair/workflow_repair_ticket_repair_ticket_lifecycle.yaml",
+  "source_summary": "module: REPAIR_REPAIR_TICKET\\ncontract: RepairTicket.repair_ticket_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/repair/repair.ubo.yaml\\nsource_summary: GIVEN 实体 RepairTicket 定义工作流 repair_ticket_lifecycle / WHEN 按步骤执行 create -> confirm -> start_repair -> complete_repair -> deliver -> cancel / THEN 流程顺序应满足声明约束"
+}

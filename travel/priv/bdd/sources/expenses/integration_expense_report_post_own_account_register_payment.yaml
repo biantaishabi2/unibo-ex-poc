@@ -1,0 +1,8 @@
+module: EXPENSES_EXPENSE_REPORT
+contract: ExpenseReport.post_own_account_register_payment integration contract
+edge_class: integration_contract
+source_file: /tmp/unibo_models_ubo_only_989/expenses/expenses.ubo.yaml
+source_summary: GIVEN 实体 ExpenseReport 声明 integration post_own_account_register_payment（mode=sync） / WHEN 绑定动作 [post] 触发外部调用 / THEN 调用结果需满足 无声明错误码 且 业务后置条件 accepted, account_move_id
+business_post_conditions:
+- accepted
+- account_move_id

@@ -1,0 +1,7 @@
+{
+  "id": "website_web_page_action_web_page_clone_page_create",
+  "module": "WEBSITE_WEB_PAGE",
+  "edge_class": "all",
+  "source_file": "website/action_web_page_clone_page_create.yaml",
+  "source_summary": "module: WEBSITE_WEB_PAGE\\ncontract: WebPage.clone_page action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/website/website.ubo.yaml\\nsource_summary: GIVEN 实体 WebPage 的动作 clone_page 可执行，accept=[url, name]，args=[website_id:uuid] / WHEN 执行动作 clone_page / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：clone_page 克隆页面后 update 修改内容并 publish"
+}

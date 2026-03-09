@@ -1,0 +1,7 @@
+{
+  "id": "sales_quote_action_quote_accept_update",
+  "module": "SALES_QUOTE",
+  "edge_class": "all",
+  "source_file": "sales/action_quote_accept_update.yaml",
+  "source_summary": "module: SALES_QUOTE\\ncontract: Quote.accept action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/sales/sales.ubo.yaml\\nsource_summary: GIVEN 实体 Quote 的动作 accept 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 accept / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束 / 补充场景：submit 后客户 accept 接受或 reject 拒绝"
+}

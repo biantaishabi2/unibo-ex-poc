@@ -1,0 +1,7 @@
+{
+  "id": "subscriptions_subscription_plan_workflow_subscription_plan_plan_lifecycle",
+  "module": "SUBSCRIPTIONS_SUBSCRIPTION_PLAN",
+  "edge_class": "all",
+  "source_file": "subscriptions/workflow_subscription_plan_plan_lifecycle.yaml",
+  "source_summary": "module: SUBSCRIPTIONS_SUBSCRIPTION_PLAN\\ncontract: SubscriptionPlan.plan_lifecycle workflow contract\\nedge_class: workflow_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/subscriptions/subscriptions.ubo.yaml\\nsource_summary: GIVEN 实体 SubscriptionPlan 定义工作流 plan_lifecycle / WHEN 按步骤执行 create -> update -> deactivate -> activate / THEN 流程顺序应满足声明约束"
+}

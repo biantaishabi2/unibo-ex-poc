@@ -1,0 +1,5 @@
+module: RENTAL_RENTAL_ORDER_LINE
+contract: RentalOrderLine.create action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/rental/rental.ubo.yaml
+source_summary: GIVEN 实体 RentalOrderLine 的动作 create 可执行，accept=[is_rental, pickup_date, return_date, product_uom_qty, duration_unit]，args=[product_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建订单行 -> validate_pickup 取货验证 -> validate_return 归还验证 -> finalize 完成；create 创建订单行 -> update 修改日期/数量 -> validate_pickup 取货验证 -> validate_return 归还验证 -> finalize 完成

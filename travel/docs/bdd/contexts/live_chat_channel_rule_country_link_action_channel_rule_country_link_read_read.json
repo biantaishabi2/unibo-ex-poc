@@ -1,0 +1,7 @@
+{
+  "id": "live_chat_channel_rule_country_link_action_channel_rule_country_link_read_read",
+  "module": "LIVE_CHAT_CHANNEL_RULE_COUNTRY_LINK",
+  "edge_class": "all",
+  "source_file": "live_chat/action_channel_rule_country_link_read_read.yaml",
+  "source_summary": "module: LIVE_CHAT_CHANNEL_RULE_COUNTRY_LINK\\ncontract: ChannelRuleCountryLink.read action contract\\nedge_class: action_contract\\nsource_file: /tmp/unibo_models_ubo_only_989/livechat/livechat.ubo.yaml\\nsource_summary: GIVEN 实体 ChannelRuleCountryLink 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 读取结果应符合查询语义"
+}

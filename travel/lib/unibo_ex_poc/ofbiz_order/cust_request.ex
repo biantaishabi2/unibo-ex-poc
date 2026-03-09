@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Order.CustRequest do
   end
 
   graphql do
-    type :order_cust_request
+    type :ofbiz_order_cust_request
 
     queries do
-      get :get_order_cust_request, :read
-      list :list_order_cust_requests, :read
+      get :get_ofbiz_order_cust_request, :read
+      list :list_ofbiz_order_cust_requests, :read
     end
 
     mutations do
-      create :create_order_cust_request, :create
-      update :update_order_cust_request, :update
-      destroy :delete_order_cust_request, :destroy
+      create :create_ofbiz_order_cust_request, :create
+      update :update_ofbiz_order_cust_request, :update
+      destroy :delete_ofbiz_order_cust_request, :destroy
     end
 
   end

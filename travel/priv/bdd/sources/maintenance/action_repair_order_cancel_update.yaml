@@ -1,0 +1,5 @@
+module: MAINTENANCE_REPAIR_ORDER
+contract: RepairOrder.cancel action contract
+edge_class: action_contract
+source_file: /tmp/unibo_models_ubo_only_989/maintenance/maintenance.ubo.yaml
+source_summary: GIVEN 实体 RepairOrder 的动作 cancel 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 cancel / THEN 状态变更与副作用应生效，应符合工作流步骤约束 / 补充场景：create 创建维修工单 -> confirm 确认 -> cancel 取消 -> reset_to_draft 重置为草稿
