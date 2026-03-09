@@ -1,4 +1,4 @@
-defmodule UniboV4.Gamification do
+defmodule UniboExPoc.Gamification do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,29 +7,29 @@ defmodule UniboV4.Gamification do
   end
 
   resources do
-    resource UniboV4.Gamification.GoalDefinition
-    resource UniboV4.Gamification.GoalDefinitionTranslation
-    resource UniboV4.Gamification.GoalDefinition.Version
-    resource UniboV4.Gamification.Goal
-    resource UniboV4.Gamification.Goal.Version
-    resource UniboV4.Gamification.Challenge
-    resource UniboV4.Gamification.ChallengeTranslation
-    resource UniboV4.Gamification.Challenge.Version
-    resource UniboV4.Gamification.ChallengeLine
-    resource UniboV4.Gamification.ChallengeLine.Version
-    resource UniboV4.Gamification.Badge
-    resource UniboV4.Gamification.BadgeTranslation
-    resource UniboV4.Gamification.Badge.Version
-    resource UniboV4.Gamification.BadgeUser
-    resource UniboV4.Gamification.BadgeUser.Version
-    resource UniboV4.Gamification.KarmaRank
-    resource UniboV4.Gamification.KarmaRankTranslation
-    resource UniboV4.Gamification.KarmaRank.Version
-    resource UniboV4.Gamification.KarmaTracking
-    resource UniboV4.Gamification.ChallengeUserLink
-    resource UniboV4.Gamification.ChallengeInvitedUserLink
-    resource UniboV4.Gamification.BadgeAuthUserLink
-    resource UniboV4.Gamification.BadgeAuthBadgeLink
-    resource UniboV4.Gamification.Party
+    resource UniboExPoc.Gamification.GoalDefinition
+    resource UniboExPoc.Gamification.GoalDefinitionTranslation
+    resource UniboExPoc.Gamification.GoalDefinition.Version
+    resource UniboExPoc.Gamification.Goal
+    resource UniboExPoc.Gamification.Goal.Version
+    resource UniboExPoc.Gamification.Challenge
+    resource UniboExPoc.Gamification.ChallengeTranslation
+    resource UniboExPoc.Gamification.Challenge.Version
+    resource UniboExPoc.Gamification.ChallengeLine
+    resource UniboExPoc.Gamification.ChallengeLine.Version
+    resource UniboExPoc.Gamification.Badge
+    resource UniboExPoc.Gamification.BadgeTranslation
+    resource UniboExPoc.Gamification.Badge.Version
+    resource UniboExPoc.Gamification.BadgeUser
+    resource UniboExPoc.Gamification.BadgeUser.Version
+    resource UniboExPoc.Gamification.KarmaRank
+    resource UniboExPoc.Gamification.KarmaRankTranslation
+    resource UniboExPoc.Gamification.KarmaRank.Version
+    resource UniboExPoc.Gamification.KarmaTracking
+    resource UniboExPoc.Gamification.ChallengeUserLink
+    resource UniboExPoc.Gamification.ChallengeInvitedUserLink
+    resource UniboExPoc.Gamification.BadgeAuthUserLink
+    resource UniboExPoc.Gamification.BadgeAuthBadgeLink
+    resource UniboExPoc.Gamification.Party
   end
 end

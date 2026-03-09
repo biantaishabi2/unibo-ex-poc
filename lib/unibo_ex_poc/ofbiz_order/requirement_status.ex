@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Order.RequirementStatus do
+defmodule UniboExPoc.Ofbiz.Order.RequirementStatus do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_requirement_statuses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,7 +38,7 @@ defmodule UniboV4.Ofbiz.Order.RequirementStatus do
   end
 
   relationships do
-    belongs_to :requirement, UniboV4.Ofbiz.Order.Requirement do
+    belongs_to :requirement, UniboExPoc.Ofbiz.Order.Requirement do
       public? true
       attribute_type :string
     end

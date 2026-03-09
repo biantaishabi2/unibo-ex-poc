@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.GlAccountGroupType do
+defmodule UniboExPoc.Ofbiz.Accounting.GlAccountGroupType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_gl_account_group_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

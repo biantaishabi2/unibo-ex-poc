@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Common.VisualTheme do
+defmodule UniboExPoc.Ofbiz.Common.VisualTheme do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Common.VisualTheme do
 
   postgres do
     table "common_visual_themes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,7 +38,7 @@ defmodule UniboV4.Ofbiz.Common.VisualTheme do
   end
 
   relationships do
-    belongs_to :visual_theme_set, UniboV4.Ofbiz.Common.VisualThemeSet do
+    belongs_to :visual_theme_set, UniboExPoc.Ofbiz.Common.VisualThemeSet do
       public? true
     end
   end

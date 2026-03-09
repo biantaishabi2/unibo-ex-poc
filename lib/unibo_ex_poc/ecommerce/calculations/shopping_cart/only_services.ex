@@ -1,4 +1,4 @@
-defmodule UniboV4.Ecommerce.Calculations.ShoppingCart.OnlyServices do
+defmodule UniboExPoc.Ecommerce.Calculations.ShoppingCart.OnlyServices do
   @moduledoc """
   Calculation 模块: :only_services (type: :boolean, entity: shopping_cart)
   原始 expr: op: custom args: []

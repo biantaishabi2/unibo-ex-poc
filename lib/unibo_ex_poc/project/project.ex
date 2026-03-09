@@ -23,13 +23,13 @@
 #   copy --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Project.Project do
+defmodule UniboExPoc.Project.Project do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Project,
+    domain: UniboExPoc.Project,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Project.Project.Notifier]
+    notifiers: [UniboExPoc.Project.Project.Notifier]
 
   resource do
     description "项目"
@@ -37,7 +37,7 @@ defmodule UniboV4.Project.Project do
 
   postgres do
     table "project_projects"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -135,37 +135,37 @@ defmodule UniboV4.Project.Project do
   end
 
   relationships do
-    has_many :tasks, UniboV4.Project.Task do
+    has_many :tasks, UniboExPoc.Project.Task do
       public? true
     end
-    has_many :milestones, UniboV4.Project.Milestone do
+    has_many :milestones, UniboExPoc.Project.Milestone do
       public? true
     end
-    belongs_to :manager, UniboV4.Project.Party do
+    belongs_to :manager, UniboExPoc.Project.Party do
       public? true
       source_attribute :manager_party_id
     end
-    many_to_many :type_ids, UniboV4.Project.TaskStage do
+    many_to_many :type_ids, UniboExPoc.Project.TaskStage do
       public? true
-      through UniboV4.Project.ProjectTaskStageLink
+      through UniboExPoc.Project.ProjectTaskStageLink
     end
-    belongs_to :stage, UniboV4.Project.ProjectStage do
+    belongs_to :stage, UniboExPoc.Project.ProjectStage do
       public? true
       allow_nil? false
     end
-    belongs_to :analytic_account, UniboV4.Project.AnalyticAccount do
+    belongs_to :analytic_account, UniboExPoc.Project.AnalyticAccount do
       public? true
     end
-    belongs_to :partner, UniboV4.Project.Party do
+    belongs_to :partner, UniboExPoc.Project.Party do
       public? true
       source_attribute :partner_party_id
     end
-    belongs_to :company, UniboV4.Project.Party do
+    belongs_to :company, UniboExPoc.Project.Party do
       public? true
       allow_nil? false
       source_attribute :company_party_id
     end
-    belongs_to :resource_calendar, UniboV4.Project.ResourceCalendar do
+    belongs_to :resource_calendar, UniboExPoc.Project.ResourceCalendar do
       public? true
     end
   end
@@ -183,9 +183,9 @@ defmodule UniboV4.Project.Project do
       change manage_relationship(:company_id, :company, type: :append, on_lookup: :relate)
       validate present(:project_code)
       validate present(:name)
-      validate {UniboV4.Project.Validations.Project.CompanyConsistency, []}
+      validate {UniboExPoc.Project.Validations.Project.CompanyConsistency, []}
       # message: "项目各阶段、分析账户、合作伙伴的 company_id 必须与项目一致"
-      change UniboV4.Project.Changes.Project.CreateCall1
+      change UniboExPoc.Project.Changes.Project.CreateCall1
       change set_attribute(:label_tasks, :Tasks)
       change relate_actor(:manager)
       change set_attribute(:id, expr(id))
@@ -195,10 +195,10 @@ defmodule UniboV4.Project.Project do
       accept [:name, :start_date, :end_date, :budget, :description, :privacy_visibility, :active, :last_update_status, :allow_task_dependencies, :allow_milestones, :allow_timesheets, :label_tasks, :resource_calendar_id, :color]
       argument :partner_id, :uuid
       # skipped: validate company_consistency : (incompatible with bulk update atomic path)
-      change UniboV4.Project.Changes.Project.UpdateCall4
-      change UniboV4.Project.Changes.Project.UpdateCall5
-      change UniboV4.Project.Changes.Project.UpdateCall6
-      change UniboV4.Project.Changes.Project.UpdateCreateRelated7
+      change UniboExPoc.Project.Changes.Project.UpdateCall4
+      change UniboExPoc.Project.Changes.Project.UpdateCall5
+      change UniboExPoc.Project.Changes.Project.UpdateCall6
+      change UniboExPoc.Project.Changes.Project.UpdateCreateRelated7
       # cascade_update :state — Ash 暂无内置支持，需用 change fn 手动实现
       change set_attribute(:label_tasks, :Tasks)
       change set_attribute(:id, expr(id))
@@ -217,10 +217,10 @@ defmodule UniboV4.Project.Project do
       end
       # message: "只有非完成状态可以启动"
       # skipped: validate company_consistency : (incompatible with bulk update atomic path)
-      change UniboV4.Project.Changes.Project.StartCall4
-      change UniboV4.Project.Changes.Project.StartCall5
-      change UniboV4.Project.Changes.Project.StartCall6
-      change UniboV4.Project.Changes.Project.StartCreateRelated7
+      change UniboExPoc.Project.Changes.Project.StartCall4
+      change UniboExPoc.Project.Changes.Project.StartCall5
+      change UniboExPoc.Project.Changes.Project.StartCall6
+      change UniboExPoc.Project.Changes.Project.StartCreateRelated7
       # cascade_update :state — Ash 暂无内置支持，需用 change fn 手动实现
       change set_attribute(:label_tasks, :Tasks)
       change set_attribute(:last_update_status, :on_track)
@@ -231,10 +231,10 @@ defmodule UniboV4.Project.Project do
       description "完成项目"
       accept []
       # skipped: validate company_consistency : (incompatible with bulk update atomic path)
-      change UniboV4.Project.Changes.Project.CompleteCall4
-      change UniboV4.Project.Changes.Project.CompleteCall5
-      change UniboV4.Project.Changes.Project.CompleteCall6
-      change UniboV4.Project.Changes.Project.CompleteCreateRelated7
+      change UniboExPoc.Project.Changes.Project.CompleteCall4
+      change UniboExPoc.Project.Changes.Project.CompleteCall5
+      change UniboExPoc.Project.Changes.Project.CompleteCall6
+      change UniboExPoc.Project.Changes.Project.CompleteCreateRelated7
       # cascade_update :state — Ash 暂无内置支持，需用 change fn 手动实现
       change set_attribute(:label_tasks, :Tasks)
       change set_attribute(:last_update_status, :done)
@@ -246,10 +246,10 @@ defmodule UniboV4.Project.Project do
       accept []
       # skipped: validate company_consistency : (incompatible with bulk update atomic path)
       # cascade_update :active — Ash 暂无内置支持，需用 change fn 手动实现
-      change UniboV4.Project.Changes.Project.ArchiveCall4
-      change UniboV4.Project.Changes.Project.ArchiveCall5
-      change UniboV4.Project.Changes.Project.ArchiveCall6
-      change UniboV4.Project.Changes.Project.ArchiveCreateRelated7
+      change UniboExPoc.Project.Changes.Project.ArchiveCall4
+      change UniboExPoc.Project.Changes.Project.ArchiveCall5
+      change UniboExPoc.Project.Changes.Project.ArchiveCall6
+      change UniboExPoc.Project.Changes.Project.ArchiveCreateRelated7
       # cascade_update :state — Ash 暂无内置支持，需用 change fn 手动实现
       change set_attribute(:label_tasks, :Tasks)
       change set_attribute(:id, expr(id))
@@ -260,10 +260,10 @@ defmodule UniboV4.Project.Project do
       accept []
       # skipped: validate company_consistency : (incompatible with bulk update atomic path)
       # cascade_update :active — Ash 暂无内置支持，需用 change fn 手动实现
-      change UniboV4.Project.Changes.Project.UnarchiveCall4
-      change UniboV4.Project.Changes.Project.UnarchiveCall5
-      change UniboV4.Project.Changes.Project.UnarchiveCall6
-      change UniboV4.Project.Changes.Project.UnarchiveCreateRelated7
+      change UniboExPoc.Project.Changes.Project.UnarchiveCall4
+      change UniboExPoc.Project.Changes.Project.UnarchiveCall5
+      change UniboExPoc.Project.Changes.Project.UnarchiveCall6
+      change UniboExPoc.Project.Changes.Project.UnarchiveCreateRelated7
       # cascade_update :state — Ash 暂无内置支持，需用 change fn 手动实现
       change set_attribute(:label_tasks, :Tasks)
       change set_attribute(:id, expr(id))
@@ -278,10 +278,10 @@ defmodule UniboV4.Project.Project do
       change manage_relationship(:company_id, :company, type: :append, on_lookup: :relate)
       validate present(:project_code)
       validate present(:name)
-      validate {UniboV4.Project.Validations.Project.CompanyConsistency, []}
+      validate {UniboExPoc.Project.Validations.Project.CompanyConsistency, []}
       # message: "项目各阶段、分析账户、合作伙伴的 company_id 必须与项目一致"
-      change UniboV4.Project.Changes.Project.CopyCall1
-      change UniboV4.Project.Changes.Project.CopyCall10
+      change UniboExPoc.Project.Changes.Project.CopyCall1
+      change UniboExPoc.Project.Changes.Project.CopyCall10
       change set_attribute(:label_tasks, :Tasks)
       change relate_actor(:manager)
       change set_attribute(:id, expr(id))

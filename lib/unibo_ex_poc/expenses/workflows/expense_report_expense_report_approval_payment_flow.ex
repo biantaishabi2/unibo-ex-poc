@@ -1,10 +1,10 @@
-defmodule UniboV4.Expenses.Workflows.ExpenseReport.ExpenseReportApprovalPaymentFlowWorkflow do
+defmodule UniboExPoc.Expenses.Workflows.ExpenseReport.ExpenseReportApprovalPaymentFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Expenses.ExpenseReport
+  alias UniboExPoc.Expenses.ExpenseReport
 
   def steps do
     [:create, :submit, :approve, :post, :register_payment]
@@ -153,6 +153,7 @@ defmodule UniboV4.Expenses.Workflows.ExpenseReport.ExpenseReportApprovalPaymentF
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :submit -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.Expenses.Workflows.ExpenseReport.ExpenseReportApprovalPaymentF
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :submit -> false

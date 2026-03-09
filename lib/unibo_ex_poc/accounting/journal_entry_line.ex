@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> [*]
 # ```
-defmodule UniboV4.Accounting.JournalEntryLine do
+defmodule UniboExPoc.Accounting.JournalEntryLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Accounting,
+    domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Accounting.JournalEntryLine do
 
   postgres do
     table "accounting_journal_entry_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -74,34 +74,34 @@ defmodule UniboV4.Accounting.JournalEntryLine do
   end
 
   relationships do
-    belongs_to :journal_entry, UniboV4.Accounting.JournalEntry do
+    belongs_to :journal_entry, UniboExPoc.Accounting.JournalEntry do
       public? true
       allow_nil? false
     end
-    belongs_to :gl_account, UniboV4.Accounting.GlAccount do
+    belongs_to :gl_account, UniboExPoc.Accounting.GlAccount do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.Accounting.Party do
+    belongs_to :partner, UniboExPoc.Accounting.Party do
       public? true
       source_attribute :partner_party_id
     end
-    has_many :matched_debits, UniboV4.Accounting.PartialReconcile do
+    has_many :matched_debits, UniboExPoc.Accounting.PartialReconcile do
       public? true
       destination_attribute :debit_line_id
     end
-    has_many :matched_credits, UniboV4.Accounting.PartialReconcile do
+    has_many :matched_credits, UniboExPoc.Accounting.PartialReconcile do
       public? true
       destination_attribute :credit_line_id
     end
-    belongs_to :full_reconcile, UniboV4.Accounting.FullReconcile do
+    belongs_to :full_reconcile, UniboExPoc.Accounting.FullReconcile do
       public? true
     end
-    many_to_many :tax_ids, UniboV4.Accounting.Tax do
+    many_to_many :tax_ids, UniboExPoc.Accounting.Tax do
       public? true
-      through UniboV4.Accounting.JournalEntryLineTaxRel
+      through UniboExPoc.Accounting.JournalEntryLineTaxRel
     end
-    belongs_to :tax_line, UniboV4.Accounting.Tax do
+    belongs_to :tax_line, UniboExPoc.Accounting.Tax do
       public? true
     end
   end

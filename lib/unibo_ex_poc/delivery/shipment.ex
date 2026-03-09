@@ -17,13 +17,13 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Delivery.Shipment do
+defmodule UniboExPoc.Delivery.Shipment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Delivery,
+    domain: UniboExPoc.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Delivery.Shipment.Notifier]
+    notifiers: [UniboExPoc.Delivery.Shipment.Notifier]
 
   resource do
     description "发货单，管理出货/入货/调拨/退货的全生命周期"
@@ -31,7 +31,7 @@ defmodule UniboV4.Delivery.Shipment do
 
   postgres do
     table "delivery_shipments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -152,45 +152,45 @@ defmodule UniboV4.Delivery.Shipment do
   end
 
   calculations do
-    calculate :total_weight, :decimal, {UniboV4.Delivery.Calculations.Shipment.TotalWeight, []}
-    calculate :package_count, :integer, {UniboV4.Delivery.Calculations.Shipment.PackageCount, []}
-    calculate :item_count, :integer, {UniboV4.Delivery.Calculations.Shipment.ItemCount, []}
+    calculate :total_weight, :decimal, {UniboExPoc.Delivery.Calculations.Shipment.TotalWeight, []}
+    calculate :package_count, :integer, {UniboExPoc.Delivery.Calculations.Shipment.PackageCount, []}
+    calculate :item_count, :integer, {UniboExPoc.Delivery.Calculations.Shipment.ItemCount, []}
   end
 
   relationships do
-    belongs_to :shipment_type, UniboV4.Delivery.ShipmentType do
+    belongs_to :shipment_type, UniboExPoc.Delivery.ShipmentType do
       public? true
     end
-    belongs_to :origin_facility, UniboV4.Delivery.Facility do
+    belongs_to :origin_facility, UniboExPoc.Delivery.Facility do
       public? true
     end
-    belongs_to :destination_facility, UniboV4.Delivery.Facility do
+    belongs_to :destination_facility, UniboExPoc.Delivery.Facility do
       public? true
     end
-    belongs_to :to_party, UniboV4.Delivery.Party do
+    belongs_to :to_party, UniboExPoc.Delivery.Party do
       public? true
       source_attribute :party_id_to
     end
-    belongs_to :from_party, UniboV4.Delivery.Party do
+    belongs_to :from_party, UniboExPoc.Delivery.Party do
       public? true
       source_attribute :party_id_from
     end
-    has_many :shipment_items, UniboV4.Delivery.ShipmentItem do
+    has_many :shipment_items, UniboExPoc.Delivery.ShipmentItem do
       public? true
       source_attribute :shipment_id
       destination_attribute :shipment_id
     end
-    has_many :shipment_packages, UniboV4.Delivery.ShipmentPackage do
+    has_many :shipment_packages, UniboExPoc.Delivery.ShipmentPackage do
       public? true
       source_attribute :shipment_id
       destination_attribute :shipment_id
     end
-    has_many :route_segments, UniboV4.Delivery.ShipmentRouteSegment do
+    has_many :route_segments, UniboExPoc.Delivery.ShipmentRouteSegment do
       public? true
       source_attribute :shipment_id
       destination_attribute :shipment_id
     end
-    has_many :status_history, UniboV4.Delivery.ShipmentStatus do
+    has_many :status_history, UniboExPoc.Delivery.ShipmentStatus do
       public? true
       source_attribute :shipment_id
       destination_attribute :shipment_id

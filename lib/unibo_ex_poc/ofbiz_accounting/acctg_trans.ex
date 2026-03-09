@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.AcctgTrans do
+defmodule UniboExPoc.Ofbiz.Accounting.AcctgTrans do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_acctg_transes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -53,25 +53,25 @@ defmodule UniboV4.Ofbiz.Accounting.AcctgTrans do
   end
 
   relationships do
-    belongs_to :acctg_trans_type, UniboV4.Ofbiz.Accounting.AcctgTransType do
+    belongs_to :acctg_trans_type, UniboExPoc.Ofbiz.Accounting.AcctgTransType do
       public? true
     end
-    belongs_to :gl_journal, UniboV4.Ofbiz.Accounting.GlJournal do
+    belongs_to :gl_journal, UniboExPoc.Ofbiz.Accounting.GlJournal do
       public? true
     end
-    belongs_to :gl_fiscal_type, UniboV4.Ofbiz.Accounting.GlFiscalType do
+    belongs_to :gl_fiscal_type, UniboExPoc.Ofbiz.Accounting.GlFiscalType do
       public? true
     end
-    belongs_to :fixed_asset, UniboV4.Ofbiz.Accounting.FixedAsset do
+    belongs_to :fixed_asset, UniboExPoc.Ofbiz.Accounting.FixedAsset do
       public? true
     end
-    belongs_to :invoice, UniboV4.Ofbiz.Accounting.Invoice do
+    belongs_to :invoice, UniboExPoc.Ofbiz.Accounting.Invoice do
       public? true
     end
-    belongs_to :payment, UniboV4.Ofbiz.Accounting.Payment do
+    belongs_to :payment, UniboExPoc.Ofbiz.Accounting.Payment do
       public? true
     end
-    belongs_to :fin_account_trans, UniboV4.Ofbiz.Accounting.FinAccountTrans do
+    belongs_to :fin_account_trans, UniboExPoc.Ofbiz.Accounting.FinAccountTrans do
       public? true
     end
   end

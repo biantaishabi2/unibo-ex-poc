@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Documents.Folder do
+defmodule UniboExPoc.Documents.Folder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Documents,
+    domain: UniboExPoc.Documents,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
     authorizers: [Ash.Policy.Authorizer]
@@ -20,7 +20,7 @@ defmodule UniboV4.Documents.Folder do
 
   postgres do
     table "documents_folders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -56,28 +56,28 @@ defmodule UniboV4.Documents.Folder do
   end
 
   relationships do
-    has_many :children, UniboV4.Documents.Document do
+    has_many :children, UniboExPoc.Documents.Document do
       public? true
     end
-    belongs_to :parent_folder, UniboV4.Documents.Document do
+    belongs_to :parent_folder, UniboExPoc.Documents.Document do
       public? true
     end
-    many_to_many :actions, UniboV4.Documents.WorkflowRule do
+    many_to_many :actions, UniboExPoc.Documents.WorkflowRule do
       public? true
-      through UniboV4.Documents.FolderWorkflowRuleLink
+      through UniboExPoc.Documents.FolderWorkflowRuleLink
     end
-    has_many :facets, UniboV4.Documents.Facet do
+    has_many :facets, UniboExPoc.Documents.Facet do
       public? true
     end
-    many_to_many :read_groups, UniboV4.Documents.Group do
+    many_to_many :read_groups, UniboExPoc.Documents.Group do
       public? true
-      through UniboV4.Documents.FolderReadGroupLink
+      through UniboExPoc.Documents.FolderReadGroupLink
     end
-    many_to_many :write_groups, UniboV4.Documents.Group do
+    many_to_many :write_groups, UniboExPoc.Documents.Group do
       public? true
-      through UniboV4.Documents.FolderWriteGroupLink
+      through UniboExPoc.Documents.FolderWriteGroupLink
     end
-    belongs_to :company, UniboV4.Documents.Party do
+    belongs_to :company, UniboExPoc.Documents.Party do
       public? true
       source_attribute :company_party_id
     end
@@ -119,6 +119,9 @@ defmodule UniboV4.Documents.Folder do
     end
     policy action_type(:update) do
       authorize_if expr(actor.role == :admin or expr(fragment("? && ?", actor.groups, write_groups)))
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

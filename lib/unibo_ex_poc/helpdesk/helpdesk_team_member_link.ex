@@ -1,7 +1,7 @@
-defmodule UniboV4.Helpdesk.HelpdeskTeamMemberLink do
+defmodule UniboExPoc.Helpdesk.HelpdeskTeamMemberLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Helpdesk.HelpdeskTeamMemberLink do
 
   postgres do
     table "helpdesk_team_member_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,12 +29,12 @@ defmodule UniboV4.Helpdesk.HelpdeskTeamMemberLink do
   end
 
   relationships do
-    belongs_to :team, UniboV4.Helpdesk.HelpdeskTeam do
+    belongs_to :team, UniboExPoc.Helpdesk.HelpdeskTeam do
       public? true
       allow_nil? false
       source_attribute :helpdesk_team_id
     end
-    belongs_to :employee, UniboV4.Helpdesk.Employee do
+    belongs_to :employee, UniboExPoc.Helpdesk.Employee do
       public? true
       allow_nil? false
     end

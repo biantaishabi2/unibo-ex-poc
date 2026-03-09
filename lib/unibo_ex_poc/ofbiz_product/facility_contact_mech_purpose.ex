@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.FacilityContactMechPurpose do
+defmodule UniboExPoc.Ofbiz.Product.FacilityContactMechPurpose do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "product_facility_contact_mech_purposes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -47,7 +47,7 @@ defmodule UniboV4.Ofbiz.Product.FacilityContactMechPurpose do
   end
 
   relationships do
-    belongs_to :facility, UniboV4.Ofbiz.Product.Facility do
+    belongs_to :facility, UniboExPoc.Ofbiz.Product.Facility do
       public? true
     end
   end

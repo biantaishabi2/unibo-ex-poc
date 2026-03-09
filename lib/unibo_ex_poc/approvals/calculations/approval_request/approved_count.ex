@@ -1,4 +1,4 @@
-defmodule UniboV4.Approvals.Calculations.ApprovalRequest.ApprovedCount do
+defmodule UniboExPoc.Approvals.Calculations.ApprovalRequest.ApprovedCount do
   @moduledoc """
   Calculation 模块: :approved_count (type: :integer, entity: approval_request)
   原始 expr: op: func args: - count - op: filter   args:   - op: ref     args:     - approvers   - op: eq     args:     - status     - approved

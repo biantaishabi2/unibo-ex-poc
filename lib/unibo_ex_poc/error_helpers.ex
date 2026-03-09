@@ -1,4 +1,4 @@
-defmodule UniboV4.ErrorHelpers do
+defmodule UniboExPoc.ErrorHelpers do
   @moduledoc """
   运行时错误消息翻译辅助模块 — 由 UniBO 编译器自动生成。
 
@@ -9,21 +9,21 @@ defmodule UniboV4.ErrorHelpers do
   ## 用法
 
       # 翻译单条错误消息
-      translated = UniboV4.ErrorHelpers.translate_error(error)
+      translated = UniboExPoc.ErrorHelpers.translate_error(error)
 
       # 翻译 Ash changeset 返回的所有错误
-      translated_errors = UniboV4.ErrorHelpers.translate_errors(errors)
+      translated_errors = UniboExPoc.ErrorHelpers.translate_errors(errors)
 
       # 在 Phoenix ErrorView / ErrorJSON 中使用
       def render("error.json", %{changeset: changeset}) do
         errors = Ash.Error.to_error_list(changeset)
-        %{errors: UniboV4.ErrorHelpers.translate_errors(errors)}
+        %{errors: UniboExPoc.ErrorHelpers.translate_errors(errors)}
       end
   """
 
   @doc "翻译单条错误消息字符串"
   def translate_error(%{message: message, vars: vars}) do
-    translated = Gettext.dgettext(UniboV4.Gettext, "errors", message)
+    translated = Gettext.dgettext(UniboExPoc.Gettext, "errors", message)
 
     Enum.reduce(vars, translated, fn {key, value}, acc ->
       String.replace(acc, "%{#{key}}", to_string(value))
@@ -31,11 +31,11 @@ defmodule UniboV4.ErrorHelpers do
   end
 
   def translate_error(%{message: message}) do
-    Gettext.dgettext(UniboV4.Gettext, "errors", message)
+    Gettext.dgettext(UniboExPoc.Gettext, "errors", message)
   end
 
   def translate_error(message) when is_binary(message) do
-    Gettext.dgettext(UniboV4.Gettext, "errors", message)
+    Gettext.dgettext(UniboExPoc.Gettext, "errors", message)
   end
 
   def translate_error(other), do: inspect(other)

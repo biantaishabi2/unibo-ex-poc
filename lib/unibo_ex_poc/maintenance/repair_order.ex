@@ -12,13 +12,13 @@
 #   cancel --> reset_to_draft
 #   reset_to_draft --> confirm
 # ```
-defmodule UniboV4.Maintenance.RepairOrder do
+defmodule UniboExPoc.Maintenance.RepairOrder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Maintenance.RepairOrder.Notifier]
+    notifiers: [UniboExPoc.Maintenance.RepairOrder.Notifier]
 
   resource do
     description "维修工单，5 态状态机，支持零件消耗和库存移动"
@@ -26,7 +26,7 @@ defmodule UniboV4.Maintenance.RepairOrder do
 
   postgres do
     table "maintenance_repair_orders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -105,49 +105,49 @@ late: 库存不足且预测无法按期到货
   end
 
   relationships do
-    belongs_to :equipment, UniboV4.Maintenance.Equipment do
+    belongs_to :equipment, UniboExPoc.Maintenance.Equipment do
       public? true
       allow_nil? false
     end
-    belongs_to :product, UniboV4.Maintenance.Product do
+    belongs_to :product, UniboExPoc.Maintenance.Product do
       public? true
       allow_nil? false
     end
-    belongs_to :lot, UniboV4.Maintenance.Lot do
+    belongs_to :lot, UniboExPoc.Maintenance.Lot do
       public? true
     end
-    belongs_to :partner, UniboV4.Maintenance.Party do
+    belongs_to :partner, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :partner_party_id
     end
-    belongs_to :company, UniboV4.Maintenance.Party do
+    belongs_to :company, UniboExPoc.Maintenance.Party do
       public? true
       allow_nil? false
       source_attribute :company_party_id
     end
-    belongs_to :location, UniboV4.Maintenance.StockLocation do
+    belongs_to :location, UniboExPoc.Maintenance.StockLocation do
       public? true
       allow_nil? false
     end
-    belongs_to :location_dest, UniboV4.Maintenance.StockLocation do
+    belongs_to :location_dest, UniboExPoc.Maintenance.StockLocation do
       public? true
       allow_nil? false
     end
-    has_many :parts, UniboV4.Maintenance.RepairOrderLine do
+    has_many :parts, UniboExPoc.Maintenance.RepairOrderLine do
       public? true
       destination_attribute :repair_order_id
     end
-    has_many :stock_moves, UniboV4.Maintenance.StockMove do
+    has_many :stock_moves, UniboExPoc.Maintenance.StockMove do
       public? true
       destination_attribute :repair_order_id
     end
-    belongs_to :product_move, UniboV4.Maintenance.StockMove do
+    belongs_to :product_move, UniboExPoc.Maintenance.StockMove do
       public? true
     end
-    belongs_to :sale_order, UniboV4.Maintenance.SalesOrder do
+    belongs_to :sale_order, UniboExPoc.Maintenance.SalesOrder do
       public? true
     end
-    belongs_to :picking, UniboV4.Maintenance.StockPicking do
+    belongs_to :picking, UniboExPoc.Maintenance.StockPicking do
       public? true
     end
   end
@@ -168,7 +168,7 @@ late: 库存不足且预测无法按期到货
       change manage_relationship(:location_id, :location, type: :append, on_lookup: :relate)
       change manage_relationship(:location_dest_id, :location_dest, type: :append, on_lookup: :relate)
       validate present(:repair_number)
-      change UniboV4.Maintenance.Changes.RepairOrder.CreateCall15
+      change UniboExPoc.Maintenance.Changes.RepairOrder.CreateCall15
       change set_attribute(:id, expr(id))
     end
     update :confirm do
@@ -187,9 +187,9 @@ late: 库存不足且预测无法按期到货
       # skipped: validate parts_quantity_positive : (incompatible with bulk update atomic path)
       # skipped: validate lot_stock_check : (incompatible with bulk update atomic path)
       change set_attribute(:state, :confirmed)
-      change UniboV4.Maintenance.Changes.RepairOrder.ConfirmCall2
-      change UniboV4.Maintenance.Changes.RepairOrder.ConfirmCall15
-      change UniboV4.Maintenance.Changes.RepairOrder.ConfirmCall16
+      change UniboExPoc.Maintenance.Changes.RepairOrder.ConfirmCall2
+      change UniboExPoc.Maintenance.Changes.RepairOrder.ConfirmCall15
+      change UniboExPoc.Maintenance.Changes.RepairOrder.ConfirmCall16
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -206,8 +206,8 @@ late: 库存不足且预测无法按期到货
       end
       # message: "只有已确认状态可以开始维修"
       change set_attribute(:state, :under_repair)
-      change UniboV4.Maintenance.Changes.RepairOrder.StartRepairCall15
-      change UniboV4.Maintenance.Changes.RepairOrder.StartRepairCall16
+      change UniboExPoc.Maintenance.Changes.RepairOrder.StartRepairCall15
+      change UniboExPoc.Maintenance.Changes.RepairOrder.StartRepairCall16
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -224,23 +224,23 @@ late: 库存不足且预测无法按期到货
       end
       # message: "只有维修中状态可以完成"
       change set_attribute(:state, :done)
-      change UniboV4.Maintenance.Changes.RepairOrder.CompleteRepairCall5
-      change UniboV4.Maintenance.Changes.RepairOrder.CompleteRepairCall6
-      change UniboV4.Maintenance.Changes.RepairOrder.CompleteRepairCall7
-      change UniboV4.Maintenance.Changes.RepairOrder.CompleteRepairCall8
-      change UniboV4.Maintenance.Changes.RepairOrder.CompleteRepairCall15
-      change UniboV4.Maintenance.Changes.RepairOrder.CompleteRepairCall16
+      change UniboExPoc.Maintenance.Changes.RepairOrder.CompleteRepairCall5
+      change UniboExPoc.Maintenance.Changes.RepairOrder.CompleteRepairCall6
+      change UniboExPoc.Maintenance.Changes.RepairOrder.CompleteRepairCall7
+      change UniboExPoc.Maintenance.Changes.RepairOrder.CompleteRepairCall8
+      change UniboExPoc.Maintenance.Changes.RepairOrder.CompleteRepairCall15
+      change UniboExPoc.Maintenance.Changes.RepairOrder.CompleteRepairCall16
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
       description "取消维修 (any -> cancel)"
       accept []
-      change UniboV4.Maintenance.Changes.RepairOrder.CancelCall9
-      change UniboV4.Maintenance.Changes.RepairOrder.CancelCall10
+      change UniboExPoc.Maintenance.Changes.RepairOrder.CancelCall9
+      change UniboExPoc.Maintenance.Changes.RepairOrder.CancelCall10
       change set_attribute(:state, :cancel)
-      change UniboV4.Maintenance.Changes.RepairOrder.CancelCall15
-      change UniboV4.Maintenance.Changes.RepairOrder.CancelCall16
+      change UniboExPoc.Maintenance.Changes.RepairOrder.CancelCall15
+      change UniboExPoc.Maintenance.Changes.RepairOrder.CancelCall16
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -256,11 +256,11 @@ late: 库存不足且预测无法按期到货
         end
       end
       # message: "只有已取消状态可以重置为草稿"
-      change UniboV4.Maintenance.Changes.RepairOrder.ResetToDraftCall12
-      change UniboV4.Maintenance.Changes.RepairOrder.ResetToDraftCall13
+      change UniboExPoc.Maintenance.Changes.RepairOrder.ResetToDraftCall12
+      change UniboExPoc.Maintenance.Changes.RepairOrder.ResetToDraftCall13
       change set_attribute(:state, :draft)
-      change UniboV4.Maintenance.Changes.RepairOrder.ResetToDraftCall15
-      change UniboV4.Maintenance.Changes.RepairOrder.ResetToDraftCall16
+      change UniboExPoc.Maintenance.Changes.RepairOrder.ResetToDraftCall15
+      change UniboExPoc.Maintenance.Changes.RepairOrder.ResetToDraftCall16
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

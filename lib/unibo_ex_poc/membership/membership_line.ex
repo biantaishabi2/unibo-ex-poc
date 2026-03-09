@@ -6,13 +6,13 @@
 #   cancel --> renew
 #   renew --> cancel
 # ```
-defmodule UniboV4.Membership.MembershipLine do
+defmodule UniboExPoc.Membership.MembershipLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Membership,
+    domain: UniboExPoc.Membership,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Membership.MembershipLine.Notifier]
+    notifiers: [UniboExPoc.Membership.MembershipLine.Notifier]
 
   resource do
     description "会员记录行，跟踪合作伙伴的会员产品、有效期和支付状态"
@@ -20,7 +20,7 @@ defmodule UniboV4.Membership.MembershipLine do
 
   postgres do
     table "membership_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -76,16 +76,16 @@ defmodule UniboV4.Membership.MembershipLine do
   end
 
   calculations do
-    calculate :is_active, :boolean, {UniboV4.Membership.Calculations.MembershipLine.IsActive, []}
+    calculate :is_active, :boolean, {UniboExPoc.Membership.Calculations.MembershipLine.IsActive, []}
   end
 
   relationships do
-    belongs_to :partner, UniboV4.Membership.Party do
+    belongs_to :partner, UniboExPoc.Membership.Party do
       public? true
       allow_nil? false
       source_attribute :partner_party_id
     end
-    belongs_to :membership, UniboV4.Membership.MembershipProduct do
+    belongs_to :membership, UniboExPoc.Membership.MembershipProduct do
       public? true
       allow_nil? false
     end

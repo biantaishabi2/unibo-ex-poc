@@ -1,7 +1,7 @@
-defmodule UniboV4.Analytic.Party do
+defmodule UniboExPoc.Analytic.Party do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Analytic,
+    domain: UniboExPoc.Analytic,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Analytic.Party do
 
   postgres do
     table "analytic_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

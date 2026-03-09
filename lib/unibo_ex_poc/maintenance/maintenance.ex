@@ -1,4 +1,4 @@
-defmodule UniboV4.Maintenance do
+defmodule UniboExPoc.Maintenance do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,47 +7,47 @@ defmodule UniboV4.Maintenance do
   end
 
   resources do
-    resource UniboV4.Maintenance.Equipment
-    resource UniboV4.Maintenance.Equipment.Version
-    resource UniboV4.Maintenance.EquipmentCategory
-    resource UniboV4.Maintenance.EquipmentCategory.Version
-    resource UniboV4.Maintenance.MaintenanceStage
-    resource UniboV4.Maintenance.MaintenanceStage.Version
-    resource UniboV4.Maintenance.MaintenanceRequest
-    resource UniboV4.Maintenance.MaintenanceRequest.Version
-    resource UniboV4.Maintenance.MaintenanceTeam
-    resource UniboV4.Maintenance.MaintenanceTeam.Version
-    resource UniboV4.Maintenance.MaintenanceSchedule
-    resource UniboV4.Maintenance.MaintenanceSchedule.Version
-    resource UniboV4.Maintenance.RepairOrder
-    resource UniboV4.Maintenance.RepairOrder.Version
-    resource UniboV4.Maintenance.VehicleModel
-    resource UniboV4.Maintenance.VehicleModel.Version
-    resource UniboV4.Maintenance.Vehicle
-    resource UniboV4.Maintenance.Vehicle.Version
-    resource UniboV4.Maintenance.VehicleState
-    resource UniboV4.Maintenance.VehicleState.Version
-    resource UniboV4.Maintenance.ServiceLog
-    resource UniboV4.Maintenance.ServiceLog.Version
-    resource UniboV4.Maintenance.Contract
-    resource UniboV4.Maintenance.Contract.Version
-    resource UniboV4.Maintenance.Odometer
-    resource UniboV4.Maintenance.AssignmentLog
-    resource UniboV4.Maintenance.ServiceType
-    resource UniboV4.Maintenance.ServiceType.Version
-    resource UniboV4.Maintenance.Product
-    resource UniboV4.Maintenance.SalesOrder
-    resource UniboV4.Maintenance.StockLocation
-    resource UniboV4.Maintenance.Lot
-    resource UniboV4.Maintenance.StockPicking
-    resource UniboV4.Maintenance.StockMove
-    resource UniboV4.Maintenance.RepairOrderLine
-    resource UniboV4.Maintenance.VehicleTag
-    resource UniboV4.Maintenance.VehicleModelBrand
-    resource UniboV4.Maintenance.VehicleModelCategory
-    resource UniboV4.Maintenance.MaintenanceTeamMemberLink
-    resource UniboV4.Maintenance.VehicleTagLink
-    resource UniboV4.Maintenance.ContractServiceItemLink
-    resource UniboV4.Maintenance.Party
+    resource UniboExPoc.Maintenance.Equipment
+    resource UniboExPoc.Maintenance.Equipment.Version
+    resource UniboExPoc.Maintenance.EquipmentCategory
+    resource UniboExPoc.Maintenance.EquipmentCategory.Version
+    resource UniboExPoc.Maintenance.MaintenanceStage
+    resource UniboExPoc.Maintenance.MaintenanceStage.Version
+    resource UniboExPoc.Maintenance.MaintenanceRequest
+    resource UniboExPoc.Maintenance.MaintenanceRequest.Version
+    resource UniboExPoc.Maintenance.MaintenanceTeam
+    resource UniboExPoc.Maintenance.MaintenanceTeam.Version
+    resource UniboExPoc.Maintenance.MaintenanceSchedule
+    resource UniboExPoc.Maintenance.MaintenanceSchedule.Version
+    resource UniboExPoc.Maintenance.RepairOrder
+    resource UniboExPoc.Maintenance.RepairOrder.Version
+    resource UniboExPoc.Maintenance.VehicleModel
+    resource UniboExPoc.Maintenance.VehicleModel.Version
+    resource UniboExPoc.Maintenance.Vehicle
+    resource UniboExPoc.Maintenance.Vehicle.Version
+    resource UniboExPoc.Maintenance.VehicleState
+    resource UniboExPoc.Maintenance.VehicleState.Version
+    resource UniboExPoc.Maintenance.ServiceLog
+    resource UniboExPoc.Maintenance.ServiceLog.Version
+    resource UniboExPoc.Maintenance.Contract
+    resource UniboExPoc.Maintenance.Contract.Version
+    resource UniboExPoc.Maintenance.Odometer
+    resource UniboExPoc.Maintenance.AssignmentLog
+    resource UniboExPoc.Maintenance.ServiceType
+    resource UniboExPoc.Maintenance.ServiceType.Version
+    resource UniboExPoc.Maintenance.Product
+    resource UniboExPoc.Maintenance.SalesOrder
+    resource UniboExPoc.Maintenance.StockLocation
+    resource UniboExPoc.Maintenance.Lot
+    resource UniboExPoc.Maintenance.StockPicking
+    resource UniboExPoc.Maintenance.StockMove
+    resource UniboExPoc.Maintenance.RepairOrderLine
+    resource UniboExPoc.Maintenance.VehicleTag
+    resource UniboExPoc.Maintenance.VehicleModelBrand
+    resource UniboExPoc.Maintenance.VehicleModelCategory
+    resource UniboExPoc.Maintenance.MaintenanceTeamMemberLink
+    resource UniboExPoc.Maintenance.VehicleTagLink
+    resource UniboExPoc.Maintenance.ContractServiceItemLink
+    resource UniboExPoc.Maintenance.Party
   end
 end

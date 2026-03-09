@@ -8,13 +8,13 @@
 #   start_campaign --> stop_campaign
 #   stop_campaign --> [*]
 # ```
-defmodule UniboV4.Marketing.AutomationCampaign do
+defmodule UniboExPoc.Marketing.AutomationCampaign do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Marketing.AutomationCampaign.Notifier]
+    notifiers: [UniboExPoc.Marketing.AutomationCampaign.Notifier]
 
   resource do
     description "营销自动化活动（工作流编排引擎）"
@@ -22,7 +22,7 @@ defmodule UniboV4.Marketing.AutomationCampaign do
 
   postgres do
     table "marketing_automation_campaigns"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -101,11 +101,11 @@ defmodule UniboV4.Marketing.AutomationCampaign do
   end
 
   relationships do
-    has_many :activities, UniboV4.Marketing.AutomationActivity do
+    has_many :activities, UniboExPoc.Marketing.AutomationActivity do
       public? true
       destination_attribute :campaign_id
     end
-    has_many :participants, UniboV4.Marketing.AutomationParticipant do
+    has_many :participants, UniboExPoc.Marketing.AutomationParticipant do
       public? true
       destination_attribute :campaign_id
     end
@@ -156,7 +156,7 @@ defmodule UniboV4.Marketing.AutomationCampaign do
       end
       # message: "只有运行中状态可以停止"
       change set_attribute(:state, :stopped)
-      change UniboV4.Marketing.Changes.AutomationCampaign.StopCampaignCall3
+      change UniboExPoc.Marketing.Changes.AutomationCampaign.StopCampaignCall3
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

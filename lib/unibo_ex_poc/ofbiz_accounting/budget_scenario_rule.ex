@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.BudgetScenarioRule do
+defmodule UniboExPoc.Ofbiz.Accounting.BudgetScenarioRule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_budget_scenario_rules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -34,10 +34,10 @@ defmodule UniboV4.Ofbiz.Accounting.BudgetScenarioRule do
   end
 
   relationships do
-    belongs_to :budget_scenario, UniboV4.Ofbiz.Accounting.BudgetScenario do
+    belongs_to :budget_scenario, UniboExPoc.Ofbiz.Accounting.BudgetScenario do
       public? true
     end
-    belongs_to :budget_item_type, UniboV4.Ofbiz.Accounting.BudgetItemType do
+    belongs_to :budget_item_type, UniboExPoc.Ofbiz.Accounting.BudgetItemType do
       public? true
     end
   end

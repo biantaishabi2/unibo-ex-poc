@@ -1,4 +1,4 @@
-defmodule UniboV4.Events.Changes.EventRegistration.ComputeCheckInTime do
+defmodule UniboExPoc.Events.Changes.EventRegistration.ComputeCheckInTime do
   @moduledoc """
   Change 模块: 计算 :check_in_time (entity: event_registration)
   原始 expr: op: func args: - now

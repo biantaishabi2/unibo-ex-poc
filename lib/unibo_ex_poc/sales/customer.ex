@@ -8,10 +8,10 @@
 #   update --> block
 #   block --> [*]
 # ```
-defmodule UniboV4.Sales.Customer do
+defmodule UniboExPoc.Sales.Customer do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sales,
+    domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Sales.Customer do
 
   postgres do
     table "sales_customers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -94,10 +94,10 @@ defmodule UniboV4.Sales.Customer do
   end
 
   relationships do
-    has_many :sales_orders, UniboV4.Sales.SalesOrder do
+    has_many :sales_orders, UniboExPoc.Sales.SalesOrder do
       public? true
     end
-    has_many :quotes, UniboV4.Sales.Quote do
+    has_many :quotes, UniboExPoc.Sales.Quote do
       public? true
     end
   end

@@ -8,10 +8,10 @@
 #   mark_seen --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Communication.ChannelMember do
+defmodule UniboExPoc.Communication.ChannelMember do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Communication,
+    domain: UniboExPoc.Communication,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Communication.ChannelMember do
 
   postgres do
     table "communication_channel_members"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -101,28 +101,28 @@ defmodule UniboV4.Communication.ChannelMember do
   end
 
   relationships do
-    belongs_to :channel, UniboV4.Communication.Channel do
+    belongs_to :channel, UniboExPoc.Communication.Channel do
       public? true
       allow_nil? false
     end
-    belongs_to :user, UniboV4.Communication.Party do
+    belongs_to :user, UniboExPoc.Communication.Party do
       public? true
       source_attribute :user_party_id
     end
-    belongs_to :guest, UniboV4.Communication.Guest do
+    belongs_to :guest, UniboExPoc.Communication.Guest do
       public? true
     end
-    belongs_to :seen_message, UniboV4.Communication.Message do
+    belongs_to :seen_message, UniboExPoc.Communication.Message do
       public? true
     end
-    belongs_to :fetched_message, UniboV4.Communication.Message do
+    belongs_to :fetched_message, UniboExPoc.Communication.Message do
       public? true
     end
-    belongs_to :partner, UniboV4.Communication.Party do
+    belongs_to :partner, UniboExPoc.Communication.Party do
       public? true
       source_attribute :partner_party_id
     end
-    belongs_to :rtc_inviting_session, UniboV4.Communication.RTCSession do
+    belongs_to :rtc_inviting_session, UniboExPoc.Communication.RTCSession do
       public? true
     end
   end
@@ -138,7 +138,7 @@ defmodule UniboV4.Communication.ChannelMember do
       change manage_relationship(:channel_id, :channel, type: :append, on_lookup: :relate)
       validate present([:partner_id, :guest_id], exactly: 1)
       # message: "partner_id 和 guest_id 必须二选一，不能同时为空或同时有值"
-      change UniboV4.Communication.Changes.ChannelMember.CreateCall5
+      change UniboExPoc.Communication.Changes.ChannelMember.CreateCall5
       change set_attribute(:id, expr(id))
     end
     update :update do
@@ -150,7 +150,7 @@ defmodule UniboV4.Communication.ChannelMember do
     destroy :destroy do
       description "删除成员记录 + 广播离开事件 + 发布系统消息（CM-R5 unfollow）"
       primary? true
-      change UniboV4.Communication.Changes.ChannelMember.DestroyCall4
+      change UniboExPoc.Communication.Changes.ChannelMember.DestroyCall4
       change set_attribute(:id, expr(id))
     end
     update :mark_seen do

@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Lunch.LunchLocation do
+defmodule UniboExPoc.Lunch.LunchLocation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Lunch,
+    domain: UniboExPoc.Lunch,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Lunch.LunchLocation do
 
   postgres do
     table "lunch_locations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

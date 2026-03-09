@@ -1,7 +1,7 @@
 {
-  "total": 154,
+  "total": 139,
   "errors": 0,
-  "warnings": 154,
+  "warnings": 139,
   "issues": [
     {
       "domain": "Accounting",
@@ -310,6 +310,15 @@
       "reason": "实体主键为 [zip_code, state_code, city, county, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
+      "domain": "Common",
+      "entity": "PortalPagePortlet",
+      "action": null,
+      "rule_code": "duplicate_fk_attribute_removed",
+      "path": "entities.PortalPagePortlet",
+      "severity": "warning",
+      "reason": "属性 'column_seq_id' 与 belongs_to 自动生成的外键重复，已移除"
+    },
+    {
       "domain": "Content",
       "entity": "ContentPurposeOperation",
       "action": null,
@@ -389,186 +398,6 @@
       "path": "entities.WebUserPreference",
       "severity": "warning",
       "reason": "实体主键为 [user_login_id, party_id, visit_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "HumanRes",
-      "entity": "Employment",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.Employment",
-      "severity": "warning",
-      "reason": "实体主键为 [role_type_id_from, role_type_id_to, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "HumanRes",
-      "entity": "PartyBenefit",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PartyBenefit",
-      "severity": "warning",
-      "reason": "实体主键为 [role_type_id_from, role_type_id_to, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "HumanRes",
-      "entity": "PayHistory",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PayHistory",
-      "severity": "warning",
-      "reason": "实体主键为 [role_type_id_from, role_type_id_to, party_id_from, party_id_to, empl_from_date, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "HumanRes",
-      "entity": "PayrollPreference",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PayrollPreference",
-      "severity": "warning",
-      "reason": "实体主键为 [role_type_id, payroll_preference_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "HumanRes",
-      "entity": "PerfReview",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PerfReview",
-      "severity": "warning",
-      "reason": "实体主键为 [employee_role_type_id, perf_review_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "HumanRes",
-      "entity": "PerfReviewItem",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PerfReviewItem",
-      "severity": "warning",
-      "reason": "实体主键为 [employee_role_type_id, perf_review_id, perf_review_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "HumanRes",
-      "entity": "PerformanceNote",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.PerformanceNote",
-      "severity": "warning",
-      "reason": "实体主键为 [role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "HumanRes",
-      "entity": "SalaryStep",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SalaryStep",
-      "severity": "warning",
-      "reason": "实体主键为 [salary_step_seq_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Manufacturing",
-      "entity": "MrpEvent",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.MrpEvent",
-      "severity": "warning",
-      "reason": "实体主键为 [mrp_id, product_id, event_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Marketing",
-      "entity": "ContactListCommStatus",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContactListCommStatus",
-      "severity": "warning",
-      "reason": "实体主键为 [communication_event_id, contact_mech_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Marketing",
-      "entity": "ContactListParty",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContactListParty",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Marketing",
-      "entity": "ContactListPartyStatus",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.ContactListPartyStatus",
-      "severity": "warning",
-      "reason": "实体主键为 [contact_list_id, party_id, from_date, status_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Marketing",
-      "entity": "MarketingCampaignPrice",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.MarketingCampaignPrice",
-      "severity": "warning",
-      "reason": "实体主键为 [product_price_rule_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Marketing",
-      "entity": "MarketingCampaignPromo",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.MarketingCampaignPromo",
-      "severity": "warning",
-      "reason": "实体主键为 [product_promo_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Marketing",
-      "entity": "MarketingCampaignRole",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.MarketingCampaignRole",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Marketing",
-      "entity": "SalesOpportunityRole",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SalesOpportunityRole",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Marketing",
-      "entity": "SegmentGroupRole",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.SegmentGroupRole",
-      "severity": "warning",
-      "reason": "实体主键为 [party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Marketing",
-      "entity": "TrackingCodeOrderReturn",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.TrackingCodeOrderReturn",
-      "severity": "warning",
-      "reason": "实体主键为 [return_id, order_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Marketing",
-      "entity": "TrackingCodeVisit",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.TrackingCodeVisit",
-      "severity": "warning",
-      "reason": "实体主键为 [visit_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
-    },
-    {
-      "domain": "Marketing",
-      "entity": "WebSiteContactList",
-      "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.WebSiteContactList",
-      "severity": "warning",
-      "reason": "实体主键为 [web_site_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
       "domain": "Order",
@@ -1372,22 +1201,58 @@
       "reason": "实体主键为 [shipment_method_type_id, party_id, role_type_id, from_date]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
     },
     {
-      "domain": "WorkEffort",
-      "entity": "WorkEffortAssocAttribute",
+      "domain": "Travel",
+      "entity": "FlightOffer",
       "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.WorkEffortAssocAttribute",
+      "rule_code": "paper_trail_multitenancy_attribute_unsupported",
+      "path": "entities.FlightOffer",
       "severity": "warning",
-      "reason": "实体主键为 [work_effort_id_from, work_effort_id_to, work_effort_assoc_type_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "检测到 tenancy.strategy=attribute；当前已自动跳过 paper_trail，避免 Version 资源缺少 tenant_id 导致编译告警"
     },
     {
-      "domain": "WorkEffort",
-      "entity": "WorkEffortTransBox",
+      "domain": "Travel",
+      "entity": "HotelOffer",
       "action": null,
-      "rule_code": "paper_trail_composite_pk_unsupported",
-      "path": "entities.WorkEffortTransBox",
+      "rule_code": "paper_trail_multitenancy_attribute_unsupported",
+      "path": "entities.HotelOffer",
       "severity": "warning",
-      "reason": "实体主键为 [to_activity_id, transition_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+      "reason": "检测到 tenancy.strategy=attribute；当前已自动跳过 paper_trail，避免 Version 资源缺少 tenant_id 导致编译告警"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "action": null,
+      "rule_code": "paper_trail_multitenancy_attribute_unsupported",
+      "path": "entities.TrainOffer",
+      "severity": "warning",
+      "reason": "检测到 tenancy.strategy=attribute；当前已自动跳过 paper_trail，避免 Version 资源缺少 tenant_id 导致编译告警"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "action": null,
+      "rule_code": "paper_trail_multitenancy_attribute_unsupported",
+      "path": "entities.TravelFulfillment",
+      "severity": "warning",
+      "reason": "检测到 tenancy.strategy=attribute；当前已自动跳过 paper_trail，避免 Version 资源缺少 tenant_id 导致编译告警"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": null,
+      "rule_code": "paper_trail_multitenancy_attribute_unsupported",
+      "path": "entities.TravelOrder",
+      "severity": "warning",
+      "reason": "检测到 tenancy.strategy=attribute；当前已自动跳过 paper_trail，避免 Version 资源缺少 tenant_id 导致编译告警"
+    },
+    {
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "action": null,
+      "rule_code": "paper_trail_multitenancy_attribute_unsupported",
+      "path": "entities.VacationOffer",
+      "severity": "warning",
+      "reason": "检测到 tenancy.strategy=attribute；当前已自动跳过 paper_trail，避免 Version 资源缺少 tenant_id 导致编译告警"
     }
   ]
 }

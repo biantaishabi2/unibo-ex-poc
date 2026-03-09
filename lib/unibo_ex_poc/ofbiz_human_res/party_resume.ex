@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.PartyResume do
+defmodule UniboExPoc.Ofbiz.HumanRes.PartyResume do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_party_resumes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -48,11 +48,11 @@ defmodule UniboV4.Ofbiz.HumanRes.PartyResume do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Ofbiz.HumanRes.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.HumanRes.Party do
       public? true
       attribute_type :string
     end
-    belongs_to :content, UniboV4.Ofbiz.HumanRes.Content do
+    belongs_to :content, UniboExPoc.Ofbiz.HumanRes.Content do
       public? true
       attribute_type :string
     end

@@ -1,10 +1,10 @@
-defmodule UniboV4.POS.Workflows.PosSession.SessionLifecycleWorkflow do
+defmodule UniboExPoc.POS.Workflows.PosSession.SessionLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.POS.PosSession
+  alias UniboExPoc.POS.PosSession
 
   def steps do
     [:create, :open, :start_close, :close]
@@ -149,6 +149,7 @@ defmodule UniboV4.POS.Workflows.PosSession.SessionLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :open -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.POS.Workflows.PosSession.SessionLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :open -> false

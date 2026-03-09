@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.WebAnalyticsType do
+defmodule UniboExPoc.Ofbiz.Content.WebAnalyticsType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_web_analytics_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -39,7 +39,7 @@ defmodule UniboV4.Ofbiz.Content.WebAnalyticsType do
   end
 
   relationships do
-    belongs_to :parent_web_analytics_type, UniboV4.Ofbiz.Content.WebAnalyticsType do
+    belongs_to :parent_web_analytics_type, UniboExPoc.Ofbiz.Content.WebAnalyticsType do
       public? true
       source_attribute :parent_type_id
       attribute_type :string

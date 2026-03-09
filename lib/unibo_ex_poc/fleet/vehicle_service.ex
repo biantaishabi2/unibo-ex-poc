@@ -9,13 +9,13 @@
 #   complete --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Fleet.VehicleService do
+defmodule UniboExPoc.Fleet.VehicleService do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Fleet,
+    domain: UniboExPoc.Fleet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Fleet.VehicleService.Notifier]
+    notifiers: [UniboExPoc.Fleet.VehicleService.Notifier]
 
   resource do
     description "车辆服务记录（保养/维修/年检），来源于 OFBiz FixedAssetMaint"
@@ -23,7 +23,7 @@ defmodule UniboV4.Fleet.VehicleService do
 
   postgres do
     table "fleet_vehicle_services"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -95,7 +95,7 @@ defmodule UniboV4.Fleet.VehicleService do
   end
 
   relationships do
-    belongs_to :fleet_vehicle, UniboV4.Fleet.FleetVehicle do
+    belongs_to :fleet_vehicle, UniboExPoc.Fleet.FleetVehicle do
       public? true
       allow_nil? false
     end
@@ -144,7 +144,7 @@ defmodule UniboV4.Fleet.VehicleService do
       end
       # message: "只有已预约或进行中的服务可以完成"
       change set_attribute(:status, :completed)
-      change UniboV4.Fleet.Changes.VehicleService.CompleteCall3
+      change UniboExPoc.Fleet.Changes.VehicleService.CompleteCall3
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

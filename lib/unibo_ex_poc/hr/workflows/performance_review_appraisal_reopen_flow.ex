@@ -1,10 +1,10 @@
-defmodule UniboV4.HR.Workflows.PerformanceReview.AppraisalReopenFlowWorkflow do
+defmodule UniboExPoc.HR.Workflows.PerformanceReview.AppraisalReopenFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.HR.PerformanceReview
+  alias UniboExPoc.HR.PerformanceReview
 
   def steps do
     [:create, :action_cancel, :action_back, :action_confirm]
@@ -149,6 +149,7 @@ defmodule UniboV4.HR.Workflows.PerformanceReview.AppraisalReopenFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :action_cancel -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.HR.Workflows.PerformanceReview.AppraisalReopenFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :action_cancel -> false

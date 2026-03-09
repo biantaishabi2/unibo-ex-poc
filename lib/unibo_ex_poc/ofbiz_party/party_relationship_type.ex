@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.PartyRelationshipType do
+defmodule UniboExPoc.Ofbiz.Party.PartyRelationshipType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_relationship_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -48,15 +48,15 @@ defmodule UniboV4.Ofbiz.Party.PartyRelationshipType do
   end
 
   relationships do
-    belongs_to :parent_party_relationship_type, UniboV4.Ofbiz.Party.PartyRelationshipType do
+    belongs_to :parent_party_relationship_type, UniboExPoc.Ofbiz.Party.PartyRelationshipType do
       public? true
       source_attribute :parent_type_id
     end
-    belongs_to :valid_from_role_type, UniboV4.Ofbiz.Party.RoleType do
+    belongs_to :valid_from_role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
       source_attribute :role_type_id_valid_from
     end
-    belongs_to :valid_to_role_type, UniboV4.Ofbiz.Party.RoleType do
+    belongs_to :valid_to_role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
       source_attribute :role_type_id_valid_to
     end

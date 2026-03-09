@@ -1,4 +1,4 @@
-defmodule UniboV4.Delivery.Calculations.Shipment.PackageCount do
+defmodule UniboExPoc.Delivery.Calculations.Shipment.PackageCount do
   @moduledoc """
   Calculation 模块: :package_count (type: :integer, entity: shipment)
   """

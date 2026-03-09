@@ -1,12 +1,12 @@
-defmodule UniboV4.Website.MenuTranslation do
+defmodule UniboExPoc.Website.MenuTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Website,
+    domain: UniboExPoc.Website,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "website_menu_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Website.MenuTranslation do
   end
 
   relationships do
-    belongs_to :menu, UniboV4.Website.Menu do
+    belongs_to :menu, UniboExPoc.Website.Menu do
       public? true
       allow_nil? false
     end

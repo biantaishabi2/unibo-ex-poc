@@ -4,10 +4,10 @@
 #   [*] --> create
 #   create --> [*]
 # ```
-defmodule UniboV4.PLM.EcoTag do
+defmodule UniboExPoc.PLM.EcoTag do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.PLM,
+    domain: UniboExPoc.PLM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -17,7 +17,7 @@ defmodule UniboV4.PLM.EcoTag do
 
   postgres do
     table "plm_eco_tags"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

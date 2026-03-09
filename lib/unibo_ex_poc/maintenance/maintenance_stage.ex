@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Maintenance.MaintenanceStage do
+defmodule UniboExPoc.Maintenance.MaintenanceStage do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Maintenance.MaintenanceStage do
 
   postgres do
     table "maintenance_stages"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -63,7 +63,7 @@ defmodule UniboV4.Maintenance.MaintenanceStage do
   end
 
   relationships do
-    has_many :maintenance_requests, UniboV4.Maintenance.MaintenanceRequest do
+    has_many :maintenance_requests, UniboExPoc.Maintenance.MaintenanceRequest do
       public? true
       destination_attribute :stage_id
     end

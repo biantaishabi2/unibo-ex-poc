@@ -1,4 +1,4 @@
-defmodule UniboV4.Accounting.Changes.JournalEntry.ComputeAmountTax do
+defmodule UniboExPoc.Accounting.Changes.JournalEntry.ComputeAmountTax do
   @moduledoc """
   Change 模块: 计算 :amount_tax (entity: journal_entry)
   """

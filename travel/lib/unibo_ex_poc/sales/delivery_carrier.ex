@@ -116,7 +116,6 @@ defmodule UniboExPoc.Sales.DeliveryCarrier do
   relationships do
     has_many :price_rules, UniboExPoc.Sales.DeliveryPriceRule do
       public? true
-      source_attribute :product_id
       destination_attribute :carrier_id
     end
     belongs_to :product, UniboExPoc.Sales.Product do

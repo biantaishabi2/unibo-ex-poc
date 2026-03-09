@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Project.TimesheetEntry do
+defmodule UniboExPoc.Project.TimesheetEntry do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Project,
+    domain: UniboExPoc.Project,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Project.TimesheetEntry do
 
   postgres do
     table "project_timesheet_entries"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -59,18 +59,18 @@ defmodule UniboV4.Project.TimesheetEntry do
   end
 
   relationships do
-    belongs_to :timesheet, UniboV4.Project.Timesheet do
+    belongs_to :timesheet, UniboExPoc.Project.Timesheet do
       public? true
       allow_nil? false
     end
-    belongs_to :task, UniboV4.Project.Task do
+    belongs_to :task, UniboExPoc.Project.Task do
       public? true
     end
-    belongs_to :project, UniboV4.Project.Project do
+    belongs_to :project, UniboExPoc.Project.Project do
       public? true
       allow_nil? false
     end
-    belongs_to :employee, UniboV4.Project.Employee do
+    belongs_to :employee, UniboExPoc.Project.Employee do
       public? true
       allow_nil? false
     end
@@ -90,10 +90,10 @@ defmodule UniboV4.Project.TimesheetEntry do
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
       # validation: custom_check — 私人任务（无 project_id）禁止创建工时条目
       # validation: custom_check — 员工必须在所选公司中处于激活状态
-      change UniboV4.Project.Changes.TimesheetEntry.ComputeAmount
-      change UniboV4.Project.Changes.TimesheetEntry.CreateCall2
-      change UniboV4.Project.Changes.TimesheetEntry.ComputeProjectId
-      change UniboV4.Project.Changes.TimesheetEntry.CreateCall5
+      change UniboExPoc.Project.Changes.TimesheetEntry.ComputeAmount
+      change UniboExPoc.Project.Changes.TimesheetEntry.CreateCall2
+      change UniboExPoc.Project.Changes.TimesheetEntry.ComputeProjectId
+      change UniboExPoc.Project.Changes.TimesheetEntry.CreateCall5
       change set_attribute(:id, expr(id))
     end
     update :update do
@@ -101,9 +101,9 @@ defmodule UniboV4.Project.TimesheetEntry do
       accept [:hours, :name, :description, :task_id]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate owner_or_role :employee_user_id (incompatible with bulk update atomic path)
-      change UniboV4.Project.Changes.TimesheetEntry.ComputeAmount
-      change UniboV4.Project.Changes.TimesheetEntry.ComputeProjectId
-      change UniboV4.Project.Changes.TimesheetEntry.UpdateCall5
+      change UniboExPoc.Project.Changes.TimesheetEntry.ComputeAmount
+      change UniboExPoc.Project.Changes.TimesheetEntry.ComputeProjectId
+      change UniboExPoc.Project.Changes.TimesheetEntry.UpdateCall5
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

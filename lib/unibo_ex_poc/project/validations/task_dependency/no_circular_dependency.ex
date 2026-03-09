@@ -1,4 +1,4 @@
-defmodule UniboV4.Project.Validations.TaskDependency.NoCircularDependency do
+defmodule UniboExPoc.Project.Validations.TaskDependency.NoCircularDependency do
   @moduledoc """
   校验规则: no_circular_dependency (entity: task_dependency)
   描述: 禁止循环依赖

@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Common.CustomTimePeriod do
+defmodule UniboExPoc.Ofbiz.Common.CustomTimePeriod do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Common.CustomTimePeriod do
 
   postgres do
     table "common_custom_time_periods"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -42,11 +42,11 @@ defmodule UniboV4.Ofbiz.Common.CustomTimePeriod do
   end
 
   relationships do
-    belongs_to :parent_custom_time_period, UniboV4.Ofbiz.Common.CustomTimePeriod do
+    belongs_to :parent_custom_time_period, UniboExPoc.Ofbiz.Common.CustomTimePeriod do
       public? true
       source_attribute :parent_period_id
     end
-    belongs_to :period_type, UniboV4.Ofbiz.Common.PeriodType do
+    belongs_to :period_type, UniboExPoc.Ofbiz.Common.PeriodType do
       public? true
     end
   end

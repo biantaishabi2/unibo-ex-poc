@@ -70,18 +70,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentRouteSegment do
       public? true
       attribute_type :string
     end
-    belongs_to :carrier_person, UniboExPoc.Ofbiz.Shipment.Person do
-      public? true
-      source_attribute :carrier_party_id
-      define_attribute? false
-      attribute_type :string
-    end
-    belongs_to :carrier_party_group, UniboExPoc.Ofbiz.Shipment.PartyGroup do
-      public? true
-      source_attribute :carrier_party_id
-      define_attribute? false
-      attribute_type :string
-    end
     belongs_to :shipment_method_type, UniboExPoc.Ofbiz.Shipment.ShipmentMethodType do
       public? true
       attribute_type :string
@@ -102,20 +90,8 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentRouteSegment do
       public? true
       attribute_type :string
     end
-    belongs_to :origin_postal_address, UniboExPoc.Ofbiz.Shipment.PostalAddress do
-      public? true
-      source_attribute :origin_contact_mech_id
-      define_attribute? false
-      attribute_type :string
-    end
     belongs_to :origin_telecom_number, UniboExPoc.Ofbiz.Shipment.TelecomNumber do
       public? true
-      attribute_type :string
-    end
-    belongs_to :dest_postal_address, UniboExPoc.Ofbiz.Shipment.PostalAddress do
-      public? true
-      source_attribute :dest_contact_mech_id
-      define_attribute? false
       attribute_type :string
     end
     belongs_to :dest_telecom_number, UniboExPoc.Ofbiz.Shipment.TelecomNumber do

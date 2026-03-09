@@ -1,7 +1,7 @@
-defmodule UniboV4.Project.Employee do
+defmodule UniboExPoc.Project.Employee do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Project,
+    domain: UniboExPoc.Project,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Project.Employee do
 
   postgres do
     table "project_employees"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -33,7 +33,7 @@ defmodule UniboV4.Project.Employee do
   end
 
   relationships do
-    belongs_to :user, UniboV4.Project.Party do
+    belongs_to :user, UniboExPoc.Project.Party do
       public? true
       source_attribute :user_party_id
     end

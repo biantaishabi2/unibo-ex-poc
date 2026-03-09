@@ -3,10 +3,29 @@ defmodule UniboExPoc.Website.Changes.Menu.CreateCall2 do
 
   @impl true
   def change(changeset, _opts, context) do
-    if function_exported?(Website, :auto_copy_to_all_websites, 2) do
-      Website.auto_copy_to_all_websites(changeset, context)
+    module_ref = "Website"
+    module = resolve_call_module(module_ref)
+    if is_atom(module) and function_exported?(module, :auto_copy_to_all_websites, 2) do
+      apply(module, :auto_copy_to_all_websites, [changeset, context])
     else
-      Ash.Changeset.add_error(changeset, "call 目标不存在: Website.auto_copy_to_all_websites/2")
+      Ash.Changeset.add_error(changeset, "call 目标不存在: #Website.auto_copy_to_all_websites/2")
     end
   end
+
+  defp resolve_call_module(module) when is_atom(module), do: module
+  defp resolve_call_module(module) when is_binary(module) do
+    module
+    |> String.trim()
+    |> case do
+      "" -> nil
+      value ->
+        value
+        |> String.split(".", trim: true)
+        |> Enum.map(fn seg -> if seg =~ ~r/^[A-Z]/, do: seg, else: Macro.camelize(seg) end)
+        |> Module.concat()
+    end
+  rescue
+    _ -> nil
+  end
+  defp resolve_call_module(_), do: nil
 end

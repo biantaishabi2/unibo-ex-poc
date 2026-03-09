@@ -1,10 +1,10 @@
-defmodule UniboV4.PLM.Workflows.EcoApproval.EcoApprovalDecisionFlowWorkflow do
+defmodule UniboExPoc.PLM.Workflows.EcoApproval.EcoApprovalDecisionFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.PLM.EcoApproval
+  alias UniboExPoc.PLM.EcoApproval
 
   def steps do
     [:create, :approve, :reject]
@@ -145,6 +145,7 @@ defmodule UniboV4.PLM.Workflows.EcoApproval.EcoApprovalDecisionFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :approve -> nil
@@ -154,6 +155,7 @@ defmodule UniboV4.PLM.Workflows.EcoApproval.EcoApprovalDecisionFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :approve -> false

@@ -1,7 +1,7 @@
-defmodule UniboV4.Gamification.Party do
+defmodule UniboExPoc.Gamification.Party do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Gamification,
+    domain: UniboExPoc.Gamification,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Gamification.Party do
 
   postgres do
     table "gamification_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

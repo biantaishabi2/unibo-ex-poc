@@ -61,12 +61,10 @@ defmodule UniboExPoc.Delivery.ShipmentMethodType do
   relationships do
     has_many :carrier_shipment_methods, UniboExPoc.Delivery.CarrierShipmentMethod do
       public? true
-      source_attribute :shipment_method_type_id
       destination_attribute :shipment_method_type_id
     end
     has_many :cost_estimates, UniboExPoc.Delivery.ShipmentCostEstimate do
       public? true
-      source_attribute :shipment_method_type_id
       destination_attribute :shipment_method_type_id
     end
   end

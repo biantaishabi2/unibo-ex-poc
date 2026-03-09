@@ -1,7 +1,7 @@
-defmodule UniboV4.Knowledge.Party do
+defmodule UniboExPoc.Knowledge.Party do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Knowledge,
+    domain: UniboExPoc.Knowledge,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Knowledge.Party do
 
   postgres do
     table "knowledge_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

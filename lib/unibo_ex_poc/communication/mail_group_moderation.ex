@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Communication.MailGroupModeration do
+defmodule UniboExPoc.Communication.MailGroupModeration do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Communication,
+    domain: UniboExPoc.Communication,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.Communication.MailGroupModeration do
 
   postgres do
     table "communication_mail_group_moderations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,7 +57,7 @@ defmodule UniboV4.Communication.MailGroupModeration do
   end
 
   relationships do
-    belongs_to :mail_group, UniboV4.Communication.MailGroup do
+    belongs_to :mail_group, UniboExPoc.Communication.MailGroup do
       public? true
       allow_nil? false
     end

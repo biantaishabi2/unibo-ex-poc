@@ -1,4 +1,4 @@
-defmodule UniboV4.Communication.Validations.Channel.DisableMessageSubscribe do
+defmodule UniboExPoc.Communication.Validations.Channel.DisableMessageSubscribe do
   @moduledoc """
   校验规则: disable_message_subscribe (entity: channel)
   """

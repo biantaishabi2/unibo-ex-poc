@@ -8,10 +8,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.CRM.Contact do
+defmodule UniboExPoc.CRM.Contact do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.CRM,
+    domain: UniboExPoc.CRM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.CRM.Contact do
 
   postgres do
     table "crm_contacts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -83,13 +83,13 @@ defmodule UniboV4.CRM.Contact do
   end
 
   relationships do
-    has_many :addresses, UniboV4.CRM.ContactAddress do
+    has_many :addresses, UniboExPoc.CRM.ContactAddress do
       public? true
     end
-    has_many :phones, UniboV4.CRM.ContactPhone do
+    has_many :phones, UniboExPoc.CRM.ContactPhone do
       public? true
     end
-    has_many :leads, UniboV4.CRM.Lead do
+    has_many :leads, UniboExPoc.CRM.Lead do
       public? true
     end
   end
@@ -105,7 +105,7 @@ defmodule UniboV4.CRM.Contact do
     update :update do
       primary? true
       accept [:name, :email, :phone, :mobile, :company, :job_title, :contact_type, :tags, :notes]
-      change UniboV4.CRM.Changes.Contact.UpdateCall1
+      change UniboExPoc.CRM.Changes.Contact.UpdateCall1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

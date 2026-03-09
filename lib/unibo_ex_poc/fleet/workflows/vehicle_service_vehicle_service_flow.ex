@@ -1,10 +1,10 @@
-defmodule UniboV4.Fleet.Workflows.VehicleService.VehicleServiceFlowWorkflow do
+defmodule UniboExPoc.Fleet.Workflows.VehicleService.VehicleServiceFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Fleet.VehicleService
+  alias UniboExPoc.Fleet.VehicleService
 
   def steps do
     [:schedule, :start, :complete, :cancel]
@@ -149,6 +149,7 @@ defmodule UniboV4.Fleet.Workflows.VehicleService.VehicleServiceFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :schedule -> nil
       :start -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Fleet.Workflows.VehicleService.VehicleServiceFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :schedule -> false
       :start -> false

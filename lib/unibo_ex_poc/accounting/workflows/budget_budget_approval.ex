@@ -1,10 +1,10 @@
-defmodule UniboV4.Accounting.Workflows.Budget.BudgetApprovalWorkflow do
+defmodule UniboExPoc.Accounting.Workflows.Budget.BudgetApprovalWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Accounting.Budget
+  alias UniboExPoc.Accounting.Budget
 
   def steps do
     [:create, :submit, :approve, :reject]
@@ -149,6 +149,7 @@ defmodule UniboV4.Accounting.Workflows.Budget.BudgetApprovalWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :submit -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Accounting.Workflows.Budget.BudgetApprovalWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :submit -> false

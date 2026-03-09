@@ -14,10 +14,10 @@
 #   unpublish --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Studio.App do
+defmodule UniboExPoc.Studio.App do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Studio,
+    domain: UniboExPoc.Studio,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -27,7 +27,7 @@ defmodule UniboV4.Studio.App do
 
   postgres do
     table "studio_apps"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -104,7 +104,7 @@ defmodule UniboV4.Studio.App do
   end
 
   relationships do
-    belongs_to :created_by, UniboV4.Studio.Party do
+    belongs_to :created_by, UniboExPoc.Studio.Party do
       public? true
       source_attribute :created_by_party_id
     end

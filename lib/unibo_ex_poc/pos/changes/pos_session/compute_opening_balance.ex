@@ -1,4 +1,4 @@
-defmodule UniboV4.POS.Changes.PosSession.ComputeOpeningBalance do
+defmodule UniboExPoc.POS.Changes.PosSession.ComputeOpeningBalance do
   @moduledoc """
   Change 模块: 计算 :opening_balance (entity: pos_session)
   原始 expr: op: coalesce args: - op: ref   args:   - opening_balance - op: func   args:   - last_closed_session_balance   - op: ref     args:     - config_id - 0

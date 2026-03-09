@@ -1,4 +1,4 @@
-defmodule UniboV4.Manufacturing.ManufacturingOrder.Notifier do
+defmodule UniboExPoc.Manufacturing.ManufacturingOrder.Notifier do
   use Ash.Notifier
 
   @impl true
@@ -12,7 +12,7 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder.Notifier do
     end
 
     if topic do
-      Phoenix.PubSub.broadcast(UniboV4.PubSub, topic, {action_name, notification.data})
+      Phoenix.PubSub.broadcast(UniboExPoc.PubSub, topic, {action_name, notification.data})
     end
 
     :ok

@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Helpdesk.FsmTaskStage do
+defmodule UniboExPoc.Helpdesk.FsmTaskStage do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Helpdesk.FsmTaskStage do
 
   postgres do
     table "helpdesk_fsm_task_stages"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -60,7 +60,7 @@ defmodule UniboV4.Helpdesk.FsmTaskStage do
   end
 
   relationships do
-    has_many :service_orders, UniboV4.Helpdesk.FieldServiceOrder do
+    has_many :service_orders, UniboExPoc.Helpdesk.FieldServiceOrder do
       public? true
       destination_attribute :stage_id
     end

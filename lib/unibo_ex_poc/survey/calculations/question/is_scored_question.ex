@@ -1,4 +1,4 @@
-defmodule UniboV4.Survey.Calculations.Question.IsScoredQuestion do
+defmodule UniboExPoc.Survey.Calculations.Question.IsScoredQuestion do
   @moduledoc """
   Calculation 模块: :is_scored_question (type: :boolean, entity: question)
   """

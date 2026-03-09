@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Marketing.UtmSource do
+defmodule UniboExPoc.Marketing.UtmSource do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Marketing.UtmSource do
 
   postgres do
     table "marketing_utm_sources"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

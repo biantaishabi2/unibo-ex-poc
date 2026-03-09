@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.Content do
+defmodule UniboExPoc.Ofbiz.Content.Content do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_contents"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -54,44 +54,44 @@ defmodule UniboV4.Ofbiz.Content.Content do
   end
 
   relationships do
-    belongs_to :content_type, UniboV4.Ofbiz.Content.ContentType do
+    belongs_to :content_type, UniboExPoc.Ofbiz.Content.ContentType do
       public? true
       attribute_type :string
     end
-    belongs_to :data_resource, UniboV4.Ofbiz.Content.DataResource do
+    belongs_to :data_resource, UniboExPoc.Ofbiz.Content.DataResource do
       public? true
       attribute_type :string
     end
-    belongs_to :template_data_resource, UniboV4.Ofbiz.Content.DataResource do
+    belongs_to :template_data_resource, UniboExPoc.Ofbiz.Content.DataResource do
       public? true
       attribute_type :string
     end
-    belongs_to :mime_type, UniboV4.Ofbiz.Content.MimeType do
+    belongs_to :mime_type, UniboExPoc.Ofbiz.Content.MimeType do
       public? true
       attribute_type :string
     end
-    belongs_to :character_set, UniboV4.Ofbiz.Content.CharacterSet do
+    belongs_to :character_set, UniboExPoc.Ofbiz.Content.CharacterSet do
       public? true
       attribute_type :string
     end
-    belongs_to :decorator_content, UniboV4.Ofbiz.Content.Content do
+    belongs_to :decorator_content, UniboExPoc.Ofbiz.Content.Content do
       public? true
       attribute_type :string
     end
-    belongs_to :owner_content, UniboV4.Ofbiz.Content.Content do
+    belongs_to :owner_content, UniboExPoc.Ofbiz.Content.Content do
       public? true
       attribute_type :string
     end
-    belongs_to :instance_of_content, UniboV4.Ofbiz.Content.Content do
+    belongs_to :instance_of_content, UniboExPoc.Ofbiz.Content.Content do
       public? true
       attribute_type :string
     end
-    has_many :content_assoc_data_resource_view_from, UniboV4.Ofbiz.Content.ContentAssoc do
+    has_many :content_assoc_data_resource_view_from, UniboExPoc.Ofbiz.Content.ContentAssoc do
       public? true
       source_attribute :content_id
       destination_attribute :content_id
     end
-    has_many :content_assocs_to, UniboV4.Ofbiz.Content.ContentAssoc do
+    has_many :content_assocs_to, UniboExPoc.Ofbiz.Content.ContentAssoc do
       public? true
       source_attribute :decorator_content_id
       destination_attribute :content_id_to

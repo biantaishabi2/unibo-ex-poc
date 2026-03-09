@@ -14,13 +14,13 @@
 #   submit --> [*]
 #   reject --> [*]
 # ```
-defmodule UniboV4.Project.Timesheet do
+defmodule UniboExPoc.Project.Timesheet do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Project,
+    domain: UniboExPoc.Project,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Project.Timesheet.Notifier]
+    notifiers: [UniboExPoc.Project.Timesheet.Notifier]
 
   resource do
     description "工时表（按 Task 维度聚合的逻辑视图）"
@@ -28,7 +28,7 @@ defmodule UniboV4.Project.Timesheet do
 
   postgres do
     table "project_timesheets"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -70,10 +70,10 @@ defmodule UniboV4.Project.Timesheet do
   end
 
   relationships do
-    has_many :entries, UniboV4.Project.TimesheetEntry do
+    has_many :entries, UniboExPoc.Project.TimesheetEntry do
       public? true
     end
-    belongs_to :employee, UniboV4.Project.Party do
+    belongs_to :employee, UniboExPoc.Project.Party do
       public? true
       allow_nil? false
       source_attribute :employee_party_id
@@ -90,7 +90,7 @@ defmodule UniboV4.Project.Timesheet do
       argument :employee_id, :uuid, allow_nil?: false
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
       change relate_actor(:employee)
-      change UniboV4.Project.Changes.Timesheet.ComputeTotalHours
+      change UniboExPoc.Project.Changes.Timesheet.ComputeTotalHours
       change set_attribute(:id, expr(id))
     end
     update :submit do

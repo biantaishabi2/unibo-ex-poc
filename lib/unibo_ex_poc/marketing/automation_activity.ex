@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Marketing.AutomationActivity do
+defmodule UniboExPoc.Marketing.AutomationActivity do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Marketing.AutomationActivity do
 
   postgres do
     table "marketing_automation_activities"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -132,19 +132,19 @@ defmodule UniboV4.Marketing.AutomationActivity do
   end
 
   relationships do
-    belongs_to :campaign, UniboV4.Marketing.AutomationCampaign do
+    belongs_to :campaign, UniboExPoc.Marketing.AutomationCampaign do
       public? true
       allow_nil? false
     end
-    belongs_to :parent, UniboV4.Marketing.AutomationActivity do
+    belongs_to :parent, UniboExPoc.Marketing.AutomationActivity do
       public? true
     end
-    has_many :children, UniboV4.Marketing.AutomationActivity do
+    has_many :children, UniboExPoc.Marketing.AutomationActivity do
       public? true
       source_attribute :parent_id
       destination_attribute :parent_id
     end
-    has_many :traces, UniboV4.Marketing.AutomationTrace do
+    has_many :traces, UniboExPoc.Marketing.AutomationTrace do
       public? true
       source_attribute :parent_id
       destination_attribute :activity_id

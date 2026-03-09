@@ -1,7 +1,7 @@
-defmodule UniboV4.LiveChat.ChannelRuleCountryLink do
+defmodule UniboExPoc.LiveChat.ChannelRuleCountryLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.LiveChat,
+    domain: UniboExPoc.LiveChat,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.LiveChat.ChannelRuleCountryLink do
 
   postgres do
     table "live_chat_channel_rule_country_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.LiveChat.ChannelRuleCountryLink do
   end
 
   relationships do
-    belongs_to :channel_rule, UniboV4.LiveChat.ChannelRule do
+    belongs_to :channel_rule, UniboExPoc.LiveChat.ChannelRule do
       public? true
       allow_nil? false
     end
-    belongs_to :country, UniboV4.LiveChat.Country do
+    belongs_to :country, UniboExPoc.LiveChat.Country do
       public? true
       allow_nil? false
     end

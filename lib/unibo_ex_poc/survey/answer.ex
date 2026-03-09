@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Survey.Answer do
+defmodule UniboExPoc.Survey.Answer do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Survey,
+    domain: UniboExPoc.Survey,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.Survey.Answer do
 
   postgres do
     table "survey_answers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -66,7 +66,7 @@ defmodule UniboV4.Survey.Answer do
   end
 
   relationships do
-    belongs_to :question, UniboV4.Survey.Question do
+    belongs_to :question, UniboExPoc.Survey.Question do
       public? true
       allow_nil? false
     end

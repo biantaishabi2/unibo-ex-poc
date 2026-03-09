@@ -8,10 +8,10 @@
 #   confirm --> release
 #   release --> [*]
 # ```
-defmodule UniboV4.Marketing.EventBooth do
+defmodule UniboExPoc.Marketing.EventBooth do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Marketing.EventBooth do
 
   postgres do
     table "marketing_event_booths"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -71,15 +71,15 @@ defmodule UniboV4.Marketing.EventBooth do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Marketing.Event do
+    belongs_to :event, UniboExPoc.Marketing.Event do
       public? true
       allow_nil? false
     end
-    belongs_to :booth_category, UniboV4.Marketing.EventBoothCategory do
+    belongs_to :booth_category, UniboExPoc.Marketing.EventBoothCategory do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.Marketing.Contact do
+    belongs_to :partner, UniboExPoc.Marketing.Contact do
       public? true
     end
   end
@@ -117,8 +117,8 @@ defmodule UniboV4.Marketing.EventBooth do
       end
       # message: "只有可用状态的展位可以确认"
       change set_attribute(:state, :unavailable)
-      change UniboV4.Marketing.Changes.EventBooth.ConfirmCall3
-      change UniboV4.Marketing.Changes.EventBooth.ConfirmCall4
+      change UniboExPoc.Marketing.Changes.EventBooth.ConfirmCall3
+      change UniboExPoc.Marketing.Changes.EventBooth.ConfirmCall4
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

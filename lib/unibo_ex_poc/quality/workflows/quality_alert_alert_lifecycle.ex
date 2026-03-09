@@ -1,10 +1,10 @@
-defmodule UniboV4.Quality.Workflows.QualityAlert.AlertLifecycleWorkflow do
+defmodule UniboExPoc.Quality.Workflows.QualityAlert.AlertLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Quality.QualityAlert
+  alias UniboExPoc.Quality.QualityAlert
 
   def steps do
     [:create, :confirm, :start_progress, :done]
@@ -149,6 +149,7 @@ defmodule UniboV4.Quality.Workflows.QualityAlert.AlertLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :confirm -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Quality.Workflows.QualityAlert.AlertLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :confirm -> false

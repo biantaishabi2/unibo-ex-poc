@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.AcctgTransTypeAttr do
+defmodule UniboExPoc.Ofbiz.Accounting.AcctgTransTypeAttr do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_acctg_trans_type_attrs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,7 +37,7 @@ defmodule UniboV4.Ofbiz.Accounting.AcctgTransTypeAttr do
   end
 
   relationships do
-    belongs_to :acctg_trans_type, UniboV4.Ofbiz.Accounting.AcctgTransType do
+    belongs_to :acctg_trans_type, UniboExPoc.Ofbiz.Accounting.AcctgTransType do
       public? true
     end
   end

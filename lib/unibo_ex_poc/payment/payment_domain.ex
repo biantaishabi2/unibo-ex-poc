@@ -1,4 +1,4 @@
-defmodule UniboV4.Payment do
+defmodule UniboExPoc.Payment do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,23 +7,23 @@ defmodule UniboV4.Payment do
   end
 
   resources do
-    resource UniboV4.Payment.PaymentType
-    resource UniboV4.Payment.PaymentType.Version
-    resource UniboV4.Payment.PaymentProvider
-    resource UniboV4.Payment.PaymentProvider.Version
-    resource UniboV4.Payment.PaymentMethod
-    resource UniboV4.Payment.PaymentMethod.Version
-    resource UniboV4.Payment.Payment
-    resource UniboV4.Payment.Payment.Version
-    resource UniboV4.Payment.PaymentRefund
-    resource UniboV4.Payment.PaymentRefund.Version
-    resource UniboV4.Payment.PaymentToken
-    resource UniboV4.Payment.PaymentToken.Version
-    resource UniboV4.Payment.PaymentGatewayResponse
-    resource UniboV4.Payment.PaymentGatewayResponse.Version
-    resource UniboV4.Payment.PaymentApplication
-    resource UniboV4.Payment.PaymentApplication.Version
-    resource UniboV4.Payment.Party
-    resource UniboV4.Payment.Invoice
+    resource UniboExPoc.Payment.PaymentType
+    resource UniboExPoc.Payment.PaymentType.Version
+    resource UniboExPoc.Payment.PaymentProvider
+    resource UniboExPoc.Payment.PaymentProvider.Version
+    resource UniboExPoc.Payment.PaymentMethod
+    resource UniboExPoc.Payment.PaymentMethod.Version
+    resource UniboExPoc.Payment.Payment
+    resource UniboExPoc.Payment.Payment.Version
+    resource UniboExPoc.Payment.PaymentRefund
+    resource UniboExPoc.Payment.PaymentRefund.Version
+    resource UniboExPoc.Payment.PaymentToken
+    resource UniboExPoc.Payment.PaymentToken.Version
+    resource UniboExPoc.Payment.PaymentGatewayResponse
+    resource UniboExPoc.Payment.PaymentGatewayResponse.Version
+    resource UniboExPoc.Payment.PaymentApplication
+    resource UniboExPoc.Payment.PaymentApplication.Version
+    resource UniboExPoc.Payment.Party
+    resource UniboExPoc.Payment.Invoice
   end
 end

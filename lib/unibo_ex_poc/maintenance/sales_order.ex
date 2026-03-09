@@ -1,7 +1,7 @@
-defmodule UniboV4.Maintenance.SalesOrder do
+defmodule UniboExPoc.Maintenance.SalesOrder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Maintenance.SalesOrder do
 
   postgres do
     table "maintenance_sales_orders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

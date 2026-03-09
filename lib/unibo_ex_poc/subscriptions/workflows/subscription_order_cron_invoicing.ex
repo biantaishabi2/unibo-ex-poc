@@ -1,4 +1,4 @@
-defmodule UniboV4.Subscriptions.Workflows.SubscriptionOrder.CronInvoicingWorkflow do
+defmodule UniboExPoc.Subscriptions.Workflows.SubscriptionOrder.CronInvoicingWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
@@ -139,6 +139,7 @@ defmodule UniboV4.Subscriptions.Workflows.SubscriptionOrder.CronInvoicingWorkflo
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :evaluate_invoicing_due -> nil
       :generate_invoice -> nil
@@ -147,6 +148,7 @@ defmodule UniboV4.Subscriptions.Workflows.SubscriptionOrder.CronInvoicingWorkflo
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :evaluate_invoicing_due -> false
       :generate_invoice -> false

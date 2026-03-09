@@ -1,4 +1,4 @@
-defmodule UniboV4.Helpdesk do
+defmodule UniboExPoc.Helpdesk do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,49 +7,49 @@ defmodule UniboV4.Helpdesk do
   end
 
   resources do
-    resource UniboV4.Helpdesk.HelpdeskTicket
-    resource UniboV4.Helpdesk.HelpdeskTicket.Version
-    resource UniboV4.Helpdesk.HelpdeskTicketType
-    resource UniboV4.Helpdesk.HelpdeskTicketType.Version
-    resource UniboV4.Helpdesk.HelpdeskTeam
-    resource UniboV4.Helpdesk.HelpdeskTeam.Version
-    resource UniboV4.Helpdesk.HelpdeskSLA
-    resource UniboV4.Helpdesk.HelpdeskSLA.Version
-    resource UniboV4.Helpdesk.HelpdeskSLAStatus
-    resource UniboV4.Helpdesk.HelpdeskSLAStatus.Version
-    resource UniboV4.Helpdesk.FieldServiceOrder
-    resource UniboV4.Helpdesk.FieldServiceOrder.Version
-    resource UniboV4.Helpdesk.FieldServiceAssignment
-    resource UniboV4.Helpdesk.FieldServiceAssignment.Version
-    resource UniboV4.Helpdesk.FsmTaskStage
-    resource UniboV4.Helpdesk.FsmTaskStage.Version
-    resource UniboV4.Helpdesk.WorksheetTemplate
-    resource UniboV4.Helpdesk.WorksheetTemplate.Version
-    resource UniboV4.Helpdesk.Worksheet
-    resource UniboV4.Helpdesk.Worksheet.Version
-    resource UniboV4.Helpdesk.FsmMaterialLine
-    resource UniboV4.Helpdesk.FsmMaterialLine.Version
-    resource UniboV4.Helpdesk.FsmTimesheetEntry
-    resource UniboV4.Helpdesk.FsmTimesheetEntry.Version
-    resource UniboV4.Helpdesk.Product
-    resource UniboV4.Helpdesk.Appointment
-    resource UniboV4.Helpdesk.Appointment.Version
-    resource UniboV4.Helpdesk.Employee
-    resource UniboV4.Helpdesk.Project
-    resource UniboV4.Helpdesk.SalesOrder
-    resource UniboV4.Helpdesk.Tag
-    resource UniboV4.Helpdesk.HelpdeskTag
-    resource UniboV4.Helpdesk.HelpdeskStage
-    resource UniboV4.Helpdesk.TimesheetEntry
-    resource UniboV4.Helpdesk.Rating
-    resource UniboV4.Helpdesk.Rating.Version
-    resource UniboV4.Helpdesk.HelpdeskTicketTagLink
-    resource UniboV4.Helpdesk.HelpdeskTeamMemberLink
-    resource UniboV4.Helpdesk.HelpdeskTeamStageLink
-    resource UniboV4.Helpdesk.HelpdeskSLATagLink
-    resource UniboV4.Helpdesk.HelpdeskSLAPartnerLink
-    resource UniboV4.Helpdesk.HelpdeskSLAExcludeStageLink
-    resource UniboV4.Helpdesk.FieldServiceOrderTagLink
-    resource UniboV4.Helpdesk.Party
+    resource UniboExPoc.Helpdesk.HelpdeskTicket
+    resource UniboExPoc.Helpdesk.HelpdeskTicket.Version
+    resource UniboExPoc.Helpdesk.HelpdeskTicketType
+    resource UniboExPoc.Helpdesk.HelpdeskTicketType.Version
+    resource UniboExPoc.Helpdesk.HelpdeskTeam
+    resource UniboExPoc.Helpdesk.HelpdeskTeam.Version
+    resource UniboExPoc.Helpdesk.HelpdeskSLA
+    resource UniboExPoc.Helpdesk.HelpdeskSLA.Version
+    resource UniboExPoc.Helpdesk.HelpdeskSLAStatus
+    resource UniboExPoc.Helpdesk.HelpdeskSLAStatus.Version
+    resource UniboExPoc.Helpdesk.FieldServiceOrder
+    resource UniboExPoc.Helpdesk.FieldServiceOrder.Version
+    resource UniboExPoc.Helpdesk.FieldServiceAssignment
+    resource UniboExPoc.Helpdesk.FieldServiceAssignment.Version
+    resource UniboExPoc.Helpdesk.FsmTaskStage
+    resource UniboExPoc.Helpdesk.FsmTaskStage.Version
+    resource UniboExPoc.Helpdesk.WorksheetTemplate
+    resource UniboExPoc.Helpdesk.WorksheetTemplate.Version
+    resource UniboExPoc.Helpdesk.Worksheet
+    resource UniboExPoc.Helpdesk.Worksheet.Version
+    resource UniboExPoc.Helpdesk.FsmMaterialLine
+    resource UniboExPoc.Helpdesk.FsmMaterialLine.Version
+    resource UniboExPoc.Helpdesk.FsmTimesheetEntry
+    resource UniboExPoc.Helpdesk.FsmTimesheetEntry.Version
+    resource UniboExPoc.Helpdesk.Product
+    resource UniboExPoc.Helpdesk.Appointment
+    resource UniboExPoc.Helpdesk.Appointment.Version
+    resource UniboExPoc.Helpdesk.Employee
+    resource UniboExPoc.Helpdesk.Project
+    resource UniboExPoc.Helpdesk.SalesOrder
+    resource UniboExPoc.Helpdesk.Tag
+    resource UniboExPoc.Helpdesk.HelpdeskTag
+    resource UniboExPoc.Helpdesk.HelpdeskStage
+    resource UniboExPoc.Helpdesk.TimesheetEntry
+    resource UniboExPoc.Helpdesk.Rating
+    resource UniboExPoc.Helpdesk.Rating.Version
+    resource UniboExPoc.Helpdesk.HelpdeskTicketTagLink
+    resource UniboExPoc.Helpdesk.HelpdeskTeamMemberLink
+    resource UniboExPoc.Helpdesk.HelpdeskTeamStageLink
+    resource UniboExPoc.Helpdesk.HelpdeskSLATagLink
+    resource UniboExPoc.Helpdesk.HelpdeskSLAPartnerLink
+    resource UniboExPoc.Helpdesk.HelpdeskSLAExcludeStageLink
+    resource UniboExPoc.Helpdesk.FieldServiceOrderTagLink
+    resource UniboExPoc.Helpdesk.Party
   end
 end

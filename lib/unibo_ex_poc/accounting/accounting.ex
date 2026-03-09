@@ -1,4 +1,4 @@
-defmodule UniboV4.Accounting do
+defmodule UniboExPoc.Accounting do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,33 +7,33 @@ defmodule UniboV4.Accounting do
   end
 
   resources do
-    resource UniboV4.Accounting.GlAccount
-    resource UniboV4.Accounting.GlAccount.Version
-    resource UniboV4.Accounting.JournalEntry
-    resource UniboV4.Accounting.JournalEntry.Version
-    resource UniboV4.Accounting.JournalEntryLine
-    resource UniboV4.Accounting.JournalEntryLine.Version
-    resource UniboV4.Accounting.Invoice
-    resource UniboV4.Accounting.Invoice.Version
-    resource UniboV4.Accounting.InvoiceItem
-    resource UniboV4.Accounting.InvoiceItem.Version
-    resource UniboV4.Accounting.Payment
-    resource UniboV4.Accounting.Payment.Version
-    resource UniboV4.Accounting.PaymentApplication
-    resource UniboV4.Accounting.PaymentApplication.Version
-    resource UniboV4.Accounting.PartialReconcile
-    resource UniboV4.Accounting.PartialReconcile.Version
-    resource UniboV4.Accounting.FullReconcile
-    resource UniboV4.Accounting.FullReconcile.Version
-    resource UniboV4.Accounting.Budget
-    resource UniboV4.Accounting.Budget.Version
-    resource UniboV4.Accounting.BudgetItem
-    resource UniboV4.Accounting.BudgetItem.Version
-    resource UniboV4.Accounting.BillingAccount
-    resource UniboV4.Accounting.BillingAccount.Version
-    resource UniboV4.Accounting.Journal
-    resource UniboV4.Accounting.Tax
-    resource UniboV4.Accounting.JournalEntryLineTaxRel
-    resource UniboV4.Accounting.Party
+    resource UniboExPoc.Accounting.GlAccount
+    resource UniboExPoc.Accounting.GlAccount.Version
+    resource UniboExPoc.Accounting.JournalEntry
+    resource UniboExPoc.Accounting.JournalEntry.Version
+    resource UniboExPoc.Accounting.JournalEntryLine
+    resource UniboExPoc.Accounting.JournalEntryLine.Version
+    resource UniboExPoc.Accounting.Invoice
+    resource UniboExPoc.Accounting.Invoice.Version
+    resource UniboExPoc.Accounting.InvoiceItem
+    resource UniboExPoc.Accounting.InvoiceItem.Version
+    resource UniboExPoc.Accounting.Payment
+    resource UniboExPoc.Accounting.Payment.Version
+    resource UniboExPoc.Accounting.PaymentApplication
+    resource UniboExPoc.Accounting.PaymentApplication.Version
+    resource UniboExPoc.Accounting.PartialReconcile
+    resource UniboExPoc.Accounting.PartialReconcile.Version
+    resource UniboExPoc.Accounting.FullReconcile
+    resource UniboExPoc.Accounting.FullReconcile.Version
+    resource UniboExPoc.Accounting.Budget
+    resource UniboExPoc.Accounting.Budget.Version
+    resource UniboExPoc.Accounting.BudgetItem
+    resource UniboExPoc.Accounting.BudgetItem.Version
+    resource UniboExPoc.Accounting.BillingAccount
+    resource UniboExPoc.Accounting.BillingAccount.Version
+    resource UniboExPoc.Accounting.Journal
+    resource UniboExPoc.Accounting.Tax
+    resource UniboExPoc.Accounting.JournalEntryLineTaxRel
+    resource UniboExPoc.Accounting.Party
   end
 end

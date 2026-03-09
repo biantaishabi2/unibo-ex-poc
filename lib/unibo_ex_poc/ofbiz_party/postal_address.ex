@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.PostalAddress do
+defmodule UniboExPoc.Ofbiz.Party.PostalAddress do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_postal_addresses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -72,28 +72,28 @@ defmodule UniboV4.Ofbiz.Party.PostalAddress do
   end
 
   relationships do
-    belongs_to :contact_mech, UniboV4.Ofbiz.Party.ContactMech do
+    belongs_to :contact_mech, UniboExPoc.Ofbiz.Party.ContactMech do
       public? true
     end
-    belongs_to :country_geo, UniboV4.Ofbiz.Party.Geo do
+    belongs_to :country_geo, UniboExPoc.Ofbiz.Party.Geo do
       public? true
     end
-    belongs_to :state_province_geo, UniboV4.Ofbiz.Party.Geo do
+    belongs_to :state_province_geo, UniboExPoc.Ofbiz.Party.Geo do
       public? true
     end
-    belongs_to :county_geo, UniboV4.Ofbiz.Party.Geo do
+    belongs_to :county_geo, UniboExPoc.Ofbiz.Party.Geo do
       public? true
     end
-    belongs_to :municipality_geo, UniboV4.Ofbiz.Party.Geo do
+    belongs_to :municipality_geo, UniboExPoc.Ofbiz.Party.Geo do
       public? true
     end
-    belongs_to :city_geo, UniboV4.Ofbiz.Party.Geo do
+    belongs_to :city_geo, UniboExPoc.Ofbiz.Party.Geo do
       public? true
     end
-    belongs_to :postal_code_geo, UniboV4.Ofbiz.Party.Geo do
+    belongs_to :postal_code_geo, UniboExPoc.Ofbiz.Party.Geo do
       public? true
     end
-    belongs_to :geo_point, UniboV4.Ofbiz.Party.GeoPoint do
+    belongs_to :geo_point, UniboExPoc.Ofbiz.Party.GeoPoint do
       public? true
     end
   end

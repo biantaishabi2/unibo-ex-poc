@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.ProductContent do
+defmodule UniboExPoc.Ofbiz.Product.ProductContent do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "product_contents"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -49,10 +49,10 @@ defmodule UniboV4.Ofbiz.Product.ProductContent do
   end
 
   relationships do
-    belongs_to :product, UniboV4.Ofbiz.Product.Product do
+    belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
     end
-    belongs_to :product_content_type, UniboV4.Ofbiz.Product.ProductContentType do
+    belongs_to :product_content_type, UniboExPoc.Ofbiz.Product.ProductContentType do
       public? true
     end
   end

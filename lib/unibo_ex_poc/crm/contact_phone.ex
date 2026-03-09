@@ -1,7 +1,7 @@
-defmodule UniboV4.CRM.ContactPhone do
+defmodule UniboExPoc.CRM.ContactPhone do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.CRM,
+    domain: UniboExPoc.CRM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.CRM.ContactPhone do
 
   postgres do
     table "crm_contact_phones"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -46,7 +46,7 @@ defmodule UniboV4.CRM.ContactPhone do
   end
 
   relationships do
-    belongs_to :contact, UniboV4.CRM.Contact do
+    belongs_to :contact, UniboExPoc.CRM.Contact do
       public? true
       allow_nil? false
     end

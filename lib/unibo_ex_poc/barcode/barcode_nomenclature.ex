@@ -16,10 +16,10 @@
 #   deactivate --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Barcode.BarcodeNomenclature do
+defmodule UniboExPoc.Barcode.BarcodeNomenclature do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Barcode,
+    domain: UniboExPoc.Barcode,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -29,7 +29,7 @@ defmodule UniboV4.Barcode.BarcodeNomenclature do
 
   postgres do
     table "barcode_nomenclatures"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -88,11 +88,11 @@ defmodule UniboV4.Barcode.BarcodeNomenclature do
   end
 
   relationships do
-    has_many :rules, UniboV4.Barcode.BarcodeRule do
+    has_many :rules, UniboExPoc.Barcode.BarcodeRule do
       public? true
       destination_attribute :nomenclature_id
     end
-    has_many :translations, UniboV4.Barcode.BarcodeNomenclatureTranslation, public?: true
+    has_many :translations, UniboExPoc.Barcode.BarcodeNomenclatureTranslation, public?: true
   end
 
   actions do
@@ -112,14 +112,14 @@ defmodule UniboV4.Barcode.BarcodeNomenclature do
     update :activate do
       description "启用命名法"
       accept []
-      change UniboV4.Barcode.Changes.BarcodeNomenclature.ComputeActive
+      change UniboExPoc.Barcode.Changes.BarcodeNomenclature.ComputeActive
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
       description "停用命名法"
       accept []
-      change UniboV4.Barcode.Changes.BarcodeNomenclature.ComputeActive
+      change UniboExPoc.Barcode.Changes.BarcodeNomenclature.ComputeActive
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

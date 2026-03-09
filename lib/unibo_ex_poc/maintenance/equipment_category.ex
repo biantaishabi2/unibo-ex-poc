@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Maintenance.EquipmentCategory do
+defmodule UniboExPoc.Maintenance.EquipmentCategory do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Maintenance.EquipmentCategory do
 
   postgres do
     table "maintenance_equipment_categories"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -60,19 +60,19 @@ defmodule UniboV4.Maintenance.EquipmentCategory do
   end
 
   relationships do
-    has_many :equipment_list, UniboV4.Maintenance.Equipment do
+    has_many :equipment_list, UniboExPoc.Maintenance.Equipment do
       public? true
       destination_attribute :category_ref_id
     end
-    has_many :maintenance_requests, UniboV4.Maintenance.MaintenanceRequest do
+    has_many :maintenance_requests, UniboExPoc.Maintenance.MaintenanceRequest do
       public? true
       destination_attribute :category_id
     end
-    belongs_to :technician, UniboV4.Maintenance.Party do
+    belongs_to :technician, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :technician_party_id
     end
-    belongs_to :company, UniboV4.Maintenance.Party do
+    belongs_to :company, UniboExPoc.Maintenance.Party do
       public? true
       allow_nil? false
       source_attribute :company_party_id
@@ -87,20 +87,20 @@ defmodule UniboV4.Maintenance.EquipmentCategory do
       argument :company_id, :uuid, allow_nil?: false
       change manage_relationship(:company_id, :company, type: :append, on_lookup: :relate)
       validate present(:name)
-      change UniboV4.Maintenance.Changes.EquipmentCategory.CreateCall1
+      change UniboExPoc.Maintenance.Changes.EquipmentCategory.CreateCall1
       change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :alias_name]
-      change UniboV4.Maintenance.Changes.EquipmentCategory.UpdateCall1
+      change UniboExPoc.Maintenance.Changes.EquipmentCategory.UpdateCall1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end
 
   validations do
-    validate {UniboV4.Maintenance.Validations.EquipmentCategory.CompanyMember, []}
+    validate {UniboExPoc.Maintenance.Validations.EquipmentCategory.CompanyMember, []}
   end
 
   paper_trail do

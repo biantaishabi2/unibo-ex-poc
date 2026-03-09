@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.WorkEffort.RoleType do
+defmodule UniboExPoc.Ofbiz.WorkEffort.RoleType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer
 
   resource do
@@ -10,7 +10,7 @@ defmodule UniboV4.Ofbiz.WorkEffort.RoleType do
 
   postgres do
     table "work_effort_role_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do

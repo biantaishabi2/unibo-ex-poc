@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> [*]
 # ```
-defmodule UniboV4.Accounting.BillingAccount do
+defmodule UniboExPoc.Accounting.BillingAccount do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Accounting,
+    domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Accounting.BillingAccount do
 
   postgres do
     table "accounting_billing_accounts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

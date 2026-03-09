@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Manufacturing.ProductManufacturingRule do
+defmodule UniboExPoc.Ofbiz.Manufacturing.ProductManufacturingRule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Manufacturing,
+    domain: UniboExPoc.Ofbiz.Manufacturing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "manufacturing_product_manufacturing_rules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

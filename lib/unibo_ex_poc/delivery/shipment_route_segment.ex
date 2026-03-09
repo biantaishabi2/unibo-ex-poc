@@ -13,13 +13,13 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Delivery.ShipmentRouteSegment do
+defmodule UniboExPoc.Delivery.ShipmentRouteSegment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Delivery,
+    domain: UniboExPoc.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Delivery.ShipmentRouteSegment.Notifier]
+    notifiers: [UniboExPoc.Delivery.ShipmentRouteSegment.Notifier]
 
   resource do
     description "运输路段，记录承运商、追踪号、实际费用等，支持多段路线（转运）"
@@ -27,7 +27,7 @@ defmodule UniboV4.Delivery.ShipmentRouteSegment do
 
   postgres do
     table "delivery_shipment_route_segments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -174,25 +174,25 @@ defmodule UniboV4.Delivery.ShipmentRouteSegment do
   end
 
   relationships do
-    belongs_to :shipment, UniboV4.Delivery.Shipment do
+    belongs_to :shipment, UniboExPoc.Delivery.Shipment do
       public? true
     end
-    belongs_to :delivery, UniboV4.Delivery.Delivery do
+    belongs_to :delivery, UniboExPoc.Delivery.Delivery do
       public? true
     end
-    belongs_to :carrier_party, UniboV4.Delivery.Party do
+    belongs_to :carrier_party, UniboExPoc.Delivery.Party do
       public? true
     end
-    belongs_to :shipment_method_type, UniboV4.Delivery.ShipmentMethodType do
+    belongs_to :shipment_method_type, UniboExPoc.Delivery.ShipmentMethodType do
       public? true
     end
-    belongs_to :origin_facility, UniboV4.Delivery.Facility do
+    belongs_to :origin_facility, UniboExPoc.Delivery.Facility do
       public? true
     end
-    belongs_to :dest_facility, UniboV4.Delivery.Facility do
+    belongs_to :dest_facility, UniboExPoc.Delivery.Facility do
       public? true
     end
-    has_many :package_route_segs, UniboV4.Delivery.ShipmentPackageRouteSeg do
+    has_many :package_route_segs, UniboExPoc.Delivery.ShipmentPackageRouteSeg do
       public? true
       source_attribute :shipment_route_segment_id
       destination_attribute :shipment_route_segment_id

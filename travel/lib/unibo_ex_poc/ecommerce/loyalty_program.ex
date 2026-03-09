@@ -100,17 +100,14 @@ defmodule UniboExPoc.Ecommerce.LoyaltyProgram do
   relationships do
     has_many :rules, UniboExPoc.Ecommerce.LoyaltyRule do
       public? true
-      source_attribute :website_id
       destination_attribute :program_id
     end
     has_many :rewards, UniboExPoc.Ecommerce.LoyaltyReward do
       public? true
-      source_attribute :website_id
       destination_attribute :program_id
     end
     has_many :cards, UniboExPoc.Ecommerce.LoyaltyCard do
       public? true
-      source_attribute :website_id
       destination_attribute :program_id
     end
     belongs_to :website, UniboExPoc.Ecommerce.WebSite do

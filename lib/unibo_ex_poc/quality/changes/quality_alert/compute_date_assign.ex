@@ -1,4 +1,4 @@
-defmodule UniboV4.Quality.Changes.QualityAlert.ComputeDateAssign do
+defmodule UniboExPoc.Quality.Changes.QualityAlert.ComputeDateAssign do
   @moduledoc """
   Change 模块: 计算 :date_assign (entity: quality_alert)
   原始 expr: op: func args: - now

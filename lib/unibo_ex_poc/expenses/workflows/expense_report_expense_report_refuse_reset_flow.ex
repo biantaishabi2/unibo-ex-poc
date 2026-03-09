@@ -1,10 +1,10 @@
-defmodule UniboV4.Expenses.Workflows.ExpenseReport.ExpenseReportRefuseResetFlowWorkflow do
+defmodule UniboExPoc.Expenses.Workflows.ExpenseReport.ExpenseReportRefuseResetFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Expenses.ExpenseReport
+  alias UniboExPoc.Expenses.ExpenseReport
 
   def steps do
     [:create, :submit, :refuse, :reset, :submit, :approve]
@@ -106,8 +106,6 @@ defmodule UniboV4.Expenses.Workflows.ExpenseReport.ExpenseReportRefuseResetFlowW
         Ash.update(Ash.Changeset.for_update(record, :refuse, params), ash_opts)
       :reset ->
         Ash.update(Ash.Changeset.for_update(record, :reset, params), ash_opts)
-      :submit ->
-        Ash.update(Ash.Changeset.for_update(record, :submit, params), ash_opts)
       :approve ->
         Ash.update(Ash.Changeset.for_update(record, :approve, params), ash_opts)
       _ -> {:ok, record}
@@ -138,7 +136,6 @@ defmodule UniboV4.Expenses.Workflows.ExpenseReport.ExpenseReportRefuseResetFlowW
       :submit -> [:refuse]
       :refuse -> [:reset]
       :reset -> [:submit]
-      :submit -> [:approve]
       :approve -> []
       _ -> []
     end
@@ -150,31 +147,30 @@ defmodule UniboV4.Expenses.Workflows.ExpenseReport.ExpenseReportRefuseResetFlowW
       :submit -> []
       :refuse -> []
       :reset -> []
-      :submit -> []
       :approve -> []
       _ -> []
     end
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :submit -> nil
       :refuse -> nil
       :reset -> nil
-      :submit -> nil
       :approve -> nil
       _ -> nil
     end
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :submit -> false
       :refuse -> false
       :reset -> false
-      :submit -> false
       :approve -> false
       _ -> false
     end
@@ -186,7 +182,6 @@ defmodule UniboV4.Expenses.Workflows.ExpenseReport.ExpenseReportRefuseResetFlowW
       :submit -> %{max_attempts: 1, backoff_ms: 0}
       :refuse -> %{max_attempts: 1, backoff_ms: 0}
       :reset -> %{max_attempts: 1, backoff_ms: 0}
-      :submit -> %{max_attempts: 1, backoff_ms: 0}
       :approve -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
@@ -198,7 +193,6 @@ defmodule UniboV4.Expenses.Workflows.ExpenseReport.ExpenseReportRefuseResetFlowW
       :submit -> nil
       :refuse -> nil
       :reset -> nil
-      :submit -> nil
       :approve -> nil
       _ -> nil
     end

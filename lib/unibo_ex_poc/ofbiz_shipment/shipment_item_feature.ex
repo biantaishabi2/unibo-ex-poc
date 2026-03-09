@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.ShipmentItemFeature do
+defmodule UniboExPoc.Ofbiz.Shipment.ShipmentItemFeature do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_item_features"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -36,11 +36,11 @@ defmodule UniboV4.Ofbiz.Shipment.ShipmentItemFeature do
   end
 
   relationships do
-    belongs_to :shipment, UniboV4.Ofbiz.Shipment.Shipment do
+    belongs_to :shipment, UniboExPoc.Ofbiz.Shipment.Shipment do
       public? true
       attribute_type :string
     end
-    belongs_to :product_feature, UniboV4.Ofbiz.Shipment.ProductFeature do
+    belongs_to :product_feature, UniboExPoc.Ofbiz.Shipment.ProductFeature do
       public? true
       attribute_type :string
     end

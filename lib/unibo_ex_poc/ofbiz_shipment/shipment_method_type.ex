@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.ShipmentMethodType do
+defmodule UniboExPoc.Ofbiz.Shipment.ShipmentMethodType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_method_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

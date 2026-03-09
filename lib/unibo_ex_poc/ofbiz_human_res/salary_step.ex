@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.SalaryStep do
+defmodule UniboExPoc.Ofbiz.HumanRes.SalaryStep do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_salary_steps"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -46,7 +46,7 @@ defmodule UniboV4.Ofbiz.HumanRes.SalaryStep do
   end
 
   relationships do
-    belongs_to :pay_grade, UniboV4.Ofbiz.HumanRes.PayGrade do
+    belongs_to :pay_grade, UniboExPoc.Ofbiz.HumanRes.PayGrade do
       public? true
       attribute_type :string
     end

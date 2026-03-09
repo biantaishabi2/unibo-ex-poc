@@ -1,7 +1,7 @@
-defmodule UniboV4.Maintenance.VehicleTagLink do
+defmodule UniboExPoc.Maintenance.VehicleTagLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Maintenance.VehicleTagLink do
 
   postgres do
     table "maintenance_vehicle_tag_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Maintenance.VehicleTagLink do
   end
 
   relationships do
-    belongs_to :vehicle, UniboV4.Maintenance.Vehicle do
+    belongs_to :vehicle, UniboExPoc.Maintenance.Vehicle do
       public? true
       allow_nil? false
     end
-    belongs_to :tag, UniboV4.Maintenance.VehicleTag do
+    belongs_to :tag, UniboExPoc.Maintenance.VehicleTag do
       public? true
       allow_nil? false
       source_attribute :vehicle_tag_id

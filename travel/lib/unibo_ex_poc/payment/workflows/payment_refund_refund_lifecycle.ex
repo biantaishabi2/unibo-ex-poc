@@ -149,6 +149,7 @@ defmodule UniboExPoc.Payment.Workflows.PaymentRefund.RefundLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :approve -> nil
@@ -159,6 +160,7 @@ defmodule UniboExPoc.Payment.Workflows.PaymentRefund.RefundLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :approve -> false

@@ -10,10 +10,10 @@
 #   complete --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Manufacturing.WorkOrder do
+defmodule UniboExPoc.Manufacturing.WorkOrder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Manufacturing,
+    domain: UniboExPoc.Manufacturing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -23,7 +23,7 @@ defmodule UniboV4.Manufacturing.WorkOrder do
 
   postgres do
     table "manufacturing_work_orders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -97,26 +97,26 @@ defmodule UniboV4.Manufacturing.WorkOrder do
   end
 
   relationships do
-    belongs_to :manufacturing_order, UniboV4.Manufacturing.ManufacturingOrder do
+    belongs_to :manufacturing_order, UniboExPoc.Manufacturing.ManufacturingOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :work_center, UniboV4.Manufacturing.WorkCenter do
+    belongs_to :work_center, UniboExPoc.Manufacturing.WorkCenter do
       public? true
     end
-    many_to_many :blocked_by_workorder_ids, UniboV4.Manufacturing.WorkOrder do
+    many_to_many :blocked_by_workorder_ids, UniboExPoc.Manufacturing.WorkOrder do
       public? true
-      through UniboV4.Manufacturing.WorkOrderDependencyLink
-      source_attribute_on_join_resource :blocked_by_workorder_id
-      destination_attribute_on_join_resource :blocked_by_workorder_id
+      through UniboExPoc.Manufacturing.WorkOrderDependencyLink
+      source_attribute_on_join_resource :needed_by_workorder_id
+      destination_attribute_on_join_resource :needed_by_workorder_id
     end
-    many_to_many :needed_by_workorder_ids, UniboV4.Manufacturing.WorkOrder do
+    many_to_many :needed_by_workorder_ids, UniboExPoc.Manufacturing.WorkOrder do
       public? true
-      through UniboV4.Manufacturing.WorkOrderDependencyLink
-      source_attribute_on_join_resource :blocked_by_workorder_id
-      destination_attribute_on_join_resource :blocked_by_workorder_id
+      through UniboExPoc.Manufacturing.WorkOrderDependencyLink
+      source_attribute_on_join_resource :needed_by_workorder_id
+      destination_attribute_on_join_resource :needed_by_workorder_id
     end
-    has_many :time_ids, UniboV4.Manufacturing.WorkcenterProductivity do
+    has_many :time_ids, UniboExPoc.Manufacturing.WorkcenterProductivity do
       public? true
     end
   end
@@ -157,8 +157,8 @@ defmodule UniboV4.Manufacturing.WorkOrder do
       # message: "只有待处理状态可以开始（兼容旧逻辑）"
       # skipped: validate compare :blocked (incompatible with bulk update atomic path)
       # skipped: set_attribute :status 是 calculation，不是 attribute
-      change UniboV4.Manufacturing.Changes.WorkOrder.StartCreateRelated4
-      change UniboV4.Manufacturing.Changes.WorkOrder.StartCall5
+      change UniboExPoc.Manufacturing.Changes.WorkOrder.StartCreateRelated4
+      change UniboExPoc.Manufacturing.Changes.WorkOrder.StartCall5
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -187,7 +187,7 @@ defmodule UniboV4.Manufacturing.WorkOrder do
       end
       # message: "只有进行中状态可以完成"
       # skipped: set_attribute :status 是 calculation，不是 attribute
-      change UniboV4.Manufacturing.Changes.WorkOrder.FinishCall6
+      change UniboExPoc.Manufacturing.Changes.WorkOrder.FinishCall6
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

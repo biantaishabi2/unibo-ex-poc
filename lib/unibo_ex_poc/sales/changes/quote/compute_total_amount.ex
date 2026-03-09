@@ -1,4 +1,4 @@
-defmodule UniboV4.Sales.Changes.Quote.ComputeTotalAmount do
+defmodule UniboExPoc.Sales.Changes.Quote.ComputeTotalAmount do
   @moduledoc """
   Change 模块: 计算 :total_amount (entity: quote)
   原始 expr: op: func args: - sum - op: ref   args:   - items   - line_amount

@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Marketing.TrackingCode do
+defmodule UniboExPoc.Ofbiz.Marketing.TrackingCode do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Marketing,
+    domain: UniboExPoc.Ofbiz.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "marketing_tracking_codes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -49,10 +49,10 @@ defmodule UniboV4.Ofbiz.Marketing.TrackingCode do
   end
 
   relationships do
-    belongs_to :marketing_campaign, UniboV4.Ofbiz.Marketing.MarketingCampaign do
+    belongs_to :marketing_campaign, UniboExPoc.Ofbiz.Marketing.MarketingCampaign do
       public? true
     end
-    belongs_to :tracking_code_type, UniboV4.Ofbiz.Marketing.TrackingCodeType do
+    belongs_to :tracking_code_type, UniboExPoc.Ofbiz.Marketing.TrackingCodeType do
       public? true
     end
   end

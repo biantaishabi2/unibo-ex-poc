@@ -1,4 +1,4 @@
-defmodule UniboV4.Website.WebPage.Notifier do
+defmodule UniboExPoc.Website.WebPage.Notifier do
   use Ash.Notifier
 
   @impl true
@@ -9,7 +9,7 @@ defmodule UniboV4.Website.WebPage.Notifier do
     end
 
     if topic do
-      Phoenix.PubSub.broadcast(UniboV4.PubSub, topic, {action_name, notification.data})
+      Phoenix.PubSub.broadcast(UniboExPoc.PubSub, topic, {action_name, notification.data})
     end
 
     :ok

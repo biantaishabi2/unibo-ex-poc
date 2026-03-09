@@ -21,13 +21,13 @@
 #   cancel --> [*] : cancelled
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Payment.Payment do
+defmodule UniboExPoc.Payment.Payment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Payment,
+    domain: UniboExPoc.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Payment.Payment.Notifier]
+    notifiers: [UniboExPoc.Payment.Payment.Notifier]
 
   resource do
     description "核心支付流水实体，记录每笔实际支付的完整信息，支持状态流转（draft→pending→authorized→captured→refunded/cancelled/failed）"
@@ -35,7 +35,7 @@ defmodule UniboV4.Payment.Payment do
 
   postgres do
     table "payment_payments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -122,34 +122,34 @@ defmodule UniboV4.Payment.Payment do
   end
 
   calculations do
-    calculate :refunded_amount, :decimal, {UniboV4.Payment.Calculations.Payment.RefundedAmount, []}
+    calculate :refunded_amount, :decimal, {UniboExPoc.Payment.Calculations.Payment.RefundedAmount, []}
     calculate :remaining_amount, :decimal, expr((amount - refunded_amount))
   end
 
   relationships do
-    belongs_to :payment_type, UniboV4.Payment.PaymentType do
+    belongs_to :payment_type, UniboExPoc.Payment.PaymentType do
       public? true
     end
-    belongs_to :payment_method, UniboV4.Payment.PaymentMethod do
+    belongs_to :payment_method, UniboExPoc.Payment.PaymentMethod do
       public? true
     end
-    belongs_to :gateway_response, UniboV4.Payment.PaymentGatewayResponse do
+    belongs_to :gateway_response, UniboExPoc.Payment.PaymentGatewayResponse do
       public? true
       source_attribute :payment_gateway_response_id
     end
-    belongs_to :from_party, UniboV4.Payment.Party do
+    belongs_to :from_party, UniboExPoc.Payment.Party do
       public? true
       source_attribute :party_id_from
     end
-    belongs_to :to_party, UniboV4.Payment.Party do
+    belongs_to :to_party, UniboExPoc.Payment.Party do
       public? true
       source_attribute :party_id_to
     end
-    has_many :applications, UniboV4.Payment.PaymentApplication do
+    has_many :applications, UniboExPoc.Payment.PaymentApplication do
       public? true
       destination_attribute :payment_id
     end
-    has_many :refunds, UniboV4.Payment.PaymentRefund do
+    has_many :refunds, UniboExPoc.Payment.PaymentRefund do
       public? true
       destination_attribute :payment_id
     end

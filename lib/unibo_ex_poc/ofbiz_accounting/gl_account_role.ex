@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.GlAccountRole do
+defmodule UniboExPoc.Ofbiz.Accounting.GlAccountRole do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_gl_account_roles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -47,7 +47,7 @@ defmodule UniboV4.Ofbiz.Accounting.GlAccountRole do
   end
 
   relationships do
-    belongs_to :gl_account, UniboV4.Ofbiz.Accounting.GlAccount do
+    belongs_to :gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
     end
   end

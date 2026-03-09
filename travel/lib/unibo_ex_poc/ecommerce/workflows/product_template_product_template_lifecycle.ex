@@ -157,6 +157,7 @@ defmodule UniboExPoc.Ecommerce.Workflows.ProductTemplate.ProductTemplateLifecycl
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :publish -> nil
@@ -169,6 +170,7 @@ defmodule UniboExPoc.Ecommerce.Workflows.ProductTemplate.ProductTemplateLifecycl
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :publish -> false

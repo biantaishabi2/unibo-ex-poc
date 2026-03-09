@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.PartyDataSource do
+defmodule UniboExPoc.Ofbiz.Party.PartyDataSource do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_party_data_sources"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -49,10 +49,10 @@ defmodule UniboV4.Ofbiz.Party.PartyDataSource do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Ofbiz.Party.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
     end
-    belongs_to :data_source, UniboV4.Ofbiz.Party.DataSource do
+    belongs_to :data_source, UniboExPoc.Ofbiz.Party.DataSource do
       public? true
     end
   end

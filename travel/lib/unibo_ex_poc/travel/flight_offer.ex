@@ -18,7 +18,7 @@ defmodule UniboExPoc.Travel.FlightOffer do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
+    extensions: [AshGraphql.Resource, AshArchival.Resource],
     notifiers: [UniboExPoc.Travel.FlightOffer.Notifier]
 
   resource do
@@ -238,12 +238,6 @@ defmodule UniboExPoc.Travel.FlightOffer do
 
   identities do
     identity :unique_flight_offer_snapshot, [:tenant_id, :supplier_code, :itinerary_code, :flight_no, :departure_at, :cabin_class]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

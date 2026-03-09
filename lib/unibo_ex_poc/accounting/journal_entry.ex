@@ -8,13 +8,13 @@
 #   cancel --> reset_to_draft
 #   reset_to_draft --> post
 # ```
-defmodule UniboV4.Accounting.JournalEntry do
+defmodule UniboExPoc.Accounting.JournalEntry do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Accounting,
+    domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Accounting.JournalEntry.Notifier]
+    notifiers: [UniboExPoc.Accounting.JournalEntry.Notifier]
 
   resource do
     description "记账凭证（会计分录），涵盖普通凭证、销售发票、采购账单、收据等"
@@ -22,7 +22,7 @@ defmodule UniboV4.Accounting.JournalEntry do
 
   postgres do
     table "accounting_journal_entries"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -147,24 +147,24 @@ reversed: 仅冲销分录匹配
   end
 
   relationships do
-    has_many :lines, UniboV4.Accounting.JournalEntryLine do
+    has_many :lines, UniboExPoc.Accounting.JournalEntryLine do
       public? true
     end
-    belongs_to :created_by, UniboV4.Accounting.Party do
+    belongs_to :created_by, UniboExPoc.Accounting.Party do
       public? true
       source_attribute :created_by_party_id
     end
-    belongs_to :journal, UniboV4.Accounting.Journal do
+    belongs_to :journal, UniboExPoc.Accounting.Journal do
       public? true
     end
-    belongs_to :partner, UniboV4.Accounting.Party do
+    belongs_to :partner, UniboExPoc.Accounting.Party do
       public? true
       source_attribute :partner_party_id
     end
-    belongs_to :tax_cash_basis_origin, UniboV4.Accounting.JournalEntry do
+    belongs_to :tax_cash_basis_origin, UniboExPoc.Accounting.JournalEntry do
       public? true
     end
-    has_many :tax_cash_basis_created_moves, UniboV4.Accounting.JournalEntry do
+    has_many :tax_cash_basis_created_moves, UniboExPoc.Accounting.JournalEntry do
       public? true
       source_attribute :tax_cash_basis_origin_id
       destination_attribute :tax_cash_basis_origin_id
@@ -181,10 +181,10 @@ reversed: 仅冲销分录匹配
       change manage_relationship(:lines, :lines, type: :create)
       validate present(:entry_number)
       change relate_actor(:created_by)
-      change UniboV4.Accounting.Changes.JournalEntry.ComputeTotalDebit
-      change UniboV4.Accounting.Changes.JournalEntry.ComputeTotalCredit
-      change UniboV4.Accounting.Changes.JournalEntry.ComputeAmountUntaxed
-      change UniboV4.Accounting.Changes.JournalEntry.ComputeAmountTax
+      change UniboExPoc.Accounting.Changes.JournalEntry.ComputeTotalDebit
+      change UniboExPoc.Accounting.Changes.JournalEntry.ComputeTotalCredit
+      change UniboExPoc.Accounting.Changes.JournalEntry.ComputeAmountUntaxed
+      change UniboExPoc.Accounting.Changes.JournalEntry.ComputeAmountTax
       change set_attribute(:amount_total, expr((amount_untaxed + amount_tax)))
     end
     update :post do
@@ -205,11 +205,11 @@ reversed: 仅冲销分录匹配
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change UniboV4.Accounting.Changes.JournalEntry.ComputeAmountUntaxed
-      change UniboV4.Accounting.Changes.JournalEntry.ComputeAmountTax
+      change UniboExPoc.Accounting.Changes.JournalEntry.ComputeAmountUntaxed
+      change UniboExPoc.Accounting.Changes.JournalEntry.ComputeAmountTax
       change set_attribute(:amount_total, expr((amount_untaxed + amount_tax)))
       change set_attribute(:status, :posted)
-      change UniboV4.Accounting.Changes.JournalEntry.PostCall8
+      change UniboExPoc.Accounting.Changes.JournalEntry.PostCall8
       require_atomic? false
     end
     update :cancel do

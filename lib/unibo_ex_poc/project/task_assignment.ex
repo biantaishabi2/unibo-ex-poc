@@ -5,10 +5,10 @@
 #   create --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Project.TaskAssignment do
+defmodule UniboExPoc.Project.TaskAssignment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Project,
+    domain: UniboExPoc.Project,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Project.TaskAssignment do
 
   postgres do
     table "project_task_assignments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -53,11 +53,11 @@ defmodule UniboV4.Project.TaskAssignment do
   end
 
   relationships do
-    belongs_to :task, UniboV4.Project.Task do
+    belongs_to :task, UniboExPoc.Project.Task do
       public? true
       allow_nil? false
     end
-    belongs_to :assignee, UniboV4.Project.Party do
+    belongs_to :assignee, UniboExPoc.Project.Party do
       public? true
       allow_nil? false
       source_attribute :assignee_party_id

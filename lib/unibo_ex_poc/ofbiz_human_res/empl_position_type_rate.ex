@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.EmplPositionTypeRate do
+defmodule UniboExPoc.Ofbiz.HumanRes.EmplPositionTypeRate do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_empl_position_type_rates"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -39,11 +39,11 @@ defmodule UniboV4.Ofbiz.HumanRes.EmplPositionTypeRate do
   end
 
   relationships do
-    belongs_to :empl_position_type, UniboV4.Ofbiz.HumanRes.EmplPositionType do
+    belongs_to :empl_position_type, UniboExPoc.Ofbiz.HumanRes.EmplPositionType do
       public? true
       attribute_type :string
     end
-    belongs_to :rate_type, UniboV4.Ofbiz.HumanRes.RateType do
+    belongs_to :rate_type, UniboExPoc.Ofbiz.HumanRes.RateType do
       public? true
       attribute_type :string
     end

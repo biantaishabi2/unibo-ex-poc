@@ -1,7 +1,7 @@
-defmodule UniboV4.Rating.RatingScore do
+defmodule UniboExPoc.Rating.RatingScore do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Rating,
+    domain: UniboExPoc.Rating,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Rating.RatingScore do
 
   postgres do
     table "rating_scores"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,11 +44,11 @@ defmodule UniboV4.Rating.RatingScore do
   end
 
   relationships do
-    belongs_to :rating, UniboV4.Rating.Rating do
+    belongs_to :rating, UniboExPoc.Rating.Rating do
       public? true
       allow_nil? false
     end
-    belongs_to :criteria, UniboV4.Rating.RatingCriteria do
+    belongs_to :criteria, UniboExPoc.Rating.RatingCriteria do
       public? true
       allow_nil? false
     end

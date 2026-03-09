@@ -1,7 +1,7 @@
-defmodule UniboV4.Survey.QuestionTriggerAnswerLink do
+defmodule UniboExPoc.Survey.QuestionTriggerAnswerLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Survey,
+    domain: UniboExPoc.Survey,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Survey.QuestionTriggerAnswerLink do
 
   postgres do
     table "survey_question_trigger_answer_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Survey.QuestionTriggerAnswerLink do
   end
 
   relationships do
-    belongs_to :question, UniboV4.Survey.Question do
+    belongs_to :question, UniboExPoc.Survey.Question do
       public? true
       allow_nil? false
     end
-    belongs_to :answer, UniboV4.Survey.Answer do
+    belongs_to :answer, UniboExPoc.Survey.Answer do
       public? true
       allow_nil? false
     end

@@ -15,10 +15,10 @@
 #   deactivate --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Calendar.WorkSchedule do
+defmodule UniboExPoc.Calendar.WorkSchedule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Calendar,
+    domain: UniboExPoc.Calendar,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -28,7 +28,7 @@ defmodule UniboV4.Calendar.WorkSchedule do
 
   postgres do
     table "calendar_work_schedules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -76,25 +76,25 @@ defmodule UniboV4.Calendar.WorkSchedule do
   end
 
   relationships do
-    belongs_to :week_template, UniboV4.Calendar.WeekTemplate do
+    belongs_to :week_template, UniboExPoc.Calendar.WeekTemplate do
       public? true
     end
-    has_many :exceptions, UniboV4.Calendar.CalendarException do
-      public? true
-      source_attribute :week_template_id
-      destination_attribute :work_schedule_id
-    end
-    has_many :week_exceptions, UniboV4.Calendar.WeekException do
+    has_many :exceptions, UniboExPoc.Calendar.CalendarException do
       public? true
       source_attribute :week_template_id
       destination_attribute :work_schedule_id
     end
-    has_many :events, UniboV4.Calendar.CalendarEvent do
+    has_many :week_exceptions, UniboExPoc.Calendar.WeekException do
       public? true
       source_attribute :week_template_id
       destination_attribute :work_schedule_id
     end
-    has_many :translations, UniboV4.Calendar.WorkScheduleTranslation, public?: true
+    has_many :events, UniboExPoc.Calendar.CalendarEvent do
+      public? true
+      source_attribute :week_template_id
+      destination_attribute :work_schedule_id
+    end
+    has_many :translations, UniboExPoc.Calendar.WorkScheduleTranslation, public?: true
   end
 
   actions do

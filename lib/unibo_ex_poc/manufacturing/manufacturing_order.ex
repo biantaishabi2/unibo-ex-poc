@@ -11,13 +11,13 @@
 #   split_production --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Manufacturing.ManufacturingOrder do
+defmodule UniboExPoc.Manufacturing.ManufacturingOrder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Manufacturing,
+    domain: UniboExPoc.Manufacturing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Manufacturing.ManufacturingOrder.Notifier]
+    notifiers: [UniboExPoc.Manufacturing.ManufacturingOrder.Notifier]
 
   resource do
     description "生产工单"
@@ -25,7 +25,7 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder do
 
   postgres do
     table "manufacturing_orders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -156,28 +156,28 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder do
   end
 
   relationships do
-    belongs_to :bom, UniboV4.Manufacturing.BillOfMaterials do
+    belongs_to :bom, UniboExPoc.Manufacturing.BillOfMaterials do
       public? true
     end
-    has_many :work_orders, UniboV4.Manufacturing.WorkOrder do
+    has_many :work_orders, UniboExPoc.Manufacturing.WorkOrder do
       public? true
     end
-    belongs_to :work_center, UniboV4.Manufacturing.WorkCenter do
+    belongs_to :work_center, UniboExPoc.Manufacturing.WorkCenter do
       public? true
     end
-    has_many :move_raw_ids, UniboV4.Manufacturing.StockMove do
+    has_many :move_raw_ids, UniboExPoc.Manufacturing.StockMove do
       public? true
       destination_attribute :raw_material_production_id
     end
-    has_many :move_finished_ids, UniboV4.Manufacturing.StockMove do
+    has_many :move_finished_ids, UniboExPoc.Manufacturing.StockMove do
       public? true
       destination_attribute :production_id
     end
-    has_many :picking_ids, UniboV4.Manufacturing.StockPicking do
+    has_many :picking_ids, UniboExPoc.Manufacturing.StockPicking do
       public? true
       destination_attribute :production_id
     end
-    has_many :scrap_ids, UniboV4.Manufacturing.StockScrap do
+    has_many :scrap_ids, UniboExPoc.Manufacturing.StockScrap do
       public? true
       destination_attribute :production_id
     end
@@ -207,12 +207,12 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder do
       # message: "只有草稿状态可以确认"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: set_attribute :status 是 calculation，不是 attribute
-      change UniboV4.Manufacturing.Changes.ManufacturingOrder.ConfirmCall5
-      change UniboV4.Manufacturing.Changes.ManufacturingOrder.ConfirmCall6
-      change UniboV4.Manufacturing.Changes.ManufacturingOrder.ConfirmCall7
-      change UniboV4.Manufacturing.Changes.ManufacturingOrder.ConfirmCall8
-      change UniboV4.Manufacturing.Changes.ManufacturingOrder.ConfirmCall9
-      change UniboV4.Manufacturing.Changes.ManufacturingOrder.ConfirmCall10
+      change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.ConfirmCall5
+      change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.ConfirmCall6
+      change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.ConfirmCall7
+      change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.ConfirmCall8
+      change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.ConfirmCall9
+      change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.ConfirmCall10
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -261,13 +261,13 @@ defmodule UniboV4.Manufacturing.ManufacturingOrder do
       end
       # message: "只有待关闭状态可以完工入库"
       # skipped: set_attribute :status 是 calculation，不是 attribute
-      change UniboV4.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall11
-      change UniboV4.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall12
-      change UniboV4.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall13
-      change UniboV4.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall14
-      change UniboV4.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall15
-      change UniboV4.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall16
-      change UniboV4.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall17
+      change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall11
+      change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall12
+      change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall13
+      change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall14
+      change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall15
+      change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall16
+      change UniboExPoc.Manufacturing.Changes.ManufacturingOrder.MarkDoneCall17
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Order.ReturnItemTypeMap do
+defmodule UniboExPoc.Ofbiz.Order.ReturnItemTypeMap do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Order.ReturnItemTypeMap do
 
   postgres do
     table "order_return_item_type_maps"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -40,15 +40,15 @@ defmodule UniboV4.Ofbiz.Order.ReturnItemTypeMap do
   end
 
   relationships do
-    belongs_to :return_item_type, UniboV4.Ofbiz.Order.ReturnItemType do
+    belongs_to :return_item_type, UniboExPoc.Ofbiz.Order.ReturnItemType do
       public? true
       attribute_type :string
     end
-    belongs_to :return_header_type, UniboV4.Ofbiz.Order.ReturnHeaderType do
+    belongs_to :return_header_type, UniboExPoc.Ofbiz.Order.ReturnHeaderType do
       public? true
       attribute_type :string
     end
-    belongs_to :return_adjustment_type, UniboV4.Ofbiz.Order.ReturnAdjustmentType do
+    belongs_to :return_adjustment_type, UniboExPoc.Ofbiz.Order.ReturnAdjustmentType do
       public? true
       source_attribute :return_item_type_id
       define_attribute? false

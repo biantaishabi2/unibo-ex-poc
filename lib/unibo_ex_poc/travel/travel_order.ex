@@ -31,13 +31,13 @@
 #   mark_order_failed --> [*] : failed
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Travel.TravelOrder do
+defmodule UniboExPoc.Travel.TravelOrder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Travel,
+    domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Travel.TravelOrder.Notifier]
+    notifiers: [UniboExPoc.Travel.TravelOrder.Notifier]
 
   resource do
     description "统一酒旅订单，承接 hotel、flight、vacation、train 四类商品的下单和状态流转；通过跨域引用关联 Sales::Customer 和 Payment::Payment"
@@ -45,7 +45,7 @@ defmodule UniboV4.Travel.TravelOrder do
 
   postgres do
     table "travel_orders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   multitenancy do
@@ -182,26 +182,26 @@ defmodule UniboV4.Travel.TravelOrder do
   end
 
   relationships do
-    belongs_to :hotel_offer, UniboV4.Travel.HotelOffer do
+    belongs_to :hotel_offer, UniboExPoc.Travel.HotelOffer do
       public? true
     end
-    belongs_to :flight_offer, UniboV4.Travel.FlightOffer do
+    belongs_to :flight_offer, UniboExPoc.Travel.FlightOffer do
       public? true
     end
-    belongs_to :vacation_offer, UniboV4.Travel.VacationOffer do
+    belongs_to :vacation_offer, UniboExPoc.Travel.VacationOffer do
       public? true
     end
-    belongs_to :train_offer, UniboV4.Travel.TrainOffer do
+    belongs_to :train_offer, UniboExPoc.Travel.TrainOffer do
       public? true
     end
-    has_many :fulfillments, UniboV4.Travel.TravelFulfillment do
+    has_many :fulfillments, UniboExPoc.Travel.TravelFulfillment do
       public? true
       destination_attribute :travel_order_id
     end
-    belongs_to :customer, UniboV4.Sales.Customer do
+    belongs_to :customer, UniboExPoc.Sales.Customer do
       public? true
     end
-    belongs_to :payment, UniboV4.Payment.Payment do
+    belongs_to :payment, UniboExPoc.Payment.Payment do
       public? true
     end
   end
@@ -227,7 +227,7 @@ defmodule UniboV4.Travel.TravelOrder do
       validate present(:train_offer_id)
       # message: "train 订单必须绑定 train_offer_id"
       change set_attribute(:id, expr(id))
-      change UniboV4.Travel.Integrations.TravelOrder.CreateOrderShopCallerContextResolveBridge
+      change UniboExPoc.Travel.Integrations.TravelOrder.CreateOrderShopCallerContextResolveBridge
     end
     update :update do
       primary? true
@@ -248,7 +248,7 @@ defmodule UniboV4.Travel.TravelOrder do
       # message: "只有 draft 订单可以 confirm_quote"
       change set_attribute(:status, :quoted)
       change set_attribute(:id, expr(id))
-      change UniboV4.Travel.Integrations.TravelOrder.ConfirmQuoteShopEligibilityQuoteBridge
+      change UniboExPoc.Travel.Integrations.TravelOrder.ConfirmQuoteShopEligibilityQuoteBridge
       require_atomic? false
     end
     update :submit_order do
@@ -264,7 +264,7 @@ defmodule UniboV4.Travel.TravelOrder do
       # message: "只有 quoted 订单可以提交普通购票或候补"
       change set_attribute(:status, :submitted)
       change set_attribute(:id, expr(id))
-      change UniboV4.Travel.Integrations.TravelOrder.SubmitOrderPaymentCaptureBridge
+      change UniboExPoc.Travel.Integrations.TravelOrder.SubmitOrderPaymentCaptureBridge
       require_atomic? false
     end
     update :submit_waitlist do
@@ -282,7 +282,7 @@ defmodule UniboV4.Travel.TravelOrder do
       change set_attribute(:booking_mode, :waitlist)
       change set_attribute(:waitlist_status, :pending)
       change set_attribute(:id, expr(id))
-      change UniboV4.Travel.Integrations.TravelOrder.SubmitWaitlistPaymentCaptureBridge
+      change UniboExPoc.Travel.Integrations.TravelOrder.SubmitWaitlistPaymentCaptureBridge
       require_atomic? false
     end
     update :mark_payment_succeeded do
@@ -298,7 +298,7 @@ defmodule UniboV4.Travel.TravelOrder do
       # message: "只有 submitted 订单可以进入支付成功或失败结果"
       change set_attribute(:status, :booking_pending)
       change set_attribute(:id, expr(id))
-      change UniboV4.Travel.Integrations.TravelOrder.MarkPaymentSucceededSupplierBookingSubmitBridge
+      change UniboExPoc.Travel.Integrations.TravelOrder.MarkPaymentSucceededSupplierBookingSubmitBridge
       require_atomic? false
     end
     update :mark_booked do

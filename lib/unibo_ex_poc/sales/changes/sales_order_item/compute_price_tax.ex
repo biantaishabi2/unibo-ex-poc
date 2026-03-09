@@ -1,4 +1,4 @@
-defmodule UniboV4.Sales.Changes.SalesOrderItem.ComputePriceTax do
+defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceTax do
   @moduledoc """
   Change 模块: 计算 :price_tax (entity: sales_order_item)
   """

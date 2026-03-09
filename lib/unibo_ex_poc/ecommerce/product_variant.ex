@@ -7,10 +7,10 @@
 #   update --> update
 #   create_dynamic_variant --> update
 # ```
-defmodule UniboV4.Ecommerce.ProductVariant do
+defmodule UniboExPoc.Ecommerce.ProductVariant do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ecommerce,
+    domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Ecommerce.ProductVariant do
 
   postgres do
     table "ecommerce_product_variants"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -72,12 +72,12 @@ defmodule UniboV4.Ecommerce.ProductVariant do
 
   calculations do
     calculate :combination_info_price, :decimal, expr(price)
-    calculate :combination_info_has_discounted_price, :boolean, {UniboV4.Ecommerce.Calculations.ProductVariant.CombinationInfoHasDiscountedPrice, []}
-    calculate :combination_info_is_combination_possible, :boolean, {UniboV4.Ecommerce.Calculations.ProductVariant.CombinationInfoIsCombinationPossible, []}
+    calculate :combination_info_has_discounted_price, :boolean, {UniboExPoc.Ecommerce.Calculations.ProductVariant.CombinationInfoHasDiscountedPrice, []}
+    calculate :combination_info_is_combination_possible, :boolean, {UniboExPoc.Ecommerce.Calculations.ProductVariant.CombinationInfoIsCombinationPossible, []}
   end
 
   relationships do
-    belongs_to :template, UniboV4.Ecommerce.ProductTemplate do
+    belongs_to :template, UniboExPoc.Ecommerce.ProductTemplate do
       public? true
       allow_nil? false
     end

@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.PaymentApplication do
+defmodule UniboExPoc.Ofbiz.Accounting.PaymentApplication do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_payment_applications"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -36,19 +36,19 @@ defmodule UniboV4.Ofbiz.Accounting.PaymentApplication do
   end
 
   relationships do
-    belongs_to :payment, UniboV4.Ofbiz.Accounting.Payment do
+    belongs_to :payment, UniboExPoc.Ofbiz.Accounting.Payment do
       public? true
     end
-    belongs_to :invoice, UniboV4.Ofbiz.Accounting.Invoice do
+    belongs_to :invoice, UniboExPoc.Ofbiz.Accounting.Invoice do
       public? true
     end
-    belongs_to :billing_account, UniboV4.Ofbiz.Accounting.BillingAccount do
+    belongs_to :billing_account, UniboExPoc.Ofbiz.Accounting.BillingAccount do
       public? true
     end
-    belongs_to :to_payment, UniboV4.Ofbiz.Accounting.Payment do
+    belongs_to :to_payment, UniboExPoc.Ofbiz.Accounting.Payment do
       public? true
     end
-    belongs_to :gl_account, UniboV4.Ofbiz.Accounting.GlAccount do
+    belongs_to :gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
       source_attribute :override_gl_account_id
     end

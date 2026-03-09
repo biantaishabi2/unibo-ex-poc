@@ -1,7 +1,7 @@
-defmodule UniboV4.Communication.Group do
+defmodule UniboExPoc.Communication.Group do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Communication,
+    domain: UniboExPoc.Communication,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Communication.Group do
 
   postgres do
     table "communication_groups"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

@@ -7,10 +7,10 @@
 #   upload_via_share --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Documents.Share do
+defmodule UniboExPoc.Documents.Share do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Documents,
+    domain: UniboExPoc.Documents,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Documents.Share do
 
   postgres do
     table "documents_shares"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -97,28 +97,28 @@ defmodule UniboV4.Documents.Share do
   end
 
   relationships do
-    belongs_to :folder, UniboV4.Documents.Document do
+    belongs_to :folder, UniboExPoc.Documents.Document do
       public? true
     end
-    many_to_many :documents, UniboV4.Documents.Document do
+    many_to_many :documents, UniboExPoc.Documents.Document do
       public? true
-      through UniboV4.Documents.DocumentShareLink
+      through UniboExPoc.Documents.DocumentShareLink
     end
-    many_to_many :tags, UniboV4.Documents.Tag do
+    many_to_many :tags, UniboExPoc.Documents.Tag do
       public? true
-      through UniboV4.Documents.ShareTagLink
+      through UniboExPoc.Documents.ShareTagLink
     end
-    belongs_to :partner, UniboV4.Documents.Contact do
+    belongs_to :partner, UniboExPoc.Documents.Contact do
       public? true
     end
-    belongs_to :owner, UniboV4.Documents.Party do
+    belongs_to :owner, UniboExPoc.Documents.Party do
       public? true
       source_attribute :owner_party_id
     end
-    belongs_to :alias, UniboV4.Documents.MailAlias do
+    belongs_to :alias, UniboExPoc.Documents.MailAlias do
       public? true
     end
-    belongs_to :creator, UniboV4.Documents.Party do
+    belongs_to :creator, UniboExPoc.Documents.Party do
       public? true
       source_attribute :creator_party_id
     end
@@ -136,7 +136,7 @@ defmodule UniboV4.Documents.Share do
       validate present(:folder_id)
       # message: "type=domain 时必须指定文件夹"
       # relate_actor :create_uid — 无对应关系，跳过
-      change UniboV4.Documents.Changes.Share.ComputeAccessToken
+      change UniboExPoc.Documents.Changes.Share.ComputeAccessToken
       change set_attribute(:id, expr(id))
     end
     update :update do
@@ -160,7 +160,7 @@ defmodule UniboV4.Documents.Share do
       validate present(:folder_id)
       # message: "type=domain 时必须指定文件夹"
       # relate_actor :create_uid — 无对应关系，跳过
-      change UniboV4.Documents.Changes.Share.ComputeAccessToken
+      change UniboExPoc.Documents.Changes.Share.ComputeAccessToken
       change set_attribute(:id, expr(id))
     end
   end

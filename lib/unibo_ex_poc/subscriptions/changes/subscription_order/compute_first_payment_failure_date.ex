@@ -1,4 +1,4 @@
-defmodule UniboV4.Subscriptions.Changes.SubscriptionOrder.ComputeFirstPaymentFailureDate do
+defmodule UniboExPoc.Subscriptions.Changes.SubscriptionOrder.ComputeFirstPaymentFailureDate do
   @moduledoc """
   Change 模块: 计算 :first_payment_failure_date (entity: subscription_order)
   原始 expr: op: func args: - today

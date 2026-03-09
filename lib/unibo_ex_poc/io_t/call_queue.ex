@@ -8,10 +8,10 @@
 #   logout_agent --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.IoT.CallQueue do
+defmodule UniboExPoc.IoT.CallQueue do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.IoT.CallQueue do
 
   postgres do
     table "io_t_call_queues"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -118,29 +118,29 @@ defmodule UniboV4.IoT.CallQueue do
   calculations do
     calculate :available_agent_count, :integer, expr(count(members, query: [filter: expr(true)]))
     calculate :current_wait_count, :integer, expr(count(calls, query: [filter: expr(true)]))
-    calculate :sla_percentage, :decimal, {UniboV4.IoT.Calculations.CallQueue.SlaPercentage, []}
-    calculate :avg_wait_time, :integer, {UniboV4.IoT.Calculations.CallQueue.AvgWaitTime, []}
+    calculate :sla_percentage, :decimal, {UniboExPoc.IoT.Calculations.CallQueue.SlaPercentage, []}
+    calculate :avg_wait_time, :integer, {UniboExPoc.IoT.Calculations.CallQueue.AvgWaitTime, []}
   end
 
   relationships do
-    has_many :members, UniboV4.IoT.QueueMember do
+    has_many :members, UniboExPoc.IoT.QueueMember do
       public? true
       destination_attribute :queue_id
     end
-    has_many :calls, UniboV4.IoT.VoIPCall do
+    has_many :calls, UniboExPoc.IoT.VoIPCall do
       public? true
       destination_attribute :queue_id
     end
-    belongs_to :org, UniboV4.IoT.Org do
+    belongs_to :org, UniboExPoc.IoT.Org do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    belongs_to :music_on_hold, UniboV4.IoT.Media do
+    belongs_to :music_on_hold, UniboExPoc.IoT.Media do
       public? true
       attribute_type :integer
     end
-    has_many :incoming_numbers, UniboV4.IoT.IncomingNumber do
+    has_many :incoming_numbers, UniboExPoc.IoT.IncomingNumber do
       public? true
       destination_attribute :queue_id
     end
@@ -166,7 +166,7 @@ defmodule UniboV4.IoT.CallQueue do
       description "坐席动态登入队列"
       argument :agent_user_id, :integer, allow_nil?: false
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change UniboV4.IoT.Changes.CallQueue.LoginAgentCreateRelated1
+      change UniboExPoc.IoT.Changes.CallQueue.LoginAgentCreateRelated1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

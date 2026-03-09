@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortSearchConstraint do
+defmodule UniboExPoc.Ofbiz.WorkEffort.WorkEffortSearchConstraint do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_search_constraints"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -45,7 +45,7 @@ defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortSearchConstraint do
   end
 
   relationships do
-    belongs_to :work_effort_search_result, UniboV4.Ofbiz.WorkEffort.WorkEffortSearchResult do
+    belongs_to :work_effort_search_result, UniboExPoc.Ofbiz.WorkEffort.WorkEffortSearchResult do
       public? true
       attribute_type :string
     end

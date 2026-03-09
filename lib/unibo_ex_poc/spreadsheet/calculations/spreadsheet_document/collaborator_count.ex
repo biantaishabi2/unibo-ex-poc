@@ -1,4 +1,4 @@
-defmodule UniboV4.Spreadsheet.Calculations.SpreadsheetDocument.CollaboratorCount do
+defmodule UniboExPoc.Spreadsheet.Calculations.SpreadsheetDocument.CollaboratorCount do
   @moduledoc """
   Calculation 模块: :collaborator_count (type: :integer, entity: spreadsheet_document)
   """

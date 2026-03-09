@@ -1,4 +1,4 @@
-defmodule UniboV4.Quality do
+defmodule UniboExPoc.Quality do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,30 +7,30 @@ defmodule UniboV4.Quality do
   end
 
   resources do
-    resource UniboV4.Quality.QualityPoint
-    resource UniboV4.Quality.QualityPoint.Version
-    resource UniboV4.Quality.QualityCheck
-    resource UniboV4.Quality.QualityCheck.Version
-    resource UniboV4.Quality.QualityAlert
-    resource UniboV4.Quality.QualityAlert.Version
-    resource UniboV4.Quality.QualityTeam
-    resource UniboV4.Quality.QualityTeam.Version
-    resource UniboV4.Quality.QualityReason
-    resource UniboV4.Quality.QualityReason.Version
-    resource UniboV4.Quality.QualityTag
-    resource UniboV4.Quality.QualityTag.Version
-    resource UniboV4.Quality.QualityProfile
-    resource UniboV4.Quality.QualityProfile.Version
-    resource UniboV4.Quality.QualityPointOrgView
-    resource UniboV4.Quality.QualityPointOrgView.Version
-    resource UniboV4.Quality.Product
-    resource UniboV4.Quality.Lot
-    resource UniboV4.Quality.Party
-    resource UniboV4.Quality.Workcenter
-    resource UniboV4.Quality.WorkOrderOperation
-    resource UniboV4.Quality.WorksheetTemplate
-    resource UniboV4.Quality.MaintenanceRequest
-    resource UniboV4.Quality.QualityPointProductLink
-    resource UniboV4.Quality.QualityTeamMemberLink
+    resource UniboExPoc.Quality.QualityPoint
+    resource UniboExPoc.Quality.QualityPoint.Version
+    resource UniboExPoc.Quality.QualityCheck
+    resource UniboExPoc.Quality.QualityCheck.Version
+    resource UniboExPoc.Quality.QualityAlert
+    resource UniboExPoc.Quality.QualityAlert.Version
+    resource UniboExPoc.Quality.QualityTeam
+    resource UniboExPoc.Quality.QualityTeam.Version
+    resource UniboExPoc.Quality.QualityReason
+    resource UniboExPoc.Quality.QualityReason.Version
+    resource UniboExPoc.Quality.QualityTag
+    resource UniboExPoc.Quality.QualityTag.Version
+    resource UniboExPoc.Quality.QualityProfile
+    resource UniboExPoc.Quality.QualityProfile.Version
+    resource UniboExPoc.Quality.QualityPointOrgView
+    resource UniboExPoc.Quality.QualityPointOrgView.Version
+    resource UniboExPoc.Quality.Product
+    resource UniboExPoc.Quality.Lot
+    resource UniboExPoc.Quality.Party
+    resource UniboExPoc.Quality.Workcenter
+    resource UniboExPoc.Quality.WorkOrderOperation
+    resource UniboExPoc.Quality.WorksheetTemplate
+    resource UniboExPoc.Quality.MaintenanceRequest
+    resource UniboExPoc.Quality.QualityPointProductLink
+    resource UniboExPoc.Quality.QualityTeamMemberLink
   end
 end

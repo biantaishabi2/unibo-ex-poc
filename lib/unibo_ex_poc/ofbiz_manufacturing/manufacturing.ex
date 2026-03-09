@@ -1,4 +1,4 @@
-defmodule UniboV4.Ofbiz.Manufacturing do
+defmodule UniboExPoc.Ofbiz.Manufacturing do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,18 +7,18 @@ defmodule UniboV4.Ofbiz.Manufacturing do
   end
 
   resources do
-    resource UniboV4.Ofbiz.Manufacturing.ProductManufacturingRule
-    resource UniboV4.Ofbiz.Manufacturing.ProductManufacturingRule.Version
-    resource UniboV4.Ofbiz.Manufacturing.TechDataCalendar
-    resource UniboV4.Ofbiz.Manufacturing.TechDataCalendar.Version
-    resource UniboV4.Ofbiz.Manufacturing.TechDataCalendarExcDay
-    resource UniboV4.Ofbiz.Manufacturing.TechDataCalendarExcDay.Version
-    resource UniboV4.Ofbiz.Manufacturing.TechDataCalendarExcWeek
-    resource UniboV4.Ofbiz.Manufacturing.TechDataCalendarExcWeek.Version
-    resource UniboV4.Ofbiz.Manufacturing.TechDataCalendarWeek
-    resource UniboV4.Ofbiz.Manufacturing.TechDataCalendarWeek.Version
-    resource UniboV4.Ofbiz.Manufacturing.MrpEventType
-    resource UniboV4.Ofbiz.Manufacturing.MrpEventType.Version
-    resource UniboV4.Ofbiz.Manufacturing.MrpEvent
+    resource UniboExPoc.Ofbiz.Manufacturing.ProductManufacturingRule
+    resource UniboExPoc.Ofbiz.Manufacturing.ProductManufacturingRule.Version
+    resource UniboExPoc.Ofbiz.Manufacturing.TechDataCalendar
+    resource UniboExPoc.Ofbiz.Manufacturing.TechDataCalendar.Version
+    resource UniboExPoc.Ofbiz.Manufacturing.TechDataCalendarExcDay
+    resource UniboExPoc.Ofbiz.Manufacturing.TechDataCalendarExcDay.Version
+    resource UniboExPoc.Ofbiz.Manufacturing.TechDataCalendarExcWeek
+    resource UniboExPoc.Ofbiz.Manufacturing.TechDataCalendarExcWeek.Version
+    resource UniboExPoc.Ofbiz.Manufacturing.TechDataCalendarWeek
+    resource UniboExPoc.Ofbiz.Manufacturing.TechDataCalendarWeek.Version
+    resource UniboExPoc.Ofbiz.Manufacturing.MrpEventType
+    resource UniboExPoc.Ofbiz.Manufacturing.MrpEventType.Version
+    resource UniboExPoc.Ofbiz.Manufacturing.MrpEvent
   end
 end

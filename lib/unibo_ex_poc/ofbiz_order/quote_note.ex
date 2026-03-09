@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Order.QuoteNote do
+defmodule UniboExPoc.Ofbiz.Order.QuoteNote do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_quote_notes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -36,7 +36,7 @@ defmodule UniboV4.Ofbiz.Order.QuoteNote do
   end
 
   relationships do
-    belongs_to :quote, UniboV4.Ofbiz.Order.Quote do
+    belongs_to :quote, UniboExPoc.Ofbiz.Order.Quote do
       public? true
       attribute_type :string
     end

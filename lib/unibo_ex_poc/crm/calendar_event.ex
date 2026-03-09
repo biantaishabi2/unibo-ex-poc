@@ -1,7 +1,7 @@
-defmodule UniboV4.CRM.CalendarEvent do
+defmodule UniboExPoc.CRM.CalendarEvent do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.CRM,
+    domain: UniboExPoc.CRM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.CRM.CalendarEvent do
 
   postgres do
     table "crm_calendar_events"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -30,7 +30,7 @@ defmodule UniboV4.CRM.CalendarEvent do
   end
 
   relationships do
-    belongs_to :lead, UniboV4.CRM.Lead do
+    belongs_to :lead, UniboExPoc.CRM.Lead do
       public? true
     end
   end

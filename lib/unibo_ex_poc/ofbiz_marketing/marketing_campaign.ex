@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Marketing.MarketingCampaign do
+defmodule UniboExPoc.Ofbiz.Marketing.MarketingCampaign do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Marketing,
+    domain: UniboExPoc.Ofbiz.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "marketing_campaigns"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -53,7 +53,7 @@ defmodule UniboV4.Ofbiz.Marketing.MarketingCampaign do
   end
 
   relationships do
-    belongs_to :parent_marketing_campaign, UniboV4.Ofbiz.Marketing.MarketingCampaign do
+    belongs_to :parent_marketing_campaign, UniboExPoc.Ofbiz.Marketing.MarketingCampaign do
       public? true
       source_attribute :parent_campaign_id
     end

@@ -1,4 +1,4 @@
-defmodule UniboV4.IoT.Calculations.VoIpCall.Billsec do
+defmodule UniboExPoc.IoT.Calculations.VoIpCall.Billsec do
   @moduledoc """
   Calculation 模块: :billsec (type: :integer, entity: vo_ip_call)
   """

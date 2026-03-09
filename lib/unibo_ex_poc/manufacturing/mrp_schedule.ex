@@ -4,10 +4,10 @@
 #   [*] --> create
 #   create --> [*]
 # ```
-defmodule UniboV4.Manufacturing.MrpSchedule do
+defmodule UniboExPoc.Manufacturing.MrpSchedule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Manufacturing,
+    domain: UniboExPoc.Manufacturing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -17,7 +17,7 @@ defmodule UniboV4.Manufacturing.MrpSchedule do
 
   postgres do
     table "manufacturing_mrp_schedules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

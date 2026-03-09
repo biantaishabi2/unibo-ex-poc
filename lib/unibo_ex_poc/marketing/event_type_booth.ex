@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Marketing.EventTypeBooth do
+defmodule UniboExPoc.Marketing.EventTypeBooth do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Marketing.EventTypeBooth do
 
   postgres do
     table "marketing_event_type_booths"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -48,11 +48,11 @@ defmodule UniboV4.Marketing.EventTypeBooth do
   end
 
   relationships do
-    belongs_to :event_type, UniboV4.Events.EventType do
+    belongs_to :event_type, UniboExPoc.Events.EventType do
       public? true
       allow_nil? false
     end
-    belongs_to :booth_category, UniboV4.Marketing.EventBoothCategory do
+    belongs_to :booth_category, UniboExPoc.Marketing.EventBoothCategory do
       public? true
       allow_nil? false
     end

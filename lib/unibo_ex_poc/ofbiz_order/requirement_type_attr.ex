@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Order.RequirementTypeAttr do
+defmodule UniboExPoc.Ofbiz.Order.RequirementTypeAttr do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_requirement_type_attrs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,7 +37,7 @@ defmodule UniboV4.Ofbiz.Order.RequirementTypeAttr do
   end
 
   relationships do
-    belongs_to :requirement_type, UniboV4.Ofbiz.Order.RequirementType do
+    belongs_to :requirement_type, UniboExPoc.Ofbiz.Order.RequirementType do
       public? true
       attribute_type :string
     end

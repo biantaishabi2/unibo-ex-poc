@@ -169,6 +169,7 @@ defmodule UniboExPoc.Payment.Workflows.Payment.PaymentLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -184,6 +185,7 @@ defmodule UniboExPoc.Payment.Workflows.Payment.PaymentLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

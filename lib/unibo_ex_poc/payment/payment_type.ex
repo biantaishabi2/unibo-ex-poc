@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Payment.PaymentType do
+defmodule UniboExPoc.Payment.PaymentType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Payment,
+    domain: UniboExPoc.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Payment.PaymentType do
 
   postgres do
     table "payment_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -61,16 +61,16 @@ defmodule UniboV4.Payment.PaymentType do
   end
 
   relationships do
-    belongs_to :parent, UniboV4.Payment.PaymentType do
+    belongs_to :parent, UniboExPoc.Payment.PaymentType do
       public? true
       source_attribute :parent_type_id
     end
-    has_many :children, UniboV4.Payment.PaymentType do
+    has_many :children, UniboExPoc.Payment.PaymentType do
       public? true
       source_attribute :parent_type_id
       destination_attribute :parent_type_id
     end
-    has_many :payments, UniboV4.Payment.Payment do
+    has_many :payments, UniboExPoc.Payment.Payment do
       public? true
       source_attribute :payment_type_id
       destination_attribute :payment_type_id

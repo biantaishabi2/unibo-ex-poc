@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.FinAccountTransType do
+defmodule UniboExPoc.Ofbiz.Accounting.FinAccountTransType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_fin_account_trans_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -35,7 +35,7 @@ defmodule UniboV4.Ofbiz.Accounting.FinAccountTransType do
   end
 
   relationships do
-    belongs_to :parent_fin_account_trans_type, UniboV4.Ofbiz.Accounting.FinAccountTransType do
+    belongs_to :parent_fin_account_trans_type, UniboExPoc.Ofbiz.Accounting.FinAccountTransType do
       public? true
       source_attribute :parent_type_id
     end

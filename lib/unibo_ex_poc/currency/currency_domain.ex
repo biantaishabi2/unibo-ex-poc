@@ -1,4 +1,4 @@
-defmodule UniboV4.Currency do
+defmodule UniboExPoc.Currency do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,10 +7,10 @@ defmodule UniboV4.Currency do
   end
 
   resources do
-    resource UniboV4.Currency.Currency
-    resource UniboV4.Currency.CurrencyTranslation
-    resource UniboV4.Currency.Currency.Version
-    resource UniboV4.Currency.CurrencyRate
-    resource UniboV4.Currency.CurrencyRate.Version
+    resource UniboExPoc.Currency.Currency
+    resource UniboExPoc.Currency.CurrencyTranslation
+    resource UniboExPoc.Currency.Currency.Version
+    resource UniboExPoc.Currency.CurrencyRate
+    resource UniboExPoc.Currency.CurrencyRate.Version
   end
 end

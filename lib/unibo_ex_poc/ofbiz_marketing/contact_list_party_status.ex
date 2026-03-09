@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Marketing.ContactListPartyStatus do
+defmodule UniboExPoc.Ofbiz.Marketing.ContactListPartyStatus do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Marketing,
+    domain: UniboExPoc.Ofbiz.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "marketing_contact_list_party_statuses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

@@ -1,7 +1,7 @@
-defmodule UniboV4.Ecommerce.ProductTemplateAccessoryLink do
+defmodule UniboExPoc.Ecommerce.ProductTemplateAccessoryLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ecommerce,
+    domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ecommerce.ProductTemplateAccessoryLink do
 
   postgres do
     table "ecommerce_product_template_accessory_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Ecommerce.ProductTemplateAccessoryLink do
   end
 
   relationships do
-    belongs_to :product_template, UniboV4.Ecommerce.ProductTemplate do
+    belongs_to :product_template, UniboExPoc.Ecommerce.ProductTemplate do
       public? true
       allow_nil? false
     end
-    belongs_to :accessory_product, UniboV4.Ecommerce.ProductTemplate do
+    belongs_to :accessory_product, UniboExPoc.Ecommerce.ProductTemplate do
       public? true
       allow_nil? false
     end

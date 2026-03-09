@@ -1,4 +1,4 @@
-defmodule UniboV4.Accounting.Changes.Invoice.ComputeTotalAmount do
+defmodule UniboExPoc.Accounting.Changes.Invoice.ComputeTotalAmount do
   @moduledoc """
   Change 模块: 计算 :total_amount (entity: invoice)
   原始 expr: op: func args: - sum - op: ref   args:   - items   - amount

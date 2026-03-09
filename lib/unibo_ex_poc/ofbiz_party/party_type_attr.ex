@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.PartyTypeAttr do
+defmodule UniboExPoc.Ofbiz.Party.PartyTypeAttr do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_type_attrs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,7 +41,7 @@ defmodule UniboV4.Ofbiz.Party.PartyTypeAttr do
   end
 
   relationships do
-    belongs_to :party_type, UniboV4.Ofbiz.Party.PartyType do
+    belongs_to :party_type, UniboExPoc.Ofbiz.Party.PartyType do
       public? true
     end
   end

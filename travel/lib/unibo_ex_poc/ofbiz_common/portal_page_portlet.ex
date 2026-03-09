@@ -37,7 +37,6 @@ defmodule UniboExPoc.Ofbiz.Common.PortalPagePortlet do
       public? true
       description "Identify the portalPortlet instance in case more copy of the same portalPortlet are present in the same portalPage"
     end
-    attribute :column_seq_id, :string, public?: true
     attribute :sequence_num, :integer, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
@@ -51,9 +50,9 @@ defmodule UniboExPoc.Ofbiz.Common.PortalPagePortlet do
     end
     belongs_to :portal_page_column, UniboExPoc.Ofbiz.Common.PortalPageColumn do
       public? true
-      source_attribute :portal_page_id
-      define_attribute? false
+      source_attribute :column_seq_id
       attribute_type :string
+      destination_attribute :column_seq_id
     end
   end
 

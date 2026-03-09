@@ -1,10 +1,10 @@
-defmodule UniboV4.POS.Workflows.PosConfigFloor.ConfigFloorLinkWorkflow do
+defmodule UniboExPoc.POS.Workflows.PosConfigFloor.ConfigFloorLinkWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.POS.PosConfigFloor
+  alias UniboExPoc.POS.PosConfigFloor
 
   def steps do
     [:create, :destroy]
@@ -141,6 +141,7 @@ defmodule UniboV4.POS.Workflows.PosConfigFloor.ConfigFloorLinkWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :destroy -> nil
@@ -149,6 +150,7 @@ defmodule UniboV4.POS.Workflows.PosConfigFloor.ConfigFloorLinkWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :destroy -> false

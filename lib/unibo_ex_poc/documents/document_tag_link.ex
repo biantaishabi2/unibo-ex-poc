@@ -1,7 +1,7 @@
-defmodule UniboV4.Documents.DocumentTagLink do
+defmodule UniboExPoc.Documents.DocumentTagLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Documents,
+    domain: UniboExPoc.Documents,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Documents.DocumentTagLink do
 
   postgres do
     table "documents_document_tag_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Documents.DocumentTagLink do
   end
 
   relationships do
-    belongs_to :document, UniboV4.Documents.Document do
+    belongs_to :document, UniboExPoc.Documents.Document do
       public? true
       allow_nil? false
     end
-    belongs_to :tag, UniboV4.Documents.Tag do
+    belongs_to :tag, UniboExPoc.Documents.Tag do
       public? true
       allow_nil? false
     end

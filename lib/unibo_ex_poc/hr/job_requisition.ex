@@ -14,13 +14,13 @@
 #   open --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.HR.JobRequisition do
+defmodule UniboExPoc.HR.JobRequisition do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.HR.JobRequisition.Notifier]
+    notifiers: [UniboExPoc.HR.JobRequisition.Notifier]
 
   resource do
     description "招聘需求"
@@ -28,7 +28,7 @@ defmodule UniboV4.HR.JobRequisition do
 
   postgres do
     table "hr_job_requisitions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -87,10 +87,10 @@ defmodule UniboV4.HR.JobRequisition do
   end
 
   relationships do
-    belongs_to :department, UniboV4.HR.Department do
+    belongs_to :department, UniboExPoc.HR.Department do
       public? true
     end
-    has_many :applications, UniboV4.HR.JobApplication do
+    has_many :applications, UniboExPoc.HR.JobApplication do
       public? true
       source_attribute :department_id
       destination_attribute :requisition_id

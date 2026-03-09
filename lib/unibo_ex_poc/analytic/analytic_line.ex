@@ -7,13 +7,13 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Analytic.AnalyticLine do
+defmodule UniboExPoc.Analytic.AnalyticLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Analytic,
+    domain: UniboExPoc.Analytic,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Analytic.AnalyticLine.Notifier]
+    notifiers: [UniboExPoc.Analytic.AnalyticLine.Notifier]
 
   resource do
     description "分析行，记录某一时点在某分析账户下发生的成本/收入金额；可由 JournalEntryLine 自动生成，也可手动录入"
@@ -21,7 +21,7 @@ defmodule UniboV4.Analytic.AnalyticLine do
 
   postgres do
     table "analytic_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -75,27 +75,27 @@ defmodule UniboV4.Analytic.AnalyticLine do
   end
 
   relationships do
-    belongs_to :account, UniboV4.Analytic.AnalyticAccount do
+    belongs_to :account, UniboExPoc.Analytic.AnalyticAccount do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.Analytic.Party do
+    belongs_to :partner, UniboExPoc.Analytic.Party do
       public? true
       source_attribute :partner_party_id
     end
-    belongs_to :move_line, UniboV4.Analytic.JournalEntryLine do
+    belongs_to :move_line, UniboExPoc.Analytic.JournalEntryLine do
       public? true
     end
-    belongs_to :currency, UniboV4.Analytic.Currency do
+    belongs_to :currency, UniboExPoc.Analytic.Currency do
       public? true
     end
-    belongs_to :product, UniboV4.Analytic.Product do
+    belongs_to :product, UniboExPoc.Analytic.Product do
       public? true
     end
-    belongs_to :employee, UniboV4.Analytic.Employee do
+    belongs_to :employee, UniboExPoc.Analytic.Employee do
       public? true
     end
-    belongs_to :company, UniboV4.Analytic.Party do
+    belongs_to :company, UniboExPoc.Analytic.Party do
       public? true
       source_attribute :company_party_id
     end
@@ -114,7 +114,7 @@ defmodule UniboV4.Analytic.AnalyticLine do
       validate present(:amount)
       # validation: active_account_required
       validate compare(:date, greater_than: :account_start_date)
-      change UniboV4.Analytic.Changes.AnalyticLine.CreateCall1
+      change UniboExPoc.Analytic.Changes.AnalyticLine.CreateCall1
       change set_attribute(:id, expr(id))
     end
     update :update do
@@ -123,7 +123,7 @@ defmodule UniboV4.Analytic.AnalyticLine do
       accept [:date, :name, :amount, :unit_amount]
       argument :partner_id, :uuid
       # skipped: validate compare :date (incompatible with bulk update atomic path)
-      change UniboV4.Analytic.Changes.AnalyticLine.UpdateCall1
+      change UniboExPoc.Analytic.Changes.AnalyticLine.UpdateCall1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -131,7 +131,7 @@ defmodule UniboV4.Analytic.AnalyticLine do
       description "删除前检查关联 JournalEntryLine 是否已过账 [R-ANL-007]"
       primary? true
       # validation: no_delete_when_posted
-      change UniboV4.Analytic.Changes.AnalyticLine.DestroyCall1
+      change UniboExPoc.Analytic.Changes.AnalyticLine.DestroyCall1
       change set_attribute(:id, expr(id))
     end
   end

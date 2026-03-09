@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.TaxAuthorityAssoc do
+defmodule UniboExPoc.Ofbiz.Accounting.TaxAuthorityAssoc do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_tax_authority_assocs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,7 +57,7 @@ defmodule UniboV4.Ofbiz.Accounting.TaxAuthorityAssoc do
   end
 
   relationships do
-    belongs_to :tax_authority_assoc_type, UniboV4.Ofbiz.Accounting.TaxAuthorityAssocType do
+    belongs_to :tax_authority_assoc_type, UniboExPoc.Ofbiz.Accounting.TaxAuthorityAssocType do
       public? true
     end
   end

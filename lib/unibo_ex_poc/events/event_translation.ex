@@ -1,12 +1,12 @@
-defmodule UniboV4.Events.EventTranslation do
+defmodule UniboExPoc.Events.EventTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Events,
+    domain: UniboExPoc.Events,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "events_event_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Events.EventTranslation do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Events.Event do
+    belongs_to :event, UniboExPoc.Events.Event do
       public? true
       allow_nil? false
     end

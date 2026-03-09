@@ -1,4 +1,4 @@
-defmodule UniboV4.Travel do
+defmodule UniboExPoc.Travel do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,27 +7,27 @@ defmodule UniboV4.Travel do
   end
 
   resources do
-    resource UniboV4.Travel.TravelHotel
-    resource UniboV4.Travel.TravelHotel.Version
-    resource UniboV4.Travel.TravelRoomType
-    resource UniboV4.Travel.TravelRoomType.Version
-    resource UniboV4.Travel.TravelAirline
-    resource UniboV4.Travel.TravelAirline.Version
-    resource UniboV4.Travel.TravelCabinClass
-    resource UniboV4.Travel.TravelCabinClass.Version
-    resource UniboV4.Travel.TravelStaticCodeMapping
-    resource UniboV4.Travel.TravelStaticCodeMapping.Version
-    resource UniboV4.Travel.HotelOffer
-    resource UniboV4.Travel.HotelOffer.Version
-    resource UniboV4.Travel.FlightOffer
-    resource UniboV4.Travel.FlightOffer.Version
-    resource UniboV4.Travel.VacationOffer
-    resource UniboV4.Travel.VacationOffer.Version
-    resource UniboV4.Travel.TrainOffer
-    resource UniboV4.Travel.TrainOffer.Version
-    resource UniboV4.Travel.TravelOrder
-    resource UniboV4.Travel.TravelOrder.Version
-    resource UniboV4.Travel.TravelFulfillment
-    resource UniboV4.Travel.TravelFulfillment.Version
+    resource UniboExPoc.Travel.TravelHotel
+    resource UniboExPoc.Travel.TravelHotel.Version
+    resource UniboExPoc.Travel.TravelRoomType
+    resource UniboExPoc.Travel.TravelRoomType.Version
+    resource UniboExPoc.Travel.TravelAirline
+    resource UniboExPoc.Travel.TravelAirline.Version
+    resource UniboExPoc.Travel.TravelCabinClass
+    resource UniboExPoc.Travel.TravelCabinClass.Version
+    resource UniboExPoc.Travel.TravelStaticCodeMapping
+    resource UniboExPoc.Travel.TravelStaticCodeMapping.Version
+    resource UniboExPoc.Travel.HotelOffer
+    resource UniboExPoc.Travel.HotelOffer.Version
+    resource UniboExPoc.Travel.FlightOffer
+    resource UniboExPoc.Travel.FlightOffer.Version
+    resource UniboExPoc.Travel.VacationOffer
+    resource UniboExPoc.Travel.VacationOffer.Version
+    resource UniboExPoc.Travel.TrainOffer
+    resource UniboExPoc.Travel.TrainOffer.Version
+    resource UniboExPoc.Travel.TravelOrder
+    resource UniboExPoc.Travel.TravelOrder.Version
+    resource UniboExPoc.Travel.TravelFulfillment
+    resource UniboExPoc.Travel.TravelFulfillment.Version
   end
 end

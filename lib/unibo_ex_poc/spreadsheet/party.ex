@@ -1,7 +1,7 @@
-defmodule UniboV4.Spreadsheet.Party do
+defmodule UniboExPoc.Spreadsheet.Party do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Spreadsheet,
+    domain: UniboExPoc.Spreadsheet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Spreadsheet.Party do
 
   postgres do
     table "spreadsheet_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

@@ -27,13 +27,13 @@
 #   update --> win
 #   update --> lose
 # ```
-defmodule UniboV4.CRM.Lead do
+defmodule UniboExPoc.CRM.Lead do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.CRM,
+    domain: UniboExPoc.CRM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.CRM.Lead.Notifier]
+    notifiers: [UniboExPoc.CRM.Lead.Notifier]
 
   resource do
     description "线索/商机，CRM 核心实体。type=lead 为未筛选线索，type=opportunity 为已进入管道的商机"
@@ -41,7 +41,7 @@ defmodule UniboV4.CRM.Lead do
 
   postgres do
     table "crm_leads"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -174,23 +174,23 @@ defmodule UniboV4.CRM.Lead do
   end
 
   relationships do
-    belongs_to :contact, UniboV4.CRM.Contact do
+    belongs_to :contact, UniboExPoc.CRM.Contact do
       public? true
     end
-    belongs_to :stage, UniboV4.CRM.LeadStage do
+    belongs_to :stage, UniboExPoc.CRM.LeadStage do
       public? true
     end
-    belongs_to :assigned_to, UniboV4.CRM.Party do
+    belongs_to :assigned_to, UniboExPoc.CRM.Party do
       public? true
       source_attribute :assigned_to_party_id
     end
-    belongs_to :team, UniboV4.CRM.SalesTeam do
+    belongs_to :team, UniboExPoc.CRM.SalesTeam do
       public? true
     end
-    has_many :activities, UniboV4.CRM.Activity do
+    has_many :activities, UniboExPoc.CRM.Activity do
       public? true
     end
-    has_many :calendar_events, UniboV4.CRM.CalendarEvent do
+    has_many :calendar_events, UniboExPoc.CRM.CalendarEvent do
       public? true
     end
   end

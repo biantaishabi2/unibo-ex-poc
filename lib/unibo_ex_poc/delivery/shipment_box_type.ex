@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Delivery.ShipmentBoxType do
+defmodule UniboExPoc.Delivery.ShipmentBoxType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Delivery,
+    domain: UniboExPoc.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Delivery.ShipmentBoxType do
 
   postgres do
     table "delivery_shipment_box_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -88,7 +88,7 @@ defmodule UniboV4.Delivery.ShipmentBoxType do
   end
 
   relationships do
-    has_many :packages, UniboV4.Delivery.ShipmentPackage do
+    has_many :packages, UniboExPoc.Delivery.ShipmentPackage do
       public? true
       source_attribute :shipment_box_type_id
       destination_attribute :shipment_box_type_id

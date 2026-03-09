@@ -1,4 +1,4 @@
-defmodule UniboV4.CRM do
+defmodule UniboExPoc.CRM do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,25 +7,25 @@ defmodule UniboV4.CRM do
   end
 
   resources do
-    resource UniboV4.CRM.Contact
-    resource UniboV4.CRM.Contact.Version
-    resource UniboV4.CRM.ContactAddress
-    resource UniboV4.CRM.ContactAddress.Version
-    resource UniboV4.CRM.ContactPhone
-    resource UniboV4.CRM.ContactPhone.Version
-    resource UniboV4.CRM.Lead
-    resource UniboV4.CRM.Lead.Version
-    resource UniboV4.CRM.LeadStage
-    resource UniboV4.CRM.LeadStage.Version
-    resource UniboV4.CRM.Activity
-    resource UniboV4.CRM.Activity.Version
-    resource UniboV4.CRM.SalesForecast
-    resource UniboV4.CRM.SalesForecast.Version
-    resource UniboV4.CRM.CalendarEvent
-    resource UniboV4.CRM.SalesTeam
-    resource UniboV4.CRM.SalesTeam.Version
-    resource UniboV4.CRM.SalesTeamMember
-    resource UniboV4.CRM.SalesTeamMember.Version
-    resource UniboV4.CRM.Party
+    resource UniboExPoc.CRM.Contact
+    resource UniboExPoc.CRM.Contact.Version
+    resource UniboExPoc.CRM.ContactAddress
+    resource UniboExPoc.CRM.ContactAddress.Version
+    resource UniboExPoc.CRM.ContactPhone
+    resource UniboExPoc.CRM.ContactPhone.Version
+    resource UniboExPoc.CRM.Lead
+    resource UniboExPoc.CRM.Lead.Version
+    resource UniboExPoc.CRM.LeadStage
+    resource UniboExPoc.CRM.LeadStage.Version
+    resource UniboExPoc.CRM.Activity
+    resource UniboExPoc.CRM.Activity.Version
+    resource UniboExPoc.CRM.SalesForecast
+    resource UniboExPoc.CRM.SalesForecast.Version
+    resource UniboExPoc.CRM.CalendarEvent
+    resource UniboExPoc.CRM.SalesTeam
+    resource UniboExPoc.CRM.SalesTeam.Version
+    resource UniboExPoc.CRM.SalesTeamMember
+    resource UniboExPoc.CRM.SalesTeamMember.Version
+    resource UniboExPoc.CRM.Party
   end
 end

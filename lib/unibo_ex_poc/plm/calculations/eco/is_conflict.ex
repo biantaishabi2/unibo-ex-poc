@@ -1,4 +1,4 @@
-defmodule UniboV4.PLM.Calculations.Eco.IsConflict do
+defmodule UniboExPoc.PLM.Calculations.Eco.IsConflict do
   @moduledoc """
   Calculation 模块: :is_conflict (type: :boolean, entity: eco)
   原始 expr: op: custom args: - check_bom_conflict

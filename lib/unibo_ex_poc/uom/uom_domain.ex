@@ -1,4 +1,4 @@
-defmodule UniboV4.Uom do
+defmodule UniboExPoc.Uom do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,11 +7,11 @@ defmodule UniboV4.Uom do
   end
 
   resources do
-    resource UniboV4.Uom.UomCategory
-    resource UniboV4.Uom.UomCategoryTranslation
-    resource UniboV4.Uom.UomCategory.Version
-    resource UniboV4.Uom.Uom
-    resource UniboV4.Uom.UomTranslation
-    resource UniboV4.Uom.Uom.Version
+    resource UniboExPoc.Uom.UomCategory
+    resource UniboExPoc.Uom.UomCategoryTranslation
+    resource UniboExPoc.Uom.UomCategory.Version
+    resource UniboExPoc.Uom.Uom
+    resource UniboExPoc.Uom.UomTranslation
+    resource UniboExPoc.Uom.Uom.Version
   end
 end

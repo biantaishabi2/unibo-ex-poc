@@ -12,10 +12,10 @@
 #   set_previous_state --> confirm
 #   send_badge_email --> [*]
 # ```
-defmodule UniboV4.Marketing.EventRegistration do
+defmodule UniboExPoc.Marketing.EventRegistration do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -25,7 +25,7 @@ defmodule UniboV4.Marketing.EventRegistration do
 
   postgres do
     table "marketing_event_registrations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -88,14 +88,14 @@ defmodule UniboV4.Marketing.EventRegistration do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Marketing.Event do
+    belongs_to :event, UniboExPoc.Marketing.Event do
       public? true
       allow_nil? false
     end
-    belongs_to :ticket, UniboV4.Marketing.EventTicket do
+    belongs_to :ticket, UniboExPoc.Marketing.EventTicket do
       public? true
     end
-    belongs_to :partner, UniboV4.Marketing.Contact do
+    belongs_to :partner, UniboExPoc.Marketing.Contact do
       public? true
     end
   end
@@ -129,8 +129,8 @@ defmodule UniboV4.Marketing.EventRegistration do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :open)
-      change UniboV4.Marketing.Changes.EventRegistration.ConfirmCall5
-      change UniboV4.Marketing.Changes.EventRegistration.ConfirmCall6
+      change UniboExPoc.Marketing.Changes.EventRegistration.ConfirmCall5
+      change UniboExPoc.Marketing.Changes.EventRegistration.ConfirmCall6
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -176,7 +176,7 @@ defmodule UniboV4.Marketing.EventRegistration do
     end
     action :send_badge_email do
       description "发送证件邮件（使用 event_badge 模板）"
-      validate attribute_in(:, [:open, :done])
+      validate attribute_in(:status, [:open, :done])
       run fn input, _context ->
         :ok
       end

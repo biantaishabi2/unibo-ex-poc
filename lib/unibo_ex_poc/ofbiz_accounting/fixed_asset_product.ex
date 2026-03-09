@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.FixedAssetProduct do
+defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetProduct do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_fixed_asset_products"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -46,10 +46,10 @@ defmodule UniboV4.Ofbiz.Accounting.FixedAssetProduct do
   end
 
   relationships do
-    belongs_to :fixed_asset, UniboV4.Ofbiz.Accounting.FixedAsset do
+    belongs_to :fixed_asset, UniboExPoc.Ofbiz.Accounting.FixedAsset do
       public? true
     end
-    belongs_to :fixed_asset_product_type, UniboV4.Ofbiz.Accounting.FixedAssetProductType do
+    belongs_to :fixed_asset_product_type, UniboExPoc.Ofbiz.Accounting.FixedAssetProductType do
       public? true
     end
   end

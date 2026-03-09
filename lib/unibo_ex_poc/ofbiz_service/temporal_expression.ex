@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Service.TemporalExpression do
+defmodule UniboExPoc.Ofbiz.Service.TemporalExpression do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Service,
+    domain: UniboExPoc.Ofbiz.Service,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Service.TemporalExpression do
 
   postgres do
     table "service_temporal_expressions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

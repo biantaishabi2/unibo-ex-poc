@@ -7,6 +7,7 @@ defmodule UniboExPoc.Website.MenuTranslation do
   postgres do
     table "website_menu_translations"
     repo UniboExPoc.Repo
+    identity_index_names unique_translation: "idx_menu_i18n_uniq"
   end
 
   attributes do

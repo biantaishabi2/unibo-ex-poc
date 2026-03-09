@@ -33,14 +33,14 @@
 #   toggle_favourite --> close
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Forum.Post do
+defmodule UniboExPoc.Forum.Post do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Forum,
+    domain: UniboExPoc.Forum,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
     authorizers: [Ash.Policy.Authorizer],
-    notifiers: [UniboV4.Forum.Post.Notifier]
+    notifiers: [UniboExPoc.Forum.Post.Notifier]
 
   resource do
     description "帖子实体，通过 parent_id 区分问题（null）与回答（非null）"
@@ -48,7 +48,7 @@ defmodule UniboV4.Forum.Post do
 
   postgres do
     table "forum_posts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -140,40 +140,40 @@ defmodule UniboV4.Forum.Post do
   end
 
   relationships do
-    belongs_to :forum, UniboV4.Forum.Forum do
+    belongs_to :forum, UniboExPoc.Forum.Forum do
       public? true
       allow_nil? false
     end
-    belongs_to :parent, UniboV4.Forum.Post do
+    belongs_to :parent, UniboExPoc.Forum.Post do
       public? true
     end
-    has_many :children, UniboV4.Forum.Post do
+    has_many :children, UniboExPoc.Forum.Post do
       public? true
       source_attribute :parent_id
       destination_attribute :parent_id
     end
-    belongs_to :create_uid, UniboV4.Forum.Party do
+    belongs_to :create_uid, UniboExPoc.Forum.Party do
       public? true
       source_attribute :create_uid_party_id
     end
-    belongs_to :moderator, UniboV4.Forum.Party do
+    belongs_to :moderator, UniboExPoc.Forum.Party do
       public? true
       source_attribute :moderator_party_id
     end
-    belongs_to :closed_uid, UniboV4.Forum.Party do
+    belongs_to :closed_uid, UniboExPoc.Forum.Party do
       public? true
       source_attribute :closed_uid_party_id
     end
-    has_many :votes, UniboV4.Forum.Vote do
+    has_many :votes, UniboExPoc.Forum.Vote do
       public? true
     end
-    many_to_many :tags, UniboV4.Forum.Tag do
+    many_to_many :tags, UniboExPoc.Forum.Tag do
       public? true
-      through UniboV4.Forum.PostTagLink
+      through UniboExPoc.Forum.PostTagLink
     end
-    many_to_many :favourites, UniboV4.Forum.Party do
+    many_to_many :favourites, UniboExPoc.Forum.Party do
       public? true
-      through UniboV4.Forum.PostFavoriteLink
+      through UniboExPoc.Forum.PostFavoriteLink
       destination_attribute_on_join_resource :user_party_id
     end
   end
@@ -191,7 +191,7 @@ defmodule UniboV4.Forum.Post do
       validate present(:content)
       # validation: karma_check_ask — Karma 不足，无法提问
       change relate_actor(:create_uid)
-      change UniboV4.Forum.Changes.Post.ComputeLastActivityDate
+      change UniboExPoc.Forum.Changes.Post.ComputeLastActivityDate
       change set_attribute(:state, expr(if(actor.karma >= forum.karma_moderate, :active, :pending)))
       change set_attribute(:id, expr(id))
     end
@@ -215,7 +215,7 @@ defmodule UniboV4.Forum.Post do
       end
       # message: "只有活跃状态的帖子可以关闭"
       change set_attribute(:state, :close)
-      change UniboV4.Forum.Changes.Post.ComputeCloseDate
+      change UniboExPoc.Forum.Changes.Post.ComputeCloseDate
       change relate_actor(:closed_uid)
       change set_attribute(:id, expr(id))
       require_atomic? false

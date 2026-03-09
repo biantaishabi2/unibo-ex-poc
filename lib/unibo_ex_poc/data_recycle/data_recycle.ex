@@ -1,4 +1,4 @@
-defmodule UniboV4.DataRecycle do
+defmodule UniboExPoc.DataRecycle do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,12 +7,12 @@ defmodule UniboV4.DataRecycle do
   end
 
   resources do
-    resource UniboV4.DataRecycle.RecycleModel
-    resource UniboV4.DataRecycle.RecycleModel.Version
-    resource UniboV4.DataRecycle.RecycleRecord
-    resource UniboV4.DataRecycle.RecycleRecord.Version
-    resource UniboV4.DataRecycle.RecycleModelNotifyUser
-    resource UniboV4.DataRecycle.RecycleModelNotifyUser.Version
-    resource UniboV4.DataRecycle.Party
+    resource UniboExPoc.DataRecycle.RecycleModel
+    resource UniboExPoc.DataRecycle.RecycleModel.Version
+    resource UniboExPoc.DataRecycle.RecycleRecord
+    resource UniboExPoc.DataRecycle.RecycleRecord.Version
+    resource UniboExPoc.DataRecycle.RecycleModelNotifyUser
+    resource UniboExPoc.DataRecycle.RecycleModelNotifyUser.Version
+    resource UniboExPoc.DataRecycle.Party
   end
 end

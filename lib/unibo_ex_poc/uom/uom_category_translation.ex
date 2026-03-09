@@ -1,12 +1,12 @@
-defmodule UniboV4.Uom.UomCategoryTranslation do
+defmodule UniboExPoc.Uom.UomCategoryTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Uom,
+    domain: UniboExPoc.Uom,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "uom_uom_category_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Uom.UomCategoryTranslation do
   end
 
   relationships do
-    belongs_to :uom_category, UniboV4.Uom.UomCategory do
+    belongs_to :uom_category, UniboExPoc.Uom.UomCategory do
       public? true
       allow_nil? false
     end

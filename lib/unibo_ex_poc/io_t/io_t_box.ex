@@ -7,13 +7,13 @@
 #   heartbeat --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.IoT.IoTBox do
+defmodule UniboExPoc.IoT.IoTBox do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.IoT.IoTBox.Notifier]
+    notifiers: [UniboExPoc.IoT.IoTBox.Notifier]
 
   resource do
     description "IoT 网关盒子，负责连接和管理物理设备，通过心跳保持在线状态"
@@ -21,7 +21,7 @@ defmodule UniboV4.IoT.IoTBox do
 
   postgres do
     table "io_t_boxes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -114,15 +114,15 @@ defmodule UniboV4.IoT.IoTBox do
   end
 
   relationships do
-    has_many :devices, UniboV4.IoT.IoTDevice do
+    has_many :devices, UniboExPoc.IoT.IoTDevice do
       public? true
       destination_attribute :iot_box_id
     end
-    belongs_to :paired_by, UniboV4.IoT.Party do
+    belongs_to :paired_by, UniboExPoc.IoT.Party do
       public? true
       source_attribute :paired_by_party_id
     end
-    belongs_to :org, UniboV4.IoT.Org do
+    belongs_to :org, UniboExPoc.IoT.Org do
       public? true
       attribute_type :integer
     end

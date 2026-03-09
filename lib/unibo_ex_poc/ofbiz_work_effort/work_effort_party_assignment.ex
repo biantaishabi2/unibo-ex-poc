@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortPartyAssignment do
+defmodule UniboExPoc.Ofbiz.WorkEffort.WorkEffortPartyAssignment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_party_assignments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -40,42 +40,42 @@ defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortPartyAssignment do
   end
 
   relationships do
-    belongs_to :work_effort, UniboV4.Ofbiz.WorkEffort.WorkEffort do
+    belongs_to :work_effort, UniboExPoc.Ofbiz.WorkEffort.WorkEffort do
       public? true
       attribute_type :string
     end
-    belongs_to :party, UniboV4.Ofbiz.WorkEffort.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.WorkEffort.Party do
       public? true
       attribute_type :string
     end
-    belongs_to :role_type, UniboV4.Ofbiz.WorkEffort.RoleType do
+    belongs_to :role_type, UniboExPoc.Ofbiz.WorkEffort.RoleType do
       public? true
       attribute_type :string
     end
-    belongs_to :assigned_by_user_login, UniboV4.Ofbiz.WorkEffort.UserLogin do
+    belongs_to :assigned_by_user_login, UniboExPoc.Ofbiz.WorkEffort.UserLogin do
       public? true
       attribute_type :string
     end
-    belongs_to :assignment_status_item, UniboV4.Ofbiz.WorkEffort.StatusItem do
+    belongs_to :assignment_status_item, UniboExPoc.Ofbiz.WorkEffort.StatusItem do
       public? true
       source_attribute :status_id
       attribute_type :string
     end
-    belongs_to :expectation_enumeration, UniboV4.Ofbiz.WorkEffort.Enumeration do
+    belongs_to :expectation_enumeration, UniboExPoc.Ofbiz.WorkEffort.Enumeration do
       public? true
       source_attribute :expectation_enum_id
       attribute_type :string
     end
-    belongs_to :delegate_reason_enumeration, UniboV4.Ofbiz.WorkEffort.Enumeration do
+    belongs_to :delegate_reason_enumeration, UniboExPoc.Ofbiz.WorkEffort.Enumeration do
       public? true
       source_attribute :delegate_reason_enum_id
       attribute_type :string
     end
-    belongs_to :facility, UniboV4.Ofbiz.WorkEffort.Facility do
+    belongs_to :facility, UniboExPoc.Ofbiz.WorkEffort.Facility do
       public? true
       attribute_type :string
     end
-    belongs_to :availability_status_item, UniboV4.Ofbiz.WorkEffort.StatusItem do
+    belongs_to :availability_status_item, UniboExPoc.Ofbiz.WorkEffort.StatusItem do
       public? true
       source_attribute :availability_status_id
       attribute_type :string

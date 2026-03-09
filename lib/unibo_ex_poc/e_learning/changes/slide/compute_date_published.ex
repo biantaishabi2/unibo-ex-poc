@@ -1,4 +1,4 @@
-defmodule UniboV4.ELearning.Changes.Slide.ComputeDatePublished do
+defmodule UniboExPoc.ELearning.Changes.Slide.ComputeDatePublished do
   @moduledoc """
   Change 模块: 计算 :date_published (entity: slide)
   原始 expr: op: func args: - now

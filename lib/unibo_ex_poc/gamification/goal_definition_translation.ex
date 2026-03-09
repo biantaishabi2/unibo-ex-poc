@@ -1,12 +1,12 @@
-defmodule UniboV4.Gamification.GoalDefinitionTranslation do
+defmodule UniboExPoc.Gamification.GoalDefinitionTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Gamification,
+    domain: UniboExPoc.Gamification,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "gamification_goal_definition_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Gamification.GoalDefinitionTranslation do
   end
 
   relationships do
-    belongs_to :goal_definition, UniboV4.Gamification.GoalDefinition do
+    belongs_to :goal_definition, UniboExPoc.Gamification.GoalDefinition do
       public? true
       allow_nil? false
     end

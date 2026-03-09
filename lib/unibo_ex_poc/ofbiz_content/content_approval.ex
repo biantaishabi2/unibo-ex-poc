@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.ContentApproval do
+defmodule UniboExPoc.Ofbiz.Content.ContentApproval do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_approvals"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,7 +44,7 @@ defmodule UniboV4.Ofbiz.Content.ContentApproval do
   end
 
   relationships do
-    belongs_to :content, UniboV4.Ofbiz.Content.Content do
+    belongs_to :content, UniboExPoc.Ofbiz.Content.Content do
       public? true
       attribute_type :string
     end

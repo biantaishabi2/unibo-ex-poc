@@ -1,4 +1,4 @@
-defmodule UniboV4.Payment.Calculations.Payment.RefundedAmount do
+defmodule UniboExPoc.Payment.Calculations.Payment.RefundedAmount do
   @moduledoc """
   Calculation 模块: :refunded_amount (type: :decimal, entity: payment)
   """

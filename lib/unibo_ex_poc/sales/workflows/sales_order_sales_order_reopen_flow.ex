@@ -1,4 +1,4 @@
-defmodule UniboV4.Sales.Workflows.SalesOrder.SalesOrderReopenFlowWorkflow do
+defmodule UniboExPoc.Sales.Workflows.SalesOrder.SalesOrderReopenFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
@@ -143,6 +143,7 @@ defmodule UniboV4.Sales.Workflows.SalesOrder.SalesOrderReopenFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :action_cancel -> nil
       :action_draft -> nil
@@ -152,6 +153,7 @@ defmodule UniboV4.Sales.Workflows.SalesOrder.SalesOrderReopenFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :action_cancel -> false
       :action_draft -> false

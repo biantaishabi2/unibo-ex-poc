@@ -9,13 +9,13 @@
 #   apply_changes --> [*] : changes_applied
 #   rebase --> advance_stage
 # ```
-defmodule UniboV4.PLM.Eco do
+defmodule UniboExPoc.PLM.Eco do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.PLM,
+    domain: UniboExPoc.PLM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.PLM.Eco.Notifier]
+    notifiers: [UniboExPoc.PLM.Eco.Notifier]
 
   resource do
     description "工程变更单，使用阶段（Stage）驱动的看板式状态机管理 BOM 变更"
@@ -23,7 +23,7 @@ defmodule UniboV4.PLM.Eco do
 
   postgres do
     table "plm_ecos"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -68,42 +68,42 @@ defmodule UniboV4.PLM.Eco do
   end
 
   calculations do
-    calculate :kanban_state, :atom, {UniboV4.PLM.Calculations.Eco.KanbanState, []}
-    calculate :is_conflict, :boolean, {UniboV4.PLM.Calculations.Eco.IsConflict, []}
-    calculate :allow_apply, :boolean, {UniboV4.PLM.Calculations.Eco.AllowApply, []}
-    calculate :bom_change_ids, {:array, :string}, {UniboV4.PLM.Calculations.Eco.BomChangeIds, []}
+    calculate :kanban_state, :atom, {UniboExPoc.PLM.Calculations.Eco.KanbanState, []}
+    calculate :is_conflict, :boolean, {UniboExPoc.PLM.Calculations.Eco.IsConflict, []}
+    calculate :allow_apply, :boolean, {UniboExPoc.PLM.Calculations.Eco.AllowApply, []}
+    calculate :bom_change_ids, {:array, :string}, {UniboExPoc.PLM.Calculations.Eco.BomChangeIds, []}
   end
 
   relationships do
-    belongs_to :type, UniboV4.PLM.EcoType do
+    belongs_to :type, UniboExPoc.PLM.EcoType do
       public? true
       allow_nil? false
     end
-    belongs_to :stage, UniboV4.PLM.EcoStage do
+    belongs_to :stage, UniboExPoc.PLM.EcoStage do
       public? true
       allow_nil? false
     end
-    belongs_to :product_tmpl, UniboV4.PLM.ProductTemplate do
+    belongs_to :product_tmpl, UniboExPoc.PLM.ProductTemplate do
       public? true
       allow_nil? false
     end
-    belongs_to :bom, UniboV4.PLM.MrpBom do
+    belongs_to :bom, UniboExPoc.PLM.MrpBom do
       public? true
       allow_nil? false
     end
-    belongs_to :new_bom, UniboV4.PLM.MrpBom do
+    belongs_to :new_bom, UniboExPoc.PLM.MrpBom do
       public? true
     end
-    belongs_to :responsible, UniboV4.PLM.Party do
+    belongs_to :responsible, UniboExPoc.PLM.Party do
       public? true
       allow_nil? false
       source_attribute :responsible_party_id
     end
-    many_to_many :tag_ids, UniboV4.PLM.EcoTag do
+    many_to_many :tag_ids, UniboExPoc.PLM.EcoTag do
       public? true
-      through UniboV4.PLM.EcoTagLink
+      through UniboExPoc.PLM.EcoTagLink
     end
-    has_many :approval_ids, UniboV4.PLM.EcoApproval do
+    has_many :approval_ids, UniboExPoc.PLM.EcoApproval do
       public? true
       destination_attribute :eco_id
     end
@@ -126,8 +126,8 @@ defmodule UniboV4.PLM.Eco do
       argument :responsible_id, :uuid, allow_nil?: false
       change manage_relationship(:responsible_id, :responsible, type: :append, on_lookup: :relate)
       validate present(:name)
-      change UniboV4.PLM.Changes.Eco.CreateCall1
-      change UniboV4.PLM.Changes.Eco.CreateCall2
+      change UniboExPoc.PLM.Changes.Eco.CreateCall1
+      change UniboExPoc.PLM.Changes.Eco.CreateCall2
       change relate_actor(:responsible)
       change set_attribute(:id, expr(id))
     end
@@ -142,7 +142,7 @@ defmodule UniboV4.PLM.Eco do
       description "推进到下一阶段（含审批模板的阶段自动创建审批记录）"
       argument :target_stage_id, :uuid, allow_nil?: false
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change UniboV4.PLM.Changes.Eco.AdvanceStageCall4
+      change UniboExPoc.PLM.Changes.Eco.AdvanceStageCall4
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -152,9 +152,9 @@ defmodule UniboV4.PLM.Eco do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change UniboV4.PLM.Changes.Eco.ApplyChangesCall5
-      change UniboV4.PLM.Changes.Eco.ApplyChangesCall6
-      change UniboV4.PLM.Changes.Eco.ApplyChangesCall7
+      change UniboExPoc.PLM.Changes.Eco.ApplyChangesCall5
+      change UniboExPoc.PLM.Changes.Eco.ApplyChangesCall6
+      change UniboExPoc.PLM.Changes.Eco.ApplyChangesCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -162,7 +162,7 @@ defmodule UniboV4.PLM.Eco do
       description "同步最新生产 BOM，重新计算差异，清除冲突标记"
       accept []
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change UniboV4.PLM.Changes.Eco.RebaseCall8
+      change UniboExPoc.PLM.Changes.Eco.RebaseCall8
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

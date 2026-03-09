@@ -1,7 +1,7 @@
-defmodule UniboV4.Documents.DocumentVersion do
+defmodule UniboExPoc.Documents.DocumentVersion do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Documents,
+    domain: UniboExPoc.Documents,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Documents.DocumentVersion do
 
   postgres do
     table "documents_document_versions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -30,7 +30,7 @@ defmodule UniboV4.Documents.DocumentVersion do
   end
 
   relationships do
-    belongs_to :document, UniboV4.Documents.Document do
+    belongs_to :document, UniboExPoc.Documents.Document do
       public? true
       allow_nil? false
     end

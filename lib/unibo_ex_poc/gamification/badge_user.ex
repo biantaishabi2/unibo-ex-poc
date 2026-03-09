@@ -5,13 +5,13 @@
 #   create --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Gamification.BadgeUser do
+defmodule UniboExPoc.Gamification.BadgeUser do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Gamification,
+    domain: UniboExPoc.Gamification,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Gamification.BadgeUser.Notifier]
+    notifiers: [UniboExPoc.Gamification.BadgeUser.Notifier]
 
   resource do
     description "用户获得的勋章实例，记录授予者、评语和关联挑战"
@@ -19,7 +19,7 @@ defmodule UniboV4.Gamification.BadgeUser do
 
   postgres do
     table "gamification_badge_users"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -49,20 +49,20 @@ defmodule UniboV4.Gamification.BadgeUser do
   end
 
   relationships do
-    belongs_to :user, UniboV4.Gamification.Party do
+    belongs_to :user, UniboExPoc.Gamification.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id
     end
-    belongs_to :sender, UniboV4.Gamification.Party do
+    belongs_to :sender, UniboExPoc.Gamification.Party do
       public? true
       source_attribute :sender_party_id
     end
-    belongs_to :badge, UniboV4.Gamification.Badge do
+    belongs_to :badge, UniboExPoc.Gamification.Badge do
       public? true
       allow_nil? false
     end
-    belongs_to :challenge, UniboV4.Gamification.Challenge do
+    belongs_to :challenge, UniboExPoc.Gamification.Challenge do
       public? true
     end
   end

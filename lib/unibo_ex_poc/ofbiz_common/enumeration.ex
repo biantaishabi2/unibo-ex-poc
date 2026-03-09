@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Common.Enumeration do
+defmodule UniboExPoc.Ofbiz.Common.Enumeration do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Common.Enumeration do
 
   postgres do
     table "common_enumerations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -40,7 +40,7 @@ defmodule UniboV4.Ofbiz.Common.Enumeration do
   end
 
   relationships do
-    belongs_to :enumeration_type, UniboV4.Ofbiz.Common.EnumerationType do
+    belongs_to :enumeration_type, UniboExPoc.Ofbiz.Common.EnumerationType do
       public? true
       source_attribute :enum_type_id
     end

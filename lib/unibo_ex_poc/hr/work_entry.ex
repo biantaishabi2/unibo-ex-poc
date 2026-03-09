@@ -12,13 +12,13 @@
 #   create --> [*]
 #   action_cancel --> [*]
 # ```
-defmodule UniboV4.HR.WorkEntry do
+defmodule UniboExPoc.HR.WorkEntry do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.HR.WorkEntry.Notifier]
+    notifiers: [UniboExPoc.HR.WorkEntry.Notifier]
 
   resource do
     description "工时条目，记录员工每日实际工时"
@@ -26,7 +26,7 @@ defmodule UniboV4.HR.WorkEntry do
 
   postgres do
     table "hr_work_entries"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -84,11 +84,11 @@ defmodule UniboV4.HR.WorkEntry do
   end
 
   relationships do
-    belongs_to :employee, UniboV4.HR.Employee do
+    belongs_to :employee, UniboExPoc.HR.Employee do
       public? true
       allow_nil? false
     end
-    belongs_to :work_entry_type, UniboV4.HR.WorkEntryType do
+    belongs_to :work_entry_type, UniboExPoc.HR.WorkEntryType do
       public? true
     end
   end
@@ -102,7 +102,7 @@ defmodule UniboV4.HR.WorkEntry do
       argument :work_entry_type_id, :uuid
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
       validate present(:date_start)
-      change UniboV4.HR.Changes.WorkEntry.CreateCall3
+      change UniboExPoc.HR.Changes.WorkEntry.CreateCall3
       change set_attribute(:id, expr(id))
     end
     update :action_validate do
@@ -120,7 +120,7 @@ defmodule UniboV4.HR.WorkEntry do
       # message: "只有草稿状态可以验证"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:state, :validated)
-      change UniboV4.HR.Changes.WorkEntry.ActionValidateCall3
+      change UniboExPoc.HR.Changes.WorkEntry.ActionValidateCall3
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

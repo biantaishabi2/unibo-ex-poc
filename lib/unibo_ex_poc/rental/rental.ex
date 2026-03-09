@@ -1,4 +1,4 @@
-defmodule UniboV4.Rental do
+defmodule UniboExPoc.Rental do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,18 +7,18 @@ defmodule UniboV4.Rental do
   end
 
   resources do
-    resource UniboV4.Rental.RentalOrder
-    resource UniboV4.Rental.RentalOrder.Version
-    resource UniboV4.Rental.RentalOrderLine
-    resource UniboV4.Rental.RentalOrderLine.Version
-    resource UniboV4.Rental.RentalPricing
-    resource UniboV4.Rental.RentalPricing.Version
-    resource UniboV4.Rental.RentalPenalty
-    resource UniboV4.Rental.RentalPenalty.Version
-    resource UniboV4.Rental.Customer
-    resource UniboV4.Rental.Product
-    resource UniboV4.Rental.ProductTemplate
-    resource UniboV4.Rental.Pricelist
-    resource UniboV4.Rental.Party
+    resource UniboExPoc.Rental.RentalOrder
+    resource UniboExPoc.Rental.RentalOrder.Version
+    resource UniboExPoc.Rental.RentalOrderLine
+    resource UniboExPoc.Rental.RentalOrderLine.Version
+    resource UniboExPoc.Rental.RentalPricing
+    resource UniboExPoc.Rental.RentalPricing.Version
+    resource UniboExPoc.Rental.RentalPenalty
+    resource UniboExPoc.Rental.RentalPenalty.Version
+    resource UniboExPoc.Rental.Customer
+    resource UniboExPoc.Rental.Product
+    resource UniboExPoc.Rental.ProductTemplate
+    resource UniboExPoc.Rental.Pricelist
+    resource UniboExPoc.Rental.Party
   end
 end

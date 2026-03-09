@@ -1,7 +1,7 @@
-defmodule UniboV4.Project.ResourceCalendar do
+defmodule UniboExPoc.Project.ResourceCalendar do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Project,
+    domain: UniboExPoc.Project,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Project.ResourceCalendar do
 
   postgres do
     table "project_resource_calendars"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

@@ -16,13 +16,13 @@
 #   complete --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Marketing.Campaign do
+defmodule UniboExPoc.Marketing.Campaign do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Marketing.Campaign.Notifier]
+    notifiers: [UniboExPoc.Marketing.Campaign.Notifier]
 
   resource do
     description "营销活动"
@@ -30,7 +30,7 @@ defmodule UniboV4.Marketing.Campaign do
 
   postgres do
     table "marketing_campaigns"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -102,19 +102,19 @@ defmodule UniboV4.Marketing.Campaign do
   end
 
   relationships do
-    has_many :roles, UniboV4.Marketing.CampaignRole do
+    has_many :roles, UniboExPoc.Marketing.CampaignRole do
       public? true
     end
-    has_many :mailings, UniboV4.Marketing.Mailing do
+    has_many :mailings, UniboExPoc.Marketing.Mailing do
       public? true
     end
-    has_many :events, UniboV4.Marketing.Event do
+    has_many :events, UniboExPoc.Marketing.Event do
       public? true
     end
-    has_many :social_posts, UniboV4.Marketing.SocialPost do
+    has_many :social_posts, UniboExPoc.Marketing.SocialPost do
       public? true
     end
-    belongs_to :created_by, UniboV4.Marketing.Party do
+    belongs_to :created_by, UniboExPoc.Marketing.Party do
       public? true
       source_attribute :created_by_party_id
     end

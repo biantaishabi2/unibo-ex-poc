@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.FixedAssetTypeGlAccount do
+defmodule UniboExPoc.Ofbiz.Accounting.FixedAssetTypeGlAccount do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_fixed_asset_type_gl_accounts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -36,27 +36,27 @@ defmodule UniboV4.Ofbiz.Accounting.FixedAssetTypeGlAccount do
   end
 
   relationships do
-    belongs_to :fixed_asset_type, UniboV4.Ofbiz.Accounting.FixedAssetType do
+    belongs_to :fixed_asset_type, UniboExPoc.Ofbiz.Accounting.FixedAssetType do
       public? true
     end
-    belongs_to :fixed_asset, UniboV4.Ofbiz.Accounting.FixedAsset do
+    belongs_to :fixed_asset, UniboExPoc.Ofbiz.Accounting.FixedAsset do
       public? true
     end
-    belongs_to :asset_gl_account, UniboV4.Ofbiz.Accounting.GlAccount do
+    belongs_to :asset_gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
     end
-    belongs_to :accumulated_depreciation_gl_account, UniboV4.Ofbiz.Accounting.GlAccount do
+    belongs_to :accumulated_depreciation_gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
       source_attribute :acc_dep_gl_account_id
     end
-    belongs_to :depreciation_gl_account, UniboV4.Ofbiz.Accounting.GlAccount do
+    belongs_to :depreciation_gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
       source_attribute :dep_gl_account_id
     end
-    belongs_to :profit_gl_account, UniboV4.Ofbiz.Accounting.GlAccount do
+    belongs_to :profit_gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
     end
-    belongs_to :loss_gl_account, UniboV4.Ofbiz.Accounting.GlAccount do
+    belongs_to :loss_gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
     end
   end

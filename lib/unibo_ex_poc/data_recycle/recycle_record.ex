@@ -7,10 +7,10 @@
 #   validate --> [*]
 #   discard --> [*]
 # ```
-defmodule UniboV4.DataRecycle.RecycleRecord do
+defmodule UniboExPoc.DataRecycle.RecycleRecord do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.DataRecycle,
+    domain: UniboExPoc.DataRecycle,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.DataRecycle.RecycleRecord do
 
   postgres do
     table "data_recycle_recycle_records"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -64,7 +64,7 @@ defmodule UniboV4.DataRecycle.RecycleRecord do
   end
 
   relationships do
-    belongs_to :recycle_model, UniboV4.DataRecycle.RecycleModel do
+    belongs_to :recycle_model, UniboExPoc.DataRecycle.RecycleModel do
       public? true
       allow_nil? false
     end

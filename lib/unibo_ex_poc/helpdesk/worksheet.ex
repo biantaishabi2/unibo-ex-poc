@@ -8,10 +8,10 @@
 #   update --> sign_worksheet
 #   sign_worksheet --> [*]
 # ```
-defmodule UniboV4.Helpdesk.Worksheet do
+defmodule UniboExPoc.Helpdesk.Worksheet do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Helpdesk.Worksheet do
 
   postgres do
     table "helpdesk_worksheets"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -59,11 +59,11 @@ defmodule UniboV4.Helpdesk.Worksheet do
   end
 
   relationships do
-    belongs_to :service_order, UniboV4.Helpdesk.FieldServiceOrder do
+    belongs_to :service_order, UniboExPoc.Helpdesk.FieldServiceOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :template, UniboV4.Helpdesk.WorksheetTemplate do
+    belongs_to :template, UniboExPoc.Helpdesk.WorksheetTemplate do
       public? true
       allow_nil? false
     end

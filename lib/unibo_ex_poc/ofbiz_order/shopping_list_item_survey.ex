@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Order.ShoppingListItemSurvey do
+defmodule UniboExPoc.Ofbiz.Order.ShoppingListItemSurvey do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "order_shopping_list_item_surveys"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,7 +41,7 @@ defmodule UniboV4.Ofbiz.Order.ShoppingListItemSurvey do
   end
 
   relationships do
-    belongs_to :shopping_list, UniboV4.Ofbiz.Order.ShoppingList do
+    belongs_to :shopping_list, UniboExPoc.Ofbiz.Order.ShoppingList do
       public? true
       attribute_type :string
     end

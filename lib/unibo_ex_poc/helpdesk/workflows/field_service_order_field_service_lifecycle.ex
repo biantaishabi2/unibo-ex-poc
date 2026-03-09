@@ -1,10 +1,10 @@
-defmodule UniboV4.Helpdesk.Workflows.FieldServiceOrder.FieldServiceLifecycleWorkflow do
+defmodule UniboExPoc.Helpdesk.Workflows.FieldServiceOrder.FieldServiceLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Helpdesk.FieldServiceOrder
+  alias UniboExPoc.Helpdesk.FieldServiceOrder
 
   def steps do
     [:create, :schedule, :start_timer, :stop_timer, :add_material, :fill_worksheet, :sign, :mark_done, :cancel]
@@ -169,6 +169,7 @@ defmodule UniboV4.Helpdesk.Workflows.FieldServiceOrder.FieldServiceLifecycleWork
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :schedule -> nil
@@ -184,6 +185,7 @@ defmodule UniboV4.Helpdesk.Workflows.FieldServiceOrder.FieldServiceLifecycleWork
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :schedule -> false

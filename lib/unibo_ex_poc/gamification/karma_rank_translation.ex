@@ -1,12 +1,12 @@
-defmodule UniboV4.Gamification.KarmaRankTranslation do
+defmodule UniboExPoc.Gamification.KarmaRankTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Gamification,
+    domain: UniboExPoc.Gamification,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "gamification_karma_rank_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Gamification.KarmaRankTranslation do
   end
 
   relationships do
-    belongs_to :karma_rank, UniboV4.Gamification.KarmaRank do
+    belongs_to :karma_rank, UniboExPoc.Gamification.KarmaRank do
       public? true
       allow_nil? false
     end

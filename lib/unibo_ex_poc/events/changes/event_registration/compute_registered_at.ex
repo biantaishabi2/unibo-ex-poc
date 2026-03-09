@@ -1,4 +1,4 @@
-defmodule UniboV4.Events.Changes.EventRegistration.ComputeRegisteredAt do
+defmodule UniboExPoc.Events.Changes.EventRegistration.ComputeRegisteredAt do
   @moduledoc """
   Change 模块: 计算 :registered_at (entity: event_registration)
   原始 expr: op: func args: - now

@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Order.OrderAdjustmentAttribute do
+defmodule UniboExPoc.Ofbiz.Order.OrderAdjustmentAttribute do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_adjustment_attributes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,7 +38,7 @@ defmodule UniboV4.Ofbiz.Order.OrderAdjustmentAttribute do
   end
 
   relationships do
-    belongs_to :order_adjustment, UniboV4.Ofbiz.Order.OrderAdjustment do
+    belongs_to :order_adjustment, UniboExPoc.Ofbiz.Order.OrderAdjustment do
       public? true
       attribute_type :string
     end

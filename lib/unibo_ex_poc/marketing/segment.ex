@@ -7,10 +7,10 @@
 #   update --> refresh_count
 #   refresh_count --> [*]
 # ```
-defmodule UniboV4.Marketing.Segment do
+defmodule UniboExPoc.Marketing.Segment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Marketing.Segment do
 
   postgres do
     table "marketing_segments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -79,7 +79,7 @@ defmodule UniboV4.Marketing.Segment do
       description "重算成员计数"
       accept []
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change UniboV4.Marketing.Changes.Segment.RefreshCountCall1
+      change UniboExPoc.Marketing.Changes.Segment.RefreshCountCall1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

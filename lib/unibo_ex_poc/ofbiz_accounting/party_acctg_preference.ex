@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.PartyAcctgPreference do
+defmodule UniboExPoc.Ofbiz.Accounting.PartyAcctgPreference do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_party_acctg_preferences"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -50,11 +50,11 @@ defmodule UniboV4.Ofbiz.Accounting.PartyAcctgPreference do
   end
 
   relationships do
-    belongs_to :payment_method, UniboV4.Ofbiz.Accounting.PaymentMethod do
+    belongs_to :payment_method, UniboExPoc.Ofbiz.Accounting.PaymentMethod do
       public? true
       source_attribute :refund_payment_method_id
     end
-    belongs_to :gl_journal, UniboV4.Ofbiz.Accounting.GlJournal do
+    belongs_to :gl_journal, UniboExPoc.Ofbiz.Accounting.GlJournal do
       public? true
       source_attribute :error_gl_journal_id
     end

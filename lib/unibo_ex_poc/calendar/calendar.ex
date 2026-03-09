@@ -8,10 +8,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Calendar.Calendar do
+defmodule UniboExPoc.Calendar.Calendar do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Calendar,
+    domain: UniboExPoc.Calendar,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Calendar.Calendar do
 
   postgres do
     table "calendar_calendars"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -79,17 +79,17 @@ defmodule UniboV4.Calendar.Calendar do
   end
 
   relationships do
-    belongs_to :owner, UniboV4.Calendar.Party do
+    belongs_to :owner, UniboExPoc.Calendar.Party do
       public? true
       allow_nil? false
       source_attribute :owner_party_id
     end
-    has_many :events, UniboV4.Calendar.CalendarEvent do
+    has_many :events, UniboExPoc.Calendar.CalendarEvent do
       public? true
       source_attribute :owner_party_id
       destination_attribute :calendar_id
     end
-    has_many :translations, UniboV4.Calendar.CalendarTranslation, public?: true
+    has_many :translations, UniboExPoc.Calendar.CalendarTranslation, public?: true
   end
 
   actions do

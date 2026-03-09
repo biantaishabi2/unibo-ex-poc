@@ -8,14 +8,14 @@
 #   start_progress --> create_maintenance_request
 #   done --> [*] : done
 # ```
-defmodule UniboV4.Quality.QualityAlert do
+defmodule UniboExPoc.Quality.QualityAlert do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Quality,
+    domain: UniboExPoc.Quality,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
     authorizers: [Ash.Policy.Authorizer],
-    notifiers: [UniboV4.Quality.QualityAlert.Notifier]
+    notifiers: [UniboExPoc.Quality.QualityAlert.Notifier]
 
   resource do
     description "质量警报，支持 CAPA 闭环、根因分析和维保联动，状态机 draft→confirmed→in_progress→done"
@@ -23,7 +23,7 @@ defmodule UniboV4.Quality.QualityAlert do
 
   postgres do
     table "quality_alerts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -116,36 +116,36 @@ defmodule UniboV4.Quality.QualityAlert do
   end
 
   relationships do
-    belongs_to :product, UniboV4.Quality.Product do
+    belongs_to :product, UniboExPoc.Quality.Product do
       public? true
     end
-    belongs_to :lot, UniboV4.Quality.Lot do
+    belongs_to :lot, UniboExPoc.Quality.Lot do
       public? true
     end
-    belongs_to :check, UniboV4.Quality.QualityCheck do
+    belongs_to :check, UniboExPoc.Quality.QualityCheck do
       public? true
     end
-    belongs_to :team, UniboV4.Quality.QualityTeam do
+    belongs_to :team, UniboExPoc.Quality.QualityTeam do
       public? true
     end
-    belongs_to :responsible, UniboV4.Quality.Party do
+    belongs_to :responsible, UniboExPoc.Quality.Party do
       public? true
       source_attribute :responsible_party_id
     end
-    belongs_to :partner, UniboV4.Quality.Party do
+    belongs_to :partner, UniboExPoc.Quality.Party do
       public? true
       source_attribute :partner_party_id
     end
-    belongs_to :root_cause, UniboV4.Quality.QualityReason do
+    belongs_to :root_cause, UniboExPoc.Quality.QualityReason do
       public? true
     end
-    belongs_to :workcenter, UniboV4.Quality.Workcenter do
+    belongs_to :workcenter, UniboExPoc.Quality.Workcenter do
       public? true
     end
-    belongs_to :maintenance_request, UniboV4.Quality.MaintenanceRequest do
+    belongs_to :maintenance_request, UniboExPoc.Quality.MaintenanceRequest do
       public? true
     end
-    belongs_to :company, UniboV4.Quality.Party do
+    belongs_to :company, UniboExPoc.Quality.Party do
       public? true
       allow_nil? false
       source_attribute :company_party_id
@@ -187,8 +187,8 @@ defmodule UniboV4.Quality.QualityAlert do
       end
       # message: "只有草稿状态可以确认"
       change set_attribute(:stage, :confirmed)
-      change UniboV4.Quality.Changes.QualityAlert.ComputeDateAssign
-      change UniboV4.Quality.Changes.QualityAlert.ConfirmCall6
+      change UniboExPoc.Quality.Changes.QualityAlert.ComputeDateAssign
+      change UniboExPoc.Quality.Changes.QualityAlert.ConfirmCall6
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -206,7 +206,7 @@ defmodule UniboV4.Quality.QualityAlert do
       end
       # message: "只有已确认状态可以开始处理"
       change set_attribute(:stage, :in_progress)
-      change UniboV4.Quality.Changes.QualityAlert.StartProgressCall8
+      change UniboExPoc.Quality.Changes.QualityAlert.StartProgressCall8
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -225,7 +225,7 @@ defmodule UniboV4.Quality.QualityAlert do
       # skipped: validate present :corrective_action (incompatible with bulk update atomic path)
       # skipped: validate present :preventive_action (incompatible with bulk update atomic path)
       change set_attribute(:stage, :done)
-      change UniboV4.Quality.Changes.QualityAlert.ComputeDateClose
+      change UniboExPoc.Quality.Changes.QualityAlert.ComputeDateClose
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -234,7 +234,7 @@ defmodule UniboV4.Quality.QualityAlert do
       # precondition: requires stage=:in_progress
       validate attribute_equals(:stage, :in_progress)
       run fn input, _context ->
-        # 根因为设备问题时创建维保请求，关联设备+工作中心 — 由 Change 模块处理: UniboV4.Quality.Changes.QualityAlert.CreateMaintenanceRequestComplex7
+        # 根因为设备问题时创建维保请求，关联设备+工作中心 — 由 Change 模块处理: UniboExPoc.Quality.Changes.QualityAlert.CreateMaintenanceRequestComplex7
         :ok
       end
     end
@@ -258,6 +258,9 @@ defmodule UniboV4.Quality.QualityAlert do
     policy action_type(:update) do
       authorize_if expr(actor.role == :admin)
       authorize_if relates_to_actor_via(:company_party)
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

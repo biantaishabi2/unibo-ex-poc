@@ -1,4 +1,4 @@
-defmodule UniboV4.Spreadsheet do
+defmodule UniboExPoc.Spreadsheet do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,13 +7,13 @@ defmodule UniboV4.Spreadsheet do
   end
 
   resources do
-    resource UniboV4.Spreadsheet.SpreadsheetDocument
-    resource UniboV4.Spreadsheet.SpreadsheetDocument.Version
-    resource UniboV4.Spreadsheet.DataSource
-    resource UniboV4.Spreadsheet.DataSource.Version
-    resource UniboV4.Spreadsheet.Revision
-    resource UniboV4.Spreadsheet.GlobalFilter
-    resource UniboV4.Spreadsheet.GlobalFilter.Version
-    resource UniboV4.Spreadsheet.Party
+    resource UniboExPoc.Spreadsheet.SpreadsheetDocument
+    resource UniboExPoc.Spreadsheet.SpreadsheetDocument.Version
+    resource UniboExPoc.Spreadsheet.DataSource
+    resource UniboExPoc.Spreadsheet.DataSource.Version
+    resource UniboExPoc.Spreadsheet.Revision
+    resource UniboExPoc.Spreadsheet.GlobalFilter
+    resource UniboExPoc.Spreadsheet.GlobalFilter.Version
+    resource UniboExPoc.Spreadsheet.Party
   end
 end

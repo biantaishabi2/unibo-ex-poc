@@ -5,10 +5,10 @@
 #   add --> remove
 #   remove --> [*]
 # ```
-defmodule UniboV4.Calendar.CalendarException do
+defmodule UniboExPoc.Calendar.CalendarException do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Calendar,
+    domain: UniboExPoc.Calendar,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Calendar.CalendarException do
 
   postgres do
     table "calendar_exceptions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -71,11 +71,11 @@ defmodule UniboV4.Calendar.CalendarException do
   end
 
   relationships do
-    belongs_to :work_schedule, UniboV4.Calendar.WorkSchedule do
+    belongs_to :work_schedule, UniboExPoc.Calendar.WorkSchedule do
       public? true
       allow_nil? false
     end
-    has_many :translations, UniboV4.Calendar.CalendarExceptionTranslation, public?: true
+    has_many :translations, UniboExPoc.Calendar.CalendarExceptionTranslation, public?: true
   end
 
   actions do

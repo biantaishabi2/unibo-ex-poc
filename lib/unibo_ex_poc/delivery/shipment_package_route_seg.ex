@@ -11,10 +11,10 @@
 #   update_cost --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Delivery.ShipmentPackageRouteSeg do
+defmodule UniboExPoc.Delivery.ShipmentPackageRouteSeg do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Delivery,
+    domain: UniboExPoc.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -24,7 +24,7 @@ defmodule UniboV4.Delivery.ShipmentPackageRouteSeg do
 
   postgres do
     table "delivery_shipment_package_route_segs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -98,14 +98,14 @@ defmodule UniboV4.Delivery.ShipmentPackageRouteSeg do
   end
 
   relationships do
-    belongs_to :shipment, UniboV4.Delivery.Shipment do
+    belongs_to :shipment, UniboExPoc.Delivery.Shipment do
       public? true
     end
-    belongs_to :shipment_package, UniboV4.Delivery.ShipmentPackage do
+    belongs_to :shipment_package, UniboExPoc.Delivery.ShipmentPackage do
       public? true
       source_attribute :shipment_package_seq_id
     end
-    belongs_to :route_segment, UniboV4.Delivery.ShipmentRouteSegment do
+    belongs_to :route_segment, UniboExPoc.Delivery.ShipmentRouteSegment do
       public? true
       source_attribute :shipment_route_segment_id
     end

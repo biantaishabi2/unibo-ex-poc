@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.ProductCategory do
+defmodule UniboExPoc.Ofbiz.Product.ProductCategory do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_categories"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,14 +41,14 @@ defmodule UniboV4.Ofbiz.Product.ProductCategory do
   end
 
   relationships do
-    belongs_to :product_category_type, UniboV4.Ofbiz.Product.ProductCategoryType do
+    belongs_to :product_category_type, UniboExPoc.Ofbiz.Product.ProductCategoryType do
       public? true
     end
-    belongs_to :primary_parent_product_category, UniboV4.Ofbiz.Product.ProductCategory do
+    belongs_to :primary_parent_product_category, UniboExPoc.Ofbiz.Product.ProductCategory do
       public? true
       source_attribute :primary_parent_category_id
     end
-    has_many :primary_child_product_category, UniboV4.Ofbiz.Product.ProductCategory do
+    has_many :primary_child_product_category, UniboExPoc.Ofbiz.Product.ProductCategory do
       public? true
     end
   end

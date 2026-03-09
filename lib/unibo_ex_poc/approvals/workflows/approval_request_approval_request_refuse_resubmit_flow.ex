@@ -1,10 +1,10 @@
-defmodule UniboV4.Approvals.Workflows.ApprovalRequest.ApprovalRequestRefuseResubmitFlowWorkflow do
+defmodule UniboExPoc.Approvals.Workflows.ApprovalRequest.ApprovalRequestRefuseResubmitFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Approvals.ApprovalRequest
+  alias UniboExPoc.Approvals.ApprovalRequest
 
   def steps do
     [:create, :submit, :refuse, :draft, :submit]
@@ -106,8 +106,6 @@ defmodule UniboV4.Approvals.Workflows.ApprovalRequest.ApprovalRequestRefuseResub
         Ash.update(Ash.Changeset.for_update(record, :refuse, params), ash_opts)
       :draft ->
         Ash.update(Ash.Changeset.for_update(record, :draft, params), ash_opts)
-      :submit ->
-        Ash.update(Ash.Changeset.for_update(record, :submit, params), ash_opts)
       _ -> {:ok, record}
     end
   end
@@ -136,7 +134,6 @@ defmodule UniboV4.Approvals.Workflows.ApprovalRequest.ApprovalRequestRefuseResub
       :submit -> [:refuse]
       :refuse -> [:draft]
       :draft -> [:submit]
-      :submit -> []
       _ -> []
     end
   end
@@ -147,29 +144,28 @@ defmodule UniboV4.Approvals.Workflows.ApprovalRequest.ApprovalRequestRefuseResub
       :submit -> []
       :refuse -> []
       :draft -> []
-      :submit -> []
       _ -> []
     end
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :submit -> nil
       :refuse -> nil
       :draft -> nil
-      :submit -> nil
       _ -> nil
     end
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :submit -> false
       :refuse -> false
       :draft -> false
-      :submit -> false
       _ -> false
     end
   end
@@ -180,7 +176,6 @@ defmodule UniboV4.Approvals.Workflows.ApprovalRequest.ApprovalRequestRefuseResub
       :submit -> %{max_attempts: 1, backoff_ms: 0}
       :refuse -> %{max_attempts: 1, backoff_ms: 0}
       :draft -> %{max_attempts: 1, backoff_ms: 0}
-      :submit -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
@@ -191,7 +186,6 @@ defmodule UniboV4.Approvals.Workflows.ApprovalRequest.ApprovalRequestRefuseResub
       :submit -> nil
       :refuse -> nil
       :draft -> nil
-      :submit -> nil
       _ -> nil
     end
   end

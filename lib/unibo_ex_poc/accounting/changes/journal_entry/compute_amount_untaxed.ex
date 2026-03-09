@@ -1,4 +1,4 @@
-defmodule UniboV4.Accounting.Changes.JournalEntry.ComputeAmountUntaxed do
+defmodule UniboExPoc.Accounting.Changes.JournalEntry.ComputeAmountUntaxed do
   @moduledoc """
   Change 模块: 计算 :amount_untaxed (entity: journal_entry)
   """

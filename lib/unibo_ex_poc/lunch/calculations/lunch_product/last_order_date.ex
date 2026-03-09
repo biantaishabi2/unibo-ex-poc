@@ -1,4 +1,4 @@
-defmodule UniboV4.Lunch.Calculations.LunchProduct.LastOrderDate do
+defmodule UniboExPoc.Lunch.Calculations.LunchProduct.LastOrderDate do
   @moduledoc """
   Calculation 模块: :last_order_date (type: :date, entity: lunch_product)
   """

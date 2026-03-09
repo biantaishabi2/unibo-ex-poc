@@ -16,10 +16,10 @@
 #   action_confirm --> [*]
 #   action_cancel --> [*]
 # ```
-defmodule UniboV4.Inventory.PickingBatch do
+defmodule UniboExPoc.Inventory.PickingBatch do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Inventory,
+    domain: UniboExPoc.Inventory,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -29,7 +29,7 @@ defmodule UniboV4.Inventory.PickingBatch do
 
   postgres do
     table "inventory_picking_batches"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -78,12 +78,12 @@ defmodule UniboV4.Inventory.PickingBatch do
   end
 
   relationships do
-    has_many :picking_ids, UniboV4.Inventory.StockPicking do
+    has_many :picking_ids, UniboExPoc.Inventory.StockPicking do
       public? true
       source_attribute :responsible_party_id
       destination_attribute :batch_id
     end
-    belongs_to :responsible, UniboV4.Inventory.Party do
+    belongs_to :responsible, UniboExPoc.Inventory.Party do
       public? true
       source_attribute :responsible_party_id
     end

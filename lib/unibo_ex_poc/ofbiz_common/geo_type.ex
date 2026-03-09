@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Common.GeoType do
+defmodule UniboExPoc.Ofbiz.Common.GeoType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Common.GeoType do
 
   postgres do
     table "common_geo_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -39,7 +39,7 @@ defmodule UniboV4.Ofbiz.Common.GeoType do
   end
 
   relationships do
-    belongs_to :parent_geo_type, UniboV4.Ofbiz.Common.GeoType do
+    belongs_to :parent_geo_type, UniboExPoc.Ofbiz.Common.GeoType do
       public? true
       source_attribute :parent_type_id
     end

@@ -10,14 +10,14 @@
 #   action_return --> action_done
 #   action_done --> [*] : done
 # ```
-defmodule UniboV4.Rental.RentalOrder do
+defmodule UniboExPoc.Rental.RentalOrder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Rental,
+    domain: UniboExPoc.Rental,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
     authorizers: [Ash.Policy.Authorizer],
-    notifiers: [UniboV4.Rental.RentalOrder.Notifier]
+    notifiers: [UniboExPoc.Rental.RentalOrder.Notifier]
 
   resource do
     description "租赁订单（对应 Odoo sale.order 扩展，is_rental=true 区分普通销售）"
@@ -25,7 +25,7 @@ defmodule UniboV4.Rental.RentalOrder do
 
   postgres do
     table "rental_orders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -118,15 +118,15 @@ defmodule UniboV4.Rental.RentalOrder do
   end
 
   relationships do
-    has_many :lines, UniboV4.Rental.RentalOrderLine do
+    has_many :lines, UniboExPoc.Rental.RentalOrderLine do
       public? true
       destination_attribute :order_id
     end
-    belongs_to :customer, UniboV4.Rental.Customer do
+    belongs_to :customer, UniboExPoc.Rental.Customer do
       public? true
       allow_nil? false
     end
-    belongs_to :created_by, UniboV4.Rental.Party do
+    belongs_to :created_by, UniboExPoc.Rental.Party do
       public? true
       source_attribute :created_by_party_id
     end
@@ -173,7 +173,7 @@ defmodule UniboV4.Rental.RentalOrder do
       end
       # message: "只有草稿状态可以确认"
       change set_attribute(:rental_status, :confirmed)
-      change UniboV4.Rental.Changes.RentalOrder.ActionConfirmCall7
+      change UniboExPoc.Rental.Changes.RentalOrder.ActionConfirmCall7
       require_atomic? false
     end
     update :action_pickup do
@@ -266,6 +266,9 @@ defmodule UniboV4.Rental.RentalOrder do
     end
     policy action_type(:update) do
       authorize_if expr(actor.role == :admin or actor.id == created_by_id)
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

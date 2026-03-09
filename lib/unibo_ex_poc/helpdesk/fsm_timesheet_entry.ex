@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Helpdesk.FsmTimesheetEntry do
+defmodule UniboExPoc.Helpdesk.FsmTimesheetEntry do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Helpdesk.FsmTimesheetEntry do
 
   postgres do
     table "helpdesk_fsm_timesheet_entries"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,11 +57,11 @@ defmodule UniboV4.Helpdesk.FsmTimesheetEntry do
   end
 
   relationships do
-    belongs_to :service_order, UniboV4.Helpdesk.FieldServiceOrder do
+    belongs_to :service_order, UniboExPoc.Helpdesk.FieldServiceOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :technician, UniboV4.Helpdesk.Party do
+    belongs_to :technician, UniboExPoc.Helpdesk.Party do
       public? true
       allow_nil? false
       source_attribute :technician_party_id

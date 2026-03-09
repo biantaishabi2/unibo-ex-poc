@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.EmplPositionReportingStruct do
+defmodule UniboExPoc.Ofbiz.HumanRes.EmplPositionReportingStruct do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_empl_position_reporting_structs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -39,12 +39,12 @@ defmodule UniboV4.Ofbiz.HumanRes.EmplPositionReportingStruct do
   end
 
   relationships do
-    belongs_to :reporting_to_empl_position, UniboV4.Ofbiz.HumanRes.EmplPosition do
+    belongs_to :reporting_to_empl_position, UniboExPoc.Ofbiz.HumanRes.EmplPosition do
       public? true
       source_attribute :empl_position_id_reporting_to
       attribute_type :string
     end
-    belongs_to :managed_by_empl_position, UniboV4.Ofbiz.HumanRes.EmplPosition do
+    belongs_to :managed_by_empl_position, UniboExPoc.Ofbiz.HumanRes.EmplPosition do
       public? true
       source_attribute :empl_position_id_managed_by
       attribute_type :string

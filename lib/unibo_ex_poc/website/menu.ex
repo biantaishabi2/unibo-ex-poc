@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Website.Menu do
+defmodule UniboExPoc.Website.Menu do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Website,
+    domain: UniboExPoc.Website,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Website.Menu do
 
   postgres do
     table "website_menus"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -79,27 +79,27 @@ defmodule UniboV4.Website.Menu do
   end
 
   calculations do
-    calculate :is_visible, :boolean, {UniboV4.Website.Calculations.Menu.IsVisible, []}
-    calculate :is_active_highlight, :boolean, {UniboV4.Website.Calculations.Menu.IsActiveHighlight, []}
+    calculate :is_visible, :boolean, {UniboExPoc.Website.Calculations.Menu.IsVisible, []}
+    calculate :is_active_highlight, :boolean, {UniboExPoc.Website.Calculations.Menu.IsActiveHighlight, []}
     calculate :get_tree, :string, expr(name)
   end
 
   relationships do
-    belongs_to :website, UniboV4.Website.WebSite do
+    belongs_to :website, UniboExPoc.Website.WebSite do
       public? true
     end
-    belongs_to :page, UniboV4.Website.WebPage do
+    belongs_to :page, UniboExPoc.Website.WebPage do
       public? true
     end
-    belongs_to :parent, UniboV4.Website.Menu do
+    belongs_to :parent, UniboExPoc.Website.Menu do
       public? true
     end
-    has_many :children, UniboV4.Website.Menu do
+    has_many :children, UniboExPoc.Website.Menu do
       public? true
       source_attribute :parent_id
       destination_attribute :parent_id
     end
-    has_many :translations, UniboV4.Website.MenuTranslation, public?: true
+    has_many :translations, UniboExPoc.Website.MenuTranslation, public?: true
   end
 
   actions do
@@ -113,10 +113,10 @@ defmodule UniboV4.Website.Menu do
       validate present(:name)
       # validation: max_nesting_two_levels — 菜单最多支持 2 级嵌套
       # validation: mega_menu_no_parent_no_children — Mega Menu 不能有父级也不能有子级
-      change UniboV4.Website.Changes.Menu.CreateCall1
-      change UniboV4.Website.Changes.Menu.CreateCall2
-      change UniboV4.Website.Changes.Menu.CreateCall3
-      change UniboV4.Website.Changes.Menu.CreateCall4
+      change UniboExPoc.Website.Changes.Menu.CreateCall1
+      change UniboExPoc.Website.Changes.Menu.CreateCall2
+      change UniboExPoc.Website.Changes.Menu.CreateCall3
+      change UniboExPoc.Website.Changes.Menu.CreateCall4
       change set_attribute(:id, expr(id))
     end
     update :update do
@@ -125,8 +125,8 @@ defmodule UniboV4.Website.Menu do
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change UniboV4.Website.Changes.Menu.UpdateCall1
-      change UniboV4.Website.Changes.Menu.UpdateCall4
+      change UniboExPoc.Website.Changes.Menu.UpdateCall1
+      change UniboExPoc.Website.Changes.Menu.UpdateCall4
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

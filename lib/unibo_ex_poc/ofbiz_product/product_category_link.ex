@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.ProductCategoryLink do
+defmodule UniboExPoc.Ofbiz.Product.ProductCategoryLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "product_category_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -60,7 +60,7 @@ defmodule UniboV4.Ofbiz.Product.ProductCategoryLink do
   end
 
   relationships do
-    belongs_to :product_category, UniboV4.Ofbiz.Product.ProductCategory do
+    belongs_to :product_category, UniboExPoc.Ofbiz.Product.ProductCategory do
       public? true
     end
   end

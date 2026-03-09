@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.GlXbrlClass do
+defmodule UniboExPoc.Ofbiz.Accounting.GlXbrlClass do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_gl_xbrl_classes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -34,7 +34,7 @@ defmodule UniboV4.Ofbiz.Accounting.GlXbrlClass do
   end
 
   relationships do
-    belongs_to :parent_gl_xbrl_class, UniboV4.Ofbiz.Accounting.GlXbrlClass do
+    belongs_to :parent_gl_xbrl_class, UniboExPoc.Ofbiz.Accounting.GlXbrlClass do
       public? true
     end
   end

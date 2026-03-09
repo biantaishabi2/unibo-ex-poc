@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Manufacturing.WorkcenterProductivity do
+defmodule UniboExPoc.Manufacturing.WorkcenterProductivity do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Manufacturing,
+    domain: UniboExPoc.Manufacturing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Manufacturing.WorkcenterProductivity do
 
   postgres do
     table "manufacturing_workcenter_productivities"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,11 +57,11 @@ defmodule UniboV4.Manufacturing.WorkcenterProductivity do
   end
 
   relationships do
-    belongs_to :work_order, UniboV4.Manufacturing.WorkOrder do
+    belongs_to :work_order, UniboExPoc.Manufacturing.WorkOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :work_center, UniboV4.Manufacturing.WorkCenter do
+    belongs_to :work_center, UniboExPoc.Manufacturing.WorkCenter do
       public? true
       allow_nil? false
     end

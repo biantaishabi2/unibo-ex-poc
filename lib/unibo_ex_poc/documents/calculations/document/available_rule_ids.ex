@@ -1,4 +1,4 @@
-defmodule UniboV4.Documents.Calculations.Document.AvailableRuleIds do
+defmodule UniboExPoc.Documents.Calculations.Document.AvailableRuleIds do
   @moduledoc """
   Calculation 模块: :available_rule_ids (type: {:array, :string}, entity: document)
   """

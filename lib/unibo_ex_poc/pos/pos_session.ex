@@ -7,10 +7,10 @@
 #   start_close --> close
 #   close --> [*]
 # ```
-defmodule UniboV4.POS.PosSession do
+defmodule UniboExPoc.POS.PosSession do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.POS,
+    domain: UniboExPoc.POS,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.POS.PosSession do
 
   postgres do
     table "pos_sessions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -93,15 +93,15 @@ defmodule UniboV4.POS.PosSession do
   end
 
   relationships do
-    has_many :orders, UniboV4.POS.PosOrder do
+    has_many :orders, UniboExPoc.POS.PosOrder do
       public? true
       destination_attribute :session_id
     end
-    belongs_to :cashier, UniboV4.POS.Party do
+    belongs_to :cashier, UniboExPoc.POS.Party do
       public? true
       source_attribute :cashier_party_id
     end
-    belongs_to :config, UniboV4.POS.PosConfig do
+    belongs_to :config, UniboExPoc.POS.PosConfig do
       public? true
     end
   end
@@ -132,7 +132,7 @@ defmodule UniboV4.POS.PosSession do
         end
       end
       # message: "只有开启中状态可以打开"
-      change UniboV4.POS.Changes.PosSession.ComputeOpeningBalance
+      change UniboExPoc.POS.Changes.PosSession.ComputeOpeningBalance
       change set_attribute(:status, :open)
       change set_attribute(:id, expr(id))
       require_atomic? false
@@ -168,13 +168,13 @@ defmodule UniboV4.POS.PosSession do
       # message: "只有关闭中状态可以关闭"
       # skipped: validate custom : (incompatible with bulk update atomic path)
       change set_attribute(:status, :closed)
-      change UniboV4.POS.Changes.PosSession.ComputeCloseDate
-      change UniboV4.POS.Changes.PosSession.CloseCall7
-      change UniboV4.POS.Changes.PosSession.CloseCall8
-      change UniboV4.POS.Changes.PosSession.CloseCall9
-      change UniboV4.POS.Changes.PosSession.CloseCall10
-      change UniboV4.POS.Changes.PosSession.CloseCall11
-      change UniboV4.POS.Changes.PosSession.CloseCall12
+      change UniboExPoc.POS.Changes.PosSession.ComputeCloseDate
+      change UniboExPoc.POS.Changes.PosSession.CloseCall7
+      change UniboExPoc.POS.Changes.PosSession.CloseCall8
+      change UniboExPoc.POS.Changes.PosSession.CloseCall9
+      change UniboExPoc.POS.Changes.PosSession.CloseCall10
+      change UniboExPoc.POS.Changes.PosSession.CloseCall11
+      change UniboExPoc.POS.Changes.PosSession.CloseCall12
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

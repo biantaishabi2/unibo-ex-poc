@@ -1,4 +1,4 @@
-defmodule UniboV4.LiveChat do
+defmodule UniboExPoc.LiveChat do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,17 +7,17 @@ defmodule UniboV4.LiveChat do
   end
 
   resources do
-    resource UniboV4.LiveChat.LiveChatChannel
-    resource UniboV4.LiveChat.LiveChatChannel.Version
-    resource UniboV4.LiveChat.ChannelRule
-    resource UniboV4.LiveChat.ChannelRule.Version
-    resource UniboV4.LiveChat.ChatSession
-    resource UniboV4.LiveChat.ChatSession.Version
-    resource UniboV4.LiveChat.LiveChatChannelUserLink
-    resource UniboV4.LiveChat.ChannelRuleCountryLink
-    resource UniboV4.LiveChat.Country
-    resource UniboV4.LiveChat.ChatbotScript
-    resource UniboV4.LiveChat.ChatbotScriptStep
-    resource UniboV4.LiveChat.Party
+    resource UniboExPoc.LiveChat.LiveChatChannel
+    resource UniboExPoc.LiveChat.LiveChatChannel.Version
+    resource UniboExPoc.LiveChat.ChannelRule
+    resource UniboExPoc.LiveChat.ChannelRule.Version
+    resource UniboExPoc.LiveChat.ChatSession
+    resource UniboExPoc.LiveChat.ChatSession.Version
+    resource UniboExPoc.LiveChat.LiveChatChannelUserLink
+    resource UniboExPoc.LiveChat.ChannelRuleCountryLink
+    resource UniboExPoc.LiveChat.Country
+    resource UniboExPoc.LiveChat.ChatbotScript
+    resource UniboExPoc.LiveChat.ChatbotScriptStep
+    resource UniboExPoc.LiveChat.Party
   end
 end

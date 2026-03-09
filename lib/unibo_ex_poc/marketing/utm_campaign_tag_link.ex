@@ -1,7 +1,7 @@
-defmodule UniboV4.Marketing.UtmCampaignTagLink do
+defmodule UniboExPoc.Marketing.UtmCampaignTagLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Marketing.UtmCampaignTagLink do
 
   postgres do
     table "marketing_utm_campaign_tag_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,12 +29,12 @@ defmodule UniboV4.Marketing.UtmCampaignTagLink do
   end
 
   relationships do
-    belongs_to :campaign, UniboV4.Marketing.UtmCampaign do
+    belongs_to :campaign, UniboExPoc.Marketing.UtmCampaign do
       public? true
       allow_nil? false
       source_attribute :utm_campaign_id
     end
-    belongs_to :tag, UniboV4.Marketing.UtmTag do
+    belongs_to :tag, UniboExPoc.Marketing.UtmTag do
       public? true
       allow_nil? false
       source_attribute :utm_tag_id

@@ -1,7 +1,7 @@
-defmodule UniboV4.PLM.EcoTypeStageLink do
+defmodule UniboExPoc.PLM.EcoTypeStageLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.PLM,
+    domain: UniboExPoc.PLM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.PLM.EcoTypeStageLink do
 
   postgres do
     table "plm_eco_type_stage_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.PLM.EcoTypeStageLink do
   end
 
   relationships do
-    belongs_to :eco_type, UniboV4.PLM.EcoType do
+    belongs_to :eco_type, UniboExPoc.PLM.EcoType do
       public? true
       allow_nil? false
     end
-    belongs_to :eco_stage, UniboV4.PLM.EcoStage do
+    belongs_to :eco_stage, UniboExPoc.PLM.EcoStage do
       public? true
       allow_nil? false
     end

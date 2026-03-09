@@ -11,10 +11,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Delivery.Delivery do
+defmodule UniboExPoc.Delivery.Delivery do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Delivery,
+    domain: UniboExPoc.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -24,7 +24,7 @@ defmodule UniboV4.Delivery.Delivery do
 
   postgres do
     table "delivery_deliveries"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -85,16 +85,16 @@ defmodule UniboV4.Delivery.Delivery do
   end
 
   relationships do
-    belongs_to :origin_facility, UniboV4.Delivery.Facility do
+    belongs_to :origin_facility, UniboExPoc.Delivery.Facility do
       public? true
     end
-    belongs_to :dest_facility, UniboV4.Delivery.Facility do
+    belongs_to :dest_facility, UniboExPoc.Delivery.Facility do
       public? true
     end
-    belongs_to :fixed_asset, UniboV4.Delivery.FixedAsset do
+    belongs_to :fixed_asset, UniboExPoc.Delivery.FixedAsset do
       public? true
     end
-    has_many :route_segments, UniboV4.Delivery.ShipmentRouteSegment do
+    has_many :route_segments, UniboExPoc.Delivery.ShipmentRouteSegment do
       public? true
       source_attribute :delivery_id
       destination_attribute :delivery_id

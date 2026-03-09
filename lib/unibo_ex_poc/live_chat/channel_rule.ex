@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.LiveChat.ChannelRule do
+defmodule UniboExPoc.LiveChat.ChannelRule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.LiveChat,
+    domain: UniboExPoc.LiveChat,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.LiveChat.ChannelRule do
 
   postgres do
     table "live_chat_channel_rules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -72,15 +72,15 @@ defmodule UniboV4.LiveChat.ChannelRule do
   end
 
   relationships do
-    belongs_to :channel, UniboV4.LiveChat.LiveChatChannel do
+    belongs_to :channel, UniboExPoc.LiveChat.LiveChatChannel do
       public? true
       allow_nil? false
     end
-    many_to_many :country_ids, UniboV4.LiveChat.Country do
+    many_to_many :country_ids, UniboExPoc.LiveChat.Country do
       public? true
-      through UniboV4.LiveChat.ChannelRuleCountryLink
+      through UniboExPoc.LiveChat.ChannelRuleCountryLink
     end
-    belongs_to :chatbot_script_id, UniboV4.LiveChat.ChatbotScript do
+    belongs_to :chatbot_script_id, UniboExPoc.LiveChat.ChatbotScript do
       public? true
     end
   end

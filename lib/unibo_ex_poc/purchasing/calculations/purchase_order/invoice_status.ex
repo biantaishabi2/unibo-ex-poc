@@ -1,4 +1,4 @@
-defmodule UniboV4.Purchasing.Calculations.PurchaseOrder.InvoiceStatus do
+defmodule UniboExPoc.Purchasing.Calculations.PurchaseOrder.InvoiceStatus do
   @moduledoc """
   Calculation 模块: :invoice_status (type: :atom, entity: purchase_order)
   原始 expr: op: custom args: []

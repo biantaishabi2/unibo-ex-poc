@@ -1,7 +1,7 @@
-defmodule UniboV4.Marketing.SocialPostAccountLink do
+defmodule UniboExPoc.Marketing.SocialPostAccountLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Marketing.SocialPostAccountLink do
 
   postgres do
     table "marketing_social_post_account_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Marketing.SocialPostAccountLink do
   end
 
   relationships do
-    belongs_to :social_post, UniboV4.Marketing.SocialPost do
+    belongs_to :social_post, UniboExPoc.Marketing.SocialPost do
       public? true
       allow_nil? false
     end
-    belongs_to :social_account, UniboV4.Marketing.SocialAccount do
+    belongs_to :social_account, UniboExPoc.Marketing.SocialAccount do
       public? true
       allow_nil? false
     end

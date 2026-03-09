@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Common.StandardLanguage do
+defmodule UniboExPoc.Ofbiz.Common.StandardLanguage do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "common_standard_languages"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

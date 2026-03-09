@@ -15,10 +15,10 @@
 #   update --> [*]
 #   deactivate --> [*]
 # ```
-defmodule UniboV4.Approvals.ApprovalCategory do
+defmodule UniboExPoc.Approvals.ApprovalCategory do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Approvals,
+    domain: UniboExPoc.Approvals,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -28,7 +28,7 @@ defmodule UniboV4.Approvals.ApprovalCategory do
 
   postgres do
     table "approvals_approval_categories"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -125,12 +125,12 @@ defmodule UniboV4.Approvals.ApprovalCategory do
   end
 
   relationships do
-    belongs_to :company, UniboV4.Approvals.Party do
+    belongs_to :company, UniboExPoc.Approvals.Party do
       public? true
       allow_nil? false
       source_attribute :company_party_id
     end
-    has_many :approval_requests, UniboV4.Approvals.ApprovalRequest do
+    has_many :approval_requests, UniboExPoc.Approvals.ApprovalRequest do
       public? true
       source_attribute :company_party_id
       destination_attribute :category_id

@@ -16,13 +16,13 @@
 #   discontinue --> reactivate
 #   reactivate --> publish
 # ```
-defmodule UniboV4.Ecommerce.ProductTemplate do
+defmodule UniboExPoc.Ecommerce.ProductTemplate do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ecommerce,
+    domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Ecommerce.ProductTemplate.Notifier]
+    notifiers: [UniboExPoc.Ecommerce.ProductTemplate.Notifier]
 
   resource do
     description "产品模板"
@@ -30,7 +30,7 @@ defmodule UniboV4.Ecommerce.ProductTemplate do
 
   postgres do
     table "ecommerce_product_templates"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -119,40 +119,36 @@ defmodule UniboV4.Ecommerce.ProductTemplate do
   end
 
   relationships do
-    has_many :variants, UniboV4.Ecommerce.ProductVariant do
+    has_many :variants, UniboExPoc.Ecommerce.ProductVariant do
       public? true
       destination_attribute :template_id
     end
-    belongs_to :category, UniboV4.Ecommerce.ProductCategory do
+    belongs_to :category, UniboExPoc.Ecommerce.ProductCategory do
       public? true
     end
-    has_many :prices, UniboV4.Ecommerce.ProductPrice do
+    has_many :prices, UniboExPoc.Ecommerce.ProductPrice do
       public? true
       destination_attribute :product_id
     end
-    belongs_to :website_ribbon, UniboV4.Ecommerce.Ribbon do
+    belongs_to :website_ribbon, UniboExPoc.Ecommerce.Ribbon do
       public? true
     end
-    many_to_many :public_categories, UniboV4.Ecommerce.ProductCategory do
+    many_to_many :public_categories, UniboExPoc.Ecommerce.ProductCategory do
       public? true
-      through UniboV4.Ecommerce.ProductTemplatePublicCategoryLink
+      through UniboExPoc.Ecommerce.ProductTemplatePublicCategoryLink
     end
-    many_to_many :alternative_products, UniboV4.Ecommerce.ProductTemplate do
+    many_to_many :alternative_products, UniboExPoc.Ecommerce.ProductTemplate do
       public? true
-      through UniboV4.Ecommerce.ProductTemplateAlternativeLink
-      source_attribute_on_join_resource :alternative_product_id
-      destination_attribute_on_join_resource :alternative_product_id
+      through UniboExPoc.Ecommerce.ProductTemplateAlternativeLink
     end
-    many_to_many :accessory_products, UniboV4.Ecommerce.ProductTemplate do
+    many_to_many :accessory_products, UniboExPoc.Ecommerce.ProductTemplate do
       public? true
-      through UniboV4.Ecommerce.ProductTemplateAccessoryLink
-      source_attribute_on_join_resource :accessory_product_id
-      destination_attribute_on_join_resource :accessory_product_id
+      through UniboExPoc.Ecommerce.ProductTemplateAccessoryLink
     end
-    belongs_to :base_unit, UniboV4.Ecommerce.UOM do
+    belongs_to :base_unit, UniboExPoc.Ecommerce.UOM do
       public? true
     end
-    has_many :translations, UniboV4.Ecommerce.ProductTemplateTranslation, public?: true
+    has_many :translations, UniboExPoc.Ecommerce.ProductTemplateTranslation, public?: true
   end
 
   actions do
@@ -163,13 +159,13 @@ defmodule UniboV4.Ecommerce.ProductTemplate do
       argument :category_id, :uuid
       validate present(:product_code)
       validate present(:name)
-      change UniboV4.Ecommerce.Changes.ProductTemplate.CreateCall7
+      change UniboExPoc.Ecommerce.Changes.ProductTemplate.CreateCall7
       change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :product_type, :status, :description, :description_ecommerce, :internal_notes, :weight, :weight_unit, :is_published, :website_sequence, :website_size_x, :website_size_y, :base_unit_count]
-      change UniboV4.Ecommerce.Changes.ProductTemplate.UpdateCall7
+      change UniboExPoc.Ecommerce.Changes.ProductTemplate.UpdateCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -188,7 +184,7 @@ defmodule UniboV4.Ecommerce.ProductTemplate do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:is_published, true)
       change set_attribute(:status, :active)
-      change UniboV4.Ecommerce.Changes.ProductTemplate.PublishCall7
+      change UniboExPoc.Ecommerce.Changes.ProductTemplate.PublishCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -205,7 +201,7 @@ defmodule UniboV4.Ecommerce.ProductTemplate do
       end
       # message: "只有活跃状态的产品可以下架或停产"
       change set_attribute(:is_published, false)
-      change UniboV4.Ecommerce.Changes.ProductTemplate.UnpublishCall7
+      change UniboExPoc.Ecommerce.Changes.ProductTemplate.UnpublishCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -223,7 +219,7 @@ defmodule UniboV4.Ecommerce.ProductTemplate do
       # message: "只有活跃状态的产品可以下架或停产"
       change set_attribute(:status, :discontinued)
       change set_attribute(:is_published, false)
-      change UniboV4.Ecommerce.Changes.ProductTemplate.DiscontinueCall7
+      change UniboExPoc.Ecommerce.Changes.ProductTemplate.DiscontinueCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -240,7 +236,7 @@ defmodule UniboV4.Ecommerce.ProductTemplate do
       end
       # message: "只有已停产的产品可以重新激活"
       change set_attribute(:status, :active)
-      change UniboV4.Ecommerce.Changes.ProductTemplate.ReactivateCall7
+      change UniboExPoc.Ecommerce.Changes.ProductTemplate.ReactivateCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

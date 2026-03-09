@@ -8,10 +8,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Knowledge.ArticleMember do
+defmodule UniboExPoc.Knowledge.ArticleMember do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Knowledge,
+    domain: UniboExPoc.Knowledge,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Knowledge.ArticleMember do
 
   postgres do
     table "knowledge_article_members"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -55,15 +55,15 @@ defmodule UniboV4.Knowledge.ArticleMember do
   end
 
   relationships do
-    belongs_to :article, UniboV4.Knowledge.Article do
+    belongs_to :article, UniboExPoc.Knowledge.Article do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.Knowledge.Party do
+    belongs_to :partner, UniboExPoc.Knowledge.Party do
       public? true
       source_attribute :partner_party_id
     end
-    belongs_to :group, UniboV4.Knowledge.Group do
+    belongs_to :group, UniboExPoc.Knowledge.Group do
       public? true
     end
   end

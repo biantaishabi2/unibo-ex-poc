@@ -15,13 +15,13 @@
 #   action_confirm --> [*]
 #   action_cancel --> [*]
 # ```
-defmodule UniboV4.Inventory.StockPicking do
+defmodule UniboExPoc.Inventory.StockPicking do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Inventory,
+    domain: UniboExPoc.Inventory,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Inventory.StockPicking.Notifier]
+    notifiers: [UniboExPoc.Inventory.StockPicking.Notifier]
 
   resource do
     description "拣货/出入库单"
@@ -29,7 +29,7 @@ defmodule UniboV4.Inventory.StockPicking do
 
   postgres do
     table "inventory_stock_pickings"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -117,27 +117,27 @@ defmodule UniboV4.Inventory.StockPicking do
   end
 
   relationships do
-    has_many :move_ids, UniboV4.Inventory.StockMove do
+    has_many :move_ids, UniboExPoc.Inventory.StockMove do
       public? true
       destination_attribute :picking_id
     end
-    belongs_to :source_location, UniboV4.Inventory.StockLocation do
+    belongs_to :source_location, UniboExPoc.Inventory.StockLocation do
       public? true
       allow_nil? false
     end
-    belongs_to :dest_location, UniboV4.Inventory.StockLocation do
+    belongs_to :dest_location, UniboExPoc.Inventory.StockLocation do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.Inventory.Party do
+    belongs_to :partner, UniboExPoc.Inventory.Party do
       public? true
       source_attribute :partner_party_id
     end
-    belongs_to :warehouse, UniboV4.Inventory.Warehouse do
+    belongs_to :warehouse, UniboExPoc.Inventory.Warehouse do
       public? true
       allow_nil? false
     end
-    belongs_to :batch, UniboV4.Inventory.PickingBatch do
+    belongs_to :batch, UniboExPoc.Inventory.PickingBatch do
       public? true
     end
   end
@@ -172,7 +172,7 @@ defmodule UniboV4.Inventory.StockPicking do
         end
       end
       # message: "只有草稿状态可以确认"
-      change UniboV4.Inventory.Changes.StockPicking.ActionConfirmCall1
+      change UniboExPoc.Inventory.Changes.StockPicking.ActionConfirmCall1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -188,7 +188,7 @@ defmodule UniboV4.Inventory.StockPicking do
         end
       end
       # message: "只有已确认/等待/已分配状态可以检查可用性"
-      change UniboV4.Inventory.Changes.StockPicking.ActionAssignCall2
+      change UniboExPoc.Inventory.Changes.StockPicking.ActionAssignCall2
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -207,7 +207,7 @@ defmodule UniboV4.Inventory.StockPicking do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change UniboV4.Inventory.Changes.StockPicking.ButtonValidateCall3
+      change UniboExPoc.Inventory.Changes.StockPicking.ButtonValidateCall3
       change set_attribute(:date_done, &DateTime.utc_now/0)
       change set_attribute(:priority, :"0")
       change set_attribute(:is_locked, true)
@@ -218,7 +218,7 @@ defmodule UniboV4.Inventory.StockPicking do
       description "取消拣货"
       accept []
       change set_attribute(:is_locked, true)
-      change UniboV4.Inventory.Changes.StockPicking.ActionCancelCall7
+      change UniboExPoc.Inventory.Changes.StockPicking.ActionCancelCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

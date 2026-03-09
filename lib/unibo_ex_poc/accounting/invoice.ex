@@ -9,13 +9,13 @@
 #   send --> [*] : sent
 #   void --> [*]
 # ```
-defmodule UniboV4.Accounting.Invoice do
+defmodule UniboExPoc.Accounting.Invoice do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Accounting,
+    domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Accounting.Invoice.Notifier]
+    notifiers: [UniboExPoc.Accounting.Invoice.Notifier]
 
   resource do
     description "发票（应收/应付）— 业务视图，底层映射为 JournalEntry（move_type = out_invoice/in_invoice 等）"
@@ -23,7 +23,7 @@ defmodule UniboV4.Accounting.Invoice do
 
   postgres do
     table "accounting_invoices"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -93,17 +93,17 @@ defmodule UniboV4.Accounting.Invoice do
   end
 
   relationships do
-    has_many :items, UniboV4.Accounting.InvoiceItem do
+    has_many :items, UniboExPoc.Accounting.InvoiceItem do
       public? true
     end
-    has_many :payments, UniboV4.Accounting.PaymentApplication do
+    has_many :payments, UniboExPoc.Accounting.PaymentApplication do
       public? true
     end
-    belongs_to :created_by, UniboV4.Accounting.Party do
+    belongs_to :created_by, UniboExPoc.Accounting.Party do
       public? true
       source_attribute :created_by_party_id
     end
-    belongs_to :journal_entry, UniboV4.Accounting.JournalEntry do
+    belongs_to :journal_entry, UniboExPoc.Accounting.JournalEntry do
       public? true
     end
   end
@@ -117,7 +117,7 @@ defmodule UniboV4.Accounting.Invoice do
       change manage_relationship(:items, :items, type: :create)
       validate present(:invoice_number)
       change relate_actor(:created_by)
-      change UniboV4.Accounting.Changes.Invoice.ComputeTotalAmount
+      change UniboExPoc.Accounting.Changes.Invoice.ComputeTotalAmount
     end
     update :approve do
       description "审批发票"

@@ -1,10 +1,10 @@
-defmodule UniboV4.Communication.Workflows.MailGroup.MailGroupMembershipFlowWorkflow do
+defmodule UniboExPoc.Communication.Workflows.MailGroup.MailGroupMembershipFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Communication.MailGroup
+  alias UniboExPoc.Communication.MailGroup
 
   def steps do
     [:create, :join, :leave, :update, :destroy]
@@ -153,6 +153,7 @@ defmodule UniboV4.Communication.Workflows.MailGroup.MailGroupMembershipFlowWorkf
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :join -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.Communication.Workflows.MailGroup.MailGroupMembershipFlowWorkf
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :join -> false

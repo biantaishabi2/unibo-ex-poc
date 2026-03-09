@@ -6,13 +6,13 @@
 #   confirm --> cancel
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Purchasing.GoodsReceipt do
+defmodule UniboExPoc.Purchasing.GoodsReceipt do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Purchasing,
+    domain: UniboExPoc.Purchasing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Purchasing.GoodsReceipt.Notifier]
+    notifiers: [UniboExPoc.Purchasing.GoodsReceipt.Notifier]
 
   resource do
     description "收货单"
@@ -20,7 +20,7 @@ defmodule UniboV4.Purchasing.GoodsReceipt do
 
   postgres do
     table "purchasing_goods_receipts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -73,15 +73,15 @@ defmodule UniboV4.Purchasing.GoodsReceipt do
   end
 
   relationships do
-    has_many :items, UniboV4.Purchasing.GoodsReceiptItem do
+    has_many :items, UniboExPoc.Purchasing.GoodsReceiptItem do
       public? true
       destination_attribute :receipt_id
     end
-    belongs_to :purchase_order, UniboV4.Purchasing.PurchaseOrder do
+    belongs_to :purchase_order, UniboExPoc.Purchasing.PurchaseOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :received_by, UniboV4.Purchasing.Party do
+    belongs_to :received_by, UniboExPoc.Purchasing.Party do
       public? true
       source_attribute :received_by_party_id
     end

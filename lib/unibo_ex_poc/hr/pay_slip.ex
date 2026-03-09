@@ -16,13 +16,13 @@
 #   refund_sheet --> [*]
 #   compute_sheet --> [*]
 # ```
-defmodule UniboV4.HR.PaySlip do
+defmodule UniboExPoc.HR.PaySlip do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.HR.PaySlip.Notifier]
+    notifiers: [UniboExPoc.HR.PaySlip.Notifier]
 
   resource do
     description "工资条"
@@ -30,7 +30,7 @@ defmodule UniboV4.HR.PaySlip do
 
   postgres do
     table "hr_pay_slips"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -105,11 +105,11 @@ defmodule UniboV4.HR.PaySlip do
   end
 
   relationships do
-    belongs_to :employee, UniboV4.HR.Employee do
+    belongs_to :employee, UniboExPoc.HR.Employee do
       public? true
       allow_nil? false
     end
-    belongs_to :contract, UniboV4.HR.EmploymentContract do
+    belongs_to :contract, UniboExPoc.HR.EmploymentContract do
       public? true
       allow_nil? false
     end
@@ -158,7 +158,7 @@ defmodule UniboV4.HR.PaySlip do
       end
       # message: "只有已核验状态可以确认"
       change set_attribute(:status, :done)
-      change UniboV4.HR.Changes.PaySlip.ActionPayslipDoneCall8
+      change UniboExPoc.HR.Changes.PaySlip.ActionPayslipDoneCall8
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

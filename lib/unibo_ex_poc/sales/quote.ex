@@ -8,13 +8,13 @@
 #   accept --> [*] : accepted
 #   reject --> [*]
 # ```
-defmodule UniboV4.Sales.Quote do
+defmodule UniboExPoc.Sales.Quote do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sales,
+    domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Sales.Quote.Notifier]
+    notifiers: [UniboExPoc.Sales.Quote.Notifier]
 
   resource do
     description "销售报价单"
@@ -22,7 +22,7 @@ defmodule UniboV4.Sales.Quote do
 
   postgres do
     table "sales_quotes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -89,14 +89,14 @@ defmodule UniboV4.Sales.Quote do
   end
 
   relationships do
-    has_many :items, UniboV4.Sales.QuoteItem do
+    has_many :items, UniboExPoc.Sales.QuoteItem do
       public? true
     end
-    belongs_to :customer, UniboV4.Sales.Customer do
+    belongs_to :customer, UniboExPoc.Sales.Customer do
       public? true
       allow_nil? false
     end
-    belongs_to :created_by, UniboV4.Sales.Party do
+    belongs_to :created_by, UniboExPoc.Sales.Party do
       public? true
       source_attribute :created_by_party_id
     end
@@ -113,7 +113,7 @@ defmodule UniboV4.Sales.Quote do
       change manage_relationship(:customer_id, :customer, type: :append, on_lookup: :relate)
       validate present(:quote_number)
       change relate_actor(:created_by)
-      change UniboV4.Sales.Changes.Quote.ComputeTotalAmount
+      change UniboExPoc.Sales.Changes.Quote.ComputeTotalAmount
       change set_attribute(:id, expr(id))
     end
     read :list do

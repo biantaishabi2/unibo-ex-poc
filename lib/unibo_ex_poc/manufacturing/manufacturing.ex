@@ -1,4 +1,4 @@
-defmodule UniboV4.Manufacturing do
+defmodule UniboExPoc.Manufacturing do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,26 +7,26 @@ defmodule UniboV4.Manufacturing do
   end
 
   resources do
-    resource UniboV4.Manufacturing.BillOfMaterials
-    resource UniboV4.Manufacturing.BillOfMaterials.Version
-    resource UniboV4.Manufacturing.BomLine
-    resource UniboV4.Manufacturing.BomLine.Version
-    resource UniboV4.Manufacturing.BomByproduct
-    resource UniboV4.Manufacturing.BomByproduct.Version
-    resource UniboV4.Manufacturing.ManufacturingOrder
-    resource UniboV4.Manufacturing.ManufacturingOrder.Version
-    resource UniboV4.Manufacturing.WorkOrder
-    resource UniboV4.Manufacturing.WorkOrder.Version
-    resource UniboV4.Manufacturing.WorkCenter
-    resource UniboV4.Manufacturing.WorkCenter.Version
-    resource UniboV4.Manufacturing.WorkcenterProductivity
-    resource UniboV4.Manufacturing.WorkcenterProductivity.Version
-    resource UniboV4.Manufacturing.RoutingOperation
-    resource UniboV4.Manufacturing.RoutingOperation.Version
-    resource UniboV4.Manufacturing.StockMove
-    resource UniboV4.Manufacturing.StockPicking
-    resource UniboV4.Manufacturing.StockScrap
-    resource UniboV4.Manufacturing.WorkOrderDependencyLink
-    resource UniboV4.Manufacturing.MrpSchedule
+    resource UniboExPoc.Manufacturing.BillOfMaterials
+    resource UniboExPoc.Manufacturing.BillOfMaterials.Version
+    resource UniboExPoc.Manufacturing.BomLine
+    resource UniboExPoc.Manufacturing.BomLine.Version
+    resource UniboExPoc.Manufacturing.BomByproduct
+    resource UniboExPoc.Manufacturing.BomByproduct.Version
+    resource UniboExPoc.Manufacturing.ManufacturingOrder
+    resource UniboExPoc.Manufacturing.ManufacturingOrder.Version
+    resource UniboExPoc.Manufacturing.WorkOrder
+    resource UniboExPoc.Manufacturing.WorkOrder.Version
+    resource UniboExPoc.Manufacturing.WorkCenter
+    resource UniboExPoc.Manufacturing.WorkCenter.Version
+    resource UniboExPoc.Manufacturing.WorkcenterProductivity
+    resource UniboExPoc.Manufacturing.WorkcenterProductivity.Version
+    resource UniboExPoc.Manufacturing.RoutingOperation
+    resource UniboExPoc.Manufacturing.RoutingOperation.Version
+    resource UniboExPoc.Manufacturing.StockMove
+    resource UniboExPoc.Manufacturing.StockPicking
+    resource UniboExPoc.Manufacturing.StockScrap
+    resource UniboExPoc.Manufacturing.WorkOrderDependencyLink
+    resource UniboExPoc.Manufacturing.MrpSchedule
   end
 end

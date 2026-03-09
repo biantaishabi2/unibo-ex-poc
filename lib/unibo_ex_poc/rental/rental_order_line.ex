@@ -9,10 +9,10 @@
 #   validate_return --> finalize
 #   finalize --> [*]
 # ```
-defmodule UniboV4.Rental.RentalOrderLine do
+defmodule UniboExPoc.Rental.RentalOrderLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Rental,
+    domain: UniboExPoc.Rental,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -22,7 +22,7 @@ defmodule UniboV4.Rental.RentalOrderLine do
 
   postgres do
     table "rental_order_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -94,22 +94,22 @@ defmodule UniboV4.Rental.RentalOrderLine do
     calculate :qty_remaining, :float, expr((qty_delivered - qty_returned))
     calculate :rental_price, :decimal, expr(compute_rental_price(self))
     calculate :penalty_amount, :decimal, expr(compute_penalty(self, actual_return_date))
-    calculate :is_late, :boolean, {UniboV4.Rental.Calculations.RentalOrderLine.IsLate, []}
+    calculate :is_late, :boolean, {UniboExPoc.Rental.Calculations.RentalOrderLine.IsLate, []}
     calculate :duration, :float, expr(date_diff(return_date, pickup_date, duration_unit))
     calculate :is_pickable, :boolean, expr(rental_status == "draft")
     calculate :is_returnable, :boolean, expr((rental_status == "pickup" and qty_remaining > 0))
   end
 
   relationships do
-    belongs_to :order, UniboV4.Rental.RentalOrder do
+    belongs_to :order, UniboExPoc.Rental.RentalOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :product, UniboV4.Rental.Product do
+    belongs_to :product, UniboExPoc.Rental.Product do
       public? true
       allow_nil? false
     end
-    belongs_to :pricing_rule, UniboV4.Rental.RentalPricing do
+    belongs_to :pricing_rule, UniboExPoc.Rental.RentalPricing do
       public? true
     end
   end
@@ -129,7 +129,7 @@ defmodule UniboV4.Rental.RentalOrderLine do
     update :update do
       primary? true
       accept [:pickup_date, :return_date, :product_uom_qty, :duration_unit]
-      change UniboV4.Rental.Changes.RentalOrderLine.UpdateCall8
+      change UniboExPoc.Rental.Changes.RentalOrderLine.UpdateCall8
       require_atomic? false
     end
     update :validate_pickup do
@@ -146,7 +146,7 @@ defmodule UniboV4.Rental.RentalOrderLine do
       # message: "只有草稿状态可以取货"
       change set_attribute(:qty_delivered, expr((qty_delivered + ^arg(:qty))))
       change set_attribute(:rental_status, :pickup)
-      change UniboV4.Rental.Changes.RentalOrderLine.ValidatePickupCall8
+      change UniboExPoc.Rental.Changes.RentalOrderLine.ValidatePickupCall8
       require_atomic? false
     end
     update :validate_return do
@@ -166,8 +166,8 @@ defmodule UniboV4.Rental.RentalOrderLine do
       change set_attribute(:qty_returned, expr((qty_returned + ^arg(:qty))))
       change set_attribute(:actual_return_date, expr(^arg(:actual_return_date)))
       change set_attribute(:rental_status, :return)
-      change UniboV4.Rental.Changes.RentalOrderLine.ValidateReturnCall7
-      change UniboV4.Rental.Changes.RentalOrderLine.ValidateReturnCall8
+      change UniboExPoc.Rental.Changes.RentalOrderLine.ValidateReturnCall7
+      change UniboExPoc.Rental.Changes.RentalOrderLine.ValidateReturnCall8
       require_atomic? false
     end
     update :finalize do
@@ -183,7 +183,7 @@ defmodule UniboV4.Rental.RentalOrderLine do
       end
       # message: "只有已归还状态可以完成"
       change set_attribute(:rental_status, :returned)
-      change UniboV4.Rental.Changes.RentalOrderLine.FinalizeCall8
+      change UniboExPoc.Rental.Changes.RentalOrderLine.FinalizeCall8
       require_atomic? false
     end
   end

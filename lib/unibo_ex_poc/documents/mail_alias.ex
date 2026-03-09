@@ -1,7 +1,7 @@
-defmodule UniboV4.Documents.MailAlias do
+defmodule UniboExPoc.Documents.MailAlias do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Documents,
+    domain: UniboExPoc.Documents,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Documents.MailAlias do
 
   postgres do
     table "documents_mail_aliases"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

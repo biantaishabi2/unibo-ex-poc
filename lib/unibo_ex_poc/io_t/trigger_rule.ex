@@ -7,10 +7,10 @@
 #   activate --> [*]
 #   deactivate --> [*]
 # ```
-defmodule UniboV4.IoT.TriggerRule do
+defmodule UniboExPoc.IoT.TriggerRule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.IoT.TriggerRule do
 
   postgres do
     table "io_t_trigger_rules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -126,12 +126,12 @@ defmodule UniboV4.IoT.TriggerRule do
   end
 
   relationships do
-    belongs_to :device, UniboV4.IoT.IoTDevice do
+    belongs_to :device, UniboExPoc.IoT.IoTDevice do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    has_many :event_logs, UniboV4.IoT.EventLog do
+    has_many :event_logs, UniboExPoc.IoT.EventLog do
       public? true
       source_attribute :device_id
       destination_attribute :trigger_rule_id

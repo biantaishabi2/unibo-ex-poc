@@ -16,13 +16,13 @@
 #   action_draft --> [*]
 #   action_in_progress --> [*]
 # ```
-defmodule UniboV4.Purchasing.PurchaseRequisition do
+defmodule UniboExPoc.Purchasing.PurchaseRequisition do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Purchasing,
+    domain: UniboExPoc.Purchasing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Purchasing.PurchaseRequisition.Notifier]
+    notifiers: [UniboExPoc.Purchasing.PurchaseRequisition.Notifier]
 
   resource do
     description "采购申请单/采购协议，支持状态机（draft→in_progress/ongoing→open→done/cancel）"
@@ -30,7 +30,7 @@ defmodule UniboV4.Purchasing.PurchaseRequisition do
 
   postgres do
     table "purchasing_purchase_requisitions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -108,22 +108,22 @@ defmodule UniboV4.Purchasing.PurchaseRequisition do
   end
 
   relationships do
-    has_many :items, UniboV4.Purchasing.PurchaseRequisitionItem do
+    has_many :items, UniboExPoc.Purchasing.PurchaseRequisitionItem do
       public? true
       destination_attribute :requisition_id
     end
-    belongs_to :type, UniboV4.Purchasing.PurchaseRequisitionType do
+    belongs_to :type, UniboExPoc.Purchasing.PurchaseRequisitionType do
       public? true
       allow_nil? false
     end
-    belongs_to :vendor, UniboV4.Purchasing.Supplier do
+    belongs_to :vendor, UniboExPoc.Purchasing.Supplier do
       public? true
     end
-    belongs_to :user, UniboV4.Purchasing.Party do
+    belongs_to :user, UniboExPoc.Purchasing.Party do
       public? true
       source_attribute :user_party_id
     end
-    has_many :purchase_orders, UniboV4.Purchasing.PurchaseOrder do
+    has_many :purchase_orders, UniboExPoc.Purchasing.PurchaseOrder do
       public? true
       destination_attribute :requisition_id
     end

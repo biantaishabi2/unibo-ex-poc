@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.ShipmentTimeEstimate do
+defmodule UniboExPoc.Ofbiz.Shipment.ShipmentTimeEstimate do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_time_estimates"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -54,17 +54,17 @@ defmodule UniboV4.Ofbiz.Shipment.ShipmentTimeEstimate do
   end
 
   relationships do
-    belongs_to :to_geo, UniboV4.Ofbiz.Shipment.Geo do
+    belongs_to :to_geo, UniboExPoc.Ofbiz.Shipment.Geo do
       public? true
       source_attribute :geo_id_to
       attribute_type :string
     end
-    belongs_to :from_geo, UniboV4.Ofbiz.Shipment.Geo do
+    belongs_to :from_geo, UniboExPoc.Ofbiz.Shipment.Geo do
       public? true
       source_attribute :geo_id_from
       attribute_type :string
     end
-    belongs_to :time_unit_uom, UniboV4.Ofbiz.Shipment.Uom do
+    belongs_to :time_unit_uom, UniboExPoc.Ofbiz.Shipment.Uom do
       public? true
       source_attribute :lead_time_uom_id
       attribute_type :string

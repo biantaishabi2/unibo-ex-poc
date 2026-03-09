@@ -1,4 +1,4 @@
-defmodule UniboV4.Travel.Integrations.TravelFulfillment.CancelFulfillmentSupplierCancelBookingBridge do
+defmodule UniboExPoc.Travel.Integrations.TravelFulfillment.CancelFulfillmentSupplierCancelBookingBridge do
   use Ash.Resource.Change
 
   @provider "supplier_cancel_booking"
@@ -32,8 +32,8 @@ defmodule UniboV4.Travel.Integrations.TravelFulfillment.CancelFulfillmentSupplie
       |> Map.merge(resolve_request_payload(changeset, context))
 
     task = %{kind: "integration_async_dispatch", dedup_key: dedup_key, payload: payload, max_attempts: @max_attempts}
-    if Code.ensure_loaded?(UniboV4.Travel.AsyncRuntime.Queue) and function_exported?(UniboV4.Travel.AsyncRuntime.Queue, :enqueue, 1) do
-      case UniboV4.Travel.AsyncRuntime.Queue.enqueue(task) do
+    if Code.ensure_loaded?(UniboExPoc.Travel.AsyncRuntime.Queue) and function_exported?(UniboExPoc.Travel.AsyncRuntime.Queue, :enqueue, 1) do
+      case UniboExPoc.Travel.AsyncRuntime.Queue.enqueue(task) do
         {:ok, _task} -> changeset
         {:ok, :duplicate} -> changeset
         {:error, reason} -> Ash.Changeset.add_error(changeset, "async integration enqueue failed: #{inspect(reason)}")

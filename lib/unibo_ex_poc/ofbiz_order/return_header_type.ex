@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Order.ReturnHeaderType do
+defmodule UniboExPoc.Ofbiz.Order.ReturnHeaderType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_return_header_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,7 +38,7 @@ defmodule UniboV4.Ofbiz.Order.ReturnHeaderType do
   end
 
   relationships do
-    belongs_to :parent_return_header_type, UniboV4.Ofbiz.Order.ReturnHeaderType do
+    belongs_to :parent_return_header_type, UniboExPoc.Ofbiz.Order.ReturnHeaderType do
       public? true
       source_attribute :parent_type_id
       attribute_type :string

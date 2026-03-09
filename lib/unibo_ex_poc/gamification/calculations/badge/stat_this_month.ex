@@ -1,4 +1,4 @@
-defmodule UniboV4.Gamification.Calculations.Badge.StatThisMonth do
+defmodule UniboExPoc.Gamification.Calculations.Badge.StatThisMonth do
   @moduledoc """
   Calculation 模块: :stat_this_month (type: :integer, entity: badge)
   """

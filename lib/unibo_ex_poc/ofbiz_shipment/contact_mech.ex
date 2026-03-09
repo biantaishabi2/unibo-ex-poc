@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Shipment.ContactMech do
+defmodule UniboExPoc.Ofbiz.Shipment.ContactMech do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer
 
   resource do
@@ -10,7 +10,7 @@ defmodule UniboV4.Ofbiz.Shipment.ContactMech do
 
   postgres do
     table "shipment_contact_meches"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do

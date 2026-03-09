@@ -1,4 +1,4 @@
-defmodule UniboV4.Website.Calculations.Menu.IsActiveHighlight do
+defmodule UniboExPoc.Website.Calculations.Menu.IsActiveHighlight do
   @moduledoc """
   Calculation 模块: :is_active_highlight (type: :boolean, entity: menu)
   原始 expr: op: custom args: []

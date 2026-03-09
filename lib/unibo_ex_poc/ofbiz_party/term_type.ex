@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.TermType do
+defmodule UniboExPoc.Ofbiz.Party.TermType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_term_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,7 +44,7 @@ defmodule UniboV4.Ofbiz.Party.TermType do
   end
 
   relationships do
-    belongs_to :parent_term_type, UniboV4.Ofbiz.Party.TermType do
+    belongs_to :parent_term_type, UniboExPoc.Ofbiz.Party.TermType do
       public? true
       source_attribute :parent_type_id
     end

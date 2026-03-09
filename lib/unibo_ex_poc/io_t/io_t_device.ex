@@ -6,10 +6,10 @@
 #   update --> [*]
 #   update_value --> [*]
 # ```
-defmodule UniboV4.IoT.IoTDevice do
+defmodule UniboExPoc.IoT.IoTDevice do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.IoT.IoTDevice do
 
   postgres do
     table "io_t_devices"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -116,22 +116,22 @@ defmodule UniboV4.IoT.IoTDevice do
   end
 
   calculations do
-    calculate :is_online, :boolean, {UniboV4.IoT.Calculations.IoTDevice.IsOnline, []}
+    calculate :is_online, :boolean, {UniboExPoc.IoT.Calculations.IoTDevice.IsOnline, []}
     calculate :time_since_last_event, :integer, expr(datetime_diff("now", last_event_at))
   end
 
   relationships do
-    belongs_to :iot_box, UniboV4.IoT.IoTBox do
+    belongs_to :iot_box, UniboExPoc.IoT.IoTBox do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    has_many :trigger_rules, UniboV4.IoT.TriggerRule do
+    has_many :trigger_rules, UniboExPoc.IoT.TriggerRule do
       public? true
       source_attribute :iot_box_id
       destination_attribute :device_id
     end
-    has_many :event_logs, UniboV4.IoT.EventLog do
+    has_many :event_logs, UniboExPoc.IoT.EventLog do
       public? true
       source_attribute :iot_box_id
       destination_attribute :device_id

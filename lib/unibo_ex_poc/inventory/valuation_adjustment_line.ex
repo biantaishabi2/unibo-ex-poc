@@ -4,10 +4,10 @@
 #   [*] --> create
 #   create --> [*]
 # ```
-defmodule UniboV4.Inventory.ValuationAdjustmentLine do
+defmodule UniboExPoc.Inventory.ValuationAdjustmentLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Inventory,
+    domain: UniboExPoc.Inventory,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -17,7 +17,7 @@ defmodule UniboV4.Inventory.ValuationAdjustmentLine do
 
   postgres do
     table "inventory_valuation_adjustment_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -66,15 +66,15 @@ defmodule UniboV4.Inventory.ValuationAdjustmentLine do
   end
 
   relationships do
-    belongs_to :cost, UniboV4.Inventory.LandedCost do
+    belongs_to :cost, UniboExPoc.Inventory.LandedCost do
       public? true
       allow_nil? false
     end
-    belongs_to :cost_line, UniboV4.Inventory.LandedCostLine do
+    belongs_to :cost_line, UniboExPoc.Inventory.LandedCostLine do
       public? true
       allow_nil? false
     end
-    belongs_to :move, UniboV4.Inventory.StockMove do
+    belongs_to :move, UniboExPoc.Inventory.StockMove do
       public? true
       allow_nil? false
     end

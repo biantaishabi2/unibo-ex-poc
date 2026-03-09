@@ -18,13 +18,13 @@
 #   cancel_card --> [*]
 #   expire_card --> [*]
 # ```
-defmodule UniboV4.Loyalty.GiftCard do
+defmodule UniboExPoc.Loyalty.GiftCard do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Loyalty,
+    domain: UniboExPoc.Loyalty,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Loyalty.GiftCard.Notifier]
+    notifiers: [UniboExPoc.Loyalty.GiftCard.Notifier]
 
   resource do
     description "礼品卡，记录面值、当前余额、激活状态，支持充值与消费，可作为支付方式"
@@ -32,7 +32,7 @@ defmodule UniboV4.Loyalty.GiftCard do
 
   postgres do
     table "loyalty_gift_cards"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -115,10 +115,10 @@ defmodule UniboV4.Loyalty.GiftCard do
   end
 
   relationships do
-    belongs_to :program, UniboV4.Loyalty.LoyaltyProgram do
+    belongs_to :program, UniboExPoc.Loyalty.LoyaltyProgram do
       public? true
     end
-    has_many :transactions, UniboV4.Loyalty.GiftCardTransaction do
+    has_many :transactions, UniboExPoc.Loyalty.GiftCardTransaction do
       public? true
       source_attribute :program_id
       destination_attribute :gift_card_id

@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.PartyRelationship do
+defmodule UniboExPoc.Ofbiz.Party.PartyRelationship do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_relationships"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,33 +57,33 @@ defmodule UniboV4.Ofbiz.Party.PartyRelationship do
   end
 
   relationships do
-    belongs_to :from_party, UniboV4.Ofbiz.Party.Party do
+    belongs_to :from_party, UniboExPoc.Ofbiz.Party.Party do
       public? true
       source_attribute :party_id_from
     end
-    belongs_to :to_party, UniboV4.Ofbiz.Party.Party do
+    belongs_to :to_party, UniboExPoc.Ofbiz.Party.Party do
       public? true
       source_attribute :party_id_to
     end
-    belongs_to :from_role_type, UniboV4.Ofbiz.Party.RoleType do
+    belongs_to :from_role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
       source_attribute :role_type_id_from
     end
-    belongs_to :to_role_type, UniboV4.Ofbiz.Party.RoleType do
+    belongs_to :to_role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
       source_attribute :role_type_id_to
     end
-    belongs_to :status_item, UniboV4.Ofbiz.Party.StatusItem do
+    belongs_to :status_item, UniboExPoc.Ofbiz.Party.StatusItem do
       public? true
       source_attribute :status_id
     end
-    belongs_to :priority_type, UniboV4.Ofbiz.Party.PriorityType do
+    belongs_to :priority_type, UniboExPoc.Ofbiz.Party.PriorityType do
       public? true
     end
-    belongs_to :party_relationship_type, UniboV4.Ofbiz.Party.PartyRelationshipType do
+    belongs_to :party_relationship_type, UniboExPoc.Ofbiz.Party.PartyRelationshipType do
       public? true
     end
-    belongs_to :security_group, UniboV4.Ofbiz.Party.SecurityGroup do
+    belongs_to :security_group, UniboExPoc.Ofbiz.Party.SecurityGroup do
       public? true
     end
   end

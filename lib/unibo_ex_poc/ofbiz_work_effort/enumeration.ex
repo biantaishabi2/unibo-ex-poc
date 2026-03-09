@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.WorkEffort.Enumeration do
+defmodule UniboExPoc.Ofbiz.WorkEffort.Enumeration do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer
 
   resource do
@@ -10,7 +10,7 @@ defmodule UniboV4.Ofbiz.WorkEffort.Enumeration do
 
   postgres do
     table "work_effort_enumerations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do

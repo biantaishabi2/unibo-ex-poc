@@ -1,7 +1,7 @@
-defmodule UniboV4.Subscriptions.Party do
+defmodule UniboExPoc.Subscriptions.Party do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Subscriptions,
+    domain: UniboExPoc.Subscriptions,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Subscriptions.Party do
 
   postgres do
     table "subscriptions_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

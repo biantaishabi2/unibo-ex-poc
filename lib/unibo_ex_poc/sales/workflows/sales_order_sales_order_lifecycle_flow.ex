@@ -1,10 +1,10 @@
-defmodule UniboV4.Sales.Workflows.SalesOrder.SalesOrderLifecycleFlowWorkflow do
+defmodule UniboExPoc.Sales.Workflows.SalesOrder.SalesOrderLifecycleFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Sales.SalesOrder
+  alias UniboExPoc.Sales.SalesOrder
 
   def steps do
     [:create, :action_quotation_send, :action_confirm, :create_invoices, :action_done]
@@ -153,6 +153,7 @@ defmodule UniboV4.Sales.Workflows.SalesOrder.SalesOrderLifecycleFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :action_quotation_send -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.Sales.Workflows.SalesOrder.SalesOrderLifecycleFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :action_quotation_send -> false

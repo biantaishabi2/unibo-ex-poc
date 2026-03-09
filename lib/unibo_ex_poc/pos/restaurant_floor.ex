@@ -11,10 +11,10 @@
 #   deactivate --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.POS.RestaurantFloor do
+defmodule UniboExPoc.POS.RestaurantFloor do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.POS,
+    domain: UniboExPoc.POS,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -24,7 +24,7 @@ defmodule UniboV4.POS.RestaurantFloor do
 
   postgres do
     table "pos_restaurant_floors"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -76,11 +76,11 @@ defmodule UniboV4.POS.RestaurantFloor do
   end
 
   relationships do
-    has_many :tables, UniboV4.POS.RestaurantTable do
+    has_many :tables, UniboExPoc.POS.RestaurantTable do
       public? true
       destination_attribute :floor_id
     end
-    has_many :config_links, UniboV4.POS.PosConfigFloor do
+    has_many :config_links, UniboExPoc.POS.PosConfigFloor do
       public? true
       destination_attribute :floor_id
     end
@@ -105,7 +105,7 @@ defmodule UniboV4.POS.RestaurantFloor do
       accept []
       # skipped: validate custom : (incompatible with bulk update atomic path)
       change set_attribute(:active, false)
-      change UniboV4.POS.Changes.RestaurantFloor.DeactivateCall2
+      change UniboExPoc.POS.Changes.RestaurantFloor.DeactivateCall2
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

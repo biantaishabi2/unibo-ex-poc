@@ -5,13 +5,13 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Forum.Vote do
+defmodule UniboExPoc.Forum.Vote do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Forum,
+    domain: UniboExPoc.Forum,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Forum.Vote.Notifier]
+    notifiers: [UniboExPoc.Forum.Vote.Notifier]
 
   resource do
     description "帖子投票记录，驱动 Karma 生成与回退"
@@ -19,7 +19,7 @@ defmodule UniboV4.Forum.Vote do
 
   postgres do
     table "forum_votes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -45,19 +45,19 @@ defmodule UniboV4.Forum.Vote do
   end
 
   relationships do
-    belongs_to :post, UniboV4.Forum.Post do
+    belongs_to :post, UniboExPoc.Forum.Post do
       public? true
       allow_nil? false
     end
-    belongs_to :user, UniboV4.Forum.Party do
+    belongs_to :user, UniboExPoc.Forum.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id
     end
-    belongs_to :forum, UniboV4.Forum.Forum do
+    belongs_to :forum, UniboExPoc.Forum.Forum do
       public? true
     end
-    belongs_to :recipient, UniboV4.Forum.Party do
+    belongs_to :recipient, UniboExPoc.Forum.Party do
       public? true
       source_attribute :recipient_party_id
     end

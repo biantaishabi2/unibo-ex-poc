@@ -1,7 +1,7 @@
-defmodule UniboV4.HR.JobApplicationInterviewerLink do
+defmodule UniboExPoc.HR.JobApplicationInterviewerLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.HR.JobApplicationInterviewerLink do
 
   postgres do
     table "hr_job_application_interviewer_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.HR.JobApplicationInterviewerLink do
   end
 
   relationships do
-    belongs_to :job_application, UniboV4.HR.JobApplication do
+    belongs_to :job_application, UniboExPoc.HR.JobApplication do
       public? true
       allow_nil? false
     end
-    belongs_to :employee, UniboV4.HR.Employee do
+    belongs_to :employee, UniboExPoc.HR.Employee do
       public? true
       allow_nil? false
     end

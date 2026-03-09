@@ -11,13 +11,13 @@
 #   reject --> [*]
 #   flag --> [*]
 # ```
-defmodule UniboV4.Rating.Rating do
+defmodule UniboExPoc.Rating.Rating do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Rating,
+    domain: UniboExPoc.Rating,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Rating.Rating.Notifier]
+    notifiers: [UniboExPoc.Rating.Rating.Notifier]
 
   resource do
     description "通用评价，泛化自 OFBiz ProductReview，通过 resource_type + resource_id 多态关联任意业务对象"
@@ -25,7 +25,7 @@ defmodule UniboV4.Rating.Rating do
 
   postgres do
     table "rating_ratings"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -105,10 +105,10 @@ defmodule UniboV4.Rating.Rating do
   end
 
   relationships do
-    belongs_to :rating_type, UniboV4.Rating.RatingType do
+    belongs_to :rating_type, UniboExPoc.Rating.RatingType do
       public? true
     end
-    has_many :scores, UniboV4.Rating.RatingScore do
+    has_many :scores, UniboExPoc.Rating.RatingScore do
       public? true
       source_attribute :rating_type_id
       destination_attribute :rating_id
@@ -127,7 +127,7 @@ defmodule UniboV4.Rating.Rating do
       validate present(:score)
       validate present(:reviewer_id)
       change set_attribute(:status, :pending_approval)
-      change UniboV4.Rating.Changes.Rating.ComputeSubmittedAt
+      change UniboExPoc.Rating.Changes.Rating.ComputeSubmittedAt
       change set_attribute(:id, expr(id))
     end
     update :update do
@@ -143,7 +143,7 @@ defmodule UniboV4.Rating.Rating do
       accept []
       # skipped: validate attribute_equals :status (incompatible with bulk update atomic path)
       change set_attribute(:status, :published)
-      change UniboV4.Rating.Changes.Rating.ComputePublishedAt
+      change UniboExPoc.Rating.Changes.Rating.ComputePublishedAt
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

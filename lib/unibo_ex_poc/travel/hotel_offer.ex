@@ -13,13 +13,13 @@
 #   expire --> [*] : expired
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Travel.HotelOffer do
+defmodule UniboExPoc.Travel.HotelOffer do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Travel,
+    domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Travel.HotelOffer.Notifier]
+    notifiers: [UniboExPoc.Travel.HotelOffer.Notifier]
 
   resource do
     description "酒店可售 offer，承载房型、价计划、价态和可售规则快照"
@@ -27,7 +27,7 @@ defmodule UniboV4.Travel.HotelOffer do
 
   postgres do
     table "travel_hotel_offers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   multitenancy do
@@ -144,16 +144,16 @@ defmodule UniboV4.Travel.HotelOffer do
   end
 
   relationships do
-    belongs_to :city_ref, UniboV4.Ecommerce.TravelCity do
+    belongs_to :city_ref, UniboExPoc.Ecommerce.TravelCity do
       public? true
     end
-    belongs_to :hotel_ref, UniboV4.Travel.TravelHotel do
+    belongs_to :hotel_ref, UniboExPoc.Travel.TravelHotel do
       public? true
     end
-    belongs_to :room_type_ref, UniboV4.Travel.TravelRoomType do
+    belongs_to :room_type_ref, UniboExPoc.Travel.TravelRoomType do
       public? true
     end
-    has_many :orders, UniboV4.Travel.TravelOrder do
+    has_many :orders, UniboExPoc.Travel.TravelOrder do
       public? true
       destination_attribute :hotel_offer_id
     end

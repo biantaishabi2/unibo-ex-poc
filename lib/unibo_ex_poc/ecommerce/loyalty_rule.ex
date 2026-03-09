@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Ecommerce.LoyaltyRule do
+defmodule UniboExPoc.Ecommerce.LoyaltyRule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ecommerce,
+    domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Ecommerce.LoyaltyRule do
 
   postgres do
     table "ecommerce_loyalty_rules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -68,7 +68,7 @@ defmodule UniboV4.Ecommerce.LoyaltyRule do
   end
 
   relationships do
-    belongs_to :program, UniboV4.Ecommerce.LoyaltyProgram do
+    belongs_to :program, UniboExPoc.Ecommerce.LoyaltyProgram do
       public? true
       allow_nil? false
     end

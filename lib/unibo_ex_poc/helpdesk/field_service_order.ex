@@ -36,13 +36,13 @@
 #   mark_done --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Helpdesk.FieldServiceOrder do
+defmodule UniboExPoc.Helpdesk.FieldServiceOrder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Helpdesk.FieldServiceOrder.Notifier]
+    notifiers: [UniboExPoc.Helpdesk.FieldServiceOrder.Notifier]
 
   resource do
     description "现场服务工单/任务，从 Helpdesk 工单创建，支持多次上门、工时记录、物料使用、工作表填写"
@@ -50,7 +50,7 @@ defmodule UniboV4.Helpdesk.FieldServiceOrder do
 
   postgres do
     table "helpdesk_field_service_orders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -119,44 +119,44 @@ defmodule UniboV4.Helpdesk.FieldServiceOrder do
   end
 
   relationships do
-    belongs_to :helpdesk_ticket, UniboV4.Helpdesk.HelpdeskTicket do
+    belongs_to :helpdesk_ticket, UniboExPoc.Helpdesk.HelpdeskTicket do
       public? true
     end
-    belongs_to :project, UniboV4.Helpdesk.Project do
+    belongs_to :project, UniboExPoc.Helpdesk.Project do
       public? true
     end
-    belongs_to :partner, UniboV4.Helpdesk.Party do
+    belongs_to :partner, UniboExPoc.Helpdesk.Party do
       public? true
       source_attribute :partner_party_id
     end
-    belongs_to :user, UniboV4.Helpdesk.Party do
+    belongs_to :user, UniboExPoc.Helpdesk.Party do
       public? true
       source_attribute :user_party_id
     end
-    belongs_to :stage, UniboV4.Helpdesk.FsmTaskStage do
+    belongs_to :stage, UniboExPoc.Helpdesk.FsmTaskStage do
       public? true
       allow_nil? false
     end
-    belongs_to :worksheet_template, UniboV4.Helpdesk.WorksheetTemplate do
+    belongs_to :worksheet_template, UniboExPoc.Helpdesk.WorksheetTemplate do
       public? true
     end
-    many_to_many :tag_ids, UniboV4.Helpdesk.Tag do
+    many_to_many :tag_ids, UniboExPoc.Helpdesk.Tag do
       public? true
-      through UniboV4.Helpdesk.FieldServiceOrderTagLink
+      through UniboExPoc.Helpdesk.FieldServiceOrderTagLink
     end
-    has_many :assignments, UniboV4.Helpdesk.FieldServiceAssignment do
-      public? true
-      destination_attribute :service_order_id
-    end
-    has_many :materials, UniboV4.Helpdesk.FsmMaterialLine do
+    has_many :assignments, UniboExPoc.Helpdesk.FieldServiceAssignment do
       public? true
       destination_attribute :service_order_id
     end
-    has_many :timesheets, UniboV4.Helpdesk.FsmTimesheetEntry do
+    has_many :materials, UniboExPoc.Helpdesk.FsmMaterialLine do
       public? true
       destination_attribute :service_order_id
     end
-    has_many :worksheets, UniboV4.Helpdesk.Worksheet do
+    has_many :timesheets, UniboExPoc.Helpdesk.FsmTimesheetEntry do
+      public? true
+      destination_attribute :service_order_id
+    end
+    has_many :worksheets, UniboExPoc.Helpdesk.Worksheet do
       public? true
       destination_attribute :service_order_id
     end
@@ -181,7 +181,7 @@ defmodule UniboV4.Helpdesk.FieldServiceOrder do
       # message: "任务标题必填"
       validate present(:stage)
       # message: "必须指定阶段"
-      change UniboV4.Helpdesk.Changes.FieldServiceOrder.CreateCall3
+      change UniboExPoc.Helpdesk.Changes.FieldServiceOrder.CreateCall3
       change set_attribute(:id, expr(id))
     end
     update :schedule do
@@ -208,7 +208,7 @@ defmodule UniboV4.Helpdesk.FieldServiceOrder do
     update :stop_timer do
       description "停止计时器，记录本次工时"
       accept []
-      change UniboV4.Helpdesk.Changes.FieldServiceOrder.StopTimerCall7
+      change UniboExPoc.Helpdesk.Changes.FieldServiceOrder.StopTimerCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -242,9 +242,9 @@ R35: on_field_service_task_done 检查 all_done?
       argument :stage_id, :uuid, allow_nil?: false
       # skipped: validate compare :stage (incompatible with bulk update atomic path)
       change set_attribute(:fsm_done, true)
-      change UniboV4.Helpdesk.Changes.FieldServiceOrder.MarkDoneCall4
-      change UniboV4.Helpdesk.Changes.FieldServiceOrder.MarkDoneCall5
-      change UniboV4.Helpdesk.Changes.FieldServiceOrder.MarkDoneCall6
+      change UniboExPoc.Helpdesk.Changes.FieldServiceOrder.MarkDoneCall4
+      change UniboExPoc.Helpdesk.Changes.FieldServiceOrder.MarkDoneCall5
+      change UniboExPoc.Helpdesk.Changes.FieldServiceOrder.MarkDoneCall6
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

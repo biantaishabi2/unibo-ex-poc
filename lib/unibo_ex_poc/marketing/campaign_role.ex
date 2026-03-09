@@ -5,10 +5,10 @@
 #   create --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Marketing.CampaignRole do
+defmodule UniboExPoc.Marketing.CampaignRole do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Marketing.CampaignRole do
 
   postgres do
     table "marketing_campaign_roles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -49,11 +49,11 @@ defmodule UniboV4.Marketing.CampaignRole do
   end
 
   relationships do
-    belongs_to :campaign, UniboV4.Marketing.Campaign do
+    belongs_to :campaign, UniboExPoc.Marketing.Campaign do
       public? true
       allow_nil? false
     end
-    belongs_to :person, UniboV4.Marketing.Party do
+    belongs_to :person, UniboExPoc.Marketing.Party do
       public? true
       allow_nil? false
       source_attribute :person_party_id

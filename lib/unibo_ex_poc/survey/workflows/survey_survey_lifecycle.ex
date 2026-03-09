@@ -1,10 +1,10 @@
-defmodule UniboV4.Survey.Workflows.Survey.SurveyLifecycleWorkflow do
+defmodule UniboExPoc.Survey.Workflows.Survey.SurveyLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Survey.Survey
+  alias UniboExPoc.Survey.Survey
 
   def steps do
     [:create, :action_open, :action_close, :action_draft]
@@ -149,6 +149,7 @@ defmodule UniboV4.Survey.Workflows.Survey.SurveyLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :action_open -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Survey.Workflows.Survey.SurveyLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :action_open -> false

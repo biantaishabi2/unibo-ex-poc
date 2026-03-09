@@ -1,7 +1,7 @@
-defmodule UniboV4.Quality.Party do
+defmodule UniboExPoc.Quality.Party do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Quality,
+    domain: UniboExPoc.Quality,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Quality.Party do
 
   postgres do
     table "quality_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

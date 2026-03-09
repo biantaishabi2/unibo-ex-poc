@@ -1,4 +1,4 @@
-defmodule UniboV4.Repair do
+defmodule UniboExPoc.Repair do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,16 +7,16 @@ defmodule UniboV4.Repair do
   end
 
   resources do
-    resource UniboV4.Repair.RepairTicket
-    resource UniboV4.Repair.RepairTicket.Version
-    resource UniboV4.Repair.RepairLine
-    resource UniboV4.Repair.RepairLine.Version
-    resource UniboV4.Repair.RepairFee
-    resource UniboV4.Repair.RepairFee.Version
-    resource UniboV4.Repair.RepairTag
-    resource UniboV4.Repair.RepairTag.Version
-    resource UniboV4.Repair.Warranty
-    resource UniboV4.Repair.Warranty.Version
-    resource UniboV4.Repair.Party
+    resource UniboExPoc.Repair.RepairTicket
+    resource UniboExPoc.Repair.RepairTicket.Version
+    resource UniboExPoc.Repair.RepairLine
+    resource UniboExPoc.Repair.RepairLine.Version
+    resource UniboExPoc.Repair.RepairFee
+    resource UniboExPoc.Repair.RepairFee.Version
+    resource UniboExPoc.Repair.RepairTag
+    resource UniboExPoc.Repair.RepairTag.Version
+    resource UniboExPoc.Repair.Warranty
+    resource UniboExPoc.Repair.Warranty.Version
+    resource UniboExPoc.Repair.Party
   end
 end

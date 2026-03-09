@@ -14,13 +14,13 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Survey.Survey do
+defmodule UniboExPoc.Survey.Survey do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Survey,
+    domain: UniboExPoc.Survey,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Survey.Survey.Notifier]
+    notifiers: [UniboExPoc.Survey.Survey.Notifier]
 
   resource do
     description "问卷主体，支持普通问卷、实时会话、认证考试等多种类型"
@@ -28,7 +28,7 @@ defmodule UniboV4.Survey.Survey do
 
   postgres do
     table "survey_surveys"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -149,22 +149,22 @@ defmodule UniboV4.Survey.Survey do
     calculate :success_count, :integer, expr(count(user_inputs, query: [filter: expr(true)]))
     calculate :answer_score_avg, :float, expr(avg(user_inputs, field: :scoring_percentage, query: [filter: expr(true)]))
     calculate :success_ratio, :float, expr(((success_count * 100) / answer_count))
-    calculate :answer_duration_avg, :float, {UniboV4.Survey.Calculations.Survey.AnswerDurationAvg, []}
+    calculate :answer_duration_avg, :float, {UniboExPoc.Survey.Calculations.Survey.AnswerDurationAvg, []}
     calculate :question_count, :integer, expr(count(questions, query: [filter: expr(true)]))
-    calculate :scoring_max_obtainable, :float, {UniboV4.Survey.Calculations.Survey.ScoringMaxObtainable, []}
+    calculate :scoring_max_obtainable, :float, {UniboExPoc.Survey.Calculations.Survey.ScoringMaxObtainable, []}
   end
 
   relationships do
-    has_many :question_and_page_ids, UniboV4.Survey.Question do
+    has_many :question_and_page_ids, UniboExPoc.Survey.Question do
       public? true
     end
-    has_many :questions, UniboV4.Survey.Question do
+    has_many :questions, UniboExPoc.Survey.Question do
       public? true
     end
-    has_many :page_ids, UniboV4.Survey.Question do
+    has_many :page_ids, UniboExPoc.Survey.Question do
       public? true
     end
-    has_many :user_inputs, UniboV4.Survey.UserInput do
+    has_many :user_inputs, UniboExPoc.Survey.UserInput do
       public? true
     end
   end

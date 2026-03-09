@@ -1,4 +1,4 @@
-defmodule UniboV4.Expenses do
+defmodule UniboExPoc.Expenses do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,21 +7,21 @@ defmodule UniboV4.Expenses do
   end
 
   resources do
-    resource UniboV4.Expenses.ExpenseReport
-    resource UniboV4.Expenses.ExpenseReport.Version
-    resource UniboV4.Expenses.ExpenseLine
-    resource UniboV4.Expenses.ExpenseLine.Version
-    resource UniboV4.Expenses.ExpenseCategory
-    resource UniboV4.Expenses.ExpenseCategory.Version
-    resource UniboV4.Expenses.ExpenseLineTaxLink
-    resource UniboV4.Expenses.AccountMove
-    resource UniboV4.Expenses.Account
-    resource UniboV4.Expenses.Currency
-    resource UniboV4.Expenses.Employee
-    resource UniboV4.Expenses.Product
-    resource UniboV4.Expenses.Tax
-    resource UniboV4.Expenses.Journal
-    resource UniboV4.Expenses.PaymentMethodLine
-    resource UniboV4.Expenses.Party
+    resource UniboExPoc.Expenses.ExpenseReport
+    resource UniboExPoc.Expenses.ExpenseReport.Version
+    resource UniboExPoc.Expenses.ExpenseLine
+    resource UniboExPoc.Expenses.ExpenseLine.Version
+    resource UniboExPoc.Expenses.ExpenseCategory
+    resource UniboExPoc.Expenses.ExpenseCategory.Version
+    resource UniboExPoc.Expenses.ExpenseLineTaxLink
+    resource UniboExPoc.Expenses.AccountMove
+    resource UniboExPoc.Expenses.Account
+    resource UniboExPoc.Expenses.Currency
+    resource UniboExPoc.Expenses.Employee
+    resource UniboExPoc.Expenses.Product
+    resource UniboExPoc.Expenses.Tax
+    resource UniboExPoc.Expenses.Journal
+    resource UniboExPoc.Expenses.PaymentMethodLine
+    resource UniboExPoc.Expenses.Party
   end
 end

@@ -1,10 +1,10 @@
-defmodule UniboV4.DataRecycle.Workflows.RecycleRecord.RecycleRecordProcessingWorkflow do
+defmodule UniboExPoc.DataRecycle.Workflows.RecycleRecord.RecycleRecordProcessingWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.DataRecycle.RecycleRecord
+  alias UniboExPoc.DataRecycle.RecycleRecord
 
   def steps do
     [:create, :validate, :discard]
@@ -145,6 +145,7 @@ defmodule UniboV4.DataRecycle.Workflows.RecycleRecord.RecycleRecordProcessingWor
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :validate -> nil
@@ -154,6 +155,7 @@ defmodule UniboV4.DataRecycle.Workflows.RecycleRecord.RecycleRecordProcessingWor
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :validate -> false

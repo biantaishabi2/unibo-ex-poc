@@ -10,10 +10,10 @@
 #   activate --> update
 #   activate --> deactivate
 # ```
-defmodule UniboV4.Subscriptions.SubscriptionPlan do
+defmodule UniboExPoc.Subscriptions.SubscriptionPlan do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Subscriptions,
+    domain: UniboExPoc.Subscriptions,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -23,7 +23,7 @@ defmodule UniboV4.Subscriptions.SubscriptionPlan do
 
   postgres do
     table "subscriptions_subscription_plans"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -78,7 +78,7 @@ defmodule UniboV4.Subscriptions.SubscriptionPlan do
   end
 
   relationships do
-    has_many :subscription_orders, UniboV4.Subscriptions.SubscriptionOrder do
+    has_many :subscription_orders, UniboExPoc.Subscriptions.SubscriptionOrder do
       public? true
       destination_attribute :recurring_plan_id
     end

@@ -1,10 +1,10 @@
-defmodule UniboV4.Gamification.Workflows.Challenge.ChallengeFlowWorkflow do
+defmodule UniboExPoc.Gamification.Workflows.Challenge.ChallengeFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Gamification.Challenge
+  alias UniboExPoc.Gamification.Challenge
 
   def steps do
     [:create, :update, :action_start, :action_check, :action_done]
@@ -153,6 +153,7 @@ defmodule UniboV4.Gamification.Workflows.Challenge.ChallengeFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.Gamification.Workflows.Challenge.ChallengeFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

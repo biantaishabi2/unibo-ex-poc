@@ -1,4 +1,4 @@
-defmodule UniboV4.Project.Changes.PlanningSlot.ComputeAllocatedHours do
+defmodule UniboExPoc.Project.Changes.PlanningSlot.ComputeAllocatedHours do
   @moduledoc """
   Change 模块: 计算 :allocated_hours (entity: planning_slot)
   原始 expr: op: func args: - resource_calendar.get_work_duration - op: ref   args:   - start_datetime - op: ref   args:   - end_datetime

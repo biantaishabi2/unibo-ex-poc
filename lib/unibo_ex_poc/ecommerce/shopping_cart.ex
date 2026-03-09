@@ -31,13 +31,13 @@
 #   recover --> select_carrier
 #   recover --> convert
 # ```
-defmodule UniboV4.Ecommerce.ShoppingCart do
+defmodule UniboExPoc.Ecommerce.ShoppingCart do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ecommerce,
+    domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Ecommerce.ShoppingCart.Notifier]
+    notifiers: [UniboExPoc.Ecommerce.ShoppingCart.Notifier]
 
   resource do
     description "购物车"
@@ -45,7 +45,7 @@ defmodule UniboV4.Ecommerce.ShoppingCart do
 
   postgres do
     table "ecommerce_shopping_carts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -95,22 +95,22 @@ defmodule UniboV4.Ecommerce.ShoppingCart do
   calculations do
     calculate :total_amount, :decimal, expr(sum(visible_lines, field: :price_total, query: [filter: expr(true)]))
     calculate :item_count, :integer, expr(sum(visible_lines, field: :product_uom_qty, query: [filter: expr(true)]))
-    calculate :is_abandoned, :boolean, {UniboV4.Ecommerce.Calculations.ShoppingCart.IsAbandoned, []}
-    calculate :only_services, :boolean, {UniboV4.Ecommerce.Calculations.ShoppingCart.OnlyServices, []}
+    calculate :is_abandoned, :boolean, {UniboExPoc.Ecommerce.Calculations.ShoppingCart.IsAbandoned, []}
+    calculate :only_services, :boolean, {UniboExPoc.Ecommerce.Calculations.ShoppingCart.OnlyServices, []}
   end
 
   relationships do
-    belongs_to :owner, UniboV4.Ecommerce.Party do
+    belongs_to :owner, UniboExPoc.Ecommerce.Party do
       public? true
       source_attribute :owner_party_id
     end
-    belongs_to :website, UniboV4.Ecommerce.WebSite do
+    belongs_to :website, UniboExPoc.Ecommerce.WebSite do
       public? true
     end
-    belongs_to :pricelist, UniboV4.Ecommerce.Pricelist do
+    belongs_to :pricelist, UniboExPoc.Ecommerce.Pricelist do
       public? true
     end
-    belongs_to :carrier, UniboV4.Ecommerce.DeliveryCarrier do
+    belongs_to :carrier, UniboExPoc.Ecommerce.DeliveryCarrier do
       public? true
     end
   end
@@ -156,8 +156,8 @@ defmodule UniboV4.Ecommerce.ShoppingCart do
       argument :quantity, :integer, allow_nil?: false
       argument :attributes_json, :string
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change UniboV4.Ecommerce.Changes.ShoppingCart.CartUpdateCall5
-      change UniboV4.Ecommerce.Changes.ShoppingCart.CartUpdateCall7
+      change UniboExPoc.Ecommerce.Changes.ShoppingCart.CartUpdateCall5
+      change UniboExPoc.Ecommerce.Changes.ShoppingCart.CartUpdateCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -175,7 +175,7 @@ defmodule UniboV4.Ecommerce.ShoppingCart do
       description "切换价格表并重算所有行价格"
       accept []
       argument :pricelist_id, :uuid, allow_nil?: false
-      change UniboV4.Ecommerce.Changes.ShoppingCart.UpdatePricelistCall6
+      change UniboExPoc.Ecommerce.Changes.ShoppingCart.UpdatePricelistCall6
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

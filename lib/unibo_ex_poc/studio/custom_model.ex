@@ -15,13 +15,13 @@
 #   reactivate --> archive
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Studio.CustomModel do
+defmodule UniboExPoc.Studio.CustomModel do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Studio,
+    domain: UniboExPoc.Studio,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Studio.CustomModel.Notifier]
+    notifiers: [UniboExPoc.Studio.CustomModel.Notifier]
 
   resource do
     description "用户自定义数据模型，运行时动态建表"
@@ -29,7 +29,7 @@ defmodule UniboV4.Studio.CustomModel do
 
   postgres do
     table "studio_custom_models"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -102,25 +102,25 @@ defmodule UniboV4.Studio.CustomModel do
   end
 
   relationships do
-    belongs_to :inherits_model, UniboV4.Studio.CustomModel do
+    belongs_to :inherits_model, UniboExPoc.Studio.CustomModel do
       public? true
       attribute_type :integer
     end
-    belongs_to :created_by, UniboV4.Studio.Party do
+    belongs_to :created_by, UniboExPoc.Studio.Party do
       public? true
       source_attribute :created_by_party_id
     end
-    has_many :fields, UniboV4.Studio.CustomField do
+    has_many :fields, UniboExPoc.Studio.CustomField do
       public? true
       source_attribute :inherits_model_id
       destination_attribute :model_id
     end
-    has_many :views, UniboV4.Studio.CustomView do
+    has_many :views, UniboExPoc.Studio.CustomView do
       public? true
       source_attribute :inherits_model_id
       destination_attribute :model_id
     end
-    has_many :automation_rules, UniboV4.Studio.AutomationRule do
+    has_many :automation_rules, UniboExPoc.Studio.AutomationRule do
       public? true
       source_attribute :inherits_model_id
       destination_attribute :model_id
@@ -137,7 +137,7 @@ defmodule UniboV4.Studio.CustomModel do
       # message: "技术名必须以 x_ 开头，以区分系统模型与用户自定义模型"
       validate present(:name)
       validate present(:technical_name)
-      change UniboV4.Studio.Changes.CustomModel.ComputeTableName
+      change UniboExPoc.Studio.Changes.CustomModel.ComputeTableName
       change relate_actor(:created_by)
       change set_attribute(:id, expr(id))
     end

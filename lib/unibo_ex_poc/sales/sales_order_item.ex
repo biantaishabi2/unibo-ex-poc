@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> [*]
 # ```
-defmodule UniboV4.Sales.SalesOrderItem do
+defmodule UniboExPoc.Sales.SalesOrderItem do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sales,
+    domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Sales.SalesOrderItem do
 
   postgres do
     table "sales_order_items"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -131,17 +131,17 @@ defmodule UniboV4.Sales.SalesOrderItem do
   end
 
   relationships do
-    belongs_to :order, UniboV4.Sales.SalesOrder do
+    belongs_to :order, UniboExPoc.Sales.SalesOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :product, UniboV4.Sales.Product do
+    belongs_to :product, UniboExPoc.Sales.Product do
       public? true
       allow_nil? false
     end
-    many_to_many :tax_ids, UniboV4.Sales.Tax do
+    many_to_many :tax_ids, UniboExPoc.Sales.Tax do
       public? true
-      through UniboV4.Sales.SalesOrderItemTaxRel
+      through UniboExPoc.Sales.SalesOrderItemTaxRel
     end
   end
 
@@ -156,8 +156,8 @@ defmodule UniboV4.Sales.SalesOrderItem do
       change manage_relationship(:product_id, :product, type: :append, on_lookup: :relate)
       validate compare(:quantity, greater_than: 0)
       # message: "订购数量必须大于零"
-      change UniboV4.Sales.Changes.SalesOrderItem.ComputePriceSubtotal
-      change UniboV4.Sales.Changes.SalesOrderItem.ComputePriceTax
+      change UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal
+      change UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceTax
       change set_attribute(:price_total, expr((price_subtotal + price_tax)))
       change set_attribute(:id, expr(id))
     end
@@ -167,8 +167,8 @@ defmodule UniboV4.Sales.SalesOrderItem do
       # skipped: validate compare :quantity (incompatible with bulk update atomic path)
       # skipped: validate immutable :product (incompatible with bulk update atomic path)
       # skipped: validate immutable :unit_price (incompatible with bulk update atomic path)
-      change UniboV4.Sales.Changes.SalesOrderItem.ComputePriceSubtotal
-      change UniboV4.Sales.Changes.SalesOrderItem.ComputePriceTax
+      change UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal
+      change UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceTax
       change set_attribute(:price_total, expr((price_subtotal + price_tax)))
       change set_attribute(:id, expr(id))
       require_atomic? false

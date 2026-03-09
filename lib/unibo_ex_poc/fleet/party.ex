@@ -1,7 +1,7 @@
-defmodule UniboV4.Fleet.Party do
+defmodule UniboExPoc.Fleet.Party do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Fleet,
+    domain: UniboExPoc.Fleet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Fleet.Party do
 
   postgres do
     table "fleet_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

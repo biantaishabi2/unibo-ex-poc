@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Order.OrderSummaryEntry do
+defmodule UniboExPoc.Ofbiz.Order.OrderSummaryEntry do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "order_summary_entries"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

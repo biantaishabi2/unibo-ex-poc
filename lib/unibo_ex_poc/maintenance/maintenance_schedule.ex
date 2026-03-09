@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Maintenance.MaintenanceSchedule do
+defmodule UniboExPoc.Maintenance.MaintenanceSchedule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Maintenance.MaintenanceSchedule do
 
   postgres do
     table "maintenance_schedules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -68,7 +68,7 @@ defmodule UniboV4.Maintenance.MaintenanceSchedule do
   end
 
   relationships do
-    belongs_to :equipment, UniboV4.Maintenance.Equipment do
+    belongs_to :equipment, UniboExPoc.Maintenance.Equipment do
       public? true
       allow_nil? false
     end

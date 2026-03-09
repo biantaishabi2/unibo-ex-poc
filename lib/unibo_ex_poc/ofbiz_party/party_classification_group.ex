@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.PartyClassificationGroup do
+defmodule UniboExPoc.Ofbiz.Party.PartyClassificationGroup do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_classification_groups"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -40,11 +40,11 @@ defmodule UniboV4.Ofbiz.Party.PartyClassificationGroup do
   end
 
   relationships do
-    belongs_to :parent_party_classification_group, UniboV4.Ofbiz.Party.PartyClassificationGroup do
+    belongs_to :parent_party_classification_group, UniboExPoc.Ofbiz.Party.PartyClassificationGroup do
       public? true
       source_attribute :parent_group_id
     end
-    belongs_to :party_classification_type, UniboV4.Ofbiz.Party.PartyClassificationType do
+    belongs_to :party_classification_type, UniboExPoc.Ofbiz.Party.PartyClassificationType do
       public? true
     end
   end

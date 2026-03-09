@@ -8,10 +8,10 @@
 #   refuse --> [*]
 #   reset --> [*]
 # ```
-defmodule UniboV4.Sign.SignRequestItem do
+defmodule UniboExPoc.Sign.SignRequestItem do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sign,
+    domain: UniboExPoc.Sign,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Sign.SignRequestItem do
 
   postgres do
     table "sign_request_items"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -89,15 +89,15 @@ defmodule UniboV4.Sign.SignRequestItem do
   end
 
   relationships do
-    belongs_to :request, UniboV4.Sign.SignRequest do
+    belongs_to :request, UniboExPoc.Sign.SignRequest do
       public? true
       allow_nil? false
     end
-    belongs_to :role, UniboV4.Sign.SignRole do
+    belongs_to :role, UniboExPoc.Sign.SignRole do
       public? true
       allow_nil? false
     end
-    belongs_to :signer, UniboV4.Sign.Party do
+    belongs_to :signer, UniboExPoc.Sign.Party do
       public? true
       source_attribute :signer_party_id
     end
@@ -113,7 +113,7 @@ defmodule UniboV4.Sign.SignRequestItem do
       argument :signer_id, :uuid
       change manage_relationship(:request_id, :request, type: :append, on_lookup: :relate)
       change manage_relationship(:role_id, :role, type: :append, on_lookup: :relate)
-      change UniboV4.Sign.Changes.SignRequestItem.ComputeAccessToken
+      change UniboExPoc.Sign.Changes.SignRequestItem.ComputeAccessToken
       change set_attribute(:id, expr(id))
     end
     update :send do
@@ -149,7 +149,7 @@ defmodule UniboV4.Sign.SignRequestItem do
       end
       # message: "只有已发送状态可以签署"
       change set_attribute(:state, :completed)
-      change UniboV4.Sign.Changes.SignRequestItem.ComputeSignedAt
+      change UniboExPoc.Sign.Changes.SignRequestItem.ComputeSignedAt
       change set_attribute(:signer_ip, expr(^arg(:signer_ip)))
       change set_attribute(:id, expr(id))
       require_atomic? false
@@ -174,7 +174,7 @@ defmodule UniboV4.Sign.SignRequestItem do
     update :reset do
       description "重置为草稿（随 SignRequest 撤回时触发，重新生成 token）"
       accept []
-      change UniboV4.Sign.Changes.SignRequestItem.ComputeAccessToken
+      change UniboExPoc.Sign.Changes.SignRequestItem.ComputeAccessToken
       change set_attribute(:state, :draft)
       change set_attribute(:id, expr(id))
       require_atomic? false

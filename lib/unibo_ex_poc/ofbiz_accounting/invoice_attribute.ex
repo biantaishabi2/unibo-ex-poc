@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.InvoiceAttribute do
+defmodule UniboExPoc.Ofbiz.Accounting.InvoiceAttribute do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_invoice_attributes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,7 +38,7 @@ defmodule UniboV4.Ofbiz.Accounting.InvoiceAttribute do
   end
 
   relationships do
-    belongs_to :invoice, UniboV4.Ofbiz.Accounting.Invoice do
+    belongs_to :invoice, UniboExPoc.Ofbiz.Accounting.Invoice do
       public? true
     end
   end

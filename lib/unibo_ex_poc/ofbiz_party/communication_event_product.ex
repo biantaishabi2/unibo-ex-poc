@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.CommunicationEventProduct do
+defmodule UniboExPoc.Ofbiz.Party.CommunicationEventProduct do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_communication_event_products"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -32,10 +32,10 @@ defmodule UniboV4.Ofbiz.Party.CommunicationEventProduct do
   end
 
   relationships do
-    belongs_to :product, UniboV4.Ofbiz.Party.Product do
+    belongs_to :product, UniboExPoc.Ofbiz.Party.Product do
       public? true
     end
-    belongs_to :communication_event, UniboV4.Ofbiz.Party.CommunicationEvent do
+    belongs_to :communication_event, UniboExPoc.Ofbiz.Party.CommunicationEvent do
       public? true
     end
   end

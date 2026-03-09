@@ -1,10 +1,10 @@
-defmodule UniboV4.Accounting.Workflows.JournalEntry.JournalEntryLifecycleWorkflow do
+defmodule UniboExPoc.Accounting.Workflows.JournalEntry.JournalEntryLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Accounting.JournalEntry
+  alias UniboExPoc.Accounting.JournalEntry
 
   def steps do
     [:create, :post, :cancel, :reset_to_draft]
@@ -149,6 +149,7 @@ defmodule UniboV4.Accounting.Workflows.JournalEntry.JournalEntryLifecycleWorkflo
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :post -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Accounting.Workflows.JournalEntry.JournalEntryLifecycleWorkflo
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :post -> false

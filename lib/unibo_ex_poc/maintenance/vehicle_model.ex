@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Maintenance.VehicleModel do
+defmodule UniboExPoc.Maintenance.VehicleModel do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Maintenance.VehicleModel do
 
   postgres do
     table "maintenance_vehicle_models"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -110,13 +110,13 @@ defmodule UniboV4.Maintenance.VehicleModel do
   end
 
   relationships do
-    belongs_to :brand, UniboV4.Maintenance.VehicleModelBrand do
+    belongs_to :brand, UniboExPoc.Maintenance.VehicleModelBrand do
       public? true
     end
-    belongs_to :category, UniboV4.Maintenance.VehicleModelCategory do
+    belongs_to :category, UniboExPoc.Maintenance.VehicleModelCategory do
       public? true
     end
-    has_many :vehicles, UniboV4.Maintenance.Vehicle do
+    has_many :vehicles, UniboExPoc.Maintenance.Vehicle do
       public? true
       destination_attribute :model_id
     end

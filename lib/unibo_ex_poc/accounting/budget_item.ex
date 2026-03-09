@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> [*]
 # ```
-defmodule UniboV4.Accounting.BudgetItem do
+defmodule UniboExPoc.Accounting.BudgetItem do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Accounting,
+    domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Accounting.BudgetItem do
 
   postgres do
     table "accounting_budget_items"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -63,11 +63,11 @@ defmodule UniboV4.Accounting.BudgetItem do
   end
 
   relationships do
-    belongs_to :budget, UniboV4.Accounting.Budget do
+    belongs_to :budget, UniboExPoc.Accounting.Budget do
       public? true
       allow_nil? false
     end
-    belongs_to :gl_account, UniboV4.Accounting.GlAccount do
+    belongs_to :gl_account, UniboExPoc.Accounting.GlAccount do
       public? true
     end
   end

@@ -1,4 +1,4 @@
-defmodule UniboV4.Travel.Integrations.TravelFulfillment.ConfirmBookingSupplierConfirmBookingBridge do
+defmodule UniboExPoc.Travel.Integrations.TravelFulfillment.ConfirmBookingSupplierConfirmBookingBridge do
   use Ash.Resource.Change
 
   @provider "supplier_confirm_booking"
@@ -29,7 +29,7 @@ defmodule UniboV4.Travel.Integrations.TravelFulfillment.ConfirmBookingSupplierCo
       declared_errors: @declared_errors
     }
 
-    case UniboV4.Travel.Integration.Runtime.dispatch_sync(request) do
+    case UniboExPoc.Travel.Integration.Runtime.dispatch_sync(request) do
       {:ok, response} ->
         apply_response_bindings(changeset, response)
       {:error, error_payload} ->

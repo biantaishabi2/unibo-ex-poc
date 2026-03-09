@@ -1,10 +1,10 @@
-defmodule UniboV4.Project.Workflows.PlanningSlot.PlanningSlotTemplateFlowWorkflow do
+defmodule UniboExPoc.Project.Workflows.PlanningSlot.PlanningSlotTemplateFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Project.PlanningSlot
+  alias UniboExPoc.Project.PlanningSlot
 
   def steps do
     [:create_from_template]
@@ -137,6 +137,7 @@ defmodule UniboV4.Project.Workflows.PlanningSlot.PlanningSlotTemplateFlowWorkflo
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create_from_template -> nil
       _ -> nil
@@ -144,6 +145,7 @@ defmodule UniboV4.Project.Workflows.PlanningSlot.PlanningSlotTemplateFlowWorkflo
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create_from_template -> false
       _ -> false

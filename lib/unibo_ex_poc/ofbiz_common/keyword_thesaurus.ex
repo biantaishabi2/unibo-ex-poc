@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Common.KeywordThesaurus do
+defmodule UniboExPoc.Ofbiz.Common.KeywordThesaurus do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "common_keyword_thesauruss"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -34,7 +34,7 @@ defmodule UniboV4.Ofbiz.Common.KeywordThesaurus do
   end
 
   relationships do
-    belongs_to :relationship_enumeration, UniboV4.Ofbiz.Common.Enumeration do
+    belongs_to :relationship_enumeration, UniboExPoc.Ofbiz.Common.Enumeration do
       public? true
       source_attribute :relationship_enum_id
     end

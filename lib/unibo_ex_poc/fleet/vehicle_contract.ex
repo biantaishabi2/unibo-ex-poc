@@ -10,13 +10,13 @@
 #   renew --> terminate
 #   terminate --> [*]
 # ```
-defmodule UniboV4.Fleet.VehicleContract do
+defmodule UniboExPoc.Fleet.VehicleContract do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Fleet,
+    domain: UniboExPoc.Fleet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Fleet.VehicleContract.Notifier]
+    notifiers: [UniboExPoc.Fleet.VehicleContract.Notifier]
 
   resource do
     description "车辆合同（租赁、保险等）"
@@ -24,7 +24,7 @@ defmodule UniboV4.Fleet.VehicleContract do
 
   postgres do
     table "fleet_vehicle_contracts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -102,7 +102,7 @@ defmodule UniboV4.Fleet.VehicleContract do
   end
 
   relationships do
-    belongs_to :fleet_vehicle, UniboV4.Fleet.FleetVehicle do
+    belongs_to :fleet_vehicle, UniboExPoc.Fleet.FleetVehicle do
       public? true
       allow_nil? false
     end

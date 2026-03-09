@@ -1,4 +1,4 @@
-defmodule UniboV4.Membership.Calculations.MembershipLine.IsActive do
+defmodule UniboExPoc.Membership.Calculations.MembershipLine.IsActive do
   @moduledoc """
   Calculation 模块: :is_active (type: :boolean, entity: membership_line)
   """

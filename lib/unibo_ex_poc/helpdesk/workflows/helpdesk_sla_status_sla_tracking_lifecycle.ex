@@ -1,10 +1,10 @@
-defmodule UniboV4.Helpdesk.Workflows.HelpdeskSlaStatus.SlaTrackingLifecycleWorkflow do
+defmodule UniboExPoc.Helpdesk.Workflows.HelpdeskSlaStatus.SlaTrackingLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Helpdesk.HelpdeskSLAStatus
+  alias UniboExPoc.Helpdesk.HelpdeskSLAStatus
 
   def steps do
     [:create, :check_and_update, :mark_reached, :mark_failed, :accumulate_excluded_time]
@@ -153,6 +153,7 @@ defmodule UniboV4.Helpdesk.Workflows.HelpdeskSlaStatus.SlaTrackingLifecycleWorkf
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :check_and_update -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.Helpdesk.Workflows.HelpdeskSlaStatus.SlaTrackingLifecycleWorkf
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :check_and_update -> false

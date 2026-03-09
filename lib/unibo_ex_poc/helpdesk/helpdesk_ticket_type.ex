@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Helpdesk.HelpdeskTicketType do
+defmodule UniboExPoc.Helpdesk.HelpdeskTicketType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Helpdesk.HelpdeskTicketType do
 
   postgres do
     table "helpdesk_ticket_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -64,7 +64,7 @@ defmodule UniboV4.Helpdesk.HelpdeskTicketType do
   end
 
   relationships do
-    has_many :tickets, UniboV4.Helpdesk.HelpdeskTicket do
+    has_many :tickets, UniboExPoc.Helpdesk.HelpdeskTicket do
       public? true
       destination_attribute :ticket_type_id
     end

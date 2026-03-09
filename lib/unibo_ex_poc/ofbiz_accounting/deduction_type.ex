@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.DeductionType do
+defmodule UniboExPoc.Ofbiz.Accounting.DeductionType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_deduction_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -35,7 +35,7 @@ defmodule UniboV4.Ofbiz.Accounting.DeductionType do
   end
 
   relationships do
-    belongs_to :parent_deduction_type, UniboV4.Ofbiz.Accounting.DeductionType do
+    belongs_to :parent_deduction_type, UniboExPoc.Ofbiz.Accounting.DeductionType do
       public? true
       source_attribute :parent_type_id
     end

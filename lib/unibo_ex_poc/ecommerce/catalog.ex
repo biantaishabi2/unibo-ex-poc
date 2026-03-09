@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Ecommerce.Catalog do
+defmodule UniboExPoc.Ecommerce.Catalog do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ecommerce,
+    domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Ecommerce.Catalog do
 
   postgres do
     table "ecommerce_catalogs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

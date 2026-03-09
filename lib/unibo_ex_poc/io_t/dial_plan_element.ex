@@ -7,10 +7,10 @@
 #   reorder --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.IoT.DialPlanElement do
+defmodule UniboExPoc.IoT.DialPlanElement do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.IoT.DialPlanElement do
 
   postgres do
     table "io_t_dial_plan_elements"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -80,12 +80,12 @@ defmodule UniboV4.IoT.DialPlanElement do
   end
 
   relationships do
-    belongs_to :dial_plan, UniboV4.IoT.DialPlan do
+    belongs_to :dial_plan, UniboExPoc.IoT.DialPlan do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    belongs_to :next_element, UniboV4.IoT.DialPlanElement do
+    belongs_to :next_element, UniboExPoc.IoT.DialPlanElement do
       public? true
       attribute_type :integer
     end

@@ -1,4 +1,4 @@
-defmodule UniboV4.Quality.Changes.QualityAlert.ComputeDateClose do
+defmodule UniboExPoc.Quality.Changes.QualityAlert.ComputeDateClose do
   @moduledoc """
   Change 模块: 计算 :date_close (entity: quality_alert)
   原始 expr: op: func args: - now

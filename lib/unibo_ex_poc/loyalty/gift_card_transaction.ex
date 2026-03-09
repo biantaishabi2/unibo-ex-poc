@@ -4,10 +4,10 @@
 #   [*] --> create
 #   create --> [*]
 # ```
-defmodule UniboV4.Loyalty.GiftCardTransaction do
+defmodule UniboExPoc.Loyalty.GiftCardTransaction do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Loyalty,
+    domain: UniboExPoc.Loyalty,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -17,7 +17,7 @@ defmodule UniboV4.Loyalty.GiftCardTransaction do
 
   postgres do
     table "loyalty_gift_card_transactions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -61,7 +61,7 @@ defmodule UniboV4.Loyalty.GiftCardTransaction do
   end
 
   relationships do
-    belongs_to :gift_card, UniboV4.Loyalty.GiftCard do
+    belongs_to :gift_card, UniboExPoc.Loyalty.GiftCard do
       public? true
       allow_nil? false
     end

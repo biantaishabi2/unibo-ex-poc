@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Order.WorkRequirementFulfillment do
+defmodule UniboExPoc.Ofbiz.Order.WorkRequirementFulfillment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_work_requirement_fulfillments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -36,11 +36,11 @@ defmodule UniboV4.Ofbiz.Order.WorkRequirementFulfillment do
   end
 
   relationships do
-    belongs_to :requirement, UniboV4.Ofbiz.Order.Requirement do
+    belongs_to :requirement, UniboExPoc.Ofbiz.Order.Requirement do
       public? true
       attribute_type :string
     end
-    belongs_to :work_req_fulf_type, UniboV4.Ofbiz.Order.WorkReqFulfType do
+    belongs_to :work_req_fulf_type, UniboExPoc.Ofbiz.Order.WorkReqFulfType do
       public? true
       attribute_type :string
     end

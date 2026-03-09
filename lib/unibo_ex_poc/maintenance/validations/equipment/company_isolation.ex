@@ -1,4 +1,4 @@
-defmodule UniboV4.Maintenance.Validations.Equipment.CompanyIsolation do
+defmodule UniboExPoc.Maintenance.Validations.Equipment.CompanyIsolation do
   @moduledoc """
   校验规则: company_isolation (entity: equipment)
   """

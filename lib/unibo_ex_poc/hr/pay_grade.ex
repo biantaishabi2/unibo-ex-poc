@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.HR.PayGrade do
+defmodule UniboExPoc.HR.PayGrade do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.HR.PayGrade do
 
   postgres do
     table "hr_pay_grades"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

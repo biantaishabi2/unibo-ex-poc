@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.GiftCard do
+defmodule UniboExPoc.Ofbiz.Accounting.GiftCard do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_gift_cards"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -36,7 +36,7 @@ defmodule UniboV4.Ofbiz.Accounting.GiftCard do
   end
 
   relationships do
-    belongs_to :payment_method, UniboV4.Ofbiz.Accounting.PaymentMethod do
+    belongs_to :payment_method, UniboExPoc.Ofbiz.Accounting.PaymentMethod do
       public? true
     end
   end

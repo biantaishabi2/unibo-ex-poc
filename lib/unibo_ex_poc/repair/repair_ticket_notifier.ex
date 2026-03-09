@@ -1,4 +1,4 @@
-defmodule UniboV4.Repair.RepairTicket.Notifier do
+defmodule UniboExPoc.Repair.RepairTicket.Notifier do
   use Ash.Notifier
 
   @impl true
@@ -13,7 +13,7 @@ defmodule UniboV4.Repair.RepairTicket.Notifier do
     end
 
     if topic do
-      Phoenix.PubSub.broadcast(UniboV4.PubSub, topic, {action_name, notification.data})
+      Phoenix.PubSub.broadcast(UniboExPoc.PubSub, topic, {action_name, notification.data})
     end
 
     :ok

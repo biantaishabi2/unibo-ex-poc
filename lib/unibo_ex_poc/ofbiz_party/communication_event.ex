@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.CommunicationEvent do
+defmodule UniboExPoc.Ofbiz.Party.CommunicationEvent do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_communication_events"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -92,48 +92,48 @@ defmodule UniboV4.Ofbiz.Party.CommunicationEvent do
   end
 
   relationships do
-    belongs_to :communication_event_type, UniboV4.Ofbiz.Party.CommunicationEventType do
+    belongs_to :communication_event_type, UniboExPoc.Ofbiz.Party.CommunicationEventType do
       public? true
     end
-    belongs_to :to_party, UniboV4.Ofbiz.Party.Party do
+    belongs_to :to_party, UniboExPoc.Ofbiz.Party.Party do
       public? true
       source_attribute :party_id_to
     end
-    belongs_to :to_role_type, UniboV4.Ofbiz.Party.RoleType do
+    belongs_to :to_role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
       source_attribute :role_type_id_to
     end
-    belongs_to :from_party, UniboV4.Ofbiz.Party.Party do
+    belongs_to :from_party, UniboExPoc.Ofbiz.Party.Party do
       public? true
       source_attribute :party_id_from
     end
-    belongs_to :from_role_type, UniboV4.Ofbiz.Party.RoleType do
+    belongs_to :from_role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
       source_attribute :role_type_id_from
     end
-    belongs_to :status_item, UniboV4.Ofbiz.Party.StatusItem do
+    belongs_to :status_item, UniboExPoc.Ofbiz.Party.StatusItem do
       public? true
       source_attribute :status_id
     end
-    belongs_to :contact_mech_type, UniboV4.Ofbiz.Party.ContactMechType do
+    belongs_to :contact_mech_type, UniboExPoc.Ofbiz.Party.ContactMechType do
       public? true
     end
-    belongs_to :from_contact_mech, UniboV4.Ofbiz.Party.ContactMech do
+    belongs_to :from_contact_mech, UniboExPoc.Ofbiz.Party.ContactMech do
       public? true
       source_attribute :contact_mech_id_from
     end
-    belongs_to :to_contact_mech, UniboV4.Ofbiz.Party.ContactMech do
+    belongs_to :to_contact_mech, UniboExPoc.Ofbiz.Party.ContactMech do
       public? true
       source_attribute :contact_mech_id_to
     end
-    belongs_to :contact_list, UniboV4.Ofbiz.Party.ContactList do
+    belongs_to :contact_list, UniboExPoc.Ofbiz.Party.ContactList do
       public? true
     end
-    belongs_to :mime_type, UniboV4.Ofbiz.Party.MimeType do
+    belongs_to :mime_type, UniboExPoc.Ofbiz.Party.MimeType do
       public? true
       source_attribute :content_mime_type_id
     end
-    belongs_to :enumeration, UniboV4.Ofbiz.Party.Enumeration do
+    belongs_to :enumeration, UniboExPoc.Ofbiz.Party.Enumeration do
       public? true
       source_attribute :reason_enum_id
     end

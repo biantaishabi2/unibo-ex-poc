@@ -1,4 +1,4 @@
-defmodule UniboV4.Maintenance.Validations.EquipmentCategory.CompanyMember do
+defmodule UniboExPoc.Maintenance.Validations.EquipmentCategory.CompanyMember do
   @moduledoc """
   校验规则: company_member (entity: equipment_category)
   """

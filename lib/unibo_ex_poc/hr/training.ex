@@ -7,10 +7,10 @@
 #   complete --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.HR.Training do
+defmodule UniboExPoc.HR.Training do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.HR.Training do
 
   postgres do
     table "hr_trainings"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -76,11 +76,11 @@ defmodule UniboV4.HR.Training do
   end
 
   relationships do
-    belongs_to :employee, UniboV4.HR.Employee do
+    belongs_to :employee, UniboExPoc.HR.Employee do
       public? true
       allow_nil? false
     end
-    belongs_to :skill, UniboV4.HR.Skill do
+    belongs_to :skill, UniboExPoc.HR.Skill do
       public? true
     end
   end
@@ -127,7 +127,7 @@ defmodule UniboV4.HR.Training do
       end
       # message: "只有计划中或进行中的培训可以完成"
       change set_attribute(:status, :completed)
-      change UniboV4.HR.Changes.Training.CompleteCall4
+      change UniboExPoc.HR.Changes.Training.CompleteCall4
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

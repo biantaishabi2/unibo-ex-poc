@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Rental.RentalPenalty do
+defmodule UniboExPoc.Rental.RentalPenalty do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Rental,
+    domain: UniboExPoc.Rental,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Rental.RentalPenalty do
 
   postgres do
     table "rental_penalties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -81,7 +81,7 @@ defmodule UniboV4.Rental.RentalPenalty do
   end
 
   relationships do
-    belongs_to :product_template, UniboV4.Rental.ProductTemplate do
+    belongs_to :product_template, UniboExPoc.Rental.ProductTemplate do
       public? true
     end
   end

@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortEventReminder do
+defmodule UniboExPoc.Ofbiz.WorkEffort.WorkEffortEventReminder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_event_reminders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -49,15 +49,15 @@ defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortEventReminder do
   end
 
   relationships do
-    belongs_to :work_effort, UniboV4.Ofbiz.WorkEffort.WorkEffort do
+    belongs_to :work_effort, UniboExPoc.Ofbiz.WorkEffort.WorkEffort do
       public? true
       attribute_type :string
     end
-    belongs_to :contact_mech, UniboV4.Ofbiz.WorkEffort.ContactMech do
+    belongs_to :contact_mech, UniboExPoc.Ofbiz.WorkEffort.ContactMech do
       public? true
       attribute_type :string
     end
-    belongs_to :party, UniboV4.Ofbiz.WorkEffort.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.WorkEffort.Party do
       public? true
       attribute_type :string
     end

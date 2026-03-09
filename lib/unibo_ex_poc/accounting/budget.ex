@@ -8,13 +8,13 @@
 #   approve --> [*] : approved
 #   reject --> [*]
 # ```
-defmodule UniboV4.Accounting.Budget do
+defmodule UniboExPoc.Accounting.Budget do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Accounting,
+    domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Accounting.Budget.Notifier]
+    notifiers: [UniboExPoc.Accounting.Budget.Notifier]
 
   resource do
     description "预算"
@@ -22,7 +22,7 @@ defmodule UniboV4.Accounting.Budget do
 
   postgres do
     table "accounting_budgets"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -73,10 +73,10 @@ defmodule UniboV4.Accounting.Budget do
   end
 
   relationships do
-    has_many :items, UniboV4.Accounting.BudgetItem do
+    has_many :items, UniboExPoc.Accounting.BudgetItem do
       public? true
     end
-    belongs_to :created_by, UniboV4.Accounting.Party do
+    belongs_to :created_by, UniboExPoc.Accounting.Party do
       public? true
       source_attribute :created_by_party_id
     end
@@ -92,7 +92,7 @@ defmodule UniboV4.Accounting.Budget do
       validate present(:budget_number)
       validate present(:name)
       change relate_actor(:created_by)
-      change UniboV4.Accounting.Changes.Budget.ComputeTotalAmount
+      change UniboExPoc.Accounting.Changes.Budget.ComputeTotalAmount
     end
     update :submit do
       description "提交审批"

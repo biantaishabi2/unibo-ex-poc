@@ -1,4 +1,4 @@
-defmodule UniboV4.Documents.Calculations.Document.FileSizeDisplay do
+defmodule UniboExPoc.Documents.Calculations.Document.FileSizeDisplay do
   @moduledoc """
   Calculation 模块: :file_size_display (type: :string, entity: document)
   """

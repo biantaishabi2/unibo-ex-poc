@@ -1,10 +1,10 @@
-defmodule UniboV4.Subscriptions.Workflows.SubscriptionPlan.PlanLifecycleWorkflow do
+defmodule UniboExPoc.Subscriptions.Workflows.SubscriptionPlan.PlanLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Subscriptions.SubscriptionPlan
+  alias UniboExPoc.Subscriptions.SubscriptionPlan
 
   def steps do
     [:create, :update, :deactivate, :activate]
@@ -149,6 +149,7 @@ defmodule UniboV4.Subscriptions.Workflows.SubscriptionPlan.PlanLifecycleWorkflow
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Subscriptions.Workflows.SubscriptionPlan.PlanLifecycleWorkflow
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

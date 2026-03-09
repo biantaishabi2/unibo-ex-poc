@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.AccommodationClass do
+defmodule UniboExPoc.Ofbiz.Accounting.AccommodationClass do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_accommodation_classes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -34,7 +34,7 @@ defmodule UniboV4.Ofbiz.Accounting.AccommodationClass do
   end
 
   relationships do
-    belongs_to :parent_accommodation_class, UniboV4.Ofbiz.Accounting.AccommodationClass do
+    belongs_to :parent_accommodation_class, UniboExPoc.Ofbiz.Accounting.AccommodationClass do
       public? true
       source_attribute :parent_class_id
     end

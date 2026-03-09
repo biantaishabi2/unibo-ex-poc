@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.SurveyResponseAnswer do
+defmodule UniboExPoc.Ofbiz.Content.SurveyResponseAnswer do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_survey_response_answers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -54,15 +54,15 @@ defmodule UniboV4.Ofbiz.Content.SurveyResponseAnswer do
   end
 
   relationships do
-    belongs_to :survey_response, UniboV4.Ofbiz.Content.SurveyResponse do
+    belongs_to :survey_response, UniboExPoc.Ofbiz.Content.SurveyResponse do
       public? true
       attribute_type :string
     end
-    belongs_to :survey_question, UniboV4.Ofbiz.Content.SurveyQuestion do
+    belongs_to :survey_question, UniboExPoc.Ofbiz.Content.SurveyQuestion do
       public? true
       attribute_type :string
     end
-    belongs_to :content, UniboV4.Ofbiz.Content.Content do
+    belongs_to :content, UniboExPoc.Ofbiz.Content.Content do
       public? true
       attribute_type :string
     end

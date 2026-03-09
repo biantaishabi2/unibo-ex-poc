@@ -1,10 +1,10 @@
-defmodule UniboV4.Forum.Workflows.Post.PostLifecycleWorkflow do
+defmodule UniboExPoc.Forum.Workflows.Post.PostLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Forum.Post
+  alias UniboExPoc.Forum.Post
 
   def steps do
     [:create, :validate, :update, :close, :reopen, :flag, :mark_offensive, :accept_answer, :unaccept_answer, :toggle_favourite, :destroy]
@@ -177,6 +177,7 @@ defmodule UniboV4.Forum.Workflows.Post.PostLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :validate -> nil
@@ -194,6 +195,7 @@ defmodule UniboV4.Forum.Workflows.Post.PostLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :validate -> false

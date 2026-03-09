@@ -1,10 +1,10 @@
-defmodule UniboV4.Loyalty.Workflows.LoyaltyCard.CardLifecycleFlowWorkflow do
+defmodule UniboExPoc.Loyalty.Workflows.LoyaltyCard.CardLifecycleFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Loyalty.LoyaltyCard
+  alias UniboExPoc.Loyalty.LoyaltyCard
 
   def steps do
     [:create, :earn_points, :redeem_points, :freeze, :unfreeze, :expire_card]
@@ -157,6 +157,7 @@ defmodule UniboV4.Loyalty.Workflows.LoyaltyCard.CardLifecycleFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :earn_points -> nil
@@ -169,6 +170,7 @@ defmodule UniboV4.Loyalty.Workflows.LoyaltyCard.CardLifecycleFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :earn_points -> false

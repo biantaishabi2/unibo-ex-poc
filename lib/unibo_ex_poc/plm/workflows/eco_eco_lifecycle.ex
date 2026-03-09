@@ -1,10 +1,10 @@
-defmodule UniboV4.PLM.Workflows.Eco.EcoLifecycleWorkflow do
+defmodule UniboExPoc.PLM.Workflows.Eco.EcoLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.PLM.Eco
+  alias UniboExPoc.PLM.Eco
 
   def steps do
     [:create, :advance_stage, :apply_changes, :rebase]
@@ -149,6 +149,7 @@ defmodule UniboV4.PLM.Workflows.Eco.EcoLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :advance_stage -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.PLM.Workflows.Eco.EcoLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :advance_stage -> false

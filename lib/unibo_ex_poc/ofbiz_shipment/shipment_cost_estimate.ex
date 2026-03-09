@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.ShipmentCostEstimate do
+defmodule UniboExPoc.Ofbiz.Shipment.ShipmentCostEstimate do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_cost_estimates"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -53,52 +53,52 @@ defmodule UniboV4.Ofbiz.Shipment.ShipmentCostEstimate do
   end
 
   relationships do
-    belongs_to :product_store_shipment_meth, UniboV4.Ofbiz.Shipment.ProductStoreShipmentMeth do
+    belongs_to :product_store_shipment_meth, UniboExPoc.Ofbiz.Shipment.ProductStoreShipmentMeth do
       public? true
       source_attribute :product_store_ship_meth_id
       attribute_type :string
     end
-    belongs_to :party, UniboV4.Ofbiz.Shipment.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.Shipment.Party do
       public? true
       attribute_type :string
     end
-    belongs_to :role_type, UniboV4.Ofbiz.Shipment.RoleType do
+    belongs_to :role_type, UniboExPoc.Ofbiz.Shipment.RoleType do
       public? true
       attribute_type :string
     end
-    belongs_to :weight_uom, UniboV4.Ofbiz.Shipment.Uom do
+    belongs_to :weight_uom, UniboExPoc.Ofbiz.Shipment.Uom do
       public? true
       attribute_type :string
     end
-    belongs_to :quantity_uom, UniboV4.Ofbiz.Shipment.Uom do
+    belongs_to :quantity_uom, UniboExPoc.Ofbiz.Shipment.Uom do
       public? true
       attribute_type :string
     end
-    belongs_to :price_uom, UniboV4.Ofbiz.Shipment.Uom do
+    belongs_to :price_uom, UniboExPoc.Ofbiz.Shipment.Uom do
       public? true
       attribute_type :string
     end
-    belongs_to :to_geo, UniboV4.Ofbiz.Shipment.Geo do
+    belongs_to :to_geo, UniboExPoc.Ofbiz.Shipment.Geo do
       public? true
       source_attribute :geo_id_to
       attribute_type :string
     end
-    belongs_to :from_geo, UniboV4.Ofbiz.Shipment.Geo do
+    belongs_to :from_geo, UniboExPoc.Ofbiz.Shipment.Geo do
       public? true
       source_attribute :geo_id_from
       attribute_type :string
     end
-    belongs_to :weight_quantity_break, UniboV4.Ofbiz.Shipment.QuantityBreak do
+    belongs_to :weight_quantity_break, UniboExPoc.Ofbiz.Shipment.QuantityBreak do
       public? true
       source_attribute :weight_break_id
       attribute_type :string
     end
-    belongs_to :quantity_quantity_break, UniboV4.Ofbiz.Shipment.QuantityBreak do
+    belongs_to :quantity_quantity_break, UniboExPoc.Ofbiz.Shipment.QuantityBreak do
       public? true
       source_attribute :quantity_break_id
       attribute_type :string
     end
-    belongs_to :price_quantity_break, UniboV4.Ofbiz.Shipment.QuantityBreak do
+    belongs_to :price_quantity_break, UniboExPoc.Ofbiz.Shipment.QuantityBreak do
       public? true
       source_attribute :price_break_id
       attribute_type :string

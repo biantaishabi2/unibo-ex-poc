@@ -1,7 +1,7 @@
-defmodule UniboV4.Expenses.AccountMove do
+defmodule UniboExPoc.Expenses.AccountMove do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Expenses,
+    domain: UniboExPoc.Expenses,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Expenses.AccountMove do
 
   postgres do
     table "expenses_account_moves"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -30,7 +30,7 @@ defmodule UniboV4.Expenses.AccountMove do
   end
 
   relationships do
-    belongs_to :expense_report, UniboV4.Expenses.ExpenseReport do
+    belongs_to :expense_report, UniboExPoc.Expenses.ExpenseReport do
       public? true
     end
   end

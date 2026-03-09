@@ -1,10 +1,10 @@
-defmodule UniboV4.Helpdesk.Workflows.HelpdeskTicket.TicketLifecycleWorkflow do
+defmodule UniboExPoc.Helpdesk.Workflows.HelpdeskTicket.TicketLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Helpdesk.HelpdeskTicket
+  alias UniboExPoc.Helpdesk.HelpdeskTicket
 
   def steps do
     [:create, :assign, :change_stage, :resolve, :close, :reopen, :archive, :update_priority, :plan_intervention]
@@ -169,6 +169,7 @@ defmodule UniboV4.Helpdesk.Workflows.HelpdeskTicket.TicketLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :assign -> nil
@@ -184,6 +185,7 @@ defmodule UniboV4.Helpdesk.Workflows.HelpdeskTicket.TicketLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :assign -> false

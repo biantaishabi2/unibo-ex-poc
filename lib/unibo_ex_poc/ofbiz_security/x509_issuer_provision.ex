@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Security.X509IssuerProvision do
+defmodule UniboExPoc.Ofbiz.Security.X509IssuerProvision do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Security,
+    domain: UniboExPoc.Ofbiz.Security,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Security.X509IssuerProvision do
 
   postgres do
     table "security_x509_issuer_provisions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

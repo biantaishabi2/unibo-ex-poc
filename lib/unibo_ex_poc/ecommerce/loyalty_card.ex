@@ -14,10 +14,10 @@
 #   share --> add_points
 #   share --> update
 # ```
-defmodule UniboV4.Ecommerce.LoyaltyCard do
+defmodule UniboExPoc.Ecommerce.LoyaltyCard do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ecommerce,
+    domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -27,7 +27,7 @@ defmodule UniboV4.Ecommerce.LoyaltyCard do
 
   postgres do
     table "ecommerce_loyalty_cards"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -66,11 +66,11 @@ defmodule UniboV4.Ecommerce.LoyaltyCard do
   end
 
   relationships do
-    belongs_to :program, UniboV4.Ecommerce.LoyaltyProgram do
+    belongs_to :program, UniboExPoc.Ecommerce.LoyaltyProgram do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.Ecommerce.Party do
+    belongs_to :partner, UniboExPoc.Ecommerce.Party do
       public? true
       source_attribute :partner_party_id
     end

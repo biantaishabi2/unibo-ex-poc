@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.PartyContactMechPurpose do
+defmodule UniboExPoc.Ofbiz.Party.PartyContactMechPurpose do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_contact_mech_purposes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,31 +41,31 @@ defmodule UniboV4.Ofbiz.Party.PartyContactMechPurpose do
   end
 
   relationships do
-    belongs_to :contact_mech_purpose_type, UniboV4.Ofbiz.Party.ContactMechPurposeType do
+    belongs_to :contact_mech_purpose_type, UniboExPoc.Ofbiz.Party.ContactMechPurposeType do
       public? true
     end
-    belongs_to :party, UniboV4.Ofbiz.Party.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
     end
-    belongs_to :person, UniboV4.Ofbiz.Party.Person do
-      public? true
-      source_attribute :party_id
-      define_attribute? false
-    end
-    belongs_to :party_group, UniboV4.Ofbiz.Party.PartyGroup do
+    belongs_to :person, UniboExPoc.Ofbiz.Party.Person do
       public? true
       source_attribute :party_id
       define_attribute? false
     end
-    belongs_to :contact_mech, UniboV4.Ofbiz.Party.ContactMech do
+    belongs_to :party_group, UniboExPoc.Ofbiz.Party.PartyGroup do
+      public? true
+      source_attribute :party_id
+      define_attribute? false
+    end
+    belongs_to :contact_mech, UniboExPoc.Ofbiz.Party.ContactMech do
       public? true
     end
-    belongs_to :postal_address, UniboV4.Ofbiz.Party.PostalAddress do
+    belongs_to :postal_address, UniboExPoc.Ofbiz.Party.PostalAddress do
       public? true
       source_attribute :contact_mech_id
       define_attribute? false
     end
-    belongs_to :telecom_number, UniboV4.Ofbiz.Party.TelecomNumber do
+    belongs_to :telecom_number, UniboExPoc.Ofbiz.Party.TelecomNumber do
       public? true
       source_attribute :contact_mech_id
       define_attribute? false

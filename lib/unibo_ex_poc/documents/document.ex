@@ -12,13 +12,13 @@
 #   toggle_favorite --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Documents.Document do
+defmodule UniboExPoc.Documents.Document do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Documents,
+    domain: UniboExPoc.Documents,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Documents.Document.Notifier]
+    notifiers: [UniboExPoc.Documents.Document.Notifier]
 
   resource do
     description "文档记录，支持文件、链接、请求占位、文件夹四种类型"
@@ -26,7 +26,7 @@ defmodule UniboV4.Documents.Document do
 
   postgres do
     table "documents_documents"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -134,51 +134,51 @@ defmodule UniboV4.Documents.Document do
 
   calculations do
     calculate :is_favorited, :boolean, expr(contains(favorited_by, actor.id))
-    calculate :available_rule_ids, {:array, :string}, {UniboV4.Documents.Calculations.Document.AvailableRuleIds, []}
-    calculate :thumbnail, :string, {UniboV4.Documents.Calculations.Document.Thumbnail, []}
-    calculate :file_size_display, :string, {UniboV4.Documents.Calculations.Document.FileSizeDisplay, []}
-    calculate :checksum_display, :string, {UniboV4.Documents.Calculations.Document.ChecksumDisplay, []}
-    calculate :mimetype_display, :string, {UniboV4.Documents.Calculations.Document.MimetypeDisplay, []}
+    calculate :available_rule_ids, {:array, :string}, {UniboExPoc.Documents.Calculations.Document.AvailableRuleIds, []}
+    calculate :thumbnail, :string, {UniboExPoc.Documents.Calculations.Document.Thumbnail, []}
+    calculate :file_size_display, :string, {UniboExPoc.Documents.Calculations.Document.FileSizeDisplay, []}
+    calculate :checksum_display, :string, {UniboExPoc.Documents.Calculations.Document.ChecksumDisplay, []}
+    calculate :mimetype_display, :string, {UniboExPoc.Documents.Calculations.Document.MimetypeDisplay, []}
   end
 
   relationships do
-    belongs_to :folder, UniboV4.Documents.Folder do
+    belongs_to :folder, UniboExPoc.Documents.Folder do
       public? true
       allow_nil? false
     end
-    belongs_to :owner, UniboV4.Documents.Party do
+    belongs_to :owner, UniboExPoc.Documents.Party do
       public? true
       source_attribute :owner_party_id
     end
-    belongs_to :partner, UniboV4.Documents.Contact do
+    belongs_to :partner, UniboExPoc.Documents.Contact do
       public? true
     end
-    belongs_to :attachment, UniboV4.Documents.Attachment do
+    belongs_to :attachment, UniboExPoc.Documents.Attachment do
       public? true
     end
-    belongs_to :company, UniboV4.Documents.Party do
+    belongs_to :company, UniboExPoc.Documents.Party do
       public? true
       source_attribute :company_party_id
     end
-    many_to_many :tags, UniboV4.Documents.Tag do
+    many_to_many :tags, UniboExPoc.Documents.Tag do
       public? true
-      through UniboV4.Documents.DocumentTagLink
+      through UniboExPoc.Documents.DocumentTagLink
     end
-    many_to_many :favorited_by, UniboV4.Documents.Party do
+    many_to_many :favorited_by, UniboExPoc.Documents.Party do
       public? true
-      through UniboV4.Documents.DocumentFavoriteLink
+      through UniboExPoc.Documents.DocumentFavoriteLink
       destination_attribute_on_join_resource :user_party_id
     end
-    many_to_many :groups, UniboV4.Documents.Group do
+    many_to_many :groups, UniboExPoc.Documents.Group do
       public? true
-      through UniboV4.Documents.DocumentGroupLink
+      through UniboExPoc.Documents.DocumentGroupLink
     end
-    has_many :versions, UniboV4.Documents.DocumentVersion do
+    has_many :versions, UniboExPoc.Documents.DocumentVersion do
       public? true
     end
-    many_to_many :shares, UniboV4.Documents.Share do
+    many_to_many :shares, UniboExPoc.Documents.Share do
       public? true
-      through UniboV4.Documents.DocumentShareLink
+      through UniboExPoc.Documents.DocumentShareLink
     end
   end
 

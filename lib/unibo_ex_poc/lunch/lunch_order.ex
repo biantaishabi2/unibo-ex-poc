@@ -12,13 +12,13 @@
 #   action_reset --> action_send
 #   action_reset --> action_cancel
 # ```
-defmodule UniboV4.Lunch.LunchOrder do
+defmodule UniboExPoc.Lunch.LunchOrder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Lunch,
+    domain: UniboExPoc.Lunch,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Lunch.LunchOrder.Notifier]
+    notifiers: [UniboExPoc.Lunch.LunchOrder.Notifier]
 
   resource do
     description "午餐订单行，支持购物车合并、配料选择、钱包预检"
@@ -26,7 +26,7 @@ defmodule UniboV4.Lunch.LunchOrder do
 
   postgres do
     table "lunch_orders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -91,31 +91,31 @@ defmodule UniboV4.Lunch.LunchOrder do
   end
 
   relationships do
-    belongs_to :product, UniboV4.Lunch.LunchProduct do
+    belongs_to :product, UniboExPoc.Lunch.LunchProduct do
       public? true
       allow_nil? false
     end
-    belongs_to :user, UniboV4.Lunch.Party do
+    belongs_to :user, UniboExPoc.Lunch.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id
     end
-    belongs_to :lunch_location, UniboV4.Lunch.LunchLocation do
+    belongs_to :lunch_location, UniboExPoc.Lunch.LunchLocation do
       public? true
     end
-    many_to_many :topping_ids_1, UniboV4.Lunch.LunchTopping do
+    many_to_many :topping_ids_1, UniboExPoc.Lunch.LunchTopping do
       public? true
-      through UniboV4.Lunch.LunchOrderTopping1Link
+      through UniboExPoc.Lunch.LunchOrderTopping1Link
       destination_attribute_on_join_resource :topping_id
     end
-    many_to_many :topping_ids_2, UniboV4.Lunch.LunchTopping do
+    many_to_many :topping_ids_2, UniboExPoc.Lunch.LunchTopping do
       public? true
-      through UniboV4.Lunch.LunchOrderTopping2Link
+      through UniboExPoc.Lunch.LunchOrderTopping2Link
       destination_attribute_on_join_resource :topping_id
     end
-    many_to_many :topping_ids_3, UniboV4.Lunch.LunchTopping do
+    many_to_many :topping_ids_3, UniboExPoc.Lunch.LunchTopping do
       public? true
-      through UniboV4.Lunch.LunchOrderTopping3Link
+      through UniboExPoc.Lunch.LunchOrderTopping3Link
       destination_attribute_on_join_resource :topping_id
     end
   end

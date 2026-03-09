@@ -15,13 +15,13 @@
 #   clone_page --> update
 #   clone_page --> publish
 # ```
-defmodule UniboV4.Website.WebPage do
+defmodule UniboExPoc.Website.WebPage do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Website,
+    domain: UniboExPoc.Website,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Website.WebPage.Notifier]
+    notifiers: [UniboExPoc.Website.WebPage.Notifier]
 
   resource do
     description "网站静态页面，支持 URL slugification 与定时发布"
@@ -29,7 +29,7 @@ defmodule UniboV4.Website.WebPage do
 
   postgres do
     table "website_web_pages"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -121,10 +121,10 @@ defmodule UniboV4.Website.WebPage do
   end
 
   relationships do
-    belongs_to :website, UniboV4.Website.WebSite do
+    belongs_to :website, UniboExPoc.Website.WebSite do
       public? true
     end
-    has_many :menus, UniboV4.Website.Menu do
+    has_many :menus, UniboExPoc.Website.Menu do
       public? true
       source_attribute :website_id
       destination_attribute :page_id
@@ -140,18 +140,18 @@ defmodule UniboV4.Website.WebPage do
       validate present(:url)
       validate present(:name)
       # validation: url_unique_per_website — URL 在同一 website_id 内必须唯一
-      change UniboV4.Website.Changes.WebPage.CreateCall3
+      change UniboExPoc.Website.Changes.WebPage.CreateCall3
       change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:url, :name, :website_published, :date_publish, :website_indexed, :header_overlay, :header_color, :header_visible, :footer_visible, :visibility, :visibility_password]
       # skipped: validate custom : (incompatible with bulk update atomic path)
-      change UniboV4.Website.Changes.WebPage.UpdateCall3
-      change UniboV4.Website.Changes.WebPage.UpdateCall4
-      change UniboV4.Website.Changes.WebPage.UpdateCall5
-      change UniboV4.Website.Changes.WebPage.UpdateCall6
-      change UniboV4.Website.Changes.WebPage.UpdateCall7
+      change UniboExPoc.Website.Changes.WebPage.UpdateCall3
+      change UniboExPoc.Website.Changes.WebPage.UpdateCall4
+      change UniboExPoc.Website.Changes.WebPage.UpdateCall5
+      change UniboExPoc.Website.Changes.WebPage.UpdateCall6
+      change UniboExPoc.Website.Changes.WebPage.UpdateCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -160,11 +160,11 @@ defmodule UniboV4.Website.WebPage do
       accept []
       # skipped: validate custom : (incompatible with bulk update atomic path)
       change set_attribute(:website_published, true)
-      change UniboV4.Website.Changes.WebPage.PublishCall3
-      change UniboV4.Website.Changes.WebPage.PublishCall4
-      change UniboV4.Website.Changes.WebPage.PublishCall5
-      change UniboV4.Website.Changes.WebPage.PublishCall6
-      change UniboV4.Website.Changes.WebPage.PublishCall7
+      change UniboExPoc.Website.Changes.WebPage.PublishCall3
+      change UniboExPoc.Website.Changes.WebPage.PublishCall4
+      change UniboExPoc.Website.Changes.WebPage.PublishCall5
+      change UniboExPoc.Website.Changes.WebPage.PublishCall6
+      change UniboExPoc.Website.Changes.WebPage.PublishCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -173,11 +173,11 @@ defmodule UniboV4.Website.WebPage do
       accept []
       # skipped: validate custom : (incompatible with bulk update atomic path)
       change set_attribute(:website_published, false)
-      change UniboV4.Website.Changes.WebPage.UnpublishCall3
-      change UniboV4.Website.Changes.WebPage.UnpublishCall4
-      change UniboV4.Website.Changes.WebPage.UnpublishCall5
-      change UniboV4.Website.Changes.WebPage.UnpublishCall6
-      change UniboV4.Website.Changes.WebPage.UnpublishCall7
+      change UniboExPoc.Website.Changes.WebPage.UnpublishCall3
+      change UniboExPoc.Website.Changes.WebPage.UnpublishCall4
+      change UniboExPoc.Website.Changes.WebPage.UnpublishCall5
+      change UniboExPoc.Website.Changes.WebPage.UnpublishCall6
+      change UniboExPoc.Website.Changes.WebPage.UnpublishCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -188,7 +188,7 @@ defmodule UniboV4.Website.WebPage do
       validate present(:url)
       validate present(:name)
       # validation: url_unique_per_website — URL 在同一 website_id 内必须唯一
-      change UniboV4.Website.Changes.WebPage.ClonePageCall3
+      change UniboExPoc.Website.Changes.WebPage.ClonePageCall3
       change set_attribute(:id, expr(id))
     end
   end

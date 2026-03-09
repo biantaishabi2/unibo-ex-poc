@@ -1,4 +1,4 @@
-defmodule UniboV4.Organization.OrgScope do
+defmodule UniboExPoc.Organization.OrgScope do
   @moduledoc """
   组织范围计算——给定 actor 的 party_id，返回其可访问的所有 party_id。
 
@@ -25,7 +25,7 @@ defmodule UniboV4.Organization.OrgScope do
   返回 party_id 列表（包含 actor 自身）。
   """
   @spec resolve(Ecto.UUID.t(), module()) :: [Ecto.UUID.t()]
-  def resolve(actor_party_id, repo \\ UniboV4.Repo)
+  def resolve(actor_party_id, repo \\ UniboExPoc.Repo)
 
   def resolve(nil, _repo), do: []
 

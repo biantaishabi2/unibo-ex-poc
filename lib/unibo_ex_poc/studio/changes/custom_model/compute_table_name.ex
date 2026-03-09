@@ -1,4 +1,4 @@
-defmodule UniboV4.Studio.Changes.CustomModel.ComputeTableName do
+defmodule UniboExPoc.Studio.Changes.CustomModel.ComputeTableName do
   @moduledoc """
   Change 模块: 计算 :table_name (entity: custom_model)
   原始 expr: op: func args: - concat - studio_ - op: ref   args:   - technical_name

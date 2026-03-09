@@ -13,10 +13,10 @@
 #   toggle_favorite --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Lunch.LunchProduct do
+defmodule UniboExPoc.Lunch.LunchProduct do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Lunch,
+    domain: UniboExPoc.Lunch,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -26,7 +26,7 @@ defmodule UniboV4.Lunch.LunchProduct do
 
   postgres do
     table "lunch_products"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -82,30 +82,30 @@ defmodule UniboV4.Lunch.LunchProduct do
 
   calculations do
     calculate :is_new, :boolean, expr(new_until >= today())
-    calculate :is_favorite, :boolean, {UniboV4.Lunch.Calculations.LunchProduct.IsFavorite, []}
-    calculate :last_order_date, :date, {UniboV4.Lunch.Calculations.LunchProduct.LastOrderDate, []}
-    calculate :product_image, :string, {UniboV4.Lunch.Calculations.LunchProduct.ProductImage, []}
+    calculate :is_favorite, :boolean, {UniboExPoc.Lunch.Calculations.LunchProduct.IsFavorite, []}
+    calculate :last_order_date, :date, {UniboExPoc.Lunch.Calculations.LunchProduct.LastOrderDate, []}
+    calculate :product_image, :string, {UniboExPoc.Lunch.Calculations.LunchProduct.ProductImage, []}
   end
 
   relationships do
-    belongs_to :supplier, UniboV4.Lunch.LunchSupplier do
+    belongs_to :supplier, UniboExPoc.Lunch.LunchSupplier do
       public? true
       allow_nil? false
     end
-    belongs_to :category, UniboV4.Lunch.LunchCategory do
+    belongs_to :category, UniboExPoc.Lunch.LunchCategory do
       public? true
       allow_nil? false
     end
-    many_to_many :favorite_users, UniboV4.Lunch.Party do
+    many_to_many :favorite_users, UniboExPoc.Lunch.Party do
       public? true
-      through UniboV4.Lunch.LunchProductFavoriteUserLink
+      through UniboExPoc.Lunch.LunchProductFavoriteUserLink
       destination_attribute_on_join_resource :user_party_id
     end
-    has_many :orders, UniboV4.Lunch.LunchOrder do
+    has_many :orders, UniboExPoc.Lunch.LunchOrder do
       public? true
       destination_attribute :product_id
     end
-    has_many :translations, UniboV4.Lunch.LunchProductTranslation, public?: true
+    has_many :translations, UniboExPoc.Lunch.LunchProductTranslation, public?: true
   end
 
   actions do

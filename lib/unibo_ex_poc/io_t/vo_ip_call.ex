@@ -13,13 +13,13 @@
 #   to_voicemail --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.IoT.VoIPCall do
+defmodule UniboExPoc.IoT.VoIPCall do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.IoT.VoIPCall.Notifier]
+    notifiers: [UniboExPoc.IoT.VoIPCall.Notifier]
 
   resource do
     description "通话记录，跟踪从振铃到结束的完整生命周期，支持保持/转接，自动关联联系人和商机"
@@ -27,7 +27,7 @@ defmodule UniboV4.IoT.VoIPCall do
 
   postgres do
     table "io_t_vo_ip_calls"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -160,45 +160,45 @@ defmodule UniboV4.IoT.VoIPCall do
 
   calculations do
     calculate :wait_time, :integer, expr(datetime_diff_seconds(start_time, created_at))
-    calculate :billsec, :integer, {UniboV4.IoT.Calculations.VoIpCall.Billsec, []}
+    calculate :billsec, :integer, {UniboExPoc.IoT.Calculations.VoIpCall.Billsec, []}
   end
 
   relationships do
-    belongs_to :user, UniboV4.IoT.Party do
+    belongs_to :user, UniboExPoc.IoT.Party do
       public? true
       source_attribute :user_party_id
     end
-    belongs_to :org, UniboV4.IoT.Org do
+    belongs_to :org, UniboExPoc.IoT.Org do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    belongs_to :provider, UniboV4.IoT.VoIPProvider do
+    belongs_to :provider, UniboExPoc.IoT.VoIPProvider do
       public? true
       attribute_type :integer
     end
-    belongs_to :linked_contact, UniboV4.IoT.Contact do
+    belongs_to :linked_contact, UniboExPoc.IoT.Contact do
       public? true
       attribute_type :integer
     end
-    belongs_to :linked_lead, UniboV4.IoT.CrmLead do
+    belongs_to :linked_lead, UniboExPoc.IoT.CrmLead do
       public? true
       attribute_type :integer
     end
-    belongs_to :linked_ticket, UniboV4.IoT.HelpdeskTicket do
+    belongs_to :linked_ticket, UniboExPoc.IoT.HelpdeskTicket do
       public? true
       attribute_type :integer
     end
-    belongs_to :queue, UniboV4.IoT.CallQueue do
+    belongs_to :queue, UniboExPoc.IoT.CallQueue do
       public? true
       attribute_type :integer
     end
-    belongs_to :transfer_from, UniboV4.IoT.VoIPCall do
+    belongs_to :transfer_from, UniboExPoc.IoT.VoIPCall do
       public? true
       source_attribute :transfer_from_call_id
       attribute_type :integer
     end
-    has_one :voicemail, UniboV4.IoT.Voicemail do
+    has_one :voicemail, UniboExPoc.IoT.Voicemail do
       public? true
       source_attribute :transfer_from_call_id
       destination_attribute :call_id
@@ -257,7 +257,7 @@ defmodule UniboV4.IoT.VoIPCall do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:state, :completed)
       change set_attribute(:end_time, &DateTime.utc_now/0)
-      change UniboV4.IoT.Changes.VoIpCall.ComputeDuration
+      change UniboExPoc.IoT.Changes.VoIpCall.ComputeDuration
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -325,7 +325,7 @@ defmodule UniboV4.IoT.VoIPCall do
       # message: "只有保持中的通话可以恢复"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:state, :in_progress)
-      change UniboV4.IoT.Changes.VoIpCall.ComputeHoldDuration
+      change UniboExPoc.IoT.Changes.VoIpCall.ComputeHoldDuration
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -347,7 +347,7 @@ defmodule UniboV4.IoT.VoIPCall do
       change set_attribute(:transfer_type, expr(^arg(:transfer_mode)))
       change set_attribute(:state, :completed)
       change set_attribute(:end_time, &DateTime.utc_now/0)
-      change UniboV4.IoT.Changes.VoIpCall.ComputeDuration
+      change UniboExPoc.IoT.Changes.VoIpCall.ComputeDuration
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

@@ -1,4 +1,4 @@
-defmodule UniboV4.Purchasing.Calculations.PurchaseOrderLine.QtyToInvoice do
+defmodule UniboExPoc.Purchasing.Calculations.PurchaseOrderLine.QtyToInvoice do
   @moduledoc """
   Calculation 模块: :qty_to_invoice (type: :decimal, entity: purchase_order_line)
   原始 expr: op: custom args: []

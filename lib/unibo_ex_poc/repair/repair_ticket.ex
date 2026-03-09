@@ -12,13 +12,13 @@
 #   deliver --> [*] : delivered
 #   cancel --> [*] : cancelled
 # ```
-defmodule UniboV4.Repair.RepairTicket do
+defmodule UniboExPoc.Repair.RepairTicket do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Repair,
+    domain: UniboExPoc.Repair,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Repair.RepairTicket.Notifier]
+    notifiers: [UniboExPoc.Repair.RepairTicket.Notifier]
 
   resource do
     description "维修工单，客户送修产品的主工单，追踪从接单到交付的全生命周期"
@@ -26,7 +26,7 @@ defmodule UniboV4.Repair.RepairTicket do
 
   postgres do
     table "repair_tickets"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -101,20 +101,20 @@ defmodule UniboV4.Repair.RepairTicket do
   end
 
   relationships do
-    belongs_to :customer, UniboV4.Repair.Party do
+    belongs_to :customer, UniboExPoc.Repair.Party do
       public? true
       allow_nil? false
       source_attribute :customer_party_id
     end
-    belongs_to :technician, UniboV4.Repair.Party do
+    belongs_to :technician, UniboExPoc.Repair.Party do
       public? true
       source_attribute :technician_party_id
     end
-    has_many :repair_lines, UniboV4.Repair.RepairLine do
+    has_many :repair_lines, UniboExPoc.Repair.RepairLine do
       public? true
       destination_attribute :repair_ticket_id
     end
-    has_many :repair_fees, UniboV4.Repair.RepairFee do
+    has_many :repair_fees, UniboExPoc.Repair.RepairFee do
       public? true
       destination_attribute :repair_ticket_id
     end

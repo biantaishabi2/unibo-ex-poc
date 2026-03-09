@@ -1,12 +1,12 @@
-defmodule UniboV4.Fleet.FleetVehicleTypeTranslation do
+defmodule UniboExPoc.Fleet.FleetVehicleTypeTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Fleet,
+    domain: UniboExPoc.Fleet,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "fleet_fleet_vehicle_type_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Fleet.FleetVehicleTypeTranslation do
   end
 
   relationships do
-    belongs_to :fleet_vehicle_type, UniboV4.Fleet.FleetVehicleType do
+    belongs_to :fleet_vehicle_type, UniboExPoc.Fleet.FleetVehicleType do
       public? true
       allow_nil? false
     end

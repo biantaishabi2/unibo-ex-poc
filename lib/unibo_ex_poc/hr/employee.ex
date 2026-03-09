@@ -8,13 +8,13 @@
 #   suspend --> [*]
 #   reactivate --> [*]
 # ```
-defmodule UniboV4.HR.Employee do
+defmodule UniboExPoc.HR.Employee do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.HR.Employee.Notifier]
+    notifiers: [UniboExPoc.HR.Employee.Notifier]
 
   resource do
     description "员工"
@@ -22,7 +22,7 @@ defmodule UniboV4.HR.Employee do
 
   postgres do
     table "hr_employees"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -120,53 +120,53 @@ defmodule UniboV4.HR.Employee do
   end
 
   relationships do
-    belongs_to :party, UniboV4.HR.Party do
+    belongs_to :party, UniboExPoc.HR.Party do
       public? true
       allow_nil? false
     end
-    belongs_to :department, UniboV4.HR.Department do
+    belongs_to :department, UniboExPoc.HR.Department do
       public? true
     end
-    belongs_to :position, UniboV4.HR.JobPosition do
+    belongs_to :position, UniboExPoc.HR.JobPosition do
       public? true
     end
-    belongs_to :parent, UniboV4.HR.Employee do
+    belongs_to :parent, UniboExPoc.HR.Employee do
       public? true
     end
-    belongs_to :coach, UniboV4.HR.Employee do
+    belongs_to :coach, UniboExPoc.HR.Employee do
       public? true
     end
-    has_many :contracts, UniboV4.HR.EmploymentContract do
+    has_many :contracts, UniboExPoc.HR.EmploymentContract do
       public? true
     end
-    has_many :leave_requests, UniboV4.HR.LeaveRequest do
+    has_many :leave_requests, UniboExPoc.HR.LeaveRequest do
       public? true
     end
-    has_many :attendances, UniboV4.HR.Attendance do
+    has_many :attendances, UniboExPoc.HR.Attendance do
       public? true
     end
-    has_many :pay_slips, UniboV4.HR.PaySlip do
+    has_many :pay_slips, UniboExPoc.HR.PaySlip do
       public? true
     end
-    has_many :performance_reviews, UniboV4.HR.PerformanceReview do
+    has_many :performance_reviews, UniboExPoc.HR.PerformanceReview do
       public? true
     end
-    has_many :trainings, UniboV4.HR.Training do
+    has_many :trainings, UniboExPoc.HR.Training do
       public? true
     end
-    has_many :skills, UniboV4.HR.EmployeeSkill do
+    has_many :skills, UniboExPoc.HR.EmployeeSkill do
       public? true
     end
-    has_many :employee_skill_logs, UniboV4.HR.EmployeeSkillLog do
+    has_many :employee_skill_logs, UniboExPoc.HR.EmployeeSkillLog do
       public? true
     end
-    has_many :resume_lines, UniboV4.HR.ResumeLine do
+    has_many :resume_lines, UniboExPoc.HR.ResumeLine do
       public? true
     end
-    has_many :work_entries, UniboV4.HR.WorkEntry do
+    has_many :work_entries, UniboExPoc.HR.WorkEntry do
       public? true
     end
-    has_many :employee_locations, UniboV4.HR.EmployeeLocation do
+    has_many :employee_locations, UniboExPoc.HR.EmployeeLocation do
       public? true
     end
   end

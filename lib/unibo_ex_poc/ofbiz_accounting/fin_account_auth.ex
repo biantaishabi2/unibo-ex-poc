@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.FinAccountAuth do
+defmodule UniboExPoc.Ofbiz.Accounting.FinAccountAuth do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_fin_account_auths"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,7 +38,7 @@ defmodule UniboV4.Ofbiz.Accounting.FinAccountAuth do
   end
 
   relationships do
-    belongs_to :fin_account, UniboV4.Ofbiz.Accounting.FinAccount do
+    belongs_to :fin_account, UniboExPoc.Ofbiz.Accounting.FinAccount do
       public? true
     end
   end

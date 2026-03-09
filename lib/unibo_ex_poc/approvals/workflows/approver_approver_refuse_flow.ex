@@ -1,10 +1,10 @@
-defmodule UniboV4.Approvals.Workflows.Approver.ApproverRefuseFlowWorkflow do
+defmodule UniboExPoc.Approvals.Workflows.Approver.ApproverRefuseFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Approvals.Approver
+  alias UniboExPoc.Approvals.Approver
 
   def steps do
     [:create, :refuse]
@@ -141,6 +141,7 @@ defmodule UniboV4.Approvals.Workflows.Approver.ApproverRefuseFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :refuse -> nil
@@ -149,6 +150,7 @@ defmodule UniboV4.Approvals.Workflows.Approver.ApproverRefuseFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :refuse -> false

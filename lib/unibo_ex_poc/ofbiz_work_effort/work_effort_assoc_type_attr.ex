@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortAssocTypeAttr do
+defmodule UniboExPoc.Ofbiz.WorkEffort.WorkEffortAssocTypeAttr do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_assoc_type_attrs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,11 +37,11 @@ defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortAssocTypeAttr do
   end
 
   relationships do
-    belongs_to :work_effort_assoc_type, UniboV4.Ofbiz.WorkEffort.WorkEffortAssocType do
+    belongs_to :work_effort_assoc_type, UniboExPoc.Ofbiz.WorkEffort.WorkEffortAssocType do
       public? true
       attribute_type :string
     end
-    has_many :work_effort_assoc_attribute, UniboV4.Ofbiz.WorkEffort.WorkEffortAssocAttribute do
+    has_many :work_effort_assoc_attribute, UniboExPoc.Ofbiz.WorkEffort.WorkEffortAssocAttribute do
       public? true
       source_attribute :work_effort_assoc_type_id
       destination_attribute :work_effort_assoc_type_id

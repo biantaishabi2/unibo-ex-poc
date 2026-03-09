@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.SubscriptionResource do
+defmodule UniboExPoc.Ofbiz.Product.SubscriptionResource do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_subscription_resources"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -46,7 +46,7 @@ defmodule UniboV4.Ofbiz.Product.SubscriptionResource do
   end
 
   relationships do
-    belongs_to :parent_subscription_resource, UniboV4.Ofbiz.Product.SubscriptionResource do
+    belongs_to :parent_subscription_resource, UniboExPoc.Ofbiz.Product.SubscriptionResource do
       public? true
       source_attribute :parent_resource_id
     end

@@ -9,10 +9,10 @@
 #   merge --> [*]
 #   cleanup --> [*]
 # ```
-defmodule UniboV4.Blog.Visitor do
+defmodule UniboExPoc.Blog.Visitor do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Blog,
+    domain: UniboExPoc.Blog,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -22,7 +22,7 @@ defmodule UniboV4.Blog.Visitor do
 
   postgres do
     table "blog_visitors"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -82,14 +82,14 @@ defmodule UniboV4.Blog.Visitor do
   end
 
   relationships do
-    belongs_to :partner, UniboV4.Blog.Party do
+    belongs_to :partner, UniboExPoc.Blog.Party do
       public? true
       source_attribute :partner_party_id
     end
-    has_many :website_tracks, UniboV4.Blog.WebsiteTrack do
+    has_many :website_tracks, UniboExPoc.Blog.WebsiteTrack do
       public? true
     end
-    belongs_to :last_visited_page, UniboV4.Website.WebPage do
+    belongs_to :last_visited_page, UniboExPoc.Website.WebPage do
       public? true
     end
   end
@@ -108,7 +108,7 @@ defmodule UniboV4.Blog.Visitor do
       primary? true
       accept []
       change set_attribute(:visit_count, expr((visit_count + 1)))
-      change UniboV4.Blog.Changes.Visitor.ComputeLastConnectionDatetime
+      change UniboExPoc.Blog.Changes.Visitor.ComputeLastConnectionDatetime
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

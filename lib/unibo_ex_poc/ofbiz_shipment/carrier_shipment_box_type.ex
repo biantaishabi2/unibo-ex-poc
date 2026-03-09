@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.CarrierShipmentBoxType do
+defmodule UniboExPoc.Ofbiz.Shipment.CarrierShipmentBoxType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_carrier_shipment_box_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -34,11 +34,11 @@ defmodule UniboV4.Ofbiz.Shipment.CarrierShipmentBoxType do
   end
 
   relationships do
-    belongs_to :shipment_box_type, UniboV4.Ofbiz.Shipment.ShipmentBoxType do
+    belongs_to :shipment_box_type, UniboExPoc.Ofbiz.Shipment.ShipmentBoxType do
       public? true
       attribute_type :string
     end
-    belongs_to :party, UniboV4.Ofbiz.Shipment.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.Shipment.Party do
       public? true
       attribute_type :string
     end

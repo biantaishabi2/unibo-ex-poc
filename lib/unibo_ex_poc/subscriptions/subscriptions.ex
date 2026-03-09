@@ -1,4 +1,4 @@
-defmodule UniboV4.Subscriptions do
+defmodule UniboExPoc.Subscriptions do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,23 +7,23 @@ defmodule UniboV4.Subscriptions do
   end
 
   resources do
-    resource UniboV4.Subscriptions.SubscriptionPlan
-    resource UniboV4.Subscriptions.SubscriptionPlan.Version
-    resource UniboV4.Subscriptions.SubscriptionOrder
-    resource UniboV4.Subscriptions.SubscriptionOrder.Version
-    resource UniboV4.Subscriptions.SubscriptionOrderLine
-    resource UniboV4.Subscriptions.SubscriptionOrderLine.Version
-    resource UniboV4.Subscriptions.CloseReason
-    resource UniboV4.Subscriptions.CloseReason.Version
-    resource UniboV4.Subscriptions.SubscriptionLog
-    resource UniboV4.Subscriptions.SubscriptionOrderLineTaxLink
-    resource UniboV4.Subscriptions.Currency
-    resource UniboV4.Subscriptions.PaymentToken
-    resource UniboV4.Subscriptions.Pricelist
-    resource UniboV4.Subscriptions.Stage
-    resource UniboV4.Subscriptions.SalesTeam
-    resource UniboV4.Subscriptions.Product
-    resource UniboV4.Subscriptions.Tax
-    resource UniboV4.Subscriptions.Party
+    resource UniboExPoc.Subscriptions.SubscriptionPlan
+    resource UniboExPoc.Subscriptions.SubscriptionPlan.Version
+    resource UniboExPoc.Subscriptions.SubscriptionOrder
+    resource UniboExPoc.Subscriptions.SubscriptionOrder.Version
+    resource UniboExPoc.Subscriptions.SubscriptionOrderLine
+    resource UniboExPoc.Subscriptions.SubscriptionOrderLine.Version
+    resource UniboExPoc.Subscriptions.CloseReason
+    resource UniboExPoc.Subscriptions.CloseReason.Version
+    resource UniboExPoc.Subscriptions.SubscriptionLog
+    resource UniboExPoc.Subscriptions.SubscriptionOrderLineTaxLink
+    resource UniboExPoc.Subscriptions.Currency
+    resource UniboExPoc.Subscriptions.PaymentToken
+    resource UniboExPoc.Subscriptions.Pricelist
+    resource UniboExPoc.Subscriptions.Stage
+    resource UniboExPoc.Subscriptions.SalesTeam
+    resource UniboExPoc.Subscriptions.Product
+    resource UniboExPoc.Subscriptions.Tax
+    resource UniboExPoc.Subscriptions.Party
   end
 end

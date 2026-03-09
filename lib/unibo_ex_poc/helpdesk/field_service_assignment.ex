@@ -5,10 +5,10 @@
 #   create --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Helpdesk.FieldServiceAssignment do
+defmodule UniboExPoc.Helpdesk.FieldServiceAssignment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Helpdesk.FieldServiceAssignment do
 
   postgres do
     table "helpdesk_field_service_assignments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -53,11 +53,11 @@ defmodule UniboV4.Helpdesk.FieldServiceAssignment do
   end
 
   relationships do
-    belongs_to :service_order, UniboV4.Helpdesk.FieldServiceOrder do
+    belongs_to :service_order, UniboExPoc.Helpdesk.FieldServiceOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :technician, UniboV4.Helpdesk.Party do
+    belongs_to :technician, UniboExPoc.Helpdesk.Party do
       public? true
       allow_nil? false
       source_attribute :technician_party_id

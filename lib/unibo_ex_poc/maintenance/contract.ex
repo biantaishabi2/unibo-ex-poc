@@ -9,10 +9,10 @@
 #   action_close --> [*]
 #   action_draft --> action_open
 # ```
-defmodule UniboV4.Maintenance.Contract do
+defmodule UniboExPoc.Maintenance.Contract do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -22,7 +22,7 @@ defmodule UniboV4.Maintenance.Contract do
 
   postgres do
     table "maintenance_contracts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -91,24 +91,24 @@ defmodule UniboV4.Maintenance.Contract do
   end
 
   relationships do
-    belongs_to :vehicle, UniboV4.Maintenance.Vehicle do
+    belongs_to :vehicle, UniboExPoc.Maintenance.Vehicle do
       public? true
       allow_nil? false
     end
-    belongs_to :cost_subtype, UniboV4.Maintenance.ServiceType do
+    belongs_to :cost_subtype, UniboExPoc.Maintenance.ServiceType do
       public? true
     end
-    belongs_to :insurer, UniboV4.Maintenance.Party do
+    belongs_to :insurer, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :insurer_party_id
     end
-    belongs_to :responsible, UniboV4.Maintenance.Party do
+    belongs_to :responsible, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :responsible_party_id
     end
-    many_to_many :service_items, UniboV4.Maintenance.ServiceType do
+    many_to_many :service_items, UniboExPoc.Maintenance.ServiceType do
       public? true
-      through UniboV4.Maintenance.ContractServiceItemLink
+      through UniboExPoc.Maintenance.ContractServiceItemLink
     end
   end
 
@@ -135,8 +135,8 @@ defmodule UniboV4.Maintenance.Contract do
       end
       # message: "只有即将生效状态可以开放"
       change set_attribute(:state, :open)
-      change UniboV4.Maintenance.Changes.Contract.ActionOpenCall5
-      change UniboV4.Maintenance.Changes.Contract.ActionOpenCall7
+      change UniboExPoc.Maintenance.Changes.Contract.ActionOpenCall5
+      change UniboExPoc.Maintenance.Changes.Contract.ActionOpenCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -153,8 +153,8 @@ defmodule UniboV4.Maintenance.Contract do
       end
       # message: "只有生效中状态可以过期"
       change set_attribute(:state, :expired)
-      change UniboV4.Maintenance.Changes.Contract.ActionExpireCall5
-      change UniboV4.Maintenance.Changes.Contract.ActionExpireCall7
+      change UniboExPoc.Maintenance.Changes.Contract.ActionExpireCall5
+      change UniboExPoc.Maintenance.Changes.Contract.ActionExpireCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -171,8 +171,8 @@ defmodule UniboV4.Maintenance.Contract do
       end
       # message: "只有已过期状态可以关闭"
       change set_attribute(:state, :closed)
-      change UniboV4.Maintenance.Changes.Contract.ActionCloseCall5
-      change UniboV4.Maintenance.Changes.Contract.ActionCloseCall7
+      change UniboExPoc.Maintenance.Changes.Contract.ActionCloseCall5
+      change UniboExPoc.Maintenance.Changes.Contract.ActionCloseCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -189,8 +189,8 @@ defmodule UniboV4.Maintenance.Contract do
       end
       # message: "只有已过期状态可以重置"
       change set_attribute(:state, :futur)
-      change UniboV4.Maintenance.Changes.Contract.ActionDraftCall5
-      change UniboV4.Maintenance.Changes.Contract.ActionDraftCall7
+      change UniboExPoc.Maintenance.Changes.Contract.ActionDraftCall5
+      change UniboExPoc.Maintenance.Changes.Contract.ActionDraftCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

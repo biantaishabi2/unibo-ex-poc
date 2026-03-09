@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Marketing.SegmentGroupRole do
+defmodule UniboExPoc.Ofbiz.Marketing.SegmentGroupRole do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Marketing,
+    domain: UniboExPoc.Ofbiz.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "marketing_segment_group_roles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,7 +41,7 @@ defmodule UniboV4.Ofbiz.Marketing.SegmentGroupRole do
   end
 
   relationships do
-    belongs_to :segment_group, UniboV4.Ofbiz.Marketing.SegmentGroup do
+    belongs_to :segment_group, UniboExPoc.Ofbiz.Marketing.SegmentGroup do
       public? true
     end
   end

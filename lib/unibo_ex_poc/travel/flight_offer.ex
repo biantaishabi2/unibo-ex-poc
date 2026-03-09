@@ -13,13 +13,13 @@
 #   expire --> [*] : expired
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Travel.FlightOffer do
+defmodule UniboExPoc.Travel.FlightOffer do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Travel,
+    domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Travel.FlightOffer.Notifier]
+    notifiers: [UniboExPoc.Travel.FlightOffer.Notifier]
 
   resource do
     description "机票可售 offer，承载航班、舱位、票规和库存快照"
@@ -27,7 +27,7 @@ defmodule UniboV4.Travel.FlightOffer do
 
   postgres do
     table "travel_flight_offers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   multitenancy do
@@ -145,19 +145,19 @@ defmodule UniboV4.Travel.FlightOffer do
   end
 
   relationships do
-    belongs_to :departure_airport_ref, UniboV4.Ecommerce.TravelAirport do
+    belongs_to :departure_airport_ref, UniboExPoc.Ecommerce.TravelAirport do
       public? true
     end
-    belongs_to :arrival_airport_ref, UniboV4.Ecommerce.TravelAirport do
+    belongs_to :arrival_airport_ref, UniboExPoc.Ecommerce.TravelAirport do
       public? true
     end
-    belongs_to :airline_ref, UniboV4.Travel.TravelAirline do
+    belongs_to :airline_ref, UniboExPoc.Travel.TravelAirline do
       public? true
     end
-    belongs_to :cabin_class_ref, UniboV4.Travel.TravelCabinClass do
+    belongs_to :cabin_class_ref, UniboExPoc.Travel.TravelCabinClass do
       public? true
     end
-    has_many :orders, UniboV4.Travel.TravelOrder do
+    has_many :orders, UniboExPoc.Travel.TravelOrder do
       public? true
       destination_attribute :flight_offer_id
     end

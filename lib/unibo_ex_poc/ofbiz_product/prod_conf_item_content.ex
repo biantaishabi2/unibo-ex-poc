@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.ProdConfItemContent do
+defmodule UniboExPoc.Ofbiz.Product.ProdConfItemContent do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "product_prod_conf_item_contents"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -42,11 +42,11 @@ defmodule UniboV4.Ofbiz.Product.ProdConfItemContent do
   end
 
   relationships do
-    belongs_to :product_config_item, UniboV4.Ofbiz.Product.ProductConfigItem do
+    belongs_to :product_config_item, UniboExPoc.Ofbiz.Product.ProductConfigItem do
       public? true
       source_attribute :config_item_id
     end
-    belongs_to :prod_conf_item_content_type, UniboV4.Ofbiz.Product.ProdConfItemContentType do
+    belongs_to :prod_conf_item_content_type, UniboExPoc.Ofbiz.Product.ProdConfItemContentType do
       public? true
       source_attribute :conf_item_content_type_id
     end

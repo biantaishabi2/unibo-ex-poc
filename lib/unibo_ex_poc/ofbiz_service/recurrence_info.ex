@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Service.RecurrenceInfo do
+defmodule UniboExPoc.Ofbiz.Service.RecurrenceInfo do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Service,
+    domain: UniboExPoc.Ofbiz.Service,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Service.RecurrenceInfo do
 
   postgres do
     table "service_recurrence_infos"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,10 +44,10 @@ defmodule UniboV4.Ofbiz.Service.RecurrenceInfo do
   end
 
   relationships do
-    belongs_to :recurrence_rule, UniboV4.Ofbiz.Service.RecurrenceRule do
+    belongs_to :recurrence_rule, UniboExPoc.Ofbiz.Service.RecurrenceRule do
       public? true
     end
-    belongs_to :exception_rule, UniboV4.Ofbiz.Service.RecurrenceRule do
+    belongs_to :exception_rule, UniboExPoc.Ofbiz.Service.RecurrenceRule do
       public? true
     end
   end

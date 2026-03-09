@@ -1,7 +1,7 @@
-defmodule UniboV4.Events.Facility do
+defmodule UniboExPoc.Events.Facility do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Events,
+    domain: UniboExPoc.Events,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Events.Facility do
 
   postgres do
     table "events_facilities"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

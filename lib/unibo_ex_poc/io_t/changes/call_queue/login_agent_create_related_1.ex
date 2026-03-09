@@ -1,7 +1,5 @@
-defmodule UniboV4.IoT.Changes.CallQueue.LoginAgentCreateRelated1 do
+defmodule UniboExPoc.IoT.Changes.CallQueue.LoginAgentCreateRelated1 do
   use Ash.Resource.Change
-
-  alias UniboV4.IoT.QueueMember
 
   @impl true
   def change(changeset, _opts, context) do
@@ -10,7 +8,7 @@ defmodule UniboV4.IoT.Changes.CallQueue.LoginAgentCreateRelated1 do
     opts = ash_call_opts(actor, tenant)
     params = %{}
 
-    case Ash.create(Ash.Changeset.for_create(UniboV4.IoT.QueueMember, :create, params), opts) do
+    case Ash.create(Ash.Changeset.for_create(UniboExPoc.IoT.QueueMember, :create, params), opts) do
       {:ok, _created} -> changeset
       {:error, reason} ->
         Ash.Changeset.add_error(changeset, "create_related QueueMember 失败: #{inspect(reason)}")

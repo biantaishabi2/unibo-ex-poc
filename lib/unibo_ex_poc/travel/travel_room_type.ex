@@ -1,7 +1,7 @@
-defmodule UniboV4.Travel.TravelRoomType do
+defmodule UniboExPoc.Travel.TravelRoomType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Travel,
+    domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Travel.TravelRoomType do
 
   postgres do
     table "travel_room_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,7 +57,7 @@ defmodule UniboV4.Travel.TravelRoomType do
   end
 
   relationships do
-    belongs_to :hotel, UniboV4.Travel.TravelHotel do
+    belongs_to :hotel, UniboExPoc.Travel.TravelHotel do
       public? true
     end
   end

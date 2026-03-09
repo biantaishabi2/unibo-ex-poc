@@ -5,10 +5,10 @@
 #   create --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Accounting.PartialReconcile do
+defmodule UniboExPoc.Accounting.PartialReconcile do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Accounting,
+    domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Accounting.PartialReconcile do
 
   postgres do
     table "accounting_partial_reconciles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,15 +57,15 @@ defmodule UniboV4.Accounting.PartialReconcile do
   end
 
   relationships do
-    belongs_to :debit_line, UniboV4.Accounting.JournalEntryLine do
+    belongs_to :debit_line, UniboExPoc.Accounting.JournalEntryLine do
       public? true
       allow_nil? false
     end
-    belongs_to :credit_line, UniboV4.Accounting.JournalEntryLine do
+    belongs_to :credit_line, UniboExPoc.Accounting.JournalEntryLine do
       public? true
       allow_nil? false
     end
-    belongs_to :full_reconcile, UniboV4.Accounting.FullReconcile do
+    belongs_to :full_reconcile, UniboExPoc.Accounting.FullReconcile do
       public? true
     end
   end
@@ -82,8 +82,8 @@ defmodule UniboV4.Accounting.PartialReconcile do
       validate compare(:amount, greater_than: 0)
       # message: "核销金额必须大于零"
       # validation: same_account_same_partner
-      change UniboV4.Accounting.Changes.PartialReconcile.CreateCall1
-      change UniboV4.Accounting.Changes.PartialReconcile.CreateCall2
+      change UniboExPoc.Accounting.Changes.PartialReconcile.CreateCall1
+      change UniboExPoc.Accounting.Changes.PartialReconcile.CreateCall2
     end
   end
 

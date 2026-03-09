@@ -1,10 +1,10 @@
-defmodule UniboV4.Purchasing.Workflows.PurchaseOrderLine.OrderLineEditingWorkflow do
+defmodule UniboExPoc.Purchasing.Workflows.PurchaseOrderLine.OrderLineEditingWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Purchasing.PurchaseOrderLine
+  alias UniboExPoc.Purchasing.PurchaseOrderLine
 
   def steps do
     [:create, :update]
@@ -141,6 +141,7 @@ defmodule UniboV4.Purchasing.Workflows.PurchaseOrderLine.OrderLineEditingWorkflo
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -149,6 +150,7 @@ defmodule UniboV4.Purchasing.Workflows.PurchaseOrderLine.OrderLineEditingWorkflo
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

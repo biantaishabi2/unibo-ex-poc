@@ -1,10 +1,10 @@
-defmodule UniboV4.Payment.Workflows.PaymentApplication.PaymentApplicationFlowWorkflow do
+defmodule UniboExPoc.Payment.Workflows.PaymentApplication.PaymentApplicationFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Payment.PaymentApplication
+  alias UniboExPoc.Payment.PaymentApplication
 
   def steps do
     [:create, :apply_to_invoice, :apply_to_account, :update, :destroy]
@@ -153,6 +153,7 @@ defmodule UniboV4.Payment.Workflows.PaymentApplication.PaymentApplicationFlowWor
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :apply_to_invoice -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.Payment.Workflows.PaymentApplication.PaymentApplicationFlowWor
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :apply_to_invoice -> false

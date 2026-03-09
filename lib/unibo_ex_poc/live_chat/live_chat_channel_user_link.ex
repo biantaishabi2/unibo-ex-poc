@@ -1,7 +1,7 @@
-defmodule UniboV4.LiveChat.LiveChatChannelUserLink do
+defmodule UniboExPoc.LiveChat.LiveChatChannelUserLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.LiveChat,
+    domain: UniboExPoc.LiveChat,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.LiveChat.LiveChatChannelUserLink do
 
   postgres do
     table "live_chat_channel_user_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.LiveChat.LiveChatChannelUserLink do
   end
 
   relationships do
-    belongs_to :livechat_channel, UniboV4.LiveChat.LiveChatChannel do
+    belongs_to :livechat_channel, UniboExPoc.LiveChat.LiveChatChannel do
       public? true
       allow_nil? false
     end
-    belongs_to :user, UniboV4.LiveChat.Party do
+    belongs_to :user, UniboExPoc.LiveChat.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id

@@ -1,7 +1,7 @@
-defmodule UniboV4.Helpdesk.HelpdeskSLAExcludeStageLink do
+defmodule UniboExPoc.Helpdesk.HelpdeskSLAExcludeStageLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Helpdesk.HelpdeskSLAExcludeStageLink do
 
   postgres do
     table "helpdesk_sla_exclude_stage_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,12 +29,12 @@ defmodule UniboV4.Helpdesk.HelpdeskSLAExcludeStageLink do
   end
 
   relationships do
-    belongs_to :sla, UniboV4.Helpdesk.HelpdeskSLA do
+    belongs_to :sla, UniboExPoc.Helpdesk.HelpdeskSLA do
       public? true
       allow_nil? false
       source_attribute :helpdesk_sla_id
     end
-    belongs_to :stage, UniboV4.Helpdesk.HelpdeskStage do
+    belongs_to :stage, UniboExPoc.Helpdesk.HelpdeskStage do
       public? true
       allow_nil? false
       source_attribute :helpdesk_stage_id

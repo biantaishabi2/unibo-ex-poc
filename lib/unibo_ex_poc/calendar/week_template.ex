@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Calendar.WeekTemplate do
+defmodule UniboExPoc.Calendar.WeekTemplate do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Calendar,
+    domain: UniboExPoc.Calendar,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Calendar.WeekTemplate do
 
   postgres do
     table "calendar_week_templates"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -119,11 +119,11 @@ defmodule UniboV4.Calendar.WeekTemplate do
   end
 
   relationships do
-    has_many :work_schedules, UniboV4.Calendar.WorkSchedule do
+    has_many :work_schedules, UniboExPoc.Calendar.WorkSchedule do
       public? true
       destination_attribute :week_template_id
     end
-    has_many :translations, UniboV4.Calendar.WeekTemplateTranslation, public?: true
+    has_many :translations, UniboExPoc.Calendar.WeekTemplateTranslation, public?: true
   end
 
   actions do

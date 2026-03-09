@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Common.CountryAddressFormat do
+defmodule UniboExPoc.Ofbiz.Common.CountryAddressFormat do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "common_country_address_formats"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,10 +38,10 @@ defmodule UniboV4.Ofbiz.Common.CountryAddressFormat do
   end
 
   relationships do
-    belongs_to :geo, UniboV4.Ofbiz.Common.Geo do
+    belongs_to :geo, UniboExPoc.Ofbiz.Common.Geo do
       public? true
     end
-    belongs_to :geo_assoc_type, UniboV4.Ofbiz.Common.GeoAssocType do
+    belongs_to :geo_assoc_type, UniboExPoc.Ofbiz.Common.GeoAssocType do
       public? true
     end
   end

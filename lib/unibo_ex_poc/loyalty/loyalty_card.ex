@@ -21,13 +21,13 @@
 #   unfreeze --> expire_card
 #   expire_card --> [*]
 # ```
-defmodule UniboV4.Loyalty.LoyaltyCard do
+defmodule UniboExPoc.Loyalty.LoyaltyCard do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Loyalty,
+    domain: UniboExPoc.Loyalty,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Loyalty.LoyaltyCard.Notifier]
+    notifiers: [UniboExPoc.Loyalty.LoyaltyCard.Notifier]
 
   resource do
     description "会员积分卡，记录持卡人当前积分余额与生命周期状态"
@@ -35,7 +35,7 @@ defmodule UniboV4.Loyalty.LoyaltyCard do
 
   postgres do
     table "loyalty_cards"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -95,11 +95,11 @@ defmodule UniboV4.Loyalty.LoyaltyCard do
   end
 
   relationships do
-    belongs_to :program, UniboV4.Loyalty.LoyaltyProgram do
+    belongs_to :program, UniboExPoc.Loyalty.LoyaltyProgram do
       public? true
       allow_nil? false
     end
-    has_many :transactions, UniboV4.Loyalty.LoyaltyTransaction do
+    has_many :transactions, UniboExPoc.Loyalty.LoyaltyTransaction do
       public? true
       source_attribute :program_id
       destination_attribute :card_id

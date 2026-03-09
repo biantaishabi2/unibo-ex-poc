@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Common.CountryCapital do
+defmodule UniboExPoc.Ofbiz.Common.CountryCapital do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Common.CountryCapital do
 
   postgres do
     table "common_country_capitals"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,7 +37,7 @@ defmodule UniboV4.Ofbiz.Common.CountryCapital do
   end
 
   relationships do
-    belongs_to :country_code_ref, UniboV4.Ofbiz.Common.CountryCode do
+    belongs_to :country_code_ref, UniboExPoc.Ofbiz.Common.CountryCode do
       public? true
       source_attribute :country_code
     end

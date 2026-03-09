@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> [*]
 # ```
-defmodule UniboV4.Purchasing.PurchaseOrderLine do
+defmodule UniboExPoc.Purchasing.PurchaseOrderLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Purchasing,
+    domain: UniboExPoc.Purchasing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Purchasing.PurchaseOrderLine do
 
   postgres do
     table "purchasing_purchase_order_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -159,15 +159,15 @@ defmodule UniboV4.Purchasing.PurchaseOrderLine do
     calculate :price_tax, :decimal, expr(price_total)
     calculate :qty_received, :decimal, expr(qty_received_manual)
     calculate :qty_invoiced, :decimal, expr(qty_received)
-    calculate :qty_to_invoice, :decimal, {UniboV4.Purchasing.Calculations.PurchaseOrderLine.QtyToInvoice, []}
+    calculate :qty_to_invoice, :decimal, {UniboExPoc.Purchasing.Calculations.PurchaseOrderLine.QtyToInvoice, []}
   end
 
   relationships do
-    belongs_to :order, UniboV4.Purchasing.PurchaseOrder do
+    belongs_to :order, UniboExPoc.Purchasing.PurchaseOrder do
       public? true
       allow_nil? false
     end
-    has_many :invoice_lines, UniboV4.Purchasing.AccountMoveLine do
+    has_many :invoice_lines, UniboExPoc.Purchasing.AccountMoveLine do
       public? true
     end
   end
@@ -182,10 +182,10 @@ defmodule UniboV4.Purchasing.PurchaseOrderLine do
       # validation: accountable_required_fields — 非 display 行必须填写产品、单位和计划交货日期
       # validation: non_accountable_null_fields — 段落/备注行的产品、单位、价格、数量、日期必须为空
       # validation: product_purchase_warn_block — 该产品已被设置为采购阻止，无法选择
-      change UniboV4.Purchasing.Changes.PurchaseOrderLine.ComputeUnitPrice
-      change UniboV4.Purchasing.Changes.PurchaseOrderLine.ComputeDiscountRate
-      change UniboV4.Purchasing.Changes.PurchaseOrderLine.ComputeEstimatedDeliveryDate
-      change UniboV4.Purchasing.Changes.PurchaseOrderLine.ComputeAnalyticDistribution
+      change UniboExPoc.Purchasing.Changes.PurchaseOrderLine.ComputeUnitPrice
+      change UniboExPoc.Purchasing.Changes.PurchaseOrderLine.ComputeDiscountRate
+      change UniboExPoc.Purchasing.Changes.PurchaseOrderLine.ComputeEstimatedDeliveryDate
+      change UniboExPoc.Purchasing.Changes.PurchaseOrderLine.ComputeAnalyticDistribution
       change set_attribute(:id, expr(id))
     end
     update :update do
@@ -195,8 +195,8 @@ defmodule UniboV4.Purchasing.PurchaseOrderLine do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change UniboV4.Purchasing.Changes.PurchaseOrderLine.ComputeUnitPrice
-      change UniboV4.Purchasing.Changes.PurchaseOrderLine.ComputeDiscountRate
+      change UniboExPoc.Purchasing.Changes.PurchaseOrderLine.ComputeUnitPrice
+      change UniboExPoc.Purchasing.Changes.PurchaseOrderLine.ComputeDiscountRate
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

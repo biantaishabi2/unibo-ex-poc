@@ -10,13 +10,13 @@
 #   apply --> switch
 #   switch --> apply
 # ```
-defmodule UniboV4.Ecommerce.Theme do
+defmodule UniboExPoc.Ecommerce.Theme do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ecommerce,
+    domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Ecommerce.Theme.Notifier]
+    notifiers: [UniboExPoc.Ecommerce.Theme.Notifier]
 
   resource do
     description "网站主题/配置器"
@@ -24,7 +24,7 @@ defmodule UniboV4.Ecommerce.Theme do
 
   postgres do
     table "ecommerce_themes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -75,7 +75,7 @@ defmodule UniboV4.Ecommerce.Theme do
   end
 
   relationships do
-    belongs_to :website, UniboV4.Ecommerce.WebSite do
+    belongs_to :website, UniboExPoc.Ecommerce.WebSite do
       public? true
     end
   end

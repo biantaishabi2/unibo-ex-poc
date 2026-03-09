@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.PostalAddressBoundary do
+defmodule UniboExPoc.Ofbiz.Party.PostalAddressBoundary do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_postal_address_boundaries"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -32,11 +32,11 @@ defmodule UniboV4.Ofbiz.Party.PostalAddressBoundary do
   end
 
   relationships do
-    belongs_to :postal_address, UniboV4.Ofbiz.Party.PostalAddress do
+    belongs_to :postal_address, UniboExPoc.Ofbiz.Party.PostalAddress do
       public? true
       source_attribute :contact_mech_id
     end
-    belongs_to :geo, UniboV4.Ofbiz.Party.Geo do
+    belongs_to :geo, UniboExPoc.Ofbiz.Party.Geo do
       public? true
     end
   end

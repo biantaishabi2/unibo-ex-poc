@@ -1,4 +1,4 @@
-defmodule UniboV4.Purchasing.Changes.ProductSupplierinfo.ComputePartnerId do
+defmodule UniboExPoc.Purchasing.Changes.ProductSupplierinfo.ComputePartnerId do
   @moduledoc """
   Change 模块: 计算 :partner_id (entity: product_supplierinfo)
   原始 expr: op: if args: - op: present   args:   - op: ref     args:     - supplier     - parent_id - op: ref   args:   - supplier   - parent_id - op: ref   args:   - partner_id

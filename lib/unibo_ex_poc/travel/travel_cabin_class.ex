@@ -1,7 +1,7 @@
-defmodule UniboV4.Travel.TravelCabinClass do
+defmodule UniboExPoc.Travel.TravelCabinClass do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Travel,
+    domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Travel.TravelCabinClass do
 
   postgres do
     table "travel_cabin_classes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

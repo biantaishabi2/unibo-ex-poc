@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.PaymentContent do
+defmodule UniboExPoc.Ofbiz.Accounting.PaymentContent do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_payment_contents"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -42,10 +42,10 @@ defmodule UniboV4.Ofbiz.Accounting.PaymentContent do
   end
 
   relationships do
-    belongs_to :payment, UniboV4.Ofbiz.Accounting.Payment do
+    belongs_to :payment, UniboExPoc.Ofbiz.Accounting.Payment do
       public? true
     end
-    belongs_to :payment_content_type, UniboV4.Ofbiz.Accounting.PaymentContentType do
+    belongs_to :payment_content_type, UniboExPoc.Ofbiz.Accounting.PaymentContentType do
       public? true
     end
   end

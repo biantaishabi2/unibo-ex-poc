@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Delivery.ShipmentCostEstimate do
+defmodule UniboExPoc.Delivery.ShipmentCostEstimate do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Delivery,
+    domain: UniboExPoc.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Delivery.ShipmentCostEstimate do
 
   postgres do
     table "delivery_shipment_cost_estimates"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -143,13 +143,13 @@ defmodule UniboV4.Delivery.ShipmentCostEstimate do
   end
 
   relationships do
-    belongs_to :shipment_method_type, UniboV4.Delivery.ShipmentMethodType do
+    belongs_to :shipment_method_type, UniboExPoc.Delivery.ShipmentMethodType do
       public? true
     end
-    belongs_to :carrier_party, UniboV4.Delivery.Party do
+    belongs_to :carrier_party, UniboExPoc.Delivery.Party do
       public? true
     end
-    belongs_to :party, UniboV4.Delivery.Party do
+    belongs_to :party, UniboExPoc.Delivery.Party do
       public? true
     end
   end

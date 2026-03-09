@@ -1,4 +1,4 @@
-defmodule UniboV4.Blog.Changes.BlogPost.ComputePublishedDate do
+defmodule UniboExPoc.Blog.Changes.BlogPost.ComputePublishedDate do
   @moduledoc """
   Change 模块: 计算 :published_date (entity: blog_post)
   原始 expr: op: func args: - now

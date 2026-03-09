@@ -1,7 +1,7 @@
-defmodule UniboV4.Helpdesk.HelpdeskTicketTagLink do
+defmodule UniboExPoc.Helpdesk.HelpdeskTicketTagLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Helpdesk.HelpdeskTicketTagLink do
 
   postgres do
     table "helpdesk_ticket_tag_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,12 +29,12 @@ defmodule UniboV4.Helpdesk.HelpdeskTicketTagLink do
   end
 
   relationships do
-    belongs_to :ticket, UniboV4.Helpdesk.HelpdeskTicket do
+    belongs_to :ticket, UniboExPoc.Helpdesk.HelpdeskTicket do
       public? true
       allow_nil? false
       source_attribute :helpdesk_ticket_id
     end
-    belongs_to :tag, UniboV4.Helpdesk.HelpdeskTag do
+    belongs_to :tag, UniboExPoc.Helpdesk.HelpdeskTag do
       public? true
       allow_nil? false
       source_attribute :helpdesk_tag_id

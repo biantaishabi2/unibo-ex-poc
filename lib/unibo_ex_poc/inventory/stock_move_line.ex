@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Inventory.StockMoveLine do
+defmodule UniboExPoc.Inventory.StockMoveLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Inventory,
+    domain: UniboExPoc.Inventory,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Inventory.StockMoveLine do
 
   postgres do
     table "inventory_stock_move_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -81,18 +81,18 @@ defmodule UniboV4.Inventory.StockMoveLine do
   end
 
   relationships do
-    belongs_to :move, UniboV4.Inventory.StockMove do
+    belongs_to :move, UniboExPoc.Inventory.StockMove do
       public? true
     end
-    belongs_to :source_location, UniboV4.Inventory.StockLocation do
-      public? true
-      allow_nil? false
-    end
-    belongs_to :dest_location, UniboV4.Inventory.StockLocation do
+    belongs_to :source_location, UniboExPoc.Inventory.StockLocation do
       public? true
       allow_nil? false
     end
-    belongs_to :lot, UniboV4.Inventory.Lot do
+    belongs_to :dest_location, UniboExPoc.Inventory.StockLocation do
+      public? true
+      allow_nil? false
+    end
+    belongs_to :lot, UniboExPoc.Inventory.Lot do
       public? true
     end
   end

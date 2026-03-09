@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Repair.Warranty do
+defmodule UniboExPoc.Repair.Warranty do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Repair,
+    domain: UniboExPoc.Repair,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Repair.Warranty do
 
   postgres do
     table "repair_warranties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

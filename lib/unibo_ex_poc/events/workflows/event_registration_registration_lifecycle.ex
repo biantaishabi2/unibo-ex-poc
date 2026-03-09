@@ -1,10 +1,10 @@
-defmodule UniboV4.Events.Workflows.EventRegistration.RegistrationLifecycleWorkflow do
+defmodule UniboExPoc.Events.Workflows.EventRegistration.RegistrationLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Events.EventRegistration
+  alias UniboExPoc.Events.EventRegistration
 
   def steps do
     [:register, :confirm, :check_in, :cancel]
@@ -149,6 +149,7 @@ defmodule UniboV4.Events.Workflows.EventRegistration.RegistrationLifecycleWorkfl
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :register -> nil
       :confirm -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Events.Workflows.EventRegistration.RegistrationLifecycleWorkfl
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :register -> false
       :confirm -> false

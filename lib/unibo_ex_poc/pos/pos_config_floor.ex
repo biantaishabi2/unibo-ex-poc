@@ -5,10 +5,10 @@
 #   create --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.POS.PosConfigFloor do
+defmodule UniboExPoc.POS.PosConfigFloor do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.POS,
+    domain: UniboExPoc.POS,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.POS.PosConfigFloor do
 
   postgres do
     table "pos_config_floors"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,11 +44,11 @@ defmodule UniboV4.POS.PosConfigFloor do
   end
 
   relationships do
-    belongs_to :config, UniboV4.POS.PosConfig do
+    belongs_to :config, UniboExPoc.POS.PosConfig do
       public? true
       allow_nil? false
     end
-    belongs_to :floor, UniboV4.POS.RestaurantFloor do
+    belongs_to :floor, UniboExPoc.POS.RestaurantFloor do
       public? true
       allow_nil? false
     end

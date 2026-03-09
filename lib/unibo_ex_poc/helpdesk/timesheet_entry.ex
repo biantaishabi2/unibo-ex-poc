@@ -1,7 +1,7 @@
-defmodule UniboV4.Helpdesk.TimesheetEntry do
+defmodule UniboExPoc.Helpdesk.TimesheetEntry do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Helpdesk.TimesheetEntry do
 
   postgres do
     table "helpdesk_timesheet_entries"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,7 +29,7 @@ defmodule UniboV4.Helpdesk.TimesheetEntry do
   end
 
   relationships do
-    belongs_to :ticket, UniboV4.Helpdesk.HelpdeskTicket do
+    belongs_to :ticket, UniboExPoc.Helpdesk.HelpdeskTicket do
       public? true
       source_attribute :helpdesk_ticket_id
     end

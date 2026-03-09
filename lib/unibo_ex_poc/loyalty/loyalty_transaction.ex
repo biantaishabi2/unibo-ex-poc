@@ -5,13 +5,13 @@
 #   create --> cancel_transaction
 #   cancel_transaction --> [*] : cancelled
 # ```
-defmodule UniboV4.Loyalty.LoyaltyTransaction do
+defmodule UniboExPoc.Loyalty.LoyaltyTransaction do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Loyalty,
+    domain: UniboExPoc.Loyalty,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Loyalty.LoyaltyTransaction.Notifier]
+    notifiers: [UniboExPoc.Loyalty.LoyaltyTransaction.Notifier]
 
   resource do
     description "积分流水，记录积分的每次变动（获取/消耗/过期/退款），是积分生命周期的审计日志"
@@ -19,7 +19,7 @@ defmodule UniboV4.Loyalty.LoyaltyTransaction do
 
   postgres do
     table "loyalty_transactions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -86,11 +86,11 @@ defmodule UniboV4.Loyalty.LoyaltyTransaction do
   end
 
   relationships do
-    belongs_to :card, UniboV4.Loyalty.LoyaltyCard do
+    belongs_to :card, UniboExPoc.Loyalty.LoyaltyCard do
       public? true
       allow_nil? false
     end
-    belongs_to :reward, UniboV4.Loyalty.LoyaltyReward do
+    belongs_to :reward, UniboExPoc.Loyalty.LoyaltyReward do
       public? true
     end
   end

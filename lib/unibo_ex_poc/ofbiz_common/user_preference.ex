@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Common.UserPreference do
+defmodule UniboExPoc.Ofbiz.Common.UserPreference do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -14,7 +14,7 @@ defmodule UniboV4.Ofbiz.Common.UserPreference do
 
   postgres do
     table "common_user_preferences"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -52,7 +52,7 @@ defmodule UniboV4.Ofbiz.Common.UserPreference do
   end
 
   relationships do
-    belongs_to :user_pref_group_type, UniboV4.Ofbiz.Common.UserPrefGroupType do
+    belongs_to :user_pref_group_type, UniboExPoc.Ofbiz.Common.UserPrefGroupType do
       public? true
     end
   end

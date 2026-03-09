@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.AgreementGeographicalApplic do
+defmodule UniboExPoc.Ofbiz.Party.AgreementGeographicalApplic do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_agreement_geographical_applics"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,10 +37,10 @@ defmodule UniboV4.Ofbiz.Party.AgreementGeographicalApplic do
   end
 
   relationships do
-    belongs_to :agreement, UniboV4.Ofbiz.Party.Agreement do
+    belongs_to :agreement, UniboExPoc.Ofbiz.Party.Agreement do
       public? true
     end
-    belongs_to :geo, UniboV4.Ofbiz.Party.Geo do
+    belongs_to :geo, UniboExPoc.Ofbiz.Party.Geo do
       public? true
     end
   end

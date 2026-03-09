@@ -153,6 +153,7 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.SalesOrderLifecycleFlowWorkflow 
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :action_quotation_send -> nil
@@ -164,6 +165,7 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.SalesOrderLifecycleFlowWorkflow 
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :action_quotation_send -> false

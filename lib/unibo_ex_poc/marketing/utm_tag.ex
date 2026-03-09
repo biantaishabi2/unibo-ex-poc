@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Marketing.UtmTag do
+defmodule UniboExPoc.Marketing.UtmTag do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Marketing.UtmTag do
 
   postgres do
     table "marketing_utm_tags"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -53,9 +53,9 @@ defmodule UniboV4.Marketing.UtmTag do
   end
 
   relationships do
-    many_to_many :campaigns, UniboV4.Marketing.UtmCampaign do
+    many_to_many :campaigns, UniboExPoc.Marketing.UtmCampaign do
       public? true
-      through UniboV4.Marketing.UtmCampaignTagLink
+      through UniboExPoc.Marketing.UtmCampaignTagLink
     end
   end
 

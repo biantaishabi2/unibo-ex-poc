@@ -1,4 +1,4 @@
-defmodule UniboV4.Sign.Changes.SignLog.ComputeLogHash do
+defmodule UniboExPoc.Sign.Changes.SignLog.ComputeLogHash do
   @moduledoc """
   Change 模块: 计算 :log_hash (entity: sign_log)
   原始 expr: op: func args: - sha256_chain - op: ref   args:   - request_id - op: ref   args:   - action - op: ref   args:   - timestamp - op: ref   args:   - ip_address - op: ref   args:   - user_agent

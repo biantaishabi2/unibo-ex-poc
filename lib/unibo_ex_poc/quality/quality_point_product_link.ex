@@ -1,7 +1,7 @@
-defmodule UniboV4.Quality.QualityPointProductLink do
+defmodule UniboExPoc.Quality.QualityPointProductLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Quality,
+    domain: UniboExPoc.Quality,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Quality.QualityPointProductLink do
 
   postgres do
     table "quality_point_product_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Quality.QualityPointProductLink do
   end
 
   relationships do
-    belongs_to :quality_point, UniboV4.Quality.QualityPoint do
+    belongs_to :quality_point, UniboExPoc.Quality.QualityPoint do
       public? true
       allow_nil? false
     end
-    belongs_to :product, UniboV4.Quality.Product do
+    belongs_to :product, UniboExPoc.Quality.Product do
       public? true
       allow_nil? false
     end

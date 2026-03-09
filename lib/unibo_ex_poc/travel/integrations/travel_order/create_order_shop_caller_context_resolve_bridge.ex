@@ -1,4 +1,4 @@
-defmodule UniboV4.Travel.Integrations.TravelOrder.CreateOrderShopCallerContextResolveBridge do
+defmodule UniboExPoc.Travel.Integrations.TravelOrder.CreateOrderShopCallerContextResolveBridge do
   use Ash.Resource.Change
 
   @provider "shop_caller_context_resolve"
@@ -29,7 +29,7 @@ defmodule UniboV4.Travel.Integrations.TravelOrder.CreateOrderShopCallerContextRe
       declared_errors: @declared_errors
     }
 
-    case UniboV4.Travel.Integration.Runtime.dispatch_sync(request) do
+    case UniboExPoc.Travel.Integration.Runtime.dispatch_sync(request) do
       {:ok, response} ->
         apply_response_bindings(changeset, response)
       {:error, error_payload} ->

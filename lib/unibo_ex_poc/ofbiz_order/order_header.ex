@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Order.OrderHeader do
+defmodule UniboExPoc.Ofbiz.Order.OrderHeader do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_headers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -70,11 +70,11 @@ defmodule UniboV4.Ofbiz.Order.OrderHeader do
   end
 
   relationships do
-    belongs_to :order_type, UniboV4.Ofbiz.Order.OrderType do
+    belongs_to :order_type, UniboExPoc.Ofbiz.Order.OrderType do
       public? true
       attribute_type :string
     end
-    belongs_to :auto_order_shopping_list, UniboV4.Ofbiz.Order.ShoppingList do
+    belongs_to :auto_order_shopping_list, UniboExPoc.Ofbiz.Order.ShoppingList do
       public? true
       attribute_type :string
     end

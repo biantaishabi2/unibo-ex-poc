@@ -1,4 +1,4 @@
-defmodule UniboV4.Survey do
+defmodule UniboExPoc.Survey do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,17 +7,17 @@ defmodule UniboV4.Survey do
   end
 
   resources do
-    resource UniboV4.Survey.Survey
-    resource UniboV4.Survey.Survey.Version
-    resource UniboV4.Survey.Question
-    resource UniboV4.Survey.Question.Version
-    resource UniboV4.Survey.Answer
-    resource UniboV4.Survey.Answer.Version
-    resource UniboV4.Survey.UserInput
-    resource UniboV4.Survey.UserInput.Version
-    resource UniboV4.Survey.UserInputLine
-    resource UniboV4.Survey.UserInputLine.Version
-    resource UniboV4.Survey.QuestionTriggerAnswerLink
-    resource UniboV4.Survey.Party
+    resource UniboExPoc.Survey.Survey
+    resource UniboExPoc.Survey.Survey.Version
+    resource UniboExPoc.Survey.Question
+    resource UniboExPoc.Survey.Question.Version
+    resource UniboExPoc.Survey.Answer
+    resource UniboExPoc.Survey.Answer.Version
+    resource UniboExPoc.Survey.UserInput
+    resource UniboExPoc.Survey.UserInput.Version
+    resource UniboExPoc.Survey.UserInputLine
+    resource UniboExPoc.Survey.UserInputLine.Version
+    resource UniboExPoc.Survey.QuestionTriggerAnswerLink
+    resource UniboExPoc.Survey.Party
   end
 end

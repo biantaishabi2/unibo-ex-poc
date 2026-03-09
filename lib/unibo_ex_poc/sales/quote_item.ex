@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> [*]
 # ```
-defmodule UniboV4.Sales.QuoteItem do
+defmodule UniboExPoc.Sales.QuoteItem do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sales,
+    domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Sales.QuoteItem do
 
   postgres do
     table "sales_quote_items"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -83,7 +83,7 @@ defmodule UniboV4.Sales.QuoteItem do
   end
 
   relationships do
-    belongs_to :quote, UniboV4.Sales.Quote do
+    belongs_to :quote, UniboExPoc.Sales.Quote do
       public? true
       allow_nil? false
     end

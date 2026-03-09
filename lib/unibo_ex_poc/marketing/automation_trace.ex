@@ -7,10 +7,10 @@
 #   execute --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Marketing.AutomationTrace do
+defmodule UniboExPoc.Marketing.AutomationTrace do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Marketing.AutomationTrace do
 
   postgres do
     table "marketing_automation_traces"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -95,11 +95,11 @@ defmodule UniboV4.Marketing.AutomationTrace do
   end
 
   relationships do
-    belongs_to :activity, UniboV4.Marketing.AutomationActivity do
+    belongs_to :activity, UniboExPoc.Marketing.AutomationActivity do
       public? true
       allow_nil? false
     end
-    belongs_to :participant, UniboV4.Marketing.AutomationParticipant do
+    belongs_to :participant, UniboExPoc.Marketing.AutomationParticipant do
       public? true
       allow_nil? false
     end
@@ -133,9 +133,9 @@ defmodule UniboV4.Marketing.AutomationTrace do
       # skipped: validate compare :campaign_status (incompatible with bulk update atomic path)
       change set_attribute(:state, :processed)
       change set_attribute(:date_triggered, &DateTime.utc_now/0)
-      change UniboV4.Marketing.Changes.AutomationTrace.ExecuteCall3
-      change UniboV4.Marketing.Changes.AutomationTrace.ExecuteCall4
-      change UniboV4.Marketing.Changes.AutomationTrace.ExecuteCall6
+      change UniboExPoc.Marketing.Changes.AutomationTrace.ExecuteCall3
+      change UniboExPoc.Marketing.Changes.AutomationTrace.ExecuteCall4
+      change UniboExPoc.Marketing.Changes.AutomationTrace.ExecuteCall6
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

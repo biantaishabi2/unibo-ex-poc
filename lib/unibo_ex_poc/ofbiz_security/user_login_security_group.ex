@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Security.UserLoginSecurityGroup do
+defmodule UniboExPoc.Ofbiz.Security.UserLoginSecurityGroup do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Security,
+    domain: UniboExPoc.Ofbiz.Security,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Security.UserLoginSecurityGroup do
 
   postgres do
     table "security_user_login_security_groups"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,10 +41,10 @@ defmodule UniboV4.Ofbiz.Security.UserLoginSecurityGroup do
   end
 
   relationships do
-    belongs_to :user_login, UniboV4.Ofbiz.Security.UserLogin do
+    belongs_to :user_login, UniboExPoc.Ofbiz.Security.UserLogin do
       public? true
     end
-    belongs_to :security_group, UniboV4.Ofbiz.Security.SecurityGroup do
+    belongs_to :security_group, UniboExPoc.Ofbiz.Security.SecurityGroup do
       public? true
       source_attribute :group_id
     end

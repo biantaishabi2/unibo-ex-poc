@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.GlReconciliationEntry do
+defmodule UniboExPoc.Ofbiz.Accounting.GlReconciliationEntry do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_gl_reconciliation_entries"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,10 +37,10 @@ defmodule UniboV4.Ofbiz.Accounting.GlReconciliationEntry do
   end
 
   relationships do
-    belongs_to :gl_reconciliation, UniboV4.Ofbiz.Accounting.GlReconciliation do
+    belongs_to :gl_reconciliation, UniboExPoc.Ofbiz.Accounting.GlReconciliation do
       public? true
     end
-    belongs_to :acctg_trans, UniboV4.Ofbiz.Accounting.AcctgTrans do
+    belongs_to :acctg_trans, UniboExPoc.Ofbiz.Accounting.AcctgTrans do
       public? true
     end
   end

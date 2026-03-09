@@ -17,10 +17,10 @@
 #   toggle_test_mode --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Payment.PaymentProvider do
+defmodule UniboExPoc.Payment.PaymentProvider do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Payment,
+    domain: UniboExPoc.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -30,7 +30,7 @@ defmodule UniboV4.Payment.PaymentProvider do
 
   postgres do
     table "payment_providers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -103,11 +103,11 @@ defmodule UniboV4.Payment.PaymentProvider do
   end
 
   relationships do
-    has_many :gateway_responses, UniboV4.Payment.PaymentGatewayResponse do
+    has_many :gateway_responses, UniboExPoc.Payment.PaymentGatewayResponse do
       public? true
       destination_attribute :payment_provider_id
     end
-    has_many :tokens, UniboV4.Payment.PaymentToken do
+    has_many :tokens, UniboExPoc.Payment.PaymentToken do
       public? true
       destination_attribute :provider_id
     end

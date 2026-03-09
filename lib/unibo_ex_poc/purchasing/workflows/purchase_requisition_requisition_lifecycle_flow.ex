@@ -1,10 +1,10 @@
-defmodule UniboV4.Purchasing.Workflows.PurchaseRequisition.RequisitionLifecycleFlowWorkflow do
+defmodule UniboExPoc.Purchasing.Workflows.PurchaseRequisition.RequisitionLifecycleFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Purchasing.PurchaseRequisition
+  alias UniboExPoc.Purchasing.PurchaseRequisition
 
   def steps do
     [:create, :action_in_progress, :action_open, :action_done, :action_cancel]
@@ -153,6 +153,7 @@ defmodule UniboV4.Purchasing.Workflows.PurchaseRequisition.RequisitionLifecycleF
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :action_in_progress -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.Purchasing.Workflows.PurchaseRequisition.RequisitionLifecycleF
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :action_in_progress -> false

@@ -1,7 +1,7 @@
-defmodule UniboV4.Quality.QualityPointOrgView do
+defmodule UniboExPoc.Quality.QualityPointOrgView do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Quality,
+    domain: UniboExPoc.Quality,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Quality.QualityPointOrgView do
 
   postgres do
     table "quality_point_org_views"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -51,11 +51,11 @@ defmodule UniboV4.Quality.QualityPointOrgView do
   end
 
   relationships do
-    belongs_to :quality_point, UniboV4.Quality.QualityPoint do
+    belongs_to :quality_point, UniboExPoc.Quality.QualityPoint do
       public? true
       allow_nil? false
     end
-    belongs_to :party, UniboV4.Quality.Party do
+    belongs_to :party, UniboExPoc.Quality.Party do
       public? true
       allow_nil? false
     end

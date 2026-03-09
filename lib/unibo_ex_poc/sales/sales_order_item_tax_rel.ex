@@ -1,7 +1,7 @@
-defmodule UniboV4.Sales.SalesOrderItemTaxRel do
+defmodule UniboExPoc.Sales.SalesOrderItemTaxRel do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sales,
+    domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Sales.SalesOrderItemTaxRel do
 
   postgres do
     table "sales_order_item_tax_rels"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,12 +41,12 @@ defmodule UniboV4.Sales.SalesOrderItemTaxRel do
   end
 
   relationships do
-    belongs_to :order_item, UniboV4.Sales.SalesOrderItem do
+    belongs_to :order_item, UniboExPoc.Sales.SalesOrderItem do
       public? true
       allow_nil? false
       source_attribute :sales_order_item_id
     end
-    belongs_to :tax, UniboV4.Sales.Tax do
+    belongs_to :tax, UniboExPoc.Sales.Tax do
       public? true
       allow_nil? false
     end

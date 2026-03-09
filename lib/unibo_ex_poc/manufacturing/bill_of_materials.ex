@@ -7,10 +7,10 @@
 #   activate --> [*]
 #   obsolete --> [*]
 # ```
-defmodule UniboV4.Manufacturing.BillOfMaterials do
+defmodule UniboExPoc.Manufacturing.BillOfMaterials do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Manufacturing,
+    domain: UniboExPoc.Manufacturing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Manufacturing.BillOfMaterials do
 
   postgres do
     table "manufacturing_bill_of_materialses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -126,15 +126,15 @@ defmodule UniboV4.Manufacturing.BillOfMaterials do
   end
 
   relationships do
-    has_many :lines, UniboV4.Manufacturing.BomLine do
+    has_many :lines, UniboExPoc.Manufacturing.BomLine do
       public? true
       destination_attribute :bom_id
     end
-    has_many :byproducts, UniboV4.Manufacturing.BomByproduct do
+    has_many :byproducts, UniboExPoc.Manufacturing.BomByproduct do
       public? true
       destination_attribute :bom_id
     end
-    has_many :operations, UniboV4.Manufacturing.RoutingOperation do
+    has_many :operations, UniboExPoc.Manufacturing.RoutingOperation do
       public? true
       destination_attribute :bom_id
     end

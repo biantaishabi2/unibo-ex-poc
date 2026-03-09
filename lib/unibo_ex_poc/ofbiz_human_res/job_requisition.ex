@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.JobRequisition do
+defmodule UniboExPoc.Ofbiz.HumanRes.JobRequisition do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_job_requisitions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -47,16 +47,16 @@ defmodule UniboV4.Ofbiz.HumanRes.JobRequisition do
   end
 
   relationships do
-    belongs_to :skill_type, UniboV4.Ofbiz.HumanRes.SkillType do
+    belongs_to :skill_type, UniboExPoc.Ofbiz.HumanRes.SkillType do
       public? true
       attribute_type :string
     end
-    belongs_to :exam_type_enumeration, UniboV4.Ofbiz.HumanRes.Enumeration do
+    belongs_to :exam_type_enumeration, UniboExPoc.Ofbiz.HumanRes.Enumeration do
       public? true
       source_attribute :exam_type_enum_id
       attribute_type :string
     end
-    belongs_to :job_posting_type_enumeration, UniboV4.Ofbiz.HumanRes.Enumeration do
+    belongs_to :job_posting_type_enumeration, UniboExPoc.Ofbiz.HumanRes.Enumeration do
       public? true
       source_attribute :job_posting_type_enum_id
       attribute_type :string

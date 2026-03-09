@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Documents.Facet do
+defmodule UniboExPoc.Documents.Facet do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Documents,
+    domain: UniboExPoc.Documents,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.Documents.Facet do
 
   postgres do
     table "documents_facets"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,11 +57,11 @@ defmodule UniboV4.Documents.Facet do
   end
 
   relationships do
-    belongs_to :folder, UniboV4.Documents.Folder do
+    belongs_to :folder, UniboExPoc.Documents.Folder do
       public? true
       allow_nil? false
     end
-    has_many :tags, UniboV4.Documents.Tag do
+    has_many :tags, UniboExPoc.Documents.Tag do
       public? true
     end
   end

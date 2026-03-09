@@ -1,7 +1,7 @@
-defmodule UniboV4.Documents.WorkflowRuleTagActionLink do
+defmodule UniboExPoc.Documents.WorkflowRuleTagActionLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Documents,
+    domain: UniboExPoc.Documents,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Documents.WorkflowRuleTagActionLink do
 
   postgres do
     table "documents_workflow_rule_tag_action_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Documents.WorkflowRuleTagActionLink do
   end
 
   relationships do
-    belongs_to :workflow_rule, UniboV4.Documents.WorkflowRule do
+    belongs_to :workflow_rule, UniboExPoc.Documents.WorkflowRule do
       public? true
       allow_nil? false
     end
-    belongs_to :tag, UniboV4.Documents.Tag do
+    belongs_to :tag, UniboExPoc.Documents.Tag do
       public? true
       allow_nil? false
     end

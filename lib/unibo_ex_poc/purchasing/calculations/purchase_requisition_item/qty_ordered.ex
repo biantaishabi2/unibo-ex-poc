@@ -1,4 +1,4 @@
-defmodule UniboV4.Purchasing.Calculations.PurchaseRequisitionItem.QtyOrdered do
+defmodule UniboExPoc.Purchasing.Calculations.PurchaseRequisitionItem.QtyOrdered do
   @moduledoc """
   Calculation 模块: :qty_ordered (type: :decimal, entity: purchase_requisition_item)
   """

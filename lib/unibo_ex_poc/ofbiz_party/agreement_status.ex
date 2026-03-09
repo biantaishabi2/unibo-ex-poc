@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.AgreementStatus do
+defmodule UniboExPoc.Ofbiz.Party.AgreementStatus do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_agreement_statuses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,14 +41,14 @@ defmodule UniboV4.Ofbiz.Party.AgreementStatus do
   end
 
   relationships do
-    belongs_to :agreement, UniboV4.Ofbiz.Party.Agreement do
+    belongs_to :agreement, UniboExPoc.Ofbiz.Party.Agreement do
       public? true
     end
-    belongs_to :status_item, UniboV4.Ofbiz.Party.StatusItem do
+    belongs_to :status_item, UniboExPoc.Ofbiz.Party.StatusItem do
       public? true
       source_attribute :status_id
     end
-    belongs_to :change_by_user_login, UniboV4.Ofbiz.Party.UserLogin do
+    belongs_to :change_by_user_login, UniboExPoc.Ofbiz.Party.UserLogin do
       public? true
     end
   end

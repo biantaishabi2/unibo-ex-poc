@@ -8,10 +8,10 @@
 #   update --> reset
 #   reset --> update
 # ```
-defmodule UniboV4.Helpdesk.Rating do
+defmodule UniboExPoc.Helpdesk.Rating do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Helpdesk.Rating do
 
   postgres do
     table "helpdesk_ratings"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -93,15 +93,15 @@ defmodule UniboV4.Helpdesk.Rating do
   end
 
   relationships do
-    belongs_to :ticket, UniboV4.Helpdesk.HelpdeskTicket do
+    belongs_to :ticket, UniboExPoc.Helpdesk.HelpdeskTicket do
       public? true
       source_attribute :helpdesk_ticket_id
     end
-    belongs_to :rated_partner, UniboV4.Helpdesk.Party do
+    belongs_to :rated_partner, UniboExPoc.Helpdesk.Party do
       public? true
       source_attribute :rated_partner_party_id
     end
-    belongs_to :partner, UniboV4.Helpdesk.Party do
+    belongs_to :partner, UniboExPoc.Helpdesk.Party do
       public? true
       source_attribute :partner_party_id
     end

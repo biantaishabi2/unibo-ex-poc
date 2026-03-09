@@ -1,4 +1,4 @@
-defmodule UniboV4.Ofbiz.Security do
+defmodule UniboExPoc.Ofbiz.Security do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,27 +7,27 @@ defmodule UniboV4.Ofbiz.Security do
   end
 
   resources do
-    resource UniboV4.Ofbiz.Security.X509IssuerProvision
-    resource UniboV4.Ofbiz.Security.X509IssuerProvision.Version
-    resource UniboV4.Ofbiz.Security.UserLogin
-    resource UniboV4.Ofbiz.Security.UserLogin.Version
-    resource UniboV4.Ofbiz.Security.UserLoginPasswordHistory
-    resource UniboV4.Ofbiz.Security.UserLoginPasswordHistory.Version
-    resource UniboV4.Ofbiz.Security.UserLoginHistory
-    resource UniboV4.Ofbiz.Security.UserLoginHistory.Version
-    resource UniboV4.Ofbiz.Security.UserLoginSession
-    resource UniboV4.Ofbiz.Security.UserLoginSession.Version
-    resource UniboV4.Ofbiz.Security.SecurityGroup
-    resource UniboV4.Ofbiz.Security.SecurityGroup.Version
-    resource UniboV4.Ofbiz.Security.SecurityGroupPermission
-    resource UniboV4.Ofbiz.Security.SecurityGroupPermission.Version
-    resource UniboV4.Ofbiz.Security.SecurityPermission
-    resource UniboV4.Ofbiz.Security.SecurityPermission.Version
-    resource UniboV4.Ofbiz.Security.UserLoginSecurityGroup
-    resource UniboV4.Ofbiz.Security.UserLoginSecurityGroup.Version
-    resource UniboV4.Ofbiz.Security.ProtectedView
-    resource UniboV4.Ofbiz.Security.ProtectedView.Version
-    resource UniboV4.Ofbiz.Security.TarpittedLoginView
-    resource UniboV4.Ofbiz.Security.TarpittedLoginView.Version
+    resource UniboExPoc.Ofbiz.Security.X509IssuerProvision
+    resource UniboExPoc.Ofbiz.Security.X509IssuerProvision.Version
+    resource UniboExPoc.Ofbiz.Security.UserLogin
+    resource UniboExPoc.Ofbiz.Security.UserLogin.Version
+    resource UniboExPoc.Ofbiz.Security.UserLoginPasswordHistory
+    resource UniboExPoc.Ofbiz.Security.UserLoginPasswordHistory.Version
+    resource UniboExPoc.Ofbiz.Security.UserLoginHistory
+    resource UniboExPoc.Ofbiz.Security.UserLoginHistory.Version
+    resource UniboExPoc.Ofbiz.Security.UserLoginSession
+    resource UniboExPoc.Ofbiz.Security.UserLoginSession.Version
+    resource UniboExPoc.Ofbiz.Security.SecurityGroup
+    resource UniboExPoc.Ofbiz.Security.SecurityGroup.Version
+    resource UniboExPoc.Ofbiz.Security.SecurityGroupPermission
+    resource UniboExPoc.Ofbiz.Security.SecurityGroupPermission.Version
+    resource UniboExPoc.Ofbiz.Security.SecurityPermission
+    resource UniboExPoc.Ofbiz.Security.SecurityPermission.Version
+    resource UniboExPoc.Ofbiz.Security.UserLoginSecurityGroup
+    resource UniboExPoc.Ofbiz.Security.UserLoginSecurityGroup.Version
+    resource UniboExPoc.Ofbiz.Security.ProtectedView
+    resource UniboExPoc.Ofbiz.Security.ProtectedView.Version
+    resource UniboExPoc.Ofbiz.Security.TarpittedLoginView
+    resource UniboExPoc.Ofbiz.Security.TarpittedLoginView.Version
   end
 end

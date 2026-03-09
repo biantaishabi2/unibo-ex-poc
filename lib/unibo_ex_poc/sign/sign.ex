@@ -1,4 +1,4 @@
-defmodule UniboV4.Sign do
+defmodule UniboExPoc.Sign do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,17 +7,17 @@ defmodule UniboV4.Sign do
   end
 
   resources do
-    resource UniboV4.Sign.SignTemplate
-    resource UniboV4.Sign.SignTemplate.Version
-    resource UniboV4.Sign.SignItem
-    resource UniboV4.Sign.SignItem.Version
-    resource UniboV4.Sign.SignRole
-    resource UniboV4.Sign.SignRole.Version
-    resource UniboV4.Sign.SignRequest
-    resource UniboV4.Sign.SignRequest.Version
-    resource UniboV4.Sign.SignRequestItem
-    resource UniboV4.Sign.SignRequestItem.Version
-    resource UniboV4.Sign.SignLog
-    resource UniboV4.Sign.Party
+    resource UniboExPoc.Sign.SignTemplate
+    resource UniboExPoc.Sign.SignTemplate.Version
+    resource UniboExPoc.Sign.SignItem
+    resource UniboExPoc.Sign.SignItem.Version
+    resource UniboExPoc.Sign.SignRole
+    resource UniboExPoc.Sign.SignRole.Version
+    resource UniboExPoc.Sign.SignRequest
+    resource UniboExPoc.Sign.SignRequest.Version
+    resource UniboExPoc.Sign.SignRequestItem
+    resource UniboExPoc.Sign.SignRequestItem.Version
+    resource UniboExPoc.Sign.SignLog
+    resource UniboExPoc.Sign.Party
   end
 end

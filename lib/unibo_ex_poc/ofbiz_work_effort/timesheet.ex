@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.Timesheet do
+defmodule UniboExPoc.Ofbiz.WorkEffort.Timesheet do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_timesheets"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -40,20 +40,20 @@ defmodule UniboV4.Ofbiz.WorkEffort.Timesheet do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Ofbiz.WorkEffort.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.WorkEffort.Party do
       public? true
       attribute_type :string
     end
-    belongs_to :client_party, UniboV4.Ofbiz.WorkEffort.Party do
+    belongs_to :client_party, UniboExPoc.Ofbiz.WorkEffort.Party do
       public? true
       attribute_type :string
     end
-    belongs_to :status_item, UniboV4.Ofbiz.WorkEffort.StatusItem do
+    belongs_to :status_item, UniboExPoc.Ofbiz.WorkEffort.StatusItem do
       public? true
       source_attribute :status_id
       attribute_type :string
     end
-    belongs_to :approved_by_user_login, UniboV4.Ofbiz.WorkEffort.UserLogin do
+    belongs_to :approved_by_user_login, UniboExPoc.Ofbiz.WorkEffort.UserLogin do
       public? true
       attribute_type :string
     end

@@ -15,13 +15,13 @@
 #   reset --> [*]
 #   advance --> [*]
 # ```
-defmodule UniboV4.HR.JobApplication do
+defmodule UniboExPoc.HR.JobApplication do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.HR.JobApplication.Notifier]
+    notifiers: [UniboExPoc.HR.JobApplication.Notifier]
 
   resource do
     description "求职申请"
@@ -29,7 +29,7 @@ defmodule UniboV4.HR.JobApplication do
 
   postgres do
     table "hr_job_applications"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -94,15 +94,15 @@ defmodule UniboV4.HR.JobApplication do
   end
 
   relationships do
-    belongs_to :requisition, UniboV4.HR.JobRequisition do
+    belongs_to :requisition, UniboExPoc.HR.JobRequisition do
       public? true
       allow_nil? false
     end
-    many_to_many :interviewers, UniboV4.HR.Employee do
+    many_to_many :interviewers, UniboExPoc.HR.Employee do
       public? true
-      through UniboV4.HR.JobApplicationInterviewerLink
+      through UniboExPoc.HR.JobApplicationInterviewerLink
     end
-    has_many :applicant_skills, UniboV4.HR.ApplicantSkill do
+    has_many :applicant_skills, UniboExPoc.HR.ApplicantSkill do
       public? true
     end
   end
@@ -166,7 +166,7 @@ defmodule UniboV4.HR.JobApplication do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :hired)
       change set_attribute(:date_closed, &Date.utc_today/0)
-      change UniboV4.HR.Changes.JobApplication.HireCall7
+      change UniboExPoc.HR.Changes.JobApplication.HireCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

@@ -11,10 +11,10 @@
 #   reorder --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Barcode.BarcodeRule do
+defmodule UniboExPoc.Barcode.BarcodeRule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Barcode,
+    domain: UniboExPoc.Barcode,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -24,7 +24,7 @@ defmodule UniboV4.Barcode.BarcodeRule do
 
   postgres do
     table "barcode_rules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -97,14 +97,14 @@ defmodule UniboV4.Barcode.BarcodeRule do
   end
 
   relationships do
-    belongs_to :nomenclature, UniboV4.Barcode.BarcodeNomenclature do
+    belongs_to :nomenclature, UniboExPoc.Barcode.BarcodeNomenclature do
       public? true
       allow_nil? false
     end
-    belongs_to :gs1_ai, UniboV4.Barcode.GS1ApplicationIdentifier do
+    belongs_to :gs1_ai, UniboExPoc.Barcode.GS1ApplicationIdentifier do
       public? true
     end
-    has_many :translations, UniboV4.Barcode.BarcodeRuleTranslation, public?: true
+    has_many :translations, UniboExPoc.Barcode.BarcodeRuleTranslation, public?: true
   end
 
   actions do

@@ -7,13 +7,13 @@
 #   cancel --> reset_to_draft
 #   reset_to_draft --> post
 # ```
-defmodule UniboV4.Accounting.Payment do
+defmodule UniboExPoc.Accounting.Payment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Accounting,
+    domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Accounting.Payment.Notifier]
+    notifiers: [UniboExPoc.Accounting.Payment.Notifier]
 
   resource do
     description "付款/收款记录。在 Odoo 中通过 _inherits 委托继承 account.move，每个 Payment 即是一个 JournalEntry"
@@ -21,7 +21,7 @@ defmodule UniboV4.Accounting.Payment do
 
   postgres do
     table "accounting_payments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -115,18 +115,18 @@ defmodule UniboV4.Accounting.Payment do
   end
 
   relationships do
-    belongs_to :journal_entry, UniboV4.Accounting.JournalEntry do
+    belongs_to :journal_entry, UniboExPoc.Accounting.JournalEntry do
       public? true
       allow_nil? false
     end
-    has_many :applications, UniboV4.Accounting.PaymentApplication do
+    has_many :applications, UniboExPoc.Accounting.PaymentApplication do
       public? true
     end
-    belongs_to :created_by, UniboV4.Accounting.Party do
+    belongs_to :created_by, UniboExPoc.Accounting.Party do
       public? true
       source_attribute :created_by_party_id
     end
-    belongs_to :paired_internal_transfer, UniboV4.Accounting.Payment do
+    belongs_to :paired_internal_transfer, UniboExPoc.Accounting.Payment do
       public? true
     end
   end
@@ -160,8 +160,8 @@ defmodule UniboV4.Accounting.Payment do
       # message: "只有草稿状态可以确认"
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :posted)
-      change UniboV4.Accounting.Changes.Payment.PostCall3
-      change UniboV4.Accounting.Changes.Payment.PostCall6
+      change UniboExPoc.Accounting.Changes.Payment.PostCall3
+      change UniboExPoc.Accounting.Changes.Payment.PostCall6
       require_atomic? false
     end
     update :cancel do

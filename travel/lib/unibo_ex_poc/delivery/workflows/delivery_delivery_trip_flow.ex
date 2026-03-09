@@ -153,6 +153,7 @@ defmodule UniboExPoc.Delivery.Workflows.Delivery.DeliveryTripFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :start -> nil
@@ -164,6 +165,7 @@ defmodule UniboExPoc.Delivery.Workflows.Delivery.DeliveryTripFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :start -> false

@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.HumanRes.PaymentMethodType do
+defmodule UniboExPoc.Ofbiz.HumanRes.PaymentMethodType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer
 
   resource do
@@ -10,7 +10,7 @@ defmodule UniboV4.Ofbiz.HumanRes.PaymentMethodType do
 
   postgres do
     table "human_res_payment_method_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do

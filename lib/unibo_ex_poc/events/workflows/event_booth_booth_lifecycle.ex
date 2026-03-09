@@ -1,10 +1,10 @@
-defmodule UniboV4.Events.Workflows.EventBooth.BoothLifecycleWorkflow do
+defmodule UniboExPoc.Events.Workflows.EventBooth.BoothLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Events.EventBooth
+  alias UniboExPoc.Events.EventBooth
 
   def steps do
     [:create, :reserve, :release]
@@ -145,6 +145,7 @@ defmodule UniboV4.Events.Workflows.EventBooth.BoothLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :reserve -> nil
@@ -154,6 +155,7 @@ defmodule UniboV4.Events.Workflows.EventBooth.BoothLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :reserve -> false

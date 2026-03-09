@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Uom.Uom do
+defmodule UniboExPoc.Uom.Uom do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Uom,
+    domain: UniboExPoc.Uom,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Uom.Uom do
 
   postgres do
     table "uom_uoms"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -80,11 +80,11 @@ defmodule UniboV4.Uom.Uom do
   end
 
   relationships do
-    belongs_to :category, UniboV4.Uom.UomCategory do
+    belongs_to :category, UniboExPoc.Uom.UomCategory do
       public? true
       allow_nil? false
     end
-    has_many :translations, UniboV4.Uom.UomTranslation, public?: true
+    has_many :translations, UniboExPoc.Uom.UomTranslation, public?: true
   end
 
   actions do

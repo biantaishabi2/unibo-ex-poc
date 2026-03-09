@@ -8,10 +8,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.POS.RestaurantTable do
+defmodule UniboExPoc.POS.RestaurantTable do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.POS,
+    domain: UniboExPoc.POS,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.POS.RestaurantTable do
 
   postgres do
     table "pos_restaurant_tables"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -94,11 +94,11 @@ defmodule UniboV4.POS.RestaurantTable do
   end
 
   relationships do
-    belongs_to :floor, UniboV4.POS.RestaurantFloor do
+    belongs_to :floor, UniboExPoc.POS.RestaurantFloor do
       public? true
       allow_nil? false
     end
-    has_many :orders, UniboV4.POS.PosOrder do
+    has_many :orders, UniboExPoc.POS.PosOrder do
       public? true
       source_attribute :floor_id
       destination_attribute :table_id

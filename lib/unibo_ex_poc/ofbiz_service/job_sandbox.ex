@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Service.JobSandbox do
+defmodule UniboExPoc.Ofbiz.Service.JobSandbox do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Service,
+    domain: UniboExPoc.Ofbiz.Service,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Service.JobSandbox do
 
   postgres do
     table "service_job_sandboxes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -59,14 +59,14 @@ defmodule UniboV4.Ofbiz.Service.JobSandbox do
   end
 
   relationships do
-    belongs_to :recurrence_info, UniboV4.Ofbiz.Service.RecurrenceInfo do
+    belongs_to :recurrence_info, UniboExPoc.Ofbiz.Service.RecurrenceInfo do
       public? true
     end
-    belongs_to :temporal_expression, UniboV4.Ofbiz.Service.TemporalExpression do
+    belongs_to :temporal_expression, UniboExPoc.Ofbiz.Service.TemporalExpression do
       public? true
       source_attribute :temp_expr_id
     end
-    belongs_to :runtime_data, UniboV4.Ofbiz.Service.RuntimeData do
+    belongs_to :runtime_data, UniboExPoc.Ofbiz.Service.RuntimeData do
       public? true
     end
   end

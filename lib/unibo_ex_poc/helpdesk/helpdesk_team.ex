@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Helpdesk.HelpdeskTeam do
+defmodule UniboExPoc.Helpdesk.HelpdeskTeam do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Helpdesk.HelpdeskTeam do
 
   postgres do
     table "helpdesk_teams"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -131,21 +131,21 @@ balanced — 选择当前未关闭工单数量最少的可用成员
   end
 
   relationships do
-    has_many :tickets, UniboV4.Helpdesk.HelpdeskTicket do
+    has_many :tickets, UniboExPoc.Helpdesk.HelpdeskTicket do
       public? true
       destination_attribute :team_id
     end
-    has_many :sla_policies, UniboV4.Helpdesk.HelpdeskSLA do
+    has_many :sla_policies, UniboExPoc.Helpdesk.HelpdeskSLA do
       public? true
       destination_attribute :team_id
     end
-    many_to_many :members, UniboV4.Helpdesk.Employee do
+    many_to_many :members, UniboExPoc.Helpdesk.Employee do
       public? true
-      through UniboV4.Helpdesk.HelpdeskTeamMemberLink
+      through UniboExPoc.Helpdesk.HelpdeskTeamMemberLink
     end
-    many_to_many :stage_ids, UniboV4.Helpdesk.HelpdeskStage do
+    many_to_many :stage_ids, UniboExPoc.Helpdesk.HelpdeskStage do
       public? true
-      through UniboV4.Helpdesk.HelpdeskTeamStageLink
+      through UniboExPoc.Helpdesk.HelpdeskTeamStageLink
     end
   end
 

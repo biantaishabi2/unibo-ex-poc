@@ -20,13 +20,13 @@
 #   cancel --> [*]
 #   draft --> [*]
 # ```
-defmodule UniboV4.Approvals.Approver do
+defmodule UniboExPoc.Approvals.Approver do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Approvals,
+    domain: UniboExPoc.Approvals,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Approvals.Approver.Notifier]
+    notifiers: [UniboExPoc.Approvals.Approver.Notifier]
 
   resource do
     description "审批人记录，跟踪每个审批人对请求的审批状态"
@@ -34,7 +34,7 @@ defmodule UniboV4.Approvals.Approver do
 
   postgres do
     table "approvals_approvers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -113,17 +113,17 @@ defmodule UniboV4.Approvals.Approver do
   end
 
   relationships do
-    belongs_to :user, UniboV4.Approvals.Party do
+    belongs_to :user, UniboExPoc.Approvals.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id
     end
-    belongs_to :request, UniboV4.Approvals.ApprovalRequest do
+    belongs_to :request, UniboExPoc.Approvals.ApprovalRequest do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    belongs_to :delegated_from, UniboV4.Approvals.Party do
+    belongs_to :delegated_from, UniboExPoc.Approvals.Party do
       public? true
       source_attribute :delegated_from_party_id
     end
@@ -155,7 +155,7 @@ defmodule UniboV4.Approvals.Approver do
       end
       # message: "只有待审批状态可以通过"
       change set_attribute(:status, :approved)
-      change UniboV4.Approvals.Changes.Approver.ComputeApprovalDate
+      change UniboExPoc.Approvals.Changes.Approver.ComputeApprovalDate
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -172,7 +172,7 @@ defmodule UniboV4.Approvals.Approver do
       end
       # message: "只有待审批状态可以拒绝"
       change set_attribute(:status, :refused)
-      change UniboV4.Approvals.Changes.Approver.ComputeApprovalDate
+      change UniboExPoc.Approvals.Changes.Approver.ComputeApprovalDate
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

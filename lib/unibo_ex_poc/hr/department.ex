@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.HR.Department do
+defmodule UniboExPoc.HR.Department do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.HR.Department do
 
   postgres do
     table "hr_departments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,24 +57,24 @@ defmodule UniboV4.HR.Department do
   end
 
   relationships do
-    has_many :employees, UniboV4.HR.Employee do
+    has_many :employees, UniboExPoc.HR.Employee do
       public? true
     end
-    belongs_to :parent, UniboV4.HR.Department do
+    belongs_to :parent, UniboExPoc.HR.Department do
       public? true
     end
-    belongs_to :manager, UniboV4.HR.Employee do
+    belongs_to :manager, UniboExPoc.HR.Employee do
       public? true
     end
-    has_many :children, UniboV4.HR.Department do
+    has_many :children, UniboExPoc.HR.Department do
       public? true
       source_attribute :parent_id
       destination_attribute :parent_id
     end
-    has_many :job_requisitions, UniboV4.HR.JobRequisition do
+    has_many :job_requisitions, UniboExPoc.HR.JobRequisition do
       public? true
     end
-    has_many :employee_skill_logs, UniboV4.HR.EmployeeSkillLog do
+    has_many :employee_skill_logs, UniboExPoc.HR.EmployeeSkillLog do
       public? true
     end
   end
@@ -96,7 +96,7 @@ defmodule UniboV4.HR.Department do
       accept [:name, :description, :is_active, :manager_id]
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate immutable :department_code (incompatible with bulk update atomic path)
-      change UniboV4.HR.Changes.Department.UpdateCall1
+      change UniboExPoc.HR.Changes.Department.UpdateCall1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

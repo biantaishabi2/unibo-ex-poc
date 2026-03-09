@@ -1,7 +1,7 @@
-defmodule UniboV4.Subscriptions.PaymentToken do
+defmodule UniboExPoc.Subscriptions.PaymentToken do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Subscriptions,
+    domain: UniboExPoc.Subscriptions,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Subscriptions.PaymentToken do
 
   postgres do
     table "subscriptions_payment_tokens"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

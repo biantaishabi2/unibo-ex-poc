@@ -8,10 +8,10 @@
 #   join --> quit
 #   quit --> [*]
 # ```
-defmodule UniboV4.LiveChat.LiveChatChannel do
+defmodule UniboExPoc.LiveChat.LiveChatChannel do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.LiveChat,
+    domain: UniboExPoc.LiveChat,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.LiveChat.LiveChatChannel do
 
   postgres do
     table "live_chat_channels"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -94,25 +94,25 @@ defmodule UniboV4.LiveChat.LiveChatChannel do
 
   calculations do
     calculate :web_page, :string, expr("/im_livechat/support/" <> id)
-    calculate :are_you_inside, :boolean, {UniboV4.LiveChat.Calculations.LiveChatChannel.AreYouInside, []}
-    calculate :available_operator_ids, {:array, :string}, {UniboV4.LiveChat.Calculations.LiveChatChannel.AvailableOperatorIds, []}
+    calculate :are_you_inside, :boolean, {UniboExPoc.LiveChat.Calculations.LiveChatChannel.AreYouInside, []}
+    calculate :available_operator_ids, {:array, :string}, {UniboExPoc.LiveChat.Calculations.LiveChatChannel.AvailableOperatorIds, []}
     calculate :nbr_channel, :integer, expr(count(sessions, query: [filter: expr(true)]))
     calculate :chatbot_script_count, :integer, expr(count_distinct(rule_ids.chatbot_script_id))
     calculate :is_available, :boolean, expr((chatbot_script_count > 0 or count(available_operator_ids, query: [filter: expr(true)]) > 0))
   end
 
   relationships do
-    many_to_many :user_ids, UniboV4.LiveChat.Party do
+    many_to_many :user_ids, UniboExPoc.LiveChat.Party do
       public? true
-      through UniboV4.LiveChat.LiveChatChannelUserLink
+      through UniboExPoc.LiveChat.LiveChatChannelUserLink
       source_attribute_on_join_resource :livechat_channel_id
       destination_attribute_on_join_resource :user_party_id
     end
-    has_many :sessions, UniboV4.LiveChat.ChatSession do
+    has_many :sessions, UniboExPoc.LiveChat.ChatSession do
       public? true
       destination_attribute :livechat_channel_id
     end
-    has_many :rule_ids, UniboV4.LiveChat.ChannelRule do
+    has_many :rule_ids, UniboExPoc.LiveChat.ChannelRule do
       public? true
       destination_attribute :channel_id
     end
@@ -126,7 +126,7 @@ defmodule UniboV4.LiveChat.LiveChatChannel do
       argument :rule_ids, {:array, :map}, default: []
       change manage_relationship(:rule_ids, :rule_ids, type: :create)
       validate present(:name)
-      change UniboV4.LiveChat.Changes.LiveChatChannel.CreateCall1
+      change UniboExPoc.LiveChat.Changes.LiveChatChannel.CreateCall1
       change set_attribute(:id, expr(id))
     end
     update :update do
@@ -140,14 +140,14 @@ defmodule UniboV4.LiveChat.LiveChatChannel do
     update :join do
       description "当前用户加入操作员列表"
       accept []
-      change UniboV4.LiveChat.Changes.LiveChatChannel.JoinCall2
+      change UniboExPoc.LiveChat.Changes.LiveChatChannel.JoinCall2
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :quit do
       description "当前用户退出操作员列表"
       accept []
-      change UniboV4.LiveChat.Changes.LiveChatChannel.QuitCall3
+      change UniboExPoc.LiveChat.Changes.LiveChatChannel.QuitCall3
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

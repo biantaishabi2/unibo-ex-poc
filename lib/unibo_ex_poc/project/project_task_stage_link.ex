@@ -1,7 +1,7 @@
-defmodule UniboV4.Project.ProjectTaskStageLink do
+defmodule UniboExPoc.Project.ProjectTaskStageLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Project,
+    domain: UniboExPoc.Project,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Project.ProjectTaskStageLink do
 
   postgres do
     table "project_task_stage_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -30,11 +30,11 @@ defmodule UniboV4.Project.ProjectTaskStageLink do
   end
 
   relationships do
-    belongs_to :project, UniboV4.Project.Project do
+    belongs_to :project, UniboExPoc.Project.Project do
       public? true
       allow_nil? false
     end
-    belongs_to :task_stage, UniboV4.Project.TaskStage do
+    belongs_to :task_stage, UniboExPoc.Project.TaskStage do
       public? true
       allow_nil? false
     end

@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Gamification.GoalDefinition do
+defmodule UniboExPoc.Gamification.GoalDefinition do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Gamification,
+    domain: UniboExPoc.Gamification,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.Gamification.GoalDefinition do
 
   postgres do
     table "gamification_goal_definitions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -109,15 +109,15 @@ defmodule UniboV4.Gamification.GoalDefinition do
   end
 
   relationships do
-    has_many :goals, UniboV4.Gamification.Goal do
+    has_many :goals, UniboExPoc.Gamification.Goal do
       public? true
       destination_attribute :definition_id
     end
-    has_many :challenge_lines, UniboV4.Gamification.ChallengeLine do
+    has_many :challenge_lines, UniboExPoc.Gamification.ChallengeLine do
       public? true
       destination_attribute :definition_id
     end
-    has_many :translations, UniboV4.Gamification.GoalDefinitionTranslation, public?: true
+    has_many :translations, UniboExPoc.Gamification.GoalDefinitionTranslation, public?: true
   end
 
   actions do

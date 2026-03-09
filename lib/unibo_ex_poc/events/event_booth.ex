@@ -9,10 +9,10 @@
 #   release --> reserve
 #   release --> destroy
 # ```
-defmodule UniboV4.Events.EventBooth do
+defmodule UniboExPoc.Events.EventBooth do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Events,
+    domain: UniboExPoc.Events,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -22,7 +22,7 @@ defmodule UniboV4.Events.EventBooth do
 
   postgres do
     table "events_event_booths"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -89,15 +89,15 @@ defmodule UniboV4.Events.EventBooth do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Events.Event do
+    belongs_to :event, UniboExPoc.Events.Event do
       public? true
       allow_nil? false
     end
-    belongs_to :tenant, UniboV4.Events.Party do
+    belongs_to :tenant, UniboExPoc.Events.Party do
       public? true
       source_attribute :tenant_party_id
     end
-    has_many :translations, UniboV4.Events.EventBoothTranslation, public?: true
+    has_many :translations, UniboExPoc.Events.EventBoothTranslation, public?: true
   end
 
   actions do
@@ -131,7 +131,7 @@ defmodule UniboV4.Events.EventBooth do
       # message: "只有可用状态的展位可以预定"
       # skipped: validate present :tenant_id (incompatible with bulk update atomic path)
       change set_attribute(:status, :reserved)
-      change UniboV4.Events.Changes.EventBooth.ComputeReservedAt
+      change UniboExPoc.Events.Changes.EventBooth.ComputeReservedAt
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

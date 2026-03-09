@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortSearchResult do
+defmodule UniboExPoc.Ofbiz.WorkEffort.WorkEffortSearchResult do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_search_results"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

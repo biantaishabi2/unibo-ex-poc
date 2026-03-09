@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Quality.QualityReason do
+defmodule UniboExPoc.Quality.QualityReason do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Quality,
+    domain: UniboExPoc.Quality,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Quality.QualityReason do
 
   postgres do
     table "quality_reasons"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -56,7 +56,7 @@ defmodule UniboV4.Quality.QualityReason do
   end
 
   relationships do
-    has_many :alerts, UniboV4.Quality.QualityAlert do
+    has_many :alerts, UniboExPoc.Quality.QualityAlert do
       public? true
       destination_attribute :root_cause_id
     end

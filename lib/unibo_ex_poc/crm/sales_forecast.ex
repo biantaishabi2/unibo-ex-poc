@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.CRM.SalesForecast do
+defmodule UniboExPoc.CRM.SalesForecast do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.CRM,
+    domain: UniboExPoc.CRM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.CRM.SalesForecast do
 
   postgres do
     table "crm_sales_forecasts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -94,11 +94,11 @@ defmodule UniboV4.CRM.SalesForecast do
   end
 
   relationships do
-    belongs_to :created_by, UniboV4.CRM.Party do
+    belongs_to :created_by, UniboExPoc.CRM.Party do
       public? true
       source_attribute :created_by_party_id
     end
-    belongs_to :team, UniboV4.CRM.SalesTeam do
+    belongs_to :team, UniboExPoc.CRM.SalesTeam do
       public? true
     end
   end

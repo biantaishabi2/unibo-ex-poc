@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.ShipmentGatewayFedex do
+defmodule UniboExPoc.Ofbiz.Shipment.ShipmentGatewayFedex do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_gateway_fedexes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -88,7 +88,7 @@ defmodule UniboV4.Ofbiz.Shipment.ShipmentGatewayFedex do
   end
 
   relationships do
-    belongs_to :shipment_gateway_config, UniboV4.Ofbiz.Shipment.ShipmentGatewayConfig do
+    belongs_to :shipment_gateway_config, UniboExPoc.Ofbiz.Shipment.ShipmentGatewayConfig do
       public? true
       attribute_type :string
     end

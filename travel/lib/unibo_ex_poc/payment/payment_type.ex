@@ -72,7 +72,7 @@ defmodule UniboExPoc.Payment.PaymentType do
     end
     has_many :payments, UniboExPoc.Payment.Payment do
       public? true
-      source_attribute :payment_type_id
+      source_attribute :parent_type_id
       destination_attribute :payment_type_id
     end
   end

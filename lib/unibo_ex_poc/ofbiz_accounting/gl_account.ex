@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.GlAccount do
+defmodule UniboExPoc.Ofbiz.Accounting.GlAccount do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_gl_accounts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,19 +41,19 @@ defmodule UniboV4.Ofbiz.Accounting.GlAccount do
   end
 
   relationships do
-    belongs_to :gl_account_type, UniboV4.Ofbiz.Accounting.GlAccountType do
+    belongs_to :gl_account_type, UniboExPoc.Ofbiz.Accounting.GlAccountType do
       public? true
     end
-    belongs_to :gl_account_class, UniboV4.Ofbiz.Accounting.GlAccountClass do
+    belongs_to :gl_account_class, UniboExPoc.Ofbiz.Accounting.GlAccountClass do
       public? true
     end
-    belongs_to :gl_resource_type, UniboV4.Ofbiz.Accounting.GlResourceType do
+    belongs_to :gl_resource_type, UniboExPoc.Ofbiz.Accounting.GlResourceType do
       public? true
     end
-    belongs_to :gl_xbrl_class, UniboV4.Ofbiz.Accounting.GlXbrlClass do
+    belongs_to :gl_xbrl_class, UniboExPoc.Ofbiz.Accounting.GlXbrlClass do
       public? true
     end
-    belongs_to :parent_gl_account, UniboV4.Ofbiz.Accounting.GlAccount do
+    belongs_to :parent_gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
     end
   end

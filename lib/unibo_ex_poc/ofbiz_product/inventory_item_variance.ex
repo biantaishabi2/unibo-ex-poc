@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.InventoryItemVariance do
+defmodule UniboExPoc.Ofbiz.Product.InventoryItemVariance do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_inventory_item_variances"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -35,13 +35,13 @@ defmodule UniboV4.Ofbiz.Product.InventoryItemVariance do
   end
 
   relationships do
-    belongs_to :physical_inventory, UniboV4.Ofbiz.Product.PhysicalInventory do
+    belongs_to :physical_inventory, UniboExPoc.Ofbiz.Product.PhysicalInventory do
       public? true
     end
-    belongs_to :variance_reason, UniboV4.Ofbiz.Product.VarianceReason do
+    belongs_to :variance_reason, UniboExPoc.Ofbiz.Product.VarianceReason do
       public? true
     end
-    belongs_to :inventory_item, UniboV4.Ofbiz.Product.InventoryItem do
+    belongs_to :inventory_item, UniboExPoc.Ofbiz.Product.InventoryItem do
       public? true
     end
   end

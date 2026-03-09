@@ -1,7 +1,7 @@
-defmodule UniboV4.Lunch.LunchProductFavoriteUserLink do
+defmodule UniboExPoc.Lunch.LunchProductFavoriteUserLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Lunch,
+    domain: UniboExPoc.Lunch,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Lunch.LunchProductFavoriteUserLink do
 
   postgres do
     table "lunch_product_favorite_user_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Lunch.LunchProductFavoriteUserLink do
   end
 
   relationships do
-    belongs_to :lunch_product, UniboV4.Lunch.LunchProduct do
+    belongs_to :lunch_product, UniboExPoc.Lunch.LunchProduct do
       public? true
       allow_nil? false
     end
-    belongs_to :user, UniboV4.Lunch.Party do
+    belongs_to :user, UniboExPoc.Lunch.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id

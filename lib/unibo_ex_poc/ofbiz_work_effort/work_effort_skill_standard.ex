@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortSkillStandard do
+defmodule UniboExPoc.Ofbiz.WorkEffort.WorkEffortSkillStandard do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_skill_standards"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -35,11 +35,11 @@ defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortSkillStandard do
   end
 
   relationships do
-    belongs_to :work_effort, UniboV4.Ofbiz.WorkEffort.WorkEffort do
+    belongs_to :work_effort, UniboExPoc.Ofbiz.WorkEffort.WorkEffort do
       public? true
       attribute_type :string
     end
-    belongs_to :skill_type, UniboV4.Ofbiz.WorkEffort.SkillType do
+    belongs_to :skill_type, UniboExPoc.Ofbiz.WorkEffort.SkillType do
       public? true
       attribute_type :string
     end

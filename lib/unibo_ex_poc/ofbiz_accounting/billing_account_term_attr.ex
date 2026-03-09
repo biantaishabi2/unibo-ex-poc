@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.BillingAccountTermAttr do
+defmodule UniboExPoc.Ofbiz.Accounting.BillingAccountTermAttr do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_billing_account_term_attrs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,7 +37,7 @@ defmodule UniboV4.Ofbiz.Accounting.BillingAccountTermAttr do
   end
 
   relationships do
-    belongs_to :billing_account_term, UniboV4.Ofbiz.Accounting.BillingAccountTerm do
+    belongs_to :billing_account_term, UniboExPoc.Ofbiz.Accounting.BillingAccountTerm do
       public? true
     end
   end

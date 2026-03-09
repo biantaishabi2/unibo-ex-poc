@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Membership.MembershipProduct do
+defmodule UniboExPoc.Membership.MembershipProduct do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Membership,
+    domain: UniboExPoc.Membership,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Membership.MembershipProduct do
 
   postgres do
     table "membership_products"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -60,7 +60,7 @@ defmodule UniboV4.Membership.MembershipProduct do
   end
 
   relationships do
-    has_many :membership_lines, UniboV4.Membership.MembershipLine do
+    has_many :membership_lines, UniboExPoc.Membership.MembershipLine do
       public? true
       destination_attribute :membership_id
     end

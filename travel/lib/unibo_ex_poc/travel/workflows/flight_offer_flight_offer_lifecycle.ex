@@ -157,6 +157,7 @@ defmodule UniboExPoc.Travel.Workflows.FlightOffer.FlightOfferLifecycleWorkflow d
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -169,6 +170,7 @@ defmodule UniboExPoc.Travel.Workflows.FlightOffer.FlightOfferLifecycleWorkflow d
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

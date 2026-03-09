@@ -70,7 +70,7 @@ defmodule UniboExPoc.Delivery.ShipmentType do
     end
     has_many :shipments, UniboExPoc.Delivery.Shipment do
       public? true
-      source_attribute :shipment_type_id
+      source_attribute :parent_type_id
       destination_attribute :shipment_type_id
     end
   end

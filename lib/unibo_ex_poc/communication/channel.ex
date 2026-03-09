@@ -7,10 +7,10 @@
 #   add_members --> [*]
 #   archive --> [*]
 # ```
-defmodule UniboV4.Communication.Channel do
+defmodule UniboExPoc.Communication.Channel do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Communication,
+    domain: UniboExPoc.Communication,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Communication.Channel do
 
   postgres do
     table "communication_channels"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -84,17 +84,17 @@ defmodule UniboV4.Communication.Channel do
   end
 
   relationships do
-    has_many :members, UniboV4.Communication.ChannelMember do
+    has_many :members, UniboExPoc.Communication.ChannelMember do
       public? true
     end
-    has_many :messages, UniboV4.Communication.Message do
+    has_many :messages, UniboExPoc.Communication.Message do
       public? true
     end
-    belongs_to :created_by, UniboV4.Communication.Party do
+    belongs_to :created_by, UniboExPoc.Communication.Party do
       public? true
       source_attribute :created_by_party_id
     end
-    belongs_to :group_public, UniboV4.Communication.Group do
+    belongs_to :group_public, UniboExPoc.Communication.Group do
       public? true
     end
   end
@@ -110,7 +110,7 @@ defmodule UniboV4.Communication.Channel do
       # message: "自动订阅用户组仅 channel 类型可设置"
       change relate_actor(:created_by)
       # skipped: set_attribute :group_public_id 引用外部数据 base.group_user
-      change UniboV4.Communication.Changes.Channel.CreateCall4
+      change UniboExPoc.Communication.Changes.Channel.CreateCall4
       change set_attribute(:id, expr(id))
     end
     update :update do
@@ -142,7 +142,7 @@ defmodule UniboV4.Communication.Channel do
     action :add_members do
       description "添加成员；创建成员记录 + 发布加入通知 + 广播成员列表 + 可选 RTC 邀请"
       argument :partner_ids, :string, allow_nil?: false
-      validate {UniboV4.Communication.Validations.Channel.MaxMembers, []}
+      validate {UniboExPoc.Communication.Validations.Channel.MaxMembers, []}
       # message: "私聊频道最多 2 个成员"
       run fn input, _context ->
         :ok

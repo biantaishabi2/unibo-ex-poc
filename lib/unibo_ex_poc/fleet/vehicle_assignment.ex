@@ -7,13 +7,13 @@
 #   return --> [*]
 #   transfer --> [*]
 # ```
-defmodule UniboV4.Fleet.VehicleAssignment do
+defmodule UniboExPoc.Fleet.VehicleAssignment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Fleet,
+    domain: UniboExPoc.Fleet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Fleet.VehicleAssignment.Notifier]
+    notifiers: [UniboExPoc.Fleet.VehicleAssignment.Notifier]
 
   resource do
     description "车辆分配记录，记录谁用哪辆车、时间段"
@@ -21,7 +21,7 @@ defmodule UniboV4.Fleet.VehicleAssignment do
 
   postgres do
     table "fleet_vehicle_assignments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -66,11 +66,11 @@ defmodule UniboV4.Fleet.VehicleAssignment do
   end
 
   relationships do
-    belongs_to :fleet_vehicle, UniboV4.Fleet.FleetVehicle do
+    belongs_to :fleet_vehicle, UniboExPoc.Fleet.FleetVehicle do
       public? true
       allow_nil? false
     end
-    belongs_to :driver, UniboV4.Fleet.Driver do
+    belongs_to :driver, UniboExPoc.Fleet.Driver do
       public? true
       allow_nil? false
     end
@@ -91,7 +91,7 @@ defmodule UniboV4.Fleet.VehicleAssignment do
       validate present(:from_date)
       # validation: custom_check — 该车辆已分配给其他驾驶员
       change set_attribute(:status, :active)
-      change UniboV4.Fleet.Changes.VehicleAssignment.AssignCall2
+      change UniboExPoc.Fleet.Changes.VehicleAssignment.AssignCall2
       change set_attribute(:id, expr(id))
     end
     update :return do
@@ -108,7 +108,7 @@ defmodule UniboV4.Fleet.VehicleAssignment do
       end
       # message: "只有活跃的分配可以归还或转移"
       change set_attribute(:status, :returned)
-      change UniboV4.Fleet.Changes.VehicleAssignment.ReturnCall4
+      change UniboExPoc.Fleet.Changes.VehicleAssignment.ReturnCall4
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

@@ -1,4 +1,4 @@
-defmodule UniboV4.Forum.Calculations.Forum.CountPostsWaitingValidation do
+defmodule UniboExPoc.Forum.Calculations.Forum.CountPostsWaitingValidation do
   @moduledoc """
   Calculation 模块: :count_posts_waiting_validation (type: :integer, entity: forum)
   原始 expr: op: func args: - count - op: filter   args:   - op: ref     args:     - posts   - op: eq     args:     - op: ref       args:       - state     - pending

@@ -1,4 +1,4 @@
-defmodule UniboV4.Communication.Validations.Channel.MaxMembers do
+defmodule UniboExPoc.Communication.Validations.Channel.MaxMembers do
   @moduledoc """
   校验规则: max_members (entity: channel)
   描述: 私聊频道最多 2 个成员

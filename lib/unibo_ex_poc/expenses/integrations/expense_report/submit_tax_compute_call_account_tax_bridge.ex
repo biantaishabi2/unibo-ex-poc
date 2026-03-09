@@ -1,4 +1,4 @@
-defmodule UniboV4.Expenses.Integrations.ExpenseReport.SubmitTaxComputeCallAccountTaxBridge do
+defmodule UniboExPoc.Expenses.Integrations.ExpenseReport.SubmitTaxComputeCallAccountTaxBridge do
   use Ash.Resource.Change
 
   @provider "tax_compute_call_account_tax"
@@ -29,7 +29,7 @@ defmodule UniboV4.Expenses.Integrations.ExpenseReport.SubmitTaxComputeCallAccoun
       declared_errors: @declared_errors
     }
 
-    case UniboV4.Expenses.Integration.Runtime.dispatch_sync(request) do
+    case UniboExPoc.Expenses.Integration.Runtime.dispatch_sync(request) do
       {:ok, response} ->
         apply_response_bindings(changeset, response)
       {:error, error_payload} ->

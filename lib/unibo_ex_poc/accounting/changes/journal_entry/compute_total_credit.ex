@@ -1,4 +1,4 @@
-defmodule UniboV4.Accounting.Changes.JournalEntry.ComputeTotalCredit do
+defmodule UniboExPoc.Accounting.Changes.JournalEntry.ComputeTotalCredit do
   @moduledoc """
   Change 模块: 计算 :total_credit (entity: journal_entry)
   原始 expr: op: func args: - sum - op: ref   args:   - lines   - credit_amount

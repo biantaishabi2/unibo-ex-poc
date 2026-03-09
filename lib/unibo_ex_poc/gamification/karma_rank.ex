@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Gamification.KarmaRank do
+defmodule UniboExPoc.Gamification.KarmaRank do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Gamification,
+    domain: UniboExPoc.Gamification,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.Gamification.KarmaRank do
 
   postgres do
     table "gamification_karma_ranks"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -65,11 +65,11 @@ defmodule UniboV4.Gamification.KarmaRank do
   end
 
   calculations do
-    calculate :rank_users_count, :integer, {UniboV4.Gamification.Calculations.KarmaRank.RankUsersCount, []}
+    calculate :rank_users_count, :integer, {UniboExPoc.Gamification.Calculations.KarmaRank.RankUsersCount, []}
   end
 
   relationships do
-    has_many :translations, UniboV4.Gamification.KarmaRankTranslation, public?: true
+    has_many :translations, UniboExPoc.Gamification.KarmaRankTranslation, public?: true
   end
 
   actions do

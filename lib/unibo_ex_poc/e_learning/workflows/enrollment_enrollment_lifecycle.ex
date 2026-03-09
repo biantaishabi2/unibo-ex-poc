@@ -1,10 +1,10 @@
-defmodule UniboV4.ELearning.Workflows.Enrollment.EnrollmentLifecycleWorkflow do
+defmodule UniboExPoc.ELearning.Workflows.Enrollment.EnrollmentLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.ELearning.Enrollment
+  alias UniboExPoc.ELearning.Enrollment
 
   def steps do
     [:create, :join, :recompute_completion, :destroy]
@@ -149,6 +149,7 @@ defmodule UniboV4.ELearning.Workflows.Enrollment.EnrollmentLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :join -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.ELearning.Workflows.Enrollment.EnrollmentLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :join -> false

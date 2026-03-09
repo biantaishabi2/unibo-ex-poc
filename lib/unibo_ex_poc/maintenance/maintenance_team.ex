@@ -9,10 +9,10 @@
 #   add_member --> add_member
 #   remove_member --> add_member
 # ```
-defmodule UniboV4.Maintenance.MaintenanceTeam do
+defmodule UniboExPoc.Maintenance.MaintenanceTeam do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -22,7 +22,7 @@ defmodule UniboV4.Maintenance.MaintenanceTeam do
 
   postgres do
     table "maintenance_teams"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -74,15 +74,15 @@ defmodule UniboV4.Maintenance.MaintenanceTeam do
   end
 
   relationships do
-    has_many :maintenance_requests, UniboV4.Maintenance.MaintenanceRequest do
+    has_many :maintenance_requests, UniboExPoc.Maintenance.MaintenanceRequest do
       public? true
     end
-    many_to_many :members, UniboV4.Maintenance.Party do
+    many_to_many :members, UniboExPoc.Maintenance.Party do
       public? true
-      through UniboV4.Maintenance.MaintenanceTeamMemberLink
+      through UniboExPoc.Maintenance.MaintenanceTeamMemberLink
       destination_attribute_on_join_resource :user_party_id
     end
-    belongs_to :company, UniboV4.Maintenance.Party do
+    belongs_to :company, UniboExPoc.Maintenance.Party do
       public? true
       allow_nil? false
       source_attribute :company_party_id

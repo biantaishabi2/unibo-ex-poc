@@ -11,13 +11,13 @@
 #   change_stage --> cancel
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Maintenance.MaintenanceRequest do
+defmodule UniboExPoc.Maintenance.MaintenanceRequest do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Maintenance.MaintenanceRequest.Notifier]
+    notifiers: [UniboExPoc.Maintenance.MaintenanceRequest.Notifier]
 
   resource do
     description "维护请求，支持阶段驱动看板和预防性维护自动克隆调度"
@@ -25,7 +25,7 @@ defmodule UniboV4.Maintenance.MaintenanceRequest do
 
   postgres do
     table "maintenance_requests"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -129,28 +129,28 @@ defmodule UniboV4.Maintenance.MaintenanceRequest do
   end
 
   relationships do
-    belongs_to :equipment, UniboV4.Maintenance.Equipment do
+    belongs_to :equipment, UniboExPoc.Maintenance.Equipment do
       public? true
     end
-    belongs_to :category, UniboV4.Maintenance.EquipmentCategory do
+    belongs_to :category, UniboExPoc.Maintenance.EquipmentCategory do
       public? true
     end
-    belongs_to :stage, UniboV4.Maintenance.MaintenanceStage do
+    belongs_to :stage, UniboExPoc.Maintenance.MaintenanceStage do
       public? true
       allow_nil? false
     end
-    belongs_to :technician, UniboV4.Maintenance.Party do
+    belongs_to :technician, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :technician_party_id
     end
-    belongs_to :owner, UniboV4.Maintenance.Party do
+    belongs_to :owner, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :owner_party_id
     end
-    belongs_to :maintenance_team, UniboV4.Maintenance.MaintenanceTeam do
+    belongs_to :maintenance_team, UniboExPoc.Maintenance.MaintenanceTeam do
       public? true
     end
-    belongs_to :company, UniboV4.Maintenance.Party do
+    belongs_to :company, UniboExPoc.Maintenance.Party do
       public? true
       allow_nil? false
       source_attribute :company_party_id
@@ -173,15 +173,15 @@ defmodule UniboV4.Maintenance.MaintenanceRequest do
       validate present(:repeat_until)
       # message: "当重复类型为 until 时，截止日期必填"
       change relate_actor(:owner)
-      change UniboV4.Maintenance.Changes.MaintenanceRequest.CreateCall4
-      change UniboV4.Maintenance.Changes.MaintenanceRequest.CreateCall9
+      change UniboExPoc.Maintenance.Changes.MaintenanceRequest.CreateCall4
+      change UniboExPoc.Maintenance.Changes.MaintenanceRequest.CreateCall9
       change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :priority, :kanban_state, :schedule_date, :duration, :notes, :archive]
       # skipped: validate present :repeat_until (incompatible with bulk update atomic path)
-      change UniboV4.Maintenance.Changes.MaintenanceRequest.UpdateCall9
+      change UniboExPoc.Maintenance.Changes.MaintenanceRequest.UpdateCall9
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -192,8 +192,8 @@ defmodule UniboV4.Maintenance.MaintenanceRequest do
       change set_attribute(:kanban_state, :normal)
       change set_attribute(:close_date, &DateTime.utc_now/0)
       change set_attribute(:close_date, nil)
-      change UniboV4.Maintenance.Changes.MaintenanceRequest.ChangeStageCall8
-      change UniboV4.Maintenance.Changes.MaintenanceRequest.ChangeStageCall9
+      change UniboExPoc.Maintenance.Changes.MaintenanceRequest.ChangeStageCall8
+      change UniboExPoc.Maintenance.Changes.MaintenanceRequest.ChangeStageCall9
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -201,7 +201,7 @@ defmodule UniboV4.Maintenance.MaintenanceRequest do
       description "取消请求"
       accept []
       # skipped: validate present :repeat_until (incompatible with bulk update atomic path)
-      change UniboV4.Maintenance.Changes.MaintenanceRequest.CancelCall9
+      change UniboExPoc.Maintenance.Changes.MaintenanceRequest.CancelCall9
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

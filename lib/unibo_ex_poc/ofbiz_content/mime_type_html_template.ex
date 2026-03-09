@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.MimeTypeHtmlTemplate do
+defmodule UniboExPoc.Ofbiz.Content.MimeTypeHtmlTemplate do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_mime_type_html_templates"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,7 +37,7 @@ defmodule UniboV4.Ofbiz.Content.MimeTypeHtmlTemplate do
   end
 
   relationships do
-    belongs_to :mime_type, UniboV4.Ofbiz.Content.MimeType do
+    belongs_to :mime_type, UniboExPoc.Ofbiz.Content.MimeType do
       public? true
       attribute_type :string
     end

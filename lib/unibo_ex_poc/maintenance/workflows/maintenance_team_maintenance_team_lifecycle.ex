@@ -1,10 +1,10 @@
-defmodule UniboV4.Maintenance.Workflows.MaintenanceTeam.MaintenanceTeamLifecycleWorkflow do
+defmodule UniboExPoc.Maintenance.Workflows.MaintenanceTeam.MaintenanceTeamLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Maintenance.MaintenanceTeam
+  alias UniboExPoc.Maintenance.MaintenanceTeam
 
   def steps do
     [:create, :update, :add_member, :remove_member]
@@ -149,6 +149,7 @@ defmodule UniboV4.Maintenance.Workflows.MaintenanceTeam.MaintenanceTeamLifecycle
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Maintenance.Workflows.MaintenanceTeam.MaintenanceTeamLifecycle
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

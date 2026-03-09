@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortPurposeType do
+defmodule UniboExPoc.Ofbiz.WorkEffort.WorkEffortPurposeType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_purpose_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,7 +38,7 @@ defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortPurposeType do
   end
 
   relationships do
-    belongs_to :parent_work_effort_purpose_type, UniboV4.Ofbiz.WorkEffort.WorkEffortPurposeType do
+    belongs_to :parent_work_effort_purpose_type, UniboExPoc.Ofbiz.WorkEffort.WorkEffortPurposeType do
       public? true
       source_attribute :parent_type_id
       attribute_type :string

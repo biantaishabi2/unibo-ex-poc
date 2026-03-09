@@ -141,6 +141,7 @@ defmodule UniboExPoc.Website.Workflows.WebSite.WebsiteLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -149,6 +150,7 @@ defmodule UniboExPoc.Website.Workflows.WebSite.WebsiteLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

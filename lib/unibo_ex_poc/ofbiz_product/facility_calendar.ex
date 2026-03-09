@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.FacilityCalendar do
+defmodule UniboExPoc.Ofbiz.Product.FacilityCalendar do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "product_facility_calendars"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -42,10 +42,10 @@ defmodule UniboV4.Ofbiz.Product.FacilityCalendar do
   end
 
   relationships do
-    belongs_to :facility, UniboV4.Ofbiz.Product.Facility do
+    belongs_to :facility, UniboExPoc.Ofbiz.Product.Facility do
       public? true
     end
-    belongs_to :facility_calendar_type, UniboV4.Ofbiz.Product.FacilityCalendarType do
+    belongs_to :facility_calendar_type, UniboExPoc.Ofbiz.Product.FacilityCalendarType do
       public? true
     end
   end

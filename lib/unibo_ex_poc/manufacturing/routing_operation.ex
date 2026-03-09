@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Manufacturing.RoutingOperation do
+defmodule UniboExPoc.Manufacturing.RoutingOperation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Manufacturing,
+    domain: UniboExPoc.Manufacturing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Manufacturing.RoutingOperation do
 
   postgres do
     table "manufacturing_routing_operations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -62,10 +62,10 @@ defmodule UniboV4.Manufacturing.RoutingOperation do
   end
 
   relationships do
-    belongs_to :work_center, UniboV4.Manufacturing.WorkCenter do
+    belongs_to :work_center, UniboExPoc.Manufacturing.WorkCenter do
       public? true
     end
-    belongs_to :bom, UniboV4.Manufacturing.BillOfMaterials do
+    belongs_to :bom, UniboExPoc.Manufacturing.BillOfMaterials do
       public? true
     end
   end

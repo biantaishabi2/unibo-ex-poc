@@ -145,6 +145,7 @@ defmodule UniboExPoc.Delivery.Workflows.ShipmentPackage.ShipmentPackageFlowWorkf
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -154,6 +155,7 @@ defmodule UniboExPoc.Delivery.Workflows.ShipmentPackage.ShipmentPackageFlowWorkf
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

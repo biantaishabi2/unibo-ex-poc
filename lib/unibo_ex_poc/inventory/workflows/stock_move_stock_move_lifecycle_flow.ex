@@ -1,10 +1,10 @@
-defmodule UniboV4.Inventory.Workflows.StockMove.StockMoveLifecycleFlowWorkflow do
+defmodule UniboExPoc.Inventory.Workflows.StockMove.StockMoveLifecycleFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Inventory.StockMove
+  alias UniboExPoc.Inventory.StockMove
 
   def steps do
     [:create, :action_confirm, :action_assign, :action_done, :trigger_assign]
@@ -153,6 +153,7 @@ defmodule UniboV4.Inventory.Workflows.StockMove.StockMoveLifecycleFlowWorkflow d
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :action_confirm -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.Inventory.Workflows.StockMove.StockMoveLifecycleFlowWorkflow d
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :action_confirm -> false

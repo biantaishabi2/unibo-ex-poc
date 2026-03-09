@@ -1,7 +1,7 @@
-defmodule UniboV4.Rental.ProductTemplate do
+defmodule UniboExPoc.Rental.ProductTemplate do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Rental,
+    domain: UniboExPoc.Rental,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Rental.ProductTemplate do
 
   postgres do
     table "rental_product_templates"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

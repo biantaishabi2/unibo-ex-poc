@@ -1,4 +1,4 @@
-defmodule UniboV4.Survey.Calculations.Survey.ScoringMaxObtainable do
+defmodule UniboExPoc.Survey.Calculations.Survey.ScoringMaxObtainable do
   @moduledoc """
   Calculation 模块: :scoring_max_obtainable (type: :float, entity: survey)
   """

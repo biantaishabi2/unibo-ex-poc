@@ -38,14 +38,14 @@
 #   action_copy --> action_publish
 #   action_copy --> action_move
 # ```
-defmodule UniboV4.Knowledge.Article do
+defmodule UniboExPoc.Knowledge.Article do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Knowledge,
+    domain: UniboExPoc.Knowledge,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
     authorizers: [Ash.Policy.Authorizer],
-    notifiers: [UniboV4.Knowledge.Article.Notifier]
+    notifiers: [UniboExPoc.Knowledge.Article.Notifier]
 
   resource do
     description "知识库文章，支持树形层级、状态机、软删除、锁定编辑"
@@ -53,7 +53,7 @@ defmodule UniboV4.Knowledge.Article do
 
   postgres do
     table "knowledge_articles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -168,40 +168,40 @@ defmodule UniboV4.Knowledge.Article do
   end
 
   relationships do
-    belongs_to :parent, UniboV4.Knowledge.Article do
+    belongs_to :parent, UniboExPoc.Knowledge.Article do
       public? true
     end
-    has_many :children, UniboV4.Knowledge.Article do
+    has_many :children, UniboExPoc.Knowledge.Article do
       public? true
       source_attribute :parent_id
       destination_attribute :parent_id
     end
-    has_many :members, UniboV4.Knowledge.ArticleMember do
+    has_many :members, UniboExPoc.Knowledge.ArticleMember do
       public? true
     end
-    has_many :versions, UniboV4.Knowledge.ArticleVersion do
+    has_many :versions, UniboExPoc.Knowledge.ArticleVersion do
       public? true
     end
-    has_many :favorites, UniboV4.Knowledge.Favorite do
+    has_many :favorites, UniboExPoc.Knowledge.Favorite do
       public? true
     end
-    many_to_many :tags, UniboV4.Knowledge.Tag do
+    many_to_many :tags, UniboExPoc.Knowledge.Tag do
       public? true
-      through UniboV4.Knowledge.ArticleTagLink
+      through UniboExPoc.Knowledge.ArticleTagLink
     end
-    belongs_to :creator, UniboV4.Knowledge.Party do
+    belongs_to :creator, UniboExPoc.Knowledge.Party do
       public? true
       source_attribute :creator_party_id
     end
-    belongs_to :last_writer, UniboV4.Knowledge.Party do
+    belongs_to :last_writer, UniboExPoc.Knowledge.Party do
       public? true
       source_attribute :last_writer_party_id
     end
-    belongs_to :locker, UniboV4.Knowledge.Party do
+    belongs_to :locker, UniboExPoc.Knowledge.Party do
       public? true
       source_attribute :locker_party_id
     end
-    belongs_to :last_editor, UniboV4.Knowledge.Party do
+    belongs_to :last_editor, UniboExPoc.Knowledge.Party do
       public? true
       source_attribute :last_editor_party_id
     end
@@ -244,7 +244,7 @@ defmodule UniboV4.Knowledge.Article do
       # skipped: validate policy_check : (incompatible with bulk update atomic path)
       # relate_actor :write_uid — 无对应关系，跳过
       change set_attribute(:state, :published)
-      change UniboV4.Knowledge.Changes.Article.ActionPublishCall20
+      change UniboExPoc.Knowledge.Changes.Article.ActionPublishCall20
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -281,8 +281,8 @@ defmodule UniboV4.Knowledge.Article do
       # skipped: validate policy_check : (incompatible with bulk update atomic path)
       # relate_actor :write_uid — 无对应关系，跳过
       change set_attribute(:state, :archived)
-      change UniboV4.Knowledge.Changes.Article.ActionArchiveCall17
-      change UniboV4.Knowledge.Changes.Article.ActionArchiveCall20
+      change UniboExPoc.Knowledge.Changes.Article.ActionArchiveCall17
+      change UniboExPoc.Knowledge.Changes.Article.ActionArchiveCall20
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -312,8 +312,8 @@ defmodule UniboV4.Knowledge.Article do
       # skipped: validate compare :active (incompatible with bulk update atomic path)
       # relate_actor :write_uid — 无对应关系，跳过
       change set_attribute(:active, false)
-      change UniboV4.Knowledge.Changes.Article.ComputeTrashedDate
-      change UniboV4.Knowledge.Changes.Article.ActionTrashCall18
+      change UniboExPoc.Knowledge.Changes.Article.ComputeTrashedDate
+      change UniboExPoc.Knowledge.Changes.Article.ActionTrashCall18
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -325,7 +325,7 @@ defmodule UniboV4.Knowledge.Article do
       # skipped: validate compare :active (incompatible with bulk update atomic path)
       # relate_actor :write_uid — 无对应关系，跳过
       change set_attribute(:active, true)
-      change UniboV4.Knowledge.Changes.Article.ActionRestoreTrashCall19
+      change UniboExPoc.Knowledge.Changes.Article.ActionRestoreTrashCall19
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -336,7 +336,7 @@ defmodule UniboV4.Knowledge.Article do
       # relate_actor :write_uid — 无对应关系，跳过
       change set_attribute(:is_locked, true)
       # relate_actor :locked_by — 无对应关系，跳过
-      change UniboV4.Knowledge.Changes.Article.ComputeLockedAt
+      change UniboExPoc.Knowledge.Changes.Article.ComputeLockedAt
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -346,7 +346,7 @@ defmodule UniboV4.Knowledge.Article do
       # skipped: validate policy_check : (incompatible with bulk update atomic path)
       # relate_actor :write_uid — 无对应关系，跳过
       change set_attribute(:is_locked, false)
-      change UniboV4.Knowledge.Changes.Article.ActionUnlockCall20
+      change UniboExPoc.Knowledge.Changes.Article.ActionUnlockCall20
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -356,7 +356,7 @@ defmodule UniboV4.Knowledge.Article do
       # skipped: validate policy_check : (incompatible with bulk update atomic path)
       # skipped: validate compare :parent_id (incompatible with bulk update atomic path)
       # relate_actor :write_uid — 无对应关系，跳过
-      change UniboV4.Knowledge.Changes.Article.ActionMoveCall16
+      change UniboExPoc.Knowledge.Changes.Article.ActionMoveCall16
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -368,7 +368,7 @@ defmodule UniboV4.Knowledge.Article do
       validate present(:name)
       # relate_actor :create_uid — 无对应关系，跳过
       # relate_actor :write_uid — 无对应关系，跳过
-      change UniboV4.Knowledge.Changes.Article.ActionCopyCall21
+      change UniboExPoc.Knowledge.Changes.Article.ActionCopyCall21
       change set_attribute(:id, expr(id))
     end
   end
@@ -388,6 +388,9 @@ defmodule UniboV4.Knowledge.Article do
     end
     policy action_type(:destroy) do
       authorize_if expr(check_access(data, actor, :owner))
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

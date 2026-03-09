@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Inventory.LandedCostLine do
+defmodule UniboExPoc.Inventory.LandedCostLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Inventory,
+    domain: UniboExPoc.Inventory,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Inventory.LandedCostLine do
 
   postgres do
     table "inventory_landed_cost_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -60,11 +60,11 @@ defmodule UniboV4.Inventory.LandedCostLine do
   end
 
   relationships do
-    belongs_to :cost, UniboV4.Inventory.LandedCost do
+    belongs_to :cost, UniboExPoc.Inventory.LandedCost do
       public? true
       allow_nil? false
     end
-    has_many :adjustment_lines, UniboV4.Inventory.ValuationAdjustmentLine do
+    has_many :adjustment_lines, UniboExPoc.Inventory.ValuationAdjustmentLine do
       public? true
       source_attribute :cost_id
       destination_attribute :cost_line_id

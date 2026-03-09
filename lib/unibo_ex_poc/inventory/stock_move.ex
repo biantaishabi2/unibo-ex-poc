@@ -16,13 +16,13 @@
 #   _action_confirm --> [*]
 #   _action_cancel --> [*]
 # ```
-defmodule UniboV4.Inventory.StockMove do
+defmodule UniboExPoc.Inventory.StockMove do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Inventory,
+    domain: UniboExPoc.Inventory,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Inventory.StockMove.Notifier]
+    notifiers: [UniboExPoc.Inventory.StockMove.Notifier]
 
   resource do
     description "库存移动行（单个产品的移动记录）"
@@ -30,7 +30,7 @@ defmodule UniboV4.Inventory.StockMove do
 
   postgres do
     table "inventory_stock_moves"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -133,34 +133,34 @@ defmodule UniboV4.Inventory.StockMove do
   end
 
   relationships do
-    belongs_to :picking, UniboV4.Inventory.StockPicking do
+    belongs_to :picking, UniboExPoc.Inventory.StockPicking do
       public? true
     end
-    belongs_to :source_location, UniboV4.Inventory.StockLocation do
-      public? true
-      allow_nil? false
-    end
-    belongs_to :dest_location, UniboV4.Inventory.StockLocation do
+    belongs_to :source_location, UniboExPoc.Inventory.StockLocation do
       public? true
       allow_nil? false
     end
-    has_many :move_line_ids, UniboV4.Inventory.StockMoveLine do
+    belongs_to :dest_location, UniboExPoc.Inventory.StockLocation do
+      public? true
+      allow_nil? false
+    end
+    has_many :move_line_ids, UniboExPoc.Inventory.StockMoveLine do
       public? true
       destination_attribute :move_id
     end
-    many_to_many :move_orig_ids, UniboV4.Inventory.StockMove do
+    many_to_many :move_orig_ids, UniboExPoc.Inventory.StockMove do
       public? true
-      through UniboV4.Inventory.StockMoveDependencyLink
+      through UniboExPoc.Inventory.StockMoveDependencyLink
       source_attribute_on_join_resource :move_orig_id
       destination_attribute_on_join_resource :move_orig_id
     end
-    many_to_many :move_dest_ids, UniboV4.Inventory.StockMove do
+    many_to_many :move_dest_ids, UniboExPoc.Inventory.StockMove do
       public? true
-      through UniboV4.Inventory.StockMoveDependencyLink
+      through UniboExPoc.Inventory.StockMoveDependencyLink
       source_attribute_on_join_resource :move_orig_id
       destination_attribute_on_join_resource :move_orig_id
     end
-    has_many :valuation_adjustment_lines, UniboV4.Inventory.ValuationAdjustmentLine do
+    has_many :valuation_adjustment_lines, UniboExPoc.Inventory.ValuationAdjustmentLine do
       public? true
       destination_attribute :move_id
     end
@@ -233,8 +233,8 @@ defmodule UniboV4.Inventory.StockMove do
       end
       # message: "只有已确认/部分可用/已分配状态可以完成"
       change set_attribute(:state, :done)
-      change UniboV4.Inventory.Changes.StockMove.ActionDoneCall6
-      change UniboV4.Inventory.Changes.StockMove.ActionDoneCall7
+      change UniboExPoc.Inventory.Changes.StockMove.ActionDoneCall6
+      change UniboExPoc.Inventory.Changes.StockMove.ActionDoneCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -242,7 +242,7 @@ defmodule UniboV4.Inventory.StockMove do
       description "取消移动，释放预留"
       accept []
       change set_attribute(:state, :cancel)
-      change UniboV4.Inventory.Changes.StockMove.ActionCancelCall9
+      change UniboExPoc.Inventory.Changes.StockMove.ActionCancelCall9
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

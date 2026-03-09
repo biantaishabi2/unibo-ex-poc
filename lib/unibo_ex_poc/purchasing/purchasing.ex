@@ -1,4 +1,4 @@
-defmodule UniboV4.Purchasing do
+defmodule UniboExPoc.Purchasing do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,31 +7,31 @@ defmodule UniboV4.Purchasing do
   end
 
   resources do
-    resource UniboV4.Purchasing.Supplier
-    resource UniboV4.Purchasing.Supplier.Version
-    resource UniboV4.Purchasing.SupplierProduct
-    resource UniboV4.Purchasing.SupplierProduct.Version
-    resource UniboV4.Purchasing.PurchaseRequisitionType
-    resource UniboV4.Purchasing.PurchaseRequisitionType.Version
-    resource UniboV4.Purchasing.PurchaseRequisition
-    resource UniboV4.Purchasing.PurchaseRequisition.Version
-    resource UniboV4.Purchasing.PurchaseRequisitionItem
-    resource UniboV4.Purchasing.PurchaseRequisitionItem.Version
-    resource UniboV4.Purchasing.PurchaseOrder
-    resource UniboV4.Purchasing.PurchaseOrder.Version
-    resource UniboV4.Purchasing.PurchaseOrderLine
-    resource UniboV4.Purchasing.PurchaseOrderLine.Version
-    resource UniboV4.Purchasing.PurchaseOrderItem
-    resource UniboV4.Purchasing.PurchaseOrderItem.Version
-    resource UniboV4.Purchasing.ProductSupplierinfo
-    resource UniboV4.Purchasing.ProductSupplierinfo.Version
-    resource UniboV4.Purchasing.GoodsReceipt
-    resource UniboV4.Purchasing.GoodsReceipt.Version
-    resource UniboV4.Purchasing.GoodsReceiptItem
-    resource UniboV4.Purchasing.GoodsReceiptItem.Version
-    resource UniboV4.Purchasing.Product
-    resource UniboV4.Purchasing.AccountMove
-    resource UniboV4.Purchasing.AccountMoveLine
-    resource UniboV4.Purchasing.Party
+    resource UniboExPoc.Purchasing.Supplier
+    resource UniboExPoc.Purchasing.Supplier.Version
+    resource UniboExPoc.Purchasing.SupplierProduct
+    resource UniboExPoc.Purchasing.SupplierProduct.Version
+    resource UniboExPoc.Purchasing.PurchaseRequisitionType
+    resource UniboExPoc.Purchasing.PurchaseRequisitionType.Version
+    resource UniboExPoc.Purchasing.PurchaseRequisition
+    resource UniboExPoc.Purchasing.PurchaseRequisition.Version
+    resource UniboExPoc.Purchasing.PurchaseRequisitionItem
+    resource UniboExPoc.Purchasing.PurchaseRequisitionItem.Version
+    resource UniboExPoc.Purchasing.PurchaseOrder
+    resource UniboExPoc.Purchasing.PurchaseOrder.Version
+    resource UniboExPoc.Purchasing.PurchaseOrderLine
+    resource UniboExPoc.Purchasing.PurchaseOrderLine.Version
+    resource UniboExPoc.Purchasing.PurchaseOrderItem
+    resource UniboExPoc.Purchasing.PurchaseOrderItem.Version
+    resource UniboExPoc.Purchasing.ProductSupplierinfo
+    resource UniboExPoc.Purchasing.ProductSupplierinfo.Version
+    resource UniboExPoc.Purchasing.GoodsReceipt
+    resource UniboExPoc.Purchasing.GoodsReceipt.Version
+    resource UniboExPoc.Purchasing.GoodsReceiptItem
+    resource UniboExPoc.Purchasing.GoodsReceiptItem.Version
+    resource UniboExPoc.Purchasing.Product
+    resource UniboExPoc.Purchasing.AccountMove
+    resource UniboExPoc.Purchasing.AccountMoveLine
+    resource UniboExPoc.Purchasing.Party
   end
 end

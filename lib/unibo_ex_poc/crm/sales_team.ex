@@ -8,10 +8,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.CRM.SalesTeam do
+defmodule UniboExPoc.CRM.SalesTeam do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.CRM,
+    domain: UniboExPoc.CRM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.CRM.SalesTeam do
 
   postgres do
     table "crm_sales_teams"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -72,21 +72,21 @@ defmodule UniboV4.CRM.SalesTeam do
   end
 
   relationships do
-    belongs_to :leader, UniboV4.CRM.Party do
+    belongs_to :leader, UniboExPoc.CRM.Party do
       public? true
       source_attribute :leader_party_id
     end
-    has_many :members, UniboV4.CRM.SalesTeamMember do
-      public? true
-      source_attribute :leader_party_id
-      destination_attribute :team_id
-    end
-    has_many :leads, UniboV4.CRM.Lead do
+    has_many :members, UniboExPoc.CRM.SalesTeamMember do
       public? true
       source_attribute :leader_party_id
       destination_attribute :team_id
     end
-    has_many :stages, UniboV4.CRM.LeadStage do
+    has_many :leads, UniboExPoc.CRM.Lead do
+      public? true
+      source_attribute :leader_party_id
+      destination_attribute :team_id
+    end
+    has_many :stages, UniboExPoc.CRM.LeadStage do
       public? true
       source_attribute :leader_party_id
       destination_attribute :team_id

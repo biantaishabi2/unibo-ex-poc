@@ -1,10 +1,10 @@
-defmodule UniboV4.Knowledge.Workflows.Favorite.FavoriteManagementWorkflow do
+defmodule UniboExPoc.Knowledge.Workflows.Favorite.FavoriteManagementWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Knowledge.Favorite
+  alias UniboExPoc.Knowledge.Favorite
 
   def steps do
     [:create, :reorder, :destroy]
@@ -145,6 +145,7 @@ defmodule UniboV4.Knowledge.Workflows.Favorite.FavoriteManagementWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :reorder -> nil
@@ -154,6 +155,7 @@ defmodule UniboV4.Knowledge.Workflows.Favorite.FavoriteManagementWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :reorder -> false

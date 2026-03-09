@@ -16,13 +16,13 @@
 #   archive --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Events.Event do
+defmodule UniboExPoc.Events.Event do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Events,
+    domain: UniboExPoc.Events,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Events.Event.Notifier]
+    notifiers: [UniboExPoc.Events.Event.Notifier]
 
   resource do
     description "活动主数据，管理线下/线上活动的完整生命周期"
@@ -30,7 +30,7 @@ defmodule UniboV4.Events.Event do
 
   postgres do
     table "events_events"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -147,46 +147,46 @@ defmodule UniboV4.Events.Event do
   end
 
   relationships do
-    belongs_to :event_type, UniboV4.Events.EventType do
+    belongs_to :event_type, UniboExPoc.Events.EventType do
       public? true
       allow_nil? false
     end
-    has_many :registrations, UniboV4.Events.EventRegistration do
+    has_many :registrations, UniboExPoc.Events.EventRegistration do
       public? true
       source_attribute :parent_event_id
       destination_attribute :event_id
     end
-    has_many :tickets, UniboV4.Events.EventTicket do
+    has_many :tickets, UniboExPoc.Events.EventTicket do
       public? true
       source_attribute :parent_event_id
       destination_attribute :event_id
     end
-    has_many :booths, UniboV4.Events.EventBooth do
+    has_many :booths, UniboExPoc.Events.EventBooth do
       public? true
       source_attribute :parent_event_id
       destination_attribute :event_id
     end
-    has_many :stages, UniboV4.Events.EventStage do
+    has_many :stages, UniboExPoc.Events.EventStage do
       public? true
       source_attribute :parent_event_id
       destination_attribute :event_id
     end
-    belongs_to :parent_event, UniboV4.Events.Event do
+    belongs_to :parent_event, UniboExPoc.Events.Event do
       public? true
     end
-    has_many :sub_events, UniboV4.Events.Event do
+    has_many :sub_events, UniboExPoc.Events.Event do
       public? true
       source_attribute :parent_event_id
       destination_attribute :parent_event_id
     end
-    belongs_to :venue, UniboV4.Events.Facility do
+    belongs_to :venue, UniboExPoc.Events.Facility do
       public? true
     end
-    belongs_to :organizer, UniboV4.Events.Party do
+    belongs_to :organizer, UniboExPoc.Events.Party do
       public? true
       source_attribute :organizer_party_id
     end
-    has_many :translations, UniboV4.Events.EventTranslation, public?: true
+    has_many :translations, UniboExPoc.Events.EventTranslation, public?: true
   end
 
   actions do
@@ -243,7 +243,7 @@ defmodule UniboV4.Events.Event do
       end
       # message: "只有已发布状态的活动可以开始"
       change set_attribute(:status, :ongoing)
-      change UniboV4.Events.Changes.Event.ComputeActualStartDate
+      change UniboExPoc.Events.Changes.Event.ComputeActualStartDate
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -261,7 +261,7 @@ defmodule UniboV4.Events.Event do
       end
       # message: "只有进行中状态的活动可以完成"
       change set_attribute(:status, :completed)
-      change UniboV4.Events.Changes.Event.ComputeActualEndDate
+      change UniboExPoc.Events.Changes.Event.ComputeActualEndDate
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -279,7 +279,7 @@ defmodule UniboV4.Events.Event do
       end
       # message: "只有已发布或进行中的活动可以取消"
       change set_attribute(:status, :cancelled)
-      change UniboV4.Events.Changes.Event.CancelCall7
+      change UniboExPoc.Events.Changes.Event.CancelCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

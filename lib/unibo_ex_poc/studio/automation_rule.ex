@@ -11,10 +11,10 @@
 #   execute --> execute
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Studio.AutomationRule do
+defmodule UniboExPoc.Studio.AutomationRule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Studio,
+    domain: UniboExPoc.Studio,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -24,7 +24,7 @@ defmodule UniboV4.Studio.AutomationRule do
 
   postgres do
     table "studio_automation_rules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -115,7 +115,7 @@ defmodule UniboV4.Studio.AutomationRule do
   end
 
   relationships do
-    belongs_to :model, UniboV4.Studio.CustomModel do
+    belongs_to :model, UniboExPoc.Studio.CustomModel do
       public? true
       allow_nil? false
       attribute_type :integer

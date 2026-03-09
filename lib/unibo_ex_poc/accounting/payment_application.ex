@@ -5,10 +5,10 @@
 #   create --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Accounting.PaymentApplication do
+defmodule UniboExPoc.Accounting.PaymentApplication do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Accounting,
+    domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Accounting.PaymentApplication do
 
   postgres do
     table "accounting_payment_applications"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -50,11 +50,11 @@ defmodule UniboV4.Accounting.PaymentApplication do
   end
 
   relationships do
-    belongs_to :payment, UniboV4.Accounting.Payment do
+    belongs_to :payment, UniboExPoc.Accounting.Payment do
       public? true
       allow_nil? false
     end
-    belongs_to :invoice, UniboV4.Accounting.Invoice do
+    belongs_to :invoice, UniboExPoc.Accounting.Invoice do
       public? true
       allow_nil? false
     end

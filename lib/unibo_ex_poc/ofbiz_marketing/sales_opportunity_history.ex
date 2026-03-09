@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Marketing.SalesOpportunityHistory do
+defmodule UniboExPoc.Ofbiz.Marketing.SalesOpportunityHistory do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Marketing,
+    domain: UniboExPoc.Ofbiz.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "marketing_sales_opportunity_histories"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -45,11 +45,11 @@ defmodule UniboV4.Ofbiz.Marketing.SalesOpportunityHistory do
   end
 
   relationships do
-    belongs_to :sales_opportunity_stage, UniboV4.Ofbiz.Marketing.SalesOpportunityStage do
+    belongs_to :sales_opportunity_stage, UniboExPoc.Ofbiz.Marketing.SalesOpportunityStage do
       public? true
       source_attribute :opportunity_stage_id
     end
-    belongs_to :sales_opportunity, UniboV4.Ofbiz.Marketing.SalesOpportunity do
+    belongs_to :sales_opportunity, UniboExPoc.Ofbiz.Marketing.SalesOpportunity do
       public? true
     end
   end

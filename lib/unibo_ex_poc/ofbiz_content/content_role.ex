@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.ContentRole do
+defmodule UniboExPoc.Ofbiz.Content.ContentRole do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "content_roles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -47,7 +47,7 @@ defmodule UniboV4.Ofbiz.Content.ContentRole do
   end
 
   relationships do
-    belongs_to :content, UniboV4.Ofbiz.Content.Content do
+    belongs_to :content, UniboExPoc.Ofbiz.Content.Content do
       public? true
       attribute_type :string
     end

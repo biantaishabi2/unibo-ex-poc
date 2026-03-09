@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.PersonTraining do
+defmodule UniboExPoc.Ofbiz.HumanRes.PersonTraining do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_person_trainings"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -39,24 +39,24 @@ defmodule UniboV4.Ofbiz.HumanRes.PersonTraining do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Ofbiz.HumanRes.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.HumanRes.Party do
       public? true
       attribute_type :string
     end
-    belongs_to :approver_person, UniboV4.Ofbiz.HumanRes.Person do
+    belongs_to :approver_person, UniboExPoc.Ofbiz.HumanRes.Person do
       public? true
       source_attribute :approver_id
       attribute_type :string
     end
-    belongs_to :training_class_type, UniboV4.Ofbiz.HumanRes.TrainingClassType do
+    belongs_to :training_class_type, UniboExPoc.Ofbiz.HumanRes.TrainingClassType do
       public? true
       attribute_type :string
     end
-    belongs_to :work_effort, UniboV4.Ofbiz.HumanRes.WorkEffort do
+    belongs_to :work_effort, UniboExPoc.Ofbiz.HumanRes.WorkEffort do
       public? true
       attribute_type :string
     end
-    belongs_to :training_request, UniboV4.Ofbiz.HumanRes.TrainingRequest do
+    belongs_to :training_request, UniboExPoc.Ofbiz.HumanRes.TrainingRequest do
       public? true
       attribute_type :string
     end

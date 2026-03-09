@@ -1,7 +1,7 @@
-defmodule UniboV4.Lunch.LunchOrderTopping3Link do
+defmodule UniboExPoc.Lunch.LunchOrderTopping3Link do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Lunch,
+    domain: UniboExPoc.Lunch,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Lunch.LunchOrderTopping3Link do
 
   postgres do
     table "lunch_order_topping3_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Lunch.LunchOrderTopping3Link do
   end
 
   relationships do
-    belongs_to :lunch_order, UniboV4.Lunch.LunchOrder do
+    belongs_to :lunch_order, UniboExPoc.Lunch.LunchOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :topping, UniboV4.Lunch.LunchTopping do
+    belongs_to :topping, UniboExPoc.Lunch.LunchTopping do
       public? true
       allow_nil? false
     end

@@ -7,10 +7,10 @@
 #   refresh --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Spreadsheet.DataSource do
+defmodule UniboExPoc.Spreadsheet.DataSource do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Spreadsheet,
+    domain: UniboExPoc.Spreadsheet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Spreadsheet.DataSource do
 
   postgres do
     table "spreadsheet_data_sources"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -97,12 +97,12 @@ defmodule UniboV4.Spreadsheet.DataSource do
   end
 
   calculations do
-    calculate :cached_row_count, :integer, {UniboV4.Spreadsheet.Calculations.DataSource.CachedRowCount, []}
-    calculate :last_refreshed_at, :utc_datetime, {UniboV4.Spreadsheet.Calculations.DataSource.LastRefreshedAt, []}
+    calculate :cached_row_count, :integer, {UniboExPoc.Spreadsheet.Calculations.DataSource.CachedRowCount, []}
+    calculate :last_refreshed_at, :utc_datetime, {UniboExPoc.Spreadsheet.Calculations.DataSource.LastRefreshedAt, []}
   end
 
   relationships do
-    belongs_to :document, UniboV4.Spreadsheet.SpreadsheetDocument do
+    belongs_to :document, UniboExPoc.Spreadsheet.SpreadsheetDocument do
       public? true
       allow_nil? false
       attribute_type :integer
@@ -121,7 +121,7 @@ defmodule UniboV4.Spreadsheet.DataSource do
       # message: "透视表类型的数据源必须指定至少一个度量值"
       validate present([:fields])
       # message: "列表类型的数据源必须指定至少一个字段"
-      validate attribute_in(:, [:month, :quarter, :year])
+      validate attribute_in(:group_by, [:month, :quarter, :year])
       # message: "分组字段的时间粒度仅支持 month、quarter、year"
       # validation: valid_domain_filter_fields — 筛选条件中引用了不存在的字段
       change set_attribute(:id, expr(id))
@@ -133,11 +133,11 @@ defmodule UniboV4.Spreadsheet.DataSource do
       # skipped: validate present : (incompatible with bulk update atomic path)
       # skipped: validate present : (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->
-        current = Ash.Changeset.get_attribute(changeset, :)
+        current = Ash.Changeset.get_attribute(changeset, :group_by)
         if current in [:month, :quarter, :year] do
           changeset
         else
-          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :, message: "must be one of %{values}", vars: %{values: [:month, :quarter, :year]}))
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :group_by, message: "must be one of %{values}", vars: %{values: [:month, :quarter, :year]}))
         end
       end
       # message: "分组字段的时间粒度仅支持 month、quarter、year"

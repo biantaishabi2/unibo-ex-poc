@@ -1,4 +1,4 @@
-defmodule UniboV4.Fleet.Calculations.FleetVehicle.TotalServiceCost do
+defmodule UniboExPoc.Fleet.Calculations.FleetVehicle.TotalServiceCost do
   @moduledoc """
   Calculation 模块: :total_service_cost (type: :decimal, entity: fleet_vehicle)
   """

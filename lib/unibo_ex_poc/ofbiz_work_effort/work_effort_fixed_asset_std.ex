@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortFixedAssetStd do
+defmodule UniboExPoc.Ofbiz.WorkEffort.WorkEffortFixedAssetStd do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_fixed_asset_stds"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -35,11 +35,11 @@ defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortFixedAssetStd do
   end
 
   relationships do
-    belongs_to :work_effort, UniboV4.Ofbiz.WorkEffort.WorkEffort do
+    belongs_to :work_effort, UniboExPoc.Ofbiz.WorkEffort.WorkEffort do
       public? true
       attribute_type :string
     end
-    belongs_to :fixed_asset_type, UniboV4.Ofbiz.WorkEffort.FixedAssetType do
+    belongs_to :fixed_asset_type, UniboExPoc.Ofbiz.WorkEffort.FixedAssetType do
       public? true
       attribute_type :string
     end

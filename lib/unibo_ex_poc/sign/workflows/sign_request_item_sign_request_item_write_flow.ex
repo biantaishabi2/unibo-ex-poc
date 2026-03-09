@@ -1,10 +1,10 @@
-defmodule UniboV4.Sign.Workflows.SignRequestItem.SignRequestItemWriteFlowWorkflow do
+defmodule UniboExPoc.Sign.Workflows.SignRequestItem.SignRequestItemWriteFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Sign.SignRequestItem
+  alias UniboExPoc.Sign.SignRequestItem
 
   def steps do
     [:create, :send, :sign, :refuse, :reset]
@@ -153,6 +153,7 @@ defmodule UniboV4.Sign.Workflows.SignRequestItem.SignRequestItemWriteFlowWorkflo
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :send -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.Sign.Workflows.SignRequestItem.SignRequestItemWriteFlowWorkflo
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :send -> false

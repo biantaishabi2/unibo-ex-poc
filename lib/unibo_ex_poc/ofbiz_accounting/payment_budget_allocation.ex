@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.PaymentBudgetAllocation do
+defmodule UniboExPoc.Ofbiz.Accounting.PaymentBudgetAllocation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_payment_budget_allocations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,10 +37,10 @@ defmodule UniboV4.Ofbiz.Accounting.PaymentBudgetAllocation do
   end
 
   relationships do
-    belongs_to :budget, UniboV4.Ofbiz.Accounting.Budget do
+    belongs_to :budget, UniboExPoc.Ofbiz.Accounting.Budget do
       public? true
     end
-    belongs_to :payment, UniboV4.Ofbiz.Accounting.Payment do
+    belongs_to :payment, UniboExPoc.Ofbiz.Accounting.Payment do
       public? true
     end
   end

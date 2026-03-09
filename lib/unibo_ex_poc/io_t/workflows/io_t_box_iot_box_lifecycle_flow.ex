@@ -1,10 +1,10 @@
-defmodule UniboV4.IoT.Workflows.IoTBox.IotBoxLifecycleFlowWorkflow do
+defmodule UniboExPoc.IoT.Workflows.IoTBox.IotBoxLifecycleFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.IoT.IoTBox
+  alias UniboExPoc.IoT.IoTBox
 
   def steps do
     [:create, :register_box, :heartbeat, :update]
@@ -149,6 +149,7 @@ defmodule UniboV4.IoT.Workflows.IoTBox.IotBoxLifecycleFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :register_box -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.IoT.Workflows.IoTBox.IotBoxLifecycleFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :register_box -> false

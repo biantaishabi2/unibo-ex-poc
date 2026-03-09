@@ -21,10 +21,10 @@
 #   action_dislike --> action_like
 #   action_dislike --> action_dislike
 # ```
-defmodule UniboV4.ELearning.SlideProgress do
+defmodule UniboExPoc.ELearning.SlideProgress do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.ELearning,
+    domain: UniboExPoc.ELearning,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -34,7 +34,7 @@ defmodule UniboV4.ELearning.SlideProgress do
 
   postgres do
     table "e_learning_slide_progresses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -78,18 +78,18 @@ defmodule UniboV4.ELearning.SlideProgress do
   end
 
   relationships do
-    belongs_to :slide, UniboV4.ELearning.Slide do
+    belongs_to :slide, UniboExPoc.ELearning.Slide do
       public? true
       allow_nil? false
     end
-    belongs_to :channel, UniboV4.ELearning.Course do
+    belongs_to :channel, UniboExPoc.ELearning.Course do
       public? true
       allow_nil? false
     end
-    belongs_to :enrollment, UniboV4.ELearning.Enrollment do
+    belongs_to :enrollment, UniboExPoc.ELearning.Enrollment do
       public? true
     end
-    belongs_to :partner, UniboV4.ELearning.Party do
+    belongs_to :partner, UniboExPoc.ELearning.Party do
       public? true
       allow_nil? false
       source_attribute :partner_party_id
@@ -124,7 +124,7 @@ defmodule UniboV4.ELearning.SlideProgress do
       end
       # message: "该内容项已标记为完成"
       change set_attribute(:completed, true)
-      change UniboV4.ELearning.Changes.SlideProgress.MarkCompletedCall6
+      change UniboExPoc.ELearning.Changes.SlideProgress.MarkCompletedCall6
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -141,7 +141,7 @@ defmodule UniboV4.ELearning.SlideProgress do
       end
       # message: "该内容项尚未完成"
       change set_attribute(:completed, false)
-      change UniboV4.ELearning.Changes.SlideProgress.MarkUncompletedCall6
+      change UniboExPoc.ELearning.Changes.SlideProgress.MarkUncompletedCall6
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -163,23 +163,23 @@ defmodule UniboV4.ELearning.SlideProgress do
         current = Ash.Changeset.get_attribute(changeset, :quiz_attempts_count) || 0
         Ash.Changeset.force_change_attribute(changeset, :quiz_attempts_count, current + 1)
       end
-      change UniboV4.ELearning.Changes.SlideProgress.CompleteQuizCall6
+      change UniboExPoc.ELearning.Changes.SlideProgress.CompleteQuizCall6
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_like do
       description "点赞/取消点赞（toggle 语义）"
       accept []
-      change UniboV4.ELearning.Changes.SlideProgress.ActionLikeCall4
-      change UniboV4.ELearning.Changes.SlideProgress.ActionLikeCall7
+      change UniboExPoc.ELearning.Changes.SlideProgress.ActionLikeCall4
+      change UniboExPoc.ELearning.Changes.SlideProgress.ActionLikeCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_dislike do
       description "踩/取消踩（toggle 语义）"
       accept []
-      change UniboV4.ELearning.Changes.SlideProgress.ActionDislikeCall5
-      change UniboV4.ELearning.Changes.SlideProgress.ActionDislikeCall7
+      change UniboExPoc.ELearning.Changes.SlideProgress.ActionDislikeCall5
+      change UniboExPoc.ELearning.Changes.SlideProgress.ActionDislikeCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

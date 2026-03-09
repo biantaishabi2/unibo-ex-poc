@@ -24,13 +24,13 @@
 #   update --> [*]
 #   copy --> [*]
 # ```
-defmodule UniboV4.Project.Task do
+defmodule UniboExPoc.Project.Task do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Project,
+    domain: UniboExPoc.Project,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Project.Task.Notifier]
+    notifiers: [UniboExPoc.Project.Task.Notifier]
 
   resource do
     description "任务"
@@ -38,7 +38,7 @@ defmodule UniboV4.Project.Task do
 
   postgres do
     table "project_tasks"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -130,46 +130,46 @@ defmodule UniboV4.Project.Task do
   end
 
   relationships do
-    belongs_to :project, UniboV4.Project.Project do
+    belongs_to :project, UniboExPoc.Project.Project do
       public? true
     end
-    belongs_to :parent, UniboV4.Project.Task do
+    belongs_to :parent, UniboExPoc.Project.Task do
       public? true
     end
-    has_many :child_ids, UniboV4.Project.Task do
+    has_many :child_ids, UniboExPoc.Project.Task do
       public? true
       source_attribute :parent_id
       destination_attribute :parent_id
     end
-    many_to_many :depend_on_ids, UniboV4.Project.Task do
+    many_to_many :depend_on_ids, UniboExPoc.Project.Task do
       public? true
-      through UniboV4.Project.TaskDependency
+      through UniboExPoc.Project.TaskDependency
     end
-    many_to_many :dependent_ids, UniboV4.Project.Task do
+    many_to_many :dependent_ids, UniboExPoc.Project.Task do
       public? true
-      through UniboV4.Project.TaskDependency
+      through UniboExPoc.Project.TaskDependency
     end
-    has_many :assignments, UniboV4.Project.TaskAssignment do
-      public? true
-    end
-    has_many :dependencies, UniboV4.Project.TaskDependency do
+    has_many :assignments, UniboExPoc.Project.TaskAssignment do
       public? true
     end
-    has_many :timesheet_ids, UniboV4.Project.TimesheetEntry do
+    has_many :dependencies, UniboExPoc.Project.TaskDependency do
       public? true
     end
-    belongs_to :stage, UniboV4.Project.TaskStage do
+    has_many :timesheet_ids, UniboExPoc.Project.TimesheetEntry do
+      public? true
+    end
+    belongs_to :stage, UniboExPoc.Project.TaskStage do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.Project.Party do
+    belongs_to :partner, UniboExPoc.Project.Party do
       public? true
       source_attribute :partner_party_id
     end
-    belongs_to :milestone, UniboV4.Project.Milestone do
+    belongs_to :milestone, UniboExPoc.Project.Milestone do
       public? true
     end
-    belongs_to :recurrence, UniboV4.Project.TaskRecurrence do
+    belongs_to :recurrence, UniboExPoc.Project.TaskRecurrence do
       public? true
     end
   end
@@ -183,12 +183,12 @@ defmodule UniboV4.Project.Task do
       argument :stage_id, :uuid, allow_nil?: false
       change manage_relationship(:stage_id, :stage, type: :append, on_lookup: :relate)
       validate present(:name)
-      validate {UniboV4.Project.Validations.Task.NoCircularDependency, []}
+      validate {UniboExPoc.Project.Validations.Task.NoCircularDependency, []}
       # message: "两个任务之间禁止循环依赖（A 阻塞 B 且 B 阻塞 A）"
       # validation: custom_check — 周期性任务不能作为子任务（parent_id 必须为空）
       # validation: custom_check — 私人任务（无 project_id）不能有 parent_id
-      change UniboV4.Project.Changes.Task.CreateCall13
-      change UniboV4.Project.Changes.Task.CreateCall14
+      change UniboExPoc.Project.Changes.Task.CreateCall13
+      change UniboExPoc.Project.Changes.Task.CreateCall14
       change set_attribute(:id, expr(id))
     end
     update :update do
@@ -202,9 +202,9 @@ defmodule UniboV4.Project.Task do
       change set_attribute(:date_last_stage_update, &DateTime.utc_now/0)
       change set_attribute(:date_end, &DateTime.utc_now/0)
       change set_attribute(:state, :"04_waiting_normal")
-      change UniboV4.Project.Changes.Task.UpdateCall8
-      change UniboV4.Project.Changes.Task.UpdateCall12
-      change UniboV4.Project.Changes.Task.UpdateCall13
+      change UniboExPoc.Project.Changes.Task.UpdateCall8
+      change UniboExPoc.Project.Changes.Task.UpdateCall12
+      change UniboExPoc.Project.Changes.Task.UpdateCall13
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -218,9 +218,9 @@ defmodule UniboV4.Project.Task do
       change set_attribute(:date_last_stage_update, &DateTime.utc_now/0)
       change set_attribute(:date_end, &DateTime.utc_now/0)
       change set_attribute(:state, :"04_waiting_normal")
-      change UniboV4.Project.Changes.Task.StartCall8
-      change UniboV4.Project.Changes.Task.StartCall12
-      change UniboV4.Project.Changes.Task.StartCall13
+      change UniboExPoc.Project.Changes.Task.StartCall8
+      change UniboExPoc.Project.Changes.Task.StartCall12
+      change UniboExPoc.Project.Changes.Task.StartCall13
       change set_attribute(:state, :"01_in_progress")
       change set_attribute(:id, expr(id))
       require_atomic? false
@@ -235,10 +235,10 @@ defmodule UniboV4.Project.Task do
       change set_attribute(:date_last_stage_update, &DateTime.utc_now/0)
       change set_attribute(:date_end, &DateTime.utc_now/0)
       change set_attribute(:state, :"04_waiting_normal")
-      change UniboV4.Project.Changes.Task.CompleteCall7
-      change UniboV4.Project.Changes.Task.CompleteCall8
-      change UniboV4.Project.Changes.Task.CompleteCall12
-      change UniboV4.Project.Changes.Task.CompleteCall13
+      change UniboExPoc.Project.Changes.Task.CompleteCall7
+      change UniboExPoc.Project.Changes.Task.CompleteCall8
+      change UniboExPoc.Project.Changes.Task.CompleteCall12
+      change UniboExPoc.Project.Changes.Task.CompleteCall13
       change set_attribute(:state, :"1_done")
       change set_attribute(:id, expr(id))
       require_atomic? false
@@ -253,10 +253,10 @@ defmodule UniboV4.Project.Task do
       change set_attribute(:date_last_stage_update, &DateTime.utc_now/0)
       change set_attribute(:date_end, &DateTime.utc_now/0)
       change set_attribute(:state, :"04_waiting_normal")
-      change UniboV4.Project.Changes.Task.CancelCall7
-      change UniboV4.Project.Changes.Task.CancelCall8
-      change UniboV4.Project.Changes.Task.CancelCall12
-      change UniboV4.Project.Changes.Task.CancelCall13
+      change UniboExPoc.Project.Changes.Task.CancelCall7
+      change UniboExPoc.Project.Changes.Task.CancelCall8
+      change UniboExPoc.Project.Changes.Task.CancelCall12
+      change UniboExPoc.Project.Changes.Task.CancelCall13
       change set_attribute(:state, :"1_canceled")
       change set_attribute(:id, expr(id))
       require_atomic? false
@@ -271,9 +271,9 @@ defmodule UniboV4.Project.Task do
       change set_attribute(:date_last_stage_update, &DateTime.utc_now/0)
       change set_attribute(:date_end, &DateTime.utc_now/0)
       change set_attribute(:state, :"04_waiting_normal")
-      change UniboV4.Project.Changes.Task.ReopenCall8
-      change UniboV4.Project.Changes.Task.ReopenCall12
-      change UniboV4.Project.Changes.Task.ReopenCall13
+      change UniboExPoc.Project.Changes.Task.ReopenCall8
+      change UniboExPoc.Project.Changes.Task.ReopenCall12
+      change UniboExPoc.Project.Changes.Task.ReopenCall13
       change set_attribute(:state, :"01_in_progress")
       change set_attribute(:id, expr(id))
       require_atomic? false
@@ -284,13 +284,13 @@ defmodule UniboV4.Project.Task do
       argument :stage_id, :uuid, allow_nil?: false
       change manage_relationship(:stage_id, :stage, type: :append, on_lookup: :relate)
       validate present(:name)
-      validate {UniboV4.Project.Validations.Task.NoCircularDependency, []}
+      validate {UniboExPoc.Project.Validations.Task.NoCircularDependency, []}
       # message: "两个任务之间禁止循环依赖（A 阻塞 B 且 B 阻塞 A）"
       # validation: custom_check — 周期性任务不能作为子任务（parent_id 必须为空）
       # validation: custom_check — 私人任务（无 project_id）不能有 parent_id
-      change UniboV4.Project.Changes.Task.CopyCall11
-      change UniboV4.Project.Changes.Task.CopyCall13
-      change UniboV4.Project.Changes.Task.CopyCall14
+      change UniboExPoc.Project.Changes.Task.CopyCall11
+      change UniboExPoc.Project.Changes.Task.CopyCall13
+      change UniboExPoc.Project.Changes.Task.CopyCall14
       change set_attribute(:id, expr(id))
     end
     update :assign do
@@ -303,9 +303,9 @@ defmodule UniboV4.Project.Task do
       change set_attribute(:date_last_stage_update, &DateTime.utc_now/0)
       change set_attribute(:date_end, &DateTime.utc_now/0)
       change set_attribute(:state, :"04_waiting_normal")
-      change UniboV4.Project.Changes.Task.AssignCall8
-      change UniboV4.Project.Changes.Task.AssignCall12
-      change UniboV4.Project.Changes.Task.AssignCall13
+      change UniboExPoc.Project.Changes.Task.AssignCall8
+      change UniboExPoc.Project.Changes.Task.AssignCall12
+      change UniboExPoc.Project.Changes.Task.AssignCall13
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

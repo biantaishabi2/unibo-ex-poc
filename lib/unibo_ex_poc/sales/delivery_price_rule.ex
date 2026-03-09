@@ -8,10 +8,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Sales.DeliveryPriceRule do
+defmodule UniboExPoc.Sales.DeliveryPriceRule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sales,
+    domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Sales.DeliveryPriceRule do
 
   postgres do
     table "sales_delivery_price_rules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -98,7 +98,7 @@ defmodule UniboV4.Sales.DeliveryPriceRule do
   end
 
   relationships do
-    belongs_to :carrier, UniboV4.Sales.DeliveryCarrier do
+    belongs_to :carrier, UniboExPoc.Sales.DeliveryCarrier do
       public? true
       allow_nil? false
     end

@@ -1,4 +1,4 @@
-defmodule UniboV4.Project.Changes.TimesheetEntry.ComputeAmount do
+defmodule UniboExPoc.Project.Changes.TimesheetEntry.ComputeAmount do
   @moduledoc """
   Change 模块: 计算 :amount (entity: timesheet_entry)
   原始 expr: op: multiply args: - op: ref   args:   - hours - op: ref   args:   - employee   - hourly_cost

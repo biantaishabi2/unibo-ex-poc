@@ -153,6 +153,7 @@ defmodule UniboExPoc.Sales.Workflows.Return.ReturnLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :approve -> nil
@@ -164,6 +165,7 @@ defmodule UniboExPoc.Sales.Workflows.Return.ReturnLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :approve -> false

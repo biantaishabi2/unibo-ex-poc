@@ -55,15 +55,16 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItem do
   relationships do
     belongs_to :return_header, UniboExPoc.Ofbiz.Order.ReturnHeader do
       public? true
-      source_attribute :return_id
       attribute_type :string
     end
-    belongs_to :return_reason, UniboExPoc.Ofbiz.Order.ReturnReason do
+    belongs_to :return_reason_ref, UniboExPoc.Ofbiz.Order.ReturnReason do
       public? true
+      source_attribute :return_reason_id
       attribute_type :string
     end
-    belongs_to :return_type, UniboExPoc.Ofbiz.Order.ReturnType do
+    belongs_to :return_type_ref, UniboExPoc.Ofbiz.Order.ReturnType do
       public? true
+      source_attribute :return_type_id
       attribute_type :string
     end
     belongs_to :return_item_type, UniboExPoc.Ofbiz.Order.ReturnItemType do

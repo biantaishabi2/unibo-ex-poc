@@ -1,4 +1,4 @@
-defmodule UniboV4.Rating.Changes.Rating.ComputePublishedAt do
+defmodule UniboExPoc.Rating.Changes.Rating.ComputePublishedAt do
   @moduledoc """
   Change 模块: 计算 :published_at (entity: rating)
   原始 expr: op: func args: - now

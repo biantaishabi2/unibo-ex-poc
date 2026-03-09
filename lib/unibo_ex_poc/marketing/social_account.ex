@@ -9,10 +9,10 @@
 #   refresh_token --> disconnect
 #   refresh_token --> refresh_token
 # ```
-defmodule UniboV4.Marketing.SocialAccount do
+defmodule UniboExPoc.Marketing.SocialAccount do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -22,7 +22,7 @@ defmodule UniboV4.Marketing.SocialAccount do
 
   postgres do
     table "marketing_social_accounts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -90,7 +90,7 @@ defmodule UniboV4.Marketing.SocialAccount do
   end
 
   relationships do
-    belongs_to :company, UniboV4.Marketing.Party do
+    belongs_to :company, UniboExPoc.Marketing.Party do
       public? true
       source_attribute :company_party_id
     end
@@ -110,7 +110,7 @@ defmodule UniboV4.Marketing.SocialAccount do
       primary? true
       accept []
       # skipped: validate unique : (incompatible with bulk update atomic path)
-      change UniboV4.Marketing.Changes.SocialAccount.ConnectCall1
+      change UniboExPoc.Marketing.Changes.SocialAccount.ConnectCall1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -134,7 +134,7 @@ defmodule UniboV4.Marketing.SocialAccount do
         end
       end
       # message: "只有启用的账户可以刷新令牌"
-      change UniboV4.Marketing.Changes.SocialAccount.RefreshTokenCall5
+      change UniboExPoc.Marketing.Changes.SocialAccount.RefreshTokenCall5
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

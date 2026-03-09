@@ -5,10 +5,10 @@
 #   create --> [*]
 #   read --> [*]
 # ```
-defmodule UniboV4.Sign.SignLog do
+defmodule UniboExPoc.Sign.SignLog do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sign,
+    domain: UniboExPoc.Sign,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Sign.SignLog do
 
   postgres do
     table "sign_logs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -72,14 +72,14 @@ defmodule UniboV4.Sign.SignLog do
   end
 
   relationships do
-    belongs_to :request, UniboV4.Sign.SignRequest do
+    belongs_to :request, UniboExPoc.Sign.SignRequest do
       public? true
       allow_nil? false
     end
-    belongs_to :request_item, UniboV4.Sign.SignRequestItem do
+    belongs_to :request_item, UniboExPoc.Sign.SignRequestItem do
       public? true
     end
-    belongs_to :actor, UniboV4.Sign.Party do
+    belongs_to :actor, UniboExPoc.Sign.Party do
       public? true
       source_attribute :actor_party_id
     end
@@ -96,8 +96,8 @@ defmodule UniboV4.Sign.SignLog do
       change manage_relationship(:request_id, :request, type: :append, on_lookup: :relate)
       validate present(:action)
       validate present(:timestamp)
-      change UniboV4.Sign.Changes.SignLog.ComputeTimestamp
-      change UniboV4.Sign.Changes.SignLog.ComputeLogHash
+      change UniboExPoc.Sign.Changes.SignLog.ComputeTimestamp
+      change UniboExPoc.Sign.Changes.SignLog.ComputeLogHash
       change set_attribute(:id, expr(id))
     end
   end

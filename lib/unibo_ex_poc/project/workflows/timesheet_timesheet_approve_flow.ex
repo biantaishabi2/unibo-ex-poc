@@ -1,10 +1,10 @@
-defmodule UniboV4.Project.Workflows.Timesheet.TimesheetApproveFlowWorkflow do
+defmodule UniboExPoc.Project.Workflows.Timesheet.TimesheetApproveFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Project.Timesheet
+  alias UniboExPoc.Project.Timesheet
 
   def steps do
     [:create, :submit, :approve]
@@ -145,6 +145,7 @@ defmodule UniboV4.Project.Workflows.Timesheet.TimesheetApproveFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :submit -> nil
@@ -154,6 +155,7 @@ defmodule UniboV4.Project.Workflows.Timesheet.TimesheetApproveFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :submit -> false

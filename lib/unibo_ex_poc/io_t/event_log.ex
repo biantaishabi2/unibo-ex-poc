@@ -5,10 +5,10 @@
 #   create --> [*]
 #   mark_processed --> [*]
 # ```
-defmodule UniboV4.IoT.EventLog do
+defmodule UniboExPoc.IoT.EventLog do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.IoT.EventLog do
 
   postgres do
     table "io_t_event_logs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -81,17 +81,17 @@ defmodule UniboV4.IoT.EventLog do
   end
 
   relationships do
-    belongs_to :device, UniboV4.IoT.IoTDevice do
+    belongs_to :device, UniboExPoc.IoT.IoTDevice do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    belongs_to :box, UniboV4.IoT.IoTBox do
+    belongs_to :box, UniboExPoc.IoT.IoTBox do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    belongs_to :trigger_rule, UniboV4.IoT.TriggerRule do
+    belongs_to :trigger_rule, UniboExPoc.IoT.TriggerRule do
       public? true
       attribute_type :integer
     end

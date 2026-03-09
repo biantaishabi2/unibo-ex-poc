@@ -27,13 +27,13 @@
 #   mark_tentative --> update
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Calendar.CalendarEvent do
+defmodule UniboExPoc.Calendar.CalendarEvent do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Calendar,
+    domain: UniboExPoc.Calendar,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Calendar.CalendarEvent.Notifier]
+    notifiers: [UniboExPoc.Calendar.CalendarEvent.Notifier]
 
   resource do
     description "日历事件（任务/会议），支持重复规则、全天事件、提醒、视频会议链接"
@@ -41,7 +41,7 @@ defmodule UniboV4.Calendar.CalendarEvent do
 
   postgres do
     table "calendar_events"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -179,26 +179,26 @@ defmodule UniboV4.Calendar.CalendarEvent do
   end
 
   relationships do
-    belongs_to :calendar, UniboV4.Calendar.Calendar do
+    belongs_to :calendar, UniboExPoc.Calendar.Calendar do
       public? true
     end
-    belongs_to :work_schedule, UniboV4.Calendar.WorkSchedule do
+    belongs_to :work_schedule, UniboExPoc.Calendar.WorkSchedule do
       public? true
     end
-    has_many :attendees, UniboV4.Calendar.Attendee do
+    has_many :attendees, UniboExPoc.Calendar.Attendee do
       public? true
       source_attribute :parent_event_id
       destination_attribute :event_id
     end
-    belongs_to :parent_event, UniboV4.Calendar.CalendarEvent do
+    belongs_to :parent_event, UniboExPoc.Calendar.CalendarEvent do
       public? true
     end
-    has_many :child_events, UniboV4.Calendar.CalendarEvent do
+    has_many :child_events, UniboExPoc.Calendar.CalendarEvent do
       public? true
       source_attribute :parent_event_id
       destination_attribute :parent_event_id
     end
-    has_many :translations, UniboV4.Calendar.CalendarEventTranslation, public?: true
+    has_many :translations, UniboExPoc.Calendar.CalendarEventTranslation, public?: true
   end
 
   actions do

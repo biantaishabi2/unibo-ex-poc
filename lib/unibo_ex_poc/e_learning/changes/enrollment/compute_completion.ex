@@ -1,4 +1,4 @@
-defmodule UniboV4.ELearning.Changes.Enrollment.ComputeCompletion do
+defmodule UniboExPoc.ELearning.Changes.Enrollment.ComputeCompletion do
   @moduledoc """
   Change 模块: 计算 :completion (entity: enrollment)
   原始 expr: op: func args: - round - op: mul   args:   - 100.0   - op: div     args:     - op: ref       args:       - completed_slides_count     - op: ref       args:       - channel       - total_slides

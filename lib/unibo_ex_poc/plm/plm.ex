@@ -1,4 +1,4 @@
-defmodule UniboV4.PLM do
+defmodule UniboExPoc.PLM do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,22 +7,22 @@ defmodule UniboV4.PLM do
   end
 
   resources do
-    resource UniboV4.PLM.EcoType
-    resource UniboV4.PLM.EcoType.Version
-    resource UniboV4.PLM.EcoStage
-    resource UniboV4.PLM.EcoStage.Version
-    resource UniboV4.PLM.EcoStageApprovalTemplate
-    resource UniboV4.PLM.EcoStageApprovalTemplate.Version
-    resource UniboV4.PLM.Eco
-    resource UniboV4.PLM.Eco.Version
-    resource UniboV4.PLM.EcoTag
-    resource UniboV4.PLM.EcoApproval
-    resource UniboV4.PLM.EcoApproval.Version
-    resource UniboV4.PLM.BomRevision
-    resource UniboV4.PLM.EcoTypeStageLink
-    resource UniboV4.PLM.EcoTagLink
-    resource UniboV4.PLM.ProductTemplate
-    resource UniboV4.PLM.MrpBom
-    resource UniboV4.PLM.Party
+    resource UniboExPoc.PLM.EcoType
+    resource UniboExPoc.PLM.EcoType.Version
+    resource UniboExPoc.PLM.EcoStage
+    resource UniboExPoc.PLM.EcoStage.Version
+    resource UniboExPoc.PLM.EcoStageApprovalTemplate
+    resource UniboExPoc.PLM.EcoStageApprovalTemplate.Version
+    resource UniboExPoc.PLM.Eco
+    resource UniboExPoc.PLM.Eco.Version
+    resource UniboExPoc.PLM.EcoTag
+    resource UniboExPoc.PLM.EcoApproval
+    resource UniboExPoc.PLM.EcoApproval.Version
+    resource UniboExPoc.PLM.BomRevision
+    resource UniboExPoc.PLM.EcoTypeStageLink
+    resource UniboExPoc.PLM.EcoTagLink
+    resource UniboExPoc.PLM.ProductTemplate
+    resource UniboExPoc.PLM.MrpBom
+    resource UniboExPoc.PLM.Party
   end
 end

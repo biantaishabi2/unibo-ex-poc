@@ -1,7 +1,7 @@
-defmodule UniboV4.Manufacturing.WorkOrderDependencyLink do
+defmodule UniboExPoc.Manufacturing.WorkOrderDependencyLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Manufacturing,
+    domain: UniboExPoc.Manufacturing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Manufacturing.WorkOrderDependencyLink do
 
   postgres do
     table "manufacturing_work_order_dependency_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Manufacturing.WorkOrderDependencyLink do
   end
 
   relationships do
-    belongs_to :blocked_by_workorder, UniboV4.Manufacturing.WorkOrder do
+    belongs_to :blocked_by_workorder, UniboExPoc.Manufacturing.WorkOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :needed_by_workorder, UniboV4.Manufacturing.WorkOrder do
+    belongs_to :needed_by_workorder, UniboExPoc.Manufacturing.WorkOrder do
       public? true
       allow_nil? false
     end

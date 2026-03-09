@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Marketing.SalesForecastDetail do
+defmodule UniboExPoc.Ofbiz.Marketing.SalesForecastDetail do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Marketing,
+    domain: UniboExPoc.Ofbiz.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "marketing_sales_forecast_details"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,7 +41,7 @@ defmodule UniboV4.Ofbiz.Marketing.SalesForecastDetail do
   end
 
   relationships do
-    belongs_to :sales_forecast, UniboV4.Ofbiz.Marketing.SalesForecast do
+    belongs_to :sales_forecast, UniboExPoc.Ofbiz.Marketing.SalesForecast do
       public? true
     end
   end

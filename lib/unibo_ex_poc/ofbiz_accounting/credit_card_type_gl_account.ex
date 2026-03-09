@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.CreditCardTypeGlAccount do
+defmodule UniboExPoc.Ofbiz.Accounting.CreditCardTypeGlAccount do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_credit_card_type_gl_accounts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

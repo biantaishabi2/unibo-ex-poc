@@ -1,7 +1,7 @@
-defmodule UniboV4.Purchasing.AccountMoveLine do
+defmodule UniboExPoc.Purchasing.AccountMoveLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Purchasing,
+    domain: UniboExPoc.Purchasing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Purchasing.AccountMoveLine do
 
   postgres do
     table "purchasing_account_move_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,11 +41,11 @@ defmodule UniboV4.Purchasing.AccountMoveLine do
   end
 
   relationships do
-    belongs_to :move, UniboV4.Purchasing.AccountMove do
+    belongs_to :move, UniboExPoc.Purchasing.AccountMove do
       public? true
       source_attribute :account_move_id
     end
-    belongs_to :purchase_line, UniboV4.Purchasing.PurchaseOrderLine do
+    belongs_to :purchase_line, UniboExPoc.Purchasing.PurchaseOrderLine do
       public? true
       source_attribute :purchase_order_line_id
     end

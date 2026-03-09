@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.PaymentGatewayConfigType do
+defmodule UniboExPoc.Ofbiz.Accounting.PaymentGatewayConfigType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_payment_gateway_config_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -35,11 +35,11 @@ defmodule UniboV4.Ofbiz.Accounting.PaymentGatewayConfigType do
   end
 
   relationships do
-    belongs_to :parent_payment_gateway_config_type, UniboV4.Ofbiz.Accounting.PaymentGatewayConfigType do
+    belongs_to :parent_payment_gateway_config_type, UniboExPoc.Ofbiz.Accounting.PaymentGatewayConfigType do
       public? true
       source_attribute :parent_type_id
     end
-    has_many :sibling_payment_gateway_config_type, UniboV4.Ofbiz.Accounting.PaymentGatewayConfigType do
+    has_many :sibling_payment_gateway_config_type, UniboExPoc.Ofbiz.Accounting.PaymentGatewayConfigType do
       public? true
     end
   end

@@ -1,4 +1,4 @@
-defmodule UniboV4.Gamification.Calculations.Badge.GrantedCount do
+defmodule UniboExPoc.Gamification.Calculations.Badge.GrantedCount do
   @moduledoc """
   Calculation 模块: :granted_count (type: :integer, entity: badge)
   """

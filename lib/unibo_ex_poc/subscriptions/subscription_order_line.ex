@@ -8,10 +8,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Subscriptions.SubscriptionOrderLine do
+defmodule UniboExPoc.Subscriptions.SubscriptionOrderLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Subscriptions,
+    domain: UniboExPoc.Subscriptions,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Subscriptions.SubscriptionOrderLine do
 
   postgres do
     table "subscriptions_subscription_order_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -78,17 +78,17 @@ defmodule UniboV4.Subscriptions.SubscriptionOrderLine do
   end
 
   relationships do
-    belongs_to :order, UniboV4.Subscriptions.SubscriptionOrder do
+    belongs_to :order, UniboExPoc.Subscriptions.SubscriptionOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :product, UniboV4.Subscriptions.Product do
+    belongs_to :product, UniboExPoc.Subscriptions.Product do
       public? true
       allow_nil? false
     end
-    many_to_many :tax_ids, UniboV4.Subscriptions.Tax do
+    many_to_many :tax_ids, UniboExPoc.Subscriptions.Tax do
       public? true
-      through UniboV4.Subscriptions.SubscriptionOrderLineTaxLink
+      through UniboExPoc.Subscriptions.SubscriptionOrderLineTaxLink
       source_attribute_on_join_resource :order_line_id
     end
   end

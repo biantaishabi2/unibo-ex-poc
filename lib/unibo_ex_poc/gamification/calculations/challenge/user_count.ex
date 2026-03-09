@@ -1,4 +1,4 @@
-defmodule UniboV4.Gamification.Calculations.Challenge.UserCount do
+defmodule UniboExPoc.Gamification.Calculations.Challenge.UserCount do
   @moduledoc """
   Calculation 模块: :user_count (type: :integer, entity: challenge)
   """

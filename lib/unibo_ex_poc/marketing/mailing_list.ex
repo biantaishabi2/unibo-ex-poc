@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Marketing.MailingList do
+defmodule UniboExPoc.Marketing.MailingList do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Marketing.MailingList do
 
   postgres do
     table "marketing_mailing_lists"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,12 +57,12 @@ defmodule UniboV4.Marketing.MailingList do
   end
 
   relationships do
-    has_many :members, UniboV4.Marketing.MailingListMember do
+    has_many :members, UniboExPoc.Marketing.MailingListMember do
       public? true
     end
-    many_to_many :mailings, UniboV4.Marketing.Mailing do
+    many_to_many :mailings, UniboExPoc.Marketing.Mailing do
       public? true
-      through UniboV4.Marketing.MailingContactListLink
+      through UniboExPoc.Marketing.MailingContactListLink
     end
   end
 
@@ -86,7 +86,7 @@ defmodule UniboV4.Marketing.MailingList do
       argument :source_list_ids, :string
       argument :archive_source, :string
       run fn input, _context ->
-        # BR-ML04: 按 email 分区窗口函数去重，排除 opted-out 和 blacklisted，可选归档源列表 — 由 Change 模块处理: UniboV4.Marketing.Changes.MailingList.MergeComplex1
+        # BR-ML04: 按 email 分区窗口函数去重，排除 opted-out 和 blacklisted，可选归档源列表 — 由 Change 模块处理: UniboExPoc.Marketing.Changes.MailingList.MergeComplex1
         :ok
       end
     end

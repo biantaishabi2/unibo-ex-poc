@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.ShipmentRouteSegment do
+defmodule UniboExPoc.Ofbiz.Shipment.ShipmentRouteSegment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_route_segments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -58,80 +58,80 @@ defmodule UniboV4.Ofbiz.Shipment.ShipmentRouteSegment do
   end
 
   relationships do
-    belongs_to :shipment, UniboV4.Ofbiz.Shipment.Shipment do
+    belongs_to :shipment, UniboExPoc.Ofbiz.Shipment.Shipment do
       public? true
       attribute_type :string
     end
-    belongs_to :delivery, UniboV4.Ofbiz.Shipment.Delivery do
+    belongs_to :delivery, UniboExPoc.Ofbiz.Shipment.Delivery do
       public? true
       attribute_type :string
     end
-    belongs_to :carrier_party, UniboV4.Ofbiz.Shipment.Party do
+    belongs_to :carrier_party, UniboExPoc.Ofbiz.Shipment.Party do
       public? true
       attribute_type :string
     end
-    belongs_to :carrier_person, UniboV4.Ofbiz.Shipment.Person do
-      public? true
-      source_attribute :carrier_party_id
-      define_attribute? false
-      attribute_type :string
-    end
-    belongs_to :carrier_party_group, UniboV4.Ofbiz.Shipment.PartyGroup do
+    belongs_to :carrier_person, UniboExPoc.Ofbiz.Shipment.Person do
       public? true
       source_attribute :carrier_party_id
       define_attribute? false
       attribute_type :string
     end
-    belongs_to :shipment_method_type, UniboV4.Ofbiz.Shipment.ShipmentMethodType do
+    belongs_to :carrier_party_group, UniboExPoc.Ofbiz.Shipment.PartyGroup do
+      public? true
+      source_attribute :carrier_party_id
+      define_attribute? false
+      attribute_type :string
+    end
+    belongs_to :shipment_method_type, UniboExPoc.Ofbiz.Shipment.ShipmentMethodType do
       public? true
       attribute_type :string
     end
-    belongs_to :origin_facility, UniboV4.Ofbiz.Shipment.Facility do
+    belongs_to :origin_facility, UniboExPoc.Ofbiz.Shipment.Facility do
       public? true
       attribute_type :string
     end
-    belongs_to :dest_facility, UniboV4.Ofbiz.Shipment.Facility do
+    belongs_to :dest_facility, UniboExPoc.Ofbiz.Shipment.Facility do
       public? true
       attribute_type :string
     end
-    belongs_to :origin_contact_mech, UniboV4.Ofbiz.Shipment.ContactMech do
+    belongs_to :origin_contact_mech, UniboExPoc.Ofbiz.Shipment.ContactMech do
       public? true
       attribute_type :string
     end
-    belongs_to :dest_contact_mech, UniboV4.Ofbiz.Shipment.ContactMech do
+    belongs_to :dest_contact_mech, UniboExPoc.Ofbiz.Shipment.ContactMech do
       public? true
       attribute_type :string
     end
-    belongs_to :origin_postal_address, UniboV4.Ofbiz.Shipment.PostalAddress do
+    belongs_to :origin_postal_address, UniboExPoc.Ofbiz.Shipment.PostalAddress do
       public? true
       source_attribute :origin_contact_mech_id
       define_attribute? false
       attribute_type :string
     end
-    belongs_to :origin_telecom_number, UniboV4.Ofbiz.Shipment.TelecomNumber do
+    belongs_to :origin_telecom_number, UniboExPoc.Ofbiz.Shipment.TelecomNumber do
       public? true
       attribute_type :string
     end
-    belongs_to :dest_postal_address, UniboV4.Ofbiz.Shipment.PostalAddress do
+    belongs_to :dest_postal_address, UniboExPoc.Ofbiz.Shipment.PostalAddress do
       public? true
       source_attribute :dest_contact_mech_id
       define_attribute? false
       attribute_type :string
     end
-    belongs_to :dest_telecom_number, UniboV4.Ofbiz.Shipment.TelecomNumber do
+    belongs_to :dest_telecom_number, UniboExPoc.Ofbiz.Shipment.TelecomNumber do
       public? true
       attribute_type :string
     end
-    belongs_to :carrier_service_status_item, UniboV4.Ofbiz.Shipment.StatusItem do
+    belongs_to :carrier_service_status_item, UniboExPoc.Ofbiz.Shipment.StatusItem do
       public? true
       source_attribute :carrier_service_status_id
       attribute_type :string
     end
-    belongs_to :currency_uom, UniboV4.Ofbiz.Shipment.Uom do
+    belongs_to :currency_uom, UniboExPoc.Ofbiz.Shipment.Uom do
       public? true
       attribute_type :string
     end
-    belongs_to :billing_weight_uom, UniboV4.Ofbiz.Shipment.Uom do
+    belongs_to :billing_weight_uom, UniboExPoc.Ofbiz.Shipment.Uom do
       public? true
       attribute_type :string
     end

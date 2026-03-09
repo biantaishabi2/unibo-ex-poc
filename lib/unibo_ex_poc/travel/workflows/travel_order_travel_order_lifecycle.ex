@@ -1,10 +1,10 @@
-defmodule UniboV4.Travel.Workflows.TravelOrder.TravelOrderLifecycleWorkflow do
+defmodule UniboExPoc.Travel.Workflows.TravelOrder.TravelOrderLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Travel.TravelOrder
+  alias UniboExPoc.Travel.TravelOrder
 
   def steps do
     [:create_order, :update, :confirm_quote, :submit_order, :submit_waitlist, :mark_payment_succeeded, :mark_booked, :fulfill_waitlist, :cancel_waitlist, :request_cancel, :approve_cancel, :request_change, :confirm_change, :mark_completed, :mark_order_failed, :destroy]
@@ -197,6 +197,7 @@ defmodule UniboV4.Travel.Workflows.TravelOrder.TravelOrderLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create_order -> nil
       :update -> nil
@@ -219,6 +220,7 @@ defmodule UniboV4.Travel.Workflows.TravelOrder.TravelOrderLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create_order -> false
       :update -> false

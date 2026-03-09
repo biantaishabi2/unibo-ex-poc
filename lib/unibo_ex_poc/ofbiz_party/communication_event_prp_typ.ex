@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.CommunicationEventPrpTyp do
+defmodule UniboExPoc.Ofbiz.Party.CommunicationEventPrpTyp do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_communication_event_prp_typs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,7 +44,7 @@ defmodule UniboV4.Ofbiz.Party.CommunicationEventPrpTyp do
   end
 
   relationships do
-    belongs_to :parent_communication_event_prp_typ, UniboV4.Ofbiz.Party.CommunicationEventPrpTyp do
+    belongs_to :parent_communication_event_prp_typ, UniboExPoc.Ofbiz.Party.CommunicationEventPrpTyp do
       public? true
       source_attribute :parent_type_id
     end

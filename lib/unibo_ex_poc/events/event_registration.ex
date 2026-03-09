@@ -9,13 +9,13 @@
 #   check_in --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Events.EventRegistration do
+defmodule UniboExPoc.Events.EventRegistration do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Events,
+    domain: UniboExPoc.Events,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Events.EventRegistration.Notifier]
+    notifiers: [UniboExPoc.Events.EventRegistration.Notifier]
 
   resource do
     description "活动报名记录，管理参与者的报名、确认、签到全流程"
@@ -23,7 +23,7 @@ defmodule UniboV4.Events.EventRegistration do
 
   postgres do
     table "events_event_registrations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -92,16 +92,16 @@ defmodule UniboV4.Events.EventRegistration do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Events.Event do
+    belongs_to :event, UniboExPoc.Events.Event do
       public? true
       allow_nil? false
     end
-    belongs_to :attendee, UniboV4.Events.Party do
+    belongs_to :attendee, UniboExPoc.Events.Party do
       public? true
       allow_nil? false
       source_attribute :attendee_party_id
     end
-    belongs_to :ticket, UniboV4.Events.EventTicket do
+    belongs_to :ticket, UniboExPoc.Events.EventTicket do
       public? true
     end
   end
@@ -120,7 +120,7 @@ defmodule UniboV4.Events.EventRegistration do
       validate present(:event_id)
       validate present(:attendee_id)
       # validation: capacity_check — 活动名额已满，无法报名
-      change UniboV4.Events.Changes.EventRegistration.ComputeRegisteredAt
+      change UniboExPoc.Events.Changes.EventRegistration.ComputeRegisteredAt
       change set_attribute(:id, expr(id))
     end
     update :confirm do
@@ -137,7 +137,7 @@ defmodule UniboV4.Events.EventRegistration do
       end
       # message: "只有待确认状态可以确认"
       change set_attribute(:status, :confirmed)
-      change UniboV4.Events.Changes.EventRegistration.ComputeStatusChangedAt
+      change UniboExPoc.Events.Changes.EventRegistration.ComputeStatusChangedAt
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -154,7 +154,7 @@ defmodule UniboV4.Events.EventRegistration do
       end
       # message: "只有已确认状态可以签到"
       change set_attribute(:status, :attended)
-      change UniboV4.Events.Changes.EventRegistration.ComputeCheckInTime
+      change UniboExPoc.Events.Changes.EventRegistration.ComputeCheckInTime
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -171,7 +171,7 @@ defmodule UniboV4.Events.EventRegistration do
       end
       # message: "只有待确认或已确认状态可以取消"
       change set_attribute(:status, :cancelled)
-      change UniboV4.Events.Changes.EventRegistration.ComputeStatusChangedAt
+      change UniboExPoc.Events.Changes.EventRegistration.ComputeStatusChangedAt
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

@@ -13,10 +13,10 @@
 #   create --> [*]
 #   button_cancel --> [*]
 # ```
-defmodule UniboV4.Inventory.LandedCost do
+defmodule UniboExPoc.Inventory.LandedCost do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Inventory,
+    domain: UniboExPoc.Inventory,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -26,7 +26,7 @@ defmodule UniboV4.Inventory.LandedCost do
 
   postgres do
     table "inventory_landed_costs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -78,17 +78,17 @@ defmodule UniboV4.Inventory.LandedCost do
   end
 
   relationships do
-    has_many :cost_lines, UniboV4.Inventory.LandedCostLine do
+    has_many :cost_lines, UniboExPoc.Inventory.LandedCostLine do
       public? true
       destination_attribute :cost_id
     end
-    has_many :valuation_adjustment_lines, UniboV4.Inventory.ValuationAdjustmentLine do
+    has_many :valuation_adjustment_lines, UniboExPoc.Inventory.ValuationAdjustmentLine do
       public? true
       destination_attribute :cost_id
     end
-    many_to_many :picking_ids, UniboV4.Inventory.StockPicking do
+    many_to_many :picking_ids, UniboExPoc.Inventory.StockPicking do
       public? true
-      through UniboV4.Inventory.LandedCostPicking
+      through UniboExPoc.Inventory.LandedCostPicking
       destination_attribute_on_join_resource :picking_id
     end
   end

@@ -20,13 +20,13 @@
 #   fail_fulfillment --> [*] : failed
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Travel.TravelFulfillment do
+defmodule UniboExPoc.Travel.TravelFulfillment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Travel,
+    domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Travel.TravelFulfillment.Notifier]
+    notifiers: [UniboExPoc.Travel.TravelFulfillment.Notifier]
 
   resource do
     description "统一酒旅履约聚合，承接预订确认、发券出票、候补兑现、乘车使用和失败结果；可选关联 Delivery::Shipment"
@@ -34,7 +34,7 @@ defmodule UniboV4.Travel.TravelFulfillment do
 
   postgres do
     table "travel_fulfillments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   multitenancy do
@@ -128,12 +128,12 @@ defmodule UniboV4.Travel.TravelFulfillment do
   end
 
   relationships do
-    belongs_to :order, UniboV4.Travel.TravelOrder do
+    belongs_to :order, UniboExPoc.Travel.TravelOrder do
       public? true
       allow_nil? false
       source_attribute :travel_order_id
     end
-    belongs_to :shipment, UniboV4.Delivery.Shipment do
+    belongs_to :shipment, UniboExPoc.Delivery.Shipment do
       public? true
     end
   end
@@ -167,7 +167,7 @@ defmodule UniboV4.Travel.TravelFulfillment do
       # message: "只有 pending 履约可以确认、失败或取消"
       change set_attribute(:status, :confirmed)
       change set_attribute(:id, expr(id))
-      change UniboV4.Travel.Integrations.TravelFulfillment.ConfirmBookingSupplierConfirmBookingBridge
+      change UniboExPoc.Travel.Integrations.TravelFulfillment.ConfirmBookingSupplierConfirmBookingBridge
       require_atomic? false
     end
     update :issue_voucher_or_ticket do
@@ -183,7 +183,7 @@ defmodule UniboV4.Travel.TravelFulfillment do
       # message: "只有 confirmed 履约可以 issue_voucher_or_ticket"
       change set_attribute(:status, :issued)
       change set_attribute(:id, expr(id))
-      change UniboV4.Travel.Integrations.TravelFulfillment.IssueVoucherOrTicketSupplierIssueDocumentBridge
+      change UniboExPoc.Travel.Integrations.TravelFulfillment.IssueVoucherOrTicketSupplierIssueDocumentBridge
       require_atomic? false
     end
     update :mark_in_use do
@@ -229,7 +229,7 @@ defmodule UniboV4.Travel.TravelFulfillment do
       # message: "只有 pending 履约可以确认、失败或取消"
       change set_attribute(:status, :cancelled)
       change set_attribute(:id, expr(id))
-      change UniboV4.Travel.Integrations.TravelFulfillment.CancelFulfillmentSupplierCancelBookingBridge
+      change UniboExPoc.Travel.Integrations.TravelFulfillment.CancelFulfillmentSupplierCancelBookingBridge
       require_atomic? false
     end
     update :fail_fulfillment do

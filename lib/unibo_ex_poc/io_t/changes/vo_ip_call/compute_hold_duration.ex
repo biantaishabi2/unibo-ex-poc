@@ -1,4 +1,4 @@
-defmodule UniboV4.IoT.Changes.VoIpCall.ComputeHoldDuration do
+defmodule UniboExPoc.IoT.Changes.VoIpCall.ComputeHoldDuration do
   @moduledoc """
   Change 模块: 计算 :hold_duration (entity: vo_ip_call)
   原始 expr: op: add args: - op: ref   args:   - hold_duration - op: func   args:   - datetime_diff_seconds   - now   - op: ref     args:     - hold_started_at

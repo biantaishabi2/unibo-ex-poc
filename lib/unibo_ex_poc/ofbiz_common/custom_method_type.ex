@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Common.CustomMethodType do
+defmodule UniboExPoc.Ofbiz.Common.CustomMethodType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Common.CustomMethodType do
 
   postgres do
     table "common_custom_method_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -39,7 +39,7 @@ defmodule UniboV4.Ofbiz.Common.CustomMethodType do
   end
 
   relationships do
-    belongs_to :parent_custom_method_type, UniboV4.Ofbiz.Common.CustomMethodType do
+    belongs_to :parent_custom_method_type, UniboExPoc.Ofbiz.Common.CustomMethodType do
       public? true
       source_attribute :parent_type_id
     end

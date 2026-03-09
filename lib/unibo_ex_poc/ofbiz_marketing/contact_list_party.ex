@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Marketing.ContactListParty do
+defmodule UniboExPoc.Ofbiz.Marketing.ContactListParty do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Marketing,
+    domain: UniboExPoc.Ofbiz.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "marketing_contact_list_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,7 +44,7 @@ defmodule UniboV4.Ofbiz.Marketing.ContactListParty do
   end
 
   relationships do
-    belongs_to :contact_list, UniboV4.Ofbiz.Marketing.ContactList do
+    belongs_to :contact_list, UniboExPoc.Ofbiz.Marketing.ContactList do
       public? true
     end
   end

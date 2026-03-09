@@ -1,7 +1,5 @@
-defmodule UniboV4.Manufacturing.Changes.WorkOrder.StartCreateRelated4 do
+defmodule UniboExPoc.Manufacturing.Changes.WorkOrder.StartCreateRelated4 do
   use Ash.Resource.Change
-
-  alias UniboV4.Manufacturing.WorkcenterProductivity
 
   @impl true
   def change(changeset, _opts, context) do
@@ -10,7 +8,7 @@ defmodule UniboV4.Manufacturing.Changes.WorkOrder.StartCreateRelated4 do
     opts = ash_call_opts(actor, tenant)
     params = %{}
 
-    case Ash.create(Ash.Changeset.for_create(UniboV4.Manufacturing.WorkcenterProductivity, :create, params), opts) do
+    case Ash.create(Ash.Changeset.for_create(UniboExPoc.Manufacturing.WorkcenterProductivity, :create, params), opts) do
       {:ok, _created} -> changeset
       {:error, reason} ->
         Ash.Changeset.add_error(changeset, "create_related WorkcenterProductivity 失败: #{inspect(reason)}")

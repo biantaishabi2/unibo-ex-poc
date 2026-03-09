@@ -1,7 +1,7 @@
-defmodule UniboV4.Quality.QualityTeamMemberLink do
+defmodule UniboExPoc.Quality.QualityTeamMemberLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Quality,
+    domain: UniboExPoc.Quality,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Quality.QualityTeamMemberLink do
 
   postgres do
     table "quality_team_member_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Quality.QualityTeamMemberLink do
   end
 
   relationships do
-    belongs_to :quality_team, UniboV4.Quality.QualityTeam do
+    belongs_to :quality_team, UniboExPoc.Quality.QualityTeam do
       public? true
       allow_nil? false
     end
-    belongs_to :member, UniboV4.Quality.Party do
+    belongs_to :member, UniboExPoc.Quality.Party do
       public? true
       allow_nil? false
       source_attribute :member_party_id

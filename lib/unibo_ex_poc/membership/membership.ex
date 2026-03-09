@@ -1,4 +1,4 @@
-defmodule UniboV4.Membership do
+defmodule UniboExPoc.Membership do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,10 +7,10 @@ defmodule UniboV4.Membership do
   end
 
   resources do
-    resource UniboV4.Membership.MembershipLine
-    resource UniboV4.Membership.MembershipLine.Version
-    resource UniboV4.Membership.MembershipProduct
-    resource UniboV4.Membership.MembershipProduct.Version
-    resource UniboV4.Membership.Party
+    resource UniboExPoc.Membership.MembershipLine
+    resource UniboExPoc.Membership.MembershipLine.Version
+    resource UniboExPoc.Membership.MembershipProduct
+    resource UniboExPoc.Membership.MembershipProduct.Version
+    resource UniboExPoc.Membership.Party
   end
 end

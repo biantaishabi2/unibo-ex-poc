@@ -1,4 +1,4 @@
-defmodule UniboV4.Documents.Calculations.Document.MimetypeDisplay do
+defmodule UniboExPoc.Documents.Calculations.Document.MimetypeDisplay do
   @moduledoc """
   Calculation 模块: :mimetype_display (type: :string, entity: document)
   """

@@ -1,7 +1,7 @@
-defmodule UniboV4.PLM.EcoTagLink do
+defmodule UniboExPoc.PLM.EcoTagLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.PLM,
+    domain: UniboExPoc.PLM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.PLM.EcoTagLink do
 
   postgres do
     table "plm_eco_tag_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.PLM.EcoTagLink do
   end
 
   relationships do
-    belongs_to :eco, UniboV4.PLM.Eco do
+    belongs_to :eco, UniboExPoc.PLM.Eco do
       public? true
       allow_nil? false
     end
-    belongs_to :eco_tag, UniboV4.PLM.EcoTag do
+    belongs_to :eco_tag, UniboExPoc.PLM.EcoTag do
       public? true
       allow_nil? false
     end

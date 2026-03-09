@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.UnemploymentClaim do
+defmodule UniboExPoc.Ofbiz.HumanRes.UnemploymentClaim do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_unemployment_claims"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -45,7 +45,7 @@ defmodule UniboV4.Ofbiz.HumanRes.UnemploymentClaim do
   end
 
   relationships do
-    belongs_to :status_item, UniboV4.Ofbiz.HumanRes.StatusItem do
+    belongs_to :status_item, UniboExPoc.Ofbiz.HumanRes.StatusItem do
       public? true
       source_attribute :status_id
       attribute_type :string

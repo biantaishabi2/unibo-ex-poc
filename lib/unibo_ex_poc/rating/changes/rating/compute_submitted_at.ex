@@ -1,4 +1,4 @@
-defmodule UniboV4.Rating.Changes.Rating.ComputeSubmittedAt do
+defmodule UniboExPoc.Rating.Changes.Rating.ComputeSubmittedAt do
   @moduledoc """
   Change 模块: 计算 :submitted_at (entity: rating)
   原始 expr: op: func args: - now

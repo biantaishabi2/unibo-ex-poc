@@ -1,10 +1,10 @@
-defmodule UniboV4.IoT.Workflows.IoTDevice.IotDeviceSyncFlowWorkflow do
+defmodule UniboExPoc.IoT.Workflows.IoTDevice.IotDeviceSyncFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.IoT.IoTDevice
+  alias UniboExPoc.IoT.IoTDevice
 
   def steps do
     [:upsert, :update, :update_value]
@@ -145,6 +145,7 @@ defmodule UniboV4.IoT.Workflows.IoTDevice.IotDeviceSyncFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :upsert -> nil
       :update -> nil
@@ -154,6 +155,7 @@ defmodule UniboV4.IoT.Workflows.IoTDevice.IotDeviceSyncFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :upsert -> false
       :update -> false

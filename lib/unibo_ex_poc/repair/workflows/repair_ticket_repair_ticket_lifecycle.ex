@@ -1,10 +1,10 @@
-defmodule UniboV4.Repair.Workflows.RepairTicket.RepairTicketLifecycleWorkflow do
+defmodule UniboExPoc.Repair.Workflows.RepairTicket.RepairTicketLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Repair.RepairTicket
+  alias UniboExPoc.Repair.RepairTicket
 
   def steps do
     [:create, :confirm, :start_repair, :complete_repair, :deliver, :cancel]
@@ -157,6 +157,7 @@ defmodule UniboV4.Repair.Workflows.RepairTicket.RepairTicketLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :confirm -> nil
@@ -169,6 +170,7 @@ defmodule UniboV4.Repair.Workflows.RepairTicket.RepairTicketLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :confirm -> false

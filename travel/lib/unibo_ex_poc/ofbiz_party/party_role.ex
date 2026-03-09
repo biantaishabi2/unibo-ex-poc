@@ -35,8 +35,9 @@ defmodule UniboExPoc.Ofbiz.Party.PartyRole do
     belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
     end
-    belongs_to :role_type, UniboExPoc.Ofbiz.Party.RoleType do
+    belongs_to :role_type_ref, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
+      source_attribute :role_type_id
     end
   end
 

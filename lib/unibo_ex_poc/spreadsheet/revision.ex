@@ -5,10 +5,10 @@
 #   create_snapshot --> [*]
 #   apply_revision --> [*]
 # ```
-defmodule UniboV4.Spreadsheet.Revision do
+defmodule UniboExPoc.Spreadsheet.Revision do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Spreadsheet,
+    domain: UniboExPoc.Spreadsheet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Spreadsheet.Revision do
 
   postgres do
     table "spreadsheet_revisions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -61,17 +61,17 @@ defmodule UniboV4.Spreadsheet.Revision do
   end
 
   relationships do
-    belongs_to :document, UniboV4.Spreadsheet.SpreadsheetDocument do
+    belongs_to :document, UniboExPoc.Spreadsheet.SpreadsheetDocument do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    belongs_to :user, UniboV4.Spreadsheet.Party do
+    belongs_to :user, UniboExPoc.Spreadsheet.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id
     end
-    belongs_to :parent_revision, UniboV4.Spreadsheet.Revision do
+    belongs_to :parent_revision, UniboExPoc.Spreadsheet.Revision do
       public? true
       attribute_type :string
     end

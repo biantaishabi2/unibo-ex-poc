@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.InventoryTransfer do
+defmodule UniboExPoc.Ofbiz.Product.InventoryTransfer do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_inventory_transfers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -40,20 +40,20 @@ defmodule UniboV4.Ofbiz.Product.InventoryTransfer do
   end
 
   relationships do
-    belongs_to :inventory_item, UniboV4.Ofbiz.Product.InventoryItem do
+    belongs_to :inventory_item, UniboExPoc.Ofbiz.Product.InventoryItem do
       public? true
     end
-    belongs_to :facility, UniboV4.Ofbiz.Product.Facility do
+    belongs_to :facility, UniboExPoc.Ofbiz.Product.Facility do
       public? true
     end
-    belongs_to :container, UniboV4.Ofbiz.Product.Container do
+    belongs_to :container, UniboExPoc.Ofbiz.Product.Container do
       public? true
     end
-    belongs_to :to_facility, UniboV4.Ofbiz.Product.Facility do
+    belongs_to :to_facility, UniboExPoc.Ofbiz.Product.Facility do
       public? true
       source_attribute :facility_id_to
     end
-    belongs_to :to_container, UniboV4.Ofbiz.Product.Container do
+    belongs_to :to_container, UniboExPoc.Ofbiz.Product.Container do
       public? true
       source_attribute :container_id_to
     end

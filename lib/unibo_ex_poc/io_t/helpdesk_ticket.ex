@@ -1,7 +1,7 @@
-defmodule UniboV4.IoT.HelpdeskTicket do
+defmodule UniboExPoc.IoT.HelpdeskTicket do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.IoT.HelpdeskTicket do
 
   postgres do
     table "io_t_helpdesk_tickets"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

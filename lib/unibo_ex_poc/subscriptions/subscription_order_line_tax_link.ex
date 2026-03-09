@@ -1,7 +1,7 @@
-defmodule UniboV4.Subscriptions.SubscriptionOrderLineTaxLink do
+defmodule UniboExPoc.Subscriptions.SubscriptionOrderLineTaxLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Subscriptions,
+    domain: UniboExPoc.Subscriptions,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Subscriptions.SubscriptionOrderLineTaxLink do
 
   postgres do
     table "subscriptions_subscription_order_line_tax_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Subscriptions.SubscriptionOrderLineTaxLink do
   end
 
   relationships do
-    belongs_to :order_line, UniboV4.Subscriptions.SubscriptionOrderLine do
+    belongs_to :order_line, UniboExPoc.Subscriptions.SubscriptionOrderLine do
       public? true
       allow_nil? false
     end
-    belongs_to :tax, UniboV4.Subscriptions.Tax do
+    belongs_to :tax, UniboExPoc.Subscriptions.Tax do
       public? true
       allow_nil? false
     end

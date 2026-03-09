@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.ApplicationSandbox do
+defmodule UniboExPoc.Ofbiz.WorkEffort.ApplicationSandbox do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_application_sandboxes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,7 +41,7 @@ defmodule UniboV4.Ofbiz.WorkEffort.ApplicationSandbox do
   end
 
   relationships do
-    belongs_to :runtime_data, UniboV4.Ofbiz.WorkEffort.RuntimeData do
+    belongs_to :runtime_data, UniboExPoc.Ofbiz.WorkEffort.RuntimeData do
       public? true
       attribute_type :string
     end

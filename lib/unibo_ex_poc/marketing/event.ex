@@ -12,10 +12,10 @@
 #   cancel --> [*]
 #   set_done --> [*]
 # ```
-defmodule UniboV4.Marketing.Event do
+defmodule UniboExPoc.Marketing.Event do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -25,7 +25,7 @@ defmodule UniboV4.Marketing.Event do
 
   postgres do
     table "marketing_events"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -105,21 +105,21 @@ defmodule UniboV4.Marketing.Event do
   end
 
   relationships do
-    has_many :registrations, UniboV4.Marketing.EventRegistration do
+    has_many :registrations, UniboExPoc.Marketing.EventRegistration do
       public? true
     end
-    has_many :tickets, UniboV4.Marketing.EventTicket do
+    has_many :tickets, UniboExPoc.Marketing.EventTicket do
       public? true
     end
-    has_many :event_mails, UniboV4.Marketing.EventMailSchedule do
+    has_many :event_mails, UniboExPoc.Marketing.EventMailSchedule do
       public? true
     end
-    has_many :booths, UniboV4.Marketing.EventBooth do
+    has_many :booths, UniboExPoc.Marketing.EventBooth do
       public? true
       source_attribute :campaign_id
       destination_attribute :event_id
     end
-    belongs_to :campaign, UniboV4.Marketing.Campaign do
+    belongs_to :campaign, UniboExPoc.Marketing.Campaign do
       public? true
     end
   end
@@ -140,7 +140,7 @@ defmodule UniboV4.Marketing.Event do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:kanban_state, :normal)
-      change UniboV4.Marketing.Changes.Event.UpdateCall5
+      change UniboExPoc.Marketing.Changes.Event.UpdateCall5
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -160,7 +160,7 @@ defmodule UniboV4.Marketing.Event do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :published)
       change set_attribute(:kanban_state, :normal)
-      change UniboV4.Marketing.Changes.Event.PublishCall5
+      change UniboExPoc.Marketing.Changes.Event.PublishCall5
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -180,7 +180,7 @@ defmodule UniboV4.Marketing.Event do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :completed)
       change set_attribute(:kanban_state, :normal)
-      change UniboV4.Marketing.Changes.Event.CompleteCall5
+      change UniboExPoc.Marketing.Changes.Event.CompleteCall5
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -191,7 +191,7 @@ defmodule UniboV4.Marketing.Event do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :cancelled)
       change set_attribute(:kanban_state, :normal)
-      change UniboV4.Marketing.Changes.Event.CancelCall5
+      change UniboExPoc.Marketing.Changes.Event.CancelCall5
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -202,7 +202,7 @@ defmodule UniboV4.Marketing.Event do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :completed)
       change set_attribute(:kanban_state, :normal)
-      change UniboV4.Marketing.Changes.Event.SetDoneCall5
+      change UniboExPoc.Marketing.Changes.Event.SetDoneCall5
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

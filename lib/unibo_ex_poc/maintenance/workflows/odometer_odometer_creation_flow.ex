@@ -1,10 +1,10 @@
-defmodule UniboV4.Maintenance.Workflows.Odometer.OdometerCreationFlowWorkflow do
+defmodule UniboExPoc.Maintenance.Workflows.Odometer.OdometerCreationFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Maintenance.Odometer
+  alias UniboExPoc.Maintenance.Odometer
 
   def steps do
     [:create]
@@ -137,6 +137,7 @@ defmodule UniboV4.Maintenance.Workflows.Odometer.OdometerCreationFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       _ -> nil
@@ -144,6 +145,7 @@ defmodule UniboV4.Maintenance.Workflows.Odometer.OdometerCreationFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       _ -> false

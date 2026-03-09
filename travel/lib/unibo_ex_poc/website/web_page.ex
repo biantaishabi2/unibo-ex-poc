@@ -115,7 +115,7 @@ defmodule UniboExPoc.Website.WebPage do
   end
 
   calculations do
-    calculate :is_visible, :boolean, expr((website_published == true and (date_publish == nil or date_publish <= now())))
+    calculate :is_visible, :boolean, expr((website_published == true and (is_nil(date_publish) or date_publish <= now())))
     calculate :is_homepage, :boolean, expr(url == website.homepage_url)
     calculate :search_priority, :integer, expr(count(menus, query: [filter: expr(true)]))
   end
@@ -126,7 +126,6 @@ defmodule UniboExPoc.Website.WebPage do
     end
     has_many :menus, UniboExPoc.Website.Menu do
       public? true
-      source_attribute :website_id
       destination_attribute :page_id
     end
   end

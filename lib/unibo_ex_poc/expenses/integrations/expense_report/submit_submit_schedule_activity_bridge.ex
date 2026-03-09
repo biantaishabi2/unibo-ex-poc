@@ -1,4 +1,4 @@
-defmodule UniboV4.Expenses.Integrations.ExpenseReport.SubmitSubmitScheduleActivityBridge do
+defmodule UniboExPoc.Expenses.Integrations.ExpenseReport.SubmitSubmitScheduleActivityBridge do
   use Ash.Resource.Change
 
   @provider "submit_schedule_activity"
@@ -29,7 +29,7 @@ defmodule UniboV4.Expenses.Integrations.ExpenseReport.SubmitSubmitScheduleActivi
       declared_errors: @declared_errors
     }
 
-    case UniboV4.Expenses.Integration.Runtime.dispatch_sync(request) do
+    case UniboExPoc.Expenses.Integration.Runtime.dispatch_sync(request) do
       {:ok, response} ->
         apply_response_bindings(changeset, response)
       {:error, error_payload} ->

@@ -5,13 +5,13 @@
 #   create --> close
 #   close --> [*]
 # ```
-defmodule UniboV4.LiveChat.ChatSession do
+defmodule UniboExPoc.LiveChat.ChatSession do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.LiveChat,
+    domain: UniboExPoc.LiveChat,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.LiveChat.ChatSession.Notifier]
+    notifiers: [UniboExPoc.LiveChat.ChatSession.Notifier]
 
   resource do
     description "在线客服聊天会话，由访客发起、系统分配操作员"
@@ -19,7 +19,7 @@ defmodule UniboV4.LiveChat.ChatSession do
 
   postgres do
     table "live_chat_chat_sessions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -53,22 +53,22 @@ defmodule UniboV4.LiveChat.ChatSession do
   end
 
   calculations do
-    calculate :display_name, :string, {UniboV4.LiveChat.Calculations.ChatSession.DisplayName, []}
+    calculate :display_name, :string, {UniboExPoc.LiveChat.Calculations.ChatSession.DisplayName, []}
   end
 
   relationships do
-    belongs_to :livechat_channel, UniboV4.LiveChat.LiveChatChannel do
+    belongs_to :livechat_channel, UniboExPoc.LiveChat.LiveChatChannel do
       public? true
       allow_nil? false
     end
-    belongs_to :operator, UniboV4.LiveChat.Party do
+    belongs_to :operator, UniboExPoc.LiveChat.Party do
       public? true
       source_attribute :operator_party_id
     end
-    belongs_to :country, UniboV4.LiveChat.Country do
+    belongs_to :country, UniboExPoc.LiveChat.Country do
       public? true
     end
-    belongs_to :chatbot_current_step, UniboV4.LiveChat.ChatbotScriptStep do
+    belongs_to :chatbot_current_step, UniboExPoc.LiveChat.ChatbotScriptStep do
       public? true
     end
   end
@@ -84,7 +84,7 @@ defmodule UniboV4.LiveChat.ChatSession do
       argument :country_id, :uuid
       argument :chatbot_script_id, :uuid
       change manage_relationship(:livechat_channel_id, :livechat_channel, type: :append, on_lookup: :relate)
-      change UniboV4.LiveChat.Changes.ChatSession.CreateCall1
+      change UniboExPoc.LiveChat.Changes.ChatSession.CreateCall1
       change set_attribute(:id, expr(id))
     end
     update :close do

@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.AgreementItemAttribute do
+defmodule UniboExPoc.Ofbiz.Party.AgreementItemAttribute do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "party_agreement_item_attributes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

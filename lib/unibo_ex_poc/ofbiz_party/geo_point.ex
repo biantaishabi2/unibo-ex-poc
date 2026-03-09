@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Party.GeoPoint do
+defmodule UniboExPoc.Ofbiz.Party.GeoPoint do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer
 
   resource do
@@ -10,7 +10,7 @@ defmodule UniboV4.Ofbiz.Party.GeoPoint do
 
   postgres do
     table "party_geo_points"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do

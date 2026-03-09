@@ -1,12 +1,12 @@
-defmodule UniboV4.Loyalty.LoyaltyProgramTranslation do
+defmodule UniboExPoc.Loyalty.LoyaltyProgramTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Loyalty,
+    domain: UniboExPoc.Loyalty,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "loyalty_loyalty_program_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Loyalty.LoyaltyProgramTranslation do
   end
 
   relationships do
-    belongs_to :loyalty_program, UniboV4.Loyalty.LoyaltyProgram do
+    belongs_to :loyalty_program, UniboExPoc.Loyalty.LoyaltyProgram do
       public? true
       allow_nil? false
     end

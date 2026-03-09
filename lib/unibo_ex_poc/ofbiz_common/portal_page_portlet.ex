@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Common.PortalPagePortlet do
+defmodule UniboExPoc.Ofbiz.Common.PortalPagePortlet do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Common.PortalPagePortlet do
 
   postgres do
     table "common_portal_page_portlets"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -43,13 +43,13 @@ defmodule UniboV4.Ofbiz.Common.PortalPagePortlet do
   end
 
   relationships do
-    belongs_to :portal_page, UniboV4.Ofbiz.Common.PortalPage do
+    belongs_to :portal_page, UniboExPoc.Ofbiz.Common.PortalPage do
       public? true
     end
-    belongs_to :portal_portlet, UniboV4.Ofbiz.Common.PortalPortlet do
+    belongs_to :portal_portlet, UniboExPoc.Ofbiz.Common.PortalPortlet do
       public? true
     end
-    belongs_to :portal_page_column, UniboV4.Ofbiz.Common.PortalPageColumn do
+    belongs_to :portal_page_column, UniboExPoc.Ofbiz.Common.PortalPageColumn do
       public? true
       source_attribute :portal_page_id
       define_attribute? false

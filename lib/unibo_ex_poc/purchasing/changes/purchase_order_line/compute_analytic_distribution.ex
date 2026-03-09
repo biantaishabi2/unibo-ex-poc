@@ -1,4 +1,4 @@
-defmodule UniboV4.Purchasing.Changes.PurchaseOrderLine.ComputeAnalyticDistribution do
+defmodule UniboExPoc.Purchasing.Changes.PurchaseOrderLine.ComputeAnalyticDistribution do
   @moduledoc """
   Change 模块: 计算 :analytic_distribution (entity: purchase_order_line)
   """

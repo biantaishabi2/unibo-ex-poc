@@ -8,10 +8,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Forum.Tag do
+defmodule UniboExPoc.Forum.Tag do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Forum,
+    domain: UniboExPoc.Forum,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Forum.Tag do
 
   postgres do
     table "forum_tags"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,13 +57,13 @@ defmodule UniboV4.Forum.Tag do
   end
 
   relationships do
-    belongs_to :forum, UniboV4.Forum.Forum do
+    belongs_to :forum, UniboExPoc.Forum.Forum do
       public? true
       allow_nil? false
     end
-    many_to_many :posts, UniboV4.Forum.Post do
+    many_to_many :posts, UniboExPoc.Forum.Post do
       public? true
-      through UniboV4.Forum.PostTagLink
+      through UniboExPoc.Forum.PostTagLink
     end
   end
 

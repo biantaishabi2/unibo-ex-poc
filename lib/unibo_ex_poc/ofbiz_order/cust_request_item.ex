@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Order.CustRequestItem do
+defmodule UniboExPoc.Ofbiz.Order.CustRequestItem do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_cust_request_items"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -50,11 +50,11 @@ defmodule UniboV4.Ofbiz.Order.CustRequestItem do
   end
 
   relationships do
-    belongs_to :cust_request, UniboV4.Ofbiz.Order.CustRequest do
+    belongs_to :cust_request, UniboExPoc.Ofbiz.Order.CustRequest do
       public? true
       attribute_type :string
     end
-    belongs_to :cust_request_resolution, UniboV4.Ofbiz.Order.CustRequestResolution do
+    belongs_to :cust_request_resolution, UniboExPoc.Ofbiz.Order.CustRequestResolution do
       public? true
       attribute_type :string
     end

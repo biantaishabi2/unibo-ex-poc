@@ -9,10 +9,10 @@
 #   complete --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Helpdesk.Appointment do
+defmodule UniboExPoc.Helpdesk.Appointment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -22,7 +22,7 @@ defmodule UniboV4.Helpdesk.Appointment do
 
   postgres do
     table "helpdesk_appointments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -69,7 +69,7 @@ defmodule UniboV4.Helpdesk.Appointment do
   end
 
   relationships do
-    belongs_to :created_by, UniboV4.Helpdesk.Party do
+    belongs_to :created_by, UniboExPoc.Helpdesk.Party do
       public? true
       source_attribute :created_by_party_id
     end

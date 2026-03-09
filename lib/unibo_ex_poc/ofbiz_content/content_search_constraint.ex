@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.ContentSearchConstraint do
+defmodule UniboExPoc.Ofbiz.Content.ContentSearchConstraint do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_search_constraints"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -45,7 +45,7 @@ defmodule UniboV4.Ofbiz.Content.ContentSearchConstraint do
   end
 
   relationships do
-    belongs_to :content_search_result, UniboV4.Ofbiz.Content.ContentSearchResult do
+    belongs_to :content_search_result, UniboExPoc.Ofbiz.Content.ContentSearchResult do
       public? true
       attribute_type :string
     end

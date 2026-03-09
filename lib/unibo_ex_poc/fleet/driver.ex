@@ -7,10 +7,10 @@
 #   update --> deactivate
 #   deactivate --> [*]
 # ```
-defmodule UniboV4.Fleet.Driver do
+defmodule UniboExPoc.Fleet.Driver do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Fleet,
+    domain: UniboExPoc.Fleet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Fleet.Driver do
 
   postgres do
     table "fleet_drivers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -79,13 +79,13 @@ defmodule UniboV4.Fleet.Driver do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Fleet.Party do
+    belongs_to :party, UniboExPoc.Fleet.Party do
       public? true
     end
-    belongs_to :employee, UniboV4.Fleet.HrEmployee do
+    belongs_to :employee, UniboExPoc.Fleet.HrEmployee do
       public? true
     end
-    has_many :assignments, UniboV4.Fleet.VehicleAssignment do
+    has_many :assignments, UniboExPoc.Fleet.VehicleAssignment do
       public? true
       destination_attribute :driver_id
     end

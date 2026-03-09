@@ -1,4 +1,4 @@
-defmodule UniboV4.Lunch.Calculations.LunchProduct.IsFavorite do
+defmodule UniboExPoc.Lunch.Calculations.LunchProduct.IsFavorite do
   @moduledoc """
   Calculation 模块: :is_favorite (type: :boolean, entity: lunch_product)
   """

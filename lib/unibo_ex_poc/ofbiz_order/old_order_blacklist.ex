@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Order.OldOrderBlacklist do
+defmodule UniboExPoc.Ofbiz.Order.OldOrderBlacklist do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "order_old_order_blacklists"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -36,7 +36,7 @@ defmodule UniboV4.Ofbiz.Order.OldOrderBlacklist do
   end
 
   relationships do
-    belongs_to :old_order_blacklist_type, UniboV4.Ofbiz.Order.OldOrderBlacklistType do
+    belongs_to :old_order_blacklist_type, UniboExPoc.Ofbiz.Order.OldOrderBlacklistType do
       public? true
       source_attribute :order_blacklist_type_id
       attribute_type :string

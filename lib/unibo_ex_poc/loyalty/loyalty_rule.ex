@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Loyalty.LoyaltyRule do
+defmodule UniboExPoc.Loyalty.LoyaltyRule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Loyalty,
+    domain: UniboExPoc.Loyalty,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.Loyalty.LoyaltyRule do
 
   postgres do
     table "loyalty_rules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -94,11 +94,11 @@ defmodule UniboV4.Loyalty.LoyaltyRule do
   end
 
   relationships do
-    belongs_to :program, UniboV4.Loyalty.LoyaltyProgram do
+    belongs_to :program, UniboExPoc.Loyalty.LoyaltyProgram do
       public? true
       allow_nil? false
     end
-    has_many :translations, UniboV4.Loyalty.LoyaltyRuleTranslation, public?: true
+    has_many :translations, UniboExPoc.Loyalty.LoyaltyRuleTranslation, public?: true
   end
 
   actions do

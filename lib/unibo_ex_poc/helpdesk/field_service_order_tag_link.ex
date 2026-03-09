@@ -1,7 +1,7 @@
-defmodule UniboV4.Helpdesk.FieldServiceOrderTagLink do
+defmodule UniboExPoc.Helpdesk.FieldServiceOrderTagLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Helpdesk.FieldServiceOrderTagLink do
 
   postgres do
     table "helpdesk_field_service_order_tag_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,12 +29,12 @@ defmodule UniboV4.Helpdesk.FieldServiceOrderTagLink do
   end
 
   relationships do
-    belongs_to :service_order, UniboV4.Helpdesk.FieldServiceOrder do
+    belongs_to :service_order, UniboExPoc.Helpdesk.FieldServiceOrder do
       public? true
       allow_nil? false
       source_attribute :field_service_order_id
     end
-    belongs_to :tag, UniboV4.Helpdesk.Tag do
+    belongs_to :tag, UniboExPoc.Helpdesk.Tag do
       public? true
       allow_nil? false
     end

@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Marketing.UtmCampaign do
+defmodule UniboExPoc.Marketing.UtmCampaign do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Marketing.UtmCampaign do
 
   postgres do
     table "marketing_utm_campaigns"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -68,16 +68,16 @@ defmodule UniboV4.Marketing.UtmCampaign do
   end
 
   relationships do
-    belongs_to :stage, UniboV4.Marketing.UtmStage do
+    belongs_to :stage, UniboExPoc.Marketing.UtmStage do
       public? true
     end
-    belongs_to :responsible, UniboV4.Marketing.Party do
+    belongs_to :responsible, UniboExPoc.Marketing.Party do
       public? true
       source_attribute :responsible_party_id
     end
-    many_to_many :tags, UniboV4.Marketing.UtmTag do
+    many_to_many :tags, UniboExPoc.Marketing.UtmTag do
       public? true
-      through UniboV4.Marketing.UtmCampaignTagLink
+      through UniboExPoc.Marketing.UtmCampaignTagLink
     end
   end
 

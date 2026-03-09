@@ -1,4 +1,4 @@
-defmodule UniboV4.POS.Changes.PosSession.ComputeCloseDate do
+defmodule UniboExPoc.POS.Changes.PosSession.ComputeCloseDate do
   @moduledoc """
   Change 模块: 计算 :close_date (entity: pos_session)
   原始 expr: op: func args: - now

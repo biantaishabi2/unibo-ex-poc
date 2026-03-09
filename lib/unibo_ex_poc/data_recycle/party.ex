@@ -1,7 +1,7 @@
-defmodule UniboV4.DataRecycle.Party do
+defmodule UniboExPoc.DataRecycle.Party do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.DataRecycle,
+    domain: UniboExPoc.DataRecycle,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.DataRecycle.Party do
 
   postgres do
     table "data_recycle_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

@@ -1,10 +1,10 @@
-defmodule UniboV4.Sales.Workflows.Quote.QuoteLifecycleWorkflow do
+defmodule UniboExPoc.Sales.Workflows.Quote.QuoteLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Sales.Quote
+  alias UniboExPoc.Sales.Quote
 
   def steps do
     [:create, :submit, :accept, :reject]
@@ -149,6 +149,7 @@ defmodule UniboV4.Sales.Workflows.Quote.QuoteLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :submit -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Sales.Workflows.Quote.QuoteLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :submit -> false

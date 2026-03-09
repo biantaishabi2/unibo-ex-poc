@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortInventoryProduced do
+defmodule UniboExPoc.Ofbiz.WorkEffort.WorkEffortInventoryProduced do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_inventory_produceds"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -32,11 +32,11 @@ defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortInventoryProduced do
   end
 
   relationships do
-    belongs_to :work_effort, UniboV4.Ofbiz.WorkEffort.WorkEffort do
+    belongs_to :work_effort, UniboExPoc.Ofbiz.WorkEffort.WorkEffort do
       public? true
       attribute_type :string
     end
-    belongs_to :inventory_item, UniboV4.Ofbiz.WorkEffort.InventoryItem do
+    belongs_to :inventory_item, UniboExPoc.Ofbiz.WorkEffort.InventoryItem do
       public? true
       attribute_type :string
     end

@@ -1,7 +1,7 @@
-defmodule UniboV4.Maintenance.VehicleModelCategory do
+defmodule UniboExPoc.Maintenance.VehicleModelCategory do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Maintenance.VehicleModelCategory do
 
   postgres do
     table "maintenance_vehicle_model_categories"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

@@ -127,11 +127,13 @@ defmodule UniboExPoc.Payment.Payment do
   end
 
   relationships do
-    belongs_to :payment_type, UniboExPoc.Payment.PaymentType do
+    belongs_to :payment_type_ref, UniboExPoc.Payment.PaymentType do
       public? true
+      source_attribute :payment_type_id
     end
-    belongs_to :payment_method, UniboExPoc.Payment.PaymentMethod do
+    belongs_to :payment_method_ref, UniboExPoc.Payment.PaymentMethod do
       public? true
+      source_attribute :payment_method_id
     end
     belongs_to :gateway_response, UniboExPoc.Payment.PaymentGatewayResponse do
       public? true

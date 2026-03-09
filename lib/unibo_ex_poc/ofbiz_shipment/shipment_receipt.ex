@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.ShipmentReceipt do
+defmodule UniboExPoc.Ofbiz.Shipment.ShipmentReceipt do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_receipts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -46,30 +46,30 @@ defmodule UniboV4.Ofbiz.Shipment.ShipmentReceipt do
   end
 
   relationships do
-    belongs_to :inventory_item, UniboV4.Ofbiz.Shipment.InventoryItem do
+    belongs_to :inventory_item, UniboExPoc.Ofbiz.Shipment.InventoryItem do
       public? true
       attribute_type :string
     end
-    belongs_to :product, UniboV4.Ofbiz.Shipment.Product do
+    belongs_to :product, UniboExPoc.Ofbiz.Shipment.Product do
       public? true
       attribute_type :string
     end
-    belongs_to :order_header, UniboV4.Ofbiz.Shipment.OrderHeader do
+    belongs_to :order_header, UniboExPoc.Ofbiz.Shipment.OrderHeader do
       public? true
       source_attribute :order_id
       attribute_type :string
     end
-    belongs_to :rejection_reason, UniboV4.Ofbiz.Shipment.RejectionReason do
+    belongs_to :rejection_reason, UniboExPoc.Ofbiz.Shipment.RejectionReason do
       public? true
       source_attribute :rejection_id
       attribute_type :string
     end
-    belongs_to :user_login, UniboV4.Ofbiz.Shipment.UserLogin do
+    belongs_to :user_login, UniboExPoc.Ofbiz.Shipment.UserLogin do
       public? true
       source_attribute :received_by_user_login_id
       attribute_type :string
     end
-    belongs_to :shipment, UniboV4.Ofbiz.Shipment.Shipment do
+    belongs_to :shipment, UniboExPoc.Ofbiz.Shipment.Shipment do
       public? true
       attribute_type :string
     end

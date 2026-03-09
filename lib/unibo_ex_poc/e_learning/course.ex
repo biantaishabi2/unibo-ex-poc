@@ -16,13 +16,13 @@
 #   restore --> update
 #   restore --> publish
 # ```
-defmodule UniboV4.ELearning.Course do
+defmodule UniboExPoc.ELearning.Course do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.ELearning,
+    domain: UniboExPoc.ELearning,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.ELearning.Course.Notifier]
+    notifiers: [UniboExPoc.ELearning.Course.Notifier]
 
   resource do
     description "在线课程/频道，承载多个内容项（Slide），管理可见性与注册策略"
@@ -30,7 +30,7 @@ defmodule UniboV4.ELearning.Course do
 
   postgres do
     table "e_learning_courses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -161,18 +161,18 @@ defmodule UniboV4.ELearning.Course do
   end
 
   relationships do
-    has_many :slides, UniboV4.ELearning.Slide do
+    has_many :slides, UniboExPoc.ELearning.Slide do
       public? true
       destination_attribute :channel_id
     end
-    has_many :enrollments, UniboV4.ELearning.Enrollment do
+    has_many :enrollments, UniboExPoc.ELearning.Enrollment do
       public? true
       destination_attribute :channel_id
     end
-    belongs_to :promoted_slide, UniboV4.ELearning.Slide do
+    belongs_to :promoted_slide, UniboExPoc.ELearning.Slide do
       public? true
     end
-    belongs_to :created_by, UniboV4.ELearning.Party do
+    belongs_to :created_by, UniboExPoc.ELearning.Party do
       public? true
       source_attribute :created_by_party_id
     end
@@ -186,7 +186,7 @@ defmodule UniboV4.ELearning.Course do
       validate present(:name)
       # validation: visibility_enroll_constraint — 仅会员可见的课程必须设置为仅邀请注册
       change relate_actor(:created_by)
-      change UniboV4.ELearning.Changes.Course.CreateCreateRelated2
+      change UniboExPoc.ELearning.Changes.Course.CreateCreateRelated2
       change set_attribute(:id, expr(id))
     end
     update :update do

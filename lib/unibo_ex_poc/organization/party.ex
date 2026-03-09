@@ -1,7 +1,7 @@
-defmodule UniboV4.Organization.Party do
+defmodule UniboExPoc.Organization.Party do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Organization,
+    domain: UniboExPoc.Organization,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Organization.Party do
 
   postgres do
     table "organization_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -61,15 +61,15 @@ defmodule UniboV4.Organization.Party do
   end
 
   relationships do
-    has_many :roles, UniboV4.Organization.PartyRole do
+    has_many :roles, UniboExPoc.Organization.PartyRole do
       public? true
       destination_attribute :party_id
     end
-    has_many :outgoing_relationships, UniboV4.Organization.PartyRelationship do
+    has_many :outgoing_relationships, UniboExPoc.Organization.PartyRelationship do
       public? true
       destination_attribute :from_party_id
     end
-    has_many :incoming_relationships, UniboV4.Organization.PartyRelationship do
+    has_many :incoming_relationships, UniboExPoc.Organization.PartyRelationship do
       public? true
       destination_attribute :to_party_id
     end

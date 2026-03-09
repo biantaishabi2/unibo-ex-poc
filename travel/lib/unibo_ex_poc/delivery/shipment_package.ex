@@ -93,12 +93,10 @@ defmodule UniboExPoc.Delivery.ShipmentPackage do
     end
     has_many :contents, UniboExPoc.Delivery.ShipmentPackageContent do
       public? true
-      source_attribute :shipment_package_seq_id
       destination_attribute :shipment_package_seq_id
     end
     has_many :route_segs, UniboExPoc.Delivery.ShipmentPackageRouteSeg do
       public? true
-      source_attribute :shipment_package_seq_id
       destination_attribute :shipment_package_seq_id
     end
   end

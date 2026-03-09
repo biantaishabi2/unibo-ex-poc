@@ -1,4 +1,4 @@
-defmodule UniboV4.PLM.Calculations.Eco.KanbanState do
+defmodule UniboExPoc.PLM.Calculations.Eco.KanbanState do
   @moduledoc """
   Calculation 模块: :kanban_state (type: :atom, entity: eco)
   """

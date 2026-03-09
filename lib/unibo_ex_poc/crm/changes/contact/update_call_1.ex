@@ -1,12 +1,31 @@
-defmodule UniboV4.CRM.Changes.Contact.UpdateCall1 do
+defmodule UniboExPoc.CRM.Changes.Contact.UpdateCall1 do
   use Ash.Resource.Change
 
   @impl true
   def change(changeset, _opts, context) do
-    if function_exported?(CRM, :track_field_change, 2) do
-      CRM.track_field_change(changeset, context)
+    module_ref = "CRM"
+    module = resolve_call_module(module_ref)
+    if is_atom(module) and function_exported?(module, :track_field_change, 2) do
+      apply(module, :track_field_change, [changeset, context])
     else
-      Ash.Changeset.add_error(changeset, "call 目标不存在: CRM.track_field_change/2")
+      Ash.Changeset.add_error(changeset, "call 目标不存在: #CRM.track_field_change/2")
     end
   end
+
+  defp resolve_call_module(module) when is_atom(module), do: module
+  defp resolve_call_module(module) when is_binary(module) do
+    module
+    |> String.trim()
+    |> case do
+      "" -> nil
+      value ->
+        value
+        |> String.split(".", trim: true)
+        |> Enum.map(fn seg -> if seg =~ ~r/^[A-Z]/, do: seg, else: Macro.camelize(seg) end)
+        |> Module.concat()
+    end
+  rescue
+    _ -> nil
+  end
+  defp resolve_call_module(_), do: nil
 end

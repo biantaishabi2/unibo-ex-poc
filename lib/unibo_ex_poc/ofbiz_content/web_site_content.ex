@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.WebSiteContent do
+defmodule UniboExPoc.Ofbiz.Content.WebSiteContent do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "content_web_site_contents"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -42,11 +42,11 @@ defmodule UniboV4.Ofbiz.Content.WebSiteContent do
   end
 
   relationships do
-    belongs_to :content, UniboV4.Ofbiz.Content.Content do
+    belongs_to :content, UniboExPoc.Ofbiz.Content.Content do
       public? true
       attribute_type :string
     end
-    belongs_to :web_site_content_type, UniboV4.Ofbiz.Content.WebSiteContentType do
+    belongs_to :web_site_content_type, UniboExPoc.Ofbiz.Content.WebSiteContentType do
       public? true
       attribute_type :string
     end

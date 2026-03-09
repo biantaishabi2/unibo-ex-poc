@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.InventoryItemLabelAppl do
+defmodule UniboExPoc.Ofbiz.Product.InventoryItemLabelAppl do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_inventory_item_label_appls"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -33,13 +33,13 @@ defmodule UniboV4.Ofbiz.Product.InventoryItemLabelAppl do
   end
 
   relationships do
-    belongs_to :inventory_item, UniboV4.Ofbiz.Product.InventoryItem do
+    belongs_to :inventory_item, UniboExPoc.Ofbiz.Product.InventoryItem do
       public? true
     end
-    belongs_to :inventory_item_label_type, UniboV4.Ofbiz.Product.InventoryItemLabelType do
+    belongs_to :inventory_item_label_type, UniboExPoc.Ofbiz.Product.InventoryItemLabelType do
       public? true
     end
-    belongs_to :inventory_item_label, UniboV4.Ofbiz.Product.InventoryItemLabel do
+    belongs_to :inventory_item_label, UniboExPoc.Ofbiz.Product.InventoryItemLabel do
       public? true
     end
   end

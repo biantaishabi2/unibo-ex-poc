@@ -1,10 +1,10 @@
-defmodule UniboV4.Maintenance.Workflows.Vehicle.VehicleLifecycleWorkflow do
+defmodule UniboExPoc.Maintenance.Workflows.Vehicle.VehicleLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Maintenance.Vehicle
+  alias UniboExPoc.Maintenance.Vehicle
 
   def steps do
     [:create, :update, :change_driver, :set_future_driver, :change_state, :deactivate, :set_odometer]
@@ -161,6 +161,7 @@ defmodule UniboV4.Maintenance.Workflows.Vehicle.VehicleLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -174,6 +175,7 @@ defmodule UniboV4.Maintenance.Workflows.Vehicle.VehicleLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

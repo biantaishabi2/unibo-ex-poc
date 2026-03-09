@@ -1,7 +1,7 @@
-defmodule UniboV4.Loyalty.CouponBoundParty do
+defmodule UniboExPoc.Loyalty.CouponBoundParty do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Loyalty,
+    domain: UniboExPoc.Loyalty,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Loyalty.CouponBoundParty do
 
   postgres do
     table "loyalty_coupon_bound_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -39,11 +39,11 @@ defmodule UniboV4.Loyalty.CouponBoundParty do
   end
 
   relationships do
-    belongs_to :coupon, UniboV4.Loyalty.Coupon do
+    belongs_to :coupon, UniboExPoc.Loyalty.Coupon do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.Loyalty.Party do
+    belongs_to :partner, UniboExPoc.Loyalty.Party do
       public? true
       allow_nil? false
       source_attribute :partner_party_id

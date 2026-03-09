@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.AgreementItemType do
+defmodule UniboExPoc.Ofbiz.Party.AgreementItemType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_agreement_item_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,7 +44,7 @@ defmodule UniboV4.Ofbiz.Party.AgreementItemType do
   end
 
   relationships do
-    belongs_to :parent_agreement_item_type, UniboV4.Ofbiz.Party.AgreementItemType do
+    belongs_to :parent_agreement_item_type, UniboExPoc.Ofbiz.Party.AgreementItemType do
       public? true
       source_attribute :parent_type_id
     end

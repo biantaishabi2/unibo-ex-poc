@@ -7,10 +7,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.IoT.IncomingNumber do
+defmodule UniboExPoc.IoT.IncomingNumber do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.IoT.IncomingNumber do
 
   postgres do
     table "io_t_incoming_numbers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -73,29 +73,29 @@ defmodule UniboV4.IoT.IncomingNumber do
   end
 
   relationships do
-    belongs_to :dial_plan, UniboV4.IoT.DialPlan do
+    belongs_to :dial_plan, UniboExPoc.IoT.DialPlan do
       public? true
       attribute_type :integer
     end
-    belongs_to :extension_user, UniboV4.IoT.Party do
+    belongs_to :extension_user, UniboExPoc.IoT.Party do
       public? true
       source_attribute :extension_user_party_id
     end
-    belongs_to :voicemail_target, UniboV4.IoT.Voicemail do
+    belongs_to :voicemail_target, UniboExPoc.IoT.Voicemail do
       public? true
       source_attribute :voicemail_id
       attribute_type :integer
     end
-    belongs_to :call_queue, UniboV4.IoT.CallQueue do
+    belongs_to :call_queue, UniboExPoc.IoT.CallQueue do
       public? true
       source_attribute :queue_id
       attribute_type :integer
     end
-    belongs_to :conference_room, UniboV4.IoT.ConferenceRoom do
+    belongs_to :conference_room, UniboExPoc.IoT.ConferenceRoom do
       public? true
       attribute_type :integer
     end
-    belongs_to :org, UniboV4.IoT.Org do
+    belongs_to :org, UniboExPoc.IoT.Org do
       public? true
       allow_nil? false
       attribute_type :integer

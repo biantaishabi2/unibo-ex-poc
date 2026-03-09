@@ -1,7 +1,7 @@
-defmodule UniboV4.Project.AnalyticAccount do
+defmodule UniboExPoc.Project.AnalyticAccount do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Project,
+    domain: UniboExPoc.Project,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Project.AnalyticAccount do
 
   postgres do
     table "project_analytic_accounts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

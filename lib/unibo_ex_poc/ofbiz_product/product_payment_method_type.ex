@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.ProductPaymentMethodType do
+defmodule UniboExPoc.Ofbiz.Product.ProductPaymentMethodType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "product_payment_method_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -43,10 +43,10 @@ defmodule UniboV4.Ofbiz.Product.ProductPaymentMethodType do
   end
 
   relationships do
-    belongs_to :product, UniboV4.Ofbiz.Product.Product do
+    belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
     end
-    belongs_to :product_price_purpose, UniboV4.Ofbiz.Product.ProductPricePurpose do
+    belongs_to :product_price_purpose, UniboExPoc.Ofbiz.Product.ProductPricePurpose do
       public? true
     end
   end

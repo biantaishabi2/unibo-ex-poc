@@ -4,10 +4,10 @@
 #   [*] --> create
 #   create --> [*]
 # ```
-defmodule UniboV4.Subscriptions.SubscriptionLog do
+defmodule UniboExPoc.Subscriptions.SubscriptionLog do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Subscriptions,
+    domain: UniboExPoc.Subscriptions,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -17,7 +17,7 @@ defmodule UniboV4.Subscriptions.SubscriptionLog do
 
   postgres do
     table "subscriptions_subscription_logs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -70,15 +70,15 @@ defmodule UniboV4.Subscriptions.SubscriptionLog do
   end
 
   relationships do
-    belongs_to :subscription, UniboV4.Subscriptions.SubscriptionOrder do
+    belongs_to :subscription, UniboExPoc.Subscriptions.SubscriptionOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :currency, UniboV4.Subscriptions.Currency do
+    belongs_to :currency, UniboExPoc.Subscriptions.Currency do
       public? true
       allow_nil? false
     end
-    belongs_to :user, UniboV4.Subscriptions.Party do
+    belongs_to :user, UniboExPoc.Subscriptions.Party do
       public? true
       source_attribute :user_party_id
     end
@@ -96,7 +96,7 @@ defmodule UniboV4.Subscriptions.SubscriptionLog do
       change manage_relationship(:currency_id, :currency, type: :append, on_lookup: :relate)
       validate present(:event_type)
       validate present(:event_date)
-      change UniboV4.Subscriptions.Changes.SubscriptionLog.ComputeEventDate
+      change UniboExPoc.Subscriptions.Changes.SubscriptionLog.ComputeEventDate
       change set_attribute(:id, expr(id))
     end
   end

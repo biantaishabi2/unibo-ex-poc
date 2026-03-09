@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.AgreementEmploymentAppl do
+defmodule UniboExPoc.Ofbiz.Party.AgreementEmploymentAppl do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "party_agreement_employment_appls"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

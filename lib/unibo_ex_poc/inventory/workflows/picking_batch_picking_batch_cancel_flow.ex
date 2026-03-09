@@ -1,10 +1,10 @@
-defmodule UniboV4.Inventory.Workflows.PickingBatch.PickingBatchCancelFlowWorkflow do
+defmodule UniboExPoc.Inventory.Workflows.PickingBatch.PickingBatchCancelFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Inventory.PickingBatch
+  alias UniboExPoc.Inventory.PickingBatch
 
   def steps do
     [:create, :action_confirm, :action_cancel]
@@ -145,6 +145,7 @@ defmodule UniboV4.Inventory.Workflows.PickingBatch.PickingBatchCancelFlowWorkflo
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :action_confirm -> nil
@@ -154,6 +155,7 @@ defmodule UniboV4.Inventory.Workflows.PickingBatch.PickingBatchCancelFlowWorkflo
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :action_confirm -> false

@@ -1,10 +1,10 @@
-defmodule UniboV4.Events.Workflows.EventTicket.TicketLifecycleWorkflow do
+defmodule UniboExPoc.Events.Workflows.EventTicket.TicketLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Events.EventTicket
+  alias UniboExPoc.Events.EventTicket
 
   def steps do
     [:create, :update, :close_sales]
@@ -145,6 +145,7 @@ defmodule UniboV4.Events.Workflows.EventTicket.TicketLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -154,6 +155,7 @@ defmodule UniboV4.Events.Workflows.EventTicket.TicketLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

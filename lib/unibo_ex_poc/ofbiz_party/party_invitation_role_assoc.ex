@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.PartyInvitationRoleAssoc do
+defmodule UniboExPoc.Ofbiz.Party.PartyInvitationRoleAssoc do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_invitation_role_assocs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -32,10 +32,10 @@ defmodule UniboV4.Ofbiz.Party.PartyInvitationRoleAssoc do
   end
 
   relationships do
-    belongs_to :role_type, UniboV4.Ofbiz.Party.RoleType do
+    belongs_to :role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
     end
-    belongs_to :party_invitation, UniboV4.Ofbiz.Party.PartyInvitation do
+    belongs_to :party_invitation, UniboExPoc.Ofbiz.Party.PartyInvitation do
       public? true
     end
   end

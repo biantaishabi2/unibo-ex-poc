@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortStatus do
+defmodule UniboExPoc.Ofbiz.WorkEffort.WorkEffortStatus do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_statuses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,16 +37,16 @@ defmodule UniboV4.Ofbiz.WorkEffort.WorkEffortStatus do
   end
 
   relationships do
-    belongs_to :work_effort, UniboV4.Ofbiz.WorkEffort.WorkEffort do
+    belongs_to :work_effort, UniboExPoc.Ofbiz.WorkEffort.WorkEffort do
       public? true
       attribute_type :string
     end
-    belongs_to :status_item, UniboV4.Ofbiz.WorkEffort.StatusItem do
+    belongs_to :status_item, UniboExPoc.Ofbiz.WorkEffort.StatusItem do
       public? true
       source_attribute :status_id
       attribute_type :string
     end
-    belongs_to :set_by_user, UniboV4.Ofbiz.WorkEffort.UserLogin do
+    belongs_to :set_by_user, UniboExPoc.Ofbiz.WorkEffort.UserLogin do
       public? true
       source_attribute :set_by_user_login
       attribute_type :string

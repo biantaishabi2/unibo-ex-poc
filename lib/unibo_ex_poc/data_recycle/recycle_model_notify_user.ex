@@ -5,10 +5,10 @@
 #   create --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.DataRecycle.RecycleModelNotifyUser do
+defmodule UniboExPoc.DataRecycle.RecycleModelNotifyUser do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.DataRecycle,
+    domain: UniboExPoc.DataRecycle,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.DataRecycle.RecycleModelNotifyUser do
 
   postgres do
     table "data_recycle_recycle_model_notify_users"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -42,11 +42,11 @@ defmodule UniboV4.DataRecycle.RecycleModelNotifyUser do
   end
 
   relationships do
-    belongs_to :recycle_model, UniboV4.DataRecycle.RecycleModel do
+    belongs_to :recycle_model, UniboExPoc.DataRecycle.RecycleModel do
       public? true
       allow_nil? false
     end
-    belongs_to :user, UniboV4.DataRecycle.Party do
+    belongs_to :user, UniboExPoc.DataRecycle.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id

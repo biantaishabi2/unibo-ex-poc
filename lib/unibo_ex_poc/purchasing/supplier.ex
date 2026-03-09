@@ -11,10 +11,10 @@
 #   activate --> block
 #   block --> [*]
 # ```
-defmodule UniboV4.Purchasing.Supplier do
+defmodule UniboExPoc.Purchasing.Supplier do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Purchasing,
+    domain: UniboExPoc.Purchasing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -24,7 +24,7 @@ defmodule UniboV4.Purchasing.Supplier do
 
   postgres do
     table "purchasing_suppliers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -108,13 +108,13 @@ defmodule UniboV4.Purchasing.Supplier do
   end
 
   relationships do
-    has_many :products, UniboV4.Purchasing.SupplierProduct do
+    has_many :products, UniboExPoc.Purchasing.SupplierProduct do
       public? true
     end
-    has_many :purchase_orders, UniboV4.Purchasing.PurchaseOrder do
+    has_many :purchase_orders, UniboExPoc.Purchasing.PurchaseOrder do
       public? true
     end
-    has_many :supplier_infos, UniboV4.Purchasing.ProductSupplierinfo do
+    has_many :supplier_infos, UniboExPoc.Purchasing.ProductSupplierinfo do
       public? true
     end
   end

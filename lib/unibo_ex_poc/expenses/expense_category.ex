@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Expenses.ExpenseCategory do
+defmodule UniboExPoc.Expenses.ExpenseCategory do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Expenses,
+    domain: UniboExPoc.Expenses,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Expenses.ExpenseCategory do
 
   postgres do
     table "expenses_expense_categories"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -58,7 +58,7 @@ defmodule UniboV4.Expenses.ExpenseCategory do
   end
 
   relationships do
-    belongs_to :account, UniboV4.Expenses.Account do
+    belongs_to :account, UniboExPoc.Expenses.Account do
       public? true
     end
   end

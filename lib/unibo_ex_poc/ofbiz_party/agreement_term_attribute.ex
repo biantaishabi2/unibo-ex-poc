@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.AgreementTermAttribute do
+defmodule UniboExPoc.Ofbiz.Party.AgreementTermAttribute do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_agreement_term_attributes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -45,7 +45,7 @@ defmodule UniboV4.Ofbiz.Party.AgreementTermAttribute do
   end
 
   relationships do
-    belongs_to :agreement_term, UniboV4.Ofbiz.Party.AgreementTerm do
+    belongs_to :agreement_term, UniboExPoc.Ofbiz.Party.AgreementTerm do
       public? true
     end
   end

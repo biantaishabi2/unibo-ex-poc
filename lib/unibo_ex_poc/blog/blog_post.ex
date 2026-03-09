@@ -12,14 +12,14 @@
 #   archive --> unarchive
 #   unarchive --> publish
 # ```
-defmodule UniboV4.Blog.BlogPost do
+defmodule UniboExPoc.Blog.BlogPost do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Blog,
+    domain: UniboExPoc.Blog,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
     authorizers: [Ash.Policy.Authorizer],
-    notifiers: [UniboV4.Blog.BlogPost.Notifier]
+    notifiers: [UniboExPoc.Blog.BlogPost.Notifier]
 
   resource do
     description "博客文章，支持 Draft→Published→Archived 生命周期"
@@ -27,7 +27,7 @@ defmodule UniboV4.Blog.BlogPost do
 
   postgres do
     table "blog_posts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -96,21 +96,21 @@ defmodule UniboV4.Blog.BlogPost do
   end
 
   calculations do
-    calculate :post_date, :utc_datetime, {UniboV4.Blog.Calculations.BlogPost.PostDate, []}
+    calculate :post_date, :utc_datetime, {UniboExPoc.Blog.Calculations.BlogPost.PostDate, []}
     calculate :teaser, :string, expr(strip_tags_truncate(content, 200))
     calculate :website_url, :string, expr(format("/blog/{}/{}", blog.name, name))
   end
 
   relationships do
-    belongs_to :blog, UniboV4.Blog.Blog do
+    belongs_to :blog, UniboExPoc.Blog.Blog do
       public? true
       allow_nil? false
     end
-    belongs_to :author, UniboV4.Blog.Party do
+    belongs_to :author, UniboExPoc.Blog.Party do
       public? true
       source_attribute :author_party_id
     end
-    has_many :tags, UniboV4.Blog.BlogTag do
+    has_many :tags, UniboExPoc.Blog.BlogTag do
       public? true
     end
   end
@@ -148,7 +148,7 @@ defmodule UniboV4.Blog.BlogPost do
       end
       # message: "文章已经处于发布状态"
       change set_attribute(:is_published, true)
-      change UniboV4.Blog.Changes.BlogPost.ComputePublishedDate
+      change UniboExPoc.Blog.Changes.BlogPost.ComputePublishedDate
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -212,6 +212,9 @@ defmodule UniboV4.Blog.BlogPost do
   policies do
     policy action_type(:read) do
       authorize_if expr(is_published == true or actor.role in [:designer, :admin])
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.PartyRate do
+defmodule UniboExPoc.Ofbiz.Accounting.PartyRate do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_party_rates"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -47,7 +47,7 @@ defmodule UniboV4.Ofbiz.Accounting.PartyRate do
   end
 
   relationships do
-    belongs_to :rate_type, UniboV4.Ofbiz.Accounting.RateType do
+    belongs_to :rate_type, UniboExPoc.Ofbiz.Accounting.RateType do
       public? true
     end
   end

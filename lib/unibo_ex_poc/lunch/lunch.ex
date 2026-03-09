@@ -1,4 +1,4 @@
-defmodule UniboV4.Lunch do
+defmodule UniboExPoc.Lunch do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,26 +7,26 @@ defmodule UniboV4.Lunch do
   end
 
   resources do
-    resource UniboV4.Lunch.LunchSupplier
-    resource UniboV4.Lunch.LunchSupplier.Version
-    resource UniboV4.Lunch.LunchProduct
-    resource UniboV4.Lunch.LunchProductTranslation
-    resource UniboV4.Lunch.LunchProduct.Version
-    resource UniboV4.Lunch.LunchTopping
-    resource UniboV4.Lunch.LunchTopping.Version
-    resource UniboV4.Lunch.LunchOrder
-    resource UniboV4.Lunch.LunchOrder.Version
-    resource UniboV4.Lunch.LunchCashMove
-    resource UniboV4.Lunch.LunchCashMove.Version
-    resource UniboV4.Lunch.LunchCategory
-    resource UniboV4.Lunch.LunchCategoryTranslation
-    resource UniboV4.Lunch.LunchCategory.Version
-    resource UniboV4.Lunch.LunchLocation
-    resource UniboV4.Lunch.LunchLocation.Version
-    resource UniboV4.Lunch.LunchProductFavoriteUserLink
-    resource UniboV4.Lunch.LunchOrderTopping1Link
-    resource UniboV4.Lunch.LunchOrderTopping2Link
-    resource UniboV4.Lunch.LunchOrderTopping3Link
-    resource UniboV4.Lunch.Party
+    resource UniboExPoc.Lunch.LunchSupplier
+    resource UniboExPoc.Lunch.LunchSupplier.Version
+    resource UniboExPoc.Lunch.LunchProduct
+    resource UniboExPoc.Lunch.LunchProductTranslation
+    resource UniboExPoc.Lunch.LunchProduct.Version
+    resource UniboExPoc.Lunch.LunchTopping
+    resource UniboExPoc.Lunch.LunchTopping.Version
+    resource UniboExPoc.Lunch.LunchOrder
+    resource UniboExPoc.Lunch.LunchOrder.Version
+    resource UniboExPoc.Lunch.LunchCashMove
+    resource UniboExPoc.Lunch.LunchCashMove.Version
+    resource UniboExPoc.Lunch.LunchCategory
+    resource UniboExPoc.Lunch.LunchCategoryTranslation
+    resource UniboExPoc.Lunch.LunchCategory.Version
+    resource UniboExPoc.Lunch.LunchLocation
+    resource UniboExPoc.Lunch.LunchLocation.Version
+    resource UniboExPoc.Lunch.LunchProductFavoriteUserLink
+    resource UniboExPoc.Lunch.LunchOrderTopping1Link
+    resource UniboExPoc.Lunch.LunchOrderTopping2Link
+    resource UniboExPoc.Lunch.LunchOrderTopping3Link
+    resource UniboExPoc.Lunch.Party
   end
 end

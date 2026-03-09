@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.PerformanceNote do
+defmodule UniboExPoc.Ofbiz.HumanRes.PerformanceNote do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_performance_notes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,7 +44,7 @@ defmodule UniboV4.Ofbiz.HumanRes.PerformanceNote do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Ofbiz.HumanRes.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.HumanRes.Party do
       public? true
       attribute_type :string
     end

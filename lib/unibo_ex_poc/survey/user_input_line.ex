@@ -5,10 +5,10 @@
 #   create --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Survey.UserInputLine do
+defmodule UniboExPoc.Survey.UserInputLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Survey,
+    domain: UniboExPoc.Survey,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Survey.UserInputLine do
 
   postgres do
     table "survey_user_input_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -78,18 +78,18 @@ defmodule UniboV4.Survey.UserInputLine do
   end
 
   relationships do
-    belongs_to :user_input, UniboV4.Survey.UserInput do
+    belongs_to :user_input, UniboExPoc.Survey.UserInput do
       public? true
       allow_nil? false
     end
-    belongs_to :question, UniboV4.Survey.Question do
+    belongs_to :question, UniboExPoc.Survey.Question do
       public? true
       allow_nil? false
     end
-    belongs_to :suggested_answer, UniboV4.Survey.Answer do
+    belongs_to :suggested_answer, UniboExPoc.Survey.Answer do
       public? true
     end
-    belongs_to :matrix_row, UniboV4.Survey.Answer do
+    belongs_to :matrix_row, UniboExPoc.Survey.Answer do
       public? true
     end
   end

@@ -1,7 +1,7 @@
-defmodule UniboV4.Maintenance.ContractServiceItemLink do
+defmodule UniboExPoc.Maintenance.ContractServiceItemLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Maintenance.ContractServiceItemLink do
 
   postgres do
     table "maintenance_contract_service_item_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Maintenance.ContractServiceItemLink do
   end
 
   relationships do
-    belongs_to :contract, UniboV4.Maintenance.Contract do
+    belongs_to :contract, UniboExPoc.Maintenance.Contract do
       public? true
       allow_nil? false
     end
-    belongs_to :service_type, UniboV4.Maintenance.ServiceType do
+    belongs_to :service_type, UniboExPoc.Maintenance.ServiceType do
       public? true
       allow_nil? false
     end

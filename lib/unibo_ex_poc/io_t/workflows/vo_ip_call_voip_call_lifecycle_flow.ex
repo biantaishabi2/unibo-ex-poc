@@ -1,10 +1,10 @@
-defmodule UniboV4.IoT.Workflows.VoIpCall.VoipCallLifecycleFlowWorkflow do
+defmodule UniboExPoc.IoT.Workflows.VoIpCall.VoipCallLifecycleFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.IoT.VoIPCall
+  alias UniboExPoc.IoT.VoIPCall
 
   def steps do
     [:create, :answer, :hold, :unhold, :transfer, :add_note, :end_call, :miss, :to_voicemail, :update]
@@ -173,6 +173,7 @@ defmodule UniboV4.IoT.Workflows.VoIpCall.VoipCallLifecycleFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :answer -> nil
@@ -189,6 +190,7 @@ defmodule UniboV4.IoT.Workflows.VoIpCall.VoipCallLifecycleFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :answer -> false

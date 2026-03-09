@@ -1,12 +1,12 @@
-defmodule UniboV4.Ecommerce.ProductTemplateTranslation do
+defmodule UniboExPoc.Ecommerce.ProductTemplateTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ecommerce,
+    domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "ecommerce_product_template_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Ecommerce.ProductTemplateTranslation do
   end
 
   relationships do
-    belongs_to :product_template, UniboV4.Ecommerce.ProductTemplate do
+    belongs_to :product_template, UniboExPoc.Ecommerce.ProductTemplate do
       public? true
       allow_nil? false
     end

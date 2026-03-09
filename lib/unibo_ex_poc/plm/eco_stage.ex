@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.PLM.EcoStage do
+defmodule UniboExPoc.PLM.EcoStage do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.PLM,
+    domain: UniboExPoc.PLM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.PLM.EcoStage do
 
   postgres do
     table "plm_eco_stages"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -68,11 +68,11 @@ defmodule UniboV4.PLM.EcoStage do
   end
 
   relationships do
-    many_to_many :type_ids, UniboV4.PLM.EcoType do
+    many_to_many :type_ids, UniboExPoc.PLM.EcoType do
       public? true
-      through UniboV4.PLM.EcoTypeStageLink
+      through UniboExPoc.PLM.EcoTypeStageLink
     end
-    has_many :approval_template_ids, UniboV4.PLM.EcoStageApprovalTemplate do
+    has_many :approval_template_ids, UniboExPoc.PLM.EcoStageApprovalTemplate do
       public? true
       destination_attribute :stage_id
     end

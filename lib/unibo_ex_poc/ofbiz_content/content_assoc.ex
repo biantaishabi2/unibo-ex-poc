@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.ContentAssoc do
+defmodule UniboExPoc.Ofbiz.Content.ContentAssoc do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_assocs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -46,21 +46,21 @@ defmodule UniboV4.Ofbiz.Content.ContentAssoc do
   end
 
   relationships do
-    belongs_to :from_content, UniboV4.Ofbiz.Content.Content do
+    belongs_to :from_content, UniboExPoc.Ofbiz.Content.Content do
       public? true
       source_attribute :content_id
       attribute_type :string
     end
-    belongs_to :to_content, UniboV4.Ofbiz.Content.Content do
+    belongs_to :to_content, UniboExPoc.Ofbiz.Content.Content do
       public? true
       source_attribute :content_id_to
       attribute_type :string
     end
-    belongs_to :content_assoc_type, UniboV4.Ofbiz.Content.ContentAssocType do
+    belongs_to :content_assoc_type, UniboExPoc.Ofbiz.Content.ContentAssocType do
       public? true
       attribute_type :string
     end
-    belongs_to :content_assoc_predicate, UniboV4.Ofbiz.Content.ContentAssocPredicate do
+    belongs_to :content_assoc_predicate, UniboExPoc.Ofbiz.Content.ContentAssocPredicate do
       public? true
       attribute_type :string
     end

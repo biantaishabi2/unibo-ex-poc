@@ -1,10 +1,10 @@
-defmodule UniboV4.Knowledge.Workflows.Article.ArticleLifecycleWorkflow do
+defmodule UniboExPoc.Knowledge.Workflows.Article.ArticleLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Knowledge.Article
+  alias UniboExPoc.Knowledge.Article
 
   def steps do
     [:create, :update, :action_publish, :action_unpublish, :action_archive, :action_restore_state, :action_trash, :action_restore_trash, :action_lock, :action_unlock, :action_move, :action_copy]
@@ -181,6 +181,7 @@ defmodule UniboV4.Knowledge.Workflows.Article.ArticleLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -199,6 +200,7 @@ defmodule UniboV4.Knowledge.Workflows.Article.ArticleLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

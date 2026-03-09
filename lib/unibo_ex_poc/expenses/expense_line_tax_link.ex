@@ -1,7 +1,7 @@
-defmodule UniboV4.Expenses.ExpenseLineTaxLink do
+defmodule UniboExPoc.Expenses.ExpenseLineTaxLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Expenses,
+    domain: UniboExPoc.Expenses,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Expenses.ExpenseLineTaxLink do
 
   postgres do
     table "expenses_expense_line_tax_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Expenses.ExpenseLineTaxLink do
   end
 
   relationships do
-    belongs_to :expense_line, UniboV4.Expenses.ExpenseLine do
+    belongs_to :expense_line, UniboExPoc.Expenses.ExpenseLine do
       public? true
       allow_nil? false
     end
-    belongs_to :tax, UniboV4.Expenses.Tax do
+    belongs_to :tax, UniboExPoc.Expenses.Tax do
       public? true
       allow_nil? false
     end

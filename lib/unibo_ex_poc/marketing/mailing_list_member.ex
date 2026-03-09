@@ -6,10 +6,10 @@
 #   unsubscribe --> subscribe
 #   subscribe --> unsubscribe
 # ```
-defmodule UniboV4.Marketing.MailingListMember do
+defmodule UniboExPoc.Marketing.MailingListMember do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.Marketing.MailingListMember do
 
   postgres do
     table "marketing_mailing_list_members"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -65,7 +65,7 @@ defmodule UniboV4.Marketing.MailingListMember do
   end
 
   relationships do
-    belongs_to :mailing_list, UniboV4.Marketing.MailingList do
+    belongs_to :mailing_list, UniboExPoc.Marketing.MailingList do
       public? true
       allow_nil? false
     end

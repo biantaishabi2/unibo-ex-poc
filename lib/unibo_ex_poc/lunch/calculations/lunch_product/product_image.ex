@@ -1,4 +1,4 @@
-defmodule UniboV4.Lunch.Calculations.LunchProduct.ProductImage do
+defmodule UniboExPoc.Lunch.Calculations.LunchProduct.ProductImage do
   @moduledoc """
   Calculation 模块: :product_image (type: :string, entity: lunch_product)
   原始 expr: op: coalesce args: - op: ref   args:   - image - op: ref   args:   - category   - image

@@ -8,13 +8,13 @@
 #   cancel --> [*]
 #   resend_failed --> [*]
 # ```
-defmodule UniboV4.Marketing.SmsMessage do
+defmodule UniboExPoc.Marketing.SmsMessage do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Marketing.SmsMessage.Notifier]
+    notifiers: [UniboExPoc.Marketing.SmsMessage.Notifier]
 
   resource do
     description "短信消息"
@@ -22,7 +22,7 @@ defmodule UniboV4.Marketing.SmsMessage do
 
   postgres do
     table "marketing_sms_messages"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -79,10 +79,10 @@ defmodule UniboV4.Marketing.SmsMessage do
   end
 
   relationships do
-    belongs_to :partner, UniboV4.Marketing.Contact do
+    belongs_to :partner, UniboExPoc.Marketing.Contact do
       public? true
     end
-    belongs_to :campaign, UniboV4.Marketing.Campaign do
+    belongs_to :campaign, UniboExPoc.Marketing.Campaign do
       public? true
     end
   end
@@ -117,7 +117,7 @@ defmodule UniboV4.Marketing.SmsMessage do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :process)
-      change UniboV4.Marketing.Changes.SmsMessage.SendCall2
+      change UniboExPoc.Marketing.Changes.SmsMessage.SendCall2
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

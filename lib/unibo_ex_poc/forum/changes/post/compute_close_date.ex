@@ -1,4 +1,4 @@
-defmodule UniboV4.Forum.Changes.Post.ComputeCloseDate do
+defmodule UniboExPoc.Forum.Changes.Post.ComputeCloseDate do
   @moduledoc """
   Change 模块: 计算 :close_date (entity: post)
   原始 expr: op: func args: - now

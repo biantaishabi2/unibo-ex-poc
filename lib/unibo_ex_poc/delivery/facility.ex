@@ -1,7 +1,7 @@
-defmodule UniboV4.Delivery.Facility do
+defmodule UniboExPoc.Delivery.Facility do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Delivery,
+    domain: UniboExPoc.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Delivery.Facility do
 
   postgres do
     table "delivery_facilities"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

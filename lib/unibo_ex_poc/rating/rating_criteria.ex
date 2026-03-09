@@ -11,10 +11,10 @@
 #   reorder --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Rating.RatingCriteria do
+defmodule UniboExPoc.Rating.RatingCriteria do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Rating,
+    domain: UniboExPoc.Rating,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -24,7 +24,7 @@ defmodule UniboV4.Rating.RatingCriteria do
 
   postgres do
     table "rating_criterias"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -81,15 +81,15 @@ defmodule UniboV4.Rating.RatingCriteria do
   end
 
   relationships do
-    belongs_to :rating_type, UniboV4.Rating.RatingType do
+    belongs_to :rating_type, UniboExPoc.Rating.RatingType do
       public? true
     end
-    has_many :scores, UniboV4.Rating.RatingScore do
+    has_many :scores, UniboExPoc.Rating.RatingScore do
       public? true
       source_attribute :rating_type_id
       destination_attribute :criteria_id
     end
-    has_many :translations, UniboV4.Rating.RatingCriteriaTranslation, public?: true
+    has_many :translations, UniboExPoc.Rating.RatingCriteriaTranslation, public?: true
   end
 
   actions do

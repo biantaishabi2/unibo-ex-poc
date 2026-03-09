@@ -12,10 +12,10 @@
 #   cancel --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.POS.PosOrder do
+defmodule UniboExPoc.POS.PosOrder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.POS,
+    domain: UniboExPoc.POS,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -25,7 +25,7 @@ defmodule UniboV4.POS.PosOrder do
 
   postgres do
     table "pos_orders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -126,38 +126,38 @@ defmodule UniboV4.POS.PosOrder do
   end
 
   relationships do
-    has_many :items, UniboV4.POS.PosOrderLine do
+    has_many :items, UniboExPoc.POS.PosOrderLine do
       public? true
       source_attribute :refunded_order_id
       destination_attribute :order_id
     end
-    has_many :payments, UniboV4.POS.PosPayment do
+    has_many :payments, UniboExPoc.POS.PosPayment do
       public? true
       source_attribute :refunded_order_id
       destination_attribute :order_id
     end
-    belongs_to :session, UniboV4.POS.PosSession do
+    belongs_to :session, UniboExPoc.POS.PosSession do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.POS.Party do
+    belongs_to :partner, UniboExPoc.POS.Party do
       public? true
       source_attribute :partner_party_id
     end
-    belongs_to :currency, UniboV4.POS.Currency do
+    belongs_to :currency, UniboExPoc.POS.Currency do
       public? true
       allow_nil? false
     end
-    belongs_to :fiscal_position, UniboV4.POS.FiscalPosition do
+    belongs_to :fiscal_position, UniboExPoc.POS.FiscalPosition do
       public? true
     end
-    belongs_to :table, UniboV4.POS.RestaurantTable do
+    belongs_to :table, UniboExPoc.POS.RestaurantTable do
       public? true
     end
-    belongs_to :refunded_order, UniboV4.POS.PosOrder do
+    belongs_to :refunded_order, UniboExPoc.POS.PosOrder do
       public? true
     end
-    has_many :refund_orders, UniboV4.POS.PosOrder do
+    has_many :refund_orders, UniboExPoc.POS.PosOrder do
       public? true
       source_attribute :refunded_order_id
       destination_attribute :refunded_order_id
@@ -179,8 +179,8 @@ defmodule UniboV4.POS.PosOrder do
       change manage_relationship(:currency_id, :currency, type: :append, on_lookup: :relate)
       validate present(:order_number)
       # validation: immutable_non_draft
-      change UniboV4.POS.Changes.PosOrder.ComputeAmountTotal
-      change UniboV4.POS.Changes.PosOrder.ComputeAmountUntaxed
+      change UniboExPoc.POS.Changes.PosOrder.ComputeAmountTotal
+      change UniboExPoc.POS.Changes.PosOrder.ComputeAmountUntaxed
       change set_attribute(:amount_tax, expr((amount_total - amount_untaxed)))
       change set_attribute(:id, expr(id))
     end
@@ -199,10 +199,10 @@ defmodule UniboV4.POS.PosOrder do
         end
       end
       # message: "只有草稿状态可以付款"
-      change UniboV4.POS.Changes.PosOrder.PayCall4
-      change UniboV4.POS.Changes.PosOrder.PayCall5
+      change UniboExPoc.POS.Changes.PosOrder.PayCall4
+      change UniboExPoc.POS.Changes.PosOrder.PayCall5
       change set_attribute(:status, :paid)
-      change UniboV4.POS.Changes.PosOrder.PayCall7
+      change UniboExPoc.POS.Changes.PosOrder.PayCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -235,8 +235,8 @@ defmodule UniboV4.POS.PosOrder do
         end
       end
       # message: "只有完成状态可以开票"
-      change UniboV4.POS.Changes.PosOrder.InvoiceCall9
-      change UniboV4.POS.Changes.PosOrder.InvoiceCall10
+      change UniboExPoc.POS.Changes.PosOrder.InvoiceCall9
+      change UniboExPoc.POS.Changes.PosOrder.InvoiceCall10
       change set_attribute(:status, :invoiced)
       change set_attribute(:id, expr(id))
       require_atomic? false
@@ -253,11 +253,11 @@ defmodule UniboV4.POS.PosOrder do
       change manage_relationship(:currency_id, :currency, type: :append, on_lookup: :relate)
       validate present(:order_number)
       # validation: immutable_non_draft
-      change UniboV4.POS.Changes.PosOrder.ComputeAmountTotal
-      change UniboV4.POS.Changes.PosOrder.ComputeAmountUntaxed
+      change UniboExPoc.POS.Changes.PosOrder.ComputeAmountTotal
+      change UniboExPoc.POS.Changes.PosOrder.ComputeAmountUntaxed
       change set_attribute(:amount_tax, expr((amount_total - amount_untaxed)))
-      change UniboV4.POS.Changes.PosOrder.RefundCall12
-      change UniboV4.POS.Changes.PosOrder.RefundCall13
+      change UniboExPoc.POS.Changes.PosOrder.RefundCall12
+      change UniboExPoc.POS.Changes.PosOrder.RefundCall13
       change set_attribute(:id, expr(id))
     end
     update :cancel do

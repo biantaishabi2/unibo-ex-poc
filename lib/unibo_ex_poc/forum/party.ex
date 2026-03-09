@@ -1,7 +1,7 @@
-defmodule UniboV4.Forum.Party do
+defmodule UniboExPoc.Forum.Party do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Forum,
+    domain: UniboExPoc.Forum,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Forum.Party do
 
   postgres do
     table "forum_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

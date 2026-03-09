@@ -1,4 +1,4 @@
-defmodule UniboV4.Gamification.Calculations.KarmaRank.RankUsersCount do
+defmodule UniboExPoc.Gamification.Calculations.KarmaRank.RankUsersCount do
   @moduledoc """
   Calculation 模块: :rank_users_count (type: :integer, entity: karma_rank)
   """

@@ -1,7 +1,7 @@
-defmodule UniboV4.Marketing.EventLeadRuleEventType do
+defmodule UniboExPoc.Marketing.EventLeadRuleEventType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Marketing.EventLeadRuleEventType do
 
   postgres do
     table "marketing_event_lead_rule_event_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -34,7 +34,7 @@ defmodule UniboV4.Marketing.EventLeadRuleEventType do
   end
 
   relationships do
-    belongs_to :rule, UniboV4.Marketing.EventLeadRule do
+    belongs_to :rule, UniboExPoc.Marketing.EventLeadRule do
       public? true
       allow_nil? false
       source_attribute :event_lead_rule_id

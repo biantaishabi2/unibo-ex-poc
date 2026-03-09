@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.ShipmentItemBilling do
+defmodule UniboExPoc.Ofbiz.Shipment.ShipmentItemBilling do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_item_billings"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,11 +41,11 @@ defmodule UniboV4.Ofbiz.Shipment.ShipmentItemBilling do
   end
 
   relationships do
-    belongs_to :shipment, UniboV4.Ofbiz.Shipment.Shipment do
+    belongs_to :shipment, UniboExPoc.Ofbiz.Shipment.Shipment do
       public? true
       attribute_type :string
     end
-    belongs_to :invoice, UniboV4.Ofbiz.Shipment.Invoice do
+    belongs_to :invoice, UniboExPoc.Ofbiz.Shipment.Invoice do
       public? true
       attribute_type :string
     end

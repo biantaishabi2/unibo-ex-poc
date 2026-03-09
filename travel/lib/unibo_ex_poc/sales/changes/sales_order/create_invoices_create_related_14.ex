@@ -1,8 +1,6 @@
 defmodule UniboExPoc.Sales.Changes.SalesOrder.CreateInvoicesCreateRelated14 do
   use Ash.Resource.Change
 
-  alias UniboExPoc.Sales.Invoice
-
   @impl true
   def change(changeset, _opts, context) do
     actor = Map.get(context, :actor)

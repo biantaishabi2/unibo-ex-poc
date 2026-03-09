@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.CostComponentAttribute do
+defmodule UniboExPoc.Ofbiz.Product.CostComponentAttribute do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_cost_component_attributes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,7 +38,7 @@ defmodule UniboV4.Ofbiz.Product.CostComponentAttribute do
   end
 
   relationships do
-    belongs_to :cost_component, UniboV4.Ofbiz.Product.CostComponent do
+    belongs_to :cost_component, UniboExPoc.Ofbiz.Product.CostComponent do
       public? true
     end
   end

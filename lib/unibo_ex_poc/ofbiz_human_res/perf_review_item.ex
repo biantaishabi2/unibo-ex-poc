@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.PerfReviewItem do
+defmodule UniboExPoc.Ofbiz.HumanRes.PerfReviewItem do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_perf_review_items"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -47,15 +47,15 @@ defmodule UniboV4.Ofbiz.HumanRes.PerfReviewItem do
   end
 
   relationships do
-    belongs_to :employee_party, UniboV4.Ofbiz.HumanRes.Party do
+    belongs_to :employee_party, UniboExPoc.Ofbiz.HumanRes.Party do
       public? true
       attribute_type :string
     end
-    belongs_to :perf_rating_type, UniboV4.Ofbiz.HumanRes.PerfRatingType do
+    belongs_to :perf_rating_type, UniboExPoc.Ofbiz.HumanRes.PerfRatingType do
       public? true
       attribute_type :string
     end
-    belongs_to :perf_review_item_type, UniboV4.Ofbiz.HumanRes.PerfReviewItemType do
+    belongs_to :perf_review_item_type, UniboExPoc.Ofbiz.HumanRes.PerfReviewItemType do
       public? true
       attribute_type :string
     end

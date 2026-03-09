@@ -1,4 +1,4 @@
-defmodule UniboV4.Knowledge.Changes.Article.ComputeLockedAt do
+defmodule UniboExPoc.Knowledge.Changes.Article.ComputeLockedAt do
   @moduledoc """
   Change 模块: 计算 :locked_at (entity: article)
   原始 expr: op: func args: - now

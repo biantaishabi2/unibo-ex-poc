@@ -1,10 +1,10 @@
-defmodule UniboV4.Blog.Workflows.Visitor.VisitorLifecycleWorkflow do
+defmodule UniboExPoc.Blog.Workflows.Visitor.VisitorLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Blog.Visitor
+  alias UniboExPoc.Blog.Visitor
 
   def steps do
     [:upsert, :track_visit, :merge, :cleanup]
@@ -149,6 +149,7 @@ defmodule UniboV4.Blog.Workflows.Visitor.VisitorLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :upsert -> nil
       :track_visit -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Blog.Workflows.Visitor.VisitorLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :upsert -> false
       :track_visit -> false

@@ -1,4 +1,4 @@
-defmodule UniboV4.Blog.Calculations.BlogPost.PostDate do
+defmodule UniboExPoc.Blog.Calculations.BlogPost.PostDate do
   @moduledoc """
   Calculation 模块: :post_date (type: :utc_datetime, entity: blog_post)
   原始 expr: op: coalesce args: - op: ref   args:   - published_date - op: ref   args:   - inserted_at

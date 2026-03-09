@@ -1,4 +1,4 @@
-defmodule UniboV4.Blog do
+defmodule UniboExPoc.Blog do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,15 +7,15 @@ defmodule UniboV4.Blog do
   end
 
   resources do
-    resource UniboV4.Blog.Blog
-    resource UniboV4.Blog.Blog.Version
-    resource UniboV4.Blog.BlogPost
-    resource UniboV4.Blog.BlogPost.Version
-    resource UniboV4.Blog.Visitor
-    resource UniboV4.Blog.Visitor.Version
-    resource UniboV4.Blog.BlogTag
-    resource UniboV4.Blog.WebsiteTrack
-    resource UniboV4.Blog.WebSite
-    resource UniboV4.Blog.Party
+    resource UniboExPoc.Blog.Blog
+    resource UniboExPoc.Blog.Blog.Version
+    resource UniboExPoc.Blog.BlogPost
+    resource UniboExPoc.Blog.BlogPost.Version
+    resource UniboExPoc.Blog.Visitor
+    resource UniboExPoc.Blog.Visitor.Version
+    resource UniboExPoc.Blog.BlogTag
+    resource UniboExPoc.Blog.WebsiteTrack
+    resource UniboExPoc.Blog.WebSite
+    resource UniboExPoc.Blog.Party
   end
 end

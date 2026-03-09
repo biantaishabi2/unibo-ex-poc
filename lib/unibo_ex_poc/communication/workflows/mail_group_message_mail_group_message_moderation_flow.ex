@@ -1,10 +1,10 @@
-defmodule UniboV4.Communication.Workflows.MailGroupMessage.MailGroupMessageModerationFlowWorkflow do
+defmodule UniboExPoc.Communication.Workflows.MailGroupMessage.MailGroupMessageModerationFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Communication.MailGroupMessage
+  alias UniboExPoc.Communication.MailGroupMessage
 
   def steps do
     [:create, :moderate_accept, :moderate_reject, :moderate_allow, :moderate_ban]
@@ -153,6 +153,7 @@ defmodule UniboV4.Communication.Workflows.MailGroupMessage.MailGroupMessageModer
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :moderate_accept -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.Communication.Workflows.MailGroupMessage.MailGroupMessageModer
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :moderate_accept -> false

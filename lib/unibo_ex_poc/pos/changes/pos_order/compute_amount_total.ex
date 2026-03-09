@@ -1,4 +1,4 @@
-defmodule UniboV4.POS.Changes.PosOrder.ComputeAmountTotal do
+defmodule UniboExPoc.POS.Changes.PosOrder.ComputeAmountTotal do
   @moduledoc """
   Change 模块: 计算 :amount_total (entity: pos_order)
   原始 expr: op: func args: - sum - op: ref   args:   - items   - price_subtotal_incl

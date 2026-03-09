@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.ValidContactMechRole do
+defmodule UniboExPoc.Ofbiz.Party.ValidContactMechRole do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_valid_contact_mech_roles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -32,10 +32,10 @@ defmodule UniboV4.Ofbiz.Party.ValidContactMechRole do
   end
 
   relationships do
-    belongs_to :role_type, UniboV4.Ofbiz.Party.RoleType do
+    belongs_to :role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
     end
-    belongs_to :contact_mech_type, UniboV4.Ofbiz.Party.ContactMechType do
+    belongs_to :contact_mech_type, UniboExPoc.Ofbiz.Party.ContactMechType do
       public? true
     end
   end

@@ -1,4 +1,4 @@
-defmodule UniboV4.Ecommerce.Calculations.ShoppingCart.IsAbandoned do
+defmodule UniboExPoc.Ecommerce.Calculations.ShoppingCart.IsAbandoned do
   @moduledoc """
   Calculation 模块: :is_abandoned (type: :boolean, entity: shopping_cart)
   原始 expr: op: custom args: []

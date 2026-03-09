@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> [*]
 # ```
-defmodule UniboV4.Sales.ReturnItem do
+defmodule UniboExPoc.Sales.ReturnItem do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sales,
+    domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Sales.ReturnItem do
 
   postgres do
     table "sales_return_items"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -81,7 +81,7 @@ defmodule UniboV4.Sales.ReturnItem do
   end
 
   relationships do
-    belongs_to :return, UniboV4.Sales.Return do
+    belongs_to :return, UniboExPoc.Sales.Return do
       public? true
       allow_nil? false
     end

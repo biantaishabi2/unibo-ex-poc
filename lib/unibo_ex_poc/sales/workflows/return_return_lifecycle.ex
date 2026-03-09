@@ -1,10 +1,10 @@
-defmodule UniboV4.Sales.Workflows.Return.ReturnLifecycleWorkflow do
+defmodule UniboExPoc.Sales.Workflows.Return.ReturnLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Sales.Return
+  alias UniboExPoc.Sales.Return
 
   def steps do
     [:create, :approve, :receive, :complete, :cancel]
@@ -153,6 +153,7 @@ defmodule UniboV4.Sales.Workflows.Return.ReturnLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :approve -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.Sales.Workflows.Return.ReturnLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :approve -> false

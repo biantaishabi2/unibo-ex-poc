@@ -1,7 +1,7 @@
-defmodule UniboV4.Expenses.Account do
+defmodule UniboExPoc.Expenses.Account do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Expenses,
+    domain: UniboExPoc.Expenses,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Expenses.Account do
 
   postgres do
     table "expenses_accounts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

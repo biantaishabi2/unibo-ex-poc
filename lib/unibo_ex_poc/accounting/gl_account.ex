@@ -8,10 +8,10 @@
 #   update --> deactivate
 #   deactivate --> [*]
 # ```
-defmodule UniboV4.Accounting.GlAccount do
+defmodule UniboExPoc.Accounting.GlAccount do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Accounting,
+    domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Accounting.GlAccount do
 
   postgres do
     table "accounting_gl_accounts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -82,7 +82,7 @@ defmodule UniboV4.Accounting.GlAccount do
   end
 
   relationships do
-    belongs_to :parent_account, UniboV4.Accounting.GlAccount do
+    belongs_to :parent_account, UniboExPoc.Accounting.GlAccount do
       public? true
     end
   end

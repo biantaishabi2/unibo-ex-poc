@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.HR.Skill do
+defmodule UniboExPoc.HR.Skill do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.HR.Skill do
 
   postgres do
     table "hr_skills"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -49,10 +49,10 @@ defmodule UniboV4.HR.Skill do
   end
 
   relationships do
-    belongs_to :skill_type, UniboV4.HR.SkillType do
+    belongs_to :skill_type, UniboExPoc.HR.SkillType do
       public? true
     end
-    has_many :employee_skills, UniboV4.HR.EmployeeSkill do
+    has_many :employee_skills, UniboExPoc.HR.EmployeeSkill do
       public? true
     end
   end

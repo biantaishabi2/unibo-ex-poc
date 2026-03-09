@@ -2,7 +2,6 @@ defmodule UniboExPoc.Travel.Integrations.TravelFulfillment.CancelFulfillmentSupp
   use Ash.Resource.Change
 
   @provider "supplier_cancel_booking"
-  @action "cancel_fulfillment"
   @queue "travel_supplier_cancel"
   @max_attempts 3
   @idempotency_key_source "arg.order_no"
@@ -32,10 +31,10 @@ defmodule UniboExPoc.Travel.Integrations.TravelFulfillment.CancelFulfillmentSupp
       |> Map.merge(resolve_request_payload(changeset, context))
 
     task = %{kind: "integration_async_dispatch", dedup_key: dedup_key, payload: payload, max_attempts: @max_attempts}
-    if Code.ensure_loaded?(UniboExPoc.Travel.AsyncRuntime.Queue) and function_exported?(UniboExPoc.Travel.AsyncRuntime.Queue, :enqueue, 1) do
-      case UniboExPoc.Travel.AsyncRuntime.Queue.enqueue(task) do
-        {:ok, _task} -> changeset
+    if Code.ensure_loaded?(UniboExPoc.AsyncRuntime.Queue) and function_exported?(UniboExPoc.AsyncRuntime.Queue, :enqueue, 1) do
+      case UniboExPoc.AsyncRuntime.Queue.enqueue(task) do
         {:ok, :duplicate} -> changeset
+        {:ok, _task} -> changeset
         {:error, reason} -> Ash.Changeset.add_error(changeset, "async integration enqueue failed: #{inspect(reason)}")
       end
     else
@@ -99,14 +98,4 @@ defmodule UniboExPoc.Travel.Integrations.TravelFulfillment.CancelFulfillmentSupp
   defp normalize_lookup_map(data) when is_struct(data), do: Map.from_struct(data)
   defp normalize_lookup_map(data) when is_map(data), do: data
   defp normalize_lookup_map(_data), do: %{}
-
-  defp fetch(map, key, default) when is_map(map) do
-    string_key = Atom.to_string(key)
-    cond do
-      Map.has_key?(map, key) -> Map.get(map, key)
-      Map.has_key?(map, string_key) -> Map.get(map, string_key)
-      true -> default
-    end
-  end
-  defp fetch(_other, _key, default), do: default
 end

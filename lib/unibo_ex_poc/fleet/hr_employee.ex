@@ -1,7 +1,7 @@
-defmodule UniboV4.Fleet.HrEmployee do
+defmodule UniboExPoc.Fleet.HrEmployee do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Fleet,
+    domain: UniboExPoc.Fleet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Fleet.HrEmployee do
 
   postgres do
     table "fleet_hr_employees"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

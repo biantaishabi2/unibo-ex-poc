@@ -7,13 +7,13 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Analytic.AnalyticDistribution do
+defmodule UniboExPoc.Analytic.AnalyticDistribution do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Analytic,
+    domain: UniboExPoc.Analytic,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Analytic.AnalyticDistribution.Notifier]
+    notifiers: [UniboExPoc.Analytic.AnalyticDistribution.Notifier]
 
   resource do
     description "分摊规则，将一笔金额按百分比自动分配到多个 AnalyticAccount；附加在 JournalEntryLine 上"
@@ -21,7 +21,7 @@ defmodule UniboV4.Analytic.AnalyticDistribution do
 
   postgres do
     table "analytic_distributions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -53,11 +53,11 @@ defmodule UniboV4.Analytic.AnalyticDistribution do
   end
 
   relationships do
-    belongs_to :move_line, UniboV4.Analytic.JournalEntryLine do
+    belongs_to :move_line, UniboExPoc.Analytic.JournalEntryLine do
       public? true
       allow_nil? false
     end
-    belongs_to :account, UniboV4.Analytic.AnalyticAccount do
+    belongs_to :account, UniboExPoc.Analytic.AnalyticAccount do
       public? true
       allow_nil? false
     end
@@ -76,7 +76,7 @@ defmodule UniboV4.Analytic.AnalyticDistribution do
       # message: "分摊百分比必须在 0~100 之间"
       # validation: total_percentage_equals_100
       # validation: active_account_required
-      change UniboV4.Analytic.Changes.AnalyticDistribution.CreateCall1
+      change UniboExPoc.Analytic.Changes.AnalyticDistribution.CreateCall1
       change set_attribute(:id, expr(id))
     end
     update :update do
@@ -86,7 +86,7 @@ defmodule UniboV4.Analytic.AnalyticDistribution do
       # skipped: validate aggregate_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change UniboV4.Analytic.Changes.AnalyticDistribution.UpdateCall1
+      change UniboExPoc.Analytic.Changes.AnalyticDistribution.UpdateCall1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

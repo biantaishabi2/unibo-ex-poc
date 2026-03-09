@@ -6,10 +6,10 @@
 #   activate --> [*]
 #   terminate --> [*]
 # ```
-defmodule UniboV4.HR.EmploymentContract do
+defmodule UniboExPoc.HR.EmploymentContract do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.HR.EmploymentContract do
 
   postgres do
     table "hr_employment_contracts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -70,7 +70,7 @@ defmodule UniboV4.HR.EmploymentContract do
   end
 
   relationships do
-    belongs_to :employee, UniboV4.HR.Employee do
+    belongs_to :employee, UniboExPoc.HR.Employee do
       public? true
       allow_nil? false
     end

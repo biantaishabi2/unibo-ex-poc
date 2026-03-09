@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Service.TemporalExpressionAssoc do
+defmodule UniboExPoc.Ofbiz.Service.TemporalExpressionAssoc do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Service,
+    domain: UniboExPoc.Ofbiz.Service,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Service.TemporalExpressionAssoc do
 
   postgres do
     table "service_temporal_expression_assocs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,11 +37,11 @@ defmodule UniboV4.Ofbiz.Service.TemporalExpressionAssoc do
   end
 
   relationships do
-    belongs_to :from_temporal_expression, UniboV4.Ofbiz.Service.TemporalExpression do
+    belongs_to :from_temporal_expression, UniboExPoc.Ofbiz.Service.TemporalExpression do
       public? true
       source_attribute :from_temp_expr_id
     end
-    belongs_to :to_temporal_expression, UniboV4.Ofbiz.Service.TemporalExpression do
+    belongs_to :to_temporal_expression, UniboExPoc.Ofbiz.Service.TemporalExpression do
       public? true
       source_attribute :to_temp_expr_id
     end

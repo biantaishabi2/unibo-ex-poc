@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.ShipmentStatus do
+defmodule UniboExPoc.Ofbiz.Shipment.ShipmentStatus do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_statuses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -33,16 +33,16 @@ defmodule UniboV4.Ofbiz.Shipment.ShipmentStatus do
   end
 
   relationships do
-    belongs_to :status_item, UniboV4.Ofbiz.Shipment.StatusItem do
+    belongs_to :status_item, UniboExPoc.Ofbiz.Shipment.StatusItem do
       public? true
       source_attribute :status_id
       attribute_type :string
     end
-    belongs_to :shipment, UniboV4.Ofbiz.Shipment.Shipment do
+    belongs_to :shipment, UniboExPoc.Ofbiz.Shipment.Shipment do
       public? true
       attribute_type :string
     end
-    belongs_to :change_by_user_login, UniboV4.Ofbiz.Shipment.UserLogin do
+    belongs_to :change_by_user_login, UniboExPoc.Ofbiz.Shipment.UserLogin do
       public? true
       attribute_type :string
     end

@@ -8,13 +8,13 @@
 #   update --> deactivate
 #   deactivate --> [*] : deactivated
 # ```
-defmodule UniboV4.Analytic.AnalyticAccount do
+defmodule UniboExPoc.Analytic.AnalyticAccount do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Analytic,
+    domain: UniboExPoc.Analytic,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Analytic.AnalyticAccount.Notifier]
+    notifiers: [UniboExPoc.Analytic.AnalyticAccount.Notifier]
 
   resource do
     description "分析账户（成本中心/利润中心/项目账户），支持多级层级，归属于某一 AnalyticPlan"
@@ -22,7 +22,7 @@ defmodule UniboV4.Analytic.AnalyticAccount do
 
   postgres do
     table "analytic_accounts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -77,23 +77,23 @@ defmodule UniboV4.Analytic.AnalyticAccount do
   end
 
   relationships do
-    belongs_to :plan, UniboV4.Analytic.AnalyticPlan do
+    belongs_to :plan, UniboExPoc.Analytic.AnalyticPlan do
       public? true
       allow_nil? false
     end
-    belongs_to :parent, UniboV4.Analytic.AnalyticAccount do
+    belongs_to :parent, UniboExPoc.Analytic.AnalyticAccount do
       public? true
     end
-    has_many :children, UniboV4.Analytic.AnalyticAccount do
+    has_many :children, UniboExPoc.Analytic.AnalyticAccount do
       public? true
       source_attribute :parent_id
       destination_attribute :parent_id
     end
-    belongs_to :partner, UniboV4.Analytic.Party do
+    belongs_to :partner, UniboExPoc.Analytic.Party do
       public? true
       source_attribute :partner_party_id
     end
-    has_many :analytic_lines, UniboV4.Analytic.AnalyticLine do
+    has_many :analytic_lines, UniboExPoc.Analytic.AnalyticLine do
       public? true
       source_attribute :parent_id
       destination_attribute :account_id

@@ -8,10 +8,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Knowledge.Tag do
+defmodule UniboExPoc.Knowledge.Tag do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Knowledge,
+    domain: UniboExPoc.Knowledge,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Knowledge.Tag do
 
   postgres do
     table "knowledge_tags"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,9 +57,9 @@ defmodule UniboV4.Knowledge.Tag do
   end
 
   relationships do
-    many_to_many :articles, UniboV4.Knowledge.Article do
+    many_to_many :articles, UniboExPoc.Knowledge.Article do
       public? true
-      through UniboV4.Knowledge.ArticleTagLink
+      through UniboExPoc.Knowledge.ArticleTagLink
     end
   end
 

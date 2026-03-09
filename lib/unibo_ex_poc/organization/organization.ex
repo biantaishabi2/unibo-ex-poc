@@ -1,4 +1,4 @@
-defmodule UniboV4.Organization do
+defmodule UniboExPoc.Organization do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,11 +7,11 @@ defmodule UniboV4.Organization do
   end
 
   resources do
-    resource UniboV4.Organization.Party
-    resource UniboV4.Organization.Party.Version
-    resource UniboV4.Organization.PartyRole
-    resource UniboV4.Organization.PartyRole.Version
-    resource UniboV4.Organization.PartyRelationship
-    resource UniboV4.Organization.PartyRelationship.Version
+    resource UniboExPoc.Organization.Party
+    resource UniboExPoc.Organization.Party.Version
+    resource UniboExPoc.Organization.PartyRole
+    resource UniboExPoc.Organization.PartyRole.Version
+    resource UniboExPoc.Organization.PartyRelationship
+    resource UniboExPoc.Organization.PartyRelationship.Version
   end
 end

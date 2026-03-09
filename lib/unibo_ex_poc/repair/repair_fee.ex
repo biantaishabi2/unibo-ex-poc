@@ -8,10 +8,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Repair.RepairFee do
+defmodule UniboExPoc.Repair.RepairFee do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Repair,
+    domain: UniboExPoc.Repair,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Repair.RepairFee do
 
   postgres do
     table "repair_fees"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -73,7 +73,7 @@ defmodule UniboV4.Repair.RepairFee do
   end
 
   relationships do
-    belongs_to :repair_ticket, UniboV4.Repair.RepairTicket do
+    belongs_to :repair_ticket, UniboExPoc.Repair.RepairTicket do
       public? true
       allow_nil? false
     end

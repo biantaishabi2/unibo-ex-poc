@@ -1,4 +1,4 @@
-defmodule UniboV4.Expenses.Integrations.ExpenseReport.PostPostOwnAccountRegisterPaymentBridge do
+defmodule UniboExPoc.Expenses.Integrations.ExpenseReport.PostPostOwnAccountRegisterPaymentBridge do
   use Ash.Resource.Change
 
   @provider "post_own_account_register_payment"
@@ -29,7 +29,7 @@ defmodule UniboV4.Expenses.Integrations.ExpenseReport.PostPostOwnAccountRegister
       declared_errors: @declared_errors
     }
 
-    case UniboV4.Expenses.Integration.Runtime.dispatch_sync(request) do
+    case UniboExPoc.Expenses.Integration.Runtime.dispatch_sync(request) do
       {:ok, response} ->
         apply_response_bindings(changeset, response)
       {:error, error_payload} ->

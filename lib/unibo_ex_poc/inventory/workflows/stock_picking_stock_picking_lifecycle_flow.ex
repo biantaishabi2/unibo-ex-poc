@@ -1,10 +1,10 @@
-defmodule UniboV4.Inventory.Workflows.StockPicking.StockPickingLifecycleFlowWorkflow do
+defmodule UniboExPoc.Inventory.Workflows.StockPicking.StockPickingLifecycleFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Inventory.StockPicking
+  alias UniboExPoc.Inventory.StockPicking
 
   def steps do
     [:create, :action_confirm, :action_assign, :button_validate]
@@ -149,6 +149,7 @@ defmodule UniboV4.Inventory.Workflows.StockPicking.StockPickingLifecycleFlowWork
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :action_confirm -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Inventory.Workflows.StockPicking.StockPickingLifecycleFlowWork
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :action_confirm -> false

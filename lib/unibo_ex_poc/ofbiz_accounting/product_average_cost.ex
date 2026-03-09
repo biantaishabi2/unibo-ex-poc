@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Accounting.ProductAverageCost do
+defmodule UniboExPoc.Ofbiz.Accounting.ProductAverageCost do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Accounting.ProductAverageCost do
 
   postgres do
     table "accounting_product_average_costs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,7 +57,7 @@ defmodule UniboV4.Ofbiz.Accounting.ProductAverageCost do
   end
 
   relationships do
-    belongs_to :product_average_cost_type, UniboV4.Ofbiz.Accounting.ProductAverageCostType do
+    belongs_to :product_average_cost_type, UniboExPoc.Ofbiz.Accounting.ProductAverageCostType do
       public? true
     end
   end

@@ -1,10 +1,10 @@
-defmodule UniboV4.Studio.Workflows.CustomModel.CustomModelLifecycleWorkflow do
+defmodule UniboExPoc.Studio.Workflows.CustomModel.CustomModelLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Studio.CustomModel
+  alias UniboExPoc.Studio.CustomModel
 
   def steps do
     [:create, :update, :activate, :archive, :reactivate, :destroy]
@@ -157,6 +157,7 @@ defmodule UniboV4.Studio.Workflows.CustomModel.CustomModelLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -169,6 +170,7 @@ defmodule UniboV4.Studio.Workflows.CustomModel.CustomModelLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

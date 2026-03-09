@@ -15,13 +15,13 @@
 #   action_back --> [*]
 #   action_confirm --> [*]
 # ```
-defmodule UniboV4.HR.PerformanceReview do
+defmodule UniboExPoc.HR.PerformanceReview do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.HR.PerformanceReview.Notifier]
+    notifiers: [UniboExPoc.HR.PerformanceReview.Notifier]
 
   resource do
     description "绩效评估"
@@ -29,7 +29,7 @@ defmodule UniboV4.HR.PerformanceReview do
 
   postgres do
     table "hr_performance_reviews"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -94,11 +94,11 @@ defmodule UniboV4.HR.PerformanceReview do
   end
 
   relationships do
-    belongs_to :employee, UniboV4.HR.Employee do
+    belongs_to :employee, UniboExPoc.HR.Employee do
       public? true
       allow_nil? false
     end
-    belongs_to :reviewer, UniboV4.HR.Employee do
+    belongs_to :reviewer, UniboExPoc.HR.Employee do
       public? true
     end
   end
@@ -128,7 +128,7 @@ defmodule UniboV4.HR.PerformanceReview do
       end
       # message: "只有新建状态可以确认"
       change set_attribute(:status, :pending)
-      change UniboV4.HR.Changes.PerformanceReview.ActionConfirmCall6
+      change UniboExPoc.HR.Changes.PerformanceReview.ActionConfirmCall6
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -147,7 +147,7 @@ defmodule UniboV4.HR.PerformanceReview do
       # skipped: validate present :overall_rating (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :done)
-      change UniboV4.HR.Changes.PerformanceReview.ActionDoneCall5
+      change UniboExPoc.HR.Changes.PerformanceReview.ActionDoneCall5
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

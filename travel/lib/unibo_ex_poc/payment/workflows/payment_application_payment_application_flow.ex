@@ -153,6 +153,7 @@ defmodule UniboExPoc.Payment.Workflows.PaymentApplication.PaymentApplicationFlow
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :apply_to_invoice -> nil
@@ -164,6 +165,7 @@ defmodule UniboExPoc.Payment.Workflows.PaymentApplication.PaymentApplicationFlow
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :apply_to_invoice -> false

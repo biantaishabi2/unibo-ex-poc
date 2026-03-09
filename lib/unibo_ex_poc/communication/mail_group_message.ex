@@ -8,10 +8,10 @@
 #   moderate_allow --> [*]
 #   moderate_ban --> [*]
 # ```
-defmodule UniboV4.Communication.MailGroupMessage do
+defmodule UniboExPoc.Communication.MailGroupMessage do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Communication,
+    domain: UniboExPoc.Communication,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Communication.MailGroupMessage do
 
   postgres do
     table "communication_mail_group_messages"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -71,18 +71,18 @@ defmodule UniboV4.Communication.MailGroupMessage do
   end
 
   relationships do
-    belongs_to :mail_group, UniboV4.Communication.MailGroup do
+    belongs_to :mail_group, UniboExPoc.Communication.MailGroup do
       public? true
       allow_nil? false
     end
-    belongs_to :moderator, UniboV4.Communication.Party do
+    belongs_to :moderator, UniboExPoc.Communication.Party do
       public? true
       source_attribute :moderator_party_id
     end
-    belongs_to :parent_message, UniboV4.Communication.MailGroupMessage do
+    belongs_to :parent_message, UniboExPoc.Communication.MailGroupMessage do
       public? true
     end
-    has_many :child_messages, UniboV4.Communication.MailGroupMessage do
+    has_many :child_messages, UniboExPoc.Communication.MailGroupMessage do
       public? true
       source_attribute :parent_message_id
       destination_attribute :parent_message_id

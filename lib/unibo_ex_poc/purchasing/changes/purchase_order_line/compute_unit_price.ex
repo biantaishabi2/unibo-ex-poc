@@ -1,4 +1,4 @@
-defmodule UniboV4.Purchasing.Changes.PurchaseOrderLine.ComputeUnitPrice do
+defmodule UniboExPoc.Purchasing.Changes.PurchaseOrderLine.ComputeUnitPrice do
   @moduledoc """
   Change 模块: 计算 :unit_price (entity: purchase_order_line)
   """

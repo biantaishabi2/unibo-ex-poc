@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> [*]
 # ```
-defmodule UniboV4.Payment.PaymentGatewayResponse do
+defmodule UniboExPoc.Payment.PaymentGatewayResponse do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Payment,
+    domain: UniboExPoc.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Payment.PaymentGatewayResponse do
 
   postgres do
     table "payment_gateway_responses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -133,14 +133,14 @@ defmodule UniboV4.Payment.PaymentGatewayResponse do
   end
 
   relationships do
-    belongs_to :payment_method, UniboV4.Payment.PaymentMethod do
+    belongs_to :payment_method, UniboExPoc.Payment.PaymentMethod do
       public? true
     end
-    belongs_to :provider, UniboV4.Payment.PaymentProvider do
+    belongs_to :provider, UniboExPoc.Payment.PaymentProvider do
       public? true
       source_attribute :payment_provider_id
     end
-    has_many :payments, UniboV4.Payment.Payment do
+    has_many :payments, UniboExPoc.Payment.Payment do
       public? true
       destination_attribute :payment_gateway_response_id
     end

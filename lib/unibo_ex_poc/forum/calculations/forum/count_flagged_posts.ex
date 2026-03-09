@@ -1,4 +1,4 @@
-defmodule UniboV4.Forum.Calculations.Forum.CountFlaggedPosts do
+defmodule UniboExPoc.Forum.Calculations.Forum.CountFlaggedPosts do
   @moduledoc """
   Calculation 模块: :count_flagged_posts (type: :integer, entity: forum)
   原始 expr: op: func args: - count - op: filter   args:   - op: ref     args:     - posts   - op: eq     args:     - op: ref       args:       - state     - flagged

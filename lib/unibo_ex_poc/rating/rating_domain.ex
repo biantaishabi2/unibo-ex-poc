@@ -1,4 +1,4 @@
-defmodule UniboV4.Rating do
+defmodule UniboExPoc.Rating do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,16 +7,16 @@ defmodule UniboV4.Rating do
   end
 
   resources do
-    resource UniboV4.Rating.RatingType
-    resource UniboV4.Rating.RatingTypeTranslation
-    resource UniboV4.Rating.RatingType.Version
-    resource UniboV4.Rating.RatingCriteria
-    resource UniboV4.Rating.RatingCriteriaTranslation
-    resource UniboV4.Rating.RatingCriteria.Version
-    resource UniboV4.Rating.Rating
-    resource UniboV4.Rating.Rating.Version
-    resource UniboV4.Rating.RatingScore
-    resource UniboV4.Rating.RatingSummary
-    resource UniboV4.Rating.RatingSummary.Version
+    resource UniboExPoc.Rating.RatingType
+    resource UniboExPoc.Rating.RatingTypeTranslation
+    resource UniboExPoc.Rating.RatingType.Version
+    resource UniboExPoc.Rating.RatingCriteria
+    resource UniboExPoc.Rating.RatingCriteriaTranslation
+    resource UniboExPoc.Rating.RatingCriteria.Version
+    resource UniboExPoc.Rating.Rating
+    resource UniboExPoc.Rating.Rating.Version
+    resource UniboExPoc.Rating.RatingScore
+    resource UniboExPoc.Rating.RatingSummary
+    resource UniboExPoc.Rating.RatingSummary.Version
   end
 end

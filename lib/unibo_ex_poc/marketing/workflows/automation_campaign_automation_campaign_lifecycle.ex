@@ -1,10 +1,10 @@
-defmodule UniboV4.Marketing.Workflows.AutomationCampaign.AutomationCampaignLifecycleWorkflow do
+defmodule UniboExPoc.Marketing.Workflows.AutomationCampaign.AutomationCampaignLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Marketing.AutomationCampaign
+  alias UniboExPoc.Marketing.AutomationCampaign
 
   def steps do
     [:create, :update, :start_campaign, :stop_campaign]
@@ -149,6 +149,7 @@ defmodule UniboV4.Marketing.Workflows.AutomationCampaign.AutomationCampaignLifec
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Marketing.Workflows.AutomationCampaign.AutomationCampaignLifec
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

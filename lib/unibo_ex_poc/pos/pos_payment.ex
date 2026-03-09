@@ -4,10 +4,10 @@
 #   [*] --> create
 #   create --> [*]
 # ```
-defmodule UniboV4.POS.PosPayment do
+defmodule UniboExPoc.POS.PosPayment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.POS,
+    domain: UniboExPoc.POS,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -17,7 +17,7 @@ defmodule UniboV4.POS.PosPayment do
 
   postgres do
     table "pos_payments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -75,11 +75,11 @@ defmodule UniboV4.POS.PosPayment do
   end
 
   relationships do
-    belongs_to :order, UniboV4.POS.PosOrder do
+    belongs_to :order, UniboExPoc.POS.PosOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :payment_method, UniboV4.POS.PosPaymentMethod do
+    belongs_to :payment_method, UniboExPoc.POS.PosPaymentMethod do
       public? true
       allow_nil? false
     end
@@ -94,7 +94,7 @@ defmodule UniboV4.POS.PosPayment do
       change manage_relationship(:order_id, :order, type: :append, on_lookup: :relate)
       argument :payment_method_id, :uuid, allow_nil?: false
       change manage_relationship(:payment_method_id, :payment_method, type: :append, on_lookup: :relate)
-      change UniboV4.POS.Changes.PosPayment.CreateCall1
+      change UniboExPoc.POS.Changes.PosPayment.CreateCall1
       change set_attribute(:id, expr(id))
     end
   end

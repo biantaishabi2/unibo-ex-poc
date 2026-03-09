@@ -1,4 +1,4 @@
-defmodule UniboV4.Documents.Calculations.Document.ChecksumDisplay do
+defmodule UniboExPoc.Documents.Calculations.Document.ChecksumDisplay do
   @moduledoc """
   Calculation 模块: :checksum_display (type: :string, entity: document)
   """

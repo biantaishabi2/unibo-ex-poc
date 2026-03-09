@@ -7,10 +7,10 @@
 #   approve --> [*]
 #   reject --> [*]
 # ```
-defmodule UniboV4.PLM.EcoApproval do
+defmodule UniboExPoc.PLM.EcoApproval do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.PLM,
+    domain: UniboExPoc.PLM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
     authorizers: [Ash.Policy.Authorizer]
@@ -21,7 +21,7 @@ defmodule UniboV4.PLM.EcoApproval do
 
   postgres do
     table "plm_eco_approvals"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -68,11 +68,11 @@ defmodule UniboV4.PLM.EcoApproval do
   end
 
   relationships do
-    belongs_to :eco, UniboV4.PLM.Eco do
+    belongs_to :eco, UniboExPoc.PLM.Eco do
       public? true
       allow_nil? false
     end
-    belongs_to :approver, UniboV4.PLM.Party do
+    belongs_to :approver, UniboExPoc.PLM.Party do
       public? true
       allow_nil? false
       source_attribute :approver_party_id
@@ -105,7 +105,7 @@ defmodule UniboV4.PLM.EcoApproval do
       end
       # message: "只有待审批状态可以通过"
       change set_attribute(:status, :approved)
-      change UniboV4.PLM.Changes.EcoApproval.ComputeApprovalDate
+      change UniboExPoc.PLM.Changes.EcoApproval.ComputeApprovalDate
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -123,7 +123,7 @@ defmodule UniboV4.PLM.EcoApproval do
       end
       # message: "只有待审批状态可以拒绝"
       change set_attribute(:status, :rejected)
-      change UniboV4.PLM.Changes.EcoApproval.ComputeApprovalDate
+      change UniboExPoc.PLM.Changes.EcoApproval.ComputeApprovalDate
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -141,6 +141,9 @@ defmodule UniboV4.PLM.EcoApproval do
     end
     policy action(:reject) do
       authorize_if expr(actor.id == approver_id)
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

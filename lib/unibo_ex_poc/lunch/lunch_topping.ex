@@ -8,10 +8,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Lunch.LunchTopping do
+defmodule UniboExPoc.Lunch.LunchTopping do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Lunch,
+    domain: UniboExPoc.Lunch,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Lunch.LunchTopping do
 
   postgres do
     table "lunch_toppings"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -67,7 +67,7 @@ defmodule UniboV4.Lunch.LunchTopping do
   end
 
   relationships do
-    belongs_to :supplier, UniboV4.Lunch.LunchSupplier do
+    belongs_to :supplier, UniboExPoc.Lunch.LunchSupplier do
       public? true
       allow_nil? false
     end

@@ -1,10 +1,10 @@
-defmodule UniboV4.Calendar.Workflows.WeekException.WeekExceptionManageFlowWorkflow do
+defmodule UniboExPoc.Calendar.Workflows.WeekException.WeekExceptionManageFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Calendar.WeekException
+  alias UniboExPoc.Calendar.WeekException
 
   def steps do
     [:add, :remove]
@@ -141,6 +141,7 @@ defmodule UniboV4.Calendar.Workflows.WeekException.WeekExceptionManageFlowWorkfl
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :add -> nil
       :remove -> nil
@@ -149,6 +150,7 @@ defmodule UniboV4.Calendar.Workflows.WeekException.WeekExceptionManageFlowWorkfl
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :add -> false
       :remove -> false

@@ -25,7 +25,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
+    extensions: [AshGraphql.Resource, AshArchival.Resource],
     notifiers: [UniboExPoc.Travel.TravelFulfillment.Notifier]
 
   resource do
@@ -247,12 +247,6 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

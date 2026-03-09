@@ -1,10 +1,10 @@
-defmodule UniboV4.Inventory.Workflows.LandedCost.LandedCostCancelFlowWorkflow do
+defmodule UniboExPoc.Inventory.Workflows.LandedCost.LandedCostCancelFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Inventory.LandedCost
+  alias UniboExPoc.Inventory.LandedCost
 
   def steps do
     [:create, :button_cancel]
@@ -141,6 +141,7 @@ defmodule UniboV4.Inventory.Workflows.LandedCost.LandedCostCancelFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :button_cancel -> nil
@@ -149,6 +150,7 @@ defmodule UniboV4.Inventory.Workflows.LandedCost.LandedCostCancelFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :button_cancel -> false

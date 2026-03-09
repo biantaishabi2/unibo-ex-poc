@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.Person do
+defmodule UniboExPoc.Ofbiz.Party.Person do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_persons"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -148,18 +148,18 @@ defmodule UniboV4.Ofbiz.Party.Person do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Ofbiz.Party.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
     end
-    belongs_to :employment_status_enumeration, UniboV4.Ofbiz.Party.Enumeration do
+    belongs_to :employment_status_enumeration, UniboExPoc.Ofbiz.Party.Enumeration do
       public? true
       source_attribute :employment_status_enum_id
     end
-    belongs_to :residence_status_enumeration, UniboV4.Ofbiz.Party.Enumeration do
+    belongs_to :residence_status_enumeration, UniboExPoc.Ofbiz.Party.Enumeration do
       public? true
       source_attribute :residence_status_enum_id
     end
-    belongs_to :marital_status_type, UniboV4.Ofbiz.Party.MaritalStatusType do
+    belongs_to :marital_status_type, UniboExPoc.Ofbiz.Party.MaritalStatusType do
       public? true
     end
   end

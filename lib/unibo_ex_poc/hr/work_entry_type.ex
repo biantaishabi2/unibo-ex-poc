@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.HR.WorkEntryType do
+defmodule UniboExPoc.HR.WorkEntryType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.HR.WorkEntryType do
 
   postgres do
     table "hr_work_entry_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -70,7 +70,7 @@ defmodule UniboV4.HR.WorkEntryType do
   end
 
   relationships do
-    has_many :work_entries, UniboV4.HR.WorkEntry do
+    has_many :work_entries, UniboExPoc.HR.WorkEntry do
       public? true
     end
   end

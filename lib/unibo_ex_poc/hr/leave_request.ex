@@ -9,13 +9,13 @@
 #   action_refuse --> [*]
 #   action_draft --> [*]
 # ```
-defmodule UniboV4.HR.LeaveRequest do
+defmodule UniboExPoc.HR.LeaveRequest do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.HR.LeaveRequest.Notifier]
+    notifiers: [UniboExPoc.HR.LeaveRequest.Notifier]
 
   resource do
     description "请假申请"
@@ -23,7 +23,7 @@ defmodule UniboV4.HR.LeaveRequest do
 
   postgres do
     table "hr_leave_requests"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -77,18 +77,18 @@ defmodule UniboV4.HR.LeaveRequest do
   end
 
   relationships do
-    belongs_to :employee, UniboV4.HR.Employee do
+    belongs_to :employee, UniboExPoc.HR.Employee do
       public? true
       allow_nil? false
     end
-    belongs_to :leave_type, UniboV4.HR.LeaveType do
+    belongs_to :leave_type, UniboExPoc.HR.LeaveType do
       public? true
       allow_nil? false
     end
-    belongs_to :first_approver, UniboV4.HR.Employee do
+    belongs_to :first_approver, UniboExPoc.HR.Employee do
       public? true
     end
-    belongs_to :second_approver, UniboV4.HR.Employee do
+    belongs_to :second_approver, UniboExPoc.HR.Employee do
       public? true
     end
   end
@@ -139,8 +139,8 @@ defmodule UniboV4.HR.LeaveRequest do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :validate1)
       change set_attribute(:status, :validate)
-      change UniboV4.HR.Changes.LeaveRequest.ActionApproveCall7
-      change UniboV4.HR.Changes.LeaveRequest.ActionApproveCall8
+      change UniboExPoc.HR.Changes.LeaveRequest.ActionApproveCall7
+      change UniboExPoc.HR.Changes.LeaveRequest.ActionApproveCall8
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -159,8 +159,8 @@ defmodule UniboV4.HR.LeaveRequest do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :validate)
-      change UniboV4.HR.Changes.LeaveRequest.ActionValidateCall7
-      change UniboV4.HR.Changes.LeaveRequest.ActionValidateCall8
+      change UniboExPoc.HR.Changes.LeaveRequest.ActionValidateCall7
+      change UniboExPoc.HR.Changes.LeaveRequest.ActionValidateCall8
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

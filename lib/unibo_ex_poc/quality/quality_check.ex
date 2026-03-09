@@ -7,14 +7,14 @@
 #   do_pass --> [*]
 #   do_fail --> [*]
 # ```
-defmodule UniboV4.Quality.QualityCheck do
+defmodule UniboExPoc.Quality.QualityCheck do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Quality,
+    domain: UniboExPoc.Quality,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
     authorizers: [Ash.Policy.Authorizer],
-    notifiers: [UniboV4.Quality.QualityCheck.Notifier]
+    notifiers: [UniboExPoc.Quality.QualityCheck.Notifier]
 
   resource do
     description "质量检查记录，包含状态机 todo→pass/fail，支持 6 种检查类型"
@@ -22,7 +22,7 @@ defmodule UniboV4.Quality.QualityCheck do
 
   postgres do
     table "quality_checks"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -98,32 +98,32 @@ defmodule UniboV4.Quality.QualityCheck do
   end
 
   calculations do
-    calculate :measure_success, :atom, {UniboV4.Quality.Calculations.QualityCheck.MeasureSuccess, []}
+    calculate :measure_success, :atom, {UniboExPoc.Quality.Calculations.QualityCheck.MeasureSuccess, []}
   end
 
   relationships do
-    belongs_to :point, UniboV4.Quality.QualityPoint do
+    belongs_to :point, UniboExPoc.Quality.QualityPoint do
       public? true
     end
-    belongs_to :product, UniboV4.Quality.Product do
+    belongs_to :product, UniboExPoc.Quality.Product do
       public? true
       allow_nil? false
     end
-    belongs_to :lot, UniboV4.Quality.Lot do
+    belongs_to :lot, UniboExPoc.Quality.Lot do
       public? true
     end
-    belongs_to :team, UniboV4.Quality.QualityTeam do
+    belongs_to :team, UniboExPoc.Quality.QualityTeam do
       public? true
     end
-    belongs_to :responsible, UniboV4.Quality.Party do
+    belongs_to :responsible, UniboExPoc.Quality.Party do
       public? true
       source_attribute :responsible_party_id
     end
-    has_many :alerts, UniboV4.Quality.QualityAlert do
+    has_many :alerts, UniboExPoc.Quality.QualityAlert do
       public? true
       destination_attribute :check_id
     end
-    belongs_to :company, UniboV4.Quality.Party do
+    belongs_to :company, UniboExPoc.Quality.Party do
       public? true
       allow_nil? false
       source_attribute :company_party_id
@@ -160,7 +160,7 @@ defmodule UniboV4.Quality.QualityCheck do
       end
       # message: "只有待检查状态可以标记通过"
       change set_attribute(:state, :pass)
-      change UniboV4.Quality.Changes.QualityCheck.ComputeCheckedAt
+      change UniboExPoc.Quality.Changes.QualityCheck.ComputeCheckedAt
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -178,9 +178,9 @@ defmodule UniboV4.Quality.QualityCheck do
       end
       # message: "只有待检查状态可以标记失败"
       change set_attribute(:state, :fail)
-      change UniboV4.Quality.Changes.QualityCheck.ComputeCheckedAt
-      change UniboV4.Quality.Changes.QualityCheck.DoFailCall5
-      change UniboV4.Quality.Changes.QualityCheck.DoFailCall6
+      change UniboExPoc.Quality.Changes.QualityCheck.ComputeCheckedAt
+      change UniboExPoc.Quality.Changes.QualityCheck.DoFailCall5
+      change UniboExPoc.Quality.Changes.QualityCheck.DoFailCall6
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -200,6 +200,9 @@ defmodule UniboV4.Quality.QualityCheck do
     policy action_type(:update) do
       authorize_if expr(actor.role == :admin)
       authorize_if relates_to_actor_via(:company_party)
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

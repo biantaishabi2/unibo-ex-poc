@@ -1,4 +1,4 @@
-defmodule UniboV4.IoT.Calculations.CallQueue.SlaPercentage do
+defmodule UniboExPoc.IoT.Calculations.CallQueue.SlaPercentage do
   @moduledoc """
   Calculation 模块: :sla_percentage (type: :decimal, entity: call_queue)
   """

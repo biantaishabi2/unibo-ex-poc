@@ -8,14 +8,14 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Purchasing.ProductSupplierinfo do
+defmodule UniboExPoc.Purchasing.ProductSupplierinfo do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Purchasing,
+    domain: UniboExPoc.Purchasing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
     authorizers: [Ash.Policy.Authorizer],
-    notifiers: [UniboV4.Purchasing.ProductSupplierinfo.Notifier]
+    notifiers: [UniboExPoc.Purchasing.ProductSupplierinfo.Notifier]
 
   resource do
     description "产品供应商报价记录（对齐 OFBiz SupplierProduct），由 PurchaseOrder 确认时自动写入"
@@ -23,7 +23,7 @@ defmodule UniboV4.Purchasing.ProductSupplierinfo do
 
   postgres do
     table "purchasing_product_supplierinfos"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -139,7 +139,7 @@ defmodule UniboV4.Purchasing.ProductSupplierinfo do
   end
 
   relationships do
-    belongs_to :supplier, UniboV4.Purchasing.Supplier do
+    belongs_to :supplier, UniboExPoc.Purchasing.Supplier do
       public? true
       allow_nil? false
     end
@@ -154,8 +154,8 @@ defmodule UniboV4.Purchasing.ProductSupplierinfo do
       change manage_relationship(:supplier_id, :supplier, type: :append, on_lookup: :relate)
       validate present(:partner_id)
       validate present(:product_tmpl_id)
-      change UniboV4.Purchasing.Changes.ProductSupplierinfo.ComputePartnerId
-      change UniboV4.Purchasing.Changes.ProductSupplierinfo.ComputeLastPrice
+      change UniboExPoc.Purchasing.Changes.ProductSupplierinfo.ComputePartnerId
+      change UniboExPoc.Purchasing.Changes.ProductSupplierinfo.ComputeLastPrice
       change set_attribute(:id, expr(id))
     end
     update :update do
@@ -205,6 +205,9 @@ defmodule UniboV4.Purchasing.ProductSupplierinfo do
 
   policies do
     policy action_type(:create) do
+      authorize_if always()
+    end
+    policy always() do
       authorize_if always()
     end
   end

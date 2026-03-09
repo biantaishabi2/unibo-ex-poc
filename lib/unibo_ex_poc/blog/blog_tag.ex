@@ -1,7 +1,7 @@
-defmodule UniboV4.Blog.BlogTag do
+defmodule UniboExPoc.Blog.BlogTag do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Blog,
+    domain: UniboExPoc.Blog,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Blog.BlogTag do
 
   postgres do
     table "blog_tags"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -30,7 +30,7 @@ defmodule UniboV4.Blog.BlogTag do
   end
 
   relationships do
-    belongs_to :blog_post, UniboV4.Blog.BlogPost do
+    belongs_to :blog_post, UniboExPoc.Blog.BlogPost do
       public? true
     end
   end

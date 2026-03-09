@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.ProductMeter do
+defmodule UniboExPoc.Ofbiz.Product.ProductMeter do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_meters"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,10 +37,10 @@ defmodule UniboV4.Ofbiz.Product.ProductMeter do
   end
 
   relationships do
-    belongs_to :product, UniboV4.Ofbiz.Product.Product do
+    belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
     end
-    belongs_to :product_meter_type, UniboV4.Ofbiz.Product.ProductMeterType do
+    belongs_to :product_meter_type, UniboExPoc.Ofbiz.Product.ProductMeterType do
       public? true
     end
   end

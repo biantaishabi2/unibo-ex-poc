@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Sign.SignItem do
+defmodule UniboExPoc.Sign.SignItem do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sign,
+    domain: UniboExPoc.Sign,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.Sign.SignItem do
 
   postgres do
     table "sign_items"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -79,11 +79,11 @@ defmodule UniboV4.Sign.SignItem do
   end
 
   relationships do
-    belongs_to :template, UniboV4.Sign.SignTemplate do
+    belongs_to :template, UniboExPoc.Sign.SignTemplate do
       public? true
       allow_nil? false
     end
-    belongs_to :role, UniboV4.Sign.SignRole do
+    belongs_to :role, UniboExPoc.Sign.SignRole do
       public? true
       allow_nil? false
     end

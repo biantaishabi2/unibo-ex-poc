@@ -1,7 +1,7 @@
-defmodule UniboV4.Communication.TrackingValue do
+defmodule UniboExPoc.Communication.TrackingValue do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Communication,
+    domain: UniboExPoc.Communication,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Communication.TrackingValue do
 
   postgres do
     table "communication_tracking_values"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -30,7 +30,7 @@ defmodule UniboV4.Communication.TrackingValue do
   end
 
   relationships do
-    belongs_to :message, UniboV4.Communication.Message do
+    belongs_to :message, UniboExPoc.Communication.Message do
       public? true
     end
   end

@@ -1,4 +1,4 @@
-defmodule UniboV4.Expenses.Integrations.ExpenseReport.CreatePricingFetchStandardPriceBridge do
+defmodule UniboExPoc.Expenses.Integrations.ExpenseReport.CreatePricingFetchStandardPriceBridge do
   use Ash.Resource.Change
 
   @provider "pricing_fetch_standard_price"
@@ -29,7 +29,7 @@ defmodule UniboV4.Expenses.Integrations.ExpenseReport.CreatePricingFetchStandard
       declared_errors: @declared_errors
     }
 
-    case UniboV4.Expenses.Integration.Runtime.dispatch_sync(request) do
+    case UniboExPoc.Expenses.Integration.Runtime.dispatch_sync(request) do
       {:ok, response} ->
         apply_response_bindings(changeset, response)
       {:error, error_payload} ->

@@ -32,14 +32,9 @@ defmodule UniboExPoc.Ofbiz.Party.PartyInvitationGroupAssoc do
   end
 
   relationships do
-    belongs_to :to_party_group, UniboExPoc.Ofbiz.Party.PartyGroup do
-      public? true
-      source_attribute :party_id_to
-    end
     belongs_to :to_party, UniboExPoc.Ofbiz.Party.Party do
       public? true
       source_attribute :party_id_to
-      define_attribute? false
     end
     belongs_to :party_invitation, UniboExPoc.Ofbiz.Party.PartyInvitation do
       public? true

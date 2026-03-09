@@ -45,29 +45,25 @@ defmodule UniboExPoc.Ofbiz.Accounting.Payment do
   end
 
   relationships do
-    belongs_to :payment_type, UniboExPoc.Ofbiz.Accounting.PaymentType do
+    belongs_to :payment_type_ref, UniboExPoc.Ofbiz.Accounting.PaymentType do
       public? true
+      source_attribute :payment_type_id
     end
     belongs_to :payment_method_type, UniboExPoc.Ofbiz.Accounting.PaymentMethodType do
       public? true
     end
-    belongs_to :payment_method, UniboExPoc.Ofbiz.Accounting.PaymentMethod do
+    belongs_to :payment_method_ref, UniboExPoc.Ofbiz.Accounting.PaymentMethod do
       public? true
+      source_attribute :payment_method_id
     end
     belongs_to :credit_card, UniboExPoc.Ofbiz.Accounting.CreditCard do
       public? true
-      source_attribute :payment_method_id
-      define_attribute? false
     end
     belongs_to :eft_account, UniboExPoc.Ofbiz.Accounting.EftAccount do
       public? true
-      source_attribute :payment_method_id
-      define_attribute? false
     end
     belongs_to :gift_card, UniboExPoc.Ofbiz.Accounting.GiftCard do
       public? true
-      source_attribute :payment_method_id
-      define_attribute? false
     end
     belongs_to :payment_gateway_response, UniboExPoc.Ofbiz.Accounting.PaymentGatewayResponse do
       public? true

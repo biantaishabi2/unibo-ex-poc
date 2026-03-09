@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Common.PortletAttribute do
+defmodule UniboExPoc.Ofbiz.Common.PortletAttribute do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Common.PortletAttribute do
 
   postgres do
     table "common_portlet_attributes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -42,7 +42,7 @@ defmodule UniboV4.Ofbiz.Common.PortletAttribute do
   end
 
   relationships do
-    belongs_to :portal_portlet, UniboV4.Ofbiz.Common.PortalPortlet do
+    belongs_to :portal_portlet, UniboExPoc.Ofbiz.Common.PortalPortlet do
       public? true
     end
   end

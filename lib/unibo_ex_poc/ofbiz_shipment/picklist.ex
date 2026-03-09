@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.Picklist do
+defmodule UniboExPoc.Ofbiz.Shipment.Picklist do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_picklists"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -43,15 +43,15 @@ defmodule UniboV4.Ofbiz.Shipment.Picklist do
   end
 
   relationships do
-    belongs_to :facility, UniboV4.Ofbiz.Shipment.Facility do
+    belongs_to :facility, UniboExPoc.Ofbiz.Shipment.Facility do
       public? true
       attribute_type :string
     end
-    belongs_to :shipment_method_type, UniboV4.Ofbiz.Shipment.ShipmentMethodType do
+    belongs_to :shipment_method_type, UniboExPoc.Ofbiz.Shipment.ShipmentMethodType do
       public? true
       attribute_type :string
     end
-    belongs_to :status_item, UniboV4.Ofbiz.Shipment.StatusItem do
+    belongs_to :status_item, UniboExPoc.Ofbiz.Shipment.StatusItem do
       public? true
       source_attribute :status_id
       attribute_type :string

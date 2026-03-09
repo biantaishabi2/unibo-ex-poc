@@ -1,7 +1,7 @@
-defmodule UniboV4.Knowledge.ArticleTagLink do
+defmodule UniboExPoc.Knowledge.ArticleTagLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Knowledge,
+    domain: UniboExPoc.Knowledge,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Knowledge.ArticleTagLink do
 
   postgres do
     table "knowledge_article_tag_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Knowledge.ArticleTagLink do
   end
 
   relationships do
-    belongs_to :article, UniboV4.Knowledge.Article do
+    belongs_to :article, UniboExPoc.Knowledge.Article do
       public? true
       allow_nil? false
     end
-    belongs_to :tag, UniboV4.Knowledge.Tag do
+    belongs_to :tag, UniboExPoc.Knowledge.Tag do
       public? true
       allow_nil? false
     end

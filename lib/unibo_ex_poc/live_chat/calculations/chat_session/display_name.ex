@@ -1,4 +1,4 @@
-defmodule UniboV4.LiveChat.Calculations.ChatSession.DisplayName do
+defmodule UniboExPoc.LiveChat.Calculations.ChatSession.DisplayName do
   @moduledoc """
   Calculation 模块: :display_name (type: :string, entity: chat_session)
   原始 expr: op: coalesce args: - op: ref   args:   - anonymous_name - op: ref   args:   - operator   - name

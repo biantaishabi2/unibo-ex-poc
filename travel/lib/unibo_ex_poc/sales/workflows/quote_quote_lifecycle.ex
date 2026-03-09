@@ -149,6 +149,7 @@ defmodule UniboExPoc.Sales.Workflows.Quote.QuoteLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :submit -> nil
@@ -159,6 +160,7 @@ defmodule UniboExPoc.Sales.Workflows.Quote.QuoteLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :submit -> false

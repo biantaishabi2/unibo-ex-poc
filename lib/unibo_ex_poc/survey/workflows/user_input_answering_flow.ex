@@ -1,10 +1,10 @@
-defmodule UniboV4.Survey.Workflows.UserInput.AnsweringFlowWorkflow do
+defmodule UniboExPoc.Survey.Workflows.UserInput.AnsweringFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Survey.UserInput
+  alias UniboExPoc.Survey.UserInput
 
   def steps do
     [:create, :mark_in_progress, :mark_done]
@@ -145,6 +145,7 @@ defmodule UniboV4.Survey.Workflows.UserInput.AnsweringFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :mark_in_progress -> nil
@@ -154,6 +155,7 @@ defmodule UniboV4.Survey.Workflows.UserInput.AnsweringFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :mark_in_progress -> false

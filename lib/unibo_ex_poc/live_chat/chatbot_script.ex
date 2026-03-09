@@ -1,7 +1,7 @@
-defmodule UniboV4.LiveChat.ChatbotScript do
+defmodule UniboExPoc.LiveChat.ChatbotScript do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.LiveChat,
+    domain: UniboExPoc.LiveChat,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.LiveChat.ChatbotScript do
 
   postgres do
     table "live_chat_chatbot_scripts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

@@ -1,4 +1,4 @@
-defmodule UniboV4.Events.Changes.Event.ComputeActualEndDate do
+defmodule UniboExPoc.Events.Changes.Event.ComputeActualEndDate do
   @moduledoc """
   Change 模块: 计算 :actual_end_date (entity: event)
   原始 expr: op: func args: - now

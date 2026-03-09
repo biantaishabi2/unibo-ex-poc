@@ -6,13 +6,13 @@
 #   ship --> deliver
 #   deliver --> [*] : delivered
 # ```
-defmodule UniboV4.Sales.SalesOrderShipment do
+defmodule UniboExPoc.Sales.SalesOrderShipment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sales,
+    domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Sales.SalesOrderShipment.Notifier]
+    notifiers: [UniboExPoc.Sales.SalesOrderShipment.Notifier]
 
   resource do
     description "销售发货单"
@@ -20,7 +20,7 @@ defmodule UniboV4.Sales.SalesOrderShipment do
 
   postgres do
     table "sales_order_shipments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -80,11 +80,11 @@ defmodule UniboV4.Sales.SalesOrderShipment do
   end
 
   relationships do
-    belongs_to :sales_order, UniboV4.Sales.SalesOrder do
+    belongs_to :sales_order, UniboExPoc.Sales.SalesOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :shipped_by, UniboV4.Sales.Party do
+    belongs_to :shipped_by, UniboExPoc.Sales.Party do
       public? true
       source_attribute :shipped_by_party_id
     end

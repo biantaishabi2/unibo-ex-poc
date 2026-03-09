@@ -1,7 +1,7 @@
-defmodule UniboV4.IoT.CrmLead do
+defmodule UniboExPoc.IoT.CrmLead do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.IoT.CrmLead do
 
   postgres do
     table "io_t_crm_leads"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Delivery.ShipmentMethodType do
+defmodule UniboExPoc.Delivery.ShipmentMethodType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Delivery,
+    domain: UniboExPoc.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Delivery.ShipmentMethodType do
 
   postgres do
     table "delivery_shipment_method_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -59,12 +59,12 @@ defmodule UniboV4.Delivery.ShipmentMethodType do
   end
 
   relationships do
-    has_many :carrier_shipment_methods, UniboV4.Delivery.CarrierShipmentMethod do
+    has_many :carrier_shipment_methods, UniboExPoc.Delivery.CarrierShipmentMethod do
       public? true
       source_attribute :shipment_method_type_id
       destination_attribute :shipment_method_type_id
     end
-    has_many :cost_estimates, UniboV4.Delivery.ShipmentCostEstimate do
+    has_many :cost_estimates, UniboExPoc.Delivery.ShipmentCostEstimate do
       public? true
       source_attribute :shipment_method_type_id
       destination_attribute :shipment_method_type_id

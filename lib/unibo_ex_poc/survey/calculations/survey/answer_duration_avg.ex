@@ -1,4 +1,4 @@
-defmodule UniboV4.Survey.Calculations.Survey.AnswerDurationAvg do
+defmodule UniboExPoc.Survey.Calculations.Survey.AnswerDurationAvg do
   @moduledoc """
   Calculation 模块: :answer_duration_avg (type: :float, entity: survey)
   """

@@ -18,10 +18,10 @@
 #   cron_recycle --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.DataRecycle.RecycleModel do
+defmodule UniboExPoc.DataRecycle.RecycleModel do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.DataRecycle,
+    domain: UniboExPoc.DataRecycle,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -31,7 +31,7 @@ defmodule UniboV4.DataRecycle.RecycleModel do
 
   postgres do
     table "data_recycle_recycle_models"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -132,12 +132,12 @@ defmodule UniboV4.DataRecycle.RecycleModel do
   end
 
   relationships do
-    has_many :recycle_records, UniboV4.DataRecycle.RecycleRecord do
+    has_many :recycle_records, UniboExPoc.DataRecycle.RecycleRecord do
       public? true
     end
-    many_to_many :notify_users, UniboV4.DataRecycle.Party do
+    many_to_many :notify_users, UniboExPoc.DataRecycle.Party do
       public? true
-      through UniboV4.DataRecycle.RecycleModelNotifyUser
+      through UniboExPoc.DataRecycle.RecycleModelNotifyUser
       destination_attribute_on_join_resource :user_party_id
     end
   end

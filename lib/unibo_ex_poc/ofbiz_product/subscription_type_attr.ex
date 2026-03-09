@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.SubscriptionTypeAttr do
+defmodule UniboExPoc.Ofbiz.Product.SubscriptionTypeAttr do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_subscription_type_attrs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,7 +37,7 @@ defmodule UniboV4.Ofbiz.Product.SubscriptionTypeAttr do
   end
 
   relationships do
-    belongs_to :subscription_type, UniboV4.Ofbiz.Product.SubscriptionType do
+    belongs_to :subscription_type, UniboExPoc.Ofbiz.Product.SubscriptionType do
       public? true
     end
   end

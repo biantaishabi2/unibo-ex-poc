@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.HR.ResumeLineType do
+defmodule UniboExPoc.HR.ResumeLineType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.HR.ResumeLineType do
 
   postgres do
     table "hr_resume_line_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -53,7 +53,7 @@ defmodule UniboV4.HR.ResumeLineType do
   end
 
   relationships do
-    has_many :resume_lines, UniboV4.HR.ResumeLine do
+    has_many :resume_lines, UniboExPoc.HR.ResumeLine do
       public? true
       destination_attribute :line_type_id
     end

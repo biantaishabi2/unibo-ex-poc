@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Marketing.SegmentGroup do
+defmodule UniboExPoc.Ofbiz.Marketing.SegmentGroup do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Marketing,
+    domain: UniboExPoc.Ofbiz.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "marketing_segment_groups"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -35,7 +35,7 @@ defmodule UniboV4.Ofbiz.Marketing.SegmentGroup do
   end
 
   relationships do
-    belongs_to :segment_group_type, UniboV4.Ofbiz.Marketing.SegmentGroupType do
+    belongs_to :segment_group_type, UniboExPoc.Ofbiz.Marketing.SegmentGroupType do
       public? true
     end
   end

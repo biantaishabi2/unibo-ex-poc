@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Security.UserLoginHistory do
+defmodule UniboExPoc.Ofbiz.Security.UserLoginHistory do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Security,
+    domain: UniboExPoc.Ofbiz.Security,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Security.UserLoginHistory do
 
   postgres do
     table "security_user_login_historys"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,10 +44,10 @@ defmodule UniboV4.Ofbiz.Security.UserLoginHistory do
   end
 
   relationships do
-    belongs_to :user_login, UniboV4.Ofbiz.Security.UserLogin do
+    belongs_to :user_login, UniboExPoc.Ofbiz.Security.UserLogin do
       public? true
     end
-    belongs_to :origin_user_login, UniboV4.Ofbiz.Security.UserLogin do
+    belongs_to :origin_user_login, UniboExPoc.Ofbiz.Security.UserLogin do
       public? true
     end
   end

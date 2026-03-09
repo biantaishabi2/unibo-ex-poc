@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.SurveyQuestionCategory do
+defmodule UniboExPoc.Ofbiz.Content.SurveyQuestionCategory do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_survey_question_categories"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,7 +38,7 @@ defmodule UniboV4.Ofbiz.Content.SurveyQuestionCategory do
   end
 
   relationships do
-    belongs_to :parent_survey_question_category, UniboV4.Ofbiz.Content.SurveyQuestionCategory do
+    belongs_to :parent_survey_question_category, UniboExPoc.Ofbiz.Content.SurveyQuestionCategory do
       public? true
       source_attribute :parent_category_id
       attribute_type :string

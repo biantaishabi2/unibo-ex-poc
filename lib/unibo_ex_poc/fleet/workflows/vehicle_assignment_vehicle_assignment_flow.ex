@@ -1,10 +1,10 @@
-defmodule UniboV4.Fleet.Workflows.VehicleAssignment.VehicleAssignmentFlowWorkflow do
+defmodule UniboExPoc.Fleet.Workflows.VehicleAssignment.VehicleAssignmentFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Fleet.VehicleAssignment
+  alias UniboExPoc.Fleet.VehicleAssignment
 
   def steps do
     [:assign, :return, :transfer]
@@ -145,6 +145,7 @@ defmodule UniboV4.Fleet.Workflows.VehicleAssignment.VehicleAssignmentFlowWorkflo
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :assign -> nil
       :return -> nil
@@ -154,6 +155,7 @@ defmodule UniboV4.Fleet.Workflows.VehicleAssignment.VehicleAssignmentFlowWorkflo
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :assign -> false
       :return -> false

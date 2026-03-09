@@ -1,4 +1,4 @@
-defmodule UniboV4.LiveChat.Calculations.LiveChatChannel.AvailableOperatorIds do
+defmodule UniboExPoc.LiveChat.Calculations.LiveChatChannel.AvailableOperatorIds do
   @moduledoc """
   Calculation 模块: :available_operator_ids (type: {:array, :string}, entity: live_chat_channel)
   原始 expr: op: custom args: []

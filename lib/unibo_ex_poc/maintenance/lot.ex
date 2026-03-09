@@ -1,7 +1,7 @@
-defmodule UniboV4.Maintenance.Lot do
+defmodule UniboExPoc.Maintenance.Lot do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Maintenance.Lot do
 
   postgres do
     table "maintenance_lots"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

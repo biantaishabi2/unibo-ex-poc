@@ -4,10 +4,10 @@
 #   [*] --> create
 #   create --> [*]
 # ```
-defmodule UniboV4.Maintenance.Odometer do
+defmodule UniboExPoc.Maintenance.Odometer do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -17,7 +17,7 @@ defmodule UniboV4.Maintenance.Odometer do
 
   postgres do
     table "maintenance_odometers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -59,11 +59,11 @@ defmodule UniboV4.Maintenance.Odometer do
   end
 
   relationships do
-    belongs_to :vehicle, UniboV4.Maintenance.Vehicle do
+    belongs_to :vehicle, UniboExPoc.Maintenance.Vehicle do
       public? true
       allow_nil? false
     end
-    belongs_to :driver, UniboV4.Maintenance.Party do
+    belongs_to :driver, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :driver_party_id
     end

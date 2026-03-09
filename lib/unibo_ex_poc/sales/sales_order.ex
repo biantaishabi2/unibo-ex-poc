@@ -25,14 +25,14 @@
 #   compute_tax --> [*]
 #   aggregate_totals --> [*]
 # ```
-defmodule UniboV4.Sales.SalesOrder do
+defmodule UniboExPoc.Sales.SalesOrder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sales,
+    domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
     authorizers: [Ash.Policy.Authorizer],
-    notifiers: [UniboV4.Sales.SalesOrder.Notifier]
+    notifiers: [UniboExPoc.Sales.SalesOrder.Notifier]
 
   resource do
     description "销售订单（状态机对齐 Odoo：draft → sent → sale → done → cancel）"
@@ -40,7 +40,7 @@ defmodule UniboV4.Sales.SalesOrder do
 
   postgres do
     table "sales_orders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -129,26 +129,26 @@ defmodule UniboV4.Sales.SalesOrder do
   end
 
   relationships do
-    has_many :items, UniboV4.Sales.SalesOrderItem do
+    has_many :items, UniboExPoc.Sales.SalesOrderItem do
       public? true
       destination_attribute :order_id
     end
-    belongs_to :customer, UniboV4.Sales.Customer do
+    belongs_to :customer, UniboExPoc.Sales.Customer do
       public? true
       allow_nil? false
     end
-    belongs_to :shipping_partner, UniboV4.Sales.Customer do
+    belongs_to :shipping_partner, UniboExPoc.Sales.Customer do
       public? true
       allow_nil? false
     end
-    belongs_to :created_by, UniboV4.Sales.Party do
+    belongs_to :created_by, UniboExPoc.Sales.Party do
       public? true
       source_attribute :created_by_party_id
     end
-    has_many :shipments, UniboV4.Sales.SalesOrderShipment do
+    has_many :shipments, UniboExPoc.Sales.SalesOrderShipment do
       public? true
     end
-    has_many :returns, UniboV4.Sales.Return do
+    has_many :returns, UniboExPoc.Sales.Return do
       public? true
     end
   end
@@ -223,8 +223,8 @@ defmodule UniboV4.Sales.SalesOrder do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:state, :sale)
       change set_attribute(:date_order, &DateTime.utc_now/0)
-      change UniboV4.Sales.Changes.SalesOrder.ActionConfirmCreateRelated5
-      change UniboV4.Sales.Changes.SalesOrder.ActionConfirmCall6
+      change UniboExPoc.Sales.Changes.SalesOrder.ActionConfirmCreateRelated5
+      change UniboExPoc.Sales.Changes.SalesOrder.ActionConfirmCall6
       change set_attribute(:locked, true)
       change set_attribute(:id, expr(id))
       require_atomic? false
@@ -250,8 +250,8 @@ defmodule UniboV4.Sales.SalesOrder do
       description "取消订单（any → cancel，locked==false 时可执行）"
       accept []
       # skipped: validate compare :locked (incompatible with bulk update atomic path)
-      change UniboV4.Sales.Changes.SalesOrder.ActionCancelCall10
-      change UniboV4.Sales.Changes.SalesOrder.ActionCancelCall11
+      change UniboExPoc.Sales.Changes.SalesOrder.ActionCancelCall10
+      change UniboExPoc.Sales.Changes.SalesOrder.ActionCancelCall11
       change set_attribute(:state, :cancel)
       change set_attribute(:id, expr(id))
       require_atomic? false
@@ -279,8 +279,8 @@ defmodule UniboV4.Sales.SalesOrder do
       validate attribute_equals(:state, :sale)
       # validation: has_qty_to_invoice — 至少有一行的待开票数量大于0
       run fn input, _context ->
-        # 按客户+币种+公司分组合并创建发票 — 由 Change 模块处理: UniboV4.Sales.Changes.SalesOrder.CreateInvoicesComplex14
-        # 最终发票且金额为负时转为贷项通知单 — 由 Change 模块处理: UniboV4.Sales.Changes.SalesOrder.CreateInvoicesComplex15
+        # 按客户+币种+公司分组合并创建发票 — 由 Change 模块处理: UniboExPoc.Sales.Changes.SalesOrder.CreateInvoicesComplex14
+        # 最终发票且金额为负时转为贷项通知单 — 由 Change 模块处理: UniboExPoc.Sales.Changes.SalesOrder.CreateInvoicesComplex15
         :ok
       end
     end
@@ -306,6 +306,9 @@ defmodule UniboV4.Sales.SalesOrder do
       authorize_if expr(actor.role in [:sales_rep, :admin])
     end
     policy action_type(:read) do
+      authorize_if always()
+    end
+    policy always() do
       authorize_if always()
     end
   end

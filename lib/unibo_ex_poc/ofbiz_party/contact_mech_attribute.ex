@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.ContactMechAttribute do
+defmodule UniboExPoc.Ofbiz.Party.ContactMechAttribute do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_contact_mech_attributes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -45,7 +45,7 @@ defmodule UniboV4.Ofbiz.Party.ContactMechAttribute do
   end
 
   relationships do
-    belongs_to :contact_mech, UniboV4.Ofbiz.Party.ContactMech do
+    belongs_to :contact_mech, UniboExPoc.Ofbiz.Party.ContactMech do
       public? true
     end
   end

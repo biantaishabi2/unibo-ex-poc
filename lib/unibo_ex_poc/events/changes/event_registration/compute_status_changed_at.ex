@@ -1,4 +1,4 @@
-defmodule UniboV4.Events.Changes.EventRegistration.ComputeStatusChangedAt do
+defmodule UniboExPoc.Events.Changes.EventRegistration.ComputeStatusChangedAt do
   @moduledoc """
   Change 模块: 计算 :status_changed_at (entity: event_registration)
   原始 expr: op: func args: - now

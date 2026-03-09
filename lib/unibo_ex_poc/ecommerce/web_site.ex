@@ -1,7 +1,7 @@
-defmodule UniboV4.Ecommerce.WebSite do
+defmodule UniboExPoc.Ecommerce.WebSite do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ecommerce,
+    domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ecommerce.WebSite do
 
   postgres do
     table "ecommerce_web_sites"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

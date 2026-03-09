@@ -1,10 +1,10 @@
-defmodule UniboV4.Lunch.Workflows.LunchProduct.ProductManagementWorkflow do
+defmodule UniboExPoc.Lunch.Workflows.LunchProduct.ProductManagementWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Lunch.LunchProduct
+  alias UniboExPoc.Lunch.LunchProduct
 
   def steps do
     [:create, :update, :toggle_favorite, :destroy]
@@ -149,6 +149,7 @@ defmodule UniboV4.Lunch.Workflows.LunchProduct.ProductManagementWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Lunch.Workflows.LunchProduct.ProductManagementWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

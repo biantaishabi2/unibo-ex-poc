@@ -1,4 +1,4 @@
-defmodule UniboV4.PLM.Calculations.Eco.AllowApply do
+defmodule UniboExPoc.PLM.Calculations.Eco.AllowApply do
   @moduledoc """
   Calculation 模块: :allow_apply (type: :boolean, entity: eco)
   """

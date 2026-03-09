@@ -37,14 +37,14 @@
 #   update --> send_rfq
 #   update --> button_confirm
 # ```
-defmodule UniboV4.Purchasing.PurchaseOrder do
+defmodule UniboExPoc.Purchasing.PurchaseOrder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Purchasing,
+    domain: UniboExPoc.Purchasing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
     authorizers: [Ash.Policy.Authorizer],
-    notifiers: [UniboV4.Purchasing.PurchaseOrder.Notifier]
+    notifiers: [UniboExPoc.Purchasing.PurchaseOrder.Notifier]
 
   resource do
     description "采购订单（状态机对齐 Odoo：draft/sent/to_approve/purchase/done/cancel）"
@@ -52,7 +52,7 @@ defmodule UniboV4.Purchasing.PurchaseOrder do
 
   postgres do
     table "purchasing_purchase_orders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -147,40 +147,40 @@ defmodule UniboV4.Purchasing.PurchaseOrder do
     calculate :amount_untaxed, :decimal, expr(sum(order_lines, field: :price_subtotal, query: [filter: expr(true)]))
     calculate :amount_tax, :decimal, expr(sum(order_lines, field: :price_tax, query: [filter: expr(true)]))
     calculate :amount_total, :decimal, expr((amount_untaxed + amount_tax))
-    calculate :invoice_status, :atom, {UniboV4.Purchasing.Calculations.PurchaseOrder.InvoiceStatus, []}
-    calculate :date_planned, :utc_datetime, {UniboV4.Purchasing.Calculations.PurchaseOrder.DatePlanned, []}
+    calculate :invoice_status, :atom, {UniboExPoc.Purchasing.Calculations.PurchaseOrder.InvoiceStatus, []}
+    calculate :date_planned, :utc_datetime, {UniboExPoc.Purchasing.Calculations.PurchaseOrder.DatePlanned, []}
     calculate :currency_rate, :decimal, expr(amount_total)
     calculate :invoice_count, :integer, expr(count(invoices, query: [filter: expr(true)]))
-    calculate :tax_country_id, :uuid, {UniboV4.Purchasing.Calculations.PurchaseOrder.TaxCountryId, []}
+    calculate :tax_country_id, :uuid, {UniboExPoc.Purchasing.Calculations.PurchaseOrder.TaxCountryId, []}
     calculate :tax_totals, :map, expr(tax_totals)
     calculate :item_count, :integer, expr(count(order_lines, query: [filter: expr(true)]))
   end
 
   relationships do
-    has_many :order_lines, UniboV4.Purchasing.PurchaseOrderLine do
+    has_many :order_lines, UniboExPoc.Purchasing.PurchaseOrderLine do
       public? true
       destination_attribute :order_id
     end
-    belongs_to :supplier, UniboV4.Purchasing.Supplier do
+    belongs_to :supplier, UniboExPoc.Purchasing.Supplier do
       public? true
       allow_nil? false
     end
-    belongs_to :company, UniboV4.Purchasing.Party do
+    belongs_to :company, UniboExPoc.Purchasing.Party do
       public? true
       source_attribute :company_party_id
     end
-    belongs_to :created_by, UniboV4.Purchasing.Party do
+    belongs_to :created_by, UniboExPoc.Purchasing.Party do
       public? true
       source_attribute :created_by_party_id
     end
-    has_many :receipts, UniboV4.Purchasing.GoodsReceipt do
+    has_many :receipts, UniboExPoc.Purchasing.GoodsReceipt do
       public? true
     end
-    has_many :invoices, UniboV4.Purchasing.AccountMove do
+    has_many :invoices, UniboExPoc.Purchasing.AccountMove do
       public? true
       destination_attribute :purchase_order_id
     end
-    belongs_to :requisition, UniboV4.Purchasing.PurchaseRequisition do
+    belongs_to :requisition, UniboExPoc.Purchasing.PurchaseRequisition do
       public? true
     end
   end
@@ -272,9 +272,9 @@ defmodule UniboV4.Purchasing.PurchaseOrder do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
-      change UniboV4.Purchasing.Changes.PurchaseOrder.ComputeStatus
-      change UniboV4.Purchasing.Changes.PurchaseOrder.ButtonConfirmCall12
-      change UniboV4.Purchasing.Changes.PurchaseOrder.ButtonConfirmCall13
+      change UniboExPoc.Purchasing.Changes.PurchaseOrder.ComputeStatus
+      change UniboExPoc.Purchasing.Changes.PurchaseOrder.ButtonConfirmCall12
+      change UniboExPoc.Purchasing.Changes.PurchaseOrder.ButtonConfirmCall13
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -293,8 +293,8 @@ defmodule UniboV4.Purchasing.PurchaseOrder do
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:status, :purchase)
-      change UniboV4.Purchasing.Changes.PurchaseOrder.ComputeDateApprove
-      change UniboV4.Purchasing.Changes.PurchaseOrder.ComputeStatus
+      change UniboExPoc.Purchasing.Changes.PurchaseOrder.ComputeDateApprove
+      change UniboExPoc.Purchasing.Changes.PurchaseOrder.ComputeStatus
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -367,8 +367,8 @@ defmodule UniboV4.Purchasing.PurchaseOrder do
       # precondition: requires invoice_status=:to_invoice
       validate attribute_equals(:invoice_status, :to_invoice)
       change relate_actor(:created_by)
-      change UniboV4.Purchasing.Changes.PurchaseOrder.ActionCreateInvoiceCall14
-      change UniboV4.Purchasing.Changes.PurchaseOrder.ActionCreateInvoiceCall15
+      change UniboExPoc.Purchasing.Changes.PurchaseOrder.ActionCreateInvoiceCall14
+      change UniboExPoc.Purchasing.Changes.PurchaseOrder.ActionCreateInvoiceCall15
       change set_attribute(:id, expr(id))
     end
   end
@@ -402,6 +402,9 @@ defmodule UniboV4.Purchasing.PurchaseOrder do
     end
     policy action(:button_approve) do
       authorize_if expr(actor.role == :purchase_manager or unknown_func())
+    end
+    policy always() do
+      authorize_if always()
     end
   end
 

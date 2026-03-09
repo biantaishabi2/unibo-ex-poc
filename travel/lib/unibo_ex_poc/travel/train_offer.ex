@@ -18,7 +18,7 @@ defmodule UniboExPoc.Travel.TrainOffer do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
+    extensions: [AshGraphql.Resource, AshArchival.Resource],
     notifiers: [UniboExPoc.Travel.TrainOffer.Notifier]
 
   resource do
@@ -258,12 +258,6 @@ defmodule UniboExPoc.Travel.TrainOffer do
 
   identities do
     identity :unique_train_offer_snapshot, [:tenant_id, :supplier_code, :train_no, :departure_station_code, :arrival_station_code, :travel_date, :seat_code, :is_no_seat]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

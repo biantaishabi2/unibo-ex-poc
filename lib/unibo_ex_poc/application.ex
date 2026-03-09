@@ -1,24 +1,29 @@
-defmodule UniboV4.Application do
+defmodule UniboExPoc.Application do
   @moduledoc false
   use Application
 
   @impl true
   def start(_type, _args) do
+    # 动态合并编译器生成的域到 ash_domains 配置
+    existing = Application.get_env(:unibo_ex_poc, :ash_domains, [])
+    generated = UniboExPoc.Generated.DomainRegistry.domains()
+    Application.put_env(:unibo_ex_poc, :ash_domains, Enum.uniq(existing ++ generated))
+
     children = [
       {DNSCluster, query: Application.get_env(:unibo_ex_poc, :dns_cluster_query) || :ignore},
-      UniboV4.Repo,
-      {Phoenix.PubSub, name: UniboV4.PubSub},
-      UniboV4Web.Telemetry,
-      UniboV4Web.Endpoint
+      UniboExPoc.Repo,
+      {Phoenix.PubSub, name: UniboExPoc.PubSub},
+      UniboExPocWeb.Telemetry,
+      UniboExPocWeb.Endpoint
     ]
 
-    opts = [strategy: :one_for_one, name: UniboV4.Supervisor]
+    opts = [strategy: :one_for_one, name: UniboExPoc.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
   @impl true
   def config_change(changed, _new, removed) do
-    UniboV4Web.Endpoint.config_change(changed, removed)
+    UniboExPocWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

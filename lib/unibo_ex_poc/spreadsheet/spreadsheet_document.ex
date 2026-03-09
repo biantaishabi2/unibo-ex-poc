@@ -7,10 +7,10 @@
 #   create_from_template --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Spreadsheet.SpreadsheetDocument do
+defmodule UniboExPoc.Spreadsheet.SpreadsheetDocument do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Spreadsheet,
+    domain: UniboExPoc.Spreadsheet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Spreadsheet.SpreadsheetDocument do
 
   postgres do
     table "spreadsheet_documents"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -92,26 +92,26 @@ defmodule UniboV4.Spreadsheet.SpreadsheetDocument do
 
   calculations do
     calculate :sheet_count, :integer, expr(length(sheets))
-    calculate :collaborator_count, :integer, {UniboV4.Spreadsheet.Calculations.SpreadsheetDocument.CollaboratorCount, []}
+    calculate :collaborator_count, :integer, {UniboExPoc.Spreadsheet.Calculations.SpreadsheetDocument.CollaboratorCount, []}
   end
 
   relationships do
-    belongs_to :owner, UniboV4.Spreadsheet.Party do
+    belongs_to :owner, UniboExPoc.Spreadsheet.Party do
       public? true
       allow_nil? false
       source_attribute :owner_party_id
     end
-    has_many :data_sources, UniboV4.Spreadsheet.DataSource do
+    has_many :data_sources, UniboExPoc.Spreadsheet.DataSource do
       public? true
       source_attribute :owner_party_id
       destination_attribute :document_id
     end
-    has_many :global_filters, UniboV4.Spreadsheet.GlobalFilter do
+    has_many :global_filters, UniboExPoc.Spreadsheet.GlobalFilter do
       public? true
       source_attribute :owner_party_id
       destination_attribute :document_id
     end
-    has_many :revisions, UniboV4.Spreadsheet.Revision do
+    has_many :revisions, UniboExPoc.Spreadsheet.Revision do
       public? true
       source_attribute :owner_party_id
       destination_attribute :document_id

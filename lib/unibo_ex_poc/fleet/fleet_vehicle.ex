@@ -7,13 +7,13 @@
 #   update --> decommission
 #   decommission --> [*]
 # ```
-defmodule UniboV4.Fleet.FleetVehicle do
+defmodule UniboExPoc.Fleet.FleetVehicle do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Fleet,
+    domain: UniboExPoc.Fleet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Fleet.FleetVehicle.Notifier]
+    notifiers: [UniboExPoc.Fleet.FleetVehicle.Notifier]
 
   resource do
     description "车队车辆主数据，来源于 OFBiz FixedAsset，过滤类型为 FLEET_VEHICLE（区别于 Maintenance 域的 VEHICLE）"
@@ -21,7 +21,7 @@ defmodule UniboV4.Fleet.FleetVehicle do
 
   postgres do
     table "fleet_vehicles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -126,25 +126,25 @@ defmodule UniboV4.Fleet.FleetVehicle do
 
   calculations do
     calculate :is_overdue_service, :boolean, expr(is_past(next_service_date))
-    calculate :total_service_cost, :decimal, {UniboV4.Fleet.Calculations.FleetVehicle.TotalServiceCost, []}
+    calculate :total_service_cost, :decimal, {UniboExPoc.Fleet.Calculations.FleetVehicle.TotalServiceCost, []}
     calculate :days_until_next_service, :integer, expr(date_diff_days(next_service_date, now()))
   end
 
   relationships do
-    belongs_to :vehicle_type, UniboV4.Fleet.FleetVehicleType do
+    belongs_to :vehicle_type, UniboExPoc.Fleet.FleetVehicleType do
       public? true
     end
-    has_many :assignments, UniboV4.Fleet.VehicleAssignment do
-      public? true
-      source_attribute :vehicle_type_id
-      destination_attribute :fleet_vehicle_id
-    end
-    has_many :services, UniboV4.Fleet.VehicleService do
+    has_many :assignments, UniboExPoc.Fleet.VehicleAssignment do
       public? true
       source_attribute :vehicle_type_id
       destination_attribute :fleet_vehicle_id
     end
-    has_many :contracts, UniboV4.Fleet.VehicleContract do
+    has_many :services, UniboExPoc.Fleet.VehicleService do
+      public? true
+      source_attribute :vehicle_type_id
+      destination_attribute :fleet_vehicle_id
+    end
+    has_many :contracts, UniboExPoc.Fleet.VehicleContract do
       public? true
       source_attribute :vehicle_type_id
       destination_attribute :fleet_vehicle_id

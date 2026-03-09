@@ -14,10 +14,10 @@
 #   archive --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Studio.CustomField do
+defmodule UniboExPoc.Studio.CustomField do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Studio,
+    domain: UniboExPoc.Studio,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -27,7 +27,7 @@ defmodule UniboV4.Studio.CustomField do
 
   postgres do
     table "studio_custom_fields"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -134,12 +134,12 @@ defmodule UniboV4.Studio.CustomField do
   end
 
   relationships do
-    belongs_to :model, UniboV4.Studio.CustomModel do
+    belongs_to :model, UniboExPoc.Studio.CustomModel do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    belongs_to :related_model, UniboV4.Studio.CustomModel do
+    belongs_to :related_model, UniboExPoc.Studio.CustomModel do
       public? true
       attribute_type :integer
     end

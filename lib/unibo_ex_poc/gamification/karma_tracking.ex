@@ -4,10 +4,10 @@
 #   [*] --> create
 #   create --> [*]
 # ```
-defmodule UniboV4.Gamification.KarmaTracking do
+defmodule UniboExPoc.Gamification.KarmaTracking do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Gamification,
+    domain: UniboExPoc.Gamification,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -17,7 +17,7 @@ defmodule UniboV4.Gamification.KarmaTracking do
 
   postgres do
     table "gamification_karma_trackings"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -68,7 +68,7 @@ defmodule UniboV4.Gamification.KarmaTracking do
   end
 
   relationships do
-    belongs_to :user, UniboV4.Gamification.Party do
+    belongs_to :user, UniboExPoc.Gamification.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id

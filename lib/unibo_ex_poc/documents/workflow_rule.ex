@@ -7,10 +7,10 @@
 #   execute --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Documents.WorkflowRule do
+defmodule UniboExPoc.Documents.WorkflowRule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Documents,
+    domain: UniboExPoc.Documents,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Documents.WorkflowRule do
 
   postgres do
     table "documents_workflow_rules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -99,47 +99,47 @@ defmodule UniboV4.Documents.WorkflowRule do
   end
 
   relationships do
-    belongs_to :folder, UniboV4.Documents.Document do
+    belongs_to :folder, UniboExPoc.Documents.Document do
       public? true
       allow_nil? false
     end
-    many_to_many :required_tags, UniboV4.Documents.Tag do
+    many_to_many :required_tags, UniboExPoc.Documents.Tag do
       public? true
-      through UniboV4.Documents.WorkflowRuleRequiredTagLink
+      through UniboExPoc.Documents.WorkflowRuleRequiredTagLink
     end
-    many_to_many :excluded_tags, UniboV4.Documents.Tag do
+    many_to_many :excluded_tags, UniboExPoc.Documents.Tag do
       public? true
-      through UniboV4.Documents.WorkflowRuleExcludedTagLink
+      through UniboExPoc.Documents.WorkflowRuleExcludedTagLink
     end
-    many_to_many :tag_actions, UniboV4.Documents.Tag do
+    many_to_many :tag_actions, UniboExPoc.Documents.Tag do
       public? true
-      through UniboV4.Documents.WorkflowRuleTagActionLink
+      through UniboExPoc.Documents.WorkflowRuleTagActionLink
     end
-    many_to_many :remove_tags, UniboV4.Documents.Tag do
+    many_to_many :remove_tags, UniboExPoc.Documents.Tag do
       public? true
-      through UniboV4.Documents.WorkflowRuleRemoveTagLink
+      through UniboExPoc.Documents.WorkflowRuleRemoveTagLink
     end
-    belongs_to :partner, UniboV4.Documents.Contact do
+    belongs_to :partner, UniboExPoc.Documents.Contact do
       public? true
     end
-    belongs_to :owner, UniboV4.Documents.Party do
+    belongs_to :owner, UniboExPoc.Documents.Party do
       public? true
       source_attribute :owner_party_id
     end
-    belongs_to :folder_action, UniboV4.Documents.Document do
+    belongs_to :folder_action, UniboExPoc.Documents.Document do
       public? true
     end
-    belongs_to :partner_action, UniboV4.Documents.Contact do
+    belongs_to :partner_action, UniboExPoc.Documents.Contact do
       public? true
     end
-    belongs_to :owner_action, UniboV4.Documents.Party do
+    belongs_to :owner_action, UniboExPoc.Documents.Party do
       public? true
       source_attribute :owner_action_party_id
     end
-    belongs_to :activity_type, UniboV4.Documents.ActivityType do
+    belongs_to :activity_type, UniboExPoc.Documents.ActivityType do
       public? true
     end
-    belongs_to :activity_user, UniboV4.Documents.Party do
+    belongs_to :activity_user, UniboExPoc.Documents.Party do
       public? true
       source_attribute :activity_user_party_id
     end

@@ -8,13 +8,13 @@
 #   process --> [*] : processed
 #   reject --> [*] : rejected
 # ```
-defmodule UniboV4.Payment.PaymentRefund do
+defmodule UniboExPoc.Payment.PaymentRefund do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Payment,
+    domain: UniboExPoc.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Payment.PaymentRefund.Notifier]
+    notifiers: [UniboExPoc.Payment.PaymentRefund.Notifier]
 
   resource do
     description "支付退款记录，记录每笔退款的金额、原因、状态和处理时间"
@@ -22,7 +22,7 @@ defmodule UniboV4.Payment.PaymentRefund do
 
   postgres do
     table "payment_refunds"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -73,7 +73,7 @@ defmodule UniboV4.Payment.PaymentRefund do
   end
 
   relationships do
-    belongs_to :payment, UniboV4.Payment.Payment do
+    belongs_to :payment, UniboExPoc.Payment.Payment do
       public? true
       allow_nil? false
     end

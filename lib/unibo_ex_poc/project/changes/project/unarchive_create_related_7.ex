@@ -1,7 +1,5 @@
-defmodule UniboV4.Project.Changes.Project.UnarchiveCreateRelated7 do
+defmodule UniboExPoc.Project.Changes.Project.UnarchiveCreateRelated7 do
   use Ash.Resource.Change
-
-  alias UniboV4.Project.ProjectUpdate
 
   @impl true
   def change(changeset, _opts, context) do
@@ -10,7 +8,7 @@ defmodule UniboV4.Project.Changes.Project.UnarchiveCreateRelated7 do
     opts = ash_call_opts(actor, tenant)
     params = %{}
 
-    case Ash.create(Ash.Changeset.for_create(UniboV4.Project.ProjectUpdate, :create, params), opts) do
+    case Ash.create(Ash.Changeset.for_create(UniboExPoc.Project.ProjectUpdate, :create, params), opts) do
       {:ok, _created} -> changeset
       {:error, reason} ->
         Ash.Changeset.add_error(changeset, "create_related ProjectUpdate 失败: #{inspect(reason)}")

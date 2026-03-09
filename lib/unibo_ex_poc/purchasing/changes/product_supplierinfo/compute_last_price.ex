@@ -1,4 +1,4 @@
-defmodule UniboV4.Purchasing.Changes.ProductSupplierinfo.ComputeLastPrice do
+defmodule UniboExPoc.Purchasing.Changes.ProductSupplierinfo.ComputeLastPrice do
   @moduledoc """
   Change 模块: 计算 :last_price (entity: product_supplierinfo)
   """

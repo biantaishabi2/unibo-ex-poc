@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.IoT.VoIPProvider do
+defmodule UniboExPoc.IoT.VoIPProvider do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.IoT.VoIPProvider do
 
   postgres do
     table "io_t_vo_ip_providers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -109,17 +109,17 @@ defmodule UniboV4.IoT.VoIPProvider do
   end
 
   relationships do
-    belongs_to :org, UniboV4.IoT.Org do
+    belongs_to :org, UniboExPoc.IoT.Org do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    has_many :calls, UniboV4.IoT.VoIPCall do
+    has_many :calls, UniboExPoc.IoT.VoIPCall do
       public? true
       source_attribute :org_id
       destination_attribute :provider_id
     end
-    has_many :user_configs, UniboV4.IoT.VoIPUserConfig do
+    has_many :user_configs, UniboExPoc.IoT.VoIPUserConfig do
       public? true
       source_attribute :org_id
       destination_attribute :provider_id

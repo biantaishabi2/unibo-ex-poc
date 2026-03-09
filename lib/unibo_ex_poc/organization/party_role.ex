@@ -1,7 +1,7 @@
-defmodule UniboV4.Organization.PartyRole do
+defmodule UniboExPoc.Organization.PartyRole do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Organization,
+    domain: UniboExPoc.Organization,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Organization.PartyRole do
 
   postgres do
     table "organization_party_roles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,7 +44,7 @@ defmodule UniboV4.Organization.PartyRole do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Organization.Party do
+    belongs_to :party, UniboExPoc.Organization.Party do
       public? true
       allow_nil? false
     end

@@ -1,4 +1,4 @@
-defmodule UniboV4.Documents.Changes.Share.ComputeAccessToken do
+defmodule UniboExPoc.Documents.Changes.Share.ComputeAccessToken do
   @moduledoc """
   Change 模块: 计算 :access_token (entity: share)
   原始 expr: op: func args: - uuid_v4

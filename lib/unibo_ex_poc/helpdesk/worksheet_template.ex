@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Helpdesk.WorksheetTemplate do
+defmodule UniboExPoc.Helpdesk.WorksheetTemplate do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Helpdesk.WorksheetTemplate do
 
   postgres do
     table "helpdesk_worksheet_templates"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -64,11 +64,11 @@ defmodule UniboV4.Helpdesk.WorksheetTemplate do
   end
 
   relationships do
-    has_many :service_orders, UniboV4.Helpdesk.FieldServiceOrder do
+    has_many :service_orders, UniboExPoc.Helpdesk.FieldServiceOrder do
       public? true
       destination_attribute :worksheet_template_id
     end
-    has_many :worksheets, UniboV4.Helpdesk.Worksheet do
+    has_many :worksheets, UniboExPoc.Helpdesk.Worksheet do
       public? true
       destination_attribute :template_id
     end

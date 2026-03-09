@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.GlAccountGroupMember do
+defmodule UniboExPoc.Ofbiz.Accounting.GlAccountGroupMember do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_gl_account_group_members"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -32,13 +32,13 @@ defmodule UniboV4.Ofbiz.Accounting.GlAccountGroupMember do
   end
 
   relationships do
-    belongs_to :gl_account, UniboV4.Ofbiz.Accounting.GlAccount do
+    belongs_to :gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
     end
-    belongs_to :gl_account_group, UniboV4.Ofbiz.Accounting.GlAccountGroup do
+    belongs_to :gl_account_group, UniboExPoc.Ofbiz.Accounting.GlAccountGroup do
       public? true
     end
-    belongs_to :gl_account_group_type, UniboV4.Ofbiz.Accounting.GlAccountGroupType do
+    belongs_to :gl_account_group_type, UniboExPoc.Ofbiz.Accounting.GlAccountGroupType do
       public? true
     end
   end

@@ -1,4 +1,4 @@
-defmodule UniboV4.Travel.Integration.Runtime do
+defmodule UniboExPoc.Travel.Integration.Runtime do
   @moduledoc false
 
   @error_code_provider_not_found "provider_not_found"

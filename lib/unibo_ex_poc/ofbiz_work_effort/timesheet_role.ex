@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.TimesheetRole do
+defmodule UniboExPoc.Ofbiz.WorkEffort.TimesheetRole do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_timesheet_roles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -32,15 +32,15 @@ defmodule UniboV4.Ofbiz.WorkEffort.TimesheetRole do
   end
 
   relationships do
-    belongs_to :timesheet, UniboV4.Ofbiz.WorkEffort.Timesheet do
+    belongs_to :timesheet, UniboExPoc.Ofbiz.WorkEffort.Timesheet do
       public? true
       attribute_type :string
     end
-    belongs_to :party, UniboV4.Ofbiz.WorkEffort.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.WorkEffort.Party do
       public? true
       attribute_type :string
     end
-    belongs_to :role_type, UniboV4.Ofbiz.WorkEffort.RoleType do
+    belongs_to :role_type, UniboExPoc.Ofbiz.WorkEffort.RoleType do
       public? true
       attribute_type :string
     end

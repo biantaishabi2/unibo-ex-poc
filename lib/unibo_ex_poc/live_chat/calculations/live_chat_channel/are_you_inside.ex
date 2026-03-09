@@ -1,4 +1,4 @@
-defmodule UniboV4.LiveChat.Calculations.LiveChatChannel.AreYouInside do
+defmodule UniboExPoc.LiveChat.Calculations.LiveChatChannel.AreYouInside do
   @moduledoc """
   Calculation 模块: :are_you_inside (type: :boolean, entity: live_chat_channel)
   原始 expr: op: in args: - op: ref   args:   - actor   - id - op: ref   args:   - user_ids

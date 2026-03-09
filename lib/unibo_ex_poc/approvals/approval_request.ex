@@ -25,13 +25,13 @@
 #   cancel --> [*]
 #   draft --> [*]
 # ```
-defmodule UniboV4.Approvals.ApprovalRequest do
+defmodule UniboExPoc.Approvals.ApprovalRequest do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Approvals,
+    domain: UniboExPoc.Approvals,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Approvals.ApprovalRequest.Notifier]
+    notifiers: [UniboExPoc.Approvals.ApprovalRequest.Notifier]
 
   resource do
     description "审批请求单，关联审批类型并管理审批生命周期"
@@ -39,7 +39,7 @@ defmodule UniboV4.Approvals.ApprovalRequest do
 
   postgres do
     table "approvals_approval_requests"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -105,27 +105,27 @@ defmodule UniboV4.Approvals.ApprovalRequest do
   end
 
   calculations do
-    calculate :approved_count, :integer, {UniboV4.Approvals.Calculations.ApprovalRequest.ApprovedCount, []}
+    calculate :approved_count, :integer, {UniboExPoc.Approvals.Calculations.ApprovalRequest.ApprovedCount, []}
     calculate :all_required_approved, :boolean, expr(all("status" == "approved"))
   end
 
   relationships do
-    belongs_to :category, UniboV4.Approvals.ApprovalCategory do
+    belongs_to :category, UniboExPoc.Approvals.ApprovalCategory do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    belongs_to :requester, UniboV4.Approvals.Party do
+    belongs_to :requester, UniboExPoc.Approvals.Party do
       public? true
       allow_nil? false
       source_attribute :requester_party_id
     end
-    belongs_to :company, UniboV4.Approvals.Party do
+    belongs_to :company, UniboExPoc.Approvals.Party do
       public? true
       allow_nil? false
       source_attribute :company_party_id
     end
-    has_many :approvers, UniboV4.Approvals.Approver do
+    has_many :approvers, UniboExPoc.Approvals.Approver do
       public? true
       destination_attribute :request_id
     end
@@ -162,7 +162,7 @@ defmodule UniboV4.Approvals.ApprovalRequest do
       end
       # message: "只有草稿状态可以提交"
       change set_attribute(:status, :pending)
-      change UniboV4.Approvals.Changes.ApprovalRequest.ComputeRequestDate
+      change UniboExPoc.Approvals.Changes.ApprovalRequest.ComputeRequestDate
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -179,7 +179,7 @@ defmodule UniboV4.Approvals.ApprovalRequest do
       end
       # message: "只有待审批状态可以通过"
       change set_attribute(:status, :approved)
-      change UniboV4.Approvals.Changes.ApprovalRequest.ComputeDateConfirmed
+      change UniboExPoc.Approvals.Changes.ApprovalRequest.ComputeDateConfirmed
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -196,7 +196,7 @@ defmodule UniboV4.Approvals.ApprovalRequest do
       end
       # message: "只有待审批状态可以拒绝"
       change set_attribute(:status, :refused)
-      change UniboV4.Approvals.Changes.ApprovalRequest.ComputeDateConfirmed
+      change UniboExPoc.Approvals.Changes.ApprovalRequest.ComputeDateConfirmed
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

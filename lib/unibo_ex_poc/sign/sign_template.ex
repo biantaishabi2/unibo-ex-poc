@@ -7,10 +7,10 @@
 #   archive --> [*]
 #   activate --> [*]
 # ```
-defmodule UniboV4.Sign.SignTemplate do
+defmodule UniboExPoc.Sign.SignTemplate do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sign,
+    domain: UniboExPoc.Sign,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Sign.SignTemplate do
 
   postgres do
     table "sign_templates"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -81,16 +81,16 @@ defmodule UniboV4.Sign.SignTemplate do
   end
 
   relationships do
-    belongs_to :responsible, UniboV4.Sign.Party do
+    belongs_to :responsible, UniboExPoc.Sign.Party do
       public? true
       source_attribute :responsible_party_id
     end
-    has_many :sign_items, UniboV4.Sign.SignItem do
+    has_many :sign_items, UniboExPoc.Sign.SignItem do
       public? true
       source_attribute :responsible_party_id
       destination_attribute :template_id
     end
-    has_many :sign_requests, UniboV4.Sign.SignRequest do
+    has_many :sign_requests, UniboExPoc.Sign.SignRequest do
       public? true
       source_attribute :responsible_party_id
       destination_attribute :template_id

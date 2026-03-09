@@ -10,8 +10,6 @@ defmodule UniboExPoc.Application do
       {Phoenix.PubSub, name: UniboExPoc.PubSub},
       UniboExPocWeb.Telemetry,
       UniboExPocWeb.Endpoint,
-      UniboExPoc.PolicyAudit.Store,
-      UniboExPoc.PolicyAudit.Telemetry,
       UniboExPoc.AsyncRuntime.Store,
       UniboExPoc.AsyncRuntime.Queue,
       UniboExPoc.AsyncRuntime.Telemetry

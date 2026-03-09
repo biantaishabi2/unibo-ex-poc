@@ -9,13 +9,13 @@
 #   recompute_completion --> recompute_completion
 #   destroy --> [*]
 # ```
-defmodule UniboV4.ELearning.Enrollment do
+defmodule UniboExPoc.ELearning.Enrollment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.ELearning,
+    domain: UniboExPoc.ELearning,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.ELearning.Enrollment.Notifier]
+    notifiers: [UniboExPoc.ELearning.Enrollment.Notifier]
 
   resource do
     description "学员与课程的注册关系，跟踪学习进度和完成状态"
@@ -23,7 +23,7 @@ defmodule UniboV4.ELearning.Enrollment do
 
   postgres do
     table "e_learning_enrollments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -72,16 +72,16 @@ defmodule UniboV4.ELearning.Enrollment do
   end
 
   relationships do
-    belongs_to :channel, UniboV4.ELearning.Course do
+    belongs_to :channel, UniboExPoc.ELearning.Course do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.ELearning.Party do
+    belongs_to :partner, UniboExPoc.ELearning.Party do
       public? true
       allow_nil? false
       source_attribute :partner_party_id
     end
-    has_many :slide_progress, UniboV4.ELearning.SlideProgress do
+    has_many :slide_progress, UniboExPoc.ELearning.SlideProgress do
       public? true
       destination_attribute :enrollment_id
     end
@@ -120,7 +120,7 @@ defmodule UniboV4.ELearning.Enrollment do
     update :recompute_completion do
       description "重新计算完成度（由 SlideProgress 变更触发）"
       accept []
-      change UniboV4.ELearning.Changes.Enrollment.ComputeCompletion
+      change UniboExPoc.ELearning.Changes.Enrollment.ComputeCompletion
       change set_attribute(:member_status, :ongoing)
       change set_attribute(:member_status, :completed)
       change set_attribute(:id, expr(id))

@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Quality.QualityTeam do
+defmodule UniboExPoc.Quality.QualityTeam do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Quality,
+    domain: UniboExPoc.Quality,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Quality.QualityTeam do
 
   postgres do
     table "quality_teams"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -56,20 +56,20 @@ defmodule UniboV4.Quality.QualityTeam do
   end
 
   relationships do
-    many_to_many :members, UniboV4.Quality.Party do
+    many_to_many :members, UniboExPoc.Quality.Party do
       public? true
-      through UniboV4.Quality.QualityTeamMemberLink
+      through UniboExPoc.Quality.QualityTeamMemberLink
       destination_attribute_on_join_resource :member_party_id
     end
-    has_many :quality_points, UniboV4.Quality.QualityPoint do
+    has_many :quality_points, UniboExPoc.Quality.QualityPoint do
       public? true
       destination_attribute :team_id
     end
-    has_many :quality_checks, UniboV4.Quality.QualityCheck do
+    has_many :quality_checks, UniboExPoc.Quality.QualityCheck do
       public? true
       destination_attribute :team_id
     end
-    has_many :quality_alerts, UniboV4.Quality.QualityAlert do
+    has_many :quality_alerts, UniboExPoc.Quality.QualityAlert do
       public? true
       destination_attribute :team_id
     end

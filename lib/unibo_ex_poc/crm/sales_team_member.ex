@@ -1,7 +1,7 @@
-defmodule UniboV4.CRM.SalesTeamMember do
+defmodule UniboExPoc.CRM.SalesTeamMember do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.CRM,
+    domain: UniboExPoc.CRM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.CRM.SalesTeamMember do
 
   postgres do
     table "crm_sales_team_members"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -43,11 +43,11 @@ defmodule UniboV4.CRM.SalesTeamMember do
   end
 
   relationships do
-    belongs_to :team, UniboV4.CRM.SalesTeam do
+    belongs_to :team, UniboExPoc.CRM.SalesTeam do
       public? true
       allow_nil? false
     end
-    belongs_to :user, UniboV4.CRM.Party do
+    belongs_to :user, UniboExPoc.CRM.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id
@@ -66,7 +66,7 @@ defmodule UniboV4.CRM.SalesTeamMember do
       validate present(:team_id)
       validate present(:user_id)
       validate present(:team_id)
-      change UniboV4.CRM.Changes.SalesTeamMember.CreateCall1
+      change UniboExPoc.CRM.Changes.SalesTeamMember.CreateCall1
       change set_attribute(:id, expr(id))
     end
     update :update do

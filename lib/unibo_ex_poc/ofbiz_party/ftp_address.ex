@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.FtpAddress do
+defmodule UniboExPoc.Ofbiz.Party.FtpAddress do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_ftp_addresses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -68,7 +68,7 @@ defmodule UniboV4.Ofbiz.Party.FtpAddress do
   end
 
   relationships do
-    belongs_to :contact_mech, UniboV4.Ofbiz.Party.ContactMech do
+    belongs_to :contact_mech, UniboExPoc.Ofbiz.Party.ContactMech do
       public? true
     end
   end

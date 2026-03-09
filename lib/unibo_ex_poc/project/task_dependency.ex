@@ -5,10 +5,10 @@
 #   create --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Project.TaskDependency do
+defmodule UniboExPoc.Project.TaskDependency do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Project,
+    domain: UniboExPoc.Project,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Project.TaskDependency do
 
   postgres do
     table "project_task_dependencies"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -49,11 +49,11 @@ defmodule UniboV4.Project.TaskDependency do
   end
 
   relationships do
-    belongs_to :task, UniboV4.Project.Task do
+    belongs_to :task, UniboExPoc.Project.Task do
       public? true
       allow_nil? false
     end
-    belongs_to :depends_on, UniboV4.Project.Task do
+    belongs_to :depends_on, UniboExPoc.Project.Task do
       public? true
       allow_nil? false
     end
@@ -68,7 +68,7 @@ defmodule UniboV4.Project.TaskDependency do
       argument :depends_on_id, :uuid, allow_nil?: false
       change manage_relationship(:task_id, :task, type: :append, on_lookup: :relate)
       change manage_relationship(:depends_on_id, :depends_on, type: :append, on_lookup: :relate)
-      validate {UniboV4.Project.Validations.TaskDependency.NoCircularDependency, []}
+      validate {UniboExPoc.Project.Validations.TaskDependency.NoCircularDependency, []}
       # message: "禁止循环依赖"
       change set_attribute(:id, expr(id))
     end

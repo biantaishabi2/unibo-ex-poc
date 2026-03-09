@@ -41,6 +41,8 @@ defmodule UniboExPoc.Ofbiz.Accounting.PaymentGatewayConfigType do
     end
     has_many :sibling_payment_gateway_config_type, UniboExPoc.Ofbiz.Accounting.PaymentGatewayConfigType do
       public? true
+      source_attribute :parent_type_id
+      destination_attribute :parent_type_id
     end
   end
 

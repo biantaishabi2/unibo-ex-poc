@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Gamification.ChallengeLine do
+defmodule UniboExPoc.Gamification.ChallengeLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Gamification,
+    domain: UniboExPoc.Gamification,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.Gamification.ChallengeLine do
 
   postgres do
     table "gamification_challenge_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -56,15 +56,15 @@ defmodule UniboV4.Gamification.ChallengeLine do
   end
 
   relationships do
-    belongs_to :challenge, UniboV4.Gamification.Challenge do
+    belongs_to :challenge, UniboExPoc.Gamification.Challenge do
       public? true
       allow_nil? false
     end
-    belongs_to :definition, UniboV4.Gamification.GoalDefinition do
+    belongs_to :definition, UniboExPoc.Gamification.GoalDefinition do
       public? true
       allow_nil? false
     end
-    has_many :goals, UniboV4.Gamification.Goal do
+    has_many :goals, UniboExPoc.Gamification.Goal do
       public? true
       destination_attribute :line_id
     end

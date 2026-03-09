@@ -1,10 +1,10 @@
-defmodule UniboV4.Rating.RatingSummary do
+defmodule UniboExPoc.Rating.RatingSummary do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Rating,
+    domain: UniboExPoc.Rating,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Rating.RatingSummary.Notifier]
+    notifiers: [UniboExPoc.Rating.RatingSummary.Notifier]
 
   resource do
     description "评价汇总统计（某对象的平均分、评价数、各星级分布），只读聚合实体"
@@ -12,7 +12,7 @@ defmodule UniboV4.Rating.RatingSummary do
 
   postgres do
     table "rating_summaries"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

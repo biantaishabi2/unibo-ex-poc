@@ -1,7 +1,7 @@
-defmodule UniboV4.Blog.WebsiteTrack do
+defmodule UniboExPoc.Blog.WebsiteTrack do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Blog,
+    domain: UniboExPoc.Blog,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Blog.WebsiteTrack do
 
   postgres do
     table "blog_website_tracks"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -30,7 +30,7 @@ defmodule UniboV4.Blog.WebsiteTrack do
   end
 
   relationships do
-    belongs_to :visitor, UniboV4.Blog.Visitor do
+    belongs_to :visitor, UniboExPoc.Blog.Visitor do
       public? true
     end
   end

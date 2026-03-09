@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.PartyQual do
+defmodule UniboExPoc.Ofbiz.HumanRes.PartyQual do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_party_quals"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -42,20 +42,20 @@ defmodule UniboV4.Ofbiz.HumanRes.PartyQual do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Ofbiz.HumanRes.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.HumanRes.Party do
       public? true
       attribute_type :string
     end
-    belongs_to :party_qual_type, UniboV4.Ofbiz.HumanRes.PartyQualType do
+    belongs_to :party_qual_type, UniboExPoc.Ofbiz.HumanRes.PartyQualType do
       public? true
       attribute_type :string
     end
-    belongs_to :status_item, UniboV4.Ofbiz.HumanRes.StatusItem do
+    belongs_to :status_item, UniboExPoc.Ofbiz.HumanRes.StatusItem do
       public? true
       source_attribute :status_id
       attribute_type :string
     end
-    belongs_to :verification_status_item, UniboV4.Ofbiz.HumanRes.StatusItem do
+    belongs_to :verification_status_item, UniboExPoc.Ofbiz.HumanRes.StatusItem do
       public? true
       source_attribute :verif_status_id
       attribute_type :string

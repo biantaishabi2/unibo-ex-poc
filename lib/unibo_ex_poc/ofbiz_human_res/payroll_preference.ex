@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.PayrollPreference do
+defmodule UniboExPoc.Ofbiz.HumanRes.PayrollPreference do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_payroll_preferences"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -51,19 +51,19 @@ defmodule UniboV4.Ofbiz.HumanRes.PayrollPreference do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Ofbiz.HumanRes.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.HumanRes.Party do
       public? true
       attribute_type :string
     end
-    belongs_to :deduction_type, UniboV4.Ofbiz.HumanRes.DeductionType do
+    belongs_to :deduction_type, UniboExPoc.Ofbiz.HumanRes.DeductionType do
       public? true
       attribute_type :string
     end
-    belongs_to :payment_method_type, UniboV4.Ofbiz.HumanRes.PaymentMethodType do
+    belongs_to :payment_method_type, UniboExPoc.Ofbiz.HumanRes.PaymentMethodType do
       public? true
       attribute_type :string
     end
-    belongs_to :period_type, UniboV4.Ofbiz.HumanRes.PeriodType do
+    belongs_to :period_type, UniboExPoc.Ofbiz.HumanRes.PeriodType do
       public? true
       attribute_type :string
     end

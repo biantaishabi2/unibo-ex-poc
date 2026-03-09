@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Currency.CurrencyRate do
+defmodule UniboExPoc.Currency.CurrencyRate do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Currency,
+    domain: UniboExPoc.Currency,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Currency.CurrencyRate do
 
   postgres do
     table "currency_rates"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -65,10 +65,10 @@ defmodule UniboV4.Currency.CurrencyRate do
   end
 
   relationships do
-    belongs_to :from_currency, UniboV4.Currency.Currency do
+    belongs_to :from_currency, UniboExPoc.Currency.Currency do
       public? true
     end
-    belongs_to :to_currency, UniboV4.Currency.Currency do
+    belongs_to :to_currency, UniboExPoc.Currency.Currency do
       public? true
     end
   end

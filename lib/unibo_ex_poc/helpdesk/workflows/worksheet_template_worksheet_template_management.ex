@@ -1,10 +1,10 @@
-defmodule UniboV4.Helpdesk.Workflows.WorksheetTemplate.WorksheetTemplateManagementWorkflow do
+defmodule UniboExPoc.Helpdesk.Workflows.WorksheetTemplate.WorksheetTemplateManagementWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Helpdesk.WorksheetTemplate
+  alias UniboExPoc.Helpdesk.WorksheetTemplate
 
   def steps do
     [:create, :update]
@@ -141,6 +141,7 @@ defmodule UniboV4.Helpdesk.Workflows.WorksheetTemplate.WorksheetTemplateManageme
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -149,6 +150,7 @@ defmodule UniboV4.Helpdesk.Workflows.WorksheetTemplate.WorksheetTemplateManageme
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

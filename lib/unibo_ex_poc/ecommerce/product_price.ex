@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Ecommerce.ProductPrice do
+defmodule UniboExPoc.Ecommerce.ProductPrice do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ecommerce,
+    domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Ecommerce.ProductPrice do
 
   postgres do
     table "ecommerce_product_prices"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -61,12 +61,12 @@ defmodule UniboV4.Ecommerce.ProductPrice do
   end
 
   calculations do
-    calculate :is_active, :boolean, {UniboV4.Ecommerce.Calculations.ProductPrice.IsActive, []}
+    calculate :is_active, :boolean, {UniboExPoc.Ecommerce.Calculations.ProductPrice.IsActive, []}
     calculate :effective_price, :decimal, expr(amount)
   end
 
   relationships do
-    belongs_to :product, UniboV4.Ecommerce.ProductTemplate do
+    belongs_to :product, UniboExPoc.Ecommerce.ProductTemplate do
       public? true
       allow_nil? false
     end
@@ -84,7 +84,7 @@ defmodule UniboV4.Ecommerce.ProductPrice do
     update :update do
       primary? true
       accept [:amount, :thru_date]
-      change UniboV4.Ecommerce.Changes.ProductPrice.UpdateCall1
+      change UniboExPoc.Ecommerce.Changes.ProductPrice.UpdateCall1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

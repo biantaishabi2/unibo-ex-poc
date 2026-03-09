@@ -1,10 +1,10 @@
-defmodule UniboV4.ELearning.Workflows.Slide.SlideLifecycleWorkflow do
+defmodule UniboExPoc.ELearning.Workflows.Slide.SlideLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.ELearning.Slide
+  alias UniboExPoc.ELearning.Slide
 
   def steps do
     [:create, :update, :publish, :unpublish, :destroy]
@@ -153,6 +153,7 @@ defmodule UniboV4.ELearning.Workflows.Slide.SlideLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.ELearning.Workflows.Slide.SlideLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

@@ -10,10 +10,10 @@
 #   revoke --> [*]
 #   expire --> [*]
 # ```
-defmodule UniboV4.Payment.PaymentToken do
+defmodule UniboExPoc.Payment.PaymentToken do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Payment,
+    domain: UniboExPoc.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -23,7 +23,7 @@ defmodule UniboV4.Payment.PaymentToken do
 
   postgres do
     table "payment_tokens"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -79,10 +79,10 @@ defmodule UniboV4.Payment.PaymentToken do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Payment.Party do
+    belongs_to :party, UniboExPoc.Payment.Party do
       public? true
     end
-    belongs_to :provider, UniboV4.Payment.PaymentProvider do
+    belongs_to :provider, UniboExPoc.Payment.PaymentProvider do
       public? true
     end
   end

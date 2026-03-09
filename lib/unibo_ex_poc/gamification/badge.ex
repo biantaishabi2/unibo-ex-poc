@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Gamification.Badge do
+defmodule UniboExPoc.Gamification.Badge do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Gamification,
+    domain: UniboExPoc.Gamification,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.Gamification.Badge do
 
   postgres do
     table "gamification_badges"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -82,27 +82,29 @@ defmodule UniboV4.Gamification.Badge do
   end
 
   calculations do
-    calculate :granted_count, :integer, {UniboV4.Gamification.Calculations.Badge.GrantedCount, []}
-    calculate :granted_users_count, :integer, {UniboV4.Gamification.Calculations.Badge.GrantedUsersCount, []}
-    calculate :stat_this_month, :integer, {UniboV4.Gamification.Calculations.Badge.StatThisMonth, []}
+    calculate :granted_count, :integer, {UniboExPoc.Gamification.Calculations.Badge.GrantedCount, []}
+    calculate :granted_users_count, :integer, {UniboExPoc.Gamification.Calculations.Badge.GrantedUsersCount, []}
+    calculate :stat_this_month, :integer, {UniboExPoc.Gamification.Calculations.Badge.StatThisMonth, []}
     calculate :remaining_sending, :integer, expr(remaining_sending_calc(rule_max, rule_max_number))
   end
 
   relationships do
-    has_many :owner_ids, UniboV4.Gamification.BadgeUser do
+    has_many :owner_ids, UniboExPoc.Gamification.BadgeUser do
       public? true
       destination_attribute :badge_id
     end
-    many_to_many :rule_auth_user_ids, UniboV4.Gamification.Party do
+    many_to_many :rule_auth_user_ids, UniboExPoc.Gamification.Party do
       public? true
-      through UniboV4.Gamification.BadgeAuthUserLink
+      through UniboExPoc.Gamification.BadgeAuthUserLink
       destination_attribute_on_join_resource :user_party_id
     end
-    many_to_many :rule_auth_badge_ids, UniboV4.Gamification.Badge do
+    many_to_many :rule_auth_badge_ids, UniboExPoc.Gamification.Badge do
       public? true
-      through UniboV4.Gamification.BadgeAuthBadgeLink
+      through UniboExPoc.Gamification.BadgeAuthBadgeLink
+      source_attribute_on_join_resource :required_badge_id
+      destination_attribute_on_join_resource :required_badge_id
     end
-    has_many :translations, UniboV4.Gamification.BadgeTranslation, public?: true
+    has_many :translations, UniboExPoc.Gamification.BadgeTranslation, public?: true
   end
 
   actions do

@@ -1,12 +1,12 @@
-defmodule UniboV4.Lunch.LunchProductTranslation do
+defmodule UniboExPoc.Lunch.LunchProductTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Lunch,
+    domain: UniboExPoc.Lunch,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "lunch_lunch_product_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Lunch.LunchProductTranslation do
   end
 
   relationships do
-    belongs_to :lunch_product, UniboV4.Lunch.LunchProduct do
+    belongs_to :lunch_product, UniboExPoc.Lunch.LunchProduct do
       public? true
       allow_nil? false
     end

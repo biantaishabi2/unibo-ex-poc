@@ -14,13 +14,13 @@
 #   recall --> cancel
 #   expire --> [*] : expired
 # ```
-defmodule UniboV4.Sign.SignRequest do
+defmodule UniboExPoc.Sign.SignRequest do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sign,
+    domain: UniboExPoc.Sign,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Sign.SignRequest.Notifier]
+    notifiers: [UniboExPoc.Sign.SignRequest.Notifier]
 
   resource do
     description "签名请求，发起人基于模板创建并发送给签署方"
@@ -28,7 +28,7 @@ defmodule UniboV4.Sign.SignRequest do
 
   postgres do
     table "sign_requests"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -118,20 +118,20 @@ defmodule UniboV4.Sign.SignRequest do
   end
 
   relationships do
-    belongs_to :template, UniboV4.Sign.SignTemplate do
+    belongs_to :template, UniboExPoc.Sign.SignTemplate do
       public? true
       allow_nil? false
     end
-    belongs_to :requester, UniboV4.Sign.Party do
+    belongs_to :requester, UniboExPoc.Sign.Party do
       public? true
       allow_nil? false
       source_attribute :requester_party_id
     end
-    has_many :request_items, UniboV4.Sign.SignRequestItem do
+    has_many :request_items, UniboExPoc.Sign.SignRequestItem do
       public? true
       destination_attribute :request_id
     end
-    has_many :logs, UniboV4.Sign.SignLog do
+    has_many :logs, UniboExPoc.Sign.SignLog do
       public? true
       destination_attribute :request_id
     end
@@ -149,8 +149,8 @@ defmodule UniboV4.Sign.SignRequest do
       change manage_relationship(:requester_id, :requester, type: :append, on_lookup: :relate)
       change manage_relationship(:request_items, :request_items, type: :create)
       change relate_actor(:requester)
-      change UniboV4.Sign.Changes.SignRequest.ComputeAccessToken
-      change UniboV4.Sign.Changes.SignRequest.ComputeExpiresAt
+      change UniboExPoc.Sign.Changes.SignRequest.ComputeAccessToken
+      change UniboExPoc.Sign.Changes.SignRequest.ComputeExpiresAt
       change set_attribute(:id, expr(id))
     end
     update :send do
@@ -232,7 +232,7 @@ defmodule UniboV4.Sign.SignRequest do
       end
       # message: "只有已发送状态可以完成"
       change set_attribute(:state, :signed)
-      change UniboV4.Sign.Changes.SignRequest.ComputeCompletionDate
+      change UniboExPoc.Sign.Changes.SignRequest.ComputeCompletionDate
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

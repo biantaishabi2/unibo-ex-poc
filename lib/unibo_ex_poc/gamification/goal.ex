@@ -14,13 +14,13 @@
 #   action_fail --> [*] : failed
 #   action_cancel --> [*]
 # ```
-defmodule UniboV4.Gamification.Goal do
+defmodule UniboExPoc.Gamification.Goal do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Gamification,
+    domain: UniboExPoc.Gamification,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Gamification.Goal.Notifier]
+    notifiers: [UniboExPoc.Gamification.Goal.Notifier]
 
   resource do
     description "目标实例，记录用户在特定时间段的目标进度和状态"
@@ -28,7 +28,7 @@ defmodule UniboV4.Gamification.Goal do
 
   postgres do
     table "gamification_goals"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -105,16 +105,16 @@ defmodule UniboV4.Gamification.Goal do
   end
 
   relationships do
-    belongs_to :definition, UniboV4.Gamification.GoalDefinition do
+    belongs_to :definition, UniboExPoc.Gamification.GoalDefinition do
       public? true
       allow_nil? false
     end
-    belongs_to :user, UniboV4.Gamification.Party do
+    belongs_to :user, UniboExPoc.Gamification.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id
     end
-    belongs_to :line, UniboV4.Gamification.ChallengeLine do
+    belongs_to :line, UniboExPoc.Gamification.ChallengeLine do
       public? true
     end
   end

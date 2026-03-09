@@ -1,10 +1,10 @@
-defmodule UniboV4.Lunch.Workflows.LunchOrder.OrderFlowWorkflow do
+defmodule UniboExPoc.Lunch.Workflows.LunchOrder.OrderFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Lunch.LunchOrder
+  alias UniboExPoc.Lunch.LunchOrder
 
   def steps do
     [:create, :action_order, :action_send, :action_confirm, :action_cancel, :action_reset]
@@ -157,6 +157,7 @@ defmodule UniboV4.Lunch.Workflows.LunchOrder.OrderFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :action_order -> nil
@@ -169,6 +170,7 @@ defmodule UniboV4.Lunch.Workflows.LunchOrder.OrderFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :action_order -> false

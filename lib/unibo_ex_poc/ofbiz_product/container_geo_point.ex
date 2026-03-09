@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.ContainerGeoPoint do
+defmodule UniboExPoc.Ofbiz.Product.ContainerGeoPoint do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "product_container_geo_points"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -42,7 +42,7 @@ defmodule UniboV4.Ofbiz.Product.ContainerGeoPoint do
   end
 
   relationships do
-    belongs_to :container, UniboV4.Ofbiz.Product.Container do
+    belongs_to :container, UniboExPoc.Ofbiz.Product.Container do
       public? true
     end
   end

@@ -24,10 +24,10 @@
 #   deactivate --> [*]
 #   set_odometer --> set_odometer
 # ```
-defmodule UniboV4.Maintenance.Vehicle do
+defmodule UniboExPoc.Maintenance.Vehicle do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -37,7 +37,7 @@ defmodule UniboV4.Maintenance.Vehicle do
 
   postgres do
     table "maintenance_vehicles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -193,40 +193,40 @@ defmodule UniboV4.Maintenance.Vehicle do
   end
 
   relationships do
-    belongs_to :model, UniboV4.Maintenance.VehicleModel do
+    belongs_to :model, UniboExPoc.Maintenance.VehicleModel do
       public? true
       allow_nil? false
     end
-    belongs_to :state, UniboV4.Maintenance.VehicleState do
+    belongs_to :state, UniboExPoc.Maintenance.VehicleState do
       public? true
       allow_nil? false
     end
-    belongs_to :driver, UniboV4.Maintenance.Party do
+    belongs_to :driver, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :driver_party_id
     end
-    belongs_to :future_driver, UniboV4.Maintenance.Party do
+    belongs_to :future_driver, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :future_driver_party_id
     end
-    belongs_to :company, UniboV4.Maintenance.Party do
+    belongs_to :company, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :company_party_id
     end
-    many_to_many :tags, UniboV4.Maintenance.VehicleTag do
+    many_to_many :tags, UniboExPoc.Maintenance.VehicleTag do
       public? true
-      through UniboV4.Maintenance.VehicleTagLink
+      through UniboExPoc.Maintenance.VehicleTagLink
     end
-    has_many :contracts, UniboV4.Maintenance.Contract do
-      public? true
-    end
-    has_many :service_logs, UniboV4.Maintenance.ServiceLog do
+    has_many :contracts, UniboExPoc.Maintenance.Contract do
       public? true
     end
-    has_many :odometer_records, UniboV4.Maintenance.Odometer do
+    has_many :service_logs, UniboExPoc.Maintenance.ServiceLog do
       public? true
     end
-    has_many :assignment_logs, UniboV4.Maintenance.AssignmentLog do
+    has_many :odometer_records, UniboExPoc.Maintenance.Odometer do
+      public? true
+    end
+    has_many :assignment_logs, UniboExPoc.Maintenance.AssignmentLog do
       public? true
     end
   end
@@ -242,44 +242,44 @@ defmodule UniboV4.Maintenance.Vehicle do
       argument :state_id, :uuid, allow_nil?: false
       change manage_relationship(:state_id, :state, type: :append, on_lookup: :relate)
       validate present(:vehicle_code)
-      change UniboV4.Maintenance.Changes.Vehicle.CreateCall1
-      change UniboV4.Maintenance.Changes.Vehicle.CreateCall3
+      change UniboExPoc.Maintenance.Changes.Vehicle.CreateCall1
+      change UniboExPoc.Maintenance.Changes.Vehicle.CreateCall3
       change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:license_plate, :vin_sn, :odometer_unit, :notes]
-      change UniboV4.Maintenance.Changes.Vehicle.UpdateCall1
+      change UniboExPoc.Maintenance.Changes.Vehicle.UpdateCall1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :change_driver do
       description "变更驾驶员"
       argument :driver_id, :uuid
-      change UniboV4.Maintenance.Changes.Vehicle.ChangeDriverCall1
-      change UniboV4.Maintenance.Changes.Vehicle.ChangeDriverCall2
+      change UniboExPoc.Maintenance.Changes.Vehicle.ChangeDriverCall1
+      change UniboExPoc.Maintenance.Changes.Vehicle.ChangeDriverCall2
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :set_future_driver do
       description "设置计划下一任驾驶员"
       argument :future_driver_id, :uuid
-      change UniboV4.Maintenance.Changes.Vehicle.SetFutureDriverCall1
-      change UniboV4.Maintenance.Changes.Vehicle.SetFutureDriverCall4
+      change UniboExPoc.Maintenance.Changes.Vehicle.SetFutureDriverCall1
+      change UniboExPoc.Maintenance.Changes.Vehicle.SetFutureDriverCall4
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :change_state do
       description "变更车辆状态"
       accept [:state_id]
-      change UniboV4.Maintenance.Changes.Vehicle.ChangeStateCall1
+      change UniboExPoc.Maintenance.Changes.Vehicle.ChangeStateCall1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
       description "停用车辆"
       accept []
-      change UniboV4.Maintenance.Changes.Vehicle.DeactivateCall1
+      change UniboExPoc.Maintenance.Changes.Vehicle.DeactivateCall1
       change set_attribute(:active, false)
       change set_attribute(:active, false)
       change set_attribute(:id, expr(id))
@@ -289,8 +289,8 @@ defmodule UniboV4.Maintenance.Vehicle do
       description "记录里程（追加写入 Odometer 记录）"
       argument :odometer_value, :string
       # skipped: validate compare :odometer_value (incompatible with bulk update atomic path)
-      change UniboV4.Maintenance.Changes.Vehicle.SetOdometerCall1
-      change UniboV4.Maintenance.Changes.Vehicle.SetOdometerCall7
+      change UniboExPoc.Maintenance.Changes.Vehicle.SetOdometerCall1
+      change UniboExPoc.Maintenance.Changes.Vehicle.SetOdometerCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

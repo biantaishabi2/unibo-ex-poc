@@ -15,13 +15,13 @@
 #   unpublish --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.ELearning.Slide do
+defmodule UniboExPoc.ELearning.Slide do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.ELearning,
+    domain: UniboExPoc.ELearning,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.ELearning.Slide.Notifier]
+    notifiers: [UniboExPoc.ELearning.Slide.Notifier]
 
   resource do
     description "课程内容项，支持文章、视频、文档、信息图、测验等类型"
@@ -29,7 +29,7 @@ defmodule UniboV4.ELearning.Slide do
 
   postgres do
     table "e_learning_slides"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -125,19 +125,19 @@ defmodule UniboV4.ELearning.Slide do
   end
 
   relationships do
-    belongs_to :channel, UniboV4.ELearning.Course do
+    belongs_to :channel, UniboExPoc.ELearning.Course do
       public? true
       allow_nil? false
     end
-    belongs_to :category, UniboV4.ELearning.Slide do
+    belongs_to :category, UniboExPoc.ELearning.Slide do
       public? true
     end
-    has_many :child_slides, UniboV4.ELearning.Slide do
+    has_many :child_slides, UniboExPoc.ELearning.Slide do
       public? true
       source_attribute :category_id
       destination_attribute :category_id
     end
-    has_many :progress_records, UniboV4.ELearning.SlideProgress do
+    has_many :progress_records, UniboExPoc.ELearning.SlideProgress do
       public? true
     end
   end
@@ -174,8 +174,8 @@ defmodule UniboV4.ELearning.Slide do
       end
       # message: "内容项已处于发布状态"
       change set_attribute(:is_published, true)
-      change UniboV4.ELearning.Changes.Slide.ComputeDatePublished
-      change UniboV4.ELearning.Changes.Slide.PublishCall4
+      change UniboExPoc.ELearning.Changes.Slide.ComputeDatePublished
+      change UniboExPoc.ELearning.Changes.Slide.PublishCall4
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -193,7 +193,7 @@ defmodule UniboV4.ELearning.Slide do
       end
       # message: "内容项未发布，无法取消发布"
       change set_attribute(:is_published, false)
-      change UniboV4.ELearning.Changes.Slide.UnpublishCall4
+      change UniboExPoc.ELearning.Changes.Slide.UnpublishCall4
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

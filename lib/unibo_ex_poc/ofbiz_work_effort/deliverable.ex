@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.Deliverable do
+defmodule UniboExPoc.Ofbiz.WorkEffort.Deliverable do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_deliverables"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -39,7 +39,7 @@ defmodule UniboV4.Ofbiz.WorkEffort.Deliverable do
   end
 
   relationships do
-    belongs_to :deliverable_type, UniboV4.Ofbiz.WorkEffort.DeliverableType do
+    belongs_to :deliverable_type, UniboExPoc.Ofbiz.WorkEffort.DeliverableType do
       public? true
       attribute_type :string
     end

@@ -1,4 +1,4 @@
-defmodule UniboV4.Documents do
+defmodule UniboExPoc.Documents do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,36 +7,36 @@ defmodule UniboV4.Documents do
   end
 
   resources do
-    resource UniboV4.Documents.Document
-    resource UniboV4.Documents.Document.Version
-    resource UniboV4.Documents.Folder
-    resource UniboV4.Documents.Folder.Version
-    resource UniboV4.Documents.Tag
-    resource UniboV4.Documents.Tag.Version
-    resource UniboV4.Documents.Facet
-    resource UniboV4.Documents.Facet.Version
-    resource UniboV4.Documents.WorkflowRule
-    resource UniboV4.Documents.WorkflowRule.Version
-    resource UniboV4.Documents.Share
-    resource UniboV4.Documents.Share.Version
-    resource UniboV4.Documents.Group
-    resource UniboV4.Documents.Contact
-    resource UniboV4.Documents.Attachment
-    resource UniboV4.Documents.MailAlias
-    resource UniboV4.Documents.ActivityType
-    resource UniboV4.Documents.DocumentVersion
-    resource UniboV4.Documents.DocumentTagLink
-    resource UniboV4.Documents.DocumentFavoriteLink
-    resource UniboV4.Documents.DocumentGroupLink
-    resource UniboV4.Documents.DocumentShareLink
-    resource UniboV4.Documents.FolderWorkflowRuleLink
-    resource UniboV4.Documents.FolderReadGroupLink
-    resource UniboV4.Documents.FolderWriteGroupLink
-    resource UniboV4.Documents.ShareTagLink
-    resource UniboV4.Documents.WorkflowRuleRequiredTagLink
-    resource UniboV4.Documents.WorkflowRuleExcludedTagLink
-    resource UniboV4.Documents.WorkflowRuleTagActionLink
-    resource UniboV4.Documents.WorkflowRuleRemoveTagLink
-    resource UniboV4.Documents.Party
+    resource UniboExPoc.Documents.Document
+    resource UniboExPoc.Documents.Document.Version
+    resource UniboExPoc.Documents.Folder
+    resource UniboExPoc.Documents.Folder.Version
+    resource UniboExPoc.Documents.Tag
+    resource UniboExPoc.Documents.Tag.Version
+    resource UniboExPoc.Documents.Facet
+    resource UniboExPoc.Documents.Facet.Version
+    resource UniboExPoc.Documents.WorkflowRule
+    resource UniboExPoc.Documents.WorkflowRule.Version
+    resource UniboExPoc.Documents.Share
+    resource UniboExPoc.Documents.Share.Version
+    resource UniboExPoc.Documents.Group
+    resource UniboExPoc.Documents.Contact
+    resource UniboExPoc.Documents.Attachment
+    resource UniboExPoc.Documents.MailAlias
+    resource UniboExPoc.Documents.ActivityType
+    resource UniboExPoc.Documents.DocumentVersion
+    resource UniboExPoc.Documents.DocumentTagLink
+    resource UniboExPoc.Documents.DocumentFavoriteLink
+    resource UniboExPoc.Documents.DocumentGroupLink
+    resource UniboExPoc.Documents.DocumentShareLink
+    resource UniboExPoc.Documents.FolderWorkflowRuleLink
+    resource UniboExPoc.Documents.FolderReadGroupLink
+    resource UniboExPoc.Documents.FolderWriteGroupLink
+    resource UniboExPoc.Documents.ShareTagLink
+    resource UniboExPoc.Documents.WorkflowRuleRequiredTagLink
+    resource UniboExPoc.Documents.WorkflowRuleExcludedTagLink
+    resource UniboExPoc.Documents.WorkflowRuleTagActionLink
+    resource UniboExPoc.Documents.WorkflowRuleRemoveTagLink
+    resource UniboExPoc.Documents.Party
   end
 end

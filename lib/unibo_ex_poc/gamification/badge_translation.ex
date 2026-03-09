@@ -1,12 +1,12 @@
-defmodule UniboV4.Gamification.BadgeTranslation do
+defmodule UniboExPoc.Gamification.BadgeTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Gamification,
+    domain: UniboExPoc.Gamification,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "gamification_badge_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Gamification.BadgeTranslation do
   end
 
   relationships do
-    belongs_to :badge, UniboV4.Gamification.Badge do
+    belongs_to :badge, UniboExPoc.Gamification.Badge do
       public? true
       allow_nil? false
     end

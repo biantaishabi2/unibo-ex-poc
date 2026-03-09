@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.AccommodationSpot do
+defmodule UniboExPoc.Ofbiz.Accounting.AccommodationSpot do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_accommodation_spots"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -35,10 +35,10 @@ defmodule UniboV4.Ofbiz.Accounting.AccommodationSpot do
   end
 
   relationships do
-    belongs_to :accommodation_class, UniboV4.Ofbiz.Accounting.AccommodationClass do
+    belongs_to :accommodation_class, UniboExPoc.Ofbiz.Accounting.AccommodationClass do
       public? true
     end
-    belongs_to :fixed_asset, UniboV4.Ofbiz.Accounting.FixedAsset do
+    belongs_to :fixed_asset, UniboExPoc.Ofbiz.Accounting.FixedAsset do
       public? true
     end
   end

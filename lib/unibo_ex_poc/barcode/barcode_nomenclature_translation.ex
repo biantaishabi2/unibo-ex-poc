@@ -1,12 +1,12 @@
-defmodule UniboV4.Barcode.BarcodeNomenclatureTranslation do
+defmodule UniboExPoc.Barcode.BarcodeNomenclatureTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Barcode,
+    domain: UniboExPoc.Barcode,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "barcode_barcode_nomenclature_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Barcode.BarcodeNomenclatureTranslation do
   end
 
   relationships do
-    belongs_to :barcode_nomenclature, UniboV4.Barcode.BarcodeNomenclature do
+    belongs_to :barcode_nomenclature, UniboExPoc.Barcode.BarcodeNomenclature do
       public? true
       allow_nil? false
     end

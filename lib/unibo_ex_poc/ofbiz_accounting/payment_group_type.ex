@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Accounting.PaymentGroupType do
+defmodule UniboExPoc.Ofbiz.Accounting.PaymentGroupType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Accounting.PaymentGroupType do
 
   postgres do
     table "accounting_payment_group_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -39,7 +39,7 @@ defmodule UniboV4.Ofbiz.Accounting.PaymentGroupType do
   end
 
   relationships do
-    belongs_to :parent_payment_group_type, UniboV4.Ofbiz.Accounting.PaymentGroupType do
+    belongs_to :parent_payment_group_type, UniboExPoc.Ofbiz.Accounting.PaymentGroupType do
       public? true
       source_attribute :parent_type_id
     end

@@ -1,7 +1,5 @@
-defmodule UniboV4.Sales.Changes.SalesOrder.CreateInvoicesCreateRelated14 do
+defmodule UniboExPoc.Sales.Changes.SalesOrder.CreateInvoicesCreateRelated14 do
   use Ash.Resource.Change
-
-  alias UniboV4.Sales.Invoice
 
   @impl true
   def change(changeset, _opts, context) do
@@ -10,7 +8,7 @@ defmodule UniboV4.Sales.Changes.SalesOrder.CreateInvoicesCreateRelated14 do
     opts = ash_call_opts(actor, tenant)
     params = %{}
 
-    case Ash.create(Ash.Changeset.for_create(UniboV4.Sales.Invoice, :create, params), opts) do
+    case Ash.create(Ash.Changeset.for_create(UniboExPoc.Sales.Invoice, :create, params), opts) do
       {:ok, _created} -> changeset
       {:error, reason} ->
         Ash.Changeset.add_error(changeset, "create_related Invoice 失败: #{inspect(reason)}")

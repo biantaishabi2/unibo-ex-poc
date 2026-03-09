@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Marketing.MailingTrace do
+defmodule UniboExPoc.Marketing.MailingTrace do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Marketing.MailingTrace do
 
   postgres do
     table "marketing_mailing_traces"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -69,7 +69,7 @@ defmodule UniboV4.Marketing.MailingTrace do
   end
 
   relationships do
-    belongs_to :mailing, UniboV4.Marketing.Mailing do
+    belongs_to :mailing, UniboExPoc.Marketing.Mailing do
       public? true
       allow_nil? false
     end

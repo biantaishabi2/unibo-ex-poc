@@ -5,10 +5,10 @@
 #   create --> [*]
 #   read --> [*]
 # ```
-defmodule UniboV4.HR.EmployeeSkillLog do
+defmodule UniboExPoc.HR.EmployeeSkillLog do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.HR.EmployeeSkillLog do
 
   postgres do
     table "hr_employee_skill_logs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -52,22 +52,22 @@ defmodule UniboV4.HR.EmployeeSkillLog do
   end
 
   relationships do
-    belongs_to :employee, UniboV4.HR.Employee do
+    belongs_to :employee, UniboExPoc.HR.Employee do
       public? true
       allow_nil? false
     end
-    belongs_to :department, UniboV4.HR.Department do
+    belongs_to :department, UniboExPoc.HR.Department do
       public? true
     end
-    belongs_to :skill, UniboV4.HR.Skill do
-      public? true
-      allow_nil? false
-    end
-    belongs_to :skill_level, UniboV4.HR.SkillLevel do
+    belongs_to :skill, UniboExPoc.HR.Skill do
       public? true
       allow_nil? false
     end
-    belongs_to :skill_type, UniboV4.HR.SkillType do
+    belongs_to :skill_level, UniboExPoc.HR.SkillLevel do
+      public? true
+      allow_nil? false
+    end
+    belongs_to :skill_type, UniboExPoc.HR.SkillType do
       public? true
       allow_nil? false
     end

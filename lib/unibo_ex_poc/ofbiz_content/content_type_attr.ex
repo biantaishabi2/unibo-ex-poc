@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.ContentTypeAttr do
+defmodule UniboExPoc.Ofbiz.Content.ContentTypeAttr do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_type_attrs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,7 +37,7 @@ defmodule UniboV4.Ofbiz.Content.ContentTypeAttr do
   end
 
   relationships do
-    belongs_to :content_type, UniboV4.Ofbiz.Content.ContentType do
+    belongs_to :content_type, UniboExPoc.Ofbiz.Content.ContentType do
       public? true
       attribute_type :string
     end

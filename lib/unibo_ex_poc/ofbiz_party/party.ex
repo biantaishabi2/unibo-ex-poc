@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.Party do
+defmodule UniboExPoc.Ofbiz.Party.Party do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -56,26 +56,26 @@ defmodule UniboV4.Ofbiz.Party.Party do
   end
 
   relationships do
-    belongs_to :party_type, UniboV4.Ofbiz.Party.PartyType do
+    belongs_to :party_type, UniboExPoc.Ofbiz.Party.PartyType do
       public? true
     end
-    belongs_to :created_by_user, UniboV4.Ofbiz.Party.UserLogin do
+    belongs_to :created_by_user, UniboExPoc.Ofbiz.Party.UserLogin do
       public? true
       source_attribute :created_by_user_login
     end
-    belongs_to :last_modified_by_user, UniboV4.Ofbiz.Party.UserLogin do
+    belongs_to :last_modified_by_user, UniboExPoc.Ofbiz.Party.UserLogin do
       public? true
       source_attribute :last_modified_by_user_login
     end
-    belongs_to :uom, UniboV4.Ofbiz.Party.Uom do
+    belongs_to :uom, UniboExPoc.Ofbiz.Party.Uom do
       public? true
       source_attribute :preferred_currency_uom_id
     end
-    belongs_to :status_item, UniboV4.Ofbiz.Party.StatusItem do
+    belongs_to :status_item, UniboExPoc.Ofbiz.Party.StatusItem do
       public? true
       source_attribute :status_id
     end
-    belongs_to :data_source, UniboV4.Ofbiz.Party.DataSource do
+    belongs_to :data_source, UniboExPoc.Ofbiz.Party.DataSource do
       public? true
     end
   end

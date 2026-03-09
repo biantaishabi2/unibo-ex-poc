@@ -1,4 +1,4 @@
-defmodule UniboV4.Website do
+defmodule UniboExPoc.Website do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,13 +7,13 @@ defmodule UniboV4.Website do
   end
 
   resources do
-    resource UniboV4.Website.WebSite
-    resource UniboV4.Website.WebSite.Version
-    resource UniboV4.Website.WebPage
-    resource UniboV4.Website.WebPage.Version
-    resource UniboV4.Website.Menu
-    resource UniboV4.Website.MenuTranslation
-    resource UniboV4.Website.Menu.Version
-    resource UniboV4.Website.Party
+    resource UniboExPoc.Website.WebSite
+    resource UniboExPoc.Website.WebSite.Version
+    resource UniboExPoc.Website.WebPage
+    resource UniboExPoc.Website.WebPage.Version
+    resource UniboExPoc.Website.Menu
+    resource UniboExPoc.Website.MenuTranslation
+    resource UniboExPoc.Website.Menu.Version
+    resource UniboExPoc.Website.Party
   end
 end

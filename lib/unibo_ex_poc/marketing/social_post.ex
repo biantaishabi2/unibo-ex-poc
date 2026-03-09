@@ -11,13 +11,13 @@
 #   schedule --> sync_stats
 #   sync_stats --> [*]
 # ```
-defmodule UniboV4.Marketing.SocialPost do
+defmodule UniboExPoc.Marketing.SocialPost do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Marketing.SocialPost.Notifier]
+    notifiers: [UniboExPoc.Marketing.SocialPost.Notifier]
 
   resource do
     description "社交媒体帖文"
@@ -25,7 +25,7 @@ defmodule UniboV4.Marketing.SocialPost do
 
   postgres do
     table "marketing_social_posts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -92,14 +92,14 @@ defmodule UniboV4.Marketing.SocialPost do
   end
 
   relationships do
-    belongs_to :campaign, UniboV4.Marketing.Campaign do
+    belongs_to :campaign, UniboExPoc.Marketing.Campaign do
       public? true
     end
-    many_to_many :accounts, UniboV4.Marketing.SocialAccount do
+    many_to_many :accounts, UniboExPoc.Marketing.SocialAccount do
       public? true
-      through UniboV4.Marketing.SocialPostAccountLink
+      through UniboExPoc.Marketing.SocialPostAccountLink
     end
-    belongs_to :created_by, UniboV4.Marketing.Party do
+    belongs_to :created_by, UniboExPoc.Marketing.Party do
       public? true
       source_attribute :created_by_party_id
     end
@@ -136,7 +136,7 @@ defmodule UniboV4.Marketing.SocialPost do
       # message: "只有草稿状态可以发布或排期"
       # skipped: validate present : (incompatible with bulk update atomic path)
       change set_attribute(:status, :posting)
-      change UniboV4.Marketing.Changes.SocialPost.PublishNowCall2
+      change UniboExPoc.Marketing.Changes.SocialPost.PublishNowCall2
       change set_attribute(:status, :posted)
       change set_attribute(:published_date, &DateTime.utc_now/0)
       change set_attribute(:id, expr(id))
@@ -173,7 +173,7 @@ defmodule UniboV4.Marketing.SocialPost do
         end
       end
       # message: "只有已发布状态可以同步统计"
-      change UniboV4.Marketing.Changes.SocialPost.SyncStatsCall7
+      change UniboExPoc.Marketing.Changes.SocialPost.SyncStatsCall7
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

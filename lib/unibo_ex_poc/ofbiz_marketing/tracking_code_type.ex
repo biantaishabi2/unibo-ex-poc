@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Marketing.TrackingCodeType do
+defmodule UniboExPoc.Ofbiz.Marketing.TrackingCodeType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Marketing,
+    domain: UniboExPoc.Ofbiz.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "marketing_tracking_code_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

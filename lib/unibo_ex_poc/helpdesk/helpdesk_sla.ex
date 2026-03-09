@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Helpdesk.HelpdeskSLA do
+defmodule UniboExPoc.Helpdesk.HelpdeskSLA do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Helpdesk.HelpdeskSLA do
 
   postgres do
     table "helpdesk_slas"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -71,29 +71,29 @@ defmodule UniboV4.Helpdesk.HelpdeskSLA do
   end
 
   relationships do
-    belongs_to :team, UniboV4.Helpdesk.HelpdeskTeam do
+    belongs_to :team, UniboExPoc.Helpdesk.HelpdeskTeam do
       public? true
       allow_nil? false
     end
-    belongs_to :reach_stage, UniboV4.Helpdesk.HelpdeskStage do
+    belongs_to :reach_stage, UniboExPoc.Helpdesk.HelpdeskStage do
       public? true
       allow_nil? false
     end
-    belongs_to :ticket_type, UniboV4.Helpdesk.HelpdeskTicketType do
+    belongs_to :ticket_type, UniboExPoc.Helpdesk.HelpdeskTicketType do
       public? true
     end
-    many_to_many :tag_ids, UniboV4.Helpdesk.HelpdeskTag do
+    many_to_many :tag_ids, UniboExPoc.Helpdesk.HelpdeskTag do
       public? true
-      through UniboV4.Helpdesk.HelpdeskSLATagLink
+      through UniboExPoc.Helpdesk.HelpdeskSLATagLink
     end
-    many_to_many :partner_ids, UniboV4.Helpdesk.Party do
+    many_to_many :partner_ids, UniboExPoc.Helpdesk.Party do
       public? true
-      through UniboV4.Helpdesk.HelpdeskSLAPartnerLink
+      through UniboExPoc.Helpdesk.HelpdeskSLAPartnerLink
       destination_attribute_on_join_resource :partner_party_id
     end
-    many_to_many :exclude_stage_ids, UniboV4.Helpdesk.HelpdeskStage do
+    many_to_many :exclude_stage_ids, UniboExPoc.Helpdesk.HelpdeskStage do
       public? true
-      through UniboV4.Helpdesk.HelpdeskSLAExcludeStageLink
+      through UniboExPoc.Helpdesk.HelpdeskSLAExcludeStageLink
     end
   end
 

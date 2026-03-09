@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.ItemIssuanceRole do
+defmodule UniboExPoc.Ofbiz.Shipment.ItemIssuanceRole do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_item_issuance_roles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -36,11 +36,11 @@ defmodule UniboV4.Ofbiz.Shipment.ItemIssuanceRole do
   end
 
   relationships do
-    belongs_to :item_issuance, UniboV4.Ofbiz.Shipment.ItemIssuance do
+    belongs_to :item_issuance, UniboExPoc.Ofbiz.Shipment.ItemIssuance do
       public? true
       attribute_type :string
     end
-    belongs_to :party, UniboV4.Ofbiz.Shipment.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.Shipment.Party do
       public? true
       attribute_type :string
     end

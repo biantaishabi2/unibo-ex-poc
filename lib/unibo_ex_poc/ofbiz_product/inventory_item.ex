@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.InventoryItem do
+defmodule UniboExPoc.Ofbiz.Product.InventoryItem do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_inventory_items"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -62,19 +62,19 @@ defmodule UniboV4.Ofbiz.Product.InventoryItem do
   end
 
   relationships do
-    belongs_to :inventory_item_type, UniboV4.Ofbiz.Product.InventoryItemType do
+    belongs_to :inventory_item_type, UniboExPoc.Ofbiz.Product.InventoryItemType do
       public? true
     end
-    belongs_to :product, UniboV4.Ofbiz.Product.Product do
+    belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
     end
-    belongs_to :facility, UniboV4.Ofbiz.Product.Facility do
+    belongs_to :facility, UniboExPoc.Ofbiz.Product.Facility do
       public? true
     end
-    belongs_to :container, UniboV4.Ofbiz.Product.Container do
+    belongs_to :container, UniboExPoc.Ofbiz.Product.Container do
       public? true
     end
-    belongs_to :lot, UniboV4.Ofbiz.Product.Lot do
+    belongs_to :lot, UniboExPoc.Ofbiz.Product.Lot do
       public? true
     end
   end

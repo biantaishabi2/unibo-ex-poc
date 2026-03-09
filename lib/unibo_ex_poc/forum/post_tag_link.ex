@@ -1,7 +1,7 @@
-defmodule UniboV4.Forum.PostTagLink do
+defmodule UniboExPoc.Forum.PostTagLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Forum,
+    domain: UniboExPoc.Forum,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Forum.PostTagLink do
 
   postgres do
     table "forum_post_tag_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Forum.PostTagLink do
   end
 
   relationships do
-    belongs_to :post, UniboV4.Forum.Post do
+    belongs_to :post, UniboExPoc.Forum.Post do
       public? true
       allow_nil? false
     end
-    belongs_to :tag, UniboV4.Forum.Tag do
+    belongs_to :tag, UniboExPoc.Forum.Tag do
       public? true
       allow_nil? false
     end

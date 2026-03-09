@@ -1,10 +1,10 @@
-defmodule UniboV4.Fleet.Workflows.VehicleContract.VehicleContractFlowWorkflow do
+defmodule UniboExPoc.Fleet.Workflows.VehicleContract.VehicleContractFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Fleet.VehicleContract
+  alias UniboExPoc.Fleet.VehicleContract
 
   def steps do
     [:create, :activate, :renew, :terminate]
@@ -149,6 +149,7 @@ defmodule UniboV4.Fleet.Workflows.VehicleContract.VehicleContractFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :activate -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Fleet.Workflows.VehicleContract.VehicleContractFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :activate -> false

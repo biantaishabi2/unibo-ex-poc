@@ -1,7 +1,7 @@
-defmodule UniboV4.ELearning.Party do
+defmodule UniboExPoc.ELearning.Party do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.ELearning,
+    domain: UniboExPoc.ELearning,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.ELearning.Party do
 
   postgres do
     table "e_learning_parties"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

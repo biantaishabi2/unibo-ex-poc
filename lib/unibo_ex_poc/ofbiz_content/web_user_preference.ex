@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.WebUserPreference do
+defmodule UniboExPoc.Ofbiz.Content.WebUserPreference do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "content_web_user_preferences"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -48,7 +48,7 @@ defmodule UniboV4.Ofbiz.Content.WebUserPreference do
   end
 
   relationships do
-    belongs_to :web_preference_type, UniboV4.Ofbiz.Content.WebPreferenceType do
+    belongs_to :web_preference_type, UniboExPoc.Ofbiz.Content.WebPreferenceType do
       public? true
       attribute_type :string
     end

@@ -1,4 +1,4 @@
-defmodule UniboV4.IoT.Changes.VoIpCall.ComputeDuration do
+defmodule UniboExPoc.IoT.Changes.VoIpCall.ComputeDuration do
   @moduledoc """
   Change 模块: 计算 :duration (entity: vo_ip_call)
   原始 expr: op: func args: - datetime_diff_seconds - op: ref   args:   - end_time - op: ref   args:   - start_time

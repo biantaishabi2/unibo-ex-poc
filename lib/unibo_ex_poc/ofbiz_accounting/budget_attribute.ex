@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.BudgetAttribute do
+defmodule UniboExPoc.Ofbiz.Accounting.BudgetAttribute do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_budget_attributes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,7 +38,7 @@ defmodule UniboV4.Ofbiz.Accounting.BudgetAttribute do
   end
 
   relationships do
-    belongs_to :budget, UniboV4.Ofbiz.Accounting.Budget do
+    belongs_to :budget, UniboExPoc.Ofbiz.Accounting.Budget do
       public? true
     end
   end

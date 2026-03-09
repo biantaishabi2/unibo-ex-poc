@@ -8,10 +8,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Subscriptions.CloseReason do
+defmodule UniboExPoc.Subscriptions.CloseReason do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Subscriptions,
+    domain: UniboExPoc.Subscriptions,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Subscriptions.CloseReason do
 
   postgres do
     table "subscriptions_close_reasons"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -62,7 +62,7 @@ defmodule UniboV4.Subscriptions.CloseReason do
   end
 
   relationships do
-    has_many :subscription_orders, UniboV4.Subscriptions.SubscriptionOrder do
+    has_many :subscription_orders, UniboExPoc.Subscriptions.SubscriptionOrder do
       public? true
     end
   end

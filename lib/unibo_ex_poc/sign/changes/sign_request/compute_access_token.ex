@@ -1,4 +1,4 @@
-defmodule UniboV4.Sign.Changes.SignRequest.ComputeAccessToken do
+defmodule UniboExPoc.Sign.Changes.SignRequest.ComputeAccessToken do
   @moduledoc """
   Change 模块: 计算 :access_token (entity: sign_request)
   原始 expr: op: func args: - generate_uuid

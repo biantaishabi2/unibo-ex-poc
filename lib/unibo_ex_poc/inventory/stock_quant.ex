@@ -13,10 +13,10 @@
 #   create --> [*]
 #   _apply_inventory --> [*]
 # ```
-defmodule UniboV4.Inventory.StockQuant do
+defmodule UniboExPoc.Inventory.StockQuant do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Inventory,
+    domain: UniboExPoc.Inventory,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -26,7 +26,7 @@ defmodule UniboV4.Inventory.StockQuant do
 
   postgres do
     table "inventory_stock_quants"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -125,15 +125,15 @@ defmodule UniboV4.Inventory.StockQuant do
   end
 
   relationships do
-    belongs_to :warehouse, UniboV4.Inventory.Warehouse do
+    belongs_to :warehouse, UniboExPoc.Inventory.Warehouse do
       public? true
       allow_nil? false
     end
-    belongs_to :location, UniboV4.Inventory.StockLocation do
+    belongs_to :location, UniboExPoc.Inventory.StockLocation do
       public? true
       allow_nil? false
     end
-    belongs_to :lot, UniboV4.Inventory.Lot do
+    belongs_to :lot, UniboExPoc.Inventory.Lot do
       public? true
     end
   end
@@ -169,7 +169,7 @@ defmodule UniboV4.Inventory.StockQuant do
       argument :package_id, :uuid
       argument :owner_id, :uuid
       argument :in_date, :utc_datetime
-      change UniboV4.Inventory.Changes.StockQuant.UpdateAvailableQuantityCall1
+      change UniboExPoc.Inventory.Changes.StockQuant.UpdateAvailableQuantityCall1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -183,7 +183,7 @@ defmodule UniboV4.Inventory.StockQuant do
     update :apply_inventory do
       description "执行盘点调整"
       accept [:inventory_quantity]
-      change UniboV4.Inventory.Changes.StockQuant.ApplyInventoryCall2
+      change UniboExPoc.Inventory.Changes.StockQuant.ApplyInventoryCall2
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

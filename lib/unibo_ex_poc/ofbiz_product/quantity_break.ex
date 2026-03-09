@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.QuantityBreak do
+defmodule UniboExPoc.Ofbiz.Product.QuantityBreak do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_quantity_breaks"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -35,7 +35,7 @@ defmodule UniboV4.Ofbiz.Product.QuantityBreak do
   end
 
   relationships do
-    belongs_to :quantity_break_type, UniboV4.Ofbiz.Product.QuantityBreakType do
+    belongs_to :quantity_break_type, UniboExPoc.Ofbiz.Product.QuantityBreakType do
       public? true
     end
   end

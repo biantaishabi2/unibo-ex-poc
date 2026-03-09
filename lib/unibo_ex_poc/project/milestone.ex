@@ -5,10 +5,10 @@
 #   create --> [*]
 #   reach --> [*]
 # ```
-defmodule UniboV4.Project.Milestone do
+defmodule UniboExPoc.Project.Milestone do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Project,
+    domain: UniboExPoc.Project,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Project.Milestone do
 
   postgres do
     table "project_milestones"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -59,11 +59,11 @@ defmodule UniboV4.Project.Milestone do
   end
 
   relationships do
-    belongs_to :project, UniboV4.Project.Project do
+    belongs_to :project, UniboExPoc.Project.Project do
       public? true
       allow_nil? false
     end
-    has_many :task_ids, UniboV4.Project.Task do
+    has_many :task_ids, UniboExPoc.Project.Task do
       public? true
       source_attribute :project_id
       destination_attribute :milestone_id

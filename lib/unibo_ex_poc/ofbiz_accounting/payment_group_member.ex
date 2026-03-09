@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Accounting.PaymentGroupMember do
+defmodule UniboExPoc.Ofbiz.Accounting.PaymentGroupMember do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Accounting.PaymentGroupMember do
 
   postgres do
     table "accounting_payment_group_members"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -42,10 +42,10 @@ defmodule UniboV4.Ofbiz.Accounting.PaymentGroupMember do
   end
 
   relationships do
-    belongs_to :payment_group, UniboV4.Ofbiz.Accounting.PaymentGroup do
+    belongs_to :payment_group, UniboExPoc.Ofbiz.Accounting.PaymentGroup do
       public? true
     end
-    belongs_to :payment, UniboV4.Ofbiz.Accounting.Payment do
+    belongs_to :payment, UniboExPoc.Ofbiz.Accounting.Payment do
       public? true
     end
   end

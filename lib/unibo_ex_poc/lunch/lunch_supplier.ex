@@ -17,13 +17,13 @@
 #   unarchive --> send_orders
 #   unarchive --> archive
 # ```
-defmodule UniboV4.Lunch.LunchSupplier do
+defmodule UniboExPoc.Lunch.LunchSupplier do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Lunch,
+    domain: UniboExPoc.Lunch,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Lunch.LunchSupplier.Notifier]
+    notifiers: [UniboExPoc.Lunch.LunchSupplier.Notifier]
 
   resource do
     description "午餐供应商，管理营业时间、配送方式、配料分类定义"
@@ -31,7 +31,7 @@ defmodule UniboV4.Lunch.LunchSupplier do
 
   postgres do
     table "lunch_suppliers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -160,25 +160,25 @@ defmodule UniboV4.Lunch.LunchSupplier do
   calculations do
     calculate :available_today, :boolean, expr(available_on_date(today()))
     calculate :order_deadline_passed, :boolean, expr(deadline_passed(automatic_email_time, moment, tz))
-    calculate :show_order_button, :boolean, {UniboV4.Lunch.Calculations.LunchSupplier.ShowOrderButton, []}
-    calculate :show_confirm_button, :boolean, {UniboV4.Lunch.Calculations.LunchSupplier.ShowConfirmButton, []}
+    calculate :show_order_button, :boolean, {UniboExPoc.Lunch.Calculations.LunchSupplier.ShowOrderButton, []}
+    calculate :show_confirm_button, :boolean, {UniboExPoc.Lunch.Calculations.LunchSupplier.ShowConfirmButton, []}
   end
 
   relationships do
-    belongs_to :partner, UniboV4.Lunch.Party do
+    belongs_to :partner, UniboExPoc.Lunch.Party do
       public? true
       allow_nil? false
       source_attribute :partner_party_id
     end
-    belongs_to :responsible, UniboV4.Lunch.Party do
+    belongs_to :responsible, UniboExPoc.Lunch.Party do
       public? true
       source_attribute :responsible_party_id
     end
-    has_many :products, UniboV4.Lunch.LunchProduct do
+    has_many :products, UniboExPoc.Lunch.LunchProduct do
       public? true
       destination_attribute :supplier_id
     end
-    has_many :toppings, UniboV4.Lunch.LunchTopping do
+    has_many :toppings, UniboExPoc.Lunch.LunchTopping do
       public? true
       destination_attribute :supplier_id
     end

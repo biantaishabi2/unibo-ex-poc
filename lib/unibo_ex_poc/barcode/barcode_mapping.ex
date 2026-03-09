@@ -11,13 +11,13 @@
 #   deactivate --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Barcode.BarcodeMapping do
+defmodule UniboExPoc.Barcode.BarcodeMapping do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Barcode,
+    domain: UniboExPoc.Barcode,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Barcode.BarcodeMapping.Notifier]
+    notifiers: [UniboExPoc.Barcode.BarcodeMapping.Notifier]
 
   resource do
     description "条码与业务对象映射，记录条码值到产品、批次、库位、资产等的关联关系"
@@ -25,7 +25,7 @@ defmodule UniboV4.Barcode.BarcodeMapping do
 
   postgres do
     table "barcode_mappings"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -77,7 +77,7 @@ defmodule UniboV4.Barcode.BarcodeMapping do
   end
 
   relationships do
-    belongs_to :nomenclature, UniboV4.Barcode.BarcodeNomenclature do
+    belongs_to :nomenclature, UniboExPoc.Barcode.BarcodeNomenclature do
       public? true
     end
   end
@@ -102,7 +102,7 @@ defmodule UniboV4.Barcode.BarcodeMapping do
     update :deactivate do
       description "停用条码映射"
       accept []
-      change UniboV4.Barcode.Changes.BarcodeMapping.ComputeActive
+      change UniboExPoc.Barcode.Changes.BarcodeMapping.ComputeActive
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

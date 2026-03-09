@@ -1,4 +1,4 @@
-defmodule UniboV4.Forum.Changes.Post.ComputeLastActivityDate do
+defmodule UniboExPoc.Forum.Changes.Post.ComputeLastActivityDate do
   @moduledoc """
   Change 模块: 计算 :last_activity_date (entity: post)
   原始 expr: op: func args: - now

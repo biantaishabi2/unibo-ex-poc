@@ -9,10 +9,10 @@
 #   record_call --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.IoT.QueueMember do
+defmodule UniboExPoc.IoT.QueueMember do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -22,7 +22,7 @@ defmodule UniboV4.IoT.QueueMember do
 
   postgres do
     table "io_t_queue_members"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -99,12 +99,12 @@ defmodule UniboV4.IoT.QueueMember do
   end
 
   relationships do
-    belongs_to :queue, UniboV4.IoT.CallQueue do
+    belongs_to :queue, UniboExPoc.IoT.CallQueue do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    belongs_to :user, UniboV4.IoT.Party do
+    belongs_to :user, UniboExPoc.IoT.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id

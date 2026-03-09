@@ -1,7 +1,7 @@
-defmodule UniboV4.Documents.Attachment do
+defmodule UniboExPoc.Documents.Attachment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Documents,
+    domain: UniboExPoc.Documents,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Documents.Attachment do
 
   postgres do
     table "documents_attachments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

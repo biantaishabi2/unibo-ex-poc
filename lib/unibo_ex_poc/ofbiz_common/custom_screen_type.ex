@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Common.CustomScreenType do
+defmodule UniboExPoc.Ofbiz.Common.CustomScreenType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Common.CustomScreenType do
 
   postgres do
     table "common_custom_screen_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -40,7 +40,7 @@ defmodule UniboV4.Ofbiz.Common.CustomScreenType do
   end
 
   relationships do
-    has_many :child_custom_screen_type, UniboV4.Ofbiz.Common.CustomScreenType do
+    has_many :child_custom_screen_type, UniboExPoc.Ofbiz.Common.CustomScreenType do
       public? true
     end
   end

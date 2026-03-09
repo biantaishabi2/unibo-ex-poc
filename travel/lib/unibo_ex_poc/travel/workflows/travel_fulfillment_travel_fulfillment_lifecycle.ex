@@ -169,6 +169,7 @@ defmodule UniboExPoc.Travel.Workflows.TravelFulfillment.TravelFulfillmentLifecyc
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create_fulfillment -> nil
       :update -> nil
@@ -184,6 +185,7 @@ defmodule UniboExPoc.Travel.Workflows.TravelFulfillment.TravelFulfillmentLifecyc
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create_fulfillment -> false
       :update -> false

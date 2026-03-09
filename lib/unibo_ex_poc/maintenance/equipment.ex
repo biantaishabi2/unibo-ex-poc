@@ -7,10 +7,10 @@
 #   update --> retire
 #   retire --> [*]
 # ```
-defmodule UniboV4.Maintenance.Equipment do
+defmodule UniboExPoc.Maintenance.Equipment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Maintenance.Equipment do
 
   postgres do
     table "maintenance_equipments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -100,26 +100,26 @@ defmodule UniboV4.Maintenance.Equipment do
   end
 
   relationships do
-    has_many :maintenance_requests, UniboV4.Maintenance.MaintenanceRequest do
+    has_many :maintenance_requests, UniboExPoc.Maintenance.MaintenanceRequest do
       public? true
     end
-    belongs_to :category_ref, UniboV4.Maintenance.EquipmentCategory do
+    belongs_to :category_ref, UniboExPoc.Maintenance.EquipmentCategory do
       public? true
     end
-    belongs_to :owner, UniboV4.Maintenance.Party do
+    belongs_to :owner, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :owner_party_id
     end
-    belongs_to :technician, UniboV4.Maintenance.Party do
+    belongs_to :technician, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :technician_party_id
     end
-    belongs_to :company, UniboV4.Maintenance.Party do
+    belongs_to :company, UniboExPoc.Maintenance.Party do
       public? true
       allow_nil? false
       source_attribute :company_party_id
     end
-    belongs_to :maintenance_team, UniboV4.Maintenance.MaintenanceTeam do
+    belongs_to :maintenance_team, UniboExPoc.Maintenance.MaintenanceTeam do
       public? true
     end
   end
@@ -160,7 +160,7 @@ defmodule UniboV4.Maintenance.Equipment do
   end
 
   validations do
-    validate {UniboV4.Maintenance.Validations.Equipment.CompanyIsolation, []}
+    validate {UniboExPoc.Maintenance.Validations.Equipment.CompanyIsolation, []}
   end
 
   identities do

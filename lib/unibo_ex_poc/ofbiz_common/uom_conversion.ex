@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Common.UomConversion do
+defmodule UniboExPoc.Ofbiz.Common.UomConversion do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Common.UomConversion do
 
   postgres do
     table "common_uom_conversions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -39,15 +39,15 @@ defmodule UniboV4.Ofbiz.Common.UomConversion do
   end
 
   relationships do
-    belongs_to :main_uom, UniboV4.Ofbiz.Common.Uom do
+    belongs_to :main_uom, UniboExPoc.Ofbiz.Common.Uom do
       public? true
       source_attribute :uom_id
     end
-    belongs_to :conv_to_uom, UniboV4.Ofbiz.Common.Uom do
+    belongs_to :conv_to_uom, UniboExPoc.Ofbiz.Common.Uom do
       public? true
       source_attribute :uom_id_to
     end
-    belongs_to :uom_custom_method_custom_method, UniboV4.Ofbiz.Common.CustomMethod do
+    belongs_to :uom_custom_method_custom_method, UniboExPoc.Ofbiz.Common.CustomMethod do
       public? true
       source_attribute :custom_method_id
     end

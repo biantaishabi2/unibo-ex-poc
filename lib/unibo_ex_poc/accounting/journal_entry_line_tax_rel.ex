@@ -1,7 +1,7 @@
-defmodule UniboV4.Accounting.JournalEntryLineTaxRel do
+defmodule UniboExPoc.Accounting.JournalEntryLineTaxRel do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Accounting,
+    domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Accounting.JournalEntryLineTaxRel do
 
   postgres do
     table "accounting_journal_entry_line_tax_rels"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Accounting.JournalEntryLineTaxRel do
   end
 
   relationships do
-    belongs_to :journal_entry_line, UniboV4.Accounting.JournalEntryLine do
+    belongs_to :journal_entry_line, UniboExPoc.Accounting.JournalEntryLine do
       public? true
       allow_nil? false
     end
-    belongs_to :tax, UniboV4.Accounting.Tax do
+    belongs_to :tax, UniboExPoc.Accounting.Tax do
       public? true
       allow_nil? false
     end

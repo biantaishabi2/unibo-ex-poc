@@ -149,6 +149,7 @@ defmodule UniboExPoc.Ecommerce.Workflows.LoyaltyCard.CardLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :add_points -> nil
@@ -159,6 +160,7 @@ defmodule UniboExPoc.Ecommerce.Workflows.LoyaltyCard.CardLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :add_points -> false

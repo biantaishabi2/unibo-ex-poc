@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.InvoiceItem do
+defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItem do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_invoice_items"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -53,16 +53,16 @@ defmodule UniboV4.Ofbiz.Accounting.InvoiceItem do
   end
 
   relationships do
-    belongs_to :invoice_item_type, UniboV4.Ofbiz.Accounting.InvoiceItemType do
+    belongs_to :invoice_item_type, UniboExPoc.Ofbiz.Accounting.InvoiceItemType do
       public? true
     end
-    belongs_to :invoice, UniboV4.Ofbiz.Accounting.Invoice do
+    belongs_to :invoice, UniboExPoc.Ofbiz.Accounting.Invoice do
       public? true
     end
-    belongs_to :override_gl_account, UniboV4.Ofbiz.Accounting.GlAccount do
+    belongs_to :override_gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
     end
-    belongs_to :tax_authority_rate_product, UniboV4.Ofbiz.Accounting.TaxAuthorityRateProduct do
+    belongs_to :tax_authority_rate_product, UniboExPoc.Ofbiz.Accounting.TaxAuthorityRateProduct do
       public? true
       source_attribute :tax_authority_rate_seq_id
     end

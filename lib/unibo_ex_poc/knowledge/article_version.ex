@@ -4,10 +4,10 @@
 #   [*] --> create
 #   create --> [*]
 # ```
-defmodule UniboV4.Knowledge.ArticleVersion do
+defmodule UniboExPoc.Knowledge.ArticleVersion do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Knowledge,
+    domain: UniboExPoc.Knowledge,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -17,7 +17,7 @@ defmodule UniboV4.Knowledge.ArticleVersion do
 
   postgres do
     table "knowledge_article_versions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -60,11 +60,11 @@ defmodule UniboV4.Knowledge.ArticleVersion do
   end
 
   relationships do
-    belongs_to :article, UniboV4.Knowledge.Article do
+    belongs_to :article, UniboExPoc.Knowledge.Article do
       public? true
       allow_nil? false
     end
-    belongs_to :creator, UniboV4.Knowledge.Party do
+    belongs_to :creator, UniboExPoc.Knowledge.Party do
       public? true
       source_attribute :creator_party_id
     end
@@ -79,7 +79,7 @@ defmodule UniboV4.Knowledge.ArticleVersion do
       change manage_relationship(:article_id, :article, type: :append, on_lookup: :relate)
       validate present(:article_id)
       validate present(:body)
-      change UniboV4.Knowledge.Changes.ArticleVersion.CreateCall1
+      change UniboExPoc.Knowledge.Changes.ArticleVersion.CreateCall1
       change set_attribute(:id, expr(id))
     end
   end

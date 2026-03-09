@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Events.EventStage do
+defmodule UniboExPoc.Events.EventStage do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Events,
+    domain: UniboExPoc.Events,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.Events.EventStage do
 
   postgres do
     table "events_event_stages"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -82,15 +82,15 @@ defmodule UniboV4.Events.EventStage do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Events.Event do
+    belongs_to :event, UniboExPoc.Events.Event do
       public? true
       allow_nil? false
     end
-    belongs_to :speaker, UniboV4.Events.Party do
+    belongs_to :speaker, UniboExPoc.Events.Party do
       public? true
       source_attribute :speaker_party_id
     end
-    has_many :translations, UniboV4.Events.EventStageTranslation, public?: true
+    has_many :translations, UniboExPoc.Events.EventStageTranslation, public?: true
   end
 
   actions do

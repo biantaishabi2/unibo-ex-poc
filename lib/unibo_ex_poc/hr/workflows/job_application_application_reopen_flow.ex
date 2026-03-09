@@ -1,4 +1,4 @@
-defmodule UniboV4.HR.Workflows.JobApplication.ApplicationReopenFlowWorkflow do
+defmodule UniboExPoc.HR.Workflows.JobApplication.ApplicationReopenFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
@@ -143,6 +143,7 @@ defmodule UniboV4.HR.Workflows.JobApplication.ApplicationReopenFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :reject -> nil
       :reset -> nil
@@ -152,6 +153,7 @@ defmodule UniboV4.HR.Workflows.JobApplication.ApplicationReopenFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :reject -> false
       :reset -> false

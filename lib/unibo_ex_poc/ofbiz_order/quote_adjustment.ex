@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Order.QuoteAdjustment do
+defmodule UniboExPoc.Ofbiz.Order.QuoteAdjustment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Order.QuoteAdjustment do
 
   postgres do
     table "order_quote_adjustments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -65,12 +65,12 @@ defmodule UniboV4.Ofbiz.Order.QuoteAdjustment do
   end
 
   relationships do
-    belongs_to :order_adjustment_type, UniboV4.Ofbiz.Order.OrderAdjustmentType do
+    belongs_to :order_adjustment_type, UniboExPoc.Ofbiz.Order.OrderAdjustmentType do
       public? true
       source_attribute :quote_adjustment_type_id
       attribute_type :string
     end
-    belongs_to :quote, UniboV4.Ofbiz.Order.Quote do
+    belongs_to :quote, UniboExPoc.Ofbiz.Order.Quote do
       public? true
       attribute_type :string
     end

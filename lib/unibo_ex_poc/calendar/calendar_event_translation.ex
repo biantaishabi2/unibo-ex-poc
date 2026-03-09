@@ -1,12 +1,12 @@
-defmodule UniboV4.Calendar.CalendarEventTranslation do
+defmodule UniboExPoc.Calendar.CalendarEventTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Calendar,
+    domain: UniboExPoc.Calendar,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "calendar_calendar_event_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Calendar.CalendarEventTranslation do
   end
 
   relationships do
-    belongs_to :calendar_event, UniboV4.Calendar.CalendarEvent do
+    belongs_to :calendar_event, UniboExPoc.Calendar.CalendarEvent do
       public? true
       allow_nil? false
     end

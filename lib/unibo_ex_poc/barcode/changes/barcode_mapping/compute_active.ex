@@ -1,4 +1,4 @@
-defmodule UniboV4.Barcode.Changes.BarcodeMapping.ComputeActive do
+defmodule UniboExPoc.Barcode.Changes.BarcodeMapping.ComputeActive do
   @moduledoc """
   Change 模块: 计算 :active (entity: barcode_mapping)
   原始 expr: op: literal args: - false

@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Manufacturing.TechDataCalendarExcWeek do
+defmodule UniboExPoc.Ofbiz.Manufacturing.TechDataCalendarExcWeek do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Manufacturing,
+    domain: UniboExPoc.Ofbiz.Manufacturing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Manufacturing.TechDataCalendarExcWeek do
 
   postgres do
     table "manufacturing_tech_data_calendar_exc_weeks"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -45,11 +45,11 @@ defmodule UniboV4.Ofbiz.Manufacturing.TechDataCalendarExcWeek do
   end
 
   relationships do
-    belongs_to :tech_data_calendar, UniboV4.Ofbiz.Manufacturing.TechDataCalendar do
+    belongs_to :tech_data_calendar, UniboExPoc.Ofbiz.Manufacturing.TechDataCalendar do
       public? true
       source_attribute :calendar_id
     end
-    belongs_to :tech_data_calendar_week, UniboV4.Ofbiz.Manufacturing.TechDataCalendarWeek do
+    belongs_to :tech_data_calendar_week, UniboExPoc.Ofbiz.Manufacturing.TechDataCalendarWeek do
       public? true
       source_attribute :calendar_week_id
     end

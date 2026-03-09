@@ -8,13 +8,13 @@
 #   end_conference --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.IoT.ConferenceRoom do
+defmodule UniboExPoc.IoT.ConferenceRoom do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.IoT.ConferenceRoom.Notifier]
+    notifiers: [UniboExPoc.IoT.ConferenceRoom.Notifier]
 
   resource do
     description "虚拟电话会议室配置，支持 PIN 码保护、录音和参会人管理"
@@ -22,7 +22,7 @@ defmodule UniboV4.IoT.ConferenceRoom do
 
   postgres do
     table "io_t_conference_rooms"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -97,12 +97,12 @@ defmodule UniboV4.IoT.ConferenceRoom do
   end
 
   relationships do
-    belongs_to :org, UniboV4.IoT.Org do
+    belongs_to :org, UniboExPoc.IoT.Org do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    has_many :incoming_numbers, UniboV4.IoT.IncomingNumber do
+    has_many :incoming_numbers, UniboExPoc.IoT.IncomingNumber do
       public? true
       source_attribute :org_id
       destination_attribute :conference_room_id

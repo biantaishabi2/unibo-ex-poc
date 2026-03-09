@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.DataResourcePurpose do
+defmodule UniboExPoc.Ofbiz.Content.DataResourcePurpose do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_data_resource_purposes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -32,11 +32,11 @@ defmodule UniboV4.Ofbiz.Content.DataResourcePurpose do
   end
 
   relationships do
-    belongs_to :data_resource, UniboV4.Ofbiz.Content.DataResource do
+    belongs_to :data_resource, UniboExPoc.Ofbiz.Content.DataResource do
       public? true
       attribute_type :string
     end
-    belongs_to :content_purpose_type, UniboV4.Ofbiz.Content.ContentPurposeType do
+    belongs_to :content_purpose_type, UniboExPoc.Ofbiz.Content.ContentPurposeType do
       public? true
       attribute_type :string
     end

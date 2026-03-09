@@ -1,7 +1,7 @@
-defmodule UniboV4.Gamification.ChallengeUserLink do
+defmodule UniboExPoc.Gamification.ChallengeUserLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Gamification,
+    domain: UniboExPoc.Gamification,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Gamification.ChallengeUserLink do
 
   postgres do
     table "gamification_challenge_user_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Gamification.ChallengeUserLink do
   end
 
   relationships do
-    belongs_to :challenge, UniboV4.Gamification.Challenge do
+    belongs_to :challenge, UniboExPoc.Gamification.Challenge do
       public? true
       allow_nil? false
     end
-    belongs_to :user, UniboV4.Gamification.Party do
+    belongs_to :user, UniboExPoc.Gamification.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id

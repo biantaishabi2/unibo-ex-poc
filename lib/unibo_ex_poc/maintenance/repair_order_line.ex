@@ -1,7 +1,7 @@
-defmodule UniboV4.Maintenance.RepairOrderLine do
+defmodule UniboExPoc.Maintenance.RepairOrderLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Maintenance.RepairOrderLine do
 
   postgres do
     table "maintenance_repair_order_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,7 +29,7 @@ defmodule UniboV4.Maintenance.RepairOrderLine do
   end
 
   relationships do
-    belongs_to :repair_order, UniboV4.Maintenance.RepairOrder do
+    belongs_to :repair_order, UniboExPoc.Maintenance.RepairOrder do
       public? true
     end
   end

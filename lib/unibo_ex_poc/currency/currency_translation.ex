@@ -1,12 +1,12 @@
-defmodule UniboV4.Currency.CurrencyTranslation do
+defmodule UniboExPoc.Currency.CurrencyTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Currency,
+    domain: UniboExPoc.Currency,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "currency_currency_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Currency.CurrencyTranslation do
   end
 
   relationships do
-    belongs_to :currency, UniboV4.Currency.Currency do
+    belongs_to :currency, UniboExPoc.Currency.Currency do
       public? true
       allow_nil? false
     end

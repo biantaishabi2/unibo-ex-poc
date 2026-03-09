@@ -11,10 +11,10 @@
 #   complete --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.CRM.Activity do
+defmodule UniboExPoc.CRM.Activity do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.CRM,
+    domain: UniboExPoc.CRM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -24,7 +24,7 @@ defmodule UniboV4.CRM.Activity do
 
   postgres do
     table "crm_activities"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -78,13 +78,13 @@ defmodule UniboV4.CRM.Activity do
   end
 
   relationships do
-    belongs_to :contact, UniboV4.CRM.Contact do
+    belongs_to :contact, UniboExPoc.CRM.Contact do
       public? true
     end
-    belongs_to :lead, UniboV4.CRM.Lead do
+    belongs_to :lead, UniboExPoc.CRM.Lead do
       public? true
     end
-    belongs_to :created_by, UniboV4.CRM.Party do
+    belongs_to :created_by, UniboExPoc.CRM.Party do
       public? true
       source_attribute :created_by_party_id
     end

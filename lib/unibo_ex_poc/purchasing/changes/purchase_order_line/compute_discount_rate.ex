@@ -1,4 +1,4 @@
-defmodule UniboV4.Purchasing.Changes.PurchaseOrderLine.ComputeDiscountRate do
+defmodule UniboExPoc.Purchasing.Changes.PurchaseOrderLine.ComputeDiscountRate do
   @moduledoc """
   Change 模块: 计算 :discount_rate (entity: purchase_order_line)
   """

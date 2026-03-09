@@ -1,4 +1,4 @@
-defmodule UniboV4.Quality.Calculations.QualityCheck.MeasureSuccess do
+defmodule UniboExPoc.Quality.Calculations.QualityCheck.MeasureSuccess do
   @moduledoc """
   Calculation 模块: :measure_success (type: :atom, entity: quality_check)
   """

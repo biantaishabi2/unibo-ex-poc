@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.EmplLeave do
+defmodule UniboExPoc.Ofbiz.HumanRes.EmplLeave do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_empl_leaves"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,24 +38,24 @@ defmodule UniboV4.Ofbiz.HumanRes.EmplLeave do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Ofbiz.HumanRes.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.HumanRes.Party do
       public? true
       attribute_type :string
     end
-    belongs_to :empl_leave_type, UniboV4.Ofbiz.HumanRes.EmplLeaveType do
+    belongs_to :empl_leave_type, UniboExPoc.Ofbiz.HumanRes.EmplLeaveType do
       public? true
       source_attribute :leave_type_id
       attribute_type :string
     end
-    belongs_to :empl_leave_reason_type, UniboV4.Ofbiz.HumanRes.EmplLeaveReasonType do
+    belongs_to :empl_leave_reason_type, UniboExPoc.Ofbiz.HumanRes.EmplLeaveReasonType do
       public? true
       attribute_type :string
     end
-    belongs_to :approver_party, UniboV4.Ofbiz.HumanRes.Party do
+    belongs_to :approver_party, UniboExPoc.Ofbiz.HumanRes.Party do
       public? true
       attribute_type :string
     end
-    belongs_to :status_item, UniboV4.Ofbiz.HumanRes.StatusItem do
+    belongs_to :status_item, UniboExPoc.Ofbiz.HumanRes.StatusItem do
       public? true
       source_attribute :leave_status
       attribute_type :string

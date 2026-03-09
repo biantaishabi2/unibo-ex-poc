@@ -1,4 +1,4 @@
-defmodule UniboV4.PLM.Workflows.BomRevision.BomComponentDeltaImpactWorkflow do
+defmodule UniboExPoc.PLM.Workflows.BomRevision.BomComponentDeltaImpactWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
@@ -139,6 +139,7 @@ defmodule UniboV4.PLM.Workflows.BomRevision.BomComponentDeltaImpactWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :detect_component_delta -> nil
       :sync_procurement_stock_impact -> nil
@@ -147,6 +148,7 @@ defmodule UniboV4.PLM.Workflows.BomRevision.BomComponentDeltaImpactWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :detect_component_delta -> false
       :sync_procurement_stock_impact -> false

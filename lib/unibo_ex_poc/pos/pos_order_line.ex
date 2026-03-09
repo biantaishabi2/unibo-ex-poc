@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.POS.PosOrderLine do
+defmodule UniboExPoc.POS.PosOrderLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.POS,
+    domain: UniboExPoc.POS,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.POS.PosOrderLine do
 
   postgres do
     table "pos_order_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -94,18 +94,18 @@ defmodule UniboV4.POS.PosOrderLine do
   end
 
   relationships do
-    belongs_to :order, UniboV4.POS.PosOrder do
+    belongs_to :order, UniboExPoc.POS.PosOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :product, UniboV4.POS.Product do
+    belongs_to :product, UniboExPoc.POS.Product do
       public? true
       allow_nil? false
     end
-    belongs_to :refunded_orderline, UniboV4.POS.PosOrderLine do
+    belongs_to :refunded_orderline, UniboExPoc.POS.PosOrderLine do
       public? true
     end
-    has_many :refund_orderlines, UniboV4.POS.PosOrderLine do
+    has_many :refund_orderlines, UniboExPoc.POS.PosOrderLine do
       public? true
       source_attribute :refunded_orderline_id
       destination_attribute :refunded_orderline_id
@@ -122,16 +122,16 @@ defmodule UniboV4.POS.PosOrderLine do
       argument :product_id, :uuid, allow_nil?: false
       change manage_relationship(:product_id, :product, type: :append, on_lookup: :relate)
       change set_attribute(:price_subtotal_incl, expr((quantity * (unit_price * (1 - (discount / 100))))))
-      change UniboV4.POS.Changes.PosOrderLine.ComputePriceSubtotal
-      change UniboV4.POS.Changes.PosOrderLine.ComputeMargin
+      change UniboExPoc.POS.Changes.PosOrderLine.ComputePriceSubtotal
+      change UniboExPoc.POS.Changes.PosOrderLine.ComputeMargin
       change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:quantity, :unit_price, :discount]
       change set_attribute(:price_subtotal_incl, expr((quantity * (unit_price * (1 - (discount / 100))))))
-      change UniboV4.POS.Changes.PosOrderLine.ComputePriceSubtotal
-      change UniboV4.POS.Changes.PosOrderLine.ComputeMargin
+      change UniboExPoc.POS.Changes.PosOrderLine.ComputePriceSubtotal
+      change UniboExPoc.POS.Changes.PosOrderLine.ComputeMargin
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

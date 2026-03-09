@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Manufacturing.MrpEvent do
+defmodule UniboExPoc.Ofbiz.Manufacturing.MrpEvent do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Manufacturing,
+    domain: UniboExPoc.Ofbiz.Manufacturing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "manufacturing_mrp_events"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -69,7 +69,7 @@ defmodule UniboV4.Ofbiz.Manufacturing.MrpEvent do
   end
 
   relationships do
-    belongs_to :mrp_event_type, UniboV4.Ofbiz.Manufacturing.MrpEventType do
+    belongs_to :mrp_event_type, UniboExPoc.Ofbiz.Manufacturing.MrpEventType do
       public? true
     end
   end

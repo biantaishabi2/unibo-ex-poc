@@ -1,10 +1,10 @@
-defmodule UniboV4.Blog.Workflows.BlogPost.BlogPostLifecycleWorkflow do
+defmodule UniboExPoc.Blog.Workflows.BlogPost.BlogPostLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Blog.BlogPost
+  alias UniboExPoc.Blog.BlogPost
 
   def steps do
     [:create, :update, :publish, :unpublish, :archive, :unarchive]
@@ -157,6 +157,7 @@ defmodule UniboV4.Blog.Workflows.BlogPost.BlogPostLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -169,6 +170,7 @@ defmodule UniboV4.Blog.Workflows.BlogPost.BlogPostLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

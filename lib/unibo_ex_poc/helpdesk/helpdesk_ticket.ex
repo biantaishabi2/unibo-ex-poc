@@ -33,13 +33,13 @@
 #   plan_intervention --> resolve
 #   plan_intervention --> close
 # ```
-defmodule UniboV4.Helpdesk.HelpdeskTicket do
+defmodule UniboExPoc.Helpdesk.HelpdeskTicket do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Helpdesk.HelpdeskTicket.Notifier]
+    notifiers: [UniboExPoc.Helpdesk.HelpdeskTicket.Notifier]
 
   resource do
     description "服务台工单，阶段驱动状态机（New→In Progress→Solved→Closed）"
@@ -47,7 +47,7 @@ defmodule UniboV4.Helpdesk.HelpdeskTicket do
 
   postgres do
     table "helpdesk_tickets"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -154,48 +154,48 @@ defmodule UniboV4.Helpdesk.HelpdeskTicket do
   end
 
   relationships do
-    belongs_to :team, UniboV4.Helpdesk.HelpdeskTeam do
+    belongs_to :team, UniboExPoc.Helpdesk.HelpdeskTeam do
       public? true
       allow_nil? false
     end
-    belongs_to :stage, UniboV4.Helpdesk.HelpdeskStage do
+    belongs_to :stage, UniboExPoc.Helpdesk.HelpdeskStage do
       public? true
       allow_nil? false
     end
-    belongs_to :user, UniboV4.Helpdesk.Party do
+    belongs_to :user, UniboExPoc.Helpdesk.Party do
       public? true
       source_attribute :user_party_id
     end
-    belongs_to :partner, UniboV4.Helpdesk.Party do
+    belongs_to :partner, UniboExPoc.Helpdesk.Party do
       public? true
       source_attribute :partner_party_id
     end
-    belongs_to :ticket_type, UniboV4.Helpdesk.HelpdeskTicketType do
+    belongs_to :ticket_type, UniboExPoc.Helpdesk.HelpdeskTicketType do
       public? true
     end
-    belongs_to :sales_order, UniboV4.Helpdesk.SalesOrder do
+    belongs_to :sales_order, UniboExPoc.Helpdesk.SalesOrder do
       public? true
     end
-    belongs_to :created_by, UniboV4.Helpdesk.Party do
+    belongs_to :created_by, UniboExPoc.Helpdesk.Party do
       public? true
       source_attribute :created_by_party_id
     end
-    has_many :sla_status_ids, UniboV4.Helpdesk.HelpdeskSLAStatus do
+    has_many :sla_status_ids, UniboExPoc.Helpdesk.HelpdeskSLAStatus do
       public? true
       destination_attribute :ticket_id
     end
-    has_many :timesheet_ids, UniboV4.Helpdesk.TimesheetEntry do
+    has_many :timesheet_ids, UniboExPoc.Helpdesk.TimesheetEntry do
       public? true
     end
-    has_many :field_service_tasks, UniboV4.Helpdesk.FieldServiceOrder do
+    has_many :field_service_tasks, UniboExPoc.Helpdesk.FieldServiceOrder do
       public? true
     end
-    has_many :rating_ids, UniboV4.Helpdesk.Rating do
+    has_many :rating_ids, UniboExPoc.Helpdesk.Rating do
       public? true
     end
-    many_to_many :tag_ids, UniboV4.Helpdesk.HelpdeskTag do
+    many_to_many :tag_ids, UniboExPoc.Helpdesk.HelpdeskTag do
       public? true
-      through UniboV4.Helpdesk.HelpdeskTicketTagLink
+      through UniboExPoc.Helpdesk.HelpdeskTicketTagLink
     end
   end
 
@@ -224,10 +224,10 @@ R9. 来源渠道由创建方式自动设定
       # message: "必须指定阶段"
       change relate_actor(:created_by)
       change set_attribute(:date_last_stage_update, &DateTime.utc_now/0)
-      change UniboV4.Helpdesk.Changes.HelpdeskTicket.CreateCall8
-      change UniboV4.Helpdesk.Changes.HelpdeskTicket.CreateCall9
-      change UniboV4.Helpdesk.Changes.HelpdeskTicket.CreateCall11
-      change UniboV4.Helpdesk.Changes.HelpdeskTicket.CreateCall14
+      change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.CreateCall8
+      change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.CreateCall9
+      change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.CreateCall11
+      change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.CreateCall14
       change set_attribute(:id, expr(id))
     end
     update :assign do
@@ -253,9 +253,9 @@ R9. 来源渠道由创建方式自动设定
       accept []
       argument :stage_id, :uuid, allow_nil?: false
       change set_attribute(:date_last_stage_update, &DateTime.utc_now/0)
-      change UniboV4.Helpdesk.Changes.HelpdeskTicket.ChangeStageCall10
-      change UniboV4.Helpdesk.Changes.HelpdeskTicket.ChangeStageCall11
-      change UniboV4.Helpdesk.Changes.HelpdeskTicket.ChangeStageCall13
+      change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.ChangeStageCall10
+      change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.ChangeStageCall11
+      change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.ChangeStageCall13
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -272,7 +272,7 @@ R9. 来源渠道由创建方式自动设定
       accept []
       # skipped: validate custom_check : (incompatible with bulk update atomic path)
       change set_attribute(:close_date, &DateTime.utc_now/0)
-      change UniboV4.Helpdesk.Changes.HelpdeskTicket.CloseCall12
+      change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.CloseCall12
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -295,8 +295,8 @@ R9. 来源渠道由创建方式自动设定
 "
       accept [:priority]
       change set_attribute(:priority_update_date, &DateTime.utc_now/0)
-      change UniboV4.Helpdesk.Changes.HelpdeskTicket.UpdatePriorityCall9
-      change UniboV4.Helpdesk.Changes.HelpdeskTicket.UpdatePriorityCall11
+      change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.UpdatePriorityCall9
+      change UniboExPoc.Helpdesk.Changes.HelpdeskTicket.UpdatePriorityCall11
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

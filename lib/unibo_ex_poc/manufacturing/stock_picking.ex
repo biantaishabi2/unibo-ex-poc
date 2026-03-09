@@ -1,7 +1,7 @@
-defmodule UniboV4.Manufacturing.StockPicking do
+defmodule UniboExPoc.Manufacturing.StockPicking do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Manufacturing,
+    domain: UniboExPoc.Manufacturing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Manufacturing.StockPicking do
 
   postgres do
     table "manufacturing_stock_pickings"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -30,7 +30,7 @@ defmodule UniboV4.Manufacturing.StockPicking do
   end
 
   relationships do
-    belongs_to :production, UniboV4.Manufacturing.ManufacturingOrder do
+    belongs_to :production, UniboExPoc.Manufacturing.ManufacturingOrder do
       public? true
     end
   end

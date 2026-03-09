@@ -1,4 +1,4 @@
-defmodule UniboV4.Barcode.Changes.BarcodeNomenclature.ComputeActive do
+defmodule UniboExPoc.Barcode.Changes.BarcodeNomenclature.ComputeActive do
   @moduledoc """
   Change 模块: 计算 :active (entity: barcode_nomenclature)
   原始 expr: op: literal args: - true

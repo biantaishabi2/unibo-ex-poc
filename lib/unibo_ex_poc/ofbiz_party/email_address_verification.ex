@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Party.EmailAddressVerification do
+defmodule UniboExPoc.Ofbiz.Party.EmailAddressVerification do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Party.EmailAddressVerification do
 
   postgres do
     table "party_email_address_verifications"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

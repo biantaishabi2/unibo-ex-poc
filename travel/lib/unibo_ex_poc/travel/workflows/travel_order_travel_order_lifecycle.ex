@@ -197,6 +197,7 @@ defmodule UniboExPoc.Travel.Workflows.TravelOrder.TravelOrderLifecycleWorkflow d
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create_order -> nil
       :update -> nil
@@ -219,6 +220,7 @@ defmodule UniboExPoc.Travel.Workflows.TravelOrder.TravelOrderLifecycleWorkflow d
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create_order -> false
       :update -> false

@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.JobInterview do
+defmodule UniboExPoc.Ofbiz.HumanRes.JobInterview do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_job_interviews"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -39,25 +39,25 @@ defmodule UniboV4.Ofbiz.HumanRes.JobInterview do
   end
 
   relationships do
-    belongs_to :interviewee_party, UniboV4.Ofbiz.HumanRes.Party do
+    belongs_to :interviewee_party, UniboExPoc.Ofbiz.HumanRes.Party do
       public? true
       source_attribute :job_interviewee_party_id
       attribute_type :string
     end
-    belongs_to :interviewer_party, UniboV4.Ofbiz.HumanRes.Party do
+    belongs_to :interviewer_party, UniboExPoc.Ofbiz.HumanRes.Party do
       public? true
       source_attribute :job_interviewer_party_id
       attribute_type :string
     end
-    belongs_to :job_interview_type, UniboV4.Ofbiz.HumanRes.JobInterviewType do
+    belongs_to :job_interview_type, UniboExPoc.Ofbiz.HumanRes.JobInterviewType do
       public? true
       attribute_type :string
     end
-    belongs_to :job_requisition, UniboV4.Ofbiz.HumanRes.JobRequisition do
+    belongs_to :job_requisition, UniboExPoc.Ofbiz.HumanRes.JobRequisition do
       public? true
       attribute_type :string
     end
-    belongs_to :enumeration, UniboV4.Ofbiz.HumanRes.Enumeration do
+    belongs_to :enumeration, UniboExPoc.Ofbiz.HumanRes.Enumeration do
       public? true
       source_attribute :grade_secured_enum_id
       attribute_type :string

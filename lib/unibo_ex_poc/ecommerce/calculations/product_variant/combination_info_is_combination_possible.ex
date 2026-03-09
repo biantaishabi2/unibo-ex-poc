@@ -1,4 +1,4 @@
-defmodule UniboV4.Ecommerce.Calculations.ProductVariant.CombinationInfoIsCombinationPossible do
+defmodule UniboExPoc.Ecommerce.Calculations.ProductVariant.CombinationInfoIsCombinationPossible do
   @moduledoc """
   Calculation 模块: :combination_info_is_combination_possible (type: :boolean, entity: product_variant)
   原始 expr: op: custom args: []

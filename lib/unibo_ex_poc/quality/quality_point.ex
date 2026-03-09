@@ -14,10 +14,10 @@
 #   activate --> trigger_checks
 #   trigger_checks --> [*]
 # ```
-defmodule UniboV4.Quality.QualityPoint do
+defmodule UniboExPoc.Quality.QualityPoint do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Quality,
+    domain: UniboExPoc.Quality,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -27,7 +27,7 @@ defmodule UniboV4.Quality.QualityPoint do
 
   postgres do
     table "quality_points"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -118,29 +118,29 @@ defmodule UniboV4.Quality.QualityPoint do
   end
 
   relationships do
-    many_to_many :product_ids, UniboV4.Quality.Product do
+    many_to_many :product_ids, UniboExPoc.Quality.Product do
       public? true
-      through UniboV4.Quality.QualityPointProductLink
+      through UniboExPoc.Quality.QualityPointProductLink
     end
-    belongs_to :work_order_operation, UniboV4.Quality.WorkOrderOperation do
-      public? true
-    end
-    belongs_to :team, UniboV4.Quality.QualityTeam do
+    belongs_to :work_order_operation, UniboExPoc.Quality.WorkOrderOperation do
       public? true
     end
-    belongs_to :responsible, UniboV4.Quality.Party do
+    belongs_to :team, UniboExPoc.Quality.QualityTeam do
+      public? true
+    end
+    belongs_to :responsible, UniboExPoc.Quality.Party do
       public? true
       source_attribute :responsible_party_id
     end
-    belongs_to :worksheet_template, UniboV4.Quality.WorksheetTemplate do
+    belongs_to :worksheet_template, UniboExPoc.Quality.WorksheetTemplate do
       public? true
     end
-    belongs_to :company, UniboV4.Quality.Party do
+    belongs_to :company, UniboExPoc.Quality.Party do
       public? true
       allow_nil? false
       source_attribute :company_party_id
     end
-    has_many :checks, UniboV4.Quality.QualityCheck do
+    has_many :checks, UniboExPoc.Quality.QualityCheck do
       public? true
       destination_attribute :point_id
     end

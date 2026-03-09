@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Barcode.GS1ApplicationIdentifier do
+defmodule UniboExPoc.Barcode.GS1ApplicationIdentifier do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Barcode,
+    domain: UniboExPoc.Barcode,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Barcode.GS1ApplicationIdentifier do
 
   postgres do
     table "barcode_gs1_application_identifiers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -79,11 +79,11 @@ defmodule UniboV4.Barcode.GS1ApplicationIdentifier do
   end
 
   relationships do
-    has_many :rules, UniboV4.Barcode.BarcodeRule do
+    has_many :rules, UniboExPoc.Barcode.BarcodeRule do
       public? true
       destination_attribute :gs1_ai_id
     end
-    has_many :translations, UniboV4.Barcode.GS1ApplicationIdentifierTranslation, public?: true
+    has_many :translations, UniboExPoc.Barcode.GS1ApplicationIdentifierTranslation, public?: true
   end
 
   actions do

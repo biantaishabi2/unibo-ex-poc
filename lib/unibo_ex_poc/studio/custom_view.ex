@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Studio.CustomView do
+defmodule UniboExPoc.Studio.CustomView do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Studio,
+    domain: UniboExPoc.Studio,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Studio.CustomView do
 
   postgres do
     table "studio_custom_views"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -95,12 +95,12 @@ defmodule UniboV4.Studio.CustomView do
   end
 
   relationships do
-    belongs_to :model, UniboV4.Studio.CustomModel do
+    belongs_to :model, UniboExPoc.Studio.CustomModel do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    belongs_to :created_by, UniboV4.Studio.Party do
+    belongs_to :created_by, UniboExPoc.Studio.Party do
       public? true
       source_attribute :created_by_party_id
     end

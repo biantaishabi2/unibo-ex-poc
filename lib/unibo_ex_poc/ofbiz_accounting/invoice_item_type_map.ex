@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.InvoiceItemTypeMap do
+defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItemTypeMap do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_invoice_item_type_maps"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -36,10 +36,10 @@ defmodule UniboV4.Ofbiz.Accounting.InvoiceItemTypeMap do
   end
 
   relationships do
-    belongs_to :invoice_item_type, UniboV4.Ofbiz.Accounting.InvoiceItemType do
+    belongs_to :invoice_item_type, UniboExPoc.Ofbiz.Accounting.InvoiceItemType do
       public? true
     end
-    belongs_to :invoice_type, UniboV4.Ofbiz.Accounting.InvoiceType do
+    belongs_to :invoice_type, UniboExPoc.Ofbiz.Accounting.InvoiceType do
       public? true
     end
   end

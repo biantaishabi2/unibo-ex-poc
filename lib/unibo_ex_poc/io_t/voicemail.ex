@@ -8,13 +8,13 @@
 #   archive --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.IoT.Voicemail do
+defmodule UniboExPoc.IoT.Voicemail do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.IoT,
+    domain: UniboExPoc.IoT,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.IoT.Voicemail.Notifier]
+    notifiers: [UniboExPoc.IoT.Voicemail.Notifier]
 
   resource do
     description "语音留言存储和管理，基于 OFBiz CommunicationEvent 扩展"
@@ -22,7 +22,7 @@ defmodule UniboV4.IoT.Voicemail do
 
   postgres do
     table "io_t_voicemails"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -83,21 +83,21 @@ defmodule UniboV4.IoT.Voicemail do
   end
 
   relationships do
-    belongs_to :user, UniboV4.IoT.Party do
+    belongs_to :user, UniboExPoc.IoT.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id
     end
-    belongs_to :call, UniboV4.IoT.VoIPCall do
+    belongs_to :call, UniboExPoc.IoT.VoIPCall do
       public? true
       attribute_type :integer
     end
-    belongs_to :org, UniboV4.IoT.Org do
+    belongs_to :org, UniboExPoc.IoT.Org do
       public? true
       allow_nil? false
       attribute_type :integer
     end
-    has_many :incoming_numbers, UniboV4.IoT.IncomingNumber do
+    has_many :incoming_numbers, UniboExPoc.IoT.IncomingNumber do
       public? true
       destination_attribute :voicemail_id
     end

@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.HumanRes.RateType do
+defmodule UniboExPoc.Ofbiz.HumanRes.RateType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer
 
   resource do
@@ -10,7 +10,7 @@ defmodule UniboV4.Ofbiz.HumanRes.RateType do
 
   postgres do
     table "human_res_rate_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do

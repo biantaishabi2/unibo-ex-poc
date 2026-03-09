@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.HR.LeaveType do
+defmodule UniboExPoc.HR.LeaveType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.HR.LeaveType do
 
   postgres do
     table "hr_leave_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -95,7 +95,7 @@ defmodule UniboV4.HR.LeaveType do
   end
 
   relationships do
-    has_many :leave_requests, UniboV4.HR.LeaveRequest do
+    has_many :leave_requests, UniboExPoc.HR.LeaveRequest do
       public? true
     end
   end

@@ -1,12 +1,12 @@
-defmodule UniboV4.Calendar.WeekTemplateTranslation do
+defmodule UniboExPoc.Calendar.WeekTemplateTranslation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Calendar,
+    domain: UniboExPoc.Calendar,
     data_layer: AshPostgres.DataLayer
 
   postgres do
     table "calendar_week_template_translations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -25,7 +25,7 @@ defmodule UniboV4.Calendar.WeekTemplateTranslation do
   end
 
   relationships do
-    belongs_to :week_template, UniboV4.Calendar.WeekTemplate do
+    belongs_to :week_template, UniboExPoc.Calendar.WeekTemplate do
       public? true
       allow_nil? false
     end

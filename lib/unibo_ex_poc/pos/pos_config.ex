@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.POS.PosConfig do
+defmodule UniboExPoc.POS.PosConfig do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.POS,
+    domain: UniboExPoc.POS,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.POS.PosConfig do
 
   postgres do
     table "pos_configs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -73,17 +73,17 @@ defmodule UniboV4.POS.PosConfig do
   end
 
   relationships do
-    has_many :sessions, UniboV4.POS.PosSession do
+    has_many :sessions, UniboExPoc.POS.PosSession do
       public? true
       destination_attribute :config_id
     end
-    has_many :floor_links, UniboV4.POS.PosConfigFloor do
+    has_many :floor_links, UniboExPoc.POS.PosConfigFloor do
       public? true
       destination_attribute :config_id
     end
-    many_to_many :floors, UniboV4.POS.RestaurantFloor do
+    many_to_many :floors, UniboExPoc.POS.RestaurantFloor do
       public? true
-      through UniboV4.POS.PosConfigFloor
+      through UniboExPoc.POS.PosConfigFloor
       source_attribute_on_join_resource :config_id
       destination_attribute_on_join_resource :floor_id
     end

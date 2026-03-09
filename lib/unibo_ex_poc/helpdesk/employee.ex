@@ -1,7 +1,7 @@
-defmodule UniboV4.Helpdesk.Employee do
+defmodule UniboExPoc.Helpdesk.Employee do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Helpdesk.Employee do
 
   postgres do
     table "helpdesk_employees"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

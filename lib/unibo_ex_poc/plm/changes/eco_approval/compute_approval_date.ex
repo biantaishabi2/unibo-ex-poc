@@ -1,4 +1,4 @@
-defmodule UniboV4.PLM.Changes.EcoApproval.ComputeApprovalDate do
+defmodule UniboExPoc.PLM.Changes.EcoApproval.ComputeApprovalDate do
   @moduledoc """
   Change 模块: 计算 :approval_date (entity: eco_approval)
   原始 expr: op: func args: - now

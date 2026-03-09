@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.AcctgTransEntry do
+defmodule UniboExPoc.Ofbiz.Accounting.AcctgTransEntry do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_acctg_trans_entries"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -55,19 +55,19 @@ defmodule UniboV4.Ofbiz.Accounting.AcctgTransEntry do
   end
 
   relationships do
-    belongs_to :acctg_trans_entry_type, UniboV4.Ofbiz.Accounting.AcctgTransEntryType do
+    belongs_to :acctg_trans_entry_type, UniboExPoc.Ofbiz.Accounting.AcctgTransEntryType do
       public? true
     end
-    belongs_to :acctg_trans, UniboV4.Ofbiz.Accounting.AcctgTrans do
+    belongs_to :acctg_trans, UniboExPoc.Ofbiz.Accounting.AcctgTrans do
       public? true
     end
-    belongs_to :gl_account_type, UniboV4.Ofbiz.Accounting.GlAccountType do
+    belongs_to :gl_account_type, UniboExPoc.Ofbiz.Accounting.GlAccountType do
       public? true
     end
-    belongs_to :gl_account, UniboV4.Ofbiz.Accounting.GlAccount do
+    belongs_to :gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
     end
-    belongs_to :settlement_term, UniboV4.Ofbiz.Accounting.SettlementTerm do
+    belongs_to :settlement_term, UniboExPoc.Ofbiz.Accounting.SettlementTerm do
       public? true
     end
   end

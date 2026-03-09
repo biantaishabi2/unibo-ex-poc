@@ -19,13 +19,13 @@
 #   submit --> [*]
 #   approve --> [*]
 # ```
-defmodule UniboV4.Expenses.ExpenseReport do
+defmodule UniboExPoc.Expenses.ExpenseReport do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Expenses,
+    domain: UniboExPoc.Expenses,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Expenses.ExpenseReport.Notifier]
+    notifiers: [UniboExPoc.Expenses.ExpenseReport.Notifier]
 
   resource do
     description "费用报告（员工报销发票）"
@@ -33,7 +33,7 @@ defmodule UniboV4.Expenses.ExpenseReport do
 
   postgres do
     table "expenses_expense_reports"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -111,34 +111,34 @@ defmodule UniboV4.Expenses.ExpenseReport do
   end
 
   relationships do
-    belongs_to :employee, UniboV4.Expenses.Employee do
+    belongs_to :employee, UniboExPoc.Expenses.Employee do
       public? true
       allow_nil? false
     end
-    belongs_to :approver, UniboV4.Expenses.Party do
+    belongs_to :approver, UniboExPoc.Expenses.Party do
       public? true
       source_attribute :approver_party_id
     end
-    belongs_to :currency, UniboV4.Expenses.Currency do
+    belongs_to :currency, UniboExPoc.Expenses.Currency do
       public? true
       allow_nil? false
     end
-    belongs_to :company, UniboV4.Expenses.Party do
+    belongs_to :company, UniboExPoc.Expenses.Party do
       public? true
       allow_nil? false
       source_attribute :company_party_id
     end
-    belongs_to :employee_journal, UniboV4.Expenses.Journal do
+    belongs_to :employee_journal, UniboExPoc.Expenses.Journal do
       public? true
     end
-    belongs_to :payment_method_line, UniboV4.Expenses.PaymentMethodLine do
+    belongs_to :payment_method_line, UniboExPoc.Expenses.PaymentMethodLine do
       public? true
     end
-    has_many :expense_line_ids, UniboV4.Expenses.ExpenseLine do
+    has_many :expense_line_ids, UniboExPoc.Expenses.ExpenseLine do
       public? true
       destination_attribute :report_id
     end
-    has_many :account_move_ids, UniboV4.Expenses.AccountMove do
+    has_many :account_move_ids, UniboExPoc.Expenses.AccountMove do
       public? true
       destination_attribute :expense_report_id
     end
@@ -163,9 +163,9 @@ defmodule UniboV4.Expenses.ExpenseReport do
       # WARNING: compare :expense_line_ids_employee_id 缺少 params，校验定义不完整
       # WARNING: compare :expense_line_ids_company_id 缺少 params，校验定义不完整
       change relate_actor(:employee)
-      change UniboV4.Expenses.Changes.ExpenseReport.ComputeTotalAmount
+      change UniboExPoc.Expenses.Changes.ExpenseReport.ComputeTotalAmount
       change set_attribute(:id, expr(id))
-      change UniboV4.Expenses.Integrations.ExpenseReport.CreatePricingFetchStandardPriceBridge
+      change UniboExPoc.Expenses.Integrations.ExpenseReport.CreatePricingFetchStandardPriceBridge
     end
     update :submit do
       description "提交审批（draft → submitted）"
@@ -189,9 +189,9 @@ defmodule UniboV4.Expenses.ExpenseReport do
       # skipped: validate compare :expense_line_ids_company_id (incompatible with bulk update atomic path)
       change set_attribute(:approval_state, :submitted)
       change set_attribute(:id, expr(id))
-      change UniboV4.Expenses.Integrations.ExpenseReport.SubmitSubmitScheduleActivityBridge
-      change UniboV4.Expenses.Integrations.ExpenseReport.SubmitPricingFetchStandardPriceBridge
-      change UniboV4.Expenses.Integrations.ExpenseReport.SubmitTaxComputeCallAccountTaxBridge
+      change UniboExPoc.Expenses.Integrations.ExpenseReport.SubmitSubmitScheduleActivityBridge
+      change UniboExPoc.Expenses.Integrations.ExpenseReport.SubmitPricingFetchStandardPriceBridge
+      change UniboExPoc.Expenses.Integrations.ExpenseReport.SubmitTaxComputeCallAccountTaxBridge
       require_atomic? false
     end
     update :approve do
@@ -213,7 +213,7 @@ defmodule UniboV4.Expenses.ExpenseReport do
       change set_attribute(:approver_id, %{op: "ref", args: ["current_user"]})
       change set_attribute(:approval_date, %{op: "func", args: ["now"]})
       change set_attribute(:id, expr(id))
-      change UniboV4.Expenses.Integrations.ExpenseReport.ApproveApproveRefuseSendMailBridge
+      change UniboExPoc.Expenses.Integrations.ExpenseReport.ApproveApproveRefuseSendMailBridge
       require_atomic? false
     end
     update :refuse do
@@ -232,7 +232,7 @@ defmodule UniboV4.Expenses.ExpenseReport do
       # skipped: validate empty :account_move_ids (incompatible with bulk update atomic path)
       change set_attribute(:approval_state, :cancelled)
       change set_attribute(:id, expr(id))
-      change UniboV4.Expenses.Integrations.ExpenseReport.RefuseApproveRefuseSendMailBridge
+      change UniboExPoc.Expenses.Integrations.ExpenseReport.RefuseApproveRefuseSendMailBridge
       require_atomic? false
     end
     update :post do
@@ -250,9 +250,9 @@ defmodule UniboV4.Expenses.ExpenseReport do
       # skipped: validate present :employee_work_email (incompatible with bulk update atomic path)
       # skipped: validate present :employee_journal_id (incompatible with bulk update atomic path)
       change set_attribute(:id, expr(id))
-      change UniboV4.Expenses.Integrations.ExpenseReport.PostPostOwnAccountRegisterPaymentBridge
-      change UniboV4.Expenses.Integrations.ExpenseReport.PostPostCompanyAccountCreatePaymentBridge
-      change UniboV4.Expenses.Integrations.ExpenseReport.PostTaxComputeCallAccountTaxBridge
+      change UniboExPoc.Expenses.Integrations.ExpenseReport.PostPostOwnAccountRegisterPaymentBridge
+      change UniboExPoc.Expenses.Integrations.ExpenseReport.PostPostCompanyAccountCreatePaymentBridge
+      change UniboExPoc.Expenses.Integrations.ExpenseReport.PostTaxComputeCallAccountTaxBridge
       require_atomic? false
     end
     update :register_payment do
@@ -283,7 +283,7 @@ defmodule UniboV4.Expenses.ExpenseReport do
       description "重置（任意状态 → draft，已过账凭证先冲销）"
       accept []
       change set_attribute(:id, expr(id))
-      change UniboV4.Expenses.Integrations.ExpenseReport.ResetResetReverseMovesBridge
+      change UniboExPoc.Expenses.Integrations.ExpenseReport.ResetResetReverseMovesBridge
       require_atomic? false
     end
   end

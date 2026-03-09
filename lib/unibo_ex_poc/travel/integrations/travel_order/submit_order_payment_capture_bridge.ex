@@ -1,4 +1,4 @@
-defmodule UniboV4.Travel.Integrations.TravelOrder.SubmitOrderPaymentCaptureBridge do
+defmodule UniboExPoc.Travel.Integrations.TravelOrder.SubmitOrderPaymentCaptureBridge do
   use Ash.Resource.Change
 
   @provider "payment_capture"
@@ -29,7 +29,7 @@ defmodule UniboV4.Travel.Integrations.TravelOrder.SubmitOrderPaymentCaptureBridg
       declared_errors: @declared_errors
     }
 
-    case UniboV4.Travel.Integration.Runtime.dispatch_sync(request) do
+    case UniboExPoc.Travel.Integration.Runtime.dispatch_sync(request) do
       {:ok, response} ->
         apply_response_bindings(changeset, response)
       {:error, error_payload} ->

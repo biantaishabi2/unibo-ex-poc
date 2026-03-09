@@ -1,10 +1,10 @@
-defmodule UniboV4.IoT.Workflows.CallQueue.CallQueueLifecycleFlowWorkflow do
+defmodule UniboExPoc.IoT.Workflows.CallQueue.CallQueueLifecycleFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.IoT.CallQueue
+  alias UniboExPoc.IoT.CallQueue
 
   def steps do
     [:create, :update, :login_agent, :logout_agent, :destroy]
@@ -153,6 +153,7 @@ defmodule UniboV4.IoT.Workflows.CallQueue.CallQueueLifecycleFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.IoT.Workflows.CallQueue.CallQueueLifecycleFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

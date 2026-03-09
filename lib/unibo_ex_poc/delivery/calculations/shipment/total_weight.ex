@@ -1,4 +1,4 @@
-defmodule UniboV4.Delivery.Calculations.Shipment.TotalWeight do
+defmodule UniboExPoc.Delivery.Calculations.Shipment.TotalWeight do
   @moduledoc """
   Calculation 模块: :total_weight (type: :decimal, entity: shipment)
   """

@@ -1,4 +1,4 @@
-defmodule UniboV4.Barcode do
+defmodule UniboExPoc.Barcode do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,16 +7,16 @@ defmodule UniboV4.Barcode do
   end
 
   resources do
-    resource UniboV4.Barcode.BarcodeNomenclature
-    resource UniboV4.Barcode.BarcodeNomenclatureTranslation
-    resource UniboV4.Barcode.BarcodeNomenclature.Version
-    resource UniboV4.Barcode.BarcodeRule
-    resource UniboV4.Barcode.BarcodeRuleTranslation
-    resource UniboV4.Barcode.BarcodeRule.Version
-    resource UniboV4.Barcode.BarcodeMapping
-    resource UniboV4.Barcode.BarcodeMapping.Version
-    resource UniboV4.Barcode.GS1ApplicationIdentifier
-    resource UniboV4.Barcode.GS1ApplicationIdentifierTranslation
-    resource UniboV4.Barcode.GS1ApplicationIdentifier.Version
+    resource UniboExPoc.Barcode.BarcodeNomenclature
+    resource UniboExPoc.Barcode.BarcodeNomenclatureTranslation
+    resource UniboExPoc.Barcode.BarcodeNomenclature.Version
+    resource UniboExPoc.Barcode.BarcodeRule
+    resource UniboExPoc.Barcode.BarcodeRuleTranslation
+    resource UniboExPoc.Barcode.BarcodeRule.Version
+    resource UniboExPoc.Barcode.BarcodeMapping
+    resource UniboExPoc.Barcode.BarcodeMapping.Version
+    resource UniboExPoc.Barcode.GS1ApplicationIdentifier
+    resource UniboExPoc.Barcode.GS1ApplicationIdentifierTranslation
+    resource UniboExPoc.Barcode.GS1ApplicationIdentifier.Version
   end
 end

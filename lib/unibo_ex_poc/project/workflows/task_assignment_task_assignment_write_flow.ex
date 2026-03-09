@@ -1,10 +1,10 @@
-defmodule UniboV4.Project.Workflows.TaskAssignment.TaskAssignmentWriteFlowWorkflow do
+defmodule UniboExPoc.Project.Workflows.TaskAssignment.TaskAssignmentWriteFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Project.TaskAssignment
+  alias UniboExPoc.Project.TaskAssignment
 
   def steps do
     [:create, :destroy]
@@ -141,6 +141,7 @@ defmodule UniboV4.Project.Workflows.TaskAssignment.TaskAssignmentWriteFlowWorkfl
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :destroy -> nil
@@ -149,6 +150,7 @@ defmodule UniboV4.Project.Workflows.TaskAssignment.TaskAssignmentWriteFlowWorkfl
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :destroy -> false

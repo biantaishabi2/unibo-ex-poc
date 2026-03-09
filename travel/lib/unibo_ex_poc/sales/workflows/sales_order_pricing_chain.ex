@@ -147,6 +147,7 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.PricingChainWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :select_product_price -> nil
       :compute_line_subtotal -> nil
@@ -157,6 +158,7 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.PricingChainWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :select_product_price -> false
       :compute_line_subtotal -> false

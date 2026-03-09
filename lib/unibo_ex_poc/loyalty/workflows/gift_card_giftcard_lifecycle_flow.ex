@@ -1,10 +1,10 @@
-defmodule UniboV4.Loyalty.Workflows.GiftCard.GiftcardLifecycleFlowWorkflow do
+defmodule UniboExPoc.Loyalty.Workflows.GiftCard.GiftcardLifecycleFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Loyalty.GiftCard
+  alias UniboExPoc.Loyalty.GiftCard
 
   def steps do
     [:create, :activate, :topup, :charge, :cancel_card, :expire_card]
@@ -157,6 +157,7 @@ defmodule UniboV4.Loyalty.Workflows.GiftCard.GiftcardLifecycleFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :activate -> nil
@@ -169,6 +170,7 @@ defmodule UniboV4.Loyalty.Workflows.GiftCard.GiftcardLifecycleFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :activate -> false

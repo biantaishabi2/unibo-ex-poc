@@ -19,10 +19,10 @@
 #   detect_component_delta --> sync_procurement_stock_impact
 #   sync_procurement_stock_impact --> [*]
 # ```
-defmodule UniboV4.PLM.BomRevision do
+defmodule UniboExPoc.PLM.BomRevision do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.PLM,
+    domain: UniboExPoc.PLM,
     data_layer: AshPostgres.DataLayer
 
   resource do
@@ -31,7 +31,7 @@ defmodule UniboV4.PLM.BomRevision do
 
   postgres do
     table "plm_bom_revisions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   attributes do
@@ -59,7 +59,7 @@ defmodule UniboV4.PLM.BomRevision do
   end
 
   relationships do
-    belongs_to :eco, UniboV4.PLM.Eco do
+    belongs_to :eco, UniboExPoc.PLM.Eco do
       public? true
     end
   end

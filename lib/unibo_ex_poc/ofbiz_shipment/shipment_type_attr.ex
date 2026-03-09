@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.ShipmentTypeAttr do
+defmodule UniboExPoc.Ofbiz.Shipment.ShipmentTypeAttr do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_type_attrs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,7 +37,7 @@ defmodule UniboV4.Ofbiz.Shipment.ShipmentTypeAttr do
   end
 
   relationships do
-    belongs_to :shipment_type, UniboV4.Ofbiz.Shipment.ShipmentType do
+    belongs_to :shipment_type, UniboExPoc.Ofbiz.Shipment.ShipmentType do
       public? true
       attribute_type :string
     end

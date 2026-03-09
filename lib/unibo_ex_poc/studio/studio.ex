@@ -1,4 +1,4 @@
-defmodule UniboV4.Studio do
+defmodule UniboExPoc.Studio do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,16 +7,16 @@ defmodule UniboV4.Studio do
   end
 
   resources do
-    resource UniboV4.Studio.CustomModel
-    resource UniboV4.Studio.CustomModel.Version
-    resource UniboV4.Studio.CustomField
-    resource UniboV4.Studio.CustomField.Version
-    resource UniboV4.Studio.CustomView
-    resource UniboV4.Studio.CustomView.Version
-    resource UniboV4.Studio.AutomationRule
-    resource UniboV4.Studio.AutomationRule.Version
-    resource UniboV4.Studio.App
-    resource UniboV4.Studio.App.Version
-    resource UniboV4.Studio.Party
+    resource UniboExPoc.Studio.CustomModel
+    resource UniboExPoc.Studio.CustomModel.Version
+    resource UniboExPoc.Studio.CustomField
+    resource UniboExPoc.Studio.CustomField.Version
+    resource UniboExPoc.Studio.CustomView
+    resource UniboExPoc.Studio.CustomView.Version
+    resource UniboExPoc.Studio.AutomationRule
+    resource UniboExPoc.Studio.AutomationRule.Version
+    resource UniboExPoc.Studio.App
+    resource UniboExPoc.Studio.App.Version
+    resource UniboExPoc.Studio.Party
   end
 end

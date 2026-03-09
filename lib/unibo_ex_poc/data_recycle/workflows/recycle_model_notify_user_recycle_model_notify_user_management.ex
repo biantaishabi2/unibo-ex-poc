@@ -1,10 +1,10 @@
-defmodule UniboV4.DataRecycle.Workflows.RecycleModelNotifyUser.RecycleModelNotifyUserManagementWorkflow do
+defmodule UniboExPoc.DataRecycle.Workflows.RecycleModelNotifyUser.RecycleModelNotifyUserManagementWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.DataRecycle.RecycleModelNotifyUser
+  alias UniboExPoc.DataRecycle.RecycleModelNotifyUser
 
   def steps do
     [:create, :destroy]
@@ -141,6 +141,7 @@ defmodule UniboV4.DataRecycle.Workflows.RecycleModelNotifyUser.RecycleModelNotif
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :destroy -> nil
@@ -149,6 +150,7 @@ defmodule UniboV4.DataRecycle.Workflows.RecycleModelNotifyUser.RecycleModelNotif
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :destroy -> false

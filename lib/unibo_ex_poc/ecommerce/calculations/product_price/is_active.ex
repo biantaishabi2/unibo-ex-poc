@@ -1,4 +1,4 @@
-defmodule UniboV4.Ecommerce.Calculations.ProductPrice.IsActive do
+defmodule UniboExPoc.Ecommerce.Calculations.ProductPrice.IsActive do
   @moduledoc """
   Calculation 模块: :is_active (type: :boolean, entity: product_price)
   原始 expr: op: custom args: []

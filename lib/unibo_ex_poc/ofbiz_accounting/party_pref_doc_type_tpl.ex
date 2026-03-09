@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.PartyPrefDocTypeTpl do
+defmodule UniboExPoc.Ofbiz.Accounting.PartyPrefDocTypeTpl do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_party_pref_doc_type_tpls"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,11 +38,11 @@ defmodule UniboV4.Ofbiz.Accounting.PartyPrefDocTypeTpl do
   end
 
   relationships do
-    belongs_to :party_acctg_preference, UniboV4.Ofbiz.Accounting.PartyAcctgPreference do
+    belongs_to :party_acctg_preference, UniboExPoc.Ofbiz.Accounting.PartyAcctgPreference do
       public? true
       source_attribute :party_id
     end
-    belongs_to :invoice_type, UniboV4.Ofbiz.Accounting.InvoiceType do
+    belongs_to :invoice_type, UniboExPoc.Ofbiz.Accounting.InvoiceType do
       public? true
     end
   end

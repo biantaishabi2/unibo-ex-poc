@@ -6,13 +6,13 @@
 #   mark_in_progress --> mark_done
 #   mark_done --> [*] : done
 # ```
-defmodule UniboV4.Survey.UserInput do
+defmodule UniboExPoc.Survey.UserInput do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Survey,
+    domain: UniboExPoc.Survey,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Survey.UserInput.Notifier]
+    notifiers: [UniboExPoc.Survey.UserInput.Notifier]
 
   resource do
     description "用户答题记录，跟踪答题状态、时间和得分"
@@ -20,7 +20,7 @@ defmodule UniboV4.Survey.UserInput do
 
   postgres do
     table "survey_user_inputs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -88,15 +88,15 @@ defmodule UniboV4.Survey.UserInput do
   end
 
   relationships do
-    belongs_to :survey, UniboV4.Survey.Survey do
+    belongs_to :survey, UniboExPoc.Survey.Survey do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.Survey.Party do
+    belongs_to :partner, UniboExPoc.Survey.Party do
       public? true
       source_attribute :partner_party_id
     end
-    has_many :lines, UniboV4.Survey.UserInputLine do
+    has_many :lines, UniboExPoc.Survey.UserInputLine do
       public? true
     end
   end
@@ -126,7 +126,7 @@ defmodule UniboV4.Survey.UserInput do
       end
       # message: "只有新建状态可以开始答题"
       change set_attribute(:state, :in_progress)
-      change UniboV4.Survey.Changes.UserInput.ComputeStartDatetime
+      change UniboExPoc.Survey.Changes.UserInput.ComputeStartDatetime
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -143,7 +143,7 @@ defmodule UniboV4.Survey.UserInput do
       end
       # message: "只有进行中状态可以完成答题"
       change set_attribute(:state, :done)
-      change UniboV4.Survey.Changes.UserInput.ComputeEndDatetime
+      change UniboExPoc.Survey.Changes.UserInput.ComputeEndDatetime
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

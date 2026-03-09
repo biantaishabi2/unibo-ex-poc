@@ -68,7 +68,6 @@ defmodule UniboExPoc.Delivery.ShipmentItem do
     end
     has_many :package_contents, UniboExPoc.Delivery.ShipmentPackageContent do
       public? true
-      source_attribute :shipment_item_seq_id
       destination_attribute :shipment_item_seq_id
     end
   end

@@ -5,10 +5,10 @@
 #   create --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Accounting.FullReconcile do
+defmodule UniboExPoc.Accounting.FullReconcile do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Accounting,
+    domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Accounting.FullReconcile do
 
   postgres do
     table "accounting_full_reconciles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,10 +44,10 @@ defmodule UniboV4.Accounting.FullReconcile do
   end
 
   relationships do
-    has_many :partial_reconciles, UniboV4.Accounting.PartialReconcile do
+    has_many :partial_reconciles, UniboExPoc.Accounting.PartialReconcile do
       public? true
     end
-    has_many :reconciled_lines, UniboV4.Accounting.JournalEntryLine do
+    has_many :reconciled_lines, UniboExPoc.Accounting.JournalEntryLine do
       public? true
     end
   end
@@ -58,7 +58,7 @@ defmodule UniboV4.Accounting.FullReconcile do
       primary? true
       accept []
       # validation: all_residuals_zero
-      change UniboV4.Accounting.Changes.FullReconcile.CreateCall1
+      change UniboExPoc.Accounting.Changes.FullReconcile.CreateCall1
     end
   end
 

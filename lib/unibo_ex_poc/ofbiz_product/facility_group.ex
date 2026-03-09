@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.FacilityGroup do
+defmodule UniboExPoc.Ofbiz.Product.FacilityGroup do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_facility_groups"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -35,10 +35,10 @@ defmodule UniboV4.Ofbiz.Product.FacilityGroup do
   end
 
   relationships do
-    belongs_to :facility_group_type, UniboV4.Ofbiz.Product.FacilityGroupType do
+    belongs_to :facility_group_type, UniboExPoc.Ofbiz.Product.FacilityGroupType do
       public? true
     end
-    belongs_to :primary_parent_facility_group, UniboV4.Ofbiz.Product.FacilityGroup do
+    belongs_to :primary_parent_facility_group, UniboExPoc.Ofbiz.Product.FacilityGroup do
       public? true
       source_attribute :primary_parent_group_id
     end

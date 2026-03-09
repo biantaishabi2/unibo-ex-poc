@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.WorkEffort.WorkEffort do
+defmodule UniboExPoc.Ofbiz.WorkEffort.WorkEffort do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.WorkEffort,
+    domain: UniboExPoc.Ofbiz.WorkEffort,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "work_effort_work_efforts"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -84,69 +84,69 @@ defmodule UniboV4.Ofbiz.WorkEffort.WorkEffort do
   end
 
   relationships do
-    belongs_to :work_effort_type, UniboV4.Ofbiz.WorkEffort.WorkEffortType do
+    belongs_to :work_effort_type, UniboExPoc.Ofbiz.WorkEffort.WorkEffortType do
       public? true
       attribute_type :string
     end
-    belongs_to :work_effort_purpose_type, UniboV4.Ofbiz.WorkEffort.WorkEffortPurposeType do
+    belongs_to :work_effort_purpose_type, UniboExPoc.Ofbiz.WorkEffort.WorkEffortPurposeType do
       public? true
       attribute_type :string
     end
-    belongs_to :parent_work_effort, UniboV4.Ofbiz.WorkEffort.WorkEffort do
+    belongs_to :parent_work_effort, UniboExPoc.Ofbiz.WorkEffort.WorkEffort do
       public? true
       source_attribute :work_effort_parent_id
       attribute_type :string
     end
-    belongs_to :current_status_item, UniboV4.Ofbiz.WorkEffort.StatusItem do
+    belongs_to :current_status_item, UniboExPoc.Ofbiz.WorkEffort.StatusItem do
       public? true
       source_attribute :current_status_id
       attribute_type :string
     end
-    belongs_to :scope_enumeration, UniboV4.Ofbiz.WorkEffort.Enumeration do
+    belongs_to :scope_enumeration, UniboExPoc.Ofbiz.WorkEffort.Enumeration do
       public? true
       source_attribute :scope_enum_id
       attribute_type :string
     end
-    belongs_to :fixed_asset, UniboV4.Ofbiz.WorkEffort.FixedAsset do
+    belongs_to :fixed_asset, UniboExPoc.Ofbiz.WorkEffort.FixedAsset do
       public? true
       attribute_type :string
     end
-    belongs_to :facility, UniboV4.Ofbiz.WorkEffort.Facility do
+    belongs_to :facility, UniboExPoc.Ofbiz.WorkEffort.Facility do
       public? true
       attribute_type :string
     end
-    belongs_to :money_uom, UniboV4.Ofbiz.WorkEffort.Uom do
+    belongs_to :money_uom, UniboExPoc.Ofbiz.WorkEffort.Uom do
       public? true
       attribute_type :string
     end
-    belongs_to :recurrence_info, UniboV4.Ofbiz.WorkEffort.RecurrenceInfo do
+    belongs_to :recurrence_info, UniboExPoc.Ofbiz.WorkEffort.RecurrenceInfo do
       public? true
       attribute_type :string
     end
-    belongs_to :temporal_expression, UniboV4.Ofbiz.WorkEffort.TemporalExpression do
+    belongs_to :temporal_expression, UniboExPoc.Ofbiz.WorkEffort.TemporalExpression do
       public? true
       source_attribute :temp_expr_id
       attribute_type :string
     end
-    belongs_to :runtime_data, UniboV4.Ofbiz.WorkEffort.RuntimeData do
+    belongs_to :runtime_data, UniboExPoc.Ofbiz.WorkEffort.RuntimeData do
       public? true
       attribute_type :string
     end
-    belongs_to :note_data, UniboV4.Ofbiz.WorkEffort.NoteData do
+    belongs_to :note_data, UniboExPoc.Ofbiz.WorkEffort.NoteData do
       public? true
       source_attribute :note_id
       attribute_type :string
     end
-    belongs_to :custom_method, UniboV4.Ofbiz.WorkEffort.CustomMethod do
+    belongs_to :custom_method, UniboExPoc.Ofbiz.WorkEffort.CustomMethod do
       public? true
       source_attribute :estimate_calc_method
       attribute_type :string
     end
-    belongs_to :accommodation_map, UniboV4.Ofbiz.WorkEffort.AccommodationMap do
+    belongs_to :accommodation_map, UniboExPoc.Ofbiz.WorkEffort.AccommodationMap do
       public? true
       attribute_type :string
     end
-    belongs_to :accommodation_spot, UniboV4.Ofbiz.WorkEffort.AccommodationSpot do
+    belongs_to :accommodation_spot, UniboExPoc.Ofbiz.WorkEffort.AccommodationSpot do
       public? true
       attribute_type :string
     end

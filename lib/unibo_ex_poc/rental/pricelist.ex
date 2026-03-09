@@ -1,7 +1,7 @@
-defmodule UniboV4.Rental.Pricelist do
+defmodule UniboExPoc.Rental.Pricelist do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Rental,
+    domain: UniboExPoc.Rental,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Rental.Pricelist do
 
   postgres do
     table "rental_pricelists"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

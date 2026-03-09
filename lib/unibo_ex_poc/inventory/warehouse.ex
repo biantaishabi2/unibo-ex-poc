@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Inventory.Warehouse do
+defmodule UniboExPoc.Inventory.Warehouse do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Inventory,
+    domain: UniboExPoc.Inventory,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Inventory.Warehouse do
 
   postgres do
     table "inventory_warehouses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -63,7 +63,7 @@ defmodule UniboV4.Inventory.Warehouse do
   end
 
   relationships do
-    has_many :locations, UniboV4.Inventory.StockLocation do
+    has_many :locations, UniboExPoc.Inventory.StockLocation do
       public? true
     end
   end

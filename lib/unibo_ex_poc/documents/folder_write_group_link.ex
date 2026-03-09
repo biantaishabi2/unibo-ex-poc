@@ -1,7 +1,7 @@
-defmodule UniboV4.Documents.FolderWriteGroupLink do
+defmodule UniboExPoc.Documents.FolderWriteGroupLink do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Documents,
+    domain: UniboExPoc.Documents,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Documents.FolderWriteGroupLink do
 
   postgres do
     table "documents_folder_write_group_links"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -29,11 +29,11 @@ defmodule UniboV4.Documents.FolderWriteGroupLink do
   end
 
   relationships do
-    belongs_to :folder, UniboV4.Documents.Folder do
+    belongs_to :folder, UniboExPoc.Documents.Folder do
       public? true
       allow_nil? false
     end
-    belongs_to :group, UniboV4.Documents.Group do
+    belongs_to :group, UniboExPoc.Documents.Group do
       public? true
       allow_nil? false
     end

@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.SurveyTrigger do
+defmodule UniboExPoc.Ofbiz.Content.SurveyTrigger do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_survey_triggers"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -37,11 +37,11 @@ defmodule UniboV4.Ofbiz.Content.SurveyTrigger do
   end
 
   relationships do
-    belongs_to :survey, UniboV4.Ofbiz.Content.Survey do
+    belongs_to :survey, UniboExPoc.Ofbiz.Content.Survey do
       public? true
       attribute_type :string
     end
-    belongs_to :survey_appl_type, UniboV4.Ofbiz.Content.SurveyApplType do
+    belongs_to :survey_appl_type, UniboExPoc.Ofbiz.Content.SurveyApplType do
       public? true
       attribute_type :string
     end

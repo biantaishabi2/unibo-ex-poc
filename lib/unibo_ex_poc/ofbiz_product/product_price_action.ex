@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.ProductPriceAction do
+defmodule UniboExPoc.Ofbiz.Product.ProductPriceAction do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_price_actions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,10 +38,10 @@ defmodule UniboV4.Ofbiz.Product.ProductPriceAction do
   end
 
   relationships do
-    belongs_to :product_price_action_type, UniboV4.Ofbiz.Product.ProductPriceActionType do
+    belongs_to :product_price_action_type, UniboExPoc.Ofbiz.Product.ProductPriceActionType do
       public? true
     end
-    belongs_to :product_price_rule, UniboV4.Ofbiz.Product.ProductPriceRule do
+    belongs_to :product_price_rule, UniboExPoc.Ofbiz.Product.ProductPriceRule do
       public? true
     end
   end

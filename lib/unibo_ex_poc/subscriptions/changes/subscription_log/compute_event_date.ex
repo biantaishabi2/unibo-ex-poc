@@ -1,4 +1,4 @@
-defmodule UniboV4.Subscriptions.Changes.SubscriptionLog.ComputeEventDate do
+defmodule UniboExPoc.Subscriptions.Changes.SubscriptionLog.ComputeEventDate do
   @moduledoc """
   Change 模块: 计算 :event_date (entity: subscription_log)
   原始 expr: op: func args: - today

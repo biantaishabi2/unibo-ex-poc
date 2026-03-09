@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Marketing.EventTicket do
+defmodule UniboExPoc.Marketing.EventTicket do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Marketing.EventTicket do
 
   postgres do
     table "marketing_event_tickets"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -74,7 +74,7 @@ defmodule UniboV4.Marketing.EventTicket do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Marketing.Event do
+    belongs_to :event, UniboExPoc.Marketing.Event do
       public? true
       allow_nil? false
     end

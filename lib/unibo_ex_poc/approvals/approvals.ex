@@ -1,4 +1,4 @@
-defmodule UniboV4.Approvals do
+defmodule UniboExPoc.Approvals do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,12 +7,12 @@ defmodule UniboV4.Approvals do
   end
 
   resources do
-    resource UniboV4.Approvals.ApprovalCategory
-    resource UniboV4.Approvals.ApprovalCategory.Version
-    resource UniboV4.Approvals.ApprovalRequest
-    resource UniboV4.Approvals.ApprovalRequest.Version
-    resource UniboV4.Approvals.Approver
-    resource UniboV4.Approvals.Approver.Version
-    resource UniboV4.Approvals.Party
+    resource UniboExPoc.Approvals.ApprovalCategory
+    resource UniboExPoc.Approvals.ApprovalCategory.Version
+    resource UniboExPoc.Approvals.ApprovalRequest
+    resource UniboExPoc.Approvals.ApprovalRequest.Version
+    resource UniboExPoc.Approvals.Approver
+    resource UniboExPoc.Approvals.Approver.Version
+    resource UniboExPoc.Approvals.Party
   end
 end

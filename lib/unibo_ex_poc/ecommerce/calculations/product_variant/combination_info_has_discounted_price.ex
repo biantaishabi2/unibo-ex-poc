@@ -1,4 +1,4 @@
-defmodule UniboV4.Ecommerce.Calculations.ProductVariant.CombinationInfoHasDiscountedPrice do
+defmodule UniboExPoc.Ecommerce.Calculations.ProductVariant.CombinationInfoHasDiscountedPrice do
   @moduledoc """
   Calculation 模块: :combination_info_has_discounted_price (type: :boolean, entity: product_variant)
   原始 expr: op: custom args: []

@@ -8,13 +8,13 @@
 #   launch --> [*]
 #   retry_failed --> [*]
 # ```
-defmodule UniboV4.Marketing.Mailing do
+defmodule UniboExPoc.Marketing.Mailing do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Marketing.Mailing.Notifier]
+    notifiers: [UniboExPoc.Marketing.Mailing.Notifier]
 
   resource do
     description "群发邮件"
@@ -22,7 +22,7 @@ defmodule UniboV4.Marketing.Mailing do
 
   postgres do
     table "marketing_mailings"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -125,14 +125,14 @@ defmodule UniboV4.Marketing.Mailing do
   end
 
   relationships do
-    belongs_to :campaign, UniboV4.Marketing.Campaign do
+    belongs_to :campaign, UniboExPoc.Marketing.Campaign do
       public? true
     end
-    many_to_many :contact_lists, UniboV4.Marketing.MailingList do
+    many_to_many :contact_lists, UniboExPoc.Marketing.MailingList do
       public? true
-      through UniboV4.Marketing.MailingContactListLink
+      through UniboExPoc.Marketing.MailingContactListLink
     end
-    has_many :traces, UniboV4.Marketing.MailingTrace do
+    has_many :traces, UniboExPoc.Marketing.MailingTrace do
       public? true
     end
   end
@@ -187,8 +187,8 @@ defmodule UniboV4.Marketing.Mailing do
       # skipped: validate present : (incompatible with bulk update atomic path)
       change set_attribute(:schedule_type, &DateTime.utc_now/0)
       change set_attribute(:status, :in_queue)
-      change UniboV4.Marketing.Changes.Mailing.LaunchCall5
-      change UniboV4.Marketing.Changes.Mailing.LaunchCall6
+      change UniboExPoc.Marketing.Changes.Mailing.LaunchCall5
+      change UniboExPoc.Marketing.Changes.Mailing.LaunchCall6
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -241,8 +241,8 @@ defmodule UniboV4.Marketing.Mailing do
       end
       # message: "只有草稿状态可以发送或排队"
       change set_attribute(:status, :in_queue)
-      change UniboV4.Marketing.Changes.Mailing.PutInQueueCall5
-      change UniboV4.Marketing.Changes.Mailing.PutInQueueCall6
+      change UniboExPoc.Marketing.Changes.Mailing.PutInQueueCall5
+      change UniboExPoc.Marketing.Changes.Mailing.PutInQueueCall6
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -259,7 +259,7 @@ defmodule UniboV4.Marketing.Mailing do
       end
       # message: "草稿状态才允许编辑或取消"
       change set_attribute(:status, :draft)
-      change UniboV4.Marketing.Changes.Mailing.CancelCall4
+      change UniboExPoc.Marketing.Changes.Mailing.CancelCall4
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

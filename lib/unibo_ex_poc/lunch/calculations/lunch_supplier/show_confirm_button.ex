@@ -1,4 +1,4 @@
-defmodule UniboV4.Lunch.Calculations.LunchSupplier.ShowConfirmButton do
+defmodule UniboExPoc.Lunch.Calculations.LunchSupplier.ShowConfirmButton do
   @moduledoc """
   Calculation 模块: :show_confirm_button (type: :boolean, entity: lunch_supplier)
   """

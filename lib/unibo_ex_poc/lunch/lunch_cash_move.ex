@@ -5,10 +5,10 @@
 #   create --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Lunch.LunchCashMove do
+defmodule UniboExPoc.Lunch.LunchCashMove do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Lunch,
+    domain: UniboExPoc.Lunch,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Lunch.LunchCashMove do
 
   postgres do
     table "lunch_cash_moves"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -62,7 +62,7 @@ defmodule UniboV4.Lunch.LunchCashMove do
   end
 
   relationships do
-    belongs_to :user, UniboV4.Lunch.Party do
+    belongs_to :user, UniboExPoc.Lunch.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id

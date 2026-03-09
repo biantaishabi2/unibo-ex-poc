@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.DataCategory do
+defmodule UniboExPoc.Ofbiz.Content.DataCategory do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_data_categories"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,12 +38,12 @@ defmodule UniboV4.Ofbiz.Content.DataCategory do
   end
 
   relationships do
-    belongs_to :parent_data_category, UniboV4.Ofbiz.Content.DataCategory do
+    belongs_to :parent_data_category, UniboExPoc.Ofbiz.Content.DataCategory do
       public? true
       source_attribute :parent_category_id
       attribute_type :string
     end
-    has_many :sibling_data_category, UniboV4.Ofbiz.Content.DataCategory do
+    has_many :sibling_data_category, UniboExPoc.Ofbiz.Content.DataCategory do
       public? true
     end
   end

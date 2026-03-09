@@ -15,10 +15,10 @@
 #   expire --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Payment.PaymentMethod do
+defmodule UniboExPoc.Payment.PaymentMethod do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Payment,
+    domain: UniboExPoc.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -28,7 +28,7 @@ defmodule UniboV4.Payment.PaymentMethod do
 
   postgres do
     table "payment_methods"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -87,15 +87,15 @@ defmodule UniboV4.Payment.PaymentMethod do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Payment.Party do
+    belongs_to :party, UniboExPoc.Payment.Party do
       public? true
     end
-    has_many :payments, UniboV4.Payment.Payment do
+    has_many :payments, UniboExPoc.Payment.Payment do
       public? true
       source_attribute :party_id
       destination_attribute :payment_method_id
     end
-    has_many :gateway_responses, UniboV4.Payment.PaymentGatewayResponse do
+    has_many :gateway_responses, UniboExPoc.Payment.PaymentGatewayResponse do
       public? true
       source_attribute :party_id
       destination_attribute :payment_method_id

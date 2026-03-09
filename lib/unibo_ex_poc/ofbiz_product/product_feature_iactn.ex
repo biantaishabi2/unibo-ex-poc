@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.ProductFeatureIactn do
+defmodule UniboExPoc.Ofbiz.Product.ProductFeatureIactn do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_feature_iactns"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -33,14 +33,14 @@ defmodule UniboV4.Ofbiz.Product.ProductFeatureIactn do
   end
 
   relationships do
-    belongs_to :product_feature_iactn_type, UniboV4.Ofbiz.Product.ProductFeatureIactnType do
+    belongs_to :product_feature_iactn_type, UniboExPoc.Ofbiz.Product.ProductFeatureIactnType do
       public? true
     end
-    belongs_to :main_product_feature, UniboV4.Ofbiz.Product.ProductFeature do
+    belongs_to :main_product_feature, UniboExPoc.Ofbiz.Product.ProductFeature do
       public? true
       source_attribute :product_feature_id
     end
-    belongs_to :assoc_product_feature, UniboV4.Ofbiz.Product.ProductFeature do
+    belongs_to :assoc_product_feature, UniboExPoc.Ofbiz.Product.ProductFeature do
       public? true
       source_attribute :product_feature_id_to
     end

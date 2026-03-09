@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Security.SecurityGroupPermission do
+defmodule UniboExPoc.Ofbiz.Security.SecurityGroupPermission do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Security,
+    domain: UniboExPoc.Ofbiz.Security,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Security.SecurityGroupPermission do
 
   postgres do
     table "security_group_permissions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,11 +41,11 @@ defmodule UniboV4.Ofbiz.Security.SecurityGroupPermission do
   end
 
   relationships do
-    belongs_to :security_group, UniboV4.Ofbiz.Security.SecurityGroup do
+    belongs_to :security_group, UniboExPoc.Ofbiz.Security.SecurityGroup do
       public? true
       source_attribute :group_id
     end
-    belongs_to :security_permission, UniboV4.Ofbiz.Security.SecurityPermission do
+    belongs_to :security_permission, UniboExPoc.Ofbiz.Security.SecurityPermission do
       public? true
       source_attribute :permission_id
     end

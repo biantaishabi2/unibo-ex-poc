@@ -8,10 +8,10 @@
 #   reorder --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Knowledge.Favorite do
+defmodule UniboExPoc.Knowledge.Favorite do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Knowledge,
+    domain: UniboExPoc.Knowledge,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Knowledge.Favorite do
 
   postgres do
     table "knowledge_favorites"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -48,11 +48,11 @@ defmodule UniboV4.Knowledge.Favorite do
   end
 
   relationships do
-    belongs_to :article, UniboV4.Knowledge.Article do
+    belongs_to :article, UniboExPoc.Knowledge.Article do
       public? true
       allow_nil? false
     end
-    belongs_to :user, UniboV4.Knowledge.Party do
+    belongs_to :user, UniboExPoc.Knowledge.Party do
       public? true
       allow_nil? false
       source_attribute :user_party_id

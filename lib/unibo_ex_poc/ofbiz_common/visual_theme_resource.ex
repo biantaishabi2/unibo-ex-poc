@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Common.VisualThemeResource do
+defmodule UniboExPoc.Ofbiz.Common.VisualThemeResource do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -12,7 +12,7 @@ defmodule UniboV4.Ofbiz.Common.VisualThemeResource do
 
   postgres do
     table "common_visual_theme_resources"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -46,10 +46,10 @@ defmodule UniboV4.Ofbiz.Common.VisualThemeResource do
   end
 
   relationships do
-    belongs_to :visual_theme, UniboV4.Ofbiz.Common.VisualTheme do
+    belongs_to :visual_theme, UniboExPoc.Ofbiz.Common.VisualTheme do
       public? true
     end
-    belongs_to :enumeration, UniboV4.Ofbiz.Common.Enumeration do
+    belongs_to :enumeration, UniboExPoc.Ofbiz.Common.Enumeration do
       public? true
       source_attribute :resource_type_enum_id
     end

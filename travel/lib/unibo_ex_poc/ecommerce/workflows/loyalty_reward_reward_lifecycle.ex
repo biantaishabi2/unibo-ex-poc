@@ -141,6 +141,7 @@ defmodule UniboExPoc.Ecommerce.Workflows.LoyaltyReward.RewardLifecycleWorkflow d
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -149,6 +150,7 @@ defmodule UniboExPoc.Ecommerce.Workflows.LoyaltyReward.RewardLifecycleWorkflow d
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

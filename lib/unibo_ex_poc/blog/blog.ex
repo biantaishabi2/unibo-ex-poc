@@ -7,13 +7,13 @@
 #   update --> [*]
 #   archive --> [*]
 # ```
-defmodule UniboV4.Blog.Blog do
+defmodule UniboExPoc.Blog.Blog do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Blog,
+    domain: UniboExPoc.Blog,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Blog.Blog.Notifier]
+    notifiers: [UniboExPoc.Blog.Blog.Notifier]
 
   resource do
     description "博客容器（对应 Odoo blog.blog）"
@@ -21,7 +21,7 @@ defmodule UniboV4.Blog.Blog do
 
   postgres do
     table "blog_blogs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -65,10 +65,10 @@ defmodule UniboV4.Blog.Blog do
   end
 
   relationships do
-    has_many :blog_posts, UniboV4.Blog.BlogPost do
+    has_many :blog_posts, UniboExPoc.Blog.BlogPost do
       public? true
     end
-    belongs_to :website, UniboV4.Blog.WebSite do
+    belongs_to :website, UniboExPoc.Blog.WebSite do
       public? true
     end
   end

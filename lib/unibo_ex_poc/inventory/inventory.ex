@@ -1,4 +1,4 @@
-defmodule UniboV4.Inventory do
+defmodule UniboExPoc.Inventory do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,32 +7,32 @@ defmodule UniboV4.Inventory do
   end
 
   resources do
-    resource UniboV4.Inventory.Warehouse
-    resource UniboV4.Inventory.Warehouse.Version
-    resource UniboV4.Inventory.StockLocation
-    resource UniboV4.Inventory.StockLocation.Version
-    resource UniboV4.Inventory.StockPicking
-    resource UniboV4.Inventory.StockPicking.Version
-    resource UniboV4.Inventory.StockMove
-    resource UniboV4.Inventory.StockMove.Version
-    resource UniboV4.Inventory.StockMoveLine
-    resource UniboV4.Inventory.StockMoveLine.Version
-    resource UniboV4.Inventory.StockQuant
-    resource UniboV4.Inventory.StockQuant.Version
-    resource UniboV4.Inventory.StockPickingItem
-    resource UniboV4.Inventory.StockPickingItem.Version
-    resource UniboV4.Inventory.Lot
-    resource UniboV4.Inventory.Lot.Version
-    resource UniboV4.Inventory.PickingBatch
-    resource UniboV4.Inventory.PickingBatch.Version
-    resource UniboV4.Inventory.LandedCost
-    resource UniboV4.Inventory.LandedCost.Version
-    resource UniboV4.Inventory.LandedCostLine
-    resource UniboV4.Inventory.LandedCostLine.Version
-    resource UniboV4.Inventory.ValuationAdjustmentLine
-    resource UniboV4.Inventory.LandedCostPicking
-    resource UniboV4.Inventory.StockMoveDependencyLink
-    resource UniboV4.Inventory.RemovalStrategy
-    resource UniboV4.Inventory.Party
+    resource UniboExPoc.Inventory.Warehouse
+    resource UniboExPoc.Inventory.Warehouse.Version
+    resource UniboExPoc.Inventory.StockLocation
+    resource UniboExPoc.Inventory.StockLocation.Version
+    resource UniboExPoc.Inventory.StockPicking
+    resource UniboExPoc.Inventory.StockPicking.Version
+    resource UniboExPoc.Inventory.StockMove
+    resource UniboExPoc.Inventory.StockMove.Version
+    resource UniboExPoc.Inventory.StockMoveLine
+    resource UniboExPoc.Inventory.StockMoveLine.Version
+    resource UniboExPoc.Inventory.StockQuant
+    resource UniboExPoc.Inventory.StockQuant.Version
+    resource UniboExPoc.Inventory.StockPickingItem
+    resource UniboExPoc.Inventory.StockPickingItem.Version
+    resource UniboExPoc.Inventory.Lot
+    resource UniboExPoc.Inventory.Lot.Version
+    resource UniboExPoc.Inventory.PickingBatch
+    resource UniboExPoc.Inventory.PickingBatch.Version
+    resource UniboExPoc.Inventory.LandedCost
+    resource UniboExPoc.Inventory.LandedCost.Version
+    resource UniboExPoc.Inventory.LandedCostLine
+    resource UniboExPoc.Inventory.LandedCostLine.Version
+    resource UniboExPoc.Inventory.ValuationAdjustmentLine
+    resource UniboExPoc.Inventory.LandedCostPicking
+    resource UniboExPoc.Inventory.StockMoveDependencyLink
+    resource UniboExPoc.Inventory.RemovalStrategy
+    resource UniboExPoc.Inventory.Party
   end
 end

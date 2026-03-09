@@ -42,6 +42,8 @@ defmodule UniboExPoc.Ofbiz.Common.CustomScreenType do
   relationships do
     has_many :child_custom_screen_type, UniboExPoc.Ofbiz.Common.CustomScreenType do
       public? true
+      source_attribute :custom_screen_type_id
+      destination_attribute :parent_type_id
     end
   end
 

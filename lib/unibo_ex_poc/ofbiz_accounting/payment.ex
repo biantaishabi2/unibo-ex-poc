@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.Payment do
+defmodule UniboExPoc.Ofbiz.Accounting.Payment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_payments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -45,37 +45,37 @@ defmodule UniboV4.Ofbiz.Accounting.Payment do
   end
 
   relationships do
-    belongs_to :payment_type, UniboV4.Ofbiz.Accounting.PaymentType do
+    belongs_to :payment_type, UniboExPoc.Ofbiz.Accounting.PaymentType do
       public? true
     end
-    belongs_to :payment_method_type, UniboV4.Ofbiz.Accounting.PaymentMethodType do
+    belongs_to :payment_method_type, UniboExPoc.Ofbiz.Accounting.PaymentMethodType do
       public? true
     end
-    belongs_to :payment_method, UniboV4.Ofbiz.Accounting.PaymentMethod do
+    belongs_to :payment_method, UniboExPoc.Ofbiz.Accounting.PaymentMethod do
       public? true
     end
-    belongs_to :credit_card, UniboV4.Ofbiz.Accounting.CreditCard do
-      public? true
-      source_attribute :payment_method_id
-      define_attribute? false
-    end
-    belongs_to :eft_account, UniboV4.Ofbiz.Accounting.EftAccount do
+    belongs_to :credit_card, UniboExPoc.Ofbiz.Accounting.CreditCard do
       public? true
       source_attribute :payment_method_id
       define_attribute? false
     end
-    belongs_to :gift_card, UniboV4.Ofbiz.Accounting.GiftCard do
+    belongs_to :eft_account, UniboExPoc.Ofbiz.Accounting.EftAccount do
       public? true
       source_attribute :payment_method_id
       define_attribute? false
     end
-    belongs_to :payment_gateway_response, UniboV4.Ofbiz.Accounting.PaymentGatewayResponse do
+    belongs_to :gift_card, UniboExPoc.Ofbiz.Accounting.GiftCard do
+      public? true
+      source_attribute :payment_method_id
+      define_attribute? false
+    end
+    belongs_to :payment_gateway_response, UniboExPoc.Ofbiz.Accounting.PaymentGatewayResponse do
       public? true
     end
-    belongs_to :fin_account_trans, UniboV4.Ofbiz.Accounting.FinAccountTrans do
+    belongs_to :fin_account_trans, UniboExPoc.Ofbiz.Accounting.FinAccountTrans do
       public? true
     end
-    belongs_to :gl_account, UniboV4.Ofbiz.Accounting.GlAccount do
+    belongs_to :gl_account, UniboExPoc.Ofbiz.Accounting.GlAccount do
       public? true
       source_attribute :override_gl_account_id
     end

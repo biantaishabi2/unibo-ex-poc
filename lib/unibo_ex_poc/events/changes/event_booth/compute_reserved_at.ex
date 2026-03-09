@@ -1,4 +1,4 @@
-defmodule UniboV4.Events.Changes.EventBooth.ComputeReservedAt do
+defmodule UniboExPoc.Events.Changes.EventBooth.ComputeReservedAt do
   @moduledoc """
   Change 模块: 计算 :reserved_at (entity: event_booth)
   原始 expr: op: func args: - now

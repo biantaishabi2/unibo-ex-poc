@@ -1,10 +1,10 @@
-defmodule UniboV4.Helpdesk.Workflows.Appointment.AppointmentLifecycleWorkflow do
+defmodule UniboExPoc.Helpdesk.Workflows.Appointment.AppointmentLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Helpdesk.Appointment
+  alias UniboExPoc.Helpdesk.Appointment
 
   def steps do
     [:create, :confirm, :complete, :cancel]
@@ -149,6 +149,7 @@ defmodule UniboV4.Helpdesk.Workflows.Appointment.AppointmentLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :confirm -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Helpdesk.Workflows.Appointment.AppointmentLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :confirm -> false

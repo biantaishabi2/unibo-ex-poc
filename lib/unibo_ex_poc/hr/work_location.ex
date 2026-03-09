@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.HR.WorkLocation do
+defmodule UniboExPoc.HR.WorkLocation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.HR.WorkLocation do
 
   postgres do
     table "hr_work_locations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -58,7 +58,7 @@ defmodule UniboV4.HR.WorkLocation do
   end
 
   relationships do
-    has_many :employee_locations, UniboV4.HR.EmployeeLocation do
+    has_many :employee_locations, UniboExPoc.HR.EmployeeLocation do
       public? true
     end
   end

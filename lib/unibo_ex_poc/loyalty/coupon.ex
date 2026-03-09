@@ -12,13 +12,13 @@
 #   apply --> cancel_coupon
 #   cancel_coupon --> [*] : cancelled
 # ```
-defmodule UniboV4.Loyalty.Coupon do
+defmodule UniboExPoc.Loyalty.Coupon do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Loyalty,
+    domain: UniboExPoc.Loyalty,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboV4.Loyalty.Coupon.Notifier]
+    notifiers: [UniboExPoc.Loyalty.Coupon.Notifier]
 
   resource do
     description "优惠券，携带唯一码、有效期、使用次数限制，支持通用码与专属码两种模式"
@@ -26,7 +26,7 @@ defmodule UniboV4.Loyalty.Coupon do
 
   postgres do
     table "loyalty_coupons"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -123,16 +123,16 @@ defmodule UniboV4.Loyalty.Coupon do
   end
 
   relationships do
-    belongs_to :program, UniboV4.Loyalty.LoyaltyProgram do
+    belongs_to :program, UniboExPoc.Loyalty.LoyaltyProgram do
       public? true
       allow_nil? false
     end
-    has_many :usages, UniboV4.Loyalty.CouponUsage do
+    has_many :usages, UniboExPoc.Loyalty.CouponUsage do
       public? true
       source_attribute :program_id
       destination_attribute :coupon_id
     end
-    has_many :bound_partners, UniboV4.Loyalty.CouponBoundParty do
+    has_many :bound_partners, UniboExPoc.Loyalty.CouponBoundParty do
       public? true
       source_attribute :program_id
       destination_attribute :coupon_id

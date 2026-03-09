@@ -4,10 +4,10 @@
 #   [*] --> create
 #   create --> [*]
 # ```
-defmodule UniboV4.Marketing.AutomationParticipant do
+defmodule UniboExPoc.Marketing.AutomationParticipant do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -17,7 +17,7 @@ defmodule UniboV4.Marketing.AutomationParticipant do
 
   postgres do
     table "marketing_automation_participants"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -71,11 +71,11 @@ defmodule UniboV4.Marketing.AutomationParticipant do
   end
 
   relationships do
-    belongs_to :campaign, UniboV4.Marketing.AutomationCampaign do
+    belongs_to :campaign, UniboExPoc.Marketing.AutomationCampaign do
       public? true
       allow_nil? false
     end
-    belongs_to :partner, UniboV4.Marketing.Contact do
+    belongs_to :partner, UniboExPoc.Marketing.Contact do
       public? true
     end
   end
@@ -90,7 +90,7 @@ defmodule UniboV4.Marketing.AutomationParticipant do
       change manage_relationship(:campaign_id, :campaign, type: :append, on_lookup: :relate)
       # validation: check_do_not_contact
       # validation: frequency_limit
-      change UniboV4.Marketing.Changes.AutomationParticipant.CreateCall1
+      change UniboExPoc.Marketing.Changes.AutomationParticipant.CreateCall1
       change set_attribute(:id, expr(id))
     end
   end

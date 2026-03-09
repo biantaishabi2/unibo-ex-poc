@@ -41,13 +41,13 @@
 #   evaluate_retry_due --> retry_payment
 #   retry_payment --> [*]
 # ```
-defmodule UniboV4.Subscriptions.SubscriptionOrder do
+defmodule UniboExPoc.Subscriptions.SubscriptionOrder do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Subscriptions,
+    domain: UniboExPoc.Subscriptions,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Subscriptions.SubscriptionOrder.Notifier]
+    notifiers: [UniboExPoc.Subscriptions.SubscriptionOrder.Notifier]
 
   resource do
     description "订阅订单，承载客户订阅全生命周期"
@@ -55,7 +55,7 @@ defmodule UniboV4.Subscriptions.SubscriptionOrder do
 
   postgres do
     table "subscriptions_subscription_orders"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -138,50 +138,50 @@ defmodule UniboV4.Subscriptions.SubscriptionOrder do
   end
 
   relationships do
-    has_many :lines, UniboV4.Subscriptions.SubscriptionOrderLine do
+    has_many :lines, UniboExPoc.Subscriptions.SubscriptionOrderLine do
       public? true
       source_attribute :origin_order_id
       destination_attribute :order_id
     end
-    has_many :logs, UniboV4.Subscriptions.SubscriptionLog do
+    has_many :logs, UniboExPoc.Subscriptions.SubscriptionLog do
       public? true
       source_attribute :origin_order_id
       destination_attribute :subscription_id
     end
-    belongs_to :recurring_plan, UniboV4.Subscriptions.SubscriptionPlan do
+    belongs_to :recurring_plan, UniboExPoc.Subscriptions.SubscriptionPlan do
       public? true
       allow_nil? false
     end
-    belongs_to :close_reason, UniboV4.Subscriptions.CloseReason do
+    belongs_to :close_reason, UniboExPoc.Subscriptions.CloseReason do
       public? true
     end
-    belongs_to :partner, UniboV4.Subscriptions.Party do
+    belongs_to :partner, UniboExPoc.Subscriptions.Party do
       public? true
       allow_nil? false
       source_attribute :partner_party_id
     end
-    belongs_to :salesperson, UniboV4.Subscriptions.Party do
+    belongs_to :salesperson, UniboExPoc.Subscriptions.Party do
       public? true
       allow_nil? false
       source_attribute :salesperson_party_id
     end
-    belongs_to :team, UniboV4.Subscriptions.SalesTeam do
+    belongs_to :team, UniboExPoc.Subscriptions.SalesTeam do
       public? true
     end
-    belongs_to :origin_order, UniboV4.Subscriptions.SubscriptionOrder do
+    belongs_to :origin_order, UniboExPoc.Subscriptions.SubscriptionOrder do
       public? true
     end
-    belongs_to :payment_token, UniboV4.Subscriptions.PaymentToken do
+    belongs_to :payment_token, UniboExPoc.Subscriptions.PaymentToken do
       public? true
     end
-    belongs_to :currency, UniboV4.Subscriptions.Currency do
+    belongs_to :currency, UniboExPoc.Subscriptions.Currency do
       public? true
       allow_nil? false
     end
-    belongs_to :pricelist, UniboV4.Subscriptions.Pricelist do
+    belongs_to :pricelist, UniboExPoc.Subscriptions.Pricelist do
       public? true
     end
-    belongs_to :stage, UniboV4.Subscriptions.Stage do
+    belongs_to :stage, UniboExPoc.Subscriptions.Stage do
       public? true
     end
   end
@@ -277,7 +277,7 @@ defmodule UniboV4.Subscriptions.SubscriptionOrder do
       end
       # message: "只有进行中状态可以关闭"
       change set_attribute(:subscription_state, :closed)
-      change UniboV4.Subscriptions.Changes.SubscriptionOrder.ComputeCloseDate
+      change UniboExPoc.Subscriptions.Changes.SubscriptionOrder.ComputeCloseDate
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -318,7 +318,7 @@ defmodule UniboV4.Subscriptions.SubscriptionOrder do
       description "标记支付异常"
       accept []
       change set_attribute(:payment_exception, true)
-      change UniboV4.Subscriptions.Changes.SubscriptionOrder.ComputeFirstPaymentFailureDate
+      change UniboExPoc.Subscriptions.Changes.SubscriptionOrder.ComputeFirstPaymentFailureDate
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

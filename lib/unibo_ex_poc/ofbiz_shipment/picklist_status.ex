@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.PicklistStatus do
+defmodule UniboExPoc.Ofbiz.Shipment.PicklistStatus do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_picklist_statuses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -36,21 +36,21 @@ defmodule UniboV4.Ofbiz.Shipment.PicklistStatus do
   end
 
   relationships do
-    belongs_to :picklist, UniboV4.Ofbiz.Shipment.Picklist do
+    belongs_to :picklist, UniboExPoc.Ofbiz.Shipment.Picklist do
       public? true
       attribute_type :string
     end
-    belongs_to :change_user_login, UniboV4.Ofbiz.Shipment.UserLogin do
+    belongs_to :change_user_login, UniboExPoc.Ofbiz.Shipment.UserLogin do
       public? true
       source_attribute :change_by_user_login_id
       attribute_type :string
     end
-    belongs_to :status_item, UniboV4.Ofbiz.Shipment.StatusItem do
+    belongs_to :status_item, UniboExPoc.Ofbiz.Shipment.StatusItem do
       public? true
       source_attribute :status_id
       attribute_type :string
     end
-    belongs_to :to_status_item, UniboV4.Ofbiz.Shipment.StatusItem do
+    belongs_to :to_status_item, UniboExPoc.Ofbiz.Shipment.StatusItem do
       public? true
       source_attribute :status_id_to
       attribute_type :string

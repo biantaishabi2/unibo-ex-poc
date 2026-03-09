@@ -1,4 +1,4 @@
-defmodule UniboV4.Documents.Calculations.Document.Thumbnail do
+defmodule UniboExPoc.Documents.Calculations.Document.Thumbnail do
   @moduledoc """
   Calculation 模块: :thumbnail (type: :string, entity: document)
   """

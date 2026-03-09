@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.CRM.LeadStage do
+defmodule UniboExPoc.CRM.LeadStage do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.CRM,
+    domain: UniboExPoc.CRM,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.CRM.LeadStage do
 
   postgres do
     table "crm_lead_stages"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -72,10 +72,10 @@ defmodule UniboV4.CRM.LeadStage do
   end
 
   relationships do
-    belongs_to :team, UniboV4.CRM.SalesTeam do
+    belongs_to :team, UniboExPoc.CRM.SalesTeam do
       public? true
     end
-    has_many :leads, UniboV4.CRM.Lead do
+    has_many :leads, UniboExPoc.CRM.Lead do
       public? true
       source_attribute :team_id
       destination_attribute :stage_id

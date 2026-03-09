@@ -1,4 +1,4 @@
-defmodule UniboV4.IoT.Calculations.CallQueue.AvgWaitTime do
+defmodule UniboExPoc.IoT.Calculations.CallQueue.AvgWaitTime do
   @moduledoc """
   Calculation 模块: :avg_wait_time (type: :integer, entity: call_queue)
   """

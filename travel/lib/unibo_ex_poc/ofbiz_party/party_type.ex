@@ -50,6 +50,8 @@ defmodule UniboExPoc.Ofbiz.Party.PartyType do
     end
     has_many :sibling_party_type, UniboExPoc.Ofbiz.Party.PartyType do
       public? true
+      source_attribute :parent_type_id
+      destination_attribute :parent_type_id
     end
   end
 

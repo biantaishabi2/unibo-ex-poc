@@ -8,10 +8,10 @@
 #   update --> deactivate
 #   deactivate --> [*]
 # ```
-defmodule UniboV4.Analytic.AnalyticPlan do
+defmodule UniboExPoc.Analytic.AnalyticPlan do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Analytic,
+    domain: UniboExPoc.Analytic,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Analytic.AnalyticPlan do
 
   postgres do
     table "analytic_plans"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -80,7 +80,7 @@ unavailable = 本计划不在该场景下显示
   end
 
   relationships do
-    has_many :accounts, UniboV4.Analytic.AnalyticAccount do
+    has_many :accounts, UniboExPoc.Analytic.AnalyticAccount do
       public? true
       destination_attribute :plan_id
     end

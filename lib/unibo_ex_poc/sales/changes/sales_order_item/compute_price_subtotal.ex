@@ -1,4 +1,4 @@
-defmodule UniboV4.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
+defmodule UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal do
   @moduledoc """
   Change 模块: 计算 :price_subtotal (entity: sales_order_item)
   """

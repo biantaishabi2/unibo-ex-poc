@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.DocumentAttribute do
+defmodule UniboExPoc.Ofbiz.Content.DocumentAttribute do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_document_attributes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,7 +38,7 @@ defmodule UniboV4.Ofbiz.Content.DocumentAttribute do
   end
 
   relationships do
-    belongs_to :document, UniboV4.Ofbiz.Content.Document do
+    belongs_to :document, UniboExPoc.Ofbiz.Content.Document do
       public? true
       attribute_type :string
     end

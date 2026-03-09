@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.Agreement do
+defmodule UniboExPoc.Ofbiz.Party.Agreement do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_agreements"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -60,26 +60,26 @@ defmodule UniboV4.Ofbiz.Party.Agreement do
   end
 
   relationships do
-    belongs_to :product, UniboV4.Ofbiz.Party.Product do
+    belongs_to :product, UniboExPoc.Ofbiz.Party.Product do
       public? true
     end
-    belongs_to :from_party, UniboV4.Ofbiz.Party.Party do
+    belongs_to :from_party, UniboExPoc.Ofbiz.Party.Party do
       public? true
       source_attribute :party_id_from
     end
-    belongs_to :from_role_type, UniboV4.Ofbiz.Party.RoleType do
+    belongs_to :from_role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
       source_attribute :role_type_id_from
     end
-    belongs_to :to_party, UniboV4.Ofbiz.Party.Party do
+    belongs_to :to_party, UniboExPoc.Ofbiz.Party.Party do
       public? true
       source_attribute :party_id_to
     end
-    belongs_to :to_role_type, UniboV4.Ofbiz.Party.RoleType do
+    belongs_to :to_role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
       source_attribute :role_type_id_to
     end
-    belongs_to :agreement_type, UniboV4.Ofbiz.Party.AgreementType do
+    belongs_to :agreement_type, UniboExPoc.Ofbiz.Party.AgreementType do
       public? true
     end
   end

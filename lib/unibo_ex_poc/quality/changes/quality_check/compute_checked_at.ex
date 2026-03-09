@@ -1,4 +1,4 @@
-defmodule UniboV4.Quality.Changes.QualityCheck.ComputeCheckedAt do
+defmodule UniboExPoc.Quality.Changes.QualityCheck.ComputeCheckedAt do
   @moduledoc """
   Change 模块: 计算 :checked_at (entity: quality_check)
   原始 expr: op: func args: - now

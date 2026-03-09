@@ -50,6 +50,8 @@ defmodule UniboExPoc.Ofbiz.Product.ProductCategory do
     end
     has_many :primary_child_product_category, UniboExPoc.Ofbiz.Product.ProductCategory do
       public? true
+      source_attribute :primary_parent_category_id
+      destination_attribute :primary_parent_category_id
     end
   end
 

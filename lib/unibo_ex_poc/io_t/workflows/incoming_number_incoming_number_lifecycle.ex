@@ -1,10 +1,10 @@
-defmodule UniboV4.IoT.Workflows.IncomingNumber.IncomingNumberLifecycleWorkflow do
+defmodule UniboExPoc.IoT.Workflows.IncomingNumber.IncomingNumberLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.IoT.IncomingNumber
+  alias UniboExPoc.IoT.IncomingNumber
 
   def steps do
     [:create, :bind_destination, :update, :destroy]
@@ -149,6 +149,7 @@ defmodule UniboV4.IoT.Workflows.IncomingNumber.IncomingNumberLifecycleWorkflow d
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :bind_destination -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.IoT.Workflows.IncomingNumber.IncomingNumberLifecycleWorkflow d
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :bind_destination -> false

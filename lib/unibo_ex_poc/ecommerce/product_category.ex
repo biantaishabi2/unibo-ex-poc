@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Ecommerce.ProductCategory do
+defmodule UniboExPoc.Ecommerce.ProductCategory do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ecommerce,
+    domain: UniboExPoc.Ecommerce,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Ecommerce.ProductCategory do
 
   postgres do
     table "ecommerce_product_categories"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -56,10 +56,10 @@ defmodule UniboV4.Ecommerce.ProductCategory do
   end
 
   relationships do
-    belongs_to :parent, UniboV4.Ecommerce.ProductCategory do
+    belongs_to :parent, UniboExPoc.Ecommerce.ProductCategory do
       public? true
     end
-    has_many :products, UniboV4.Ecommerce.ProductTemplate do
+    has_many :products, UniboExPoc.Ecommerce.ProductTemplate do
       public? true
       source_attribute :parent_id
       destination_attribute :category_id

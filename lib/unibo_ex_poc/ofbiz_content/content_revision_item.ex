@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.ContentRevisionItem do
+defmodule UniboExPoc.Ofbiz.Content.ContentRevisionItem do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "content_revision_items"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -46,11 +46,11 @@ defmodule UniboV4.Ofbiz.Content.ContentRevisionItem do
   end
 
   relationships do
-    belongs_to :old_data_resource, UniboV4.Ofbiz.Content.DataResource do
+    belongs_to :old_data_resource, UniboExPoc.Ofbiz.Content.DataResource do
       public? true
       attribute_type :string
     end
-    belongs_to :new_data_resource, UniboV4.Ofbiz.Content.DataResource do
+    belongs_to :new_data_resource, UniboExPoc.Ofbiz.Content.DataResource do
       public? true
       attribute_type :string
     end

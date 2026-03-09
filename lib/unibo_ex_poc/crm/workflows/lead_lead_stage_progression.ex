@@ -1,4 +1,4 @@
-defmodule UniboV4.CRM.Workflows.Lead.LeadStageProgressionWorkflow do
+defmodule UniboExPoc.CRM.Workflows.Lead.LeadStageProgressionWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
@@ -135,6 +135,7 @@ defmodule UniboV4.CRM.Workflows.Lead.LeadStageProgressionWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :update -> nil
       _ -> nil
@@ -142,6 +143,7 @@ defmodule UniboV4.CRM.Workflows.Lead.LeadStageProgressionWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :update -> false
       _ -> false

@@ -1,10 +1,10 @@
-defmodule UniboV4.Delivery.Workflows.ShipmentPackageRouteSeg.PackageRouteSegFlowWorkflow do
+defmodule UniboExPoc.Delivery.Workflows.ShipmentPackageRouteSeg.PackageRouteSegFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Delivery.ShipmentPackageRouteSeg
+  alias UniboExPoc.Delivery.ShipmentPackageRouteSeg
 
   def steps do
     [:create, :update_label, :mark_printed, :update_cost, :destroy]
@@ -153,6 +153,7 @@ defmodule UniboV4.Delivery.Workflows.ShipmentPackageRouteSeg.PackageRouteSegFlow
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update_label -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.Delivery.Workflows.ShipmentPackageRouteSeg.PackageRouteSegFlow
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update_label -> false

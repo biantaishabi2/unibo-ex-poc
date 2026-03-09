@@ -12,10 +12,10 @@
 #   [*] --> create_from_template
 #   create_from_template --> [*]
 # ```
-defmodule UniboV4.Project.PlanningSlot do
+defmodule UniboExPoc.Project.PlanningSlot do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Project,
+    domain: UniboExPoc.Project,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -25,7 +25,7 @@ defmodule UniboV4.Project.PlanningSlot do
 
   postgres do
     table "project_planning_slots"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -77,20 +77,20 @@ defmodule UniboV4.Project.PlanningSlot do
   end
 
   relationships do
-    belongs_to :employee, UniboV4.Project.Employee do
+    belongs_to :employee, UniboExPoc.Project.Employee do
       public? true
       allow_nil? false
     end
-    belongs_to :project, UniboV4.Project.Project do
+    belongs_to :project, UniboExPoc.Project.Project do
       public? true
     end
-    belongs_to :role, UniboV4.Project.PlanningRole do
+    belongs_to :role, UniboExPoc.Project.PlanningRole do
       public? true
     end
-    belongs_to :recurrence, UniboV4.Project.PlanningRecurrence do
+    belongs_to :recurrence, UniboExPoc.Project.PlanningRecurrence do
       public? true
     end
-    belongs_to :template, UniboV4.Project.PlanningSlotTemplate do
+    belongs_to :template, UniboExPoc.Project.PlanningSlotTemplate do
       public? true
     end
   end
@@ -106,11 +106,11 @@ defmodule UniboV4.Project.PlanningSlot do
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
       validate compare(:end_datetime, greater_than: :start_datetime)
       # message: "排班结束时间必须晚于开始时间"
-      validate {UniboV4.Project.Validations.PlanningSlot.NoOverlap, []}
+      validate {UniboExPoc.Project.Validations.PlanningSlot.NoOverlap, []}
       # message: "同一员工在同一时段不能有重叠排班"
-      change UniboV4.Project.Changes.PlanningSlot.ComputeAllocatedHours
-      change UniboV4.Project.Changes.PlanningSlot.CreateCall2
-      change UniboV4.Project.Changes.PlanningSlot.CreateCall4
+      change UniboExPoc.Project.Changes.PlanningSlot.ComputeAllocatedHours
+      change UniboExPoc.Project.Changes.PlanningSlot.CreateCall2
+      change UniboExPoc.Project.Changes.PlanningSlot.CreateCall4
       change set_attribute(:id, expr(id))
     end
     update :update do
@@ -118,9 +118,9 @@ defmodule UniboV4.Project.PlanningSlot do
       accept [:start_datetime, :end_datetime, :state, :allow_overlap, :project_id, :role_id]
       # skipped: validate compare :end_datetime (incompatible with bulk update atomic path)
       # skipped: validate no_overlap : (incompatible with bulk update atomic path)
-      change UniboV4.Project.Changes.PlanningSlot.ComputeAllocatedHours
-      change UniboV4.Project.Changes.PlanningSlot.UpdateCall2
-      change UniboV4.Project.Changes.PlanningSlot.UpdateCall3
+      change UniboExPoc.Project.Changes.PlanningSlot.ComputeAllocatedHours
+      change UniboExPoc.Project.Changes.PlanningSlot.UpdateCall2
+      change UniboExPoc.Project.Changes.PlanningSlot.UpdateCall3
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -129,9 +129,9 @@ defmodule UniboV4.Project.PlanningSlot do
       accept []
       # skipped: validate compare :end_datetime (incompatible with bulk update atomic path)
       # skipped: validate no_overlap : (incompatible with bulk update atomic path)
-      change UniboV4.Project.Changes.PlanningSlot.ComputeAllocatedHours
-      change UniboV4.Project.Changes.PlanningSlot.PublishCall2
-      change UniboV4.Project.Changes.PlanningSlot.PublishCall3
+      change UniboExPoc.Project.Changes.PlanningSlot.ComputeAllocatedHours
+      change UniboExPoc.Project.Changes.PlanningSlot.PublishCall2
+      change UniboExPoc.Project.Changes.PlanningSlot.PublishCall3
       change set_attribute(:state, :published)
       change set_attribute(:id, expr(id))
       require_atomic? false
@@ -144,12 +144,12 @@ defmodule UniboV4.Project.PlanningSlot do
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
       validate compare(:end_datetime, greater_than: :start_datetime)
       # message: "排班结束时间必须晚于开始时间"
-      validate {UniboV4.Project.Validations.PlanningSlot.NoOverlap, []}
+      validate {UniboExPoc.Project.Validations.PlanningSlot.NoOverlap, []}
       # message: "同一员工在同一时段不能有重叠排班"
-      change UniboV4.Project.Changes.PlanningSlot.ComputeAllocatedHours
-      change UniboV4.Project.Changes.PlanningSlot.CreateFromTemplateCall2
-      change UniboV4.Project.Changes.PlanningSlot.CreateFromTemplateCall4
-      change UniboV4.Project.Changes.PlanningSlot.CreateFromTemplateCall5
+      change UniboExPoc.Project.Changes.PlanningSlot.ComputeAllocatedHours
+      change UniboExPoc.Project.Changes.PlanningSlot.CreateFromTemplateCall2
+      change UniboExPoc.Project.Changes.PlanningSlot.CreateFromTemplateCall4
+      change UniboExPoc.Project.Changes.PlanningSlot.CreateFromTemplateCall5
       change set_attribute(:id, expr(id))
     end
   end

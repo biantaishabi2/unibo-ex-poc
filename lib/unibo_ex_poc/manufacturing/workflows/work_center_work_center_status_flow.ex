@@ -1,10 +1,10 @@
-defmodule UniboV4.Manufacturing.Workflows.WorkCenter.WorkCenterStatusFlowWorkflow do
+defmodule UniboExPoc.Manufacturing.Workflows.WorkCenter.WorkCenterStatusFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Manufacturing.WorkCenter
+  alias UniboExPoc.Manufacturing.WorkCenter
 
   def steps do
     [:create, :update, :block, :unblock]
@@ -149,6 +149,7 @@ defmodule UniboV4.Manufacturing.Workflows.WorkCenter.WorkCenterStatusFlowWorkflo
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Manufacturing.Workflows.WorkCenter.WorkCenterStatusFlowWorkflo
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

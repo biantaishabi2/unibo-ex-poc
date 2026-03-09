@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.ProductPriceCond do
+defmodule UniboExPoc.Ofbiz.Product.ProductPriceCond do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_price_conds"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -39,7 +39,7 @@ defmodule UniboV4.Ofbiz.Product.ProductPriceCond do
   end
 
   relationships do
-    belongs_to :product_price_rule, UniboV4.Ofbiz.Product.ProductPriceRule do
+    belongs_to :product_price_rule, UniboExPoc.Ofbiz.Product.ProductPriceRule do
       public? true
     end
   end

@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.ProductStoreShipmentMeth do
+defmodule UniboExPoc.Ofbiz.Product.ProductStoreShipmentMeth do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_store_shipment_meths"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

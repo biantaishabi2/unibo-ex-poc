@@ -12,10 +12,10 @@
 #   accumulate_excluded_time --> check_and_update
 #   accumulate_excluded_time --> accumulate_excluded_time
 # ```
-defmodule UniboV4.Helpdesk.HelpdeskSLAStatus do
+defmodule UniboExPoc.Helpdesk.HelpdeskSLAStatus do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Helpdesk,
+    domain: UniboExPoc.Helpdesk,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -25,7 +25,7 @@ defmodule UniboV4.Helpdesk.HelpdeskSLAStatus do
 
   postgres do
     table "helpdesk_sla_statuses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -79,11 +79,11 @@ defmodule UniboV4.Helpdesk.HelpdeskSLAStatus do
   end
 
   relationships do
-    belongs_to :ticket, UniboV4.Helpdesk.HelpdeskTicket do
+    belongs_to :ticket, UniboExPoc.Helpdesk.HelpdeskTicket do
       public? true
       allow_nil? false
     end
-    belongs_to :sla, UniboV4.Helpdesk.HelpdeskSLA do
+    belongs_to :sla, UniboExPoc.Helpdesk.HelpdeskSLA do
       public? true
       allow_nil? false
     end

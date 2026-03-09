@@ -1,10 +1,10 @@
-defmodule UniboV4.HR.Workflows.WorkEntry.WorkEntryValidationFlowWorkflow do
+defmodule UniboExPoc.HR.Workflows.WorkEntry.WorkEntryValidationFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.HR.WorkEntry
+  alias UniboExPoc.HR.WorkEntry
 
   def steps do
     [:create, :action_validate]
@@ -141,6 +141,7 @@ defmodule UniboV4.HR.Workflows.WorkEntry.WorkEntryValidationFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :action_validate -> nil
@@ -149,6 +150,7 @@ defmodule UniboV4.HR.Workflows.WorkEntry.WorkEntryValidationFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :action_validate -> false

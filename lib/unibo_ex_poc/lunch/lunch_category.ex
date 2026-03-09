@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Lunch.LunchCategory do
+defmodule UniboExPoc.Lunch.LunchCategory do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Lunch,
+    domain: UniboExPoc.Lunch,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Lunch.LunchCategory do
 
   postgres do
     table "lunch_categories"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -52,11 +52,11 @@ defmodule UniboV4.Lunch.LunchCategory do
   end
 
   relationships do
-    has_many :products, UniboV4.Lunch.LunchProduct do
+    has_many :products, UniboExPoc.Lunch.LunchProduct do
       public? true
       destination_attribute :category_id
     end
-    has_many :translations, UniboV4.Lunch.LunchCategoryTranslation, public?: true
+    has_many :translations, UniboExPoc.Lunch.LunchCategoryTranslation, public?: true
   end
 
   actions do

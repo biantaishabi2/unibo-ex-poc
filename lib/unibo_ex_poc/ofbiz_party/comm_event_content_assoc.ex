@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.CommEventContentAssoc do
+defmodule UniboExPoc.Ofbiz.Party.CommEventContentAssoc do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_comm_event_content_assocs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -45,14 +45,14 @@ defmodule UniboV4.Ofbiz.Party.CommEventContentAssoc do
   end
 
   relationships do
-    belongs_to :from_content, UniboV4.Ofbiz.Party.Content do
+    belongs_to :from_content, UniboExPoc.Ofbiz.Party.Content do
       public? true
       source_attribute :content_id
     end
-    belongs_to :communication_event, UniboV4.Ofbiz.Party.CommunicationEvent do
+    belongs_to :communication_event, UniboExPoc.Ofbiz.Party.CommunicationEvent do
       public? true
     end
-    belongs_to :comm_content_assoc_type, UniboV4.Ofbiz.Party.CommContentAssocType do
+    belongs_to :comm_content_assoc_type, UniboExPoc.Ofbiz.Party.CommContentAssocType do
       public? true
     end
   end

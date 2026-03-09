@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Website.WebSite do
+defmodule UniboExPoc.Website.WebSite do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Website,
+    domain: UniboExPoc.Website,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Website.WebSite do
 
   postgres do
     table "website_web_sites"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -151,17 +151,17 @@ defmodule UniboV4.Website.WebSite do
   end
 
   relationships do
-    has_many :pages, UniboV4.Website.WebPage do
+    has_many :pages, UniboExPoc.Website.WebPage do
       public? true
       source_attribute :company_party_id
       destination_attribute :website_id
     end
-    has_many :menus, UniboV4.Website.Menu do
+    has_many :menus, UniboExPoc.Website.Menu do
       public? true
       source_attribute :company_party_id
       destination_attribute :website_id
     end
-    belongs_to :company, UniboV4.Website.Party do
+    belongs_to :company, UniboExPoc.Website.Party do
       public? true
       source_attribute :company_party_id
     end
@@ -175,18 +175,18 @@ defmodule UniboV4.Website.WebSite do
       argument :company_id, :uuid
       validate present(:site_code)
       validate present(:name)
-      change UniboV4.Website.Changes.WebSite.CreateCall1
-      change UniboV4.Website.Changes.WebSite.CreateCall2
-      change UniboV4.Website.Changes.WebSite.CreateCall4
-      change UniboV4.Website.Changes.WebSite.CreateCall5
+      change UniboExPoc.Website.Changes.WebSite.CreateCall1
+      change UniboExPoc.Website.Changes.WebSite.CreateCall2
+      change UniboExPoc.Website.Changes.WebSite.CreateCall4
+      change UniboExPoc.Website.Changes.WebSite.CreateCall5
       change set_attribute(:id, expr(id))
     end
     update :update do
       primary? true
       accept [:name, :domain_name, :is_active, :description, :homepage_url, :favicon, :logo, :social_twitter, :social_facebook, :social_github, :social_linkedin, :social_youtube, :social_instagram, :social_tiktok, :google_analytics_key, :google_search_console, :plausible_shared_key, :cdn_activated, :cdn_url, :cdn_filters, :cookies_bar, :custom_code_head, :custom_code_footer]
-      change UniboV4.Website.Changes.WebSite.UpdateCall3
-      change UniboV4.Website.Changes.WebSite.UpdateCall4
-      change UniboV4.Website.Changes.WebSite.UpdateCall5
+      change UniboExPoc.Website.Changes.WebSite.UpdateCall3
+      change UniboExPoc.Website.Changes.WebSite.UpdateCall4
+      change UniboExPoc.Website.Changes.WebSite.UpdateCall5
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

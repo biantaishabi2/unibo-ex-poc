@@ -157,6 +157,7 @@ defmodule UniboExPoc.Delivery.Workflows.ShipmentRouteSegment.RouteSegmentFlowWor
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :confirm_shipment -> nil
@@ -169,6 +170,7 @@ defmodule UniboExPoc.Delivery.Workflows.ShipmentRouteSegment.RouteSegmentFlowWor
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :confirm_shipment -> false

@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.FacilityGroupRole do
+defmodule UniboExPoc.Ofbiz.Product.FacilityGroupRole do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "product_facility_group_roles"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -41,7 +41,7 @@ defmodule UniboV4.Ofbiz.Product.FacilityGroupRole do
   end
 
   relationships do
-    belongs_to :facility_group, UniboV4.Ofbiz.Product.FacilityGroup do
+    belongs_to :facility_group, UniboExPoc.Ofbiz.Product.FacilityGroup do
       public? true
     end
   end

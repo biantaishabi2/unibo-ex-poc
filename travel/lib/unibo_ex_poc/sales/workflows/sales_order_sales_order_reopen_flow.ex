@@ -143,6 +143,7 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.SalesOrderReopenFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :action_cancel -> nil
       :action_draft -> nil
@@ -152,6 +153,7 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.SalesOrderReopenFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :action_cancel -> false
       :action_draft -> false

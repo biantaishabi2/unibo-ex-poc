@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.RoleType do
+defmodule UniboExPoc.Ofbiz.Party.RoleType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_role_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,7 +44,7 @@ defmodule UniboV4.Ofbiz.Party.RoleType do
   end
 
   relationships do
-    belongs_to :parent_role_type, UniboV4.Ofbiz.Party.RoleType do
+    belongs_to :parent_role_type, UniboExPoc.Ofbiz.Party.RoleType do
       public? true
       source_attribute :parent_type_id
     end

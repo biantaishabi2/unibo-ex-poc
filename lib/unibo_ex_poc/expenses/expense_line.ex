@@ -6,10 +6,10 @@
 #   update --> [*]
 #   split --> [*]
 # ```
-defmodule UniboV4.Expenses.ExpenseLine do
+defmodule UniboExPoc.Expenses.ExpenseLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Expenses,
+    domain: UniboExPoc.Expenses,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.Expenses.ExpenseLine do
 
   postgres do
     table "expenses_expense_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -109,27 +109,27 @@ defmodule UniboV4.Expenses.ExpenseLine do
   end
 
   relationships do
-    belongs_to :report, UniboV4.Expenses.ExpenseReport do
+    belongs_to :report, UniboExPoc.Expenses.ExpenseReport do
       public? true
     end
-    belongs_to :product, UniboV4.Expenses.Product do
+    belongs_to :product, UniboExPoc.Expenses.Product do
       public? true
       allow_nil? false
     end
-    belongs_to :category, UniboV4.Expenses.ExpenseCategory do
+    belongs_to :category, UniboExPoc.Expenses.ExpenseCategory do
       public? true
     end
-    belongs_to :employee, UniboV4.Expenses.Employee do
+    belongs_to :employee, UniboExPoc.Expenses.Employee do
       public? true
       allow_nil? false
     end
-    belongs_to :currency, UniboV4.Expenses.Currency do
+    belongs_to :currency, UniboExPoc.Expenses.Currency do
       public? true
       allow_nil? false
     end
-    many_to_many :tax_ids, UniboV4.Expenses.Tax do
+    many_to_many :tax_ids, UniboExPoc.Expenses.Tax do
       public? true
-      through UniboV4.Expenses.ExpenseLineTaxLink
+      through UniboExPoc.Expenses.ExpenseLineTaxLink
     end
   end
 
@@ -148,7 +148,7 @@ defmodule UniboV4.Expenses.ExpenseLine do
       change manage_relationship(:currency_id, :currency, type: :append, on_lookup: :relate)
       validate present(:product_id)
       # message: "费用类型不能为空"
-      change UniboV4.Expenses.Changes.ExpenseLine.CreateCall1
+      change UniboExPoc.Expenses.Changes.ExpenseLine.CreateCall1
       change set_attribute(:id, expr(id))
     end
     update :update do

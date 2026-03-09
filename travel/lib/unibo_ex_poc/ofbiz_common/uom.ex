@@ -40,8 +40,9 @@ defmodule UniboExPoc.Ofbiz.Common.Uom do
   end
 
   relationships do
-    belongs_to :uom_type, UniboExPoc.Ofbiz.Common.UomType do
+    belongs_to :uom_type_ref, UniboExPoc.Ofbiz.Common.UomType do
       public? true
+      source_attribute :uom_type_id
     end
   end
 

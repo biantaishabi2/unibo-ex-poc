@@ -1,4 +1,4 @@
-defmodule UniboV4.Loyalty do
+defmodule UniboExPoc.Loyalty do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,27 +7,27 @@ defmodule UniboV4.Loyalty do
   end
 
   resources do
-    resource UniboV4.Loyalty.LoyaltyProgram
-    resource UniboV4.Loyalty.LoyaltyProgramTranslation
-    resource UniboV4.Loyalty.LoyaltyProgram.Version
-    resource UniboV4.Loyalty.LoyaltyCard
-    resource UniboV4.Loyalty.LoyaltyCard.Version
-    resource UniboV4.Loyalty.LoyaltyRule
-    resource UniboV4.Loyalty.LoyaltyRuleTranslation
-    resource UniboV4.Loyalty.LoyaltyRule.Version
-    resource UniboV4.Loyalty.LoyaltyReward
-    resource UniboV4.Loyalty.LoyaltyRewardTranslation
-    resource UniboV4.Loyalty.LoyaltyReward.Version
-    resource UniboV4.Loyalty.LoyaltyTransaction
-    resource UniboV4.Loyalty.LoyaltyTransaction.Version
-    resource UniboV4.Loyalty.Coupon
-    resource UniboV4.Loyalty.Coupon.Version
-    resource UniboV4.Loyalty.CouponUsage
-    resource UniboV4.Loyalty.CouponBoundParty
-    resource UniboV4.Loyalty.CouponBoundParty.Version
-    resource UniboV4.Loyalty.GiftCard
-    resource UniboV4.Loyalty.GiftCard.Version
-    resource UniboV4.Loyalty.GiftCardTransaction
-    resource UniboV4.Loyalty.Party
+    resource UniboExPoc.Loyalty.LoyaltyProgram
+    resource UniboExPoc.Loyalty.LoyaltyProgramTranslation
+    resource UniboExPoc.Loyalty.LoyaltyProgram.Version
+    resource UniboExPoc.Loyalty.LoyaltyCard
+    resource UniboExPoc.Loyalty.LoyaltyCard.Version
+    resource UniboExPoc.Loyalty.LoyaltyRule
+    resource UniboExPoc.Loyalty.LoyaltyRuleTranslation
+    resource UniboExPoc.Loyalty.LoyaltyRule.Version
+    resource UniboExPoc.Loyalty.LoyaltyReward
+    resource UniboExPoc.Loyalty.LoyaltyRewardTranslation
+    resource UniboExPoc.Loyalty.LoyaltyReward.Version
+    resource UniboExPoc.Loyalty.LoyaltyTransaction
+    resource UniboExPoc.Loyalty.LoyaltyTransaction.Version
+    resource UniboExPoc.Loyalty.Coupon
+    resource UniboExPoc.Loyalty.Coupon.Version
+    resource UniboExPoc.Loyalty.CouponUsage
+    resource UniboExPoc.Loyalty.CouponBoundParty
+    resource UniboExPoc.Loyalty.CouponBoundParty.Version
+    resource UniboExPoc.Loyalty.GiftCard
+    resource UniboExPoc.Loyalty.GiftCard.Version
+    resource UniboExPoc.Loyalty.GiftCardTransaction
+    resource UniboExPoc.Loyalty.Party
   end
 end

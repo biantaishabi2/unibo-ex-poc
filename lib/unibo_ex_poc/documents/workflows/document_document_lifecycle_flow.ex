@@ -1,10 +1,10 @@
-defmodule UniboV4.Documents.Workflows.Document.DocumentLifecycleFlowWorkflow do
+defmodule UniboExPoc.Documents.Workflows.Document.DocumentLifecycleFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Documents.Document
+  alias UniboExPoc.Documents.Document
 
   def steps do
     [:create, :upload, :lock, :unlock, :archive, :restore, :update, :toggle_favorite, :destroy]
@@ -169,6 +169,7 @@ defmodule UniboV4.Documents.Workflows.Document.DocumentLifecycleFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :upload -> nil
@@ -184,6 +185,7 @@ defmodule UniboV4.Documents.Workflows.Document.DocumentLifecycleFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :upload -> false

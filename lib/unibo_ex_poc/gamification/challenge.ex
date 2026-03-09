@@ -12,13 +12,13 @@
 #   action_check --> action_done
 #   action_done --> [*] : done
 # ```
-defmodule UniboV4.Gamification.Challenge do
+defmodule UniboExPoc.Gamification.Challenge do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Gamification,
+    domain: UniboExPoc.Gamification,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Gamification.Challenge.Notifier]
+    notifiers: [UniboExPoc.Gamification.Challenge.Notifier]
 
   resource do
     description "挑战，包含参与者、目标行列表、周期配置和奖励规则"
@@ -26,7 +26,7 @@ defmodule UniboV4.Gamification.Challenge do
 
   postgres do
     table "gamification_challenges"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -124,42 +124,42 @@ defmodule UniboV4.Gamification.Challenge do
   end
 
   calculations do
-    calculate :user_count, :integer, {UniboV4.Gamification.Calculations.Challenge.UserCount, []}
+    calculate :user_count, :integer, {UniboExPoc.Gamification.Calculations.Challenge.UserCount, []}
     calculate :next_report_date, :date, expr(compute_next_report_date(report_message_frequency, last_report_date))
   end
 
   relationships do
-    belongs_to :manager, UniboV4.Gamification.Party do
+    belongs_to :manager, UniboExPoc.Gamification.Party do
       public? true
       source_attribute :manager_party_id
     end
-    belongs_to :reward, UniboV4.Gamification.Badge do
+    belongs_to :reward, UniboExPoc.Gamification.Badge do
       public? true
     end
-    belongs_to :reward_first, UniboV4.Gamification.Badge do
+    belongs_to :reward_first, UniboExPoc.Gamification.Badge do
       public? true
     end
-    belongs_to :reward_second, UniboV4.Gamification.Badge do
+    belongs_to :reward_second, UniboExPoc.Gamification.Badge do
       public? true
     end
-    belongs_to :reward_third, UniboV4.Gamification.Badge do
+    belongs_to :reward_third, UniboExPoc.Gamification.Badge do
       public? true
     end
-    has_many :line_ids, UniboV4.Gamification.ChallengeLine do
+    has_many :line_ids, UniboExPoc.Gamification.ChallengeLine do
       public? true
       destination_attribute :challenge_id
     end
-    many_to_many :user_ids, UniboV4.Gamification.Party do
+    many_to_many :user_ids, UniboExPoc.Gamification.Party do
       public? true
-      through UniboV4.Gamification.ChallengeUserLink
+      through UniboExPoc.Gamification.ChallengeUserLink
       destination_attribute_on_join_resource :user_party_id
     end
-    many_to_many :invited_user_ids, UniboV4.Gamification.Party do
+    many_to_many :invited_user_ids, UniboExPoc.Gamification.Party do
       public? true
-      through UniboV4.Gamification.ChallengeInvitedUserLink
+      through UniboExPoc.Gamification.ChallengeInvitedUserLink
       destination_attribute_on_join_resource :user_party_id
     end
-    has_many :translations, UniboV4.Gamification.ChallengeTranslation, public?: true
+    has_many :translations, UniboExPoc.Gamification.ChallengeTranslation, public?: true
   end
 
   actions do

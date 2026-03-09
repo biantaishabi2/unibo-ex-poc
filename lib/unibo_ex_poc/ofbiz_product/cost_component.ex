@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Product.CostComponent do
+defmodule UniboExPoc.Ofbiz.Product.CostComponent do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Product,
+    domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "product_cost_components"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -44,16 +44,16 @@ defmodule UniboV4.Ofbiz.Product.CostComponent do
   end
 
   relationships do
-    belongs_to :cost_component_type, UniboV4.Ofbiz.Product.CostComponentType do
+    belongs_to :cost_component_type, UniboExPoc.Ofbiz.Product.CostComponentType do
       public? true
     end
-    belongs_to :product, UniboV4.Ofbiz.Product.Product do
+    belongs_to :product, UniboExPoc.Ofbiz.Product.Product do
       public? true
     end
-    belongs_to :product_feature, UniboV4.Ofbiz.Product.ProductFeature do
+    belongs_to :product_feature, UniboExPoc.Ofbiz.Product.ProductFeature do
       public? true
     end
-    belongs_to :cost_component_calc, UniboV4.Ofbiz.Product.CostComponentCalc do
+    belongs_to :cost_component_calc, UniboExPoc.Ofbiz.Product.CostComponentCalc do
       public? true
     end
   end

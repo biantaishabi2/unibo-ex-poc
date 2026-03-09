@@ -10,13 +10,13 @@
 #   complete --> [*] : completed
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Sales.Return do
+defmodule UniboExPoc.Sales.Return do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Sales,
+    domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboV4.Sales.Return.Notifier]
+    notifiers: [UniboExPoc.Sales.Return.Notifier]
 
   resource do
     description "销售退货单"
@@ -24,7 +24,7 @@ defmodule UniboV4.Sales.Return do
 
   postgres do
     table "sales_returns"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -88,14 +88,14 @@ defmodule UniboV4.Sales.Return do
   end
 
   relationships do
-    has_many :items, UniboV4.Sales.ReturnItem do
+    has_many :items, UniboExPoc.Sales.ReturnItem do
       public? true
     end
-    belongs_to :sales_order, UniboV4.Sales.SalesOrder do
+    belongs_to :sales_order, UniboExPoc.Sales.SalesOrder do
       public? true
       allow_nil? false
     end
-    belongs_to :customer, UniboV4.Sales.Customer do
+    belongs_to :customer, UniboExPoc.Sales.Customer do
       public? true
       allow_nil? false
     end
@@ -114,7 +114,7 @@ defmodule UniboV4.Sales.Return do
       change manage_relationship(:customer_id, :customer, type: :append, on_lookup: :relate)
       validate present(:return_number)
       validate present(:reason)
-      change UniboV4.Sales.Changes.Return.ComputeTotalRefundAmount
+      change UniboExPoc.Sales.Changes.Return.ComputeTotalRefundAmount
       change set_attribute(:id, expr(id))
     end
     read :list do

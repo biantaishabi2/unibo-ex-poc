@@ -7,6 +7,7 @@ defmodule UniboExPoc.Ecommerce.ProductTemplateTranslation do
   postgres do
     table "ecommerce_product_template_translations"
     repo UniboExPoc.Repo
+    identity_index_names unique_translation: "idx_product_template_i18n_uniq"
   end
 
   attributes do

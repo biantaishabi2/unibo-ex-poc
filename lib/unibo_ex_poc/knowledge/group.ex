@@ -1,7 +1,7 @@
-defmodule UniboV4.Knowledge.Group do
+defmodule UniboExPoc.Knowledge.Group do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Knowledge,
+    domain: UniboExPoc.Knowledge,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Knowledge.Group do
 
   postgres do
     table "knowledge_groups"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

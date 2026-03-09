@@ -7,10 +7,10 @@
 #   apply_filter --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Spreadsheet.GlobalFilter do
+defmodule UniboExPoc.Spreadsheet.GlobalFilter do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Spreadsheet,
+    domain: UniboExPoc.Spreadsheet,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Spreadsheet.GlobalFilter do
 
   postgres do
     table "spreadsheet_global_filters"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -82,12 +82,12 @@ defmodule UniboV4.Spreadsheet.GlobalFilter do
   end
 
   calculations do
-    calculate :current_value, :string, {UniboV4.Spreadsheet.Calculations.GlobalFilter.CurrentValue, []}
+    calculate :current_value, :string, {UniboExPoc.Spreadsheet.Calculations.GlobalFilter.CurrentValue, []}
     calculate :matched_data_source_count, :integer, expr(count_keys(field_matchings))
   end
 
   relationships do
-    belongs_to :document, UniboV4.Spreadsheet.SpreadsheetDocument do
+    belongs_to :document, UniboExPoc.Spreadsheet.SpreadsheetDocument do
       public? true
       allow_nil? false
       attribute_type :integer

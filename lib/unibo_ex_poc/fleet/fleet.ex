@@ -1,4 +1,4 @@
-defmodule UniboV4.Fleet do
+defmodule UniboExPoc.Fleet do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,20 +7,20 @@ defmodule UniboV4.Fleet do
   end
 
   resources do
-    resource UniboV4.Fleet.FleetVehicle
-    resource UniboV4.Fleet.FleetVehicle.Version
-    resource UniboV4.Fleet.FleetVehicleType
-    resource UniboV4.Fleet.FleetVehicleTypeTranslation
-    resource UniboV4.Fleet.FleetVehicleType.Version
-    resource UniboV4.Fleet.Driver
-    resource UniboV4.Fleet.Driver.Version
-    resource UniboV4.Fleet.VehicleAssignment
-    resource UniboV4.Fleet.VehicleAssignment.Version
-    resource UniboV4.Fleet.VehicleService
-    resource UniboV4.Fleet.VehicleService.Version
-    resource UniboV4.Fleet.VehicleContract
-    resource UniboV4.Fleet.VehicleContract.Version
-    resource UniboV4.Fleet.HrEmployee
-    resource UniboV4.Fleet.Party
+    resource UniboExPoc.Fleet.FleetVehicle
+    resource UniboExPoc.Fleet.FleetVehicle.Version
+    resource UniboExPoc.Fleet.FleetVehicleType
+    resource UniboExPoc.Fleet.FleetVehicleTypeTranslation
+    resource UniboExPoc.Fleet.FleetVehicleType.Version
+    resource UniboExPoc.Fleet.Driver
+    resource UniboExPoc.Fleet.Driver.Version
+    resource UniboExPoc.Fleet.VehicleAssignment
+    resource UniboExPoc.Fleet.VehicleAssignment.Version
+    resource UniboExPoc.Fleet.VehicleService
+    resource UniboExPoc.Fleet.VehicleService.Version
+    resource UniboExPoc.Fleet.VehicleContract
+    resource UniboExPoc.Fleet.VehicleContract.Version
+    resource UniboExPoc.Fleet.HrEmployee
+    resource UniboExPoc.Fleet.Party
   end
 end

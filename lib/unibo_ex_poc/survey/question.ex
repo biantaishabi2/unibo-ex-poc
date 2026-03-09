@@ -6,10 +6,10 @@
 #   update --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Survey.Question do
+defmodule UniboExPoc.Survey.Question do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Survey,
+    domain: UniboExPoc.Survey,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -19,7 +19,7 @@ defmodule UniboV4.Survey.Question do
 
   postgres do
     table "survey_questions"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -118,26 +118,26 @@ defmodule UniboV4.Survey.Question do
   end
 
   calculations do
-    calculate :is_scored_question, :boolean, {UniboV4.Survey.Calculations.Question.IsScoredQuestion, []}
+    calculate :is_scored_question, :boolean, {UniboExPoc.Survey.Calculations.Question.IsScoredQuestion, []}
   end
 
   relationships do
-    belongs_to :survey, UniboV4.Survey.Survey do
+    belongs_to :survey, UniboExPoc.Survey.Survey do
       public? true
       allow_nil? false
     end
-    belongs_to :page, UniboV4.Survey.Question do
+    belongs_to :page, UniboExPoc.Survey.Question do
       public? true
     end
-    has_many :suggested_answer_ids, UniboV4.Survey.Answer do
+    has_many :suggested_answer_ids, UniboExPoc.Survey.Answer do
       public? true
     end
-    has_many :matrix_row_ids, UniboV4.Survey.Answer do
+    has_many :matrix_row_ids, UniboExPoc.Survey.Answer do
       public? true
     end
-    many_to_many :triggering_answer_ids, UniboV4.Survey.Answer do
+    many_to_many :triggering_answer_ids, UniboExPoc.Survey.Answer do
       public? true
-      through UniboV4.Survey.QuestionTriggerAnswerLink
+      through UniboExPoc.Survey.QuestionTriggerAnswerLink
     end
   end
 

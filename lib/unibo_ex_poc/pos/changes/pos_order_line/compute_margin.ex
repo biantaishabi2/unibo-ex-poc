@@ -1,4 +1,4 @@
-defmodule UniboV4.POS.Changes.PosOrderLine.ComputeMargin do
+defmodule UniboExPoc.POS.Changes.PosOrderLine.ComputeMargin do
   @moduledoc """
   Change 模块: 计算 :margin (entity: pos_order_line)
   原始 expr: op: sub args: - op: ref   args:   - price_subtotal - op: mul   args:   - op: ref     args:     - cost_price   - op: func     args:     - abs     - op: ref       args:       - quantity

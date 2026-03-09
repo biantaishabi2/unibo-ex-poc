@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Inventory.StockLocation do
+defmodule UniboExPoc.Inventory.StockLocation do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Inventory,
+    domain: UniboExPoc.Inventory,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Inventory.StockLocation do
 
   postgres do
     table "inventory_stock_locations"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -79,19 +79,19 @@ defmodule UniboV4.Inventory.StockLocation do
   end
 
   relationships do
-    belongs_to :warehouse, UniboV4.Inventory.Warehouse do
+    belongs_to :warehouse, UniboExPoc.Inventory.Warehouse do
       public? true
       allow_nil? false
     end
-    belongs_to :parent_location, UniboV4.Inventory.StockLocation do
+    belongs_to :parent_location, UniboExPoc.Inventory.StockLocation do
       public? true
     end
-    has_many :child_locations, UniboV4.Inventory.StockLocation do
+    has_many :child_locations, UniboExPoc.Inventory.StockLocation do
       public? true
       source_attribute :parent_location_id
       destination_attribute :parent_location_id
     end
-    belongs_to :removal_strategy, UniboV4.Inventory.RemovalStrategy do
+    belongs_to :removal_strategy, UniboExPoc.Inventory.RemovalStrategy do
       public? true
     end
   end

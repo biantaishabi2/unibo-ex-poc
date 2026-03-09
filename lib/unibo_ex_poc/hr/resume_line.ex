@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.HR.ResumeLine do
+defmodule UniboExPoc.HR.ResumeLine do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.HR,
+    domain: UniboExPoc.HR,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.HR.ResumeLine do
 
   postgres do
     table "hr_resume_lines"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -67,11 +67,11 @@ defmodule UniboV4.HR.ResumeLine do
   end
 
   relationships do
-    belongs_to :employee, UniboV4.HR.Employee do
+    belongs_to :employee, UniboExPoc.HR.Employee do
       public? true
       allow_nil? false
     end
-    belongs_to :line_type, UniboV4.HR.ResumeLineType do
+    belongs_to :line_type, UniboExPoc.HR.ResumeLineType do
       public? true
     end
   end

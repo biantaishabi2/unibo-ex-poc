@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Order.OrderContent do
+defmodule UniboExPoc.Ofbiz.Order.OrderContent do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Order,
+    domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "order_contents"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -47,12 +47,12 @@ defmodule UniboV4.Ofbiz.Order.OrderContent do
   end
 
   relationships do
-    belongs_to :order_header, UniboV4.Ofbiz.Order.OrderHeader do
+    belongs_to :order_header, UniboExPoc.Ofbiz.Order.OrderHeader do
       public? true
       source_attribute :order_id
       attribute_type :string
     end
-    belongs_to :order_content_type, UniboV4.Ofbiz.Order.OrderContentType do
+    belongs_to :order_content_type, UniboExPoc.Ofbiz.Order.OrderContentType do
       public? true
       attribute_type :string
     end

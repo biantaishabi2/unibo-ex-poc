@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Content.DataResource do
+defmodule UniboExPoc.Ofbiz.Content.DataResource do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Content,
+    domain: UniboExPoc.Ofbiz.Content,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "content_data_resources"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -57,31 +57,31 @@ defmodule UniboV4.Ofbiz.Content.DataResource do
   end
 
   relationships do
-    belongs_to :data_resource_type, UniboV4.Ofbiz.Content.DataResourceType do
+    belongs_to :data_resource_type, UniboExPoc.Ofbiz.Content.DataResourceType do
       public? true
       attribute_type :string
     end
-    belongs_to :data_template_type, UniboV4.Ofbiz.Content.DataTemplateType do
+    belongs_to :data_template_type, UniboExPoc.Ofbiz.Content.DataTemplateType do
       public? true
       attribute_type :string
     end
-    belongs_to :data_category, UniboV4.Ofbiz.Content.DataCategory do
+    belongs_to :data_category, UniboExPoc.Ofbiz.Content.DataCategory do
       public? true
       attribute_type :string
     end
-    belongs_to :mime_type, UniboV4.Ofbiz.Content.MimeType do
+    belongs_to :mime_type, UniboExPoc.Ofbiz.Content.MimeType do
       public? true
       attribute_type :string
     end
-    belongs_to :character_set, UniboV4.Ofbiz.Content.CharacterSet do
+    belongs_to :character_set, UniboExPoc.Ofbiz.Content.CharacterSet do
       public? true
       attribute_type :string
     end
-    belongs_to :survey, UniboV4.Ofbiz.Content.Survey do
+    belongs_to :survey, UniboExPoc.Ofbiz.Content.Survey do
       public? true
       attribute_type :string
     end
-    belongs_to :survey_response, UniboV4.Ofbiz.Content.SurveyResponse do
+    belongs_to :survey_response, UniboExPoc.Ofbiz.Content.SurveyResponse do
       public? true
       attribute_type :string
     end

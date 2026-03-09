@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Accounting.PaymentGatewayResponse do
+defmodule UniboExPoc.Ofbiz.Accounting.PaymentGatewayResponse do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Accounting,
+    domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_payment_gateway_responses"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -52,10 +52,10 @@ defmodule UniboV4.Ofbiz.Accounting.PaymentGatewayResponse do
   end
 
   relationships do
-    belongs_to :payment_method_type, UniboV4.Ofbiz.Accounting.PaymentMethodType do
+    belongs_to :payment_method_type, UniboExPoc.Ofbiz.Accounting.PaymentMethodType do
       public? true
     end
-    belongs_to :payment_method, UniboV4.Ofbiz.Accounting.PaymentMethod do
+    belongs_to :payment_method, UniboExPoc.Ofbiz.Accounting.PaymentMethod do
       public? true
     end
   end

@@ -8,10 +8,10 @@
 #   send_transient --> [*]
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Communication.Message do
+defmodule UniboExPoc.Communication.Message do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Communication,
+    domain: UniboExPoc.Communication,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -21,7 +21,7 @@ defmodule UniboV4.Communication.Message do
 
   postgres do
     table "communication_messages"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -126,26 +126,26 @@ defmodule UniboV4.Communication.Message do
   end
 
   relationships do
-    belongs_to :channel, UniboV4.Communication.Channel do
+    belongs_to :channel, UniboExPoc.Communication.Channel do
       public? true
     end
-    belongs_to :author, UniboV4.Communication.Party do
+    belongs_to :author, UniboExPoc.Communication.Party do
       public? true
       source_attribute :author_party_id
     end
-    belongs_to :parent, UniboV4.Communication.Message do
+    belongs_to :parent, UniboExPoc.Communication.Message do
       public? true
     end
-    has_many :notifications, UniboV4.Communication.Notification do
+    has_many :notifications, UniboExPoc.Communication.Notification do
       public? true
     end
-    has_many :attachments, UniboV4.Communication.Attachment do
+    has_many :attachments, UniboExPoc.Communication.Attachment do
       public? true
     end
-    has_many :tracking_values, UniboV4.Communication.TrackingValue do
+    has_many :tracking_values, UniboExPoc.Communication.TrackingValue do
       public? true
     end
-    belongs_to :subtype, UniboV4.Communication.MessageSubtype do
+    belongs_to :subtype, UniboExPoc.Communication.MessageSubtype do
       public? true
     end
   end
@@ -157,14 +157,14 @@ defmodule UniboV4.Communication.Message do
       accept [:content, :subject, :message_type, :subtype_id, :is_internal, :is_pinned, :reply_to_force_new, :parent_id, :model, :res_id, :email_from, :partner_ids, :attachment_ids]
       argument :channel_id, :uuid
       # validation: strip_fields_for_non_employee
-      # WARNING: one_of : 缺少 params，校验定义不完整
+      # NOTE: one_of 缺少 field，已跳过
       # validation: disable_threading
-      change UniboV4.Communication.Changes.Message.CreateCall1
-      change UniboV4.Communication.Changes.Message.CreateCall2
-      change UniboV4.Communication.Changes.Message.CreateCall3
-      change UniboV4.Communication.Changes.Message.CreateCall4
-      change UniboV4.Communication.Changes.Message.CreateCall5
-      change UniboV4.Communication.Changes.Message.CreateCall6
+      change UniboExPoc.Communication.Changes.Message.CreateCall1
+      change UniboExPoc.Communication.Changes.Message.CreateCall2
+      change UniboExPoc.Communication.Changes.Message.CreateCall3
+      change UniboExPoc.Communication.Changes.Message.CreateCall4
+      change UniboExPoc.Communication.Changes.Message.CreateCall5
+      change UniboExPoc.Communication.Changes.Message.CreateCall6
       change relate_actor(:author)
       change set_attribute(:id, expr(id))
     end

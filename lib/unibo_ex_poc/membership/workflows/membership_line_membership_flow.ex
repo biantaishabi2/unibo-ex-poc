@@ -1,10 +1,10 @@
-defmodule UniboV4.Membership.Workflows.MembershipLine.MembershipFlowWorkflow do
+defmodule UniboExPoc.Membership.Workflows.MembershipLine.MembershipFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Membership.MembershipLine
+  alias UniboExPoc.Membership.MembershipLine
 
   def steps do
     [:create, :cancel, :renew]
@@ -145,6 +145,7 @@ defmodule UniboV4.Membership.Workflows.MembershipLine.MembershipFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :cancel -> nil
@@ -154,6 +155,7 @@ defmodule UniboV4.Membership.Workflows.MembershipLine.MembershipFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :cancel -> false

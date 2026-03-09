@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> [*]
 # ```
-defmodule UniboV4.Purchasing.PurchaseRequisitionType do
+defmodule UniboExPoc.Purchasing.PurchaseRequisitionType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Purchasing,
+    domain: UniboExPoc.Purchasing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Purchasing.PurchaseRequisitionType do
 
   postgres do
     table "purchasing_purchase_requisition_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -97,7 +97,7 @@ defmodule UniboV4.Purchasing.PurchaseRequisitionType do
   end
 
   relationships do
-    belongs_to :parent_type, UniboV4.Purchasing.PurchaseRequisitionType do
+    belongs_to :parent_type, UniboExPoc.Purchasing.PurchaseRequisitionType do
       public? true
     end
   end

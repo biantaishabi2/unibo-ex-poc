@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.PartyBenefit do
+defmodule UniboExPoc.Ofbiz.HumanRes.PartyBenefit do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_party_benefits"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -50,21 +50,21 @@ defmodule UniboV4.Ofbiz.HumanRes.PartyBenefit do
   end
 
   relationships do
-    belongs_to :to_party, UniboV4.Ofbiz.HumanRes.Party do
+    belongs_to :to_party, UniboExPoc.Ofbiz.HumanRes.Party do
       public? true
       source_attribute :party_id_to
       attribute_type :string
     end
-    belongs_to :from_party, UniboV4.Ofbiz.HumanRes.Party do
+    belongs_to :from_party, UniboExPoc.Ofbiz.HumanRes.Party do
       public? true
       source_attribute :party_id_from
       attribute_type :string
     end
-    belongs_to :benefit_type, UniboV4.Ofbiz.HumanRes.BenefitType do
+    belongs_to :benefit_type, UniboExPoc.Ofbiz.HumanRes.BenefitType do
       public? true
       attribute_type :string
     end
-    belongs_to :period_type, UniboV4.Ofbiz.HumanRes.PeriodType do
+    belongs_to :period_type, UniboExPoc.Ofbiz.HumanRes.PeriodType do
       public? true
       attribute_type :string
     end

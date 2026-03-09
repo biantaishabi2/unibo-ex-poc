@@ -1,7 +1,7 @@
-defmodule UniboV4.Ofbiz.Common.GeoAssoc do
+defmodule UniboExPoc.Ofbiz.Common.GeoAssoc do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Common,
+    domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -11,7 +11,7 @@ defmodule UniboV4.Ofbiz.Common.GeoAssoc do
 
   postgres do
     table "common_geo_assocs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -36,15 +36,15 @@ defmodule UniboV4.Ofbiz.Common.GeoAssoc do
   end
 
   relationships do
-    belongs_to :main_geo, UniboV4.Ofbiz.Common.Geo do
+    belongs_to :main_geo, UniboExPoc.Ofbiz.Common.Geo do
       public? true
       source_attribute :geo_id
     end
-    belongs_to :assoc_geo, UniboV4.Ofbiz.Common.Geo do
+    belongs_to :assoc_geo, UniboExPoc.Ofbiz.Common.Geo do
       public? true
       source_attribute :geo_id_to
     end
-    belongs_to :geo_assoc_type, UniboV4.Ofbiz.Common.GeoAssocType do
+    belongs_to :geo_assoc_type, UniboExPoc.Ofbiz.Common.GeoAssocType do
       public? true
     end
   end

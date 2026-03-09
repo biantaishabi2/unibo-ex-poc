@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Party.PartyNote do
+defmodule UniboExPoc.Ofbiz.Party.PartyNote do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Party,
+    domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "party_notes"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -32,10 +32,10 @@ defmodule UniboV4.Ofbiz.Party.PartyNote do
   end
 
   relationships do
-    belongs_to :party, UniboV4.Ofbiz.Party.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.Party.Party do
       public? true
     end
-    belongs_to :note_data, UniboV4.Ofbiz.Party.NoteData do
+    belongs_to :note_data, UniboExPoc.Ofbiz.Party.NoteData do
       public? true
       source_attribute :note_id
     end

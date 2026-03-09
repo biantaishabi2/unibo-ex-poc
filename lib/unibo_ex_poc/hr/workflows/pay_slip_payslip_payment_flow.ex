@@ -1,10 +1,10 @@
-defmodule UniboV4.HR.Workflows.PaySlip.PayslipPaymentFlowWorkflow do
+defmodule UniboExPoc.HR.Workflows.PaySlip.PayslipPaymentFlowWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.HR.PaySlip
+  alias UniboExPoc.HR.PaySlip
 
   def steps do
     [:create, :compute_sheet, :action_payslip_done, :action_payslip_paid]
@@ -149,6 +149,7 @@ defmodule UniboV4.HR.Workflows.PaySlip.PayslipPaymentFlowWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :compute_sheet -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.HR.Workflows.PaySlip.PayslipPaymentFlowWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :compute_sheet -> false

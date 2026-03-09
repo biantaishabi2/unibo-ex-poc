@@ -7,10 +7,10 @@
 #   update --> [*]
 #   create_sidebar_action --> [*]
 # ```
-defmodule UniboV4.Marketing.SmsTemplate do
+defmodule UniboExPoc.Marketing.SmsTemplate do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Marketing.SmsTemplate do
 
   postgres do
     table "marketing_sms_templates"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do

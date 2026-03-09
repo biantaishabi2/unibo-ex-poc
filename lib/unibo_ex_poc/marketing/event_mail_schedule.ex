@@ -7,10 +7,10 @@
 #   update --> destroy
 #   destroy --> [*]
 # ```
-defmodule UniboV4.Marketing.EventMailSchedule do
+defmodule UniboExPoc.Marketing.EventMailSchedule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
@@ -20,7 +20,7 @@ defmodule UniboV4.Marketing.EventMailSchedule do
 
   postgres do
     table "marketing_event_mail_schedules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -72,7 +72,7 @@ defmodule UniboV4.Marketing.EventMailSchedule do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Marketing.Event do
+    belongs_to :event, UniboExPoc.Marketing.Event do
       public? true
       allow_nil? false
     end
@@ -91,7 +91,7 @@ defmodule UniboV4.Marketing.EventMailSchedule do
     update :update do
       primary? true
       accept [:interval_type, :interval_nbr, :interval_unit, :template_ref]
-      change UniboV4.Marketing.Changes.EventMailSchedule.UpdateCall1
+      change UniboExPoc.Marketing.Changes.EventMailSchedule.UpdateCall1
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

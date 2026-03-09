@@ -5,10 +5,10 @@
 #   create --> update
 #   update --> update
 # ```
-defmodule UniboV4.Forum.Forum do
+defmodule UniboExPoc.Forum.Forum do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Forum,
+    domain: UniboExPoc.Forum,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Forum.Forum do
 
   postgres do
     table "forum_forums"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -263,19 +263,19 @@ defmodule UniboV4.Forum.Forum do
   end
 
   calculations do
-    calculate :count_posts_waiting_validation, :integer, {UniboV4.Forum.Calculations.Forum.CountPostsWaitingValidation, []}
-    calculate :count_flagged_posts, :integer, {UniboV4.Forum.Calculations.Forum.CountFlaggedPosts, []}
+    calculate :count_posts_waiting_validation, :integer, {UniboExPoc.Forum.Calculations.Forum.CountPostsWaitingValidation, []}
+    calculate :count_flagged_posts, :integer, {UniboExPoc.Forum.Calculations.Forum.CountFlaggedPosts, []}
     calculate :has_pending_post, :boolean, expr(exists())
     calculate :can_moderate, :boolean, expr(actor.karma >= karma_moderate)
     calculate :tag_most_used_ids, {:array, :string}, expr(take(5))
-    calculate :tag_unused_ids, {:array, :string}, {UniboV4.Forum.Calculations.Forum.TagUnusedIds, []}
+    calculate :tag_unused_ids, {:array, :string}, {UniboExPoc.Forum.Calculations.Forum.TagUnusedIds, []}
   end
 
   relationships do
-    has_many :posts, UniboV4.Forum.Post do
+    has_many :posts, UniboExPoc.Forum.Post do
       public? true
     end
-    has_many :tags, UniboV4.Forum.Tag do
+    has_many :tags, UniboExPoc.Forum.Tag do
       public? true
     end
   end

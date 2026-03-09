@@ -1,10 +1,10 @@
-defmodule UniboV4.Barcode.Workflows.BarcodeNomenclature.NomenclatureLifecycleWorkflow do
+defmodule UniboExPoc.Barcode.Workflows.BarcodeNomenclature.NomenclatureLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Barcode.BarcodeNomenclature
+  alias UniboExPoc.Barcode.BarcodeNomenclature
 
   def steps do
     [:create, :update, :activate, :deactivate, :destroy]
@@ -153,6 +153,7 @@ defmodule UniboV4.Barcode.Workflows.BarcodeNomenclature.NomenclatureLifecycleWor
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -164,6 +165,7 @@ defmodule UniboV4.Barcode.Workflows.BarcodeNomenclature.NomenclatureLifecycleWor
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

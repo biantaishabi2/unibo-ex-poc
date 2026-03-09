@@ -5,10 +5,10 @@
 #   create --> [*]
 #   update --> [*]
 # ```
-defmodule UniboV4.Marketing.EventLeadRule do
+defmodule UniboExPoc.Marketing.EventLeadRule do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Marketing,
+    domain: UniboExPoc.Marketing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -18,7 +18,7 @@ defmodule UniboV4.Marketing.EventLeadRule do
 
   postgres do
     table "marketing_event_lead_rules"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -75,18 +75,18 @@ defmodule UniboV4.Marketing.EventLeadRule do
   end
 
   relationships do
-    belongs_to :event, UniboV4.Marketing.Event do
+    belongs_to :event, UniboExPoc.Marketing.Event do
       public? true
     end
-    belongs_to :company, UniboV4.Marketing.Party do
+    belongs_to :company, UniboExPoc.Marketing.Party do
       public? true
       source_attribute :company_party_id
     end
-    belongs_to :lead_user, UniboV4.Marketing.Party do
+    belongs_to :lead_user, UniboExPoc.Marketing.Party do
       public? true
       source_attribute :lead_user_party_id
     end
-    has_many :event_type_rules, UniboV4.Marketing.EventLeadRuleEventType do
+    has_many :event_type_rules, UniboExPoc.Marketing.EventLeadRuleEventType do
       public? true
       destination_attribute :event_lead_rule_id
     end
@@ -118,7 +118,7 @@ defmodule UniboV4.Marketing.EventLeadRule do
       description "根据规则批量处理报名记录，创建/更新线索"
       argument :registration_ids, :string, allow_nil?: false
       run fn input, _context ->
-        # BR-EL02: 过滤→分组→创建/更新 CRM 线索（含 UTM 传播） — 由 Change 模块处理: UniboV4.Marketing.Changes.EventLeadRule.RunOnRegistrationsComplex1
+        # BR-EL02: 过滤→分组→创建/更新 CRM 线索（含 UTM 传播） — 由 Change 模块处理: UniboExPoc.Marketing.Changes.EventLeadRule.RunOnRegistrationsComplex1
         :ok
       end
     end

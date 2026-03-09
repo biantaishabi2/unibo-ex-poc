@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.EmplPositionFulfillment do
+defmodule UniboExPoc.Ofbiz.HumanRes.EmplPositionFulfillment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_empl_position_fulfillments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -38,11 +38,11 @@ defmodule UniboV4.Ofbiz.HumanRes.EmplPositionFulfillment do
   end
 
   relationships do
-    belongs_to :empl_position, UniboV4.Ofbiz.HumanRes.EmplPosition do
+    belongs_to :empl_position, UniboExPoc.Ofbiz.HumanRes.EmplPosition do
       public? true
       attribute_type :string
     end
-    belongs_to :party, UniboV4.Ofbiz.HumanRes.Party do
+    belongs_to :party, UniboExPoc.Ofbiz.HumanRes.Party do
       public? true
       attribute_type :string
     end

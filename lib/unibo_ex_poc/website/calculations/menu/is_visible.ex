@@ -1,4 +1,4 @@
-defmodule UniboV4.Website.Calculations.Menu.IsVisible do
+defmodule UniboExPoc.Website.Calculations.Menu.IsVisible do
   @moduledoc """
   Calculation 模块: :is_visible (type: :boolean, entity: menu)
   原始 expr: op: custom args: []

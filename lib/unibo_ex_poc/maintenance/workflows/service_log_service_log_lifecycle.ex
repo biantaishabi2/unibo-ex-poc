@@ -1,10 +1,10 @@
-defmodule UniboV4.Maintenance.Workflows.ServiceLog.ServiceLogLifecycleWorkflow do
+defmodule UniboExPoc.Maintenance.Workflows.ServiceLog.ServiceLogLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Maintenance.ServiceLog
+  alias UniboExPoc.Maintenance.ServiceLog
 
   def steps do
     [:create, :start, :complete, :cancel]
@@ -149,6 +149,7 @@ defmodule UniboV4.Maintenance.Workflows.ServiceLog.ServiceLogLifecycleWorkflow d
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :start -> nil
@@ -159,6 +160,7 @@ defmodule UniboV4.Maintenance.Workflows.ServiceLog.ServiceLogLifecycleWorkflow d
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :start -> false

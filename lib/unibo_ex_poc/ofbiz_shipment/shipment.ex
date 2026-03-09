@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.Shipment.Shipment do
+defmodule UniboExPoc.Ofbiz.Shipment.Shipment do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.Shipment,
+    domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_shipments"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -50,115 +50,115 @@ defmodule UniboV4.Ofbiz.Shipment.Shipment do
   end
 
   relationships do
-    belongs_to :shipment_type, UniboV4.Ofbiz.Shipment.ShipmentType do
+    belongs_to :shipment_type, UniboExPoc.Ofbiz.Shipment.ShipmentType do
       public? true
       attribute_type :string
     end
-    belongs_to :status_item, UniboV4.Ofbiz.Shipment.StatusItem do
+    belongs_to :status_item, UniboExPoc.Ofbiz.Shipment.StatusItem do
       public? true
       source_attribute :status_id
       attribute_type :string
     end
-    belongs_to :estimated_ship_work_effort, UniboV4.Ofbiz.Shipment.WorkEffort do
+    belongs_to :estimated_ship_work_effort, UniboExPoc.Ofbiz.Shipment.WorkEffort do
       public? true
       source_attribute :estimated_ship_work_eff_id
       attribute_type :string
     end
-    belongs_to :estimated_arrival_work_effort, UniboV4.Ofbiz.Shipment.WorkEffort do
+    belongs_to :estimated_arrival_work_effort, UniboExPoc.Ofbiz.Shipment.WorkEffort do
       public? true
       source_attribute :estimated_arrival_work_eff_id
       attribute_type :string
     end
-    belongs_to :currency_uom, UniboV4.Ofbiz.Shipment.Uom do
+    belongs_to :currency_uom, UniboExPoc.Ofbiz.Shipment.Uom do
       public? true
       attribute_type :string
     end
-    belongs_to :origin_facility, UniboV4.Ofbiz.Shipment.Facility do
+    belongs_to :origin_facility, UniboExPoc.Ofbiz.Shipment.Facility do
       public? true
       attribute_type :string
     end
-    belongs_to :destination_facility, UniboV4.Ofbiz.Shipment.Facility do
+    belongs_to :destination_facility, UniboExPoc.Ofbiz.Shipment.Facility do
       public? true
       attribute_type :string
     end
-    belongs_to :origin_contact_mech, UniboV4.Ofbiz.Shipment.ContactMech do
+    belongs_to :origin_contact_mech, UniboExPoc.Ofbiz.Shipment.ContactMech do
       public? true
       attribute_type :string
     end
-    belongs_to :dest_contact_mech, UniboV4.Ofbiz.Shipment.ContactMech do
+    belongs_to :dest_contact_mech, UniboExPoc.Ofbiz.Shipment.ContactMech do
       public? true
       source_attribute :destination_contact_mech_id
       attribute_type :string
     end
-    belongs_to :origin_postal_address, UniboV4.Ofbiz.Shipment.PostalAddress do
+    belongs_to :origin_postal_address, UniboExPoc.Ofbiz.Shipment.PostalAddress do
       public? true
       source_attribute :origin_contact_mech_id
       define_attribute? false
       attribute_type :string
     end
-    belongs_to :origin_telecom_number, UniboV4.Ofbiz.Shipment.TelecomNumber do
+    belongs_to :origin_telecom_number, UniboExPoc.Ofbiz.Shipment.TelecomNumber do
       public? true
       attribute_type :string
     end
-    belongs_to :destination_postal_address, UniboV4.Ofbiz.Shipment.PostalAddress do
+    belongs_to :destination_postal_address, UniboExPoc.Ofbiz.Shipment.PostalAddress do
       public? true
       source_attribute :destination_contact_mech_id
       define_attribute? false
       attribute_type :string
     end
-    belongs_to :destination_telecom_number, UniboV4.Ofbiz.Shipment.TelecomNumber do
+    belongs_to :destination_telecom_number, UniboExPoc.Ofbiz.Shipment.TelecomNumber do
       public? true
       attribute_type :string
     end
-    belongs_to :primary_order_header, UniboV4.Ofbiz.Shipment.OrderHeader do
+    belongs_to :primary_order_header, UniboExPoc.Ofbiz.Shipment.OrderHeader do
       public? true
       source_attribute :primary_order_id
       attribute_type :string
     end
-    belongs_to :primary_return_header, UniboV4.Ofbiz.Shipment.ReturnHeader do
+    belongs_to :primary_return_header, UniboExPoc.Ofbiz.Shipment.ReturnHeader do
       public? true
       source_attribute :primary_return_id
       attribute_type :string
     end
-    belongs_to :picklist_bin, UniboV4.Ofbiz.Shipment.PicklistBin do
+    belongs_to :picklist_bin, UniboExPoc.Ofbiz.Shipment.PicklistBin do
       public? true
       attribute_type :string
     end
-    belongs_to :to_party, UniboV4.Ofbiz.Shipment.Party do
-      public? true
-      source_attribute :party_id_to
-      attribute_type :string
-    end
-    belongs_to :to_person, UniboV4.Ofbiz.Shipment.Person do
+    belongs_to :to_party, UniboExPoc.Ofbiz.Shipment.Party do
       public? true
       source_attribute :party_id_to
-      define_attribute? false
       attribute_type :string
     end
-    belongs_to :to_party_group, UniboV4.Ofbiz.Shipment.PartyGroup do
+    belongs_to :to_person, UniboExPoc.Ofbiz.Shipment.Person do
       public? true
       source_attribute :party_id_to
       define_attribute? false
       attribute_type :string
     end
-    belongs_to :from_party, UniboV4.Ofbiz.Shipment.Party do
+    belongs_to :to_party_group, UniboExPoc.Ofbiz.Shipment.PartyGroup do
+      public? true
+      source_attribute :party_id_to
+      define_attribute? false
+      attribute_type :string
+    end
+    belongs_to :from_party, UniboExPoc.Ofbiz.Shipment.Party do
       public? true
       source_attribute :party_id_from
       attribute_type :string
     end
-    belongs_to :from_person, UniboV4.Ofbiz.Shipment.Person do
+    belongs_to :from_person, UniboExPoc.Ofbiz.Shipment.Person do
       public? true
       source_attribute :party_id_from
       define_attribute? false
       attribute_type :string
     end
-    belongs_to :from_party_group, UniboV4.Ofbiz.Shipment.PartyGroup do
+    belongs_to :from_party_group, UniboExPoc.Ofbiz.Shipment.PartyGroup do
       public? true
       source_attribute :party_id_from
       define_attribute? false
       attribute_type :string
     end
-    has_many :shipment_manifest_view, UniboV4.Ofbiz.Shipment.ShipmentItem do
+    has_many :shipment_manifest_view, UniboExPoc.Ofbiz.Shipment.ShipmentItem do
       public? true
     end
   end

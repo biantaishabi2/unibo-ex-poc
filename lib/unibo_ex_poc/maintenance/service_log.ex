@@ -9,10 +9,10 @@
 #   complete --> [*]
 #   cancel --> [*]
 # ```
-defmodule UniboV4.Maintenance.ServiceLog do
+defmodule UniboExPoc.Maintenance.ServiceLog do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Maintenance,
+    domain: UniboExPoc.Maintenance,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
@@ -22,7 +22,7 @@ defmodule UniboV4.Maintenance.ServiceLog do
 
   postgres do
     table "maintenance_service_logs"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -77,19 +77,19 @@ defmodule UniboV4.Maintenance.ServiceLog do
   end
 
   relationships do
-    belongs_to :vehicle, UniboV4.Maintenance.Vehicle do
+    belongs_to :vehicle, UniboExPoc.Maintenance.Vehicle do
       public? true
       allow_nil? false
     end
-    belongs_to :service_type, UniboV4.Maintenance.ServiceType do
+    belongs_to :service_type, UniboExPoc.Maintenance.ServiceType do
       public? true
       allow_nil? false
     end
-    belongs_to :vendor, UniboV4.Maintenance.Party do
+    belongs_to :vendor, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :vendor_party_id
     end
-    belongs_to :purchaser, UniboV4.Maintenance.Party do
+    belongs_to :purchaser, UniboExPoc.Maintenance.Party do
       public? true
       source_attribute :purchaser_party_id
     end
@@ -104,8 +104,8 @@ defmodule UniboV4.Maintenance.ServiceLog do
       argument :service_type_id, :uuid, allow_nil?: false
       change manage_relationship(:vehicle_id, :vehicle, type: :append, on_lookup: :relate)
       change manage_relationship(:service_type_id, :service_type, type: :append, on_lookup: :relate)
-      change UniboV4.Maintenance.Changes.ServiceLog.CreateCall4
-      change UniboV4.Maintenance.Changes.ServiceLog.CreateCall5
+      change UniboExPoc.Maintenance.Changes.ServiceLog.CreateCall4
+      change UniboExPoc.Maintenance.Changes.ServiceLog.CreateCall5
       change set_attribute(:id, expr(id))
     end
     update :start do
@@ -122,7 +122,7 @@ defmodule UniboV4.Maintenance.ServiceLog do
       end
       # message: "只有新建状态可以开始"
       change set_attribute(:state, :running)
-      change UniboV4.Maintenance.Changes.ServiceLog.StartCall5
+      change UniboExPoc.Maintenance.Changes.ServiceLog.StartCall5
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -139,7 +139,7 @@ defmodule UniboV4.Maintenance.ServiceLog do
       end
       # message: "只有进行中状态可以完成"
       change set_attribute(:state, :done)
-      change UniboV4.Maintenance.Changes.ServiceLog.CompleteCall5
+      change UniboExPoc.Maintenance.Changes.ServiceLog.CompleteCall5
       change set_attribute(:id, expr(id))
       require_atomic? false
     end
@@ -156,7 +156,7 @@ defmodule UniboV4.Maintenance.ServiceLog do
       end
       # message: "只有新建或进行中状态可以取消"
       change set_attribute(:state, :cancelled)
-      change UniboV4.Maintenance.Changes.ServiceLog.CancelCall5
+      change UniboExPoc.Maintenance.Changes.ServiceLog.CancelCall5
       change set_attribute(:id, expr(id))
       require_atomic? false
     end

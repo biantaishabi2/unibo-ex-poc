@@ -1,10 +1,10 @@
-defmodule UniboV4.Travel.Workflows.TrainOffer.TrainOfferLifecycleWorkflow do
+defmodule UniboExPoc.Travel.Workflows.TrainOffer.TrainOfferLifecycleWorkflow do
   @moduledoc """
   自动生成的工作流编排模块。
   支持分支路由、失败回退、重试与幂等扩展钩子。
   """
 
-  alias UniboV4.Travel.TrainOffer
+  alias UniboExPoc.Travel.TrainOffer
 
   def steps do
     [:create, :update, :activate, :deactivate, :expire, :destroy]
@@ -157,6 +157,7 @@ defmodule UniboV4.Travel.Workflows.TrainOffer.TrainOfferLifecycleWorkflow do
   end
 
   defp branch_next(step, record) do
+    _ = record
     case step do
       :create -> nil
       :update -> nil
@@ -169,6 +170,7 @@ defmodule UniboV4.Travel.Workflows.TrainOffer.TrainOfferLifecycleWorkflow do
   end
 
   defp step_skipped?(step, record) do
+    _ = record
     case step do
       :create -> false
       :update -> false

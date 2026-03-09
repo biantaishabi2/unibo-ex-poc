@@ -1,4 +1,4 @@
-defmodule UniboV4.Knowledge do
+defmodule UniboExPoc.Knowledge do
   use Ash.Domain,
     extensions: [AshGraphql.Domain]
 
@@ -7,17 +7,17 @@ defmodule UniboV4.Knowledge do
   end
 
   resources do
-    resource UniboV4.Knowledge.Article
-    resource UniboV4.Knowledge.Article.Version
-    resource UniboV4.Knowledge.ArticleMember
-    resource UniboV4.Knowledge.ArticleMember.Version
-    resource UniboV4.Knowledge.ArticleVersion
-    resource UniboV4.Knowledge.Tag
-    resource UniboV4.Knowledge.Tag.Version
-    resource UniboV4.Knowledge.Favorite
-    resource UniboV4.Knowledge.Favorite.Version
-    resource UniboV4.Knowledge.ArticleTagLink
-    resource UniboV4.Knowledge.Group
-    resource UniboV4.Knowledge.Party
+    resource UniboExPoc.Knowledge.Article
+    resource UniboExPoc.Knowledge.Article.Version
+    resource UniboExPoc.Knowledge.ArticleMember
+    resource UniboExPoc.Knowledge.ArticleMember.Version
+    resource UniboExPoc.Knowledge.ArticleVersion
+    resource UniboExPoc.Knowledge.Tag
+    resource UniboExPoc.Knowledge.Tag.Version
+    resource UniboExPoc.Knowledge.Favorite
+    resource UniboExPoc.Knowledge.Favorite.Version
+    resource UniboExPoc.Knowledge.ArticleTagLink
+    resource UniboExPoc.Knowledge.Group
+    resource UniboExPoc.Knowledge.Party
   end
 end

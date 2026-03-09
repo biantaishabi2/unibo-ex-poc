@@ -1,13 +1,13 @@
-defmodule UniboV4.Ofbiz.HumanRes.ResponsibilityType do
+defmodule UniboExPoc.Ofbiz.HumanRes.ResponsibilityType do
   use Ash.Resource,
     otp_app: :unibo_ex_poc,
-    domain: UniboV4.Ofbiz.HumanRes,
+    domain: UniboExPoc.Ofbiz.HumanRes,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   postgres do
     table "human_res_responsibility_types"
-    repo UniboV4.Repo
+    repo UniboExPoc.Repo
   end
 
   graphql do
@@ -39,7 +39,7 @@ defmodule UniboV4.Ofbiz.HumanRes.ResponsibilityType do
   end
 
   relationships do
-    belongs_to :parent_responsibility_type, UniboV4.Ofbiz.HumanRes.ResponsibilityType do
+    belongs_to :parent_responsibility_type, UniboExPoc.Ofbiz.HumanRes.ResponsibilityType do
       public? true
       source_attribute :parent_type_id
       attribute_type :string
