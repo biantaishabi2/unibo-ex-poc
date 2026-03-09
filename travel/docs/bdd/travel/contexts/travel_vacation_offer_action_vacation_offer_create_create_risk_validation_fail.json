@@ -1,0 +1,7 @@
+{
+  "id": "travel_vacation_offer_action_vacation_offer_create_create_risk_validation_fail",
+  "module": "TRAVEL_VACATION_OFFER",
+  "edge_class": "all",
+  "source_file": "action_vacation_offer_create_create_risk_validation_fail.yaml",
+  "source_summary": "module: TRAVEL_VACATION_OFFER\\ncontract: VacationOffer.create action contract (risk:validation_fail)\\nedge_class: action_contract\\nsource_file: models/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 VacationOffer 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建 vacation offer -> destroy 删除草稿"
+}

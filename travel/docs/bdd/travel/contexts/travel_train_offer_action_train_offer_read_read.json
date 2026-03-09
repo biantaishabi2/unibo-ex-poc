@@ -1,0 +1,7 @@
+{
+  "id": "travel_train_offer_action_train_offer_read_read",
+  "module": "TRAVEL_TRAIN_OFFER",
+  "edge_class": "all",
+  "source_file": "action_train_offer_read_read.yaml",
+  "source_summary": "module: TRAVEL_TRAIN_OFFER\\ncontract: TrainOffer.read action contract\\nedge_class: action_contract\\nsource_file: models/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TrainOffer 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 输入应满足校验规则，读取结果应符合查询语义"
+}

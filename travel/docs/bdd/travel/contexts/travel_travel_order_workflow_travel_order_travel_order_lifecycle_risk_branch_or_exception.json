@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_workflow_travel_order_travel_order_lifecycle_risk_branch_or_exception",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "all",
+  "source_file": "workflow_travel_order_travel_order_lifecycle_risk_branch_or_exception.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_ORDER\\ncontract: TravelOrder.travel_order_lifecycle workflow contract (risk:branch_or_exception)\\nedge_class: workflow_contract\\nsource_file: models/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelOrder 的工作流 travel_order_lifecycle 存在分支或异常可能 / WHEN 执行分支路径 / THEN 流程应可恢复并保持状态一致"
+}

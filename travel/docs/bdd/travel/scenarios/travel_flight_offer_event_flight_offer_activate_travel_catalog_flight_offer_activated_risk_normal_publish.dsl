@@ -1,0 +1,4 @@
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-travel_flight_offer_event_flight_offer_activate_travel_catalog_flight_offer_activated_risk_normal_publish] TITLE: TRAVEL_FLIGHT_OFFER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="travel_flight_offer_event_flight_offer_activate_travel_catalog_flight_offer_activated_risk_normal_publish" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"

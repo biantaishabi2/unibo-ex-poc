@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_success",
+  "module": "TRAVEL_TRAVEL_FULFILLMENT",
+  "edge_class": "all",
+  "source_file": "action_travel_fulfillment_complete_fulfillment_update_risk_success.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_FULFILLMENT\\ncontract: TravelFulfillment.complete_fulfillment action contract (risk:success)\\nedge_class: action_contract\\nsource_file: models/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelFulfillment 的动作 complete_fulfillment 可执行 / WHEN 执行动作 complete_fulfillment / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create_fulfillment 创建履约单 -> confirm_booking 触发 integration supplier_confirm_booking 成功 -> issue_voucher_or_ticket 触发 integration supplier_issue_document 成功 -> complete_fulfillment 完成履约；create_fulfillment 创建履约单 -> confirm_booking 预订确认 -> issue_voucher_or_ticket 发券出票 -> mark_in_use 标记使用中 -> complete_fulfillment 完成履约；create_fulfillment 创建履约单 -> confirm_booking 预订确认 -> issue_voucher_or_ticket 发券出票 -> complete_fulfillment 完成履约；create_fulfillment 创建 train 履约单 -> confirm_booking 候补确认中 -> issue_voucher_or_ticket 出票或兑现 -> complete_fulfillment 完成履约"
+}

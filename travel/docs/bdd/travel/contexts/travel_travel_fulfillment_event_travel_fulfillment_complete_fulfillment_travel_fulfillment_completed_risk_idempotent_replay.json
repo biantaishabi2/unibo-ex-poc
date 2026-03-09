@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_fulfillment_event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_idempotent_replay",
+  "module": "TRAVEL_TRAVEL_FULFILLMENT",
+  "edge_class": "all",
+  "source_file": "event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_idempotent_replay.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_FULFILLMENT\\ncontract: TravelFulfillment.complete_fulfillment event contract (risk:idempotent_replay)\\nedge_class: event_contract\\nsource_file: models/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelFulfillment 动作 complete_fulfillment 事件被重复投递 / WHEN 重放 topic `travel.fulfillment.completed` / THEN 消费方处理应保持幂等且无重复副作用"
+}

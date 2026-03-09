@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_action_travel_order_destroy_destroy_risk_validation_fail",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "all",
+  "source_file": "action_travel_order_destroy_destroy_risk_validation_fail.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_ORDER\\ncontract: TravelOrder.destroy action contract (risk:validation_fail)\\nedge_class: action_contract\\nsource_file: models/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelOrder 的动作 destroy 输入非法 / WHEN 执行动作 destroy / THEN 应返回校验失败且不产生持久化副作用"
+}

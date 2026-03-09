@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_event_travel_order_submit_waitlist_travel_order_waitlist_submitted",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "all",
+  "source_file": "event_travel_order_submit_waitlist_travel_order_waitlist_submitted.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_ORDER\\ncontract: TravelOrder.submit_waitlist event contract\\nedge_class: event_contract\\nsource_file: models/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelOrder 的动作 submit_waitlist 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.order.waitlist_submitted`"
+}

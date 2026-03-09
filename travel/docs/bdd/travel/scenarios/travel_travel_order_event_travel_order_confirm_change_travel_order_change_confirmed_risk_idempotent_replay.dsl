@@ -1,0 +1,4 @@
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_event_travel_order_confirm_change_travel_order_change_confirmed_risk_idempotent_replay] TITLE: TRAVEL_TRAVEL_ORDER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="travel_travel_order_event_travel_order_confirm_change_travel_order_change_confirmed_risk_idempotent_replay" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"

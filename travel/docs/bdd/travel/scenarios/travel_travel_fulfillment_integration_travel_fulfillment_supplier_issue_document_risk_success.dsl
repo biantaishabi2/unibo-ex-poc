@@ -1,0 +1,4 @@
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_success] TITLE: TRAVEL_TRAVEL_FULFILLMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"

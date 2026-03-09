@@ -1,0 +1,7 @@
+{
+  "id": "travel_flight_offer_action_flight_offer_activate_update_risk_success",
+  "module": "TRAVEL_FLIGHT_OFFER",
+  "edge_class": "all",
+  "source_file": "action_flight_offer_activate_update_risk_success.yaml",
+  "source_summary": "module: TRAVEL_FLIGHT_OFFER\\ncontract: FlightOffer.activate action contract (risk:success)\\nedge_class: action_contract\\nsource_file: models/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 FlightOffer 的动作 activate 可执行 / WHEN 执行动作 activate / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 创建 flight offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架；create 创建 flight offer -> activate 上架 -> expire 过期"
+}

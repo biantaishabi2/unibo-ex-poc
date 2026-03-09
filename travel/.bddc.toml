@@ -1,0 +1,13 @@
+[global]
+namespace = "UniboExPoc"
+instructions = ["priv/bdd/instructions_v1.exs"]
+in = "docs/bdd/travel"
+out = "test/bdd_generated"
+docs_root = "docs"
+runtime_module = "UniboExPoc.BDD.Instructions.V1"
+runtime_caps_file = "docs/bdd/_generated/runtime_caps_v1.exs"
+test_case = "ExUnit.Case"
+module_prefix = "UniboExPoc.BDD.Generated"
+
+[runtime.caps.sync]
+out = "docs/bdd/_generated/runtime_caps_v1.exs"

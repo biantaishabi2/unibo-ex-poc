@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_fulfillment_event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_normal_publish",
+  "module": "TRAVEL_TRAVEL_FULFILLMENT",
+  "edge_class": "all",
+  "source_file": "event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_normal_publish.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_FULFILLMENT\\ncontract: TravelFulfillment.issue_voucher_or_ticket event contract (risk:normal_publish)\\nedge_class: event_contract\\nsource_file: models/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelFulfillment 动作 issue_voucher_or_ticket 触发事件 / WHEN 发布 topic `travel.fulfillment.issued` / THEN 消费方应收到一次有效通知"
+}

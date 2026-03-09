@@ -1,0 +1,4 @@
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-travel_hotel_offer_event_hotel_offer_deactivate_travel_catalog_hotel_offer_deactivated_risk_normal_publish] TITLE: TRAVEL_HOTEL_OFFER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="travel_hotel_offer_event_hotel_offer_deactivate_travel_catalog_hotel_offer_deactivated_risk_normal_publish" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"

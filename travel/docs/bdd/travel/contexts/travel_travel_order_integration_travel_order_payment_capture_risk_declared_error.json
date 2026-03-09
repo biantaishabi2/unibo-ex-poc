@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_integration_travel_order_payment_capture_risk_declared_error",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "all",
+  "source_file": "integration_travel_order_payment_capture_risk_declared_error.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_ORDER\\ncontract: TravelOrder.payment_capture integration contract (risk:declared_error)\\nedge_class: integration_contract\\nsource_file: models/travel/travel.ubo.yaml\\nsource_summary: GIVEN integration payment_capture 声明错误码 [payment_declined, payment_timeout, payment_risk_rejected] / WHEN fake adapter 返回错误 / THEN 错误码必须命中声明集合\\ndeclared_error_codes:\\n- payment_declined\\n- payment_timeout"
+}

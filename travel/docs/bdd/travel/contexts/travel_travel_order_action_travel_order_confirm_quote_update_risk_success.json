@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_action_travel_order_confirm_quote_update_risk_success",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "all",
+  "source_file": "action_travel_order_confirm_quote_update_risk_success.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_ORDER\\ncontract: TravelOrder.confirm_quote action contract (risk:success)\\nedge_class: action_contract\\nsource_file: models/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelOrder 的动作 confirm_quote 可执行 / WHEN 执行动作 confirm_quote / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 触发 integration payment_capture 成功 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功；create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 触发 integration payment_capture 返回 payment_declined -> mark_order_failed 标记失败并触发库存补偿；create_order 创建 hotel/flight/vacation/train 标准订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功 -> mark_completed 完成订单；create_order 创建 train 订单 -> confirm_quote 确认报价 -> submit_waitlist 提交候补 -> mark_payment_succeeded 支付成功 -> fulfill_waitlist 候补兑现；create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_order_failed 标记失败"
+}

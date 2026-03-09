@@ -1,0 +1,7 @@
+{
+  "id": "travel_hotel_offer_action_hotel_offer_create_create_risk_success",
+  "module": "TRAVEL_HOTEL_OFFER",
+  "edge_class": "all",
+  "source_file": "action_hotel_offer_create_create_risk_success.yaml",
+  "source_summary": "module: TRAVEL_HOTEL_OFFER\\ncontract: HotelOffer.create action contract (risk:success)\\nedge_class: action_contract\\nsource_file: models/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 HotelOffer 的动作 create 可执行 / WHEN 执行动作 create / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 创建 hotel offer -> destroy 删除草稿"
+}

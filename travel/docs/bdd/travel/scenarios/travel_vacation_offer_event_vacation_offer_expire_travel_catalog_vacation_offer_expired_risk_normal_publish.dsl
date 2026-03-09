@@ -1,0 +1,4 @@
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-travel_vacation_offer_event_vacation_offer_expire_travel_catalog_vacation_offer_expired_risk_normal_publish] TITLE: TRAVEL_VACATION_OFFER contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="travel_vacation_offer_event_vacation_offer_expire_travel_catalog_vacation_offer_expired_risk_normal_publish" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"

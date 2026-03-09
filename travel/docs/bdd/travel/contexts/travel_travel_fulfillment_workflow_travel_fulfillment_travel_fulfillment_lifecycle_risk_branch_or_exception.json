@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_fulfillment_workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_branch_or_exception",
+  "module": "TRAVEL_TRAVEL_FULFILLMENT",
+  "edge_class": "all",
+  "source_file": "workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_branch_or_exception.yaml",
+  "source_summary": "module: TRAVEL_TRAVEL_FULFILLMENT\\ncontract: TravelFulfillment.travel_fulfillment_lifecycle workflow contract (risk:branch_or_exception)\\nedge_class: workflow_contract\\nsource_file: models/travel/travel.ubo.yaml\\nsource_summary: GIVEN 实体 TravelFulfillment 的工作流 travel_fulfillment_lifecycle 存在分支或异常可能 / WHEN 执行分支路径 / THEN 流程应可恢复并保持状态一致"
+}
