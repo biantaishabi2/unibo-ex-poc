@@ -315,14 +315,24 @@ defmodule UniboExPoc.Travel.GraphqlPrimaryPathTest do
   defp insert_customer_fixture! do
     customer_id = Ecto.UUID.generate()
     customer_code = "CUST-GQL-#{System.unique_integer([:positive])}"
+    party_id = Ecto.UUID.generate()
 
     SQL.query!(
       Repo,
       """
-      insert into sales_customers (id, customer_code, name, status, customer_type)
-      values (($1)::text::uuid, $2, $3, 'active', 'company')
+      insert into sales_parties (id, name)
+      values (($1)::text::uuid, $2)
       """,
-      [customer_id, customer_code, "GraphQL Customer #{customer_code}"]
+      [party_id, "GraphQL Party #{customer_code}"]
+    )
+
+    SQL.query!(
+      Repo,
+      """
+      insert into sales_customers (id, customer_code, name, status, customer_type, company_party_id)
+      values (($1)::text::uuid, $2, $3, 'active', 'company', ($4)::text::uuid)
+      """,
+      [customer_id, customer_code, "GraphQL Customer #{customer_code}", party_id]
     )
 
     customer_id

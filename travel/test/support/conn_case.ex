@@ -3,10 +3,14 @@ defmodule UniboExPocWeb.ConnCase do
 
   using do
     quote do
-      import Plug.Conn
-      import Phoenix.ConnTest
-
       @endpoint UniboExPocWeb.Endpoint
+
+      use Phoenix.ConnTest
+
+      alias UniboExPoc.Repo
+      import Ecto
+      import Ecto.Changeset
+      import Ecto.Query
     end
   end
 
