@@ -148,6 +148,7 @@ defmodule UniboExPoc.Sales.SalesOrderItem do
   actions do
     defaults [:read]
     create :create do
+      description "Create Sales Order Item via Create. doc_url: graphql://contract/sales/create_sales_sales_order_item"
       primary? true
       accept [:item_description, :product_name, :product_code, :quantity, :unit_price, :discount_rate, :order_item_type_id, :seq_id, :estimated_delivery_date, :comments, :status_id, :is_promo]
       argument :order_id, :uuid, allow_nil?: false
@@ -159,9 +160,9 @@ defmodule UniboExPoc.Sales.SalesOrderItem do
       change UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal
       change UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceTax
       change set_attribute(:price_total, expr((price_subtotal + price_tax)))
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Sales Order Item via Update. doc_url: graphql://contract/sales/update_sales_sales_order_item"
       primary? true
       accept [:quantity, :unit_price, :discount_rate, :estimated_delivery_date, :comments, :status_id]
       # skipped: validate compare :quantity (incompatible with bulk update atomic path)
@@ -170,7 +171,6 @@ defmodule UniboExPoc.Sales.SalesOrderItem do
       change UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceSubtotal
       change UniboExPoc.Sales.Changes.SalesOrderItem.ComputePriceTax
       change set_attribute(:price_total, expr((price_subtotal + price_tax)))
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

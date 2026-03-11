@@ -92,18 +92,18 @@ defmodule UniboExPoc.Sales.QuoteItem do
   actions do
     defaults [:read]
     create :create do
+      description "Create Quote Item via Create. doc_url: graphql://contract/sales/create_sales_quote_item"
       primary? true
       accept [:product_name, :product_code, :quantity, :quote_unit_price, :comments, :estimated_delivery_date, :seq_id, :is_promo, :lead_time_days]
       argument :quote_id, :uuid, allow_nil?: false
       change manage_relationship(:quote_id, :quote, type: :append, on_lookup: :relate)
       change set_attribute(:line_amount, expr((quantity * quote_unit_price)))
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Quote Item via Update. doc_url: graphql://contract/sales/update_sales_quote_item"
       primary? true
       accept [:quantity, :quote_unit_price, :comments, :estimated_delivery_date, :seq_id, :is_promo, :lead_time_days]
       change set_attribute(:line_amount, expr((quantity * quote_unit_price)))
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

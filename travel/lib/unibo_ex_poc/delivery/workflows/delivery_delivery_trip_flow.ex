@@ -7,11 +7,11 @@ defmodule UniboExPoc.Delivery.Workflows.Delivery.DeliveryTripFlowWorkflow do
   alias UniboExPoc.Delivery.Delivery
 
   def steps do
-    [:create, :start, :arrive, :update, :destroy]
+    [:s1_create, :s2_start, :s3_arrive, :s4_update, :s5_destroy]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["update","start","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["arrive"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"start"},{"idempotency_key":null,"next":["update"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"arrive"},{"idempotency_key":null,"next":["start","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy"}],"workflow":"delivery_trip_flow"}
+{"steps":[{"idempotency_key":null,"next":["update","start","destroy"],"next_step_ids":["s4_update","s2_start","s5_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["arrive"],"next_step_ids":["s3_arrive"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"start","step_id":"s2_start"},{"idempotency_key":null,"next":["update"],"next_step_ids":["s4_update"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"arrive","step_id":"s3_arrive"},{"idempotency_key":null,"next":["start","destroy"],"next_step_ids":["s2_start","s5_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update","step_id":"s4_update"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy","step_id":"s5_destroy"}],"workflow":"delivery_trip_flow"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,15 +98,15 @@ defmodule UniboExPoc.Delivery.Workflows.Delivery.DeliveryTripFlowWorkflow do
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(Delivery, :create, params), ash_opts)
-      :start ->
+      :s2_start ->
         Ash.update(Ash.Changeset.for_update(record, :start, params), ash_opts)
-      :arrive ->
+      :s3_arrive ->
         Ash.update(Ash.Changeset.for_update(record, :arrive, params), ash_opts)
-      :update ->
+      :s4_update ->
         Ash.update(Ash.Changeset.for_update(record, :update, params), ash_opts)
-      :destroy ->
+      :s5_destroy ->
         Ash.destroy(Ash.Changeset.for_destroy(record, :destroy, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -132,68 +132,66 @@ defmodule UniboExPoc.Delivery.Workflows.Delivery.DeliveryTripFlowWorkflow do
 
   defp next_candidates(step) do
     case step do
-      :create -> [:update, :start, :destroy]
-      :start -> [:arrive]
-      :arrive -> [:update]
-      :update -> [:start, :destroy]
-      :destroy -> []
+      :s1_create -> [:s4_update, :s2_start, :s5_destroy]
+      :s2_start -> [:s3_arrive]
+      :s3_arrive -> [:s4_update]
+      :s4_update -> [:s2_start, :s5_destroy]
+      :s5_destroy -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :start -> []
-      :arrive -> []
-      :update -> []
-      :destroy -> []
+      :s1_create -> []
+      :s2_start -> []
+      :s3_arrive -> []
+      :s4_update -> []
+      :s5_destroy -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :start -> nil
-      :arrive -> nil
-      :update -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_start -> nil
+      :s3_arrive -> nil
+      :s4_update -> nil
+      :s5_destroy -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :start -> false
-      :arrive -> false
-      :update -> false
-      :destroy -> false
+      :s1_create -> false
+      :s2_start -> false
+      :s3_arrive -> false
+      :s4_update -> false
+      :s5_destroy -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :start -> %{max_attempts: 1, backoff_ms: 0}
-      :arrive -> %{max_attempts: 1, backoff_ms: 0}
-      :update -> %{max_attempts: 1, backoff_ms: 0}
-      :destroy -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_start -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_arrive -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_update -> %{max_attempts: 1, backoff_ms: 0}
+      :s5_destroy -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :start -> nil
-      :arrive -> nil
-      :update -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_start -> nil
+      :s3_arrive -> nil
+      :s4_update -> nil
+      :s5_destroy -> nil
       _ -> nil
     end
   end

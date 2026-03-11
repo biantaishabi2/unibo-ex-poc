@@ -27,6 +27,7 @@ defmodule UniboExPoc.Payment.Payment do
     domain: UniboExPoc.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
+    authorizers: [Ash.Policy.Authorizer],
     notifiers: [UniboExPoc.Payment.Payment.Notifier]
 
   resource do
@@ -147,6 +148,11 @@ defmodule UniboExPoc.Payment.Payment do
       public? true
       source_attribute :party_id_to
     end
+    belongs_to :company_party, UniboExPoc.Payment.Party do
+      public? true
+      source_attribute :party_id_to
+      define_attribute? false
+    end
     has_many :applications, UniboExPoc.Payment.PaymentApplication do
       public? true
       destination_attribute :payment_id
@@ -160,6 +166,7 @@ defmodule UniboExPoc.Payment.Payment do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Payment via Create. doc_url: graphql://contract/payment/create_payment_payment"
       primary? true
       accept [:payment_type_id, :payment_method_type_id, :payment_method_id, :payment_preference_id, :party_id_from, :party_id_to, :status, :effective_date, :payment_ref_num, :amount, :currency_uom_id, :actual_currency_amount, :actual_currency_uom_id, :comments, :fin_account_trans_id, :override_gl_account_id]
       validate present(:payment_type_id)
@@ -167,16 +174,17 @@ defmodule UniboExPoc.Payment.Payment do
       validate present(:party_id_to)
       validate present(:amount)
       validate present(:currency_uom_id)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Payment via Update. doc_url: graphql://contract/payment/update_payment_payment"
       primary? true
       accept [:payment_ref_num, :comments, :override_gl_account_id]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :submit do
-      description "提交支付，状态从 draft 变为 pending"
+      description "提交支付，状态从 draft 变为 pending
+
+提交支付，状态从 draft 变为 pending. doc_url: graphql://contract/payment/submit_payment_payment"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -188,11 +196,12 @@ defmodule UniboExPoc.Payment.Payment do
       end
       # message: "只有草稿状态可以提交"
       change set_attribute(:status, :pending)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :authorize do
-      description "授权支付，状态从 pending 变为 authorized"
+      description "授权支付，状态从 pending 变为 authorized
+
+授权支付，状态从 pending 变为 authorized. doc_url: graphql://contract/payment/authorize_payment_payment"
       accept [:payment_ref_num, :payment_gateway_response_id]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -204,11 +213,12 @@ defmodule UniboExPoc.Payment.Payment do
       end
       # message: "只有待处理状态可以授权"
       change set_attribute(:status, :authorized)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :capture do
-      description "捕获/扣款，状态从 authorized 变为 captured"
+      description "捕获/扣款，状态从 authorized 变为 captured
+
+捕获/扣款，状态从 authorized 变为 captured. doc_url: graphql://contract/payment/capture_payment_payment"
       accept [:payment_ref_num, :payment_gateway_response_id]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -220,11 +230,12 @@ defmodule UniboExPoc.Payment.Payment do
       end
       # message: "只有已授权状态可以捕获扣款"
       change set_attribute(:status, :captured)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_failed do
-      description "标记支付失败，状态变为 failed"
+      description "标记支付失败，状态变为 failed
+
+标记支付失败，状态变为 failed. doc_url: graphql://contract/payment/mark_failed_payment_payment"
       accept [:comments]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -236,11 +247,12 @@ defmodule UniboExPoc.Payment.Payment do
       end
       # message: "只有待处理或已授权状态可以标记失败"
       change set_attribute(:status, :failed)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
-      description "取消支付，状态变为 cancelled"
+      description "取消支付，状态变为 cancelled
+
+取消支付，状态变为 cancelled. doc_url: graphql://contract/payment/cancel_payment_payment"
       accept [:comments]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -252,11 +264,12 @@ defmodule UniboExPoc.Payment.Payment do
       end
       # message: "已捕获/已退款/已失败的支付不能取消"
       change set_attribute(:status, :cancelled)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :refund do
-      description "标记已退款，状态从 captured 变为 refunded"
+      description "标记已退款，状态从 captured 变为 refunded
+
+标记已退款，状态从 captured 变为 refunded. doc_url: graphql://contract/payment/refund_payment_payment"
       accept [:comments]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -268,7 +281,6 @@ defmodule UniboExPoc.Payment.Payment do
       end
       # message: "只有已捕获状态可以退款"
       change set_attribute(:status, :refunded)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end
@@ -285,6 +297,21 @@ defmodule UniboExPoc.Payment.Payment do
 
   archive do
     archive_related [:applications, :refunds]
+  end
+
+  policies do
+    policy action_type(:read) do
+      authorize_if expr(^actor(:role) == :admin)
+      authorize_if relates_to_actor_via(:company_party)
+    end
+    policy action_type(:update) do
+      authorize_if expr(^actor(:role) == :admin)
+      authorize_if relates_to_actor_via(:company_party)
+    end
+    policy action_type(:create) do
+      forbid_unless relates_to_actor_via(:company_party)
+      authorize_if expr(^actor(:role) in [:finance_clerk, :admin])
+    end
   end
 
 end

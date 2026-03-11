@@ -89,39 +89,41 @@ defmodule UniboExPoc.Payment.PaymentApplication do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Payment Application via Create. doc_url: graphql://contract/payment/create_create_payment_payment_application"
       primary? true
       accept [:payment_id, :invoice_id, :invoice_item_seq_id, :billing_account_id, :to_payment_id, :override_gl_account_id, :tax_auth_geo_id, :amount_applied]
       argument :payment_id, :uuid, allow_nil?: false
       change manage_relationship(:payment_id, :payment, type: :append, on_lookup: :relate)
       validate present(:payment_id)
       validate present(:amount_applied)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Payment Application via Update. doc_url: graphql://contract/payment/update_payment_payment_application"
       primary? true
       accept [:amount_applied, :override_gl_account_id]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     create :apply_to_invoice do
-      description "将支付核销到指定发票（或发票行）"
+      description "将支付核销到指定发票（或发票行）
+
+将支付核销到指定发票（或发票行）. doc_url: graphql://contract/payment/create_apply_to_invoice_payment_payment_application"
       accept [:payment_id, :invoice_id, :invoice_item_seq_id, :amount_applied]
       argument :payment_id, :uuid, allow_nil?: false
       change manage_relationship(:payment_id, :payment, type: :append, on_lookup: :relate)
       validate present(:payment_id)
       validate present(:amount_applied)
       validate present(:invoice_id)
-      change set_attribute(:id, expr(id))
     end
     create :apply_to_account do
-      description "将支付核销到账单账户（余额充值）"
+      description "将支付核销到账单账户（余额充值）
+
+将支付核销到账单账户（余额充值）. doc_url: graphql://contract/payment/create_apply_to_account_payment_payment_application"
       accept [:payment_id, :billing_account_id, :amount_applied]
       argument :payment_id, :uuid, allow_nil?: false
       change manage_relationship(:payment_id, :payment, type: :append, on_lookup: :relate)
       validate present(:payment_id)
       validate present(:amount_applied)
       validate present(:billing_account_id)
-      change set_attribute(:id, expr(id))
     end
   end
 

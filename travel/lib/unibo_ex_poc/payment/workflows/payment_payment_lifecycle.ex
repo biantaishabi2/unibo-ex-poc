@@ -7,11 +7,11 @@ defmodule UniboExPoc.Payment.Workflows.Payment.PaymentLifecycleWorkflow do
   alias UniboExPoc.Payment.Payment
 
   def steps do
-    [:create, :update, :submit, :authorize, :capture, :refund, :mark_failed, :cancel, :destroy]
+    [:s1_create, :s2_update, :s3_submit, :s4_authorize, :s5_capture, :s6_refund, :s7_mark_failed, :s8_cancel, :s9_destroy]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["update","submit","cancel","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["submit","cancel","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":["authorize","mark_failed","cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit"},{"idempotency_key":null,"next":["capture","mark_failed","cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"authorize"},{"idempotency_key":null,"next":["refund"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"capture"},{"idempotency_key":null,"next":["mark_failed"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"refund"},{"idempotency_key":null,"next":["cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_failed"},{"idempotency_key":null,"next":["destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"cancel"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy"}],"workflow":"payment_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["update","submit","cancel","destroy"],"next_step_ids":["s2_update","s3_submit","s8_cancel","s9_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["submit","cancel","destroy"],"next_step_ids":["s3_submit","s8_cancel","s9_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update","step_id":"s2_update"},{"idempotency_key":null,"next":["authorize","mark_failed","cancel"],"next_step_ids":["s4_authorize","s7_mark_failed","s8_cancel"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit","step_id":"s3_submit"},{"idempotency_key":null,"next":["capture","mark_failed","cancel"],"next_step_ids":["s5_capture","s7_mark_failed","s8_cancel"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"authorize","step_id":"s4_authorize"},{"idempotency_key":null,"next":["refund"],"next_step_ids":["s6_refund"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"capture","step_id":"s5_capture"},{"idempotency_key":null,"next":["mark_failed"],"next_step_ids":["s7_mark_failed"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"refund","step_id":"s6_refund"},{"idempotency_key":null,"next":["cancel"],"next_step_ids":["s8_cancel"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_failed","step_id":"s7_mark_failed"},{"idempotency_key":null,"next":["destroy"],"next_step_ids":["s9_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"cancel","step_id":"s8_cancel"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy","step_id":"s9_destroy"}],"workflow":"payment_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,23 +98,23 @@ defmodule UniboExPoc.Payment.Workflows.Payment.PaymentLifecycleWorkflow do
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(Payment, :create, params), ash_opts)
-      :update ->
+      :s2_update ->
         Ash.update(Ash.Changeset.for_update(record, :update, params), ash_opts)
-      :submit ->
+      :s3_submit ->
         Ash.update(Ash.Changeset.for_update(record, :submit, params), ash_opts)
-      :authorize ->
+      :s4_authorize ->
         Ash.update(Ash.Changeset.for_update(record, :authorize, params), ash_opts)
-      :capture ->
+      :s5_capture ->
         Ash.update(Ash.Changeset.for_update(record, :capture, params), ash_opts)
-      :refund ->
+      :s6_refund ->
         Ash.update(Ash.Changeset.for_update(record, :refund, params), ash_opts)
-      :mark_failed ->
+      :s7_mark_failed ->
         Ash.update(Ash.Changeset.for_update(record, :mark_failed, params), ash_opts)
-      :cancel ->
+      :s8_cancel ->
         Ash.update(Ash.Changeset.for_update(record, :cancel, params), ash_opts)
-      :destroy ->
+      :s9_destroy ->
         Ash.destroy(Ash.Changeset.for_destroy(record, :destroy, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -140,92 +140,90 @@ defmodule UniboExPoc.Payment.Workflows.Payment.PaymentLifecycleWorkflow do
 
   defp next_candidates(step) do
     case step do
-      :create -> [:update, :submit, :cancel, :destroy]
-      :update -> [:submit, :cancel, :destroy]
-      :submit -> [:authorize, :mark_failed, :cancel]
-      :authorize -> [:capture, :mark_failed, :cancel]
-      :capture -> [:refund]
-      :refund -> [:mark_failed]
-      :mark_failed -> [:cancel]
-      :cancel -> [:destroy]
-      :destroy -> []
+      :s1_create -> [:s2_update, :s3_submit, :s8_cancel, :s9_destroy]
+      :s2_update -> [:s3_submit, :s8_cancel, :s9_destroy]
+      :s3_submit -> [:s4_authorize, :s7_mark_failed, :s8_cancel]
+      :s4_authorize -> [:s5_capture, :s7_mark_failed, :s8_cancel]
+      :s5_capture -> [:s6_refund]
+      :s6_refund -> [:s7_mark_failed]
+      :s7_mark_failed -> [:s8_cancel]
+      :s8_cancel -> [:s9_destroy]
+      :s9_destroy -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :update -> []
-      :submit -> []
-      :authorize -> []
-      :capture -> []
-      :refund -> []
-      :mark_failed -> []
-      :cancel -> []
-      :destroy -> []
+      :s1_create -> []
+      :s2_update -> []
+      :s3_submit -> []
+      :s4_authorize -> []
+      :s5_capture -> []
+      :s6_refund -> []
+      :s7_mark_failed -> []
+      :s8_cancel -> []
+      :s9_destroy -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :update -> nil
-      :submit -> nil
-      :authorize -> nil
-      :capture -> nil
-      :refund -> nil
-      :mark_failed -> nil
-      :cancel -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_update -> nil
+      :s3_submit -> nil
+      :s4_authorize -> nil
+      :s5_capture -> nil
+      :s6_refund -> nil
+      :s7_mark_failed -> nil
+      :s8_cancel -> nil
+      :s9_destroy -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :update -> false
-      :submit -> false
-      :authorize -> false
-      :capture -> false
-      :refund -> false
-      :mark_failed -> false
-      :cancel -> false
-      :destroy -> false
+      :s1_create -> false
+      :s2_update -> false
+      :s3_submit -> false
+      :s4_authorize -> false
+      :s5_capture -> false
+      :s6_refund -> false
+      :s7_mark_failed -> false
+      :s8_cancel -> false
+      :s9_destroy -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :update -> %{max_attempts: 1, backoff_ms: 0}
-      :submit -> %{max_attempts: 1, backoff_ms: 0}
-      :authorize -> %{max_attempts: 1, backoff_ms: 0}
-      :capture -> %{max_attempts: 1, backoff_ms: 0}
-      :refund -> %{max_attempts: 1, backoff_ms: 0}
-      :mark_failed -> %{max_attempts: 1, backoff_ms: 0}
-      :cancel -> %{max_attempts: 1, backoff_ms: 0}
-      :destroy -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_update -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_submit -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_authorize -> %{max_attempts: 1, backoff_ms: 0}
+      :s5_capture -> %{max_attempts: 1, backoff_ms: 0}
+      :s6_refund -> %{max_attempts: 1, backoff_ms: 0}
+      :s7_mark_failed -> %{max_attempts: 1, backoff_ms: 0}
+      :s8_cancel -> %{max_attempts: 1, backoff_ms: 0}
+      :s9_destroy -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :update -> nil
-      :submit -> nil
-      :authorize -> nil
-      :capture -> nil
-      :refund -> nil
-      :mark_failed -> nil
-      :cancel -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_update -> nil
+      :s3_submit -> nil
+      :s4_authorize -> nil
+      :s5_capture -> nil
+      :s6_refund -> nil
+      :s7_mark_failed -> nil
+      :s8_cancel -> nil
+      :s9_destroy -> nil
       _ -> nil
     end
   end

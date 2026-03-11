@@ -7,11 +7,11 @@ defmodule UniboExPoc.Payment.Workflows.PaymentToken.TokenLifecycleWorkflow do
   alias UniboExPoc.Payment.PaymentToken
 
   def steps do
-    [:create, :update, :revoke, :expire]
+    [:s1_create, :s2_update, :s3_revoke, :s4_expire]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["update","revoke","expire"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["revoke","expire"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":["expire"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"revoke"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"expire"}],"workflow":"token_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["update","revoke","expire"],"next_step_ids":["s2_update","s3_revoke","s4_expire"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["revoke","expire"],"next_step_ids":["s3_revoke","s4_expire"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update","step_id":"s2_update"},{"idempotency_key":null,"next":["expire"],"next_step_ids":["s4_expire"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"revoke","step_id":"s3_revoke"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"expire","step_id":"s4_expire"}],"workflow":"token_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,13 +98,13 @@ defmodule UniboExPoc.Payment.Workflows.PaymentToken.TokenLifecycleWorkflow do
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(PaymentToken, :create, params), ash_opts)
-      :update ->
+      :s2_update ->
         Ash.update(Ash.Changeset.for_update(record, :update, params), ash_opts)
-      :revoke ->
+      :s3_revoke ->
         Ash.update(Ash.Changeset.for_update(record, :revoke, params), ash_opts)
-      :expire ->
+      :s4_expire ->
         Ash.update(Ash.Changeset.for_update(record, :expire, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -130,62 +130,60 @@ defmodule UniboExPoc.Payment.Workflows.PaymentToken.TokenLifecycleWorkflow do
 
   defp next_candidates(step) do
     case step do
-      :create -> [:update, :revoke, :expire]
-      :update -> [:revoke, :expire]
-      :revoke -> [:expire]
-      :expire -> []
+      :s1_create -> [:s2_update, :s3_revoke, :s4_expire]
+      :s2_update -> [:s3_revoke, :s4_expire]
+      :s3_revoke -> [:s4_expire]
+      :s4_expire -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :update -> []
-      :revoke -> []
-      :expire -> []
+      :s1_create -> []
+      :s2_update -> []
+      :s3_revoke -> []
+      :s4_expire -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :update -> nil
-      :revoke -> nil
-      :expire -> nil
+      :s1_create -> nil
+      :s2_update -> nil
+      :s3_revoke -> nil
+      :s4_expire -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :update -> false
-      :revoke -> false
-      :expire -> false
+      :s1_create -> false
+      :s2_update -> false
+      :s3_revoke -> false
+      :s4_expire -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :update -> %{max_attempts: 1, backoff_ms: 0}
-      :revoke -> %{max_attempts: 1, backoff_ms: 0}
-      :expire -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_update -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_revoke -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_expire -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :update -> nil
-      :revoke -> nil
-      :expire -> nil
+      :s1_create -> nil
+      :s2_update -> nil
+      :s3_revoke -> nil
+      :s4_expire -> nil
       _ -> nil
     end
   end

@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.FinAccount do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_fin_accounts"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.FinAccount do
   end
 
   graphql do
-    type :accounting_fin_account
+    type :ofbiz_accounting_fin_account
 
     queries do
-      get :get_accounting_fin_account, :read
-      list :list_accounting_fin_accounts, :read
+      get :get_ofbiz_accounting_fin_account, :read
+      list :list_ofbiz_accounting_fin_accounts, :read
     end
 
     mutations do
-      create :create_accounting_fin_account, :create
-      update :update_accounting_fin_account, :update
-      destroy :delete_accounting_fin_account, :destroy
+      create :create_ofbiz_accounting_fin_account, :create
+      update :update_ofbiz_accounting_fin_account, :update
+      destroy :delete_ofbiz_accounting_fin_account, :destroy
     end
 
   end
@@ -78,12 +78,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.FinAccount do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

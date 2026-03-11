@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.RejectionReason do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_rejection_reasons"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Shipment.RejectionReason do
   end
 
   graphql do
-    type :shipment_rejection_reason
+    type :ofbiz_shipment_rejection_reason
 
     queries do
-      get :get_shipment_rejection_reason, :read
-      list :list_shipment_rejection_reasons, :read
+      get :get_ofbiz_shipment_rejection_reason, :read
+      list :list_ofbiz_shipment_rejection_reasons, :read
     end
 
     mutations do
-      create :create_shipment_rejection_reason, :create
-      update :update_shipment_rejection_reason, :update
-      destroy :delete_shipment_rejection_reason, :destroy
+      create :create_ofbiz_shipment_rejection_reason, :create
+      update :update_ofbiz_shipment_rejection_reason, :update
+      destroy :delete_ofbiz_shipment_rejection_reason, :destroy
     end
 
   end
@@ -39,12 +39,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.RejectionReason do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

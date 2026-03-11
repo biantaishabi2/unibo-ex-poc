@@ -23,6 +23,7 @@ defmodule UniboExPoc.Sales.Quote do
   postgres do
     table "sales_quotes"
     repo UniboExPoc.Repo
+    identity_index_names unique_quote_number: "idx_sales_quotes_unique_quote_number"
   end
 
   graphql do
@@ -100,21 +101,27 @@ defmodule UniboExPoc.Sales.Quote do
       public? true
       source_attribute :created_by_party_id
     end
+    belongs_to :company_party, UniboExPoc.Sales.Party do
+      public? true
+      allow_nil? false
+    end
   end
 
   actions do
     defaults [:read]
     create :create do
+      description "Create Quote via Create. doc_url: graphql://contract/sales/create_sales_quote"
       primary? true
       accept [:quote_number, :quote_date, :valid_thru_date, :currency, :description, :notes]
       argument :items, {:array, :string}, allow_nil?: false
       argument :customer_id, :uuid, allow_nil?: false
       change manage_relationship(:items, :items, type: :create)
       change manage_relationship(:customer_id, :customer, type: :append, on_lookup: :relate)
+      argument :company_party_id, :uuid, allow_nil?: false
+      change manage_relationship(:company_party_id, :company_party, type: :append, on_lookup: :relate)
       validate present(:quote_number)
       change relate_actor(:created_by)
       change UniboExPoc.Sales.Changes.Quote.ComputeTotalAmount
-      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -135,7 +142,9 @@ defmodule UniboExPoc.Sales.Quote do
       description "快速检索"
     end
     update :submit do
-      description "发送报价"
+      description "发送报价
+
+发送报价. doc_url: graphql://contract/sales/submit_sales_quote"
       primary? true
       accept []
       change fn changeset, _ctx ->
@@ -148,11 +157,12 @@ defmodule UniboExPoc.Sales.Quote do
       end
       # message: "只有草稿状态可以发送"
       change set_attribute(:status, :submitted)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :accept do
-      description "客户接受报价"
+      description "客户接受报价
+
+客户接受报价. doc_url: graphql://contract/sales/accept_sales_quote"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -164,11 +174,12 @@ defmodule UniboExPoc.Sales.Quote do
       end
       # message: "只有已发送状态可以接受"
       change set_attribute(:status, :accepted)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reject do
-      description "客户拒绝报价"
+      description "客户拒绝报价
+
+客户拒绝报价. doc_url: graphql://contract/sales/reject_sales_quote"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -180,7 +191,6 @@ defmodule UniboExPoc.Sales.Quote do
       end
       # message: "只有已发送状态可以拒绝"
       change set_attribute(:status, :rejected)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

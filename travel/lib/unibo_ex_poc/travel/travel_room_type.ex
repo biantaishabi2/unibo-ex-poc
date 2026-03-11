@@ -12,6 +12,7 @@ defmodule UniboExPoc.Travel.TravelRoomType do
   postgres do
     table "travel_room_types"
     repo UniboExPoc.Repo
+    identity_index_names unique_room_type_code: "idx_travel_room_types_unique_room_type_code"
   end
 
   graphql do
@@ -65,14 +66,14 @@ defmodule UniboExPoc.Travel.TravelRoomType do
   actions do
     defaults [:read]
     create :create do
+      description "Create Travel Room Type via Create. doc_url: graphql://contract/travel/create_travel_travel_room_type"
       primary? true
       accept [:room_type_code, :room_type_name, :hotel_id, :hotel_code, :bed_type, :status]
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Travel Room Type via Update. doc_url: graphql://contract/travel/update_travel_travel_room_type"
       primary? true
       accept [:room_type_name, :hotel_id, :hotel_code, :bed_type, :status]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

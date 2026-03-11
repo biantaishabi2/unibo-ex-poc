@@ -7,11 +7,11 @@ defmodule UniboExPoc.Sales.Workflows.Return.ReturnLifecycleWorkflow do
   alias UniboExPoc.Sales.Return
 
   def steps do
-    [:create, :approve, :receive, :complete, :cancel]
+    [:s1_create, :s2_approve, :s3_receive, :s4_complete, :s5_cancel]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["approve","cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["receive","cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"approve"},{"idempotency_key":null,"next":["complete"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"receive"},{"idempotency_key":null,"next":["cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"complete"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"cancel"}],"workflow":"return_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["approve","cancel"],"next_step_ids":["s2_approve","s5_cancel"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["receive","cancel"],"next_step_ids":["s3_receive","s5_cancel"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"approve","step_id":"s2_approve"},{"idempotency_key":null,"next":["complete"],"next_step_ids":["s4_complete"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"receive","step_id":"s3_receive"},{"idempotency_key":null,"next":["cancel"],"next_step_ids":["s5_cancel"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"complete","step_id":"s4_complete"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"cancel","step_id":"s5_cancel"}],"workflow":"return_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,15 +98,15 @@ defmodule UniboExPoc.Sales.Workflows.Return.ReturnLifecycleWorkflow do
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(Return, :create, params), ash_opts)
-      :approve ->
+      :s2_approve ->
         Ash.update(Ash.Changeset.for_update(record, :approve, params), ash_opts)
-      :receive ->
+      :s3_receive ->
         Ash.update(Ash.Changeset.for_update(record, :receive, params), ash_opts)
-      :complete ->
+      :s4_complete ->
         Ash.update(Ash.Changeset.for_update(record, :complete, params), ash_opts)
-      :cancel ->
+      :s5_cancel ->
         Ash.update(Ash.Changeset.for_update(record, :cancel, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -132,68 +132,66 @@ defmodule UniboExPoc.Sales.Workflows.Return.ReturnLifecycleWorkflow do
 
   defp next_candidates(step) do
     case step do
-      :create -> [:approve, :cancel]
-      :approve -> [:receive, :cancel]
-      :receive -> [:complete]
-      :complete -> [:cancel]
-      :cancel -> []
+      :s1_create -> [:s2_approve, :s5_cancel]
+      :s2_approve -> [:s3_receive, :s5_cancel]
+      :s3_receive -> [:s4_complete]
+      :s4_complete -> [:s5_cancel]
+      :s5_cancel -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :approve -> []
-      :receive -> []
-      :complete -> []
-      :cancel -> []
+      :s1_create -> []
+      :s2_approve -> []
+      :s3_receive -> []
+      :s4_complete -> []
+      :s5_cancel -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :approve -> nil
-      :receive -> nil
-      :complete -> nil
-      :cancel -> nil
+      :s1_create -> nil
+      :s2_approve -> nil
+      :s3_receive -> nil
+      :s4_complete -> nil
+      :s5_cancel -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :approve -> false
-      :receive -> false
-      :complete -> false
-      :cancel -> false
+      :s1_create -> false
+      :s2_approve -> false
+      :s3_receive -> false
+      :s4_complete -> false
+      :s5_cancel -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :approve -> %{max_attempts: 1, backoff_ms: 0}
-      :receive -> %{max_attempts: 1, backoff_ms: 0}
-      :complete -> %{max_attempts: 1, backoff_ms: 0}
-      :cancel -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_approve -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_receive -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_complete -> %{max_attempts: 1, backoff_ms: 0}
+      :s5_cancel -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :approve -> nil
-      :receive -> nil
-      :complete -> nil
-      :cancel -> nil
+      :s1_create -> nil
+      :s2_approve -> nil
+      :s3_receive -> nil
+      :s4_complete -> nil
+      :s5_cancel -> nil
       _ -> nil
     end
   end

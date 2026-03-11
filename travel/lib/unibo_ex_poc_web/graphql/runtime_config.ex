@@ -12,6 +12,10 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
         entry_auth_matrix: [query: :compat, mutation: :strict, subscription: :compat],
         public_query_whitelist: ["health"],
         context_builder: {MyApp.GraphqlHooks, :build_context},
+        tenant_resolver: {MyApp.GraphqlHooks, :resolve_tenant},
+
+        tenant_id_format: :opaque,
+        demo_tenant_id: "00000000-0000-0000-0000-000000000000",
         loader: {MyApp.GraphqlHooks, :load},
         resolver: {MyApp.GraphqlHooks, :resolve},
         postprocess_plan: {MyApp.GraphqlHooks, :postprocess_plan},
@@ -19,8 +23,9 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
         postprocess_enabled: true
   """
 
-  @app :unibo_ex_poc
+  @app :travel
   @default_source :default
+  alias UniboExPocWeb.Graphql.ActorContext
 
   def source_name do
     Keyword.get(config(), :source, @default_source)
@@ -28,6 +33,35 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
 
   def schema_module do
     Keyword.get(config(), :schema, UniboExPocWeb.Schema)
+  end
+
+  def runtime_consistency_error do
+    invalid_domains =
+      schema_module()
+      |> runtime_schema_domains()
+      |> Enum.reject(&ash_domain_module?/1)
+
+    case invalid_domains do
+      [] ->
+        nil
+
+      domains ->
+        domain_names = Enum.map(domains, &inspect/1)
+
+        %{
+          message:
+            "GraphQL 生成物一致性检查失败：检测到缺失或无效的 domain 模块，疑似只同步了部分 compile-project 生成物",
+          code: "GRAPHQL_RUNTIME_SYNC_ERROR",
+          reason: "generated_artifacts_out_of_sync",
+          extensions: %{
+            code: "GRAPHQL_RUNTIME_SYNC_ERROR",
+            reason: "generated_artifacts_out_of_sync",
+            hint:
+              "请整套同步 lib/、config/config.exs、test/support，不要只单独替换 schema.ex",
+            domains: domain_names
+          }
+        }
+    end
   end
 
   def manifest_path do
@@ -46,17 +80,65 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
     safe_manifest_load(frontend_manifest_path())
   end
 
+  def graphql_contract(field_or_doc_url) when is_binary(field_or_doc_url) do
+    field_or_doc_url = normalize_string(field_or_doc_url)
+
+    with false <- field_or_doc_url == "",
+         %{} = field <- graphql_builtin_contract(field_or_doc_url) || manifest_field_contract(field_or_doc_url) do
+      %{}
+      |> Map.put(:field, normalize_string(map_get(field, "field")))
+      |> put_present(:summary, map_get(field, "summary"))
+      |> put_present(:doc_url, map_get(field, "doc_url"))
+      |> Map.put(:required_headers, normalize_string_list(map_get(field, "required_headers")))
+      |> Map.put(
+        :conditional_requirements,
+        normalize_string_list(map_get(field, "conditional_requirements"))
+      )
+      |> put_present(:body, graphql_contract_body(map_get(field, "doc_url")))
+    else
+      _ -> nil
+    end
+  end
+
+  def graphql_contract(_field_or_doc_url), do: nil
+
   def build_context(context) when is_map(context) do
     normalized =
       context
-      |> ensure_context_envelope()
       |> ensure_tenant_context()
+      |> ensure_context_envelope()
       |> ensure_actor_context()
       |> ensure_correlation_context()
 
     hook = Keyword.get(config(), :context_builder)
     apply_optional_hook(hook, [normalized], normalized)
   end
+
+  def tenant_error(context) when is_map(context) do
+    case context_value(context, :tenant_error) || context_value(context, "tenant_error") do
+      %{} = error -> error
+      _ -> nil
+    end
+  end
+
+  def tenant_error(_), do: nil
+
+  defp runtime_schema_domains(schema_module) when is_atom(schema_module) do
+    if function_exported?(schema_module, :unibo_runtime_domains, 0) do
+      schema_module.unibo_runtime_domains()
+      |> List.wrap()
+    else
+      []
+    end
+  end
+
+  defp runtime_schema_domains(_schema_module), do: []
+
+  defp ash_domain_module?(module) when is_atom(module) do
+    Code.ensure_loaded?(module) and function_exported?(module, :spark_dsl_config, 0)
+  end
+
+  defp ash_domain_module?(_module), do: false
 
   def authorize_request(context, query) do
     operation = operation_kind(query)
@@ -260,11 +342,30 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
     end
   end
 
+  defp normalize_string(nil), do: ""
   defp normalize_string(value) when is_binary(value), do: String.trim(value)
   defp normalize_string(value) when is_atom(value), do: value |> Atom.to_string() |> String.trim()
   defp normalize_string(value) when is_integer(value), do: Integer.to_string(value)
   defp normalize_string(value) when is_float(value), do: :erlang.float_to_binary(value, [:compact, decimals: 6])
   defp normalize_string(_), do: ""
+
+  defp normalize_string_list(values) when is_list(values) do
+    values
+    |> Enum.map(&normalize_string/1)
+    |> Enum.filter(&(&1 != ""))
+  end
+
+  defp normalize_string_list(_values), do: []
+
+  defp map_get(map, key) when is_map(map) and is_atom(key) do
+    Map.get(map, key) || Map.get(map, Atom.to_string(key))
+  end
+
+  defp map_get(map, key) when is_map(map) and is_binary(key) do
+    Map.get(map, key) || Map.get(map, String.to_atom(key))
+  end
+
+  defp map_get(_map, _key), do: nil
 
   # 语义上下文契约（V2）:
   # principal / scope / authz / correlation / extensions
@@ -319,15 +420,27 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
     principal =
       %{}
       |> put_present("id", context_value(context, :user_id) || context_value(context, "user_id") || context_value(context, :actor_id) || context_value(context, "actor_id") || header_value(context, "x-user-id") || header_value(context, "x-actor-id"))
+      |> put_present("party_id", context_value(context, :party_id) || context_value(context, "party_id") || header_value(context, "x-party-id") || header_value(context, "x-actor-party-id"))
       |> put_present("member_id", context_value(context, :member_id) || context_value(context, "member_id") || header_value(context, "x-member-id"))
       |> put_present("type", context_value(context, :principal_type) || context_value(context, "principal_type") || "user")
 
     tenant_id =
-      context_value(context, :tenant_id) ||
-        context_value(context, "tenant_id") ||
-        context_value(context, :tenant) ||
-        context_value(context, "tenant") ||
-        header_value(context, "x-tenant-id")
+      case tenant_error(context) do
+        nil ->
+          context_value(context, :tenant_id) ||
+            context_value(context, "tenant_id") ||
+            context_value(context, :tenant) ||
+            context_value(context, "tenant") ||
+            header_value(context, "x-tenant-id") ||
+            header_value(context, "x-tenant-code") ||
+            header_value(context, "x-tenant-slug")
+
+        _error ->
+          context_value(context, :tenant_id) ||
+            context_value(context, "tenant_id") ||
+            context_value(context, :tenant) ||
+            context_value(context, "tenant")
+      end
 
     shop_id =
       context_value(context, :current_shop_id) ||
@@ -551,10 +664,10 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
     mod = Unibo.Graphql.Manifest
 
     cond do
-      function_exported?(mod, :safe_load, 1) ->
+      Code.ensure_loaded?(mod) and function_exported?(mod, :safe_load, 1) ->
         apply(mod, :safe_load, [path]) || %{}
 
-      function_exported?(mod, :load!, 1) ->
+      Code.ensure_loaded?(mod) and function_exported?(mod, :load!, 1) ->
         try do
           apply(mod, :load!, [path])
         rescue
@@ -569,7 +682,7 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
   defp manifest_postprocess_plan(manifest_data, meta) do
     mod = Unibo.Graphql.Manifest
 
-    if function_exported?(mod, :postprocess_plan_for, 2) do
+    if Code.ensure_loaded?(mod) and function_exported?(mod, :postprocess_plan_for, 2) do
       apply(mod, :postprocess_plan_for, [manifest_data, meta])
     else
       nil
@@ -579,7 +692,7 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
   defp manifest_frontend_postprocess_plan(manifest_data, frontend_data, meta) do
     mod = Unibo.Graphql.Manifest
 
-    if function_exported?(mod, :frontend_postprocess_plan_for, 3) do
+    if Code.ensure_loaded?(mod) and function_exported?(mod, :frontend_postprocess_plan_for, 3) do
       apply(mod, :frontend_postprocess_plan_for, [manifest_data, frontend_data, meta])
     else
       nil
@@ -613,6 +726,123 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
   defp default_load(batch, inputs) do
     Enum.into(inputs, %{}, fn input -> {input, %{batch: batch}} end)
   end
+
+  defp manifest_field_contract(field_name) when is_binary(field_name) do
+    mod = Unibo.Graphql.Manifest
+    manifest_data = manifest()
+    lookup_key = graphql_contract_lookup_key(field_name)
+    normalized_field_name = normalize_string(field_name)
+
+    cond do
+      Code.ensure_loaded?(mod) and function_exported?(mod, :field, 2) ->
+        apply(mod, :field, [manifest_data, lookup_key])
+
+      true ->
+        manifest_data
+        |> map_get("fields")
+        |> case do
+          fields when is_list(fields) ->
+            Enum.find(fields, fn field ->
+              normalize_string(map_get(field, "field")) == lookup_key or
+                normalize_string(map_get(field, "doc_url")) == normalized_field_name
+            end)
+
+          _ ->
+            nil
+        end
+    end
+  end
+
+  defp manifest_field_contract(_field_name), do: nil
+
+  defp graphql_builtin_contract("graphql://contract/common/tenant") do
+    %{
+      "field" => "common/tenant",
+      "summary" => "Tenant headers contract. Provide x-tenant-id, or use x-tenant-code / x-tenant-slug when alias resolver is configured.",
+      "doc_url" => "graphql://contract/common/tenant",
+      "required_headers" => [],
+      "conditional_requirements" => [],
+      "body" => """
+# common/tenant
+
+- Summary: Tenant headers contract. Provide x-tenant-id, or use x-tenant-code / x-tenant-slug when alias resolver is configured.
+- Doc URL: graphql://contract/common/tenant
+
+## Required Headers
+- none
+
+## Optional Alias Headers
+- x-tenant-code
+- x-tenant-slug
+
+## Notes
+- Prefer `x-tenant-id` when the caller already knows the tenant UUID.
+- `x-tenant-code` / `x-tenant-slug` only work when the generated runtime has a tenant alias resolver.
+- Invalid tenant input should surface `invalid_tenant_id` or `tenant_required` with this same `doc_url`.
+"""
+    }
+  end
+
+  defp graphql_builtin_contract(_field_or_doc_url), do: nil
+
+  defp graphql_docs_root do
+    manifest_path()
+    |> Path.dirname()
+    |> Path.join("docs")
+  end
+
+  defp graphql_contract_body(doc_url) when is_binary(doc_url) do
+    case graphql_builtin_contract(doc_url) do
+      %{} = contract ->
+        normalize_string(map_get(contract, "body"))
+
+      nil ->
+        case graphql_contract_doc_path(doc_url) do
+          nil ->
+            nil
+
+          path ->
+            case File.read(path) do
+              {:ok, content} ->
+                normalize_string(content)
+
+              _ ->
+                nil
+            end
+        end
+    end
+  end
+
+  defp graphql_contract_body(_doc_url), do: nil
+
+  defp graphql_contract_doc_path(doc_url) do
+    normalized = normalize_string(doc_url)
+    prefix = "graphql://contract/"
+
+    if String.starts_with?(normalized, prefix) do
+      relative = String.trim_leading(normalized, prefix)
+      Path.join(graphql_docs_root(), relative <> ".md")
+    else
+      nil
+    end
+  end
+
+  defp graphql_contract_lookup_key(doc_url) when is_binary(doc_url) do
+    normalized = normalize_string(doc_url)
+    prefix = "graphql://contract/"
+
+    if String.starts_with?(normalized, prefix) do
+      normalized
+      |> String.trim_leading(prefix)
+      |> String.split("/")
+      |> List.last()
+      |> normalize_string()
+    else
+      normalized
+    end
+  end
+
+  defp graphql_contract_lookup_key(value), do: normalize_string(value)
 
   defp require_actor_for_mutation? do
     Keyword.get(config(), :require_actor_for_mutation, true)
@@ -707,59 +937,268 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
   defp query_root_field(_), do: nil
 
   defp ensure_tenant_context(context) do
-    tenant =
+    case resolve_tenant_candidate(context) do
+      {:ok, nil} ->
+        context
+
+      {:ok, tenant_id} ->
+        context
+        |> Map.put(:tenant, tenant_id)
+        |> Map.put_new(:tenant_id, tenant_id)
+        |> Map.delete(:tenant_error)
+
+      {:error, reason, message, metadata} ->
+        context
+        |> Map.put(
+          :tenant_error,
+          %{
+            "message" => message,
+            "code" => "BAD_USER_INPUT",
+            "reason" => reason,
+            "extensions" => tenant_error_extensions(reason, metadata)
+          }
+        )
+        |> Map.delete(:tenant)
+        |> Map.delete(:tenant_id)
+    end
+  end
+
+  defp resolve_tenant_candidate(context) do
+    case existing_tenant_candidate(context) do
+      nil -> resolve_conn_tenant_candidate(context)
+      candidate -> normalize_tenant_candidate(context, candidate)
+    end
+  end
+
+  defp existing_tenant_candidate(context) do
+    direct_tenant =
       Map.get(context, :tenant) ||
         Map.get(context, "tenant") ||
         Map.get(context, :tenant_id) ||
-        Map.get(context, "tenant_id") ||
-        scope_value(context, "tenant") ||
-        correlation_value(context, "tenant") ||
-        extract_tenant_from_conn(Map.get(context, :conn) || Map.get(context, "conn"))
+        Map.get(context, "tenant_id")
 
-    case tenant do
-      nil ->
-        context
+    cond do
+      not is_nil(direct_tenant) ->
+        %{kind: :existing, value: direct_tenant, source: "context"}
 
-      value when is_map(value) ->
-        context
-        |> Map.put(:tenant, value)
-        |> maybe_put_tenant_id_from_map(value)
+      true ->
+        case normalize_context_envelope(
+               context_value(context, :context_envelope) ||
+                 context_value(context, "context_envelope")
+             ) do
+          nil ->
+            nil
 
-      value ->
-        normalized = normalize_string(value)
+          envelope ->
+            tenant_scope = envelope |> map_value("scope") |> map_value("tenant")
+            correlation_tenant = envelope |> map_value("correlation") |> map_value("tenant")
 
-        if normalized == "" do
-          context
-        else
-          context
-          |> Map.put(:tenant, normalized)
-          |> Map.put_new(:tenant_id, normalized)
+            cond do
+              is_map(tenant_scope) and map_size(tenant_scope) > 0 ->
+                %{kind: :existing, value: tenant_scope, source: "scope.tenant"}
+
+              not is_nil(correlation_tenant) ->
+                %{kind: :existing, value: correlation_tenant, source: "correlation.tenant"}
+
+              true ->
+                nil
+            end
         end
     end
   end
 
-  defp maybe_put_tenant_id_from_map(context, tenant_map) do
+  defp resolve_conn_tenant_candidate(context) do
+    conn = Map.get(context, :conn) || Map.get(context, "conn")
+
+    case extract_tenant_candidate_from_conn(conn) do
+      nil -> {:ok, nil}
+      candidate -> normalize_tenant_candidate(context, candidate)
+    end
+  end
+
+  defp normalize_tenant_candidate(context, %{kind: :existing, value: value}) when is_map(value) do
+    normalized = tenant_id_from_map(value)
+    if normalized == "", do: {:ok, nil}, else: {:ok, normalized}
+  end
+
+  defp normalize_tenant_candidate(context, %{kind: :existing, value: value}) do
+    normalized = normalize_string(value)
+    if normalized == "", do: {:ok, nil}, else: {:ok, normalized}
+  end
+
+  defp normalize_tenant_candidate(context, %{kind: :tenant_id, value: value, source: source}) do
+    normalized = normalize_string(value)
+
+    cond do
+      normalized == "" ->
+        {:ok, nil}
+
+      tenant_id_valid?(normalized) ->
+        {:ok, normalized}
+
+      true ->
+        {:error, "invalid_tenant_id", invalid_tenant_message(source), %{"path" => tenant_error_path(source), "tenant_source" => source, "tenant_value" => normalized}}
+    end
+  end
+
+  defp normalize_tenant_candidate(context, %{kind: kind, value: value, source: source})
+       when kind in [:tenant_code, :tenant_slug] do
+    normalized = normalize_string(value)
+
+    cond do
+      normalized == "" ->
+        {:ok, nil}
+
+      true ->
+        case resolve_tenant_alias(context, kind, normalized) do
+          {:ok, tenant_id} when is_binary(tenant_id) ->
+            {:ok, normalize_string(tenant_id)}
+
+          {:ok, %{} = tenant_map} ->
+            tenant_id = tenant_id_from_map(tenant_map)
+            if tenant_id == "", do: {:error, "tenant_resolution_failed", tenant_resolution_failed_message(source), %{"path" => tenant_error_path(source), "tenant_source" => source, "tenant_value" => normalized}}, else: {:ok, tenant_id}
+
+          _ ->
+            {:error, "tenant_resolution_failed", tenant_resolution_failed_message(source), %{"path" => tenant_error_path(source), "tenant_source" => source, "tenant_value" => normalized}}
+        end
+    end
+  end
+
+  defp normalize_tenant_candidate(_context, _candidate), do: {:ok, nil}
+
+  defp resolve_tenant_alias(context, kind, value) do
+    hook = Keyword.get(config(), :tenant_resolver, default_tenant_resolver_hook())
+    default = default_resolve_tenant_alias(kind, value)
+
+    case apply_optional_hook(hook, [kind, value, context], default) do
+      nil -> default
+      other -> other
+    end
+  end
+
+  defp default_tenant_resolver_hook do
+    module = UniboExPocWeb.GraphqlHooks
+
+    if function_exported?(module, :resolve_tenant, 3) do
+      {module, :resolve_tenant}
+    else
+      nil
+    end
+  end
+
+  defp default_resolve_tenant_alias(kind, value) do
+    nil
+  end
+
+  defp tenant_id_from_map(tenant_map) do
     tenant_id =
       map_value(tenant_map, "id") ||
         map_value(tenant_map, "tenant_id")
 
-    normalized = normalize_string(tenant_id)
+    normalize_string(tenant_id)
+  end
+
+  defp maybe_put_tenant_id_from_map(context, tenant_map) do
+    normalized = tenant_id_from_map(tenant_map)
     if normalized == "", do: context, else: Map.put_new(context, :tenant_id, normalized)
   end
 
-  defp extract_tenant_from_conn(%Plug.Conn{} = conn) do
-    conn.assigns[:tenant_id] ||
-      conn.assigns[:tenant] ||
-      List.first(Plug.Conn.get_req_header(conn, "x-tenant-id"))
+  defp extract_tenant_candidate_from_conn(%Plug.Conn{} = conn) do
+    tenant_id = normalize_string(conn.assigns[:tenant_id] || conn.assigns[:tenant])
+    tenant_code = normalize_string(List.first(Plug.Conn.get_req_header(conn, "x-tenant-code")))
+    tenant_slug = normalize_string(List.first(Plug.Conn.get_req_header(conn, "x-tenant-slug")))
+    header_tenant_id = normalize_string(List.first(Plug.Conn.get_req_header(conn, "x-tenant-id")))
+
+    cond do
+      tenant_id != "" -> %{kind: :existing, value: tenant_id, source: "conn.assigns"}
+      tenant_code != "" -> %{kind: :tenant_code, value: tenant_code, source: "x-tenant-code"}
+      tenant_slug != "" -> %{kind: :tenant_slug, value: tenant_slug, source: "x-tenant-slug"}
+      header_tenant_id != "" -> %{kind: :tenant_id, value: header_tenant_id, source: "x-tenant-id"}
+      true -> nil
+    end
   end
 
-  defp extract_tenant_from_conn(_), do: nil
+  defp extract_tenant_candidate_from_conn(_), do: nil
+
+  defp tenant_id_valid?(value) do
+    format = Keyword.get(config(), :tenant_id_format, :opaque)
+    normalized_format = normalize_tenant_id_format(format)
+
+    case normalized_format do
+      :uuid -> uuid_like?(value)
+      _ -> value != ""
+    end
+  end
+
+  defp normalize_tenant_id_format(value) when value in [:uuid, :opaque], do: value
+
+  defp normalize_tenant_id_format(value) when is_binary(value) do
+    case String.downcase(String.trim(value)) do
+      "uuid" -> :uuid
+      _ -> :opaque
+    end
+  end
+
+  defp normalize_tenant_id_format(_), do: :opaque
+
+  defp uuid_like?(value) when is_binary(value) do
+    Regex.match?(
+      ~r/\A[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}\z/,
+      value
+    )
+  end
+
+  defp uuid_like?(_), do: false
+
+  defp invalid_tenant_message(source) do
+    "invalid tenant id from #{source}"
+  end
+
+  defp tenant_resolution_failed_message(source) do
+    "failed to resolve tenant from #{source}"
+  end
+
+  defp tenant_error_path(source) when is_binary(source), do: "headers/" <> source
+  defp tenant_error_path(_source), do: "runtime_context/tenant"
+
+  defp tenant_error_extensions(reason, metadata) when is_map(metadata) do
+    Map.merge(
+      %{"code" => "BAD_USER_INPUT", "reason" => reason},
+      Map.merge(
+        %{},
+        metadata
+      )
+    )
+    |> Map.put_new("hint", tenant_error_hint(reason))
+    |> Map.put_new("doc_url", tenant_error_doc_url(reason))
+  end
+
+  defp tenant_error_extensions(reason, _metadata) do
+    %{"code" => "BAD_USER_INPUT", "reason" => reason}
+    |> Map.put_new("hint", tenant_error_hint(reason))
+    |> Map.put_new("doc_url", tenant_error_doc_url(reason))
+  end
+
+  defp tenant_error_hint("invalid_tenant_id"),
+    do: "x-tenant-id 必须是合法 UUID，或改用 x-tenant-code / x-tenant-slug"
+
+  defp tenant_error_hint("tenant_required"),
+    do: "请提供 x-tenant-id，或使用 x-tenant-code / x-tenant-slug"
+
+  defp tenant_error_hint("tenant_resolution_failed"),
+    do: "请检查 tenant alias 是否存在，或改用 x-tenant-id"
+
+  defp tenant_error_hint(_reason), do: nil
+
+  defp tenant_error_doc_url(reason)
+       when reason in ["invalid_tenant_id", "tenant_required", "tenant_resolution_failed"] do
+    "graphql://contract/common/tenant"
+  end
+
+  defp tenant_error_doc_url(_reason), do: nil
 
   defp ensure_actor_context(context) do
-    actor =
-      actor(context) ||
-        actor_from_principal(context) ||
-        extract_actor_from_conn(Map.get(context, :conn) || Map.get(context, "conn"))
+    actor = ActorContext.from_context(context)
 
     case actor do
       nil -> context
@@ -779,65 +1218,11 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
   defp maybe_put_correlation_value(context, _key, ""), do: context
   defp maybe_put_correlation_value(context, key, value), do: Map.put_new(context, key, value)
 
-  def actor(context) when is_map(context) do
-    Map.get(context, :actor) || Map.get(context, "actor") || actor_from_principal(context)
-  end
+  def actor(context) when is_map(context), do: ActorContext.from_context(context)
 
   def actor(_), do: nil
 
   defp actor_present?(context), do: not is_nil(actor(context))
-
-  defp actor_from_principal(context) do
-    principal = principal_value(context)
-    authz = authz_value(context)
-
-    actor_id =
-      map_value(principal, "id") ||
-        map_value(principal, "user_id") ||
-        map_value(principal, "member_id")
-
-    normalized_id = normalize_string(actor_id)
-    role = map_value(principal, "role") || first_role(map_value(authz, "roles"))
-    normalized_role = normalize_string(role)
-    roles = normalize_roles(map_value(authz, "roles"))
-    actor_type = normalize_string(map_value(principal, "type"))
-
-    if normalized_id == "" do
-      nil
-    else
-      %{}
-      |> Map.put(:id, normalized_id)
-      |> maybe_put_actor_field(:role, normalized_role)
-      |> maybe_put_actor_field(:roles, roles)
-      |> maybe_put_actor_field(:type, actor_type)
-    end
-  end
-
-  defp maybe_put_actor_field(actor, _field, ""), do: actor
-  defp maybe_put_actor_field(actor, _field, []), do: actor
-  defp maybe_put_actor_field(actor, field, value), do: Map.put(actor, field, value)
-
-  defp first_role([]), do: nil
-  defp first_role([role | _]), do: role
-  defp first_role(_), do: nil
-
-  defp extract_actor_from_conn(%Plug.Conn{} = conn) do
-    conn.assigns[:actor] ||
-      conn.assigns[:current_user] ||
-      actor_from_headers(conn)
-  end
-
-  defp extract_actor_from_conn(_), do: nil
-
-  defp actor_from_headers(%Plug.Conn{} = conn) do
-    actor_id = List.first(Plug.Conn.get_req_header(conn, "x-actor-id"))
-    actor_role = List.first(Plug.Conn.get_req_header(conn, "x-actor-role"))
-
-    case actor_id do
-      nil -> nil
-      id -> %{id: id, role: actor_role}
-    end
-  end
 
   defp config do
     Application.get_env(@app, __MODULE__, [])

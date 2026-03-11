@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentCostEstimate do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_cost_estimates"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentCostEstimate do
   end
 
   graphql do
-    type :shipment_shipment_cost_estimate
+    type :ofbiz_shipment_shipment_cost_estimate
 
     queries do
-      get :get_shipment_shipment_cost_estimate, :read
-      list :list_shipment_shipment_cost_estimates, :read
+      get :get_ofbiz_shipment_shipment_cost_estimate, :read
+      list :list_ofbiz_shipment_shipment_cost_estimates, :read
     end
 
     mutations do
-      create :create_shipment_shipment_cost_estimate, :create
-      update :update_shipment_shipment_cost_estimate, :update
-      destroy :delete_shipment_shipment_cost_estimate, :destroy
+      create :create_ofbiz_shipment_shipment_cost_estimate, :create
+      update :update_ofbiz_shipment_shipment_cost_estimate, :update
+      destroy :delete_ofbiz_shipment_shipment_cost_estimate, :destroy
     end
 
   end
@@ -107,12 +107,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentCostEstimate do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

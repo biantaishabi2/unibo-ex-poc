@@ -7,11 +7,11 @@ defmodule UniboExPoc.Delivery.Workflows.ShipmentRouteSegment.RouteSegmentFlowWor
   alias UniboExPoc.Delivery.ShipmentRouteSegment
 
   def steps do
-    [:create, :confirm_shipment, :update_tracking, :record_cost, :update, :destroy]
+    [:s1_create, :s2_confirm_shipment, :s3_update_tracking, :s4_record_cost, :s5_update, :s6_destroy]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["confirm_shipment","update","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["update_tracking","record_cost"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"confirm_shipment"},{"idempotency_key":null,"next":["record_cost"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update_tracking"},{"idempotency_key":null,"next":["update"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"record_cost"},{"idempotency_key":null,"next":["confirm_shipment","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy"}],"workflow":"route_segment_flow"}
+{"steps":[{"idempotency_key":null,"next":["confirm_shipment","update","destroy"],"next_step_ids":["s2_confirm_shipment","s5_update","s6_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["update_tracking","record_cost"],"next_step_ids":["s3_update_tracking","s4_record_cost"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"confirm_shipment","step_id":"s2_confirm_shipment"},{"idempotency_key":null,"next":["record_cost"],"next_step_ids":["s4_record_cost"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update_tracking","step_id":"s3_update_tracking"},{"idempotency_key":null,"next":["update"],"next_step_ids":["s5_update"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"record_cost","step_id":"s4_record_cost"},{"idempotency_key":null,"next":["confirm_shipment","destroy"],"next_step_ids":["s2_confirm_shipment","s6_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update","step_id":"s5_update"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy","step_id":"s6_destroy"}],"workflow":"route_segment_flow"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,17 +98,17 @@ defmodule UniboExPoc.Delivery.Workflows.ShipmentRouteSegment.RouteSegmentFlowWor
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(ShipmentRouteSegment, :create, params), ash_opts)
-      :confirm_shipment ->
+      :s2_confirm_shipment ->
         Ash.update(Ash.Changeset.for_update(record, :confirm_shipment, params), ash_opts)
-      :update_tracking ->
+      :s3_update_tracking ->
         Ash.update(Ash.Changeset.for_update(record, :update_tracking, params), ash_opts)
-      :record_cost ->
+      :s4_record_cost ->
         Ash.update(Ash.Changeset.for_update(record, :record_cost, params), ash_opts)
-      :update ->
+      :s5_update ->
         Ash.update(Ash.Changeset.for_update(record, :update, params), ash_opts)
-      :destroy ->
+      :s6_destroy ->
         Ash.destroy(Ash.Changeset.for_destroy(record, :destroy, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -134,74 +134,72 @@ defmodule UniboExPoc.Delivery.Workflows.ShipmentRouteSegment.RouteSegmentFlowWor
 
   defp next_candidates(step) do
     case step do
-      :create -> [:confirm_shipment, :update, :destroy]
-      :confirm_shipment -> [:update_tracking, :record_cost]
-      :update_tracking -> [:record_cost]
-      :record_cost -> [:update]
-      :update -> [:confirm_shipment, :destroy]
-      :destroy -> []
+      :s1_create -> [:s2_confirm_shipment, :s5_update, :s6_destroy]
+      :s2_confirm_shipment -> [:s3_update_tracking, :s4_record_cost]
+      :s3_update_tracking -> [:s4_record_cost]
+      :s4_record_cost -> [:s5_update]
+      :s5_update -> [:s2_confirm_shipment, :s6_destroy]
+      :s6_destroy -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :confirm_shipment -> []
-      :update_tracking -> []
-      :record_cost -> []
-      :update -> []
-      :destroy -> []
+      :s1_create -> []
+      :s2_confirm_shipment -> []
+      :s3_update_tracking -> []
+      :s4_record_cost -> []
+      :s5_update -> []
+      :s6_destroy -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :confirm_shipment -> nil
-      :update_tracking -> nil
-      :record_cost -> nil
-      :update -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_confirm_shipment -> nil
+      :s3_update_tracking -> nil
+      :s4_record_cost -> nil
+      :s5_update -> nil
+      :s6_destroy -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :confirm_shipment -> false
-      :update_tracking -> false
-      :record_cost -> false
-      :update -> false
-      :destroy -> false
+      :s1_create -> false
+      :s2_confirm_shipment -> false
+      :s3_update_tracking -> false
+      :s4_record_cost -> false
+      :s5_update -> false
+      :s6_destroy -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :confirm_shipment -> %{max_attempts: 1, backoff_ms: 0}
-      :update_tracking -> %{max_attempts: 1, backoff_ms: 0}
-      :record_cost -> %{max_attempts: 1, backoff_ms: 0}
-      :update -> %{max_attempts: 1, backoff_ms: 0}
-      :destroy -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_confirm_shipment -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_update_tracking -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_record_cost -> %{max_attempts: 1, backoff_ms: 0}
+      :s5_update -> %{max_attempts: 1, backoff_ms: 0}
+      :s6_destroy -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :confirm_shipment -> nil
-      :update_tracking -> nil
-      :record_cost -> nil
-      :update -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_confirm_shipment -> nil
+      :s3_update_tracking -> nil
+      :s4_record_cost -> nil
+      :s5_update -> nil
+      :s6_destroy -> nil
       _ -> nil
     end
   end

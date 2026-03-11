@@ -23,10 +23,6 @@ defmodule UniboExPoc.Sales do
     resource UniboExPoc.Sales.Return.Version
     resource UniboExPoc.Sales.ReturnItem
     resource UniboExPoc.Sales.ReturnItem.Version
-    resource UniboExPoc.Sales.DeliveryCarrier
-    resource UniboExPoc.Sales.DeliveryCarrier.Version
-    resource UniboExPoc.Sales.DeliveryPriceRule
-    resource UniboExPoc.Sales.DeliveryPriceRule.Version
     resource UniboExPoc.Sales.Product
     resource UniboExPoc.Sales.Tax
     resource UniboExPoc.Sales.SalesOrderItemTaxRel

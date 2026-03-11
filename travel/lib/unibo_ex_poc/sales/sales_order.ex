@@ -41,6 +41,7 @@ defmodule UniboExPoc.Sales.SalesOrder do
   postgres do
     table "sales_orders"
     repo UniboExPoc.Repo
+    identity_index_names unique_order_name: "idx_sales_orders_unique_order_name"
   end
 
   graphql do
@@ -145,17 +146,26 @@ defmodule UniboExPoc.Sales.SalesOrder do
       public? true
       source_attribute :created_by_party_id
     end
+    belongs_to :company_party, UniboExPoc.Sales.Party do
+      public? true
+      allow_nil? false
+    end
     has_many :shipments, UniboExPoc.Sales.SalesOrderShipment do
       public? true
     end
     has_many :returns, UniboExPoc.Sales.Return do
       public? true
     end
+    has_many :source_cross_org_transactions, UniboExPoc.Delivery.CrossOrgTransaction do
+      public? true
+      destination_attribute :source_sales_order_id
+    end
   end
 
   actions do
     defaults [:read]
     create :create do
+      description "Create Sales Order via Create. doc_url: graphql://contract/sales/create_sales_sales_order"
       primary? true
       accept [:name, :date_order, :promised_delivery_date, :payment_terms, :shipping_address, :currency, :notes]
       argument :items, {:array, :string}, allow_nil?: false
@@ -164,12 +174,13 @@ defmodule UniboExPoc.Sales.SalesOrder do
       change manage_relationship(:customer_id, :customer, type: :append, on_lookup: :relate)
       argument :shipping_partner_id, :uuid, allow_nil?: false
       change manage_relationship(:shipping_partner_id, :shipping_partner, type: :append, on_lookup: :relate)
+      argument :company_party_id, :uuid, allow_nil?: false
+      change manage_relationship(:company_party_id, :company_party, type: :append, on_lookup: :relate)
       validate present(:items)
       # message: "创建销售订单时必须包含至少一条订单行"
       validate present([:partner_id])
       # message: "创建销售订单时必须选择客户"
       change relate_actor(:created_by)
-      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -190,7 +201,9 @@ defmodule UniboExPoc.Sales.SalesOrder do
       description "快速检索"
     end
     update :action_quotation_send do
-      description "发送报价（draft → sent）"
+      description "发送报价（draft → sent）
+
+发送报价（draft → sent）. doc_url: graphql://contract/sales/action_quotation_send_sales_sales_order"
       primary? true
       accept []
       change fn changeset, _ctx ->
@@ -203,11 +216,12 @@ defmodule UniboExPoc.Sales.SalesOrder do
       end
       # message: "只有草稿状态可以发送报价"
       change set_attribute(:state, :sent)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_confirm do
-      description "确认订单（draft/sent → sale）"
+      description "确认订单（draft/sent → sale）
+
+确认订单（draft/sent → sale）. doc_url: graphql://contract/sales/action_confirm_sales_sales_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)
@@ -226,11 +240,12 @@ defmodule UniboExPoc.Sales.SalesOrder do
       change UniboExPoc.Sales.Changes.SalesOrder.ActionConfirmCreateRelated5
       change UniboExPoc.Sales.Changes.SalesOrder.ActionConfirmCall6
       change set_attribute(:locked, true)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_done do
-      description "锁定订单（sale → done/locked）"
+      description "锁定订单（sale → done/locked）
+
+锁定订单（sale → done/locked）. doc_url: graphql://contract/sales/action_done_sales_sales_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)
@@ -243,21 +258,23 @@ defmodule UniboExPoc.Sales.SalesOrder do
       # message: "只有已确认(sale)状态可以锁定"
       change set_attribute(:state, :done)
       change set_attribute(:locked, true)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_cancel do
-      description "取消订单（any → cancel，locked==false 时可执行）"
+      description "取消订单（any → cancel，locked==false 时可执行）
+
+取消订单（any → cancel，locked==false 时可执行）. doc_url: graphql://contract/sales/action_cancel_sales_sales_order"
       accept []
       # skipped: validate compare :locked (incompatible with bulk update atomic path)
       change UniboExPoc.Sales.Changes.SalesOrder.ActionCancelCall10
       change UniboExPoc.Sales.Changes.SalesOrder.ActionCancelCall11
       change set_attribute(:state, :cancel)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :action_draft do
-      description "重置为草稿（cancel → draft）"
+      description "重置为草稿（cancel → draft）
+
+重置为草稿（cancel → draft）. doc_url: graphql://contract/sales/action_draft_sales_sales_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)
@@ -269,7 +286,6 @@ defmodule UniboExPoc.Sales.SalesOrder do
       end
       # message: "只有已取消状态可以重置为草稿"
       change set_attribute(:state, :draft)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     action :create_invoices do
@@ -302,11 +318,16 @@ defmodule UniboExPoc.Sales.SalesOrder do
   end
 
   policies do
+    policy action_type(:read) do
+      authorize_if expr(^actor(:role) == :admin)
+      authorize_if relates_to_actor_via(:company_party)
+    end
+    policy action_type(:update) do
+      authorize_if expr(^actor(:role) == :admin)
+      authorize_if relates_to_actor_via(:company_party)
+    end
     policy action_type(:create) do
       authorize_if expr(actor.role in [:sales_rep, :admin])
-    end
-    policy action_type(:read) do
-      authorize_if always()
     end
   end
 

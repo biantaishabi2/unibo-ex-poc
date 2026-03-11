@@ -35,6 +35,10 @@ defmodule UniboExPoc.Travel.Integration.Runtime do
   def dispatch_sync(_request), do: {:error, provider_not_found("", "", "integration.request")}
 
   defp resolve_provider_handler(provider) do
+    configured_provider_handler(provider) || resolve_builtin_provider_handler(provider)
+  end
+
+  defp configured_provider_handler(provider) do
     dispatch = Application.get_env(@otp_app, :integration_adapter_dispatch)
     providers = Application.get_env(@otp_app, :integration_providers, %{})
 
@@ -50,6 +54,108 @@ defmodule UniboExPoc.Travel.Integration.Runtime do
   rescue
     ArgumentError -> nil
   end
+
+  defp resolve_builtin_provider_handler(provider) do
+    case provider do
+      "shop_caller_context_resolve" -> fn req -> dispatch_builtin_provider("shop_caller_context_resolve", req) end
+      "shop_eligibility_quote" -> fn req -> dispatch_builtin_provider("shop_eligibility_quote", req) end
+      "payment_capture" -> fn req -> dispatch_builtin_provider("payment_capture", req) end
+      "supplier_confirm_booking" -> fn req -> dispatch_builtin_provider("supplier_confirm_booking", req) end
+      "supplier_issue_document" -> fn req -> dispatch_builtin_provider("supplier_issue_document", req) end
+      _ -> nil
+    end
+  end
+
+  defp dispatch_builtin_provider(provider, request) when is_map(request) do
+    request_id = normalize_text(fetch(request, :request_id, "integration.request"))
+    action = normalize_text(fetch(request, :action, ""))
+    payload = normalize_payload(fetch(request, :payload, %{}))
+    forced_code = normalize_text(fetch(payload, :force_error_code, ""))
+    if forced_code != "" do
+      {:error, %{
+        "code" => forced_code,
+        "message" => "mocked integration error: #{forced_code}",
+        "audit" => normalize_audit(%{}, request_id, provider, action, "error", forced_code),
+        "retry_hint" => %{"retryable" => false, "after_ms" => nil, "reason" => nil}
+      }}
+    else
+      {:ok, %{
+        payload: builtin_mock_payload(provider, action, request_id, payload),
+        audit: normalize_audit(%{}, request_id, provider, action, "success", "integration_mock_success")
+      }}
+    end
+  end
+
+  defp builtin_mock_payload("shop_caller_context_resolve", "create_order", request_id, payload) do
+    %{
+      "current_shop_id" => fetch(payload, :current_shop_id, fetch(payload, :shop_id, fetch(payload, :host_shop_id, mock_uuid(request_id, "shop_caller_context_resolve", "create_order", "current_shop_id")))),
+      "member_id" => fetch(payload, :member_id, "mock_member_id"),
+      "enterprise_id" => fetch(payload, :enterprise_id, fetch(payload, :tenant_id, "mock_enterprise_id"))
+    }
+  end
+
+  defp builtin_mock_payload("shop_eligibility_quote", "confirm_quote", request_id, payload) do
+    %{
+      "allowed" => true,
+      "reason" => "mock_shop_eligibility_quote_confirm_quote_reason",
+      "product_type" => fetch(payload, :product_type, "mock_product_type"),
+      "travel_enabled" => true,
+      "points_enabled" => true,
+      "mixed_payment_allowed" => true,
+      "cash_payment_enabled" => true,
+      "available_points" => 0,
+      "points_requested" => fetch(payload, :points_requested, 0),
+      "points_sufficient" => true,
+      "points_deduction_amount" => fetch(payload, :points_deduction_amount, 0),
+      "payable_amount" => fetch(payload, :payable_amount, fetch(payload, :amount, 0)),
+      "recommended_payment_method" => "cash",
+      "member_id" => fetch(payload, :member_id, "mock_member_id"),
+      "shop_id" => fetch(payload, :current_shop_id, fetch(payload, :shop_id, fetch(payload, :host_shop_id, mock_uuid(request_id, "shop_eligibility_quote", "confirm_quote", "shop_id")))),
+      "amount" => fetch(payload, :amount, fetch(payload, :total_amount, 0))
+    }
+  end
+
+  defp builtin_mock_payload("payment_capture", "submit_order", request_id, payload) do
+    %{
+      "status" => "approved",
+      "method" => fetch(payload, :payment_method, "cash"),
+      "external_ref" => fetch(payload, :external_ref, request_id),
+      "points_used" => fetch(payload, :points_used, 0),
+      "points_deduction_amount" => fetch(payload, :points_deduction_amount, 0),
+      "cash_amount" => fetch(payload, :cash_amount, 0),
+      "reason" => "mock_payment_capture_submit_order_reason"
+    }
+  end
+
+  defp builtin_mock_payload("payment_capture", "submit_waitlist", request_id, payload) do
+    %{
+      "status" => "approved",
+      "method" => fetch(payload, :payment_method, "cash"),
+      "external_ref" => fetch(payload, :external_ref, request_id),
+      "points_used" => fetch(payload, :points_used, 0),
+      "points_deduction_amount" => fetch(payload, :points_deduction_amount, 0),
+      "cash_amount" => fetch(payload, :cash_amount, 0),
+      "reason" => "mock_payment_capture_submit_waitlist_reason"
+    }
+  end
+
+  defp builtin_mock_payload("supplier_confirm_booking", "confirm_booking", request_id, payload) do
+    %{
+      "confirm_status" => "mock_supplier_confirm_booking_confirm_booking_confirm_status",
+      "supplier_booking_ref" => "mock_supplier_confirm_booking_confirm_booking_supplier_booking_ref",
+      "confirmation_payload" => "mock_supplier_confirm_booking_confirm_booking_confirmation_payload"
+    }
+  end
+
+  defp builtin_mock_payload("supplier_issue_document", "issue_voucher_or_ticket", request_id, payload) do
+    %{
+      "issue_status" => "mock_supplier_issue_document_issue_voucher_or_ticket_issue_status",
+      "voucher_or_ticket_ref" => "mock_supplier_issue_document_issue_voucher_or_ticket_voucher_or_ticket_ref",
+      "ticket_refs" => %{}
+    }
+  end
+
+  defp builtin_mock_payload(_provider, _action, request_id, _payload), do: %{"request_id" => request_id}
 
   defp normalize_success(response, provider, action, request_id) do
     response_map = normalize_map(response)
@@ -146,6 +252,13 @@ defmodule UniboExPoc.Travel.Integration.Runtime do
   defp normalize_text(value) when is_binary(value), do: String.trim(value)
   defp normalize_text(value) when is_atom(value), do: value |> Atom.to_string() |> String.trim()
   defp normalize_text(value), do: value |> to_string() |> String.trim()
+
+  defp mock_uuid(request_id, provider, action, field) do
+    seed = Enum.join([request_id, provider, action, field], ":")
+    hex = :crypto.hash(:md5, seed) |> Base.encode16(case: :lower)
+    <<a::binary-size(8), b::binary-size(4), c::binary-size(4), d::binary-size(4), e::binary-size(12)>> = hex
+    Enum.join([a, b, c, d, e], "-")
+  end
 
   defp fetch(map, key, default) when is_map(map) do
     Map.get(map, key) || Map.get(map, Atom.to_string(key)) || default

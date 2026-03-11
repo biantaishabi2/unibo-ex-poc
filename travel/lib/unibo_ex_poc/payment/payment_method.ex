@@ -20,7 +20,8 @@ defmodule UniboExPoc.Payment.PaymentMethod do
     otp_app: :travel,
     domain: UniboExPoc.Payment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
+    authorizers: [Ash.Policy.Authorizer]
 
   resource do
     description "支付方式，对应用户/客户绑定的具体支付手段（信用卡、银行账户、礼品卡等）"
@@ -103,28 +104,30 @@ defmodule UniboExPoc.Payment.PaymentMethod do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Payment Method via Create. doc_url: graphql://contract/payment/create_payment_payment_method"
       primary? true
       accept [:party_id, :payment_method_type_id, :description, :gl_account_id, :fin_account_id, :from_date, :thru_date, :is_default]
       validate present(:party_id)
       validate present(:payment_method_type_id)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Payment Method via Update. doc_url: graphql://contract/payment/update_payment_payment_method"
       primary? true
       accept [:description, :gl_account_id, :fin_account_id, :from_date, :thru_date, :is_default]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :set_default do
-      description "将该支付方式设为默认"
+      description "将该支付方式设为默认
+
+将该支付方式设为默认. doc_url: graphql://contract/payment/set_default_payment_payment_method"
       accept [:is_default]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :expire do
-      description "使支付方式过期（软删除）"
+      description "使支付方式过期（软删除）
+
+使支付方式过期（软删除）. doc_url: graphql://contract/payment/expire_payment_payment_method"
       accept [:thru_date]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end
@@ -137,6 +140,21 @@ defmodule UniboExPoc.Payment.PaymentMethod do
 
   archive do
     archive_related [:payments, :gateway_responses]
+  end
+
+  policies do
+    policy action_type(:read) do
+      authorize_if expr(^actor(:role) == :admin)
+      authorize_if relates_to_actor_via(:party)
+    end
+    policy action_type(:update) do
+      authorize_if expr(^actor(:role) == :admin)
+      authorize_if relates_to_actor_via(:party)
+    end
+    policy action_type(:create) do
+      forbid_unless relates_to_actor_via(:party)
+      authorize_if expr(^actor(:role) in [:finance_clerk, :admin])
+    end
   end
 
 end

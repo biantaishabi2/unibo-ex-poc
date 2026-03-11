@@ -72,16 +72,16 @@ defmodule UniboExPoc.Delivery.CarrierShipmentMethod do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Carrier Shipment Method via Create. doc_url: graphql://contract/delivery/create_delivery_carrier_shipment_method"
       primary? true
       accept [:shipment_method_type_id, :party_id, :role_type_id, :sequence_number, :carrier_service_code]
       validate present(:shipment_method_type_id)
       validate present(:party_id)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Carrier Shipment Method via Update. doc_url: graphql://contract/delivery/update_delivery_carrier_shipment_method"
       primary? true
       accept [:sequence_number, :carrier_service_code]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

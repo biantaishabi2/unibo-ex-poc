@@ -12,6 +12,7 @@ defmodule UniboExPoc.Travel.TravelCabinClass do
   postgres do
     table "travel_cabin_classes"
     repo UniboExPoc.Repo
+    identity_index_names unique_cabin_class_code: "idx_travel_cabin_classes_unique_cabin_class_code"
   end
 
   graphql do
@@ -55,14 +56,14 @@ defmodule UniboExPoc.Travel.TravelCabinClass do
   actions do
     defaults [:read]
     create :create do
+      description "Create Travel Cabin Class via Create. doc_url: graphql://contract/travel/create_travel_travel_cabin_class"
       primary? true
       accept [:cabin_class_code, :cabin_class_name, :cabin_rank, :status]
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Travel Cabin Class via Update. doc_url: graphql://contract/travel/update_travel_travel_cabin_class"
       primary? true
       accept [:cabin_class_name, :cabin_rank, :status]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

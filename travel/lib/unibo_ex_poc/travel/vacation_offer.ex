@@ -18,7 +18,7 @@ defmodule UniboExPoc.Travel.VacationOffer do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource],
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
     notifiers: [UniboExPoc.Travel.VacationOffer.Notifier]
 
   resource do
@@ -28,6 +28,7 @@ defmodule UniboExPoc.Travel.VacationOffer do
   postgres do
     table "travel_vacation_offers"
     repo UniboExPoc.Repo
+    identity_index_names unique_vacation_offer_snapshot: "idx_travel_vacation_offers_unique_vacation_offer_snapshot"
   end
 
   multitenancy do
@@ -157,6 +158,7 @@ defmodule UniboExPoc.Travel.VacationOffer do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Vacation Offer via Create. Headers: x-tenant-id. doc_url: graphql://contract/travel/create_travel_vacation_offer"
       primary? true
       accept [:tenant_id, :host_shop_id, :supplier_code, :package_code, :package_name, :package_type, :departure_city_code, :departure_city_ref_id, :destination_code, :destination_ref_id, :start_date, :end_date, :listed_price, :settlement_price, :currency, :inventory_count, :booking_rules, :cancellation_policy, :sale_status]
       validate present(:tenant_id)
@@ -165,15 +167,15 @@ defmodule UniboExPoc.Travel.VacationOffer do
       validate present(:package_name)
       validate present(:departure_city_code)
       validate present(:destination_code)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Vacation Offer via Update. Headers: x-tenant-id. doc_url: graphql://contract/travel/update_travel_vacation_offer"
       primary? true
       accept [:package_name, :package_type, :departure_city_ref_id, :destination_ref_id, :listed_price, :settlement_price, :currency, :inventory_count, :booking_rules, :cancellation_policy]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :activate do
+      description "Update Vacation Offer via Activate. Headers: x-tenant-id. doc_url: graphql://contract/travel/activate_travel_vacation_offer"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :sale_status)
@@ -185,10 +187,10 @@ defmodule UniboExPoc.Travel.VacationOffer do
       end
       # message: "只有草稿或停用中的 offer 可以 activate"
       change set_attribute(:sale_status, :active)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
+      description "Update Vacation Offer via Deactivate. Headers: x-tenant-id. doc_url: graphql://contract/travel/deactivate_travel_vacation_offer"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :sale_status)
@@ -200,10 +202,10 @@ defmodule UniboExPoc.Travel.VacationOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :inactive)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :expire do
+      description "Update Vacation Offer via Expire. Headers: x-tenant-id. doc_url: graphql://contract/travel/expire_travel_vacation_offer"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :sale_status)
@@ -215,7 +217,6 @@ defmodule UniboExPoc.Travel.VacationOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :expired)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end
@@ -228,6 +229,13 @@ defmodule UniboExPoc.Travel.VacationOffer do
 
   identities do
     identity :unique_vacation_offer_snapshot, [:tenant_id, :supplier_code, :package_code, :start_date, :end_date]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    attributes_as_attributes [:tenant_id]
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

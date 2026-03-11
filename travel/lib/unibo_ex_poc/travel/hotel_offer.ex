@@ -18,7 +18,7 @@ defmodule UniboExPoc.Travel.HotelOffer do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource],
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
     notifiers: [UniboExPoc.Travel.HotelOffer.Notifier]
 
   resource do
@@ -28,6 +28,7 @@ defmodule UniboExPoc.Travel.HotelOffer do
   postgres do
     table "travel_hotel_offers"
     repo UniboExPoc.Repo
+    identity_index_names unique_hotel_offer_snapshot: "idx_travel_hotel_offers_unique_hotel_offer_snapshot"
   end
 
   multitenancy do
@@ -162,6 +163,7 @@ defmodule UniboExPoc.Travel.HotelOffer do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Hotel Offer via Create. Headers: x-tenant-id. doc_url: graphql://contract/travel/create_travel_hotel_offer"
       primary? true
       accept [:tenant_id, :host_shop_id, :supplier_code, :hotel_code, :hotel_ref_id, :hotel_name, :city_code, :city_ref_id, :room_type_code, :room_type_ref_id, :rate_plan_code, :checkin_date, :checkout_date, :listed_price, :settlement_price, :currency, :inventory_count, :cancellation_policy, :guarantee_policy, :sale_status]
       validate present(:tenant_id)
@@ -169,15 +171,15 @@ defmodule UniboExPoc.Travel.HotelOffer do
       validate present(:hotel_code)
       validate present(:room_type_code)
       validate present(:rate_plan_code)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Hotel Offer via Update. Headers: x-tenant-id. doc_url: graphql://contract/travel/update_travel_hotel_offer"
       primary? true
       accept [:hotel_name, :city_code, :city_ref_id, :hotel_ref_id, :room_type_ref_id, :listed_price, :settlement_price, :currency, :inventory_count, :cancellation_policy, :guarantee_policy]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :activate do
+      description "Update Hotel Offer via Activate. Headers: x-tenant-id. doc_url: graphql://contract/travel/activate_travel_hotel_offer"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :sale_status)
@@ -189,10 +191,10 @@ defmodule UniboExPoc.Travel.HotelOffer do
       end
       # message: "只有草稿或停用中的 offer 可以 activate"
       change set_attribute(:sale_status, :active)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
+      description "Update Hotel Offer via Deactivate. Headers: x-tenant-id. doc_url: graphql://contract/travel/deactivate_travel_hotel_offer"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :sale_status)
@@ -204,10 +206,10 @@ defmodule UniboExPoc.Travel.HotelOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :inactive)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :expire do
+      description "Update Hotel Offer via Expire. Headers: x-tenant-id. doc_url: graphql://contract/travel/expire_travel_hotel_offer"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :sale_status)
@@ -219,7 +221,6 @@ defmodule UniboExPoc.Travel.HotelOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :expired)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end
@@ -232,6 +233,13 @@ defmodule UniboExPoc.Travel.HotelOffer do
 
   identities do
     identity :unique_hotel_offer_snapshot, [:tenant_id, :supplier_code, :hotel_code, :room_type_code, :rate_plan_code, :checkin_date, :checkout_date]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    attributes_as_attributes [:tenant_id]
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

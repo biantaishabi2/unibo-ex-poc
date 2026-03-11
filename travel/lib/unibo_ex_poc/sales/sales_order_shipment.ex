@@ -21,6 +21,7 @@ defmodule UniboExPoc.Sales.SalesOrderShipment do
   postgres do
     table "sales_order_shipments"
     repo UniboExPoc.Repo
+    identity_index_names unique_shipment_number: "idx_sales_order_shipments_unique_shipment_number"
   end
 
   graphql do
@@ -93,13 +94,13 @@ defmodule UniboExPoc.Sales.SalesOrderShipment do
   actions do
     defaults [:read]
     create :create do
+      description "Create Sales Order Shipment via Create. doc_url: graphql://contract/sales/create_sales_sales_order_shipment"
       primary? true
       accept [:shipment_number, :ship_date, :carrier, :tracking_number, :shipping_address, :notes]
       argument :sales_order_id, :uuid, allow_nil?: false
       change manage_relationship(:sales_order_id, :sales_order, type: :append, on_lookup: :relate)
       validate present(:shipment_number)
       change relate_actor(:shipped_by)
-      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -120,7 +121,9 @@ defmodule UniboExPoc.Sales.SalesOrderShipment do
       description "快速检索"
     end
     update :ship do
-      description "标记已发货"
+      description "标记已发货
+
+标记已发货. doc_url: graphql://contract/sales/ship_sales_sales_order_shipment"
       primary? true
       accept []
       change fn changeset, _ctx ->
@@ -133,11 +136,12 @@ defmodule UniboExPoc.Sales.SalesOrderShipment do
       end
       # message: "只有草稿状态可以发货"
       change set_attribute(:status, :shipped)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deliver do
-      description "标记已送达"
+      description "标记已送达
+
+标记已送达. doc_url: graphql://contract/sales/deliver_sales_sales_order_shipment"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -149,7 +153,6 @@ defmodule UniboExPoc.Sales.SalesOrderShipment do
       end
       # message: "只有已发货状态可以标记送达"
       change set_attribute(:status, :delivered)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end
