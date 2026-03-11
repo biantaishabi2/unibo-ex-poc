@@ -7,11 +7,11 @@ defmodule UniboExPoc.Payment.Workflows.PaymentRefund.RefundLifecycleWorkflow do
   alias UniboExPoc.Payment.PaymentRefund
 
   def steps do
-    [:create, :approve, :process, :reject]
+    [:s1_create, :s2_approve, :s3_process, :s4_reject]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["approve","reject"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["process"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"approve"},{"idempotency_key":null,"next":["reject"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"process"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"reject"}],"workflow":"refund_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["approve","reject"],"next_step_ids":["s2_approve","s4_reject"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["process"],"next_step_ids":["s3_process"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"approve","step_id":"s2_approve"},{"idempotency_key":null,"next":["reject"],"next_step_ids":["s4_reject"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"process","step_id":"s3_process"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"reject","step_id":"s4_reject"}],"workflow":"refund_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,13 +98,13 @@ defmodule UniboExPoc.Payment.Workflows.PaymentRefund.RefundLifecycleWorkflow do
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(PaymentRefund, :create, params), ash_opts)
-      :approve ->
+      :s2_approve ->
         Ash.update(Ash.Changeset.for_update(record, :approve, params), ash_opts)
-      :process ->
+      :s3_process ->
         Ash.update(Ash.Changeset.for_update(record, :process, params), ash_opts)
-      :reject ->
+      :s4_reject ->
         Ash.update(Ash.Changeset.for_update(record, :reject, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -130,62 +130,60 @@ defmodule UniboExPoc.Payment.Workflows.PaymentRefund.RefundLifecycleWorkflow do
 
   defp next_candidates(step) do
     case step do
-      :create -> [:approve, :reject]
-      :approve -> [:process]
-      :process -> [:reject]
-      :reject -> []
+      :s1_create -> [:s2_approve, :s4_reject]
+      :s2_approve -> [:s3_process]
+      :s3_process -> [:s4_reject]
+      :s4_reject -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :approve -> []
-      :process -> []
-      :reject -> []
+      :s1_create -> []
+      :s2_approve -> []
+      :s3_process -> []
+      :s4_reject -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :approve -> nil
-      :process -> nil
-      :reject -> nil
+      :s1_create -> nil
+      :s2_approve -> nil
+      :s3_process -> nil
+      :s4_reject -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :approve -> false
-      :process -> false
-      :reject -> false
+      :s1_create -> false
+      :s2_approve -> false
+      :s3_process -> false
+      :s4_reject -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :approve -> %{max_attempts: 1, backoff_ms: 0}
-      :process -> %{max_attempts: 1, backoff_ms: 0}
-      :reject -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_approve -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_process -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_reject -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :approve -> nil
-      :process -> nil
-      :reject -> nil
+      :s1_create -> nil
+      :s2_approve -> nil
+      :s3_process -> nil
+      :s4_reject -> nil
       _ -> nil
     end
   end

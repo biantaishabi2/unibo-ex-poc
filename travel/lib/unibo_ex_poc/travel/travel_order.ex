@@ -36,7 +36,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource],
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
     notifiers: [UniboExPoc.Travel.TravelOrder.Notifier]
 
   resource do
@@ -46,6 +46,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
   postgres do
     table "travel_orders"
     repo UniboExPoc.Repo
+    identity_index_names unique_order_no: "idx_travel_orders_unique_order_no"
   end
 
   multitenancy do
@@ -92,6 +93,14 @@ defmodule UniboExPoc.Travel.TravelOrder do
       public? true
       description "宿主商城 ID，用于 sidecar 对接上下文"
     end
+    attribute :host_member_id, :string do
+      public? true
+      description "宿主会员标识，来自 shop caller context"
+    end
+    attribute :host_enterprise_id, :string do
+      public? true
+      description "宿主企业标识，来自 shop caller context"
+    end
     attribute :order_no, :string do
       allow_nil? false
       public? true
@@ -137,6 +146,10 @@ defmodule UniboExPoc.Travel.TravelOrder do
       public? true
       description "积分抵现金额"
     end
+    attribute :recommended_payment_method, :string do
+      public? true
+      description "宿主 quote 返回的推荐支付方式"
+    end
     attribute :currency, :string do
       default "CNY"
       public? true
@@ -171,6 +184,10 @@ defmodule UniboExPoc.Travel.TravelOrder do
     attribute :supplier_order_ref, :string do
       public? true
       description "供应商订单号"
+    end
+    attribute :payment_external_ref, :string do
+      public? true
+      description "宿主支付侧外部支付流水号"
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
@@ -209,6 +226,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
   actions do
     defaults [:read, :destroy]
     create :create_order do
+      description "Create Travel Order via Create Order. Conditional requirements: product_type=hotel -> hotel_offer_id required; product_type=flight -> flight_offer_id required; product_type=vacation -> vacation_offer_id required; product_type=train -> train_offer_id required. Headers: x-tenant-id. doc_url: graphql://contract/travel/create_create_order_travel_travel_order"
       primary? true
       accept [:tenant_id, :host_shop_id, :hotel_offer_id, :flight_offer_id, :vacation_offer_id, :train_offer_id, :order_no, :product_type, :customer_id, :contact_name, :contact_phone, :traveler_count, :total_amount, :points_to_use, :points_deduction_amount, :currency, :ticket_passenger_infos, :seat_selection_snapshot]
       validate present(:tenant_id)
@@ -218,24 +236,24 @@ defmodule UniboExPoc.Travel.TravelOrder do
       validate present(:contact_phone)
       validate present([:hotel_offer_id, :flight_offer_id, :vacation_offer_id, :train_offer_id], exactly: 1)
       # message: "hotel_offer_id、flight_offer_id、vacation_offer_id、train_offer_id 必须四选一"
-      validate present(:hotel_offer_id)
+      validate present(:hotel_offer_id), where: [attribute_equals(:product_type, :hotel)]
       # message: "hotel 订单必须绑定 hotel_offer_id"
-      validate present(:flight_offer_id)
+      validate present(:flight_offer_id), where: [attribute_equals(:product_type, :flight)]
       # message: "flight 订单必须绑定 flight_offer_id"
-      validate present(:vacation_offer_id)
+      validate present(:vacation_offer_id), where: [attribute_equals(:product_type, :vacation)]
       # message: "vacation 订单必须绑定 vacation_offer_id"
-      validate present(:train_offer_id)
+      validate present(:train_offer_id), where: [attribute_equals(:product_type, :train)]
       # message: "train 订单必须绑定 train_offer_id"
-      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelOrder.CreateOrderShopCallerContextResolveBridge
     end
     update :update do
+      description "Update Travel Order via Update. Headers: x-tenant-id. doc_url: graphql://contract/travel/update_travel_travel_order"
       primary? true
       accept [:contact_name, :contact_phone, :traveler_count, :ticket_passenger_infos, :seat_selection_snapshot]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :confirm_quote do
+      description "Update Travel Order via Confirm Quote. Headers: x-tenant-id. doc_url: graphql://contract/travel/confirm_quote_travel_travel_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -247,11 +265,11 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 draft 订单可以 confirm_quote"
       change set_attribute(:status, :quoted)
-      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelOrder.ConfirmQuoteShopEligibilityQuoteBridge
       require_atomic? false
     end
     update :submit_order do
+      description "Update Travel Order via Submit Order. Headers: x-tenant-id. doc_url: graphql://contract/travel/submit_order_travel_travel_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -263,11 +281,11 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 quoted 订单可以提交普通购票或候补"
       change set_attribute(:status, :submitted)
-      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelOrder.SubmitOrderPaymentCaptureBridge
       require_atomic? false
     end
     update :submit_waitlist do
+      description "Update Travel Order via Submit Waitlist. Headers: x-tenant-id. doc_url: graphql://contract/travel/submit_waitlist_travel_travel_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -281,11 +299,11 @@ defmodule UniboExPoc.Travel.TravelOrder do
       change set_attribute(:status, :submitted)
       change set_attribute(:booking_mode, :waitlist)
       change set_attribute(:waitlist_status, :pending)
-      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelOrder.SubmitWaitlistPaymentCaptureBridge
       require_atomic? false
     end
     update :mark_payment_succeeded do
+      description "Update Travel Order via Mark Payment Succeeded. Headers: x-tenant-id. doc_url: graphql://contract/travel/mark_payment_succeeded_travel_travel_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -297,11 +315,11 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 submitted 订单可以进入支付成功或失败结果"
       change set_attribute(:status, :booking_pending)
-      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelOrder.MarkPaymentSucceededSupplierBookingSubmitBridge
       require_atomic? false
     end
     update :mark_booked do
+      description "Update Travel Order via Mark Booked. Headers: x-tenant-id. doc_url: graphql://contract/travel/mark_booked_travel_travel_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -313,10 +331,10 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 booking_pending 订单可以完成出票、兑现候补或取消候补"
       change set_attribute(:status, :booked)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :fulfill_waitlist do
+      description "Update Travel Order via Fulfill Waitlist. Headers: x-tenant-id. doc_url: graphql://contract/travel/fulfill_waitlist_travel_travel_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -338,10 +356,10 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "只有 waitlist_pending 的订单可以兑现或取消候补"
       change set_attribute(:status, :booked)
       change set_attribute(:waitlist_status, :fulfilled)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_completed do
+      description "Update Travel Order via Mark Completed. Headers: x-tenant-id. doc_url: graphql://contract/travel/mark_completed_travel_travel_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -353,10 +371,10 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 booked 订单可以完成、取消或改签"
       change set_attribute(:status, :completed)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :request_cancel do
+      description "Update Travel Order via Request Cancel. Headers: x-tenant-id. doc_url: graphql://contract/travel/request_cancel_travel_travel_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -368,10 +386,10 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 booked 订单可以完成、取消或改签"
       change set_attribute(:status, :cancel_pending)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel_waitlist do
+      description "Update Travel Order via Cancel Waitlist. Headers: x-tenant-id. doc_url: graphql://contract/travel/cancel_waitlist_travel_travel_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -393,10 +411,10 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "只有 waitlist_pending 的订单可以兑现或取消候补"
       change set_attribute(:status, :cancelled)
       change set_attribute(:waitlist_status, :cancelled)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :approve_cancel do
+      description "Update Travel Order via Approve Cancel. Headers: x-tenant-id. doc_url: graphql://contract/travel/approve_cancel_travel_travel_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -408,10 +426,10 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 cancel_pending 订单可以 approve_cancel"
       change set_attribute(:status, :cancelled)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :request_change do
+      description "Update Travel Order via Request Change. Headers: x-tenant-id. doc_url: graphql://contract/travel/request_change_travel_travel_order"
       accept [:original_order_ref]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -424,10 +442,10 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "只有 booked 订单可以完成、取消或改签"
       # skipped: validate present :original_order_ref (incompatible with bulk update atomic path)
       change set_attribute(:change_status, :pending)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :confirm_change do
+      description "Update Travel Order via Confirm Change. Headers: x-tenant-id. doc_url: graphql://contract/travel/confirm_change_travel_travel_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :change_status)
@@ -440,10 +458,10 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "只有 change_pending 的订单可以 confirm_change"
       # skipped: validate present :original_order_ref (incompatible with bulk update atomic path)
       change set_attribute(:change_status, :changed)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_order_failed do
+      description "Update Travel Order via Mark Order Failed. Headers: x-tenant-id. doc_url: graphql://contract/travel/mark_order_failed_travel_travel_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -455,7 +473,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 submitted 订单可以进入支付成功或失败结果"
       change set_attribute(:status, :failed)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end
@@ -469,6 +486,13 @@ defmodule UniboExPoc.Travel.TravelOrder do
 
   identities do
     identity :unique_order_no, [:order_no]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    attributes_as_attributes [:tenant_id]
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

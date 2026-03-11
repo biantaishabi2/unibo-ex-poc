@@ -23,6 +23,7 @@ defmodule UniboExPoc.Delivery.Shipment do
     domain: UniboExPoc.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
+    authorizers: [Ash.Policy.Authorizer],
     notifiers: [UniboExPoc.Delivery.Shipment.Notifier]
 
   resource do
@@ -175,6 +176,11 @@ defmodule UniboExPoc.Delivery.Shipment do
       public? true
       source_attribute :party_id_from
     end
+    belongs_to :company_party, UniboExPoc.Delivery.Party do
+      public? true
+      source_attribute :party_id_from
+      define_attribute? false
+    end
     has_many :shipment_items, UniboExPoc.Delivery.ShipmentItem do
       public? true
       destination_attribute :shipment_id
@@ -191,60 +197,70 @@ defmodule UniboExPoc.Delivery.Shipment do
       public? true
       destination_attribute :shipment_id
     end
+    belongs_to :cross_org_transaction, UniboExPoc.Delivery.CrossOrgTransaction do
+      public? true
+    end
   end
 
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Shipment via Create. doc_url: graphql://contract/delivery/create_delivery_shipment"
       primary? true
-      accept [:shipment_id, :shipment_type_id, :primary_order_id, :origin_facility_id, :destination_facility_id, :party_id_to, :party_id_from, :estimated_ship_date, :estimated_arrival_date, :handling_instructions, :currency_uom_id, :estimated_ship_cost]
+      accept [:shipment_id, :shipment_type_id, :primary_order_id, :origin_facility_id, :destination_facility_id, :party_id_to, :party_id_from, :estimated_ship_date, :estimated_arrival_date, :handling_instructions, :currency_uom_id, :estimated_ship_cost, :cross_org_transaction_id]
       validate present(:shipment_type_id)
       change set_attribute(:status_id, :SHIPMENT_INPUT)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Shipment via Update. doc_url: graphql://contract/delivery/update_delivery_shipment"
       primary? true
       accept [:status_id, :handling_instructions, :estimated_ship_date, :estimated_arrival_date, :additional_shipping_charge]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :submit do
-      description "提交待处理（-> SHIPMENT_INPUT）"
+      description "提交待处理（-> SHIPMENT_INPUT）
+
+提交待处理（-> SHIPMENT_INPUT）. doc_url: graphql://contract/delivery/submit_delivery_shipment"
       accept []
       change set_attribute(:status_id, :SHIPMENT_INPUT)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :pick do
-      description "确认拣货（-> SHIPMENT_SCHEDULED）"
+      description "确认拣货（-> SHIPMENT_SCHEDULED）
+
+确认拣货（-> SHIPMENT_SCHEDULED）. doc_url: graphql://contract/delivery/pick_delivery_shipment"
       accept []
       change set_attribute(:status_id, :SHIPMENT_SCHEDULED)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :pack do
-      description "确认打包（-> SHIPMENT_PACKED）"
+      description "确认打包（-> SHIPMENT_PACKED）
+
+确认打包（-> SHIPMENT_PACKED）. doc_url: graphql://contract/delivery/pack_delivery_shipment"
       accept []
       change set_attribute(:status_id, :SHIPMENT_PACKED)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :ship do
-      description "标记已发出（-> SHIPMENT_SHIPPED）"
+      description "标记已发出（-> SHIPMENT_SHIPPED）
+
+标记已发出（-> SHIPMENT_SHIPPED）. doc_url: graphql://contract/delivery/ship_delivery_shipment"
       accept []
       change set_attribute(:status_id, :SHIPMENT_SHIPPED)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deliver do
-      description "标记已收货（-> SHIPMENT_DELIVERED）"
+      description "标记已收货（-> SHIPMENT_DELIVERED）
+
+标记已收货（-> SHIPMENT_DELIVERED）. doc_url: graphql://contract/delivery/deliver_delivery_shipment"
       accept []
       change set_attribute(:status_id, :SHIPMENT_DELIVERED)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
-      description "取消发货单（-> SHIPMENT_CANCELLED）"
+      description "取消发货单（-> SHIPMENT_CANCELLED）
+
+取消发货单（-> SHIPMENT_CANCELLED）. doc_url: graphql://contract/delivery/cancel_delivery_shipment"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status_id)
@@ -256,7 +272,6 @@ defmodule UniboExPoc.Delivery.Shipment do
       end
       # message: "已发出的发货单不能直接取消，需走逆向退货流程"
       change set_attribute(:status_id, :SHIPMENT_CANCELLED)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end
@@ -269,6 +284,21 @@ defmodule UniboExPoc.Delivery.Shipment do
 
   archive do
     archive_related [:shipment_items, :shipment_packages, :route_segments, :status_history]
+  end
+
+  policies do
+    policy action_type(:read) do
+      authorize_if expr(^actor(:role) == :admin)
+      authorize_if relates_to_actor_via(:company_party)
+    end
+    policy action_type(:update) do
+      authorize_if expr(^actor(:role) == :admin)
+      authorize_if relates_to_actor_via(:company_party)
+    end
+    policy action_type(:create) do
+      forbid_unless relates_to_actor_via(:company_party)
+      authorize_if expr(^actor(:role) in [:logistics_manager, :admin])
+    end
   end
 
 end

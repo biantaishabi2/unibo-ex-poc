@@ -78,14 +78,14 @@ defmodule UniboExPoc.Delivery.ShipmentType do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Shipment Type via Create. doc_url: graphql://contract/delivery/create_delivery_shipment_type"
       primary? true
       accept [:shipment_type_id, :parent_type_id, :description, :has_table]
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Shipment Type via Update. doc_url: graphql://contract/delivery/update_delivery_shipment_type"
       primary? true
       accept [:description]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

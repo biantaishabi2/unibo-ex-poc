@@ -12,6 +12,7 @@ defmodule UniboExPoc.Travel.TravelHotel do
   postgres do
     table "travel_hotels"
     repo UniboExPoc.Repo
+    identity_index_names unique_hotel_code: "idx_travel_hotels_unique_hotel_code"
   end
 
   graphql do
@@ -65,14 +66,14 @@ defmodule UniboExPoc.Travel.TravelHotel do
   actions do
     defaults [:read]
     create :create do
+      description "Create Travel Hotel via Create. doc_url: graphql://contract/travel/create_travel_travel_hotel"
       primary? true
       accept [:hotel_code, :hotel_name, :city_id, :city_code, :hotel_star, :status]
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Travel Hotel via Update. doc_url: graphql://contract/travel/update_travel_travel_hotel"
       primary? true
       accept [:hotel_name, :city_id, :city_code, :hotel_star, :status]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

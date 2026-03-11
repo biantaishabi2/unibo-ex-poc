@@ -7,11 +7,11 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrderShipment.ShipmentLifecycleWorkflo
   alias UniboExPoc.Sales.SalesOrderShipment
 
   def steps do
-    [:create, :ship, :deliver]
+    [:s1_create, :s2_ship, :s3_deliver]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["ship"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["deliver"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"ship"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"deliver"}],"workflow":"shipment_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["ship"],"next_step_ids":["s2_ship"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["deliver"],"next_step_ids":["s3_deliver"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"ship","step_id":"s2_ship"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"deliver","step_id":"s3_deliver"}],"workflow":"shipment_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,11 +98,11 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrderShipment.ShipmentLifecycleWorkflo
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(SalesOrderShipment, :create, params), ash_opts)
-      :ship ->
+      :s2_ship ->
         Ash.update(Ash.Changeset.for_update(record, :ship, params), ash_opts)
-      :deliver ->
+      :s3_deliver ->
         Ash.update(Ash.Changeset.for_update(record, :deliver, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -128,56 +128,54 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrderShipment.ShipmentLifecycleWorkflo
 
   defp next_candidates(step) do
     case step do
-      :create -> [:ship]
-      :ship -> [:deliver]
-      :deliver -> []
+      :s1_create -> [:s2_ship]
+      :s2_ship -> [:s3_deliver]
+      :s3_deliver -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :ship -> []
-      :deliver -> []
+      :s1_create -> []
+      :s2_ship -> []
+      :s3_deliver -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :ship -> nil
-      :deliver -> nil
+      :s1_create -> nil
+      :s2_ship -> nil
+      :s3_deliver -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :ship -> false
-      :deliver -> false
+      :s1_create -> false
+      :s2_ship -> false
+      :s3_deliver -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :ship -> %{max_attempts: 1, backoff_ms: 0}
-      :deliver -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_ship -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_deliver -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :ship -> nil
-      :deliver -> nil
+      :s1_create -> nil
+      :s2_ship -> nil
+      :s3_deliver -> nil
       _ -> nil
     end
   end

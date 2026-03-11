@@ -90,21 +90,23 @@ defmodule UniboExPoc.Payment.PaymentToken do
   actions do
     defaults [:read]
     create :create do
+      description "Create Payment Token via Create. doc_url: graphql://contract/payment/create_payment_payment_token"
       primary? true
       accept [:party_id, :provider_id, :token_reference, :card_last_four, :card_brand, :expiry_date, :is_default]
       validate present(:party_id)
       validate present(:provider_id)
       validate present(:token_reference)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Payment Token via Update. doc_url: graphql://contract/payment/update_payment_payment_token"
       primary? true
       accept [:is_default, :expiry_date]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :revoke do
-      description "吊销令牌，状态变为 revoked"
+      description "吊销令牌，状态变为 revoked
+
+吊销令牌，状态变为 revoked. doc_url: graphql://contract/payment/revoke_payment_payment_token"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -116,11 +118,12 @@ defmodule UniboExPoc.Payment.PaymentToken do
       end
       # message: "只有活跃状态的令牌可以吊销"
       change set_attribute(:status, :revoked)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :expire do
-      description "标记过期，状态变为 expired"
+      description "标记过期，状态变为 expired
+
+标记过期，状态变为 expired. doc_url: graphql://contract/payment/expire_payment_payment_token"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -132,7 +135,6 @@ defmodule UniboExPoc.Payment.PaymentToken do
       end
       # message: "只有活跃状态的令牌可以标记过期"
       change set_attribute(:status, :expired)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

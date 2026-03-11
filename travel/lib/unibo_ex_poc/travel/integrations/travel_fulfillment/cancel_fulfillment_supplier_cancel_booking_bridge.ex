@@ -63,12 +63,16 @@ defmodule UniboExPoc.Travel.Integrations.TravelFulfillment.CancelFulfillmentSupp
       ["arg", key] -> Ash.Changeset.get_argument(changeset, String.to_atom(key))
       ["attr", key] -> Ash.Changeset.get_attribute(changeset, String.to_atom(key))
       ["attribute", key] -> Ash.Changeset.get_attribute(changeset, String.to_atom(key))
+      ["calc", key] -> resolve_calculation(changeset, key)
+      ["calculation", key] -> resolve_calculation(changeset, key)
       ["context", key] -> resolve_context_path(context, key)
       ["literal", value] -> value
       _ -> nil
     end
   end
   defp resolve_source(_changeset, _context, _source_path), do: nil
+
+  defp resolve_calculation(_changeset, _key), do: nil
 
   defp resolve_context_path(context, key_path) when is_map(context) and is_binary(key_path) do
     keys = String.split(key_path, ".", trim: true)

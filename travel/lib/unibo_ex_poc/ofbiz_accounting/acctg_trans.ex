@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.AcctgTrans do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_acctg_transes"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.AcctgTrans do
   end
 
   graphql do
-    type :accounting_acctg_trans
+    type :ofbiz_accounting_acctg_trans
 
     queries do
-      get :get_accounting_acctg_trans, :read
-      list :list_accounting_acctg_transs, :read
+      get :get_ofbiz_accounting_acctg_trans, :read
+      list :list_ofbiz_accounting_acctg_transs, :read
     end
 
     mutations do
-      create :create_accounting_acctg_trans, :create
-      update :update_accounting_acctg_trans, :update
-      destroy :delete_accounting_acctg_trans, :destroy
+      create :create_ofbiz_accounting_acctg_trans, :create
+      update :update_ofbiz_accounting_acctg_trans, :update
+      destroy :delete_ofbiz_accounting_acctg_trans, :destroy
     end
 
   end
@@ -78,12 +78,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.AcctgTrans do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

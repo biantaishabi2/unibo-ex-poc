@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Party.RoleType do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Party,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "party_role_types"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Party.RoleType do
   end
 
   graphql do
-    type :party_role_type
+    type :ofbiz_party_role_type
 
     queries do
-      get :get_party_role_type, :read
-      list :list_party_role_types, :read
+      get :get_ofbiz_party_role_type, :read
+      list :list_ofbiz_party_role_types, :read
     end
 
     mutations do
-      create :create_party_role_type, :create
-      update :update_party_role_type, :update
-      destroy :delete_party_role_type, :destroy
+      create :create_ofbiz_party_role_type, :create
+      update :update_ofbiz_party_role_type, :update
+      destroy :delete_ofbiz_party_role_type, :destroy
     end
 
   end
@@ -52,12 +52,6 @@ defmodule UniboExPoc.Ofbiz.Party.RoleType do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

@@ -5,11 +5,11 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.SalesOrderReopenFlowWorkflow do
   """
 
   def steps do
-    [:action_cancel, :action_draft, :action_confirm]
+    [:s1_action_cancel, :s2_action_draft, :s3_action_confirm]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["action_draft"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"action_cancel"},{"idempotency_key":null,"next":["action_confirm"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"action_draft"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"action_confirm"}],"workflow":"sales_order_reopen_flow"}
+{"steps":[{"idempotency_key":null,"next":["action_draft"],"next_step_ids":["s2_action_draft"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"action_cancel","step_id":"s1_action_cancel"},{"idempotency_key":null,"next":["action_confirm"],"next_step_ids":["s3_action_confirm"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"action_draft","step_id":"s2_action_draft"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"action_confirm","step_id":"s3_action_confirm"}],"workflow":"sales_order_reopen_flow"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -96,11 +96,11 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.SalesOrderReopenFlowWorkflow do
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :action_cancel ->
+      :s1_action_cancel ->
         Ash.update(Ash.Changeset.for_update(record, :action_cancel, params), ash_opts)
-      :action_draft ->
+      :s2_action_draft ->
         Ash.update(Ash.Changeset.for_update(record, :action_draft, params), ash_opts)
-      :action_confirm ->
+      :s3_action_confirm ->
         Ash.update(Ash.Changeset.for_update(record, :action_confirm, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -126,56 +126,54 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.SalesOrderReopenFlowWorkflow do
 
   defp next_candidates(step) do
     case step do
-      :action_cancel -> [:action_draft]
-      :action_draft -> [:action_confirm]
-      :action_confirm -> []
+      :s1_action_cancel -> [:s2_action_draft]
+      :s2_action_draft -> [:s3_action_confirm]
+      :s3_action_confirm -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :action_cancel -> []
-      :action_draft -> []
-      :action_confirm -> []
+      :s1_action_cancel -> []
+      :s2_action_draft -> []
+      :s3_action_confirm -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :action_cancel -> nil
-      :action_draft -> nil
-      :action_confirm -> nil
+      :s1_action_cancel -> nil
+      :s2_action_draft -> nil
+      :s3_action_confirm -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :action_cancel -> false
-      :action_draft -> false
-      :action_confirm -> false
+      :s1_action_cancel -> false
+      :s2_action_draft -> false
+      :s3_action_confirm -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :action_cancel -> %{max_attempts: 1, backoff_ms: 0}
-      :action_draft -> %{max_attempts: 1, backoff_ms: 0}
-      :action_confirm -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_action_cancel -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_action_draft -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_action_confirm -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :action_cancel -> nil
-      :action_draft -> nil
-      :action_confirm -> nil
+      :s1_action_cancel -> nil
+      :s2_action_draft -> nil
+      :s3_action_confirm -> nil
       _ -> nil
     end
   end

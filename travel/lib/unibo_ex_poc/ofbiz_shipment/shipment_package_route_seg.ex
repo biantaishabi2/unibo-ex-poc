@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentPackageRouteSeg do
   end
 
   graphql do
-    type :shipment_shipment_package_route_seg
+    type :ofbiz_shipment_shipment_package_route_seg
 
     queries do
-      get :get_shipment_shipment_package_route_seg, :read
-      list :list_shipment_shipment_package_route_segs, :read
+      get :get_ofbiz_shipment_shipment_package_route_seg, :read
+      list :list_ofbiz_shipment_shipment_package_route_segs, :read
     end
 
     mutations do
-      create :create_shipment_shipment_package_route_seg, :create
-      update :update_shipment_shipment_package_route_seg, :update
-      destroy :delete_shipment_shipment_package_route_seg, :destroy
+      create :create_ofbiz_shipment_shipment_package_route_seg, :create
+      update :update_ofbiz_shipment_shipment_package_route_seg, :update
+      destroy :delete_ofbiz_shipment_shipment_package_route_seg, :destroy
     end
 
   end

@@ -7,11 +7,11 @@ defmodule UniboExPoc.Travel.Workflows.TravelFulfillment.TravelFulfillmentLifecyc
   alias UniboExPoc.Travel.TravelFulfillment
 
   def steps do
-    [:create_fulfillment, :update, :confirm_booking, :issue_voucher_or_ticket, :mark_in_use, :complete_fulfillment, :cancel_fulfillment, :fail_fulfillment, :destroy]
+    [:s1_create_fulfillment, :s2_update, :s3_confirm_booking, :s4_issue_voucher_or_ticket, :s5_mark_in_use, :s6_complete_fulfillment, :s7_cancel_fulfillment, :s8_fail_fulfillment, :s9_destroy]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["update","confirm_booking","fail_fulfillment","cancel_fulfillment","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create_fulfillment"},{"idempotency_key":null,"next":["confirm_booking","fail_fulfillment","cancel_fulfillment","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":["issue_voucher_or_ticket"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"confirm_booking"},{"idempotency_key":null,"next":["mark_in_use","complete_fulfillment"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"issue_voucher_or_ticket"},{"idempotency_key":null,"next":["complete_fulfillment"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_in_use"},{"idempotency_key":null,"next":["cancel_fulfillment"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"complete_fulfillment"},{"idempotency_key":null,"next":["fail_fulfillment"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"cancel_fulfillment"},{"idempotency_key":null,"next":["destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"fail_fulfillment"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy"}],"workflow":"travel_fulfillment_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["update","confirm_booking","fail_fulfillment","cancel_fulfillment","destroy"],"next_step_ids":["s2_update","s3_confirm_booking","s8_fail_fulfillment","s7_cancel_fulfillment","s9_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create_fulfillment","step_id":"s1_create_fulfillment"},{"idempotency_key":null,"next":["confirm_booking","fail_fulfillment","cancel_fulfillment","destroy"],"next_step_ids":["s3_confirm_booking","s8_fail_fulfillment","s7_cancel_fulfillment","s9_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update","step_id":"s2_update"},{"idempotency_key":null,"next":["issue_voucher_or_ticket"],"next_step_ids":["s4_issue_voucher_or_ticket"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"confirm_booking","step_id":"s3_confirm_booking"},{"idempotency_key":null,"next":["mark_in_use","complete_fulfillment"],"next_step_ids":["s5_mark_in_use","s6_complete_fulfillment"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"issue_voucher_or_ticket","step_id":"s4_issue_voucher_or_ticket"},{"idempotency_key":null,"next":["complete_fulfillment"],"next_step_ids":["s6_complete_fulfillment"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_in_use","step_id":"s5_mark_in_use"},{"idempotency_key":null,"next":["cancel_fulfillment"],"next_step_ids":["s7_cancel_fulfillment"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"complete_fulfillment","step_id":"s6_complete_fulfillment"},{"idempotency_key":null,"next":["fail_fulfillment"],"next_step_ids":["s8_fail_fulfillment"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"cancel_fulfillment","step_id":"s7_cancel_fulfillment"},{"idempotency_key":null,"next":["destroy"],"next_step_ids":["s9_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"fail_fulfillment","step_id":"s8_fail_fulfillment"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy","step_id":"s9_destroy"}],"workflow":"travel_fulfillment_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,23 +98,23 @@ defmodule UniboExPoc.Travel.Workflows.TravelFulfillment.TravelFulfillmentLifecyc
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create_fulfillment ->
+      :s1_create_fulfillment ->
         Ash.create(Ash.Changeset.for_create(TravelFulfillment, :create_fulfillment, params), ash_opts)
-      :update ->
+      :s2_update ->
         Ash.update(Ash.Changeset.for_update(record, :update, params), ash_opts)
-      :confirm_booking ->
+      :s3_confirm_booking ->
         Ash.update(Ash.Changeset.for_update(record, :confirm_booking, params), ash_opts)
-      :issue_voucher_or_ticket ->
+      :s4_issue_voucher_or_ticket ->
         Ash.update(Ash.Changeset.for_update(record, :issue_voucher_or_ticket, params), ash_opts)
-      :mark_in_use ->
+      :s5_mark_in_use ->
         Ash.update(Ash.Changeset.for_update(record, :mark_in_use, params), ash_opts)
-      :complete_fulfillment ->
+      :s6_complete_fulfillment ->
         Ash.update(Ash.Changeset.for_update(record, :complete_fulfillment, params), ash_opts)
-      :cancel_fulfillment ->
+      :s7_cancel_fulfillment ->
         Ash.update(Ash.Changeset.for_update(record, :cancel_fulfillment, params), ash_opts)
-      :fail_fulfillment ->
+      :s8_fail_fulfillment ->
         Ash.update(Ash.Changeset.for_update(record, :fail_fulfillment, params), ash_opts)
-      :destroy ->
+      :s9_destroy ->
         Ash.destroy(Ash.Changeset.for_destroy(record, :destroy, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -140,92 +140,90 @@ defmodule UniboExPoc.Travel.Workflows.TravelFulfillment.TravelFulfillmentLifecyc
 
   defp next_candidates(step) do
     case step do
-      :create_fulfillment -> [:update, :confirm_booking, :fail_fulfillment, :cancel_fulfillment, :destroy]
-      :update -> [:confirm_booking, :fail_fulfillment, :cancel_fulfillment, :destroy]
-      :confirm_booking -> [:issue_voucher_or_ticket]
-      :issue_voucher_or_ticket -> [:mark_in_use, :complete_fulfillment]
-      :mark_in_use -> [:complete_fulfillment]
-      :complete_fulfillment -> [:cancel_fulfillment]
-      :cancel_fulfillment -> [:fail_fulfillment]
-      :fail_fulfillment -> [:destroy]
-      :destroy -> []
+      :s1_create_fulfillment -> [:s2_update, :s3_confirm_booking, :s8_fail_fulfillment, :s7_cancel_fulfillment, :s9_destroy]
+      :s2_update -> [:s3_confirm_booking, :s8_fail_fulfillment, :s7_cancel_fulfillment, :s9_destroy]
+      :s3_confirm_booking -> [:s4_issue_voucher_or_ticket]
+      :s4_issue_voucher_or_ticket -> [:s5_mark_in_use, :s6_complete_fulfillment]
+      :s5_mark_in_use -> [:s6_complete_fulfillment]
+      :s6_complete_fulfillment -> [:s7_cancel_fulfillment]
+      :s7_cancel_fulfillment -> [:s8_fail_fulfillment]
+      :s8_fail_fulfillment -> [:s9_destroy]
+      :s9_destroy -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create_fulfillment -> []
-      :update -> []
-      :confirm_booking -> []
-      :issue_voucher_or_ticket -> []
-      :mark_in_use -> []
-      :complete_fulfillment -> []
-      :cancel_fulfillment -> []
-      :fail_fulfillment -> []
-      :destroy -> []
+      :s1_create_fulfillment -> []
+      :s2_update -> []
+      :s3_confirm_booking -> []
+      :s4_issue_voucher_or_ticket -> []
+      :s5_mark_in_use -> []
+      :s6_complete_fulfillment -> []
+      :s7_cancel_fulfillment -> []
+      :s8_fail_fulfillment -> []
+      :s9_destroy -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create_fulfillment -> nil
-      :update -> nil
-      :confirm_booking -> nil
-      :issue_voucher_or_ticket -> nil
-      :mark_in_use -> nil
-      :complete_fulfillment -> nil
-      :cancel_fulfillment -> nil
-      :fail_fulfillment -> nil
-      :destroy -> nil
+      :s1_create_fulfillment -> nil
+      :s2_update -> nil
+      :s3_confirm_booking -> nil
+      :s4_issue_voucher_or_ticket -> nil
+      :s5_mark_in_use -> nil
+      :s6_complete_fulfillment -> nil
+      :s7_cancel_fulfillment -> nil
+      :s8_fail_fulfillment -> nil
+      :s9_destroy -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create_fulfillment -> false
-      :update -> false
-      :confirm_booking -> false
-      :issue_voucher_or_ticket -> false
-      :mark_in_use -> false
-      :complete_fulfillment -> false
-      :cancel_fulfillment -> false
-      :fail_fulfillment -> false
-      :destroy -> false
+      :s1_create_fulfillment -> false
+      :s2_update -> false
+      :s3_confirm_booking -> false
+      :s4_issue_voucher_or_ticket -> false
+      :s5_mark_in_use -> false
+      :s6_complete_fulfillment -> false
+      :s7_cancel_fulfillment -> false
+      :s8_fail_fulfillment -> false
+      :s9_destroy -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create_fulfillment -> %{max_attempts: 1, backoff_ms: 0}
-      :update -> %{max_attempts: 1, backoff_ms: 0}
-      :confirm_booking -> %{max_attempts: 1, backoff_ms: 0}
-      :issue_voucher_or_ticket -> %{max_attempts: 1, backoff_ms: 0}
-      :mark_in_use -> %{max_attempts: 1, backoff_ms: 0}
-      :complete_fulfillment -> %{max_attempts: 1, backoff_ms: 0}
-      :cancel_fulfillment -> %{max_attempts: 1, backoff_ms: 0}
-      :fail_fulfillment -> %{max_attempts: 1, backoff_ms: 0}
-      :destroy -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create_fulfillment -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_update -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_confirm_booking -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_issue_voucher_or_ticket -> %{max_attempts: 1, backoff_ms: 0}
+      :s5_mark_in_use -> %{max_attempts: 1, backoff_ms: 0}
+      :s6_complete_fulfillment -> %{max_attempts: 1, backoff_ms: 0}
+      :s7_cancel_fulfillment -> %{max_attempts: 1, backoff_ms: 0}
+      :s8_fail_fulfillment -> %{max_attempts: 1, backoff_ms: 0}
+      :s9_destroy -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create_fulfillment -> nil
-      :update -> nil
-      :confirm_booking -> nil
-      :issue_voucher_or_ticket -> nil
-      :mark_in_use -> nil
-      :complete_fulfillment -> nil
-      :cancel_fulfillment -> nil
-      :fail_fulfillment -> nil
-      :destroy -> nil
+      :s1_create_fulfillment -> nil
+      :s2_update -> nil
+      :s3_confirm_booking -> nil
+      :s4_issue_voucher_or_ticket -> nil
+      :s5_mark_in_use -> nil
+      :s6_complete_fulfillment -> nil
+      :s7_cancel_fulfillment -> nil
+      :s8_fail_fulfillment -> nil
+      :s9_destroy -> nil
       _ -> nil
     end
   end

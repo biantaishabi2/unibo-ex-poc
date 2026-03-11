@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Common.DataSource do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   resource do
     description "Data Source"
@@ -15,17 +15,17 @@ defmodule UniboExPoc.Ofbiz.Common.DataSource do
   end
 
   graphql do
-    type :common_data_source
+    type :ofbiz_common_data_source
 
     queries do
-      get :get_common_data_source, :read
-      list :list_common_data_sources, :read
+      get :get_ofbiz_common_data_source, :read
+      list :list_ofbiz_common_data_sources, :read
     end
 
     mutations do
-      create :create_common_data_source, :create
-      update :update_common_data_source, :update
-      destroy :delete_common_data_source, :destroy
+      create :create_ofbiz_common_data_source, :create
+      update :update_ofbiz_common_data_source, :update
+      destroy :delete_ofbiz_common_data_source, :destroy
     end
 
   end
@@ -45,12 +45,6 @@ defmodule UniboExPoc.Ofbiz.Common.DataSource do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

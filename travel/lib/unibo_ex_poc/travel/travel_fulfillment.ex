@@ -25,7 +25,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource],
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
     notifiers: [UniboExPoc.Travel.TravelFulfillment.Notifier]
 
   resource do
@@ -141,20 +141,21 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
   actions do
     defaults [:read, :destroy]
     create :create_fulfillment do
+      description "Create Travel Fulfillment via Create Fulfillment. Headers: x-tenant-id. doc_url: graphql://contract/travel/create_create_fulfillment_travel_travel_fulfillment"
       primary? true
       accept [:tenant_id, :travel_order_id, :fulfillment_type, :supplier_booking_ref]
       argument :order_id, :uuid, allow_nil?: false
       change manage_relationship(:order_id, :order, type: :append, on_lookup: :relate)
       validate present(:tenant_id)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Travel Fulfillment via Update. Headers: x-tenant-id. doc_url: graphql://contract/travel/update_travel_travel_fulfillment"
       primary? true
       accept [:supplier_booking_ref, :voucher_or_ticket_ref, :ticket_refs, :confirmation_payload, :failure_reason]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :confirm_booking do
+      description "Update Travel Fulfillment via Confirm Booking. Headers: x-tenant-id. doc_url: graphql://contract/travel/confirm_booking_travel_travel_fulfillment"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -166,11 +167,11 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       end
       # message: "只有 pending 履约可以确认、失败或取消"
       change set_attribute(:status, :confirmed)
-      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelFulfillment.ConfirmBookingSupplierConfirmBookingBridge
       require_atomic? false
     end
     update :issue_voucher_or_ticket do
+      description "Update Travel Fulfillment via Issue Voucher Or Ticket. Headers: x-tenant-id. doc_url: graphql://contract/travel/issue_voucher_or_ticket_travel_travel_fulfillment"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -182,11 +183,11 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       end
       # message: "只有 confirmed 履约可以 issue_voucher_or_ticket"
       change set_attribute(:status, :issued)
-      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelFulfillment.IssueVoucherOrTicketSupplierIssueDocumentBridge
       require_atomic? false
     end
     update :mark_in_use do
+      description "Update Travel Fulfillment via Mark In Use. Headers: x-tenant-id. doc_url: graphql://contract/travel/mark_in_use_travel_travel_fulfillment"
       accept [:used_at]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -198,10 +199,10 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       end
       # message: "只有 issued 履约可以 mark_in_use"
       change set_attribute(:status, :in_use)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete_fulfillment do
+      description "Update Travel Fulfillment via Complete Fulfillment. Headers: x-tenant-id. doc_url: graphql://contract/travel/complete_fulfillment_travel_travel_fulfillment"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -213,10 +214,10 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       end
       # message: "只有 issued 或 in_use 履约可以 complete_fulfillment"
       change set_attribute(:status, :completed)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel_fulfillment do
+      description "Update Travel Fulfillment via Cancel Fulfillment. Headers: x-tenant-id. doc_url: graphql://contract/travel/cancel_fulfillment_travel_travel_fulfillment"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -228,11 +229,11 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       end
       # message: "只有 pending 履约可以确认、失败或取消"
       change set_attribute(:status, :cancelled)
-      change set_attribute(:id, expr(id))
       change UniboExPoc.Travel.Integrations.TravelFulfillment.CancelFulfillmentSupplierCancelBookingBridge
       require_atomic? false
     end
     update :fail_fulfillment do
+      description "Update Travel Fulfillment via Fail Fulfillment. Headers: x-tenant-id. doc_url: graphql://contract/travel/fail_fulfillment_travel_travel_fulfillment"
       accept [:failure_reason]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -244,9 +245,15 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       end
       # message: "只有 pending 履约可以确认、失败或取消"
       change set_attribute(:status, :failed)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    attributes_as_attributes [:tenant_id]
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

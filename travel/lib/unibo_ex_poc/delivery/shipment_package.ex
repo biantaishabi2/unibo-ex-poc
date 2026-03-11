@@ -104,15 +104,15 @@ defmodule UniboExPoc.Delivery.ShipmentPackage do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Shipment Package via Create. doc_url: graphql://contract/delivery/create_delivery_shipment_package"
       primary? true
       accept [:shipment_id, :shipment_package_seq_id, :shipment_box_type_id, :weight, :weight_uom_id, :box_length, :box_height, :box_width, :dimension_uom_id, :insured_value]
       validate present(:shipment_id)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Shipment Package via Update. doc_url: graphql://contract/delivery/update_delivery_shipment_package"
       primary? true
       accept [:weight, :box_length, :box_height, :box_width, :insured_value]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

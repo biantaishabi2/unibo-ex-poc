@@ -7,11 +7,11 @@ defmodule UniboExPoc.Travel.Workflows.HotelOffer.HotelOfferLifecycleWorkflow do
   alias UniboExPoc.Travel.HotelOffer
 
   def steps do
-    [:create, :update, :activate, :deactivate, :expire, :destroy]
+    [:s1_create, :s2_update, :s3_activate, :s4_deactivate, :s5_expire, :s6_destroy]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["update","activate","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["activate","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":["deactivate","expire"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"activate"},{"idempotency_key":null,"next":["activate"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"deactivate"},{"idempotency_key":null,"next":["destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"expire"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy"}],"workflow":"hotel_offer_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["update","activate","destroy"],"next_step_ids":["s2_update","s3_activate","s6_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["activate","destroy"],"next_step_ids":["s3_activate","s6_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update","step_id":"s2_update"},{"idempotency_key":null,"next":["deactivate","expire"],"next_step_ids":["s4_deactivate","s5_expire"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"activate","step_id":"s3_activate"},{"idempotency_key":null,"next":["activate"],"next_step_ids":["s3_activate"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"deactivate","step_id":"s4_deactivate"},{"idempotency_key":null,"next":["destroy"],"next_step_ids":["s6_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"expire","step_id":"s5_expire"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy","step_id":"s6_destroy"}],"workflow":"hotel_offer_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,17 +98,17 @@ defmodule UniboExPoc.Travel.Workflows.HotelOffer.HotelOfferLifecycleWorkflow do
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(HotelOffer, :create, params), ash_opts)
-      :update ->
+      :s2_update ->
         Ash.update(Ash.Changeset.for_update(record, :update, params), ash_opts)
-      :activate ->
+      :s3_activate ->
         Ash.update(Ash.Changeset.for_update(record, :activate, params), ash_opts)
-      :deactivate ->
+      :s4_deactivate ->
         Ash.update(Ash.Changeset.for_update(record, :deactivate, params), ash_opts)
-      :expire ->
+      :s5_expire ->
         Ash.update(Ash.Changeset.for_update(record, :expire, params), ash_opts)
-      :destroy ->
+      :s6_destroy ->
         Ash.destroy(Ash.Changeset.for_destroy(record, :destroy, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -134,74 +134,72 @@ defmodule UniboExPoc.Travel.Workflows.HotelOffer.HotelOfferLifecycleWorkflow do
 
   defp next_candidates(step) do
     case step do
-      :create -> [:update, :activate, :destroy]
-      :update -> [:activate, :destroy]
-      :activate -> [:deactivate, :expire]
-      :deactivate -> [:activate]
-      :expire -> [:destroy]
-      :destroy -> []
+      :s1_create -> [:s2_update, :s3_activate, :s6_destroy]
+      :s2_update -> [:s3_activate, :s6_destroy]
+      :s3_activate -> [:s4_deactivate, :s5_expire]
+      :s4_deactivate -> [:s3_activate]
+      :s5_expire -> [:s6_destroy]
+      :s6_destroy -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :update -> []
-      :activate -> []
-      :deactivate -> []
-      :expire -> []
-      :destroy -> []
+      :s1_create -> []
+      :s2_update -> []
+      :s3_activate -> []
+      :s4_deactivate -> []
+      :s5_expire -> []
+      :s6_destroy -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :update -> nil
-      :activate -> nil
-      :deactivate -> nil
-      :expire -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_update -> nil
+      :s3_activate -> nil
+      :s4_deactivate -> nil
+      :s5_expire -> nil
+      :s6_destroy -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :update -> false
-      :activate -> false
-      :deactivate -> false
-      :expire -> false
-      :destroy -> false
+      :s1_create -> false
+      :s2_update -> false
+      :s3_activate -> false
+      :s4_deactivate -> false
+      :s5_expire -> false
+      :s6_destroy -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :update -> %{max_attempts: 1, backoff_ms: 0}
-      :activate -> %{max_attempts: 1, backoff_ms: 0}
-      :deactivate -> %{max_attempts: 1, backoff_ms: 0}
-      :expire -> %{max_attempts: 1, backoff_ms: 0}
-      :destroy -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_update -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_activate -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_deactivate -> %{max_attempts: 1, backoff_ms: 0}
+      :s5_expire -> %{max_attempts: 1, backoff_ms: 0}
+      :s6_destroy -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :update -> nil
-      :activate -> nil
-      :deactivate -> nil
-      :expire -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_update -> nil
+      :s3_activate -> nil
+      :s4_deactivate -> nil
+      :s5_expire -> nil
+      :s6_destroy -> nil
       _ -> nil
     end
   end

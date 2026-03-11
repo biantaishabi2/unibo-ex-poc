@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Common.EnumerationType do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Common,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   resource do
     description "Enumeration Type"
@@ -15,17 +15,17 @@ defmodule UniboExPoc.Ofbiz.Common.EnumerationType do
   end
 
   graphql do
-    type :common_enumeration_type
+    type :ofbiz_common_enumeration_type
 
     queries do
-      get :get_common_enumeration_type, :read
-      list :list_common_enumeration_types, :read
+      get :get_ofbiz_common_enumeration_type, :read
+      list :list_ofbiz_common_enumeration_types, :read
     end
 
     mutations do
-      create :create_common_enumeration_type, :create
-      update :update_common_enumeration_type, :update
-      destroy :delete_common_enumeration_type, :destroy
+      create :create_ofbiz_common_enumeration_type, :create
+      update :update_ofbiz_common_enumeration_type, :update
+      destroy :delete_ofbiz_common_enumeration_type, :destroy
     end
 
   end
@@ -47,12 +47,6 @@ defmodule UniboExPoc.Ofbiz.Common.EnumerationType do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.TaxAuthority do
   end
 
   graphql do
-    type :accounting_tax_authority
+    type :ofbiz_accounting_tax_authority
 
     queries do
-      get :get_accounting_tax_authority, :read
-      list :list_accounting_tax_authoritys, :read
+      get :get_ofbiz_accounting_tax_authority, :read
+      list :list_ofbiz_accounting_tax_authoritys, :read
     end
 
     mutations do
-      create :create_accounting_tax_authority, :create
-      update :update_accounting_tax_authority, :update
-      destroy :delete_accounting_tax_authority, :destroy
+      create :create_ofbiz_accounting_tax_authority, :create
+      update :update_ofbiz_accounting_tax_authority, :update
+      destroy :delete_ofbiz_accounting_tax_authority, :destroy
     end
 
   end

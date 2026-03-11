@@ -67,6 +67,7 @@ defmodule UniboExPoc.Delivery.ShipmentPackageContent do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Shipment Package Content via Create. doc_url: graphql://contract/delivery/create_delivery_shipment_package_content"
       primary? true
       accept [:shipment_id, :shipment_package_seq_id, :shipment_item_seq_id, :quantity]
       validate present(:shipment_id)
@@ -74,13 +75,12 @@ defmodule UniboExPoc.Delivery.ShipmentPackageContent do
       validate present(:shipment_item_seq_id)
       validate compare(:quantity, greater_than: 0)
       # message: "装入数量必须大于 0"
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Shipment Package Content via Update. doc_url: graphql://contract/delivery/update_delivery_shipment_package_content"
       primary? true
       accept [:quantity]
       # skipped: validate compare :quantity (incompatible with bulk update atomic path)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

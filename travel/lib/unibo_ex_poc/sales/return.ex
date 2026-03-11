@@ -25,6 +25,7 @@ defmodule UniboExPoc.Sales.Return do
   postgres do
     table "sales_returns"
     repo UniboExPoc.Repo
+    identity_index_names unique_return_number: "idx_sales_returns_unique_return_number"
   end
 
   graphql do
@@ -104,6 +105,7 @@ defmodule UniboExPoc.Sales.Return do
   actions do
     defaults [:read]
     create :create do
+      description "Create Return via Create. doc_url: graphql://contract/sales/create_sales_return"
       primary? true
       accept [:return_number, :return_date, :reason, :notes]
       argument :items, {:array, :string}, allow_nil?: false
@@ -115,7 +117,6 @@ defmodule UniboExPoc.Sales.Return do
       validate present(:return_number)
       validate present(:reason)
       change UniboExPoc.Sales.Changes.Return.ComputeTotalRefundAmount
-      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -136,7 +137,9 @@ defmodule UniboExPoc.Sales.Return do
       description "快速检索"
     end
     update :approve do
-      description "审批退货"
+      description "审批退货
+
+审批退货. doc_url: graphql://contract/sales/approve_sales_return"
       primary? true
       accept []
       change fn changeset, _ctx ->
@@ -149,11 +152,12 @@ defmodule UniboExPoc.Sales.Return do
       end
       # message: "只有已申请状态可以审批"
       change set_attribute(:status, :approved)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :receive do
-      description "确认收到退货商品"
+      description "确认收到退货商品
+
+确认收到退货商品. doc_url: graphql://contract/sales/receive_sales_return"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -165,11 +169,12 @@ defmodule UniboExPoc.Sales.Return do
       end
       # message: "只有已审批状态可以收货"
       change set_attribute(:status, :received)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :complete do
-      description "完成退货（退款）"
+      description "完成退货（退款）
+
+完成退货（退款）. doc_url: graphql://contract/sales/complete_sales_return"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -181,11 +186,12 @@ defmodule UniboExPoc.Sales.Return do
       end
       # message: "只有已收货状态可以完成"
       change set_attribute(:status, :completed)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :cancel do
-      description "取消退货"
+      description "取消退货
+
+取消退货. doc_url: graphql://contract/sales/cancel_sales_return"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -197,7 +203,6 @@ defmodule UniboExPoc.Sales.Return do
       end
       # message: "只有已申请状态可以取消"
       change set_attribute(:status, :cancelled)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

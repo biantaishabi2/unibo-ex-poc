@@ -18,7 +18,7 @@ defmodule UniboExPoc.Travel.TrainOffer do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource],
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
     notifiers: [UniboExPoc.Travel.TrainOffer.Notifier]
 
   resource do
@@ -28,6 +28,7 @@ defmodule UniboExPoc.Travel.TrainOffer do
   postgres do
     table "travel_train_offers"
     repo UniboExPoc.Repo
+    identity_index_names unique_train_offer_snapshot: "idx_travel_train_offers_unique_train_offer_snapshot"
   end
 
   multitenancy do
@@ -187,6 +188,7 @@ defmodule UniboExPoc.Travel.TrainOffer do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Train Offer via Create. Headers: x-tenant-id. doc_url: graphql://contract/travel/create_travel_train_offer"
       primary? true
       accept [:tenant_id, :host_shop_id, :supplier_code, :train_no, :departure_station_code, :departure_station_ref_id, :departure_station_name, :arrival_station_code, :arrival_station_ref_id, :arrival_station_name, :travel_date, :departure_at, :arrival_at, :seat_class, :seat_code, :is_no_seat, :inventory_status, :waitlist_supported, :listed_price, :settlement_price, :currency, :booking_rules_snapshot, :change_rules_snapshot, :refund_rules_snapshot, :sale_status]
       validate present(:tenant_id)
@@ -196,15 +198,15 @@ defmodule UniboExPoc.Travel.TrainOffer do
       validate present(:arrival_station_code)
       validate present(:seat_class)
       validate present(:seat_code)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Train Offer via Update. Headers: x-tenant-id. doc_url: graphql://contract/travel/update_travel_train_offer"
       primary? true
       accept [:departure_station_ref_id, :arrival_station_ref_id, :departure_station_name, :arrival_station_name, :departure_at, :arrival_at, :seat_class, :is_no_seat, :inventory_status, :waitlist_supported, :listed_price, :settlement_price, :currency, :booking_rules_snapshot, :change_rules_snapshot, :refund_rules_snapshot]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :activate do
+      description "Update Train Offer via Activate. Headers: x-tenant-id. doc_url: graphql://contract/travel/activate_travel_train_offer"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :sale_status)
@@ -216,10 +218,10 @@ defmodule UniboExPoc.Travel.TrainOffer do
       end
       # message: "只有草稿或停用中的 offer 可以 activate"
       change set_attribute(:sale_status, :active)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
+      description "Update Train Offer via Deactivate. Headers: x-tenant-id. doc_url: graphql://contract/travel/deactivate_travel_train_offer"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :sale_status)
@@ -231,10 +233,10 @@ defmodule UniboExPoc.Travel.TrainOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :inactive)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :expire do
+      description "Update Train Offer via Expire. Headers: x-tenant-id. doc_url: graphql://contract/travel/expire_travel_train_offer"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :sale_status)
@@ -246,7 +248,6 @@ defmodule UniboExPoc.Travel.TrainOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :expired)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end
@@ -258,6 +259,13 @@ defmodule UniboExPoc.Travel.TrainOffer do
 
   identities do
     identity :unique_train_offer_snapshot, [:tenant_id, :supplier_code, :train_no, :departure_station_code, :arrival_station_code, :travel_date, :seat_code, :is_no_seat]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    attributes_as_attributes [:tenant_id]
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

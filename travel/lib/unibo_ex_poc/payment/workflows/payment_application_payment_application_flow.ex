@@ -7,11 +7,11 @@ defmodule UniboExPoc.Payment.Workflows.PaymentApplication.PaymentApplicationFlow
   alias UniboExPoc.Payment.PaymentApplication
 
   def steps do
-    [:create, :apply_to_invoice, :apply_to_account, :update, :destroy]
+    [:s1_create, :s2_apply_to_invoice, :s3_apply_to_account, :s4_update, :s5_destroy]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["update","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["update","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"apply_to_invoice"},{"idempotency_key":null,"next":["update","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"apply_to_account"},{"idempotency_key":null,"next":["destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy"}],"workflow":"payment_application_flow"}
+{"steps":[{"idempotency_key":null,"next":["update","destroy"],"next_step_ids":["s4_update","s5_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["update","destroy"],"next_step_ids":["s4_update","s5_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"apply_to_invoice","step_id":"s2_apply_to_invoice"},{"idempotency_key":null,"next":["update","destroy"],"next_step_ids":["s4_update","s5_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"apply_to_account","step_id":"s3_apply_to_account"},{"idempotency_key":null,"next":["destroy"],"next_step_ids":["s5_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update","step_id":"s4_update"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy","step_id":"s5_destroy"}],"workflow":"payment_application_flow"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,15 +98,15 @@ defmodule UniboExPoc.Payment.Workflows.PaymentApplication.PaymentApplicationFlow
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(PaymentApplication, :create, params), ash_opts)
-      :apply_to_invoice ->
+      :s2_apply_to_invoice ->
         Ash.create(Ash.Changeset.for_create(PaymentApplication, :apply_to_invoice, params), ash_opts)
-      :apply_to_account ->
+      :s3_apply_to_account ->
         Ash.create(Ash.Changeset.for_create(PaymentApplication, :apply_to_account, params), ash_opts)
-      :update ->
+      :s4_update ->
         Ash.update(Ash.Changeset.for_update(record, :update, params), ash_opts)
-      :destroy ->
+      :s5_destroy ->
         Ash.destroy(Ash.Changeset.for_destroy(record, :destroy, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -132,68 +132,66 @@ defmodule UniboExPoc.Payment.Workflows.PaymentApplication.PaymentApplicationFlow
 
   defp next_candidates(step) do
     case step do
-      :create -> [:update, :destroy]
-      :apply_to_invoice -> [:update, :destroy]
-      :apply_to_account -> [:update, :destroy]
-      :update -> [:destroy]
-      :destroy -> []
+      :s1_create -> [:s4_update, :s5_destroy]
+      :s2_apply_to_invoice -> [:s4_update, :s5_destroy]
+      :s3_apply_to_account -> [:s4_update, :s5_destroy]
+      :s4_update -> [:s5_destroy]
+      :s5_destroy -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :apply_to_invoice -> []
-      :apply_to_account -> []
-      :update -> []
-      :destroy -> []
+      :s1_create -> []
+      :s2_apply_to_invoice -> []
+      :s3_apply_to_account -> []
+      :s4_update -> []
+      :s5_destroy -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :apply_to_invoice -> nil
-      :apply_to_account -> nil
-      :update -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_apply_to_invoice -> nil
+      :s3_apply_to_account -> nil
+      :s4_update -> nil
+      :s5_destroy -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :apply_to_invoice -> false
-      :apply_to_account -> false
-      :update -> false
-      :destroy -> false
+      :s1_create -> false
+      :s2_apply_to_invoice -> false
+      :s3_apply_to_account -> false
+      :s4_update -> false
+      :s5_destroy -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :apply_to_invoice -> %{max_attempts: 1, backoff_ms: 0}
-      :apply_to_account -> %{max_attempts: 1, backoff_ms: 0}
-      :update -> %{max_attempts: 1, backoff_ms: 0}
-      :destroy -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_apply_to_invoice -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_apply_to_account -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_update -> %{max_attempts: 1, backoff_ms: 0}
+      :s5_destroy -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :apply_to_invoice -> nil
-      :apply_to_account -> nil
-      :update -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_apply_to_invoice -> nil
+      :s3_apply_to_account -> nil
+      :s4_update -> nil
+      :s5_destroy -> nil
       _ -> nil
     end
   end

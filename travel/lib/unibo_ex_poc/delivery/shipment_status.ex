@@ -62,11 +62,11 @@ defmodule UniboExPoc.Delivery.ShipmentStatus do
   actions do
     defaults [:read, :update]
     create :create do
+      description "Create Shipment Status via Create. doc_url: graphql://contract/delivery/create_delivery_shipment_status"
       primary? true
       accept [:shipment_id, :status_id, :status_date, :change_by_user_login_id]
       validate present(:shipment_id)
       validate present(:status_id)
-      change set_attribute(:id, expr(id))
     end
   end
 

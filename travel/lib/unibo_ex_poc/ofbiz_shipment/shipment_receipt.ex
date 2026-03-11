@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentReceipt do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_receipts"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentReceipt do
   end
 
   graphql do
-    type :shipment_shipment_receipt
+    type :ofbiz_shipment_shipment_receipt
 
     queries do
-      get :get_shipment_shipment_receipt, :read
-      list :list_shipment_shipment_receipts, :read
+      get :get_ofbiz_shipment_shipment_receipt, :read
+      list :list_ofbiz_shipment_shipment_receipts, :read
     end
 
     mutations do
-      create :create_shipment_shipment_receipt, :create
-      update :update_shipment_shipment_receipt, :update
-      destroy :delete_shipment_shipment_receipt, :destroy
+      create :create_ofbiz_shipment_shipment_receipt, :create
+      update :update_ofbiz_shipment_shipment_receipt, :update
+      destroy :delete_ofbiz_shipment_shipment_receipt, :destroy
     end
 
   end
@@ -77,12 +77,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.ShipmentReceipt do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do
