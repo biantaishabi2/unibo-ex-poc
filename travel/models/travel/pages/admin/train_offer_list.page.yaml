@@ -1,0 +1,92 @@
+# 火车票 Offer 列表页（管理后台）
+version: "1.0"
+page:
+  name: train_offer_list
+  title: 火车票 Offer 管理
+  route: /admin/travel/train-offers
+  page_type: list_report
+  entity: TrainOffer
+  audience: admin
+
+  permissions:
+    access: role
+    roles: [admin]
+
+  data_sources:
+    - name: train_offers
+      type: list
+      resource: Travel.TrainOffer
+      sort:
+        - field: inserted_at
+          direction: desc
+
+  slots:
+    filter_bar:
+      - field: sale_status
+        type: select
+        label: 销售状态
+        options:
+          - { label: 全部, value: "" }
+          - { label: 草稿, value: draft }
+          - { label: 上架, value: active }
+          - { label: 下架, value: inactive }
+          - { label: 过期, value: expired }
+      - field: train_no
+        type: search
+        label: 车次
+        placeholder: 搜索车次号
+      - field: travel_date
+        type: date_range
+        label: 出行日期
+
+    table:
+      columns:
+        - field: train_no
+          label: 车次
+        - field: departure_station_name
+          label: 出发站
+        - field: arrival_station_name
+          label: 到达站
+        - field: travel_date
+          label: 出行日期
+          format: date
+        - field: departure_at
+          label: 出发时间
+          format: datetime
+        - field: seat_class
+          label: 席别
+        - field: listed_price
+          label: 挂牌价
+          format: currency
+        - field: inventory_status
+          label: 库存状态
+          render: badge
+        - field: sale_status
+          label: 销售状态
+          render: badge
+
+      row_actions:
+        - label: 上架
+          action: activate
+          visible_when:
+            field: sale_status
+            op: eq
+            value: draft
+        - label: 下架
+          action: deactivate
+          visible_when:
+            field: sale_status
+            op: eq
+            value: active
+        - label: 详情
+          action: navigate
+          params:
+            to: /admin/travel/train-offers/{{ row.id }}
+
+    toolbar:
+      actions:
+        - label: 新建 Offer
+          action: navigate
+          params:
+            to: /admin/travel/train-offers/new
+          variant: primary

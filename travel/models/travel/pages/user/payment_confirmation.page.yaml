@@ -1,0 +1,274 @@
+# 支付确认页
+name: payment_confirmation
+title: 支付确认
+route: /travel/payment/:order_id
+page_type: composition
+
+permissions:
+  access: authenticated
+  data_scope:
+    field: tenant_id
+    eq: actor.tenant_id
+
+data_sources:
+  - name: order
+    type: read
+    resource: Travel.TravelOrder
+    params:
+      id: route.order_id
+    load:
+      - payment
+
+layout:
+  type: Stack
+  props:
+    spacing: 16
+  children:
+    # ========== 支付状态 Hero ==========
+    - type: Hero
+      props:
+        size: sm
+      children:
+        - type: Stack
+          props:
+            spacing: 12
+            align: center
+          children:
+            # 支付成功
+            - type: Icon
+              props:
+                name: check-circle
+                size: 56
+                color: success
+              visible_when:
+                field: order.payment.status
+                op: eq
+                value: completed
+            - type: Text
+              props:
+                variant: heading
+                size: xl
+                text: "支付成功"
+              visible_when:
+                field: order.payment.status
+                op: eq
+                value: completed
+            # 支付处理中
+            - type: Icon
+              props:
+                name: clock
+                size: 56
+                color: warning
+              visible_when:
+                field: order.payment.status
+                op: eq
+                value: pending
+            - type: Text
+              props:
+                variant: heading
+                size: xl
+                text: "支付处理中"
+              visible_when:
+                field: order.payment.status
+                op: eq
+                value: pending
+            # 支付失败
+            - type: Icon
+              props:
+                name: x-circle
+                size: 56
+                color: destructive
+              visible_when:
+                field: order.payment.status
+                op: eq
+                value: failed
+            - type: Text
+              props:
+                variant: heading
+                size: xl
+                text: "支付失败"
+              visible_when:
+                field: order.payment.status
+                op: eq
+                value: failed
+            - type: Text
+              props:
+                variant: muted
+                text: "请重试或选择其他支付方式"
+              visible_when:
+                field: order.payment.status
+                op: eq
+                value: failed
+
+    # ========== 支付方式 Card ==========
+    - type: Card
+      slots:
+        header:
+          type: Text
+          props:
+            variant: heading
+            text: "支付方式"
+        content:
+          type: Stack
+          props:
+            spacing: 8
+          children:
+            - type: Flex
+              props:
+                justify: space-between
+                align: center
+              children:
+                - type: Flex
+                  props:
+                    gap: 8
+                    align: center
+                  children:
+                    - type: Icon
+                      props:
+                        name: building
+                        size: 20
+                    - type: Text
+                      props:
+                        text: "公司支付"
+                - type: Badge
+                  props:
+                    variant: secondary
+                  bind:
+                    value: order.payment.payment_method
+
+    # ========== 金额明细 Card ==========
+    - type: Card
+      slots:
+        header:
+          type: Text
+          props:
+            variant: heading
+            text: "费用明细"
+        content:
+          type: Stack
+          props:
+            spacing: 8
+          children:
+            - type: Flex
+              props:
+                justify: space-between
+              children:
+                - type: Text
+                  props:
+                    variant: muted
+                    text: "订单金额"
+                - type: Text
+                  bind:
+                    value: order.total_amount
+            - type: Flex
+              props:
+                justify: space-between
+              children:
+                - type: Text
+                  props:
+                    variant: muted
+                    text: "积分抵扣"
+                - type: Text
+                  props:
+                    color: success
+                  bind:
+                    value: order.points_deduction_amount
+              visible_when:
+                field: order.points_to_use
+                op: gt
+                value: 0
+            - type: Separator
+            - type: Flex
+              props:
+                justify: space-between
+              children:
+                - type: Text
+                  props:
+                    variant: heading
+                    text: "实付金额"
+                - type: Text
+                  props:
+                    variant: heading
+                    size: lg
+                    color: primary
+                  bind:
+                    value: order.payable_amount
+            - type: Separator
+            - type: Flex
+              props:
+                justify: space-between
+              children:
+                - type: Text
+                  props:
+                    variant: muted
+                    text: "币种"
+                - type: Text
+                  bind:
+                    value: order.currency
+
+    # ========== 支付时间信息 Card ==========
+    - type: Card
+      visible_when:
+        field: order.payment.status
+        op: eq
+        value: completed
+      slots:
+        header:
+          type: Text
+          props:
+            variant: heading
+            text: "支付信息"
+        content:
+          type: Stack
+          props:
+            spacing: 8
+          children:
+            - type: Flex
+              props:
+                justify: space-between
+              children:
+                - type: Text
+                  props:
+                    variant: muted
+                    text: "支付单号"
+                - type: Text
+                  bind:
+                    value: order.payment.payment_no
+            - type: Flex
+              props:
+                justify: space-between
+              children:
+                - type: Text
+                  props:
+                    variant: muted
+                    text: "支付时间"
+                - type: Text
+                  bind:
+                    value: order.payment.paid_at
+
+    # ========== 操作栏 ==========
+    - type: ControlBar
+      children:
+        - type: Button
+          props:
+            variant: default
+            text: "查看订单"
+            size: lg
+          on_click:
+            navigate: /travel/orders/{{ order.id }}
+        - type: Button
+          props:
+            variant: outline
+            text: "回到首页"
+            size: lg
+          on_click:
+            navigate: /travel
+        - type: Button
+          props:
+            variant: destructive
+            text: "重新支付"
+            size: lg
+          visible_when:
+            field: order.payment.status
+            op: eq
+            value: failed

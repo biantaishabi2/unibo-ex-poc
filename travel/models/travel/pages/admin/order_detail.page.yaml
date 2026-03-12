@@ -1,0 +1,169 @@
+# 差旅订单详情页（管理后台）
+version: "1.0"
+page:
+  name: order_detail
+  title: 订单详情
+  route: /admin/travel/orders/:order_id
+  page_type: object_page
+  entity: TravelOrder
+  audience: admin
+
+  permissions:
+    access: role
+    roles: [admin]
+
+  data_sources:
+    - name: order
+      type: read
+      resource: Travel.TravelOrder
+      params:
+        id: route.order_id
+
+  slots:
+    header:
+      title_field: order_no
+      status_field: status
+      status_render: badge
+      badges:
+        - field: product_type
+          render: badge
+        - field: booking_mode
+          render: badge
+
+    sections:
+      - title: 基本信息
+        fields:
+          - field: order_no
+            label: 订单号
+          - field: product_type
+            label: 产品类型
+            render: badge
+          - field: booking_mode
+            label: 预订模式
+            render: badge
+          - field: travel_purpose
+            label: 出行目的
+          - field: contact_name
+            label: 联系人
+          - field: contact_phone
+            label: 联系电话
+          - field: traveler_count
+            label: 出行人数
+
+      - title: 价格
+        fields:
+          - field: total_amount
+            label: 总金额
+            format: currency
+          - field: points_to_use
+            label: 使用积分
+          - field: points_deduction_amount
+            label: 积分抵扣金额
+            format: currency
+          - field: payable_amount
+            label: 应付金额
+            format: currency
+          - field: currency
+            label: 币种
+
+      - title: 状态
+        fields:
+          - field: status
+            label: 订单状态
+            render: badge
+          - field: waitlist_status
+            label: 候补状态
+            render: badge
+          - field: change_status
+            label: 改签状态
+            render: badge
+          - field: supplier_order_ref
+            label: 供应商订单号
+
+      - title: 乘客信息
+        fields:
+          - field: ticket_passenger_infos
+            label: 乘客票务信息
+            format: json_table
+          - field: seat_selection_snapshot
+            label: 选座快照
+            format: json
+
+    actions:
+      - label: 确认报价
+        action: confirm_quote
+        variant: primary
+        visible_when:
+          field: status
+          op: eq
+          value: draft
+      - label: 提交订单
+        action: submit_order
+        variant: primary
+        visible_when:
+          field: status
+          op: eq
+          value: quoted
+      - label: 标记已支付
+        action: mark_payment_succeeded
+        variant: primary
+        visible_when:
+          field: status
+          op: eq
+          value: submitted
+      - label: 标记已预订
+        action: mark_booked
+        variant: primary
+        visible_when:
+          field: status
+          op: eq
+          value: booking_pending
+      - label: 标记完成
+        action: mark_completed
+        variant: primary
+        visible_when:
+          field: status
+          op: eq
+          value: booked
+      - label: 申请取消
+        action: request_cancel
+        variant: danger
+        confirm: true
+        visible_when:
+          field: status
+          op: in
+          value:
+            - submitted
+            - booking_pending
+            - booked
+      - label: 审批取消
+        action: approve_cancel
+        variant: warning
+        visible_when:
+          field: status
+          op: eq
+          value: cancel_pending
+
+    related:
+      - name: fulfillments
+        title: 履约记录
+        entity: TravelFulfillment
+        relationship: fulfillments
+        display: table
+        columns:
+          - field: fulfillment_type
+            label: 履约类型
+            render: badge
+          - field: status
+            label: 状态
+            render: badge
+          - field: supplier_booking_ref
+            label: 供应商预订号
+          - field: voucher_or_ticket_ref
+            label: 票证号
+          - field: waitlist_result
+            label: 候补结果
+            render: badge
+          - field: boarding_status
+            label: 登机/乘车状态
+            render: badge

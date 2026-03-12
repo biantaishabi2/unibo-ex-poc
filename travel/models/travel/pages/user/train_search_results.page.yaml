@@ -1,0 +1,291 @@
+# 火车票搜索结果页
+# 场景：按条件搜索车次列表，支持日期横滑、筛选、排序
+# 特征：日期横滑+筛选栏+车次卡片列表（各席别余票价格）+底部排序栏
+version: "1.0"
+page:
+  name: train_search_results
+  title: 火车票搜索
+  page_type: composition
+  audience: user
+  entity: TrainOffer
+  route: /travel/train/search
+
+  layout:
+    - type: Stack
+      gap: 0
+      children:
+        # 顶部导航
+        - type: Header
+          bind:
+            back: true
+            title: "火车票搜索"
+            subtitle: search.route_label
+
+        # 日期横滑条
+        - type: Flex
+          gap: 2
+          props:
+            padding_x: 3
+            padding_y: 2
+            overflow_x: scroll
+            background: surface
+          children_from:
+            source: search.date_range
+            template:
+              type: Badge
+              bind:
+                label: item.date_label
+                sublabel: item.weekday
+                variant: item.is_selected
+              action: select_date
+              params:
+                date: item.date
+
+        - type: Separator
+
+        # 筛选栏
+        - type: Flex
+          gap: 2
+          props:
+            padding_x: 3
+            padding_y: 2
+            wrap: true
+          children:
+            - type: Select
+              bind:
+                label: "出发站"
+                value: filter.departure_station
+            - type: Select
+              bind:
+                label: "到达站"
+                value: filter.arrival_station
+            - type: Select
+              bind:
+                label: "车次类型"
+                value: filter.train_type
+                options:
+                  - { label: "不限", value: all }
+                  - { label: "高铁", value: G }
+                  - { label: "动车", value: D }
+                  - { label: "城际", value: C }
+                  - { label: "普速", value: K }
+            - type: Select
+              bind:
+                label: "差标"
+                value: filter.policy_compliant
+                options:
+                  - { label: "不限", value: all }
+                  - { label: "符合差标", value: compliant }
+
+        # 超标提示
+        - type: Alert
+          visible_when:
+            field: policy.exceeded
+            op: eq
+            value: true
+          bind:
+            variant: warning
+            title: "超标提示"
+            description: "标记超标的车次超出差旅标准，预订需审批"
+
+        # 车次卡片列表
+        - type: Stack
+          gap: 3
+          props:
+            padding: 3
+          children_from:
+            source: trains.items
+            template:
+              type: Card
+              slots:
+                header:
+                  - type: Flex
+                    gap: 2
+                    props:
+                      align: center
+                    children:
+                      - type: Text
+                        bind:
+                          value: item.train_no
+                        props:
+                          variant: body
+                          weight: bold
+                      - type: Badge
+                        bind:
+                          label: item.train_type_label
+                          variant: outline
+                      - type: Badge
+                        visible_when:
+                          field: item.is_policy_compliant
+                          op: eq
+                          value: false
+                        bind:
+                          label: "超标"
+                          variant: destructive
+                content:
+                  - type: Stack
+                    gap: 2
+                    children:
+                      # 站点+时间
+                      - type: Flex
+                        props:
+                          justify: space-between
+                          align: center
+                        children:
+                          # 出发信息
+                          - type: Stack
+                            gap: 0
+                            props:
+                              align: center
+                            children:
+                              - type: Text
+                                bind:
+                                  value: item.departure_time
+                                props:
+                                  variant: h2
+                                  weight: bold
+                              - type: Text
+                                bind:
+                                  value: item.departure_station_name
+                                props:
+                                  variant: caption
+                                  color: muted
+                          # 运行信息
+                          - type: Stack
+                            gap: 0
+                            props:
+                              align: center
+                            children:
+                              - type: Text
+                                bind:
+                                  value: item.duration_label
+                                props:
+                                  variant: caption
+                                  color: muted
+                              - type: Separator
+                              - type: Text
+                                bind:
+                                  value: item.stop_count_label
+                                props:
+                                  variant: caption
+                                  color: muted
+                          # 到达信息
+                          - type: Stack
+                            gap: 0
+                            props:
+                              align: center
+                            children:
+                              - type: Text
+                                bind:
+                                  value: item.arrival_time
+                                props:
+                                  variant: h2
+                                  weight: bold
+                              - type: Text
+                                bind:
+                                  value: item.arrival_station_name
+                                props:
+                                  variant: caption
+                                  color: muted
+                footer:
+                  # 各席别余票和价格
+                  - type: Flex
+                    gap: 2
+                    props:
+                      wrap: true
+                    children_from:
+                      source: item.seat_options
+                      template:
+                        type: Stack
+                        gap: 0
+                        props:
+                          align: center
+                        children:
+                          - type: Text
+                            bind:
+                              value: item.seat_class_name
+                            props:
+                              variant: caption
+                              color: muted
+                          - type: Text
+                            bind:
+                              value: item.price
+                            props:
+                              variant: body
+                              color: primary
+                              weight: bold
+                          - type: Text
+                            bind:
+                              value: item.tickets_label
+                            props:
+                              variant: caption
+                              color: muted
+              action: navigate
+              params:
+                to: /travel/train/{item.id}
+
+        # 空状态
+        - type: EmptyState
+          visible_when:
+            field: trains.total_count
+            op: eq
+            value: 0
+          bind:
+            title: "未找到车次"
+            description: "请调整搜索条件后重试"
+            icon: train
+
+        # 底部排序栏
+        - type: ControlBar
+          position: sticky_bottom
+          children:
+            - type: Flex
+              gap: 3
+              props:
+                justify: space-around
+                width: full
+              children:
+                - type: Button
+                  bind:
+                    label: "耗时"
+                    variant: ghost
+                    icon: arrow-up-down
+                  action: sort
+                  params:
+                    field: duration
+                - type: Button
+                  bind:
+                    label: "出发时间"
+                    variant: ghost
+                    icon: arrow-up-down
+                  action: sort
+                  params:
+                    field: departure_at
+                - type: Button
+                  bind:
+                    label: "价格"
+                    variant: ghost
+                    icon: arrow-up-down
+                  action: sort
+                  params:
+                    field: listed_price
+
+  data_sources:
+    - name: trains
+      type: list
+      entity: TrainOffer
+      params:
+        departure_station_code: route.departure
+        arrival_station_code: route.arrival
+        travel_date: route.date
+    - name: policy
+      type: read
+      entity: TravelPolicy
+      params:
+        tenant_id: actor.tenant_id
+
+  permissions:
+    access: authenticated
+    data_scope:
+      field: tenant_id
+      eq: actor.tenant_id

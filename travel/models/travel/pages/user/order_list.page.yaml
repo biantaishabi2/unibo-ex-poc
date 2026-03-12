@@ -1,0 +1,227 @@
+# 旅行订单列表页
+name: order_list
+title: 我的行程
+route: /travel/orders
+page_type: composition
+
+permissions:
+  access: authenticated
+  data_scope:
+    field: tenant_id
+    eq: actor.tenant_id
+
+data_sources:
+  - name: orders
+    type: list
+    resource: Travel.TravelOrder
+    sort:
+      - field: inserted_at
+        direction: desc
+    filters:
+      - field: tenant_id
+        op: eq
+        value: actor.tenant_id
+
+layout:
+  type: Stack
+  props:
+    spacing: 0
+  children:
+    # 顶部产品类型筛选 Tabs
+    - type: Tabs
+      props:
+        default_value: all
+      bind:
+        value: filters.product_type_tab
+      children:
+        - type: Text
+          props:
+            label: 全部
+            value: all
+        - type: Text
+          props:
+            label: 机票
+            value: flight
+        - type: Text
+          props:
+            label: 酒店
+            value: hotel
+        - type: Text
+          props:
+            label: 火车
+            value: train
+        - type: Text
+          props:
+            label: 用车
+            value: car
+
+    # 订单列表
+    - type: List
+      props:
+        spacing: 12
+      children_from:
+        source: orders.data
+        template:
+          type: Card
+          props:
+            variant: outlined
+          bind:
+            key: item.id
+          on_click:
+            navigate: /travel/orders/{{ item.id }}
+          slots:
+            header:
+              type: Flex
+              props:
+                justify: space-between
+                align: center
+              children:
+                - type: Flex
+                  props:
+                    align: center
+                    gap: 8
+                  children:
+                    - type: Icon
+                      props:
+                        name: plane
+                      visible_when:
+                        field: item.product_type
+                        op: eq
+                        value: flight
+                    - type: Icon
+                      props:
+                        name: building
+                      visible_when:
+                        field: item.product_type
+                        op: eq
+                        value: hotel
+                    - type: Icon
+                      props:
+                        name: train
+                      visible_when:
+                        field: item.product_type
+                        op: eq
+                        value: train
+                    - type: Icon
+                      props:
+                        name: car
+                      visible_when:
+                        field: item.product_type
+                        op: eq
+                        value: vacation
+                    - type: Badge
+                      props:
+                        variant: secondary
+                      bind:
+                        value: item.product_type
+                - type: Badge
+                  props:
+                    variant: outline
+                  bind:
+                    value: item.status
+
+            content:
+              type: Stack
+              props:
+                spacing: 8
+              children:
+                # 机票摘要: 航线信息
+                - type: Text
+                  props:
+                    variant: heading
+                  bind:
+                    value: item.flight_offer.summary
+                  visible_when:
+                    field: item.product_type
+                    op: eq
+                    value: flight
+                # 酒店摘要: 酒店名称
+                - type: Text
+                  props:
+                    variant: heading
+                  bind:
+                    value: item.hotel_offer.hotel_name
+                  visible_when:
+                    field: item.product_type
+                    op: eq
+                    value: hotel
+                # 火车摘要: 车次信息
+                - type: Text
+                  props:
+                    variant: heading
+                  bind:
+                    value: item.train_offer.summary
+                  visible_when:
+                    field: item.product_type
+                    op: eq
+                    value: train
+                # 订单号
+                - type: Text
+                  props:
+                    variant: muted
+                    size: sm
+                  bind:
+                    value: item.order_no
+                # 标签行: 企业支付/因公/退
+                - type: Flex
+                  props:
+                    gap: 6
+                    wrap: true
+                  children:
+                    - type: Badge
+                      props:
+                        variant: secondary
+                        text: "企业支付"
+                    - type: Badge
+                      props:
+                        variant: secondary
+                      bind:
+                        value: item.travel_purpose
+                      visible_when:
+                        field: item.travel_purpose
+                        op: not_null
+                    - type: Badge
+                      props:
+                        variant: destructive
+                        text: "退"
+                      visible_when:
+                        field: item.change_status
+                        op: in
+                        value:
+                          - pending
+                          - changed
+
+            footer:
+              type: Flex
+              props:
+                justify: space-between
+                align: center
+              children:
+                - type: Text
+                  props:
+                    variant: heading
+                    size: lg
+                  bind:
+                    value: item.total_amount
+                - type: Button
+                  props:
+                    variant: ghost
+                    size: sm
+                    icon: trash
+                  visible_when:
+                    field: item.status
+                    op: in
+                    value:
+                      - completed
+                      - cancelled
+
+    # 空状态
+    - type: EmptyState
+      props:
+        title: "暂无行程订单"
+        description: "您还没有预订任何行程"
+        icon: plane
+      visible_when:
+        field: orders.total_count
+        op: eq
+        value: 0

@@ -1,0 +1,85 @@
+# 定价规则配置页（管理后台）
+version: "1.0"
+page:
+  name: pricing_rule
+  title: 定价规则配置
+  route: /admin/travel/pricing-rules
+  page_type: config_console_page
+  entity: TravelPricingRule
+  audience: admin
+
+  permissions:
+    access: role
+    roles: [admin]
+
+  data_sources:
+    - name: pricing_rules
+      type: list
+      resource: Travel.TravelPricingRule
+      sort:
+        - field: product_type
+          direction: asc
+
+  slots:
+    sections:
+      - title: 定价规则列表
+        display: inline_table
+        columns:
+          - field: product_type
+            label: 产品类型
+            render: badge
+            editable: false
+          - field: supplier_code
+            label: 供应商编码
+            editable: true
+          - field: markup_rate
+            label: 加价率
+            editable: true
+            description: "挂牌价 = 结算价 x (1 + 加价率)"
+          - field: status
+            label: 状态
+            render: badge
+            editable: true
+            options:
+              - { label: 启用, value: active }
+              - { label: 停用, value: inactive }
+
+        row_actions:
+          - label: 保存
+            action: update
+          - label: 删除
+            action: destroy
+            variant: danger
+            confirm: true
+
+    toolbar:
+      actions:
+        - label: 新建规则
+          action: create
+          variant: primary
+          form:
+            fields:
+              - field: product_type
+                label: 产品类型
+                type: select
+                required: true
+                options:
+                  - { label: 酒店, value: hotel }
+                  - { label: 机票, value: flight }
+                  - { label: 火车票, value: train }
+              - field: supplier_code
+                label: 供应商编码
+                type: text
+                required: true
+              - field: markup_rate
+                label: 加价率
+                type: number
+                required: true
+                description: "例如 0.15 表示加价 15%"
+              - field: status
+                label: 状态
+                type: select
+                required: true
+                options:
+                  - { label: 启用, value: active }
+                  - { label: 停用, value: inactive }

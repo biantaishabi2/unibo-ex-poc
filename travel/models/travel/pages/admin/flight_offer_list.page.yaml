@@ -1,0 +1,94 @@
+# 机票 Offer 列表页（管理后台）
+version: "1.0"
+page:
+  name: flight_offer_list
+  title: 机票 Offer 管理
+  route: /admin/travel/flight-offers
+  page_type: list_report
+  entity: FlightOffer
+  audience: admin
+
+  permissions:
+    access: role
+    roles: [admin]
+
+  data_sources:
+    - name: flight_offers
+      type: list
+      resource: Travel.FlightOffer
+      sort:
+        - field: inserted_at
+          direction: desc
+
+  slots:
+    filter_bar:
+      - field: sale_status
+        type: select
+        label: 销售状态
+        options:
+          - { label: 全部, value: "" }
+          - { label: 草稿, value: draft }
+          - { label: 上架, value: active }
+          - { label: 下架, value: inactive }
+          - { label: 过期, value: expired }
+      - field: flight_no
+        type: search
+        label: 航班号
+        placeholder: 搜索航班号
+      - field: departure_at
+        type: date_range
+        label: 出发时间
+
+    table:
+      columns:
+        - field: flight_no
+          label: 航班号
+        - field: departure_airport_code
+          label: 出发机场
+        - field: arrival_airport_code
+          label: 到达机场
+        - field: departure_at
+          label: 出发时间
+          format: datetime
+        - field: arrival_at
+          label: 到达时间
+          format: datetime
+        - field: cabin_class
+          label: 舱位
+        - field: listed_price
+          label: 挂牌价
+          format: currency
+        - field: settlement_price
+          label: 结算价
+          format: currency
+        - field: seats_available
+          label: 余座
+        - field: sale_status
+          label: 销售状态
+          render: badge
+
+      row_actions:
+        - label: 上架
+          action: activate
+          visible_when:
+            field: sale_status
+            op: eq
+            value: draft
+        - label: 下架
+          action: deactivate
+          visible_when:
+            field: sale_status
+            op: eq
+            value: active
+        - label: 详情
+          action: navigate
+          params:
+            to: /admin/travel/flight-offers/{{ row.id }}
+
+    toolbar:
+      actions:
+        - label: 新建 Offer
+          action: navigate
+          params:
+            to: /admin/travel/flight-offers/new
+          variant: primary

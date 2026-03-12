@@ -1,0 +1,112 @@
+# 酒店 Offer 详情页（管理后台）
+version: "1.0"
+page:
+  name: hotel_offer_detail
+  title: 酒店 Offer 详情
+  route: /admin/travel/hotel-offers/:id
+  page_type: object_page
+  entity: HotelOffer
+  audience: admin
+
+  permissions:
+    access: role
+    roles: [admin]
+
+  data_sources:
+    - name: hotel_offer
+      type: read
+      resource: Travel.HotelOffer
+      params:
+        id: route.id
+
+  slots:
+    header:
+      title_field: hotel_name
+      status_field: sale_status
+      status_render: badge
+
+    sections:
+      - title: 基本信息
+        fields:
+          - field: supplier_code
+            label: 供应商编码
+          - field: hotel_code
+            label: 酒店编码
+          - field: city_code
+            label: 城市编码
+          - field: room_type_code
+            label: 房型编码
+          - field: rate_plan_code
+            label: 价格方案编码
+
+      - title: 日期
+        fields:
+          - field: checkin_date
+            label: 入住日期
+            format: date
+          - field: checkout_date
+            label: 退房日期
+            format: date
+
+      - title: 价格
+        fields:
+          - field: listed_price
+            label: 挂牌价
+            format: currency
+          - field: settlement_price
+            label: 结算价
+            format: currency
+          - field: currency
+            label: 币种
+          - field: inventory_count
+            label: 库存数量
+
+      - title: 政策
+        fields:
+          - field: cancellation_policy
+            label: 取消政策
+          - field: guarantee_policy
+            label: 担保政策
+
+    actions:
+      - label: 上架
+        action: activate
+        variant: primary
+        visible_when:
+          field: sale_status
+          op: eq
+          value: draft
+      - label: 下架
+        action: deactivate
+        variant: warning
+        visible_when:
+          field: sale_status
+          op: eq
+          value: active
+      - label: 过期
+        action: expire
+        variant: danger
+        visible_when:
+          field: sale_status
+          op: in
+          value:
+            - active
+            - inactive
+
+    related:
+      - name: orders
+        title: 关联订单
+        entity: TravelOrder
+        relationship: orders
+        display: table
+        columns:
+          - field: order_no
+            label: 订单号
+          - field: contact_name
+            label: 联系人
+          - field: total_amount
+            label: 总金额
+            format: currency
+          - field: status
+            label: 状态
+            render: badge
