@@ -1,0 +1,7 @@
+{
+  "id": "sales_sales_order_workflow_sales_order_sales_order_reopen_flow",
+  "module": "SALES_SALES_ORDER",
+  "edge_class": "workflow_contract",
+  "source_file": "workflow_sales_order_sales_order_reopen_flow.yaml",
+  "source_summary": "GIVEN 实体 SalesOrder 定义工作流 sales_order_reopen_flow / WHEN 按步骤执行 action_cancel -> action_draft -> action_confirm / THEN 流程顺序应满足声明约束"
+}

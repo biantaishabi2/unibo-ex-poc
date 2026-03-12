@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_action_travel_order_mark_order_failed_update",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "action_contract",
+  "source_file": "action_travel_order_mark_order_failed_update.yaml",
+  "source_summary": "GIVEN 实体 TravelOrder 的动作 mark_order_failed 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 mark_order_failed / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束"
+}

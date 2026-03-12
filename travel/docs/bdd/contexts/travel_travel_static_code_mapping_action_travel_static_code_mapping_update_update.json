@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_static_code_mapping_action_travel_static_code_mapping_update_update",
+  "module": "TRAVEL_TRAVEL_STATIC_CODE_MAPPING",
+  "edge_class": "action_contract",
+  "source_file": "action_travel_static_code_mapping_update_update.yaml",
+  "source_summary": "GIVEN 实体 TravelStaticCodeMapping 的动作 update 可执行，accept=[canonical_entity, canonical_id, external_name, status]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "accounting_fixed_asset_type_action_fixed_asset_type_update_update",
+  "module": "ACCOUNTING_FIXED_ASSET_TYPE",
+  "edge_class": "action_contract",
+  "source_file": "action_fixed_asset_type_update_update.yaml",
+  "source_summary": "GIVEN 实体 FixedAssetType 的动作 update 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效"
+}

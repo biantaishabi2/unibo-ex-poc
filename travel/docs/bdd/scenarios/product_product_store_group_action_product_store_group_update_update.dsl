@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PRODUCT_PRODUCT_STORE_GROUP-SEED-product_product_store_group_action_product_store_group_update_update] TITLE: PRODUCT_PRODUCT_STORE_GROUP contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="product_product_store_group_action_product_store_group_update_update" module="PRODUCT_PRODUCT_STORE_GROUP"
+WHEN when_execute_seed_contract module="PRODUCT_PRODUCT_STORE_GROUP"
+THEN then_seed_contract_should_hold module="PRODUCT_PRODUCT_STORE_GROUP"

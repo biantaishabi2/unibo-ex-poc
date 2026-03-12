@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ORDER_RETURN_ITEM_RESPONSE-SEED-order_return_item_response_action_return_item_response_destroy_destroy] TITLE: ORDER_RETURN_ITEM_RESPONSE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="order_return_item_response_action_return_item_response_destroy_destroy" module="ORDER_RETURN_ITEM_RESPONSE"
+WHEN when_execute_seed_contract module="ORDER_RETURN_ITEM_RESPONSE"
+THEN then_seed_contract_should_hold module="ORDER_RETURN_ITEM_RESPONSE"

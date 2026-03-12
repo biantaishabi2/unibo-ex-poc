@@ -1,0 +1,7 @@
+{
+  "id": "payment_payment_refund_action_payment_refund_reject_update",
+  "module": "PAYMENT_PAYMENT_REFUND",
+  "edge_class": "action_contract",
+  "source_file": "action_payment_refund_reject_update.yaml",
+  "source_summary": "GIVEN 实体 PaymentRefund 的动作 reject 可执行，accept=[reason]，args=[无显式参数] / WHEN 执行动作 reject / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "accounting_payment_action_payment_reset_to_draft_update",
+  "module": "ACCOUNTING_PAYMENT",
+  "edge_class": "action_contract",
+  "source_file": "action_payment_reset_to_draft_update.yaml",
+  "source_summary": "GIVEN 实体 Payment 的动作 reset_to_draft 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 reset_to_draft / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

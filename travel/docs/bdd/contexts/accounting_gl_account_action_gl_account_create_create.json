@@ -1,0 +1,7 @@
+{
+  "id": "accounting_gl_account_action_gl_account_create_create",
+  "module": "ACCOUNTING_GL_ACCOUNT",
+  "edge_class": "action_contract",
+  "source_file": "action_gl_account_create_create.yaml",
+  "source_summary": "GIVEN 实体 GlAccount 的动作 create 可执行，accept=[account_code, account_name, account_type, reconcile, parent_account_code, description, currency_id]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，应符合工作流步骤约束"
+}

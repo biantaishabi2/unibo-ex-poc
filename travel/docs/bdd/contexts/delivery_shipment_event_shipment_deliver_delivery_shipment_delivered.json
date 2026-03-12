@@ -1,0 +1,7 @@
+{
+  "id": "delivery_shipment_event_shipment_deliver_delivery_shipment_delivered",
+  "module": "DELIVERY_SHIPMENT",
+  "edge_class": "event_contract",
+  "source_file": "event_shipment_deliver_delivery_shipment_delivered.yaml",
+  "source_summary": "GIVEN 实体 Shipment 的动作 deliver 完成 / WHEN 触发事件发布 / THEN 应广播 topic `delivery.shipment.delivered`"
+}

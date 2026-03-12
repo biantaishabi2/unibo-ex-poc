@@ -1,0 +1,7 @@
+{
+  "id": "accounting_full_reconcile_workflow_full_reconcile_full_reconcile_lifecycle",
+  "module": "ACCOUNTING_FULL_RECONCILE",
+  "edge_class": "workflow_contract",
+  "source_file": "workflow_full_reconcile_full_reconcile_lifecycle.yaml",
+  "source_summary": "GIVEN 实体 FullReconcile 定义工作流 full_reconcile_lifecycle / WHEN 按步骤执行 create -> destroy / THEN 流程顺序应满足声明约束"
+}

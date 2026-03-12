@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SHIPMENT_PICKLIST_BIN-SEED-shipment_picklist_bin_action_picklist_bin_update_update] TITLE: SHIPMENT_PICKLIST_BIN contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="shipment_picklist_bin_action_picklist_bin_update_update" module="SHIPMENT_PICKLIST_BIN"
+WHEN when_execute_seed_contract module="SHIPMENT_PICKLIST_BIN"
+THEN then_seed_contract_should_hold module="SHIPMENT_PICKLIST_BIN"

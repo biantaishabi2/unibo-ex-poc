@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_FIXED_ASSET_TYPE-SEED-accounting_fixed_asset_type_action_fixed_asset_type_read_read] TITLE: ACCOUNTING_FIXED_ASSET_TYPE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_fixed_asset_type_action_fixed_asset_type_read_read" module="ACCOUNTING_FIXED_ASSET_TYPE"
+WHEN when_execute_seed_contract module="ACCOUNTING_FIXED_ASSET_TYPE"
+THEN then_seed_contract_should_hold module="ACCOUNTING_FIXED_ASSET_TYPE"

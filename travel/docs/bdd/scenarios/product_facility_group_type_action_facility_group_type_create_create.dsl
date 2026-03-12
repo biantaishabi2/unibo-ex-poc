@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PRODUCT_FACILITY_GROUP_TYPE-SEED-product_facility_group_type_action_facility_group_type_create_create] TITLE: PRODUCT_FACILITY_GROUP_TYPE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="product_facility_group_type_action_facility_group_type_create_create" module="PRODUCT_FACILITY_GROUP_TYPE"
+WHEN when_execute_seed_contract module="PRODUCT_FACILITY_GROUP_TYPE"
+THEN then_seed_contract_should_hold module="PRODUCT_FACILITY_GROUP_TYPE"

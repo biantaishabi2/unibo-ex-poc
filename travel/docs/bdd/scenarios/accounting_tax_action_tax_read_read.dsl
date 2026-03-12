@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_TAX-SEED-accounting_tax_action_tax_read_read] TITLE: ACCOUNTING_TAX contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_tax_action_tax_read_read" module="ACCOUNTING_TAX"
+WHEN when_execute_seed_contract module="ACCOUNTING_TAX"
+THEN then_seed_contract_should_hold module="ACCOUNTING_TAX"

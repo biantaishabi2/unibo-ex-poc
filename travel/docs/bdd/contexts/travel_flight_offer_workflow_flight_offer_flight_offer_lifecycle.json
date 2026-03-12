@@ -1,0 +1,7 @@
+{
+  "id": "travel_flight_offer_workflow_flight_offer_flight_offer_lifecycle",
+  "module": "TRAVEL_FLIGHT_OFFER",
+  "edge_class": "workflow_contract",
+  "source_file": "workflow_flight_offer_flight_offer_lifecycle.yaml",
+  "source_summary": "GIVEN 实体 FlightOffer 定义工作流 flight_offer_lifecycle / WHEN 按步骤执行 create -> update -> activate -> deactivate -> expire -> destroy / THEN 流程顺序应满足声明约束"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_event_travel_order_mark_order_failed_travel_order_failed",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "event_contract",
+  "source_file": "event_travel_order_mark_order_failed_travel_order_failed.yaml",
+  "source_summary": "GIVEN 实体 TravelOrder 的动作 mark_order_failed 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.order.failed`"
+}

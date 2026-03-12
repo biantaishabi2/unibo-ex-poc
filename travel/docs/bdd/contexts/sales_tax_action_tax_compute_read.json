@@ -1,0 +1,7 @@
+{
+  "id": "sales_tax_action_tax_compute_read",
+  "module": "SALES_TAX",
+  "edge_class": "action_contract",
+  "source_file": "action_tax_compute_read.yaml",
+  "source_summary": "GIVEN 实体 Tax 的动作 compute 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 compute / THEN 读取结果应符合查询语义"
+}

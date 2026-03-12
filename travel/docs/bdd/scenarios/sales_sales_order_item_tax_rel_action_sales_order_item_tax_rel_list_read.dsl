@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SALES_SALES_ORDER_ITEM_TAX_REL-SEED-sales_sales_order_item_tax_rel_action_sales_order_item_tax_rel_list_read] TITLE: SALES_SALES_ORDER_ITEM_TAX_REL contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="sales_sales_order_item_tax_rel_action_sales_order_item_tax_rel_list_read" module="SALES_SALES_ORDER_ITEM_TAX_REL"
+WHEN when_execute_seed_contract module="SALES_SALES_ORDER_ITEM_TAX_REL"
+THEN then_seed_contract_should_hold module="SALES_SALES_ORDER_ITEM_TAX_REL"

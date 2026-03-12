@@ -1,0 +1,7 @@
+{
+  "id": "accounting_invoice_event_invoice_approve_accounting_invoice_approved",
+  "module": "ACCOUNTING_INVOICE",
+  "edge_class": "event_contract",
+  "source_file": "event_invoice_approve_accounting_invoice_approved.yaml",
+  "source_summary": "GIVEN 实体 Invoice 的动作 approve 完成 / WHEN 触发事件发布 / THEN 应广播 topic `accounting.invoice.approved`"
+}

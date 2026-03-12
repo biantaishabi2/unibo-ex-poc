@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_GL_RESOURCE_TYPE-SEED-accounting_gl_resource_type_action_gl_resource_type_update_update] TITLE: ACCOUNTING_GL_RESOURCE_TYPE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_gl_resource_type_action_gl_resource_type_update_update" module="ACCOUNTING_GL_RESOURCE_TYPE"
+WHEN when_execute_seed_contract module="ACCOUNTING_GL_RESOURCE_TYPE"
+THEN then_seed_contract_should_hold module="ACCOUNTING_GL_RESOURCE_TYPE"

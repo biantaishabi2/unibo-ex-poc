@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_PAYMENT_GATEWAY_CONFIG-SEED-accounting_payment_gateway_config_action_payment_gateway_config_update_update] TITLE: ACCOUNTING_PAYMENT_GATEWAY_CONFIG contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_payment_gateway_config_action_payment_gateway_config_update_update" module="ACCOUNTING_PAYMENT_GATEWAY_CONFIG"
+WHEN when_execute_seed_contract module="ACCOUNTING_PAYMENT_GATEWAY_CONFIG"
+THEN then_seed_contract_should_hold module="ACCOUNTING_PAYMENT_GATEWAY_CONFIG"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PRODUCT_PRODUCT_FEATURE_APPL_TYPE-SEED-product_product_feature_appl_type_action_product_feature_appl_type_update_update] TITLE: PRODUCT_PRODUCT_FEATURE_APPL_TYPE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="product_product_feature_appl_type_action_product_feature_appl_type_update_update" module="PRODUCT_PRODUCT_FEATURE_APPL_TYPE"
+WHEN when_execute_seed_contract module="PRODUCT_PRODUCT_FEATURE_APPL_TYPE"
+THEN then_seed_contract_should_hold module="PRODUCT_PRODUCT_FEATURE_APPL_TYPE"

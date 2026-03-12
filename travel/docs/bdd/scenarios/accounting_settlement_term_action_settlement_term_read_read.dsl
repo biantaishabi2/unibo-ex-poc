@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_SETTLEMENT_TERM-SEED-accounting_settlement_term_action_settlement_term_read_read] TITLE: ACCOUNTING_SETTLEMENT_TERM contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_settlement_term_action_settlement_term_read_read" module="ACCOUNTING_SETTLEMENT_TERM"
+WHEN when_execute_seed_contract module="ACCOUNTING_SETTLEMENT_TERM"
+THEN then_seed_contract_should_hold module="ACCOUNTING_SETTLEMENT_TERM"

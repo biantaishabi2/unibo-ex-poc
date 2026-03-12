@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_cabin_class_action_travel_cabin_class_update_update",
+  "module": "TRAVEL_TRAVEL_CABIN_CLASS",
+  "edge_class": "action_contract",
+  "source_file": "action_travel_cabin_class_update_update.yaml",
+  "source_summary": "GIVEN 实体 TravelCabinClass 的动作 update 可执行，accept=[cabin_class_name, cabin_rank, status]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效"
+}

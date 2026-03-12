@@ -1,0 +1,7 @@
+{
+  "id": "accounting_invoice_item_attribute_action_invoice_item_attribute_read_read",
+  "module": "ACCOUNTING_INVOICE_ITEM_ATTRIBUTE",
+  "edge_class": "action_contract",
+  "source_file": "action_invoice_item_attribute_read_read.yaml",
+  "source_summary": "GIVEN 实体 InvoiceItemAttribute 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 读取结果应符合查询语义"
+}

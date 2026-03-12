@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ORDER_CUST_REQUEST_CATEGORY-SEED-order_cust_request_category_action_cust_request_category_read_read] TITLE: ORDER_CUST_REQUEST_CATEGORY contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="order_cust_request_category_action_cust_request_category_read_read" module="ORDER_CUST_REQUEST_CATEGORY"
+WHEN when_execute_seed_contract module="ORDER_CUST_REQUEST_CATEGORY"
+THEN then_seed_contract_should_hold module="ORDER_CUST_REQUEST_CATEGORY"

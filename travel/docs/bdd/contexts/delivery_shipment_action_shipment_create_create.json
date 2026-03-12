@@ -1,0 +1,7 @@
+{
+  "id": "delivery_shipment_action_shipment_create_create",
+  "module": "DELIVERY_SHIPMENT",
+  "edge_class": "action_contract",
+  "source_file": "action_shipment_create_create.yaml",
+  "source_summary": "GIVEN 实体 Shipment 的动作 create 可执行，accept=[shipment_id, shipment_type_id, primary_order_id, origin_facility_id, destination_facility_id, party_id_to, party_id_from, estimated_ship_date, estimated_arrival_date, handling_instructions, currency_uom_id, estimated_ship_cost]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "ecommerce_travel_city_action_travel_city_update_update",
+  "module": "ECOMMERCE_TRAVEL_CITY",
+  "edge_class": "action_contract",
+  "source_file": "action_travel_city_update_update.yaml",
+  "source_summary": "GIVEN 实体 TravelCity 的动作 update 可执行，accept=[city_name, country_code, geo_id, status]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效"
+}

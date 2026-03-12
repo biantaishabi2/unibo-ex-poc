@@ -1,0 +1,7 @@
+{
+  "id": "sales_return_workflow_return_return_lifecycle",
+  "module": "SALES_RETURN",
+  "edge_class": "workflow_contract",
+  "source_file": "workflow_return_return_lifecycle.yaml",
+  "source_summary": "GIVEN 实体 Return 定义工作流 return_lifecycle / WHEN 按步骤执行 create -> approve -> receive -> complete -> cancel / THEN 流程顺序应满足声明约束"
+}

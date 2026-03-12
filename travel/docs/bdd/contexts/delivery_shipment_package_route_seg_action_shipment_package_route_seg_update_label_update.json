@@ -1,0 +1,7 @@
+{
+  "id": "delivery_shipment_package_route_seg_action_shipment_package_route_seg_update_label_update",
+  "module": "DELIVERY_SHIPMENT_PACKAGE_ROUTE_SEG",
+  "edge_class": "action_contract",
+  "source_file": "action_shipment_package_route_seg_update_label_update.yaml",
+  "source_summary": "GIVEN 实体 ShipmentPackageRouteSeg 的动作 update_label 可执行，accept=[label_image, label_html, label_printed]，args=[无显式参数] / WHEN 执行动作 update_label / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

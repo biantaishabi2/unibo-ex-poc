@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_PAYMENT_METHOD_TYPE-SEED-accounting_payment_method_type_action_payment_method_type_create_create] TITLE: ACCOUNTING_PAYMENT_METHOD_TYPE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_payment_method_type_action_payment_method_type_create_create" module="ACCOUNTING_PAYMENT_METHOD_TYPE"
+WHEN when_execute_seed_contract module="ACCOUNTING_PAYMENT_METHOD_TYPE"
+THEN then_seed_contract_should_hold module="ACCOUNTING_PAYMENT_METHOD_TYPE"

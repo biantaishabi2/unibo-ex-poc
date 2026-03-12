@@ -1,0 +1,4 @@
+[SCENARIO: BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-travel_travel_cabin_class_action_travel_cabin_class_read_read] TITLE: TRAVEL_TRAVEL_CABIN_CLASS contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="travel_travel_cabin_class_action_travel_cabin_class_read_read" module="TRAVEL_TRAVEL_CABIN_CLASS"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"

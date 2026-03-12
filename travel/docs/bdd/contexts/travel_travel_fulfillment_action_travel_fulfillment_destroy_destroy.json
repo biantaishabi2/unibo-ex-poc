@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_fulfillment_action_travel_fulfillment_destroy_destroy",
+  "module": "TRAVEL_TRAVEL_FULFILLMENT",
+  "edge_class": "action_contract",
+  "source_file": "action_travel_fulfillment_destroy_destroy.yaml",
+  "source_summary": "GIVEN 实体 TravelFulfillment 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

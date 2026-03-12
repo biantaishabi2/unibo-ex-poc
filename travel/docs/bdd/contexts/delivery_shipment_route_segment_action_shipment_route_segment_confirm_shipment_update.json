@@ -1,0 +1,7 @@
+{
+  "id": "delivery_shipment_route_segment_action_shipment_route_segment_confirm_shipment_update",
+  "module": "DELIVERY_SHIPMENT_ROUTE_SEGMENT",
+  "edge_class": "action_contract",
+  "source_file": "action_shipment_route_segment_confirm_shipment_update.yaml",
+  "source_summary": "GIVEN 实体 ShipmentRouteSegment 的动作 confirm_shipment 可执行，accept=[carrier_service_status_id, tracking_id_number]，args=[无显式参数] / WHEN 执行动作 confirm_shipment / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

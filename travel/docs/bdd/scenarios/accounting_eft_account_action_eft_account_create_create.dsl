@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_EFT_ACCOUNT-SEED-accounting_eft_account_action_eft_account_create_create] TITLE: ACCOUNTING_EFT_ACCOUNT contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_eft_account_action_eft_account_create_create" module="ACCOUNTING_EFT_ACCOUNT"
+WHEN when_execute_seed_contract module="ACCOUNTING_EFT_ACCOUNT"
+THEN then_seed_contract_should_hold module="ACCOUNTING_EFT_ACCOUNT"

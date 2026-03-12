@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SALES_RETURN_ITEM-SEED-sales_return_item_workflow_return_item_return_item_editing] TITLE: SALES_RETURN_ITEM contract seed scenario TAGS: seed workflow_contract
+GIVEN given_seed_context id="sales_return_item_workflow_return_item_return_item_editing" module="SALES_RETURN_ITEM"
+WHEN when_execute_seed_contract module="SALES_RETURN_ITEM"
+THEN then_seed_contract_should_hold module="SALES_RETURN_ITEM"

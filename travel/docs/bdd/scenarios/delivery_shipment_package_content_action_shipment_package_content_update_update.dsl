@@ -1,0 +1,4 @@
+[SCENARIO: BDD-DELIVERY_SHIPMENT_PACKAGE_CONTENT-SEED-delivery_shipment_package_content_action_shipment_package_content_update_update] TITLE: DELIVERY_SHIPMENT_PACKAGE_CONTENT contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="delivery_shipment_package_content_action_shipment_package_content_update_update" module="DELIVERY_SHIPMENT_PACKAGE_CONTENT"
+WHEN when_execute_seed_contract module="DELIVERY_SHIPMENT_PACKAGE_CONTENT"
+THEN then_seed_contract_should_hold module="DELIVERY_SHIPMENT_PACKAGE_CONTENT"

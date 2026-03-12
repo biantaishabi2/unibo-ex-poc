@@ -1,0 +1,7 @@
+{
+  "id": "payment_payment_provider_action_payment_provider_activate_update",
+  "module": "PAYMENT_PAYMENT_PROVIDER",
+  "edge_class": "action_contract",
+  "source_file": "action_payment_provider_activate_update.yaml",
+  "source_summary": "GIVEN 实体 PaymentProvider 的动作 activate 可执行，accept=[is_active]，args=[无显式参数] / WHEN 执行动作 activate / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

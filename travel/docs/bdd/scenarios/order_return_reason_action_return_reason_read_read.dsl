@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ORDER_RETURN_REASON-SEED-order_return_reason_action_return_reason_read_read] TITLE: ORDER_RETURN_REASON contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="order_return_reason_action_return_reason_read_read" module="ORDER_RETURN_REASON"
+WHEN when_execute_seed_contract module="ORDER_RETURN_REASON"
+THEN then_seed_contract_should_hold module="ORDER_RETURN_REASON"

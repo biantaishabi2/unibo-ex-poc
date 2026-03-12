@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_event_travel_order_mark_payment_succeeded_travel_order_payment_confirmed",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "event_contract",
+  "source_file": "event_travel_order_mark_payment_succeeded_travel_order_payment_confirmed.yaml",
+  "source_summary": "GIVEN 实体 TravelOrder 的动作 mark_payment_succeeded 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.order.payment_confirmed`"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ORDER_RETURN_HEADER-SEED-order_return_header_action_return_header_destroy_destroy] TITLE: ORDER_RETURN_HEADER contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="order_return_header_action_return_header_destroy_destroy" module="ORDER_RETURN_HEADER"
+WHEN when_execute_seed_contract module="ORDER_RETURN_HEADER"
+THEN then_seed_contract_should_hold module="ORDER_RETURN_HEADER"

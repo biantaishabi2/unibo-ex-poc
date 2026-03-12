@@ -1,0 +1,7 @@
+{
+  "id": "payment_payment_type_action_payment_type_update_update_2",
+  "module": "PAYMENT_PAYMENT_TYPE",
+  "edge_class": "action_contract",
+  "source_file": "action_payment_type_update_update_2.yaml",
+  "source_summary": "GIVEN 实体 PaymentType 的动作 update 可执行，accept=[description, has_table]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

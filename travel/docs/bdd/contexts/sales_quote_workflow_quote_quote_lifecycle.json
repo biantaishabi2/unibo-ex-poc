@@ -1,0 +1,7 @@
+{
+  "id": "sales_quote_workflow_quote_quote_lifecycle",
+  "module": "SALES_QUOTE",
+  "edge_class": "workflow_contract",
+  "source_file": "workflow_quote_quote_lifecycle.yaml",
+  "source_summary": "GIVEN 实体 Quote 定义工作流 quote_lifecycle / WHEN 按步骤执行 create -> submit -> accept -> reject / THEN 流程顺序应满足声明约束"
+}

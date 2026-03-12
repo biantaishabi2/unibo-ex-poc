@@ -1,0 +1,7 @@
+{
+  "id": "travel_train_offer_event_train_offer_activate_travel_catalog_train_offer_activated",
+  "module": "TRAVEL_TRAIN_OFFER",
+  "edge_class": "event_contract",
+  "source_file": "event_train_offer_activate_travel_catalog_train_offer_activated.yaml",
+  "source_summary": "GIVEN 实体 TrainOffer 的动作 activate 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.catalog.train_offer.activated`"
+}

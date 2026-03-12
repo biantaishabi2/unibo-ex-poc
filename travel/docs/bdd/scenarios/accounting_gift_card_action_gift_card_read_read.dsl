@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_GIFT_CARD-SEED-accounting_gift_card_action_gift_card_read_read] TITLE: ACCOUNTING_GIFT_CARD contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_gift_card_action_gift_card_read_read" module="ACCOUNTING_GIFT_CARD"
+WHEN when_execute_seed_contract module="ACCOUNTING_GIFT_CARD"
+THEN then_seed_contract_should_hold module="ACCOUNTING_GIFT_CARD"

@@ -1,0 +1,7 @@
+{
+  "id": "delivery_shipment_type_workflow_shipment_type_shipment_type_maintain_flow",
+  "module": "DELIVERY_SHIPMENT_TYPE",
+  "edge_class": "workflow_contract",
+  "source_file": "workflow_shipment_type_shipment_type_maintain_flow.yaml",
+  "source_summary": "GIVEN 实体 ShipmentType 定义工作流 shipment_type_maintain_flow / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束"
+}

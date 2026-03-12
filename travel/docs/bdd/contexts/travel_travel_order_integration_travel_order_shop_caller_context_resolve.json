@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_integration_travel_order_shop_caller_context_resolve",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "integration_contract",
+  "source_file": "integration_travel_order_shop_caller_context_resolve.yaml",
+  "source_summary": "GIVEN 实体 TravelOrder 声明 integration shop_caller_context_resolve（mode=sync） / WHEN 绑定动作 [create_order] 触发外部调用 / THEN 调用结果需满足 声明错误码 shop_context_not_found, shop_context_timeout 且 业务后置条件 context_verified, current_shop_id, enterprise_id, member_id"
+}

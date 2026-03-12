@@ -1,0 +1,7 @@
+{
+  "id": "sales_sales_order_event_sales_order_create_invoices_sales_order_invoice_created",
+  "module": "SALES_SALES_ORDER",
+  "edge_class": "event_contract",
+  "source_file": "event_sales_order_create_invoices_sales_order_invoice_created.yaml",
+  "source_summary": "GIVEN 实体 SalesOrder 的动作 create_invoices 完成 / WHEN 触发事件发布 / THEN 应广播 topic `sales.order.invoice_created`"
+}

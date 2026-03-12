@@ -1,0 +1,7 @@
+{
+  "id": "sales_quote_event_quote_submit_sales_quote_submitted",
+  "module": "SALES_QUOTE",
+  "edge_class": "event_contract",
+  "source_file": "event_quote_submit_sales_quote_submitted.yaml",
+  "source_summary": "GIVEN 实体 Quote 的动作 submit 完成 / WHEN 触发事件发布 / THEN 应广播 topic `sales.quote.submitted`"
+}

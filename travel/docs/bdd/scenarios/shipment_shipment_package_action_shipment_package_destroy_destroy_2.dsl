@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SHIPMENT_SHIPMENT_PACKAGE-SEED-shipment_shipment_package_action_shipment_package_destroy_destroy_2] TITLE: SHIPMENT_SHIPMENT_PACKAGE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="shipment_shipment_package_action_shipment_package_destroy_destroy_2" module="SHIPMENT_SHIPMENT_PACKAGE"
+WHEN when_execute_seed_contract module="SHIPMENT_SHIPMENT_PACKAGE"
+THEN then_seed_contract_should_hold module="SHIPMENT_SHIPMENT_PACKAGE"

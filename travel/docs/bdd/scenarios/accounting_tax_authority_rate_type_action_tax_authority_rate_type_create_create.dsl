@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_TAX_AUTHORITY_RATE_TYPE-SEED-accounting_tax_authority_rate_type_action_tax_authority_rate_type_create_create] TITLE: ACCOUNTING_TAX_AUTHORITY_RATE_TYPE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_tax_authority_rate_type_action_tax_authority_rate_type_create_create" module="ACCOUNTING_TAX_AUTHORITY_RATE_TYPE"
+WHEN when_execute_seed_contract module="ACCOUNTING_TAX_AUTHORITY_RATE_TYPE"
+THEN then_seed_contract_should_hold module="ACCOUNTING_TAX_AUTHORITY_RATE_TYPE"

@@ -1,0 +1,7 @@
+{
+  "id": "sales_tax_action_tax_list_read",
+  "module": "SALES_TAX",
+  "edge_class": "action_contract",
+  "source_file": "action_tax_list_read.yaml",
+  "source_summary": "GIVEN 实体 Tax 的动作 list 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 list / THEN 读取结果应符合查询语义"
+}

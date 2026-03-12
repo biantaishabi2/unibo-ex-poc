@@ -1,0 +1,7 @@
+{
+  "id": "delivery_carrier_shipment_method_action_carrier_shipment_method_update_update",
+  "module": "DELIVERY_CARRIER_SHIPMENT_METHOD",
+  "edge_class": "action_contract",
+  "source_file": "action_carrier_shipment_method_update_update.yaml",
+  "source_summary": "GIVEN 实体 CarrierShipmentMethod 的动作 update 可执行，accept=[sequence_number, carrier_service_code]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

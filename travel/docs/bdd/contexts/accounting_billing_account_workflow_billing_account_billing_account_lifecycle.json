@@ -1,0 +1,7 @@
+{
+  "id": "accounting_billing_account_workflow_billing_account_billing_account_lifecycle",
+  "module": "ACCOUNTING_BILLING_ACCOUNT",
+  "edge_class": "workflow_contract",
+  "source_file": "workflow_billing_account_billing_account_lifecycle.yaml",
+  "source_summary": "GIVEN 实体 BillingAccount 定义工作流 billing_account_lifecycle / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束"
+}

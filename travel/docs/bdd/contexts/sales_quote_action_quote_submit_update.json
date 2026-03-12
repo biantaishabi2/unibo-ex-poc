@@ -1,0 +1,7 @@
+{
+  "id": "sales_quote_action_quote_submit_update",
+  "module": "SALES_QUOTE",
+  "edge_class": "action_contract",
+  "source_file": "action_quote_submit_update.yaml",
+  "source_summary": "GIVEN 实体 Quote 的动作 submit 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 submit / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "ecommerce_travel_airport_action_travel_airport_create_create",
+  "module": "ECOMMERCE_TRAVEL_AIRPORT",
+  "edge_class": "action_contract",
+  "source_file": "action_travel_airport_create_create.yaml",
+  "source_summary": "GIVEN 实体 TravelAirport 的动作 create 可执行，accept=[airport_code, airport_name, city_id, city_code, iata_code, icao_code, geo_id, status]，args=[无显式参数] / WHEN 执行动作 create / THEN 状态变更与副作用应生效"
+}

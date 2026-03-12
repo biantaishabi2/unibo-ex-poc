@@ -1,0 +1,7 @@
+{
+  "id": "sales_sales_order_item_tax_rel_action_sales_order_item_tax_rel_search_read",
+  "module": "SALES_SALES_ORDER_ITEM_TAX_REL",
+  "edge_class": "action_contract",
+  "source_file": "action_sales_order_item_tax_rel_search_read.yaml",
+  "source_summary": "GIVEN 实体 SalesOrderItemTaxRel 的动作 search 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 search / THEN 读取结果应符合查询语义"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_GL_RECONCILIATION-SEED-accounting_gl_reconciliation_action_gl_reconciliation_destroy_destroy] TITLE: ACCOUNTING_GL_RECONCILIATION contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_gl_reconciliation_action_gl_reconciliation_destroy_destroy" module="ACCOUNTING_GL_RECONCILIATION"
+WHEN when_execute_seed_contract module="ACCOUNTING_GL_RECONCILIATION"
+THEN then_seed_contract_should_hold module="ACCOUNTING_GL_RECONCILIATION"

@@ -1,0 +1,7 @@
+{
+  "id": "shipment_delivery_action_delivery_create_create_2",
+  "module": "SHIPMENT_DELIVERY",
+  "edge_class": "action_contract",
+  "source_file": "action_delivery_create_create_2.yaml",
+  "source_summary": "GIVEN 实体 Delivery 的动作 create 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 create / THEN 状态变更与副作用应生效"
+}

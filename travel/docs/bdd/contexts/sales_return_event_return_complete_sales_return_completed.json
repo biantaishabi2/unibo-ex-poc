@@ -1,0 +1,7 @@
+{
+  "id": "sales_return_event_return_complete_sales_return_completed",
+  "module": "SALES_RETURN",
+  "edge_class": "event_contract",
+  "source_file": "event_return_complete_sales_return_completed.yaml",
+  "source_summary": "GIVEN 实体 Return 的动作 complete 完成 / WHEN 触发事件发布 / THEN 应广播 topic `sales.return.completed`"
+}

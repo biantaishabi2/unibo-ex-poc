@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_FIN_ACCOUNT-SEED-accounting_fin_account_action_fin_account_destroy_destroy] TITLE: ACCOUNTING_FIN_ACCOUNT contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_fin_account_action_fin_account_destroy_destroy" module="ACCOUNTING_FIN_ACCOUNT"
+WHEN when_execute_seed_contract module="ACCOUNTING_FIN_ACCOUNT"
+THEN then_seed_contract_should_hold module="ACCOUNTING_FIN_ACCOUNT"

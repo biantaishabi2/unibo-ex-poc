@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PAYMENT_PAYMENT_TOKEN-SEED-payment_payment_token_workflow_payment_token_token_lifecycle] TITLE: PAYMENT_PAYMENT_TOKEN contract seed scenario TAGS: seed workflow_contract
+GIVEN given_seed_context id="payment_payment_token_workflow_payment_token_token_lifecycle" module="PAYMENT_PAYMENT_TOKEN"
+WHEN when_execute_seed_contract module="PAYMENT_PAYMENT_TOKEN"
+THEN then_seed_contract_should_hold module="PAYMENT_PAYMENT_TOKEN"

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_JOURNAL_ENTRY-SEED-accounting_journal_entry_action_journal_entry_post_update] TITLE: ACCOUNTING_JOURNAL_ENTRY contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_journal_entry_action_journal_entry_post_update" module="ACCOUNTING_JOURNAL_ENTRY"
+WHEN when_execute_seed_contract module="ACCOUNTING_JOURNAL_ENTRY"
+THEN then_seed_contract_should_hold module="ACCOUNTING_JOURNAL_ENTRY"

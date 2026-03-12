@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PRODUCT_PRODUCT_FEATURE-SEED-product_product_feature_action_product_feature_create_create] TITLE: PRODUCT_PRODUCT_FEATURE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="product_product_feature_action_product_feature_create_create" module="PRODUCT_PRODUCT_FEATURE"
+WHEN when_execute_seed_contract module="PRODUCT_PRODUCT_FEATURE"
+THEN then_seed_contract_should_hold module="PRODUCT_PRODUCT_FEATURE"

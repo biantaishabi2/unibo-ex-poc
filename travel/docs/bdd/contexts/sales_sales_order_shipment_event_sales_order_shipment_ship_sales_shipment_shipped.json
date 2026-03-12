@@ -1,0 +1,7 @@
+{
+  "id": "sales_sales_order_shipment_event_sales_order_shipment_ship_sales_shipment_shipped",
+  "module": "SALES_SALES_ORDER_SHIPMENT",
+  "edge_class": "event_contract",
+  "source_file": "event_sales_order_shipment_ship_sales_shipment_shipped.yaml",
+  "source_summary": "GIVEN 实体 SalesOrderShipment 的动作 ship 完成 / WHEN 触发事件发布 / THEN 应广播 topic `sales.shipment.shipped`"
+}

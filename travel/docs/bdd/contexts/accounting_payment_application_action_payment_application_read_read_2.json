@@ -1,0 +1,7 @@
+{
+  "id": "accounting_payment_application_action_payment_application_read_read_2",
+  "module": "ACCOUNTING_PAYMENT_APPLICATION",
+  "edge_class": "action_contract",
+  "source_file": "action_payment_application_read_read_2.yaml",
+  "source_summary": "GIVEN 实体 PaymentApplication 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 读取结果应符合查询语义"
+}

@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PAYMENT_PAYMENT_TYPE-SEED-payment_payment_type_workflow_payment_type_payment_type_lifecycle] TITLE: PAYMENT_PAYMENT_TYPE contract seed scenario TAGS: seed workflow_contract
+GIVEN given_seed_context id="payment_payment_type_workflow_payment_type_payment_type_lifecycle" module="PAYMENT_PAYMENT_TYPE"
+WHEN when_execute_seed_contract module="PAYMENT_PAYMENT_TYPE"
+THEN then_seed_contract_should_hold module="PAYMENT_PAYMENT_TYPE"

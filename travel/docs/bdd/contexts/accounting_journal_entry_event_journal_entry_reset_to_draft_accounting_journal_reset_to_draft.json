@@ -1,0 +1,7 @@
+{
+  "id": "accounting_journal_entry_event_journal_entry_reset_to_draft_accounting_journal_reset_to_draft",
+  "module": "ACCOUNTING_JOURNAL_ENTRY",
+  "edge_class": "event_contract",
+  "source_file": "event_journal_entry_reset_to_draft_accounting_journal_reset_to_draft.yaml",
+  "source_summary": "GIVEN 实体 JournalEntry 的动作 reset_to_draft 完成 / WHEN 触发事件发布 / THEN 应广播 topic `accounting.journal.reset_to_draft`"
+}

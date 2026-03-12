@@ -1,0 +1,7 @@
+{
+  "id": "sales_return_action_return_cancel_update",
+  "module": "SALES_RETURN",
+  "edge_class": "action_contract",
+  "source_file": "action_return_cancel_update.yaml",
+  "source_summary": "GIVEN 实体 Return 的动作 cancel 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 cancel / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

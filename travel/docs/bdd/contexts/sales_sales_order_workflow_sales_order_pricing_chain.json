@@ -1,0 +1,7 @@
+{
+  "id": "sales_sales_order_workflow_sales_order_pricing_chain",
+  "module": "SALES_SALES_ORDER",
+  "edge_class": "workflow_contract",
+  "source_file": "workflow_sales_order_pricing_chain.yaml",
+  "source_summary": "GIVEN 实体 SalesOrder 定义工作流 pricing_chain / WHEN 按步骤执行 select_product_price -> compute_line_subtotal -> compute_tax -> aggregate_totals / THEN 流程顺序应满足声明约束"
+}

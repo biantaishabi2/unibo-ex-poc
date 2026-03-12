@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_CREDIT_CARD-SEED-accounting_credit_card_action_credit_card_create_create] TITLE: ACCOUNTING_CREDIT_CARD contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_credit_card_action_credit_card_create_create" module="ACCOUNTING_CREDIT_CARD"
+WHEN when_execute_seed_contract module="ACCOUNTING_CREDIT_CARD"
+THEN then_seed_contract_should_hold module="ACCOUNTING_CREDIT_CARD"

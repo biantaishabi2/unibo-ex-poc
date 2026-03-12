@@ -1,0 +1,7 @@
+{
+  "id": "payment_payment_action_payment_capture_update",
+  "module": "PAYMENT_PAYMENT",
+  "edge_class": "action_contract",
+  "source_file": "action_payment_capture_update.yaml",
+  "source_summary": "GIVEN 实体 Payment 的动作 capture 可执行，accept=[payment_ref_num, payment_gateway_response_id]，args=[无显式参数] / WHEN 执行动作 capture / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束"
+}

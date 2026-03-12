@@ -1,0 +1,7 @@
+{
+  "id": "accounting_payment_method_type_action_payment_method_type_destroy_destroy",
+  "module": "ACCOUNTING_PAYMENT_METHOD_TYPE",
+  "edge_class": "action_contract",
+  "source_file": "action_payment_method_type_destroy_destroy.yaml",
+  "source_summary": "GIVEN 实体 PaymentMethodType 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 状态变更与副作用应生效"
+}

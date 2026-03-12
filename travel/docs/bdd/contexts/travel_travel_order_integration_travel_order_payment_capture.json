@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_order_integration_travel_order_payment_capture",
+  "module": "TRAVEL_TRAVEL_ORDER",
+  "edge_class": "integration_contract",
+  "source_file": "integration_travel_order_payment_capture.yaml",
+  "source_summary": "GIVEN 实体 TravelOrder 声明 integration payment_capture（mode=sync） / WHEN 绑定动作 [submit_order, submit_waitlist] 触发外部调用 / THEN 调用结果需满足 声明错误码 payment_declined, payment_timeout, payment_risk_rejected 且 业务后置条件 captured_amount, payment_id, payment_status, provider_trace_id"
+}

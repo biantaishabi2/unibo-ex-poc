@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_PARTIAL_RECONCILE-SEED-accounting_partial_reconcile_action_partial_reconcile_read_read] TITLE: ACCOUNTING_PARTIAL_RECONCILE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_partial_reconcile_action_partial_reconcile_read_read" module="ACCOUNTING_PARTIAL_RECONCILE"
+WHEN when_execute_seed_contract module="ACCOUNTING_PARTIAL_RECONCILE"
+THEN then_seed_contract_should_hold module="ACCOUNTING_PARTIAL_RECONCILE"

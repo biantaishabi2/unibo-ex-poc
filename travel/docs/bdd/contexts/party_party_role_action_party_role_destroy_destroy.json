@@ -1,0 +1,7 @@
+{
+  "id": "party_party_role_action_party_role_destroy_destroy",
+  "module": "PARTY_PARTY_ROLE",
+  "edge_class": "action_contract",
+  "source_file": "action_party_role_destroy_destroy.yaml",
+  "source_summary": "GIVEN 实体 PartyRole 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 状态变更与副作用应生效"
+}

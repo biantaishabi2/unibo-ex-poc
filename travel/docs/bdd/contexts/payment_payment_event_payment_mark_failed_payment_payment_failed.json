@@ -1,0 +1,7 @@
+{
+  "id": "payment_payment_event_payment_mark_failed_payment_payment_failed",
+  "module": "PAYMENT_PAYMENT",
+  "edge_class": "event_contract",
+  "source_file": "event_payment_mark_failed_payment_payment_failed.yaml",
+  "source_summary": "GIVEN 实体 Payment 的动作 mark_failed 完成 / WHEN 触发事件发布 / THEN 应广播 topic `payment.payment.failed`"
+}

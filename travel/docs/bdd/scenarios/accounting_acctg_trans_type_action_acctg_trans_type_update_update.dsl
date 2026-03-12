@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_ACCTG_TRANS_TYPE-SEED-accounting_acctg_trans_type_action_acctg_trans_type_update_update] TITLE: ACCOUNTING_ACCTG_TRANS_TYPE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_acctg_trans_type_action_acctg_trans_type_update_update" module="ACCOUNTING_ACCTG_TRANS_TYPE"
+WHEN when_execute_seed_contract module="ACCOUNTING_ACCTG_TRANS_TYPE"
+THEN then_seed_contract_should_hold module="ACCOUNTING_ACCTG_TRANS_TYPE"

@@ -1,0 +1,7 @@
+{
+  "id": "delivery_shipment_route_segment_event_shipment_route_segment_update_tracking_delivery_tracking_updated",
+  "module": "DELIVERY_SHIPMENT_ROUTE_SEGMENT",
+  "edge_class": "event_contract",
+  "source_file": "event_shipment_route_segment_update_tracking_delivery_tracking_updated.yaml",
+  "source_summary": "GIVEN 实体 ShipmentRouteSegment 的动作 update_tracking 完成 / WHEN 触发事件发布 / THEN 应广播 topic `delivery.tracking.updated`"
+}

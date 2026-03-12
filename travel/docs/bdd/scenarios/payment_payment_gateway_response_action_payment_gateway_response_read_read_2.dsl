@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PAYMENT_PAYMENT_GATEWAY_RESPONSE-SEED-payment_payment_gateway_response_action_payment_gateway_response_read_read_2] TITLE: PAYMENT_PAYMENT_GATEWAY_RESPONSE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="payment_payment_gateway_response_action_payment_gateway_response_read_read_2" module="PAYMENT_PAYMENT_GATEWAY_RESPONSE"
+WHEN when_execute_seed_contract module="PAYMENT_PAYMENT_GATEWAY_RESPONSE"
+THEN then_seed_contract_should_hold module="PAYMENT_PAYMENT_GATEWAY_RESPONSE"

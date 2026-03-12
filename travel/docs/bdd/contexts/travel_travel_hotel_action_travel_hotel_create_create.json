@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_hotel_action_travel_hotel_create_create",
+  "module": "TRAVEL_TRAVEL_HOTEL",
+  "edge_class": "action_contract",
+  "source_file": "action_travel_hotel_create_create.yaml",
+  "source_summary": "GIVEN 实体 TravelHotel 的动作 create 可执行，accept=[hotel_code, hotel_name, city_id, city_code, hotel_star, status]，args=[无显式参数] / WHEN 执行动作 create / THEN 状态变更与副作用应生效"
+}

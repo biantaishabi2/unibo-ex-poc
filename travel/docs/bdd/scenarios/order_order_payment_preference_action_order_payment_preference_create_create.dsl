@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ORDER_ORDER_PAYMENT_PREFERENCE-SEED-order_order_payment_preference_action_order_payment_preference_create_create] TITLE: ORDER_ORDER_PAYMENT_PREFERENCE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="order_order_payment_preference_action_order_payment_preference_create_create" module="ORDER_ORDER_PAYMENT_PREFERENCE"
+WHEN when_execute_seed_contract module="ORDER_ORDER_PAYMENT_PREFERENCE"
+THEN then_seed_contract_should_hold module="ORDER_ORDER_PAYMENT_PREFERENCE"

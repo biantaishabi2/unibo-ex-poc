@@ -1,0 +1,7 @@
+{
+  "id": "travel_travel_static_code_mapping_action_travel_static_code_mapping_read_read",
+  "module": "TRAVEL_TRAVEL_STATIC_CODE_MAPPING",
+  "edge_class": "action_contract",
+  "source_file": "action_travel_static_code_mapping_read_read.yaml",
+  "source_summary": "GIVEN 实体 TravelStaticCodeMapping 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 读取结果应符合查询语义"
+}

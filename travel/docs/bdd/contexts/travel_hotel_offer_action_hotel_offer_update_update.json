@@ -1,0 +1,7 @@
+{
+  "id": "travel_hotel_offer_action_hotel_offer_update_update",
+  "module": "TRAVEL_HOTEL_OFFER",
+  "edge_class": "action_contract",
+  "source_file": "action_hotel_offer_update_update.yaml",
+  "source_summary": "GIVEN 实体 HotelOffer 的动作 update 可执行，accept=[hotel_name, city_code, city_ref_id, hotel_ref_id, room_type_ref_id, listed_price, settlement_price, currency, inventory_count, cancellation_policy, guarantee_policy]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

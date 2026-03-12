@@ -1,0 +1,7 @@
+{
+  "id": "sales_sales_order_item_workflow_sales_order_item_order_item_editing",
+  "module": "SALES_SALES_ORDER_ITEM",
+  "edge_class": "workflow_contract",
+  "source_file": "workflow_sales_order_item_order_item_editing.yaml",
+  "source_summary": "GIVEN 实体 SalesOrderItem 定义工作流 order_item_editing / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束"
+}

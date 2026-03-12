@@ -1,0 +1,7 @@
+{
+  "id": "payment_payment_refund_event_payment_refund_process_payment_refund_processed",
+  "module": "PAYMENT_PAYMENT_REFUND",
+  "edge_class": "event_contract",
+  "source_file": "event_payment_refund_process_payment_refund_processed.yaml",
+  "source_summary": "GIVEN 实体 PaymentRefund 的动作 process 完成 / WHEN 触发事件发布 / THEN 应广播 topic `payment.refund.processed`"
+}

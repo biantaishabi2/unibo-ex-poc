@@ -1,0 +1,4 @@
+[SCENARIO: BDD-PRODUCT_INVENTORY_ITEM_TYPE-SEED-product_inventory_item_type_action_inventory_item_type_update_update] TITLE: PRODUCT_INVENTORY_ITEM_TYPE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="product_inventory_item_type_action_inventory_item_type_update_update" module="PRODUCT_INVENTORY_ITEM_TYPE"
+WHEN when_execute_seed_contract module="PRODUCT_INVENTORY_ITEM_TYPE"
+THEN then_seed_contract_should_hold module="PRODUCT_INVENTORY_ITEM_TYPE"

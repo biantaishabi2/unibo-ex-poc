@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ORDER_SHOPPING_LIST-SEED-order_shopping_list_action_shopping_list_read_read] TITLE: ORDER_SHOPPING_LIST contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="order_shopping_list_action_shopping_list_read_read" module="ORDER_SHOPPING_LIST"
+WHEN when_execute_seed_contract module="ORDER_SHOPPING_LIST"
+THEN then_seed_contract_should_hold module="ORDER_SHOPPING_LIST"

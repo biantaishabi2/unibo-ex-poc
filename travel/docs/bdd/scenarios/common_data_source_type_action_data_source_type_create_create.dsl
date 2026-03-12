@@ -1,0 +1,4 @@
+[SCENARIO: BDD-COMMON_DATA_SOURCE_TYPE-SEED-common_data_source_type_action_data_source_type_create_create] TITLE: COMMON_DATA_SOURCE_TYPE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="common_data_source_type_action_data_source_type_create_create" module="COMMON_DATA_SOURCE_TYPE"
+WHEN when_execute_seed_contract module="COMMON_DATA_SOURCE_TYPE"
+THEN then_seed_contract_should_hold module="COMMON_DATA_SOURCE_TYPE"

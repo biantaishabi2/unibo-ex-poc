@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_INVOICE_ITEM-SEED-accounting_invoice_item_workflow_invoice_item_invoice_item_editing] TITLE: ACCOUNTING_INVOICE_ITEM contract seed scenario TAGS: seed workflow_contract
+GIVEN given_seed_context id="accounting_invoice_item_workflow_invoice_item_invoice_item_editing" module="ACCOUNTING_INVOICE_ITEM"
+WHEN when_execute_seed_contract module="ACCOUNTING_INVOICE_ITEM"
+THEN then_seed_contract_should_hold module="ACCOUNTING_INVOICE_ITEM"

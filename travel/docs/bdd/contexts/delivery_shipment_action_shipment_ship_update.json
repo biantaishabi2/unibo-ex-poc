@@ -1,0 +1,7 @@
+{
+  "id": "delivery_shipment_action_shipment_ship_update",
+  "module": "DELIVERY_SHIPMENT",
+  "edge_class": "action_contract",
+  "source_file": "action_shipment_ship_update.yaml",
+  "source_summary": "GIVEN 实体 Shipment 的动作 ship 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 ship / THEN 状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束"
+}

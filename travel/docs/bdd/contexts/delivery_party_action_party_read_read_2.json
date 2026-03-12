@@ -1,0 +1,7 @@
+{
+  "id": "delivery_party_action_party_read_read_2",
+  "module": "DELIVERY_PARTY",
+  "edge_class": "action_contract",
+  "source_file": "action_party_read_read_2.yaml",
+  "source_summary": "GIVEN 实体 Party 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 读取结果应符合查询语义"
+}

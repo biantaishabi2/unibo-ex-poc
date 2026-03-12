@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_GL_FISCAL_TYPE-SEED-accounting_gl_fiscal_type_action_gl_fiscal_type_destroy_destroy] TITLE: ACCOUNTING_GL_FISCAL_TYPE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_gl_fiscal_type_action_gl_fiscal_type_destroy_destroy" module="ACCOUNTING_GL_FISCAL_TYPE"
+WHEN when_execute_seed_contract module="ACCOUNTING_GL_FISCAL_TYPE"
+THEN then_seed_contract_should_hold module="ACCOUNTING_GL_FISCAL_TYPE"

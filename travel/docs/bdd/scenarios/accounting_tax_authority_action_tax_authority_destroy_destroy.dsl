@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_TAX_AUTHORITY-SEED-accounting_tax_authority_action_tax_authority_destroy_destroy] TITLE: ACCOUNTING_TAX_AUTHORITY contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_tax_authority_action_tax_authority_destroy_destroy" module="ACCOUNTING_TAX_AUTHORITY"
+WHEN when_execute_seed_contract module="ACCOUNTING_TAX_AUTHORITY"
+THEN then_seed_contract_should_hold module="ACCOUNTING_TAX_AUTHORITY"

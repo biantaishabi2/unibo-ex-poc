@@ -1,0 +1,7 @@
+{
+  "id": "accounting_partial_reconcile_action_partial_reconcile_create_create",
+  "module": "ACCOUNTING_PARTIAL_RECONCILE",
+  "edge_class": "action_contract",
+  "source_file": "action_partial_reconcile_create_create.yaml",
+  "source_summary": "GIVEN 实体 PartialReconcile 的动作 create 可执行，accept=[amount, debit_amount_currency, credit_amount_currency]，args=[debit_line_id:uuid!, credit_line_id:uuid!] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}

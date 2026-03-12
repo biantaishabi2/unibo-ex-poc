@@ -1,0 +1,7 @@
+{
+  "id": "sales_sales_order_action_sales_order_create_invoices_custom",
+  "module": "SALES_SALES_ORDER",
+  "edge_class": "action_contract",
+  "source_file": "action_sales_order_create_invoices_custom.yaml",
+  "source_summary": "GIVEN 实体 SalesOrder 的动作 create_invoices 可执行，accept=[[]]，args=[final:boolean] / WHEN 执行动作 create_invoices / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束"
+}

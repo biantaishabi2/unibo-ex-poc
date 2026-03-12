@@ -1,0 +1,7 @@
+{
+  "id": "payment_payment_method_action_payment_method_set_default_update",
+  "module": "PAYMENT_PAYMENT_METHOD",
+  "edge_class": "action_contract",
+  "source_file": "action_payment_method_set_default_update.yaml",
+  "source_summary": "GIVEN 实体 PaymentMethod 的动作 set_default 可执行，accept=[is_default]，args=[无显式参数] / WHEN 执行动作 set_default / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

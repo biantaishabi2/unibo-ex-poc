@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ECOMMERCE_TRAVEL_AIRPORT-SEED-ecommerce_travel_airport_action_travel_airport_create_create] TITLE: ECOMMERCE_TRAVEL_AIRPORT contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="ecommerce_travel_airport_action_travel_airport_create_create" module="ECOMMERCE_TRAVEL_AIRPORT"
+WHEN when_execute_seed_contract module="ECOMMERCE_TRAVEL_AIRPORT"
+THEN then_seed_contract_should_hold module="ECOMMERCE_TRAVEL_AIRPORT"

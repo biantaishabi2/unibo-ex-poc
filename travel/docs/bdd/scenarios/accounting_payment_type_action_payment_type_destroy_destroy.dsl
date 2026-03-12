@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_PAYMENT_TYPE-SEED-accounting_payment_type_action_payment_type_destroy_destroy] TITLE: ACCOUNTING_PAYMENT_TYPE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_payment_type_action_payment_type_destroy_destroy" module="ACCOUNTING_PAYMENT_TYPE"
+WHEN when_execute_seed_contract module="ACCOUNTING_PAYMENT_TYPE"
+THEN then_seed_contract_should_hold module="ACCOUNTING_PAYMENT_TYPE"

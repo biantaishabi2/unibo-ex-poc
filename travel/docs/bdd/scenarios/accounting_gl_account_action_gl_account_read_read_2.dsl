@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_GL_ACCOUNT-SEED-accounting_gl_account_action_gl_account_read_read_2] TITLE: ACCOUNTING_GL_ACCOUNT contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_gl_account_action_gl_account_read_read_2" module="ACCOUNTING_GL_ACCOUNT"
+WHEN when_execute_seed_contract module="ACCOUNTING_GL_ACCOUNT"
+THEN then_seed_contract_should_hold module="ACCOUNTING_GL_ACCOUNT"

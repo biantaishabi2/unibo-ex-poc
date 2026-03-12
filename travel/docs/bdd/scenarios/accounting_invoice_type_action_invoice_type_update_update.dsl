@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_INVOICE_TYPE-SEED-accounting_invoice_type_action_invoice_type_update_update] TITLE: ACCOUNTING_INVOICE_TYPE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_invoice_type_action_invoice_type_update_update" module="ACCOUNTING_INVOICE_TYPE"
+WHEN when_execute_seed_contract module="ACCOUNTING_INVOICE_TYPE"
+THEN then_seed_contract_should_hold module="ACCOUNTING_INVOICE_TYPE"

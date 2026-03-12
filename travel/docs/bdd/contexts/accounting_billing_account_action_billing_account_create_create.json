@@ -1,0 +1,7 @@
+{
+  "id": "accounting_billing_account_action_billing_account_create_create",
+  "module": "ACCOUNTING_BILLING_ACCOUNT",
+  "edge_class": "action_contract",
+  "source_file": "action_billing_account_create_create.yaml",
+  "source_summary": "GIVEN 实体 BillingAccount 的动作 create 可执行，accept=[account_number, account_type, credit_limit, currency, from_date, thru_date, description]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，应符合工作流步骤约束"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "delivery_shipment_package_route_seg_action_shipment_package_route_seg_update_cost_update",
+  "module": "DELIVERY_SHIPMENT_PACKAGE_ROUTE_SEG",
+  "edge_class": "action_contract",
+  "source_file": "action_shipment_package_route_seg_update_cost_update.yaml",
+  "source_summary": "GIVEN 实体 ShipmentPackageRouteSeg 的动作 update_cost 可执行，accept=[package_transport_cost, package_service_cost, package_other_cost, cod_amount, insured_amount, currency_uom_id]，args=[无显式参数] / WHEN 执行动作 update_cost / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "product_facility_group_action_facility_group_destroy_destroy",
+  "module": "PRODUCT_FACILITY_GROUP",
+  "edge_class": "action_contract",
+  "source_file": "action_facility_group_destroy_destroy.yaml",
+  "source_summary": "GIVEN 实体 FacilityGroup 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 状态变更与副作用应生效"
+}

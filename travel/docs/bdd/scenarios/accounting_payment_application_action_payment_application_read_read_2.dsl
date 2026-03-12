@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_PAYMENT_APPLICATION-SEED-accounting_payment_application_action_payment_application_read_read_2] TITLE: ACCOUNTING_PAYMENT_APPLICATION contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_payment_application_action_payment_application_read_read_2" module="ACCOUNTING_PAYMENT_APPLICATION"
+WHEN when_execute_seed_contract module="ACCOUNTING_PAYMENT_APPLICATION"
+THEN then_seed_contract_should_hold module="ACCOUNTING_PAYMENT_APPLICATION"

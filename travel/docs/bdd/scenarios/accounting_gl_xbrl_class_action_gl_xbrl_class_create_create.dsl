@@ -1,0 +1,4 @@
+[SCENARIO: BDD-ACCOUNTING_GL_XBRL_CLASS-SEED-accounting_gl_xbrl_class_action_gl_xbrl_class_create_create] TITLE: ACCOUNTING_GL_XBRL_CLASS contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="accounting_gl_xbrl_class_action_gl_xbrl_class_create_create" module="ACCOUNTING_GL_XBRL_CLASS"
+WHEN when_execute_seed_contract module="ACCOUNTING_GL_XBRL_CLASS"
+THEN then_seed_contract_should_hold module="ACCOUNTING_GL_XBRL_CLASS"

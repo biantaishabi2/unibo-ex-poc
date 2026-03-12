@@ -1,0 +1,7 @@
+{
+  "id": "delivery_shipment_cost_estimate_action_shipment_cost_estimate_destroy_destroy",
+  "module": "DELIVERY_SHIPMENT_COST_ESTIMATE",
+  "edge_class": "action_contract",
+  "source_file": "action_shipment_cost_estimate_destroy_destroy.yaml",
+  "source_summary": "GIVEN 实体 ShipmentCostEstimate 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 状态变更与副作用应生效，应符合工作流步骤约束"
+}

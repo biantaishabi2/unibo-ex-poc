@@ -1,0 +1,4 @@
+[SCENARIO: BDD-DELIVERY_SHIPMENT_ITEM-SEED-delivery_shipment_item_workflow_shipment_item_shipment_item_flow] TITLE: DELIVERY_SHIPMENT_ITEM contract seed scenario TAGS: seed workflow_contract
+GIVEN given_seed_context id="delivery_shipment_item_workflow_shipment_item_shipment_item_flow" module="DELIVERY_SHIPMENT_ITEM"
+WHEN when_execute_seed_contract module="DELIVERY_SHIPMENT_ITEM"
+THEN then_seed_contract_should_hold module="DELIVERY_SHIPMENT_ITEM"

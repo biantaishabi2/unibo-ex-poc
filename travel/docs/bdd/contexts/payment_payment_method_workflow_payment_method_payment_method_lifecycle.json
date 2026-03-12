@@ -1,0 +1,7 @@
+{
+  "id": "payment_payment_method_workflow_payment_method_payment_method_lifecycle",
+  "module": "PAYMENT_PAYMENT_METHOD",
+  "edge_class": "workflow_contract",
+  "source_file": "workflow_payment_method_payment_method_lifecycle.yaml",
+  "source_summary": "GIVEN 实体 PaymentMethod 定义工作流 payment_method_lifecycle / WHEN 按步骤执行 create -> update -> set_default -> expire -> destroy / THEN 流程顺序应满足声明约束"
+}

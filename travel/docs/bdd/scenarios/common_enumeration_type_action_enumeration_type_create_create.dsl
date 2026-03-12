@@ -1,0 +1,4 @@
+[SCENARIO: BDD-COMMON_ENUMERATION_TYPE-SEED-common_enumeration_type_action_enumeration_type_create_create] TITLE: COMMON_ENUMERATION_TYPE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="common_enumeration_type_action_enumeration_type_create_create" module="COMMON_ENUMERATION_TYPE"
+WHEN when_execute_seed_contract module="COMMON_ENUMERATION_TYPE"
+THEN then_seed_contract_should_hold module="COMMON_ENUMERATION_TYPE"

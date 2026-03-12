@@ -1,0 +1,7 @@
+{
+  "id": "delivery_shipment_status_action_shipment_status_create_create",
+  "module": "DELIVERY_SHIPMENT_STATUS",
+  "edge_class": "action_contract",
+  "source_file": "action_shipment_status_create_create.yaml",
+  "source_summary": "GIVEN 实体 ShipmentStatus 的动作 create 可执行，accept=[shipment_id, status_id, status_date, change_by_user_login_id]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束"
+}
