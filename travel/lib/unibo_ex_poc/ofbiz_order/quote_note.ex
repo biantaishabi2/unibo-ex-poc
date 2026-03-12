@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteNote do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "order_quote_notes"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteNote do
   end
 
   graphql do
-    type :order_quote_note
+    type :ofbiz_order_quote_note
 
     queries do
-      get :get_order_quote_note, :read
-      list :list_order_quote_notes, :read
+      get :get_ofbiz_order_quote_note, :read
+      list :list_ofbiz_order_quote_notes, :read
     end
 
     mutations do
-      create :create_order_quote_note, :create
-      update :update_order_quote_note, :update
-      destroy :delete_order_quote_note, :destroy
+      create :create_ofbiz_order_quote_note, :create
+      update :update_ofbiz_order_quote_note, :update
+      destroy :delete_ofbiz_order_quote_note, :destroy
     end
 
   end
@@ -44,12 +44,6 @@ defmodule UniboExPoc.Ofbiz.Order.QuoteNote do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

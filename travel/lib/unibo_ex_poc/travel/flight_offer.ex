@@ -18,7 +18,7 @@ defmodule UniboExPoc.Travel.FlightOffer do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshArchival.Resource],
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
     notifiers: [UniboExPoc.Travel.FlightOffer.Notifier]
 
   resource do
@@ -28,6 +28,7 @@ defmodule UniboExPoc.Travel.FlightOffer do
   postgres do
     table "travel_flight_offers"
     repo UniboExPoc.Repo
+    identity_index_names unique_flight_offer_snapshot: "idx_travel_flight_offers_unique_flight_offer_snapshot"
   end
 
   multitenancy do
@@ -166,6 +167,7 @@ defmodule UniboExPoc.Travel.FlightOffer do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Flight Offer via Create. Headers: x-tenant-id. doc_url: graphql://contract/travel/create_travel_flight_offer"
       primary? true
       accept [:tenant_id, :host_shop_id, :supplier_code, :itinerary_code, :flight_no, :airline_ref_id, :departure_airport_code, :departure_airport_ref_id, :arrival_airport_code, :arrival_airport_ref_id, :departure_at, :arrival_at, :cabin_class, :cabin_class_ref_id, :fare_family, :listed_price, :settlement_price, :currency, :seats_available, :baggage_policy, :refund_change_policy, :sale_status]
       validate present(:tenant_id)
@@ -175,15 +177,15 @@ defmodule UniboExPoc.Travel.FlightOffer do
       validate present(:departure_airport_code)
       validate present(:arrival_airport_code)
       validate present(:cabin_class)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Flight Offer via Update. Headers: x-tenant-id. doc_url: graphql://contract/travel/update_travel_flight_offer"
       primary? true
       accept [:airline_ref_id, :departure_airport_ref_id, :arrival_airport_ref_id, :cabin_class_ref_id, :listed_price, :settlement_price, :currency, :seats_available, :baggage_policy, :refund_change_policy, :fare_family]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :activate do
+      description "Update Flight Offer via Activate. Headers: x-tenant-id. doc_url: graphql://contract/travel/activate_travel_flight_offer"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :sale_status)
@@ -195,10 +197,10 @@ defmodule UniboExPoc.Travel.FlightOffer do
       end
       # message: "只有草稿或停用中的 offer 可以 activate"
       change set_attribute(:sale_status, :active)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :deactivate do
+      description "Update Flight Offer via Deactivate. Headers: x-tenant-id. doc_url: graphql://contract/travel/deactivate_travel_flight_offer"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :sale_status)
@@ -210,10 +212,10 @@ defmodule UniboExPoc.Travel.FlightOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :inactive)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :expire do
+      description "Update Flight Offer via Expire. Headers: x-tenant-id. doc_url: graphql://contract/travel/expire_travel_flight_offer"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :sale_status)
@@ -225,7 +227,6 @@ defmodule UniboExPoc.Travel.FlightOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :expired)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end
@@ -238,6 +239,13 @@ defmodule UniboExPoc.Travel.FlightOffer do
 
   identities do
     identity :unique_flight_offer_snapshot, [:tenant_id, :supplier_code, :itinerary_code, :flight_no, :departure_at, :cabin_class]
+  end
+
+  paper_trail do
+    change_tracking_mode :full_diff
+    store_action_name? true
+    attributes_as_attributes [:tenant_id]
+    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

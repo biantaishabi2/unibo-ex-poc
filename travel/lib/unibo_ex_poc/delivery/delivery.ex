@@ -103,28 +103,30 @@ defmodule UniboExPoc.Delivery.Delivery do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Delivery via Create. doc_url: graphql://contract/delivery/create_delivery_delivery"
       primary? true
       accept [:delivery_id, :origin_facility_id, :dest_facility_id, :estimated_start_date, :estimated_arrival_date, :fixed_asset_id, :start_mileage]
       validate present(:origin_facility_id)
       validate present(:dest_facility_id)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Delivery via Update. doc_url: graphql://contract/delivery/update_delivery_delivery"
       primary? true
       accept [:actual_start_date, :actual_arrival_date, :end_mileage, :fuel_used]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :start do
-      description "标记行程已出发"
+      description "标记行程已出发
+
+标记行程已出发. doc_url: graphql://contract/delivery/start_delivery_delivery"
       accept [:actual_start_date, :start_mileage]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :arrive do
-      description "标记行程已到达"
+      description "标记行程已到达
+
+标记行程已到达. doc_url: graphql://contract/delivery/arrive_delivery_delivery"
       accept [:actual_arrival_date, :end_mileage, :fuel_used]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

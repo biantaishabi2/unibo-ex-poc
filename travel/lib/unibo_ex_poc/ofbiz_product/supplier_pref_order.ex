@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.SupplierPrefOrder do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "product_supplier_pref_orders"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Product.SupplierPrefOrder do
   end
 
   graphql do
-    type :product_supplier_pref_order
+    type :ofbiz_product_supplier_pref_order
 
     queries do
-      get :get_product_supplier_pref_order, :read
-      list :list_product_supplier_pref_orders, :read
+      get :get_ofbiz_product_supplier_pref_order, :read
+      list :list_ofbiz_product_supplier_pref_orders, :read
     end
 
     mutations do
-      create :create_product_supplier_pref_order, :create
-      update :update_product_supplier_pref_order, :update
-      destroy :delete_product_supplier_pref_order, :destroy
+      create :create_ofbiz_product_supplier_pref_order, :create
+      update :update_ofbiz_product_supplier_pref_order, :update
+      destroy :delete_ofbiz_product_supplier_pref_order, :destroy
     end
 
   end
@@ -35,12 +35,6 @@ defmodule UniboExPoc.Ofbiz.Product.SupplierPrefOrder do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

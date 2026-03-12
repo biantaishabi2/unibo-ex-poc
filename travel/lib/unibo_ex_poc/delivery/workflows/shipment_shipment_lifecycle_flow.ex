@@ -7,11 +7,11 @@ defmodule UniboExPoc.Delivery.Workflows.Shipment.ShipmentLifecycleFlowWorkflow d
   alias UniboExPoc.Delivery.Shipment
 
   def steps do
-    [:create, :submit, :pick, :pack, :ship, :deliver, :cancel, :update, :destroy]
+    [:s1_create, :s2_submit, :s3_pick, :s4_pack, :s5_ship, :s6_deliver, :s7_cancel, :s8_update, :s9_destroy]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["update","submit","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["pick","cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit"},{"idempotency_key":null,"next":["pack","cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"pick"},{"idempotency_key":null,"next":["ship"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"pack"},{"idempotency_key":null,"next":["deliver"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"ship"},{"idempotency_key":null,"next":["cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"deliver"},{"idempotency_key":null,"next":["update"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"cancel"},{"idempotency_key":null,"next":["submit","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy"}],"workflow":"shipment_lifecycle_flow"}
+{"steps":[{"idempotency_key":null,"next":["update","submit","destroy"],"next_step_ids":["s8_update","s2_submit","s9_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["pick","cancel"],"next_step_ids":["s3_pick","s7_cancel"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit","step_id":"s2_submit"},{"idempotency_key":null,"next":["pack","cancel"],"next_step_ids":["s4_pack","s7_cancel"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"pick","step_id":"s3_pick"},{"idempotency_key":null,"next":["ship"],"next_step_ids":["s5_ship"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"pack","step_id":"s4_pack"},{"idempotency_key":null,"next":["deliver"],"next_step_ids":["s6_deliver"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"ship","step_id":"s5_ship"},{"idempotency_key":null,"next":["cancel"],"next_step_ids":["s7_cancel"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"deliver","step_id":"s6_deliver"},{"idempotency_key":null,"next":["update"],"next_step_ids":["s8_update"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"cancel","step_id":"s7_cancel"},{"idempotency_key":null,"next":["submit","destroy"],"next_step_ids":["s2_submit","s9_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update","step_id":"s8_update"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy","step_id":"s9_destroy"}],"workflow":"shipment_lifecycle_flow"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,23 +98,23 @@ defmodule UniboExPoc.Delivery.Workflows.Shipment.ShipmentLifecycleFlowWorkflow d
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(Shipment, :create, params), ash_opts)
-      :submit ->
+      :s2_submit ->
         Ash.update(Ash.Changeset.for_update(record, :submit, params), ash_opts)
-      :pick ->
+      :s3_pick ->
         Ash.update(Ash.Changeset.for_update(record, :pick, params), ash_opts)
-      :pack ->
+      :s4_pack ->
         Ash.update(Ash.Changeset.for_update(record, :pack, params), ash_opts)
-      :ship ->
+      :s5_ship ->
         Ash.update(Ash.Changeset.for_update(record, :ship, params), ash_opts)
-      :deliver ->
+      :s6_deliver ->
         Ash.update(Ash.Changeset.for_update(record, :deliver, params), ash_opts)
-      :cancel ->
+      :s7_cancel ->
         Ash.update(Ash.Changeset.for_update(record, :cancel, params), ash_opts)
-      :update ->
+      :s8_update ->
         Ash.update(Ash.Changeset.for_update(record, :update, params), ash_opts)
-      :destroy ->
+      :s9_destroy ->
         Ash.destroy(Ash.Changeset.for_destroy(record, :destroy, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -140,92 +140,90 @@ defmodule UniboExPoc.Delivery.Workflows.Shipment.ShipmentLifecycleFlowWorkflow d
 
   defp next_candidates(step) do
     case step do
-      :create -> [:update, :submit, :destroy]
-      :submit -> [:pick, :cancel]
-      :pick -> [:pack, :cancel]
-      :pack -> [:ship]
-      :ship -> [:deliver]
-      :deliver -> [:cancel]
-      :cancel -> [:update]
-      :update -> [:submit, :destroy]
-      :destroy -> []
+      :s1_create -> [:s8_update, :s2_submit, :s9_destroy]
+      :s2_submit -> [:s3_pick, :s7_cancel]
+      :s3_pick -> [:s4_pack, :s7_cancel]
+      :s4_pack -> [:s5_ship]
+      :s5_ship -> [:s6_deliver]
+      :s6_deliver -> [:s7_cancel]
+      :s7_cancel -> [:s8_update]
+      :s8_update -> [:s2_submit, :s9_destroy]
+      :s9_destroy -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :submit -> []
-      :pick -> []
-      :pack -> []
-      :ship -> []
-      :deliver -> []
-      :cancel -> []
-      :update -> []
-      :destroy -> []
+      :s1_create -> []
+      :s2_submit -> []
+      :s3_pick -> []
+      :s4_pack -> []
+      :s5_ship -> []
+      :s6_deliver -> []
+      :s7_cancel -> []
+      :s8_update -> []
+      :s9_destroy -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :submit -> nil
-      :pick -> nil
-      :pack -> nil
-      :ship -> nil
-      :deliver -> nil
-      :cancel -> nil
-      :update -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_submit -> nil
+      :s3_pick -> nil
+      :s4_pack -> nil
+      :s5_ship -> nil
+      :s6_deliver -> nil
+      :s7_cancel -> nil
+      :s8_update -> nil
+      :s9_destroy -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :submit -> false
-      :pick -> false
-      :pack -> false
-      :ship -> false
-      :deliver -> false
-      :cancel -> false
-      :update -> false
-      :destroy -> false
+      :s1_create -> false
+      :s2_submit -> false
+      :s3_pick -> false
+      :s4_pack -> false
+      :s5_ship -> false
+      :s6_deliver -> false
+      :s7_cancel -> false
+      :s8_update -> false
+      :s9_destroy -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :submit -> %{max_attempts: 1, backoff_ms: 0}
-      :pick -> %{max_attempts: 1, backoff_ms: 0}
-      :pack -> %{max_attempts: 1, backoff_ms: 0}
-      :ship -> %{max_attempts: 1, backoff_ms: 0}
-      :deliver -> %{max_attempts: 1, backoff_ms: 0}
-      :cancel -> %{max_attempts: 1, backoff_ms: 0}
-      :update -> %{max_attempts: 1, backoff_ms: 0}
-      :destroy -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_submit -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_pick -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_pack -> %{max_attempts: 1, backoff_ms: 0}
+      :s5_ship -> %{max_attempts: 1, backoff_ms: 0}
+      :s6_deliver -> %{max_attempts: 1, backoff_ms: 0}
+      :s7_cancel -> %{max_attempts: 1, backoff_ms: 0}
+      :s8_update -> %{max_attempts: 1, backoff_ms: 0}
+      :s9_destroy -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :submit -> nil
-      :pick -> nil
-      :pack -> nil
-      :ship -> nil
-      :deliver -> nil
-      :cancel -> nil
-      :update -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_submit -> nil
+      :s3_pick -> nil
+      :s4_pack -> nil
+      :s5_ship -> nil
+      :s6_deliver -> nil
+      :s7_cancel -> nil
+      :s8_update -> nil
+      :s9_destroy -> nil
       _ -> nil
     end
   end

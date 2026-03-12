@@ -114,31 +114,34 @@ defmodule UniboExPoc.Delivery.ShipmentPackageRouteSeg do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Shipment Package Route Seg via Create. doc_url: graphql://contract/delivery/create_delivery_shipment_package_route_seg"
       primary? true
       accept [:shipment_id, :shipment_package_seq_id, :shipment_route_segment_id, :tracking_code]
       validate present(:shipment_id)
       validate present(:shipment_package_seq_id)
       validate present(:shipment_route_segment_id)
-      change set_attribute(:id, expr(id))
     end
     update :update_label do
-      description "更新面单"
+      description "更新面单
+
+更新面单. doc_url: graphql://contract/delivery/update_label_delivery_shipment_package_route_seg"
       primary? true
       accept [:label_image, :label_html, :label_printed]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :update_cost do
-      description "更新费用"
+      description "更新费用
+
+更新费用. doc_url: graphql://contract/delivery/update_cost_delivery_shipment_package_route_seg"
       accept [:package_transport_cost, :package_service_cost, :package_other_cost, :cod_amount, :insured_amount, :currency_uom_id]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :mark_printed do
-      description "标记已打印面单"
+      description "标记已打印面单
+
+标记已打印面单. doc_url: graphql://contract/delivery/mark_printed_delivery_shipment_package_route_seg"
       accept []
       change set_attribute(:label_printed, true)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

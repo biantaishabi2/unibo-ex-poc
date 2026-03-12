@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.TaxAuthorityRateProduct do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_tax_authority_rate_products"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.TaxAuthorityRateProduct do
   end
 
   graphql do
-    type :accounting_tax_authority_rate_product
+    type :ofbiz_accounting_tax_authority_rate_product
 
     queries do
-      get :get_accounting_tax_authority_rate_product, :read
-      list :list_accounting_tax_authority_rate_products, :read
+      get :get_ofbiz_accounting_tax_authority_rate_product, :read
+      list :list_ofbiz_accounting_tax_authority_rate_products, :read
     end
 
     mutations do
-      create :create_accounting_tax_authority_rate_product, :create
-      update :update_accounting_tax_authority_rate_product, :update
-      destroy :delete_accounting_tax_authority_rate_product, :destroy
+      create :create_ofbiz_accounting_tax_authority_rate_product, :create
+      update :update_ofbiz_accounting_tax_authority_rate_product, :update
+      destroy :delete_ofbiz_accounting_tax_authority_rate_product, :destroy
     end
 
   end
@@ -54,12 +54,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.TaxAuthorityRateProduct do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

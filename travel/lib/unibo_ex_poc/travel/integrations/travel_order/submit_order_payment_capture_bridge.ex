@@ -4,8 +4,8 @@ defmodule UniboExPoc.Travel.Integrations.TravelOrder.SubmitOrderPaymentCaptureBr
   @provider "payment_capture"
   @action "submit_order"
   @declared_errors ["payment_declined", "payment_timeout", "payment_risk_rejected"]
-  @request_bindings []
-  @response_bindings []
+  @request_bindings [{"attr.order_no", "order_id"}, {"attr.recommended_payment_method", "payment_method"}, {"context.payment_environment", "payment_environment"}, {"context.payment_instrument_id", "payment_instrument_id"}, {"context.client_ip", "client_ip"}, {"context.openid", "openid"}]
+  @response_bindings [{"external_ref", :payment_external_ref}]
 
   @impl true
   def change(changeset, _opts, context) do
@@ -70,12 +70,16 @@ defmodule UniboExPoc.Travel.Integrations.TravelOrder.SubmitOrderPaymentCaptureBr
       ["arg", key] -> Ash.Changeset.get_argument(changeset, String.to_atom(key))
       ["attr", key] -> Ash.Changeset.get_attribute(changeset, String.to_atom(key))
       ["attribute", key] -> Ash.Changeset.get_attribute(changeset, String.to_atom(key))
+      ["calc", key] -> resolve_calculation(changeset, key)
+      ["calculation", key] -> resolve_calculation(changeset, key)
       ["context", key] -> resolve_context_path(context, key)
       ["literal", value] -> value
       _ -> nil
     end
   end
   defp resolve_source(_changeset, _context, _source_path), do: nil
+
+  defp resolve_calculation(_changeset, _key), do: nil
 
   defp resolve_context_path(context, key_path) when is_map(context) and is_binary(key_path) do
     keys = String.split(key_path, ".", trim: true)

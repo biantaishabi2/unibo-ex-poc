@@ -5,11 +5,11 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.PricingChainWorkflow do
   """
 
   def steps do
-    [:select_product_price, :compute_line_subtotal, :compute_tax, :aggregate_totals]
+    [:s1_select_product_price, :s2_compute_line_subtotal, :s3_compute_tax, :s4_aggregate_totals]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["compute_line_subtotal"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"select_product_price"},{"idempotency_key":null,"next":["compute_tax"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"compute_line_subtotal"},{"idempotency_key":null,"next":["aggregate_totals"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"compute_tax"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"aggregate_totals"}],"workflow":"pricing_chain"}
+{"steps":[{"idempotency_key":null,"next":["compute_line_subtotal"],"next_step_ids":["s2_compute_line_subtotal"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"select_product_price","step_id":"s1_select_product_price"},{"idempotency_key":null,"next":["compute_tax"],"next_step_ids":["s3_compute_tax"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"compute_line_subtotal","step_id":"s2_compute_line_subtotal"},{"idempotency_key":null,"next":["aggregate_totals"],"next_step_ids":["s4_aggregate_totals"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"compute_tax","step_id":"s3_compute_tax"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"aggregate_totals","step_id":"s4_aggregate_totals"}],"workflow":"pricing_chain"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -96,13 +96,13 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.PricingChainWorkflow do
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :select_product_price ->
+      :s1_select_product_price ->
         Ash.update(Ash.Changeset.for_update(record, :select_product_price, params), ash_opts)
-      :compute_line_subtotal ->
+      :s2_compute_line_subtotal ->
         Ash.update(Ash.Changeset.for_update(record, :compute_line_subtotal, params), ash_opts)
-      :compute_tax ->
+      :s3_compute_tax ->
         Ash.update(Ash.Changeset.for_update(record, :compute_tax, params), ash_opts)
-      :aggregate_totals ->
+      :s4_aggregate_totals ->
         Ash.update(Ash.Changeset.for_update(record, :aggregate_totals, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -128,62 +128,60 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.PricingChainWorkflow do
 
   defp next_candidates(step) do
     case step do
-      :select_product_price -> [:compute_line_subtotal]
-      :compute_line_subtotal -> [:compute_tax]
-      :compute_tax -> [:aggregate_totals]
-      :aggregate_totals -> []
+      :s1_select_product_price -> [:s2_compute_line_subtotal]
+      :s2_compute_line_subtotal -> [:s3_compute_tax]
+      :s3_compute_tax -> [:s4_aggregate_totals]
+      :s4_aggregate_totals -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :select_product_price -> []
-      :compute_line_subtotal -> []
-      :compute_tax -> []
-      :aggregate_totals -> []
+      :s1_select_product_price -> []
+      :s2_compute_line_subtotal -> []
+      :s3_compute_tax -> []
+      :s4_aggregate_totals -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :select_product_price -> nil
-      :compute_line_subtotal -> nil
-      :compute_tax -> nil
-      :aggregate_totals -> nil
+      :s1_select_product_price -> nil
+      :s2_compute_line_subtotal -> nil
+      :s3_compute_tax -> nil
+      :s4_aggregate_totals -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :select_product_price -> false
-      :compute_line_subtotal -> false
-      :compute_tax -> false
-      :aggregate_totals -> false
+      :s1_select_product_price -> false
+      :s2_compute_line_subtotal -> false
+      :s3_compute_tax -> false
+      :s4_aggregate_totals -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :select_product_price -> %{max_attempts: 1, backoff_ms: 0}
-      :compute_line_subtotal -> %{max_attempts: 1, backoff_ms: 0}
-      :compute_tax -> %{max_attempts: 1, backoff_ms: 0}
-      :aggregate_totals -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_select_product_price -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_compute_line_subtotal -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_compute_tax -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_aggregate_totals -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :select_product_price -> nil
-      :compute_line_subtotal -> nil
-      :compute_tax -> nil
-      :aggregate_totals -> nil
+      :s1_select_product_price -> nil
+      :s2_compute_line_subtotal -> nil
+      :s3_compute_tax -> nil
+      :s4_aggregate_totals -> nil
       _ -> nil
     end
   end

@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFeature do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Product,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "product_features"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFeature do
   end
 
   graphql do
-    type :product_product_feature
+    type :ofbiz_product_product_feature
 
     queries do
-      get :get_product_product_feature, :read
-      list :list_product_product_features, :read
+      get :get_ofbiz_product_product_feature, :read
+      list :list_ofbiz_product_product_features, :read
     end
 
     mutations do
-      create :create_product_product_feature, :create
-      update :update_product_product_feature, :update
-      destroy :delete_product_product_feature, :destroy
+      create :create_ofbiz_product_product_feature, :create
+      update :update_ofbiz_product_product_feature, :update
+      destroy :delete_ofbiz_product_product_feature, :destroy
     end
 
   end
@@ -50,12 +50,6 @@ defmodule UniboExPoc.Ofbiz.Product.ProductFeature do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

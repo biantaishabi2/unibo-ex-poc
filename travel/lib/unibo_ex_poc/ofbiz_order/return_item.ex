@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItem do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "order_return_items"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItem do
   end
 
   graphql do
-    type :order_return_item
+    type :ofbiz_order_return_item
 
     queries do
-      get :get_order_return_item, :read
-      list :list_order_return_items, :read
+      get :get_ofbiz_order_return_item, :read
+      list :list_ofbiz_order_return_items, :read
     end
 
     mutations do
-      create :create_order_return_item, :create
-      update :update_order_return_item, :update
-      destroy :delete_order_return_item, :destroy
+      create :create_ofbiz_order_return_item, :create
+      update :update_ofbiz_order_return_item, :update
+      destroy :delete_ofbiz_order_return_item, :destroy
     end
 
   end
@@ -84,12 +84,6 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItem do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

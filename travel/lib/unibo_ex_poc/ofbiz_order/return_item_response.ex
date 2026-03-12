@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemResponse do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   resource do
     description "记录对退回所做的处理：是否签发了替换订单、付款或账单账户信用"
@@ -15,17 +15,17 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemResponse do
   end
 
   graphql do
-    type :order_return_item_response
+    type :ofbiz_order_return_item_response
 
     queries do
-      get :get_order_return_item_response, :read
-      list :list_order_return_item_responses, :read
+      get :get_ofbiz_order_return_item_response, :read
+      list :list_ofbiz_order_return_item_responses, :read
     end
 
     mutations do
-      create :create_order_return_item_response, :create
-      update :update_order_return_item_response, :update
-      destroy :delete_order_return_item_response, :destroy
+      create :create_ofbiz_order_return_item_response, :create
+      update :update_ofbiz_order_return_item_response, :update
+      destroy :delete_ofbiz_order_return_item_response, :destroy
     end
 
   end
@@ -59,12 +59,6 @@ defmodule UniboExPoc.Ofbiz.Order.ReturnItemResponse do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

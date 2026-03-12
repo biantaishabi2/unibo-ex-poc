@@ -7,11 +7,11 @@ defmodule UniboExPoc.Delivery.Workflows.ShipmentPackageRouteSeg.PackageRouteSegF
   alias UniboExPoc.Delivery.ShipmentPackageRouteSeg
 
   def steps do
-    [:create, :update_label, :mark_printed, :update_cost, :destroy]
+    [:s1_create, :s2_update_label, :s3_mark_printed, :s4_update_cost, :s5_destroy]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["update_label","update_cost","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["mark_printed","update_cost"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update_label"},{"idempotency_key":null,"next":["update_cost"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_printed"},{"idempotency_key":null,"next":["destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update_cost"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy"}],"workflow":"package_route_seg_flow"}
+{"steps":[{"idempotency_key":null,"next":["update_label","update_cost","destroy"],"next_step_ids":["s2_update_label","s4_update_cost","s5_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["mark_printed","update_cost"],"next_step_ids":["s3_mark_printed","s4_update_cost"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update_label","step_id":"s2_update_label"},{"idempotency_key":null,"next":["update_cost"],"next_step_ids":["s4_update_cost"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_printed","step_id":"s3_mark_printed"},{"idempotency_key":null,"next":["destroy"],"next_step_ids":["s5_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update_cost","step_id":"s4_update_cost"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy","step_id":"s5_destroy"}],"workflow":"package_route_seg_flow"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,15 +98,15 @@ defmodule UniboExPoc.Delivery.Workflows.ShipmentPackageRouteSeg.PackageRouteSegF
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(ShipmentPackageRouteSeg, :create, params), ash_opts)
-      :update_label ->
+      :s2_update_label ->
         Ash.update(Ash.Changeset.for_update(record, :update_label, params), ash_opts)
-      :mark_printed ->
+      :s3_mark_printed ->
         Ash.update(Ash.Changeset.for_update(record, :mark_printed, params), ash_opts)
-      :update_cost ->
+      :s4_update_cost ->
         Ash.update(Ash.Changeset.for_update(record, :update_cost, params), ash_opts)
-      :destroy ->
+      :s5_destroy ->
         Ash.destroy(Ash.Changeset.for_destroy(record, :destroy, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -132,68 +132,66 @@ defmodule UniboExPoc.Delivery.Workflows.ShipmentPackageRouteSeg.PackageRouteSegF
 
   defp next_candidates(step) do
     case step do
-      :create -> [:update_label, :update_cost, :destroy]
-      :update_label -> [:mark_printed, :update_cost]
-      :mark_printed -> [:update_cost]
-      :update_cost -> [:destroy]
-      :destroy -> []
+      :s1_create -> [:s2_update_label, :s4_update_cost, :s5_destroy]
+      :s2_update_label -> [:s3_mark_printed, :s4_update_cost]
+      :s3_mark_printed -> [:s4_update_cost]
+      :s4_update_cost -> [:s5_destroy]
+      :s5_destroy -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :update_label -> []
-      :mark_printed -> []
-      :update_cost -> []
-      :destroy -> []
+      :s1_create -> []
+      :s2_update_label -> []
+      :s3_mark_printed -> []
+      :s4_update_cost -> []
+      :s5_destroy -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :update_label -> nil
-      :mark_printed -> nil
-      :update_cost -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_update_label -> nil
+      :s3_mark_printed -> nil
+      :s4_update_cost -> nil
+      :s5_destroy -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :update_label -> false
-      :mark_printed -> false
-      :update_cost -> false
-      :destroy -> false
+      :s1_create -> false
+      :s2_update_label -> false
+      :s3_mark_printed -> false
+      :s4_update_cost -> false
+      :s5_destroy -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :update_label -> %{max_attempts: 1, backoff_ms: 0}
-      :mark_printed -> %{max_attempts: 1, backoff_ms: 0}
-      :update_cost -> %{max_attempts: 1, backoff_ms: 0}
-      :destroy -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_update_label -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_mark_printed -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_update_cost -> %{max_attempts: 1, backoff_ms: 0}
+      :s5_destroy -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :update_label -> nil
-      :mark_printed -> nil
-      :update_cost -> nil
-      :destroy -> nil
+      :s1_create -> nil
+      :s2_update_label -> nil
+      :s3_mark_printed -> nil
+      :s4_update_cost -> nil
+      :s5_destroy -> nil
       _ -> nil
     end
   end

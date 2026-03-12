@@ -7,11 +7,11 @@ defmodule UniboExPoc.Sales.Workflows.Customer.CustomerLifecycleWorkflow do
   alias UniboExPoc.Sales.Customer
 
   def steps do
-    [:create, :update, :block]
+    [:s1_create, :s2_update, :s3_block]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["update","block"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["update","block"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"block"}],"workflow":"customer_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["update","block"],"next_step_ids":["s2_update","s3_block"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["update","block"],"next_step_ids":["s2_update","s3_block"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update","step_id":"s2_update"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"block","step_id":"s3_block"}],"workflow":"customer_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,11 +98,11 @@ defmodule UniboExPoc.Sales.Workflows.Customer.CustomerLifecycleWorkflow do
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(Customer, :create, params), ash_opts)
-      :update ->
+      :s2_update ->
         Ash.update(Ash.Changeset.for_update(record, :update, params), ash_opts)
-      :block ->
+      :s3_block ->
         Ash.update(Ash.Changeset.for_update(record, :block, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -128,56 +128,54 @@ defmodule UniboExPoc.Sales.Workflows.Customer.CustomerLifecycleWorkflow do
 
   defp next_candidates(step) do
     case step do
-      :create -> [:update, :block]
-      :update -> [:update, :block]
-      :block -> []
+      :s1_create -> [:s2_update, :s3_block]
+      :s2_update -> [:s2_update, :s3_block]
+      :s3_block -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :update -> []
-      :block -> []
+      :s1_create -> []
+      :s2_update -> []
+      :s3_block -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :update -> nil
-      :block -> nil
+      :s1_create -> nil
+      :s2_update -> nil
+      :s3_block -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :update -> false
-      :block -> false
+      :s1_create -> false
+      :s2_update -> false
+      :s3_block -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :update -> %{max_attempts: 1, backoff_ms: 0}
-      :block -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_update -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_block -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :update -> nil
-      :block -> nil
+      :s1_create -> nil
+      :s2_update -> nil
+      :s3_block -> nil
       _ -> nil
     end
   end

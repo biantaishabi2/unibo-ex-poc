@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Order.OrderRole do
   end
 
   graphql do
-    type :order_order_role
+    type :ofbiz_order_order_role
 
     queries do
-      get :get_order_order_role, :read
-      list :list_order_order_roles, :read
+      get :get_ofbiz_order_order_role, :read
+      list :list_ofbiz_order_order_roles, :read
     end
 
     mutations do
-      create :create_order_order_role, :create
-      update :update_order_order_role, :update
-      destroy :delete_order_order_role, :destroy
+      create :create_ofbiz_order_order_role, :create
+      update :update_ofbiz_order_order_role, :update
+      destroy :delete_ofbiz_order_order_role, :destroy
     end
 
   end

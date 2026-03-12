@@ -11,6 +11,8 @@ defmodule UniboExPoc.Delivery do
     resource UniboExPoc.Delivery.Delivery.Version
     resource UniboExPoc.Delivery.Shipment
     resource UniboExPoc.Delivery.Shipment.Version
+    resource UniboExPoc.Delivery.CrossOrgTransaction
+    resource UniboExPoc.Delivery.CrossOrgTransaction.Version
     resource UniboExPoc.Delivery.ShipmentType
     resource UniboExPoc.Delivery.ShipmentType.Version
     resource UniboExPoc.Delivery.ShipmentMethodType

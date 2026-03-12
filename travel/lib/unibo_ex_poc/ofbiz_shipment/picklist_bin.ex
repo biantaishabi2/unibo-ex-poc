@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.PicklistBin do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_picklist_bins"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Shipment.PicklistBin do
   end
 
   graphql do
-    type :shipment_picklist_bin
+    type :ofbiz_shipment_picklist_bin
 
     queries do
-      get :get_shipment_picklist_bin, :read
-      list :list_shipment_picklist_bins, :read
+      get :get_ofbiz_shipment_picklist_bin, :read
+      list :list_ofbiz_shipment_picklist_bins, :read
     end
 
     mutations do
-      create :create_shipment_picklist_bin, :create
-      update :update_shipment_picklist_bin, :update
-      destroy :delete_shipment_picklist_bin, :destroy
+      create :create_ofbiz_shipment_picklist_bin, :create
+      update :update_ofbiz_shipment_picklist_bin, :update
+      destroy :delete_ofbiz_shipment_picklist_bin, :destroy
     end
 
   end
@@ -52,12 +52,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.PicklistBin do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

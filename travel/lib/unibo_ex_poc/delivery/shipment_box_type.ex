@@ -97,15 +97,15 @@ defmodule UniboExPoc.Delivery.ShipmentBoxType do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Shipment Box Type via Create. doc_url: graphql://contract/delivery/create_delivery_shipment_box_type"
       primary? true
       accept [:shipment_box_type_id, :name, :description, :max_weight, :max_volume, :box_length, :box_width, :box_height, :dimension_uom_id, :weight_uom_id]
       validate present(:name)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Shipment Box Type via Update. doc_url: graphql://contract/delivery/update_delivery_shipment_box_type"
       primary? true
       accept [:name, :description, :max_weight, :max_volume, :box_length, :box_width, :box_height]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

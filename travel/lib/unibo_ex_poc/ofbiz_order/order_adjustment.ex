@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Order.OrderAdjustment do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   resource do
     description "注意：includeInTax 和 includeInShipping 应默认为 true，但当调整为税收或运费调整时应被忽略"
@@ -15,17 +15,17 @@ defmodule UniboExPoc.Ofbiz.Order.OrderAdjustment do
   end
 
   graphql do
-    type :order_order_adjustment
+    type :ofbiz_order_order_adjustment
 
     queries do
-      get :get_order_order_adjustment, :read
-      list :list_order_order_adjustments, :read
+      get :get_ofbiz_order_order_adjustment, :read
+      list :list_ofbiz_order_order_adjustments, :read
     end
 
     mutations do
-      create :create_order_order_adjustment, :create
-      update :update_order_order_adjustment, :update
-      destroy :delete_order_order_adjustment, :destroy
+      create :create_ofbiz_order_order_adjustment, :create
+      update :update_ofbiz_order_order_adjustment, :update
+      destroy :delete_ofbiz_order_order_adjustment, :destroy
     end
 
   end
@@ -112,12 +112,6 @@ defmodule UniboExPoc.Ofbiz.Order.OrderAdjustment do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

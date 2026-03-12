@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlXbrlClass do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_gl_xbrl_classes"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlXbrlClass do
   end
 
   graphql do
-    type :accounting_gl_xbrl_class
+    type :ofbiz_accounting_gl_xbrl_class
 
     queries do
-      get :get_accounting_gl_xbrl_class, :read
-      list :list_accounting_gl_xbrl_classs, :read
+      get :get_ofbiz_accounting_gl_xbrl_class, :read
+      list :list_ofbiz_accounting_gl_xbrl_classs, :read
     end
 
     mutations do
-      create :create_accounting_gl_xbrl_class, :create
-      update :update_accounting_gl_xbrl_class, :update
-      destroy :delete_accounting_gl_xbrl_class, :destroy
+      create :create_ofbiz_accounting_gl_xbrl_class, :create
+      update :update_ofbiz_accounting_gl_xbrl_class, :update
+      destroy :delete_ofbiz_accounting_gl_xbrl_class, :destroy
     end
 
   end
@@ -41,12 +41,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.GlXbrlClass do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

@@ -4,8 +4,8 @@ defmodule UniboExPoc.Travel.Integrations.TravelOrder.ConfirmQuoteShopEligibility
   @provider "shop_eligibility_quote"
   @action "confirm_quote"
   @declared_errors ["shop_quote_rejected", "shop_quote_timeout"]
-  @request_bindings []
-  @response_bindings []
+  @request_bindings [{"attr.host_member_id", "member_id"}, {"attr.host_shop_id", "shop_id"}, {"attr.product_type", "product_type"}, {"attr.total_amount", "amount"}, {"attr.points_to_use", "points_requested"}]
+  @response_bindings [{"points_deduction_amount", :points_deduction_amount}, {"recommended_payment_method", :recommended_payment_method}]
 
   @impl true
   def change(changeset, _opts, context) do
@@ -70,12 +70,16 @@ defmodule UniboExPoc.Travel.Integrations.TravelOrder.ConfirmQuoteShopEligibility
       ["arg", key] -> Ash.Changeset.get_argument(changeset, String.to_atom(key))
       ["attr", key] -> Ash.Changeset.get_attribute(changeset, String.to_atom(key))
       ["attribute", key] -> Ash.Changeset.get_attribute(changeset, String.to_atom(key))
+      ["calc", key] -> resolve_calculation(changeset, key)
+      ["calculation", key] -> resolve_calculation(changeset, key)
       ["context", key] -> resolve_context_path(context, key)
       ["literal", value] -> value
       _ -> nil
     end
   end
   defp resolve_source(_changeset, _context, _source_path), do: nil
+
+  defp resolve_calculation(_changeset, _key), do: nil
 
   defp resolve_context_path(context, key_path) when is_map(context) and is_binary(key_path) do
     keys = String.split(key_path, ".", trim: true)

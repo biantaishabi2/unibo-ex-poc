@@ -13,7 +13,8 @@ defmodule UniboExPoc.Sales.Customer do
     otp_app: :travel,
     domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
+    authorizers: [Ash.Policy.Authorizer]
 
   resource do
     description "客户主数据（对应 OFBiz PartyGroup + PartyRole CUSTOMER）"
@@ -22,6 +23,7 @@ defmodule UniboExPoc.Sales.Customer do
   postgres do
     table "sales_customers"
     repo UniboExPoc.Repo
+    identity_index_names unique_customer_code: "idx_sales_customers_unique_customer_code"
   end
 
   graphql do
@@ -100,16 +102,22 @@ defmodule UniboExPoc.Sales.Customer do
     has_many :quotes, UniboExPoc.Sales.Quote do
       public? true
     end
+    belongs_to :company_party, UniboExPoc.Sales.Party do
+      public? true
+      allow_nil? false
+    end
   end
 
   actions do
     defaults [:read]
     create :create do
+      description "Create Customer via Create. doc_url: graphql://contract/sales/create_sales_customer"
       primary? true
       accept [:customer_code, :name, :customer_type, :contact_name, :contact_phone, :contact_email, :billing_address, :shipping_address, :credit_limit, :payment_terms, :tax_id, :notes]
+      argument :company_party_id, :uuid, allow_nil?: false
+      change manage_relationship(:company_party_id, :company_party, type: :append, on_lookup: :relate)
       validate present(:customer_code)
       validate present(:name)
-      change set_attribute(:id, expr(id))
     end
     read :list do
       description "列表查询"
@@ -130,14 +138,16 @@ defmodule UniboExPoc.Sales.Customer do
       description "快速检索"
     end
     update :update do
+      description "Update Customer via Update. doc_url: graphql://contract/sales/update_sales_customer"
       primary? true
       accept [:name, :contact_name, :contact_phone, :contact_email, :billing_address, :shipping_address, :credit_limit, :payment_terms, :tax_id, :notes, :status]
       # skipped: validate present :name (incompatible with bulk update atomic path)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :block do
-      description "冻结客户"
+      description "冻结客户
+
+冻结客户. doc_url: graphql://contract/sales/block_sales_customer"
       accept []
       # skipped: validate present :name (incompatible with bulk update atomic path)
       change fn changeset, _ctx ->
@@ -150,7 +160,6 @@ defmodule UniboExPoc.Sales.Customer do
       end
       # message: "只有活跃状态可以冻结"
       change set_attribute(:status, :blocked)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end
@@ -163,6 +172,20 @@ defmodule UniboExPoc.Sales.Customer do
     change_tracking_mode :full_diff
     store_action_name? true
     ignore_attributes [:inserted_at, :updated_at]
+  end
+
+  policies do
+    policy action_type(:read) do
+      authorize_if expr(^actor(:role) == :admin)
+      authorize_if relates_to_actor_via(:company_party)
+    end
+    policy action_type(:update) do
+      authorize_if expr(^actor(:role) == :admin)
+      authorize_if relates_to_actor_via(:company_party)
+    end
+    policy action_type(:create) do
+      authorize_if expr(actor.role in [:sales_rep, :admin])
+    end
   end
 
 end

@@ -7,11 +7,11 @@ defmodule UniboExPoc.Delivery.Workflows.ShipmentStatus.ShipmentStatusRecordFlowW
   alias UniboExPoc.Delivery.ShipmentStatus
 
   def steps do
-    [:create]
+    [:s1_create]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"}],"workflow":"shipment_status_record_flow"}
+{"steps":[{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"}],"workflow":"shipment_status_record_flow"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,7 +98,7 @@ defmodule UniboExPoc.Delivery.Workflows.ShipmentStatus.ShipmentStatusRecordFlowW
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(ShipmentStatus, :create, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -124,44 +124,42 @@ defmodule UniboExPoc.Delivery.Workflows.ShipmentStatus.ShipmentStatusRecordFlowW
 
   defp next_candidates(step) do
     case step do
-      :create -> []
+      :s1_create -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
+      :s1_create -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
+      :s1_create -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
+      :s1_create -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
+      :s1_create -> nil
       _ -> nil
     end
   end

@@ -7,11 +7,11 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.SalesOrderLifecycleFlowWorkflow 
   alias UniboExPoc.Sales.SalesOrder
 
   def steps do
-    [:create, :action_quotation_send, :action_confirm, :create_invoices, :action_done]
+    [:s1_create, :s2_action_quotation_send, :s3_action_confirm, :s4_create_invoices, :s5_action_done]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["action_quotation_send"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["action_confirm"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"action_quotation_send"},{"idempotency_key":null,"next":["create_invoices"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"action_confirm"},{"idempotency_key":null,"next":["action_done"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create_invoices"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"action_done"}],"workflow":"sales_order_lifecycle_flow"}
+{"steps":[{"idempotency_key":null,"next":["action_quotation_send"],"next_step_ids":["s2_action_quotation_send"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["action_confirm"],"next_step_ids":["s3_action_confirm"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"action_quotation_send","step_id":"s2_action_quotation_send"},{"idempotency_key":null,"next":["create_invoices"],"next_step_ids":["s4_create_invoices"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"action_confirm","step_id":"s3_action_confirm"},{"idempotency_key":null,"next":["action_done"],"next_step_ids":["s5_action_done"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create_invoices","step_id":"s4_create_invoices"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"action_done","step_id":"s5_action_done"}],"workflow":"sales_order_lifecycle_flow"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,15 +98,15 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.SalesOrderLifecycleFlowWorkflow 
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(SalesOrder, :create, params), ash_opts)
-      :action_quotation_send ->
+      :s2_action_quotation_send ->
         Ash.update(Ash.Changeset.for_update(record, :action_quotation_send, params), ash_opts)
-      :action_confirm ->
+      :s3_action_confirm ->
         Ash.update(Ash.Changeset.for_update(record, :action_confirm, params), ash_opts)
-      :create_invoices ->
+      :s4_create_invoices ->
         Ash.update(Ash.Changeset.for_update(record, :create_invoices, params), ash_opts)
-      :action_done ->
+      :s5_action_done ->
         Ash.update(Ash.Changeset.for_update(record, :action_done, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -132,68 +132,66 @@ defmodule UniboExPoc.Sales.Workflows.SalesOrder.SalesOrderLifecycleFlowWorkflow 
 
   defp next_candidates(step) do
     case step do
-      :create -> [:action_quotation_send]
-      :action_quotation_send -> [:action_confirm]
-      :action_confirm -> [:create_invoices]
-      :create_invoices -> [:action_done]
-      :action_done -> []
+      :s1_create -> [:s2_action_quotation_send]
+      :s2_action_quotation_send -> [:s3_action_confirm]
+      :s3_action_confirm -> [:s4_create_invoices]
+      :s4_create_invoices -> [:s5_action_done]
+      :s5_action_done -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :action_quotation_send -> []
-      :action_confirm -> []
-      :create_invoices -> []
-      :action_done -> []
+      :s1_create -> []
+      :s2_action_quotation_send -> []
+      :s3_action_confirm -> []
+      :s4_create_invoices -> []
+      :s5_action_done -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :action_quotation_send -> nil
-      :action_confirm -> nil
-      :create_invoices -> nil
-      :action_done -> nil
+      :s1_create -> nil
+      :s2_action_quotation_send -> nil
+      :s3_action_confirm -> nil
+      :s4_create_invoices -> nil
+      :s5_action_done -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :action_quotation_send -> false
-      :action_confirm -> false
-      :create_invoices -> false
-      :action_done -> false
+      :s1_create -> false
+      :s2_action_quotation_send -> false
+      :s3_action_confirm -> false
+      :s4_create_invoices -> false
+      :s5_action_done -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :action_quotation_send -> %{max_attempts: 1, backoff_ms: 0}
-      :action_confirm -> %{max_attempts: 1, backoff_ms: 0}
-      :create_invoices -> %{max_attempts: 1, backoff_ms: 0}
-      :action_done -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_action_quotation_send -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_action_confirm -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_create_invoices -> %{max_attempts: 1, backoff_ms: 0}
+      :s5_action_done -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :action_quotation_send -> nil
-      :action_confirm -> nil
-      :create_invoices -> nil
-      :action_done -> nil
+      :s1_create -> nil
+      :s2_action_quotation_send -> nil
+      :s3_action_confirm -> nil
+      :s4_create_invoices -> nil
+      :s5_action_done -> nil
       _ -> nil
     end
   end

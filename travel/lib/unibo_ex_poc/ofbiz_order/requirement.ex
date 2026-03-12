@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Order.Requirement do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Order,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "order_requirements"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Order.Requirement do
   end
 
   graphql do
-    type :order_requirement
+    type :ofbiz_order_requirement
 
     queries do
-      get :get_order_requirement, :read
-      list :list_order_requirements, :read
+      get :get_ofbiz_order_requirement, :read
+      list :list_ofbiz_order_requirements, :read
     end
 
     mutations do
-      create :create_order_requirement, :create
-      update :update_order_requirement, :update
-      destroy :delete_order_requirement, :destroy
+      create :create_ofbiz_order_requirement, :create
+      update :update_ofbiz_order_requirement, :update
+      destroy :delete_ofbiz_order_requirement, :destroy
     end
 
   end
@@ -62,12 +62,6 @@ defmodule UniboExPoc.Ofbiz.Order.Requirement do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

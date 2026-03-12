@@ -82,16 +82,18 @@ defmodule UniboExPoc.Payment.PaymentRefund do
   actions do
     defaults [:read]
     create :create do
+      description "Create Payment Refund via Create. doc_url: graphql://contract/payment/create_payment_payment_refund"
       primary? true
       accept [:payment_id, :amount, :reason, :refund_method]
       argument :payment_id, :uuid, allow_nil?: false
       change manage_relationship(:payment_id, :payment, type: :append, on_lookup: :relate)
       validate present(:payment_id)
       validate present(:amount)
-      change set_attribute(:id, expr(id))
     end
     update :approve do
-      description "审批退款，状态从 pending 变为 approved"
+      description "审批退款，状态从 pending 变为 approved
+
+审批退款，状态从 pending 变为 approved. doc_url: graphql://contract/payment/approve_payment_payment_refund"
       primary? true
       accept []
       change fn changeset, _ctx ->
@@ -104,11 +106,12 @@ defmodule UniboExPoc.Payment.PaymentRefund do
       end
       # message: "只有待处理状态可以审批"
       change set_attribute(:status, :approved)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :process do
-      description "处理退款，状态从 approved 变为 processed"
+      description "处理退款，状态从 approved 变为 processed
+
+处理退款，状态从 approved 变为 processed. doc_url: graphql://contract/payment/process_payment_payment_refund"
       accept [:processed_at]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -120,11 +123,12 @@ defmodule UniboExPoc.Payment.PaymentRefund do
       end
       # message: "只有已审批状态可以处理"
       change set_attribute(:status, :processed)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
     update :reject do
-      description "拒绝退款，状态从 pending 变为 rejected"
+      description "拒绝退款，状态从 pending 变为 rejected
+
+拒绝退款，状态从 pending 变为 rejected. doc_url: graphql://contract/payment/reject_payment_payment_refund"
       accept [:reason]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -136,7 +140,6 @@ defmodule UniboExPoc.Payment.PaymentRefund do
       end
       # message: "只有待处理状态可以拒绝"
       change set_attribute(:status, :rejected)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

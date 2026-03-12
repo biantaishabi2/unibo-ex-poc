@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItemType do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_invoice_item_types"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItemType do
   end
 
   graphql do
-    type :accounting_invoice_item_type
+    type :ofbiz_accounting_invoice_item_type
 
     queries do
-      get :get_accounting_invoice_item_type, :read
-      list :list_accounting_invoice_item_types, :read
+      get :get_ofbiz_accounting_invoice_item_type, :read
+      list :list_ofbiz_accounting_invoice_item_types, :read
     end
 
     mutations do
-      create :create_accounting_invoice_item_type, :create
-      update :update_accounting_invoice_item_type, :update
-      destroy :delete_accounting_invoice_item_type, :destroy
+      create :create_ofbiz_accounting_invoice_item_type, :create
+      update :update_ofbiz_accounting_invoice_item_type, :update
+      destroy :delete_ofbiz_accounting_invoice_item_type, :destroy
     end
 
   end
@@ -46,12 +46,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.InvoiceItemType do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

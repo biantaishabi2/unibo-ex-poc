@@ -7,11 +7,11 @@ defmodule UniboExPoc.Sales.Workflows.Quote.QuoteLifecycleWorkflow do
   alias UniboExPoc.Sales.Quote
 
   def steps do
-    [:create, :submit, :accept, :reject]
+    [:s1_create, :s2_submit, :s3_accept, :s4_reject]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["submit"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create"},{"idempotency_key":null,"next":["accept","reject"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit"},{"idempotency_key":null,"next":["reject"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"accept"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"reject"}],"workflow":"quote_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["submit"],"next_step_ids":["s2_submit"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["accept","reject"],"next_step_ids":["s3_accept","s4_reject"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit","step_id":"s2_submit"},{"idempotency_key":null,"next":["reject"],"next_step_ids":["s4_reject"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"accept","step_id":"s3_accept"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"reject","step_id":"s4_reject"}],"workflow":"quote_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,13 +98,13 @@ defmodule UniboExPoc.Sales.Workflows.Quote.QuoteLifecycleWorkflow do
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create ->
+      :s1_create ->
         Ash.create(Ash.Changeset.for_create(Quote, :create, params), ash_opts)
-      :submit ->
+      :s2_submit ->
         Ash.update(Ash.Changeset.for_update(record, :submit, params), ash_opts)
-      :accept ->
+      :s3_accept ->
         Ash.update(Ash.Changeset.for_update(record, :accept, params), ash_opts)
-      :reject ->
+      :s4_reject ->
         Ash.update(Ash.Changeset.for_update(record, :reject, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -130,62 +130,60 @@ defmodule UniboExPoc.Sales.Workflows.Quote.QuoteLifecycleWorkflow do
 
   defp next_candidates(step) do
     case step do
-      :create -> [:submit]
-      :submit -> [:accept, :reject]
-      :accept -> [:reject]
-      :reject -> []
+      :s1_create -> [:s2_submit]
+      :s2_submit -> [:s3_accept, :s4_reject]
+      :s3_accept -> [:s4_reject]
+      :s4_reject -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create -> []
-      :submit -> []
-      :accept -> []
-      :reject -> []
+      :s1_create -> []
+      :s2_submit -> []
+      :s3_accept -> []
+      :s4_reject -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create -> nil
-      :submit -> nil
-      :accept -> nil
-      :reject -> nil
+      :s1_create -> nil
+      :s2_submit -> nil
+      :s3_accept -> nil
+      :s4_reject -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create -> false
-      :submit -> false
-      :accept -> false
-      :reject -> false
+      :s1_create -> false
+      :s2_submit -> false
+      :s3_accept -> false
+      :s4_reject -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create -> %{max_attempts: 1, backoff_ms: 0}
-      :submit -> %{max_attempts: 1, backoff_ms: 0}
-      :accept -> %{max_attempts: 1, backoff_ms: 0}
-      :reject -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_submit -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_accept -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_reject -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create -> nil
-      :submit -> nil
-      :accept -> nil
-      :reject -> nil
+      :s1_create -> nil
+      :s2_submit -> nil
+      :s3_accept -> nil
+      :s4_reject -> nil
       _ -> nil
     end
   end

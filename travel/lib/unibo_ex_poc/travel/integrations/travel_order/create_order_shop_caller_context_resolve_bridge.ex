@@ -4,8 +4,8 @@ defmodule UniboExPoc.Travel.Integrations.TravelOrder.CreateOrderShopCallerContex
   @provider "shop_caller_context_resolve"
   @action "create_order"
   @declared_errors ["shop_context_not_found", "shop_context_timeout"]
-  @request_bindings []
-  @response_bindings []
+  @request_bindings [{"context.member_id", "member_id"}, {"context.enterprise_id", "enterprise_id"}, {"context.current_shop_id", "current_shop_id"}]
+  @response_bindings [{"current_shop_id", :host_shop_id}, {"member_id", :host_member_id}, {"enterprise_id", :host_enterprise_id}]
 
   @impl true
   def change(changeset, _opts, context) do
@@ -70,12 +70,16 @@ defmodule UniboExPoc.Travel.Integrations.TravelOrder.CreateOrderShopCallerContex
       ["arg", key] -> Ash.Changeset.get_argument(changeset, String.to_atom(key))
       ["attr", key] -> Ash.Changeset.get_attribute(changeset, String.to_atom(key))
       ["attribute", key] -> Ash.Changeset.get_attribute(changeset, String.to_atom(key))
+      ["calc", key] -> resolve_calculation(changeset, key)
+      ["calculation", key] -> resolve_calculation(changeset, key)
       ["context", key] -> resolve_context_path(context, key)
       ["literal", value] -> value
       _ -> nil
     end
   end
   defp resolve_source(_changeset, _context, _source_path), do: nil
+
+  defp resolve_calculation(_changeset, _key), do: nil
 
   defp resolve_context_path(context, key_path) when is_map(context) and is_binary(key_path) do
     keys = String.split(key_path, ".", trim: true)

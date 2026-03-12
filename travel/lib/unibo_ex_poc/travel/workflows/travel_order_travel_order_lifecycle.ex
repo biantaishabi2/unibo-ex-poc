@@ -7,11 +7,11 @@ defmodule UniboExPoc.Travel.Workflows.TravelOrder.TravelOrderLifecycleWorkflow d
   alias UniboExPoc.Travel.TravelOrder
 
   def steps do
-    [:create_order, :update, :confirm_quote, :submit_order, :submit_waitlist, :mark_payment_succeeded, :mark_booked, :fulfill_waitlist, :cancel_waitlist, :request_cancel, :approve_cancel, :request_change, :confirm_change, :mark_completed, :mark_order_failed, :destroy]
+    [:s1_create_order, :s2_update, :s3_confirm_quote, :s4_submit_order, :s5_submit_waitlist, :s6_mark_payment_succeeded, :s7_mark_booked, :s8_fulfill_waitlist, :s9_cancel_waitlist, :s10_request_cancel, :s11_approve_cancel, :s12_request_change, :s13_confirm_change, :s14_mark_completed, :s15_mark_order_failed, :s16_destroy]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["update","confirm_quote","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create_order"},{"idempotency_key":null,"next":["confirm_quote","destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update"},{"idempotency_key":null,"next":["submit_order","submit_waitlist"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"confirm_quote"},{"idempotency_key":null,"next":["mark_payment_succeeded","mark_order_failed"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit_order"},{"idempotency_key":null,"next":["mark_payment_succeeded","mark_order_failed"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit_waitlist"},{"idempotency_key":null,"next":["mark_booked","fulfill_waitlist","cancel_waitlist"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_payment_succeeded"},{"idempotency_key":null,"next":["mark_completed","request_cancel","request_change"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_booked"},{"idempotency_key":null,"next":["mark_completed","request_cancel","request_change"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"fulfill_waitlist"},{"idempotency_key":null,"next":["request_cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"cancel_waitlist"},{"idempotency_key":null,"next":["approve_cancel"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"request_cancel"},{"idempotency_key":null,"next":["request_change"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"approve_cancel"},{"idempotency_key":null,"next":["confirm_change"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"request_change"},{"idempotency_key":null,"next":["mark_completed"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"confirm_change"},{"idempotency_key":null,"next":["mark_order_failed"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_completed"},{"idempotency_key":null,"next":["destroy"],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_order_failed"},{"idempotency_key":null,"next":[],"on_error":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy"}],"workflow":"travel_order_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["update","confirm_quote","destroy"],"next_step_ids":["s2_update","s3_confirm_quote","s16_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create_order","step_id":"s1_create_order"},{"idempotency_key":null,"next":["confirm_quote","destroy"],"next_step_ids":["s3_confirm_quote","s16_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"update","step_id":"s2_update"},{"idempotency_key":null,"next":["submit_order","submit_waitlist"],"next_step_ids":["s4_submit_order","s5_submit_waitlist"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"confirm_quote","step_id":"s3_confirm_quote"},{"idempotency_key":null,"next":["mark_payment_succeeded","mark_order_failed"],"next_step_ids":["s6_mark_payment_succeeded","s15_mark_order_failed"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit_order","step_id":"s4_submit_order"},{"idempotency_key":null,"next":["mark_payment_succeeded","mark_order_failed"],"next_step_ids":["s6_mark_payment_succeeded","s15_mark_order_failed"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit_waitlist","step_id":"s5_submit_waitlist"},{"idempotency_key":null,"next":["mark_booked","fulfill_waitlist","cancel_waitlist"],"next_step_ids":["s7_mark_booked","s8_fulfill_waitlist","s9_cancel_waitlist"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_payment_succeeded","step_id":"s6_mark_payment_succeeded"},{"idempotency_key":null,"next":["mark_completed","request_cancel","request_change"],"next_step_ids":["s14_mark_completed","s10_request_cancel","s12_request_change"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_booked","step_id":"s7_mark_booked"},{"idempotency_key":null,"next":["mark_completed","request_cancel","request_change"],"next_step_ids":["s14_mark_completed","s10_request_cancel","s12_request_change"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"fulfill_waitlist","step_id":"s8_fulfill_waitlist"},{"idempotency_key":null,"next":["request_cancel"],"next_step_ids":["s10_request_cancel"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"cancel_waitlist","step_id":"s9_cancel_waitlist"},{"idempotency_key":null,"next":["approve_cancel"],"next_step_ids":["s11_approve_cancel"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"request_cancel","step_id":"s10_request_cancel"},{"idempotency_key":null,"next":["request_change"],"next_step_ids":["s12_request_change"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"approve_cancel","step_id":"s11_approve_cancel"},{"idempotency_key":null,"next":["confirm_change"],"next_step_ids":["s13_confirm_change"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"request_change","step_id":"s12_request_change"},{"idempotency_key":null,"next":["mark_completed"],"next_step_ids":["s14_mark_completed"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"confirm_change","step_id":"s13_confirm_change"},{"idempotency_key":null,"next":["mark_order_failed"],"next_step_ids":["s15_mark_order_failed"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_completed","step_id":"s14_mark_completed"},{"idempotency_key":null,"next":["destroy"],"next_step_ids":["s16_destroy"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"mark_order_failed","step_id":"s15_mark_order_failed"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"destroy","step_id":"s16_destroy"}],"workflow":"travel_order_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -98,37 +98,37 @@ defmodule UniboExPoc.Travel.Workflows.TravelOrder.TravelOrderLifecycleWorkflow d
     ash_opts = [actor: actor] |> maybe_put_tenant(tenant)
 
     case step do
-      :create_order ->
+      :s1_create_order ->
         Ash.create(Ash.Changeset.for_create(TravelOrder, :create_order, params), ash_opts)
-      :update ->
+      :s2_update ->
         Ash.update(Ash.Changeset.for_update(record, :update, params), ash_opts)
-      :confirm_quote ->
+      :s3_confirm_quote ->
         Ash.update(Ash.Changeset.for_update(record, :confirm_quote, params), ash_opts)
-      :submit_order ->
+      :s4_submit_order ->
         Ash.update(Ash.Changeset.for_update(record, :submit_order, params), ash_opts)
-      :submit_waitlist ->
+      :s5_submit_waitlist ->
         Ash.update(Ash.Changeset.for_update(record, :submit_waitlist, params), ash_opts)
-      :mark_payment_succeeded ->
+      :s6_mark_payment_succeeded ->
         Ash.update(Ash.Changeset.for_update(record, :mark_payment_succeeded, params), ash_opts)
-      :mark_booked ->
+      :s7_mark_booked ->
         Ash.update(Ash.Changeset.for_update(record, :mark_booked, params), ash_opts)
-      :fulfill_waitlist ->
+      :s8_fulfill_waitlist ->
         Ash.update(Ash.Changeset.for_update(record, :fulfill_waitlist, params), ash_opts)
-      :cancel_waitlist ->
+      :s9_cancel_waitlist ->
         Ash.update(Ash.Changeset.for_update(record, :cancel_waitlist, params), ash_opts)
-      :request_cancel ->
+      :s10_request_cancel ->
         Ash.update(Ash.Changeset.for_update(record, :request_cancel, params), ash_opts)
-      :approve_cancel ->
+      :s11_approve_cancel ->
         Ash.update(Ash.Changeset.for_update(record, :approve_cancel, params), ash_opts)
-      :request_change ->
+      :s12_request_change ->
         Ash.update(Ash.Changeset.for_update(record, :request_change, params), ash_opts)
-      :confirm_change ->
+      :s13_confirm_change ->
         Ash.update(Ash.Changeset.for_update(record, :confirm_change, params), ash_opts)
-      :mark_completed ->
+      :s14_mark_completed ->
         Ash.update(Ash.Changeset.for_update(record, :mark_completed, params), ash_opts)
-      :mark_order_failed ->
+      :s15_mark_order_failed ->
         Ash.update(Ash.Changeset.for_update(record, :mark_order_failed, params), ash_opts)
-      :destroy ->
+      :s16_destroy ->
         Ash.destroy(Ash.Changeset.for_destroy(record, :destroy, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -154,134 +154,132 @@ defmodule UniboExPoc.Travel.Workflows.TravelOrder.TravelOrderLifecycleWorkflow d
 
   defp next_candidates(step) do
     case step do
-      :create_order -> [:update, :confirm_quote, :destroy]
-      :update -> [:confirm_quote, :destroy]
-      :confirm_quote -> [:submit_order, :submit_waitlist]
-      :submit_order -> [:mark_payment_succeeded, :mark_order_failed]
-      :submit_waitlist -> [:mark_payment_succeeded, :mark_order_failed]
-      :mark_payment_succeeded -> [:mark_booked, :fulfill_waitlist, :cancel_waitlist]
-      :mark_booked -> [:mark_completed, :request_cancel, :request_change]
-      :fulfill_waitlist -> [:mark_completed, :request_cancel, :request_change]
-      :cancel_waitlist -> [:request_cancel]
-      :request_cancel -> [:approve_cancel]
-      :approve_cancel -> [:request_change]
-      :request_change -> [:confirm_change]
-      :confirm_change -> [:mark_completed]
-      :mark_completed -> [:mark_order_failed]
-      :mark_order_failed -> [:destroy]
-      :destroy -> []
+      :s1_create_order -> [:s2_update, :s3_confirm_quote, :s16_destroy]
+      :s2_update -> [:s3_confirm_quote, :s16_destroy]
+      :s3_confirm_quote -> [:s4_submit_order, :s5_submit_waitlist]
+      :s4_submit_order -> [:s6_mark_payment_succeeded, :s15_mark_order_failed]
+      :s5_submit_waitlist -> [:s6_mark_payment_succeeded, :s15_mark_order_failed]
+      :s6_mark_payment_succeeded -> [:s7_mark_booked, :s8_fulfill_waitlist, :s9_cancel_waitlist]
+      :s7_mark_booked -> [:s14_mark_completed, :s10_request_cancel, :s12_request_change]
+      :s8_fulfill_waitlist -> [:s14_mark_completed, :s10_request_cancel, :s12_request_change]
+      :s9_cancel_waitlist -> [:s10_request_cancel]
+      :s10_request_cancel -> [:s11_approve_cancel]
+      :s11_approve_cancel -> [:s12_request_change]
+      :s12_request_change -> [:s13_confirm_change]
+      :s13_confirm_change -> [:s14_mark_completed]
+      :s14_mark_completed -> [:s15_mark_order_failed]
+      :s15_mark_order_failed -> [:s16_destroy]
+      :s16_destroy -> []
       _ -> []
     end
   end
 
   defp on_error_candidates(step) do
     case step do
-      :create_order -> []
-      :update -> []
-      :confirm_quote -> []
-      :submit_order -> []
-      :submit_waitlist -> []
-      :mark_payment_succeeded -> []
-      :mark_booked -> []
-      :fulfill_waitlist -> []
-      :cancel_waitlist -> []
-      :request_cancel -> []
-      :approve_cancel -> []
-      :request_change -> []
-      :confirm_change -> []
-      :mark_completed -> []
-      :mark_order_failed -> []
-      :destroy -> []
+      :s1_create_order -> []
+      :s2_update -> []
+      :s3_confirm_quote -> []
+      :s4_submit_order -> []
+      :s5_submit_waitlist -> []
+      :s6_mark_payment_succeeded -> []
+      :s7_mark_booked -> []
+      :s8_fulfill_waitlist -> []
+      :s9_cancel_waitlist -> []
+      :s10_request_cancel -> []
+      :s11_approve_cancel -> []
+      :s12_request_change -> []
+      :s13_confirm_change -> []
+      :s14_mark_completed -> []
+      :s15_mark_order_failed -> []
+      :s16_destroy -> []
       _ -> []
     end
   end
 
-  defp branch_next(step, record) do
-    _ = record
+  defp branch_next(step, _record) do
     case step do
-      :create_order -> nil
-      :update -> nil
-      :confirm_quote -> nil
-      :submit_order -> nil
-      :submit_waitlist -> nil
-      :mark_payment_succeeded -> nil
-      :mark_booked -> nil
-      :fulfill_waitlist -> nil
-      :cancel_waitlist -> nil
-      :request_cancel -> nil
-      :approve_cancel -> nil
-      :request_change -> nil
-      :confirm_change -> nil
-      :mark_completed -> nil
-      :mark_order_failed -> nil
-      :destroy -> nil
+      :s1_create_order -> nil
+      :s2_update -> nil
+      :s3_confirm_quote -> nil
+      :s4_submit_order -> nil
+      :s5_submit_waitlist -> nil
+      :s6_mark_payment_succeeded -> nil
+      :s7_mark_booked -> nil
+      :s8_fulfill_waitlist -> nil
+      :s9_cancel_waitlist -> nil
+      :s10_request_cancel -> nil
+      :s11_approve_cancel -> nil
+      :s12_request_change -> nil
+      :s13_confirm_change -> nil
+      :s14_mark_completed -> nil
+      :s15_mark_order_failed -> nil
+      :s16_destroy -> nil
       _ -> nil
     end
   end
 
-  defp step_skipped?(step, record) do
-    _ = record
+  defp step_skipped?(step, _record) do
     case step do
-      :create_order -> false
-      :update -> false
-      :confirm_quote -> false
-      :submit_order -> false
-      :submit_waitlist -> false
-      :mark_payment_succeeded -> false
-      :mark_booked -> false
-      :fulfill_waitlist -> false
-      :cancel_waitlist -> false
-      :request_cancel -> false
-      :approve_cancel -> false
-      :request_change -> false
-      :confirm_change -> false
-      :mark_completed -> false
-      :mark_order_failed -> false
-      :destroy -> false
+      :s1_create_order -> false
+      :s2_update -> false
+      :s3_confirm_quote -> false
+      :s4_submit_order -> false
+      :s5_submit_waitlist -> false
+      :s6_mark_payment_succeeded -> false
+      :s7_mark_booked -> false
+      :s8_fulfill_waitlist -> false
+      :s9_cancel_waitlist -> false
+      :s10_request_cancel -> false
+      :s11_approve_cancel -> false
+      :s12_request_change -> false
+      :s13_confirm_change -> false
+      :s14_mark_completed -> false
+      :s15_mark_order_failed -> false
+      :s16_destroy -> false
       _ -> false
     end
   end
 
   defp retry_policy(step) do
     case step do
-      :create_order -> %{max_attempts: 1, backoff_ms: 0}
-      :update -> %{max_attempts: 1, backoff_ms: 0}
-      :confirm_quote -> %{max_attempts: 1, backoff_ms: 0}
-      :submit_order -> %{max_attempts: 1, backoff_ms: 0}
-      :submit_waitlist -> %{max_attempts: 1, backoff_ms: 0}
-      :mark_payment_succeeded -> %{max_attempts: 1, backoff_ms: 0}
-      :mark_booked -> %{max_attempts: 1, backoff_ms: 0}
-      :fulfill_waitlist -> %{max_attempts: 1, backoff_ms: 0}
-      :cancel_waitlist -> %{max_attempts: 1, backoff_ms: 0}
-      :request_cancel -> %{max_attempts: 1, backoff_ms: 0}
-      :approve_cancel -> %{max_attempts: 1, backoff_ms: 0}
-      :request_change -> %{max_attempts: 1, backoff_ms: 0}
-      :confirm_change -> %{max_attempts: 1, backoff_ms: 0}
-      :mark_completed -> %{max_attempts: 1, backoff_ms: 0}
-      :mark_order_failed -> %{max_attempts: 1, backoff_ms: 0}
-      :destroy -> %{max_attempts: 1, backoff_ms: 0}
+      :s1_create_order -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_update -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_confirm_quote -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_submit_order -> %{max_attempts: 1, backoff_ms: 0}
+      :s5_submit_waitlist -> %{max_attempts: 1, backoff_ms: 0}
+      :s6_mark_payment_succeeded -> %{max_attempts: 1, backoff_ms: 0}
+      :s7_mark_booked -> %{max_attempts: 1, backoff_ms: 0}
+      :s8_fulfill_waitlist -> %{max_attempts: 1, backoff_ms: 0}
+      :s9_cancel_waitlist -> %{max_attempts: 1, backoff_ms: 0}
+      :s10_request_cancel -> %{max_attempts: 1, backoff_ms: 0}
+      :s11_approve_cancel -> %{max_attempts: 1, backoff_ms: 0}
+      :s12_request_change -> %{max_attempts: 1, backoff_ms: 0}
+      :s13_confirm_change -> %{max_attempts: 1, backoff_ms: 0}
+      :s14_mark_completed -> %{max_attempts: 1, backoff_ms: 0}
+      :s15_mark_order_failed -> %{max_attempts: 1, backoff_ms: 0}
+      :s16_destroy -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
 
   defp step_idempotency_source(step) do
     case step do
-      :create_order -> nil
-      :update -> nil
-      :confirm_quote -> nil
-      :submit_order -> nil
-      :submit_waitlist -> nil
-      :mark_payment_succeeded -> nil
-      :mark_booked -> nil
-      :fulfill_waitlist -> nil
-      :cancel_waitlist -> nil
-      :request_cancel -> nil
-      :approve_cancel -> nil
-      :request_change -> nil
-      :confirm_change -> nil
-      :mark_completed -> nil
-      :mark_order_failed -> nil
-      :destroy -> nil
+      :s1_create_order -> nil
+      :s2_update -> nil
+      :s3_confirm_quote -> nil
+      :s4_submit_order -> nil
+      :s5_submit_waitlist -> nil
+      :s6_mark_payment_succeeded -> nil
+      :s7_mark_booked -> nil
+      :s8_fulfill_waitlist -> nil
+      :s9_cancel_waitlist -> nil
+      :s10_request_cancel -> nil
+      :s11_approve_cancel -> nil
+      :s12_request_change -> nil
+      :s13_confirm_change -> nil
+      :s14_mark_completed -> nil
+      :s15_mark_order_failed -> nil
+      :s16_destroy -> nil
       _ -> nil
     end
   end

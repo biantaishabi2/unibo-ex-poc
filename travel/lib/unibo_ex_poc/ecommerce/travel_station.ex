@@ -12,6 +12,7 @@ defmodule UniboExPoc.Ecommerce.TravelStation do
   postgres do
     table "ecommerce_travel_stations"
     repo UniboExPoc.Repo
+    identity_index_names unique_station_code: "idx_ecommerce_travel_stations_unique_station_code"
   end
 
   graphql do
@@ -65,14 +66,14 @@ defmodule UniboExPoc.Ecommerce.TravelStation do
   actions do
     defaults [:read]
     create :create do
+      description "Create Travel Station via Create. doc_url: graphql://contract/ecommerce/create_ecommerce_travel_station"
       primary? true
       accept [:station_code, :station_name, :city_id, :city_code, :geo_id, :status]
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Travel Station via Update. doc_url: graphql://contract/ecommerce/update_ecommerce_travel_station"
       primary? true
       accept [:station_name, :city_id, :city_code, :geo_id, :status]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

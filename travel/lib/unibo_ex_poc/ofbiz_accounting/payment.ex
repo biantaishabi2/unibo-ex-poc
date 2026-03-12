@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Accounting.Payment do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Accounting,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "accounting_payments"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Accounting.Payment do
   end
 
   graphql do
-    type :accounting_payment
+    type :ofbiz_accounting_payment
 
     queries do
-      get :get_accounting_payment, :read
-      list :list_accounting_payments, :read
+      get :get_ofbiz_accounting_payment, :read
+      list :list_ofbiz_accounting_payments, :read
     end
 
     mutations do
-      create :create_accounting_payment, :create
-      update :update_accounting_payment, :update
-      destroy :delete_accounting_payment, :destroy
+      create :create_ofbiz_accounting_payment, :create
+      update :update_ofbiz_accounting_payment, :update
+      destroy :delete_ofbiz_accounting_payment, :destroy
     end
 
   end
@@ -79,12 +79,6 @@ defmodule UniboExPoc.Ofbiz.Accounting.Payment do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

@@ -3,7 +3,7 @@ defmodule UniboExPoc.Ofbiz.Shipment.Delivery do
     otp_app: :travel,
     domain: UniboExPoc.Ofbiz.Shipment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
 
   postgres do
     table "shipment_deliveries"
@@ -11,17 +11,17 @@ defmodule UniboExPoc.Ofbiz.Shipment.Delivery do
   end
 
   graphql do
-    type :shipment_delivery
+    type :ofbiz_shipment_delivery
 
     queries do
-      get :get_shipment_delivery, :read
-      list :list_shipment_deliverys, :read
+      get :get_ofbiz_shipment_delivery, :read
+      list :list_ofbiz_shipment_deliverys, :read
     end
 
     mutations do
-      create :create_shipment_delivery, :create
-      update :update_shipment_delivery, :update
-      destroy :delete_shipment_delivery, :destroy
+      create :create_ofbiz_shipment_delivery, :create
+      update :update_ofbiz_shipment_delivery, :update
+      destroy :delete_ofbiz_shipment_delivery, :destroy
     end
 
   end
@@ -60,12 +60,6 @@ defmodule UniboExPoc.Ofbiz.Shipment.Delivery do
 
   actions do
     defaults [:read, :create, :update, :destroy]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

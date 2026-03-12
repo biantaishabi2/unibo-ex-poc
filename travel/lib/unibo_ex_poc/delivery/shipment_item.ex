@@ -75,18 +75,18 @@ defmodule UniboExPoc.Delivery.ShipmentItem do
   actions do
     defaults [:read, :destroy]
     create :create do
+      description "Create Shipment Item via Create. doc_url: graphql://contract/delivery/create_delivery_shipment_item"
       primary? true
       accept [:shipment_id, :shipment_item_seq_id, :product_id, :quantity, :shipment_content_description]
       validate present(:shipment_id)
       validate compare(:quantity, greater_than: 0)
       # message: "发货数量必须大于 0"
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Shipment Item via Update. doc_url: graphql://contract/delivery/update_delivery_shipment_item"
       primary? true
       accept [:quantity, :shipment_content_description]
       # skipped: validate compare :quantity (incompatible with bulk update atomic path)
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end

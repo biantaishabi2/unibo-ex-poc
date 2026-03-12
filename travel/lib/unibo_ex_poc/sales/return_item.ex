@@ -90,16 +90,16 @@ defmodule UniboExPoc.Sales.ReturnItem do
   actions do
     defaults [:read]
     create :create do
+      description "Create Return Item via Create. doc_url: graphql://contract/sales/create_sales_return_item"
       primary? true
       accept [:product_name, :description, :return_quantity, :return_price, :refund_amount, :return_reason, :return_type, :return_item_type_id, :status_id]
       argument :return_id, :uuid, allow_nil?: false
       change manage_relationship(:return_id, :return, type: :append, on_lookup: :relate)
-      change set_attribute(:id, expr(id))
     end
     update :update do
+      description "Update Return Item via Update. doc_url: graphql://contract/sales/update_sales_return_item"
       primary? true
       accept [:return_quantity, :return_price, :refund_amount, :received_quantity, :status_id]
-      change set_attribute(:id, expr(id))
       require_atomic? false
     end
   end
