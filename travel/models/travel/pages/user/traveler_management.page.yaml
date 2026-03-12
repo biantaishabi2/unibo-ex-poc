@@ -10,240 +10,235 @@ page:
 
   layout:
     - type: Stack
-      props:
-        spacing: 16
+      gap: 0
       children:
-        # ========== 页面标题 + 新增按钮 ==========
-        - type: Flex
-          props:
-            justify: space-between
-            align: center
-          children:
-            - type: Text
-              props:
-                variant: heading
-                size: lg
-                text: "出行人管理"
-            - type: Button
-              props:
-                variant: default
-                size: sm
-                text: "新增出行人"
-                icon: plus
-              on_click:
-                open_dialog: traveler_edit_dialog
-                with:
-                  mode: create
+        # 顶部导航
+        - type: Header
+          bind:
+            back: true
+            title: "出行人管理"
 
-        # ========== 出行人列表 ==========
-        - type: List
+        - type: Stack
+          gap: 3
           props:
-            spacing: 8
-          children_from:
-            source: travelers.data
-            template:
-              type: Card
-              bind:
-                key: item.id
-              slots:
-                content:
-                  type: Flex
+            padding: 3
+          children:
+            # ========== 页面标题 + 新增按钮 ==========
+            - type: Flex
+              props:
+                justify: space-between
+                align: center
+              children:
+                - type: Text
+                  bind:
+                    value: "出行人管理"
                   props:
-                    justify: space-between
-                    align: center
+                    variant: h3
+                    weight: bold
+                - type: Button
+                  bind:
+                    label: "新增出行人"
+                    variant: primary
+                    icon: plus
+                  props:
+                    size: sm
+                  action: open_dialog
+                  params:
+                    dialog: traveler_edit_dialog
+                    mode: create
+
+            # ========== 出行人列表 ==========
+            - type: Stack
+              gap: 2
+              children_from:
+                source: travelers.data
+                template:
+                  type: Card
+                  bind:
+                    key: item.id
+                  slots:
+                    content:
+                      - type: Flex
+                        props:
+                          justify: space-between
+                          align: center
+                        children:
+                          - type: Flex
+                            gap: 2
+                            props:
+                              align: center
+                            children:
+                              - type: Avatar
+                                bind:
+                                  fallback: item.full_name
+                                props:
+                                  size: sm
+                              - type: Stack
+                                gap: 0
+                                children:
+                                  - type: Flex
+                                    gap: 1
+                                    props:
+                                      align: center
+                                    children:
+                                      - type: Text
+                                        bind:
+                                          value: item.full_name
+                                        props:
+                                          variant: body
+                                          weight: bold
+                                      - type: Badge
+                                        bind:
+                                          label: "本人"
+                                          variant: secondary
+                                        visible_when:
+                                          field: item.is_self
+                                          op: eq
+                                          value: true
+                                  - type: Flex
+                                    gap: 2
+                                    children:
+                                      - type: Text
+                                        bind:
+                                          value: item.id_type
+                                        props:
+                                          variant: caption
+                                          color: muted
+                                      - type: Text
+                                        bind:
+                                          value: item.id_number
+                                        props:
+                                          variant: caption
+                                          color: muted
+                                  - type: Text
+                                    bind:
+                                      value: item.phone
+                                    props:
+                                      variant: caption
+                                      color: muted
+                          - type: Flex
+                            gap: 1
+                            children:
+                              - type: Button
+                                bind:
+                                  label: ""
+                                  variant: ghost
+                                  icon: edit
+                                props:
+                                  size: sm
+                                action: open_dialog
+                                params:
+                                  dialog: traveler_edit_dialog
+                                  mode: edit
+                                  traveler_id: item.id
+                              - type: Button
+                                bind:
+                                  label: ""
+                                  variant: ghost
+                                  icon: trash
+                                props:
+                                  size: sm
+                                  color: destructive
+                                action: delete
+                                params:
+                                  resource: Travel.TravelerProfile
+                                  id: item.id
+                                  confirm: "确定要删除该出行人吗？"
+
+            # ========== 空状态 ==========
+            - type: EmptyState
+              props:
+                title: "暂无出行人"
+                description: "添加常用出行人，预订时可快速选择"
+                icon: users
+              visible_when:
+                field: travelers.total_count
+                op: eq
+                value: 0
+
+            # ========== 编辑/新增弹窗 ==========
+            - type: Dialog
+              props:
+                id: traveler_edit_dialog
+                title: "编辑出行人"
+              children:
+                - type: Stack
+                  gap: 3
                   children:
+                    - type: Input
+                      bind:
+                        label: "姓名"
+                        placeholder: "请输入真实姓名"
+                        value: form.full_name
+                      props:
+                        required: true
+
+                    - type: Select
+                      bind:
+                        label: "证件类型"
+                        placeholder: "请选择证件类型"
+                        value: form.id_type
+                        options:
+                          - { label: "身份证", value: id_card }
+                          - { label: "护照", value: passport }
+                          - { label: "港澳通行证", value: hk_mo_pass }
+                          - { label: "台湾通行证", value: tw_pass }
+                      props:
+                        required: true
+
+                    - type: Input
+                      bind:
+                        label: "证件号码"
+                        placeholder: "请输入证件号码"
+                        value: form.id_number
+                      props:
+                        required: true
+
+                    - type: Input
+                      bind:
+                        label: "手机号码"
+                        placeholder: "请输入手机号码"
+                        value: form.phone
+                        input_type: tel
+
+                    - type: Input
+                      bind:
+                        label: "邮箱"
+                        placeholder: "请输入邮箱地址"
+                        value: form.email
+                        input_type: email
+
                     - type: Flex
                       props:
-                        gap: 12
+                        justify: space-between
                         align: center
                       children:
-                        - type: Avatar
-                          props:
-                            size: sm
+                        - type: Text
                           bind:
-                            value: item.full_name
-                        - type: Stack
-                          props:
-                            spacing: 2
-                          children:
-                            - type: Flex
-                              props:
-                                gap: 6
-                                align: center
-                              children:
-                                - type: Text
-                                  props:
-                                    variant: heading
-                                    size: sm
-                                  bind:
-                                    value: item.full_name
-                                - type: Badge
-                                  props:
-                                    variant: secondary
-                                    text: "本人"
-                                  visible_when:
-                                    field: item.is_self
-                                    op: eq
-                                    value: true
-                            - type: Flex
-                              props:
-                                gap: 8
-                              children:
-                                - type: Text
-                                  props:
-                                    variant: muted
-                                    size: xs
-                                  bind:
-                                    value: item.id_type
-                                - type: Text
-                                  props:
-                                    variant: muted
-                                    size: xs
-                                  bind:
-                                    value: item.id_number
-                            - type: Text
-                              props:
-                                variant: muted
-                                size: xs
-                              bind:
-                                value: item.phone
+                            value: "是否本人"
+                        - type: Switch
+                          bind:
+                            value: form.is_self
+
                     - type: Flex
+                      gap: 2
                       props:
-                        gap: 4
+                        justify: flex-end
                       children:
                         - type: Button
-                          props:
-                            variant: ghost
-                            size: sm
-                            icon: edit
-                          on_click:
-                            open_dialog: traveler_edit_dialog
-                            with:
-                              mode: edit
-                              traveler_id: item.id
+                          bind:
+                            label: "取消"
+                            variant: outline
+                          action: close_dialog
+                          params:
+                            dialog: traveler_edit_dialog
                         - type: Button
-                          props:
-                            variant: ghost
-                            size: sm
-                            icon: trash
-                            color: destructive
-                          on_click:
-                            confirm: "确定要删除该出行人吗？"
-                            action: delete
+                          bind:
+                            label: "保存"
+                            variant: primary
+                          action: submit_form
+                          params:
                             resource: Travel.TravelerProfile
-                            params:
-                              id: item.id
-
-        # ========== 空状态 ==========
-        - type: EmptyState
-          props:
-            title: "暂无出行人"
-            description: "添加常用出行人，预订时可快速选择"
-            icon: users
-          visible_when:
-            field: travelers.total_count
-            op: eq
-            value: 0
-
-        # ========== 编辑/新增弹窗 ==========
-        - type: Dialog
-          props:
-            id: traveler_edit_dialog
-            title: "编辑出行人"
-          children:
-            - type: Stack
-              props:
-                spacing: 16
-              children:
-                - type: Label
-                  props:
-                    text: "姓名"
-                - type: Input
-                  props:
-                    placeholder: "请输入真实姓名"
-                    required: true
-                  bind:
-                    value: form.full_name
-
-                - type: Label
-                  props:
-                    text: "证件类型"
-                - type: Select
-                  props:
-                    placeholder: "请选择证件类型"
-                    required: true
-                    options:
-                      - label: "身份证"
-                        value: id_card
-                      - label: "护照"
-                        value: passport
-                      - label: "港澳通行证"
-                        value: hk_mo_pass
-                      - label: "台湾通行证"
-                        value: tw_pass
-                  bind:
-                    value: form.id_type
-
-                - type: Label
-                  props:
-                    text: "证件号码"
-                - type: Input
-                  props:
-                    placeholder: "请输入证件号码"
-                    required: true
-                  bind:
-                    value: form.id_number
-
-                - type: Label
-                  props:
-                    text: "手机号码"
-                - type: Input
-                  props:
-                    placeholder: "请输入手机号码"
-                    input_type: tel
-                  bind:
-                    value: form.phone
-
-                - type: Label
-                  props:
-                    text: "邮箱"
-                - type: Input
-                  props:
-                    placeholder: "请输入邮箱地址"
-                    input_type: email
-                  bind:
-                    value: form.email
-
-                - type: Flex
-                  props:
-                    justify: space-between
-                    align: center
-                  children:
-                    - type: Label
-                      props:
-                        text: "是否本人"
-                    - type: Switch
-                      bind:
-                        value: form.is_self
-
-                - type: Flex
-                  props:
-                    justify: flex-end
-                    gap: 8
-                  children:
-                    - type: Button
-                      props:
-                        variant: outline
-                        text: "取消"
-                      on_click:
-                        close_dialog: traveler_edit_dialog
-                    - type: Button
-                      props:
-                        variant: default
-                        text: "保存"
-                      on_click:
-                        submit_form: true
-                        resource: Travel.TravelerProfile
 
   data_sources:
     - name: travelers
