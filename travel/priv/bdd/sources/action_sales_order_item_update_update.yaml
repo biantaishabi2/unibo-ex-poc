@@ -1,0 +1,5 @@
+module: SALES_SALES_ORDER_ITEM
+contract: SalesOrderItem.update action contract
+edge_class: action_contract
+source_file: /tmp/travel_bdd_closure.X0Pe2B/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 SalesOrderItem 的动作 update 可执行，accept=[quantity, unit_price, discount_rate, estimated_delivery_date, comments, status_id]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

@@ -1,0 +1,5 @@
+module: TRAVEL_TRAVEL_FULFILLMENT
+contract: TravelFulfillment.confirm_booking event contract
+edge_class: event_contract
+source_file: /tmp/travel_bdd_closure.X0Pe2B/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelFulfillment 的动作 confirm_booking 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.fulfillment.confirmed`

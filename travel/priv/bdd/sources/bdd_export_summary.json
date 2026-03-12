@@ -1,0 +1,44 @@
+{
+  "total_models": 12,
+  "generated_files": 852,
+  "action_sources": 742,
+  "event_sources": 56,
+  "workflow_sources": 47,
+  "integration_sources": 7,
+  "scenario_total": 0,
+  "scenario_associated": 0,
+  "scenario_unassociated": 0,
+  "unassociated_scenarios": [],
+  "scenario_resolutions": [],
+  "auto_anchor_enabled": true,
+  "auto_anchor_total": 0,
+  "auto_anchor_mapped": 0,
+  "auto_anchor_unmapped": 0,
+  "auto_anchor_results": [],
+  "weak_assertion_count": 1,
+  "weak_assertion_read_count": 0,
+  "weak_assertion_write_count": 0,
+  "weak_assertion_other_count": 1,
+  "weak_assertion_effective_count": 1,
+  "weak_assertion_effective_read_count": 0,
+  "weak_assertion_effective_write_count": 0,
+  "weak_assertion_effective_other_count": 1,
+  "weak_whitelist_path": null,
+  "weak_whitelist_rule_count": 0,
+  "weak_whitelist_active_rule_count": 0,
+  "weak_whitelist_hit_count": 0,
+  "weak_whitelist_hits": [],
+  "weak_assertions": [
+    {
+      "file": "workflow_shipment_status_shipment_status_record_flow.yaml",
+      "model": "delivery.ubo.yaml",
+      "entity": "ShipmentStatus",
+      "kind": "workflow",
+      "subject": "shipment_status_record_flow",
+      "bucket": "other_weak",
+      "reasons": [
+        "workflow 步骤少于 2，断言信息较弱"
+      ]
+    }
+  ]
+}

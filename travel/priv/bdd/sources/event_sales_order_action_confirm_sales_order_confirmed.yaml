@@ -1,0 +1,5 @@
+module: SALES_SALES_ORDER
+contract: SalesOrder.action_confirm event contract
+edge_class: event_contract
+source_file: /tmp/travel_bdd_closure.X0Pe2B/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 SalesOrder 的动作 action_confirm 完成 / WHEN 触发事件发布 / THEN 应广播 topic `sales.order.confirmed`

@@ -4,7 +4,7 @@
   "domains": {
     "Accounting": {
       "input_hashes": {
-        "/var/folders/m8/2r3f00qd2kv8xs_sqkf1v7900000gn/T/.tmpQP1M0L/accounting/accounting.ubo.yaml": "sha256:2427c3fe03368ea9487ef4be176fcd052f8aec3aed06d888b1a7991949702050"
+        "/tmp/.tmpusyjh2/accounting/accounting.ubo.yaml": "sha256:8fbdae28630e5ea4da3a0fefc27a9d62f32defb351d3fd514faa620eb0d8374e"
       },
       "output_files": [
         "unibo_ex_poc/accounting/accounting.ex",
@@ -57,16 +57,13 @@
     },
     "Delivery": {
       "input_hashes": {
-        "/var/folders/m8/2r3f00qd2kv8xs_sqkf1v7900000gn/T/.tmpQP1M0L/delivery/delivery.ubo.yaml": "sha256:1ccf81d8e830e02fb1996e126a89ecd9ca258e5ad40ae1e331672575846da657"
+        "/tmp/.tmpusyjh2/delivery/delivery.ubo.yaml": "sha256:0f1186ceaac9f87d671ebcddd86cb37bad8cb3b41c8b64b4cab37ea10bebb6b9"
       },
       "output_files": [
         "unibo_ex_poc/delivery/calculations/shipment/item_count.ex",
         "unibo_ex_poc/delivery/calculations/shipment/package_count.ex",
         "unibo_ex_poc/delivery/calculations/shipment/total_weight.ex",
         "unibo_ex_poc/delivery/carrier_shipment_method.ex",
-        "unibo_ex_poc/delivery/changes/cross_org_transaction/create_mirror_purchase_order_call_5.ex",
-        "unibo_ex_poc/delivery/cross_org_transaction.ex",
-        "unibo_ex_poc/delivery/cross_org_transaction_notifier.ex",
         "unibo_ex_poc/delivery/delivery.ex",
         "unibo_ex_poc/delivery/delivery_domain.ex",
         "unibo_ex_poc/delivery/facility.ex",
@@ -87,7 +84,6 @@
         "unibo_ex_poc/delivery/shipment_status.ex",
         "unibo_ex_poc/delivery/shipment_type.ex",
         "unibo_ex_poc/delivery/workflows/carrier_shipment_method_carrier_method_bind_flow.ex",
-        "unibo_ex_poc/delivery/workflows/cross_org_transaction_cross_org_transaction_lifecycle.ex",
         "unibo_ex_poc/delivery/workflows/delivery_delivery_trip_flow.ex",
         "unibo_ex_poc/delivery/workflows/shipment_box_type_shipment_box_type_maintain_flow.ex",
         "unibo_ex_poc/delivery/workflows/shipment_cost_estimate_cost_estimate_maintain_flow.ex",
@@ -101,18 +97,14 @@
         "unibo_ex_poc/delivery/workflows/shipment_status_shipment_status_record_flow.ex",
         "unibo_ex_poc/delivery/workflows/shipment_type_shipment_type_maintain_flow.ex"
       ],
-      "entity_count": 18,
-      "notifier_count": 3,
+      "entity_count": 17,
+      "notifier_count": 2,
       "has_policy_entities": false,
-      "subdomain": "purchasing",
-      "cross_domain_refs": [
-        "Purchasing",
-        "Sales"
-      ]
+      "subdomain": "purchasing"
     },
     "Ecommerce": {
       "input_hashes": {
-        "/var/folders/m8/2r3f00qd2kv8xs_sqkf1v7900000gn/T/.tmpQP1M0L/ecommerce/ecommerce.ubo.yaml": "sha256:8f86eb3081773357410e41ea5b1ee53f55233e3c9b76caf8e1f703c2338b2c40"
+        "/tmp/.tmpusyjh2/ecommerce/ecommerce.ubo.yaml": "sha256:8f86eb3081773357410e41ea5b1ee53f55233e3c9b76caf8e1f703c2338b2c40"
       },
       "output_files": [
         "unibo_ex_poc/ecommerce/ecommerce.ex",
@@ -127,7 +119,7 @@
     },
     "Payment": {
       "input_hashes": {
-        "/var/folders/m8/2r3f00qd2kv8xs_sqkf1v7900000gn/T/.tmpQP1M0L/payment/payment.ubo.yaml": "sha256:01c0146f3af9baf2c27e78d955327f7cc298f8cd972e28a678efb92ad12a9f6c"
+        "/tmp/.tmpusyjh2/payment/payment.ubo.yaml": "sha256:32e5a4c1fa4bdba4ccb8281600b23f500ed3aae00c5bc21db8d04f9fbe2a1e85"
       },
       "output_files": [
         "unibo_ex_poc/payment/calculations/payment/refunded_amount.ex",
@@ -158,71 +150,9 @@
       "has_policy_entities": false,
       "subdomain": "finance"
     },
-    "Purchasing": {
-      "input_hashes": {
-        "/var/folders/m8/2r3f00qd2kv8xs_sqkf1v7900000gn/T/.tmpQP1M0L/purchasing/purchasing.ubo.yaml": "sha256:b5c5798dd230e6d0543fdb53249c1394050642d61bb8917039762087dda016bf"
-      },
-      "output_files": [
-        "unibo_ex_poc/purchasing/account_move.ex",
-        "unibo_ex_poc/purchasing/account_move_line.ex",
-        "unibo_ex_poc/purchasing/calculations/purchase_order/date_planned.ex",
-        "unibo_ex_poc/purchasing/calculations/purchase_order/invoice_status.ex",
-        "unibo_ex_poc/purchasing/calculations/purchase_order/tax_country_id.ex",
-        "unibo_ex_poc/purchasing/calculations/purchase_order_line/qty_to_invoice.ex",
-        "unibo_ex_poc/purchasing/calculations/purchase_requisition_item/qty_ordered.ex",
-        "unibo_ex_poc/purchasing/changes/product_supplierinfo/compute_last_price.ex",
-        "unibo_ex_poc/purchasing/changes/product_supplierinfo/compute_partner_id.ex",
-        "unibo_ex_poc/purchasing/changes/purchase_order/action_create_invoice_call_14.ex",
-        "unibo_ex_poc/purchasing/changes/purchase_order/action_create_invoice_call_15.ex",
-        "unibo_ex_poc/purchasing/changes/purchase_order/button_confirm_call_12.ex",
-        "unibo_ex_poc/purchasing/changes/purchase_order/button_confirm_call_13.ex",
-        "unibo_ex_poc/purchasing/changes/purchase_order/compute_date_approve.ex",
-        "unibo_ex_poc/purchasing/changes/purchase_order/compute_status.ex",
-        "unibo_ex_poc/purchasing/changes/purchase_order_line/compute_analytic_distribution.ex",
-        "unibo_ex_poc/purchasing/changes/purchase_order_line/compute_discount_rate.ex",
-        "unibo_ex_poc/purchasing/changes/purchase_order_line/compute_estimated_delivery_date.ex",
-        "unibo_ex_poc/purchasing/changes/purchase_order_line/compute_unit_price.ex",
-        "unibo_ex_poc/purchasing/goods_receipt.ex",
-        "unibo_ex_poc/purchasing/goods_receipt_item.ex",
-        "unibo_ex_poc/purchasing/goods_receipt_notifier.ex",
-        "unibo_ex_poc/purchasing/party.ex",
-        "unibo_ex_poc/purchasing/product.ex",
-        "unibo_ex_poc/purchasing/product_supplierinfo.ex",
-        "unibo_ex_poc/purchasing/product_supplierinfo_notifier.ex",
-        "unibo_ex_poc/purchasing/purchase_order.ex",
-        "unibo_ex_poc/purchasing/purchase_order_line.ex",
-        "unibo_ex_poc/purchasing/purchase_order_notifier.ex",
-        "unibo_ex_poc/purchasing/purchase_requisition.ex",
-        "unibo_ex_poc/purchasing/purchase_requisition_item.ex",
-        "unibo_ex_poc/purchasing/purchase_requisition_notifier.ex",
-        "unibo_ex_poc/purchasing/purchase_requisition_type.ex",
-        "unibo_ex_poc/purchasing/purchasing.ex",
-        "unibo_ex_poc/purchasing/supplier.ex",
-        "unibo_ex_poc/purchasing/supplier_product.ex",
-        "unibo_ex_poc/purchasing/workflows/goods_receipt_goods_receipt_lifecycle.ex",
-        "unibo_ex_poc/purchasing/workflows/goods_receipt_item_receipt_item_editing.ex",
-        "unibo_ex_poc/purchasing/workflows/product_supplierinfo_supplierinfo_lifecycle.ex",
-        "unibo_ex_poc/purchasing/workflows/purchase_order_line_order_line_editing.ex",
-        "unibo_ex_poc/purchasing/workflows/purchase_order_procurement_flow.ex",
-        "unibo_ex_poc/purchasing/workflows/purchase_order_purchase_order_editing.ex",
-        "unibo_ex_poc/purchasing/workflows/purchase_requisition_item_requisition_item_editing.ex",
-        "unibo_ex_poc/purchasing/workflows/purchase_requisition_requisition_lifecycle_flow.ex",
-        "unibo_ex_poc/purchasing/workflows/purchase_requisition_requisition_reopen_flow.ex",
-        "unibo_ex_poc/purchasing/workflows/purchase_requisition_type_requisition_type_lifecycle.ex",
-        "unibo_ex_poc/purchasing/workflows/supplier_product_supplier_product_lifecycle.ex",
-        "unibo_ex_poc/purchasing/workflows/supplier_supplier_lifecycle.ex"
-      ],
-      "entity_count": 14,
-      "notifier_count": 4,
-      "has_policy_entities": true,
-      "subdomain": "purchasing",
-      "cross_domain_refs": [
-        "Delivery"
-      ]
-    },
     "Sales": {
       "input_hashes": {
-        "/var/folders/m8/2r3f00qd2kv8xs_sqkf1v7900000gn/T/.tmpQP1M0L/sales/sales.ubo.yaml": "sha256:aeafa14e6e62ec48ebc88b987758c5d456547c1d0c81249383142ea94cec06f3"
+        "/tmp/.tmpusyjh2/sales/sales.ubo.yaml": "sha256:848e71ad5b511c4bd2bbd5ec4788ceb7495766cc799661638664ad334c958db9"
       },
       "output_files": [
         "unibo_ex_poc/sales/changes/quote/compute_total_amount.ex",
@@ -266,14 +196,11 @@
       "entity_count": 12,
       "notifier_count": 4,
       "has_policy_entities": true,
-      "subdomain": "sales",
-      "cross_domain_refs": [
-        "Delivery"
-      ]
+      "subdomain": "sales"
     },
     "Travel": {
       "input_hashes": {
-        "/var/folders/m8/2r3f00qd2kv8xs_sqkf1v7900000gn/T/.tmpQP1M0L/travel/travel.ubo.yaml": "sha256:c996bc1c7e2fcccb5aa25c0fbd1a3af4f5c9043f91b2f267fd6f5131f46cf0b3"
+        "/tmp/.tmpusyjh2/travel/travel.ubo.yaml": "sha256:4ede63b5183ed1d9ab75e9130d10d5c58ca280b65094efe11de232573c96e7da"
       },
       "output_files": [
         "unibo_ex_poc/travel/flight_offer.ex",
@@ -313,7 +240,7 @@
       "entity_count": 11,
       "notifier_count": 6,
       "has_policy_entities": false,
-      "subdomain": "travel",
+      "subdomain": "services",
       "cross_domain_refs": [
         "Delivery",
         "Ecommerce",
@@ -323,7 +250,7 @@
     },
     "ofbiz::Accounting": {
       "input_hashes": {
-        "/var/folders/m8/2r3f00qd2kv8xs_sqkf1v7900000gn/T/.tmpQP1M0L/ofbiz/accounting.ubo.yaml": "sha256:ce9a95cfee4f936aa6310190309a43b0312399ca379e4ca403d64ea5e8380867"
+        "/tmp/.tmpusyjh2/ofbiz/accounting.ubo.yaml": "sha256:ce9a95cfee4f936aa6310190309a43b0312399ca379e4ca403d64ea5e8380867"
       },
       "output_files": [
         "unibo_ex_poc/ofbiz_accounting/accounting.ex",
@@ -373,7 +300,7 @@
     },
     "ofbiz::Common": {
       "input_hashes": {
-        "/var/folders/m8/2r3f00qd2kv8xs_sqkf1v7900000gn/T/.tmpQP1M0L/ofbiz/common.ubo.yaml": "sha256:50a20cb4b95de531a14f94804d528374352e6bc282599df583c12985784e157a"
+        "/tmp/.tmpusyjh2/ofbiz/common.ubo.yaml": "sha256:50a20cb4b95de531a14f94804d528374352e6bc282599df583c12985784e157a"
       },
       "output_files": [
         "unibo_ex_poc/ofbiz_common/common.ex",
@@ -390,7 +317,7 @@
     },
     "ofbiz::Order": {
       "input_hashes": {
-        "/var/folders/m8/2r3f00qd2kv8xs_sqkf1v7900000gn/T/.tmpQP1M0L/ofbiz/order.ubo.yaml": "sha256:b1b3c45062c096d4577e442bd82f884ade9d2706531ebd1c2edd79cb6c1c9128"
+        "/tmp/.tmpusyjh2/ofbiz/order.ubo.yaml": "sha256:2449b830ae128ff8691b3f8b773cea1af659a7e899e9ace2d6a5d52f8fb922a0"
       },
       "output_files": [
         "unibo_ex_poc/ofbiz_order/cust_request.ex",
@@ -409,8 +336,6 @@
         "unibo_ex_poc/ofbiz_order/quote_item.ex",
         "unibo_ex_poc/ofbiz_order/quote_note.ex",
         "unibo_ex_poc/ofbiz_order/quote_type.ex",
-        "unibo_ex_poc/ofbiz_order/requirement.ex",
-        "unibo_ex_poc/ofbiz_order/requirement_type.ex",
         "unibo_ex_poc/ofbiz_order/return_header.ex",
         "unibo_ex_poc/ofbiz_order/return_header_type.ex",
         "unibo_ex_poc/ofbiz_order/return_item.ex",
@@ -421,13 +346,13 @@
         "unibo_ex_poc/ofbiz_order/shopping_list.ex",
         "unibo_ex_poc/ofbiz_order/shopping_list_type.ex"
       ],
-      "entity_count": 26,
+      "entity_count": 24,
       "notifier_count": 0,
       "has_policy_entities": false
     },
     "ofbiz::Party": {
       "input_hashes": {
-        "/var/folders/m8/2r3f00qd2kv8xs_sqkf1v7900000gn/T/.tmpQP1M0L/ofbiz/party.ubo.yaml": "sha256:c4580eab06421e56898c429003b6ad59bedc34390432372b0bd37bcab93da759"
+        "/tmp/.tmpusyjh2/ofbiz/party.ubo.yaml": "sha256:c4580eab06421e56898c429003b6ad59bedc34390432372b0bd37bcab93da759"
       },
       "output_files": [
         "unibo_ex_poc/ofbiz_party/data_source.ex",
@@ -447,7 +372,7 @@
     },
     "ofbiz::Product": {
       "input_hashes": {
-        "/var/folders/m8/2r3f00qd2kv8xs_sqkf1v7900000gn/T/.tmpQP1M0L/ofbiz/product.ubo.yaml": "sha256:e2840b6848a5345cefca1277aaba8bf90d2884974a05ee34c7df6b2cb013baa8"
+        "/tmp/.tmpusyjh2/ofbiz/product.ubo.yaml": "sha256:ef9c93f39b20162976bff4fad6e6bc54b046a8e14a4d4cfbc1e4e6f3243eb315"
       },
       "output_files": [
         "unibo_ex_poc/ofbiz_product/facility.ex",
@@ -467,18 +392,15 @@
         "unibo_ex_poc/ofbiz_product/product_store.ex",
         "unibo_ex_poc/ofbiz_product/product_store_group.ex",
         "unibo_ex_poc/ofbiz_product/product_store_group_type.ex",
-        "unibo_ex_poc/ofbiz_product/product_type.ex",
-        "unibo_ex_poc/ofbiz_product/supplier_pref_order.ex",
-        "unibo_ex_poc/ofbiz_product/supplier_product.ex",
-        "unibo_ex_poc/ofbiz_product/supplier_rating_type.ex"
+        "unibo_ex_poc/ofbiz_product/product_type.ex"
       ],
-      "entity_count": 20,
+      "entity_count": 17,
       "notifier_count": 0,
       "has_policy_entities": false
     },
     "ofbiz::Shipment": {
       "input_hashes": {
-        "/var/folders/m8/2r3f00qd2kv8xs_sqkf1v7900000gn/T/.tmpQP1M0L/ofbiz/shipment.ubo.yaml": "sha256:2fad8adfd8f8aae45d8c395f7893a7fdf2f4449a78ea1c3de366422c38215c41"
+        "/tmp/.tmpusyjh2/ofbiz/shipment.ubo.yaml": "sha256:b70064aad1b8390b34292a1990babe3190b2ba993874ef4be650fa323d6bcf42"
       },
       "output_files": [
         "unibo_ex_poc/ofbiz_shipment/carrier_shipment_method.ex",
@@ -487,7 +409,6 @@
         "unibo_ex_poc/ofbiz_shipment/facility.ex",
         "unibo_ex_poc/ofbiz_shipment/fixed_asset.ex",
         "unibo_ex_poc/ofbiz_shipment/geo.ex",
-        "unibo_ex_poc/ofbiz_shipment/inventory_item.ex",
         "unibo_ex_poc/ofbiz_shipment/order_header.ex",
         "unibo_ex_poc/ofbiz_shipment/party.ex",
         "unibo_ex_poc/ofbiz_shipment/picklist.ex",
@@ -495,7 +416,6 @@
         "unibo_ex_poc/ofbiz_shipment/product.ex",
         "unibo_ex_poc/ofbiz_shipment/product_store_shipment_meth.ex",
         "unibo_ex_poc/ofbiz_shipment/quantity_break.ex",
-        "unibo_ex_poc/ofbiz_shipment/rejection_reason.ex",
         "unibo_ex_poc/ofbiz_shipment/return_header.ex",
         "unibo_ex_poc/ofbiz_shipment/role_type.ex",
         "unibo_ex_poc/ofbiz_shipment/shipment.ex",
@@ -507,7 +427,6 @@
         "unibo_ex_poc/ofbiz_shipment/shipment_package.ex",
         "unibo_ex_poc/ofbiz_shipment/shipment_package_content.ex",
         "unibo_ex_poc/ofbiz_shipment/shipment_package_route_seg.ex",
-        "unibo_ex_poc/ofbiz_shipment/shipment_receipt.ex",
         "unibo_ex_poc/ofbiz_shipment/shipment_route_segment.ex",
         "unibo_ex_poc/ofbiz_shipment/shipment_status.ex",
         "unibo_ex_poc/ofbiz_shipment/shipment_type.ex",
@@ -517,7 +436,7 @@
         "unibo_ex_poc/ofbiz_shipment/user_login.ex",
         "unibo_ex_poc/ofbiz_shipment/work_effort.ex"
       ],
-      "entity_count": 34,
+      "entity_count": 31,
       "notifier_count": 0,
       "has_policy_entities": false
     }

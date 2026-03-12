@@ -1,236 +1,240 @@
 # 预订结果确认页
-name: booking_confirmation
-title: 预订结果
-route: /travel/booking/confirmation/:order_id
-page_type: composition
+version: "1.0"
+page:
+  name: booking_confirmation
+  title: 预订结果
+  page_type: composition
+  audience: user
+  entity: TravelOrder
+  route: /travel/booking/confirmation/:order_id
 
-permissions:
-  access: authenticated
-  data_scope:
-    field: tenant_id
-    eq: actor.tenant_id
-
-data_sources:
-  - name: order
-    type: read
-    resource: Travel.TravelOrder
-    params:
-      id: route.order_id
-    load:
-      - hotel_offer
-      - flight_offer
-      - train_offer
-
-layout:
-  type: Stack
-  props:
-    spacing: 24
-  children:
-    # ========== 状态 Hero ==========
-    - type: Hero
+  layout:
+    - type: Stack
       props:
-        size: md
+        spacing: 24
       children:
-        - type: Stack
+        # ========== 状态 Hero ==========
+        - type: Hero
           props:
-            spacing: 12
-            align: center
+            size: md
           children:
-            # 成功图标
-            - type: Icon
+            - type: Stack
               props:
-                name: check-circle
-                size: 64
-                color: success
-              visible_when:
-                field: order.status
-                op: in
-                value:
-                  - booked
-                  - booking_pending
-                  - submitted
-            # 失败图标
-            - type: Icon
-              props:
-                name: x-circle
-                size: 64
-                color: destructive
-              visible_when:
-                field: order.status
-                op: eq
-                value: failed
-            # 成功文案
-            - type: Text
-              props:
-                variant: heading
-                size: xl
-                text: "预订成功"
-              visible_when:
-                field: order.status
-                op: in
-                value:
-                  - booked
-                  - booking_pending
-                  - submitted
-            # 失败文案
-            - type: Text
-              props:
-                variant: heading
-                size: xl
-                text: "预订失败"
-              visible_when:
-                field: order.status
-                op: eq
-                value: failed
-            # 失败原因提示
-            - type: Text
-              props:
-                variant: muted
-                text: "请稍后重试或联系客服"
-              visible_when:
-                field: order.status
-                op: eq
-                value: failed
-
-    # ========== 订单摘要 Card ==========
-    - type: Card
-      slots:
-        header:
-          type: Text
-          props:
-            variant: heading
-            text: "订单摘要"
-        content:
-          type: Stack
-          props:
-            spacing: 8
-          children:
-            # 订单号
-            - type: Flex
-              props:
-                justify: space-between
+                spacing: 12
+                align: center
               children:
-                - type: Text
+                # 成功图标
+                - type: Icon
                   props:
-                    variant: muted
-                    text: "订单号"
-                - type: Text
-                  bind:
-                    value: order.order_no
-            - type: Separator
-            # 产品类型
-            - type: Flex
-              props:
-                justify: space-between
-              children:
-                - type: Text
+                    name: check-circle
+                    size: 64
+                    color: success
+                  visible_when:
+                    field: order.status
+                    op: in
+                    value:
+                      - booked
+                      - booking_pending
+                      - submitted
+                # 失败图标
+                - type: Icon
                   props:
-                    variant: muted
-                    text: "产品类型"
-                - type: Badge
-                  props:
-                    variant: secondary
-                  bind:
-                    value: order.product_type
-            - type: Separator
-            # 机票行程摘要
-            - type: Flex
-              props:
-                justify: space-between
-              children:
-                - type: Text
-                  props:
-                    variant: muted
-                    text: "航班"
-                - type: Text
-                  bind:
-                    value: order.flight_offer.flight_no
-              visible_when:
-                field: order.product_type
-                op: eq
-                value: flight
-            # 酒店行程摘要
-            - type: Flex
-              props:
-                justify: space-between
-              children:
-                - type: Text
-                  props:
-                    variant: muted
-                    text: "酒店"
-                - type: Text
-                  bind:
-                    value: order.hotel_offer.hotel_name
-              visible_when:
-                field: order.product_type
-                op: eq
-                value: hotel
-            # 火车行程摘要
-            - type: Flex
-              props:
-                justify: space-between
-              children:
-                - type: Text
-                  props:
-                    variant: muted
-                    text: "车次"
-                - type: Text
-                  bind:
-                    value: order.train_offer.train_no
-              visible_when:
-                field: order.product_type
-                op: eq
-                value: train
-            - type: Separator
-            # 出行人数
-            - type: Flex
-              props:
-                justify: space-between
-              children:
-                - type: Text
-                  props:
-                    variant: muted
-                    text: "出行人数"
-                - type: Text
-                  bind:
-                    value: order.traveler_count
-            - type: Separator
-            # 金额
-            - type: Flex
-              props:
-                justify: space-between
-              children:
-                - type: Text
-                  props:
-                    variant: muted
-                    text: "订单金额"
+                    name: x-circle
+                    size: 64
+                    color: destructive
+                  visible_when:
+                    field: order.status
+                    op: eq
+                    value: failed
+                # 成功文案
                 - type: Text
                   props:
                     variant: heading
-                    size: lg
-                    color: primary
-                  bind:
-                    value: order.total_amount
+                    size: xl
+                    text: "预订成功"
+                  visible_when:
+                    field: order.status
+                    op: in
+                    value:
+                      - booked
+                      - booking_pending
+                      - submitted
+                # 失败文案
+                - type: Text
+                  props:
+                    variant: heading
+                    size: xl
+                    text: "预订失败"
+                  visible_when:
+                    field: order.status
+                    op: eq
+                    value: failed
+                # 失败原因提示
+                - type: Text
+                  props:
+                    variant: muted
+                    text: "请稍后重试或联系客服"
+                  visible_when:
+                    field: order.status
+                    op: eq
+                    value: failed
 
-    # ========== 操作按钮 ==========
-    - type: Flex
-      props:
-        direction: column
-        gap: 12
-      children:
-        - type: Button
+        # ========== 订单摘要 Card ==========
+        - type: Card
+          slots:
+            header:
+              type: Text
+              props:
+                variant: heading
+                text: "订单摘要"
+            content:
+              type: Stack
+              props:
+                spacing: 8
+              children:
+                # 订单号
+                - type: Flex
+                  props:
+                    justify: space-between
+                  children:
+                    - type: Text
+                      props:
+                        variant: muted
+                        text: "订单号"
+                    - type: Text
+                      bind:
+                        value: order.order_no
+                - type: Separator
+                # 产品类型
+                - type: Flex
+                  props:
+                    justify: space-between
+                  children:
+                    - type: Text
+                      props:
+                        variant: muted
+                        text: "产品类型"
+                    - type: Badge
+                      props:
+                        variant: secondary
+                      bind:
+                        value: order.product_type
+                - type: Separator
+                # 机票行程摘要
+                - type: Flex
+                  props:
+                    justify: space-between
+                  children:
+                    - type: Text
+                      props:
+                        variant: muted
+                        text: "航班"
+                    - type: Text
+                      bind:
+                        value: order.flight_offer.flight_no
+                  visible_when:
+                    field: order.product_type
+                    op: eq
+                    value: flight
+                # 酒店行程摘要
+                - type: Flex
+                  props:
+                    justify: space-between
+                  children:
+                    - type: Text
+                      props:
+                        variant: muted
+                        text: "酒店"
+                    - type: Text
+                      bind:
+                        value: order.hotel_offer.hotel_name
+                  visible_when:
+                    field: order.product_type
+                    op: eq
+                    value: hotel
+                # 火车行程摘要
+                - type: Flex
+                  props:
+                    justify: space-between
+                  children:
+                    - type: Text
+                      props:
+                        variant: muted
+                        text: "车次"
+                    - type: Text
+                      bind:
+                        value: order.train_offer.train_no
+                  visible_when:
+                    field: order.product_type
+                    op: eq
+                    value: train
+                - type: Separator
+                # 出行人数
+                - type: Flex
+                  props:
+                    justify: space-between
+                  children:
+                    - type: Text
+                      props:
+                        variant: muted
+                        text: "出行人数"
+                    - type: Text
+                      bind:
+                        value: order.traveler_count
+                - type: Separator
+                # 金额
+                - type: Flex
+                  props:
+                    justify: space-between
+                  children:
+                    - type: Text
+                      props:
+                        variant: muted
+                        text: "订单金额"
+                    - type: Text
+                      props:
+                        variant: heading
+                        size: lg
+                        color: primary
+                      bind:
+                        value: order.total_amount
+
+        # ========== 操作按钮 ==========
+        - type: Flex
           props:
-            variant: default
-            size: lg
-            text: "查看订单"
-            full_width: true
-          on_click:
-            navigate: /travel/orders/{{ order.id }}
-        - type: Button
-          props:
-            variant: outline
-            size: lg
-            text: "回到首页"
-            full_width: true
-          on_click:
-            navigate: /travel
+            direction: column
+            gap: 12
+          children:
+            - type: Button
+              props:
+                variant: default
+                size: lg
+                text: "查看订单"
+                full_width: true
+              on_click:
+                navigate: /travel/orders/{{ order.id }}
+            - type: Button
+              props:
+                variant: outline
+                size: lg
+                text: "回到首页"
+                full_width: true
+              on_click:
+                navigate: /travel
+
+  data_sources:
+    - name: order
+      type: read
+      resource: Travel.TravelOrder
+      params:
+        id: route.order_id
+      load:
+        - hotel_offer
+        - flight_offer
+        - train_offer
+
+  permissions:
+    access: authenticated
+    data_scope:
+      field: tenant_id
+      eq: actor.tenant_id

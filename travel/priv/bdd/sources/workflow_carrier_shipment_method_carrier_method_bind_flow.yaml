@@ -1,0 +1,5 @@
+module: DELIVERY_CARRIER_SHIPMENT_METHOD
+contract: CarrierShipmentMethod.carrier_method_bind_flow workflow contract
+edge_class: workflow_contract
+source_file: /tmp/travel_bdd_closure.X0Pe2B/delivery/delivery.ubo.yaml
+source_summary: GIVEN 实体 CarrierShipmentMethod 定义工作流 carrier_method_bind_flow / WHEN 按步骤执行 create -> update -> destroy / THEN 流程顺序应满足声明约束

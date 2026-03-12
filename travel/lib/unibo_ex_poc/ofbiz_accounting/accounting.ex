@@ -8,6 +8,7 @@ defmodule UniboExPoc.Ofbiz.Accounting do
 
   resources do
     resource UniboExPoc.Ofbiz.Accounting.FinAccount
+<<<<<<< Updated upstream
     resource UniboExPoc.Ofbiz.Accounting.FinAccountTrans
     resource UniboExPoc.Ofbiz.Accounting.FinAccountTransType
     resource UniboExPoc.Ofbiz.Accounting.FinAccountType
@@ -19,32 +20,104 @@ defmodule UniboExPoc.Ofbiz.Accounting do
     resource UniboExPoc.Ofbiz.Accounting.InvoiceItemType
     resource UniboExPoc.Ofbiz.Accounting.InvoiceType
     resource UniboExPoc.Ofbiz.Accounting.AcctgTrans
+=======
+    resource UniboExPoc.Ofbiz.Accounting.FinAccount.Version
+    resource UniboExPoc.Ofbiz.Accounting.FinAccountTrans
+    resource UniboExPoc.Ofbiz.Accounting.FinAccountTrans.Version
+    resource UniboExPoc.Ofbiz.Accounting.FinAccountTransType
+    resource UniboExPoc.Ofbiz.Accounting.FinAccountTransType.Version
+    resource UniboExPoc.Ofbiz.Accounting.FinAccountType
+    resource UniboExPoc.Ofbiz.Accounting.FinAccountType.Version
+    resource UniboExPoc.Ofbiz.Accounting.FixedAsset
+    resource UniboExPoc.Ofbiz.Accounting.FixedAsset.Version
+    resource UniboExPoc.Ofbiz.Accounting.FixedAssetType
+    resource UniboExPoc.Ofbiz.Accounting.FixedAssetType.Version
+    resource UniboExPoc.Ofbiz.Accounting.Invoice
+    resource UniboExPoc.Ofbiz.Accounting.Invoice.Version
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceItem
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceItem.Version
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceItemAttribute
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceItemType
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceItemType.Version
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceType
+    resource UniboExPoc.Ofbiz.Accounting.InvoiceType.Version
+    resource UniboExPoc.Ofbiz.Accounting.AcctgTrans
+    resource UniboExPoc.Ofbiz.Accounting.AcctgTrans.Version
+>>>>>>> Stashed changes
     resource UniboExPoc.Ofbiz.Accounting.AcctgTransEntry
     resource UniboExPoc.Ofbiz.Accounting.AcctgTransEntryType
     resource UniboExPoc.Ofbiz.Accounting.AcctgTransType
+<<<<<<< Updated upstream
+=======
+    resource UniboExPoc.Ofbiz.Accounting.AcctgTransType.Version
+>>>>>>> Stashed changes
     resource UniboExPoc.Ofbiz.Accounting.GlAccount
     resource UniboExPoc.Ofbiz.Accounting.GlAccountClass
+<<<<<<< Updated upstream
     resource UniboExPoc.Ofbiz.Accounting.GlAccountType
+=======
+    resource UniboExPoc.Ofbiz.Accounting.GlAccountClass.Version
+    resource UniboExPoc.Ofbiz.Accounting.GlAccountType
+    resource UniboExPoc.Ofbiz.Accounting.GlAccountType.Version
+>>>>>>> Stashed changes
     resource UniboExPoc.Ofbiz.Accounting.GlFiscalType
     resource UniboExPoc.Ofbiz.Accounting.GlJournal
     resource UniboExPoc.Ofbiz.Accounting.GlReconciliation
+<<<<<<< Updated upstream
+=======
+    resource UniboExPoc.Ofbiz.Accounting.GlReconciliation.Version
+>>>>>>> Stashed changes
     resource UniboExPoc.Ofbiz.Accounting.GlResourceType
     resource UniboExPoc.Ofbiz.Accounting.GlXbrlClass
+<<<<<<< Updated upstream
     resource UniboExPoc.Ofbiz.Accounting.SettlementTerm
     resource UniboExPoc.Ofbiz.Accounting.BillingAccount
     resource UniboExPoc.Ofbiz.Accounting.CreditCard
     resource UniboExPoc.Ofbiz.Accounting.EftAccount
     resource UniboExPoc.Ofbiz.Accounting.GiftCard
+=======
+    resource UniboExPoc.Ofbiz.Accounting.GlXbrlClass.Version
+    resource UniboExPoc.Ofbiz.Accounting.SettlementTerm
+    resource UniboExPoc.Ofbiz.Accounting.SettlementTerm.Version
+    resource UniboExPoc.Ofbiz.Accounting.BillingAccount
+    resource UniboExPoc.Ofbiz.Accounting.BillingAccount.Version
+    resource UniboExPoc.Ofbiz.Accounting.CreditCard
+    resource UniboExPoc.Ofbiz.Accounting.CreditCard.Version
+    resource UniboExPoc.Ofbiz.Accounting.EftAccount
+    resource UniboExPoc.Ofbiz.Accounting.EftAccount.Version
+    resource UniboExPoc.Ofbiz.Accounting.GiftCard
+    resource UniboExPoc.Ofbiz.Accounting.GiftCard.Version
+>>>>>>> Stashed changes
     resource UniboExPoc.Ofbiz.Accounting.Payment
     resource UniboExPoc.Ofbiz.Accounting.PaymentApplication
+<<<<<<< Updated upstream
+=======
+    resource UniboExPoc.Ofbiz.Accounting.PaymentApplication.Version
+>>>>>>> Stashed changes
     resource UniboExPoc.Ofbiz.Accounting.PaymentMethod
     resource UniboExPoc.Ofbiz.Accounting.PaymentMethodType
+<<<<<<< Updated upstream
     resource UniboExPoc.Ofbiz.Accounting.PaymentType
+=======
+    resource UniboExPoc.Ofbiz.Accounting.PaymentMethodType.Version
+    resource UniboExPoc.Ofbiz.Accounting.PaymentType
+    resource UniboExPoc.Ofbiz.Accounting.PaymentType.Version
+>>>>>>> Stashed changes
     resource UniboExPoc.Ofbiz.Accounting.PaymentGatewayConfigType
     resource UniboExPoc.Ofbiz.Accounting.PaymentGatewayConfig
+<<<<<<< Updated upstream
     resource UniboExPoc.Ofbiz.Accounting.PaymentGatewayResponse
+=======
+    resource UniboExPoc.Ofbiz.Accounting.PaymentGatewayConfig.Version
+    resource UniboExPoc.Ofbiz.Accounting.PaymentGatewayResponse
+    resource UniboExPoc.Ofbiz.Accounting.PaymentGatewayResponse.Version
+>>>>>>> Stashed changes
     resource UniboExPoc.Ofbiz.Accounting.TaxAuthority
     resource UniboExPoc.Ofbiz.Accounting.TaxAuthorityRateProduct
     resource UniboExPoc.Ofbiz.Accounting.TaxAuthorityRateType
+<<<<<<< Updated upstream
+=======
+    resource UniboExPoc.Ofbiz.Accounting.TaxAuthorityRateType.Version
+>>>>>>> Stashed changes
   end
 end

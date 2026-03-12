@@ -1,862 +1,866 @@
 # 旅行订单详情页（按 product_type 条件渲染）
-name: order_detail
-title: 订单详情
-route: /travel/orders/:order_id
-page_type: composition
+version: "1.0"
+page:
+  name: order_detail
+  title: 订单详情
+  page_type: composition
+  audience: user
+  entity: TravelOrder
+  route: /travel/orders/:order_id
 
-permissions:
-  access: authenticated
-  data_scope:
-    field: tenant_id
-    eq: actor.tenant_id
-
-data_sources:
-  - name: order
-    type: read
-    resource: Travel.TravelOrder
-    params:
-      id: route.order_id
-    load:
-      - hotel_offer
-      - flight_offer
-      - vacation_offer
-      - train_offer
-      - fulfillments
-      - customer
-      - payment
-  - name: fulfillments
-    type: list
-    resource: Travel.TravelFulfillment
-    filters:
-      - field: order_id
-        op: eq
-        value: route.order_id
-    sort:
-      - field: inserted_at
-        direction: asc
-
-layout:
-  type: Stack
-  props:
-    spacing: 16
-  children:
-    # ========== 状态头 Hero ==========
-    - type: Hero
+  layout:
+    - type: Stack
       props:
-        size: sm
+        spacing: 16
       children:
-        - type: Flex
+        # ========== 状态头 Hero ==========
+        - type: Hero
           props:
-            direction: column
-            align: center
-            gap: 8
+            size: sm
           children:
-            - type: Icon
+            - type: Flex
               props:
-                name: check-circle
-                size: 48
-                color: success
-              visible_when:
-                field: order.status
-                op: in
-                value:
-                  - booked
-                  - completed
-            - type: Icon
-              props:
-                name: clock
-                size: 48
-                color: warning
-              visible_when:
-                field: order.status
-                op: in
-                value:
-                  - booking_pending
-                  - submitted
-                  - quoted
-            - type: Icon
-              props:
-                name: x-circle
-                size: 48
-                color: destructive
-              visible_when:
-                field: order.status
-                op: in
-                value:
-                  - cancelled
-                  - failed
-            - type: Text
+                direction: column
+                align: center
+                gap: 8
+              children:
+                - type: Icon
+                  props:
+                    name: check-circle
+                    size: 48
+                    color: success
+                  visible_when:
+                    field: order.status
+                    op: in
+                    value:
+                      - booked
+                      - completed
+                - type: Icon
+                  props:
+                    name: clock
+                    size: 48
+                    color: warning
+                  visible_when:
+                    field: order.status
+                    op: in
+                    value:
+                      - booking_pending
+                      - submitted
+                      - quoted
+                - type: Icon
+                  props:
+                    name: x-circle
+                    size: 48
+                    color: destructive
+                  visible_when:
+                    field: order.status
+                    op: in
+                    value:
+                      - cancelled
+                      - failed
+                - type: Text
+                  props:
+                    variant: heading
+                    size: xl
+                  bind:
+                    value: order.status
+                - type: Text
+                  props:
+                    variant: muted
+                    size: sm
+                    text: "订单已完成，感谢您的使用"
+                  visible_when:
+                    field: order.status
+                    op: eq
+                    value: completed
+
+        # ========== 订单号 + 金额 Card ==========
+        - type: Card
+          slots:
+            header:
+              type: Text
               props:
                 variant: heading
-                size: xl
-              bind:
-                value: order.status
-            - type: Text
+                text: "订单信息"
+            content:
+              type: Stack
               props:
-                variant: muted
-                size: sm
-                text: "订单已完成，感谢您的使用"
-              visible_when:
-                field: order.status
-                op: eq
-                value: completed
+                spacing: 8
+              children:
+                - type: Flex
+                  props:
+                    justify: space-between
+                  children:
+                    - type: Text
+                      props:
+                        variant: muted
+                        text: "订单号"
+                    - type: Text
+                      bind:
+                        value: order.order_no
+                - type: Separator
+                - type: Flex
+                  props:
+                    justify: space-between
+                  children:
+                    - type: Text
+                      props:
+                        variant: muted
+                        text: "总金额"
+                    - type: Text
+                      props:
+                        variant: heading
+                        size: lg
+                      bind:
+                        value: order.total_amount
+                - type: Flex
+                  props:
+                    justify: space-between
+                  children:
+                    - type: Text
+                      props:
+                        variant: muted
+                        text: "积分抵扣"
+                    - type: Text
+                      bind:
+                        value: order.points_deduction_amount
+                  visible_when:
+                    field: order.points_to_use
+                    op: gt
+                    value: 0
+                - type: Flex
+                  props:
+                    justify: space-between
+                  children:
+                    - type: Text
+                      props:
+                        variant: muted
+                        text: "应付金额"
+                    - type: Text
+                      props:
+                        variant: heading
+                        color: primary
+                      bind:
+                        value: order.payable_amount
 
-    # ========== 订单号 + 金额 Card ==========
-    - type: Card
-      slots:
-        header:
-          type: Text
-          props:
-            variant: heading
-            text: "订单信息"
-        content:
-          type: Stack
-          props:
-            spacing: 8
-          children:
-            - type: Flex
+        # ========== 机票行程信息 Card ==========
+        - type: Card
+          visible_when:
+            field: order.product_type
+            op: eq
+            value: flight
+          slots:
+            header:
+              type: Text
               props:
-                justify: space-between
-              children:
-                - type: Text
-                  props:
-                    variant: muted
-                    text: "订单号"
-                - type: Text
-                  bind:
-                    value: order.order_no
-            - type: Separator
-            - type: Flex
+                variant: heading
+                text: "航班信息"
+            content:
+              type: Stack
               props:
-                justify: space-between
+                spacing: 12
               children:
-                - type: Text
+                # 航线时刻图
+                - type: Flex
                   props:
-                    variant: muted
-                    text: "总金额"
+                    justify: space-between
+                    align: center
+                  children:
+                    - type: Stack
+                      props:
+                        spacing: 2
+                        align: center
+                      children:
+                        - type: Text
+                          props:
+                            variant: heading
+                            size: xl
+                          bind:
+                            value: order.flight_offer.departure_time
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                          bind:
+                            value: order.flight_offer.departure_airport
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: xs
+                          bind:
+                            value: order.flight_offer.departure_terminal
+                    - type: Stack
+                      props:
+                        spacing: 2
+                        align: center
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: xs
+                          bind:
+                            value: order.flight_offer.duration
+                        - type: Icon
+                          props:
+                            name: arrow-right
+                            size: 20
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: xs
+                          bind:
+                            value: order.flight_offer.flight_no
+                    - type: Stack
+                      props:
+                        spacing: 2
+                        align: center
+                      children:
+                        - type: Text
+                          props:
+                            variant: heading
+                            size: xl
+                          bind:
+                            value: order.flight_offer.arrival_time
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                          bind:
+                            value: order.flight_offer.arrival_airport
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: xs
+                          bind:
+                            value: order.flight_offer.arrival_terminal
+                - type: Separator
+                # 航司+机型+餐食
+                - type: Flex
+                  props:
+                    gap: 12
+                    wrap: true
+                  children:
+                    - type: Text
+                      props:
+                        size: sm
+                      bind:
+                        value: order.flight_offer.airline_name
+                    - type: Text
+                      props:
+                        size: sm
+                        variant: muted
+                      bind:
+                        value: order.flight_offer.aircraft_type
+                    - type: Badge
+                      props:
+                        variant: secondary
+                      bind:
+                        value: order.flight_offer.meal_info
+                - type: Separator
+                # 退改签/行李额/产品说明 折叠区
+                - type: Accordion
+                  children:
+                    - type: Collapsible
+                      props:
+                        title: "退改签规则"
+                      children:
+                        - type: Text
+                          props:
+                            size: sm
+                          bind:
+                            value: order.flight_offer.refund_change_policy
+                    - type: Collapsible
+                      props:
+                        title: "行李额说明"
+                      children:
+                        - type: Text
+                          props:
+                            size: sm
+                          bind:
+                            value: order.flight_offer.baggage_allowance
+                    - type: Collapsible
+                      props:
+                        title: "产品说明"
+                      children:
+                        - type: Text
+                          props:
+                            size: sm
+                          bind:
+                            value: order.flight_offer.product_description
+
+        # ========== 火车票行程信息 Card ==========
+        - type: Card
+          visible_when:
+            field: order.product_type
+            op: eq
+            value: train
+          slots:
+            header:
+              type: Text
+              props:
+                variant: heading
+                text: "车次信息"
+            content:
+              type: Stack
+              props:
+                spacing: 12
+              children:
+                # 取票号 + 检票口
+                - type: Flex
+                  props:
+                    gap: 16
+                  children:
+                    - type: Flex
+                      props:
+                        gap: 4
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                            text: "取票号"
+                        - type: Text
+                          props:
+                            variant: heading
+                          bind:
+                            value: order.seat_selection_snapshot.pickup_code
+                    - type: Flex
+                      props:
+                        gap: 4
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                            text: "检票口"
+                        - type: Text
+                          props:
+                            variant: heading
+                          bind:
+                            value: order.seat_selection_snapshot.gate
+                - type: Separator
+                # 车次时刻
+                - type: Flex
+                  props:
+                    justify: space-between
+                    align: center
+                  children:
+                    - type: Stack
+                      props:
+                        spacing: 2
+                        align: center
+                      children:
+                        - type: Text
+                          props:
+                            variant: heading
+                            size: xl
+                          bind:
+                            value: order.train_offer.departure_time
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                          bind:
+                            value: order.train_offer.departure_station
+                    - type: Stack
+                      props:
+                        spacing: 2
+                        align: center
+                      children:
+                        - type: Text
+                          props:
+                            variant: heading
+                            size: sm
+                          bind:
+                            value: order.train_offer.train_no
+                        - type: Icon
+                          props:
+                            name: arrow-right
+                            size: 20
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: xs
+                          bind:
+                            value: order.train_offer.duration
+                    - type: Stack
+                      props:
+                        spacing: 2
+                        align: center
+                      children:
+                        - type: Text
+                          props:
+                            variant: heading
+                            size: xl
+                          bind:
+                            value: order.train_offer.arrival_time
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                          bind:
+                            value: order.train_offer.arrival_station
+                - type: Separator
+                # 经停信息
+                - type: Collapsible
+                  props:
+                    title: "经停站信息"
+                  children:
+                    - type: Text
+                      props:
+                        size: sm
+                      bind:
+                        value: order.train_offer.stop_stations
+
+        # ========== 酒店行程信息 Card ==========
+        - type: Card
+          visible_when:
+            field: order.product_type
+            op: eq
+            value: hotel
+          slots:
+            header:
+              type: Text
+              props:
+                variant: heading
+                text: "酒店信息"
+            content:
+              type: Stack
+              props:
+                spacing: 12
+              children:
+                # 酒店名+地址
                 - type: Text
                   props:
                     variant: heading
                     size: lg
                   bind:
-                    value: order.total_amount
-            - type: Flex
-              props:
-                justify: space-between
-              children:
+                    value: order.hotel_offer.hotel_name
                 - type: Text
                   props:
                     variant: muted
-                    text: "积分抵扣"
-                - type: Text
-                  bind:
-                    value: order.points_deduction_amount
-              visible_when:
-                field: order.points_to_use
-                op: gt
-                value: 0
-            - type: Flex
-              props:
-                justify: space-between
-              children:
-                - type: Text
-                  props:
-                    variant: muted
-                    text: "应付金额"
-                - type: Text
-                  props:
-                    variant: heading
-                    color: primary
-                  bind:
-                    value: order.payable_amount
-
-    # ========== 机票行程信息 Card ==========
-    - type: Card
-      visible_when:
-        field: order.product_type
-        op: eq
-        value: flight
-      slots:
-        header:
-          type: Text
-          props:
-            variant: heading
-            text: "航班信息"
-        content:
-          type: Stack
-          props:
-            spacing: 12
-          children:
-            # 航线时刻图
-            - type: Flex
-              props:
-                justify: space-between
-                align: center
-              children:
-                - type: Stack
-                  props:
-                    spacing: 2
-                    align: center
-                  children:
-                    - type: Text
-                      props:
-                        variant: heading
-                        size: xl
-                      bind:
-                        value: order.flight_offer.departure_time
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: sm
-                      bind:
-                        value: order.flight_offer.departure_airport
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: xs
-                      bind:
-                        value: order.flight_offer.departure_terminal
-                - type: Stack
-                  props:
-                    spacing: 2
-                    align: center
-                  children:
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: xs
-                      bind:
-                        value: order.flight_offer.duration
-                    - type: Icon
-                      props:
-                        name: arrow-right
-                        size: 20
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: xs
-                      bind:
-                        value: order.flight_offer.flight_no
-                - type: Stack
-                  props:
-                    spacing: 2
-                    align: center
-                  children:
-                    - type: Text
-                      props:
-                        variant: heading
-                        size: xl
-                      bind:
-                        value: order.flight_offer.arrival_time
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: sm
-                      bind:
-                        value: order.flight_offer.arrival_airport
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: xs
-                      bind:
-                        value: order.flight_offer.arrival_terminal
-            - type: Separator
-            # 航司+机型+餐食
-            - type: Flex
-              props:
-                gap: 12
-                wrap: true
-              children:
-                - type: Text
-                  props:
                     size: sm
                   bind:
-                    value: order.flight_offer.airline_name
-                - type: Text
+                    value: order.hotel_offer.address
+                - type: Separator
+                # 房型详情
+                - type: Grid
                   props:
-                    size: sm
-                    variant: muted
-                  bind:
-                    value: order.flight_offer.aircraft_type
-                - type: Badge
-                  props:
-                    variant: secondary
-                  bind:
-                    value: order.flight_offer.meal_info
-            - type: Separator
-            # 退改签/行李额/产品说明 折叠区
-            - type: Accordion
-              children:
-                - type: Collapsible
-                  props:
-                    title: "退改签规则"
+                    columns: 2
+                    gap: 8
                   children:
-                    - type: Text
+                    - type: Flex
                       props:
-                        size: sm
-                      bind:
-                        value: order.flight_offer.refund_change_policy
-                - type: Collapsible
-                  props:
-                    title: "行李额说明"
-                  children:
-                    - type: Text
+                        gap: 4
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                            text: "房型"
+                        - type: Text
+                          props:
+                            size: sm
+                          bind:
+                            value: order.hotel_offer.room_type_name
+                    - type: Flex
                       props:
-                        size: sm
-                      bind:
-                        value: order.flight_offer.baggage_allowance
-                - type: Collapsible
-                  props:
-                    title: "产品说明"
-                  children:
-                    - type: Text
+                        gap: 4
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                            text: "间数"
+                        - type: Text
+                          props:
+                            size: sm
+                          bind:
+                            value: order.hotel_offer.room_count
+                    - type: Flex
                       props:
-                        size: sm
-                      bind:
-                        value: order.flight_offer.product_description
-
-    # ========== 火车票行程信息 Card ==========
-    - type: Card
-      visible_when:
-        field: order.product_type
-        op: eq
-        value: train
-      slots:
-        header:
-          type: Text
-          props:
-            variant: heading
-            text: "车次信息"
-        content:
-          type: Stack
-          props:
-            spacing: 12
-          children:
-            # 取票号 + 检票口
-            - type: Flex
-              props:
-                gap: 16
-              children:
+                        gap: 4
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                            text: "晚数"
+                        - type: Text
+                          props:
+                            size: sm
+                          bind:
+                            value: order.hotel_offer.night_count
+                    - type: Flex
+                      props:
+                        gap: 4
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                            text: "床型"
+                        - type: Text
+                          props:
+                            size: sm
+                          bind:
+                            value: order.hotel_offer.bed_type
+                    - type: Flex
+                      props:
+                        gap: 4
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                            text: "面积"
+                        - type: Text
+                          props:
+                            size: sm
+                          bind:
+                            value: order.hotel_offer.room_area
+                    - type: Flex
+                      props:
+                        gap: 4
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                            text: "早餐"
+                        - type: Text
+                          props:
+                            size: sm
+                          bind:
+                            value: order.hotel_offer.breakfast_info
+                    - type: Flex
+                      props:
+                        gap: 4
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                            text: "窗型"
+                        - type: Text
+                          props:
+                            size: sm
+                          bind:
+                            value: order.hotel_offer.window_type
+                    - type: Flex
+                      props:
+                        gap: 4
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                            text: "楼层"
+                        - type: Text
+                          props:
+                            size: sm
+                          bind:
+                            value: order.hotel_offer.floor_info
+                - type: Separator
+                # 入住退房日期
                 - type: Flex
                   props:
-                    gap: 4
+                    justify: space-between
                   children:
-                    - type: Text
+                    - type: Stack
                       props:
-                        variant: muted
-                        size: sm
-                        text: "取票号"
-                    - type: Text
+                        spacing: 2
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                            text: "入住日期"
+                        - type: Text
+                          bind:
+                            value: order.hotel_offer.check_in_date
+                    - type: Stack
                       props:
-                        variant: heading
-                      bind:
-                        value: order.seat_selection_snapshot.pickup_code
+                        spacing: 2
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                            text: "退房日期"
+                        - type: Text
+                          bind:
+                            value: order.hotel_offer.check_out_date
+                - type: Separator
+                # 取消扣费说明
                 - type: Flex
                   props:
-                    gap: 4
+                    justify: space-between
                   children:
                     - type: Text
                       props:
                         variant: muted
                         size: sm
-                        text: "检票口"
+                        text: "取消扣费"
                     - type: Text
                       props:
-                        variant: heading
-                      bind:
-                        value: order.seat_selection_snapshot.gate
-            - type: Separator
-            # 车次时刻
-            - type: Flex
-              props:
-                justify: space-between
-                align: center
-              children:
-                - type: Stack
-                  props:
-                    spacing: 2
-                    align: center
-                  children:
-                    - type: Text
-                      props:
-                        variant: heading
-                        size: xl
-                      bind:
-                        value: order.train_offer.departure_time
-                    - type: Text
-                      props:
-                        variant: muted
                         size: sm
                       bind:
-                        value: order.train_offer.departure_station
-                - type: Stack
-                  props:
-                    spacing: 2
-                    align: center
-                  children:
-                    - type: Text
-                      props:
-                        variant: heading
-                        size: sm
-                      bind:
-                        value: order.train_offer.train_no
-                    - type: Icon
-                      props:
-                        name: arrow-right
-                        size: 20
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: xs
-                      bind:
-                        value: order.train_offer.duration
-                - type: Stack
-                  props:
-                    spacing: 2
-                    align: center
-                  children:
-                    - type: Text
-                      props:
-                        variant: heading
-                        size: xl
-                      bind:
-                        value: order.train_offer.arrival_time
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: sm
-                      bind:
-                        value: order.train_offer.arrival_station
-            - type: Separator
-            # 经停信息
-            - type: Collapsible
-              props:
-                title: "经停站信息"
-              children:
-                - type: Text
-                  props:
-                    size: sm
-                  bind:
-                    value: order.train_offer.stop_stations
+                        value: order.hotel_offer.cancellation_fee
 
-    # ========== 酒店行程信息 Card ==========
-    - type: Card
-      visible_when:
-        field: order.product_type
-        op: eq
-        value: hotel
-      slots:
-        header:
-          type: Text
-          props:
-            variant: heading
-            text: "酒店信息"
-        content:
-          type: Stack
-          props:
-            spacing: 12
-          children:
-            # 酒店名+地址
-            - type: Text
+        # ========== 出行人/乘客/入住人 ==========
+        # 机票乘客列表
+        - type: Card
+          visible_when:
+            field: order.product_type
+            op: eq
+            value: flight
+          slots:
+            header:
+              type: Text
               props:
                 variant: heading
-                size: lg
-              bind:
-                value: order.hotel_offer.hotel_name
-            - type: Text
+                text: "出行信息"
+            content:
+              type: List
               props:
-                variant: muted
-                size: sm
-              bind:
-                value: order.hotel_offer.address
-            - type: Separator
-            # 房型详情
-            - type: Grid
-              props:
-                columns: 2
-                gap: 8
-              children:
-                - type: Flex
+                spacing: 8
+              children_from:
+                source: order.ticket_passenger_infos
+                template:
+                  type: Flex
                   props:
-                    gap: 4
-                  children:
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: sm
-                        text: "房型"
-                    - type: Text
-                      props:
-                        size: sm
-                      bind:
-                        value: order.hotel_offer.room_type_name
-                - type: Flex
-                  props:
-                    gap: 4
-                  children:
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: sm
-                        text: "间数"
-                    - type: Text
-                      props:
-                        size: sm
-                      bind:
-                        value: order.hotel_offer.room_count
-                - type: Flex
-                  props:
-                    gap: 4
-                  children:
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: sm
-                        text: "晚数"
-                    - type: Text
-                      props:
-                        size: sm
-                      bind:
-                        value: order.hotel_offer.night_count
-                - type: Flex
-                  props:
-                    gap: 4
-                  children:
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: sm
-                        text: "床型"
-                    - type: Text
-                      props:
-                        size: sm
-                      bind:
-                        value: order.hotel_offer.bed_type
-                - type: Flex
-                  props:
-                    gap: 4
-                  children:
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: sm
-                        text: "面积"
-                    - type: Text
-                      props:
-                        size: sm
-                      bind:
-                        value: order.hotel_offer.room_area
-                - type: Flex
-                  props:
-                    gap: 4
-                  children:
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: sm
-                        text: "早餐"
-                    - type: Text
-                      props:
-                        size: sm
-                      bind:
-                        value: order.hotel_offer.breakfast_info
-                - type: Flex
-                  props:
-                    gap: 4
-                  children:
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: sm
-                        text: "窗型"
-                    - type: Text
-                      props:
-                        size: sm
-                      bind:
-                        value: order.hotel_offer.window_type
-                - type: Flex
-                  props:
-                    gap: 4
-                  children:
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: sm
-                        text: "楼层"
-                    - type: Text
-                      props:
-                        size: sm
-                      bind:
-                        value: order.hotel_offer.floor_info
-            - type: Separator
-            # 入住退房日期
-            - type: Flex
-              props:
-                justify: space-between
-              children:
-                - type: Stack
-                  props:
-                    spacing: 2
-                  children:
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: sm
-                        text: "入住日期"
-                    - type: Text
-                      bind:
-                        value: order.hotel_offer.check_in_date
-                - type: Stack
-                  props:
-                    spacing: 2
-                  children:
-                    - type: Text
-                      props:
-                        variant: muted
-                        size: sm
-                        text: "退房日期"
-                    - type: Text
-                      bind:
-                        value: order.hotel_offer.check_out_date
-            - type: Separator
-            # 取消扣费说明
-            - type: Flex
-              props:
-                justify: space-between
-              children:
-                - type: Text
-                  props:
-                    variant: muted
-                    size: sm
-                    text: "取消扣费"
-                - type: Text
-                  props:
-                    size: sm
-                  bind:
-                    value: order.hotel_offer.cancellation_fee
-
-    # ========== 出行人/乘客/入住人 ==========
-    # 机票乘客列表
-    - type: Card
-      visible_when:
-        field: order.product_type
-        op: eq
-        value: flight
-      slots:
-        header:
-          type: Text
-          props:
-            variant: heading
-            text: "出行信息"
-        content:
-          type: List
-          props:
-            spacing: 8
-          children_from:
-            source: order.ticket_passenger_infos
-            template:
-              type: Flex
-              props:
-                justify: space-between
-                align: center
-              children:
-                - type: Flex
-                  props:
-                    gap: 8
+                    justify: space-between
                     align: center
                   children:
+                    - type: Flex
+                      props:
+                        gap: 8
+                        align: center
+                      children:
+                        - type: Text
+                          bind:
+                            value: item.name
+                        - type: Badge
+                          props:
+                            variant: outline
+                          bind:
+                            value: item.ticket_status
                     - type: Text
+                      props:
+                        variant: muted
+                        size: sm
                       bind:
-                        value: item.name
+                        value: item.id_number
+
+        # 火车票乘客列表
+        - type: Card
+          visible_when:
+            field: order.product_type
+            op: eq
+            value: train
+          slots:
+            header:
+              type: Text
+              props:
+                variant: heading
+                text: "乘客信息"
+            content:
+              type: List
+              props:
+                spacing: 8
+              children_from:
+                source: order.ticket_passenger_infos
+                template:
+                  type: Flex
+                  props:
+                    justify: space-between
+                    align: center
+                  children:
+                    - type: Flex
+                      props:
+                        gap: 8
+                        align: center
+                      children:
+                        - type: Text
+                          bind:
+                            value: item.name
+                        - type: Badge
+                          props:
+                            variant: secondary
+                          bind:
+                            value: item.seat_no
+                        - type: Badge
+                          props:
+                            variant: outline
+                          bind:
+                            value: item.seat_class
                     - type: Badge
                       props:
                         variant: outline
                       bind:
                         value: item.ticket_status
-                - type: Text
-                  props:
-                    variant: muted
-                    size: sm
-                  bind:
-                    value: item.id_number
 
-    # 火车票乘客列表
-    - type: Card
-      visible_when:
-        field: order.product_type
-        op: eq
-        value: train
-      slots:
-        header:
-          type: Text
-          props:
-            variant: heading
-            text: "乘客信息"
-        content:
-          type: List
-          props:
-            spacing: 8
-          children_from:
-            source: order.ticket_passenger_infos
-            template:
-              type: Flex
+        # 酒店入住人列表
+        - type: Card
+          visible_when:
+            field: order.product_type
+            op: eq
+            value: hotel
+          slots:
+            header:
+              type: Text
               props:
-                justify: space-between
-                align: center
-              children:
-                - type: Flex
+                variant: heading
+                text: "入住人信息"
+            content:
+              type: List
+              props:
+                spacing: 8
+              children_from:
+                source: order.hotel_offer.guests
+                template:
+                  type: Flex
                   props:
-                    gap: 8
+                    justify: space-between
                     align: center
                   children:
-                    - type: Text
-                      bind:
-                        value: item.name
-                    - type: Badge
+                    - type: Flex
                       props:
-                        variant: secondary
-                      bind:
-                        value: item.seat_no
-                    - type: Badge
-                      props:
-                        variant: outline
-                      bind:
-                        value: item.seat_class
-                - type: Badge
-                  props:
-                    variant: outline
-                  bind:
-                    value: item.ticket_status
-
-    # 酒店入住人列表
-    - type: Card
-      visible_when:
-        field: order.product_type
-        op: eq
-        value: hotel
-      slots:
-        header:
-          type: Text
-          props:
-            variant: heading
-            text: "入住人信息"
-        content:
-          type: List
-          props:
-            spacing: 8
-          children_from:
-            source: order.hotel_offer.guests
-            template:
-              type: Flex
-              props:
-                justify: space-between
-                align: center
-              children:
-                - type: Flex
-                  props:
-                    gap: 8
-                    align: center
-                  children:
+                        gap: 8
+                        align: center
+                      children:
+                        - type: Text
+                          props:
+                            variant: muted
+                            size: sm
+                          bind:
+                            value: item.room_no
+                        - type: Text
+                          bind:
+                            value: item.name
                     - type: Text
                       props:
                         variant: muted
                         size: sm
                       bind:
-                        value: item.room_no
-                    - type: Text
-                      bind:
-                        value: item.name
+                        value: item.phone
+
+        # ========== 酒店报销凭证区域 ==========
+        - type: Card
+          visible_when:
+            field: order.product_type
+            op: eq
+            value: hotel
+          slots:
+            header:
+              type: Text
+              props:
+                variant: heading
+                text: "报销凭证"
+            content:
+              type: Stack
+              props:
+                spacing: 8
+              children:
                 - type: Text
                   props:
                     variant: muted
                     size: sm
-                  bind:
-                    value: item.phone
+                    text: "如需报销凭证，请在退房后申请"
+                - type: Button
+                  props:
+                    variant: outline
+                    text: "申请报销凭证"
+                  visible_when:
+                    field: order.status
+                    op: eq
+                    value: completed
 
-    # ========== 酒店报销凭证区域 ==========
-    - type: Card
-      visible_when:
-        field: order.product_type
-        op: eq
-        value: hotel
-      slots:
-        header:
-          type: Text
-          props:
-            variant: heading
-            text: "报销凭证"
-        content:
-          type: Stack
-          props:
-            spacing: 8
+        # ========== 操作栏 ==========
+        - type: ControlBar
           children:
-            - type: Text
-              props:
-                variant: muted
-                size: sm
-                text: "如需报销凭证，请在退房后申请"
+            # 机票操作
             - type: Button
               props:
                 variant: outline
-                text: "申请报销凭证"
+                text: "申请退票"
+              visible_when:
+                field: order.product_type
+                op: eq
+                value: flight
+            - type: Button
+              props:
+                variant: outline
+                text: "申请改签"
+              visible_when:
+                field: order.product_type
+                op: eq
+                value: flight
+
+            # 火车票操作
+            - type: Button
+              props:
+                variant: outline
+                text: "改签"
+              visible_when:
+                field: order.product_type
+                op: eq
+                value: train
+            - type: Button
+              props:
+                variant: outline
+                text: "退票"
+              visible_when:
+                field: order.product_type
+                op: eq
+                value: train
+
+            # 酒店操作
+            - type: Button
+              props:
+                variant: destructive
+                text: "取消订单"
               visible_when:
                 field: order.status
-                op: eq
-                value: completed
+                op: in
+                value:
+                  - submitted
+                  - booking_pending
 
-    # ========== 操作栏 ==========
-    - type: ControlBar
-      children:
-        # 机票操作
-        - type: Button
-          props:
-            variant: outline
-            text: "申请退票"
-          visible_when:
-            field: order.product_type
-            op: eq
-            value: flight
-        - type: Button
-          props:
-            variant: outline
-            text: "申请改签"
-          visible_when:
-            field: order.product_type
-            op: eq
-            value: flight
+            # 通用: 联系客服
+            - type: Button
+              props:
+                variant: secondary
+                text: "联系客服"
 
-        # 火车票操作
-        - type: Button
-          props:
-            variant: outline
-            text: "改签"
-          visible_when:
-            field: order.product_type
-            op: eq
-            value: train
-        - type: Button
-          props:
-            variant: outline
-            text: "退票"
-          visible_when:
-            field: order.product_type
-            op: eq
-            value: train
+  data_sources:
+    - name: order
+      type: read
+      resource: Travel.TravelOrder
+      params:
+        id: route.order_id
+      load:
+        - hotel_offer
+        - flight_offer
+        - vacation_offer
+        - train_offer
+        - fulfillments
+        - customer
+        - payment
+    - name: fulfillments
+      type: list
+      resource: Travel.TravelFulfillment
+      filters:
+        - field: order_id
+          op: eq
+          value: route.order_id
+      sort:
+        - field: inserted_at
+          direction: asc
 
-        # 酒店操作
-        - type: Button
-          props:
-            variant: destructive
-            text: "取消订单"
-          visible_when:
-            field: order.status
-            op: in
-            value:
-              - submitted
-              - booking_pending
-
-        # 通用: 联系客服
-        - type: Button
-          props:
-            variant: secondary
-            text: "联系客服"
+  permissions:
+    access: authenticated
+    data_scope:
+      field: tenant_id
+      eq: actor.tenant_id

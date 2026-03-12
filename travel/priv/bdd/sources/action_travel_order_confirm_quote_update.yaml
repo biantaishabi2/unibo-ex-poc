@@ -1,0 +1,5 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.confirm_quote action contract
+edge_class: action_contract
+source_file: /tmp/travel_bdd_closure.X0Pe2B/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelOrder 的动作 confirm_quote 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 confirm_quote / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

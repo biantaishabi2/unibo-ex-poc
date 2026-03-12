@@ -1,0 +1,5 @@
+module: ACCOUNTING_INVOICE_ITEM
+contract: InvoiceItem.invoice_item_editing workflow contract
+edge_class: workflow_contract
+source_file: /tmp/travel_bdd_closure.X0Pe2B/accounting/accounting.ubo.yaml
+source_summary: GIVEN 实体 InvoiceItem 定义工作流 invoice_item_editing / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束

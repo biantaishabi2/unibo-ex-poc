@@ -1,0 +1,5 @@
+module: TRAVEL_TRAIN_OFFER
+contract: TrainOffer.activate action contract
+edge_class: action_contract
+source_file: /tmp/travel_bdd_closure.X0Pe2B/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TrainOffer 的动作 activate 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 activate / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束

@@ -69,34 +69,6 @@ msgstr ""
 msgid "已发出的发货单不能直接取消，需走逆向退货流程"
 msgstr ""
 
-#. domain: Delivery, entity: CrossOrgTransaction, validation: compare, on: create
-msgid "source_party_id 与 target_party_id 不能相同"
-msgstr ""
-
-#. domain: Delivery, entity: CrossOrgTransaction, validation: one_of, on: confirm_source
-msgid "只有草稿状态可以确认源销售单"
-msgstr ""
-
-#. domain: Delivery, entity: CrossOrgTransaction, validation: one_of, on: create_mirror_purchase_order
-msgid "只有源单确认后才允许创建镜像采购单"
-msgstr ""
-
-#. domain: Delivery, entity: CrossOrgTransaction, validation: one_of, on: mark_fulfilled
-msgid "只有镜像单创建完成后才允许标记履约完成"
-msgstr ""
-
-#. domain: Delivery, entity: CrossOrgTransaction, validation: one_of, on: mark_settled
-msgid "只有履约完成后才允许标记结算完成"
-msgstr ""
-
-#. domain: Delivery, entity: CrossOrgTransaction, validation: one_of, on: mark_failed
-msgid "只有编排中的事务才能标记失败"
-msgstr ""
-
-#. domain: Delivery, entity: CrossOrgTransaction, validation: custom, on: cancel
-msgid "已结算事务不允许取消"
-msgstr ""
-
 #. domain: Delivery, entity: ShipmentItem, validation: compare, on: create, update
 msgid "发货数量必须大于 0"
 msgstr ""
@@ -157,108 +129,8 @@ msgstr ""
 msgid "只有活跃状态的令牌可以标记过期"
 msgstr ""
 
-#. domain: Purchasing, entity: Supplier, validation: one_of, on: activate
-msgid "只有非活跃或冻结状态可以启用"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, validation: one_of, on: block
+#. domain: Sales, entity: Customer, validation: one_of, on: block
 msgid "只有活跃状态可以冻结"
-msgstr ""
-
-#. domain: Purchasing, entity: SupplierProduct, validation: compare
-msgid "单价不能为负数"
-msgstr ""
-
-#. domain: Purchasing, entity: SupplierProduct, validation: compare
-msgid "最小起订量必须大于零"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, validation: one_of, on: action_open
-msgid "只有进行中状态可以进入投标选择"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, validation: one_of, on: action_done
-msgid "只有开放状态可以关闭"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, validation: one_of, on: action_cancel
-msgid "仅未完成状态的协议允许取消"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: button_confirm
-msgid "只有草稿或已发送状态可以确认"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: button_approve
-msgid "只有待审批状态可以审批通过"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: button_done
-msgid "只有采购订单状态可以锁定"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: button_unlock
-msgid "只有已锁定状态可以解锁"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, validation: custom, on: button_cancel
-msgid "存在非草稿/非取消状态的关联发票，无法取消订单"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: destroy
-msgid "仅已取消状态的订单允许删除"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, validation: custom, on: create, update
-msgid "订单行中产品的公司必须与订单公司一致"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, validation: custom, on: create, update
-msgid "该供应商已被设置为采购阻止，无法选择"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, validation: custom, on: button_confirm
-msgid "订单行的分析账户分配不合法"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: action_create_invoice
-msgid "当前无待开票内容，无法创建发票"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, validation: one_of, on: print_quotation
-msgid "只有草稿状态可以打印报价单"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, validation: custom, on: create, update
-msgid "非 display 行必须填写产品、单位和计划交货日期"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, validation: custom, on: create, update
-msgid "段落/备注行的产品、单位、价格、数量、日期必须为空"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, validation: custom, on: update
-msgid "行类型创建后不允许修改"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, validation: custom, on: destroy
-msgid "采购订单或已锁定状态的订单行不可删除"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, validation: custom, on: create, update
-msgid "该产品已被设置为采购阻止，无法选择"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, validation: compare
-msgid "供应商报价不能为负数"
-msgstr ""
-
-#. domain: Purchasing, entity: GoodsReceipt, validation: one_of, on: cancel
-msgid "只有草稿状态可以取消"
-msgstr ""
-
-#. domain: Purchasing, entity: GoodsReceiptItem, validation: compare
-msgid "收货数量必须大于零"
 msgstr ""
 
 #. domain: Sales, entity: Quote, validation: one_of, on: submit
@@ -283,6 +155,10 @@ msgstr ""
 
 #. domain: Sales, entity: SalesOrder, validation: one_of, on: action_quotation_send
 msgid "只有草稿状态可以发送报价"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrder, validation: one_of, on: action_confirm
+msgid "只有草稿或已发送状态可以确认"
 msgstr ""
 
 #. domain: Sales, entity: SalesOrder, validation: present, on: action_confirm

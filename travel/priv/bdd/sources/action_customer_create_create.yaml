@@ -1,0 +1,5 @@
+module: SALES_CUSTOMER
+contract: Customer.create action contract
+edge_class: action_contract
+source_file: /tmp/travel_bdd_closure.X0Pe2B/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 Customer 的动作 create 可执行，accept=[customer_code, name, customer_type, contact_name, contact_phone, contact_email, billing_address, shipping_address, credit_limit, payment_terms, tax_id, notes]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

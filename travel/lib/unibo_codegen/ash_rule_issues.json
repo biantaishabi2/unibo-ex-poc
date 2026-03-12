@@ -1,6 +1,106 @@
 {
-  "total": 0,
+  "total": 11,
   "errors": 0,
-  "warnings": 0,
-  "issues": []
+  "warnings": 11,
+  "issues": [
+    {
+      "domain": "Accounting",
+      "entity": "InvoiceItemAttribute",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.InvoiceItemAttribute",
+      "severity": "warning",
+      "reason": "实体主键为 [invoice_id, invoice_item_seq_id, attr_name]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Accounting",
+      "entity": "TaxAuthority",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.TaxAuthority",
+      "severity": "warning",
+      "reason": "实体主键为 [tax_auth_geo_id, tax_auth_party_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Order",
+      "entity": "OrderRole",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.OrderRole",
+      "severity": "warning",
+      "reason": "实体主键为 [party_id, role_type_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Shipment",
+      "entity": "ShipmentPackageContent",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.ShipmentPackageContent",
+      "severity": "warning",
+      "reason": "实体主键为 [shipment_package_seq_id, shipment_item_seq_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Shipment",
+      "entity": "ShipmentPackageRouteSeg",
+      "action": null,
+      "rule_code": "paper_trail_composite_pk_unsupported",
+      "path": "entities.ShipmentPackageRouteSeg",
+      "severity": "warning",
+      "reason": "实体主键为 [shipment_package_seq_id, shipment_route_segment_id]，AshPaperTrail 当前仅支持单主键；已自动跳过 paper_trail 扩展"
+    },
+    {
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "action": null,
+      "rule_code": "paper_trail_multitenancy_attribute_unsupported",
+      "path": "entities.FlightOffer",
+      "severity": "warning",
+      "reason": "检测到 tenancy.strategy=attribute；当前已自动跳过 paper_trail，避免 Version 资源缺少 tenant_id 导致编译告警"
+    },
+    {
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "action": null,
+      "rule_code": "paper_trail_multitenancy_attribute_unsupported",
+      "path": "entities.HotelOffer",
+      "severity": "warning",
+      "reason": "检测到 tenancy.strategy=attribute；当前已自动跳过 paper_trail，避免 Version 资源缺少 tenant_id 导致编译告警"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "action": null,
+      "rule_code": "paper_trail_multitenancy_attribute_unsupported",
+      "path": "entities.TrainOffer",
+      "severity": "warning",
+      "reason": "检测到 tenancy.strategy=attribute；当前已自动跳过 paper_trail，避免 Version 资源缺少 tenant_id 导致编译告警"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "action": null,
+      "rule_code": "paper_trail_multitenancy_attribute_unsupported",
+      "path": "entities.TravelFulfillment",
+      "severity": "warning",
+      "reason": "检测到 tenancy.strategy=attribute；当前已自动跳过 paper_trail，避免 Version 资源缺少 tenant_id 导致编译告警"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": null,
+      "rule_code": "paper_trail_multitenancy_attribute_unsupported",
+      "path": "entities.TravelOrder",
+      "severity": "warning",
+      "reason": "检测到 tenancy.strategy=attribute；当前已自动跳过 paper_trail，避免 Version 资源缺少 tenant_id 导致编译告警"
+    },
+    {
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "action": null,
+      "rule_code": "paper_trail_multitenancy_attribute_unsupported",
+      "path": "entities.VacationOffer",
+      "severity": "warning",
+      "reason": "检测到 tenancy.strategy=attribute；当前已自动跳过 paper_trail，避免 Version 资源缺少 tenant_id 导致编译告警"
+    }
+  ]
 }

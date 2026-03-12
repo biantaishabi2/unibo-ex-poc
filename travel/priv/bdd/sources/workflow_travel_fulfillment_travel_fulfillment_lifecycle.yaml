@@ -1,0 +1,5 @@
+module: TRAVEL_TRAVEL_FULFILLMENT
+contract: TravelFulfillment.travel_fulfillment_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: /tmp/travel_bdd_closure.X0Pe2B/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelFulfillment 定义工作流 travel_fulfillment_lifecycle / WHEN 按步骤执行 create_fulfillment -> update -> confirm_booking -> issue_voucher_or_ticket -> mark_in_use -> complete_fulfillment -> cancel_fulfillment -> fail_fulfillment -> destroy / THEN 流程顺序应满足声明约束

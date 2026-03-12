@@ -1,0 +1,12 @@
+module: TRAVEL_TRAVEL_FULFILLMENT
+contract: TravelFulfillment.supplier_confirm_booking integration contract
+edge_class: integration_contract
+source_file: /tmp/travel_bdd_closure.X0Pe2B/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelFulfillment 声明 integration supplier_confirm_booking（mode=sync） / WHEN 绑定动作 [confirm_booking] 触发外部调用 / THEN 调用结果需满足 声明错误码 supplier_booking_rejected, supplier_timeout 且 业务后置条件 confirm_status, confirmation_payload, supplier_booking_ref
+declared_error_codes:
+- supplier_booking_rejected
+- supplier_timeout
+business_post_conditions:
+- confirm_status
+- confirmation_payload
+- supplier_booking_ref

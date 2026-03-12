@@ -1,0 +1,5 @@
+module: TRAVEL_VACATION_OFFER
+contract: VacationOffer.create action contract
+edge_class: action_contract
+source_file: /tmp/travel_bdd_closure.X0Pe2B/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 VacationOffer 的动作 create 可执行，accept=[tenant_id, host_shop_id, supplier_code, package_code, package_name, package_type, departure_city_code, departure_city_ref_id, destination_code, destination_ref_id, start_date, end_date, listed_price, settlement_price, currency, inventory_count, booking_rules, cancellation_policy, sale_status]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

@@ -1,0 +1,5 @@
+module: TRAVEL_VACATION_OFFER
+contract: VacationOffer.deactivate event contract
+edge_class: event_contract
+source_file: /tmp/travel_bdd_closure.X0Pe2B/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 VacationOffer 的动作 deactivate 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.catalog.vacation_offer.deactivated`

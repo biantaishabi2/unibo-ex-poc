@@ -1,0 +1,5 @@
+module: SALES_QUOTE_ITEM
+contract: QuoteItem.quote_item_editing workflow contract
+edge_class: workflow_contract
+source_file: /tmp/travel_bdd_closure.X0Pe2B/sales/sales.ubo.yaml
+source_summary: GIVEN 实体 QuoteItem 定义工作流 quote_item_editing / WHEN 按步骤执行 create -> update / THEN 流程顺序应满足声明约束
