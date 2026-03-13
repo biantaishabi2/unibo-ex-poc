@@ -1,6 +1,9 @@
 <.page title="填写订单" id="train_booking">
   <.section layout="none" id="header_section">
-    <.header back="true" title="填写订单" id="page_header" />
+    <.flex class="items-center gap-2 p-3">
+      <.button variant="ghost" size="sm" phx-click="go_back">← 返回</.button>
+      <.text variant="h4" class="flex-1">填写订单</.text>
+    </.flex>
   </.section>
   <.section layout="none" id="summary_section">
     <.card variant="default" id="train_summary_card">
@@ -117,8 +120,8 @@
         </.text>
       </.card_header>
       <.card_content id="seat_pref_cc">
-        <.select label="座位偏好" bind="form.seat_preference" size="md" id="select_seat_preference">
-          无偏好:no_preference,靠窗:window,靠过道:aisle
+        <.select label="座位偏好" bind="form.seat_preference" size="md" id="select_seat_preference" options={[%{label: "无偏好", value: "no_preference"}, %{label: "靠窗", value: "window"}, %{label: "靠过道", value: "aisle"}]}>
+
         </.select>
       </.card_content>
     </.card>
@@ -131,8 +134,8 @@
         </.text>
       </.card_header>
       <.card_content id="payment_cc">
-        <.select label="选择支付方式" bind="form.payment_method" size="md" id="select_payment_method">
-          企业支付:corporate,个人支付:personal
+        <.select label="选择支付方式" bind="form.payment_method" size="md" id="select_payment_method" options={[%{label: "企业支付", value: "corporate"}, %{label: "个人支付", value: "personal"}]}>
+
         </.select>
       </.card_content>
     </.card>

@@ -1,6 +1,9 @@
 <.page title="火车票搜索" id="train_search_results">
   <.section layout="none" id="header_section">
-    <.header back={true} title="火车票搜索" subtitle={@search.route_label} id="train_header" />
+    <.flex class="items-center gap-2 p-3">
+      <.button variant="ghost" size="sm" phx-click="go_back">← 返回</.button>
+      <.text variant="h4" class="flex-1">火车票搜索</.text>
+    </.flex>
   </.section>
   <.section layout="none" id="date_slider_section">
     <.flex gap={2} paddingx={3} paddingy={2} overflowx="scroll" background="surface" direction="row" id="train_date_slider">

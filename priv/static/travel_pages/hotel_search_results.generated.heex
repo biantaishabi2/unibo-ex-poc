@@ -1,6 +1,9 @@
 <.page title="酒店搜索" id="hotel_search_results">
   <.section layout="none" id="header_section">
-    <.header back={true} title="酒店搜索" id="hotel_header" />
+    <.flex class="items-center gap-2 p-3">
+      <.button variant="ghost" size="sm" phx-click="go_back">← 返回</.button>
+      <.text variant="h4" class="flex-1">酒店搜索</.text>
+    </.flex>
   </.section>
   <.section layout="none" id="search_summary_section">
     <.flex gap={2} padding={3} align="center" background="surface" direction="row" id="search_summary">
@@ -47,7 +50,7 @@
       <%= for item <- @hotels.items do %>
         <.card phx-click="navigate" params={"/travel/hotel/#{item.hotel_code}"} variant="default">
           <.card_header>
-            <.image src={item.hotel_ref.cover_image} alt={item.hotel_name} aspect_ratio="16:9" borderradius="top" />
+            <.image src={(item[:hotel_ref] || %{})[:cover_image]} alt={item.hotel_name} aspect_ratio="16:9" borderradius="top" />
           </.card_header>
           <.card_content>
             <.stack gap={2} direction="column">
@@ -56,19 +59,19 @@
                   <%= item.hotel_name %>
                 </.text>
                 <.badge variant="secondary" size="sm">
-                  <%= item.hotel_ref.hotel_star %>
+                  <%= (item[:hotel_ref] || %{})[:hotel_star] %>
                 </.badge>
               </.flex>
               <.flex gap={2} align="center" direction="row">
                 <.badge variant="primary" size="sm">
-                  <%= item.hotel_ref.score %>
+                  <%= (item[:hotel_ref] || %{})[:score] %>
                 </.badge>
                 <.text variant="caption" color="muted">
-                  <%= item.hotel_ref.address %>
+                  <%= (item[:hotel_ref] || %{})[:address] %>
                 </.text>
               </.flex>
               <.flex gap={1} wrap={true} direction="row">
-                <%= for facility <- item.hotel_ref.facilities do %>
+                <%= for facility <- (item[:hotel_ref] || %{})[:facilities] do %>
                   <.badge variant="outline" size="sm">
                     <%= facility.name %>
                   </.badge>

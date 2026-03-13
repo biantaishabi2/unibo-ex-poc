@@ -1,6 +1,9 @@
 <.page title="填写订单" id="hotel_booking">
   <.section layout="none" id="header_section">
-    <.header back="true" title="填写订单" id="page_header" />
+    <.flex class="items-center gap-2 p-3">
+      <.button variant="ghost" size="sm" phx-click="go_back">← 返回</.button>
+      <.text variant="h4" class="flex-1">填写订单</.text>
+    </.flex>
   </.section>
   <.section layout="none" id="summary_section">
     <.card variant="default" id="hotel_summary_card">
@@ -58,8 +61,8 @@
       </.card_header>
       <.card_content id="room_info_cc">
         <.stack gap={3} direction="column" id="room_info_stack">
-          <.select label="房间数" bind="form.room_count" size="md" id="select_room_count">
-            1间:1,2间:2,3间:3
+          <.select label="房间数" bind="form.room_count" size="md" id="select_room_count" options={[%{label: "1间", value: "1"}, %{label: "2间", value: "2"}, %{label: "3间", value: "3"}]}>
+
           </.select>
           <.text variant="body" weight="medium" id="guest_label">
             入住人
@@ -114,8 +117,8 @@
         </.text>
       </.card_header>
       <.card_content id="payment_cc">
-        <.select label="选择支付方式" bind="form.payment_method" size="md" id="select_payment_method">
-          企业支付:corporate,个人支付:personal
+        <.select label="选择支付方式" bind="form.payment_method" size="md" id="select_payment_method" options={[%{label: "企业支付", value: "corporate"}, %{label: "个人支付", value: "personal"}]}>
+
         </.select>
       </.card_content>
     </.card>

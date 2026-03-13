@@ -1,6 +1,9 @@
 <.page title="机票搜索" id="flight_search_results">
   <.section layout="none" id="header_section">
-    <.header back={true} title="机票搜索" subtitle={@search.route_label} id="flight_header" />
+    <.flex class="items-center gap-2 p-3">
+      <.button variant="ghost" size="sm" phx-click="go_back">← 返回</.button>
+      <.text variant="h4" class="flex-1">机票搜索</.text>
+    </.flex>
   </.section>
   <.section layout="none" id="date_slider_section">
     <.flex gap={2} paddingx={3} paddingy={2} overflowx="scroll" background="surface" direction="row" id="flight_date_slider">
@@ -47,11 +50,11 @@
         <.card phx-click="navigate" params={"/travel/flight/#{item.id}"} variant="default">
           <.card_header>
             <.flex gap={2} align="center" direction="row">
-              <.avatar src={item.airline_ref.logo} fallback={item.airline_ref.code} size="sm">
+              <.avatar src={(item[:airline_ref] || %{})[:logo]} fallback={(item[:airline_ref] || %{})[:code]} size="sm">
 
               </.avatar>
               <.text variant="caption" color="muted">
-                <%= item.airline_ref.name %>
+                <%= (item[:airline_ref] || %{})[:name] %>
               </.text>
               <.text variant="caption" color="muted">
                 <%= item.flight_no %>
@@ -70,7 +73,7 @@
                   <%= item.departure_time %>
                 </.text>
                 <.text variant="caption" color="muted">
-                  <%= item.departure_airport_ref.city_name %>
+                  <%= (item[:departure_airport_ref] || %{})[:city_name] %>
                 </.text>
                 <.text variant="caption" color="muted">
                   <%= item.departure_airport_code %>
@@ -90,7 +93,7 @@
                   <%= item.arrival_time %>
                 </.text>
                 <.text variant="caption" color="muted">
-                  <%= item.arrival_airport_ref.city_name %>
+                  <%= (item[:arrival_airport_ref] || %{})[:city_name] %>
                 </.text>
                 <.text variant="caption" color="muted">
                   <%= item.arrival_airport_code %>
@@ -102,7 +105,7 @@
             <.flex justify="between" align="center" direction="row">
               <.flex gap={1} wrap={true} direction="row">
                 <.badge variant="outline" size="sm">
-                  <%= item.cabin_class_ref.name %>
+                  <%= (item[:cabin_class_ref] || %{})[:name] %>
                 </.badge>
                 <.badge variant="outline" size="sm">
                   <%= item.aircraft_type %>
