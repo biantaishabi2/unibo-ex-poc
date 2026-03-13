@@ -1,0 +1,46 @@
+<.page class="min-h-screen bg-slate-50 p-4" data-page-name="train_search_results" data-page-title="火车票搜索">
+  <.stack gap={0}>
+    <.div class="flex items-center justify-between">
+      <.button variant="ghost" size="sm">
+        ← 返回
+      </.button>
+      <.text variant="subtitle" as="h2">
+        火车票搜索
+      </.text>
+    </.div>
+    <.flex padding_x={3} padding_y={2} overflow_x="scroll" background="surface" gap={2}>
+      <%= for item <- @search.date_range do %>
+        <.badge label={item.date_label} sublabel={item.weekday} variant={item.is_selected} />
+      <% end %>
+    </.flex>
+    <.separator />
+    <.flex padding_x={3} padding_y={2} wrap={true} gap={2}>
+      <.select label="出发站" value={@filter.departure_station}>
+
+      </.select>
+      <.select label="到达站" value={@filter.arrival_station}>
+
+      </.select>
+      <.select label="车次类型" value={@filter.train_type} options={[%{"label" => "不限", "value" => "all"}, %{"label" => "高铁", "value" => "G"}, %{"label" => "动车", "value" => "D"}, %{"label" => "城际", "value" => "C"}, %{"label" => "普速", "value" => "K"}]}>
+
+      </.select>
+      <.select label="差标" value={@filter.policy_compliant} options={[%{"label" => "不限", "value" => "all"}, %{"label" => "符合差标", "value" => "compliant"}]}>
+
+      </.select>
+    </.flex>
+    <.alert variant="warning" title="超标提示" description="标记超标的车次超出差旅标准，预订需审批" data-visible-when="{&quot;field&quot;:&quot;policy.exceeded&quot;,&quot;op&quot;:&quot;eq&quot;,&quot;value&quot;:true}" />
+    <.stack padding={3} gap={3}>
+      <.card />
+      <.card />
+      <.card />
+    </.stack>
+    <.empty_state title="未找到车次" description="请调整搜索条件后重试" data-visible-when="{&quot;field&quot;:&quot;trains.total_count&quot;,&quot;op&quot;:&quot;eq&quot;,&quot;value&quot;:0}" />
+    <.control_bar position="sticky_bottom">
+      <.flex justify="space-around" width="full" gap={3}>
+        <.button label="耗时" variant="ghost" icon="arrow-up-down" />
+        <.button label="出发时间" variant="ghost" icon="arrow-up-down" />
+        <.button label="价格" variant="ghost" icon="arrow-up-down" />
+      </.flex>
+    </.control_bar>
+  </.stack>
+</.page>

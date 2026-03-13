@@ -1,0 +1,15 @@
+{
+  "search": {
+    "date_range": [
+      {"date_label": "03-14", "weekday": "周六", "is_selected": "default"},
+      {"date_label": "03-15", "weekday": "周日", "is_selected": "outline"},
+      {"date_label": "03-16", "weekday": "周一", "is_selected": "outline"}
+    ]
+  },
+  "filter": {
+    "departure_station": "",
+    "arrival_station": "",
+    "train_type": "",
+    "policy_compliant": ""
+  }
+}
