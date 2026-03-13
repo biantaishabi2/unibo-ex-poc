@@ -1,0 +1,79 @@
+<.page title="定价规则配置" id="pricing_rule">
+  <.section layout="none" id="toolbar_section">
+    <.flex justify="between" align="center" direction="row" id="toolbar">
+      <.text variant="h3" weight="bold" id="page_title">
+        定价规则配置
+      </.text>
+      <.button variant="primary" phx-click="open_dialog:create_dialog" size="md" id="create_btn">
+        新建规则
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="rule_table_section">
+    <.card variant="default" id="rule_table_card">
+      <.card_content id="rule_table_content">
+        <.stack gap={0} direction="column" id="rule_list">
+          <.flex justify="between" align="center" direction="row" id="table_header">
+            <.text variant="caption" weight="bold" id="col_product_type">
+              产品类型
+            </.text>
+            <.text variant="caption" weight="bold" id="col_supplier">
+              供应商编码
+            </.text>
+            <.text variant="caption" weight="bold" id="col_markup">
+              加价率
+            </.text>
+            <.text variant="caption" weight="bold" id="col_status">
+              状态
+            </.text>
+            <.text variant="caption" weight="bold" id="col_actions">
+              操作
+            </.text>
+          </.flex>
+          <.separator id="table_sep" />
+          <%= for item <- @pricing_rules do %>
+            <.flex justify="between" align="center" direction="row">
+              <.badge variant="secondary" size="sm">
+                <%= item.product_type %>
+              </.badge>
+              <.text>
+                <%= item.supplier_code %>
+              </.text>
+              <.text>
+                <%= item.markup_rate %>
+              </.text>
+              <.badge variant="outline" size="sm">
+                <%= item.status %>
+              </.badge>
+              <.flex gap={1} direction="row">
+                <.button variant="outline" size="sm" phx-click="update">
+                  保存
+                </.button>
+                <.button variant="destructive" size="sm" phx-click="destroy">
+                  删除
+                </.button>
+              </.flex>
+            </.flex>
+          <% end %>
+        </.stack>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="dialog_section">
+    <.dialog title="新建规则" id="create_dialog">
+      <.stack gap={3} direction="column" id="create_form">
+        <.select label="产品类型" name="product_type" required="true" size="md" id="product_type_select">
+          酒店:hotel,机票:flight,火车票:train
+        </.select>
+        <.input label="供应商编码" placeholder="请输入供应商编码" bind="form.supplier_code" required="true" size="md" id="supplier_code_input" />
+        <.input label="加价率" placeholder="例如 0.15 表示加价 15%" bind="form.markup_rate" type="number" required="true" size="md" id="markup_rate_input" />
+        <.select label="状态" name="status" required="true" size="md" id="status_select">
+          启用:active,停用:inactive
+        </.select>
+        <.button variant="primary" phx-click="create" size="md" id="submit_create_btn">
+          创建
+        </.button>
+      </.stack>
+    </.dialog>
+  </.section>
+</.page>

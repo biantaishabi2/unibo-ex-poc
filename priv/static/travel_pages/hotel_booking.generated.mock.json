@@ -1,6 +1,29 @@
 {
   "offer": {
-    "currency": "CNY",
-    "total_price": "580"
+    "hotel_name": "全季酒店(上海人民广场店)",
+    "room_type_ref": {
+      "room_type_name": "高级大床房",
+      "bed_type": "大床 1.8m"
+    },
+    "checkin_date": "03月15日",
+    "checkout_date": "03月17日",
+    "cancellation_policy": "18:00前免费取消",
+    "guarantee_policy": "无需担保",
+    "currency": "¥",
+    "listed_price": "380",
+    "is_policy_exceeded": false,
+    "total_price": "760"
+  },
+  "travelers": {
+    "items": [
+      {"name": "张三", "name_initial": "张", "avatar": "", "id_number_masked": "310***1234", "selected": true}
+    ]
+  },
+  "form": {
+    "room_count": "1",
+    "contact_name": "张三",
+    "contact_phone": "13800138000",
+    "contact_email": "",
+    "payment_method": "corporate"
   }
 }

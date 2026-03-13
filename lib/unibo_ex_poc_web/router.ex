@@ -17,7 +17,10 @@ defmodule UniboExPocWeb.Router do
   scope "/", UniboExPocWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    # Travel 页面列表
+    live "/", TravelLive
+    live "/travel", TravelLive
+    live "/travel/:page", TravelLive
   end
 
   # GraphQL — 验证无 BFF 架构

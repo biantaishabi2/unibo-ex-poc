@@ -1,0 +1,60 @@
+{
+  "search": {
+    "route_label": "上海 → 北京",
+    "date_range": [
+      {"date_label": "03-14", "price_label": "¥580", "is_selected": "default"},
+      {"date_label": "03-15", "price_label": "¥620", "is_selected": "outline"},
+      {"date_label": "03-16", "price_label": "¥550", "is_selected": "outline"}
+    ]
+  },
+  "filter": {
+    "departure_airport": "",
+    "arrival_airport": "",
+    "airline": "",
+    "policy_compliant": "",
+    "cabin_class": ""
+  },
+  "flights": {
+    "items": [
+      {
+        "id": "f1",
+        "airline_ref": {"logo": "", "code": "CA", "name": "中国国航"},
+        "flight_no": "CA1234",
+        "is_policy_compliant": true,
+        "departure_time": "08:30",
+        "departure_airport_ref": {"city_name": "上海"},
+        "departure_airport_code": "SHA",
+        "duration_label": "2h25m",
+        "stop_label": "直飞",
+        "arrival_time": "10:55",
+        "arrival_airport_ref": {"city_name": "北京"},
+        "arrival_airport_code": "PEK",
+        "cabin_class_ref": {"name": "经济舱"},
+        "aircraft_type": "A320",
+        "discount_label": "8.5折",
+        "currency": "¥",
+        "listed_price": "580"
+      },
+      {
+        "id": "f2",
+        "airline_ref": {"logo": "", "code": "MU", "name": "东方航空"},
+        "flight_no": "MU5101",
+        "is_policy_compliant": false,
+        "departure_time": "14:20",
+        "departure_airport_ref": {"city_name": "上海"},
+        "departure_airport_code": "PVG",
+        "duration_label": "2h30m",
+        "stop_label": "直飞",
+        "arrival_time": "16:50",
+        "arrival_airport_ref": {"city_name": "北京"},
+        "arrival_airport_code": "PEK",
+        "cabin_class_ref": {"name": "公务舱"},
+        "aircraft_type": "B737",
+        "discount_label": null,
+        "currency": "¥",
+        "listed_price": "1,280"
+      }
+    ],
+    "total_count": 2
+  }
+}

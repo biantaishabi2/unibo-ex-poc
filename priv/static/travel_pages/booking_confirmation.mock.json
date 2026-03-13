@@ -1,0 +1,17 @@
+{
+  "order": {
+    "order_no": "",
+    "product_type": "",
+    "flight_offer": {
+      "flight_no": ""
+    },
+    "hotel_offer": {
+      "hotel_name": ""
+    },
+    "train_offer": {
+      "train_no": ""
+    },
+    "traveler_count": "",
+    "total_amount": ""
+  }
+}

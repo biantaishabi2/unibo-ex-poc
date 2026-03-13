@@ -1,0 +1,8 @@
+{
+  "page_title": "定价规则配置",
+  "rows": [
+    {"rule_name": "企业协议价", "product_type": "酒店", "discount_rate": "85%", "valid_from": "2026-01-01", "valid_to": "2026-12-31", "status": "启用"},
+    {"rule_name": "早鸟折扣", "product_type": "机票", "discount_rate": "70%", "valid_from": "2026-03-01", "valid_to": "2026-06-30", "status": "启用"}
+  ],
+  "rows_empty": false
+}

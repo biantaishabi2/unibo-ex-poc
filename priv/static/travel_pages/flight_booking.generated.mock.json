@@ -1,6 +1,33 @@
 {
   "offer": {
-    "currency": "CNY",
-    "total_price": "1,280"
+    "airline_ref": {"logo": "", "code": "CA"},
+    "flight_no": "CA1234",
+    "cabin_class_ref": {"name": "经济舱"},
+    "departure_time": "08:30",
+    "departure_airport_code": "SHA",
+    "date_label": "03月14日 周六",
+    "arrival_time": "10:55",
+    "arrival_airport_code": "PEK",
+    "currency": "¥",
+    "listed_price": "580",
+    "refund_change_policy": {
+      "refund_label": "起飞前免费",
+      "change_label": "起飞前免费"
+    },
+    "baggage_policy": "托运20kg",
+    "fare_family": "经济舱Y",
+    "is_policy_exceeded": false,
+    "total_price": "580"
+  },
+  "travelers": {
+    "items": [
+      {"name": "张三", "name_initial": "张", "avatar": "", "id_type_label": "身份证", "selected": true},
+      {"name": "李四", "name_initial": "李", "avatar": "", "id_type_label": "身份证", "selected": false}
+    ]
+  },
+  "form": {
+    "contact_name": "张三",
+    "contact_phone": "13800138000",
+    "payment_method": "corporate"
   }
 }

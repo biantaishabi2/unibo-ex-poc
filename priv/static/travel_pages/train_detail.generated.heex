@@ -1,0 +1,120 @@
+<.page title="车次详情" id="train_detail">
+  <.section background="primary" padding={4} layout="none" id="route_summary">
+    <.flex justify="between" align="center" direction="row" id="route_display">
+      <.stack gap={0} align="center" direction="column" id="departure_info">
+        <.text variant="h1" weight="bold" color="white" id="departure_time">
+          <%= @offer.departure_time %>
+        </.text>
+        <.text variant="body" color="white" id="departure_station">
+          <%= @offer.departure_station_name %>
+        </.text>
+      </.stack>
+      <.stack gap={0} align="center" direction="column" id="train_indicator">
+        <.text variant="caption" color="white" id="duration_label">
+          <%= @offer.duration_label %>
+        </.text>
+        <.icon name="arrow-right" color="white" id="arrow_icon" />
+        <.text variant="caption" color="white" id="date_label">
+          <%= @offer.date_label %>
+        </.text>
+      </.stack>
+      <.stack gap={0} align="center" direction="column" id="arrival_info">
+        <.text variant="h1" weight="bold" color="white" id="arrival_time">
+          <%= @offer.arrival_time %>
+        </.text>
+        <.text variant="body" color="white" id="arrival_station">
+          <%= @offer.arrival_station_name %>
+        </.text>
+      </.stack>
+    </.flex>
+  </.section>
+  <.section layout="none" id="train_info_section">
+    <.card variant="default" id="train_info_card">
+      <.card_header id="train_info_header">
+        <.text variant="h4" weight="bold" id="info_title">
+          车次信息
+        </.text>
+      </.card_header>
+      <.card_content id="train_info_content">
+        <.grid columns={2} gap={3} id="info_grid">
+          <.flex gap={1} direction="row" id="train_no_stat">
+            <.text variant="caption" color="muted" id="train_no_label">
+              车次号
+            </.text>
+            <.text variant="body" id="train_no_value">
+              <%= @offer.train_no %>
+            </.text>
+          </.flex>
+          <.flex gap={1} direction="row" id="train_type_stat">
+            <.text variant="caption" color="muted" id="train_type_label">
+              车次类型
+            </.text>
+            <.text variant="body" id="train_type_value">
+              <%= @offer.train_type_label %>
+            </.text>
+          </.flex>
+          <.flex gap={1} direction="row" id="dep_station_stat">
+            <.text variant="caption" color="muted" id="dep_station_label">
+              出发站
+            </.text>
+            <.text variant="body" id="dep_station_value">
+              <%= @offer.departure_station_name %>
+            </.text>
+          </.flex>
+          <.flex gap={1} direction="row" id="arr_station_stat">
+            <.text variant="caption" color="muted" id="arr_station_label">
+              到达站
+            </.text>
+            <.text variant="body" id="arr_station_value">
+              <%= @offer.arrival_station_name %>
+            </.text>
+          </.flex>
+        </.grid>
+      </.card_content>
+    </.card>
+  </.section>
+  <.separator id="sep_1" />
+  <.section layout="grid" columns={2} id="seat_list_section">
+    <.text variant="h3" padding="3" id="seat_list_title">
+      选择席别
+    </.text>
+    <.stack gap={2} padding={3} direction="column" id="seat_list">
+      <%= for item <- @offer.seat_options do %>
+        <.card variant="default">
+          <.card_content>
+            <.flex justify="between" align="center" direction="row">
+              <.stack gap={1} direction="column">
+                <.flex gap={2} align="center" direction="row">
+                  <.text variant="body" weight="bold">
+                    <%= item.seat_class_name %>
+                  </.text>
+                  <%= if (item.not_policy_compliant && item.not_policy_compliant != []) do %>
+                    <.badge variant="destructive" size="sm">
+                      超标
+                    </.badge>
+                  <% end %>
+                </.flex>
+                <.text variant="caption" color="muted">
+                  <%= item.tickets_label %>
+                </.text>
+              </.stack>
+              <.stack gap={1} align="end" direction="column">
+                <.flex gap={1} align="baseline" direction="row">
+                  <.text variant="caption">
+                    <%= item.currency %>
+                  </.text>
+                  <.text variant="h3" color="primary">
+                    <%= item.price %>
+                  </.text>
+                </.flex>
+                <.button variant="primary" size="sm" phx-click="navigate:/travel/train/booking/{{item.offer_id|}}">
+                  预订
+                </.button>
+              </.stack>
+            </.flex>
+          </.card_content>
+        </.card>
+      <% end %>
+    </.stack>
+  </.section>
+</.page>

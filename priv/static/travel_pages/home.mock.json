@@ -1,0 +1,16 @@
+{
+  "form": {
+    "departure_city": "",
+    "arrival_city": "",
+    "departure_date": "",
+    "direct_only": false,
+    "hotel_city": "",
+    "checkin_date": "",
+    "checkout_date": "",
+    "hotel_keyword": "",
+    "departure_station": "",
+    "arrival_station": "",
+    "train_date": "",
+    "high_speed_only": false
+  }
+}

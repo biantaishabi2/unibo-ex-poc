@@ -1,46 +1,132 @@
-<.page class="min-h-screen bg-slate-50 p-4" data-page-name="train_search_results" data-page-title="火车票搜索">
-  <.stack gap={0}>
-    <.div class="flex items-center justify-between">
-      <.button variant="ghost" size="sm">
-        ← 返回
-      </.button>
-      <.text variant="subtitle" as="h2">
-        火车票搜索
-      </.text>
-    </.div>
-    <.flex padding_x={3} padding_y={2} overflow_x="scroll" background="surface" gap={2}>
-      <%= for item <- @search.date_range do %>
-        <.badge label={item.date_label} sublabel={item.weekday} variant={item.is_selected} />
+<.page title="火车票搜索" id="train_search_results">
+  <.section layout="none" id="header_section">
+    <.header back={true} title="火车票搜索" subtitle={@search.route_label} id="train_header" />
+  </.section>
+  <.section layout="none" id="date_slider_section">
+    <.flex gap={2} paddingx={3} paddingy={2} overflowx="scroll" background="surface" direction="row" id="train_date_slider">
+      <%= for date_item <- @search.date_range do %>
+        <.badge variant={date_item.is_selected} phx-click="select_date" size="sm">
+          <%= date_item.date_label %>
+          <.text variant="caption">
+            <%= date_item.weekday %>
+          </.text>
+        </.badge>
       <% end %>
     </.flex>
-    <.separator />
-    <.flex padding_x={3} padding_y={2} wrap={true} gap={2}>
-      <.select label="出发站" value={@filter.departure_station}>
+  </.section>
+  <.separator id="sep_after_date" />
+  <.section layout="none" id="filter_section">
+    <.flex gap={2} paddingx={3} paddingy={2} wrap={true} direction="row" id="train_filter_bar">
+      <.select label="出发站" name="filter.departure_station" size="md" id="filter_departure_station">
 
       </.select>
-      <.select label="到达站" value={@filter.arrival_station}>
+      <.select label="到达站" name="filter.arrival_station" size="md" id="filter_arrival_station">
 
       </.select>
-      <.select label="车次类型" value={@filter.train_type} options={[%{"label" => "不限", "value" => "all"}, %{"label" => "高铁", "value" => "G"}, %{"label" => "动车", "value" => "D"}, %{"label" => "城际", "value" => "C"}, %{"label" => "普速", "value" => "K"}]}>
+      <.select label="车次类型" name="filter.train_type" size="md" id="filter_train_type">
 
       </.select>
-      <.select label="差标" value={@filter.policy_compliant} options={[%{"label" => "不限", "value" => "all"}, %{"label" => "符合差标", "value" => "compliant"}]}>
+      <.select label="差标" name="filter.policy_compliant" size="md" id="filter_train_policy">
 
       </.select>
     </.flex>
-    <.alert variant="warning" title="超标提示" description="标记超标的车次超出差旅标准，预订需审批" data-visible-when="{&quot;field&quot;:&quot;policy.exceeded&quot;,&quot;op&quot;:&quot;eq&quot;,&quot;value&quot;:true}" />
-    <.stack padding={3} gap={3}>
-      <.card />
-      <.card />
-      <.card />
+  </.section>
+  <.section layout="none" id="alert_section">
+    <%= if @policy.exceeded == true do %>
+      <.alert variant="warning" title="超标提示" id="train_policy_alert">
+        标记超标的车次超出差旅标准,预订需审批
+      </.alert>
+    <% end %>
+  </.section>
+  <.section layout="none" id="results_section">
+    <.stack gap={3} padding={3} direction="column" id="train_results_list">
+      <%= for item <- @trains.items do %>
+        <.card phx-click="navigate" params={"/travel/train/#{item.id}"} variant="default">
+          <.card_header>
+            <.flex gap={2} align="center" direction="row">
+              <.text variant="body" weight="bold">
+                <%= item.train_no %>
+              </.text>
+              <.badge variant="outline" size="sm">
+                <%= item.train_type_label %>
+              </.badge>
+              <%= if item.is_policy_compliant == false do %>
+                <.badge variant="destructive" size="sm">
+                  超标
+                </.badge>
+              <% end %>
+            </.flex>
+          </.card_header>
+          <.card_content>
+            <.stack gap={2} direction="column">
+              <.flex justify="between" align="center" direction="row">
+                <.stack gap={0} align="center" direction="column">
+                  <.text variant="h2" weight="bold">
+                    <%= item.departure_time %>
+                  </.text>
+                  <.text variant="caption" color="muted">
+                    <%= item.departure_station_name %>
+                  </.text>
+                </.stack>
+                <.stack gap={0} align="center" direction="column">
+                  <.text variant="caption" color="muted">
+                    <%= item.duration_label %>
+                  </.text>
+                  <.separator />
+                  <.text variant="caption" color="muted">
+                    <%= item.stop_count_label %>
+                  </.text>
+                </.stack>
+                <.stack gap={0} align="center" direction="column">
+                  <.text variant="h2" weight="bold">
+                    <%= item.arrival_time %>
+                  </.text>
+                  <.text variant="caption" color="muted">
+                    <%= item.arrival_station_name %>
+                  </.text>
+                </.stack>
+              </.flex>
+            </.stack>
+          </.card_content>
+          <.card_footer>
+            <.flex gap={2} wrap={true} direction="row">
+              <%= for seat <- item.seat_options do %>
+                <.stack gap={0} align="center" direction="column">
+                  <.text variant="caption" color="muted">
+                    <%= seat.seat_class_name %>
+                  </.text>
+                  <.text variant="body" color="primary" weight="bold">
+                    <%= seat.price %>
+                  </.text>
+                  <.text variant="caption" color="muted">
+                    <%= seat.tickets_label %>
+                  </.text>
+                </.stack>
+              <% end %>
+            </.flex>
+          </.card_footer>
+        </.card>
+      <% end %>
     </.stack>
-    <.empty_state title="未找到车次" description="请调整搜索条件后重试" data-visible-when="{&quot;field&quot;:&quot;trains.total_count&quot;,&quot;op&quot;:&quot;eq&quot;,&quot;value&quot;:0}" />
-    <.control_bar position="sticky_bottom">
-      <.flex justify="space-around" width="full" gap={3}>
-        <.button label="耗时" variant="ghost" icon="arrow-up-down" />
-        <.button label="出发时间" variant="ghost" icon="arrow-up-down" />
-        <.button label="价格" variant="ghost" icon="arrow-up-down" />
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if @trains.total_count == 0 do %>
+      <.empty_state title="未找到车次" description="请调整搜索条件后重试" id="no_trains" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="sort_bar_section">
+    <.control_bar position="sticky_bottom" id="train_sort_bar">
+      <.flex gap={3} justify="spacearound" width="full" direction="row" id="train_sort_buttons">
+        <.button variant="ghost" icon="arrow-up-down" phx-click="sort" size="md" id="sort_by_duration">
+          耗时
+        </.button>
+        <.button variant="ghost" icon="arrow-up-down" phx-click="sort" size="md" id="sort_by_train_departure">
+          出发时间
+        </.button>
+        <.button variant="ghost" icon="arrow-up-down" phx-click="sort" size="md" id="sort_by_train_price">
+          价格
+        </.button>
       </.flex>
     </.control_bar>
-  </.stack>
+  </.section>
 </.page>

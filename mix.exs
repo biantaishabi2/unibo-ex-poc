@@ -71,6 +71,8 @@ defmodule UniboExPoc.MixProject do
        sparse: "targets/elixir/unibo_graphql_runtime"},
       {:ash_paper_trail, "~> 0.5"},
       {:ash_archival, "~> 2.0"},
+      # StitchUI 组件库（来自 OpenStitch 项目）
+      {:stitch_ui, path: "../stitch/packages/liveview"},
     ]
   end
 

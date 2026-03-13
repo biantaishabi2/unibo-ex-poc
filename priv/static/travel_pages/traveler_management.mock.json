@@ -1,0 +1,32 @@
+{
+  "travelers": [
+    {
+      "id": "t1",
+      "name": "张三",
+      "id_type": "身份证",
+      "id_number": "310***1234",
+      "phone": "138****8000",
+      "is_default": true,
+      "frequent_flyer_no": "CA12345678"
+    },
+    {
+      "id": "t2",
+      "name": "李四",
+      "id_type": "护照",
+      "id_number": "E12****56",
+      "phone": "139****9000",
+      "is_default": false,
+      "frequent_flyer_no": ""
+    }
+  ],
+  "travelers_empty": false,
+  "show_add_dialog": false,
+  "show_edit_dialog": false,
+  "form": {
+    "name": "",
+    "id_type": "",
+    "id_number": "",
+    "phone": "",
+    "frequent_flyer_no": ""
+  }
+}

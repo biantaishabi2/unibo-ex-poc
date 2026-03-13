@@ -30,7 +30,7 @@ defmodule UniboExPoc.Organization.OrgScope do
   def resolve(nil, _repo), do: []
 
   def resolve(actor_party_id, repo) when is_binary(actor_party_id) do
-    query = \"\"\"
+    query = """
     WITH RECURSIVE org_tree AS (
       -- 起点：actor 自身
       SELECT id FROM organization_parties WHERE id = $1
@@ -44,7 +44,7 @@ defmodule UniboExPoc.Organization.OrgScope do
         AND (pr.thru_date IS NULL OR pr.thru_date > NOW())
     )
     SELECT id FROM org_tree
-    \"\"\"
+    """
 
     case repo.query(query, [actor_party_id]) do
       {:ok, %{rows: rows}} -> Enum.map(rows, fn [id] -> id end)

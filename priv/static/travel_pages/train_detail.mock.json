@@ -1,0 +1,12 @@
+{
+  "offer": {
+    "departure_time": "",
+    "departure_station_name": "",
+    "duration_label": "",
+    "date_label": "",
+    "arrival_time": "",
+    "arrival_station_name": "",
+    "train_no": "",
+    "train_type_label": ""
+  }
+}

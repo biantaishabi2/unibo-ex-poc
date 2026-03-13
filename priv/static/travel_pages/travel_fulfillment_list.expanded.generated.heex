@@ -1,0 +1,133 @@
+<.page title="TravelFulfillment 列表" id="travel_fulfillment_list">
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_fulfillment_header">
+    <.text variant="title" id="travel_fulfillment_title">
+      <%= @page_title %>
+    </.text>
+    <.button variant="primary" phx-click="navigate_create" size="md" id="travel_fulfillment_create_btn">
+      新建
+    </.button>
+  </.section>
+  <.card variant="default" id="travel_fulfillment_filter_card">
+    <.card_content id="travel_fulfillment_filter_content">
+      <.flex gap={4} align="center" direction="row" id="travel_fulfillment_filter_row">
+        <.select name="fulfillment_type" label="fulfillment_type" size="md" id="filter_fulfillment_type">
+
+        </.select>
+        <.select name="status" label="status" size="md" id="filter_status">
+
+        </.select>
+        <.select name="waitlist_result" label="train 候补兑现结果" size="md" id="filter_waitlist_result">
+
+        </.select>
+        <.select name="change_result" label="train 改签结果" size="md" id="filter_change_result">
+
+        </.select>
+        <.select name="boarding_status" label="train 乘车状态" size="md" id="filter_boarding_status">
+
+        </.select>
+        <.input name="used_at_from" label="实际使用时间 起" size="md" id="filter_used_at_from" />
+        <.input name="used_at_to" label="实际使用时间 止" size="md" id="filter_used_at_to" />
+        <.button variant="secondary" phx-click="filter_submit" size="md" id="travel_fulfillment_filter_submit">
+          查询
+        </.button>
+      </.flex>
+    </.card_content>
+  </.card>
+  <.table id="travel_fulfillment_table">
+    <.table_header id="travel_fulfillment_table_header">
+      <.table_row id="travel_fulfillment_header_row">
+        <.table_head id="th_tenant_id">
+          tenant_id
+        </.table_head>
+        <.table_head id="th_fulfillment_type">
+          fulfillment_type
+        </.table_head>
+        <.table_head id="th_status">
+          status
+        </.table_head>
+        <.table_head id="th_supplier_booking_ref">
+          供应商预订号
+        </.table_head>
+        <.table_head id="th_voucher_or_ticket_ref">
+          凭证号或票号
+        </.table_head>
+        <.table_head id="th_ticket_refs">
+          多张票号、座席和乘客映射结果
+        </.table_head>
+        <.table_head id="th_waitlist_result">
+          train 候补兑现结果
+        </.table_head>
+        <.table_head id="th_change_result">
+          train 改签结果
+        </.table_head>
+        <.table_head id="th_boarding_status">
+          train 乘车状态
+        </.table_head>
+        <.table_head id="th_confirmation_payload">
+          确认结果快照
+        </.table_head>
+        <.table_head id="th_failure_reason">
+          失败原因
+        </.table_head>
+        <.table_head id="th_used_at">
+          实际使用时间
+        </.table_head>
+      </.table_row>
+    </.table_header>
+    <.table_body id="travel_fulfillment_table_body">
+      <%= for row <- @rows do %>
+        <.table_row>
+          <.table_cell>
+            <%= row.tenant_id %>
+          </.table_cell>
+          <.table_cell>
+            <.badge variant="default" size="sm">
+              <%= row.fulfillment_type %>
+            </.badge>
+          </.table_cell>
+          <.table_cell>
+            <.badge variant="default" size="sm">
+              <%= row.status %>
+            </.badge>
+          </.table_cell>
+          <.table_cell>
+            <%= row.supplier_booking_ref %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.voucher_or_ticket_ref %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.ticket_refs %>
+          </.table_cell>
+          <.table_cell>
+            <.badge variant="default" size="sm">
+              <%= row.waitlist_result %>
+            </.badge>
+          </.table_cell>
+          <.table_cell>
+            <.badge variant="default" size="sm">
+              <%= row.change_result %>
+            </.badge>
+          </.table_cell>
+          <.table_cell>
+            <.badge variant="default" size="sm">
+              <%= row.boarding_status %>
+            </.badge>
+          </.table_cell>
+          <.table_cell>
+            <%= row.confirmation_payload %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.failure_reason %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.used_at %>
+          </.table_cell>
+        </.table_row>
+      <% end %>
+    </.table_body>
+  </.table>
+  <%= if (@rows_empty && @rows_empty != []) do %>
+    <.empty_state description="暂无统一酒旅履约聚合,承接预订确认、发券出票、候补兑现、乘车使用和失败结果;可选关联 Delivery::Shipment数据" id="travel_fulfillment_no_data" />
+  <% end %>
+</.page>

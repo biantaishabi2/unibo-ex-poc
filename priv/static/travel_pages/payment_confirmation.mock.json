@@ -1,0 +1,13 @@
+{
+  "order": {
+    "payment": {
+      "payment_method": "",
+      "payment_no": "",
+      "paid_at": ""
+    },
+    "total_amount": "",
+    "points_deduction_amount": "",
+    "payable_amount": "",
+    "currency": ""
+  }
+}

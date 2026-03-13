@@ -1,0 +1,16 @@
+{
+  "record": {
+    "supplier_booking_ref": "",
+    "status": "",
+    "tenant_id": "",
+    "fulfillment_type": "",
+    "voucher_or_ticket_ref": "",
+    "ticket_refs": "",
+    "waitlist_result": "",
+    "change_result": "",
+    "boarding_status": "",
+    "confirmation_payload": "",
+    "failure_reason": "",
+    "used_at": ""
+  }
+}

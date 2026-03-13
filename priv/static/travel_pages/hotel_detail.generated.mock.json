@@ -1,0 +1,46 @@
+{
+  "hotel": {
+    "cover_image": "https://placehold.co/800x400/3b82f6/white?text=Hotel+Cover",
+    "hotel_name": "上海浦东丽思卡尔顿酒店",
+    "hotel_star": "★★★★★",
+    "exterior_image": "https://placehold.co/400x300/3b82f6/white?text=Exterior",
+    "dining_image": "https://placehold.co/400x300/f59e0b/white?text=Dining",
+    "room_image": "https://placehold.co/400x300/10b981/white?text=Room",
+    "score": "4.8",
+    "score_label": "极好",
+    "address": "上海市浦东新区世纪大道8号"
+  },
+  "filter": {
+    "checkin_date": "2026-03-15",
+    "checkout_date": "2026-03-17"
+  },
+  "offers": [
+    {
+      "id": "1",
+      "room_type_name": "豪华大床房",
+      "bed_type": "1.8m大床",
+      "area_label": "45㎡",
+      "floor_label": "高层",
+      "rate_plan_code": "含早标准价",
+      "cancellation_policy": "免费取消",
+      "is_breakfast_included": true,
+      "exceeds_policy": false,
+      "currency": "¥",
+      "listed_price": "1,580"
+    },
+    {
+      "id": "2",
+      "room_type_name": "行政双床房",
+      "bed_type": "1.2m双床",
+      "area_label": "52㎡",
+      "floor_label": "行政楼层",
+      "rate_plan_code": "行政套餐",
+      "cancellation_policy": "不可取消",
+      "is_breakfast_included": true,
+      "exceeds_policy": true,
+      "currency": "¥",
+      "listed_price": "2,380"
+    }
+  ],
+  "offers_empty": false
+}

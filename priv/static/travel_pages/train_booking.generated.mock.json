@@ -1,6 +1,28 @@
 {
   "offer": {
-    "currency": "CNY",
+    "train_no": "G2",
+    "train_type_label": "高铁",
+    "selected_seat_class_name": "二等座",
+    "departure_time": "07:00",
+    "departure_station_name": "上海虹桥",
+    "date_label": "03月14日 周六",
+    "arrival_time": "11:28",
+    "arrival_station_name": "北京南",
+    "currency": "¥",
+    "selected_seat_price": "553",
+    "is_policy_exceeded": false,
     "total_price": "553"
+  },
+  "travelers": {
+    "items": [
+      {"name": "张三", "name_initial": "张", "avatar": "", "id_type_label": "身份证", "selected": true},
+      {"name": "李四", "name_initial": "李", "avatar": "", "id_type_label": "身份证", "selected": false}
+    ]
+  },
+  "form": {
+    "seat_preference": "no_preference",
+    "contact_name": "张三",
+    "contact_phone": "13800138000",
+    "payment_method": "corporate"
   }
 }

@@ -1,0 +1,225 @@
+<.page title="HotelOffer 详情" id="hotel_offer_detail">
+  <.breadcrumb id="hotel_offer_breadcrumb">
+    <.breadcrumb_list id="hotel_offer_bc_list">
+      <.breadcrumb_item id="hotel_offer_bc_list_item">
+        <.breadcrumb_link id="hotel_offer_bc_link">
+          HotelOffer 列表
+        </.breadcrumb_link>
+      </.breadcrumb_item>
+      <.breadcrumb_separator id="hotel_offer_bc_sep" />
+      <.breadcrumb_item id="hotel_offer_bc_current_item">
+        <.breadcrumb_page id="hotel_offer_bc_current">
+          <%= @record.supplier_code %>
+        </.breadcrumb_page>
+      </.breadcrumb_item>
+    </.breadcrumb_list>
+  </.breadcrumb>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="hotel_offer_detail_header">
+    <.flex gap={3} align="center" direction="row" id="hotel_offer_title_group">
+      <.text variant="title" id="hotel_offer_detail_title">
+        <%= @record.supplier_code %>
+      </.text>
+      <.badge variant="default" size="sm" id="hotel_offer_status_badge">
+        <%= @record.sale_status %>
+      </.badge>
+    </.flex>
+    <.flex gap={2} direction="row" id="hotel_offer_actions">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="hotel_offer_edit_btn">
+        编辑
+      </.button>
+      <.button variant="secondary" phx-click="action_activate" size="md" id="hotel_offer_action_activate">
+        activate
+      </.button>
+      <.button variant="secondary" phx-click="action_deactivate" size="md" id="hotel_offer_action_deactivate">
+        deactivate
+      </.button>
+      <.button variant="secondary" phx-click="action_expire" size="md" id="hotel_offer_action_expire">
+        expire
+      </.button>
+      <.button variant="danger" phx-click="action_destroy" size="md" id="hotel_offer_delete_btn">
+        删除
+      </.button>
+    </.flex>
+  </.section>
+  <.card variant="default" id="hotel_offer_info_card">
+    <.card_header id="hotel_offer_info_header">
+      <.card_title id="hotel_offer_info_title">
+        基本信息
+      </.card_title>
+    </.card_header>
+    <.card_content id="hotel_offer_info_content">
+      <%= if !(@editing && @editing != []) do %>
+        <.grid columns={2} gap={4} id="hotel_offer_info_grid">
+          <.flex direction="row" id="field_tenant_id">
+            <.text variant="muted" id="label_tenant_id">
+              租户 ID
+            </.text>
+            <.text id="value_tenant_id">
+              <%= @record.tenant_id %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_host_shop_id">
+            <.text variant="muted" id="label_host_shop_id">
+              宿主商城 ID,仅用于宿主侧隔离和桥接上下文
+            </.text>
+            <.text id="value_host_shop_id">
+              <%= @record.host_shop_id %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_supplier_code">
+            <.text variant="muted" id="label_supplier_code">
+              供应商编码
+            </.text>
+            <.text id="value_supplier_code">
+              <%= @record.supplier_code %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_hotel_code">
+            <.text variant="muted" id="label_hotel_code">
+              酒店编码
+            </.text>
+            <.text id="value_hotel_code">
+              <%= @record.hotel_code %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_hotel_name">
+            <.text variant="muted" id="label_hotel_name">
+              酒店名称
+            </.text>
+            <.text id="value_hotel_name">
+              <%= @record.hotel_name %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_city_code">
+            <.text variant="muted" id="label_city_code">
+              城市编码
+            </.text>
+            <.text id="value_city_code">
+              <%= @record.city_code %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_room_type_code">
+            <.text variant="muted" id="label_room_type_code">
+              房型编码
+            </.text>
+            <.text id="value_room_type_code">
+              <%= @record.room_type_code %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_rate_plan_code">
+            <.text variant="muted" id="label_rate_plan_code">
+              价计划编码
+            </.text>
+            <.text id="value_rate_plan_code">
+              <%= @record.rate_plan_code %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_checkin_date">
+            <.text variant="muted" id="label_checkin_date">
+              入住日期
+            </.text>
+            <.text id="value_checkin_date">
+              <%= @record.checkin_date %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_checkout_date">
+            <.text variant="muted" id="label_checkout_date">
+              离店日期
+            </.text>
+            <.text id="value_checkout_date">
+              <%= @record.checkout_date %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_listed_price">
+            <.text variant="muted" id="label_listed_price">
+              对客展示价快照
+            </.text>
+            <.text id="value_listed_price">
+              <%= @record.listed_price %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_settlement_price">
+            <.text variant="muted" id="label_settlement_price">
+              结算价快照
+            </.text>
+            <.text id="value_settlement_price">
+              <%= @record.settlement_price %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_currency">
+            <.text variant="muted" id="label_currency">
+              币种
+            </.text>
+            <.text id="value_currency">
+              <%= @record.currency %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_inventory_count">
+            <.text variant="muted" id="label_inventory_count">
+              可售库存快照
+            </.text>
+            <.text id="value_inventory_count">
+              <%= @record.inventory_count %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_cancellation_policy">
+            <.text variant="muted" id="label_cancellation_policy">
+              取消规则快照
+            </.text>
+            <.text id="value_cancellation_policy">
+              <%= @record.cancellation_policy %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_guarantee_policy">
+            <.text variant="muted" id="label_guarantee_policy">
+              担保规则快照
+            </.text>
+            <.text id="value_guarantee_policy">
+              <%= @record.guarantee_policy %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_sale_status">
+            <.text variant="muted" id="label_sale_status">
+              可售状态
+            </.text>
+            <.badge variant="default" size="sm" id="value_sale_status">
+              <%= @record.sale_status %>
+            </.badge>
+          </.flex>
+        </.grid>
+      <% else %>
+        <.form phx-submit="form_submit" phx-change="form_change" id="hotel_offer_edit_form">
+          <.grid columns={2} gap={4} id="hotel_offer_form_grid">
+            <.input name="tenant_id" label="租户 ID" placeholder="请输入租户 ID" required="true" size="md" id="form_tenant_id" />
+            <.input name="host_shop_id" label="宿主商城 ID,仅用于宿主侧隔离和桥接上下文" placeholder="请输入宿主商城 ID,仅用于宿主侧隔离和桥接上下文" size="md" id="form_host_shop_id" />
+            <.input name="supplier_code" label="供应商编码" placeholder="请输入供应商编码" required="true" size="md" id="form_supplier_code" />
+            <.input name="hotel_code" label="酒店编码" placeholder="请输入酒店编码" required="true" size="md" id="form_hotel_code" />
+            <.input name="hotel_name" label="酒店名称" placeholder="请输入酒店名称" required="true" size="md" id="form_hotel_name" />
+            <.input name="city_code" label="城市编码" placeholder="请输入城市编码" required="true" size="md" id="form_city_code" />
+            <.input name="room_type_code" label="房型编码" placeholder="请输入房型编码" required="true" size="md" id="form_room_type_code" />
+            <.input name="rate_plan_code" label="价计划编码" placeholder="请输入价计划编码" required="true" size="md" id="form_rate_plan_code" />
+            <.input name="checkin_date" label="入住日期" placeholder="请输入入住日期" required="true" size="md" id="form_checkin_date" />
+            <.input name="checkout_date" label="离店日期" placeholder="请输入离店日期" required="true" size="md" id="form_checkout_date" />
+            <.input name="listed_price" label="对客展示价快照" placeholder="请输入对客展示价快照" required="true" size="md" id="form_listed_price" />
+            <.input name="settlement_price" label="结算价快照" placeholder="请输入结算价快照" size="md" id="form_settlement_price" />
+            <.input name="currency" label="币种" placeholder="请输入币种" size="md" id="form_currency" />
+            <.input name="inventory_count" label="可售库存快照" placeholder="请输入可售库存快照" size="md" id="form_inventory_count" />
+            <.textarea name="cancellation_policy" label="取消规则快照" placeholder="请输入取消规则快照" id="form_cancellation_policy" />
+            <.textarea name="guarantee_policy" label="担保规则快照" placeholder="请输入担保规则快照" id="form_guarantee_policy" />
+            <.select name="sale_status" label="可售状态" size="md" id="form_sale_status">
+
+            </.select>
+          </.grid>
+          <.flex justify="end" gap={2} direction="row" id="hotel_offer_form_actions">
+            <.button variant="secondary" phx-click="cancel_edit" size="md" id="hotel_offer_cancel_btn">
+              取消
+            </.button>
+            <.button variant="primary" phx-click="form_submit" size="md" id="hotel_offer_save_btn">
+              保存
+            </.button>
+          </.flex>
+        </.form>
+      <% end %>
+    </.card_content>
+  </.card>
+</.page>
