@@ -145,6 +145,5 @@ fn default_timeout_ms() -> u64 {
 }
 
 fn default_engine() -> String {
-    "rust_greedy_local_search".to_string()
+    "cp_sat".to_string()
 }
-

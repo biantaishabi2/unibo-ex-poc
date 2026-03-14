@@ -17,4 +17,3 @@ pub fn night_shift_distribution_penalty(assignments: &[OutputAssignment]) -> i64
     let min = counts.values().min().copied().unwrap_or(0);
     (max - min) * 2
 }
-

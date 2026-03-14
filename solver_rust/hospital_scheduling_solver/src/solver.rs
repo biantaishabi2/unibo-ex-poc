@@ -1,9 +1,16 @@
+//! 当前文件只承担 contract harness / fixture runner 角色。
+//! 它用于冻结输入输出结构、状态语义和 explanation 输出，
+//! 不是 #69 最终求解器实现。
+
 use std::collections::{HashMap, HashSet};
 use std::time::Instant;
 
+use crate::backend;
 use crate::explanation::{assignment_violation, requirement_violation};
 use crate::model::{AssignmentSource, RunMode, Severity, SolverStatus};
-use crate::output::{CoverageSummary, OutputAssignment, OutputSnapshot, SummarySnapshot, ViolationSummary};
+use crate::output::{
+    CoverageSummary, OutputAssignment, OutputSnapshot, SummarySnapshot, ViolationSummary,
+};
 use crate::rules::{hard, soft};
 use crate::score::compute_score;
 use crate::snapshot::{InputSnapshot, RequirementSnapshot, SeedAssignmentSnapshot};
@@ -13,6 +20,10 @@ use thiserror::Error;
 pub enum SolveError {
     #[error("snapshot has no requirements")]
     EmptyRequirements,
+    #[error("unsupported engine_type: {engine_type}")]
+    UnsupportedEngine { engine_type: String },
+    #[error("backend `{backend}` unavailable: {reason}")]
+    BackendUnavailable { backend: String, reason: String },
 }
 
 #[derive(Debug, Clone)]
@@ -22,6 +33,12 @@ struct WorkingState {
 }
 
 pub fn solve(snapshot: &InputSnapshot) -> Result<OutputSnapshot, SolveError> {
+    backend::solve_with_engine(snapshot)
+}
+
+pub(crate) fn contract_harness_solve(
+    snapshot: &InputSnapshot,
+) -> Result<OutputSnapshot, SolveError> {
     if snapshot.requirements.is_empty() {
         return Err(SolveError::EmptyRequirements);
     }
@@ -42,7 +59,8 @@ pub fn solve(snapshot: &InputSnapshot) -> Result<OutputSnapshot, SolveError> {
         .filter(|item| item.severity == Severity::Warning)
         .count();
     let covered_requirement_count = coverage.iter().filter(|item| item.missing == 0).count();
-    let score = compute_score(&coverage, &violations) - soft::night_shift_distribution_penalty(&state.assignments);
+    let score = compute_score(&coverage, &violations)
+        - soft::night_shift_distribution_penalty(&state.assignments);
 
     let status = if error_count == 0 {
         SolverStatus::Completed
@@ -156,7 +174,10 @@ fn seed_initial_solution(snapshot: &InputSnapshot, state: &mut WorkingState) {
     }
 }
 
-fn repair_hard_constraints(snapshot: &InputSnapshot, state: &WorkingState) -> Vec<ViolationSummary> {
+fn repair_hard_constraints(
+    snapshot: &InputSnapshot,
+    state: &WorkingState,
+) -> Vec<ViolationSummary> {
     let mut violations = Vec::new();
 
     for requirement in &snapshot.requirements {
@@ -168,7 +189,9 @@ fn repair_hard_constraints(snapshot: &InputSnapshot, state: &WorkingState) -> Ve
         let assigned = assignments.len();
         let lead_assigned = assignments
             .iter()
-            .filter(|item| hard::employee_can_lead(&snapshot.medical_staff_profiles, &item.employee_id))
+            .filter(|item| {
+                hard::employee_can_lead(&snapshot.medical_staff_profiles, &item.employee_id)
+            })
             .count();
 
         if assigned < requirement.min_headcount {
@@ -197,7 +220,11 @@ fn repair_hard_constraints(snapshot: &InputSnapshot, state: &WorkingState) -> Ve
             let skill_matched = assignments
                 .iter()
                 .filter(|item| {
-                    hard::employee_has_required_skills(&snapshot.skills, &item.employee_id, requirement)
+                    hard::employee_has_required_skills(
+                        &snapshot.skills,
+                        &item.employee_id,
+                        requirement,
+                    )
                 })
                 .count();
             if skill_matched < requirement.min_headcount {
@@ -276,7 +303,10 @@ fn improve_soft_score(violations: &mut Vec<ViolationSummary>, state: &WorkingSta
     }
 }
 
-fn build_coverage(snapshot: &InputSnapshot, assignments: &[OutputAssignment]) -> Vec<CoverageSummary> {
+fn build_coverage(
+    snapshot: &InputSnapshot,
+    assignments: &[OutputAssignment],
+) -> Vec<CoverageSummary> {
     snapshot
         .requirements
         .iter()
@@ -288,7 +318,9 @@ fn build_coverage(snapshot: &InputSnapshot, assignments: &[OutputAssignment]) ->
             let assigned_count = assigned.len();
             let lead_assigned = assigned
                 .iter()
-                .filter(|item| hard::employee_can_lead(&snapshot.medical_staff_profiles, &item.employee_id))
+                .filter(|item| {
+                    hard::employee_can_lead(&snapshot.medical_staff_profiles, &item.employee_id)
+                })
                 .count();
             CoverageSummary {
                 requirement_id: requirement.id.clone(),
@@ -309,7 +341,11 @@ fn push_seed_assignment(
     locked: bool,
 ) {
     // seed assignment 也使用同一套去重键，避免后续填充阶段重复塞入相同时段。
-    let key = ("period".to_string(), seed.employee_id.clone(), seed.starts_at.clone());
+    let key = (
+        "period".to_string(),
+        seed.employee_id.clone(),
+        seed.starts_at.clone(),
+    );
     if state.assignment_keys.insert(key) {
         state.assignments.push(OutputAssignment {
             requirement_id: seed.requirement_id.clone(),

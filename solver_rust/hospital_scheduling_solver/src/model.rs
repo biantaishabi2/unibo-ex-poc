@@ -32,4 +32,3 @@ pub enum SolverStatus {
     Error,
     Completed,
 }
-

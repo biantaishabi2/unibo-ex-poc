@@ -57,4 +57,3 @@ pub struct ViolationSummary {
     pub message: String,
     pub details: Value,
 }
-

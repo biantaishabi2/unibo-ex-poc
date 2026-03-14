@@ -1,11 +1,11 @@
-use hospital_scheduling_solver::{InputSnapshot, solve};
+use hospital_scheduling_solver::{ContractHarnessBackend, InputSnapshot, solve_with_backend};
 
 #[test]
 fn blank_mode_generates_assignments_and_summary() {
     let snapshot: InputSnapshot =
         serde_json::from_str(include_str!("../fixtures/blank_snapshot.json")).unwrap();
 
-    let result = solve(&snapshot).unwrap();
+    let result = solve_with_backend(&snapshot, &ContractHarnessBackend).unwrap();
 
     assert_eq!(result.summary.requirement_count, 2);
     assert_eq!(result.summary.covered_requirement_count, 2);
@@ -16,4 +16,3 @@ fn blank_mode_generates_assignments_and_summary() {
             | hospital_scheduling_solver::model::SolverStatus::Feasible
     ));
 }
-

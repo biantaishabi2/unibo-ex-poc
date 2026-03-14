@@ -1,7 +1,7 @@
-# Specification: hospital_scheduling Rust solver core 并行实现
+# Specification: hospital_scheduling CP-SAT solver 集成层并行实现
 
 ## Overview
-在 `hospital_scheduling/` 独立 app 骨架完成前，先并行实现不依赖数据库和 Phoenix 的 Rust solver core，并由后续 Elixir 层负责编排与落库。
+在 `hospital_scheduling/` 独立 app 骨架完成前，先并行实现 CP-SAT 求解的输入输出契约、Rust 集成层与夹具测试；业务编排与落库仍由后续 Elixir 层负责。
 
 ## Workflow Type
 feature
@@ -10,24 +10,26 @@ feature
 
 **In scope**：
 - 定义 `input_snapshot -> output_snapshot` 的纯内存求解接口
-- 在 Rust 中实现 solver 五阶段骨架：`load_snapshot`、`seed_initial_solution`、`repair_hard_constraints`、`improve_soft_score`、`emit_result`
-- 实现基础约束检查、评分和 explanation 生成
-- 支持 `solve_from_blank` 与 `solve_from_previous_version` 两种入口
-- 使用固定 fixture/内存 snapshot 编写 solver 单测
+- 固定 CP-SAT 建模所需的输入结构、输出结构、状态语义
+- 在 Rust 中实现稳定的 solver integration boundary
+- 为 `solve_from_blank` 与 `solve_from_previous_version` 两种入口预留统一接口
+- 使用固定 fixture/内存 snapshot 编写契约测试
 - 为后续 Elixir adapter 预留稳定的 JSON/CLI 或库接口
+- 为 CP-SAT backend 接入保留最小可替换层
 
 **Out of scope**：
 - `SolverRun` / `ScheduleVersion` / `ShiftAssignment` / `ConstraintViolation` 正式落库
 - Ash action / Repo transaction 接线
 - GenServer 与真实 app supervision 接线
 - 依赖最终 resource 名称、migration 字段、enum 类型的 glue 代码
-- 直接实现 CP-SAT 引擎本身
+- 把当前 worktree 中的启发式骨架当作最终求解方案
+- 在 Rust 中重写 CP-SAT 引擎本身
 
 ## Success Criteria
-- 能基于固定 `input_snapshot` 生成稳定的内存态求解结果
+- 能固定 CP-SAT 求解所需的 `input_snapshot` / `output_snapshot` 契约
 - 能输出 coverage 摘要、error/warning explanation、`output_snapshot`
 - 能区分 `solve_from_blank` 与 `solve_from_previous_version`
-- Rust 求解核心测试不依赖数据库即可运行
+- Rust 侧契约测试不依赖数据库即可运行
 - 接口形态固定，后续 Elixir 可用薄 adapter 接入
 
 ## Dev Environment
@@ -43,11 +45,12 @@ cd /home/wangbo/document/unibo_ex_poc-feat-69-solver-core
 ```
 
 ## Requirements
-- 遵循 `#69` 中约定的五阶段 solver 生命周期
+- 遵循 `#69` 中约定的硬约束优先、软约束优化的分层语义
 - 保证求解热路径只读内存 snapshot，不打数据库
 - 以 `#68` 已冻结的 snapshot / violation / enum 契约为准
 - Rust 代码注释使用中文
 - 输出契约优先稳定，接线方式次之
+- 当前 worktree 中的 Rust 代码只能作为 contract harness / adapter spike，不能被表述为最终求解算法
 
 ## Files to Modify
 - `solver_rust/hospital_scheduling_solver/Cargo.toml`
@@ -64,10 +67,10 @@ cd /home/wangbo/document/unibo_ex_poc-feat-69-solver-core
 - `/home/wangbo/document/unibo_ex_poc/travel/mix.exs`
 
 ## QA Acceptance Criteria
-- TC-SOLVER-01: 给定完整 snapshot，生成 working result 和 coverage summary
+- TC-SOLVER-01: 给定完整 snapshot，契约层能生成稳定的 `output_snapshot`
 - TC-SOLVER-02: 无解 requirement 返回结构化 explanation，而不是无信息失败
 - TC-SOLVER-03: 同一 seed + 同一 snapshot 结果可复现或差异可解释
-- TC-SOLVER-04: `solve_from_previous_version` 能保留有效 seed assignment
+- TC-SOLVER-04: `solve_from_previous_version` 能保留有效 seed assignment 语义
 
 ## Test Setup
 - 使用纯内存 fixture，不依赖 Repo
@@ -84,20 +87,20 @@ cd /home/wangbo/document/unibo_ex_poc-feat-69-solver-core
 0. **冻结 solver 输入输出契约（待做）**
    - 做什么：把 `input_snapshot` 与 `output_snapshot` shape 固定为 Rust 入口契约
    - 验证：fixture JSON/内存 map 可被同一入口加载
-1. **实现五阶段骨架（待做）**
-   - 做什么：在 Rust 中实现五阶段 pipeline 和结果 struct
-   - 验证：最小 fixture 能跑通全阶段
-2. **补约束与 explanation（待做）**
-   - 做什么：补 hard repair、soft score、violation 生成
-   - 验证：测试能看到 `error/warning` 两级输出
-3. **补 seed 模式（待做）**
-   - 做什么：实现 `solve_from_previous_version`
+1. **建立 CP-SAT 集成边界（待做）**
+   - 做什么：把 Rust 侧边界明确为 adapter / contract harness，而非最终启发式
+   - 验证：spec、plan、README 与 issue 口径一致
+2. **补 explanation 与状态语义（待做）**
+   - 做什么：固定 `feasible/infeasible/timeout/error/completed` 和 violation 输出
+   - 验证：测试能看到稳定的 `error/warning` 两级输出
+3. **补 seed 模式语义（待做）**
+   - 做什么：固定 `solve_from_previous_version` 的输入输出语义
    - 验证：能保留有效 seed assignment 并输出修复结果
 4. **预留 Elixir adapter 接口（待做）**
    - 做什么：固定 JSON 输入输出和返回码/状态语义
-   - 验证：后续 Elixir 侧无需修改 Rust 内核即可接线
+   - 验证：后续 Elixir 侧无需改动契约即可接线
 
 ## Notes
-- 当前 worktree 只做 Rust solver core 并行开发，不抢 `#68` 的持久化代码边界。
-- 一旦 `#68` 正式代码落地，再由 Elixir 把内存态 result 接到 `SolverRun` / `ScheduleVersion` / `ShiftAssignment` / `ConstraintViolation`。
-- 当前目标不是在 Rust 中重写 CP-SAT，而是先把求解主循环移出 Elixir，为后续更强后端留接口。
+- 当前 worktree 只做 CP-SAT 集成层并行开发，不抢 `#68` 的持久化代码边界。
+- 一旦 `#68` 正式代码落地，再由 Elixir 把 result 接到 `SolverRun` / `ScheduleVersion` / `ShiftAssignment` / `ConstraintViolation`。
+- 当前 worktree 中已有的启发式代码只能视为 contract harness / fixture runner，不得继续扩写成最终 solver。
