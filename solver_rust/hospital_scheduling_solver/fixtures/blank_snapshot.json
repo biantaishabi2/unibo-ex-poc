@@ -1,0 +1,85 @@
+{
+  "period": {
+    "id": "period-1",
+    "department_id": "dept-icu",
+    "start_date": "2026-04-01",
+    "end_date": "2026-04-02"
+  },
+  "requirements": [
+    {
+      "id": "req-day-1",
+      "date": "2026-04-01",
+      "shift_type_id": "shift-day",
+      "role_code": "duty_nurse",
+      "required_skill_tags": [],
+      "min_headcount": 1,
+      "target_headcount": 1,
+      "required_lead_count": 0,
+      "priority": 10,
+      "starts_at": "2026-04-01T08:00:00Z",
+      "ends_at": "2026-04-01T16:00:00Z"
+    },
+    {
+      "id": "req-night-1",
+      "date": "2026-04-01",
+      "shift_type_id": "shift-night",
+      "role_code": "duty_nurse",
+      "required_skill_tags": [],
+      "min_headcount": 1,
+      "target_headcount": 1,
+      "required_lead_count": 0,
+      "priority": 20,
+      "starts_at": "2026-04-01T23:00:00Z",
+      "ends_at": "2026-04-02T07:00:00Z"
+    }
+  ],
+  "constraints": [],
+  "employees": [
+    {
+      "id": "emp-1",
+      "employee_code": "N001",
+      "hire_date": "2022-01-01",
+      "department_id": "dept-icu"
+    },
+    {
+      "id": "emp-2",
+      "employee_code": "N002",
+      "hire_date": "2021-01-01",
+      "department_id": "dept-icu"
+    }
+  ],
+  "medical_staff_profiles": [
+    {
+      "employee_id": "emp-1",
+      "maturity_score": 90.0,
+      "can_lead_shift": true,
+      "work_restrictions": [],
+      "overtime_willing": false
+    },
+    {
+      "employee_id": "emp-2",
+      "maturity_score": 70.0,
+      "can_lead_shift": false,
+      "work_restrictions": [],
+      "overtime_willing": true
+    }
+  ],
+  "skills": [],
+  "leaves": [],
+  "calendar": {
+    "work_schedule": {
+      "id": "ws-1",
+      "timezone": "Asia/Shanghai"
+    },
+    "exceptions": []
+  },
+  "locked_assignments": [],
+  "previous_version_assignments": [],
+  "run_options": {
+    "mode": "solve_from_blank",
+    "seed": 42,
+    "timeout_ms": 30000,
+    "engine_type": "rust_greedy_local_search"
+  }
+}
+
