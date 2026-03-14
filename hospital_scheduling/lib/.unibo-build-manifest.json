@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "compiler_version": "0.1.0",
+  "domains": {
+    "Scheduling": {
+      "input_hashes": {
+        "models/scheduling/scheduling.ubo.yaml": "sha256:d4943e56bb336a57a367967cb983d3b6f4a7d2cbf43a525a2a2fd19efdbf9e35"
+      },
+      "output_files": [
+        "hospital_scheduling/scheduling/constraint_violation.ex",
+        "hospital_scheduling/scheduling/coverage_requirement.ex",
+        "hospital_scheduling/scheduling/department.ex",
+        "hospital_scheduling/scheduling/employee.ex",
+        "hospital_scheduling/scheduling/medical_staff_profile.ex",
+        "hospital_scheduling/scheduling/schedule_version.ex",
+        "hospital_scheduling/scheduling/scheduling.ex",
+        "hospital_scheduling/scheduling/scheduling_constraint.ex",
+        "hospital_scheduling/scheduling/scheduling_period.ex",
+        "hospital_scheduling/scheduling/shift_assignment.ex",
+        "hospital_scheduling/scheduling/shift_preference.ex",
+        "hospital_scheduling/scheduling/shift_type.ex",
+        "hospital_scheduling/scheduling/solver_run.ex",
+        "hospital_scheduling/scheduling/workflows/scheduling_period_scheduling_period_lifecycle.ex",
+        "hospital_scheduling/scheduling/workflows/solver_run_solver_run_lifecycle.ex"
+      ],
+      "entity_count": 12,
+      "notifier_count": 0,
+      "has_policy_entities": false,
+      "has_scheduled_tasks": false,
+      "subdomain": "scheduling"
+    }
+  }
+}

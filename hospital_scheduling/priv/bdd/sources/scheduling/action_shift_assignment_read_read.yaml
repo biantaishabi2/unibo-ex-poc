@@ -1,0 +1,8 @@
+module: SCHEDULING_SHIFT_ASSIGNMENT
+contract: ShiftAssignment.read action contract
+edge_class: action_contract
+source_file: models/scheduling/scheduling.ubo.yaml
+source_summary: GIVEN 实体 ShiftAssignment 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 输入应满足校验规则，读取结果应符合查询语义
+expected_facts:
+- action_executed
+- read_completed

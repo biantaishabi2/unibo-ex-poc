@@ -1,0 +1,35 @@
+# 从 YAML 模型自动生成 — 验证消息翻译模板
+# UniBO Compiler — Gettext Errors POT
+
+#. domain: Scheduling, entity: SchedulingPeriod, validation: compare
+msgid "结束日期必须晚于开始日期"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingPeriod, validation: one_of, on: start_generating
+msgid "只有草稿状态可以开始生成"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingPeriod, validation: one_of, on: publish
+msgid "只有已生成或已调整状态可以发布"
+msgstr ""
+
+#. domain: Scheduling, entity: ScheduleVersion, validation: one_of, on: publish_version
+msgid "只有工作中的版本可以发布"
+msgstr ""
+
+#. domain: Scheduling, entity: ScheduleVersion, validation: one_of, on: archive_version
+msgid "只有工作中或已发布的版本可以归档"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftAssignment, validation: compare
+msgid "结束时间必须晚于开始时间"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, validation: one_of, on: start_run
+msgid "只有待执行状态可以开始"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, validation: one_of, on: complete_feasible, complete_infeasible, mark_timeout, mark_error
+msgid "只有运行中状态可以完成"
+msgstr ""
+

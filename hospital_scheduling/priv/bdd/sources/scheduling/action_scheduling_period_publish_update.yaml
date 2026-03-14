@@ -1,0 +1,7 @@
+module: SCHEDULING_SCHEDULING_PERIOD
+contract: SchedulingPeriod.publish action contract
+edge_class: action_contract
+source_file: models/scheduling/scheduling.ubo.yaml
+source_summary: GIVEN 实体 SchedulingPeriod 的动作 publish 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 publish / THEN 输入应满足校验规则
+expected_facts:
+- action_executed

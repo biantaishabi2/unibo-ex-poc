@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SCHEDULING_SHIFT_PREFERENCE-SEED-action_shift_preference_read_read] TITLE: SCHEDULING_SHIFT_PREFERENCE contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="action_shift_preference_read_read" module="SCHEDULING_SHIFT_PREFERENCE"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_PREFERENCE"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_PREFERENCE"

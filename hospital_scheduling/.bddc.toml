@@ -1,0 +1,9 @@
+[global]
+namespace = "HospitalScheduling"
+instructions = ["priv/bdd/instructions_v1.exs"]
+in = "docs/bdd"
+out = "test/bdd_generated"
+docs_root = "docs"
+runtime_module = "HospitalScheduling.BDD.Instructions.V1"
+test_case = "ExUnit.Case"
+module_prefix = "HospitalScheduling.BDD.Generated"
