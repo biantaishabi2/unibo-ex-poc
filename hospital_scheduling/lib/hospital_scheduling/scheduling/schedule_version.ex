@@ -93,9 +93,11 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
     create :create do
       description "Create Schedule Version via Create. doc_url: graphql://contract/scheduling/create_scheduling_schedule_version"
       primary? true
-      accept [:version_no, :change_summary]
+      accept [:version_no, :change_summary, :origin_type]
       argument :period_id, :uuid, allow_nil?: false
       change manage_relationship(:period_id, :period, type: :append, on_lookup: :relate)
+      argument :based_on_run_id, :uuid, allow_nil?: true
+      change manage_relationship(:based_on_run_id, :based_on_run, type: :append, on_lookup: :relate)
     end
     update :update do
       description "Update Schedule Version via Update. doc_url: graphql://contract/scheduling/update_scheduling_schedule_version"
@@ -111,7 +113,7 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
         if current == :working do
-          changeset
+          Ash.Changeset.change_attribute(changeset, :status, :published)
         else
           Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :working}))
         end
@@ -127,7 +129,7 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
         if current in [:working, :published] do
-          changeset
+          Ash.Changeset.change_attribute(changeset, :status, :archived)
         else
           Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must be one of %{values}", vars: %{values: [:working, :published]}))
         end

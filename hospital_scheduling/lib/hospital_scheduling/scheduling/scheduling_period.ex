@@ -158,7 +158,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)
         if current == :draft do
-          changeset
+          Ash.Changeset.change_attribute(changeset, :state, :generating)
         else
           Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :state, message: "must equal %{value}", vars: %{value: :draft}))
         end
@@ -171,6 +171,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
 
 求解完成，标记为已生成. doc_url: graphql://contract/scheduling/mark_generated_scheduling_scheduling_period"
       accept []
+      change set_attribute(:state, :generated)
       require_atomic? false
     end
     update :mark_adjusted do
@@ -178,6 +179,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
 
 人工调班后标记. doc_url: graphql://contract/scheduling/mark_adjusted_scheduling_scheduling_period"
       accept []
+      change set_attribute(:state, :adjusted)
       require_atomic? false
     end
     update :publish do
@@ -188,7 +190,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)
         if current in [:generated, :adjusted] do
-          changeset
+          Ash.Changeset.change_attribute(changeset, :state, :published)
         else
           Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :state, message: "must be one of %{values}", vars: %{values: [:generated, :adjusted]}))
         end

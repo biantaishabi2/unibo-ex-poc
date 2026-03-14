@@ -71,6 +71,8 @@ defmodule HospitalScheduling.Scheduling.ShiftPreference do
       accept [:preferred_shift_tags, :unavailable_dates, :max_night_shifts, :notes]
       argument :employee_id, :uuid, allow_nil?: false
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
+      argument :period_id, :uuid, allow_nil?: true
+      change manage_relationship(:period_id, :period, type: :append, on_lookup: :relate)
     end
     update :update do
       description "Update Shift Preference via Update. doc_url: graphql://contract/scheduling/update_scheduling_shift_preference"

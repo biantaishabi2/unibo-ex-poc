@@ -83,6 +83,10 @@ defmodule HospitalScheduling.Scheduling.ConstraintViolation do
       change manage_relationship(:period_id, :period, type: :append, on_lookup: :relate)
       argument :version_id, :uuid, allow_nil?: false
       change manage_relationship(:version_id, :version, type: :append, on_lookup: :relate)
+      argument :assignment_id, :uuid, allow_nil?: true
+      change manage_relationship(:assignment_id, :assignment, type: :append, on_lookup: :relate)
+      argument :requirement_id, :uuid, allow_nil?: true
+      change manage_relationship(:requirement_id, :requirement, type: :append, on_lookup: :relate)
     end
   end
 

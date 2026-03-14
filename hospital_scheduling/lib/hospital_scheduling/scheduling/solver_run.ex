@@ -143,7 +143,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
         if current == :pending do
-          changeset
+          Ash.Changeset.change_attribute(changeset, :status, :running)
         else
           Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :pending}))
         end
@@ -159,7 +159,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
         if current == :running do
-          changeset
+          Ash.Changeset.change_attribute(changeset, :status, :feasible)
         else
           Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :running}))
         end
@@ -175,7 +175,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
         if current == :running do
-          changeset
+          Ash.Changeset.change_attribute(changeset, :status, :infeasible)
         else
           Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :running}))
         end
@@ -191,7 +191,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
         if current == :running do
-          changeset
+          Ash.Changeset.change_attribute(changeset, :status, :timeout)
         else
           Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :running}))
         end
@@ -207,7 +207,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
         if current == :running do
-          changeset
+          Ash.Changeset.change_attribute(changeset, :status, :error)
         else
           Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :running}))
         end
