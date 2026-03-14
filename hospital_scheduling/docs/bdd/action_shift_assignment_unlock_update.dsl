@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK_UPDATE-SEED-action_shift_assignment_unlock_update] TITLE: SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="action_shift_assignment_unlock_update" module="SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK"

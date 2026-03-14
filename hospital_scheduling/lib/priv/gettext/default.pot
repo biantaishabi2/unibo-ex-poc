@@ -1,0 +1,359 @@
+# 从 YAML 模型自动生成，请勿手动编辑
+# UniBO Compiler — Gettext POT
+
+#. domain: Scheduling
+msgid "护士排班核心域 — 科室月排班工作空间、班次类型、覆盖需求、排班分配、约束管理、求解运行与版本管理"
+msgstr ""
+
+#. domain: Scheduling, entity: Employee
+msgid "跨域引用 HR.Employee（护士/医护人员）"
+msgstr ""
+
+#. domain: Scheduling, entity: Department
+msgid "跨域引用 HR.Department（科室）"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftType
+msgid "班次类型定义（早班/中班/夜班等），是排班的基础维度"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftType, attribute: code
+msgid "班次编码，如 day, evening, night"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftType, attribute: name
+msgid "班次名称，如\"白班\"、\"小夜\"、\"大夜\""
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftType, attribute: start_time
+msgid "班次开始时间，如 08:00"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftType, attribute: end_time
+msgid "班次结束时间，如 16:00"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftType, attribute: duration_hours
+msgid "时长（小时），跨午夜时 end < start"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftType, attribute: is_night
+msgid "是否算夜班（影响夜班公平性约束）"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftType, attribute: color
+msgid "前端显示色，如"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftType, attribute: sort_order
+msgid "排序权重"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftType, attribute: enabled
+msgid "是否启用"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingPeriod
+msgid "一次科室月排班工作空间，承载需求、版本、求解运行"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingPeriod, attribute: start_date
+msgid "周期开始日期（本地业务日）"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingPeriod, attribute: end_date
+msgid "周期结束日期（本地业务日）"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingPeriod, attribute: state
+msgid "排班周期状态"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingPeriod, attribute: title
+msgid "例如\"ICU 2026-04 月排班\""
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingPeriod, attribute: generation_mode
+msgid "排班生成方式"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingPeriod, attribute: notes
+msgid "备注"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingPeriod, action: start_generating
+msgid "开始自动生成排班"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingPeriod, action: mark_generated
+msgid "求解完成，标记为已生成"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingPeriod, action: mark_adjusted
+msgid "人工调班后标记"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingPeriod, action: publish
+msgid "发布排班（需无 error 级违反）"
+msgstr ""
+
+#. domain: Scheduling, entity: CoverageRequirement
+msgid "定义某天某班次某岗位需要多少人"
+msgstr ""
+
+#. domain: Scheduling, entity: CoverageRequirement, attribute: requirement_date
+msgid "需求日期（本地业务日）"
+msgstr ""
+
+#. domain: Scheduling, entity: CoverageRequirement, attribute: role_code
+msgid "岗位编码，如 duty_nurse"
+msgstr ""
+
+#. domain: Scheduling, entity: CoverageRequirement, attribute: role_name
+msgid "岗位名称"
+msgstr ""
+
+#. domain: Scheduling, entity: CoverageRequirement, attribute: required_skill_tags
+msgid "所需技能标签，如 [\"ICU\"]"
+msgstr ""
+
+#. domain: Scheduling, entity: CoverageRequirement, attribute: min_headcount
+msgid "最低人数"
+msgstr ""
+
+#. domain: Scheduling, entity: CoverageRequirement, attribute: target_headcount
+msgid "目标人数，不填时等于 min_headcount"
+msgstr ""
+
+#. domain: Scheduling, entity: CoverageRequirement, attribute: required_lead_count
+msgid "需要带班人数"
+msgstr ""
+
+#. domain: Scheduling, entity: CoverageRequirement, attribute: priority
+msgid "优先级，越小越高"
+msgstr ""
+
+#. domain: Scheduling, entity: ScheduleVersion
+msgid "一个周期内的工作版本或已发布版本"
+msgstr ""
+
+#. domain: Scheduling, entity: ScheduleVersion, attribute: version_no
+msgid "版本号"
+msgstr ""
+
+#. domain: Scheduling, entity: ScheduleVersion, attribute: status
+msgid "版本状态"
+msgstr ""
+
+#. domain: Scheduling, entity: ScheduleVersion, attribute: origin_type
+msgid "版本来源类型"
+msgstr ""
+
+#. domain: Scheduling, entity: ScheduleVersion, attribute: created_by
+msgid "操作者"
+msgstr ""
+
+#. domain: Scheduling, entity: ScheduleVersion, attribute: change_summary
+msgid "版本说明"
+msgstr ""
+
+#. domain: Scheduling, entity: ScheduleVersion, action: publish_version
+msgid "发布此版本"
+msgstr ""
+
+#. domain: Scheduling, entity: ScheduleVersion, action: archive_version
+msgid "归档此版本"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftAssignment
+msgid "把某个覆盖需求分配给具体护士和时段"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftAssignment, attribute: starts_at
+msgid "开始时间（UTC）"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftAssignment, attribute: ends_at
+msgid "结束时间（UTC）"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftAssignment, attribute: source
+msgid "分配来源（copied = 从上一期复制）"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftAssignment, attribute: is_locked
+msgid "锁定后重排不动"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftAssignment, attribute: notes
+msgid "人工调班说明"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftAssignment, action: lock
+msgid "锁定此排班，重排时不会变动"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftAssignment, action: unlock
+msgid "解锁此排班"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingConstraint
+msgid "合法性约束和评分规则定义，不承载需求人数"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingConstraint, attribute: name
+msgid "规则名称"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingConstraint, attribute: constraint_type
+msgid "硬约束或软约束"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingConstraint, attribute: category
+msgid "规则类别"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingConstraint, attribute: params
+msgid "规则参数（shape 按 category 不同）"
+msgstr ""
+
+#. domain: Scheduling, entity: SchedulingConstraint, attribute: weight
+msgid "软约束权重（硬约束忽略）"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftPreference
+msgid "护士个人排班偏好"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftPreference, attribute: preferred_shift_tags
+msgid "偏好班次标签"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftPreference, attribute: unavailable_dates
+msgid "不可排日期列表（本地业务日）"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftPreference, attribute: max_night_shifts
+msgid "期望夜班上限"
+msgstr ""
+
+#. domain: Scheduling, entity: ShiftPreference, attribute: notes
+msgid "补充说明"
+msgstr ""
+
+#. domain: Scheduling, entity: MedicalStaffProfile
+msgid "排班域专属护士画像，不复制 HR 主数据"
+msgstr ""
+
+#. domain: Scheduling, entity: MedicalStaffProfile, attribute: maturity_score
+msgid "成熟度评分"
+msgstr ""
+
+#. domain: Scheduling, entity: MedicalStaffProfile, attribute: can_lead_shift
+msgid "是否可带班"
+msgstr ""
+
+#. domain: Scheduling, entity: MedicalStaffProfile, attribute: work_restrictions
+msgid "工作限制，如 pregnant、breastfeeding"
+msgstr ""
+
+#. domain: Scheduling, entity: MedicalStaffProfile, attribute: overtime_willing
+msgid "是否愿意加班"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun
+msgid "一次求解执行记录与输入/输出快照载体"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, attribute: status
+msgid "求解状态"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, attribute: engine_type
+msgid "算法标识"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, attribute: seed
+msgid "随机种子，用于复现实验"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, attribute: timeout_ms
+msgid "超时毫秒数"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, attribute: started_at
+msgid "求解开始时间"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, attribute: completed_at
+msgid "求解结束时间"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, attribute: score
+msgid "总评分"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, attribute: hard_violation_count
+msgid "硬约束违反数"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, attribute: warning_count
+msgid "警告数"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, attribute: input_snapshot
+msgid "输入快照（跨域数据在 run 开始时一次性冻结）"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, attribute: output_snapshot
+msgid "输出摘要（不重复整份 assignment 明细）"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, attribute: error_message
+msgid "错误信息"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, action: start_run
+msgid "标记求解开始"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, action: complete_feasible
+msgid "求解完成（可行解）"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, action: complete_infeasible
+msgid "求解完成（不可行）"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, action: mark_timeout
+msgid "求解超时"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, action: mark_error
+msgid "求解出错"
+msgstr ""
+
+#. domain: Scheduling, entity: SolverRun, action: mark_completed
+msgid "最终完成（用户确认采用此结果）"
+msgstr ""
+
+#. domain: Scheduling, entity: ConstraintViolation
+msgid "结构化记录约束违反（error 或 warning）"
+msgstr ""
+
+#. domain: Scheduling, entity: ConstraintViolation, attribute: rule_code
+msgid "规则编码，如 rest_after_night"
+msgstr ""
+
+#. domain: Scheduling, entity: ConstraintViolation, attribute: severity
+msgid "严重级别"
+msgstr ""
+
+#. domain: Scheduling, entity: ConstraintViolation, attribute: message
+msgid "面向用户的说明"
+msgstr ""
+
+#. domain: Scheduling, entity: ConstraintViolation, attribute: details_json
+msgid "结构化细节"
+msgstr ""
+

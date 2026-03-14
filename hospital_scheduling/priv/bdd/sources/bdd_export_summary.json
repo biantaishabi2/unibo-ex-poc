@@ -1,0 +1,267 @@
+{
+  "total_models": 1,
+  "generated_files": 54,
+  "action_sources": 52,
+  "event_sources": 0,
+  "workflow_sources": 2,
+  "integration_sources": 0,
+  "scenario_total": 0,
+  "scenario_associated": 0,
+  "scenario_unassociated": 0,
+  "unassociated_scenarios": [],
+  "scenario_resolutions": [],
+  "auto_anchor_enabled": true,
+  "auto_anchor_total": 0,
+  "auto_anchor_mapped": 0,
+  "auto_anchor_unmapped": 0,
+  "auto_anchor_results": [],
+  "weak_assertion_count": 18,
+  "weak_assertion_read_count": 0,
+  "weak_assertion_write_count": 18,
+  "weak_assertion_other_count": 0,
+  "weak_assertion_effective_count": 18,
+  "weak_assertion_effective_read_count": 0,
+  "weak_assertion_effective_write_count": 18,
+  "weak_assertion_effective_other_count": 0,
+  "weak_whitelist_path": null,
+  "weak_whitelist_rule_count": 0,
+  "weak_whitelist_active_rule_count": 0,
+  "weak_whitelist_hit_count": 0,
+  "weak_whitelist_hits": [],
+  "weak_assertions": [
+    {
+      "file": "action_shift_type_update_update.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "ShiftType",
+      "kind": "action",
+      "subject": "update",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_shift_type_destroy_destroy.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "ShiftType",
+      "kind": "action",
+      "subject": "destroy",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_coverage_requirement_update_update.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "CoverageRequirement",
+      "kind": "action",
+      "subject": "update",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_coverage_requirement_destroy_destroy.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "CoverageRequirement",
+      "kind": "action",
+      "subject": "destroy",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_schedule_version_create_create.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "ScheduleVersion",
+      "kind": "action",
+      "subject": "create",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_schedule_version_update_update.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "ScheduleVersion",
+      "kind": "action",
+      "subject": "update",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_scheduling_constraint_update_update.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "SchedulingConstraint",
+      "kind": "action",
+      "subject": "update",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_scheduling_constraint_destroy_destroy.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "SchedulingConstraint",
+      "kind": "action",
+      "subject": "destroy",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_shift_preference_create_create.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "ShiftPreference",
+      "kind": "action",
+      "subject": "create",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_shift_preference_update_update.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "ShiftPreference",
+      "kind": "action",
+      "subject": "update",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_shift_preference_destroy_destroy.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "ShiftPreference",
+      "kind": "action",
+      "subject": "destroy",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_medical_staff_profile_create_create.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "MedicalStaffProfile",
+      "kind": "action",
+      "subject": "create",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_medical_staff_profile_update_update.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "MedicalStaffProfile",
+      "kind": "action",
+      "subject": "update",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_solver_run_create_create.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "SolverRun",
+      "kind": "action",
+      "subject": "create",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change 直接断言，仅有事件或流程语义",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_solver_run_update_update.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "SolverRun",
+      "kind": "action",
+      "subject": "update",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_solver_run_mark_completed_update.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "SolverRun",
+      "kind": "action",
+      "subject": "mark_completed",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_constraint_violation_create_create.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "ConstraintViolation",
+      "kind": "action",
+      "subject": "create",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    },
+    {
+      "file": "action_constraint_violation_destroy_destroy.yaml",
+      "model": "scheduling.ubo.yaml",
+      "entity": "ConstraintViolation",
+      "kind": "action",
+      "subject": "destroy",
+      "bucket": "write_weak",
+      "reasons": [
+        "缺少 validation/change/event/workflow 断言锚点",
+        "未找到匹配该 action 的 validation",
+        "未找到匹配该 action 的 change"
+      ]
+    }
+  ]
+}
