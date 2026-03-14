@@ -18,216 +18,349 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
   resource do
-    description "一次求解执行记录与输入/输出快照载体"
+    description("一次求解执行记录与输入/输出快照载体")
   end
 
   postgres do
-    table "scheduling_solver_runs"
-    repo HospitalScheduling.Repo
+    table("scheduling_solver_runs")
+    repo(HospitalScheduling.Repo)
   end
 
   graphql do
-    type :scheduling_solver_run
+    type(:scheduling_solver_run)
 
     queries do
-      get :get_scheduling_solver_run, :read
-      list :list_scheduling_solver_runs, :read
+      get(:get_scheduling_solver_run, :read)
+      list(:list_scheduling_solver_runs, :read)
     end
 
     mutations do
       create :create_scheduling_solver_run, :create
-      update :update_scheduling_solver_run, :update
-      update :start_run_scheduling_solver_run, :start_run
-      update :complete_feasible_scheduling_solver_run, :complete_feasible
-      update :complete_infeasible_scheduling_solver_run, :complete_infeasible
-      update :mark_timeout_scheduling_solver_run, :mark_timeout
-      update :mark_error_scheduling_solver_run, :mark_error
-      update :mark_completed_scheduling_solver_run, :mark_completed
+      update(:update_scheduling_solver_run, :update)
+      update(:start_run_scheduling_solver_run, :start_run)
+      update(:complete_feasible_scheduling_solver_run, :complete_feasible)
+      update(:complete_infeasible_scheduling_solver_run, :complete_infeasible)
+      update(:mark_timeout_scheduling_solver_run, :mark_timeout)
+      update(:mark_error_scheduling_solver_run, :mark_error)
+      update(:mark_completed_scheduling_solver_run, :mark_completed)
     end
-
   end
 
   attributes do
-    uuid_primary_key :id
+    uuid_primary_key(:id)
+
     attribute :status, :atom do
-      allow_nil? false
-      constraints one_of: [:pending, :running, :feasible, :infeasible, :timeout, :error, :completed]
-      default :pending
-      public? true
-      description "求解状态"
+      allow_nil?(false)
+
+      constraints(
+        one_of: [:pending, :running, :feasible, :infeasible, :timeout, :error, :completed]
+      )
+
+      default(:pending)
+      public?(true)
+      description("求解状态")
     end
+
     attribute :engine_type, :string do
-      allow_nil? false
-      default "greedy_local_search"
-      public? true
-      description "算法标识"
+      allow_nil?(false)
+      default("cp_sat")
+      public?(true)
+      description("算法标识")
     end
+
     attribute :seed, :integer do
-      public? true
-      description "随机种子，用于复现实验"
+      public?(true)
+      description("随机种子，用于复现实验")
     end
+
     attribute :timeout_ms, :integer do
-      allow_nil? false
-      default 30000
-      public? true
-      description "超时毫秒数"
+      allow_nil?(false)
+      default(30000)
+      public?(true)
+      description("超时毫秒数")
     end
+
     attribute :started_at, :utc_datetime do
-      public? true
-      description "求解开始时间"
+      public?(true)
+      description("求解开始时间")
     end
+
     attribute :completed_at, :utc_datetime do
-      public? true
-      description "求解结束时间"
+      public?(true)
+      description("求解结束时间")
     end
+
     attribute :score, :decimal do
-      public? true
-      description "总评分"
+      public?(true)
+      description("总评分")
     end
+
     attribute :hard_violation_count, :integer do
-      allow_nil? false
-      default 0
-      public? true
-      description "硬约束违反数"
+      allow_nil?(false)
+      default(0)
+      public?(true)
+      description("硬约束违反数")
     end
+
     attribute :warning_count, :integer do
-      allow_nil? false
-      default 0
-      public? true
-      description "警告数"
+      allow_nil?(false)
+      default(0)
+      public?(true)
+      description("警告数")
     end
+
     attribute :input_snapshot, :string do
-      allow_nil? false
-      public? true
-      description "输入快照（跨域数据在 run 开始时一次性冻结）"
+      allow_nil?(false)
+      public?(true)
+      description("输入快照（跨域数据在 run 开始时一次性冻结）")
     end
+
     attribute :output_snapshot, :string do
-      public? true
-      description "输出摘要（不重复整份 assignment 明细）"
+      public?(true)
+      description("输出摘要（不重复整份 assignment 明细）")
     end
+
     attribute :error_message, :string do
-      public? true
-      description "错误信息"
+      public?(true)
+      description("错误信息")
     end
-    create_timestamp :inserted_at
-    update_timestamp :updated_at
+
+    create_timestamp(:inserted_at)
+    update_timestamp(:updated_at)
   end
 
   relationships do
     belongs_to :period, HospitalScheduling.Scheduling.SchedulingPeriod do
-      public? true
-      allow_nil? false
+      public?(true)
+      allow_nil?(false)
     end
   end
 
   actions do
-    defaults [:read]
-    create :create do
-      description "Create Solver Run via Create. doc_url: graphql://contract/scheduling/create_scheduling_solver_run"
-      primary? true
-      accept [:engine_type, :seed, :timeout_ms, :input_snapshot]
-      argument :period_id, :uuid, allow_nil?: false
-      change manage_relationship(:period_id, :period, type: :append, on_lookup: :relate)
-    end
-    update :update do
-      description "Update Solver Run via Update. doc_url: graphql://contract/scheduling/update_scheduling_solver_run"
-      primary? true
-      accept [:status, :started_at, :completed_at, :score, :hard_violation_count, :warning_count, :output_snapshot, :error_message]
-      require_atomic? false
-    end
-    update :start_run do
-      description "标记求解开始
+    defaults([:read])
 
-标记求解开始. doc_url: graphql://contract/scheduling/start_run_scheduling_solver_run"
-      accept []
-      change fn changeset, _ctx ->
+    create :create do
+      description(
+        "Create Solver Run via Create. doc_url: graphql://contract/scheduling/create_scheduling_solver_run"
+      )
+
+      primary?(true)
+      accept([:engine_type, :seed, :timeout_ms, :input_snapshot])
+      argument(:period_id, :uuid, allow_nil?: false)
+      change(manage_relationship(:period_id, :period, type: :append, on_lookup: :relate))
+    end
+
+    update :update do
+      description(
+        "Update Solver Run via Update. doc_url: graphql://contract/scheduling/update_scheduling_solver_run"
+      )
+
+      primary?(true)
+
+      accept([
+        :status,
+        :started_at,
+        :completed_at,
+        :score,
+        :hard_violation_count,
+        :warning_count,
+        :output_snapshot,
+        :error_message
+      ])
+
+      require_atomic?(false)
+    end
+
+    update :start_run do
+      description("标记求解开始
+
+标记求解开始. doc_url: graphql://contract/scheduling/start_run_scheduling_solver_run")
+      accept([])
+
+      change(fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
+
         if current == :pending do
           changeset
+          |> Ash.Changeset.force_change_attribute(:status, :running)
+          |> Ash.Changeset.force_change_attribute(
+            :started_at,
+            DateTime.utc_now() |> DateTime.truncate(:second)
+          )
         else
-          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :pending}))
+          Ash.Changeset.add_error(
+            changeset,
+            Ash.Error.Changes.InvalidAttribute.exception(
+              field: :status,
+              message: "must equal %{value}",
+              vars: %{value: :pending}
+            )
+          )
         end
-      end
+      end)
+
       # message: "只有待执行状态可以开始"
-      require_atomic? false
+      require_atomic?(false)
     end
+
     update :complete_feasible do
-      description "求解完成（可行解）
+      description("求解完成（可行解）
 
-求解完成（可行解）. doc_url: graphql://contract/scheduling/complete_feasible_scheduling_solver_run"
-      accept [:score, :hard_violation_count, :warning_count, :output_snapshot]
-      change fn changeset, _ctx ->
+求解完成（可行解）. doc_url: graphql://contract/scheduling/complete_feasible_scheduling_solver_run")
+      accept([:score, :hard_violation_count, :warning_count, :output_snapshot])
+
+      change(fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
+
         if current == :running do
           changeset
+          |> Ash.Changeset.force_change_attribute(:status, :feasible)
+          |> Ash.Changeset.force_change_attribute(
+            :completed_at,
+            DateTime.utc_now() |> DateTime.truncate(:second)
+          )
         else
-          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :running}))
+          Ash.Changeset.add_error(
+            changeset,
+            Ash.Error.Changes.InvalidAttribute.exception(
+              field: :status,
+              message: "must equal %{value}",
+              vars: %{value: :running}
+            )
+          )
         end
-      end
+      end)
+
       # message: "只有运行中状态可以完成"
-      require_atomic? false
+      require_atomic?(false)
     end
+
     update :complete_infeasible do
-      description "求解完成（不可行）
+      description("求解完成（不可行）
 
-求解完成（不可行）. doc_url: graphql://contract/scheduling/complete_infeasible_scheduling_solver_run"
-      accept [:hard_violation_count, :warning_count, :output_snapshot, :error_message]
-      change fn changeset, _ctx ->
+求解完成（不可行）. doc_url: graphql://contract/scheduling/complete_infeasible_scheduling_solver_run")
+      accept([:hard_violation_count, :warning_count, :output_snapshot, :error_message])
+
+      change(fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
+
         if current == :running do
           changeset
+          |> Ash.Changeset.force_change_attribute(:status, :infeasible)
+          |> Ash.Changeset.force_change_attribute(
+            :completed_at,
+            DateTime.utc_now() |> DateTime.truncate(:second)
+          )
         else
-          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :running}))
+          Ash.Changeset.add_error(
+            changeset,
+            Ash.Error.Changes.InvalidAttribute.exception(
+              field: :status,
+              message: "must equal %{value}",
+              vars: %{value: :running}
+            )
+          )
         end
-      end
+      end)
+
       # message: "只有运行中状态可以完成"
-      require_atomic? false
+      require_atomic?(false)
     end
+
     update :mark_timeout do
-      description "求解超时
+      description("求解超时
 
-求解超时. doc_url: graphql://contract/scheduling/mark_timeout_scheduling_solver_run"
-      accept [:score, :hard_violation_count, :warning_count, :output_snapshot]
-      change fn changeset, _ctx ->
+求解超时. doc_url: graphql://contract/scheduling/mark_timeout_scheduling_solver_run")
+      accept([:score, :hard_violation_count, :warning_count, :output_snapshot])
+
+      change(fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
+
         if current == :running do
           changeset
+          |> Ash.Changeset.force_change_attribute(:status, :timeout)
+          |> Ash.Changeset.force_change_attribute(
+            :completed_at,
+            DateTime.utc_now() |> DateTime.truncate(:second)
+          )
         else
-          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :running}))
+          Ash.Changeset.add_error(
+            changeset,
+            Ash.Error.Changes.InvalidAttribute.exception(
+              field: :status,
+              message: "must equal %{value}",
+              vars: %{value: :running}
+            )
+          )
         end
-      end
+      end)
+
       # message: "只有运行中状态可以完成"
-      require_atomic? false
+      require_atomic?(false)
     end
+
     update :mark_error do
-      description "求解出错
+      description("求解出错
 
-求解出错. doc_url: graphql://contract/scheduling/mark_error_scheduling_solver_run"
-      accept [:error_message]
-      change fn changeset, _ctx ->
+求解出错. doc_url: graphql://contract/scheduling/mark_error_scheduling_solver_run")
+      accept([:error_message])
+
+      change(fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
+
         if current == :running do
           changeset
+          |> Ash.Changeset.force_change_attribute(:status, :error)
+          |> Ash.Changeset.force_change_attribute(
+            :completed_at,
+            DateTime.utc_now() |> DateTime.truncate(:second)
+          )
         else
-          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :running}))
+          Ash.Changeset.add_error(
+            changeset,
+            Ash.Error.Changes.InvalidAttribute.exception(
+              field: :status,
+              message: "must equal %{value}",
+              vars: %{value: :running}
+            )
+          )
         end
-      end
-      # message: "只有运行中状态可以完成"
-      require_atomic? false
-    end
-    update :mark_completed do
-      description "最终完成（用户确认采用此结果）
+      end)
 
-最终完成（用户确认采用此结果）. doc_url: graphql://contract/scheduling/mark_completed_scheduling_solver_run"
-      accept []
-      require_atomic? false
+      # message: "只有运行中状态可以完成"
+      require_atomic?(false)
+    end
+
+    update :mark_completed do
+      description("最终完成（用户确认采用此结果）
+
+最终完成（用户确认采用此结果）. doc_url: graphql://contract/scheduling/mark_completed_scheduling_solver_run")
+      accept([])
+
+      change(fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+
+        if current in [:feasible, :timeout] do
+          Ash.Changeset.force_change_attribute(changeset, :status, :completed)
+        else
+          Ash.Changeset.add_error(
+            changeset,
+            Ash.Error.Changes.InvalidAttribute.exception(
+              field: :status,
+              message: "must be one of %{values}",
+              vars: %{values: [:feasible, :timeout]}
+            )
+          )
+        end
+      end)
+
+      require_atomic?(false)
     end
   end
 
   paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
+    change_tracking_mode(:full_diff)
+    store_action_name?(true)
+    ignore_attributes([:inserted_at, :updated_at])
   end
-
 end

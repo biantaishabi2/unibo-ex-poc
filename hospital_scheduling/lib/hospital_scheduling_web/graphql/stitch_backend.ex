@@ -19,11 +19,14 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
       {:ok,
        %{}
        |> Map.put("page_id", page_id)
-       |> Map.put("backend", %{}
+       |> Map.put(
+         "backend",
+         %{}
          |> Map.put("mode", "api")
          |> Map.put("api", %{"module" => Atom.to_string(__MODULE__), "fun" => "dispatch"})
          |> Map.put("load", %{"event" => @load_event})
-         |> Map.put("api_map", map_get(page, "api_map") || %{}))}
+         |> Map.put("api_map", map_get(page, "api_map") || %{})
+       )}
     end
   end
 
@@ -70,7 +73,14 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
 
   defp resolve_operation(page, event, params) do
     api_map = normalize_map(map_get(page, "api_map"))
-    api_key = resolve_api_key(api_map, normalize_string(event), normalize_string(map_get(page, "page_kind")), params)
+
+    api_key =
+      resolve_api_key(
+        api_map,
+        normalize_string(event),
+        normalize_string(map_get(page, "page_kind")),
+        params
+      )
 
     with false <- api_key == "",
          api_ref when is_binary(api_ref) and api_ref != "" <- map_get(api_map, api_key),
@@ -104,13 +114,16 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
       map_has_key?(api_map, stripped) ->
         stripped
 
-      page_kind == "list" and normalized in ["filter_submit", "search_submit", "reload", "refresh", "form_submit"] and map_has_key?(api_map, "list") ->
+      page_kind == "list" and
+        normalized in ["filter_submit", "search_submit", "reload", "refresh", "form_submit"] and
+          map_has_key?(api_map, "list") ->
         "list"
 
       page_kind == "detail" and normalized == "form_submit" and map_has_key?(api_map, "update") ->
         "update"
 
-      page_kind == "detail" and normalize_string(map_get(params, "id")) != "" and map_has_key?(api_map, "get") ->
+      page_kind == "detail" and normalize_string(map_get(params, "id")) != "" and
+          map_has_key?(api_map, "get") ->
         "get"
 
       true ->
@@ -121,8 +134,7 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
   defp parse_api_ref(api_ref) when is_binary(api_ref) do
     case String.split(api_ref, ".", trim: true) do
       [domain, entity, action] ->
-        {:ok,
-         %{"domain" => domain, "entity" => entity, "action" => action}}
+        {:ok, %{"domain" => domain, "entity" => entity, "action" => action}}
 
       _ ->
         {:error, :stitch_backend_api_ref_invalid}
@@ -164,9 +176,7 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
 
     case api_key do
       "list" ->
-        {:ok,
-         "query StitchList { #{field} { results { #{selection} } count } }",
-         %{}}
+        {:ok, "query StitchList { #{field} { results { #{selection} } count } }", %{}}
 
       "get" ->
         id =
@@ -174,9 +184,7 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
             normalize_string(map_get(state, "id")) ||
             normalize_string(map_get(map_get(state, "record") || %{}, "id"))
 
-        {:ok,
-         "query StitchGet($id: ID) { #{field}(id: $id) { #{selection} } }",
-         %{"id" => id}}
+        {:ok, "query StitchGet($id: ID) { #{field}(id: $id) { #{selection} } }", %{"id" => id}}
 
       _ ->
         input = sanitize_input_params(params)
@@ -214,7 +222,10 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
       |> put_if_present(:current_user, map_get(state, "current_user"))
       |> put_if_present(:auth_claims, map_get(state, "auth_claims"))
 
-    struct(Plug.Conn, %{req_headers: normalize_headers(map_get(state, "headers")), assigns: assigns})
+    struct(Plug.Conn, %{
+      req_headers: normalize_headers(map_get(state, "headers")),
+      assigns: assigns
+    })
   end
 
   defp normalize_backend_result(page, operation, result) when is_map(result) do
@@ -231,10 +242,15 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
      |> Map.put(:status, status)
      |> Map.put(:effects, [])
      |> Map.put(:errors, errors)
-     |> Map.put(:meta, %{"page_id" => map_get(page, "page_id"), "field" => field, "api_key" => map_get(operation, "api_key")})}
+     |> Map.put(:meta, %{
+       "page_id" => map_get(page, "page_id"),
+       "field" => field,
+       "api_key" => map_get(operation, "api_key")
+     })}
   end
 
-  defp normalize_backend_result(_page, _operation, _result), do: {:error, :stitch_backend_invalid_result}
+  defp normalize_backend_result(_page, _operation, _result),
+    do: {:error, :stitch_backend_invalid_result}
 
   defp adapt_status(page, operation, value) do
     defaults =
@@ -377,9 +393,12 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
 
   defp map_get(map, key) when is_map(map) and is_binary(key) do
     Enum.find_value(map, fn
-      {existing_key, value} when is_binary(existing_key) and existing_key == key -> value
+      {existing_key, value} when is_binary(existing_key) and existing_key == key ->
+        value
+
       {existing_key, value} when is_atom(existing_key) ->
         if Atom.to_string(existing_key) == key, do: value, else: nil
+
       _ ->
         nil
     end)

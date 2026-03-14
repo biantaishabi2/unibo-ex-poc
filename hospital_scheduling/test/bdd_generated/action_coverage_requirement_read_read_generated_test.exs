@@ -10,15 +10,63 @@ defmodule HospitalScheduling.BDD.Generated.ActionCoverageRequirementReadReadTest
   @tag :seed
   test "[BDD-SCHEDULING_COVERAGE_REQUIREMENT_READ_READ-SEED-action_coverage_requirement_read_read]" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
-    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_COVERAGE_REQUIREMENT_READ_READ-SEED-action_coverage_requirement_read_read"}
+
+    ctx = %{
+      run_id: run_id,
+      scenario_id:
+        "BDD-SCHEDULING_COVERAGE_REQUIREMENT_READ_READ-SEED-action_coverage_requirement_read_read"
+    }
+
     # line 2: GIVEN given_seed_context id="action_coverage_requirement_read_read" module="SCHEDULING_COVERAGE_REQUIREMENT"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_coverage_requirement_read_read", module: "SCHEDULING_COVERAGE_REQUIREMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_coverage_requirement_read_read.dsl", line: 2, raw: "GIVEN given_seed_context id=\"action_coverage_requirement_read_read\" module=\"SCHEDULING_COVERAGE_REQUIREMENT\""}, 2)
+    ctx =
+      HospitalScheduling.BDD.Instructions.V1.run_step!(
+        ctx,
+        :given,
+        :given_seed_context,
+        %{id: "action_coverage_requirement_read_read", module: "SCHEDULING_COVERAGE_REQUIREMENT"},
+        %{
+          file:
+            "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_coverage_requirement_read_read.dsl",
+          line: 2,
+          raw:
+            "GIVEN given_seed_context id=\"action_coverage_requirement_read_read\" module=\"SCHEDULING_COVERAGE_REQUIREMENT\""
+        },
+        2
+      )
+
     # line 3: WHEN when_execute_seed_contract module="SCHEDULING_COVERAGE_REQUIREMENT"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_COVERAGE_REQUIREMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_coverage_requirement_read_read.dsl", line: 3, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_COVERAGE_REQUIREMENT\""}, 3)
+    ctx =
+      HospitalScheduling.BDD.Instructions.V1.run_step!(
+        ctx,
+        :when,
+        :when_execute_seed_contract,
+        %{module: "SCHEDULING_COVERAGE_REQUIREMENT"},
+        %{
+          file:
+            "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_coverage_requirement_read_read.dsl",
+          line: 3,
+          raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_COVERAGE_REQUIREMENT\""
+        },
+        3
+      )
+
     # line 4: THEN then_seed_contract_should_hold module="SCHEDULING_COVERAGE_REQUIREMENT"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_COVERAGE_REQUIREMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_coverage_requirement_read_read.dsl", line: 4, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_COVERAGE_REQUIREMENT\""}, 4)
+    ctx =
+      HospitalScheduling.BDD.Instructions.V1.run_step!(
+        ctx,
+        :then,
+        :then_seed_contract_should_hold,
+        %{module: "SCHEDULING_COVERAGE_REQUIREMENT"},
+        %{
+          file:
+            "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_coverage_requirement_read_read.dsl",
+          line: 4,
+          raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_COVERAGE_REQUIREMENT\""
+        },
+        4
+      )
+
     _ctx = ctx
     :ok
   end
-
 end

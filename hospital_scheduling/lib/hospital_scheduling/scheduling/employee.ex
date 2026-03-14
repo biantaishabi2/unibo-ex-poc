@@ -6,32 +6,30 @@ defmodule HospitalScheduling.Scheduling.Employee do
     extensions: [AshGraphql.Resource]
 
   resource do
-    description "跨域引用 HR.Employee（护士/医护人员）"
+    description("跨域引用 HR.Employee（护士/医护人员）")
   end
 
   postgres do
-    table "scheduling_employees"
-    repo HospitalScheduling.Repo
+    table("scheduling_employees")
+    repo(HospitalScheduling.Repo)
   end
 
   graphql do
-    type :scheduling_employee
+    type(:scheduling_employee)
 
     queries do
-      get :get_scheduling_employee, :read
-      list :list_scheduling_employees, :read
+      get(:get_scheduling_employee, :read)
+      list(:list_scheduling_employees, :read)
     end
-
   end
 
   attributes do
-    uuid_primary_key :id
-    attribute :employee_code, :string, public?: true
-    attribute :name, :string, public?: true
+    uuid_primary_key(:id)
+    attribute(:employee_code, :string, public?: true)
+    attribute(:name, :string, public?: true)
   end
 
   actions do
-    defaults [:read, :update]
+    defaults([:read, :update])
   end
-
 end
