@@ -55,12 +55,12 @@
           "global": null,
           "strategy": null
         },
-        "name": "scheduling_shift_preferences_versions_version_source_id_fkey",
+        "name": "scheduling_constraint_violations_versions_version_source_id_fkey",
         "on_delete": null,
         "on_update": null,
         "primary_key?": true,
         "schema": "public",
-        "table": "scheduling_shift_preferences"
+        "table": "scheduling_constraint_violations"
       },
       "scale": null,
       "size": null,
@@ -110,7 +110,7 @@
   "custom_indexes": [],
   "custom_statements": [],
   "has_create_action": true,
-  "hash": "188FB2A002FDCFC629F7CF7AF22A4FA957738ECBE7230426AF6678D5BDB90303",
+  "hash": "631A002641239A9CD801EAEB408AE1823B29305D0802EB27A55F93B3CAE7B490",
   "identities": [],
   "multitenancy": {
     "attribute": null,
@@ -119,5 +119,5 @@
   },
   "repo": "Elixir.HospitalScheduling.Repo",
   "schema": null,
-  "table": "scheduling_shift_preferences_versions"
+  "table": "scheduling_constraint_violations_versions"
 }

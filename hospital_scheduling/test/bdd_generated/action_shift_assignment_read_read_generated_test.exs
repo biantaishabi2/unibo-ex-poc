@@ -5,12 +5,12 @@ defmodule HospitalScheduling.BDD.Generated.ActionShiftAssignmentReadReadTest do
 
   @moduletag :bdd_generated
 
-  # Source: BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-action_shift_assignment_read_read
+  # Source: BDD-SCHEDULING_SHIFT_ASSIGNMENT_READ_READ-SEED-action_shift_assignment_read_read
   @tag :action_contract
   @tag :seed
-  test "[BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-action_shift_assignment_read_read]" do
+  test "[BDD-SCHEDULING_SHIFT_ASSIGNMENT_READ_READ-SEED-action_shift_assignment_read_read]" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
-    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-action_shift_assignment_read_read"}
+    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SHIFT_ASSIGNMENT_READ_READ-SEED-action_shift_assignment_read_read"}
     # line 2: GIVEN given_seed_context id="action_shift_assignment_read_read" module="SCHEDULING_SHIFT_ASSIGNMENT"
     ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_shift_assignment_read_read", module: "SCHEDULING_SHIFT_ASSIGNMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_shift_assignment_read_read.dsl", line: 2, raw: "GIVEN given_seed_context id=\"action_shift_assignment_read_read\" module=\"SCHEDULING_SHIFT_ASSIGNMENT\""}, 2)
     # line 3: WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"

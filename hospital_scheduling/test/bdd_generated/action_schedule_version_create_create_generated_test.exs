@@ -5,12 +5,12 @@ defmodule HospitalScheduling.BDD.Generated.ActionScheduleVersionCreateCreateTest
 
   @moduletag :bdd_generated
 
-  # Source: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_create_create
+  # Source: BDD-SCHEDULING_SCHEDULE_VERSION_CREATE_CREATE-SEED-action_schedule_version_create_create
   @tag :action_contract
   @tag :seed
-  test "[BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_create_create] SCHEDULING_SCHEDULE_VERSION contract seed scenario" do
+  test "[BDD-SCHEDULING_SCHEDULE_VERSION_CREATE_CREATE-SEED-action_schedule_version_create_create] SCHEDULING_SCHEDULE_VERSION contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
-    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_create_create"}
+    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULE_VERSION_CREATE_CREATE-SEED-action_schedule_version_create_create"}
     # line 2: GIVEN given_seed_context id="action_schedule_version_create_create" module="SCHEDULING_SCHEDULE_VERSION"
     ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_schedule_version_create_create", module: "SCHEDULING_SCHEDULE_VERSION"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_schedule_version_create_create.dsl", line: 2, raw: "GIVEN given_seed_context id=\"action_schedule_version_create_create\" module=\"SCHEDULING_SCHEDULE_VERSION\""}, 2)
     # line 3: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"

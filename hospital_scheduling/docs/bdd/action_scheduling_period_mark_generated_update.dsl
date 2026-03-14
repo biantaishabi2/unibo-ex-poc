@@ -1,4 +1,4 @@
-[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_mark_generated_update] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed action_contract
-GIVEN given_seed_context id="action_scheduling_period_mark_generated_update" module="SCHEDULING_SCHEDULING_PERIOD"
-WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD_MARK_GENERATED_UPDATE-SEED-action_scheduling_period_mark_generated_update] TITLE: SCHEDULING_SCHEDULING_PERIOD_MARK_GENERATED contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="action_scheduling_period_mark_generated_update" module="SCHEDULING_SCHEDULING_PERIOD_MARK_GENERATED"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD_MARK_GENERATED"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD_MARK_GENERATED"

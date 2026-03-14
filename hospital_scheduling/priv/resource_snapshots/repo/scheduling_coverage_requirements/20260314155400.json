@@ -21,8 +21,8 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "code",
-      "type": "text"
+      "source": "requirement_date",
+      "type": "date"
     },
     {
       "allow_nil?": false,
@@ -33,56 +33,8 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "name",
+      "source": "role_code",
       "type": "text"
-    },
-    {
-      "allow_nil?": false,
-      "default": "nil",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": null,
-      "scale": null,
-      "size": null,
-      "source": "start_time",
-      "type": "text"
-    },
-    {
-      "allow_nil?": false,
-      "default": "nil",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": null,
-      "scale": null,
-      "size": null,
-      "source": "end_time",
-      "type": "text"
-    },
-    {
-      "allow_nil?": false,
-      "default": "nil",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": null,
-      "scale": null,
-      "size": null,
-      "source": "duration_hours",
-      "type": "decimal"
-    },
-    {
-      "allow_nil?": false,
-      "default": "false",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": null,
-      "scale": null,
-      "size": null,
-      "source": "is_night",
-      "type": "boolean"
     },
     {
       "allow_nil?": true,
@@ -93,8 +45,44 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "color",
+      "source": "role_name",
       "type": "text"
+    },
+    {
+      "allow_nil?": true,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "required_skill_tags",
+      "type": "text"
+    },
+    {
+      "allow_nil?": false,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "min_headcount",
+      "type": "bigint"
+    },
+    {
+      "allow_nil?": true,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "target_headcount",
+      "type": "bigint"
     },
     {
       "allow_nil?": false,
@@ -105,20 +93,32 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "sort_order",
+      "source": "required_lead_count",
       "type": "bigint"
     },
     {
       "allow_nil?": false,
-      "default": "true",
+      "default": "100",
       "generated?": false,
       "precision": null,
       "primary_key?": false,
       "references": null,
       "scale": null,
       "size": null,
-      "source": "enabled",
-      "type": "boolean"
+      "source": "priority",
+      "type": "bigint"
+    },
+    {
+      "allow_nil?": true,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "notes",
+      "type": "text"
     },
     {
       "allow_nil?": false,
@@ -175,16 +175,47 @@
           "global": null,
           "strategy": null
         },
-        "name": "scheduling_shift_types_department_id_fkey",
+        "name": "scheduling_coverage_requirements_period_id_fkey",
         "on_delete": null,
         "on_update": null,
         "primary_key?": true,
         "schema": "public",
-        "table": "scheduling_departments"
+        "table": "scheduling_periods"
       },
       "scale": null,
       "size": null,
-      "source": "department_id",
+      "source": "period_id",
+      "type": "uuid"
+    },
+    {
+      "allow_nil?": false,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": {
+        "deferrable": false,
+        "destination_attribute": "id",
+        "destination_attribute_default": null,
+        "destination_attribute_generated": null,
+        "index?": false,
+        "match_type": null,
+        "match_with": null,
+        "multitenancy": {
+          "attribute": null,
+          "global": null,
+          "strategy": null
+        },
+        "name": "scheduling_coverage_requirements_shift_type_id_fkey",
+        "on_delete": null,
+        "on_update": null,
+        "primary_key?": true,
+        "schema": "public",
+        "table": "scheduling_shift_types"
+      },
+      "scale": null,
+      "size": null,
+      "source": "shift_type_id",
       "type": "uuid"
     }
   ],
@@ -194,23 +225,31 @@
   "custom_indexes": [],
   "custom_statements": [],
   "has_create_action": true,
-  "hash": "67B6A52B832274121E664144EB28546055484AC662D2C6F66B5F0A7E03E91E36",
+  "hash": "FD2DD64292B983ADE7A139B23A490E2E2A1892B14A0F56C26827D1B29C84129C",
   "identities": [
     {
       "all_tenants?": false,
       "base_filter": null,
-      "index_name": "idx_scheduling_shift_types_unique_dept_shift_code",
+      "index_name": "idx_scheduling_coverage_requirements_unique_period_dat_461f704c",
       "keys": [
         {
           "type": "atom",
-          "value": "department_id"
+          "value": "period_id"
         },
         {
           "type": "atom",
-          "value": "code"
+          "value": "requirement_date"
+        },
+        {
+          "type": "atom",
+          "value": "shift_type_id"
+        },
+        {
+          "type": "atom",
+          "value": "role_code"
         }
       ],
-      "name": "unique_dept_shift_code",
+      "name": "unique_period_date_shift_role",
       "nils_distinct?": true,
       "where": null
     }
@@ -222,5 +261,5 @@
   },
   "repo": "Elixir.HospitalScheduling.Repo",
   "schema": null,
-  "table": "scheduling_shift_types"
+  "table": "scheduling_coverage_requirements"
 }

@@ -21,43 +21,7 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "requirement_date",
-      "type": "date"
-    },
-    {
-      "allow_nil?": false,
-      "default": "nil",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": null,
-      "scale": null,
-      "size": null,
-      "source": "role_code",
-      "type": "text"
-    },
-    {
-      "allow_nil?": true,
-      "default": "nil",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": null,
-      "scale": null,
-      "size": null,
-      "source": "role_name",
-      "type": "text"
-    },
-    {
-      "allow_nil?": true,
-      "default": "nil",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": null,
-      "scale": null,
-      "size": null,
-      "source": "required_skill_tags",
+      "source": "rule_code",
       "type": "text"
     },
     {
@@ -69,11 +33,11 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "min_headcount",
-      "type": "bigint"
+      "source": "severity",
+      "type": "text"
     },
     {
-      "allow_nil?": true,
+      "allow_nil?": false,
       "default": "nil",
       "generated?": false,
       "precision": null,
@@ -81,35 +45,11 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "target_headcount",
-      "type": "bigint"
+      "source": "message",
+      "type": "text"
     },
     {
       "allow_nil?": false,
-      "default": "0",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": null,
-      "scale": null,
-      "size": null,
-      "source": "required_lead_count",
-      "type": "bigint"
-    },
-    {
-      "allow_nil?": false,
-      "default": "100",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": null,
-      "scale": null,
-      "size": null,
-      "source": "priority",
-      "type": "bigint"
-    },
-    {
-      "allow_nil?": true,
       "default": "nil",
       "generated?": false,
       "precision": null,
@@ -117,7 +57,7 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "notes",
+      "source": "details_json",
       "type": "text"
     },
     {
@@ -130,18 +70,6 @@
       "scale": null,
       "size": null,
       "source": "inserted_at",
-      "type": "utc_datetime_usec"
-    },
-    {
-      "allow_nil?": false,
-      "default": "fragment(\"(now() AT TIME ZONE 'utc')\")",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": null,
-      "scale": null,
-      "size": null,
-      "source": "updated_at",
       "type": "utc_datetime_usec"
     },
     {
@@ -175,7 +103,7 @@
           "global": null,
           "strategy": null
         },
-        "name": "scheduling_coverage_requirements_period_id_fkey",
+        "name": "scheduling_constraint_violations_period_id_fkey",
         "on_delete": null,
         "on_update": null,
         "primary_key?": true,
@@ -206,16 +134,78 @@
           "global": null,
           "strategy": null
         },
-        "name": "scheduling_coverage_requirements_shift_type_id_fkey",
+        "name": "scheduling_constraint_violations_version_id_fkey",
         "on_delete": null,
         "on_update": null,
         "primary_key?": true,
         "schema": "public",
-        "table": "scheduling_shift_types"
+        "table": "scheduling_schedule_versions"
       },
       "scale": null,
       "size": null,
-      "source": "shift_type_id",
+      "source": "version_id",
+      "type": "uuid"
+    },
+    {
+      "allow_nil?": true,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": {
+        "deferrable": false,
+        "destination_attribute": "id",
+        "destination_attribute_default": null,
+        "destination_attribute_generated": null,
+        "index?": false,
+        "match_type": null,
+        "match_with": null,
+        "multitenancy": {
+          "attribute": null,
+          "global": null,
+          "strategy": null
+        },
+        "name": "scheduling_constraint_violations_assignment_id_fkey",
+        "on_delete": null,
+        "on_update": null,
+        "primary_key?": true,
+        "schema": "public",
+        "table": "scheduling_shift_assignments"
+      },
+      "scale": null,
+      "size": null,
+      "source": "assignment_id",
+      "type": "uuid"
+    },
+    {
+      "allow_nil?": true,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": {
+        "deferrable": false,
+        "destination_attribute": "id",
+        "destination_attribute_default": null,
+        "destination_attribute_generated": null,
+        "index?": false,
+        "match_type": null,
+        "match_with": null,
+        "multitenancy": {
+          "attribute": null,
+          "global": null,
+          "strategy": null
+        },
+        "name": "scheduling_constraint_violations_requirement_id_fkey",
+        "on_delete": null,
+        "on_update": null,
+        "primary_key?": true,
+        "schema": "public",
+        "table": "scheduling_coverage_requirements"
+      },
+      "scale": null,
+      "size": null,
+      "source": "requirement_id",
       "type": "uuid"
     }
   ],
@@ -225,35 +215,8 @@
   "custom_indexes": [],
   "custom_statements": [],
   "has_create_action": true,
-  "hash": "638DC7BED8D2A58715D822C02C6252778F714869C613F3C15B954CFFD34020DE",
-  "identities": [
-    {
-      "all_tenants?": false,
-      "base_filter": null,
-      "index_name": "idx_scheduling_coverage_requirements_unique_period_dat_461f704c",
-      "keys": [
-        {
-          "type": "atom",
-          "value": "period_id"
-        },
-        {
-          "type": "atom",
-          "value": "requirement_date"
-        },
-        {
-          "type": "atom",
-          "value": "shift_type_id"
-        },
-        {
-          "type": "atom",
-          "value": "role_code"
-        }
-      ],
-      "name": "unique_period_date_shift_role",
-      "nils_distinct?": true,
-      "where": null
-    }
-  ],
+  "hash": "79C29764C4FE4BC75E98B3C0CCD1665E1E3687434D820EA53067637AFECE1F65",
+  "identities": [],
   "multitenancy": {
     "attribute": null,
     "global": null,
@@ -261,5 +224,5 @@
   },
   "repo": "Elixir.HospitalScheduling.Repo",
   "schema": null,
-  "table": "scheduling_coverage_requirements"
+  "table": "scheduling_constraint_violations"
 }

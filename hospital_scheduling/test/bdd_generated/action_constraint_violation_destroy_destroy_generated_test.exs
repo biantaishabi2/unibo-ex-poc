@@ -5,12 +5,12 @@ defmodule HospitalScheduling.BDD.Generated.ActionConstraintViolationDestroyDestr
 
   @moduletag :bdd_generated
 
-  # Source: BDD-SCHEDULING_CONSTRAINT_VIOLATION-SEED-action_constraint_violation_destroy_destroy
+  # Source: BDD-SCHEDULING_CONSTRAINT_VIOLATION_DESTROY_DESTROY-SEED-action_constraint_violation_destroy_destroy
   @tag :action_contract
   @tag :seed
-  test "[BDD-SCHEDULING_CONSTRAINT_VIOLATION-SEED-action_constraint_violation_destroy_destroy]" do
+  test "[BDD-SCHEDULING_CONSTRAINT_VIOLATION_DESTROY_DESTROY-SEED-action_constraint_violation_destroy_destroy]" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
-    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_CONSTRAINT_VIOLATION-SEED-action_constraint_violation_destroy_destroy"}
+    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_CONSTRAINT_VIOLATION_DESTROY_DESTROY-SEED-action_constraint_violation_destroy_destroy"}
     # line 2: GIVEN given_seed_context id="action_constraint_violation_destroy_destroy" module="SCHEDULING_CONSTRAINT_VIOLATION"
     ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_constraint_violation_destroy_destroy", module: "SCHEDULING_CONSTRAINT_VIOLATION"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_constraint_violation_destroy_destroy.dsl", line: 2, raw: "GIVEN given_seed_context id=\"action_constraint_violation_destroy_destroy\" module=\"SCHEDULING_CONSTRAINT_VIOLATION\""}, 2)
     # line 3: WHEN when_execute_seed_contract module="SCHEDULING_CONSTRAINT_VIOLATION"

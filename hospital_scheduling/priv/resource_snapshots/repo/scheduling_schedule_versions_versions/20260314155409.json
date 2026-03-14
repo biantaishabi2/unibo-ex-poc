@@ -55,12 +55,12 @@
           "global": null,
           "strategy": null
         },
-        "name": "scheduling_constraints_versions_version_source_id_fkey",
+        "name": "scheduling_schedule_versions_versions_version_source_id_fkey",
         "on_delete": null,
         "on_update": null,
         "primary_key?": true,
         "schema": "public",
-        "table": "scheduling_constraints"
+        "table": "scheduling_schedule_versions"
       },
       "scale": null,
       "size": null,
@@ -110,7 +110,7 @@
   "custom_indexes": [],
   "custom_statements": [],
   "has_create_action": true,
-  "hash": "74AFF8395A7A0ECCE74314D2E78124C8A37B930FB28071CF91D8336334532E23",
+  "hash": "425B7F81E2FA5545FC249707341A363EA6439BC24AD024503A0C6A5A2B552FE2",
   "identities": [],
   "multitenancy": {
     "attribute": null,
@@ -119,5 +119,5 @@
   },
   "repo": "Elixir.HospitalScheduling.Repo",
   "schema": null,
-  "table": "scheduling_constraints_versions"
+  "table": "scheduling_schedule_versions_versions"
 }

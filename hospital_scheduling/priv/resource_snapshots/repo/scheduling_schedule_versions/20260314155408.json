@@ -21,31 +21,31 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "start_date",
-      "type": "date"
+      "source": "version_no",
+      "type": "bigint"
     },
     {
       "allow_nil?": false,
-      "default": "nil",
+      "default": "\"working\"",
       "generated?": false,
       "precision": null,
       "primary_key?": false,
       "references": null,
       "scale": null,
       "size": null,
-      "source": "end_date",
-      "type": "date"
+      "source": "status",
+      "type": "text"
     },
     {
       "allow_nil?": false,
-      "default": "\"draft\"",
+      "default": "\"manual\"",
       "generated?": false,
       "precision": null,
       "primary_key?": false,
       "references": null,
       "scale": null,
       "size": null,
-      "source": "state",
+      "source": "origin_type",
       "type": "text"
     },
     {
@@ -57,8 +57,8 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "title",
-      "type": "text"
+      "source": "created_by",
+      "type": "uuid"
     },
     {
       "allow_nil?": true,
@@ -69,7 +69,7 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "notes",
+      "source": "change_summary",
       "type": "text"
     },
     {
@@ -97,18 +97,6 @@
       "type": "utc_datetime_usec"
     },
     {
-      "allow_nil?": true,
-      "default": "nil",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": null,
-      "scale": null,
-      "size": null,
-      "source": "archived_at",
-      "type": "utc_datetime_usec"
-    },
-    {
       "allow_nil?": false,
       "default": "nil",
       "generated?": false,
@@ -127,16 +115,16 @@
           "global": null,
           "strategy": null
         },
-        "name": "scheduling_periods_department_id_fkey",
+        "name": "scheduling_schedule_versions_period_id_fkey",
         "on_delete": null,
         "on_update": null,
         "primary_key?": true,
         "schema": "public",
-        "table": "scheduling_departments"
+        "table": "scheduling_periods"
       },
       "scale": null,
       "size": null,
-      "source": "department_id",
+      "source": "period_id",
       "type": "uuid"
     },
     {
@@ -158,69 +146,7 @@
           "global": null,
           "strategy": null
         },
-        "name": "scheduling_periods_current_version_id_fkey",
-        "on_delete": null,
-        "on_update": null,
-        "primary_key?": true,
-        "schema": "public",
-        "table": "scheduling_schedule_versions"
-      },
-      "scale": null,
-      "size": null,
-      "source": "current_version_id",
-      "type": "uuid"
-    },
-    {
-      "allow_nil?": true,
-      "default": "nil",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": {
-        "deferrable": false,
-        "destination_attribute": "id",
-        "destination_attribute_default": null,
-        "destination_attribute_generated": null,
-        "index?": false,
-        "match_type": null,
-        "match_with": null,
-        "multitenancy": {
-          "attribute": null,
-          "global": null,
-          "strategy": null
-        },
-        "name": "scheduling_periods_published_version_id_fkey",
-        "on_delete": null,
-        "on_update": null,
-        "primary_key?": true,
-        "schema": "public",
-        "table": "scheduling_schedule_versions"
-      },
-      "scale": null,
-      "size": null,
-      "source": "published_version_id",
-      "type": "uuid"
-    },
-    {
-      "allow_nil?": true,
-      "default": "nil",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": {
-        "deferrable": false,
-        "destination_attribute": "id",
-        "destination_attribute_default": null,
-        "destination_attribute_generated": null,
-        "index?": false,
-        "match_type": null,
-        "match_with": null,
-        "multitenancy": {
-          "attribute": null,
-          "global": null,
-          "strategy": null
-        },
-        "name": "scheduling_periods_last_solver_run_id_fkey",
+        "name": "scheduling_schedule_versions_based_on_run_id_fkey",
         "on_delete": null,
         "on_update": null,
         "primary_key?": true,
@@ -229,7 +155,38 @@
       },
       "scale": null,
       "size": null,
-      "source": "last_solver_run_id",
+      "source": "based_on_run_id",
+      "type": "uuid"
+    },
+    {
+      "allow_nil?": true,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": {
+        "deferrable": false,
+        "destination_attribute": "id",
+        "destination_attribute_default": null,
+        "destination_attribute_generated": null,
+        "index?": false,
+        "match_type": null,
+        "match_with": null,
+        "multitenancy": {
+          "attribute": null,
+          "global": null,
+          "strategy": null
+        },
+        "name": "scheduling_schedule_versions_source_version_id_fkey",
+        "on_delete": null,
+        "on_update": null,
+        "primary_key?": true,
+        "schema": "public",
+        "table": "scheduling_schedule_versions"
+      },
+      "scale": null,
+      "size": null,
+      "source": "source_version_id",
       "type": "uuid"
     }
   ],
@@ -239,8 +196,27 @@
   "custom_indexes": [],
   "custom_statements": [],
   "has_create_action": true,
-  "hash": "60A927A319F7DCEB4BE3AD6C53EE6A544D7BE3263194A3486BB3F3A2358EF67E",
-  "identities": [],
+  "hash": "1D7175412D1E58FBEDE5FD808A04C80085FC2E350B01E2EEE02B7633B7006966",
+  "identities": [
+    {
+      "all_tenants?": false,
+      "base_filter": null,
+      "index_name": "idx_scheduling_schedule_versions_unique_period_version_no",
+      "keys": [
+        {
+          "type": "atom",
+          "value": "period_id"
+        },
+        {
+          "type": "atom",
+          "value": "version_no"
+        }
+      ],
+      "name": "unique_period_version_no",
+      "nils_distinct?": true,
+      "where": null
+    }
+  ],
   "multitenancy": {
     "attribute": null,
     "global": null,
@@ -248,5 +224,5 @@
   },
   "repo": "Elixir.HospitalScheduling.Repo",
   "schema": null,
-  "table": "scheduling_periods"
+  "table": "scheduling_schedule_versions"
 }

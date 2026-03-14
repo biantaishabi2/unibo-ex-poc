@@ -266,6 +266,20 @@
             "description": "例如\"ICU 2026-04 月排班\""
           },
           {
+            "name": "generation_mode",
+            "type": "enum",
+            "required": true,
+            "default": "blank",
+            "constraints": {
+              "values": [
+                "blank",
+                "cloned_from_previous",
+                "solver_seeded"
+              ]
+            },
+            "description": "排班生成方式"
+          },
+          {
             "name": "notes",
             "type": "text",
             "description": "备注"
@@ -288,6 +302,18 @@
             "target": "Department",
             "foreign_key": "department_id",
             "required": true
+          },
+          {
+            "name": "source_period",
+            "type": "belongs_to",
+            "target": "SchedulingPeriod",
+            "foreign_key": "source_period_id"
+          },
+          {
+            "name": "source_version",
+            "type": "belongs_to",
+            "target": "ScheduleVersion",
+            "foreign_key": "source_version_id"
           },
           {
             "name": "current_version",
@@ -346,7 +372,8 @@
               "start_date",
               "end_date",
               "title",
-              "notes"
+              "notes",
+              "generation_mode"
             ],
             "primary": true
           },
@@ -680,6 +707,20 @@
             "description": "版本状态"
           },
           {
+            "name": "origin_type",
+            "type": "enum",
+            "required": true,
+            "default": "manual",
+            "constraints": {
+              "values": [
+                "manual",
+                "solver",
+                "cloned_from_previous"
+              ]
+            },
+            "description": "版本来源类型"
+          },
+          {
             "name": "created_by",
             "type": "uuid",
             "description": "操作者"
@@ -713,6 +754,12 @@
             "type": "belongs_to",
             "target": "SolverRun",
             "foreign_key": "based_on_run_id"
+          },
+          {
+            "name": "source_version",
+            "type": "belongs_to",
+            "target": "ScheduleVersion",
+            "foreign_key": "source_version_id"
           },
           {
             "name": "shift_assignments",
@@ -834,10 +881,11 @@
               "values": [
                 "auto",
                 "manual",
-                "swapped"
+                "swapped",
+                "copied"
               ]
             },
-            "description": "分配来源"
+            "description": "分配来源（copied = 从上一期复制）"
           },
           {
             "name": "is_locked",

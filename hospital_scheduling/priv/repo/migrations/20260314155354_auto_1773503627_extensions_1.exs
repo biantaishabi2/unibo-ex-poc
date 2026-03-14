@@ -1,4 +1,4 @@
-defmodule HospitalScheduling.Repo.Migrations.Auto1773500907Extensions1 do
+defmodule HospitalScheduling.Repo.Migrations.Auto1773503627Extensions1 do
   @moduledoc """
   Installs any extensions that are mentioned in the repo's `installed_extensions/0` callback
 

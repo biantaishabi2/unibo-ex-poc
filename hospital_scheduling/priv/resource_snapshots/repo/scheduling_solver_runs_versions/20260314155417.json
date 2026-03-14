@@ -55,12 +55,12 @@
           "global": null,
           "strategy": null
         },
-        "name": "scheduling_shift_types_versions_version_source_id_fkey",
+        "name": "scheduling_solver_runs_versions_version_source_id_fkey",
         "on_delete": null,
         "on_update": null,
         "primary_key?": true,
         "schema": "public",
-        "table": "scheduling_shift_types"
+        "table": "scheduling_solver_runs"
       },
       "scale": null,
       "size": null,
@@ -110,7 +110,7 @@
   "custom_indexes": [],
   "custom_statements": [],
   "has_create_action": true,
-  "hash": "25CE636A2A8012F59D876B28A3130C3A487C9634F73DF1F489B3865A1F720A30",
+  "hash": "B35367ADCD4825ED1FE43D4B9DE189CC85377386329FBE9158A673A15911007F",
   "identities": [],
   "multitenancy": {
     "attribute": null,
@@ -119,5 +119,5 @@
   },
   "repo": "Elixir.HospitalScheduling.Repo",
   "schema": null,
-  "table": "scheduling_shift_types_versions"
+  "table": "scheduling_solver_runs_versions"
 }

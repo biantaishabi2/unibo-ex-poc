@@ -55,12 +55,12 @@
           "global": null,
           "strategy": null
         },
-        "name": "scheduling_coverage_requirements_versions_version_source_id_fkey",
+        "name": "scheduling_shift_preferences_versions_version_source_id_fkey",
         "on_delete": null,
         "on_update": null,
         "primary_key?": true,
         "schema": "public",
-        "table": "scheduling_coverage_requirements"
+        "table": "scheduling_shift_preferences"
       },
       "scale": null,
       "size": null,
@@ -110,7 +110,7 @@
   "custom_indexes": [],
   "custom_statements": [],
   "has_create_action": true,
-  "hash": "68143D73A0B7F1787C43C11BCCEAE4E003BC1DE3EB9FC928B80D807FE53B256E",
+  "hash": "4C4D53F40DB3EE8CAF15CB8DE57449F1936CBDED8B1F736E84ADFFEA03712DDC",
   "identities": [],
   "multitenancy": {
     "attribute": null,
@@ -119,5 +119,5 @@
   },
   "repo": "Elixir.HospitalScheduling.Repo",
   "schema": null,
-  "table": "scheduling_coverage_requirements_versions"
+  "table": "scheduling_shift_preferences_versions"
 }

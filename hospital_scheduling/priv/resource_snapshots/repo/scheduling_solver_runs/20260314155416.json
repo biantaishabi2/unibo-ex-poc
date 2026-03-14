@@ -13,15 +13,27 @@
       "type": "uuid"
     },
     {
-      "allow_nil?": true,
-      "default": "nil",
+      "allow_nil?": false,
+      "default": "\"pending\"",
       "generated?": false,
       "precision": null,
       "primary_key?": false,
       "references": null,
       "scale": null,
       "size": null,
-      "source": "preferred_shift_tags",
+      "source": "status",
+      "type": "text"
+    },
+    {
+      "allow_nil?": false,
+      "default": "\"greedy_local_search\"",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "engine_type",
       "type": "text"
     },
     {
@@ -33,19 +45,19 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "unavailable_dates",
-      "type": "text"
+      "source": "seed",
+      "type": "bigint"
     },
     {
-      "allow_nil?": true,
-      "default": "nil",
+      "allow_nil?": false,
+      "default": "30000",
       "generated?": false,
       "precision": null,
       "primary_key?": false,
       "references": null,
       "scale": null,
       "size": null,
-      "source": "max_night_shifts",
+      "source": "timeout_ms",
       "type": "bigint"
     },
     {
@@ -57,7 +69,91 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "notes",
+      "source": "started_at",
+      "type": "utc_datetime"
+    },
+    {
+      "allow_nil?": true,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "completed_at",
+      "type": "utc_datetime"
+    },
+    {
+      "allow_nil?": true,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "score",
+      "type": "decimal"
+    },
+    {
+      "allow_nil?": false,
+      "default": "0",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "hard_violation_count",
+      "type": "bigint"
+    },
+    {
+      "allow_nil?": false,
+      "default": "0",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "warning_count",
+      "type": "bigint"
+    },
+    {
+      "allow_nil?": false,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "input_snapshot",
+      "type": "text"
+    },
+    {
+      "allow_nil?": true,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "output_snapshot",
+      "type": "text"
+    },
+    {
+      "allow_nil?": true,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "error_message",
       "type": "text"
     },
     {
@@ -85,18 +181,6 @@
       "type": "utc_datetime_usec"
     },
     {
-      "allow_nil?": true,
-      "default": "nil",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": null,
-      "scale": null,
-      "size": null,
-      "source": "archived_at",
-      "type": "utc_datetime_usec"
-    },
-    {
       "allow_nil?": false,
       "default": "nil",
       "generated?": false,
@@ -115,38 +199,7 @@
           "global": null,
           "strategy": null
         },
-        "name": "scheduling_shift_preferences_employee_id_fkey",
-        "on_delete": null,
-        "on_update": null,
-        "primary_key?": true,
-        "schema": "public",
-        "table": "scheduling_employees"
-      },
-      "scale": null,
-      "size": null,
-      "source": "employee_id",
-      "type": "uuid"
-    },
-    {
-      "allow_nil?": true,
-      "default": "nil",
-      "generated?": false,
-      "precision": null,
-      "primary_key?": false,
-      "references": {
-        "deferrable": false,
-        "destination_attribute": "id",
-        "destination_attribute_default": null,
-        "destination_attribute_generated": null,
-        "index?": false,
-        "match_type": null,
-        "match_with": null,
-        "multitenancy": {
-          "attribute": null,
-          "global": null,
-          "strategy": null
-        },
-        "name": "scheduling_shift_preferences_period_id_fkey",
+        "name": "scheduling_solver_runs_period_id_fkey",
         "on_delete": null,
         "on_update": null,
         "primary_key?": true,
@@ -165,7 +218,7 @@
   "custom_indexes": [],
   "custom_statements": [],
   "has_create_action": true,
-  "hash": "12EC0051220FA47F54B013E7F996336DB4F90C4E6F12729B1319F9B21AD8C70D",
+  "hash": "C3931FDDE77EE64A4D00793901326F554411E09E1B2B967A85670E4EF5B6935C",
   "identities": [],
   "multitenancy": {
     "attribute": null,
@@ -174,5 +227,5 @@
   },
   "repo": "Elixir.HospitalScheduling.Repo",
   "schema": null,
-  "table": "scheduling_shift_preferences"
+  "table": "scheduling_solver_runs"
 }

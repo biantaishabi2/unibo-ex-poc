@@ -73,6 +73,10 @@ msgstr ""
 msgid "例如\"ICU 2026-04 月排班\""
 msgstr ""
 
+#. domain: Scheduling, entity: SchedulingPeriod, attribute: generation_mode
+msgid "排班生成方式"
+msgstr ""
+
 #. domain: Scheduling, entity: SchedulingPeriod, attribute: notes
 msgid "备注"
 msgstr ""
@@ -141,6 +145,10 @@ msgstr ""
 msgid "版本状态"
 msgstr ""
 
+#. domain: Scheduling, entity: ScheduleVersion, attribute: origin_type
+msgid "版本来源类型"
+msgstr ""
+
 #. domain: Scheduling, entity: ScheduleVersion, attribute: created_by
 msgid "操作者"
 msgstr ""
@@ -170,7 +178,7 @@ msgid "结束时间（UTC）"
 msgstr ""
 
 #. domain: Scheduling, entity: ShiftAssignment, attribute: source
-msgid "分配来源"
+msgid "分配来源（copied = 从上一期复制）"
 msgstr ""
 
 #. domain: Scheduling, entity: ShiftAssignment, attribute: is_locked

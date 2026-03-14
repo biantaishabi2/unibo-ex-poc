@@ -1,4 +1,4 @@
-defmodule HospitalScheduling.Repo.Migrations.Auto1773500907 do
+defmodule HospitalScheduling.Repo.Migrations.Auto1773503627 do
   @moduledoc """
   Updates resources based on their most recent snapshots.
 
@@ -251,6 +251,7 @@ defmodule HospitalScheduling.Repo.Migrations.Auto1773500907 do
     alter table(:scheduling_schedule_versions) do
       add :version_no, :bigint, null: false
       add :status, :text, null: false, default: "working"
+      add :origin_type, :text, null: false, default: "manual"
       add :created_by, :uuid
       add :change_summary, :text
 
@@ -264,6 +265,7 @@ defmodule HospitalScheduling.Repo.Migrations.Auto1773500907 do
 
       add :period_id, :uuid, null: false
       add :based_on_run_id, :uuid
+      add :source_version_id, :uuid
     end
 
     create table(:scheduling_periods_versions, primary_key: false) do
@@ -322,6 +324,14 @@ defmodule HospitalScheduling.Repo.Migrations.Auto1773500907 do
                type: :uuid,
                prefix: "public"
              )
+
+      modify :source_version_id,
+             references(:scheduling_schedule_versions,
+               column: :id,
+               name: "scheduling_schedule_versions_source_version_id_fkey",
+               type: :uuid,
+               prefix: "public"
+             )
     end
 
     create unique_index(:scheduling_schedule_versions, [:period_id, :version_no],
@@ -343,6 +353,7 @@ defmodule HospitalScheduling.Repo.Migrations.Auto1773500907 do
       add :end_date, :date, null: false
       add :state, :text, null: false, default: "draft"
       add :title, :text
+      add :generation_mode, :text, null: false, default: "blank"
       add :notes, :text
 
       add :inserted_at, :utc_datetime_usec,
@@ -355,6 +366,8 @@ defmodule HospitalScheduling.Repo.Migrations.Auto1773500907 do
 
       add :archived_at, :utc_datetime_usec
       add :department_id, :uuid, null: false
+      add :source_period_id, :uuid
+      add :source_version_id, :uuid
       add :current_version_id, :uuid
       add :published_version_id, :uuid
       add :last_solver_run_id, :uuid
@@ -469,6 +482,22 @@ defmodule HospitalScheduling.Repo.Migrations.Auto1773500907 do
              references(:scheduling_departments,
                column: :id,
                name: "scheduling_periods_department_id_fkey",
+               type: :uuid,
+               prefix: "public"
+             )
+
+      modify :source_period_id,
+             references(:scheduling_periods,
+               column: :id,
+               name: "scheduling_periods_source_period_id_fkey",
+               type: :uuid,
+               prefix: "public"
+             )
+
+      modify :source_version_id,
+             references(:scheduling_schedule_versions,
+               column: :id,
+               name: "scheduling_periods_source_version_id_fkey",
                type: :uuid,
                prefix: "public"
              )
@@ -952,6 +981,10 @@ defmodule HospitalScheduling.Repo.Migrations.Auto1773500907 do
 
     drop constraint(:scheduling_periods, "scheduling_periods_department_id_fkey")
 
+    drop constraint(:scheduling_periods, "scheduling_periods_source_period_id_fkey")
+
+    drop constraint(:scheduling_periods, "scheduling_periods_source_version_id_fkey")
+
     drop constraint(:scheduling_periods, "scheduling_periods_current_version_id_fkey")
 
     drop constraint(:scheduling_periods, "scheduling_periods_published_version_id_fkey")
@@ -962,6 +995,8 @@ defmodule HospitalScheduling.Repo.Migrations.Auto1773500907 do
       modify :last_solver_run_id, :uuid
       modify :published_version_id, :uuid
       modify :current_version_id, :uuid
+      modify :source_version_id, :uuid
+      modify :source_period_id, :uuid
       modify :department_id, :uuid
     end
 
@@ -1034,11 +1069,14 @@ defmodule HospitalScheduling.Repo.Migrations.Auto1773500907 do
       remove :last_solver_run_id
       remove :published_version_id
       remove :current_version_id
+      remove :source_version_id
+      remove :source_period_id
       remove :department_id
       remove :archived_at
       remove :updated_at
       remove :inserted_at
       remove :notes
+      remove :generation_mode
       remove :title
       remove :state
       remove :end_date
@@ -1065,7 +1103,13 @@ defmodule HospitalScheduling.Repo.Migrations.Auto1773500907 do
            "scheduling_schedule_versions_based_on_run_id_fkey"
          )
 
+    drop constraint(
+           :scheduling_schedule_versions,
+           "scheduling_schedule_versions_source_version_id_fkey"
+         )
+
     alter table(:scheduling_schedule_versions) do
+      modify :source_version_id, :uuid
       modify :based_on_run_id, :uuid
       modify :period_id, :uuid
     end
@@ -1087,12 +1131,14 @@ defmodule HospitalScheduling.Repo.Migrations.Auto1773500907 do
     drop table(:scheduling_periods_versions)
 
     alter table(:scheduling_schedule_versions) do
+      remove :source_version_id
       remove :based_on_run_id
       remove :period_id
       remove :updated_at
       remove :inserted_at
       remove :change_summary
       remove :created_by
+      remove :origin_type
       remove :status
       remove :version_no
     end

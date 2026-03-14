@@ -14,14 +14,62 @@
     },
     {
       "allow_nil?": false,
-      "default": "\"0\"",
+      "default": "nil",
       "generated?": false,
       "precision": null,
       "primary_key?": false,
       "references": null,
       "scale": null,
       "size": null,
-      "source": "maturity_score",
+      "source": "code",
+      "type": "text"
+    },
+    {
+      "allow_nil?": false,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "name",
+      "type": "text"
+    },
+    {
+      "allow_nil?": false,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "start_time",
+      "type": "text"
+    },
+    {
+      "allow_nil?": false,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "end_time",
+      "type": "text"
+    },
+    {
+      "allow_nil?": false,
+      "default": "nil",
+      "generated?": false,
+      "precision": null,
+      "primary_key?": false,
+      "references": null,
+      "scale": null,
+      "size": null,
+      "source": "duration_hours",
       "type": "decimal"
     },
     {
@@ -33,7 +81,7 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "can_lead_shift",
+      "source": "is_night",
       "type": "boolean"
     },
     {
@@ -45,32 +93,32 @@
       "references": null,
       "scale": null,
       "size": null,
-      "source": "work_restrictions",
+      "source": "color",
       "type": "text"
     },
     {
       "allow_nil?": false,
-      "default": "false",
+      "default": "0",
       "generated?": false,
       "precision": null,
       "primary_key?": false,
       "references": null,
       "scale": null,
       "size": null,
-      "source": "overtime_willing",
-      "type": "boolean"
+      "source": "sort_order",
+      "type": "bigint"
     },
     {
-      "allow_nil?": true,
-      "default": "nil",
+      "allow_nil?": false,
+      "default": "true",
       "generated?": false,
       "precision": null,
       "primary_key?": false,
       "references": null,
       "scale": null,
       "size": null,
-      "source": "notes",
-      "type": "text"
+      "source": "enabled",
+      "type": "boolean"
     },
     {
       "allow_nil?": false,
@@ -97,35 +145,16 @@
       "type": "utc_datetime_usec"
     },
     {
-      "allow_nil?": false,
+      "allow_nil?": true,
       "default": "nil",
       "generated?": false,
       "precision": null,
       "primary_key?": false,
-      "references": {
-        "deferrable": false,
-        "destination_attribute": "id",
-        "destination_attribute_default": null,
-        "destination_attribute_generated": null,
-        "index?": false,
-        "match_type": null,
-        "match_with": null,
-        "multitenancy": {
-          "attribute": null,
-          "global": null,
-          "strategy": null
-        },
-        "name": "scheduling_medical_staff_profiles_employee_id_fkey",
-        "on_delete": null,
-        "on_update": null,
-        "primary_key?": true,
-        "schema": "public",
-        "table": "scheduling_employees"
-      },
+      "references": null,
       "scale": null,
       "size": null,
-      "source": "employee_id",
-      "type": "uuid"
+      "source": "archived_at",
+      "type": "utc_datetime_usec"
     },
     {
       "allow_nil?": false,
@@ -146,7 +175,7 @@
           "global": null,
           "strategy": null
         },
-        "name": "scheduling_medical_staff_profiles_department_id_fkey",
+        "name": "scheduling_shift_types_department_id_fkey",
         "on_delete": null,
         "on_update": null,
         "primary_key?": true,
@@ -165,23 +194,23 @@
   "custom_indexes": [],
   "custom_statements": [],
   "has_create_action": true,
-  "hash": "16B9188C0C01B697F20C63EC835ED6954A6BD6F0BFBBFE994F264452051D8F8A",
+  "hash": "04DCCEDF34937FA36EBA689E55F44DF4D39EC3B4B26A683B252E5E7DD42A5DEE",
   "identities": [
     {
       "all_tenants?": false,
       "base_filter": null,
-      "index_name": "idx_scheduling_medical_staff_profiles_unique_employee_fd7e3b5a",
+      "index_name": "idx_scheduling_shift_types_unique_dept_shift_code",
       "keys": [
         {
           "type": "atom",
-          "value": "employee_id"
+          "value": "department_id"
         },
         {
           "type": "atom",
-          "value": "department_id"
+          "value": "code"
         }
       ],
-      "name": "unique_employee_department",
+      "name": "unique_dept_shift_code",
       "nils_distinct?": true,
       "where": null
     }
@@ -193,5 +222,5 @@
   },
   "repo": "Elixir.HospitalScheduling.Repo",
   "schema": null,
-  "table": "scheduling_medical_staff_profiles"
+  "table": "scheduling_shift_types"
 }

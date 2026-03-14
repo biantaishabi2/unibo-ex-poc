@@ -1,7 +1,7 @@
 module: SCHEDULING_SCHEDULING_CONSTRAINT
 contract: SchedulingConstraint.update action contract
 edge_class: action_contract
-source_file: models/scheduling/scheduling.ubo.yaml
+source_file: /home/wangbo/document/unibo/models/scheduling/scheduling.ubo.yaml
 source_summary: GIVEN 实体 SchedulingConstraint 的动作 update 可执行，accept=[name, params, weight, enabled, notes]，args=[无显式参数] / WHEN 执行动作 update / THEN 保留基础行为占位（建议补充 validation/change）
 expected_facts:
 - action_executed

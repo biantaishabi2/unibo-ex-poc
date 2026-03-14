@@ -5,18 +5,18 @@ defmodule HospitalScheduling.BDD.Generated.ActionShiftAssignmentUnlockUpdateTest
 
   @moduletag :bdd_generated
 
-  # Source: BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-action_shift_assignment_unlock_update
+  # Source: BDD-SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK_UPDATE-SEED-action_shift_assignment_unlock_update
   @tag :action_contract
   @tag :seed
-  test "[BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-action_shift_assignment_unlock_update]" do
+  test "[BDD-SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK_UPDATE-SEED-action_shift_assignment_unlock_update]" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
-    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-action_shift_assignment_unlock_update"}
-    # line 2: GIVEN given_seed_context id="action_shift_assignment_unlock_update" module="SCHEDULING_SHIFT_ASSIGNMENT"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_shift_assignment_unlock_update", module: "SCHEDULING_SHIFT_ASSIGNMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_shift_assignment_unlock_update.dsl", line: 2, raw: "GIVEN given_seed_context id=\"action_shift_assignment_unlock_update\" module=\"SCHEDULING_SHIFT_ASSIGNMENT\""}, 2)
-    # line 3: WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SHIFT_ASSIGNMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_shift_assignment_unlock_update.dsl", line: 3, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SHIFT_ASSIGNMENT\""}, 3)
-    # line 4: THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SHIFT_ASSIGNMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_shift_assignment_unlock_update.dsl", line: 4, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SHIFT_ASSIGNMENT\""}, 4)
+    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK_UPDATE-SEED-action_shift_assignment_unlock_update"}
+    # line 2: GIVEN given_seed_context id="action_shift_assignment_unlock_update" module="SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_shift_assignment_unlock_update", module: "SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_shift_assignment_unlock_update.dsl", line: 2, raw: "GIVEN given_seed_context id=\"action_shift_assignment_unlock_update\" module=\"SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK\""}, 2)
+    # line 3: WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_shift_assignment_unlock_update.dsl", line: 3, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK\""}, 3)
+    # line 4: THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_shift_assignment_unlock_update.dsl", line: 4, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SHIFT_ASSIGNMENT_UNLOCK\""}, 4)
     _ctx = ctx
     :ok
   end

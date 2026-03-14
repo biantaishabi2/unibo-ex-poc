@@ -55,12 +55,12 @@
           "global": null,
           "strategy": null
         },
-        "name": "scheduling_solver_runs_versions_version_source_id_fkey",
+        "name": "scheduling_coverage_requirements_versions_version_source_id_fkey",
         "on_delete": null,
         "on_update": null,
         "primary_key?": true,
         "schema": "public",
-        "table": "scheduling_solver_runs"
+        "table": "scheduling_coverage_requirements"
       },
       "scale": null,
       "size": null,
@@ -110,7 +110,7 @@
   "custom_indexes": [],
   "custom_statements": [],
   "has_create_action": true,
-  "hash": "09813B60218653E29F8FC0A1989FAFD905EB555ED0AA8C6BED8888EA25BCA59B",
+  "hash": "548C34FC076E458C90EF56D30EDF3516EC31301B9D672883E215DC49091C42B5",
   "identities": [],
   "multitenancy": {
     "attribute": null,
@@ -119,5 +119,5 @@
   },
   "repo": "Elixir.HospitalScheduling.Repo",
   "schema": null,
-  "table": "scheduling_solver_runs_versions"
+  "table": "scheduling_coverage_requirements_versions"
 }

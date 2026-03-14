@@ -1,4 +1,4 @@
-[SCENARIO: BDD-SCHEDULING_MEDICAL_STAFF_PROFILE-SEED-action_medical_staff_profile_create_create] TITLE: SCHEDULING_MEDICAL_STAFF_PROFILE contract seed scenario TAGS: seed action_contract
+[SCENARIO: BDD-SCHEDULING_MEDICAL_STAFF_PROFILE_CREATE_CREATE-SEED-action_medical_staff_profile_create_create] TITLE: SCHEDULING_MEDICAL_STAFF_PROFILE contract seed scenario TAGS: seed action_contract
 GIVEN given_seed_context id="action_medical_staff_profile_create_create" module="SCHEDULING_MEDICAL_STAFF_PROFILE"
 WHEN when_execute_seed_contract module="SCHEDULING_MEDICAL_STAFF_PROFILE"
 THEN then_seed_contract_should_hold module="SCHEDULING_MEDICAL_STAFF_PROFILE"

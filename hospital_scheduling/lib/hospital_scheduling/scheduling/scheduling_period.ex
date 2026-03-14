@@ -72,6 +72,13 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
       public? true
       description "例如\"ICU 2026-04 月排班\""
     end
+    attribute :generation_mode, :atom do
+      allow_nil? false
+      constraints one_of: [:blank, :cloned_from_previous, :solver_seeded]
+      default :blank
+      public? true
+      description "排班生成方式"
+    end
     attribute :notes, :string do
       public? true
       description "备注"
@@ -86,6 +93,12 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
       public? true
       allow_nil? false
     end
+    belongs_to :source_period, HospitalScheduling.Scheduling.SchedulingPeriod do
+      public? true
+    end
+    belongs_to :source_version, HospitalScheduling.Scheduling.ScheduleVersion do
+      public? true
+    end
     belongs_to :current_version, HospitalScheduling.Scheduling.ScheduleVersion do
       public? true
     end
@@ -97,22 +110,27 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
     end
     has_many :coverage_requirements, HospitalScheduling.Scheduling.CoverageRequirement do
       public? true
+      source_attribute :source_period_id
       destination_attribute :period_id
     end
     has_many :schedule_versions, HospitalScheduling.Scheduling.ScheduleVersion do
       public? true
+      source_attribute :source_period_id
       destination_attribute :period_id
     end
     has_many :solver_runs, HospitalScheduling.Scheduling.SolverRun do
       public? true
+      source_attribute :source_period_id
       destination_attribute :period_id
     end
     has_many :shift_assignments, HospitalScheduling.Scheduling.ShiftAssignment do
       public? true
+      source_attribute :source_period_id
       destination_attribute :period_id
     end
     has_many :constraint_violations, HospitalScheduling.Scheduling.ConstraintViolation do
       public? true
+      source_attribute :source_period_id
       destination_attribute :period_id
     end
   end
@@ -122,7 +140,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
     create :create do
       description "Create Scheduling Period via Create. doc_url: graphql://contract/scheduling/create_scheduling_scheduling_period"
       primary? true
-      accept [:start_date, :end_date, :title, :notes]
+      accept [:start_date, :end_date, :title, :notes, :generation_mode]
       argument :department_id, :uuid, allow_nil?: false
       change manage_relationship(:department_id, :department, type: :append, on_lookup: :relate)
     end

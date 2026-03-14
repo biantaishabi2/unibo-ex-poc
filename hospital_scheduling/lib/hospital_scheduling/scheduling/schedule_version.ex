@@ -46,6 +46,13 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
       public? true
       description "版本状态"
     end
+    attribute :origin_type, :atom do
+      allow_nil? false
+      constraints one_of: [:manual, :solver, :cloned_from_previous]
+      default :manual
+      public? true
+      description "版本来源类型"
+    end
     attribute :created_by, :uuid do
       public? true
       description "操作者"
@@ -66,12 +73,17 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
     belongs_to :based_on_run, HospitalScheduling.Scheduling.SolverRun do
       public? true
     end
+    belongs_to :source_version, HospitalScheduling.Scheduling.ScheduleVersion do
+      public? true
+    end
     has_many :shift_assignments, HospitalScheduling.Scheduling.ShiftAssignment do
       public? true
+      source_attribute :source_version_id
       destination_attribute :version_id
     end
     has_many :constraint_violations, HospitalScheduling.Scheduling.ConstraintViolation do
       public? true
+      source_attribute :source_version_id
       destination_attribute :version_id
     end
   end

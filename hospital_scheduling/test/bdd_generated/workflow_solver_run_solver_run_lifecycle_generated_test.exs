@@ -5,18 +5,18 @@ defmodule HospitalScheduling.BDD.Generated.WorkflowSolverRunSolverRunLifecycleTe
 
   @moduletag :bdd_generated
 
-  # Source: BDD-SCHEDULING_SOLVER_RUN-SEED-workflow_solver_run_solver_run_lifecycle
+  # Source: BDD-SCHEDULING_SOLVER_RUN_SOLVER_RUN_LIFECYCLE-SEED-workflow_solver_run_solver_run_lifecycle
+  @tag :action_contract
   @tag :seed
-  @tag :workflow_contract
-  test "[BDD-SCHEDULING_SOLVER_RUN-SEED-workflow_solver_run_solver_run_lifecycle] SCHEDULING_SOLVER_RUN contract seed scenario" do
+  test "[BDD-SCHEDULING_SOLVER_RUN_SOLVER_RUN_LIFECYCLE-SEED-workflow_solver_run_solver_run_lifecycle] SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
-    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SOLVER_RUN-SEED-workflow_solver_run_solver_run_lifecycle"}
-    # line 2: GIVEN given_seed_context id="workflow_solver_run_solver_run_lifecycle" module="SCHEDULING_SOLVER_RUN"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "workflow_solver_run_solver_run_lifecycle", module: "SCHEDULING_SOLVER_RUN"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/workflow_solver_run_solver_run_lifecycle.dsl", line: 2, raw: "GIVEN given_seed_context id=\"workflow_solver_run_solver_run_lifecycle\" module=\"SCHEDULING_SOLVER_RUN\""}, 2)
-    # line 3: WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SOLVER_RUN"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/workflow_solver_run_solver_run_lifecycle.dsl", line: 3, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SOLVER_RUN\""}, 3)
-    # line 4: THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SOLVER_RUN"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/workflow_solver_run_solver_run_lifecycle.dsl", line: 4, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SOLVER_RUN\""}, 4)
+    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SOLVER_RUN_SOLVER_RUN_LIFECYCLE-SEED-workflow_solver_run_solver_run_lifecycle"}
+    # line 2: GIVEN given_seed_context id="workflow_solver_run_solver_run_lifecycle" module="SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "workflow_solver_run_solver_run_lifecycle", module: "SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/workflow_solver_run_solver_run_lifecycle.dsl", line: 2, raw: "GIVEN given_seed_context id=\"workflow_solver_run_solver_run_lifecycle\" module=\"SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE\""}, 2)
+    # line 3: WHEN when_execute_seed_contract module="SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/workflow_solver_run_solver_run_lifecycle.dsl", line: 3, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE\""}, 3)
+    # line 4: THEN then_seed_contract_should_hold module="SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/workflow_solver_run_solver_run_lifecycle.dsl", line: 4, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE\""}, 4)
     _ctx = ctx
     :ok
   end

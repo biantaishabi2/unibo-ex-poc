@@ -48,10 +48,10 @@ defmodule HospitalScheduling.Scheduling.ShiftAssignment do
     end
     attribute :source, :atom do
       allow_nil? false
-      constraints one_of: [:auto, :manual, :swapped]
+      constraints one_of: [:auto, :manual, :swapped, :copied]
       default :auto
       public? true
-      description "分配来源"
+      description "分配来源（copied = 从上一期复制）"
     end
     attribute :is_locked, :boolean do
       allow_nil? false
