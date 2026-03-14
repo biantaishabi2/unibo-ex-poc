@@ -1,0 +1,140 @@
+# 需求矩阵编辑页 — 日期×班次 grid 编辑每格人数需求
+version: "1.0"
+page:
+  name: requirement_matrix
+  title: 需求矩阵
+  route: /scheduling/periods/:id/requirements
+  page_type: composition
+  entity: CoverageRequirement
+  audience: admin
+
+  permissions:
+    access: role
+    roles: [admin]
+
+  data_sources:
+    - name: period
+      type: read
+      resource: Scheduling.SchedulingPeriod
+      params:
+        id: route.id
+    - name: requirements
+      type: list
+      resource: Scheduling.CoverageRequirement
+      params:
+        period_id: route.id
+      default_sort: { field: requirement_date, order: asc }
+    - name: shift_types
+      type: list
+      resource: Scheduling.ShiftType
+      params:
+        department_id: period.department_id
+        enabled: true
+      default_sort: { field: sort_order, order: asc }
+
+  layout:
+    - type: Stack
+      gap: 4
+      children:
+        # 页面头部
+        - type: Flex
+          gap: 3
+          props:
+            justify: between
+            align: center
+          children:
+            - type: Stack
+              gap: 1
+              children:
+                - type: Text
+                  bind:
+                    content: period.title
+                  props:
+                    variant: heading
+                - type: Flex
+                  gap: 2
+                  children:
+                    - type: Badge
+                      bind:
+                        label: period.state
+                    - type: Text
+                      bind:
+                        content: "{{ period.start_date }} ~ {{ period.end_date }}"
+                      props:
+                        variant: muted
+            - type: Flex
+              gap: 2
+              children:
+                - type: Button
+                  bind:
+                    label: 返回周期详情
+                    variant: secondary
+                  action: navigate
+                  params:
+                    to: /scheduling/periods/{{ route.id }}
+
+        # 需求矩阵表格
+        - type: Card
+          slots:
+            header:
+              - type: Flex
+                gap: 2
+                props:
+                  justify: between
+                  align: center
+                children:
+                  - type: Text
+                    bind:
+                      content: 覆盖需求矩阵
+                    props:
+                      variant: subheading
+                  - type: Flex
+                    gap: 2
+                    children:
+                      - type: Select
+                        bind:
+                          label: 岗位筛选
+                          value: filter.role_code
+                          placeholder: 全部岗位
+                      - type: Button
+                        bind:
+                          label: 批量填充
+                          variant: secondary
+                        action: batch_fill_requirements
+
+            content:
+              - type: ScheduleMatrix
+                bind:
+                  rows: shift_types
+                  columns_from: period
+                  cells: requirements
+                  row_label_field: name
+                  column_type: date_range
+                  cell_fields:
+                    primary: min_headcount
+                    secondary: target_headcount
+                    badge: required_lead_count
+                props:
+                  editable: true
+                  highlight_empty: true
+
+        # 底部操作栏
+        - type: Flex
+          gap: 2
+          props:
+            justify: end
+          children:
+            - type: Button
+              bind:
+                label: 保存修改
+                variant: primary
+              action: save_requirements
+            - type: Button
+              bind:
+                label: 开始自动排班
+                variant: primary
+              action: start_generating
+              visible_when:
+                field: period.state
+                op: eq
+                value: draft

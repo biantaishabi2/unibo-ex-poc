@@ -1,0 +1,200 @@
+# 发布预览页 — error/warning 摘要 + 差异 + 发布按钮
+version: "1.0"
+page:
+  name: publish_preview
+  title: 发布预览
+  route: /scheduling/periods/:id/versions/:version_id/publish-preview
+  page_type: composition
+  entity: ScheduleVersion
+  audience: admin
+
+  permissions:
+    access: role
+    roles: [admin]
+
+  data_sources:
+    - name: period
+      type: read
+      resource: Scheduling.SchedulingPeriod
+      params:
+        id: route.id
+    - name: version
+      type: read
+      resource: Scheduling.ScheduleVersion
+      params:
+        id: route.version_id
+    - name: violations
+      type: list
+      resource: Scheduling.ConstraintViolation
+      params:
+        version_id: route.version_id
+    - name: assignments
+      type: list
+      resource: Scheduling.ShiftAssignment
+      params:
+        version_id: route.version_id
+
+  layout:
+    - type: Stack
+      gap: 4
+      children:
+        # 页面头部
+        - type: Flex
+          gap: 3
+          props:
+            justify: between
+            align: center
+          children:
+            - type: Stack
+              gap: 1
+              children:
+                - type: Text
+                  bind:
+                    content: "发布预览 — {{ period.title }}"
+                  props:
+                    variant: heading
+                - type: Flex
+                  gap: 2
+                  children:
+                    - type: Text
+                      bind:
+                        content: "版本 {{ version.version_no }}"
+                      props:
+                        variant: muted
+                    - type: Badge
+                      bind:
+                        label: version.status
+                    - type: Badge
+                      bind:
+                        label: version.origin_type
+            - type: Button
+              bind:
+                label: 返回日历调班
+                variant: secondary
+              action: navigate
+              params:
+                to: /scheduling/periods/{{ route.id }}/versions/{{ route.version_id }}/calendar
+
+        # Error 阻断提示
+        - type: Alert
+          bind:
+            title: 无法发布
+            description: "存在硬约束违反，请先在日历调班页处理后再发布。"
+          props:
+            variant: destructive
+          visible_when:
+            field: version.error_count
+            op: gt
+            value: 0
+
+        # 发布检查摘要
+        - type: Grid
+          columns: 3
+          gap: 3
+          children:
+            - type: StatisticCard
+              bind:
+                title: 总分配数
+                value: assignments.length
+            - type: StatisticCard
+              bind:
+                title: 硬约束违反
+                value: version.error_count
+              props:
+                variant: danger
+            - type: StatisticCard
+              bind:
+                title: 警告
+                value: version.warning_count
+              props:
+                variant: warning
+
+        # 与已发布版本的差异
+        - type: Card
+          slots:
+            header:
+              - type: Text
+                bind:
+                  content: 与已发布版本差异
+                props:
+                  variant: subheading
+            content:
+              - type: EmptyState
+                bind:
+                  title: 首次发布
+                  description: 当前无已发布版本可对比
+                visible_when:
+                  field: period.published_version
+                  op: not_null
+                  value: false
+              - type: Stack
+                gap: 2
+                visible_when:
+                  field: period.published_version
+                  op: not_null
+                children:
+                  - type: Text
+                    bind:
+                      content: "对比版本: v{{ period.published_version.version_no }} → v{{ version.version_no }}"
+                    props:
+                      variant: muted
+                  - type: Table
+                    bind:
+                      data: version.diff_summary
+                      columns:
+                        - field: change_type
+                          label: 变更类型
+                          render: badge
+                        - field: employee_name
+                          label: 护士
+                        - field: date
+                          label: 日期
+                          format: date
+                        - field: shift_type
+                          label: 班次
+                        - field: description
+                          label: 说明
+                    props:
+                      empty_text: 无变更
+
+        # 违反明细
+        - type: Card
+          slots:
+            header:
+              - type: Text
+                bind:
+                  content: 约束违反明细
+                props:
+                  variant: subheading
+            content:
+              - type: Table
+                bind:
+                  data: violations
+                  columns:
+                    - field: severity
+                      label: 级别
+                      render: badge
+                    - field: rule_code
+                      label: 规则
+                    - field: message
+                      label: 说明
+                props:
+                  empty_text: 无约束违反
+
+        # 发布操作
+        - type: Flex
+          gap: 2
+          props:
+            justify: end
+          children:
+            - type: Button
+              bind:
+                label: 确认发布
+                variant: primary
+              action: publish
+              props:
+                disabled_when:
+                  field: version.error_count
+                  op: gt
+                  value: 0
+              confirm: 确认发布此排班？发布后将通知全科室护士。
