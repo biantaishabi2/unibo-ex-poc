@@ -1,4 +1,6 @@
 pub mod backend;
+#[cfg(feature = "cp_sat_backend")]
+pub(crate) mod cp_sat_solver;
 pub mod explanation;
 pub mod model;
 pub mod output;

@@ -1,3 +1,5 @@
+#[cfg(feature = "cp_sat_backend")]
+use crate::cp_sat_solver;
 use crate::output::OutputSnapshot;
 use crate::snapshot::InputSnapshot;
 use crate::solver::{SolveError, contract_harness_solve};
@@ -29,8 +31,8 @@ impl SchedulingSolverBackend for CpSatBackend {
         "cp_sat"
     }
 
-    fn solve(&self, _snapshot: &InputSnapshot) -> Result<OutputSnapshot, SolveError> {
-        cp_sat_solve()
+    fn solve(&self, snapshot: &InputSnapshot) -> Result<OutputSnapshot, SolveError> {
+        cp_sat_solve(snapshot)
     }
 }
 
@@ -43,10 +45,13 @@ pub fn solve_with_backend(
 
 pub fn solve_with_engine(snapshot: &InputSnapshot) -> Result<OutputSnapshot, SolveError> {
     match snapshot.run_options.engine_type.as_str() {
-        "contract_harness" | "rust_contract_harness" | "rust_greedy_local_search" => {
+        "contract_harness" | "rust_contract_harness" => {
             solve_with_backend(snapshot, &ContractHarnessBackend)
         }
-        "cp_sat" => solve_with_backend(snapshot, &CpSatBackend),
+        // 向后兼容 #68 合并时遗留的默认值，但统一收口到 CP-SAT。
+        "cp_sat" | "rust_cp_sat" | "greedy_local_search" | "rust_greedy_local_search" => {
+            solve_with_backend(snapshot, &CpSatBackend)
+        }
         engine_type => Err(SolveError::UnsupportedEngine {
             engine_type: engine_type.to_string(),
         }),
@@ -54,18 +59,12 @@ pub fn solve_with_engine(snapshot: &InputSnapshot) -> Result<OutputSnapshot, Sol
 }
 
 #[cfg(feature = "cp_sat_backend")]
-fn cp_sat_solve() -> Result<OutputSnapshot, SolveError> {
-    // 这里先验证 feature 接线已经存在，后续再把 snapshot 真正映射到 CP-SAT 模型。
-    let _builder = cp_sat::builder::CpModelBuilder::default();
-
-    Err(SolveError::BackendUnavailable {
-        backend: "cp_sat".to_string(),
-        reason: "cp_sat feature 已启用，但 snapshot -> CP-SAT 模型映射尚未实现".to_string(),
-    })
+fn cp_sat_solve(snapshot: &InputSnapshot) -> Result<OutputSnapshot, SolveError> {
+    cp_sat_solver::solve(snapshot)
 }
 
 #[cfg(not(feature = "cp_sat_backend"))]
-fn cp_sat_solve() -> Result<OutputSnapshot, SolveError> {
+fn cp_sat_solve(_snapshot: &InputSnapshot) -> Result<OutputSnapshot, SolveError> {
     Err(SolveError::BackendUnavailable {
         backend: "cp_sat".to_string(),
         reason: "CP-SAT backend 尚未接入 OR-Tools/runtime；当前 crate 只冻结契约与 adapter 边界"

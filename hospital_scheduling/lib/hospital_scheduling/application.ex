@@ -5,7 +5,8 @@ defmodule HospitalScheduling.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      {DNSCluster, query: Application.get_env(:hospital_scheduling, :dns_cluster_query) || :ignore},
+      {DNSCluster,
+       query: Application.get_env(:hospital_scheduling, :dns_cluster_query) || :ignore},
       HospitalScheduling.Repo,
       {Phoenix.PubSub, name: HospitalScheduling.PubSub},
       HospitalSchedulingWeb.Telemetry,

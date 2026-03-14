@@ -46,10 +46,26 @@ pub(crate) fn contract_harness_solve(
     let started = Instant::now();
     let mut state = load_snapshot();
     seed_initial_solution(snapshot, &mut state);
-    let mut violations = repair_hard_constraints(snapshot, &state);
-    improve_soft_score(&mut violations, &state);
+    Ok(finalize_output(
+        snapshot,
+        state.assignments,
+        "emit_result",
+        started,
+        snapshot.run_options.engine_type.clone(),
+    ))
+}
 
-    let coverage = build_coverage(snapshot, &state.assignments);
+pub(crate) fn finalize_output(
+    snapshot: &InputSnapshot,
+    assignments: Vec<OutputAssignment>,
+    phase: &str,
+    started: Instant,
+    engine_type: String,
+) -> OutputSnapshot {
+    let mut violations = repair_hard_constraints(snapshot, &assignments);
+    improve_soft_score(&mut violations, &assignments);
+
+    let coverage = build_coverage(snapshot, &assignments);
     let error_count = violations
         .iter()
         .filter(|item| item.severity == Severity::Error)
@@ -60,7 +76,7 @@ pub(crate) fn contract_harness_solve(
         .count();
     let covered_requirement_count = coverage.iter().filter(|item| item.missing == 0).count();
     let score = compute_score(&coverage, &violations)
-        - soft::night_shift_distribution_penalty(&state.assignments);
+        - soft::night_shift_distribution_penalty(&assignments);
 
     let status = if error_count == 0 {
         SolverStatus::Completed
@@ -70,24 +86,24 @@ pub(crate) fn contract_harness_solve(
         SolverStatus::Infeasible
     };
 
-    Ok(OutputSnapshot {
+    OutputSnapshot {
         status,
         summary: SummarySnapshot {
-            phase: "emit_result".to_string(),
+            phase: phase.to_string(),
             requirement_count: snapshot.requirements.len(),
             covered_requirement_count,
-            assignment_count: state.assignments.len(),
+            assignment_count: assignments.len(),
             error_count,
             warning_count,
             score,
             seed: snapshot.run_options.seed,
             duration_ms: started.elapsed().as_millis() as u64,
-            engine_type: snapshot.run_options.engine_type.clone(),
+            engine_type,
         },
-        assignments: state.assignments,
+        assignments,
         coverage,
         violations,
-    })
+    }
 }
 
 fn load_snapshot() -> WorkingState {
@@ -176,18 +192,17 @@ fn seed_initial_solution(snapshot: &InputSnapshot, state: &mut WorkingState) {
 
 fn repair_hard_constraints(
     snapshot: &InputSnapshot,
-    state: &WorkingState,
+    assignments: &[OutputAssignment],
 ) -> Vec<ViolationSummary> {
     let mut violations = Vec::new();
 
     for requirement in &snapshot.requirements {
-        let assignments: Vec<&OutputAssignment> = state
-            .assignments
+        let requirement_assignments: Vec<&OutputAssignment> = assignments
             .iter()
             .filter(|item| item.requirement_id == requirement.id)
             .collect();
-        let assigned = assignments.len();
-        let lead_assigned = assignments
+        let assigned = requirement_assignments.len();
+        let lead_assigned = requirement_assignments
             .iter()
             .filter(|item| {
                 hard::employee_can_lead(&snapshot.medical_staff_profiles, &item.employee_id)
@@ -217,7 +232,7 @@ fn repair_hard_constraints(
         }
 
         if !requirement.required_skill_tags.is_empty() {
-            let skill_matched = assignments
+            let skill_matched = requirement_assignments
                 .iter()
                 .filter(|item| {
                     hard::employee_has_required_skills(
@@ -246,7 +261,7 @@ fn repair_hard_constraints(
         .map(|item| (item.id.as_str(), item))
         .collect();
 
-    for (index, assignment) in state.assignments.iter().enumerate() {
+    for (index, assignment) in assignments.iter().enumerate() {
         let assignment_id = format!("assignment-{}", index);
         let Some(requirement) = requirement_by_id.get(assignment.requirement_id.as_str()) else {
             continue;
@@ -286,8 +301,8 @@ fn repair_hard_constraints(
     violations
 }
 
-fn improve_soft_score(violations: &mut Vec<ViolationSummary>, state: &WorkingState) {
-    let distribution_penalty = soft::night_shift_distribution_penalty(&state.assignments);
+fn improve_soft_score(violations: &mut Vec<ViolationSummary>, assignments: &[OutputAssignment]) {
+    let distribution_penalty = soft::night_shift_distribution_penalty(assignments);
     if distribution_penalty > 0 {
         violations.push(ViolationSummary {
             rule_code: "fair_night_distribution".to_string(),

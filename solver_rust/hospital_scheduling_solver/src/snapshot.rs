@@ -12,6 +12,8 @@ pub struct InputSnapshot {
     #[serde(default)]
     pub employees: Vec<EmployeeSnapshot>,
     #[serde(default)]
+    pub preferences: Vec<ShiftPreferenceSnapshot>,
+    #[serde(default)]
     pub medical_staff_profiles: Vec<MedicalStaffProfileSnapshot>,
     #[serde(default)]
     pub skills: Vec<EmployeeSkillsSnapshot>,
@@ -71,8 +73,23 @@ pub struct ConstraintSnapshot {
 pub struct EmployeeSnapshot {
     pub id: String,
     pub employee_code: String,
-    pub hire_date: String,
-    pub department_id: String,
+    #[serde(default)]
+    pub name: Option<String>,
+    #[serde(default)]
+    pub hire_date: Option<String>,
+    #[serde(default)]
+    pub department_id: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ShiftPreferenceSnapshot {
+    pub employee_id: String,
+    #[serde(default)]
+    pub preferred_shift_tags: Vec<String>,
+    #[serde(default)]
+    pub unavailable_dates: Vec<String>,
+    #[serde(default)]
+    pub max_night_shifts: Option<usize>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

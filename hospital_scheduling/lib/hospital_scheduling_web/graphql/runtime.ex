@@ -11,7 +11,7 @@ defmodule HospitalSchedulingWeb.Graphql.Runtime do
     source = RuntimeConfig.source_name()
 
     Dataloader.new()
-    |> Dataloader.add_source(source, KV.new(&RuntimeConfig.load/2, [context: context]))
+    |> Dataloader.add_source(source, KV.new(&RuntimeConfig.load/2, context: context))
   end
 
   def dataloader(field), do: dataloader(field, [])

@@ -54,7 +54,6 @@
     "mode": "solve_from_previous_version",
     "seed": 99,
     "timeout_ms": 30000,
-    "engine_type": "rust_greedy_local_search"
+    "engine_type": "cp_sat"
   }
 }
-

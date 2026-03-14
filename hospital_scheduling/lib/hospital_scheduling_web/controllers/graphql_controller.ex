@@ -48,7 +48,15 @@ defmodule HospitalSchedulingWeb.GraphqlController do
       {:error, reason} ->
         conn
         |> put_status(:internal_server_error)
-        |> json(%{"errors" => [%{"message" => inspect(reason), "code" => "INTERNAL_ERROR", "reason" => "internal_error"}]})
+        |> json(%{
+          "errors" => [
+            %{
+              "message" => inspect(reason),
+              "code" => "INTERNAL_ERROR",
+              "reason" => "internal_error"
+            }
+          ]
+        })
     end
   end
 
@@ -68,10 +76,16 @@ defmodule HospitalSchedulingWeb.GraphqlController do
           nil ->
             if graphql_operation_kind(query) == :query do
               with_org_scope_cache(fn ->
-                Absinthe.run(query, RuntimeConfig.schema_module(), variables: variables, context: context)
+                Absinthe.run(query, RuntimeConfig.schema_module(),
+                  variables: variables,
+                  context: context
+                )
               end)
             else
-              Absinthe.run(query, RuntimeConfig.schema_module(), variables: variables, context: context)
+              Absinthe.run(query, RuntimeConfig.schema_module(),
+                variables: variables,
+                context: context
+              )
             end
 
           error ->
@@ -123,10 +137,18 @@ defmodule HospitalSchedulingWeb.GraphqlController do
       {:ok, result}
     else
       normalized_errors = Enum.map(errors, &normalize_error(&1, operation_field))
-      has_forbidden = Enum.any?(normalized_errors, fn err -> map_get(err, :code) == "FORBIDDEN" end)
+
+      has_forbidden =
+        Enum.any?(normalized_errors, fn err -> map_get(err, :code) == "FORBIDDEN" end)
+
       status = if has_forbidden, do: :forbidden, else: :ok
       data = map_get(result, :data)
-      payload = if is_nil(data), do: %{"errors" => normalized_errors}, else: %{"data" => data, "errors" => normalized_errors}
+
+      payload =
+        if is_nil(data),
+          do: %{"errors" => normalized_errors},
+          else: %{"data" => data, "errors" => normalized_errors}
+
       {status, payload}
     end
   end
@@ -146,13 +168,15 @@ defmodule HospitalSchedulingWeb.GraphqlController do
       "message" => message,
       "code" => code,
       "reason" => reason,
-      "extensions" => merge_extensions(extensions, build_extensions(code, reason, path, hint, doc_url))
+      "extensions" =>
+        merge_extensions(extensions, build_extensions(code, reason, path, hint, doc_url))
     }
   end
 
   defp normalize_error(error, operation_field) do
     hint = runtime_error_hint("graphql_error", operation_field)
     doc_url = runtime_error_doc_url("graphql_error", operation_field)
+
     %{
       "message" => inspect(error),
       "code" => "GRAPHQL_ERROR",
@@ -163,17 +187,19 @@ defmodule HospitalSchedulingWeb.GraphqlController do
 
   defp forbidden_error(reason) do
     normalized_reason = normalize_reason(reason)
+
     %{
       "message" => forbidden_message(normalized_reason),
       "code" => "FORBIDDEN",
       "reason" => normalized_reason,
-      "extensions" => build_extensions(
-        "FORBIDDEN",
-        normalized_reason,
-        nil,
-        runtime_error_hint(normalized_reason, nil),
-        runtime_error_doc_url(normalized_reason, nil)
-      )
+      "extensions" =>
+        build_extensions(
+          "FORBIDDEN",
+          normalized_reason,
+          nil,
+          runtime_error_hint(normalized_reason, nil),
+          runtime_error_doc_url(normalized_reason, nil)
+        )
     }
   end
 
@@ -245,7 +271,12 @@ defmodule HospitalSchedulingWeb.GraphqlController do
       forbidden_reason?(reason) ->
         "FORBIDDEN"
 
-      reason in ["tenant_required", "invalid_tenant_id", "tenant_resolution_failed", "invalid_arguments"] ->
+      reason in [
+        "tenant_required",
+        "invalid_tenant_id",
+        "tenant_resolution_failed",
+        "invalid_arguments"
+      ] ->
         "BAD_USER_INPUT"
 
       true ->
@@ -255,7 +286,10 @@ defmodule HospitalSchedulingWeb.GraphqlController do
 
   defp normalize_code_value(nil), do: ""
   defp normalize_code_value(value) when is_binary(value), do: String.trim(value)
-  defp normalize_code_value(value) when is_atom(value), do: value |> Atom.to_string() |> String.trim()
+
+  defp normalize_code_value(value) when is_atom(value),
+    do: value |> Atom.to_string() |> String.trim()
+
   defp normalize_code_value(value), do: value |> to_string() |> String.trim()
 
   defp normalize_reason(reason) when is_atom(reason), do: Atom.to_string(reason)
@@ -283,11 +317,13 @@ defmodule HospitalSchedulingWeb.GraphqlController do
 
   defp build_extensions(code, reason, path, hint, doc_url) do
     base = %{"code" => code, "reason" => reason}
+
     base =
       case hint do
         nil -> base
         value -> Map.put(base, "hint", value)
       end
+
     base =
       case doc_url do
         nil -> base
@@ -311,10 +347,13 @@ defmodule HospitalSchedulingWeb.GraphqlController do
 
   defp runtime_error_hint("invalid_arguments", operation_field) when is_binary(operation_field) do
     case contract_field_doc(operation_field) do
-      %{"conditional_requirements" => requirements} when is_list(requirements) and requirements != [] ->
+      %{"conditional_requirements" => requirements}
+      when is_list(requirements) and requirements != [] ->
         "请检查条件必填规则：" <> Enum.join(Enum.map(requirements, &to_string/1), "; ")
+
       %{"summary" => summary} when is_binary(summary) and summary != "" ->
         summary
+
       _ ->
         "请检查必填参数和调用契约"
     end

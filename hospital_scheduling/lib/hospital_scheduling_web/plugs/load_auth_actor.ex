@@ -12,9 +12,13 @@ defmodule HospitalSchedulingWeb.Plugs.LoadAuthActor do
   @impl true
   def call(conn, _opts) do
     with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
-         {:ok, claims, _resource} <- AshAuthentication.Jwt.verify(token, HospitalScheduling.Accounts.User),
+         {:ok, claims, _resource} <-
+           AshAuthentication.Jwt.verify(token, HospitalScheduling.Accounts.User),
          %{"sub" => subject} <- claims,
-         {:ok, user} <- AshAuthentication.subject_to_user(subject, HospitalScheduling.Accounts.User, authorize?: false) do
+         {:ok, user} <-
+           AshAuthentication.subject_to_user(subject, HospitalScheduling.Accounts.User,
+             authorize?: false
+           ) do
       actor = HospitalSchedulingWeb.Graphql.ActorContext.from_auth_result(user, claims, conn)
 
       conn
