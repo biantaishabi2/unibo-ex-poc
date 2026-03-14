@@ -10,15 +10,62 @@ defmodule HospitalScheduling.BDD.Generated.ActionEmployeeReadReadTest do
   @tag :seed
   test "[BDD-SCHEDULING_EMPLOYEE_READ_READ-SEED-action_employee_read_read] SCHEDULING_EMPLOYEE contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
-    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_EMPLOYEE_READ_READ-SEED-action_employee_read_read"}
+
+    ctx = %{
+      run_id: run_id,
+      scenario_id: "BDD-SCHEDULING_EMPLOYEE_READ_READ-SEED-action_employee_read_read"
+    }
+
     # line 2: GIVEN given_seed_context id="action_employee_read_read" module="SCHEDULING_EMPLOYEE"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_employee_read_read", module: "SCHEDULING_EMPLOYEE"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_employee_read_read.dsl", line: 2, raw: "GIVEN given_seed_context id=\"action_employee_read_read\" module=\"SCHEDULING_EMPLOYEE\""}, 2)
+    ctx =
+      HospitalScheduling.BDD.Instructions.V1.run_step!(
+        ctx,
+        :given,
+        :given_seed_context,
+        %{id: "action_employee_read_read", module: "SCHEDULING_EMPLOYEE"},
+        %{
+          file:
+            "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_employee_read_read.dsl",
+          line: 2,
+          raw:
+            "GIVEN given_seed_context id=\"action_employee_read_read\" module=\"SCHEDULING_EMPLOYEE\""
+        },
+        2
+      )
+
     # line 3: WHEN when_execute_seed_contract module="SCHEDULING_EMPLOYEE"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_EMPLOYEE"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_employee_read_read.dsl", line: 3, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_EMPLOYEE\""}, 3)
+    ctx =
+      HospitalScheduling.BDD.Instructions.V1.run_step!(
+        ctx,
+        :when,
+        :when_execute_seed_contract,
+        %{module: "SCHEDULING_EMPLOYEE"},
+        %{
+          file:
+            "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_employee_read_read.dsl",
+          line: 3,
+          raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_EMPLOYEE\""
+        },
+        3
+      )
+
     # line 4: THEN then_seed_contract_should_hold module="SCHEDULING_EMPLOYEE"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_EMPLOYEE"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_employee_read_read.dsl", line: 4, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_EMPLOYEE\""}, 4)
+    ctx =
+      HospitalScheduling.BDD.Instructions.V1.run_step!(
+        ctx,
+        :then,
+        :then_seed_contract_should_hold,
+        %{module: "SCHEDULING_EMPLOYEE"},
+        %{
+          file:
+            "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_employee_read_read.dsl",
+          line: 4,
+          raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_EMPLOYEE\""
+        },
+        4
+      )
+
     _ctx = ctx
     :ok
   end
-
 end

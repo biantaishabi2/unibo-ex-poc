@@ -49,15 +49,13 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
         domain_names = Enum.map(domains, &inspect/1)
 
         %{
-          message:
-            "GraphQL 生成物一致性检查失败：检测到缺失或无效的 domain 模块，疑似只同步了部分 compile-project 生成物",
+          message: "GraphQL 生成物一致性检查失败：检测到缺失或无效的 domain 模块，疑似只同步了部分 compile-project 生成物",
           code: "GRAPHQL_RUNTIME_SYNC_ERROR",
           reason: "generated_artifacts_out_of_sync",
           extensions: %{
             code: "GRAPHQL_RUNTIME_SYNC_ERROR",
             reason: "generated_artifacts_out_of_sync",
-            hint:
-              "请整套同步 lib/、config/config.exs、test/support，不要只单独替换 schema.ex",
+            hint: "请整套同步 lib/、config/config.exs、test/support，不要只单独替换 schema.ex",
             domains: domain_names
           }
         }
@@ -84,7 +82,8 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
     field_or_doc_url = normalize_string(field_or_doc_url)
 
     with false <- field_or_doc_url == "",
-         %{} = field <- graphql_builtin_contract(field_or_doc_url) || manifest_field_contract(field_or_doc_url) do
+         %{} = field <-
+           graphql_builtin_contract(field_or_doc_url) || manifest_field_contract(field_or_doc_url) do
       %{}
       |> Map.put(:field, normalize_string(map_get(field, "field")))
       |> put_present(:summary, map_get(field, "summary"))
@@ -162,6 +161,7 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
             "missing actor context (compat warning)"
           )
         )
+
         :ok
 
       operation == :query and public_query_whitelisted?(query) ->
@@ -185,6 +185,7 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
             "missing actor context"
           )
         )
+
         {:error, :missing_actor_context}
     end
   end
@@ -346,7 +347,10 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
   defp normalize_string(value) when is_binary(value), do: String.trim(value)
   defp normalize_string(value) when is_atom(value), do: value |> Atom.to_string() |> String.trim()
   defp normalize_string(value) when is_integer(value), do: Integer.to_string(value)
-  defp normalize_string(value) when is_float(value), do: :erlang.float_to_binary(value, [:compact, decimals: 6])
+
+  defp normalize_string(value) when is_float(value),
+    do: :erlang.float_to_binary(value, [:compact, decimals: 6])
+
   defp normalize_string(_), do: ""
 
   defp normalize_string_list(values) when is_list(values) do
@@ -419,10 +423,27 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
   defp normalize_legacy_context_envelope(context) when is_map(context) do
     principal =
       %{}
-      |> put_present("id", context_value(context, :user_id) || context_value(context, "user_id") || context_value(context, :actor_id) || context_value(context, "actor_id") || header_value(context, "x-user-id") || header_value(context, "x-actor-id"))
-      |> put_present("party_id", context_value(context, :party_id) || context_value(context, "party_id") || header_value(context, "x-party-id") || header_value(context, "x-actor-party-id"))
-      |> put_present("member_id", context_value(context, :member_id) || context_value(context, "member_id") || header_value(context, "x-member-id"))
-      |> put_present("type", context_value(context, :principal_type) || context_value(context, "principal_type") || "user")
+      |> put_present(
+        "id",
+        context_value(context, :user_id) || context_value(context, "user_id") ||
+          context_value(context, :actor_id) || context_value(context, "actor_id") ||
+          header_value(context, "x-user-id") || header_value(context, "x-actor-id")
+      )
+      |> put_present(
+        "party_id",
+        context_value(context, :party_id) || context_value(context, "party_id") ||
+          header_value(context, "x-party-id") || header_value(context, "x-actor-party-id")
+      )
+      |> put_present(
+        "member_id",
+        context_value(context, :member_id) || context_value(context, "member_id") ||
+          header_value(context, "x-member-id")
+      )
+      |> put_present(
+        "type",
+        context_value(context, :principal_type) || context_value(context, "principal_type") ||
+          "user"
+      )
 
     tenant_id =
       case tenant_error(context) do
@@ -464,8 +485,16 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
 
     correlation =
       %{}
-      |> put_present("request_id", context_value(context, :request_id) || context_value(context, "request_id") || header_value(context, "x-request-id"))
-      |> put_present("trace_id", context_value(context, :trace_id) || context_value(context, "trace_id") || header_value(context, "x-trace-id"))
+      |> put_present(
+        "request_id",
+        context_value(context, :request_id) || context_value(context, "request_id") ||
+          header_value(context, "x-request-id")
+      )
+      |> put_present(
+        "trace_id",
+        context_value(context, :trace_id) || context_value(context, "trace_id") ||
+          header_value(context, "x-trace-id")
+      )
 
     envelope = %{
       "principal" => principal,
@@ -524,8 +553,17 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
   end
 
   defp normalize_roles(nil), do: []
-  defp normalize_roles(value) when is_binary(value), do: value |> String.split(",", trim: true) |> Enum.map(&normalize_string/1) |> Enum.reject(&(&1 == ""))
-  defp normalize_roles(value) when is_list(value), do: value |> Enum.map(&normalize_string/1) |> Enum.reject(&(&1 == ""))
+
+  defp normalize_roles(value) when is_binary(value),
+    do:
+      value
+      |> String.split(",", trim: true)
+      |> Enum.map(&normalize_string/1)
+      |> Enum.reject(&(&1 == ""))
+
+  defp normalize_roles(value) when is_list(value),
+    do: value |> Enum.map(&normalize_string/1) |> Enum.reject(&(&1 == ""))
+
   defp normalize_roles(_), do: []
 
   defp extract_roles(context) do
@@ -579,6 +617,7 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
 
       true ->
         expected = normalize_string(key)
+
         case Enum.reduce_while(map, :not_found, fn {existing_key, value}, _acc ->
                if normalize_string(existing_key) == expected do
                  {:halt, {:found, value}}
@@ -758,28 +797,29 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
   defp graphql_builtin_contract("graphql://contract/common/tenant") do
     %{
       "field" => "common/tenant",
-      "summary" => "Tenant headers contract. Provide x-tenant-id, or use x-tenant-code / x-tenant-slug when alias resolver is configured.",
+      "summary" =>
+        "Tenant headers contract. Provide x-tenant-id, or use x-tenant-code / x-tenant-slug when alias resolver is configured.",
       "doc_url" => "graphql://contract/common/tenant",
       "required_headers" => [],
       "conditional_requirements" => [],
       "body" => """
-# common/tenant
+      # common/tenant
 
-- Summary: Tenant headers contract. Provide x-tenant-id, or use x-tenant-code / x-tenant-slug when alias resolver is configured.
-- Doc URL: graphql://contract/common/tenant
+      - Summary: Tenant headers contract. Provide x-tenant-id, or use x-tenant-code / x-tenant-slug when alias resolver is configured.
+      - Doc URL: graphql://contract/common/tenant
 
-## Required Headers
-- none
+      ## Required Headers
+      - none
 
-## Optional Alias Headers
-- x-tenant-code
-- x-tenant-slug
+      ## Optional Alias Headers
+      - x-tenant-code
+      - x-tenant-slug
 
-## Notes
-- Prefer `x-tenant-id` when the caller already knows the tenant UUID.
-- `x-tenant-code` / `x-tenant-slug` only work when the generated runtime has a tenant alias resolver.
-- Invalid tenant input should surface `invalid_tenant_id` or `tenant_required` with this same `doc_url`.
-"""
+      ## Notes
+      - Prefer `x-tenant-id` when the caller already knows the tenant UUID.
+      - `x-tenant-code` / `x-tenant-slug` only work when the generated runtime has a tenant alias resolver.
+      - Invalid tenant input should surface `invalid_tenant_id` or `tenant_required` with this same `doc_url`.
+      """
     }
   end
 
@@ -1037,7 +1077,12 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
         {:ok, normalized}
 
       true ->
-        {:error, "invalid_tenant_id", invalid_tenant_message(source), %{"path" => tenant_error_path(source), "tenant_source" => source, "tenant_value" => normalized}}
+        {:error, "invalid_tenant_id", invalid_tenant_message(source),
+         %{
+           "path" => tenant_error_path(source),
+           "tenant_source" => source,
+           "tenant_value" => normalized
+         }}
     end
   end
 
@@ -1056,10 +1101,24 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
 
           {:ok, %{} = tenant_map} ->
             tenant_id = tenant_id_from_map(tenant_map)
-            if tenant_id == "", do: {:error, "tenant_resolution_failed", tenant_resolution_failed_message(source), %{"path" => tenant_error_path(source), "tenant_source" => source, "tenant_value" => normalized}}, else: {:ok, tenant_id}
+
+            if tenant_id == "",
+              do:
+                {:error, "tenant_resolution_failed", tenant_resolution_failed_message(source),
+                 %{
+                   "path" => tenant_error_path(source),
+                   "tenant_source" => source,
+                   "tenant_value" => normalized
+                 }},
+              else: {:ok, tenant_id}
 
           _ ->
-            {:error, "tenant_resolution_failed", tenant_resolution_failed_message(source), %{"path" => tenant_error_path(source), "tenant_source" => source, "tenant_value" => normalized}}
+            {:error, "tenant_resolution_failed", tenant_resolution_failed_message(source),
+             %{
+               "path" => tenant_error_path(source),
+               "tenant_source" => source,
+               "tenant_value" => normalized
+             }}
         end
     end
   end
@@ -1110,11 +1169,20 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
     header_tenant_id = normalize_string(List.first(Plug.Conn.get_req_header(conn, "x-tenant-id")))
 
     cond do
-      tenant_id != "" -> %{kind: :existing, value: tenant_id, source: "conn.assigns"}
-      tenant_code != "" -> %{kind: :tenant_code, value: tenant_code, source: "x-tenant-code"}
-      tenant_slug != "" -> %{kind: :tenant_slug, value: tenant_slug, source: "x-tenant-slug"}
-      header_tenant_id != "" -> %{kind: :tenant_id, value: header_tenant_id, source: "x-tenant-id"}
-      true -> nil
+      tenant_id != "" ->
+        %{kind: :existing, value: tenant_id, source: "conn.assigns"}
+
+      tenant_code != "" ->
+        %{kind: :tenant_code, value: tenant_code, source: "x-tenant-code"}
+
+      tenant_slug != "" ->
+        %{kind: :tenant_slug, value: tenant_slug, source: "x-tenant-slug"}
+
+      header_tenant_id != "" ->
+        %{kind: :tenant_id, value: header_tenant_id, source: "x-tenant-id"}
+
+      true ->
+        nil
     end
   end
 

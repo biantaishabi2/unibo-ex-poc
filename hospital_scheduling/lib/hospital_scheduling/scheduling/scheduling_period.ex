@@ -21,197 +21,250 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   resource do
-    description "一次科室月排班工作空间，承载需求、版本、求解运行"
+    description("一次科室月排班工作空间，承载需求、版本、求解运行")
   end
 
   postgres do
-    table "scheduling_periods"
-    repo HospitalScheduling.Repo
+    table("scheduling_periods")
+    repo(HospitalScheduling.Repo)
   end
 
   graphql do
-    type :scheduling_scheduling_period
+    type(:scheduling_scheduling_period)
 
     queries do
-      get :get_scheduling_scheduling_period, :read
-      list :list_scheduling_scheduling_periods, :read
+      get(:get_scheduling_scheduling_period, :read)
+      list(:list_scheduling_scheduling_periods, :read)
     end
 
     mutations do
       create :create_scheduling_scheduling_period, :create
-      update :update_scheduling_scheduling_period, :update
-      update :start_generating_scheduling_scheduling_period, :start_generating
-      update :mark_generated_scheduling_scheduling_period, :mark_generated
-      update :mark_adjusted_scheduling_scheduling_period, :mark_adjusted
-      update :publish_scheduling_scheduling_period, :publish
-      destroy :delete_scheduling_scheduling_period, :destroy
+      update(:update_scheduling_scheduling_period, :update)
+      update(:start_generating_scheduling_scheduling_period, :start_generating)
+      update(:mark_generated_scheduling_scheduling_period, :mark_generated)
+      update(:mark_adjusted_scheduling_scheduling_period, :mark_adjusted)
+      update(:publish_scheduling_scheduling_period, :publish)
+      destroy(:delete_scheduling_scheduling_period, :destroy)
     end
-
   end
 
   attributes do
-    uuid_primary_key :id
+    uuid_primary_key(:id)
+
     attribute :start_date, :date do
-      allow_nil? false
-      public? true
-      description "周期开始日期（本地业务日）"
+      allow_nil?(false)
+      public?(true)
+      description("周期开始日期（本地业务日）")
     end
+
     attribute :end_date, :date do
-      allow_nil? false
-      public? true
-      description "周期结束日期（本地业务日）"
+      allow_nil?(false)
+      public?(true)
+      description("周期结束日期（本地业务日）")
     end
+
     attribute :state, :atom do
-      allow_nil? false
-      constraints one_of: [:draft, :generating, :generated, :adjusted, :published]
-      default :draft
-      public? true
-      description "排班周期状态"
+      allow_nil?(false)
+      constraints(one_of: [:draft, :generating, :generated, :adjusted, :published])
+      default(:draft)
+      public?(true)
+      description("排班周期状态")
     end
+
     attribute :title, :string do
-      public? true
-      description "例如\"ICU 2026-04 月排班\""
+      public?(true)
+      description("例如\"ICU 2026-04 月排班\"")
     end
+
     attribute :generation_mode, :atom do
-      allow_nil? false
-      constraints one_of: [:blank, :cloned_from_previous, :solver_seeded]
-      default :blank
-      public? true
-      description "排班生成方式"
+      allow_nil?(false)
+      constraints(one_of: [:blank, :cloned_from_previous, :solver_seeded])
+      default(:blank)
+      public?(true)
+      description("排班生成方式")
     end
+
     attribute :notes, :string do
-      public? true
-      description "备注"
+      public?(true)
+      description("备注")
     end
-    create_timestamp :inserted_at
-    update_timestamp :updated_at
-    attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
+
+    create_timestamp(:inserted_at)
+    update_timestamp(:updated_at)
+    attribute(:archived_at, :utc_datetime_usec, allow_nil?: true, public?: false)
   end
 
   relationships do
     belongs_to :department, HospitalScheduling.Scheduling.Department do
-      public? true
-      allow_nil? false
+      public?(true)
+      allow_nil?(false)
     end
+
     belongs_to :source_period, HospitalScheduling.Scheduling.SchedulingPeriod do
-      public? true
+      public?(true)
     end
+
     belongs_to :source_version, HospitalScheduling.Scheduling.ScheduleVersion do
-      public? true
+      public?(true)
     end
+
     belongs_to :current_version, HospitalScheduling.Scheduling.ScheduleVersion do
-      public? true
+      public?(true)
     end
+
     belongs_to :published_version, HospitalScheduling.Scheduling.ScheduleVersion do
-      public? true
+      public?(true)
     end
+
     belongs_to :last_solver_run, HospitalScheduling.Scheduling.SolverRun do
-      public? true
+      public?(true)
     end
+
     has_many :coverage_requirements, HospitalScheduling.Scheduling.CoverageRequirement do
-      public? true
-      source_attribute :source_period_id
-      destination_attribute :period_id
+      public?(true)
+      source_attribute(:source_period_id)
+      destination_attribute(:period_id)
     end
+
     has_many :schedule_versions, HospitalScheduling.Scheduling.ScheduleVersion do
-      public? true
-      source_attribute :source_period_id
-      destination_attribute :period_id
+      public?(true)
+      source_attribute(:source_period_id)
+      destination_attribute(:period_id)
     end
+
     has_many :solver_runs, HospitalScheduling.Scheduling.SolverRun do
-      public? true
-      source_attribute :source_period_id
-      destination_attribute :period_id
+      public?(true)
+      source_attribute(:source_period_id)
+      destination_attribute(:period_id)
     end
+
     has_many :shift_assignments, HospitalScheduling.Scheduling.ShiftAssignment do
-      public? true
-      source_attribute :source_period_id
-      destination_attribute :period_id
+      public?(true)
+      source_attribute(:source_period_id)
+      destination_attribute(:period_id)
     end
+
     has_many :constraint_violations, HospitalScheduling.Scheduling.ConstraintViolation do
-      public? true
-      source_attribute :source_period_id
-      destination_attribute :period_id
+      public?(true)
+      source_attribute(:source_period_id)
+      destination_attribute(:period_id)
     end
   end
 
   actions do
-    defaults [:read, :destroy]
-    create :create do
-      description "Create Scheduling Period via Create. doc_url: graphql://contract/scheduling/create_scheduling_scheduling_period"
-      primary? true
-      accept [:start_date, :end_date, :title, :notes, :generation_mode]
-      argument :department_id, :uuid, allow_nil?: false
-      change manage_relationship(:department_id, :department, type: :append, on_lookup: :relate)
-    end
-    update :update do
-      description "Update Scheduling Period via Update. doc_url: graphql://contract/scheduling/update_scheduling_scheduling_period"
-      primary? true
-      accept [:title, :notes]
-      require_atomic? false
-    end
-    update :start_generating do
-      description "开始自动生成排班
+    defaults([:read, :destroy])
 
-开始自动生成排班. doc_url: graphql://contract/scheduling/start_generating_scheduling_scheduling_period"
-      accept []
-      change fn changeset, _ctx ->
+    create :create do
+      description(
+        "Create Scheduling Period via Create. doc_url: graphql://contract/scheduling/create_scheduling_scheduling_period"
+      )
+
+      primary?(true)
+      accept([:start_date, :end_date, :title, :notes, :generation_mode])
+      argument(:department_id, :uuid, allow_nil?: false)
+      change(manage_relationship(:department_id, :department, type: :append, on_lookup: :relate))
+    end
+
+    update :update do
+      description(
+        "Update Scheduling Period via Update. doc_url: graphql://contract/scheduling/update_scheduling_scheduling_period"
+      )
+
+      primary?(true)
+      accept([:title, :notes])
+      require_atomic?(false)
+    end
+
+    update :start_generating do
+      description("开始自动生成排班
+
+开始自动生成排班. doc_url: graphql://contract/scheduling/start_generating_scheduling_scheduling_period")
+      accept([])
+
+      change(fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)
+
         if current == :draft do
           Ash.Changeset.change_attribute(changeset, :state, :generating)
         else
-          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :state, message: "must equal %{value}", vars: %{value: :draft}))
+          Ash.Changeset.add_error(
+            changeset,
+            Ash.Error.Changes.InvalidAttribute.exception(
+              field: :state,
+              message: "must equal %{value}",
+              vars: %{value: :draft}
+            )
+          )
         end
-      end
+      end)
+
       # message: "只有草稿状态可以开始生成"
-      require_atomic? false
+      require_atomic?(false)
     end
+
     update :mark_generated do
-      description "求解完成，标记为已生成
+      description("求解完成，标记为已生成
 
-求解完成，标记为已生成. doc_url: graphql://contract/scheduling/mark_generated_scheduling_scheduling_period"
-      accept []
-      change set_attribute(:state, :generated)
-      require_atomic? false
+求解完成，标记为已生成. doc_url: graphql://contract/scheduling/mark_generated_scheduling_scheduling_period")
+      accept([])
+      change(set_attribute(:state, :generated))
+      require_atomic?(false)
     end
+
     update :mark_adjusted do
-      description "人工调班后标记
+      description("人工调班后标记
 
-人工调班后标记. doc_url: graphql://contract/scheduling/mark_adjusted_scheduling_scheduling_period"
-      accept []
-      change set_attribute(:state, :adjusted)
-      require_atomic? false
+人工调班后标记. doc_url: graphql://contract/scheduling/mark_adjusted_scheduling_scheduling_period")
+      accept([])
+      change(set_attribute(:state, :adjusted))
+      require_atomic?(false)
     end
-    update :publish do
-      description "发布排班（需无 error 级违反）
 
-发布排班（需无 error 级违反）. doc_url: graphql://contract/scheduling/publish_scheduling_scheduling_period"
-      accept []
-      change fn changeset, _ctx ->
+    update :publish do
+      description("发布排班（需无 error 级违反）
+
+发布排班（需无 error 级违反）. doc_url: graphql://contract/scheduling/publish_scheduling_scheduling_period")
+      accept([])
+
+      change(fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :state)
+
         if current in [:generated, :adjusted] do
           Ash.Changeset.change_attribute(changeset, :state, :published)
         else
-          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :state, message: "must be one of %{values}", vars: %{values: [:generated, :adjusted]}))
+          Ash.Changeset.add_error(
+            changeset,
+            Ash.Error.Changes.InvalidAttribute.exception(
+              field: :state,
+              message: "must be one of %{values}",
+              vars: %{values: [:generated, :adjusted]}
+            )
+          )
         end
-      end
+      end)
+
       # message: "只有已生成或已调整状态可以发布"
-      require_atomic? false
+      require_atomic?(false)
     end
   end
 
   validations do
-    validate compare(:end_date, greater_than: :start_date)
+    validate(compare(:end_date, greater_than: :start_date))
   end
 
   paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
+    change_tracking_mode(:full_diff)
+    store_action_name?(true)
+    ignore_attributes([:inserted_at, :updated_at])
   end
 
   archive do
-    archive_related [:coverage_requirements, :schedule_versions, :solver_runs, :shift_assignments, :constraint_violations]
+    archive_related([
+      :coverage_requirements,
+      :schedule_versions,
+      :solver_runs,
+      :shift_assignments,
+      :constraint_violations
+    ])
   end
-
 end

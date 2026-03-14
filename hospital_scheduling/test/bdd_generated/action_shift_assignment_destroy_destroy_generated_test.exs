@@ -10,15 +10,63 @@ defmodule HospitalScheduling.BDD.Generated.ActionShiftAssignmentDestroyDestroyTe
   @tag :seed
   test "[BDD-SCHEDULING_SHIFT_ASSIGNMENT_DESTROY_DESTROY-SEED-action_shift_assignment_destroy_destroy]" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
-    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SHIFT_ASSIGNMENT_DESTROY_DESTROY-SEED-action_shift_assignment_destroy_destroy"}
+
+    ctx = %{
+      run_id: run_id,
+      scenario_id:
+        "BDD-SCHEDULING_SHIFT_ASSIGNMENT_DESTROY_DESTROY-SEED-action_shift_assignment_destroy_destroy"
+    }
+
     # line 2: GIVEN given_seed_context id="action_shift_assignment_destroy_destroy" module="SCHEDULING_SHIFT_ASSIGNMENT"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_shift_assignment_destroy_destroy", module: "SCHEDULING_SHIFT_ASSIGNMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_shift_assignment_destroy_destroy.dsl", line: 2, raw: "GIVEN given_seed_context id=\"action_shift_assignment_destroy_destroy\" module=\"SCHEDULING_SHIFT_ASSIGNMENT\""}, 2)
+    ctx =
+      HospitalScheduling.BDD.Instructions.V1.run_step!(
+        ctx,
+        :given,
+        :given_seed_context,
+        %{id: "action_shift_assignment_destroy_destroy", module: "SCHEDULING_SHIFT_ASSIGNMENT"},
+        %{
+          file:
+            "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_shift_assignment_destroy_destroy.dsl",
+          line: 2,
+          raw:
+            "GIVEN given_seed_context id=\"action_shift_assignment_destroy_destroy\" module=\"SCHEDULING_SHIFT_ASSIGNMENT\""
+        },
+        2
+      )
+
     # line 3: WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SHIFT_ASSIGNMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_shift_assignment_destroy_destroy.dsl", line: 3, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SHIFT_ASSIGNMENT\""}, 3)
+    ctx =
+      HospitalScheduling.BDD.Instructions.V1.run_step!(
+        ctx,
+        :when,
+        :when_execute_seed_contract,
+        %{module: "SCHEDULING_SHIFT_ASSIGNMENT"},
+        %{
+          file:
+            "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_shift_assignment_destroy_destroy.dsl",
+          line: 3,
+          raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SHIFT_ASSIGNMENT\""
+        },
+        3
+      )
+
     # line 4: THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SHIFT_ASSIGNMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_shift_assignment_destroy_destroy.dsl", line: 4, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SHIFT_ASSIGNMENT\""}, 4)
+    ctx =
+      HospitalScheduling.BDD.Instructions.V1.run_step!(
+        ctx,
+        :then,
+        :then_seed_contract_should_hold,
+        %{module: "SCHEDULING_SHIFT_ASSIGNMENT"},
+        %{
+          file:
+            "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_shift_assignment_destroy_destroy.dsl",
+          line: 4,
+          raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SHIFT_ASSIGNMENT\""
+        },
+        4
+      )
+
     _ctx = ctx
     :ok
   end
-
 end

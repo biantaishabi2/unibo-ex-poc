@@ -10,15 +10,62 @@ defmodule HospitalScheduling.BDD.Generated.ActionSolverRunCreateCreateTest do
   @tag :seed
   test "[BDD-SCHEDULING_SOLVER_RUN_CREATE_CREATE-SEED-action_solver_run_create_create] SCHEDULING_SOLVER_RUN contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
-    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SOLVER_RUN_CREATE_CREATE-SEED-action_solver_run_create_create"}
+
+    ctx = %{
+      run_id: run_id,
+      scenario_id: "BDD-SCHEDULING_SOLVER_RUN_CREATE_CREATE-SEED-action_solver_run_create_create"
+    }
+
     # line 2: GIVEN given_seed_context id="action_solver_run_create_create" module="SCHEDULING_SOLVER_RUN"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_solver_run_create_create", module: "SCHEDULING_SOLVER_RUN"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_solver_run_create_create.dsl", line: 2, raw: "GIVEN given_seed_context id=\"action_solver_run_create_create\" module=\"SCHEDULING_SOLVER_RUN\""}, 2)
+    ctx =
+      HospitalScheduling.BDD.Instructions.V1.run_step!(
+        ctx,
+        :given,
+        :given_seed_context,
+        %{id: "action_solver_run_create_create", module: "SCHEDULING_SOLVER_RUN"},
+        %{
+          file:
+            "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_solver_run_create_create.dsl",
+          line: 2,
+          raw:
+            "GIVEN given_seed_context id=\"action_solver_run_create_create\" module=\"SCHEDULING_SOLVER_RUN\""
+        },
+        2
+      )
+
     # line 3: WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SOLVER_RUN"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_solver_run_create_create.dsl", line: 3, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SOLVER_RUN\""}, 3)
+    ctx =
+      HospitalScheduling.BDD.Instructions.V1.run_step!(
+        ctx,
+        :when,
+        :when_execute_seed_contract,
+        %{module: "SCHEDULING_SOLVER_RUN"},
+        %{
+          file:
+            "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_solver_run_create_create.dsl",
+          line: 3,
+          raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SOLVER_RUN\""
+        },
+        3
+      )
+
     # line 4: THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SOLVER_RUN"}, %{file: "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_solver_run_create_create.dsl", line: 4, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SOLVER_RUN\""}, 4)
+    ctx =
+      HospitalScheduling.BDD.Instructions.V1.run_step!(
+        ctx,
+        :then,
+        :then_seed_contract_should_hold,
+        %{module: "SCHEDULING_SOLVER_RUN"},
+        %{
+          file:
+            "/home/wangbo/document/unibo_ex_poc/hospital_scheduling/docs/bdd/action_solver_run_create_create.dsl",
+          line: 4,
+          raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SOLVER_RUN\""
+        },
+        4
+      )
+
     _ctx = ctx
     :ok
   end
-
 end

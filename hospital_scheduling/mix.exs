@@ -62,7 +62,8 @@ defmodule HospitalScheduling.MixProject do
       {:absinthe_plug, "~> 1.5"},
       {:ash_paper_trail, "~> 0.5"},
       {:ash_archival, "~> 2.0"},
-      {:unibo_bdd_runtime, github: "biantaishabi2/unibo", branch: "master", sparse: "targets/elixir/unibo_bdd_runtime"},
+      {:unibo_bdd_runtime,
+       github: "biantaishabi2/unibo", branch: "master", sparse: "targets/elixir/unibo_bdd_runtime"}
     ]
   end
 

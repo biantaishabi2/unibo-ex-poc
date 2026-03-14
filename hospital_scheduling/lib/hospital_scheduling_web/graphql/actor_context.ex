@@ -199,6 +199,7 @@ defmodule HospitalSchedulingWeb.Graphql.ActorContext do
   def actor_from_headers(%Plug.Conn{} = conn) do
     actor_id = List.first(Plug.Conn.get_req_header(conn, "x-actor-id"))
     actor_role = List.first(Plug.Conn.get_req_header(conn, "x-actor-role"))
+
     actor_party_id =
       List.first(Plug.Conn.get_req_header(conn, "x-actor-party-id")) ||
         List.first(Plug.Conn.get_req_header(conn, "x-party-id"))
@@ -210,7 +211,7 @@ defmodule HospitalSchedulingWeb.Graphql.ActorContext do
       id ->
         %{id: id, role: normalize_string(actor_role)}
         |> maybe_put_actor_field(:party_id, normalize_string(actor_party_id))
-      end
+    end
   end
 
   def actor_from_headers(_), do: nil
@@ -223,7 +224,8 @@ defmodule HospitalSchedulingWeb.Graphql.ActorContext do
   defp maybe_put_actor_field(actor, field, value), do: Map.put(actor, field, value)
 
   defp nested_id(value) when is_map(value) do
-    Map.get(value, :id) || Map.get(value, "id") || Map.get(value, :party_id) || Map.get(value, "party_id")
+    Map.get(value, :id) || Map.get(value, "id") || Map.get(value, :party_id) ||
+      Map.get(value, "party_id")
   end
 
   defp nested_id(_), do: nil
@@ -316,7 +318,8 @@ defmodule HospitalSchedulingWeb.Graphql.ActorContext do
     end
   end
 
-  defp maybe_put_missing_actor_field(actor, field, value) when field in [:party_id, :role, :type] do
+  defp maybe_put_missing_actor_field(actor, field, value)
+       when field in [:party_id, :role, :type] do
     case Map.get(actor, field) do
       nil -> maybe_put_actor_field(actor, field, value)
       "" -> maybe_put_actor_field(actor, field, value)
@@ -337,11 +340,21 @@ defmodule HospitalSchedulingWeb.Graphql.ActorContext do
   defp first_role(_), do: nil
 
   defp normalize_roles(nil), do: []
-  defp normalize_roles(value) when is_binary(value), do: value |> String.split(",", trim: true) |> Enum.map(&normalize_string/1) |> Enum.reject(&(&1 == ""))
-  defp normalize_roles(value) when is_list(value), do: value |> Enum.map(&normalize_string/1) |> Enum.reject(&(&1 == ""))
+
+  defp normalize_roles(value) when is_binary(value),
+    do:
+      value
+      |> String.split(",", trim: true)
+      |> Enum.map(&normalize_string/1)
+      |> Enum.reject(&(&1 == ""))
+
+  defp normalize_roles(value) when is_list(value),
+    do: value |> Enum.map(&normalize_string/1) |> Enum.reject(&(&1 == ""))
+
   defp normalize_roles(_), do: []
 
   defp map_value(nil, _key), do: nil
+
   defp map_value(map, key) when is_map(map) do
     normalized_key = normalize_string(key)
 
@@ -353,6 +366,7 @@ defmodule HospitalSchedulingWeb.Graphql.ActorContext do
       end
     end)
   end
+
   defp map_value(_, _key), do: nil
 
   defp header_value(%Plug.Conn{} = conn, name) when is_binary(name) do
@@ -360,12 +374,16 @@ defmodule HospitalSchedulingWeb.Graphql.ActorContext do
     |> Plug.Conn.get_req_header(name)
     |> List.first()
   end
+
   defp header_value(_, _), do: nil
 
   defp normalize_string(nil), do: ""
   defp normalize_string(value) when is_binary(value), do: String.trim(value)
   defp normalize_string(value) when is_atom(value), do: value |> Atom.to_string() |> String.trim()
   defp normalize_string(value) when is_integer(value), do: Integer.to_string(value)
-  defp normalize_string(value) when is_float(value), do: :erlang.float_to_binary(value, [:compact, decimals: 6])
+
+  defp normalize_string(value) when is_float(value),
+    do: :erlang.float_to_binary(value, [:compact, decimals: 6])
+
   defp normalize_string(_), do: ""
 end
