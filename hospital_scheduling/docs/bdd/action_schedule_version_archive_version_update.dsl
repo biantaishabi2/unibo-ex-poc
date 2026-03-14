@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION_ARCHIVE_VERSION_UPDATE-SEED-action_schedule_version_archive_version_update] TITLE: SCHEDULING_SCHEDULE_VERSION_ARCHIVE_VERSION contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="action_schedule_version_archive_version_update" module="SCHEDULING_SCHEDULE_VERSION_ARCHIVE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION_ARCHIVE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION_ARCHIVE_VERSION"

@@ -1,0 +1,7 @@
+module: SCHEDULING_COVERAGE_REQUIREMENT
+contract: CoverageRequirement.update action contract
+edge_class: action_contract
+source_file: /home/wangbo/document/unibo/models/scheduling/scheduling.ubo.yaml
+source_summary: GIVEN 实体 CoverageRequirement 的动作 update 可执行，accept=[role_name, required_skill_tags, min_headcount, target_headcount, required_lead_count, priority, notes]，args=[无显式参数] / WHEN 执行动作 update / THEN 保留基础行为占位（建议补充 validation/change）
+expected_facts:
+- action_executed
