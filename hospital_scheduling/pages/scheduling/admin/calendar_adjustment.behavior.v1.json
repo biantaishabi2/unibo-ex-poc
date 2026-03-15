@@ -1,8 +1,70 @@
 {
   "version": 1,
   "page_id": "calendar_adjustment",
+  "page_type": "composition",
   "entity": "ShiftAssignment",
   "domain": "Scheduling",
+  "backend": {
+    "api_map": {
+      "list": "Scheduling.ShiftAssignment.list",
+      "update": "Scheduling.ShiftAssignment.update",
+      "save_draft": "Scheduling.ShiftAssignment.update",
+      "filter_submit": "Scheduling.ShiftAssignment.list"
+    }
+  },
+  "state_transitions": [
+    {
+      "name": "navigate_prev_week",
+      "from": "*",
+      "to": "*",
+      "trigger": "user_action",
+      "description": "切换到上一周"
+    },
+    {
+      "name": "navigate_next_week",
+      "from": "*",
+      "to": "*",
+      "trigger": "user_action",
+      "description": "切换到下一周"
+    },
+    {
+      "name": "filter_submit",
+      "from": "*",
+      "to": "loading",
+      "trigger": "user_action",
+      "description": "按筛选条件刷新排班矩阵"
+    },
+    {
+      "name": "save_draft",
+      "from": "*",
+      "to": "loading",
+      "trigger": "user_action",
+      "description": "保存当前调班草稿"
+    },
+    {
+      "name": "navigate_publish_preview",
+      "from": "*",
+      "to": "*",
+      "trigger": "user_action",
+      "description": "进入发布预览"
+    },
+    {
+      "name": "navigate_back",
+      "from": "*",
+      "to": "*",
+      "trigger": "user_action",
+      "description": "返回周期详情"
+    }
+  ],
+  "status_keys": [
+    "period",
+    "employees",
+    "manual_change_count",
+    "coverage_rate",
+    "live_violations",
+    "no_violations",
+    "current_week_label"
+  ],
   "e2e": {
     "playwright": {
       "auto": true,

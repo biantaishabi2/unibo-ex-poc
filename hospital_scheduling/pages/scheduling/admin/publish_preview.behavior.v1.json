@@ -1,8 +1,50 @@
 {
   "version": 1,
   "page_id": "publish_preview",
+  "page_type": "composition",
   "entity": "ScheduleVersion",
   "domain": "Scheduling",
+  "backend": {
+    "api_map": {
+      "get": "Scheduling.ScheduleVersion.get",
+      "action_publish": "Scheduling.ScheduleVersion.publish_version",
+      "toggle_diff_mode": "Scheduling.ScheduleVersion.get"
+    }
+  },
+  "state_transitions": [
+    {
+      "name": "toggle_diff_mode",
+      "from": "*",
+      "to": "*",
+      "trigger": "user_action",
+      "description": "切换差异视图模式"
+    },
+    {
+      "name": "action_publish",
+      "from": "*",
+      "to": "loading",
+      "trigger": "user_action",
+      "description": "发布当前版本"
+    },
+    {
+      "name": "navigate_back",
+      "from": "*",
+      "to": "*",
+      "trigger": "user_action",
+      "description": "返回上一页"
+    }
+  ],
+  "status_keys": [
+    "period",
+    "version",
+    "change_count",
+    "affected_employee_count",
+    "coverage_rate",
+    "changes",
+    "no_changes",
+    "has_hard_violations",
+    "warning_count"
+  ],
   "e2e": {
     "playwright": {
       "auto": true,
