@@ -1,0 +1,154 @@
+# 排班周期详情页（工作流中枢）
+version: "1.0"
+page:
+  name: period_detail
+  title: 排班周期详情
+  route: /scheduling/periods/:id
+  page_type: object_page
+  entity: SchedulingPeriod
+  audience: admin
+
+  permissions:
+    access: role
+    roles: [admin]
+
+  data_sources:
+    - name: period
+      type: read
+      resource: Scheduling.SchedulingPeriod
+      params:
+        id: route.id
+
+  slots:
+    header:
+      title_field: title
+      status_field: state
+      status_render: badge
+
+    sections:
+      - title: 基本信息
+        fields:
+          - field: department.name
+            label: 科室
+          - field: start_date
+            label: 开始日期
+            format: date
+          - field: end_date
+            label: 结束日期
+            format: date
+          - field: generation_mode
+            label: 生成方式
+            render: badge
+          - field: notes
+            label: 备注
+
+      - title: 版本信息
+        fields:
+          - field: current_version.version_no
+            label: 当前工作版本
+          - field: current_version.origin_type
+            label: 版本来源
+            render: badge
+          - field: published_version.version_no
+            label: 已发布版本
+
+      - title: 最近求解
+        fields:
+          - field: last_solver_run.status
+            label: 求解状态
+            render: badge
+          - field: last_solver_run.engine_type
+            label: 算法
+          - field: last_solver_run.hard_violation_count
+            label: 硬约束违反数
+          - field: last_solver_run.warning_count
+            label: 警告数
+
+    actions:
+      - label: 编辑需求矩阵
+        action: navigate
+        variant: secondary
+        params:
+          to: /scheduling/periods/{{ period.id }}/requirements
+      - label: 约束配置
+        action: navigate
+        variant: secondary
+        params:
+          to: /scheduling/periods/{{ period.id }}/constraints
+      - label: 开始自动排班
+        action: start_generating
+        variant: primary
+        visible_when:
+          field: state
+          op: eq
+          value: draft
+      - label: 查看排班结果
+        action: navigate
+        variant: primary
+        visible_when:
+          field: state
+          op: in
+          value: [generated, adjusted]
+        params:
+          to: /scheduling/periods/{{ period.id }}/runs/{{ period.last_solver_run.id }}/result
+      - label: 日历调班
+        action: navigate
+        variant: secondary
+        visible_when:
+          field: state
+          op: in
+          value: [generated, adjusted]
+        params:
+          to: /scheduling/periods/{{ period.id }}/versions/{{ period.current_version.id }}/calendar
+      - label: 发布预览
+        action: navigate
+        variant: primary
+        visible_when:
+          field: state
+          op: in
+          value: [generated, adjusted]
+        params:
+          to: /scheduling/periods/{{ period.id }}/versions/{{ period.current_version.id }}/publish-preview
+
+    related:
+      - name: schedule_versions
+        title: 版本历史
+        entity: ScheduleVersion
+        relationship: schedule_versions
+        display: table
+        columns:
+          - field: version_no
+            label: 版本号
+          - field: status
+            label: 状态
+            render: badge
+          - field: origin_type
+            label: 来源
+            render: badge
+          - field: change_summary
+            label: 说明
+          - field: inserted_at
+            label: 创建时间
+            format: datetime
+
+      - name: solver_runs
+        title: 求解记录
+        entity: SolverRun
+        relationship: solver_runs
+        display: table
+        columns:
+          - field: status
+            label: 状态
+            render: badge
+          - field: engine_type
+            label: 算法
+          - field: hard_violation_count
+            label: 违反数
+          - field: warning_count
+            label: 警告数
+          - field: started_at
+            label: 开始时间
+            format: datetime
+          - field: completed_at
+            label: 完成时间
+            format: datetime

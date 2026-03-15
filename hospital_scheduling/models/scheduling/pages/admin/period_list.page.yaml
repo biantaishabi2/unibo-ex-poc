@@ -1,0 +1,83 @@
+# 排班周期列表页
+version: "1.0"
+page:
+  name: period_list
+  title: 排班周期管理
+  route: /scheduling/periods
+  page_type: list_report
+  entity: SchedulingPeriod
+  audience: admin
+
+  permissions:
+    access: role
+    roles: [admin]
+
+  data_sources:
+    - name: periods
+      type: list
+      resource: Scheduling.SchedulingPeriod
+      sort:
+        - field: start_date
+          direction: desc
+
+  slots:
+    filter_bar:
+      - field: state
+        type: select
+        label: 状态
+        options:
+          - { label: 全部, value: "" }
+          - { label: 草稿, value: draft }
+          - { label: 生成中, value: generating }
+          - { label: 已生成, value: generated }
+          - { label: 已调整, value: adjusted }
+          - { label: 已发布, value: published }
+      - field: department_id
+        type: select
+        label: 科室
+      - field: start_date
+        type: date_range
+        label: 起始日期
+
+    table:
+      columns:
+        - field: title
+          label: 周期名称
+        - field: department.name
+          label: 科室
+        - field: start_date
+          label: 开始日期
+          format: date
+        - field: end_date
+          label: 结束日期
+          format: date
+        - field: state
+          label: 状态
+          render: badge
+        - field: generation_mode
+          label: 生成方式
+          render: badge
+        - field: inserted_at
+          label: 创建时间
+          format: datetime
+
+      row_actions:
+        - label: 详情
+          action: navigate
+          params:
+            to: /scheduling/periods/{{ row.id }}
+        - label: 删除
+          action: destroy
+          confirm: 确定删除该排班周期吗？
+          visible_when:
+            field: state
+            op: eq
+            value: draft
+
+    toolbar:
+      actions:
+        - label: 新建排班周期
+          action: navigate
+          params:
+            to: /scheduling/periods/new
+          variant: primary
