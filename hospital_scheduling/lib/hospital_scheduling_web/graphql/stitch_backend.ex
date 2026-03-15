@@ -85,11 +85,14 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
     with false <- api_key == "",
          api_ref when is_binary(api_ref) and api_ref != "" <- map_get(api_map, api_key),
          {:ok, parsed} <- parse_api_ref(api_ref),
-         {:ok, field} <- resolve_graphql_field(parsed, api_key) do
+         {:ok, field, field_meta} <- resolve_graphql_field(parsed, api_key) do
       {:ok,
        parsed
        |> Map.put("api_key", api_key)
        |> Map.put("field", field)
+       |> Map.put("input_type", map_get(field_meta, "input_type"))
+       |> Map.put("field_mode", map_get(field_meta, "mode"))
+       |> Map.put("field_action", map_get(field_meta, "action"))
        |> Map.put("page_kind", normalize_string(map_get(page, "page_kind")))}
     else
       true -> {:error, :stitch_backend_api_missing}
@@ -170,14 +173,25 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
       end
 
     case normalize_string(map_get(candidate || %{}, "field")) do
-      "" -> {:error, :stitch_backend_graphql_contract_missing}
-      value -> {:ok, value}
+      "" ->
+        {:error, :stitch_backend_graphql_contract_missing}
+
+      value ->
+        # 返回 field 名 + manifest 中的 input_type/mode 信息
+        {:ok, value,
+         %{
+           "input_type" => normalize_string(map_get(candidate, "input_type")),
+           "mode" => normalize_string(map_get(candidate, "mode")),
+           "action" => normalize_string(map_get(candidate, "action"))
+         }}
     end
   end
 
   defp build_graphql_request(_page, operation, params, state) do
     field = normalize_string(map_get(operation, "field"))
     api_key = normalize_string(map_get(operation, "api_key"))
+    input_type = normalize_string(map_get(operation, "input_type"))
+    field_mode = normalize_string(map_get(operation, "field_mode"))
     selection = selection_set(operation, state)
 
     case api_key do
@@ -185,20 +199,81 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
         {:ok, "query StitchList { #{field} { results { #{selection} } count } }", %{}}
 
       "get" ->
-        id =
-          normalize_string(map_get(params, "id")) ||
-            normalize_string(map_get(state, "id")) ||
-            normalize_string(map_get(map_get(state, "record") || %{}, "id"))
+        id = resolve_id(params, state)
+        {:ok, "query StitchGet($id: ID!) { #{field}(id: $id) { #{selection} } }", %{"id" => id}}
 
-        {:ok, "query StitchGet($id: ID) { #{field}(id: $id) { #{selection} } }", %{"id" => id}}
-
-      _ ->
+      "create" ->
         input = sanitize_input_params(params)
+        {decl, arg} = input_type_decl(input_type, "create")
 
         {:ok,
-         "mutation StitchMutation($input: JSON) { #{field}(input: $input) { result { #{selection} } errors { message code } } }",
+         "mutation StitchCreate(#{decl}) { #{field}(#{arg}) { result { #{selection} } errors { message code } } }",
          %{"input" => input}}
+
+      "update" ->
+        id = resolve_id(params, state)
+        input = sanitize_input_params(params) |> Map.delete("id")
+        {decl, arg} = input_type_decl(input_type, "update")
+
+        {:ok,
+         "mutation StitchUpdate($id: ID!, #{decl}) { #{field}(id: $id, #{arg}) { result { #{selection} } errors { message code } } }",
+         %{"id" => id, "input" => input}}
+
+      "destroy" ->
+        id = resolve_id(params, state)
+
+        {:ok,
+         "mutation StitchDestroy($id: ID!) { #{field}(id: $id) { result { #{selection} } errors { message code } } }",
+         %{"id" => id}}
+
+      _ ->
+        # 自定义 action（lock/unlock/状态转换等）— 通常只需 id
+        build_custom_action_request(field, field_mode, input_type, params, state, selection)
     end
+  end
+
+  # 自定义 action 的 GraphQL 请求构建
+  defp build_custom_action_request(field, _field_mode, input_type, params, state, selection) do
+    id = resolve_id(params, state)
+
+    cond do
+      # 有 input_type 说明自定义 action 需要 input 参数
+      input_type != "" ->
+        input = sanitize_input_params(params) |> Map.delete("id")
+        {decl, arg} = input_type_decl(input_type, "action")
+
+        {:ok,
+         "mutation StitchAction($id: ID!, #{decl}) { #{field}(id: $id, #{arg}) { result { #{selection} } errors { message code } } }",
+         %{"id" => id, "input" => input}}
+
+      # 有 id 的自定义 action（lock, unlock, 状态转换）
+      id != "" ->
+        {:ok,
+         "mutation StitchAction($id: ID!) { #{field}(id: $id) { result { #{selection} } errors { message code } } }",
+         %{"id" => id}}
+
+      # 无 id 无 input 的 action（极少见）
+      true ->
+        {:ok,
+         "mutation StitchAction { #{field} { result { #{selection} } errors { message code } } }",
+         %{}}
+    end
+  end
+
+  defp resolve_id(params, state) do
+    normalize_string(map_get(params, "id")) ||
+      normalize_string(map_get(state, "id")) ||
+      normalize_string(map_get(map_get(state, "record") || %{}, "id"))
+  end
+
+  # 根据 manifest 中的 input_type 生成 GraphQL 变量声明和参数
+  defp input_type_decl(input_type, _kind) when input_type != "" do
+    {"$input: #{input_type}!", "input: $input"}
+  end
+
+  defp input_type_decl(_input_type, _kind) do
+    # 降级：没有 input_type 信息时用 JSON（兼容旧行为）
+    {"$input: JSON", "input: $input"}
   end
 
   defp call_graphql(query, variables, state) do
