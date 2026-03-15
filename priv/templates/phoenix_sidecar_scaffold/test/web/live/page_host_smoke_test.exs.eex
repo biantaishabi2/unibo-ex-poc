@@ -1,0 +1,22 @@
+defmodule <%= web_module %>.PageHostSmokeTest do
+  use ExUnit.Case, async: true
+
+  import Phoenix.LiveViewTest
+
+  defmodule SampleComponent do
+    use Phoenix.Component
+
+    def render(assigns) do
+      ~H"""
+      <div id="page-host-smoke"><%%= @message %></div>
+      """
+    end
+  end
+
+  test "liveview 测试基础能力可直接运行" do
+    html = render_component(&SampleComponent.render/1, %{message: "ok"})
+
+    assert html =~ "page-host-smoke"
+    assert html =~ "ok"
+  end
+end

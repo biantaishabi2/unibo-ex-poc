@@ -1,0 +1,7 @@
+defmodule <%= web_module %>.PageControllerTest do
+  use ExUnit.Case, async: true
+
+  test "exports home/2 action" do
+    assert function_exported?(<%= web_module %>.PageController, :home, 2)
+  end
+end
