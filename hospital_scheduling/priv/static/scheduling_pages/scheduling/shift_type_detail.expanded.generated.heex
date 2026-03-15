@@ -72,7 +72,7 @@
           </.flex>
           <.flex direction="row" id="field_duration_hours">
             <.text variant="muted" id="label_duration_hours">
-              时长（小时）,跨午夜时 end < start
+              时长（小时）,跨午夜时 end &lt; start
             </.text>
             <.text id="value_duration_hours">
               <%= @record.duration_hours %>
@@ -118,7 +118,7 @@
             <.input name="name" label="班次名称,如'白班'、'小夜'、'大夜'" placeholder="请输入班次名称,如'白班'、'小夜'、'大夜'" required="true" size="md" id="form_name" />
             <.input name="start_time" label="班次开始时间,如 08:00" placeholder="请输入班次开始时间,如 08:00" required="true" size="md" id="form_start_time" />
             <.input name="end_time" label="班次结束时间,如 16:00" placeholder="请输入班次结束时间,如 16:00" required="true" size="md" id="form_end_time" />
-            <.input name="duration_hours" label="时长（小时）,跨午夜时 end < start" placeholder="请输入时长（小时）,跨午夜时 end < start" required="true" size="md" id="form_duration_hours" />
+            <.input name="duration_hours" label="时长（小时）,跨午夜时 end &lt; start" placeholder="请输入时长（小时）,跨午夜时 end &lt; start" required="true" size="md" id="form_duration_hours" />
             <.switch name="is_night" label="是否算夜班（影响夜班公平性约束）" size="md" id="form_is_night" />
             <.input name="color" label="前端显示色,如" placeholder="请输入前端显示色,如" size="md" id="form_color" />
             <.input name="sort_order" label="排序权重" placeholder="请输入排序权重" required="true" size="md" id="form_sort_order" />

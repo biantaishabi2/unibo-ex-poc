@@ -158,10 +158,19 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
   end
 
   defp load_page_data(socket, page, params, heex_path) do
+    status_defaults = load_status_defaults(heex_path)
+
     defaults =
       @default_assigns
-      |> Map.merge(load_status_defaults(heex_path))
-      |> Map.put(:page_title, page)
+      |> Map.merge(status_defaults)
+      |> then(fn d ->
+        # status schema 已提供 page_title 时不覆盖，否则用 page_id 兜底
+        if Map.get(status_defaults, :page_title, "") != "" do
+          d
+        else
+          Map.put(d, :page_title, page)
+        end
+      end)
 
     case socket.assigns.runtime_mode do
       :graphql ->
