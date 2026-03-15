@@ -152,6 +152,7 @@ defmodule HospitalScheduling.Scheduling.ShiftAssignment do
 锁定此排班，重排时不会变动. doc_url: graphql://contract/scheduling/lock_scheduling_shift_assignment")
       accept([])
       require_atomic?(false)
+      change set_attribute(:is_locked, true)
     end
 
     update :unlock do
@@ -160,6 +161,7 @@ defmodule HospitalScheduling.Scheduling.ShiftAssignment do
 解锁此排班. doc_url: graphql://contract/scheduling/unlock_scheduling_shift_assignment")
       accept([])
       require_atomic?(false)
+      change set_attribute(:is_locked, false)
     end
   end
 
