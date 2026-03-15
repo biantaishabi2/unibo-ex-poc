@@ -107,4 +107,33 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackendContractTest do
              issue["code"] == "custom_page_api_map_missing" and issue["severity"] == "warning"
            end)
   end
+
+  test "manifest error 会阻断 backend contract", %{
+    frontend_manifest_path: frontend_manifest_path
+  } do
+    File.write!(
+      frontend_manifest_path,
+      Jason.encode!(%{
+        "pages" => [
+          %{
+            "page_id" => "solver_result",
+            "page_type" => "custom",
+            "backend" => %{"api_map" => %{"get" => "Scheduling.SolverRun.get"}},
+            "status_keys" => ["record", "loading"]
+          }
+        ],
+        "route_map" => [
+          %{"path" => "/scheduling/solver_result", "page_id" => "solver_result"},
+          %{"path" => "", "page_id" => "broken_page"}
+        ]
+      })
+    )
+
+    assert {:error, {:stitch_backend_page_contract_invalid, details}} =
+             StitchBackend.contract("solver_result")
+
+    assert Enum.any?(details["issues"], fn issue ->
+             issue["code"] == "route_map_entry_invalid" and issue["severity"] == "error"
+           end)
+  end
 end

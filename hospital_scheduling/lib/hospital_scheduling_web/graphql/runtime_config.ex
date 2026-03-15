@@ -114,9 +114,7 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
 
   def frontend_backend_page(page_id) when is_binary(page_id) do
     with {:ok, page} <- frontend_page(page_id) do
-      issues =
-        frontend_manifest_report().warnings
-        |> Enum.filter(fn issue -> normalize_string(map_get(issue, "page_id")) == page_id end)
+      issues = frontend_backend_page_issues(frontend_manifest_report(), page_id)
 
       if issues == [] do
         {:ok, page}
@@ -848,6 +846,15 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
 
   defp frontend_manifest_warnings(pages) do
     Enum.flat_map(pages, &frontend_page_warnings/1)
+  end
+
+  defp frontend_backend_page_issues(report, page_id) do
+    page_id = normalize_string(page_id)
+
+    report.errors ++
+      Enum.filter(report.warnings, fn issue ->
+        normalize_string(map_get(issue, "page_id")) == page_id
+      end)
   end
 
   defp maybe_add_frontend_manifest_missing_pages(errors, frontend_data) do
