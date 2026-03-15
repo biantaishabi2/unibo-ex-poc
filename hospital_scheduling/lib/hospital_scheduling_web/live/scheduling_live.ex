@@ -434,6 +434,47 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
   end
 
   defp list_pages do
+    case manifest_pages() do
+      [] -> list_pages_from_directory()
+      pages -> pages
+    end
+  end
+
+  defp manifest_pages do
+    frontend_manifest = HospitalSchedulingWeb.Graphql.RuntimeConfig.frontend_manifest()
+
+    routes_by_page =
+      frontend_manifest
+      |> map_get("route_map")
+      |> normalize_list()
+      |> Enum.reduce(%{}, fn route, acc ->
+        page_id = route |> map_get("page_id") |> normalize_string()
+        route_path = route |> map_get("path") |> normalize_string()
+
+        cond do
+          page_id == "" or route_path == "" -> acc
+          Map.has_key?(acc, page_id) -> acc
+          true -> Map.put(acc, page_id, route_path)
+        end
+      end)
+
+    frontend_manifest
+    |> map_get("pages")
+    |> normalize_list()
+    |> Enum.map(fn page ->
+      page_id = page |> map_get("page_id") |> normalize_string()
+
+      %{
+        name: page_id,
+        file: page |> map_get("page_type") |> normalize_string(),
+        route: Map.get(routes_by_page, page_id, "/scheduling/#{page_id}")
+      }
+    end)
+    |> Enum.reject(&(&1.name == ""))
+    |> Enum.sort_by(& &1.name)
+  end
+
+  defp list_pages_from_directory do
     if File.dir?(pages_dir()) do
       pages_dir()
       |> File.ls!()
@@ -462,11 +503,13 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         <%= for p <- @pages do %>
           <a
-            href={"/scheduling/#{p.name}"}
+            href={Map.get(p, :route, "/scheduling/#{p.name}")}
             class="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow border"
           >
             <div class="font-medium text-blue-600">{p.name}</div>
-            <div class="text-sm text-gray-500 mt-1">{p.file}</div>
+            <div class="text-sm text-gray-500 mt-1">
+              {Map.get(p, :route, p.file)}
+            </div>
           </a>
         <% end %>
       </div>
@@ -501,4 +544,29 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
     </div>
     """
   end
+
+  defp normalize_list(values) when is_list(values), do: values
+  defp normalize_list(_values), do: []
+
+  defp normalize_string(nil), do: ""
+  defp normalize_string(value) when is_binary(value), do: String.trim(value)
+  defp normalize_string(value) when is_atom(value), do: value |> Atom.to_string() |> String.trim()
+  defp normalize_string(value), do: value |> to_string() |> String.trim()
+
+  defp map_get(map, key) when is_map(map) and is_atom(key), do: map_get(map, Atom.to_string(key))
+
+  defp map_get(map, key) when is_map(map) and is_binary(key) do
+    Enum.find_value(map, fn
+      {existing_key, value} when is_binary(existing_key) and existing_key == key ->
+        value
+
+      {existing_key, value} when is_atom(existing_key) ->
+        if Atom.to_string(existing_key) == key, do: value, else: nil
+
+      _ ->
+        nil
+    end)
+  end
+
+  defp map_get(_map, _key), do: nil
 end

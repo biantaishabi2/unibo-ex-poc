@@ -43,6 +43,7 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
 
     heex_path = Path.join(tmp_dir, "solver_result.expanded.generated.heex")
     status_path = Path.join(tmp_dir, "solver_result.expanded.status.schema.v1.json")
+    frontend_manifest_path = Path.join(tmp_dir, "frontend_manifest.v1.json")
 
     File.write!(
       heex_path,
@@ -64,9 +65,26 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
       })
     )
 
+    File.write!(
+      frontend_manifest_path,
+      Jason.encode!(%{
+        "pages" => [
+          %{"page_id" => "solver_result", "page_type" => "composition"},
+          %{"page_id" => "publish_preview", "page_type" => "composition"}
+        ],
+        "route_map" => [
+          %{"page_id" => "solver_result", "path" => "/scheduling/periods/:id/result"},
+          %{"page_id" => "publish_preview", "path" => "/scheduling/periods/:id/publish"}
+        ]
+      })
+    )
+
     previous_runtime = Application.get_env(:hospital_scheduling, :scheduling_page_runtime)
     previous_backend = Application.get_env(:hospital_scheduling, :scheduling_page_backend)
     previous_pages_dir = Application.get_env(:hospital_scheduling, :scheduling_pages_dir)
+
+    previous_runtime_config =
+      Application.get_env(:hospital_scheduling, HospitalSchedulingWeb.Graphql.RuntimeConfig, [])
 
     previous_endpoint =
       Application.get_env(:hospital_scheduling, HospitalSchedulingWeb.Endpoint, [])
@@ -80,6 +98,12 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
     Application.put_env(:hospital_scheduling, :scheduling_page_backend, FakeBackend)
     Application.put_env(:hospital_scheduling, :scheduling_pages_dir, tmp_dir)
     Application.put_env(:hospital_scheduling, HospitalSchedulingWeb.Endpoint, endpoint_config)
+
+    Application.put_env(
+      :hospital_scheduling,
+      HospitalSchedulingWeb.Graphql.RuntimeConfig,
+      Keyword.put(previous_runtime_config, :frontend_manifest, frontend_manifest_path)
+    )
 
     on_exit(fn ->
       if is_nil(previous_runtime) do
@@ -102,6 +126,12 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
 
       Application.put_env(:hospital_scheduling, HospitalSchedulingWeb.Endpoint, previous_endpoint)
 
+      Application.put_env(
+        :hospital_scheduling,
+        HospitalSchedulingWeb.Graphql.RuntimeConfig,
+        previous_runtime_config
+      )
+
       File.rm_rf(tmp_dir)
     end)
 
@@ -121,5 +151,14 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
 
     assert html =~ "published"
     assert has_element?(view, "#flash_preview", "发布成功")
+  end
+
+  test "列表页优先展示 frontend manifest 里的页面和路由", %{conn: conn} do
+    {:ok, _view, html} = live(conn, "/scheduling")
+
+    assert html =~ "solver_result"
+    assert html =~ "/scheduling/periods/:id/result"
+    assert html =~ "publish_preview"
+    assert html =~ "/scheduling/periods/:id/publish"
   end
 end
