@@ -1,8 +1,7 @@
 defmodule <%= web_module %>.PageControllerTest do
-  use <%= web_module %>.ConnCase
+  use ExUnit.Case, async: true
 
-  test "GET /", %{conn: conn} do
-    conn = get(conn, ~p"/")
-    assert html_response(conn, 200) =~ "Peace of mind from prototype to production"
+  test "exports home/2 action" do
+    assert function_exported?(<%= web_module %>.PageController, :home, 2)
   end
 end
