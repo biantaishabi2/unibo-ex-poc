@@ -78,6 +78,57 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
     safe_manifest_load(frontend_manifest_path())
   end
 
+  def frontend_manifest_report do
+    frontend_data = frontend_manifest()
+    route_map = normalize_frontend_route_map(frontend_data)
+    pages = normalize_frontend_pages(frontend_data, route_map)
+
+    %{
+      pages: pages,
+      route_map: route_map,
+      warnings: frontend_manifest_warnings(pages),
+      errors: frontend_manifest_errors(frontend_data, pages, route_map)
+    }
+  end
+
+  def frontend_pages do
+    frontend_manifest_report().pages
+  end
+
+  def frontend_route_map do
+    frontend_manifest_report().route_map
+  end
+
+  def frontend_page(page_id) when is_binary(page_id) do
+    page_id = normalize_string(page_id)
+
+    frontend_pages()
+    |> Enum.find(fn page -> normalize_string(map_get(page, "page_id")) == page_id end)
+    |> case do
+      %{} = page -> {:ok, page}
+      _ -> {:error, :stitch_backend_page_not_found}
+    end
+  end
+
+  def frontend_page(_page_id), do: {:error, :stitch_backend_page_not_found}
+
+  def frontend_backend_page(page_id) when is_binary(page_id) do
+    with {:ok, page} <- frontend_page(page_id) do
+      issues =
+        frontend_manifest_report().warnings
+        |> Enum.filter(fn issue -> normalize_string(map_get(issue, "page_id")) == page_id end)
+
+      if issues == [] do
+        {:ok, page}
+      else
+        {:error,
+         {:stitch_backend_page_contract_invalid, %{"page_id" => page_id, "issues" => issues}}}
+      end
+    end
+  end
+
+  def frontend_backend_page(_page_id), do: {:error, :stitch_backend_page_not_found}
+
   def graphql_contract(field_or_doc_url) when is_binary(field_or_doc_url) do
     field_or_doc_url = normalize_string(field_or_doc_url)
 
@@ -360,6 +411,9 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
   end
 
   defp normalize_string_list(_values), do: []
+
+  defp normalize_list(values) when is_list(values), do: values
+  defp normalize_list(_values), do: []
 
   defp map_get(map, key) when is_map(map) and is_atom(key) do
     Map.get(map, key) || Map.get(map, Atom.to_string(key))
@@ -716,6 +770,209 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
       true ->
         %{}
     end
+  end
+
+  defp normalize_frontend_pages(frontend_data, route_map) do
+    route_index =
+      Enum.reduce(route_map, %{}, fn route, acc ->
+        page_id = normalize_string(map_get(route, "page_id"))
+        path = normalize_string(map_get(route, "path"))
+
+        if page_id == "" or path == "" do
+          acc
+        else
+          Map.put_new(acc, page_id, path)
+        end
+      end)
+
+    frontend_data
+    |> map_get("pages")
+    |> normalize_list()
+    |> Enum.map(fn page ->
+      page = normalize_map(page)
+      page_id = normalize_string(map_get(page, "page_id"))
+      page_type = normalize_string(map_get(page, "page_type"))
+      backend = normalize_map(map_get(page, "backend"))
+      state_schema = normalize_map(map_get(page, "state_schema"))
+
+      page
+      |> Map.put("page_id", page_id)
+      |> Map.put("page_type", page_type)
+      |> Map.put("page_kind", frontend_page_kind(page))
+      |> Map.put(
+        "api_map",
+        normalize_map(map_get(backend, "api_map") || map_get(page, "api_map"))
+      )
+      |> Map.put("status_keys", normalize_string_list(map_get(page, "status_keys")))
+      |> Map.put("state_schema", state_schema)
+      |> put_present("route_path", Map.get(route_index, page_id))
+    end)
+  end
+
+  defp normalize_frontend_route_map(frontend_data) do
+    route_map = map_get(frontend_data, "route_map")
+
+    cond do
+      is_map(route_map) ->
+        Enum.map(route_map, fn {path, page_id} ->
+          %{"path" => normalize_string(path), "page_id" => normalize_string(page_id)}
+        end)
+
+      is_list(route_map) ->
+        Enum.map(route_map, fn route ->
+          route = normalize_map(route)
+
+          %{
+            "path" => normalize_string(map_get(route, "path")),
+            "page_id" => normalize_string(map_get(route, "page_id"))
+          }
+        end)
+
+      true ->
+        []
+    end
+  end
+
+  defp frontend_manifest_errors(frontend_data, pages, route_map) do
+    page_ids =
+      pages
+      |> Enum.map(&normalize_string(map_get(&1, "page_id")))
+      |> Enum.reject(&(&1 == ""))
+
+    []
+    |> maybe_add_frontend_manifest_missing_pages(frontend_data)
+    |> Kernel.++(duplicate_page_id_errors(page_ids))
+    |> Kernel.++(duplicate_route_path_errors(route_map))
+    |> Kernel.++(route_map_unknown_page_errors(route_map, page_ids))
+  end
+
+  defp frontend_manifest_warnings(pages) do
+    Enum.flat_map(pages, &frontend_page_warnings/1)
+  end
+
+  defp maybe_add_frontend_manifest_missing_pages(errors, frontend_data) do
+    if normalize_list(map_get(frontend_data, "pages")) == [] do
+      [
+        %{
+          "severity" => "error",
+          "code" => "frontend_manifest_pages_missing",
+          "message" => "frontend_manifest.v1.json 缺少 pages 定义"
+        }
+        | errors
+      ]
+    else
+      errors
+    end
+  end
+
+  defp duplicate_page_id_errors(page_ids) do
+    page_ids
+    |> duplicate_values()
+    |> Enum.map(fn page_id ->
+      %{
+        "severity" => "error",
+        "code" => "duplicate_page_id",
+        "page_id" => page_id,
+        "message" => "frontend manifest 中存在重复的 page_id"
+      }
+    end)
+  end
+
+  defp duplicate_route_path_errors(route_map) do
+    route_map
+    |> Enum.map(&normalize_string(map_get(&1, "path")))
+    |> Enum.reject(&(&1 == ""))
+    |> duplicate_values()
+    |> Enum.map(fn path ->
+      %{
+        "severity" => "error",
+        "code" => "duplicate_route_path",
+        "path" => path,
+        "message" => "frontend manifest 中存在重复的 route path"
+      }
+    end)
+  end
+
+  defp route_map_unknown_page_errors(route_map, page_ids) do
+    page_id_set = MapSet.new(page_ids)
+
+    Enum.flat_map(route_map, fn route ->
+      page_id = normalize_string(map_get(route, "page_id"))
+      path = normalize_string(map_get(route, "path"))
+
+      cond do
+        path == "" or page_id == "" ->
+          [
+            %{
+              "severity" => "error",
+              "code" => "route_map_entry_invalid",
+              "path" => path,
+              "page_id" => page_id,
+              "message" => "route_map 条目必须同时声明 path 和 page_id"
+            }
+          ]
+
+        MapSet.member?(page_id_set, page_id) ->
+          []
+
+        true ->
+          [
+            %{
+              "severity" => "error",
+              "code" => "route_map_unknown_page",
+              "path" => path,
+              "page_id" => page_id,
+              "message" => "route_map 指向了不存在的 page_id"
+            }
+          ]
+      end
+    end)
+  end
+
+  defp frontend_page_warnings(page) do
+    page_id = normalize_string(map_get(page, "page_id"))
+    page_kind = normalize_string(map_get(page, "page_kind"))
+    api_map = normalize_map(map_get(page, "api_map"))
+
+    if page_kind == "custom" and api_map == %{} do
+      [
+        %{
+          "severity" => "warning",
+          "code" => "custom_page_api_map_missing",
+          "page_id" => page_id,
+          "message" => "custom page 缺少 backend.api_map，GraphQL runtime 不会静默 fallback"
+        }
+      ]
+    else
+      []
+    end
+  end
+
+  defp frontend_page_kind(page) do
+    page_kind = normalize_string(map_get(page, "page_kind"))
+    page_type = normalize_string(map_get(page, "page_type"))
+
+    cond do
+      page_kind != "" ->
+        page_kind
+
+      page_type in ["list", "list_report"] ->
+        "list"
+
+      page_type in ["detail", "object_page"] ->
+        "detail"
+
+      true ->
+        "custom"
+    end
+  end
+
+  defp duplicate_values(values) do
+    values
+    |> Enum.frequencies()
+    |> Enum.filter(fn {_value, count} -> count > 1 end)
+    |> Enum.map(fn {value, _count} -> value end)
+    |> Enum.sort()
   end
 
   defp manifest_postprocess_plan(manifest_data, meta) do

@@ -59,14 +59,7 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
   end
 
   defp page(page_id) when is_binary(page_id) do
-    RuntimeConfig.frontend_manifest()
-    |> map_get("pages")
-    |> normalize_list()
-    |> Enum.find(fn candidate -> normalize_string(map_get(candidate, "page_id")) == page_id end)
-    |> case do
-      %{} = page -> {:ok, page}
-      _ -> {:error, :stitch_backend_page_not_found}
-    end
+    RuntimeConfig.frontend_backend_page(page_id)
   end
 
   defp page(_page_id), do: {:error, :stitch_backend_page_not_found}
