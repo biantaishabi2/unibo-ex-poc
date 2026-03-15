@@ -1,0 +1,8 @@
+defmodule <%= web_module %>.ErrorHTML do
+  @moduledoc false
+  use <%= web_module %>, :html
+
+  def render(template, _assigns) do
+    Phoenix.Controller.status_message_from_template(template)
+  end
+end

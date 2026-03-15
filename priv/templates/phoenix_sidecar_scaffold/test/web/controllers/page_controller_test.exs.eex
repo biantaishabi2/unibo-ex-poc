@@ -1,0 +1,8 @@
+defmodule <%= web_module %>.PageControllerTest do
+  use <%= web_module %>.ConnCase
+
+  test "GET /", %{conn: conn} do
+    conn = get(conn, ~p"/")
+    assert html_response(conn, 200) =~ "Peace of mind from prototype to production"
+  end
+end
