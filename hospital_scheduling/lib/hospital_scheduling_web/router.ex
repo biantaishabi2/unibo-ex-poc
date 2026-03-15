@@ -18,6 +18,9 @@ defmodule HospitalSchedulingWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/scheduling", SchedulingLive
+    live "/scheduling/:page", SchedulingLive
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,107 @@
+<.page title="列表" id="scheduling_period_list">
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.text variant="title" id="page_title">
+        <%= @page_title %>
+      </.text>
+      <.button variant="primary" phx-click="navigate_create" size="md" id="create_btn">
+        新建排班周期
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="filter_section">
+    <.card variant="default" id="filter_card">
+      <.card_content id="filter_content">
+        <.flex gap={4} align="center" direction="row" id="filter_row">
+          <.select name="state" label="状态" size="md" id="filter_state" options={[%{label: "全部", value: ""}, %{label: "草稿", value: "draft"}, %{label: "生成中", value: "generating"}, %{label: "已生成", value: "generated"}, %{label: "已调整", value: "adjusted"}, %{label: "已发布", value: "published"}]}>
+
+          </.select>
+          <.select name="department_id" label="科室" size="md" id="filter_department">
+
+          </.select>
+          <.input name="start_date_from" label="起始日期" type="date" size="md" id="filter_start_date" />
+          <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
+            查询
+          </.button>
+        </.flex>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="table_section">
+    <.table id="period_table">
+      <.table_header id="period_header">
+        <.table_row id="header_row">
+          <.table_head id="th_title">
+            周期名称
+          </.table_head>
+          <.table_head id="th_department">
+            科室
+          </.table_head>
+          <.table_head id="th_start_date">
+            开始日期
+          </.table_head>
+          <.table_head id="th_end_date">
+            结束日期
+          </.table_head>
+          <.table_head id="th_state">
+            状态
+          </.table_head>
+          <.table_head id="th_generation_mode">
+            生成方式
+          </.table_head>
+          <.table_head id="th_actions">
+            操作
+          </.table_head>
+        </.table_row>
+      </.table_header>
+      <.table_body id="period_body">
+        <%= for row <- @rows do %>
+          <.table_row>
+            <.table_cell>
+              <%= row.title %>
+            </.table_cell>
+            <.table_cell>
+              <%= (row[:department] || %{})[:name] %>
+            </.table_cell>
+            <.table_cell>
+              <%= row.start_date %>
+            </.table_cell>
+            <.table_cell>
+              <%= row.end_date %>
+            </.table_cell>
+            <.table_cell>
+              <.badge variant="default" size="sm">
+                <%= row.state %>
+              </.badge>
+            </.table_cell>
+            <.table_cell>
+              <.badge variant="default" size="sm">
+                <%= row.generation_mode %>
+              </.badge>
+            </.table_cell>
+            <.table_cell>
+              <.flex gap={1} direction="row">
+                <.button variant="outline" size="sm" phx-click="navigate_detail">
+                  详情
+                </.button>
+                <.button variant="destructive" size="sm" phx-click="action_destroy">
+                  删除
+                </.button>
+              </.flex>
+            </.table_cell>
+          </.table_row>
+        <% end %>
+      </.table_body>
+    </.table>
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if (@rows_empty && @rows_empty != []) do %>
+      <.empty_state description="暂无数据" id="no_data" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="footer">
+    <.text id="pagination">
+      分页
+    </.text>
+  </.section>
+</.page>
