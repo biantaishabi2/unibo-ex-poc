@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "defaults": {
+    "period": {
+      "title": "需求矩阵",
+      "state": "",
+      "start_date": "",
+      "end_date": ""
+    },
+    "shift_types": [
+      {
+        "name": "shift_type_1",
+        "requirements": [
+          {
+            "min_headcount": "",
+            "target_headcount": ""
+          },
+          {
+            "min_headcount": "",
+            "target_headcount": ""
+          }
+        ]
+      },
+      {
+        "name": "shift_type_2",
+        "requirements": [
+          {
+            "min_headcount": "",
+            "target_headcount": ""
+          },
+          {
+            "min_headcount": "",
+            "target_headcount": ""
+          }
+        ]
+      },
+      {
+        "name": "shift_type_3",
+        "requirements": [
+          {
+            "min_headcount": "",
+            "target_headcount": ""
+          },
+          {
+            "min_headcount": "",
+            "target_headcount": ""
+          }
+        ]
+      }
+    ]
+  },
+  "keys": [
+    "period",
+    "period.end_date",
+    "period.start_date",
+    "period.state",
+    "period.title",
+    "shift_types",
+    "shift_types[]",
+    "shift_types[].name",
+    "shift_types[].requirements",
+    "shift_types[].requirements[]",
+    "shift_types[].requirements[].min_headcount",
+    "shift_types[].requirements[].target_headcount"
+  ],
+  "required": [
+    "period",
+    "shift_types"
+  ],
+  "urlParams": {},
+  "notes": []
+}

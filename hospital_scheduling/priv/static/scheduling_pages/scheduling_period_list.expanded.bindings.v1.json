@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "vars": {
+    "page_title": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{page_title|排班周期管理}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "navigate_create": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "create_btn",
+          "prop": "click",
+          "raw": "navigate_create"
+        }
+      ]
+    },
+    "filter_submit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "filter_submit",
+          "prop": "click",
+          "raw": "filter_submit"
+        }
+      ]
+    },
+    "navigate_detail": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "detail_btn",
+          "prop": "click",
+          "raw": "navigate_detail"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    }
+  }
+}

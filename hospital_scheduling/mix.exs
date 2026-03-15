@@ -61,10 +61,11 @@ defmodule HospitalScheduling.MixProject do
       {:ash_graphql, "~> 1.0"},
       {:absinthe, "~> 1.7"},
       {:absinthe_plug, "~> 1.5"},
+      {:dataloader, "~> 2.0"},
       {:ash_paper_trail, "~> 0.5"},
       {:ash_archival, "~> 2.0"},
-      {:unibo_bdd_runtime,
-       github: "biantaishabi2/unibo", branch: "master", sparse: "targets/elixir/unibo_bdd_runtime"},
+      {:unibo_bdd_runtime, path: "../../unibo/targets/elixir/unibo_bdd_runtime"},
+      {:unibo_graphql_runtime, path: "../../unibo/targets/elixir/unibo_graphql_runtime"},
       {:stitch_ui, path: "../../stitch/packages/liveview"}
     ]
   end

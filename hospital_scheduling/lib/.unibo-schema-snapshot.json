@@ -400,24 +400,52 @@
             "name": "start_generating",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "state",
+                "value": "generating"
+              }
+            ],
             "description": "开始自动生成排班"
           },
           {
             "name": "mark_generated",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "state",
+                "value": "generated"
+              }
+            ],
             "description": "求解完成，标记为已生成"
           },
           {
             "name": "mark_adjusted",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "state",
+                "value": "adjusted"
+              }
+            ],
             "description": "人工调班后标记"
           },
           {
             "name": "publish",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "state",
+                "value": "published"
+              }
+            ],
             "description": "发布排班（需无 error 级违反）"
           }
         ],
@@ -801,12 +829,26 @@
             "name": "publish_version",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "published"
+              }
+            ],
             "description": "发布此版本"
           },
           {
             "name": "archive_version",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "archived"
+              }
+            ],
             "description": "归档此版本"
           }
         ],
@@ -991,12 +1033,26 @@
             "name": "lock",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "is_locked",
+                "value": true
+              }
+            ],
             "description": "锁定此排班，重排时不会变动"
           },
           {
             "name": "unlock",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "is_locked",
+                "value": false
+              }
+            ],
             "description": "解锁此排班"
           }
         ],
@@ -1535,6 +1591,13 @@
             "name": "start_run",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "running"
+              }
+            ],
             "description": "标记求解开始"
           },
           {
@@ -1545,6 +1608,13 @@
               "hard_violation_count",
               "warning_count",
               "output_snapshot"
+            ],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "feasible"
+              }
             ],
             "description": "求解完成（可行解）"
           },
@@ -1557,6 +1627,13 @@
               "output_snapshot",
               "error_message"
             ],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "infeasible"
+              }
+            ],
             "description": "求解完成（不可行）"
           },
           {
@@ -1568,6 +1645,13 @@
               "warning_count",
               "output_snapshot"
             ],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "timeout"
+              }
+            ],
             "description": "求解超时"
           },
           {
@@ -1576,12 +1660,26 @@
             "accept": [
               "error_message"
             ],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "error"
+              }
+            ],
             "description": "求解出错"
           },
           {
             "name": "mark_completed",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "completed"
+              }
+            ],
             "description": "最终完成（用户确认采用此结果）"
           }
         ],

@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "vars": {
+    "page_title": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{page_title|排班约束配置}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "navigate_create": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "create_btn",
+          "prop": "click",
+          "raw": "navigate_create"
+        }
+      ]
+    },
+    "navigate_back": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "back_btn",
+          "prop": "click",
+          "raw": "navigate_back"
+        }
+      ]
+    },
+    "filter_submit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "filter_submit",
+          "prop": "click",
+          "raw": "filter_submit"
+        }
+      ]
+    },
+    "navigate_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "edit_btn",
+          "prop": "click",
+          "raw": "navigate_edit"
+        }
+      ]
+    },
+    "toggle_enabled": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "toggle_btn",
+          "prop": "click",
+          "raw": "toggle_enabled"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    }
+  }
+}

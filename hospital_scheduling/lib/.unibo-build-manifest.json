@@ -4,7 +4,7 @@
   "domains": {
     "Scheduling": {
       "input_hashes": {
-        "/home/wangbo/document/unibo/models/scheduling/scheduling.ubo.yaml": "sha256:91755dd897a939b3cad5cc4bc18a0055c2271830620fcb23a87aecc2c90aea08"
+        "/home/wangbo/document/unibo-origin-master-1257/models/scheduling/scheduling.ubo.yaml": "sha256:91755dd897a939b3cad5cc4bc18a0055c2271830620fcb23a87aecc2c90aea08"
       },
       "output_files": [
         "hospital_scheduling/scheduling/constraint_violation.ex",

@@ -5,7 +5,7 @@ defmodule HospitalSchedulingWeb.Schema do
 
   def unibo_runtime_domains do
     [
-      HospitalScheduling.Scheduling
+      HospitalScheduling.Scheduling,
     ]
   end
 
@@ -20,21 +20,14 @@ defmodule HospitalSchedulingWeb.Schema do
 
   use AshGraphql,
     domains: [
-      HospitalScheduling.Scheduling
+      HospitalScheduling.Scheduling,
     ]
 
   query do
     field :graphql_contract, :graphql_contract do
-      arg(:field, :string)
-      arg(:doc_url, :string)
-
-      resolve(fn _, args, _ ->
-        {:ok,
-         HospitalSchedulingWeb.Graphql.RuntimeConfig.graphql_contract(
-           Map.get(args, :doc_url) || Map.get(args, "doc_url") || Map.get(args, :field) ||
-             Map.get(args, "field")
-         )}
-      end)
+      arg :field, :string
+      arg :doc_url, :string
+      resolve(fn _, args, _ -> {:ok, HospitalSchedulingWeb.Graphql.RuntimeConfig.graphql_contract(Map.get(args, :doc_url) || Map.get(args, "doc_url") || Map.get(args, :field) || Map.get(args, "field"))} end)
     end
   end
 

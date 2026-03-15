@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "defaults": {
+    "page_title": "排班约束配置",
+    "rows_empty": true,
+    "rows": [
+      {
+        "name": "row_1",
+        "constraint_type": "",
+        "category": "",
+        "weight": "",
+        "enabled": "",
+        "notes": ""
+      },
+      {
+        "name": "row_2",
+        "constraint_type": "",
+        "category": "",
+        "weight": "",
+        "enabled": "",
+        "notes": ""
+      },
+      {
+        "name": "row_3",
+        "constraint_type": "",
+        "category": "",
+        "weight": "",
+        "enabled": "",
+        "notes": ""
+      }
+    ]
+  },
+  "keys": [
+    "page_title",
+    "rows",
+    "rows[]",
+    "rows[].category",
+    "rows[].constraint_type",
+    "rows[].enabled",
+    "rows[].name",
+    "rows[].notes",
+    "rows[].weight",
+    "rows_empty"
+  ],
+  "required": [
+    "page_title",
+    "rows",
+    "rows_empty"
+  ],
+  "urlParams": {},
+  "notes": []
+}

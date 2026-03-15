@@ -12,13 +12,7 @@ defmodule HospitalSchedulingWeb.Plugs.LoadAuthActor do
   @impl true
   def call(conn, _opts) do
     with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
-         {:ok, claims, _resource} <-
-           AshAuthentication.Jwt.verify(token, HospitalScheduling.Accounts.User),
-         %{"sub" => subject} <- claims,
-         {:ok, user} <-
-           AshAuthentication.subject_to_user(subject, HospitalScheduling.Accounts.User,
-             authorize?: false
-           ) do
+         {:ok, claims, user} <- authenticate_user(token) do
       actor = HospitalSchedulingWeb.Graphql.ActorContext.from_auth_result(user, claims, conn)
 
       conn
@@ -28,5 +22,26 @@ defmodule HospitalSchedulingWeb.Plugs.LoadAuthActor do
     else
       _ -> conn
     end
+  end
+
+  defp authenticate_user(token) do
+    user_module = user_resource_module()
+
+    with true <- Code.ensure_loaded?(AshAuthentication.Jwt),
+         true <- Code.ensure_loaded?(AshAuthentication),
+         true <- Code.ensure_loaded?(user_module),
+         true <- function_exported?(AshAuthentication.Jwt, :verify, 2),
+         true <- function_exported?(AshAuthentication, :subject_to_user, 3),
+         {:ok, claims, _resource} <- apply(AshAuthentication.Jwt, :verify, [token, user_module]),
+         %{"sub" => subject} <- claims,
+         {:ok, user} <- apply(AshAuthentication, :subject_to_user, [subject, user_module, [authorize?: false]]) do
+      {:ok, claims, user}
+    else
+      _ -> :skip
+    end
+  end
+
+  defp user_resource_module do
+    Module.concat([HospitalScheduling, Accounts, User])
   end
 end

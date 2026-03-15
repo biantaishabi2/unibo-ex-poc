@@ -1,4 +1,0 @@
-[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD_START_GENERATING_UPDATE-SEED-action_scheduling_period_start_generating_update] TITLE: SCHEDULING_SCHEDULING_PERIOD_START_GENERATING contract seed scenario TAGS: seed action_contract
-GIVEN given_seed_context id="action_scheduling_period_start_generating_update" module="SCHEDULING_SCHEDULING_PERIOD_START_GENERATING"
-WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD_START_GENERATING"
-THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD_START_GENERATING"

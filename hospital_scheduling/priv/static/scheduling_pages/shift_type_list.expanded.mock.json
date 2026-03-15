@@ -1,0 +1,39 @@
+{
+  "page_title": "ShiftType 列表",
+  "rows_empty": true,
+  "rows": [
+    {
+      "code": "",
+      "name": "row_1",
+      "start_time": "",
+      "end_time": "",
+      "duration_hours": "",
+      "is_night": "",
+      "color": "",
+      "sort_order": "",
+      "enabled": ""
+    },
+    {
+      "code": "",
+      "name": "row_2",
+      "start_time": "",
+      "end_time": "",
+      "duration_hours": "",
+      "is_night": "",
+      "color": "",
+      "sort_order": "",
+      "enabled": ""
+    },
+    {
+      "code": "",
+      "name": "row_3",
+      "start_time": "",
+      "end_time": "",
+      "duration_hours": "",
+      "is_night": "",
+      "color": "",
+      "sort_order": "",
+      "enabled": ""
+    }
+  ]
+}
