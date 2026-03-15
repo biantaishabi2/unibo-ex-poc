@@ -1,4 +1,0 @@
-[SCENARIO: BDD-SCHEDULING_SOLVER_RUN_SOLVER_RUN_LIFECYCLE-SEED-workflow_solver_run_solver_run_lifecycle] TITLE: SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE contract seed scenario TAGS: seed action_contract
-GIVEN given_seed_context id="workflow_solver_run_solver_run_lifecycle" module="SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE"
-WHEN when_execute_seed_contract module="SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE"
-THEN then_seed_contract_should_hold module="SCHEDULING_WORKFLOW_SOLVER_RUN_SOLVER_RUN_LIFECYCLE"

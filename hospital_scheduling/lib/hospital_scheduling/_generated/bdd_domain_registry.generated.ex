@@ -4,7 +4,7 @@ defmodule HospitalScheduling.Generated.BddDomainRegistry do
   @doc "BDD 域键 → Ash Domain 模块映射"
   def domain_map do
     %{
-      "SCHEDULING" => HospitalScheduling.Scheduling
+      "SCHEDULING" => HospitalScheduling.Scheduling,
     }
   end
 
@@ -12,14 +12,15 @@ defmodule HospitalScheduling.Generated.BddDomainRegistry do
   def module_dirs do
     %{
       "BDD" => "bdd",
-      "SCHEDULING" => "scheduling"
+      "SCHEDULING" => "scheduling",
+      "SOLVER" => "solver",
     }
   end
 
   @doc "所有已注册的 Ash Domain 模块列表"
   def domains do
     [
-      HospitalScheduling.Scheduling
+      HospitalScheduling.Scheduling,
     ]
   end
 end

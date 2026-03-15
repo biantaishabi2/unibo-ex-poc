@@ -4,7 +4,7 @@ defmodule HospitalScheduling.Generated.BddModuleDirs do
   @doc "返回模块名 → BDD 目录名的映射"
   def module_dirs do
     %{
-      "SCHEDULING" => "scheduling"
+      "SCHEDULING" => "scheduling",
     }
   end
 end

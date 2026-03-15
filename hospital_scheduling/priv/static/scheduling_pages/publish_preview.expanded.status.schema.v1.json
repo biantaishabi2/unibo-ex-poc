@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "defaults": {
+    "period": {
+      "title": ""
+    },
+    "version": {
+      "version_no": "",
+      "origin_type": ""
+    },
+    "hard_violation_count": "",
+    "warning_count": "",
+    "change_count": "",
+    "affected_employee_count": "",
+    "coverage_rate": "",
+    "has_hard_violations": "",
+    "has_warnings": true,
+    "no_changes": true,
+    "changes": [
+      {
+        "employee": {
+          "name": "employee_1"
+        },
+        "date": "",
+        "old_shift_type": "",
+        "new_shift_type": "",
+        "reason": ""
+      },
+      {
+        "employee": {
+          "name": "employee_2"
+        },
+        "date": "",
+        "old_shift_type": "",
+        "new_shift_type": "",
+        "reason": ""
+      },
+      {
+        "employee": {
+          "name": "employee_3"
+        },
+        "date": "",
+        "old_shift_type": "",
+        "new_shift_type": "",
+        "reason": ""
+      }
+    ]
+  },
+  "keys": [
+    "affected_employee_count",
+    "change_count",
+    "changes",
+    "changes[]",
+    "changes[].date",
+    "changes[].employee",
+    "changes[].employee.name",
+    "changes[].new_shift_type",
+    "changes[].old_shift_type",
+    "changes[].reason",
+    "coverage_rate",
+    "hard_violation_count",
+    "has_hard_violations",
+    "has_warnings",
+    "no_changes",
+    "period",
+    "period.title",
+    "version",
+    "version.origin_type",
+    "version.version_no",
+    "warning_count"
+  ],
+  "required": [
+    "affected_employee_count",
+    "change_count",
+    "changes",
+    "coverage_rate",
+    "hard_violation_count",
+    "has_hard_violations",
+    "has_warnings",
+    "no_changes",
+    "period",
+    "version",
+    "warning_count"
+  ],
+  "urlParams": {},
+  "notes": []
+}

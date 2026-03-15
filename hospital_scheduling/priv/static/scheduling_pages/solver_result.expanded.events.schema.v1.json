@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "events": {
+    "navigate_back": {
+      "name": "navigate_back",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_calendar": {
+      "name": "navigate_calendar",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_publish_preview": {
+      "name": "navigate_publish_preview",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

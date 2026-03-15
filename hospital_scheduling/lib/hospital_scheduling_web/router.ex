@@ -1,5 +1,6 @@
 defmodule HospitalSchedulingWeb.Router do
   use HospitalSchedulingWeb, :router
+  import HospitalSchedulingWeb.Generated.PageHostRouter
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -18,10 +19,14 @@ defmodule HospitalSchedulingWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/scheduling", SchedulingLive
+    live "/scheduling/:page", SchedulingLive
   end
 
   # Other scopes may use custom stacks.
   # scope "/api", HospitalSchedulingWeb do
   #   pipe_through :api
   # end
+  page_host_routes()
 end

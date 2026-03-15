@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "vars": {
+    "record.title": {
+      "uses": [
+        {
+          "node_type": "BreadcrumbPage",
+          "node_id": "bc_current",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.title|详情}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "detail_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.title|}}"
+        }
+      ]
+    },
+    "record.state": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "state_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.state|}}"
+        }
+      ]
+    },
+    "record.generation_mode": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "mode_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.generation_mode|}}"
+        }
+      ]
+    },
+    "record.department.name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "dept_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.department.name|}}"
+        }
+      ]
+    },
+    "record.start_date": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "date_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.start_date|}} ~ {{record.end_date|}}"
+        }
+      ]
+    },
+    "record.end_date": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "date_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.start_date|}} ~ {{record.end_date|}}"
+        }
+      ]
+    },
+    "record.current_version.version_no": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "version_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "v{{record.current_version.version_no|}}"
+        }
+      ]
+    },
+    "record.last_solver_run.status": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "run_status_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.last_solver_run.status|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_start_generating": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "generate_btn",
+          "prop": "click",
+          "raw": "action_start_generating"
+        }
+      ]
+    },
+    "action_publish": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "publish_btn",
+          "prop": "click",
+          "raw": "action_publish"
+        }
+      ]
+    },
+    "navigate_requirements": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "req_nav_btn",
+          "prop": "click",
+          "raw": "navigate_requirements"
+        }
+      ]
+    },
+    "navigate_constraints": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "constraint_nav_btn",
+          "prop": "click",
+          "raw": "navigate_constraints"
+        }
+      ]
+    },
+    "navigate_calendar": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "calendar_nav_btn",
+          "prop": "click",
+          "raw": "navigate_calendar"
+        }
+      ]
+    }
+  }
+}

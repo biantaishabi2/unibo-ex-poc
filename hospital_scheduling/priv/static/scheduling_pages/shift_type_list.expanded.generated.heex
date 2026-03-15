@@ -1,0 +1,83 @@
+<.page title="ShiftType 列表" id="shift_type_list">
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="shift_type_header">
+    <.text variant="title" id="shift_type_title">
+      <%= @page_title %>
+    </.text>
+    <.button variant="primary" phx-click="navigate_create" size="md" id="shift_type_create_btn">
+      新建
+    </.button>
+  </.section>
+  <.table id="shift_type_table">
+    <.table_header id="shift_type_table_header">
+      <.table_row id="shift_type_header_row">
+        <.table_head id="th_code">
+          班次编码,如 day, evening, night
+        </.table_head>
+        <.table_head id="th_name">
+          班次名称,如'白班'、'小夜'、'大夜'
+        </.table_head>
+        <.table_head id="th_start_time">
+          班次开始时间,如 08:00
+        </.table_head>
+        <.table_head id="th_end_time">
+          班次结束时间,如 16:00
+        </.table_head>
+        <.table_head id="th_duration_hours">
+          时长（小时）,跨午夜时 end < start
+        </.table_head>
+        <.table_head id="th_is_night">
+          是否算夜班（影响夜班公平性约束）
+        </.table_head>
+        <.table_head id="th_color">
+          前端显示色,如
+        </.table_head>
+        <.table_head id="th_sort_order">
+          排序权重
+        </.table_head>
+        <.table_head id="th_enabled">
+          是否启用
+        </.table_head>
+      </.table_row>
+    </.table_header>
+    <.table_body id="shift_type_table_body">
+      <%= for row <- @rows do %>
+        <.table_row>
+          <.table_cell>
+            <%= row.code %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.name %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.start_time %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.end_time %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.duration_hours %>
+          </.table_cell>
+          <.table_cell>
+            <.badge variant="default" size="sm">
+              <%= row.is_night %>
+            </.badge>
+          </.table_cell>
+          <.table_cell>
+            <%= row.color %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.sort_order %>
+          </.table_cell>
+          <.table_cell>
+            <.badge variant="default" size="sm">
+              <%= row.enabled %>
+            </.badge>
+          </.table_cell>
+        </.table_row>
+      <% end %>
+    </.table_body>
+  </.table>
+  <%= if (@rows_empty && @rows_empty != []) do %>
+    <.empty_state description="暂无班次类型定义（早班/中班/夜班等）,是排班的基础维度数据" id="shift_type_no_data" />
+  <% end %>
+</.page>

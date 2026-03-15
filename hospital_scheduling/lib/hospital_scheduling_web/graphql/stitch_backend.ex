@@ -19,14 +19,11 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
       {:ok,
        %{}
        |> Map.put("page_id", page_id)
-       |> Map.put(
-         "backend",
-         %{}
+       |> Map.put("backend", %{}
          |> Map.put("mode", "api")
          |> Map.put("api", %{"module" => Atom.to_string(__MODULE__), "fun" => "dispatch"})
          |> Map.put("load", %{"event" => @load_event})
-         |> Map.put("api_map", map_get(page, "api_map") || %{})
-       )}
+         |> Map.put("api_map", map_get(page, "api_map") || %{}))}
     end
   end
 
@@ -59,37 +56,26 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
   end
 
   defp page(page_id) when is_binary(page_id) do
-    RuntimeConfig.frontend_manifest()
-    |> map_get("pages")
-    |> normalize_list()
-    |> Enum.find(fn candidate -> normalize_string(map_get(candidate, "page_id")) == page_id end)
-    |> case do
-      %{} = page -> {:ok, page}
-      _ -> {:error, :stitch_backend_page_not_found}
-    end
+    RuntimeConfig.frontend_backend_page(page_id)
   end
 
   defp page(_page_id), do: {:error, :stitch_backend_page_not_found}
 
   defp resolve_operation(page, event, params) do
     api_map = normalize_map(map_get(page, "api_map"))
-
-    api_key =
-      resolve_api_key(
-        api_map,
-        normalize_string(event),
-        normalize_string(map_get(page, "page_kind")),
-        params
-      )
+    api_key = resolve_api_key(api_map, normalize_string(event), normalize_string(map_get(page, "page_kind")), params)
 
     with false <- api_key == "",
          api_ref when is_binary(api_ref) and api_ref != "" <- map_get(api_map, api_key),
          {:ok, parsed} <- parse_api_ref(api_ref),
-         {:ok, field} <- resolve_graphql_field(parsed, api_key) do
+         {:ok, field, field_meta} <- resolve_graphql_field(parsed, api_key) do
       {:ok,
        parsed
        |> Map.put("api_key", api_key)
        |> Map.put("field", field)
+       |> Map.put("input_type", map_get(field_meta, "input_type"))
+       |> Map.put("field_mode", map_get(field_meta, "mode"))
+       |> Map.put("field_action", map_get(field_meta, "action"))
        |> Map.put("page_kind", normalize_string(map_get(page, "page_kind")))}
     else
       true -> {:error, :stitch_backend_api_missing}
@@ -105,6 +91,12 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
       normalized == @load_event and page_kind == "list" ->
         "list"
 
+      normalized == @load_event and map_has_key?(api_map, "get") ->
+        "get"
+
+      normalized == @load_event and map_has_key?(api_map, "list") ->
+        "list"
+
       normalized == @load_event ->
         "get"
 
@@ -114,16 +106,13 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
       map_has_key?(api_map, stripped) ->
         stripped
 
-      page_kind == "list" and
-        normalized in ["filter_submit", "search_submit", "reload", "refresh", "form_submit"] and
-          map_has_key?(api_map, "list") ->
+      page_kind == "list" and normalized in ["filter_submit", "search_submit", "reload", "refresh", "form_submit"] and map_has_key?(api_map, "list") ->
         "list"
 
       page_kind == "detail" and normalized == "form_submit" and map_has_key?(api_map, "update") ->
         "update"
 
-      page_kind == "detail" and normalize_string(map_get(params, "id")) != "" and
-          map_has_key?(api_map, "get") ->
+      page_kind == "detail" and normalize_string(map_get(params, "id")) != "" and map_has_key?(api_map, "get") ->
         "get"
 
       true ->
@@ -134,7 +123,8 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
   defp parse_api_ref(api_ref) when is_binary(api_ref) do
     case String.split(api_ref, ".", trim: true) do
       [domain, entity, action] ->
-        {:ok, %{"domain" => domain, "entity" => entity, "action" => action}}
+        {:ok,
+         %{"domain" => domain, "entity" => entity, "action" => action}}
 
       _ ->
         {:error, :stitch_backend_api_ref_invalid}
@@ -164,19 +154,29 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
       end
 
     case normalize_string(map_get(candidate || %{}, "field")) do
-      "" -> {:error, :stitch_backend_graphql_contract_missing}
-      value -> {:ok, value}
+      "" ->
+        {:error, :stitch_backend_graphql_contract_missing}
+
+      value ->
+        {:ok, value,
+         %{"input_type" => normalize_string(map_get(candidate, "input_type")),
+            "mode" => normalize_string(map_get(candidate, "mode")),
+            "action" => normalize_string(map_get(candidate, "action"))}}
     end
   end
 
-  defp build_graphql_request(_page, operation, params, state) do
+  defp build_graphql_request(page, operation, params, state) do
     field = normalize_string(map_get(operation, "field"))
     api_key = normalize_string(map_get(operation, "api_key"))
-    selection = selection_set(operation, state)
+    input_type = normalize_string(map_get(operation, "input_type"))
+    field_mode = normalize_string(map_get(operation, "field_mode"))
+    selection = selection_set(page, operation, state)
 
     case api_key do
       "list" ->
-        {:ok, "query StitchList { #{field} { results { #{selection} } count } }", %{}}
+        {:ok,
+         "query StitchList { #{field} { results { #{selection} } count } }",
+         %{}}
 
       "get" ->
         id =
@@ -184,15 +184,75 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
             normalize_string(map_get(state, "id")) ||
             normalize_string(map_get(map_get(state, "record") || %{}, "id"))
 
-        {:ok, "query StitchGet($id: ID) { #{field}(id: $id) { #{selection} } }", %{"id" => id}}
+        {:ok,
+         "query StitchGet($id: ID!) { #{field}(id: $id) { #{selection} } }",
+         %{"id" => id}}
 
-      _ ->
+      "create" ->
         input = sanitize_input_params(params)
+        {decl, arg} = input_type_decl(input_type)
 
         {:ok,
-         "mutation StitchMutation($input: JSON) { #{field}(input: $input) { result { #{selection} } errors { message code } } }",
+         "mutation StitchCreate(#{decl}) { #{field}(#{arg}) { result { #{selection} } errors { message code } } }",
          %{"input" => input}}
+
+      "update" ->
+        id = resolve_id(params, state)
+        input = sanitize_input_params(params) |> Map.delete("id")
+        {decl, arg} = input_type_decl(input_type)
+
+        {:ok,
+         "mutation StitchUpdate($id: ID!, #{decl}) { #{field}(id: $id, #{arg}) { result { #{selection} } errors { message code } } }",
+         %{"id" => id, "input" => input}}
+
+      "destroy" ->
+        id = resolve_id(params, state)
+
+        {:ok,
+         "mutation StitchDestroy($id: ID!) { #{field}(id: $id) { result { #{selection} } errors { message code } } }",
+         %{"id" => id}}
+
+      _ ->
+        build_custom_action_request(field, field_mode, input_type, params, state, selection)
     end
+  end
+
+  defp build_custom_action_request(field, _field_mode, input_type, params, state, selection) do
+    id = resolve_id(params, state)
+
+    cond do
+      input_type != "" ->
+        input = sanitize_input_params(params) |> Map.delete("id")
+        {decl, arg} = input_type_decl(input_type)
+
+        {:ok,
+         "mutation StitchAction($id: ID!, #{decl}) { #{field}(id: $id, #{arg}) { result { #{selection} } errors { message code } } }",
+         %{"id" => id, "input" => input}}
+
+      id != "" ->
+        {:ok,
+         "mutation StitchAction($id: ID!) { #{field}(id: $id) { result { #{selection} } errors { message code } } }",
+         %{"id" => id}}
+
+      true ->
+        {:ok,
+         "mutation StitchAction { #{field} { result { #{selection} } errors { message code } } }",
+         %{}}
+    end
+  end
+
+  defp resolve_id(params, state) do
+    normalize_string(map_get(params, "id")) ||
+      normalize_string(map_get(state, "id")) ||
+      normalize_string(map_get(map_get(state, "record") || %{}, "id"))
+  end
+
+  defp input_type_decl(input_type) when input_type != "" do
+    {"$input: #{input_type}!", "input: $input"}
+  end
+
+  defp input_type_decl(_input_type) do
+    {"$input: JSON", "input: $input"}
   end
 
   defp call_graphql(query, variables, state) do
@@ -222,10 +282,7 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
       |> put_if_present(:current_user, map_get(state, "current_user"))
       |> put_if_present(:auth_claims, map_get(state, "auth_claims"))
 
-    struct(Plug.Conn, %{
-      req_headers: normalize_headers(map_get(state, "headers")),
-      assigns: assigns
-    })
+    struct(Plug.Conn, %{req_headers: normalize_headers(map_get(state, "headers")), assigns: assigns})
   end
 
   defp normalize_backend_result(page, operation, result) when is_map(result) do
@@ -242,15 +299,10 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
      |> Map.put(:status, status)
      |> Map.put(:effects, [])
      |> Map.put(:errors, errors)
-     |> Map.put(:meta, %{
-       "page_id" => map_get(page, "page_id"),
-       "field" => field,
-       "api_key" => map_get(operation, "api_key")
-     })}
+     |> Map.put(:meta, %{"page_id" => map_get(page, "page_id"), "field" => field, "api_key" => map_get(operation, "api_key")})}
   end
 
-  defp normalize_backend_result(_page, _operation, _result),
-    do: {:error, :stitch_backend_invalid_result}
+  defp normalize_backend_result(_page, _operation, _result), do: {:error, :stitch_backend_invalid_result}
 
   defp adapt_status(page, operation, value) do
     defaults =
@@ -323,15 +375,83 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
   defp extract_record(value) when is_list(value), do: Enum.find(value, &is_map/1) || %{}
   defp extract_record(_value), do: %{}
 
-  defp selection_set(_operation, state) do
+  defp selection_set(page, _operation, state) do
     state
     |> map_get("selection")
     |> normalize_string()
     |> case do
-      "" -> @default_selection
+      "" -> build_selection_from_page(page)
       value -> value
     end
   end
+
+  defp build_selection_from_page(page) do
+    page
+    |> map_get("state_schema")
+    |> map_get("defaults")
+    |> normalize_map()
+    |> build_selection_from_defaults()
+  end
+
+  defp build_selection_from_defaults(defaults) do
+    rows = map_get(defaults, "rows")
+    record = map_get(defaults, "record")
+    form = map_get(defaults, "form")
+
+    sample =
+      cond do
+        is_list(rows) and match?([first | _] when is_map(first), rows) ->
+          List.first(rows)
+
+        is_map(record) and map_size(record) > 0 ->
+          record
+
+        is_map(form) and map_size(form) > 0 ->
+          form
+
+        true ->
+          %{}
+      end
+
+    fields = extract_selection_fields(sample)
+
+    case fields do
+      "" -> @default_selection
+      value -> "id " <> value
+    end
+  end
+
+  defp extract_selection_fields(map) when is_map(map) do
+    map
+    |> Map.keys()
+    |> Enum.reject(&(&1 in [:id, :__struct__, :__meta__]))
+    |> Enum.map(fn key ->
+      value = Map.get(map, key)
+      key_str = to_string(key)
+
+      cond do
+        is_map(value) and not Map.has_key?(value, :__struct__) and map_size(value) > 0 ->
+          nested = extract_selection_fields(value)
+          if nested == "", do: key_str, else: key_str <> " { " <> nested <> " }"
+
+        is_list(value) ->
+          case value do
+            [first | _] when is_map(first) ->
+              nested = extract_selection_fields(first)
+              if nested == "", do: key_str, else: key_str <> " { " <> nested <> " }"
+
+            _ ->
+              key_str
+          end
+
+        true ->
+          key_str
+      end
+    end)
+    |> Enum.join(" ")
+  end
+
+  defp extract_selection_fields(_), do: ""
 
   defp sanitize_input_params(params) do
     params
@@ -393,12 +513,9 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
 
   defp map_get(map, key) when is_map(map) and is_binary(key) do
     Enum.find_value(map, fn
-      {existing_key, value} when is_binary(existing_key) and existing_key == key ->
-        value
-
+      {existing_key, value} when is_binary(existing_key) and existing_key == key -> value
       {existing_key, value} when is_atom(existing_key) ->
         if Atom.to_string(existing_key) == key, do: value, else: nil
-
       _ ->
         nil
     end)

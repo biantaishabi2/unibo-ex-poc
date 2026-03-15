@@ -1,0 +1,107 @@
+{
+  "version": 1,
+  "defaults": {
+    "current_week_label": "",
+    "period": {
+      "title": ""
+    },
+    "manual_change_count": "",
+    "coverage_rate": "",
+    "no_violations": true,
+    "employees": [
+      {
+        "name": "employee_1",
+        "role_code": "",
+        "daily_assignments": [
+          {
+            "shift_type": {
+              "name": "shift_type_1"
+            }
+          },
+          {
+            "shift_type": {
+              "name": "shift_type_2"
+            }
+          }
+        ]
+      },
+      {
+        "name": "employee_2",
+        "role_code": "",
+        "daily_assignments": [
+          {
+            "shift_type": {
+              "name": "shift_type_1"
+            }
+          },
+          {
+            "shift_type": {
+              "name": "shift_type_2"
+            }
+          }
+        ]
+      },
+      {
+        "name": "employee_3",
+        "role_code": "",
+        "daily_assignments": [
+          {
+            "shift_type": {
+              "name": "shift_type_1"
+            }
+          },
+          {
+            "shift_type": {
+              "name": "shift_type_2"
+            }
+          }
+        ]
+      }
+    ],
+    "live_violations": [
+      {
+        "severity": "",
+        "message": ""
+      },
+      {
+        "severity": "",
+        "message": ""
+      },
+      {
+        "severity": "",
+        "message": ""
+      }
+    ]
+  },
+  "keys": [
+    "coverage_rate",
+    "current_week_label",
+    "employees",
+    "employees[]",
+    "employees[].daily_assignments",
+    "employees[].daily_assignments[]",
+    "employees[].daily_assignments[].shift_type",
+    "employees[].daily_assignments[].shift_type.name",
+    "employees[].name",
+    "employees[].role_code",
+    "live_violations",
+    "live_violations[]",
+    "live_violations[].message",
+    "live_violations[].severity",
+    "manual_change_count",
+    "no_violations",
+    "period",
+    "period.title"
+  ],
+  "required": [
+    "coverage_rate",
+    "current_week_label",
+    "employees",
+    "live_violations",
+    "manual_change_count",
+    "no_violations",
+    "period"
+  ],
+  "urlParams": {},
+  "notes": []
+}

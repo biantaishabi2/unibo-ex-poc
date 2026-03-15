@@ -4,13 +4,20 @@ defmodule HospitalScheduling.Application do
 
   @impl true
   def start(_type, _args) do
+    # 动态合并编译器生成的域到 ash_domains 配置
+    existing = Application.get_env(:hospital_scheduling, :ash_domains, [])
+    generated = HospitalScheduling.Generated.DomainRegistry.domains()
+    Application.put_env(:hospital_scheduling, :ash_domains, Enum.uniq(existing ++ generated))
+
     children = [
-      {DNSCluster,
-       query: Application.get_env(:hospital_scheduling, :dns_cluster_query) || :ignore},
+      {DNSCluster, query: Application.get_env(:hospital_scheduling, :dns_cluster_query) || :ignore},
       HospitalScheduling.Repo,
       {Phoenix.PubSub, name: HospitalScheduling.PubSub},
       HospitalSchedulingWeb.Telemetry,
-      HospitalSchedulingWeb.Endpoint
+      HospitalSchedulingWeb.Endpoint,
+      HospitalScheduling.AsyncRuntime.Store,
+      HospitalScheduling.AsyncRuntime.Queue,
+      HospitalScheduling.AsyncRuntime.Telemetry
     ]
 
     opts = [strategy: :one_for_one, name: HospitalScheduling.Supervisor]

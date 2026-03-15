@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "events": {
+    "navigate_back": {
+      "name": "navigate_back",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "batch_fill_requirements": {
+      "name": "batch_fill_requirements",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "save_requirements": {
+      "name": "save_requirements",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_start_generating": {
+      "name": "action_start_generating",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

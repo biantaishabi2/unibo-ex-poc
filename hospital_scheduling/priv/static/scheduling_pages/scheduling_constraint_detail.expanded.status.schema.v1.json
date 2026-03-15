@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "defaults": {
+    "record": {
+      "name": "",
+      "constraint_type": "",
+      "category": "",
+      "params": "",
+      "weight": "",
+      "enabled": "",
+      "notes": ""
+    },
+    "editing": true
+  },
+  "keys": [
+    "editing",
+    "record",
+    "record.category",
+    "record.constraint_type",
+    "record.enabled",
+    "record.name",
+    "record.notes",
+    "record.params",
+    "record.weight"
+  ],
+  "required": [
+    "editing",
+    "record"
+  ],
+  "urlParams": {},
+  "notes": []
+}

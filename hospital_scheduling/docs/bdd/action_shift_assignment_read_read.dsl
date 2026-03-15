@@ -1,4 +1,0 @@
-[SCENARIO: BDD-SCHEDULING_SHIFT_ASSIGNMENT_READ_READ-SEED-action_shift_assignment_read_read] TITLE: SCHEDULING_SHIFT_ASSIGNMENT contract seed scenario TAGS: seed action_contract
-GIVEN given_seed_context id="action_shift_assignment_read_read" module="SCHEDULING_SHIFT_ASSIGNMENT"
-WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
-THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"

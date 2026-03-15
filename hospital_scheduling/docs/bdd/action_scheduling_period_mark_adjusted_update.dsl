@@ -1,4 +1,0 @@
-[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD_MARK_ADJUSTED_UPDATE-SEED-action_scheduling_period_mark_adjusted_update] TITLE: SCHEDULING_SCHEDULING_PERIOD_MARK_ADJUSTED contract seed scenario TAGS: seed action_contract
-GIVEN given_seed_context id="action_scheduling_period_mark_adjusted_update" module="SCHEDULING_SCHEDULING_PERIOD_MARK_ADJUSTED"
-WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD_MARK_ADJUSTED"
-THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD_MARK_ADJUSTED"

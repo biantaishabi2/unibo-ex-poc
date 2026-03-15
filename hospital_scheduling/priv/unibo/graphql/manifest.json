@@ -1,0 +1,345 @@
+{
+  "version": "1.0",
+  "generated_at": "2026-03-15T00:00:00Z",
+  "fields": [
+    {
+      "entity": "ShiftType",
+      "mode": "list",
+      "field": "listSchedulingShiftTypes"
+    },
+    {
+      "entity": "ShiftType",
+      "mode": "get",
+      "field": "getSchedulingShiftType"
+    },
+    {
+      "entity": "ShiftType",
+      "mode": "create",
+      "field": "createSchedulingShiftType",
+      "input_type": "CreateSchedulingShiftTypeInput"
+    },
+    {
+      "entity": "ShiftType",
+      "mode": "update",
+      "field": "updateSchedulingShiftType",
+      "input_type": "UpdateSchedulingShiftTypeInput"
+    },
+    {
+      "entity": "ShiftType",
+      "mode": "destroy",
+      "field": "deleteSchedulingShiftType"
+    },
+    {
+      "entity": "SchedulingPeriod",
+      "mode": "list",
+      "field": "listSchedulingSchedulingPeriods"
+    },
+    {
+      "entity": "SchedulingPeriod",
+      "mode": "get",
+      "field": "getSchedulingSchedulingPeriod"
+    },
+    {
+      "entity": "SchedulingPeriod",
+      "mode": "create",
+      "field": "createSchedulingSchedulingPeriod",
+      "input_type": "CreateSchedulingSchedulingPeriodInput"
+    },
+    {
+      "entity": "SchedulingPeriod",
+      "mode": "update",
+      "field": "updateSchedulingSchedulingPeriod",
+      "input_type": "UpdateSchedulingSchedulingPeriodInput"
+    },
+    {
+      "entity": "SchedulingPeriod",
+      "mode": "destroy",
+      "field": "deleteSchedulingSchedulingPeriod"
+    },
+    {
+      "entity": "SchedulingPeriod",
+      "action": "start_generating",
+      "field": "startGeneratingSchedulingSchedulingPeriod"
+    },
+    {
+      "entity": "SchedulingPeriod",
+      "action": "mark_generated",
+      "field": "markGeneratedSchedulingSchedulingPeriod"
+    },
+    {
+      "entity": "SchedulingPeriod",
+      "action": "mark_adjusted",
+      "field": "markAdjustedSchedulingSchedulingPeriod"
+    },
+    {
+      "entity": "SchedulingPeriod",
+      "action": "publish",
+      "field": "publishSchedulingSchedulingPeriod"
+    },
+    {
+      "entity": "CoverageRequirement",
+      "mode": "list",
+      "field": "listSchedulingCoverageRequirements"
+    },
+    {
+      "entity": "CoverageRequirement",
+      "mode": "get",
+      "field": "getSchedulingCoverageRequirement"
+    },
+    {
+      "entity": "CoverageRequirement",
+      "mode": "create",
+      "field": "createSchedulingCoverageRequirement",
+      "input_type": "CreateSchedulingCoverageRequirementInput"
+    },
+    {
+      "entity": "CoverageRequirement",
+      "mode": "update",
+      "field": "updateSchedulingCoverageRequirement",
+      "input_type": "UpdateSchedulingCoverageRequirementInput"
+    },
+    {
+      "entity": "CoverageRequirement",
+      "mode": "destroy",
+      "field": "deleteSchedulingCoverageRequirement"
+    },
+    {
+      "entity": "SchedulingConstraint",
+      "mode": "list",
+      "field": "listSchedulingSchedulingConstraints"
+    },
+    {
+      "entity": "SchedulingConstraint",
+      "mode": "get",
+      "field": "getSchedulingSchedulingConstraint"
+    },
+    {
+      "entity": "SchedulingConstraint",
+      "mode": "create",
+      "field": "createSchedulingSchedulingConstraint",
+      "input_type": "CreateSchedulingSchedulingConstraintInput"
+    },
+    {
+      "entity": "SchedulingConstraint",
+      "mode": "update",
+      "field": "updateSchedulingSchedulingConstraint",
+      "input_type": "UpdateSchedulingSchedulingConstraintInput"
+    },
+    {
+      "entity": "SchedulingConstraint",
+      "mode": "destroy",
+      "field": "deleteSchedulingSchedulingConstraint"
+    },
+    {
+      "entity": "ShiftPreference",
+      "mode": "list",
+      "field": "listSchedulingShiftPreferences"
+    },
+    {
+      "entity": "ShiftPreference",
+      "mode": "get",
+      "field": "getSchedulingShiftPreference"
+    },
+    {
+      "entity": "ShiftPreference",
+      "mode": "create",
+      "field": "createSchedulingShiftPreference",
+      "input_type": "CreateSchedulingShiftPreferenceInput"
+    },
+    {
+      "entity": "ShiftPreference",
+      "mode": "update",
+      "field": "updateSchedulingShiftPreference",
+      "input_type": "UpdateSchedulingShiftPreferenceInput"
+    },
+    {
+      "entity": "ShiftPreference",
+      "mode": "destroy",
+      "field": "deleteSchedulingShiftPreference"
+    },
+    {
+      "entity": "ShiftAssignment",
+      "mode": "list",
+      "field": "listSchedulingShiftAssignments"
+    },
+    {
+      "entity": "ShiftAssignment",
+      "mode": "get",
+      "field": "getSchedulingShiftAssignment"
+    },
+    {
+      "entity": "ShiftAssignment",
+      "mode": "create",
+      "field": "createSchedulingShiftAssignment",
+      "input_type": "CreateSchedulingShiftAssignmentInput"
+    },
+    {
+      "entity": "ShiftAssignment",
+      "mode": "update",
+      "field": "updateSchedulingShiftAssignment",
+      "input_type": "UpdateSchedulingShiftAssignmentInput"
+    },
+    {
+      "entity": "ShiftAssignment",
+      "mode": "destroy",
+      "field": "deleteSchedulingShiftAssignment"
+    },
+    {
+      "entity": "ShiftAssignment",
+      "action": "lock",
+      "field": "lockSchedulingShiftAssignment"
+    },
+    {
+      "entity": "ShiftAssignment",
+      "action": "unlock",
+      "field": "unlockSchedulingShiftAssignment"
+    },
+    {
+      "entity": "ScheduleVersion",
+      "mode": "list",
+      "field": "listSchedulingScheduleVersions"
+    },
+    {
+      "entity": "ScheduleVersion",
+      "mode": "get",
+      "field": "getSchedulingScheduleVersion"
+    },
+    {
+      "entity": "ScheduleVersion",
+      "mode": "create",
+      "field": "createSchedulingScheduleVersion",
+      "input_type": "CreateSchedulingScheduleVersionInput"
+    },
+    {
+      "entity": "ScheduleVersion",
+      "mode": "update",
+      "field": "updateSchedulingScheduleVersion",
+      "input_type": "UpdateSchedulingScheduleVersionInput"
+    },
+    {
+      "entity": "ScheduleVersion",
+      "action": "publish_version",
+      "field": "publishVersionSchedulingScheduleVersion"
+    },
+    {
+      "entity": "ScheduleVersion",
+      "action": "archive_version",
+      "field": "archiveVersionSchedulingScheduleVersion"
+    },
+    {
+      "entity": "SolverRun",
+      "mode": "list",
+      "field": "listSchedulingSolverRuns"
+    },
+    {
+      "entity": "SolverRun",
+      "mode": "get",
+      "field": "getSchedulingSolverRun"
+    },
+    {
+      "entity": "SolverRun",
+      "mode": "create",
+      "field": "createSchedulingSolverRun",
+      "input_type": "CreateSchedulingSolverRunInput"
+    },
+    {
+      "entity": "SolverRun",
+      "mode": "update",
+      "field": "updateSchedulingSolverRun",
+      "input_type": "UpdateSchedulingSolverRunInput"
+    },
+    {
+      "entity": "SolverRun",
+      "action": "start_run",
+      "field": "startRunSchedulingSolverRun"
+    },
+    {
+      "entity": "SolverRun",
+      "action": "complete_feasible",
+      "field": "completeFeasibleSchedulingSolverRun"
+    },
+    {
+      "entity": "SolverRun",
+      "action": "complete_infeasible",
+      "field": "completeInfeasibleSchedulingSolverRun"
+    },
+    {
+      "entity": "SolverRun",
+      "action": "mark_timeout",
+      "field": "markTimeoutSchedulingSolverRun"
+    },
+    {
+      "entity": "SolverRun",
+      "action": "mark_error",
+      "field": "markErrorSchedulingSolverRun"
+    },
+    {
+      "entity": "SolverRun",
+      "action": "mark_completed",
+      "field": "markCompletedSchedulingSolverRun"
+    },
+    {
+      "entity": "ConstraintViolation",
+      "mode": "list",
+      "field": "listSchedulingConstraintViolations"
+    },
+    {
+      "entity": "ConstraintViolation",
+      "mode": "get",
+      "field": "getSchedulingConstraintViolation"
+    },
+    {
+      "entity": "ConstraintViolation",
+      "mode": "create",
+      "field": "createSchedulingConstraintViolation",
+      "input_type": "CreateSchedulingConstraintViolationInput"
+    },
+    {
+      "entity": "ConstraintViolation",
+      "mode": "destroy",
+      "field": "deleteSchedulingConstraintViolation"
+    },
+    {
+      "entity": "MedicalStaffProfile",
+      "mode": "list",
+      "field": "listSchedulingMedicalStaffProfiles"
+    },
+    {
+      "entity": "MedicalStaffProfile",
+      "mode": "get",
+      "field": "getSchedulingMedicalStaffProfile"
+    },
+    {
+      "entity": "MedicalStaffProfile",
+      "mode": "create",
+      "field": "createSchedulingMedicalStaffProfile",
+      "input_type": "CreateSchedulingMedicalStaffProfileInput"
+    },
+    {
+      "entity": "MedicalStaffProfile",
+      "mode": "update",
+      "field": "updateSchedulingMedicalStaffProfile",
+      "input_type": "UpdateSchedulingMedicalStaffProfileInput"
+    },
+    {
+      "entity": "Department",
+      "mode": "list",
+      "field": "listSchedulingDepartments"
+    },
+    {
+      "entity": "Department",
+      "mode": "get",
+      "field": "getSchedulingDepartment"
+    },
+    {
+      "entity": "Employee",
+      "mode": "list",
+      "field": "listSchedulingEmployees"
+    },
+    {
+      "entity": "Employee",
+      "mode": "get",
+      "field": "getSchedulingEmployee"
+    }
+  ]
+}

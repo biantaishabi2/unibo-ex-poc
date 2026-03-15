@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "defaults": {
+    "period": {
+      "title": ""
+    },
+    "run": {
+      "status": "",
+      "engine_type": "",
+      "output_snapshot": {
+        "summary": {
+          "assignment_count": "",
+          "covered_requirement_count": ""
+        }
+      },
+      "hard_violation_count": "",
+      "warning_count": ""
+    },
+    "has_hard_violations": true,
+    "violations_empty": true,
+    "violations": [
+      {
+        "severity": "",
+        "rule_code": "",
+        "message": ""
+      },
+      {
+        "severity": "",
+        "rule_code": "",
+        "message": ""
+      },
+      {
+        "severity": "",
+        "rule_code": "",
+        "message": ""
+      }
+    ]
+  },
+  "keys": [
+    "has_hard_violations",
+    "period",
+    "period.title",
+    "run",
+    "run.engine_type",
+    "run.hard_violation_count",
+    "run.output_snapshot",
+    "run.output_snapshot.summary",
+    "run.output_snapshot.summary.assignment_count",
+    "run.output_snapshot.summary.covered_requirement_count",
+    "run.status",
+    "run.warning_count",
+    "violations",
+    "violations[]",
+    "violations[].message",
+    "violations[].rule_code",
+    "violations[].severity",
+    "violations_empty"
+  ],
+  "required": [
+    "has_hard_violations",
+    "period",
+    "run",
+    "violations",
+    "violations_empty"
+  ],
+  "urlParams": {},
+  "notes": []
+}

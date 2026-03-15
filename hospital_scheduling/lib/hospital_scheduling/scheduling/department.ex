@@ -6,29 +6,31 @@ defmodule HospitalScheduling.Scheduling.Department do
     extensions: [AshGraphql.Resource]
 
   resource do
-    description("跨域引用 HR.Department（科室）")
+    description "跨域引用 HR.Department（科室）"
   end
 
   postgres do
-    table("scheduling_departments")
-    repo(HospitalScheduling.Repo)
+    table "scheduling_departments"
+    repo HospitalScheduling.Repo
   end
 
   graphql do
-    type(:scheduling_department)
+    type :scheduling_department
 
     queries do
-      get(:get_scheduling_department, :read)
-      list(:list_scheduling_departments, :read)
+      get :get_scheduling_department, :read
+      list :list_scheduling_departments, :read
     end
+
   end
 
   attributes do
-    uuid_primary_key(:id)
-    attribute(:name, :string, public?: true)
+    uuid_primary_key :id
+    attribute :name, :string, public?: true
   end
 
   actions do
-    defaults([:read, :update])
+    defaults [:read, :update]
   end
+
 end

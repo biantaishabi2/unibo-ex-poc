@@ -49,13 +49,15 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
         domain_names = Enum.map(domains, &inspect/1)
 
         %{
-          message: "GraphQL 生成物一致性检查失败：检测到缺失或无效的 domain 模块，疑似只同步了部分 compile-project 生成物",
+          message:
+            "GraphQL 生成物一致性检查失败：检测到缺失或无效的 domain 模块，疑似只同步了部分 compile-project 生成物",
           code: "GRAPHQL_RUNTIME_SYNC_ERROR",
           reason: "generated_artifacts_out_of_sync",
           extensions: %{
             code: "GRAPHQL_RUNTIME_SYNC_ERROR",
             reason: "generated_artifacts_out_of_sync",
-            hint: "请整套同步 lib/、config/config.exs、test/support，不要只单独替换 schema.ex",
+            hint:
+              "请整套同步 lib/、config/config.exs、test/support，不要只单独替换 schema.ex",
             domains: domain_names
           }
         }
@@ -78,12 +80,95 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
     safe_manifest_load(frontend_manifest_path())
   end
 
+  def frontend_manifest_report do
+    frontend_data = frontend_manifest()
+    route_map = normalize_frontend_route_map(frontend_data)
+    pages = normalize_frontend_pages(frontend_data, route_map)
+
+    %{pages: pages, route_map: route_map, warnings: frontend_manifest_warnings(pages), errors: frontend_manifest_errors(frontend_data, pages, route_map)}
+  end
+
+  def frontend_pages do
+    frontend_manifest_report().pages
+  end
+
+  def frontend_route_map do
+    frontend_manifest_report().route_map
+  end
+
+  def frontend_page(page_id) when is_binary(page_id) do
+    page_id = normalize_string(page_id)
+
+    frontend_pages()
+    |> Enum.find(fn page -> normalize_string(map_get(page, "page_id")) == page_id end)
+    |> case do
+      %{} = page -> {:ok, page}
+      _ -> {:error, :stitch_backend_page_not_found}
+    end
+  end
+
+  def frontend_page(_page_id), do: {:error, :stitch_backend_page_not_found}
+
+  def frontend_backend_page(page_id) when is_binary(page_id) do
+    with {:ok, page} <- frontend_page(page_id) do
+      issues = frontend_backend_page_issues(frontend_manifest_report(), page_id)
+
+      if issues == [] do
+        {:ok, page}
+      else
+        {:error, {:stitch_backend_page_contract_invalid, %{"page_id" => page_id, "issues" => issues}}}
+      end
+    end
+  end
+
+  def frontend_backend_page(_page_id), do: {:error, :stitch_backend_page_not_found}
+
+  def page_host_prefix do
+    case Keyword.get(config(), :page_host_prefix, "/pages") do
+      value when is_binary(value) ->
+        prefix =
+          value
+          |> String.trim()
+
+        cond do
+          prefix == "" -> "/pages"
+          String.starts_with?(prefix, "/") -> prefix
+          true -> "/" <> prefix
+        end
+
+      _ ->
+        "/pages"
+    end
+  end
+
+  def page_host_pages_dir do
+    Keyword.get(
+      config(),
+      :page_host_pages_dir,
+      Path.join(:code.priv_dir(@app), "static/365_pages")
+    )
+  end
+
+  def page_host_runtime do
+    case Keyword.get(config(), :page_host_runtime, :graphql) do
+      :mock -> :mock
+      "mock" -> :mock
+      _ -> :graphql
+    end
+  end
+
+  def page_host_backend do
+    Keyword.get(config(), :page_host_backend, HospitalSchedulingWeb.Graphql.StitchBackend)
+  end
+
+  defp normalize_list(values) when is_list(values), do: values
+  defp normalize_list(_values), do: []
+
   def graphql_contract(field_or_doc_url) when is_binary(field_or_doc_url) do
     field_or_doc_url = normalize_string(field_or_doc_url)
 
     with false <- field_or_doc_url == "",
-         %{} = field <-
-           graphql_builtin_contract(field_or_doc_url) || manifest_field_contract(field_or_doc_url) do
+         %{} = field <- graphql_builtin_contract(field_or_doc_url) || manifest_field_contract(field_or_doc_url) do
       %{}
       |> Map.put(:field, normalize_string(map_get(field, "field")))
       |> put_present(:summary, map_get(field, "summary"))
@@ -161,7 +246,6 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
             "missing actor context (compat warning)"
           )
         )
-
         :ok
 
       operation == :query and public_query_whitelisted?(query) ->
@@ -185,7 +269,6 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
             "missing actor context"
           )
         )
-
         {:error, :missing_actor_context}
     end
   end
@@ -347,10 +430,7 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
   defp normalize_string(value) when is_binary(value), do: String.trim(value)
   defp normalize_string(value) when is_atom(value), do: value |> Atom.to_string() |> String.trim()
   defp normalize_string(value) when is_integer(value), do: Integer.to_string(value)
-
-  defp normalize_string(value) when is_float(value),
-    do: :erlang.float_to_binary(value, [:compact, decimals: 6])
-
+  defp normalize_string(value) when is_float(value), do: :erlang.float_to_binary(value, [:compact, decimals: 6])
   defp normalize_string(_), do: ""
 
   defp normalize_string_list(values) when is_list(values) do
@@ -423,27 +503,10 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
   defp normalize_legacy_context_envelope(context) when is_map(context) do
     principal =
       %{}
-      |> put_present(
-        "id",
-        context_value(context, :user_id) || context_value(context, "user_id") ||
-          context_value(context, :actor_id) || context_value(context, "actor_id") ||
-          header_value(context, "x-user-id") || header_value(context, "x-actor-id")
-      )
-      |> put_present(
-        "party_id",
-        context_value(context, :party_id) || context_value(context, "party_id") ||
-          header_value(context, "x-party-id") || header_value(context, "x-actor-party-id")
-      )
-      |> put_present(
-        "member_id",
-        context_value(context, :member_id) || context_value(context, "member_id") ||
-          header_value(context, "x-member-id")
-      )
-      |> put_present(
-        "type",
-        context_value(context, :principal_type) || context_value(context, "principal_type") ||
-          "user"
-      )
+      |> put_present("id", context_value(context, :user_id) || context_value(context, "user_id") || context_value(context, :actor_id) || context_value(context, "actor_id") || header_value(context, "x-user-id") || header_value(context, "x-actor-id"))
+      |> put_present("party_id", context_value(context, :party_id) || context_value(context, "party_id") || header_value(context, "x-party-id") || header_value(context, "x-actor-party-id"))
+      |> put_present("member_id", context_value(context, :member_id) || context_value(context, "member_id") || header_value(context, "x-member-id"))
+      |> put_present("type", context_value(context, :principal_type) || context_value(context, "principal_type") || "user")
 
     tenant_id =
       case tenant_error(context) do
@@ -485,16 +548,8 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
 
     correlation =
       %{}
-      |> put_present(
-        "request_id",
-        context_value(context, :request_id) || context_value(context, "request_id") ||
-          header_value(context, "x-request-id")
-      )
-      |> put_present(
-        "trace_id",
-        context_value(context, :trace_id) || context_value(context, "trace_id") ||
-          header_value(context, "x-trace-id")
-      )
+      |> put_present("request_id", context_value(context, :request_id) || context_value(context, "request_id") || header_value(context, "x-request-id"))
+      |> put_present("trace_id", context_value(context, :trace_id) || context_value(context, "trace_id") || header_value(context, "x-trace-id"))
 
     envelope = %{
       "principal" => principal,
@@ -553,17 +608,8 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
   end
 
   defp normalize_roles(nil), do: []
-
-  defp normalize_roles(value) when is_binary(value),
-    do:
-      value
-      |> String.split(",", trim: true)
-      |> Enum.map(&normalize_string/1)
-      |> Enum.reject(&(&1 == ""))
-
-  defp normalize_roles(value) when is_list(value),
-    do: value |> Enum.map(&normalize_string/1) |> Enum.reject(&(&1 == ""))
-
+  defp normalize_roles(value) when is_binary(value), do: value |> String.split(",", trim: true) |> Enum.map(&normalize_string/1) |> Enum.reject(&(&1 == ""))
+  defp normalize_roles(value) when is_list(value), do: value |> Enum.map(&normalize_string/1) |> Enum.reject(&(&1 == ""))
   defp normalize_roles(_), do: []
 
   defp extract_roles(context) do
@@ -617,7 +663,6 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
 
       true ->
         expected = normalize_string(key)
-
         case Enum.reduce_while(map, :not_found, fn {existing_key, value}, _acc ->
                if normalize_string(existing_key) == expected do
                  {:halt, {:found, value}}
@@ -718,6 +763,172 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
     end
   end
 
+  defp normalize_frontend_pages(frontend_data, route_map) do
+    route_index =
+      Enum.reduce(route_map, %{}, fn route, acc ->
+        page_id = normalize_string(map_get(route, "page_id"))
+        path = normalize_string(map_get(route, "path"))
+
+        if page_id == "" or path == "" do
+          acc
+        else
+          Map.put_new(acc, page_id, path)
+        end
+      end)
+
+    frontend_data
+    |> map_get("pages")
+    |> normalize_list()
+    |> Enum.map(fn page ->
+      page = normalize_map(page)
+      page_id = normalize_string(map_get(page, "page_id"))
+      page_type = normalize_string(map_get(page, "page_type"))
+      backend = normalize_map(map_get(page, "backend"))
+      state_schema = normalize_map(map_get(page, "state_schema"))
+
+      page
+      |> Map.put("page_id", page_id)
+      |> Map.put("page_type", page_type)
+      |> Map.put("page_kind", frontend_page_kind(page))
+      |> Map.put("api_map", normalize_map(map_get(backend, "api_map") || map_get(page, "api_map")))
+      |> Map.put("status_keys", normalize_string_list(map_get(page, "status_keys")))
+      |> Map.put("state_schema", state_schema)
+      |> put_present("route_path", Map.get(route_index, page_id))
+    end)
+  end
+
+  defp normalize_frontend_route_map(frontend_data) do
+    route_map = map_get(frontend_data, "route_map")
+
+    cond do
+      is_map(route_map) ->
+        Enum.map(route_map, fn {path, page_id} ->
+          %{"path" => normalize_string(path), "page_id" => normalize_string(page_id)}
+        end)
+
+      is_list(route_map) ->
+        Enum.map(route_map, fn route ->
+          route = normalize_map(route)
+
+          %{"path" => normalize_string(map_get(route, "path")), "page_id" => normalize_string(map_get(route, "page_id"))}
+        end)
+
+      true ->
+        []
+    end
+  end
+
+  defp frontend_manifest_errors(frontend_data, pages, route_map) do
+    page_ids =
+      pages
+      |> Enum.map(&normalize_string(map_get(&1, "page_id")))
+      |> Enum.reject(&(&1 == ""))
+
+    []
+    |> maybe_add_frontend_manifest_missing_pages(frontend_data)
+    |> Kernel.++(duplicate_page_id_errors(page_ids))
+    |> Kernel.++(duplicate_route_path_errors(route_map))
+    |> Kernel.++(route_map_unknown_page_errors(route_map, page_ids))
+  end
+
+  defp frontend_manifest_warnings(pages) do
+    Enum.flat_map(pages, &frontend_page_warnings/1)
+  end
+
+  defp frontend_backend_page_issues(report, page_id) do
+    page_id = normalize_string(page_id)
+
+    report.errors ++
+      Enum.filter(report.warnings, fn issue ->
+        normalize_string(map_get(issue, "page_id")) == page_id
+      end)
+  end
+
+  defp maybe_add_frontend_manifest_missing_pages(errors, frontend_data) do
+    if normalize_list(map_get(frontend_data, "pages")) == [] do
+      [%{"severity" => "error", "code" => "frontend_manifest_pages_missing", "message" => "frontend_manifest.v1.json 缺少 pages 定义"} | errors]
+    else
+      errors
+    end
+  end
+
+  defp duplicate_page_id_errors(page_ids) do
+    page_ids
+    |> duplicate_values()
+    |> Enum.map(fn page_id ->
+      %{"severity" => "error", "code" => "duplicate_page_id", "page_id" => page_id, "message" => "frontend manifest 中存在重复的 page_id"}
+    end)
+  end
+
+  defp duplicate_route_path_errors(route_map) do
+    route_map
+    |> Enum.map(&normalize_string(map_get(&1, "path")))
+    |> Enum.reject(&(&1 == ""))
+    |> duplicate_values()
+    |> Enum.map(fn path ->
+      %{"severity" => "error", "code" => "duplicate_route_path", "path" => path, "message" => "frontend manifest 中存在重复的 route path"}
+    end)
+  end
+
+  defp route_map_unknown_page_errors(route_map, page_ids) do
+    page_id_set = MapSet.new(page_ids)
+
+    Enum.flat_map(route_map, fn route ->
+      page_id = normalize_string(map_get(route, "page_id"))
+      path = normalize_string(map_get(route, "path"))
+
+      cond do
+        path == "" or page_id == "" ->
+          [%{"severity" => "error", "code" => "route_map_entry_invalid", "path" => path, "page_id" => page_id, "message" => "route_map 条目必须同时声明 path 和 page_id"}]
+
+        MapSet.member?(page_id_set, page_id) ->
+          []
+
+        true ->
+          [%{"severity" => "error", "code" => "route_map_unknown_page", "path" => path, "page_id" => page_id, "message" => "route_map 指向了不存在的 page_id"}]
+      end
+    end)
+  end
+
+  defp frontend_page_warnings(page) do
+    page_id = normalize_string(map_get(page, "page_id"))
+    page_kind = normalize_string(map_get(page, "page_kind"))
+    api_map = normalize_map(map_get(page, "api_map"))
+
+    if page_kind == "custom" and api_map == %{} do
+      [%{"severity" => "warning", "code" => "custom_page_api_map_missing", "page_id" => page_id, "message" => "custom page 缺少 backend.api_map，GraphQL runtime 不会静默 fallback"}]
+    else
+      []
+    end
+  end
+
+  defp frontend_page_kind(page) do
+    page_kind = normalize_string(map_get(page, "page_kind"))
+    page_type = normalize_string(map_get(page, "page_type"))
+
+    cond do
+      page_kind != "" ->
+        page_kind
+
+      page_type in ["list", "list_report"] ->
+        "list"
+
+      page_type in ["detail", "object_page"] ->
+        "detail"
+
+      true ->
+        "custom"
+    end
+  end
+
+  defp duplicate_values(values) do
+    values
+    |> Enum.frequencies()
+    |> Enum.filter(fn {_value, count} -> count > 1 end)
+    |> Enum.map(fn {value, _count} -> value end)
+    |> Enum.sort()
+  end
+
   defp manifest_postprocess_plan(manifest_data, meta) do
     mod = Unibo.Graphql.Manifest
 
@@ -797,29 +1008,28 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
   defp graphql_builtin_contract("graphql://contract/common/tenant") do
     %{
       "field" => "common/tenant",
-      "summary" =>
-        "Tenant headers contract. Provide x-tenant-id, or use x-tenant-code / x-tenant-slug when alias resolver is configured.",
+      "summary" => "Tenant headers contract. Provide x-tenant-id, or use x-tenant-code / x-tenant-slug when alias resolver is configured.",
       "doc_url" => "graphql://contract/common/tenant",
       "required_headers" => [],
       "conditional_requirements" => [],
       "body" => """
-      # common/tenant
+# common/tenant
 
-      - Summary: Tenant headers contract. Provide x-tenant-id, or use x-tenant-code / x-tenant-slug when alias resolver is configured.
-      - Doc URL: graphql://contract/common/tenant
+- Summary: Tenant headers contract. Provide x-tenant-id, or use x-tenant-code / x-tenant-slug when alias resolver is configured.
+- Doc URL: graphql://contract/common/tenant
 
-      ## Required Headers
-      - none
+## Required Headers
+- none
 
-      ## Optional Alias Headers
-      - x-tenant-code
-      - x-tenant-slug
+## Optional Alias Headers
+- x-tenant-code
+- x-tenant-slug
 
-      ## Notes
-      - Prefer `x-tenant-id` when the caller already knows the tenant UUID.
-      - `x-tenant-code` / `x-tenant-slug` only work when the generated runtime has a tenant alias resolver.
-      - Invalid tenant input should surface `invalid_tenant_id` or `tenant_required` with this same `doc_url`.
-      """
+## Notes
+- Prefer `x-tenant-id` when the caller already knows the tenant UUID.
+- `x-tenant-code` / `x-tenant-slug` only work when the generated runtime has a tenant alias resolver.
+- Invalid tenant input should surface `invalid_tenant_id` or `tenant_required` with this same `doc_url`.
+"""
     }
   end
 
@@ -1077,12 +1287,7 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
         {:ok, normalized}
 
       true ->
-        {:error, "invalid_tenant_id", invalid_tenant_message(source),
-         %{
-           "path" => tenant_error_path(source),
-           "tenant_source" => source,
-           "tenant_value" => normalized
-         }}
+        {:error, "invalid_tenant_id", invalid_tenant_message(source), %{"path" => tenant_error_path(source), "tenant_source" => source, "tenant_value" => normalized}}
     end
   end
 
@@ -1101,24 +1306,10 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
 
           {:ok, %{} = tenant_map} ->
             tenant_id = tenant_id_from_map(tenant_map)
-
-            if tenant_id == "",
-              do:
-                {:error, "tenant_resolution_failed", tenant_resolution_failed_message(source),
-                 %{
-                   "path" => tenant_error_path(source),
-                   "tenant_source" => source,
-                   "tenant_value" => normalized
-                 }},
-              else: {:ok, tenant_id}
+            if tenant_id == "", do: {:error, "tenant_resolution_failed", tenant_resolution_failed_message(source), %{"path" => tenant_error_path(source), "tenant_source" => source, "tenant_value" => normalized}}, else: {:ok, tenant_id}
 
           _ ->
-            {:error, "tenant_resolution_failed", tenant_resolution_failed_message(source),
-             %{
-               "path" => tenant_error_path(source),
-               "tenant_source" => source,
-               "tenant_value" => normalized
-             }}
+            {:error, "tenant_resolution_failed", tenant_resolution_failed_message(source), %{"path" => tenant_error_path(source), "tenant_source" => source, "tenant_value" => normalized}}
         end
     end
   end
@@ -1169,20 +1360,11 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
     header_tenant_id = normalize_string(List.first(Plug.Conn.get_req_header(conn, "x-tenant-id")))
 
     cond do
-      tenant_id != "" ->
-        %{kind: :existing, value: tenant_id, source: "conn.assigns"}
-
-      tenant_code != "" ->
-        %{kind: :tenant_code, value: tenant_code, source: "x-tenant-code"}
-
-      tenant_slug != "" ->
-        %{kind: :tenant_slug, value: tenant_slug, source: "x-tenant-slug"}
-
-      header_tenant_id != "" ->
-        %{kind: :tenant_id, value: header_tenant_id, source: "x-tenant-id"}
-
-      true ->
-        nil
+      tenant_id != "" -> %{kind: :existing, value: tenant_id, source: "conn.assigns"}
+      tenant_code != "" -> %{kind: :tenant_code, value: tenant_code, source: "x-tenant-code"}
+      tenant_slug != "" -> %{kind: :tenant_slug, value: tenant_slug, source: "x-tenant-slug"}
+      header_tenant_id != "" -> %{kind: :tenant_id, value: header_tenant_id, source: "x-tenant-id"}
+      true -> nil
     end
   end
 
