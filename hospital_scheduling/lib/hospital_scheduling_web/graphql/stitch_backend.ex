@@ -98,6 +98,12 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
       normalized == @load_event and page_kind == "list" ->
         "list"
 
+      normalized == @load_event and map_has_key?(api_map, "get") ->
+        "get"
+
+      normalized == @load_event and map_has_key?(api_map, "list") ->
+        "list"
+
       normalized == @load_event ->
         "get"
 

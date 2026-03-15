@@ -41,6 +41,18 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackendContractTest do
             "entity" => "SolverRun",
             "mode" => "get",
             "action" => "get"
+          },
+          %{
+            "field" => "scheduleVersionGet",
+            "entity" => "ScheduleVersion",
+            "mode" => "get",
+            "action" => "get"
+          },
+          %{
+            "field" => "publishVersion",
+            "entity" => "ScheduleVersion",
+            "mode" => "mutation",
+            "action" => "publish_version"
           }
         ]
       })
@@ -77,6 +89,29 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackendContractTest do
     assert {:ok, contract} = StitchBackend.contract("solver_result")
     assert get_in(contract, ["backend", "api_map"]) == %{"get" => "Scheduling.SolverRun.get"}
     assert contract["page_id"] == "solver_result"
+  end
+
+  test "frontend manifest 可被运行时读取", %{frontend_manifest_path: frontend_manifest_path} do
+    File.write!(
+      frontend_manifest_path,
+      Jason.encode!(%{
+        "pages" => [
+          %{
+            "page_id" => "solver_result",
+            "page_kind" => "custom",
+            "status_keys" => ["period", "run", "violations"],
+            "state_schema" => %{"defaults" => %{}},
+            "api_map" => %{"get" => "Scheduling.SolverRun.get"}
+          }
+        ],
+        "route_map" => []
+      })
+    )
+
+    manifest = RuntimeConfig.frontend_manifest()
+
+    assert is_list(manifest["pages"])
+    assert Enum.any?(manifest["pages"], &(&1["page_id"] == "solver_result"))
   end
 
   test "custom page 缺失 api_map 时显式失败", %{
@@ -135,5 +170,35 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackendContractTest do
     assert Enum.any?(details["issues"], fn issue ->
              issue["code"] == "route_map_entry_invalid" and issue["severity"] == "error"
            end)
+  end
+
+  test "complex page contract 暴露 api backend 合同", %{frontend_manifest_path: frontend_manifest_path} do
+    File.write!(
+      frontend_manifest_path,
+      Jason.encode!(%{
+        "pages" => [
+          %{
+            "page_id" => "publish_preview",
+            "page_kind" => "custom",
+            "status_keys" => ["version", "changes"],
+            "state_schema" => %{"defaults" => %{}},
+            "api_map" => %{
+              "get" => "Scheduling.ScheduleVersion.get",
+              "action_publish" => "Scheduling.ScheduleVersion.publish_version"
+            }
+          }
+        ],
+        "route_map" => []
+      })
+    )
+
+    assert {:ok, contract} = StitchBackend.contract("publish_preview")
+
+    assert get_in(contract, ["backend", "mode"]) == "api"
+    assert get_in(contract, ["backend", "load", "event"]) == "__load__"
+    assert get_in(contract, ["backend", "api_map", "get"]) == "Scheduling.ScheduleVersion.get"
+
+    assert get_in(contract, ["backend", "api_map", "action_publish"]) ==
+             "Scheduling.ScheduleVersion.publish_version"
   end
 end

@@ -21,8 +21,21 @@ defmodule Unibo.Graphql.Manifest do
     end
   end
 
+  def fields(manifest_data) when is_map(manifest_data) do
+    manifest_data
+    |> Map.get("fields", [])
+    |> normalize_list()
+  end
+
+  def fields(_manifest_data), do: []
+
+  def fields(manifest_data, kind) when is_atom(kind) do
+    kind_str = Atom.to_string(kind)
+    Enum.filter(fields(manifest_data), &(normalize_string(Map.get(&1, "kind")) == kind_str))
+  end
+
   def field(manifest_data, lookup_key) when is_map(manifest_data) and is_binary(lookup_key) do
-    fields = manifest_data |> Map.get("fields", []) |> normalize_list()
+    fields = fields(manifest_data)
     expected = normalize_string(lookup_key)
 
     Enum.find(fields, fn field ->
