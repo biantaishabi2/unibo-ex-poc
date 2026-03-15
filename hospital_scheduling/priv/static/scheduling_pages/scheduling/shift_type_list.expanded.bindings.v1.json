@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "vars": {
+    "page_title": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "shift_type_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{page_title|ShiftType 列表}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "navigate_create": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "shift_type_create_btn",
+          "prop": "click",
+          "raw": "navigate_create"
+        }
+      ]
+    }
+  }
+}

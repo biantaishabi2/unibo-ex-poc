@@ -1,0 +1,33 @@
+<.flash_group flash={@flash} />
+<div class="left-[40rem] fixed inset-y-0 right-0 z-0 hidden lg:block xl:left-[50rem]">
+  <svg
+    viewBox="0 0 1480 957"
+    fill="none"
+    aria-hidden="true"
+    class="absolute inset-0 h-full w-full"
+    preserveAspectRatio="xMinYMid slice"
+  >
+    <path fill="#EE7868" d="M0 0h1480v957H0z" />
+    <path
+      d="M137.542 466.27c-582.851-48.41-988.806-82.127-1608.412 658.2l67.39 810 3083.15-256.51L1535.94-49.622l-98.36 8.183C1269.29 281.468 734.115 515.799 146.47 467.012l-8.928-.742Z"
+      fill="#FF9F92"
+    />
+    <path
+      d="M371.028 528.664C-169.369 304.988-545.754 149.198-1361.45 665.565l-182.58 792.025 3014.73 694.98 389.42-1689.25-96.18-22.171C1505.28 697.438 924.153 757.586 379.305 532.09l-8.277-3.426Z"
+      fill="#FA8372"
+    />
+  </svg>
+</div>
+<div class="px-4 py-10 sm:px-6 sm:py-28 lg:px-8 xl:px-28 xl:py-32">
+  <div class="mx-auto max-w-xl lg:mx-0">
+    <h1 class="text-brand mt-10 flex items-center text-sm font-semibold leading-6">
+      Phoenix Framework
+      <small class="bg-brand/5 text-[0.8125rem] ml-3 rounded-full px-2 font-medium leading-6">
+        v{Application.spec(:phoenix, :vsn)}
+      </small>
+    </h1>
+    <p class="text-[2rem] mt-4 font-semibold leading-10 tracking-tighter text-zinc-900 text-balance">
+      Peace of mind from prototype to production.
+    </p>
+  </div>
+</div>

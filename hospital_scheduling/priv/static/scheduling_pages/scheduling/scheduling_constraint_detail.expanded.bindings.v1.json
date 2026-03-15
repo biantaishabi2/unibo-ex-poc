@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "vars": {
+    "record.name": {
+      "uses": [
+        {
+          "node_type": "BreadcrumbPage",
+          "node_id": "scheduling_constraint_bc_current",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.name|详情}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "scheduling_constraint_detail_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.name|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "value_name",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.name|}}"
+        }
+      ]
+    },
+    "record.constraint_type": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_constraint_type",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.constraint_type|}}"
+        }
+      ]
+    },
+    "record.category": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_category",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.category|}}"
+        }
+      ]
+    },
+    "record.params": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_params",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.params|}}"
+        }
+      ]
+    },
+    "record.weight": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_weight",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.weight|}}"
+        }
+      ]
+    },
+    "record.enabled": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_enabled",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.enabled|}}"
+        }
+      ]
+    },
+    "record.notes": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_notes",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.notes|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "scheduling_constraint_edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "scheduling_constraint_delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "scheduling_constraint_edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "scheduling_constraint_save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "scheduling_constraint_edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "scheduling_constraint_cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
+}

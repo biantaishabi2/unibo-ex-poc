@@ -1,0 +1,151 @@
+{
+  "version": 1,
+  "defaults": {
+    "record": {
+      "name": "",
+      "constraint_type": "",
+      "category": "",
+      "params": "",
+      "weight": "",
+      "enabled": "",
+      "notes": ""
+    },
+    "editing": true
+  },
+  "keys": [
+    "editing",
+    "record",
+    "record.category",
+    "record.constraint_type",
+    "record.enabled",
+    "record.name",
+    "record.notes",
+    "record.params",
+    "record.weight"
+  ],
+  "required": [
+    "editing",
+    "record"
+  ],
+  "urlParams": {},
+  "notes": [],
+  "layer2": {
+    "backend": {
+      "api_map": {
+        "destroy": "Scheduling.SchedulingConstraint.destroy",
+        "get": "Scheduling.SchedulingConstraint.get",
+        "update": "Scheduling.SchedulingConstraint.update"
+      }
+    },
+    "children": [],
+    "domain": "Scheduling",
+    "e2e": {
+      "playwright": {
+        "auto": true,
+        "base_path": "/scheduling/scheduling_constraint/:id",
+        "cases": [
+          {
+            "covers": [],
+            "name": "页面加载 + 结构可见",
+            "steps": [
+              {
+                "action": "expect_visible",
+                "selector": "[data-page='scheduling_constraint_detail']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "toggle_edit"
+            ],
+            "name": "编辑模式切换",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='toggle_edit']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "form, [data-mode='edit']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "form_submit"
+            ],
+            "name": "表单提交",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='form_submit'], button[type='submit']"
+              },
+              {
+                "action": "expect_text_contains",
+                "selector": "#flash-group, [data-flash], [role='alert']",
+                "value": "成功"
+              }
+            ]
+          }
+        ],
+        "dto_smoke": []
+      }
+    },
+    "entity": "SchedulingConstraint",
+    "page_id": "scheduling_constraint_detail",
+    "page_type": "object_page",
+    "runtime_monitoring": null,
+    "schema_version": "1.0",
+    "state_transitions": [
+      {
+        "description": "切换编辑模式",
+        "from": "*",
+        "name": "toggle_edit",
+        "to": "*",
+        "trigger": "user_action"
+      },
+      {
+        "description": "取消编辑",
+        "from": "*",
+        "name": "cancel_edit",
+        "to": "*",
+        "trigger": "user_action"
+      },
+      {
+        "description": "表单字段变更",
+        "from": "*",
+        "name": "form_change",
+        "to": "*",
+        "trigger": "user_input"
+      },
+      {
+        "description": "提交表单",
+        "from": "editing",
+        "name": "form_submit",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "删除记录",
+        "from": "*",
+        "name": "action_destroy",
+        "navigate_to": "/scheduling/scheduling_constraint",
+        "to": "loading",
+        "trigger": "user_action"
+      }
+    ],
+    "status_keys": [
+      "record",
+      "editing",
+      "form",
+      "loading"
+    ],
+    "ui": {
+      "sections": [],
+      "template": {
+        "detail": "object_page"
+      }
+    },
+    "version": 1
+  }
+}

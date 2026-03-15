@@ -1,0 +1,6 @@
+defmodule <%= web_module %>.PageHTML do
+  @moduledoc false
+  use <%= web_module %>, :html
+
+  embed_templates "page_html/*"
+end

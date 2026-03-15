@@ -1,0 +1,67 @@
+{
+  "record": {
+    "title": "",
+    "state": "",
+    "generation_mode": "",
+    "department": {
+      "name": ""
+    },
+    "start_date": "",
+    "end_date": "",
+    "current_version": {
+      "version_no": ""
+    },
+    "last_solver_run": {
+      "status": ""
+    },
+    "schedule_versions": [
+      {
+        "version_no": "",
+        "status": "",
+        "origin_type": "",
+        "change_summary": "",
+        "inserted_at": ""
+      },
+      {
+        "version_no": "",
+        "status": "",
+        "origin_type": "",
+        "change_summary": "",
+        "inserted_at": ""
+      },
+      {
+        "version_no": "",
+        "status": "",
+        "origin_type": "",
+        "change_summary": "",
+        "inserted_at": ""
+      }
+    ],
+    "solver_runs": [
+      {
+        "engine_type": "",
+        "status": "",
+        "score": "",
+        "hard_violation_count": "",
+        "started_at": "",
+        "completed_at": ""
+      },
+      {
+        "engine_type": "",
+        "status": "",
+        "score": "",
+        "hard_violation_count": "",
+        "started_at": "",
+        "completed_at": ""
+      },
+      {
+        "engine_type": "",
+        "status": "",
+        "score": "",
+        "hard_violation_count": "",
+        "started_at": "",
+        "completed_at": ""
+      }
+    ]
+  }
+}
