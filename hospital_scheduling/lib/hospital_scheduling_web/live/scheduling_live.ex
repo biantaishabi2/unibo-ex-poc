@@ -165,11 +165,15 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
 
     case socket.assigns.runtime_mode do
       :graphql ->
+        # 从 status schema defaults 推导 selection，确保查询返回页面需要的全部字段
+        selection = build_selection_from_defaults(defaults)
+        state = Map.put(defaults, :selection, selection)
+
         case call_backend(
                socket.assigns.page_backend,
                @load_event,
                %{"__page_id" => page} |> Map.merge(stringify_map(params)),
-               defaults
+               state
              ) do
           {:ok, %{dto: dto, status: status, effects: effects}} ->
             defaults
@@ -184,6 +188,56 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
         Map.merge(defaults, load_mock_data(heex_path))
     end
   end
+
+  # 从 status schema defaults 推导 GraphQL selection string
+  defp build_selection_from_defaults(defaults) do
+    # 从 rows（list 页面）或 record（detail 页面）提取字段名
+    sample =
+      case defaults do
+        %{rows: [first | _]} when is_map(first) -> first
+        %{record: record} when is_map(record) and map_size(record) > 0 -> record
+        _ -> %{}
+      end
+
+    fields = extract_selection_fields(sample)
+
+    case fields do
+      "" -> "id"
+      value -> "id " <> value
+    end
+  end
+
+  defp extract_selection_fields(map) when is_map(map) do
+    map
+    |> Map.keys()
+    |> Enum.reject(&(&1 in [:id, :__struct__, :__meta__]))
+    |> Enum.map(fn key ->
+      value = Map.get(map, key)
+      key_str = to_string(key)
+
+      cond do
+        is_map(value) and not Map.has_key?(value, :__struct__) and map_size(value) > 0 ->
+          nested = extract_selection_fields(value)
+          if nested == "", do: key_str, else: "#{key_str} { #{nested} }"
+
+        is_list(value) ->
+          case value do
+            [first | _] when is_map(first) ->
+              nested = extract_selection_fields(first)
+              if nested == "", do: key_str, else: "#{key_str} { #{nested} }"
+
+            _ ->
+              key_str
+          end
+
+        true ->
+          key_str
+      end
+    end)
+    |> Enum.join(" ")
+  end
+
+  defp extract_selection_fields(_), do: ""
 
   defp load_mock_data(heex_path) do
     mock_path = String.replace_suffix(heex_path, ".heex", ".mock.json")
@@ -531,7 +585,7 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
 
   def render(assigns) do
     ~H"""
-    <div class="min-h-screen">
+    <div class="min-h-screen" data-page={@page}>
       <div class="fixed top-2 right-2 z-50 flex gap-2">
         <a
           href="/scheduling"
