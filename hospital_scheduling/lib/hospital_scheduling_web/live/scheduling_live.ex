@@ -1,47 +1,42 @@
 defmodule HospitalSchedulingWeb.SchedulingLive do
   @moduledoc """
   排班管理页面动态渲染 LiveView。
-  从 priv/static/scheduling_pages/ 加载 .generated.heex，
-  动态编译并渲染，使用 StitchUI 组件库。
+  从运行时页面目录加载 `.generated.heex`，并按配置切换：
+
+  - `:mock`：读取 `.mock.json`
+  - `:graphql`：走 Stitch backend contract
   """
   use Phoenix.LiveView, layout: {HospitalSchedulingWeb.Layouts, :app}
 
-  import StitchUI.Components.Basic, except: [link: 1]
-  import StitchUI.Components.Card
-  import StitchUI.Components.Hero
-  import StitchUI.Components.Feedback
-  import StitchUI.Components.Forms
-  import StitchUI.Components.Tabs
-  import StitchUI.Components.Stepper
-  import StitchUI.Components.Timeline
-  import StitchUI.Components.Statistic
-  import StitchUI.Components.Avatar
-  import StitchUI.Components.Accordion
-  import StitchUI.Components.Breadcrumb
-  import StitchUI.Components.List
-  import StitchUI.Components.Table
-  import StitchUI.Components.Select
-  import StitchUI.Components.Toggle
-  import StitchUI.Components.ControlBar
-  import StitchUI.Components.Tree
-  import StitchUI.Layouts.Core
-
-  @pages_dir Application.compile_env(:hospital_scheduling, :scheduling_pages_dir,
-               Path.join(:code.priv_dir(:hospital_scheduling), "static/scheduling_pages/scheduling"))
-
   @default_assigns %{
     page_title: "",
-    record: %{title: "", state: "", generation_mode: "",
-              department: %{name: ""}, start_date: "", end_date: "",
-              current_version: %{version_no: ""},
-              last_solver_run: %{status: ""},
-              schedule_versions: [], solver_runs: []},
+    record: %{
+      title: "",
+      state: "",
+      generation_mode: "",
+      department: %{name: ""},
+      start_date: "",
+      end_date: "",
+      current_version: %{version_no: ""},
+      last_solver_run: %{status: ""},
+      schedule_versions: [],
+      solver_runs: []
+    },
     rows: [],
     rows_empty: true,
     period: %{title: "", state: "", start_date: "", end_date: ""},
-    run: %{status: "", engine_type: "", hard_violation_count: "",
-           warning_count: "", output_snapshot: %{summary: %{
-             assignment_count: "", covered_requirement_count: ""}}},
+    run: %{
+      status: "",
+      engine_type: "",
+      hard_violation_count: "",
+      warning_count: "",
+      output_snapshot: %{
+        summary: %{
+          assignment_count: "",
+          covered_requirement_count: ""
+        }
+      }
+    },
     version: %{version_no: "", origin_type: ""},
     violations: [],
     violations_empty: true,
@@ -61,17 +56,30 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
     current_week_label: "",
     shift_types: [],
     editing: false,
-    filter: %{}
+    filter: %{},
+    flash_preview: %{}
   }
 
+  @default_pages_dir Path.join(
+                       :code.priv_dir(:hospital_scheduling),
+                       "static/scheduling_pages/scheduling"
+                     )
+  @load_event "__load__"
+
   @impl true
-  def mount(%{"page" => page}, _session, socket) do
+  def mount(%{"page" => page} = params, _session, socket) do
     socket =
       socket
+      |> assign(:runtime_mode, runtime_mode())
+      |> assign(:page_backend, page_backend())
       |> assign(:page, page)
+      |> assign(:page_params, Map.delete(params, "page"))
       |> assign(:error, nil)
+      |> assign(:page_template_content, nil)
+      |> assign(:page_source_path, nil)
+      |> assign(:page_data, @default_assigns)
       |> assign(:rendered_content, nil)
-      |> load_and_render(page)
+      |> load_and_render(page, Map.delete(params, "page"))
 
     {:ok, socket}
   end
@@ -81,8 +89,13 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
 
     socket =
       socket
+      |> assign(:runtime_mode, runtime_mode())
+      |> assign(:page_backend, page_backend())
       |> assign(:page, nil)
       |> assign(:error, nil)
+      |> assign(:page_template_content, nil)
+      |> assign(:page_source_path, nil)
+      |> assign(:page_data, @default_assigns)
       |> assign(:rendered_content, nil)
       |> assign(:pages, pages)
 
@@ -90,12 +103,13 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
   end
 
   @impl true
-  def handle_params(%{"page" => page}, _uri, socket) do
+  def handle_params(%{"page" => page} = params, _uri, socket) do
     socket =
       socket
       |> assign(:page, page)
+      |> assign(:page_params, Map.delete(params, "page"))
       |> assign(:error, nil)
-      |> load_and_render(page)
+      |> load_and_render(page, Map.delete(params, "page"))
 
     {:noreply, socket}
   end
@@ -105,16 +119,25 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
   end
 
   @impl true
-  def handle_event(_event, _params, socket) do
+  def handle_event(_event, _params, %{assigns: %{page: nil}} = socket) do
     {:noreply, socket}
   end
 
-  defp load_and_render(socket, page) do
-    # 尝试多种文件名模式
+  def handle_event(event, params, socket) do
+    socket =
+      case socket.assigns.runtime_mode do
+        :graphql -> dispatch_backend(event, params, socket)
+        _ -> socket
+      end
+
+    {:noreply, socket}
+  end
+
+  defp load_and_render(socket, page, params) do
     candidates = [
-      Path.join(@pages_dir, "#{page}.expanded.generated.heex"),
-      Path.join(@pages_dir, "#{page}.generated.heex"),
-      Path.join(@pages_dir, "#{page}.heex")
+      Path.join(pages_dir(), "#{page}.expanded.generated.heex"),
+      Path.join(pages_dir(), "#{page}.generated.heex"),
+      Path.join(pages_dir(), "#{page}.heex")
     ]
 
     case Enum.find(candidates, &File.exists?/1) do
@@ -123,8 +146,42 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
 
       file_path ->
         content = File.read!(file_path)
-        mock_data = load_mock_data(file_path)
-        compile_heex(socket, content, mock_data)
+
+        socket =
+          socket
+          |> assign(:page_source_path, file_path)
+          |> assign(:page_template_content, content)
+
+        data = load_page_data(socket, page, params, file_path)
+        render_page(socket, content, data)
+    end
+  end
+
+  defp load_page_data(socket, page, params, heex_path) do
+    defaults =
+      @default_assigns
+      |> Map.merge(load_status_defaults(heex_path))
+      |> Map.put(:page_title, page)
+
+    case socket.assigns.runtime_mode do
+      :graphql ->
+        case call_backend(
+               socket.assigns.page_backend,
+               @load_event,
+               %{"__page_id" => page} |> Map.merge(stringify_map(params)),
+               defaults
+             ) do
+          {:ok, %{dto: dto, status: status, effects: effects}} ->
+            defaults
+            |> merge_backend_payload(dto, status)
+            |> maybe_put_flash_from_effects(effects)
+
+          _ ->
+            defaults
+        end
+
+      _ ->
+        Map.merge(defaults, load_mock_data(heex_path))
     end
   end
 
@@ -147,7 +204,32 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
     end
   end
 
-  defp compile_heex(socket, content, mock_data) do
+  defp load_status_defaults(heex_path) do
+    status_path = String.replace_suffix(heex_path, ".generated.heex", ".status.schema.v1.json")
+
+    if File.exists?(status_path) do
+      case File.read(status_path) do
+        {:ok, json} ->
+          case Jason.decode(json) do
+            {:ok, %{"defaults" => defaults}} when is_map(defaults) ->
+              deep_atomize_keys(defaults)
+
+            {:ok, %{"state_schema" => %{"defaults" => defaults}}} when is_map(defaults) ->
+              deep_atomize_keys(defaults)
+
+            _ ->
+              %{}
+          end
+
+        _ ->
+          %{}
+      end
+    else
+      %{}
+    end
+  end
+
+  defp render_page(socket, content, page_data) do
     try do
       module_name = :"Elixir.SchedulingDynamic.Render#{:erlang.unique_integer([:positive])}"
 
@@ -185,18 +267,125 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
 
       Code.compile_string(module_code)
 
-      assigns = @default_assigns |> Map.merge(mock_data) |> Map.put(:__changed__, nil)
+      assigns =
+        @default_assigns
+        |> Map.merge(page_data)
+        |> Map.put(:flash, Map.get(socket.assigns, :flash, %{}))
+        |> Map.put(:__changed__, nil)
+
       result = apply(module_name, :render, [assigns])
 
       :code.purge(module_name)
       :code.delete(module_name)
 
-      assign(socket, :rendered_content, result)
+      socket
+      |> assign(:page_data, page_data)
+      |> assign(:rendered_content, result)
     rescue
       e ->
         assign(socket, :error, "编译错误: #{Exception.message(e)}")
     end
   end
+
+  defp dispatch_backend(event, params, socket) do
+    state = Map.get(socket.assigns, :page_data, %{})
+
+    result =
+      call_backend(
+        socket.assigns.page_backend,
+        event,
+        %{"__page_id" => socket.assigns.page} |> Map.merge(stringify_map(params)),
+        state
+      )
+
+    apply_backend_result(socket, result)
+  end
+
+  defp call_backend(backend, event, params, state) do
+    if function_exported?(backend, :dispatch, 3) do
+      backend.dispatch(event, params, stringify_map(state))
+    else
+      {:error, :page_backend_not_available}
+    end
+  end
+
+  defp apply_backend_result(socket, {:ok, %{dto: dto, status: status} = result}) do
+    page_data =
+      socket.assigns.page_data
+      |> merge_backend_payload(dto, status)
+      |> maybe_put_flash_from_effects(
+        Map.get(result, :effects) || Map.get(result, "effects") || []
+      )
+
+    socket =
+      socket
+      |> apply_effects(Map.get(result, :effects) || Map.get(result, "effects") || [])
+      |> render_page(socket.assigns.page_template_content, page_data)
+
+    assign(socket, :error, nil)
+  end
+
+  defp apply_backend_result(socket, {:error, reason}) do
+    socket
+    |> put_flash(:error, inspect(reason))
+    |> assign(:error, inspect(reason))
+  end
+
+  defp apply_backend_result(socket, _other), do: socket
+
+  defp merge_backend_payload(page_data, dto, status) do
+    page_data
+    |> Map.merge(deep_atomize_keys(normalize_map(dto)))
+    |> Map.merge(deep_atomize_keys(normalize_map(status)))
+  end
+
+  defp maybe_put_flash_from_effects(page_data, effects) do
+    case Enum.find(normalize_effects(effects), &match?(%{type: "flash"}, &1)) do
+      %{kind: kind, message: message} ->
+        Map.put(page_data, :flash_preview, %{kind: kind, message: message})
+
+      _ ->
+        page_data
+    end
+  end
+
+  defp apply_effects(socket, effects) do
+    Enum.reduce(normalize_effects(effects), socket, fn effect, acc ->
+      case effect do
+        %{type: "patch", to: to} when is_binary(to) ->
+          push_patch(acc, to: to)
+
+        %{type: "navigate", to: to} when is_binary(to) ->
+          push_navigate(acc, to: to)
+
+        %{type: "flash", kind: kind, message: message}
+        when is_binary(kind) and is_binary(message) ->
+          put_flash(acc, String.to_atom(kind), message)
+
+        _ ->
+          acc
+      end
+    end)
+  end
+
+  defp normalize_effects(effects) when is_list(effects) do
+    Enum.map(effects, fn effect ->
+      effect
+      |> normalize_map()
+      |> deep_atomize_keys()
+    end)
+  end
+
+  defp normalize_effects(_effects), do: []
+
+  defp normalize_map(map) when is_map(map) do
+    Enum.into(map, %{}, fn
+      {key, value} when is_atom(key) -> {Atom.to_string(key), value}
+      {key, value} -> {key, value}
+    end)
+  end
+
+  defp normalize_map(_map), do: %{}
 
   defp deep_atomize_keys(value) when is_map(value) do
     Enum.reduce(value, %{}, fn {key, val}, acc ->
@@ -208,9 +397,45 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
   defp deep_atomize_keys(value) when is_list(value), do: Enum.map(value, &deep_atomize_keys/1)
   defp deep_atomize_keys(value), do: value
 
+  defp stringify_map(value) when is_map(value) do
+    Enum.into(value, %{}, fn {key, val} ->
+      string_key =
+        cond do
+          is_atom(key) -> Atom.to_string(key)
+          is_binary(key) -> key
+          true -> to_string(key)
+        end
+
+      {string_key, stringify_map(val)}
+    end)
+  end
+
+  defp stringify_map(value) when is_list(value), do: Enum.map(value, &stringify_map/1)
+  defp stringify_map(value), do: value
+
+  defp runtime_mode do
+    case Application.get_env(:hospital_scheduling, :scheduling_page_runtime, :mock) do
+      :graphql -> :graphql
+      "graphql" -> :graphql
+      _ -> :mock
+    end
+  end
+
+  defp page_backend do
+    Application.get_env(
+      :hospital_scheduling,
+      :scheduling_page_backend,
+      HospitalSchedulingWeb.Graphql.StitchBackend
+    )
+  end
+
+  defp pages_dir do
+    Application.get_env(:hospital_scheduling, :scheduling_pages_dir, @default_pages_dir)
+  end
+
   defp list_pages do
-    if File.dir?(@pages_dir) do
-      @pages_dir
+    if File.dir?(pages_dir()) do
+      pages_dir()
       |> File.ls!()
       |> Enum.filter(&String.ends_with?(&1, ".heex"))
       |> Enum.map(fn f ->
@@ -240,8 +465,8 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
             href={"/scheduling/#{p.name}"}
             class="block p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow border"
           >
-            <div class="font-medium text-blue-600"><%= p.name %></div>
-            <div class="text-sm text-gray-500 mt-1"><%= p.file %></div>
+            <div class="font-medium text-blue-600">{p.name}</div>
+            <div class="text-sm text-gray-500 mt-1">{p.file}</div>
           </a>
         <% end %>
       </div>
@@ -254,7 +479,7 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
     <div class="flex items-center justify-center min-h-screen">
       <div class="bg-white p-8 rounded-lg shadow-lg max-w-md">
         <h1 class="text-xl font-bold text-red-600 mb-4">渲染错误</h1>
-        <p class="text-gray-600 mb-4 whitespace-pre-wrap"><%= @error %></p>
+        <p class="text-gray-600 mb-4 whitespace-pre-wrap">{@error}</p>
         <a href="/scheduling" class="text-blue-600 hover:underline">返回页面列表</a>
       </div>
     </div>
@@ -265,11 +490,14 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
     ~H"""
     <div class="min-h-screen">
       <div class="fixed top-2 right-2 z-50 flex gap-2">
-        <a href="/scheduling" class="bg-black/70 text-white px-3 py-1.5 rounded text-sm hover:bg-black/85">
+        <a
+          href="/scheduling"
+          class="bg-black/70 text-white px-3 py-1.5 rounded text-sm hover:bg-black/85"
+        >
           ← 列表
         </a>
       </div>
-      <%= @rendered_content %>
+      {@rendered_content}
     </div>
     """
   end
