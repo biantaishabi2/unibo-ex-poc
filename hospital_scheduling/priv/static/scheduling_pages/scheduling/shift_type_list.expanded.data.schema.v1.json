@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "page_title",
+    "row.code",
+    "row.color",
+    "row.duration_hours",
+    "row.enabled",
+    "row.end_time",
+    "row.is_night",
+    "row.name",
+    "row.sort_order",
+    "row.start_time",
+    "rows",
+    "rows_empty"
+  ],
+  "requiredRoots": [
+    "page_title",
+    "row",
+    "rows",
+    "rows_empty"
+  ],
+  "schema": {
+    "page_title": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "rows": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "name": {
+            "type": "string",
+            "required": false,
+            "example": "row_1"
+          },
+          "start_time": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "end_time": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "duration_hours": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "is_night": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "color": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "sort_order": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "enabled": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "row": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "code": {
+          "type": "unknown",
+          "required": true
+        },
+        "name": {
+          "type": "unknown",
+          "required": true
+        },
+        "start_time": {
+          "type": "unknown",
+          "required": true
+        },
+        "end_time": {
+          "type": "unknown",
+          "required": true
+        },
+        "duration_hours": {
+          "type": "unknown",
+          "required": true
+        },
+        "is_night": {
+          "type": "unknown",
+          "required": true
+        },
+        "color": {
+          "type": "unknown",
+          "required": true
+        },
+        "sort_order": {
+          "type": "unknown",
+          "required": true
+        },
+        "enabled": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "rows_empty": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

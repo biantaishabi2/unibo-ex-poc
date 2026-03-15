@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "page_id": "calendar_adjustment",
+  "entity": "ShiftAssignment",
+  "domain": "Scheduling",
+  "e2e": {
+    "playwright": {
+      "auto": true,
+      "base_path": "/scheduling/calendar_adjustment",
+      "dto_smoke": [],
+      "cases": [
+        {
+          "name": "页面加载 + 日历表格可见",
+          "covers": [],
+          "steps": [
+            { "action": "expect_visible", "selector": "#calendar_table" },
+            { "action": "expect_visible", "selector": "#period_badge" },
+            { "action": "expect_visible", "selector": "#coverage_value" }
+          ]
+        },
+        {
+          "name": "周导航 - 上一周",
+          "covers": ["navigate_prev_week"],
+          "steps": [
+            { "action": "click", "selector": "#prev_week_btn" },
+            { "action": "expect_visible", "selector": "#current_week_label" }
+          ]
+        },
+        {
+          "name": "周导航 - 下一周",
+          "covers": ["navigate_next_week"],
+          "steps": [
+            { "action": "click", "selector": "#next_week_btn" },
+            { "action": "expect_visible", "selector": "#current_week_label" }
+          ]
+        },
+        {
+          "name": "保存草稿",
+          "covers": ["save_draft"],
+          "steps": [
+            { "action": "click", "selector": "#save_draft_btn" },
+            { "action": "expect_text_contains", "selector": "#flash-group, [data-flash], [role='alert']", "value": "保存" }
+          ]
+        },
+        {
+          "name": "跳转发布预览",
+          "covers": ["navigate_publish_preview"],
+          "steps": [
+            { "action": "click", "selector": "#publish_preview_btn" },
+            { "action": "expect_url_contains", "value": "/scheduling/publish_preview" }
+          ]
+        }
+      ]
+    }
+  }
+}

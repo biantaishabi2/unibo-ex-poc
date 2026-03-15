@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "defaults": {
+    "page_title": "排班周期管理",
+    "rows_empty": true,
+    "rows": [
+      {
+        "title": "",
+        "department": {
+          "name": "department_1"
+        },
+        "start_date": "",
+        "end_date": "",
+        "state": "",
+        "generation_mode": ""
+      },
+      {
+        "title": "",
+        "department": {
+          "name": "department_2"
+        },
+        "start_date": "",
+        "end_date": "",
+        "state": "",
+        "generation_mode": ""
+      },
+      {
+        "title": "",
+        "department": {
+          "name": "department_3"
+        },
+        "start_date": "",
+        "end_date": "",
+        "state": "",
+        "generation_mode": ""
+      }
+    ]
+  },
+  "keys": [
+    "page_title",
+    "rows",
+    "rows[]",
+    "rows[].department",
+    "rows[].department.name",
+    "rows[].end_date",
+    "rows[].generation_mode",
+    "rows[].start_date",
+    "rows[].state",
+    "rows[].title",
+    "rows_empty"
+  ],
+  "required": [
+    "page_title",
+    "rows",
+    "rows_empty"
+  ],
+  "urlParams": {},
+  "notes": [],
+  "layer2": {
+    "backend": {
+      "api_map": {
+        "list": "Scheduling.SchedulingPeriod.list"
+      }
+    },
+    "domain": "Scheduling",
+    "e2e": {
+      "playwright": {
+        "auto": true,
+        "base_path": "/scheduling/scheduling_period",
+        "cases": [
+          {
+            "covers": [],
+            "name": "页面加载 + 结构可见",
+            "steps": [
+              {
+                "action": "expect_visible",
+                "selector": "[data-page='scheduling_period_list']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "navigate_create"
+            ],
+            "name": "新建导航",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "#scheduling_period_create_btn, [data-action='navigate_create']"
+              },
+              {
+                "action": "expect_url_contains",
+                "value": "/scheduling/scheduling_period/new"
+              }
+            ]
+          },
+          {
+            "covers": [],
+            "name": "表格行存在",
+            "steps": [
+              {
+                "action": "expect_visible",
+                "selector": "#scheduling_period_table, [data-table='scheduling_period']"
+              }
+            ]
+          }
+        ],
+        "dto_smoke": []
+      }
+    },
+    "entity": "SchedulingPeriod",
+    "page_id": "scheduling_period_list",
+    "page_type": "list_report",
+    "runtime_monitoring": null,
+    "schema_version": "1.0",
+    "state_transitions": [
+      {
+        "description": "筛选条件变更",
+        "from": "*",
+        "name": "filter_change",
+        "to": "*",
+        "trigger": "user_input"
+      },
+      {
+        "description": "提交筛选查询",
+        "from": "*",
+        "name": "filter_submit",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "点击行跳转详情",
+        "from": "*",
+        "name": "row_click",
+        "navigate_to": "/scheduling/scheduling_period/{id}",
+        "to": "*",
+        "trigger": "user_action"
+      },
+      {
+        "description": "跳转新建页",
+        "from": "*",
+        "name": "navigate_create",
+        "navigate_to": "/scheduling/scheduling_period/new",
+        "to": "*",
+        "trigger": "user_action"
+      }
+    ],
+    "status_keys": [
+      "rows",
+      "rows_empty",
+      "filter",
+      "loading"
+    ],
+    "ui": {
+      "sections": [],
+      "template": {
+        "list": "list_report"
+      }
+    },
+    "version": 1
+  }
+}

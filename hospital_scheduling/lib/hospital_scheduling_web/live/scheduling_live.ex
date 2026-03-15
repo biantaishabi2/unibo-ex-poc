@@ -27,7 +27,7 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
   import StitchUI.Layouts.Core
 
   @pages_dir Application.compile_env(:hospital_scheduling, :scheduling_pages_dir,
-               Path.join(:code.priv_dir(:hospital_scheduling), "static/scheduling_pages"))
+               Path.join(:code.priv_dir(:hospital_scheduling), "static/scheduling_pages/scheduling"))
 
   @default_assigns %{
     page_title: "",

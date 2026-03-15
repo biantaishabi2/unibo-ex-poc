@@ -1,0 +1,49 @@
+{
+  "record": {
+    "name": "",
+    "code": "",
+    "start_time": "",
+    "end_time": "",
+    "duration_hours": "",
+    "is_night": "",
+    "color": "",
+    "sort_order": "",
+    "enabled": "",
+    "coverage_requirements": [
+      {
+        "requirement_date": "",
+        "role_code": "",
+        "role_name": "",
+        "required_skill_tags": "",
+        "min_headcount": "",
+        "target_headcount": "",
+        "required_lead_count": "",
+        "priority": "",
+        "notes": ""
+      },
+      {
+        "requirement_date": "",
+        "role_code": "",
+        "role_name": "",
+        "required_skill_tags": "",
+        "min_headcount": "",
+        "target_headcount": "",
+        "required_lead_count": "",
+        "priority": "",
+        "notes": ""
+      },
+      {
+        "requirement_date": "",
+        "role_code": "",
+        "role_name": "",
+        "required_skill_tags": "",
+        "min_headcount": "",
+        "target_headcount": "",
+        "required_lead_count": "",
+        "priority": "",
+        "notes": ""
+      }
+    ]
+  },
+  "editing": true
+}

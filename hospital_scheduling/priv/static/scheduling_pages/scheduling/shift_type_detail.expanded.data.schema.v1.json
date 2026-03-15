@@ -1,0 +1,187 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "editing",
+    "item.min_headcount",
+    "item.notes",
+    "item.priority",
+    "item.required_lead_count",
+    "item.required_skill_tags",
+    "item.requirement_date",
+    "item.role_code",
+    "item.role_name",
+    "item.target_headcount",
+    "record.code",
+    "record.color",
+    "record.coverage_requirements",
+    "record.duration_hours",
+    "record.enabled",
+    "record.end_time",
+    "record.is_night",
+    "record.name",
+    "record.sort_order",
+    "record.start_time"
+  ],
+  "requiredRoots": [
+    "editing",
+    "item",
+    "record"
+  ],
+  "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "name": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "start_time": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "end_time": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "duration_hours": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "is_night": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "color": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "sort_order": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "enabled": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "coverage_requirements": {
+          "type": "array",
+          "required": false,
+          "items": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "requirement_date": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "role_code": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "role_name": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "required_skill_tags": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "min_headcount": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "target_headcount": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "required_lead_count": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "priority": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "notes": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              }
+            }
+          },
+          "exampleCount": 3
+        }
+      }
+    },
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "item": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "requirement_date": {
+          "type": "unknown",
+          "required": true
+        },
+        "role_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "role_name": {
+          "type": "unknown",
+          "required": true
+        },
+        "required_skill_tags": {
+          "type": "unknown",
+          "required": true
+        },
+        "min_headcount": {
+          "type": "unknown",
+          "required": true
+        },
+        "target_headcount": {
+          "type": "unknown",
+          "required": true
+        },
+        "required_lead_count": {
+          "type": "unknown",
+          "required": true
+        },
+        "priority": {
+          "type": "unknown",
+          "required": true
+        },
+        "notes": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    }
+  },
+  "notes": []
+}
