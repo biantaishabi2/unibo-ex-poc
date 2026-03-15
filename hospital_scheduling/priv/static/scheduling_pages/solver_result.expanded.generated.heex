@@ -1,0 +1,135 @@
+<.page title="排班结果" id="solver_result">
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.stack gap={1} direction="column" id="title_group">
+        <.text variant="title" id="page_title">
+          排班结果 — <%= @period.title %>
+        </.text>
+        <.flex gap={2} direction="row" id="subtitle_row">
+          <.badge variant="default" size="sm" id="run_status_badge">
+            <%= @run.status %>
+          </.badge>
+          <.text variant="muted" id="engine_info">
+            算法: <%= @run.engine_type %>
+          </.text>
+        </.flex>
+      </.stack>
+      <.button variant="secondary" phx-click="navigate_back" size="md" id="back_btn">
+        返回周期详情
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="kpi_section">
+    <.grid columns={4} gap={3} id="kpi_grid">
+      <.card variant="default" id="kpi_assignments">
+        <.card_content id="kpi_assignments_content">
+          <.stack gap={0} direction="column" id="kpi_assignments_stat">
+            <.text variant="caption" color="muted" id="kpi_assignments_label">
+              总分配数
+            </.text>
+            <.text variant="h3" weight="bold" id="kpi_assignments_value">
+              <%= @run.output_snapshot.summary.assignment_count %>
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="kpi_covered">
+        <.card_content id="kpi_covered_content">
+          <.stack gap={0} direction="column" id="kpi_covered_stat">
+            <.text variant="caption" color="muted" id="kpi_covered_label">
+              覆盖需求数
+            </.text>
+            <.text variant="h3" weight="bold" id="kpi_covered_value">
+              <%= @run.output_snapshot.summary.covered_requirement_count %>
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="kpi_errors">
+        <.card_content id="kpi_errors_content">
+          <.stack gap={0} direction="column" id="kpi_errors_stat">
+            <.text variant="caption" color="muted" id="kpi_errors_label">
+              硬约束违反
+            </.text>
+            <.text variant="h3" weight="bold" color="destructive" id="kpi_errors_value">
+              <%= @run.hard_violation_count %>
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="kpi_warnings">
+        <.card_content id="kpi_warnings_content">
+          <.stack gap={0} direction="column" id="kpi_warnings_stat">
+            <.text variant="caption" color="muted" id="kpi_warnings_label">
+              警告数
+            </.text>
+            <.text variant="h3" weight="bold" id="kpi_warnings_value">
+              <%= @run.warning_count %>
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+    </.grid>
+  </.section>
+  <.section layout="none" id="error_alert_section">
+    <%= if (@has_hard_violations && @has_hard_violations != []) do %>
+      <.alert variant="destructive" title="存在硬约束违反" description={"有 #{@run.hard_violation_count} 个硬约束违反需要处理,建议进入日历调班页手动调整."} id="error_alert" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="violations_section">
+    <.card variant="default" id="violations_card">
+      <.card_header id="violations_header">
+        <.card_title id="violations_title">
+          约束违反明细
+        </.card_title>
+      </.card_header>
+      <.card_content id="violations_content">
+        <.table id="violations_table">
+          <.table_header id="vio_header">
+            <.table_row id="vio_header_row">
+              <.table_head id="th_severity">
+                级别
+              </.table_head>
+              <.table_head id="th_rule">
+                规则编码
+              </.table_head>
+              <.table_head id="th_message">
+                说明
+              </.table_head>
+            </.table_row>
+          </.table_header>
+          <.table_body id="vio_body">
+            <%= for vio <- @violations do %>
+              <.table_row>
+                <.table_cell>
+                  <.badge variant="default" size="sm">
+                    <%= vio.severity %>
+                  </.badge>
+                </.table_cell>
+                <.table_cell>
+                  <%= vio.rule_code %>
+                </.table_cell>
+                <.table_cell>
+                  <%= vio.message %>
+                </.table_cell>
+              </.table_row>
+            <% end %>
+          </.table_body>
+        </.table>
+        <%= if (@violations_empty && @violations_empty != []) do %>
+          <.empty_state description="无约束违反,排班结果良好" id="no_violations" />
+        <% end %>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="bottom_actions">
+    <.flex justify="end" gap={2} direction="row" id="action_bar">
+      <.button variant="primary" phx-click="navigate_calendar" size="md" id="calendar_btn">
+        进入日历调班
+      </.button>
+      <.button variant="secondary" phx-click="navigate_publish_preview" size="md" id="publish_btn">
+        直接发布预览
+      </.button>
+    </.flex>
+  </.section>
+</.page>

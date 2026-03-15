@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "page_id": "solver_result",
+  "entity": "SolverRun",
+  "domain": "Scheduling",
+  "e2e": {
+    "playwright": {
+      "auto": true,
+      "base_path": "/scheduling/solver_result",
+      "dto_smoke": [],
+      "cases": [
+        {
+          "name": "页面加载 + KPI 和违规表可见",
+          "covers": [],
+          "steps": [
+            { "action": "expect_visible", "selector": "#page_title" },
+            { "action": "expect_visible", "selector": "#run_status_badge" },
+            { "action": "expect_visible", "selector": "#engine_info" },
+            { "action": "expect_visible", "selector": "#violations_table" }
+          ]
+        },
+        {
+          "name": "跳转日历调班",
+          "covers": ["navigate_calendar"],
+          "steps": [
+            { "action": "click", "selector": "#calendar_btn" },
+            { "action": "expect_url_contains", "value": "/scheduling/calendar_adjustment" }
+          ]
+        },
+        {
+          "name": "跳转发布预览",
+          "covers": ["navigate_publish_preview"],
+          "steps": [
+            { "action": "click", "selector": "#publish_btn" },
+            { "action": "expect_url_contains", "value": "/scheduling/publish_preview" }
+          ]
+        }
+      ]
+    }
+  }
+}

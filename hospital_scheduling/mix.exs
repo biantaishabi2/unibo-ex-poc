@@ -63,7 +63,8 @@ defmodule HospitalScheduling.MixProject do
       {:ash_paper_trail, "~> 0.5"},
       {:ash_archival, "~> 2.0"},
       {:unibo_bdd_runtime,
-       github: "biantaishabi2/unibo", branch: "master", sparse: "targets/elixir/unibo_bdd_runtime"}
+       github: "biantaishabi2/unibo", branch: "master", sparse: "targets/elixir/unibo_bdd_runtime"},
+      {:stitch_ui, path: "../../stitch/packages/liveview"}
     ]
   end
 

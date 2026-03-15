@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "events": {
+    "navigate_back": {
+      "name": "navigate_back",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "toggle_diff_mode": {
+      "name": "toggle_diff_mode",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_publish": {
+      "name": "action_publish",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

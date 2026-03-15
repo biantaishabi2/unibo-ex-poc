@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "page_id": "publish_preview",
+  "entity": "ScheduleVersion",
+  "domain": "Scheduling",
+  "e2e": {
+    "playwright": {
+      "auto": true,
+      "base_path": "/scheduling/publish_preview",
+      "dto_smoke": [],
+      "cases": [
+        {
+          "name": "页面加载 + 差异表可见",
+          "covers": [],
+          "steps": [
+            { "action": "expect_visible", "selector": "#diff_table" },
+            { "action": "expect_visible", "selector": "#version_badge" },
+            { "action": "expect_visible", "selector": "#coverage_value" }
+          ]
+        },
+        {
+          "name": "切换差异模式",
+          "covers": ["toggle_diff_mode"],
+          "steps": [
+            { "action": "click", "selector": "#toggle_diff_btn" },
+            { "action": "expect_visible", "selector": "#diff_table" }
+          ]
+        },
+        {
+          "name": "发布（无硬违规时可点击）",
+          "covers": ["action_publish"],
+          "steps": [
+            { "action": "expect_visible", "selector": "#publish_btn" },
+            { "action": "click", "selector": "#publish_btn" },
+            { "action": "expect_text_contains", "selector": "#flash-group, [data-flash], [role='alert']", "value": "发布" }
+          ]
+        },
+        {
+          "name": "返回上一页",
+          "covers": ["navigate_back"],
+          "steps": [
+            { "action": "click", "selector": "#back_btn, #cancel_btn" }
+          ]
+        }
+      ]
+    }
+  }
+}

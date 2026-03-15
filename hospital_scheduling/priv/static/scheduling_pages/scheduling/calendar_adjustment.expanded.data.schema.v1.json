@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "coverage_rate",
+    "current_week_label",
+    "day.shift_type.name",
+    "emp.daily_assignments",
+    "emp.name",
+    "emp.role_code",
+    "employees",
+    "live_violations",
+    "manual_change_count",
+    "no_violations",
+    "period.title",
+    "vio.message",
+    "vio.severity"
+  ],
+  "requiredRoots": [
+    "coverage_rate",
+    "current_week_label",
+    "day",
+    "emp",
+    "employees",
+    "live_violations",
+    "manual_change_count",
+    "no_violations",
+    "period",
+    "vio"
+  ],
+  "schema": {
+    "current_week_label": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "period": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "employees": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "required": false,
+            "example": "employee_1"
+          },
+          "role_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "daily_assignments": {
+            "type": "array",
+            "required": false,
+            "items": {
+              "type": "object",
+              "required": false,
+              "properties": {
+                "shift_type": {
+                  "type": "object",
+                  "required": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "required": false,
+                      "example": "shift_type_1"
+                    }
+                  }
+                }
+              }
+            },
+            "exampleCount": 2
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "emp": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "name": {
+          "type": "unknown",
+          "required": true
+        },
+        "role_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "daily_assignments": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "day": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "shift_type": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "manual_change_count": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "coverage_rate": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "live_violations": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "severity": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "message": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "vio": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "severity": {
+          "type": "unknown",
+          "required": true
+        },
+        "message": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "no_violations": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

@@ -1,0 +1,46 @@
+{
+  "period": {
+    "title": ""
+  },
+  "version": {
+    "version_no": "",
+    "origin_type": ""
+  },
+  "hard_violation_count": "",
+  "warning_count": "",
+  "change_count": "",
+  "affected_employee_count": "",
+  "coverage_rate": "",
+  "has_hard_violations": "",
+  "has_warnings": true,
+  "no_changes": true,
+  "changes": [
+    {
+      "employee": {
+        "name": "employee_1"
+      },
+      "date": "",
+      "old_shift_type": "",
+      "new_shift_type": "",
+      "reason": ""
+    },
+    {
+      "employee": {
+        "name": "employee_2"
+      },
+      "date": "",
+      "old_shift_type": "",
+      "new_shift_type": "",
+      "reason": ""
+    },
+    {
+      "employee": {
+        "name": "employee_3"
+      },
+      "date": "",
+      "old_shift_type": "",
+      "new_shift_type": "",
+      "reason": ""
+    }
+  ]
+}

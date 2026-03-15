@@ -1,0 +1,30 @@
+{
+  "page_title": "排班约束配置",
+  "rows_empty": true,
+  "rows": [
+    {
+      "name": "row_1",
+      "constraint_type": "",
+      "category": "",
+      "weight": "",
+      "enabled": "",
+      "notes": ""
+    },
+    {
+      "name": "row_2",
+      "constraint_type": "",
+      "category": "",
+      "weight": "",
+      "enabled": "",
+      "notes": ""
+    },
+    {
+      "name": "row_3",
+      "constraint_type": "",
+      "category": "",
+      "weight": "",
+      "enabled": "",
+      "notes": ""
+    }
+  ]
+}

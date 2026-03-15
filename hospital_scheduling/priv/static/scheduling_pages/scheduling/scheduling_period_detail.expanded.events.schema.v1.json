@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "events": {
+    "toggle_edit": {
+      "name": "toggle_edit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_start_generating": {
+      "name": "action_start_generating",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_publish": {
+      "name": "action_publish",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_requirements": {
+      "name": "navigate_requirements",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_constraints": {
+      "name": "navigate_constraints",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_calendar": {
+      "name": "navigate_calendar",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}
