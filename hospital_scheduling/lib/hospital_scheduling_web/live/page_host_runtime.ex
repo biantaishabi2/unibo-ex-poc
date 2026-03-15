@@ -75,8 +75,13 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
   def load_page(page, params, runtime_mode, backend) when is_binary(page) do
     case page_template(page) do
       {:ok, path, content} ->
-        page_data = load_page_data(path, page, params, runtime_mode, backend)
-        {:ok, %{path: path, content: content, page_data: page_data}}
+        case load_page_data(path, page, params, runtime_mode, backend) do
+          {:ok, page_data} ->
+            {:ok, %{path: path, content: content, page_data: page_data}}
+
+          {:error, _reason} = error ->
+            error
+        end
 
       {:error, _reason} = error ->
         error
@@ -235,39 +240,31 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
 
     case dispatch(backend, page, @load_event, params, defaults) do
       {:ok, %{dto: dto, status: status, effects: effects}} ->
-        defaults
-        |> merge_backend_payload(dto, status)
-        |> maybe_put_flash_from_effects(effects)
+        {:ok,
+         defaults
+         |> merge_backend_payload(dto, status)
+         |> maybe_put_flash_from_effects(effects)}
 
-      _ ->
-        defaults
+      {:error, reason} ->
+        {:error, "页面加载失败: #{inspect(reason)}"}
+
+      other ->
+        {:error, "页面加载失败: #{inspect(other)}"}
     end
   end
 
   defp load_page_data(path, page, _params, _runtime_mode, _backend) do
-    @default_assigns
-    |> Map.merge(load_status_defaults(path))
-    |> Map.put(:page_title, page)
-    |> Map.merge(load_mock_data(path))
+    {:ok,
+     @default_assigns
+     |> Map.merge(load_status_defaults(path))
+     |> Map.put(:page_title, page)
+     |> Map.merge(load_mock_data(path))}
   end
 
   defp load_mock_data(heex_path) do
-    mock_path = String.replace_suffix(heex_path, ".heex", ".mock.json")
-
-    if File.exists?(mock_path) do
-      case File.read(mock_path) do
-        {:ok, json} ->
-          case Jason.decode(json) do
-            {:ok, data} when is_map(data) -> deep_atomize_keys(data)
-            _ -> %{}
-          end
-
-        _ ->
-          %{}
-      end
-    else
-      %{}
-    end
+    heex_path
+    |> mock_path_candidates()
+    |> Enum.find_value(%{}, &read_mock_payload/1)
   end
 
   defp load_status_defaults(heex_path) do
@@ -371,6 +368,30 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
       |> Enum.uniq_by(& &1.name)
     else
       []
+    end
+  end
+
+  defp mock_path_candidates(heex_path) do
+    [
+      String.replace_suffix(heex_path, ".expanded.generated.heex", ".expanded.mock.json"),
+      String.replace_suffix(heex_path, ".generated.heex", ".mock.json"),
+      String.replace_suffix(heex_path, ".heex", ".mock.json")
+    ]
+    |> Enum.uniq()
+  end
+
+  defp read_mock_payload(path) do
+    if File.exists?(path) do
+      case File.read(path) do
+        {:ok, json} ->
+          case Jason.decode(json) do
+            {:ok, data} when is_map(data) -> deep_atomize_keys(data)
+            _ -> nil
+          end
+
+        _ ->
+          nil
+      end
     end
   end
 end

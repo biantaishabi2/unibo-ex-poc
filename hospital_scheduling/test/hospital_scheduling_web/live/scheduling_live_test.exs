@@ -15,6 +15,10 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
        }}
     end
 
+    def dispatch("__load__", %{"__page_id" => "load_failure"}, _state) do
+      {:error, :load_failed}
+    end
+
     def dispatch("action_publish", %{"__page_id" => "solver_result"}, _state) do
       {:ok,
        %{
@@ -91,6 +95,26 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
 
     assert html =~ "手工排班草稿"
     assert html =~ "draft"
+  end
+
+  test "graphql 模式下首屏 load 失败会展示错误", %{conn: conn, tmp_dir: tmp_dir} do
+    write_page!(tmp_dir, "load_failure", """
+    <div id="page_title"><%= @period[:title] %></div>
+    """)
+
+    write_status_defaults!(tmp_dir, "load_failure", %{
+      "period" => %{"title" => ""}
+    })
+
+    set_graphql_runtime!(tmp_dir, %{
+      "pages" => [%{"page_id" => "load_failure", "page_type" => "composition"}],
+      "route_map" => [%{"page_id" => "load_failure", "path" => "/scheduling/load_failure"}]
+    })
+
+    {:ok, _view, html} = live(conn, "/scheduling/load_failure")
+
+    assert html =~ "渲染错误"
+    assert html =~ "页面加载失败: :load_failed"
   end
 
   test "graphql 模式下 mount 会走 backend load，事件会重渲染页面", %{conn: conn, tmp_dir: tmp_dir} do
@@ -213,7 +237,7 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
 
   defp write_mock!(tmp_dir, page, payload) do
     File.write!(
-      Path.join(tmp_dir, "#{page}.expanded.generated.mock.json"),
+      Path.join(tmp_dir, "#{page}.expanded.mock.json"),
       Jason.encode!(payload)
     )
   end
