@@ -16,7 +16,7 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
     page_params =
       params
       |> Map.delete("page")
-      |> PageHostRuntime.normalize_page_params(page)
+      |> then(&PageHostRuntime.normalize_page_params(page, &1))
 
     socket =
       socket
@@ -55,7 +55,7 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
     page_params =
       params
       |> Map.delete("page")
-      |> PageHostRuntime.normalize_page_params(page)
+      |> then(&PageHostRuntime.normalize_page_params(page, &1))
 
     socket =
       socket
@@ -114,11 +114,17 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
            socket.assigns.page_backend
          ) do
       {:ok, %{path: path, content: content, page_data: page_data}} ->
-        socket
-        |> assign(:page_source_path, path)
-        |> assign(:page_template_content, content)
-        |> render_page(content, page_data)
-        |> assign(:error, nil)
+        socket =
+          socket
+          |> assign(:page_source_path, path)
+          |> assign(:page_template_content, content)
+          |> render_page(content, page_data)
+
+        if is_nil(socket.assigns[:error]) do
+          assign(socket, :error, nil)
+        else
+          socket
+        end
 
       {:error, message} ->
         assign(socket, :error, message)
@@ -128,7 +134,10 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
   defp render_page(socket, content, page_data) do
     try do
       module_name = :"Elixir.SchedulingDynamic.Render#{:erlang.unique_integer([:positive])}"
-      indented_content = indent_template(content)
+      indented_content =
+        content
+        |> sanitize_dynamic_template()
+        |> indent_template()
 
       module_code = """
       defmodule #{module_name} do
@@ -171,17 +180,29 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
         |> Map.put(:__changed__, nil)
 
       result = apply(module_name, :render, [assigns])
+      rendered_html =
+        result
+        |> Phoenix.HTML.Safe.to_iodata()
+        |> IO.iodata_to_binary()
 
       :code.purge(module_name)
       :code.delete(module_name)
 
       socket
       |> assign(:page_data, page_data)
-      |> assign(:rendered_content, result)
+      |> assign(:rendered_content, rendered_html)
     rescue
       e ->
-        assign(socket, :error, "编译错误: #{Exception.message(e)}")
+        socket
+        |> assign(:rendered_content, nil)
+        |> assign(:error, "编译错误: #{Exception.message(e)}")
     end
+  end
+
+  # 动态 HEEx 编译时，模型描述里裸露的 "<" 会被当成标签起始符。
+  # 这里先做最小转义，避免像 "end < start" 这类文案把页面直接编炸。
+  defp sanitize_dynamic_template(content) do
+    String.replace(content, " < ", " &lt; ")
   end
 
   defp indent_template(content) do
@@ -195,17 +216,6 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
       socket.assigns
       |> Map.get(:page_params, %{})
       |> Map.merge(PageHostRuntime.normalize_page_params(socket.assigns.page, params || %{}))
-
-    IO.inspect(
-      %{
-        event: event,
-        page: socket.assigns.page,
-        page_params: Map.get(socket.assigns, :page_params, %{}),
-        raw_params: params,
-        merged_params: merged_params
-      },
-      label: "SchedulingLive.dispatch_backend"
-    )
 
     result =
       PageHostRuntime.dispatch(
@@ -303,7 +313,7 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
           ← 列表
         </a>
       </div>
-      {@rendered_content}
+      {Phoenix.HTML.raw(@rendered_content || "")}
     </div>
     """
   end

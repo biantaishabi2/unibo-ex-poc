@@ -5,8 +5,38 @@
   "entity": "SolverRun",
   "domain": "Scheduling",
   "backend": {
+    "params": {
+      "accept": ["id"]
+    },
+    "info": {
+      "reload_messages": ["page_host_reload"]
+    },
+    "load": {
+      "selection": "id title current_version: currentVersion { id version_no: versionNo origin_type: originType constraint_violations: constraintViolations { severity rule_code: ruleCode message } } last_solver_run: lastSolverRun { id status engine_type: engineType output_snapshot: outputSnapshot hard_violation_count: hardViolationCount warning_count: warningCount }",
+      "assigns": {
+        "period": "record",
+        "run": {
+          "from": "record.last_solver_run",
+          "transform": "normalize_solver_run"
+        },
+        "version": "record.current_version",
+        "violations": {
+          "from": "record.current_version.constraint_violations",
+          "transform": "normalize_list"
+        },
+        "has_hard_violations": {
+          "from": "record.last_solver_run.hard_violation_count",
+          "transform": "positive_count"
+        },
+        "violations_empty": {
+          "from": "record.current_version.constraint_violations",
+          "transform": "empty_list"
+        }
+      }
+    },
     "api_map": {
-      "get": "Scheduling.SolverRun.get"
+      "__load__": "Scheduling.SchedulingPeriod.get",
+      "get": "Scheduling.SchedulingPeriod.get"
     }
   },
   "state_transitions": [
@@ -42,7 +72,7 @@
   "e2e": {
     "playwright": {
       "auto": true,
-      "base_path": "/scheduling/solver_result",
+      "base_path": "/scheduling/solver_result?id=:id",
       "dto_smoke": [],
       "cases": [
         {

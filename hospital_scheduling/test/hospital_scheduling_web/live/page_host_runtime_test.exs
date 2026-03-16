@@ -53,8 +53,11 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntimeTest do
       }
     })
 
-    assert {:ok, %{page_data: %{selection: "id code name"}}} =
+    assert {:ok, %{page_data: %{selection: selection}}} =
              PageHostRuntime.load_page("shift_type_list", %{}, :graphql, EchoBackend)
+
+    assert selection =~ "id code name"
+    assert selection =~ "start_time: startTime"
   end
 
   test "没有显式契约时按本页 status defaults 推导 rows 字段", %{tmp_dir: tmp_dir} do
@@ -109,6 +112,137 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntimeTest do
     })
 
     assert PageHostRuntime.supports_reload?("shift_type_list")
+  end
+
+  test "本地页面 sidecar 会补齐 expanded behavior 缺少的 backend 契约", %{tmp_dir: tmp_dir} do
+    write_page!(tmp_dir, "shift_type_detail")
+
+    write_behavior!(tmp_dir, "shift_type_detail", %{
+      "backend" => %{
+        "api_map" => %{
+          "get" => "Scheduling.ShiftType.read"
+        }
+      }
+    })
+
+    app_behavior_dir = Path.join(File.cwd!(), "pages/scheduling/admin")
+    File.mkdir_p!(app_behavior_dir)
+    local_behavior_path = Path.join(app_behavior_dir, "shift_type_detail.behavior.v1.json")
+
+    previous_local =
+      if File.exists?(local_behavior_path) do
+        {:ok, File.read!(local_behavior_path)}
+      else
+        :missing
+      end
+
+    on_exit(fn ->
+      case previous_local do
+        {:ok, content} -> File.write!(local_behavior_path, content)
+        :missing -> File.rm_rf(local_behavior_path)
+      end
+    end)
+
+    File.write!(
+      local_behavior_path,
+      Jason.encode!(%{
+        "backend" => %{
+          "params" => %{"accept" => ["id"]},
+          "load" => %{"selection" => "id name code"}
+        }
+      })
+    )
+
+    contract = PageHostRuntime.page_contract("shift_type_detail")
+
+    assert get_in(contract, ["backend", "api_map", "get"]) == "Scheduling.ShiftType.read"
+    assert get_in(contract, ["backend", "params", "accept"]) == ["id"]
+    assert get_in(contract, ["backend", "load", "selection"]) == "id name code"
+  end
+
+  test "load assigns 缺值时保留默认结构并应用 transform", %{tmp_dir: tmp_dir} do
+    write_page!(tmp_dir, "solver_result")
+
+    write_status_defaults!(tmp_dir, "solver_result", %{
+      "run" => %{
+        "status" => "",
+        "engine_type" => "",
+        "output_snapshot" => %{
+          "summary" => %{
+            "assignment_count" => "",
+            "covered_requirement_count" => ""
+          }
+        }
+      },
+      "has_hard_violations" => true
+    })
+
+    write_behavior!(tmp_dir, "solver_result", %{
+      "backend" => %{
+        "load" => %{
+          "assigns" => %{
+            "run" => %{
+              "from" => "record.last_solver_run",
+              "transform" => "normalize_solver_run"
+            },
+            "has_hard_violations" => %{
+              "from" => "record.last_solver_run.hard_violation_count",
+              "transform" => "positive_count"
+            }
+          }
+        }
+      }
+    })
+
+    page_data =
+      PageHostRuntime.default_assigns()
+      |> Map.merge(%{
+        record: %{
+          last_solver_run: nil
+        },
+        _page_contract: PageHostRuntime.page_contract("solver_result")
+      })
+      |> PageHostRuntime.merge_backend_payload(%{"record" => %{"last_solver_run" => nil}}, %{})
+
+    assert page_data.run.output_snapshot.summary.assignment_count == ""
+    refute page_data.has_hard_violations
+  end
+
+  test "load assigns 支持字面量值和日期区间 transform", %{tmp_dir: tmp_dir} do
+    write_page!(tmp_dir, "publish_preview")
+
+    write_behavior!(tmp_dir, "publish_preview", %{
+      "backend" => %{
+        "load" => %{
+          "assigns" => %{
+            "changes" => %{"value" => []},
+            "coverage_rate" => %{"value" => 0},
+            "current_week_label" => %{
+              "from" => "record",
+              "transform" => "date_range_label"
+            }
+          }
+        }
+      }
+    })
+
+    page_data =
+      PageHostRuntime.default_assigns()
+      |> Map.merge(%{
+        record: %{
+          start_date: "2026-04-01",
+          end_date: "2026-04-07"
+        },
+        _page_contract: PageHostRuntime.page_contract("publish_preview")
+      })
+      |> PageHostRuntime.merge_backend_payload(
+        %{"record" => %{"start_date" => "2026-04-01", "end_date" => "2026-04-07"}},
+        %{}
+      )
+
+    assert page_data.changes == []
+    assert page_data.coverage_rate == 0
+    assert page_data.current_week_label == "2026-04-01 ~ 2026-04-07"
   end
 
   defp write_page!(tmp_dir, page_id) do

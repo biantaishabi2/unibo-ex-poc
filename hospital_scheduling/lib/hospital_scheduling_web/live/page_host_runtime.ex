@@ -117,6 +117,7 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
     page_data
     |> deep_merge(deep_atomize_keys(normalize_map(dto)))
     |> deep_merge(deep_atomize_keys(normalize_map(status)))
+    |> apply_load_assigns()
   end
 
   def maybe_put_flash_from_effects(page_data, effects) do
@@ -173,6 +174,7 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
 
   def normalize_page_params(page, params) when is_binary(page) and is_map(params) do
     params = stringify_map(params)
+    route_id = map_get(params, "id") |> normalize_string()
 
     accepted =
       page
@@ -184,16 +186,24 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
 
     case accepted do
       [] ->
-        params
+        maybe_put_route_id(params, route_id)
 
       values ->
         allowed = Enum.uniq(["id" | values])
-        Map.take(params, allowed)
+        params
+        |> Map.take(allowed)
+        |> maybe_put_route_id(route_id)
+        |> maybe_restore_original_params(params)
     end
   end
 
   def normalize_page_params(_page, params) when is_map(params), do: stringify_map(params)
   def normalize_page_params(_page, _params), do: %{}
+
+  defp maybe_put_route_id(params, ""), do: params
+  defp maybe_put_route_id(params, id), do: Map.put(params, "id", id)
+  defp maybe_restore_original_params(%{} = normalized, %{} = original) when map_size(normalized) == 0 and map_size(original) > 0, do: original
+  defp maybe_restore_original_params(normalized, _original), do: normalized
 
   def supports_reload?(page) when is_binary(page) do
     messages =
@@ -302,6 +312,7 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
       |> Map.merge(status_defaults)
       |> Map.put(:page_title, page)
       |> Map.put(:selection, selection)
+      |> Map.put(:_page_contract, page_contract(page))
 
     case dispatch(backend, page, @load_event, params, defaults) do
       {:ok, %{dto: dto, status: status, effects: effects}} ->
@@ -379,7 +390,211 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
     end
   end
 
-  defp page_selection(page, path, status_defaults) do
+  defp apply_load_assigns(page_data) do
+    load_assigns =
+      page_data
+      |> Map.get(:_page_contract, %{})
+      |> normalize_map()
+      |> map_get("backend")
+      |> map_get("load")
+      |> map_get("assigns")
+      |> normalize_map()
+
+    Enum.reduce(load_assigns, page_data, fn {key, spec}, acc ->
+      case resolve_load_assign(acc, spec) do
+        {:ok, value} ->
+          assign_key = String.to_atom(key)
+          normalized_value = deep_atomize_keys(value)
+
+          updated_value =
+            case {Map.get(acc, assign_key), normalized_value} do
+              {existing, value} when is_map(existing) and is_map(value) ->
+                deep_merge(existing, value)
+
+              {_existing, value} ->
+                value
+            end
+
+          if is_nil(updated_value) do
+            acc
+          else
+            Map.put(acc, assign_key, updated_value)
+          end
+
+        :error ->
+          acc
+      end
+    end)
+  end
+
+  defp resolve_load_assign(page_data, spec) when is_binary(spec) do
+    case get_by_path(page_data, spec) do
+      nil -> :error
+      value -> {:ok, value}
+    end
+  end
+
+  defp resolve_load_assign(page_data, spec) when is_map(spec) do
+    normalized_spec = normalize_map(spec)
+
+    if Map.has_key?(normalized_spec, "value") do
+      {:ok, map_get(normalized_spec, "value")}
+    else
+    source =
+      normalized_spec
+      |> map_get("from")
+      |> normalize_string()
+
+    transform =
+      normalized_spec
+      |> map_get("transform")
+      |> normalize_string()
+
+    case get_by_path(page_data, source) do
+      nil ->
+        if transform == "" do
+          :error
+        else
+          {:ok, apply_load_transform(nil, transform)}
+        end
+
+      value ->
+        {:ok, apply_load_transform(value, transform)}
+    end
+    end
+  end
+
+  defp resolve_load_assign(_page_data, _spec), do: :error
+
+  defp apply_load_transform(value, ""), do: value
+
+  defp apply_load_transform(value, "group_requirements_by_shift_type")
+       when is_list(value) do
+    value
+    |> Enum.reduce(%{}, fn requirement, acc ->
+      requirement_map = normalize_map(requirement)
+      shift_type = normalize_map(map_get(requirement_map, "shift_type"))
+      shift_name = normalize_string(map_get(shift_type, "name"))
+      shift_id = normalize_string(map_get(shift_type, "id"))
+
+      if shift_name == "" do
+        acc
+      else
+        existing =
+          Map.get(acc, shift_id, %{
+            "id" => shift_id,
+            "name" => shift_name,
+            "requirements" => []
+          })
+
+        normalized_requirement =
+          %{
+            "id" => normalize_string(map_get(requirement_map, "id")),
+            "requirement_date" => normalize_string(map_get(requirement_map, "requirement_date")),
+            "min_headcount" => map_get(requirement_map, "min_headcount"),
+            "target_headcount" => map_get(requirement_map, "target_headcount"),
+            "role_code" => normalize_string(map_get(requirement_map, "role_code")),
+            "role_name" => normalize_string(map_get(requirement_map, "role_name"))
+          }
+
+        Map.put(
+          acc,
+          shift_id,
+          Map.update!(existing, "requirements", &(&1 ++ [normalized_requirement]))
+        )
+      end
+    end)
+    |> Map.values()
+
+  end
+
+  defp apply_load_transform(value, "normalize_list"), do: normalize_list(value)
+
+  defp apply_load_transform(nil, "normalize_solver_run") do
+    %{
+      "status" => "",
+      "engine_type" => "",
+      "hard_violation_count" => "",
+      "warning_count" => "",
+      "output_snapshot" => %{
+        "summary" => %{
+          "assignment_count" => "",
+          "covered_requirement_count" => ""
+        }
+      }
+    }
+  end
+
+  defp apply_load_transform(value, "date_range_label") when is_map(value) do
+    start_date = value |> map_get("start_date") |> normalize_string()
+    end_date = value |> map_get("end_date") |> normalize_string()
+
+    cond do
+      start_date != "" and end_date != "" -> "#{start_date} ~ #{end_date}"
+      start_date != "" -> start_date
+      end_date != "" -> end_date
+      true -> ""
+    end
+  end
+
+  defp apply_load_transform(value, "normalize_solver_run") when is_map(value) do
+    value = normalize_map(value)
+
+    output_snapshot =
+      case map_get(value, "output_snapshot") do
+        json when is_binary(json) ->
+          case Jason.decode(json) do
+            {:ok, decoded} when is_map(decoded) -> decoded
+            _ -> %{}
+          end
+
+        snapshot when is_map(snapshot) ->
+          snapshot
+
+        _ ->
+          %{}
+      end
+
+    summary = normalize_map(map_get(normalize_map(output_snapshot), "summary"))
+
+    %{
+      "status" => normalize_string(map_get(value, "status")),
+      "engine_type" => normalize_string(map_get(value, "engine_type")),
+      "hard_violation_count" => map_get(value, "hard_violation_count") || "",
+      "warning_count" => map_get(value, "warning_count") || "",
+      "output_snapshot" => %{
+        "summary" => %{
+          "assignment_count" => map_get(summary, "assignment_count") || "",
+          "covered_requirement_count" => map_get(summary, "covered_requirement_count") || ""
+        }
+      }
+    }
+  end
+
+  defp apply_load_transform(value, "positive_count") when is_integer(value), do: value > 0
+  defp apply_load_transform(value, "positive_count") when is_float(value), do: value > 0
+  defp apply_load_transform(value, "positive_count"), do: value not in [nil, "", 0, 0.0]
+
+  defp apply_load_transform(value, "empty_list") when is_list(value), do: value == []
+  defp apply_load_transform(value, "empty_list"), do: value in [nil, ""]
+
+  defp apply_load_transform(value, _transform), do: value
+
+  defp get_by_path(data, path) when is_binary(path) do
+    path
+    |> String.trim_leading("$")
+    |> String.split(".", trim: true)
+    |> Enum.reduce_while(data, fn segment, acc ->
+      case map_get(acc, segment) do
+        nil -> {:halt, nil}
+        value -> {:cont, value}
+      end
+    end)
+  end
+
+  defp get_by_path(_data, _path), do: nil
+
+  defp page_selection(_page, path, status_defaults) do
     explicit_selection =
       path
       |> load_behavior_contract()
@@ -392,9 +607,6 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
       explicit_selection != "" ->
         explicit_selection
 
-      page == "scheduling_period_detail" ->
-        "id title state generation_mode: generationMode department { name } start_date: startDate end_date: endDate"
-
       true ->
         build_selection_from_defaults(status_defaults)
     end
@@ -403,20 +615,29 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
   defp load_behavior_contract(heex_path) do
     heex_path
     |> behavior_path_candidates()
-    |> Enum.find_value(%{}, fn path ->
-      if File.exists?(path) do
-        case File.read(path) do
-          {:ok, json} ->
-            case Jason.decode(json) do
-              {:ok, %{} = data} -> data
-              _ -> nil
-            end
-
-          _ ->
-            nil
-        end
+    |> Enum.reduce(%{}, fn path, acc ->
+      case read_behavior_contract(path) do
+        %{} = data when map_size(data) > 0 -> deep_merge(acc, data)
+        _ -> acc
       end
     end)
+  end
+
+  defp read_behavior_contract(path) when is_binary(path) do
+    if File.exists?(path) do
+      case File.read(path) do
+        {:ok, json} ->
+          case Jason.decode(json) do
+            {:ok, %{} = data} -> data
+            _ -> %{}
+          end
+
+        _ ->
+          %{}
+      end
+    else
+      %{}
+    end
   end
 
   defp behavior_path_candidates(heex_path) do
@@ -476,6 +697,7 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
     end)
   end
 
+  defp deep_merge(left, nil), do: left
   defp deep_merge(_left, right), do: right
 
   defp manifest_pages do

@@ -9,9 +9,9 @@ module.exports = {
   content: [
     "./js/**/*.js",
     "../lib/hospital_scheduling_web.ex",
-    "../lib/hospital_scheduling_web/**/*.*ex"
+    "../lib/hospital_scheduling_web/**/*.*ex",
     "../../stitch/packages/liveview/lib/**/*.ex",
-    "../priv/static/365_pages/**/*.heex",
+    "../priv/static/scheduling_pages/**/*.heex",
   ],
   theme: {
     extend: {

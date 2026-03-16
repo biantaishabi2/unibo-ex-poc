@@ -4,7 +4,8 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
   import Phoenix.LiveViewTest
 
   defmodule FakeBackend do
-    def dispatch("__load__", %{"__page_id" => "solver_result"}, _state) do
+    def dispatch("__load__", %{"__page_id" => page}, _state)
+        when page in ["solver_result", "runtime_page"] do
       {:ok,
        %{
          dto: %{"period" => %{"title" => "ICU 四月排班"}},
@@ -19,7 +20,8 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
       {:error, :load_failed}
     end
 
-    def dispatch("action_publish", %{"__page_id" => "solver_result"}, _state) do
+    def dispatch("action_publish", %{"__page_id" => page}, _state)
+        when page in ["solver_result", "runtime_page"] do
       {:ok,
        %{
          dto: %{},
@@ -30,7 +32,8 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
        }}
     end
 
-    def dispatch("action_fail", %{"__page_id" => "solver_result"}, _state) do
+    def dispatch("action_fail", %{"__page_id" => page}, _state)
+        when page in ["solver_result", "runtime_page"] do
       {:error, :backend_failed}
     end
 
@@ -118,24 +121,24 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
   end
 
   test "graphql 模式下 mount 会走 backend load，事件会重渲染页面", %{conn: conn, tmp_dir: tmp_dir} do
-    write_page!(tmp_dir, "solver_result", """
+    write_page!(tmp_dir, "runtime_page", """
     <div id="page_title"><%= @period[:title] %></div>
     <div id="run_status"><%= @run[:status] %></div>
     <div id="flash_preview"><%= @flash_preview[:message] %></div>
     <button id="publish_btn" phx-click="action_publish">发布</button>
     """)
 
-    write_status_defaults!(tmp_dir, "solver_result", %{
+    write_status_defaults!(tmp_dir, "runtime_page", %{
       "period" => %{"title" => ""},
       "run" => %{"status" => ""}
     })
 
     set_graphql_runtime!(tmp_dir, %{
-      "pages" => [%{"page_id" => "solver_result", "page_type" => "composition"}],
-      "route_map" => [%{"page_id" => "solver_result", "path" => "/scheduling/periods/:id/result"}]
+      "pages" => [%{"page_id" => "runtime_page", "page_type" => "composition"}],
+      "route_map" => [%{"page_id" => "runtime_page", "path" => "/scheduling/runtime_page"}]
     })
 
-    {:ok, view, html} = live(conn, "/scheduling/solver_result")
+    {:ok, view, html} = live(conn, "/scheduling/runtime_page")
 
     assert html =~ "ICU 四月排班"
     assert html =~ "generated"
@@ -150,21 +153,21 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
   end
 
   test "graphql 模式下 backend 失败会展示错误", %{conn: conn, tmp_dir: tmp_dir} do
-    write_page!(tmp_dir, "solver_result", """
+    write_page!(tmp_dir, "runtime_page", """
     <div id="page_title"><%= @period[:title] %></div>
     <button id="fail_btn" phx-click="action_fail">失败</button>
     """)
 
-    write_status_defaults!(tmp_dir, "solver_result", %{
+    write_status_defaults!(tmp_dir, "runtime_page", %{
       "period" => %{"title" => ""}
     })
 
     set_graphql_runtime!(tmp_dir, %{
-      "pages" => [%{"page_id" => "solver_result", "page_type" => "composition"}],
-      "route_map" => [%{"page_id" => "solver_result", "path" => "/scheduling/periods/:id/result"}]
+      "pages" => [%{"page_id" => "runtime_page", "page_type" => "composition"}],
+      "route_map" => [%{"page_id" => "runtime_page", "path" => "/scheduling/runtime_page"}]
     })
 
-    {:ok, view, _html} = live(conn, "/scheduling/solver_result")
+    {:ok, view, _html} = live(conn, "/scheduling/runtime_page")
 
     html =
       view
@@ -176,17 +179,17 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
   end
 
   test "graphql 模式下支持 page_host_reload 消息刷新页面", %{conn: conn, tmp_dir: tmp_dir} do
-    write_page!(tmp_dir, "solver_result", """
+    write_page!(tmp_dir, "runtime_page", """
     <div id="page_title"><%= @period[:title] %></div>
     <div id="run_status"><%= @run[:status] %></div>
     """)
 
-    write_status_defaults!(tmp_dir, "solver_result", %{
+    write_status_defaults!(tmp_dir, "runtime_page", %{
       "period" => %{"title" => ""},
       "run" => %{"status" => ""}
     })
 
-    write_behavior!(tmp_dir, "solver_result", %{
+    write_behavior!(tmp_dir, "runtime_page", %{
       "backend" => %{
         "info" => %{
           "reload_messages" => ["page_host_reload"]
@@ -195,11 +198,11 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
     })
 
     set_graphql_runtime!(tmp_dir, %{
-      "pages" => [%{"page_id" => "solver_result", "page_type" => "composition"}],
-      "route_map" => [%{"page_id" => "solver_result", "path" => "/scheduling/periods/:id/result"}]
+      "pages" => [%{"page_id" => "runtime_page", "page_type" => "composition"}],
+      "route_map" => [%{"page_id" => "runtime_page", "path" => "/scheduling/runtime_page"}]
     })
 
-    {:ok, view, _html} = live(conn, "/scheduling/solver_result")
+    {:ok, view, _html} = live(conn, "/scheduling/runtime_page")
 
     send(view.pid, {:page_host_reload, %{"id" => "period-1"}})
 

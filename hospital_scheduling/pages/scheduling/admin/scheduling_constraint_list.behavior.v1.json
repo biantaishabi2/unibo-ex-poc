@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "page_id": "scheduling_constraint_list",
+  "backend": {
+    "params": {
+      "accept": ["constraint_type", "category", "enabled"]
+    },
+    "info": {
+      "reload_messages": ["page_host_reload"]
+    },
+    "load": {
+      "selection": "id name constraint_type: constraintType category weight enabled notes"
+    }
+  }
+}
