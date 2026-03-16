@@ -46,22 +46,22 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_fun :handle_event
   @backend_load_event nil
   @backend_api_map %{
-    "approve_cancel" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "cancel_waitlist" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "confirm_change" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "confirm_quote" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "destroy" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "fulfill_waitlist" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "mark_booked" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "mark_completed" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "mark_order_failed" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "mark_payment_succeeded" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "request_cancel" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "request_change" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "submit_order" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "submit_waitlist" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+    "approve_cancel" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.approve_cancel"},
+    "cancel_waitlist" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.cancel_waitlist"},
+    "confirm_change" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.confirm_change"},
+    "confirm_quote" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.confirm_quote"},
+    "destroy" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.destroy"},
+    "fulfill_waitlist" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.fulfill_waitlist"},
+    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.get"},
+    "mark_booked" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.mark_booked"},
+    "mark_completed" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.mark_completed"},
+    "mark_order_failed" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.mark_order_failed"},
+    "mark_payment_succeeded" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.mark_payment_succeeded"},
+    "request_cancel" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.request_cancel"},
+    "request_change" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.request_change"},
+    "submit_order" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.submit_order"},
+    "submit_waitlist" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.submit_waitlist"},
+    "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.update"}
   }
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"

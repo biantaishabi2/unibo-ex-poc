@@ -37,15 +37,15 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_fun :handle_event
   @backend_load_event nil
   @backend_api_map %{
-    "cancel_fulfillment" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "complete_fulfillment" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "confirm_booking" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "destroy" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "fail_fulfillment" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "issue_voucher_or_ticket" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "mark_in_use" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+    "cancel_fulfillment" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelFulfillment.cancel_fulfillment"},
+    "complete_fulfillment" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelFulfillment.complete_fulfillment"},
+    "confirm_booking" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelFulfillment.confirm_booking"},
+    "destroy" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelFulfillment.destroy"},
+    "fail_fulfillment" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelFulfillment.fail_fulfillment"},
+    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelFulfillment.get"},
+    "issue_voucher_or_ticket" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelFulfillment.issue_voucher_or_ticket"},
+    "mark_in_use" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelFulfillment.mark_in_use"},
+    "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelFulfillment.update"}
   }
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"

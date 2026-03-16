@@ -47,12 +47,12 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_fun :handle_event
   @backend_load_event nil
   @backend_api_map %{
-    "activate" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "deactivate" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "destroy" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "expire" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+    "activate" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TrainOffer.activate"},
+    "deactivate" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TrainOffer.deactivate"},
+    "destroy" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TrainOffer.destroy"},
+    "expire" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TrainOffer.expire"},
+    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TrainOffer.get"},
+    "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TrainOffer.update"}
   }
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"

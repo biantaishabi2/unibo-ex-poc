@@ -31,8 +31,8 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_fun :handle_event
   @backend_load_event nil
   @backend_api_map %{
-    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelAirline.get"},
+    "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelAirline.update"}
   }
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"

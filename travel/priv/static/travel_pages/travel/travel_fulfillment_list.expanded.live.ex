@@ -66,7 +66,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_fun :handle_event
   @backend_load_event nil
   @backend_api_map %{
-    "list" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+    "list" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelFulfillment.list"}
   }
   @status_key_roots [:rows, :rows_empty, :filter, :loading]
   @auth_mode "optional"
