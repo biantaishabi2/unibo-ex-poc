@@ -226,9 +226,9 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
 
     {:ok, _view, html} = live(conn, "/scheduling")
 
-    assert html =~ "solver_result"
+    assert html =~ "求解结果"
     assert html =~ "/scheduling/periods/:id/result"
-    assert html =~ "publish_preview"
+    assert html =~ "发布预览"
     assert html =~ "/scheduling/periods/:id/publish"
   end
 
@@ -247,9 +247,9 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
 
     {:ok, _view, html} = live(conn, "/scheduling")
 
-    assert html =~ "calendar_adjustment"
+    assert html =~ "日历调班"
     assert html =~ "/scheduling/calendar_adjustment"
-    assert html =~ "solver_result"
+    assert html =~ "求解结果"
     assert html =~ "/scheduling/solver_result"
   end
 

@@ -740,7 +740,14 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
     |> normalize_list()
     |> Enum.map(fn page ->
       page_id = page |> map_get("page_id") |> normalize_string()
-      display_name = Map.get(@page_titles, page_id, page_id)
+      display_name =
+        page
+        |> map_get("display_name")
+        |> normalize_string()
+        |> case do
+          "" -> Map.get(@page_titles, page_id, page_id)
+          value -> value
+        end
 
       %{
         name: display_name,
@@ -777,13 +784,17 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
       |> File.ls!()
       |> Enum.filter(&String.ends_with?(&1, ".heex"))
       |> Enum.map(fn file ->
-        name =
+        page_id =
           file
           |> String.replace_suffix(".expanded.generated.heex", "")
           |> String.replace_suffix(".generated.heex", "")
           |> String.replace_suffix(".heex", "")
 
-        %{name: name, file: file, route: "/scheduling/#{name}"}
+        %{
+          name: Map.get(@page_titles, page_id, page_id),
+          file: file,
+          route: "/scheduling/#{page_id}"
+        }
       end)
       |> Enum.sort_by(& &1.name)
       |> Enum.uniq_by(& &1.name)
