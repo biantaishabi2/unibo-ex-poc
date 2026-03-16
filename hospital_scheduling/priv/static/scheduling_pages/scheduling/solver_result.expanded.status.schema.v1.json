@@ -68,8 +68,44 @@
   "layer2": {
     "version": 1,
     "page_id": "solver_result",
+    "page_type": "composition",
     "entity": "SolverRun",
     "domain": "Scheduling",
+    "backend": {
+      "api_map": {
+        "get": "Scheduling.SolverRun.get"
+      }
+    },
+    "state_transitions": [
+      {
+        "name": "navigate_back",
+        "from": "*",
+        "to": "*",
+        "trigger": "user_action",
+        "description": "返回周期详情"
+      },
+      {
+        "name": "navigate_calendar",
+        "from": "*",
+        "to": "*",
+        "trigger": "user_action",
+        "description": "进入日历调班"
+      },
+      {
+        "name": "navigate_publish_preview",
+        "from": "*",
+        "to": "*",
+        "trigger": "user_action",
+        "description": "进入发布预览"
+      }
+    ],
+    "status_keys": [
+      "period",
+      "run",
+      "has_hard_violations",
+      "violations_empty",
+      "violations"
+    ],
     "e2e": {
       "playwright": {
         "auto": true,

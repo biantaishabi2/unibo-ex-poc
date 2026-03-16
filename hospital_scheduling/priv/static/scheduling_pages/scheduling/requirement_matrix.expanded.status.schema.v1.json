@@ -72,8 +72,47 @@
   "layer2": {
     "version": 1,
     "page_id": "requirement_matrix",
+    "page_type": "composition",
     "entity": "CoverageRequirement",
     "domain": "Scheduling",
+    "backend": {
+      "api_map": {
+        "list": "Scheduling.CoverageRequirement.list",
+        "save_requirements": "Scheduling.CoverageRequirement.update",
+        "batch_fill_requirements": "Scheduling.CoverageRequirement.update",
+        "action_start_generating": "Scheduling.SchedulingPeriod.start_generating"
+      }
+    },
+    "state_transitions": [
+      {
+        "name": "batch_fill_requirements",
+        "from": "*",
+        "to": "*",
+        "trigger": "user_action",
+        "description": "批量填充需求矩阵"
+      },
+      {
+        "name": "save_requirements",
+        "from": "*",
+        "to": "loading",
+        "trigger": "user_action",
+        "description": "保存需求矩阵"
+      },
+      {
+        "name": "action_start_generating",
+        "from": "*",
+        "to": "loading",
+        "trigger": "user_action",
+        "description": "开始自动排班"
+      }
+    ],
+    "status_keys": [
+      "page_title",
+      "period",
+      "rows",
+      "rows_empty",
+      "filter"
+    ],
     "e2e": {
       "playwright": {
         "auto": true,

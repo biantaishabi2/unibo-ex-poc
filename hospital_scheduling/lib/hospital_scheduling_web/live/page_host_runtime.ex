@@ -17,6 +17,18 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
                        :code.priv_dir(:hospital_scheduling),
                        "static/scheduling_pages/scheduling"
                      )
+  @page_titles %{
+    "shift_type_list" => "班次列表",
+    "shift_type_detail" => "班次详情",
+    "scheduling_period_list" => "排班周期列表",
+    "scheduling_period_detail" => "排班周期详情",
+    "scheduling_constraint_list" => "排班约束列表",
+    "scheduling_constraint_detail" => "排班约束详情",
+    "requirement_matrix" => "需求矩阵",
+    "solver_result" => "求解结果",
+    "calendar_adjustment" => "日历调班",
+    "publish_preview" => "发布预览"
+  }
 
   @default_assigns %{
     page_title: "",
@@ -728,9 +740,10 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
     |> normalize_list()
     |> Enum.map(fn page ->
       page_id = page |> map_get("page_id") |> normalize_string()
+      display_name = Map.get(@page_titles, page_id, page_id)
 
       %{
-        name: page_id,
+        name: display_name,
         file: page |> map_get("page_type") |> normalize_string(),
         route: Map.get(routes_by_page, page_id, "/scheduling/#{page_id}")
       }

@@ -66,8 +66,12 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event nil
-  @backend_api_map %{}
-  @status_key_roots []
+  @backend_api_map %{
+    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "action_publish" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "toggle_diff_mode" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+  }
+  @status_key_roots [:period, :version, :change_count, :affected_employee_count, :coverage_rate, :changes, :no_changes, :has_hard_violations, :warning_count]
   @auth_mode "optional"
   @user_context_assigns []
 
