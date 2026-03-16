@@ -29,5 +29,9 @@ defmodule UniboExPoc.Travel do
     resource UniboExPoc.Travel.TravelOrder.Version
     resource UniboExPoc.Travel.TravelFulfillment
     resource UniboExPoc.Travel.TravelFulfillment.Version
+    resource UniboExPoc.Travel.TravelChangeOrder
+    resource UniboExPoc.Travel.TravelRefundOrder
+    resource UniboExPoc.Travel.TravelPolicy
+    resource UniboExPoc.Travel.TravelPolicyCheck
   end
 end
