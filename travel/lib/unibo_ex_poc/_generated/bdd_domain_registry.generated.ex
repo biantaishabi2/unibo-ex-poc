@@ -24,16 +24,15 @@ defmodule UniboExPoc.Generated.BddDomainRegistry do
   def module_dirs do
     %{
       "ACCOUNTING" => "accounting",
+      "BDD" => "bdd",
       "DELIVERY" => "delivery",
       "ECOMMERCE" => "ecommerce",
       "PAYMENT" => "payment",
       "PURCHASING" => "purchasing",
       "SALES" => "sales",
       "TRAVEL" => "travel",
-      "WEBSITE" => "website",
       "OFBIZ_ACCOUNTING" => "ofbiz_accounting",
       "OFBIZ_COMMON" => "ofbiz_common",
-      "OFBIZ_CONTENT" => "ofbiz_content",
       "OFBIZ_ORDER" => "ofbiz_order",
       "OFBIZ_PARTY" => "ofbiz_party",
       "OFBIZ_PRODUCT" => "ofbiz_product",

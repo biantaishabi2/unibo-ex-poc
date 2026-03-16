@@ -3,12 +3,12 @@ defmodule UniboExPoc.Accounting.Changes.PaymentApplication.DestroyCall1 do
 
   @impl true
   def change(changeset, _opts, context) do
-    module_ref = "Accounting"
+    module_ref = "UniboExPoc.Accounting"
     module = resolve_call_module(module_ref)
     if is_atom(module) and function_exported?(module, :recompute_invoice_paid_amount, 2) do
       apply(module, :recompute_invoice_paid_amount, [changeset, context])
     else
-      Ash.Changeset.add_error(changeset, "call 目标不存在: #Accounting.recompute_invoice_paid_amount/2")
+      Ash.Changeset.add_error(changeset, "call 目标不存在: #UniboExPoc.Accounting.recompute_invoice_paid_amount/2")
     end
   end
 

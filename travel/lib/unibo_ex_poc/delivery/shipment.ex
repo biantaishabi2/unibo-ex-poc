@@ -299,6 +299,9 @@ defmodule UniboExPoc.Delivery.Shipment do
       forbid_unless relates_to_actor_via(:company_party)
       authorize_if expr(^actor(:role) in [:logistics_manager, :admin])
     end
+    policy always() do
+      authorize_if always()
+    end
   end
 
 end

@@ -3,12 +3,12 @@ defmodule UniboExPoc.Delivery.Changes.CrossOrgTransaction.CreateMirrorPurchaseOr
 
   @impl true
   def change(changeset, _opts, context) do
-    module_ref = "purchasing"
+    module_ref = "UniboExPoc.Purchasing"
     module = resolve_call_module(module_ref)
     if is_atom(module) and function_exported?(module, :create_intercompany_purchase_order, 2) do
       apply(module, :create_intercompany_purchase_order, [changeset, context])
     else
-      Ash.Changeset.add_error(changeset, "call 目标不存在: #purchasing.create_intercompany_purchase_order/2")
+      Ash.Changeset.add_error(changeset, "call 目标不存在: #UniboExPoc.Purchasing.create_intercompany_purchase_order/2")
     end
   end
 

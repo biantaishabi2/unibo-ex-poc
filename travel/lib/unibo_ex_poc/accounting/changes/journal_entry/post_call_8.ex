@@ -3,12 +3,12 @@ defmodule UniboExPoc.Accounting.Changes.JournalEntry.PostCall8 do
 
   @impl true
   def change(changeset, _opts, context) do
-    module_ref = "Accounting"
+    module_ref = "UniboExPoc.Accounting"
     module = resolve_call_module(module_ref)
     if is_atom(module) and function_exported?(module, :assign_sequence_number, 2) do
       apply(module, :assign_sequence_number, [changeset, context])
     else
-      Ash.Changeset.add_error(changeset, "call 目标不存在: #Accounting.assign_sequence_number/2")
+      Ash.Changeset.add_error(changeset, "call 目标不存在: #UniboExPoc.Accounting.assign_sequence_number/2")
     end
   end
 

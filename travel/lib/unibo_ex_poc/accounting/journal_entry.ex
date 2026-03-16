@@ -270,6 +270,9 @@ reversed: 仅冲销分录匹配
       forbid_unless relates_to_actor_via(:created_by)
       authorize_if expr(^actor(:role) == :admin)
     end
+    policy always() do
+      authorize_if always()
+    end
   end
 
 end

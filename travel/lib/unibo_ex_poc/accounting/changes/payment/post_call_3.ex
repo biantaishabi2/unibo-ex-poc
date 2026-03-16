@@ -3,12 +3,12 @@ defmodule UniboExPoc.Accounting.Changes.Payment.PostCall3 do
 
   @impl true
   def change(changeset, _opts, context) do
-    module_ref = "Accounting"
+    module_ref = "UniboExPoc.Accounting"
     module = resolve_call_module(module_ref)
     if is_atom(module) and function_exported?(module, :generate_payment_lines, 2) do
       apply(module, :generate_payment_lines, [changeset, context])
     else
-      Ash.Changeset.add_error(changeset, "call 目标不存在: #Accounting.generate_payment_lines/2")
+      Ash.Changeset.add_error(changeset, "call 目标不存在: #UniboExPoc.Accounting.generate_payment_lines/2")
     end
   end
 

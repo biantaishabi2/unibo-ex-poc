@@ -3,12 +3,12 @@ defmodule UniboExPoc.Accounting.Changes.PartialReconcile.CreateCall2 do
 
   @impl true
   def change(changeset, _opts, context) do
-    module_ref = "Accounting"
+    module_ref = "UniboExPoc.Accounting"
     module = resolve_call_module(module_ref)
     if is_atom(module) and function_exported?(module, :recompute_payment_state, 2) do
       apply(module, :recompute_payment_state, [changeset, context])
     else
-      Ash.Changeset.add_error(changeset, "call 目标不存在: #Accounting.recompute_payment_state/2")
+      Ash.Changeset.add_error(changeset, "call 目标不存在: #UniboExPoc.Accounting.recompute_payment_state/2")
     end
   end
 

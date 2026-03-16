@@ -54,13 +54,10 @@ defmodule Travel.MixProject do
       {:ash_phoenix, "~> 2.3"},
       {:ash_graphql, "~> 1.8"},
       {:absinthe_plug, "~> 1.5"},
-      {:unibo_graphql_runtime,
-       github: "biantaishabi2/unibo",
-       ref: "c7e4696750d0e6d5936918f8bfeb073bc1b372f4",
-       sparse: "targets/elixir/unibo_graphql_runtime"},
+      {:unibo_graphql_runtime, path: "../../unibo/targets/elixir/unibo_graphql_runtime"},
       {:ash_paper_trail, "~> 0.5"},
       {:ash_archival, "~> 2.0"},
-      {:unibo_bdd_runtime, github: "biantaishabi2/unibo", branch: "master", sparse: "targets/elixir/unibo_bdd_runtime"},
+      {:unibo_bdd_runtime, path: "../../unibo/targets/elixir/unibo_bdd_runtime"},
       {:stitch_ui, path: "../../stitch/packages/liveview"},
     ]
   end
