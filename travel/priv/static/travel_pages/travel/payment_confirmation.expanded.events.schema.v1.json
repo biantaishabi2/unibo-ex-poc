@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "events": {
+    "navigate:/travel/orders/{{order.id|}}": {
+      "name": "navigate:/travel/orders/{{order.id|}}",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate:/travel": {
+      "name": "navigate:/travel",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

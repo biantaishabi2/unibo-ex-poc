@@ -1,0 +1,115 @@
+{
+  "version": 1,
+  "vars": {
+    "order.payment.payment_method": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "method_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{order.payment.payment_method|}}"
+        }
+      ]
+    },
+    "order.total_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "total_amount_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{order.total_amount|}}"
+        }
+      ]
+    },
+    "order.points_deduction_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "points_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{order.points_deduction_amount|}}"
+        }
+      ]
+    },
+    "order.payable_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "payable_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{order.payable_amount|}}"
+        }
+      ]
+    },
+    "order.currency": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "currency_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{order.currency|}}"
+        }
+      ]
+    },
+    "order.payment.payment_no": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "payment_no_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{order.payment.payment_no|}}"
+        }
+      ]
+    },
+    "order.payment.paid_at": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "paid_at_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{order.payment.paid_at|}}"
+        }
+      ]
+    },
+    "order.id": {
+      "uses": [
+        {
+          "node_type": "Button",
+          "node_id": "view_order_btn",
+          "location": "prop",
+          "prop": "click",
+          "template": "navigate:/travel/orders/{{order.id|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "navigate:/travel/orders/{{order.id|}}": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "view_order_btn",
+          "prop": "click",
+          "raw": "navigate:/travel/orders/{{order.id|}}"
+        }
+      ]
+    },
+    "navigate:/travel": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "go_home_btn",
+          "prop": "click",
+          "raw": "navigate:/travel"
+        }
+      ]
+    }
+  }
+}

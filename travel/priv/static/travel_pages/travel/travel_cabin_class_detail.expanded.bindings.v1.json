@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "vars": {
+    "record.cabin_class_code": {
+      "uses": [
+        {
+          "node_type": "BreadcrumbPage",
+          "node_id": "travel_cabin_class_bc_current",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.cabin_class_code|详情}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "travel_cabin_class_detail_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.cabin_class_code|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "value_cabin_class_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.cabin_class_code|}}"
+        }
+      ]
+    },
+    "record.status": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "travel_cabin_class_status_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.status|}}"
+        },
+        {
+          "node_type": "Badge",
+          "node_id": "value_status",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.status|}}"
+        }
+      ]
+    },
+    "record.cabin_class_name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_cabin_class_name",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.cabin_class_name|}}"
+        }
+      ]
+    },
+    "record.cabin_rank": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_cabin_rank",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.cabin_rank|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_cabin_class_edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "travel_cabin_class_edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "travel_cabin_class_save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "travel_cabin_class_edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_cabin_class_cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
+}

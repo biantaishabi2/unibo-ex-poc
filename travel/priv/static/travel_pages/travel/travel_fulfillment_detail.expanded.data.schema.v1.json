@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "editing",
+    "record.boarding_status",
+    "record.change_result",
+    "record.confirmation_payload",
+    "record.failure_reason",
+    "record.fulfillment_type",
+    "record.status",
+    "record.supplier_booking_ref",
+    "record.ticket_refs",
+    "record.used_at",
+    "record.voucher_or_ticket_ref",
+    "record.waitlist_result"
+  ],
+  "requiredRoots": [
+    "editing",
+    "record"
+  ],
+  "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "supplier_booking_ref": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "fulfillment_type": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "voucher_or_ticket_ref": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "ticket_refs": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "waitlist_result": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "change_result": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "boarding_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "confirmation_payload": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "failure_reason": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "used_at": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

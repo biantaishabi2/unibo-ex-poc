@@ -1,0 +1,32 @@
+{
+  "policy": {
+    "exceeded": false
+  },
+  "results": {
+    "total_count": 3
+  },
+  "search": {
+    "date_range": [
+      {
+        "is_selected": "default",
+        "date_label": "03-15 周六"
+      },
+      {
+        "is_selected": "primary",
+        "date_label": "03-16 周日"
+      },
+      {
+        "is_selected": "default",
+        "date_label": "03-17 周一"
+      },
+      {
+        "is_selected": "default",
+        "date_label": "03-18 周二"
+      },
+      {
+        "is_selected": "default",
+        "date_label": "03-19 周三"
+      }
+    ]
+  }
+}

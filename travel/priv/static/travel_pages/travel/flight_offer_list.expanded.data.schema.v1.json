@@ -1,0 +1,204 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "page_title",
+    "row.arrival_airport_code",
+    "row.arrival_at",
+    "row.baggage_policy",
+    "row.cabin_class",
+    "row.currency",
+    "row.departure_airport_code",
+    "row.departure_at",
+    "row.fare_family",
+    "row.flight_no",
+    "row.itinerary_code",
+    "row.listed_price",
+    "row.refund_change_policy",
+    "row.sale_status",
+    "row.seats_available",
+    "row.settlement_price",
+    "row.supplier_code",
+    "rows",
+    "rows_empty"
+  ],
+  "requiredRoots": [
+    "page_title",
+    "row",
+    "rows",
+    "rows_empty"
+  ],
+  "schema": {
+    "page_title": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "rows": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "supplier_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "itinerary_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "flight_no": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "departure_airport_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "arrival_airport_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "departure_at": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "arrival_at": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "cabin_class": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "fare_family": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "listed_price": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "settlement_price": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "currency": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "seats_available": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "baggage_policy": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "refund_change_policy": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "sale_status": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "row": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "supplier_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "itinerary_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "flight_no": {
+          "type": "unknown",
+          "required": true
+        },
+        "departure_airport_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "arrival_airport_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "departure_at": {
+          "type": "unknown",
+          "required": true
+        },
+        "arrival_at": {
+          "type": "unknown",
+          "required": true
+        },
+        "cabin_class": {
+          "type": "unknown",
+          "required": true
+        },
+        "fare_family": {
+          "type": "unknown",
+          "required": true
+        },
+        "listed_price": {
+          "type": "unknown",
+          "required": true
+        },
+        "settlement_price": {
+          "type": "unknown",
+          "required": true
+        },
+        "currency": {
+          "type": "unknown",
+          "required": true
+        },
+        "seats_available": {
+          "type": "unknown",
+          "required": true
+        },
+        "baggage_policy": {
+          "type": "unknown",
+          "required": true
+        },
+        "refund_change_policy": {
+          "type": "unknown",
+          "required": true
+        },
+        "sale_status": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "rows_empty": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

@@ -58,7 +58,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
     end
     attribute :engine_type, :string do
       allow_nil? false
-      default "greedy_local_search"
+      default "cp_sat"
       public? true
       description "算法标识"
     end
@@ -173,7 +173,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       description "求解完成（不可行）
 
 求解完成（不可行）. doc_url: graphql://contract/scheduling/complete_infeasible_scheduling_solver_run"
-      accept [:hard_violation_count, :warning_count, :output_snapshot, :error_message]
+      accept [:score, :hard_violation_count, :warning_count, :output_snapshot, :error_message]
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
         if current == :running do

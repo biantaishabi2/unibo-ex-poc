@@ -1,0 +1,427 @@
+{
+  "version": 1,
+  "vars": {
+    "record.host_member_id": {
+      "uses": [
+        {
+          "node_type": "BreadcrumbPage",
+          "node_id": "travel_order_bc_current",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.host_member_id|详情}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "travel_order_detail_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.host_member_id|}}"
+        }
+      ]
+    },
+    "record.status": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "travel_order_status_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.status|}}"
+        },
+        {
+          "node_type": "Badge",
+          "node_id": "value_status",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.status|}}"
+        }
+      ]
+    },
+    "record.order_no": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_order_no",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.order_no|}}"
+        }
+      ]
+    },
+    "record.product_type": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_product_type",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.product_type|}}"
+        }
+      ]
+    },
+    "record.booking_mode": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_booking_mode",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.booking_mode|}}"
+        }
+      ]
+    },
+    "record.contact_name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_contact_name",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.contact_name|}}"
+        }
+      ]
+    },
+    "record.contact_phone": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_contact_phone",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.contact_phone|}}"
+        }
+      ]
+    },
+    "record.traveler_count": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_traveler_count",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.traveler_count|}}"
+        }
+      ]
+    },
+    "record.total_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_total_amount",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.total_amount|}}"
+        }
+      ]
+    },
+    "record.points_to_use": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_points_to_use",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.points_to_use|}}"
+        }
+      ]
+    },
+    "record.points_deduction_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_points_deduction_amount",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.points_deduction_amount|}}"
+        }
+      ]
+    },
+    "record.recommended_payment_method": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_recommended_payment_method",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.recommended_payment_method|}}"
+        }
+      ]
+    },
+    "record.currency": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_currency",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.currency|}}"
+        }
+      ]
+    },
+    "record.change_status": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_change_status",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.change_status|}}"
+        }
+      ]
+    },
+    "record.waitlist_status": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_waitlist_status",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.waitlist_status|}}"
+        }
+      ]
+    },
+    "record.original_order_ref": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_original_order_ref",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.original_order_ref|}}"
+        }
+      ]
+    },
+    "record.ticket_passenger_infos": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_ticket_passenger_infos",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.ticket_passenger_infos|}}"
+        }
+      ]
+    },
+    "record.seat_selection_snapshot": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_seat_selection_snapshot",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.seat_selection_snapshot|}}"
+        }
+      ]
+    },
+    "record.supplier_order_ref": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_supplier_order_ref",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.supplier_order_ref|}}"
+        }
+      ]
+    },
+    "record.payment_external_ref": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_payment_external_ref",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.payment_external_ref|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_confirm_quote": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_confirm_quote",
+          "prop": "click",
+          "raw": "action_confirm_quote"
+        }
+      ]
+    },
+    "action_submit_order": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_submit_order",
+          "prop": "click",
+          "raw": "action_submit_order"
+        }
+      ]
+    },
+    "action_submit_waitlist": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_submit_waitlist",
+          "prop": "click",
+          "raw": "action_submit_waitlist"
+        }
+      ]
+    },
+    "action_mark_payment_succeeded": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_mark_payment_succeeded",
+          "prop": "click",
+          "raw": "action_mark_payment_succeeded"
+        }
+      ]
+    },
+    "action_mark_booked": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_mark_booked",
+          "prop": "click",
+          "raw": "action_mark_booked"
+        }
+      ]
+    },
+    "action_fulfill_waitlist": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_fulfill_waitlist",
+          "prop": "click",
+          "raw": "action_fulfill_waitlist"
+        }
+      ]
+    },
+    "action_mark_completed": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_mark_completed",
+          "prop": "click",
+          "raw": "action_mark_completed"
+        }
+      ]
+    },
+    "action_request_cancel": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_request_cancel",
+          "prop": "click",
+          "raw": "action_request_cancel"
+        }
+      ]
+    },
+    "action_cancel_waitlist": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_cancel_waitlist",
+          "prop": "click",
+          "raw": "action_cancel_waitlist"
+        }
+      ]
+    },
+    "action_approve_cancel": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_approve_cancel",
+          "prop": "click",
+          "raw": "action_approve_cancel"
+        }
+      ]
+    },
+    "action_request_change": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_request_change",
+          "prop": "click",
+          "raw": "action_request_change"
+        }
+      ]
+    },
+    "action_confirm_change": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_confirm_change",
+          "prop": "click",
+          "raw": "action_confirm_change"
+        }
+      ]
+    },
+    "action_mark_order_failed": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_mark_order_failed",
+          "prop": "click",
+          "raw": "action_mark_order_failed"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "travel_order_edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "travel_order_edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
+}

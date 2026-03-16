@@ -93,7 +93,7 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
     create :create do
       description "Create Schedule Version via Create. doc_url: graphql://contract/scheduling/create_scheduling_schedule_version"
       primary? true
-      accept [:version_no, :change_summary]
+      accept [:period_id, :version_no, :origin_type, :created_by, :based_on_run_id, :source_version_id, :change_summary]
       argument :period_id, :uuid, allow_nil?: false
       change manage_relationship(:period_id, :period, type: :append, on_lookup: :relate)
     end
@@ -117,6 +117,7 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
         end
       end
       # message: "只有工作中的版本可以发布"
+      change HospitalScheduling.Scheduling.Changes.ScheduleVersion.PublishVersionCall1
       change set_attribute(:status, :published)
       require_atomic? false
     end

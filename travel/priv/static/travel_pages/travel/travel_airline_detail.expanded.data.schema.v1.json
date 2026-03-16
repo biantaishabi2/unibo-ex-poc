@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "editing",
+    "record.airline_code",
+    "record.airline_name",
+    "record.iata_code",
+    "record.icao_code",
+    "record.status"
+  ],
+  "requiredRoots": [
+    "editing",
+    "record"
+  ],
+  "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "airline_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "airline_name": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "iata_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "icao_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

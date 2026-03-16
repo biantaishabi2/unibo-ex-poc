@@ -1,0 +1,96 @@
+<.page title="TravelCabinClass 详情" id="travel_cabin_class_detail">
+  <.breadcrumb id="travel_cabin_class_breadcrumb">
+    <.breadcrumb_list id="travel_cabin_class_bc_list">
+      <.breadcrumb_item id="travel_cabin_class_bc_list_item">
+        <.breadcrumb_link id="travel_cabin_class_bc_link">
+          TravelCabinClass 列表
+        </.breadcrumb_link>
+      </.breadcrumb_item>
+      <.breadcrumb_separator id="travel_cabin_class_bc_sep" />
+      <.breadcrumb_item id="travel_cabin_class_bc_current_item">
+        <.breadcrumb_page id="travel_cabin_class_bc_current">
+          <%= @record.cabin_class_code %>
+        </.breadcrumb_page>
+      </.breadcrumb_item>
+    </.breadcrumb_list>
+  </.breadcrumb>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_cabin_class_detail_header">
+    <.flex gap={3} align="center" direction="row" id="travel_cabin_class_title_group">
+      <.text variant="title" id="travel_cabin_class_detail_title">
+        <%= @record.cabin_class_code %>
+      </.text>
+      <.badge variant="default" size="sm" id="travel_cabin_class_status_badge">
+        <%= @record.status %>
+      </.badge>
+    </.flex>
+    <.flex gap={2} direction="row" id="travel_cabin_class_actions">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="travel_cabin_class_edit_btn">
+        编辑
+      </.button>
+    </.flex>
+  </.section>
+  <.card variant="default" id="travel_cabin_class_info_card">
+    <.card_header id="travel_cabin_class_info_header">
+      <.card_title id="travel_cabin_class_info_title">
+        基本信息
+      </.card_title>
+    </.card_header>
+    <.card_content id="travel_cabin_class_info_content">
+      <%= if !(@editing && @editing != []) do %>
+        <.grid columns={2} gap={4} id="travel_cabin_class_info_grid">
+          <.flex direction="row" id="field_cabin_class_code">
+            <.text variant="muted" id="label_cabin_class_code">
+              舱位规范编码
+            </.text>
+            <.text id="value_cabin_class_code">
+              <%= @record.cabin_class_code %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_cabin_class_name">
+            <.text variant="muted" id="label_cabin_class_name">
+              舱位名称
+            </.text>
+            <.text id="value_cabin_class_name">
+              <%= @record.cabin_class_name %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_cabin_rank">
+            <.text variant="muted" id="label_cabin_rank">
+              舱位等级序
+            </.text>
+            <.text id="value_cabin_rank">
+              <%= @record.cabin_rank %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_status">
+            <.text variant="muted" id="label_status">
+              status
+            </.text>
+            <.badge variant="default" size="sm" id="value_status">
+              <%= @record.status %>
+            </.badge>
+          </.flex>
+        </.grid>
+      <% else %>
+        <.form phx-submit="form_submit" phx-change="form_change" id="travel_cabin_class_edit_form">
+          <.grid columns={2} gap={4} id="travel_cabin_class_form_grid">
+            <.input name="cabin_class_code" label="舱位规范编码" placeholder="请输入舱位规范编码" required="true" size="md" id="form_cabin_class_code" />
+            <.input name="cabin_class_name" label="舱位名称" placeholder="请输入舱位名称" required="true" size="md" id="form_cabin_class_name" />
+            <.input name="cabin_rank" label="舱位等级序" placeholder="请输入舱位等级序" size="md" id="form_cabin_rank" />
+            <.select name="status" label="status" size="md" id="form_status">
+
+            </.select>
+          </.grid>
+          <.flex justify="end" gap={2} direction="row" id="travel_cabin_class_form_actions">
+            <.button variant="secondary" phx-click="cancel_edit" size="md" id="travel_cabin_class_cancel_btn">
+              取消
+            </.button>
+            <.button variant="primary" phx-click="form_submit" size="md" id="travel_cabin_class_save_btn">
+              保存
+            </.button>
+          </.flex>
+        </.form>
+      <% end %>
+    </.card_content>
+  </.card>
+</.page>

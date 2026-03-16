@@ -8,7 +8,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   use MyAppWeb, :live_view
 
-  @page_id "MyAppWeb.Pages.StitchGeneratedLive"
+  @page_id "scheduling_period_detail"
   @page_title "Untitled Page"
 
   # status.keys preview (first ~40): record, record.current_version, record.current_version.version_no, record.department, record.department.name, record.end_date, record.generation_mode, record.last_solver_run, record.last_solver_run.status, record.schedule_versions, record.schedule_versions[], record.schedule_versions[].change_summary, record.schedule_versions[].inserted_at, record.schedule_versions[].origin_type, record.schedule_versions[].status, record.schedule_versions[].version_no, record.solver_runs, record.solver_runs[], record.solver_runs[].completed_at, record.solver_runs[].engine_type, record.solver_runs[].hard_violation_count, record.solver_runs[].score, record.solver_runs[].started_at, record.solver_runs[].status, record.start_date, record.state, record.title
@@ -87,7 +87,15 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event nil
-  @backend_api_map %{}
+  @backend_api_map %{
+    "destroy" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "mark_adjusted" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "mark_generated" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "publish" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "start_generating" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+  }
   @status_key_roots []
   @auth_mode "optional"
   @user_context_assigns []

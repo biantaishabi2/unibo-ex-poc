@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "defaults": {
+    "orders_empty": true,
+    "orders": [
+      {
+        "id": "ord_01",
+        "product_type": "",
+        "status": "",
+        "summary": "",
+        "order_no": "",
+        "travel_purpose": "",
+        "total_amount": ""
+      },
+      {
+        "id": "ord_02",
+        "product_type": "",
+        "status": "",
+        "summary": "",
+        "order_no": "",
+        "travel_purpose": "",
+        "total_amount": ""
+      },
+      {
+        "id": "ord_03",
+        "product_type": "",
+        "status": "",
+        "summary": "",
+        "order_no": "",
+        "travel_purpose": "",
+        "total_amount": ""
+      }
+    ]
+  },
+  "keys": [
+    "orders",
+    "orders[]",
+    "orders[].id",
+    "orders[].order_no",
+    "orders[].product_type",
+    "orders[].status",
+    "orders[].summary",
+    "orders[].total_amount",
+    "orders[].travel_purpose",
+    "orders_empty"
+  ],
+  "required": [
+    "orders",
+    "orders_empty"
+  ],
+  "urlParams": {},
+  "notes": []
+}

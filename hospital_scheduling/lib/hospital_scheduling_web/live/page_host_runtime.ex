@@ -93,14 +93,20 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
   def dispatch(backend, page, event, params, state)
       when is_atom(backend) and is_binary(page) and is_binary(event) and is_map(params) and
              is_map(state) do
-    if function_exported?(backend, :dispatch, 3) do
-      backend.dispatch(
-        event,
-        %{"__page_id" => page} |> Map.merge(stringify_map(params)),
-        stringify_map(state)
-      )
-    else
-      {:error, :page_backend_not_available}
+    case Code.ensure_loaded(backend) do
+      {:module, _module} ->
+        if function_exported?(backend, :dispatch, 3) do
+          backend.dispatch(
+            event,
+            %{"__page_id" => page} |> Map.merge(stringify_map(params)),
+            stringify_map(state)
+          )
+        else
+          {:error, :page_backend_not_available}
+        end
+
+      _ ->
+        {:error, :page_backend_not_available}
     end
   end
 
@@ -109,8 +115,8 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
 
   def merge_backend_payload(page_data, dto, status) do
     page_data
-    |> Map.merge(deep_atomize_keys(normalize_map(dto)))
-    |> Map.merge(deep_atomize_keys(normalize_map(status)))
+    |> deep_merge(deep_atomize_keys(normalize_map(dto)))
+    |> deep_merge(deep_atomize_keys(normalize_map(status)))
   end
 
   def maybe_put_flash_from_effects(page_data, effects) do
@@ -233,10 +239,13 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
   end
 
   defp load_page_data(path, page, params, :graphql, backend) do
+    selection = page_selection(page)
+
     defaults =
       @default_assigns
       |> Map.merge(load_status_defaults(path))
       |> Map.put(:page_title, page)
+      |> Map.put(:selection, selection)
 
     case dispatch(backend, page, @load_event, params, defaults) do
       {:ok, %{dto: dto, status: status, effects: effects}} ->
@@ -291,6 +300,71 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
       %{}
     end
   end
+
+  defp build_selection_from_defaults(defaults) do
+    sample =
+      cond do
+        is_map(defaults[:record]) and map_size(defaults[:record]) > 0 ->
+          defaults[:record]
+
+        is_map(defaults[:form]) and map_size(defaults[:form]) > 0 ->
+          defaults[:form]
+
+        true ->
+          %{}
+      end
+
+    case extract_selection_fields(sample) do
+      "" -> "id"
+      fields -> "id " <> fields
+    end
+  end
+
+  defp page_selection("scheduling_period_detail") do
+    "id title state generation_mode: generationMode department { name } start_date: startDate end_date: endDate"
+  end
+
+  defp page_selection(_page), do: build_selection_from_defaults(@default_assigns)
+
+  defp extract_selection_fields(map) when is_map(map) do
+    map
+    |> Map.keys()
+    |> Enum.reject(&(&1 in [:id, :__struct__, :__meta__]))
+    |> Enum.map(fn key ->
+      value = Map.get(map, key)
+      key_str = to_string(key)
+
+      cond do
+        is_map(value) and map_size(value) > 0 ->
+          nested = extract_selection_fields(value)
+          if nested == "", do: key_str, else: key_str <> " { " <> nested <> " }"
+
+        is_list(value) ->
+          case Enum.find(value, &is_map/1) do
+            nil ->
+              key_str
+
+            first ->
+              nested = extract_selection_fields(first)
+              if nested == "", do: key_str, else: key_str <> " { " <> nested <> " }"
+          end
+
+        true ->
+          key_str
+      end
+    end)
+    |> Enum.join(" ")
+  end
+
+  defp extract_selection_fields(_), do: ""
+
+  defp deep_merge(left, right) when is_map(left) and is_map(right) do
+    Map.merge(left, right, fn _key, left_value, right_value ->
+      deep_merge(left_value, right_value)
+    end)
+  end
+
+  defp deep_merge(_left, right), do: right
 
   defp manifest_pages do
     frontend_manifest =

@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "vars": {
+    "record.airline_code": {
+      "uses": [
+        {
+          "node_type": "BreadcrumbPage",
+          "node_id": "travel_airline_bc_current",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.airline_code|详情}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "travel_airline_detail_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.airline_code|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "value_airline_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.airline_code|}}"
+        }
+      ]
+    },
+    "record.status": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "travel_airline_status_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.status|}}"
+        },
+        {
+          "node_type": "Badge",
+          "node_id": "value_status",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.status|}}"
+        }
+      ]
+    },
+    "record.airline_name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_airline_name",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.airline_name|}}"
+        }
+      ]
+    },
+    "record.iata_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_iata_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.iata_code|}}"
+        }
+      ]
+    },
+    "record.icao_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_icao_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.icao_code|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_airline_edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "travel_airline_edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "travel_airline_save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "travel_airline_edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_airline_cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
+}

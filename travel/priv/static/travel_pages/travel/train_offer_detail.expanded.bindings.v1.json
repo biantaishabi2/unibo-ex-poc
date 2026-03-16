@@ -1,0 +1,345 @@
+{
+  "version": 1,
+  "vars": {
+    "record.supplier_code": {
+      "uses": [
+        {
+          "node_type": "BreadcrumbPage",
+          "node_id": "train_offer_bc_current",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.supplier_code|详情}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "train_offer_detail_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.supplier_code|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "value_supplier_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.supplier_code|}}"
+        }
+      ]
+    },
+    "record.inventory_status": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "train_offer_status_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.inventory_status|}}"
+        },
+        {
+          "node_type": "Badge",
+          "node_id": "value_inventory_status",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.inventory_status|}}"
+        }
+      ]
+    },
+    "record.train_no": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_train_no",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.train_no|}}"
+        }
+      ]
+    },
+    "record.departure_station_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_departure_station_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.departure_station_code|}}"
+        }
+      ]
+    },
+    "record.departure_station_name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_departure_station_name",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.departure_station_name|}}"
+        }
+      ]
+    },
+    "record.arrival_station_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_arrival_station_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.arrival_station_code|}}"
+        }
+      ]
+    },
+    "record.arrival_station_name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_arrival_station_name",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.arrival_station_name|}}"
+        }
+      ]
+    },
+    "record.travel_date": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_travel_date",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.travel_date|}}"
+        }
+      ]
+    },
+    "record.departure_at": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_departure_at",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.departure_at|}}"
+        }
+      ]
+    },
+    "record.arrival_at": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_arrival_at",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.arrival_at|}}"
+        }
+      ]
+    },
+    "record.seat_class": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_seat_class",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.seat_class|}}"
+        }
+      ]
+    },
+    "record.seat_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_seat_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.seat_code|}}"
+        }
+      ]
+    },
+    "record.is_no_seat": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_is_no_seat",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.is_no_seat|}}"
+        }
+      ]
+    },
+    "record.waitlist_supported": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_waitlist_supported",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.waitlist_supported|}}"
+        }
+      ]
+    },
+    "record.listed_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_listed_price",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.listed_price|}}"
+        }
+      ]
+    },
+    "record.settlement_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_settlement_price",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.settlement_price|}}"
+        }
+      ]
+    },
+    "record.currency": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_currency",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.currency|}}"
+        }
+      ]
+    },
+    "record.booking_rules_snapshot": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_booking_rules_snapshot",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.booking_rules_snapshot|}}"
+        }
+      ]
+    },
+    "record.change_rules_snapshot": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_change_rules_snapshot",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.change_rules_snapshot|}}"
+        }
+      ]
+    },
+    "record.refund_rules_snapshot": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_refund_rules_snapshot",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.refund_rules_snapshot|}}"
+        }
+      ]
+    },
+    "record.sale_status": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_sale_status",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.sale_status|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "train_offer_edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_activate": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "train_offer_action_activate",
+          "prop": "click",
+          "raw": "action_activate"
+        }
+      ]
+    },
+    "action_deactivate": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "train_offer_action_deactivate",
+          "prop": "click",
+          "raw": "action_deactivate"
+        }
+      ]
+    },
+    "action_expire": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "train_offer_action_expire",
+          "prop": "click",
+          "raw": "action_expire"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "train_offer_delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "train_offer_edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "train_offer_save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "train_offer_edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "train_offer_cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
+}

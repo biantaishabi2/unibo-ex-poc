@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "page_title",
+    "row.cancellation_policy",
+    "row.checkin_date",
+    "row.checkout_date",
+    "row.city_code",
+    "row.currency",
+    "row.guarantee_policy",
+    "row.hotel_code",
+    "row.hotel_name",
+    "row.inventory_count",
+    "row.listed_price",
+    "row.rate_plan_code",
+    "row.room_type_code",
+    "row.sale_status",
+    "row.settlement_price",
+    "row.supplier_code",
+    "rows",
+    "rows_empty"
+  ],
+  "requiredRoots": [
+    "page_title",
+    "row",
+    "rows",
+    "rows_empty"
+  ],
+  "schema": {
+    "page_title": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "rows": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "supplier_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "hotel_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "hotel_name": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "city_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "room_type_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "rate_plan_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "checkin_date": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "checkout_date": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "listed_price": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "settlement_price": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "currency": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "inventory_count": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "cancellation_policy": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "guarantee_policy": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "sale_status": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "row": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "supplier_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "hotel_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "hotel_name": {
+          "type": "unknown",
+          "required": true
+        },
+        "city_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "room_type_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "rate_plan_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "checkin_date": {
+          "type": "unknown",
+          "required": true
+        },
+        "checkout_date": {
+          "type": "unknown",
+          "required": true
+        },
+        "listed_price": {
+          "type": "unknown",
+          "required": true
+        },
+        "settlement_price": {
+          "type": "unknown",
+          "required": true
+        },
+        "currency": {
+          "type": "unknown",
+          "required": true
+        },
+        "inventory_count": {
+          "type": "unknown",
+          "required": true
+        },
+        "cancellation_policy": {
+          "type": "unknown",
+          "required": true
+        },
+        "guarantee_policy": {
+          "type": "unknown",
+          "required": true
+        },
+        "sale_status": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "rows_empty": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

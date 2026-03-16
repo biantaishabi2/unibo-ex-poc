@@ -45,6 +45,9 @@ defmodule HospitalScheduling.Solver.ResultWriter do
       # 4. 更新 SolverRun 状态和 output_snapshot
       {:ok, _updated_run} = update_solver_run(solver_run, status, output)
 
+      # 5. 回写当前周期的工作版本和最近一次 solver run
+      {:ok, _updated_period} = update_period(period, version, solver_run)
+
       %{version: version, assignments: assignments, violations: violations}
     end)
   end
@@ -95,7 +98,7 @@ defmodule HospitalScheduling.Solver.ResultWriter do
       starts_at: parse_datetime(data["starts_at"]),
       ends_at: parse_datetime(data["ends_at"]),
       source: String.to_existing_atom(data["source"] || "auto"),
-      is_locked: data["is_locked"] || false,
+      is_locked: data["is_locked"] || data["locked"] || false,
       notes: data["notes"]
     }, authorize?: false)
   end
@@ -133,6 +136,14 @@ defmodule HospitalScheduling.Solver.ResultWriter do
   defp status_to_action(:feasible), do: :complete_feasible
   defp status_to_action(:infeasible), do: :complete_infeasible
   defp status_to_action(_), do: :complete_feasible
+
+  defp update_period(period, version, solver_run) do
+    period
+    |> Ash.Changeset.for_update(:update, %{})
+    |> Ash.Changeset.force_change_attribute(:current_version_id, version.id)
+    |> Ash.Changeset.force_change_attribute(:last_solver_run_id, solver_run.id)
+    |> Ash.update(authorize?: false)
+  end
 
   defp parse_datetime(nil), do: nil
   defp parse_datetime(str) when is_binary(str) do

@@ -80,3 +80,8 @@ config :phoenix_live_view,
   debug_heex_annotations: true,
   # Enable helpful, but potentially expensive runtime checks
   enable_expensive_runtime_checks: true
+
+config :hospital_scheduling,
+  scheduling_page_runtime: :graphql,
+  scheduling_page_backend: HospitalSchedulingWeb.Graphql.StitchBackend,
+  solver_adapter: HospitalScheduling.Scheduling.SolverAdapter

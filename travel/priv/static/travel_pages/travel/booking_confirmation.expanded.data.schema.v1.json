@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "is_flight_order",
+    "is_hotel_order",
+    "is_train_order",
+    "order.flight_offer.flight_no",
+    "order.hotel_offer.hotel_name",
+    "order.id",
+    "order.order_no",
+    "order.product_type",
+    "order.total_amount",
+    "order.train_offer.train_no",
+    "order.traveler_count",
+    "order_booking_success",
+    "order_status_failed"
+  ],
+  "requiredRoots": [
+    "is_flight_order",
+    "is_hotel_order",
+    "is_train_order",
+    "order",
+    "order_booking_success",
+    "order_status_failed"
+  ],
+  "schema": {
+    "order_booking_success": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "order_status_failed": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "order": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "order_no": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "product_type": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "flight_offer": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "flight_no": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            }
+          }
+        },
+        "hotel_offer": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "hotel_name": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            }
+          }
+        },
+        "train_offer": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "train_no": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            }
+          }
+        },
+        "traveler_count": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "id": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "is_flight_order": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "is_hotel_order": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "is_train_order": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "editing",
+    "record.booking_rules",
+    "record.cancellation_policy",
+    "record.currency",
+    "record.departure_city_code",
+    "record.destination_code",
+    "record.end_date",
+    "record.inventory_count",
+    "record.listed_price",
+    "record.package_code",
+    "record.package_name",
+    "record.package_type",
+    "record.sale_status",
+    "record.settlement_price",
+    "record.start_date",
+    "record.supplier_code"
+  ],
+  "requiredRoots": [
+    "editing",
+    "record"
+  ],
+  "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "supplier_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "sale_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "package_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "package_name": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "package_type": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "departure_city_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "destination_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "start_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "end_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "listed_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "settlement_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "currency": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "inventory_count": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "booking_rules": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "cancellation_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "defaults": {
+    "flight_offer": {
+      "departure_at": "",
+      "departure_airport_code": "",
+      "arrival_at": "",
+      "arrival_airport_code": "",
+      "flight_no": "",
+      "cabin_class": "",
+      "fare_family": "",
+      "listed_price": "",
+      "settlement_price": "",
+      "currency": "",
+      "seats_available": "",
+      "baggage_policy": "",
+      "refund_change_policy": "",
+      "flight_offer_lifecycle": "",
+      "orders": [
+        {
+          "order_no": "",
+          "product_type": "",
+          "status": "",
+          "total_amount": "",
+          "traveler_count": ""
+        },
+        {
+          "order_no": "",
+          "product_type": "",
+          "status": "",
+          "total_amount": "",
+          "traveler_count": ""
+        },
+        {
+          "order_no": "",
+          "product_type": "",
+          "status": "",
+          "total_amount": "",
+          "traveler_count": ""
+        }
+      ]
+    }
+  },
+  "keys": [
+    "flight_offer",
+    "flight_offer.arrival_airport_code",
+    "flight_offer.arrival_at",
+    "flight_offer.baggage_policy",
+    "flight_offer.cabin_class",
+    "flight_offer.currency",
+    "flight_offer.departure_airport_code",
+    "flight_offer.departure_at",
+    "flight_offer.fare_family",
+    "flight_offer.flight_no",
+    "flight_offer.flight_offer_lifecycle",
+    "flight_offer.listed_price",
+    "flight_offer.orders",
+    "flight_offer.orders[]",
+    "flight_offer.orders[].order_no",
+    "flight_offer.orders[].product_type",
+    "flight_offer.orders[].status",
+    "flight_offer.orders[].total_amount",
+    "flight_offer.orders[].traveler_count",
+    "flight_offer.refund_change_policy",
+    "flight_offer.seats_available",
+    "flight_offer.settlement_price"
+  ],
+  "required": [
+    "flight_offer"
+  ],
+  "urlParams": {},
+  "notes": []
+}

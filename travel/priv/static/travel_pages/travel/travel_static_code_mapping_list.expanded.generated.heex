@@ -1,0 +1,80 @@
+<.page title="TravelStaticCodeMapping 列表" id="travel_static_code_mapping_list">
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_static_code_mapping_header">
+    <.text variant="title" id="travel_static_code_mapping_title">
+      <%= @page_title %>
+    </.text>
+    <.button variant="primary" phx-click="navigate_create" size="md" id="travel_static_code_mapping_create_btn">
+      新建
+    </.button>
+  </.section>
+  <.card variant="default" id="travel_static_code_mapping_filter_card">
+    <.card_content id="travel_static_code_mapping_filter_content">
+      <.flex gap={4} align="center" direction="row" id="travel_static_code_mapping_filter_row">
+        <.select name="object_type" label="主数据对象类型" size="md" id="filter_object_type">
+
+        </.select>
+        <.select name="status" label="status" size="md" id="filter_status">
+
+        </.select>
+        <.button variant="secondary" phx-click="filter_submit" size="md" id="travel_static_code_mapping_filter_submit">
+          查询
+        </.button>
+      </.flex>
+    </.card_content>
+  </.card>
+  <.table id="travel_static_code_mapping_table">
+    <.table_header id="travel_static_code_mapping_table_header">
+      <.table_row id="travel_static_code_mapping_header_row">
+        <.table_head id="th_supplier_code">
+          供应商编码
+        </.table_head>
+        <.table_head id="th_object_type">
+          主数据对象类型
+        </.table_head>
+        <.table_head id="th_canonical_entity">
+          Travel 实体名
+        </.table_head>
+        <.table_head id="th_external_code">
+          供应商侧编码
+        </.table_head>
+        <.table_head id="th_external_name">
+          供应商侧名称
+        </.table_head>
+        <.table_head id="th_status">
+          status
+        </.table_head>
+      </.table_row>
+    </.table_header>
+    <.table_body id="travel_static_code_mapping_table_body">
+      <%= for row <- @rows do %>
+        <.table_row>
+          <.table_cell>
+            <%= row.supplier_code %>
+          </.table_cell>
+          <.table_cell>
+            <.badge variant="default" size="sm">
+              <%= row.object_type %>
+            </.badge>
+          </.table_cell>
+          <.table_cell>
+            <%= row.canonical_entity %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.external_code %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.external_name %>
+          </.table_cell>
+          <.table_cell>
+            <.badge variant="default" size="sm">
+              <%= row.status %>
+            </.badge>
+          </.table_cell>
+        </.table_row>
+      <% end %>
+    </.table_body>
+  </.table>
+  <%= if (@rows_empty && @rows_empty != []) do %>
+    <.empty_state description="暂无供应商静态码到 Travel 主数据的映射（Travel 层统一适配）数据" id="travel_static_code_mapping_no_data" />
+  <% end %>
+</.page>

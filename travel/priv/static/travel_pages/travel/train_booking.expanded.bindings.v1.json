@@ -1,0 +1,155 @@
+{
+  "version": 1,
+  "vars": {
+    "offer.train_no": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "train_no_text",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.train_no|}}"
+        }
+      ]
+    },
+    "offer.train_type_label": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "train_type_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.train_type_label|}}"
+        }
+      ]
+    },
+    "offer.selected_seat_class_name": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "seat_class_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.selected_seat_class_name|}}"
+        }
+      ]
+    },
+    "offer.departure_time": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "train_departure_time",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.departure_time|}}"
+        }
+      ]
+    },
+    "offer.departure_station_name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "train_departure_station",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.departure_station_name|}}"
+        }
+      ]
+    },
+    "offer.date_label": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "train_date_label",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.date_label|}}"
+        }
+      ]
+    },
+    "offer.arrival_time": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "train_arrival_time",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.arrival_time|}}"
+        }
+      ]
+    },
+    "offer.arrival_station_name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "train_arrival_station",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.arrival_station_name|}}"
+        }
+      ]
+    },
+    "offer.currency": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "total_currency",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.currency|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "train_currency",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.currency|}}"
+        }
+      ]
+    },
+    "offer.selected_seat_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "train_seat_price",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.selected_seat_price|}}"
+        }
+      ]
+    },
+    "offer.total_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "total_price",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.total_price|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "add_traveler": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "btn_add_rider",
+          "prop": "click",
+          "raw": "add_traveler"
+        }
+      ]
+    },
+    "submit_booking": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "btn_submit",
+          "prop": "click",
+          "raw": "submit_booking"
+        }
+      ]
+    }
+  }
+}

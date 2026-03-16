@@ -1,0 +1,135 @@
+<.page title="酒店详情" id="hotel_detail">
+  <.section layout="none" id="hotel_cover">
+    <.image src={@hotel.cover_image} alt={@hotel.hotel_name} id="cover_image" />
+  </.section>
+  <.section layout="none" id="hotel_info">
+    <.stack gap={2} direction="column" id="hotel_basic">
+      <.flex gap={2} align="center" direction="row" id="hotel_name_row">
+        <.text variant="h2" weight="bold" id="hotel_name">
+          <%= @hotel.hotel_name %>
+        </.text>
+        <.badge variant="secondary" size="sm" id="hotel_star">
+          <%= @hotel.hotel_star %>
+        </.badge>
+      </.flex>
+      <.tabs default="exterior" id="photo_tabs">
+        <.tabs_list id="photo_tab_list">
+          <.tabs_trigger value="exterior" id="trigger_exterior">
+            外观
+          </.tabs_trigger>
+          <.tabs_trigger value="dining" id="trigger_dining">
+            餐饮
+          </.tabs_trigger>
+          <.tabs_trigger value="room" id="trigger_room">
+            客房
+          </.tabs_trigger>
+        </.tabs_list>
+        <.tabs_content value="exterior" id="exterior_content">
+          <.image src={@hotel.exterior_image} alt="外观" id="exterior_img" />
+        </.tabs_content>
+        <.tabs_content value="dining" id="dining_content">
+          <.image src={@hotel.dining_image} alt="餐饮" id="dining_img" />
+        </.tabs_content>
+        <.tabs_content value="room" id="room_content_tab">
+          <.image src={@hotel.room_image} alt="客房" id="room_img" />
+        </.tabs_content>
+      </.tabs>
+      <.flex gap={2} align="center" direction="row" id="score_row">
+        <.badge variant="primary" size="sm" id="hotel_score">
+          <%= @hotel.score %>
+        </.badge>
+        <.text variant="body" color="primary" id="score_label">
+          <%= @hotel.score_label %>
+        </.text>
+      </.flex>
+      <.flex gap={1} align="center" direction="row" id="address_row">
+        <.icon name="map-pin" size="sm" color="muted" id="map_pin_icon" />
+        <.text variant="caption" color="muted" id="hotel_address">
+          <%= @hotel.address %>
+        </.text>
+      </.flex>
+    </.stack>
+  </.section>
+  <.separator id="sep_1" />
+  <.section layout="none" id="date_filter">
+    <.flex gap={2} align="center" direction="row" id="filter_row">
+      <.input label="入住" bind="filter.checkin_date" type="date" size="md" id="checkin_input" />
+      <.input label="退房" bind="filter.checkout_date" type="date" size="md" id="checkout_input" />
+      <.button variant="outline" phx-click="refresh_offers" size="md" id="refresh_btn">
+        查询
+      </.button>
+    </.flex>
+  </.section>
+  <.separator id="sep_2" />
+  <.section layout="grid" columns={3} id="room_list_section">
+    <.text variant="h3" id="room_list_title">
+      房型报价
+    </.text>
+    <.stack gap={3} direction="column" id="room_list">
+      <%= for item <- @offers do %>
+        <.card variant="default">
+          <.card_header>
+            <.flex gap={3} direction="row">
+              <.stack gap={1} direction="column">
+                <.text variant="h4" weight="bold">
+                  <%= item.room_type_name %>
+                </.text>
+                <.text variant="caption" color="muted">
+                  <%= item.bed_type %>
+                </.text>
+                <.flex gap={1} direction="row">
+                  <.badge variant="outline" size="sm">
+                    <%= item.area_label %>
+                  </.badge>
+                  <.badge variant="outline" size="sm">
+                    <%= item.floor_label %>
+                  </.badge>
+                </.flex>
+              </.stack>
+            </.flex>
+          </.card_header>
+          <.card_content>
+            <.flex justify="between" align="center" direction="row">
+              <.stack gap={1} direction="column">
+                <.text variant="body" weight="bold">
+                  <%= item.rate_plan_code %>
+                </.text>
+                <.flex gap={1} direction="row">
+                  <.badge variant="outline" size="sm">
+                    <%= item.cancellation_policy %>
+                  </.badge>
+                  <%= if (item.is_breakfast_included && item.is_breakfast_included != []) do %>
+                    <.badge variant="success" size="sm">
+                      含早
+                    </.badge>
+                  <% end %>
+                  <%= if (item.exceeds_policy && item.exceeds_policy != []) do %>
+                    <.badge variant="destructive" size="sm">
+                      超标
+                    </.badge>
+                  <% end %>
+                </.flex>
+              </.stack>
+              <.flex gap={2} align="center" direction="row">
+                <.flex gap={1} align="baseline" direction="row">
+                  <.text variant="caption">
+                    <%= item.currency %>
+                  </.text>
+                  <.text variant="h3" color="primary">
+                    <%= item.listed_price %>
+                  </.text>
+                </.flex>
+                <.button variant="primary" size="sm" phx-click="navigate:/travel/hotel/booking/{{item.id|}}">
+                  预订
+                </.button>
+              </.flex>
+            </.flex>
+          </.card_content>
+        </.card>
+      <% end %>
+    </.stack>
+    <%= if (@offers_empty && @offers_empty != []) do %>
+      <.empty_state title="暂无可用房型" description="请调整日期后重试" id="no_rooms" />
+    <% end %>
+  </.section>
+</.page>

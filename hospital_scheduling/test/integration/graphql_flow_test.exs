@@ -17,7 +17,7 @@ defmodule HospitalScheduling.Integration.GraphqlFlowTest do
   alias HospitalScheduling.Scheduling
   require Ash.Query
 
-  @schema HospitalSchedulingWeb.Schema
+  @schema HospitalSchedulingWeb.Generated.Schema.Scheduling
 
   # ── 辅助函数 ──────────────────────────────────────────
 
@@ -205,14 +205,40 @@ defmodule HospitalScheduling.Integration.GraphqlFlowTest do
   end
 
   describe "排班周期状态流转" do
-    test "draft → start_generating → mark_generated 通过 GraphQL mutation" do
+    test "draft → start_generating 会直接触发求解并落库版本" do
       dept = create_department!("外科")
+      emp = create_employee!("N100", "自动排班测试护士")
+
+      {:ok, shift_type} = Ash.create(Scheduling.ShiftType, %{
+        department_id: dept.id,
+        code: "day",
+        name: "白班",
+        start_time: "08:00:00",
+        end_time: "16:00:00",
+        duration_hours: Decimal.new("8"),
+        is_night: false
+      }, authorize?: false)
 
       {:ok, period} = Ash.create(Scheduling.SchedulingPeriod, %{
         department_id: dept.id,
         start_date: ~D[2026-04-01],
         end_date: ~D[2026-04-07],
         title: "外科状态测试"
+      }, authorize?: false)
+
+      {:ok, _req} = Ash.create(Scheduling.CoverageRequirement, %{
+        period_id: period.id,
+        shift_type_id: shift_type.id,
+        requirement_date: ~D[2026-04-01],
+        role_code: "nurse",
+        min_headcount: 1
+      }, authorize?: false)
+
+      {:ok, _profile} = Ash.create(Scheduling.MedicalStaffProfile, %{
+        employee_id: emp.id,
+        department_id: dept.id,
+        maturity_score: Decimal.new("60"),
+        can_lead_shift: false
       }, authorize?: false)
 
       assert period.state == :draft
@@ -234,26 +260,11 @@ defmodule HospitalScheduling.Integration.GraphqlFlowTest do
 
       assert gen_result[:errors] == nil
       updated = get_in(gen_result, [:data, "startGeneratingSchedulingSchedulingPeriod", "result"])
-      assert updated["state"] == "generating"
+      assert updated["state"] == "generated"
 
-      # mark_generated: 直接传 id
-      mark_gen = """
-      mutation($id: ID!) {
-        markGeneratedSchedulingSchedulingPeriod(id: $id) {
-          result {
-            id
-            state
-          }
-          errors { message }
-        }
-      }
-      """
-
-      {:ok, mark_result} = run_graphql(mark_gen, %{"id" => period.id})
-
-      assert mark_result[:errors] == nil
-      final = get_in(mark_result, [:data, "markGeneratedSchedulingSchedulingPeriod", "result"])
-      assert final["state"] == "generated"
+      updated_period = Ash.get!(Scheduling.SchedulingPeriod, period.id, authorize?: false)
+      assert updated_period.current_version_id != nil
+      assert updated_period.last_solver_run_id != nil
     end
   end
 
@@ -404,9 +415,9 @@ defmodule HospitalScheduling.Integration.GraphqlFlowTest do
       violations = get_in(viol_result, [:data, "listSchedulingConstraintViolations", "results"])
       assert length(violations) > 0
 
-      # 至少有一个 min_headcount error
+      # 至少有一个 coverage_missing error
       assert Enum.any?(violations, fn v ->
-        v["ruleCode"] == "min_headcount" and v["severity"] == "error"
+        v["ruleCode"] == "coverage_missing" and v["severity"] == "error"
       end)
     end
   end

@@ -1,0 +1,112 @@
+<.page title="预订结果" id="booking_confirmation">
+  <.section padding={3} layout="none" id="main_content">
+    <.stack gap={3} direction="column" id="content_stack">
+      <.card variant="default" id="status_card">
+        <.card_content id="status_content">
+          <.stack gap={2} align="center" padding={4} direction="column" id="status_stack">
+            <%= if (@order_booking_success && @order_booking_success != []) do %>
+              <.icon name="check-circle" size="lg" color="success" id="success_icon" />
+              <.text variant="h2" weight="bold" id="success_text">
+                预订成功
+              </.text>
+            <% end %>
+            <%= if (@order_status_failed && @order_status_failed != []) do %>
+              <.icon name="x-circle" size="lg" color="destructive" id="fail_icon" />
+              <.text variant="h2" weight="bold" id="fail_text">
+                预订失败
+              </.text>
+              <.text variant="caption" color="muted" id="fail_hint">
+                请稍后重试或联系客服
+              </.text>
+            <% end %>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="summary_card">
+        <.card_header id="summary_header">
+          <.text variant="h4" weight="bold" id="summary_title">
+            订单摘要
+          </.text>
+        </.card_header>
+        <.card_content id="summary_content">
+          <.stack gap={2} direction="column" id="summary_stack">
+            <.flex justify="between" direction="row" id="order_no_row">
+              <.text variant="caption" color="muted" id="order_no_label">
+                订单号
+              </.text>
+              <.text id="order_no_value">
+                <%= @order.order_no %>
+              </.text>
+            </.flex>
+            <.separator id="sep_1" />
+            <.flex justify="between" direction="row" id="product_type_row">
+              <.text variant="caption" color="muted" id="product_type_label">
+                产品类型
+              </.text>
+              <.badge variant="secondary" size="sm" id="product_type_badge">
+                <%= @order.product_type %>
+              </.badge>
+            </.flex>
+            <.separator id="sep_2" />
+            <%= if (@is_flight_order && @is_flight_order != []) do %>
+              <.flex justify="between" direction="row" id="flight_row">
+                <.text variant="caption" color="muted" id="flight_label">
+                  航班
+                </.text>
+                <.text id="flight_value">
+                  <%= @order.flight_offer.flight_no %>
+                </.text>
+              </.flex>
+            <% end %>
+            <%= if (@is_hotel_order && @is_hotel_order != []) do %>
+              <.flex justify="between" direction="row" id="hotel_row">
+                <.text variant="caption" color="muted" id="hotel_label">
+                  酒店
+                </.text>
+                <.text id="hotel_value">
+                  <%= @order.hotel_offer.hotel_name %>
+                </.text>
+              </.flex>
+            <% end %>
+            <%= if (@is_train_order && @is_train_order != []) do %>
+              <.flex justify="between" direction="row" id="train_row">
+                <.text variant="caption" color="muted" id="train_label">
+                  车次
+                </.text>
+                <.text id="train_value">
+                  <%= @order.train_offer.train_no %>
+                </.text>
+              </.flex>
+            <% end %>
+            <.separator id="sep_3" />
+            <.flex justify="between" direction="row" id="traveler_count_row">
+              <.text variant="caption" color="muted" id="traveler_count_label">
+                出行人数
+              </.text>
+              <.text id="traveler_count_value">
+                <%= @order.traveler_count %>
+              </.text>
+            </.flex>
+            <.separator id="sep_4" />
+            <.flex justify="between" direction="row" id="amount_row">
+              <.text variant="caption" color="muted" id="amount_label">
+                订单金额
+              </.text>
+              <.text variant="h3" color="primary" id="amount_value">
+                <%= @order.total_amount %>
+              </.text>
+            </.flex>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.stack gap={2} direction="column" id="action_buttons">
+        <.button variant="primary" size="lg" fullwidth="true" phx-click="navigate:/travel/orders/{{order.id|}}" id="view_order_btn">
+          查看订单
+        </.button>
+        <.button variant="outline" size="lg" fullwidth="true" phx-click="navigate:/travel" id="go_home_btn">
+          回到首页
+        </.button>
+      </.stack>
+    </.stack>
+  </.section>
+</.page>

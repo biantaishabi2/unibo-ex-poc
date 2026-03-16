@@ -8,7 +8,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   use MyAppWeb, :live_view
 
-  @page_id "MyAppWeb.Pages.StitchGeneratedLive"
+  @page_id "scheduling_constraint_detail"
   @page_title "Untitled Page"
 
   # status.keys preview (first ~40): editing, record, record.category, record.constraint_type, record.enabled, record.name, record.notes, record.params, record.weight
@@ -32,8 +32,12 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event nil
-  @backend_api_map %{}
-  @status_key_roots []
+  @backend_api_map %{
+    "destroy" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+  }
+  @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
   @user_context_assigns []
 

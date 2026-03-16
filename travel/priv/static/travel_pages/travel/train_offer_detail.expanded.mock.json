@@ -1,0 +1,26 @@
+{
+  "record": {
+    "supplier_code": "SUP_12306",
+    "inventory_status": "有票",
+    "train_no": "G1",
+    "departure_station_code": "BJP",
+    "departure_station_name": "北京南站",
+    "arrival_station_code": "SHH",
+    "arrival_station_name": "上海虹桥站",
+    "travel_date": "2026-03-16",
+    "departure_at": "07:00",
+    "arrival_at": "11:28",
+    "seat_class": "二等座",
+    "seat_code": "O",
+    "is_no_seat": "否",
+    "waitlist_supported": "是",
+    "listed_price": "¥553",
+    "settlement_price": "¥553",
+    "currency": "CNY",
+    "booking_rules_snapshot": "实名制购票,每人限购1张",
+    "change_rules_snapshot": "开车前48h免费改签1次",
+    "refund_rules_snapshot": "开车前15天免费退票,之后收5%-20%手续费",
+    "sale_status": "active"
+  },
+  "editing": false
+}

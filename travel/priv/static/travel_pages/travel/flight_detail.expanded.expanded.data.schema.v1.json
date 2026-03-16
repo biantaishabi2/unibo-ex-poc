@@ -1,0 +1,275 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "@flight_offer.baggage_policy",
+    "@flight_offer.cabin_class",
+    "@flight_offer.currency",
+    "@flight_offer.fare_family",
+    "@flight_offer.flight_no",
+    "@flight_offer.flight_offer_lifecycle",
+    "@flight_offer.listed_price",
+    "@flight_offer.refund_change_policy",
+    "@flight_offer.seats_available",
+    "@flight_offer.settlement_price",
+    "@travel_order.booking_mode",
+    "@travel_order.change_status",
+    "@travel_order.contact_name",
+    "@travel_order.contact_phone",
+    "@travel_order.currency",
+    "@travel_order.host_enterprise_id",
+    "@travel_order.host_member_id",
+    "@travel_order.host_shop_id",
+    "@travel_order.order_no",
+    "@travel_order.original_order_ref",
+    "@travel_order.payment_external_ref",
+    "@travel_order.points_deduction_amount",
+    "@travel_order.points_to_use",
+    "@travel_order.product_type",
+    "@travel_order.recommended_payment_method",
+    "@travel_order.seat_selection_snapshot",
+    "@travel_order.status",
+    "@travel_order.supplier_order_ref",
+    "@travel_order.tenant_id",
+    "@travel_order.ticket_passenger_infos",
+    "@travel_order.total_amount",
+    "@travel_order.traveler_count",
+    "@travel_order.waitlist_status",
+    "flight_offer.arrival_airport_code",
+    "flight_offer.arrival_at",
+    "flight_offer.departure_airport_code",
+    "flight_offer.departure_at",
+    "flight_offer.orders"
+  ],
+  "requiredRoots": [
+    "@flight_offer",
+    "@travel_order",
+    "flight_offer"
+  ],
+  "schema": {
+    "flight_offer": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "departure_at": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "departure_airport_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "arrival_at": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "arrival_airport_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "orders": {
+          "type": "array",
+          "required": false,
+          "items": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "required": false,
+                "example": "fli_01"
+              },
+              "name": {
+                "type": "string",
+                "required": false,
+                "example": "flight_offer_1"
+              }
+            }
+          },
+          "exampleCount": 3
+        }
+      }
+    },
+    "@flight_offer": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "flight_no": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "cabin_class": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "fare_family": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "listed_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "settlement_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "currency": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "seats_available": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "baggage_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "refund_change_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "flight_offer_lifecycle": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "@travel_order": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "tenant_id": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "host_shop_id": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "host_member_id": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "host_enterprise_id": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "order_no": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "product_type": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "booking_mode": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "contact_name": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "contact_phone": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "traveler_count": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "points_to_use": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "points_deduction_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "recommended_payment_method": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "currency": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "change_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "waitlist_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "original_order_ref": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "ticket_passenger_infos": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "seat_selection_snapshot": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "supplier_order_ref": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "payment_external_ref": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    }
+  },
+  "notes": []
+}

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "events": {
+    "toggle_edit": {
+      "name": "toggle_edit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "form_submit": {
+      "name": "form_submit",
+      "triggers": [
+        "click",
+        "submit"
+      ],
+      "params": {}
+    },
+    "form_change": {
+      "name": "form_change",
+      "triggers": [
+        "change"
+      ],
+      "params": {}
+    },
+    "cancel_edit": {
+      "name": "cancel_edit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

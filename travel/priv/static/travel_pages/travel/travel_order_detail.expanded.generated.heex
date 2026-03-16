@@ -1,0 +1,285 @@
+<.page title="TravelOrder 详情" id="travel_order_detail">
+  <.breadcrumb id="travel_order_breadcrumb">
+    <.breadcrumb_list id="travel_order_bc_list">
+      <.breadcrumb_item id="travel_order_bc_list_item">
+        <.breadcrumb_link id="travel_order_bc_link">
+          TravelOrder 列表
+        </.breadcrumb_link>
+      </.breadcrumb_item>
+      <.breadcrumb_separator id="travel_order_bc_sep" />
+      <.breadcrumb_item id="travel_order_bc_current_item">
+        <.breadcrumb_page id="travel_order_bc_current">
+          <%= @record.host_member_id %>
+        </.breadcrumb_page>
+      </.breadcrumb_item>
+    </.breadcrumb_list>
+  </.breadcrumb>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_order_detail_header">
+    <.flex gap={3} align="center" direction="row" id="travel_order_title_group">
+      <.text variant="title" id="travel_order_detail_title">
+        <%= @record.host_member_id %>
+      </.text>
+      <.badge variant="default" size="sm" id="travel_order_status_badge">
+        <%= @record.status %>
+      </.badge>
+    </.flex>
+    <.flex gap={2} direction="row" id="travel_order_actions">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="travel_order_edit_btn">
+        编辑
+      </.button>
+      <.button variant="secondary" phx-click="action_confirm_quote" size="md" id="travel_order_action_confirm_quote">
+        confirm_quote
+      </.button>
+      <.button variant="secondary" phx-click="action_submit_order" size="md" id="travel_order_action_submit_order">
+        submit_order
+      </.button>
+      <.button variant="secondary" phx-click="action_submit_waitlist" size="md" id="travel_order_action_submit_waitlist">
+        submit_waitlist
+      </.button>
+      <.button variant="secondary" phx-click="action_mark_payment_succeeded" size="md" id="travel_order_action_mark_payment_succeeded">
+        mark_payment_succeeded
+      </.button>
+      <.button variant="secondary" phx-click="action_mark_booked" size="md" id="travel_order_action_mark_booked">
+        mark_booked
+      </.button>
+      <.button variant="secondary" phx-click="action_fulfill_waitlist" size="md" id="travel_order_action_fulfill_waitlist">
+        fulfill_waitlist
+      </.button>
+      <.button variant="secondary" phx-click="action_mark_completed" size="md" id="travel_order_action_mark_completed">
+        mark_completed
+      </.button>
+      <.button variant="secondary" phx-click="action_request_cancel" size="md" id="travel_order_action_request_cancel">
+        request_cancel
+      </.button>
+      <.button variant="secondary" phx-click="action_cancel_waitlist" size="md" id="travel_order_action_cancel_waitlist">
+        cancel_waitlist
+      </.button>
+      <.button variant="secondary" phx-click="action_approve_cancel" size="md" id="travel_order_action_approve_cancel">
+        approve_cancel
+      </.button>
+      <.button variant="secondary" phx-click="action_request_change" size="md" id="travel_order_action_request_change">
+        request_change
+      </.button>
+      <.button variant="secondary" phx-click="action_confirm_change" size="md" id="travel_order_action_confirm_change">
+        confirm_change
+      </.button>
+      <.button variant="secondary" phx-click="action_mark_order_failed" size="md" id="travel_order_action_mark_order_failed">
+        mark_order_failed
+      </.button>
+      <.button variant="danger" phx-click="action_destroy" size="md" id="travel_order_delete_btn">
+        删除
+      </.button>
+    </.flex>
+  </.section>
+  <.card variant="default" id="travel_order_info_card">
+    <.card_header id="travel_order_info_header">
+      <.card_title id="travel_order_info_title">
+        基本信息
+      </.card_title>
+    </.card_header>
+    <.card_content id="travel_order_info_content">
+      <%= if !(@editing && @editing != []) do %>
+        <.grid columns={2} gap={4} id="travel_order_info_grid">
+          <.flex direction="row" id="field_order_no">
+            <.text variant="muted" id="label_order_no">
+              订单号
+            </.text>
+            <.text id="value_order_no">
+              <%= @record.order_no %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_product_type">
+            <.text variant="muted" id="label_product_type">
+              商品类型
+            </.text>
+            <.badge variant="default" size="sm" id="value_product_type">
+              <%= @record.product_type %>
+            </.badge>
+          </.flex>
+          <.flex direction="row" id="field_booking_mode">
+            <.text variant="muted" id="label_booking_mode">
+              train 订单预订模式
+            </.text>
+            <.badge variant="default" size="sm" id="value_booking_mode">
+              <%= @record.booking_mode %>
+            </.badge>
+          </.flex>
+          <.flex direction="row" id="field_contact_name">
+            <.text variant="muted" id="label_contact_name">
+              contact_name
+            </.text>
+            <.text id="value_contact_name">
+              <%= @record.contact_name %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_contact_phone">
+            <.text variant="muted" id="label_contact_phone">
+              contact_phone
+            </.text>
+            <.text id="value_contact_phone">
+              <%= @record.contact_phone %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_traveler_count">
+            <.text variant="muted" id="label_traveler_count">
+              出行人数量
+            </.text>
+            <.text id="value_traveler_count">
+              <%= @record.traveler_count %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_total_amount">
+            <.text variant="muted" id="label_total_amount">
+              订单总金额
+            </.text>
+            <.text id="value_total_amount">
+              <%= @record.total_amount %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_points_to_use">
+            <.text variant="muted" id="label_points_to_use">
+              计划使用的积分数量
+            </.text>
+            <.text id="value_points_to_use">
+              <%= @record.points_to_use %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_points_deduction_amount">
+            <.text variant="muted" id="label_points_deduction_amount">
+              积分抵现金额
+            </.text>
+            <.text id="value_points_deduction_amount">
+              <%= @record.points_deduction_amount %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_recommended_payment_method">
+            <.text variant="muted" id="label_recommended_payment_method">
+              宿主 quote 返回的推荐支付方式
+            </.text>
+            <.text id="value_recommended_payment_method">
+              <%= @record.recommended_payment_method %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_currency">
+            <.text variant="muted" id="label_currency">
+              currency
+            </.text>
+            <.text id="value_currency">
+              <%= @record.currency %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_status">
+            <.text variant="muted" id="label_status">
+              status
+            </.text>
+            <.badge variant="default" size="sm" id="value_status">
+              <%= @record.status %>
+            </.badge>
+          </.flex>
+          <.flex direction="row" id="field_change_status">
+            <.text variant="muted" id="label_change_status">
+              change_status
+            </.text>
+            <.badge variant="default" size="sm" id="value_change_status">
+              <%= @record.change_status %>
+            </.badge>
+          </.flex>
+          <.flex direction="row" id="field_waitlist_status">
+            <.text variant="muted" id="label_waitlist_status">
+              waitlist_status
+            </.text>
+            <.badge variant="default" size="sm" id="value_waitlist_status">
+              <%= @record.waitlist_status %>
+            </.badge>
+          </.flex>
+          <.flex direction="row" id="field_original_order_ref">
+            <.text variant="muted" id="label_original_order_ref">
+              改签链路引用的原订单号或原票号
+            </.text>
+            <.text id="value_original_order_ref">
+              <%= @record.original_order_ref %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_ticket_passenger_infos">
+            <.text variant="muted" id="label_ticket_passenger_infos">
+              乘车人信息快照
+            </.text>
+            <.text id="value_ticket_passenger_infos">
+              <%= @record.ticket_passenger_infos %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_seat_selection_snapshot">
+            <.text variant="muted" id="label_seat_selection_snapshot">
+              选座与席别偏好快照
+            </.text>
+            <.text id="value_seat_selection_snapshot">
+              <%= @record.seat_selection_snapshot %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_supplier_order_ref">
+            <.text variant="muted" id="label_supplier_order_ref">
+              供应商订单号
+            </.text>
+            <.text id="value_supplier_order_ref">
+              <%= @record.supplier_order_ref %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_payment_external_ref">
+            <.text variant="muted" id="label_payment_external_ref">
+              宿主支付侧外部支付流水号
+            </.text>
+            <.text id="value_payment_external_ref">
+              <%= @record.payment_external_ref %>
+            </.text>
+          </.flex>
+        </.grid>
+      <% else %>
+        <.form phx-submit="form_submit" phx-change="form_change" id="travel_order_edit_form">
+          <.grid columns={2} gap={4} id="travel_order_form_grid">
+            <.input name="tenant_id" label="tenant_id" placeholder="请输入tenant_id" required="true" size="md" id="form_tenant_id" />
+            <.input name="host_shop_id" label="宿主商城 ID,用于 sidecar 对接上下文" placeholder="请输入宿主商城 ID,用于 sidecar 对接上下文" size="md" id="form_host_shop_id" />
+            <.input name="host_member_id" label="宿主会员标识,来自 shop caller context" placeholder="请输入宿主会员标识,来自 shop caller context" size="md" id="form_host_member_id" />
+            <.input name="host_enterprise_id" label="宿主企业标识,来自 shop caller context" placeholder="请输入宿主企业标识,来自 shop caller context" size="md" id="form_host_enterprise_id" />
+            <.input name="order_no" label="订单号" placeholder="请输入订单号" required="true" size="md" id="form_order_no" />
+            <.select name="product_type" label="商品类型" size="md" id="form_product_type">
+
+            </.select>
+            <.select name="booking_mode" label="train 订单预订模式" size="md" id="form_booking_mode">
+
+            </.select>
+            <.input name="contact_name" label="contact_name" placeholder="请输入contact_name" required="true" size="md" id="form_contact_name" />
+            <.input name="contact_phone" label="contact_phone" placeholder="请输入contact_phone" required="true" size="md" id="form_contact_phone" />
+            <.input name="traveler_count" label="出行人数量" placeholder="请输入出行人数量" size="md" id="form_traveler_count" />
+            <.input name="total_amount" label="订单总金额" placeholder="请输入订单总金额" required="true" size="md" id="form_total_amount" />
+            <.input name="points_to_use" label="计划使用的积分数量" placeholder="请输入计划使用的积分数量" size="md" id="form_points_to_use" />
+            <.input name="points_deduction_amount" label="积分抵现金额" placeholder="请输入积分抵现金额" size="md" id="form_points_deduction_amount" />
+            <.input name="recommended_payment_method" label="宿主 quote 返回的推荐支付方式" placeholder="请输入宿主 quote 返回的推荐支付方式" size="md" id="form_recommended_payment_method" />
+            <.input name="currency" label="currency" placeholder="请输入currency" size="md" id="form_currency" />
+            <.select name="status" label="status" size="md" id="form_status">
+
+            </.select>
+            <.select name="change_status" label="change_status" size="md" id="form_change_status">
+
+            </.select>
+            <.select name="waitlist_status" label="waitlist_status" size="md" id="form_waitlist_status">
+
+            </.select>
+            <.input name="original_order_ref" label="改签链路引用的原订单号或原票号" placeholder="请输入改签链路引用的原订单号或原票号" size="md" id="form_original_order_ref" />
+            <.input name="ticket_passenger_infos" label="乘车人信息快照" placeholder="请输入乘车人信息快照" size="md" id="form_ticket_passenger_infos" />
+            <.input name="seat_selection_snapshot" label="选座与席别偏好快照" placeholder="请输入选座与席别偏好快照" size="md" id="form_seat_selection_snapshot" />
+            <.input name="supplier_order_ref" label="供应商订单号" placeholder="请输入供应商订单号" size="md" id="form_supplier_order_ref" />
+            <.input name="payment_external_ref" label="宿主支付侧外部支付流水号" placeholder="请输入宿主支付侧外部支付流水号" size="md" id="form_payment_external_ref" />
+          </.grid>
+          <.flex justify="end" gap={2} direction="row" id="travel_order_form_actions">
+            <.button variant="secondary" phx-click="cancel_edit" size="md" id="travel_order_cancel_btn">
+              取消
+            </.button>
+            <.button variant="primary" phx-click="form_submit" size="md" id="travel_order_save_btn">
+              保存
+            </.button>
+          </.flex>
+        </.form>
+      <% end %>
+    </.card_content>
+  </.card>
+</.page>

@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "events": {
+    "open_dialog:traveler_edit_dialog:create": {
+      "name": "open_dialog:traveler_edit_dialog:create",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "open_dialog:traveler_edit_dialog:edit:{{item.id|}}": {
+      "name": "open_dialog:traveler_edit_dialog:edit:{{item.id|}}",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "delete:Travel.TravelerProfile:{{item.id|}}": {
+      "name": "delete:Travel.TravelerProfile:{{item.id|}}",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "close_dialog:traveler_edit_dialog": {
+      "name": "close_dialog:traveler_edit_dialog",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "submit_form:Travel.TravelerProfile": {
+      "name": "submit_form:Travel.TravelerProfile",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

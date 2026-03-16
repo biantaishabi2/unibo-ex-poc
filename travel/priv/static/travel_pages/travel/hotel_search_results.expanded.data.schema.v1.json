@@ -1,0 +1,167 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "facility.name",
+    "hotels",
+    "hotels.items",
+    "item",
+    "item.currency",
+    "item.hotel_code",
+    "item.hotel_name",
+    "item.hotel_ref.address",
+    "item.hotel_ref.cover_image",
+    "item.hotel_ref.facilities",
+    "item.hotel_ref.hotel_star",
+    "item.hotel_ref.score",
+    "item.listed_price",
+    "policy",
+    "search.checkin_date",
+    "search.checkout_date"
+  ],
+  "requiredRoots": [
+    "facility",
+    "hotels",
+    "item",
+    "policy",
+    "search"
+  ],
+  "schema": {
+    "search": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "checkin_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "checkout_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "hotels": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "items": {
+          "type": "array",
+          "required": false,
+          "items": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "hotel_code": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "hotel_ref": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                  "cover_image": {
+                    "type": "string",
+                    "required": false,
+                    "example": ""
+                  },
+                  "hotel_star": {
+                    "type": "string",
+                    "required": false,
+                    "example": ""
+                  },
+                  "score": {
+                    "type": "string",
+                    "required": false,
+                    "example": ""
+                  },
+                  "address": {
+                    "type": "string",
+                    "required": false,
+                    "example": ""
+                  },
+                  "facilities": {
+                    "type": "array",
+                    "required": false,
+                    "items": {
+                      "type": "object",
+                      "required": false,
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "required": false,
+                          "example": "facilitie_1"
+                        }
+                      }
+                    },
+                    "exampleCount": 2
+                  }
+                }
+              },
+              "hotel_name": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "currency": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "listed_price": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              }
+            }
+          },
+          "exampleCount": 3
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "hotel_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "hotel_ref": {
+          "type": "unknown",
+          "required": true
+        },
+        "hotel_name": {
+          "type": "unknown",
+          "required": true
+        },
+        "currency": {
+          "type": "unknown",
+          "required": true
+        },
+        "listed_price": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "facility": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "name": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    }
+  },
+  "notes": []
+}

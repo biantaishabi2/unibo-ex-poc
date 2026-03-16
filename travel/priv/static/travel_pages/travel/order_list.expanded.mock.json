@@ -1,0 +1,38 @@
+{
+  "orders_empty": false,
+  "orders": [
+    {
+      "id": "ord_01",
+      "product_type": "机票",
+      "status": "已出票",
+      "summary": "北京 → 上海 CA1234 03-15",
+      "order_no": "TO20260313001",
+      "has_travel_purpose": true,
+      "travel_purpose": "商务出差",
+      "has_change": false,
+      "total_amount": "¥1,280"
+    },
+    {
+      "id": "ord_02",
+      "product_type": "酒店",
+      "status": "已确认",
+      "summary": "上海浦东丽思卡尔顿 03-15入住",
+      "order_no": "TO20260313002",
+      "has_travel_purpose": true,
+      "travel_purpose": "商务出差",
+      "has_change": false,
+      "total_amount": "¥3,160"
+    },
+    {
+      "id": "ord_03",
+      "product_type": "火车",
+      "status": "已退票",
+      "summary": "上海虹桥 → 杭州东 G7501 03-18",
+      "order_no": "TO20260313003",
+      "has_travel_purpose": false,
+      "travel_purpose": "",
+      "has_change": true,
+      "total_amount": "¥73"
+    }
+  ]
+}

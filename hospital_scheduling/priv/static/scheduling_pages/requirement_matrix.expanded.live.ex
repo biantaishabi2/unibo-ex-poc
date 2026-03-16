@@ -8,7 +8,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   use MyAppWeb, :live_view
 
-  @page_id "MyAppWeb.Pages.StitchGeneratedLive"
+  @page_id "requirement_matrix"
   @page_title "Untitled Page"
 
   # status.keys preview (first ~40): period, period.end_date, period.start_date, period.state, period.title, shift_types, shift_types[], shift_types[].name, shift_types[].requirements, shift_types[].requirements[], shift_types[].requirements[].min_headcount, shift_types[].requirements[].target_headcount
@@ -69,8 +69,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event nil
-  @backend_api_map %{}
-  @status_key_roots []
+  @backend_api_map %{
+    "list" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "save_requirements" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "batch_fill_requirements" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "action_start_generating" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+  }
+  @status_key_roots [:page_title, :period, :rows, :rows_empty, :filter]
   @auth_mode "optional"
   @user_context_assigns []
 

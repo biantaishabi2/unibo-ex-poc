@@ -1,0 +1,279 @@
+{
+  "version": 1,
+  "vars": {
+    "record.supplier_code": {
+      "uses": [
+        {
+          "node_type": "BreadcrumbPage",
+          "node_id": "hotel_offer_bc_current",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.supplier_code|详情}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "hotel_offer_detail_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.supplier_code|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "value_supplier_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.supplier_code|}}"
+        }
+      ]
+    },
+    "record.sale_status": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "hotel_offer_status_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.sale_status|}}"
+        },
+        {
+          "node_type": "Badge",
+          "node_id": "value_sale_status",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.sale_status|}}"
+        }
+      ]
+    },
+    "record.hotel_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_hotel_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.hotel_code|}}"
+        }
+      ]
+    },
+    "record.hotel_name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_hotel_name",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.hotel_name|}}"
+        }
+      ]
+    },
+    "record.city_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_city_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.city_code|}}"
+        }
+      ]
+    },
+    "record.room_type_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_room_type_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.room_type_code|}}"
+        }
+      ]
+    },
+    "record.rate_plan_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_rate_plan_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.rate_plan_code|}}"
+        }
+      ]
+    },
+    "record.checkin_date": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_checkin_date",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.checkin_date|}}"
+        }
+      ]
+    },
+    "record.checkout_date": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_checkout_date",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.checkout_date|}}"
+        }
+      ]
+    },
+    "record.listed_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_listed_price",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.listed_price|}}"
+        }
+      ]
+    },
+    "record.settlement_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_settlement_price",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.settlement_price|}}"
+        }
+      ]
+    },
+    "record.currency": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_currency",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.currency|}}"
+        }
+      ]
+    },
+    "record.inventory_count": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_inventory_count",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.inventory_count|}}"
+        }
+      ]
+    },
+    "record.cancellation_policy": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_cancellation_policy",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.cancellation_policy|}}"
+        }
+      ]
+    },
+    "record.guarantee_policy": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_guarantee_policy",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.guarantee_policy|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "hotel_offer_edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_activate": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "hotel_offer_action_activate",
+          "prop": "click",
+          "raw": "action_activate"
+        }
+      ]
+    },
+    "action_deactivate": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "hotel_offer_action_deactivate",
+          "prop": "click",
+          "raw": "action_deactivate"
+        }
+      ]
+    },
+    "action_expire": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "hotel_offer_action_expire",
+          "prop": "click",
+          "raw": "action_expire"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "hotel_offer_delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "hotel_offer_edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "hotel_offer_save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "hotel_offer_edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "hotel_offer_cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
+}

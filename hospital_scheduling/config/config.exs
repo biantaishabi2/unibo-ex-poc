@@ -10,9 +10,13 @@ import Config
 config :hospital_scheduling,
   ecto_repos: [HospitalScheduling.Repo],
   generators: [timestamp_type: :utc_datetime],
+  solver_adapter: HospitalScheduling.Solver.MockAdapter,
   ash_domains: [
     HospitalScheduling.Scheduling
   ]
+
+config :hospital_scheduling, HospitalSchedulingWeb.Graphql.RuntimeConfig,
+  schema: HospitalSchedulingWeb.Generated.Schema.Scheduling
 
 # Configures the endpoint
 config :hospital_scheduling, HospitalSchedulingWeb.Endpoint,

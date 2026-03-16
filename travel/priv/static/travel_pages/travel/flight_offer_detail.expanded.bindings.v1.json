@@ -1,0 +1,290 @@
+{
+  "version": 1,
+  "vars": {
+    "record.supplier_code": {
+      "uses": [
+        {
+          "node_type": "BreadcrumbPage",
+          "node_id": "flight_offer_bc_current",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.supplier_code|详情}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "flight_offer_detail_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.supplier_code|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "value_supplier_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.supplier_code|}}"
+        }
+      ]
+    },
+    "record.sale_status": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "flight_offer_status_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.sale_status|}}"
+        },
+        {
+          "node_type": "Badge",
+          "node_id": "value_sale_status",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.sale_status|}}"
+        }
+      ]
+    },
+    "record.itinerary_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_itinerary_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.itinerary_code|}}"
+        }
+      ]
+    },
+    "record.flight_no": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_flight_no",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.flight_no|}}"
+        }
+      ]
+    },
+    "record.departure_airport_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_departure_airport_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.departure_airport_code|}}"
+        }
+      ]
+    },
+    "record.arrival_airport_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_arrival_airport_code",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.arrival_airport_code|}}"
+        }
+      ]
+    },
+    "record.departure_at": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_departure_at",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.departure_at|}}"
+        }
+      ]
+    },
+    "record.arrival_at": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_arrival_at",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.arrival_at|}}"
+        }
+      ]
+    },
+    "record.cabin_class": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_cabin_class",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.cabin_class|}}"
+        }
+      ]
+    },
+    "record.fare_family": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_fare_family",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.fare_family|}}"
+        }
+      ]
+    },
+    "record.listed_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_listed_price",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.listed_price|}}"
+        }
+      ]
+    },
+    "record.settlement_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_settlement_price",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.settlement_price|}}"
+        }
+      ]
+    },
+    "record.currency": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_currency",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.currency|}}"
+        }
+      ]
+    },
+    "record.seats_available": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_seats_available",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.seats_available|}}"
+        }
+      ]
+    },
+    "record.baggage_policy": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_baggage_policy",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.baggage_policy|}}"
+        }
+      ]
+    },
+    "record.refund_change_policy": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_refund_change_policy",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.refund_change_policy|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "flight_offer_edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_activate": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "flight_offer_action_activate",
+          "prop": "click",
+          "raw": "action_activate"
+        }
+      ]
+    },
+    "action_deactivate": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "flight_offer_action_deactivate",
+          "prop": "click",
+          "raw": "action_deactivate"
+        }
+      ]
+    },
+    "action_expire": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "flight_offer_action_expire",
+          "prop": "click",
+          "raw": "action_expire"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "flight_offer_delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "flight_offer_edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "flight_offer_save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "flight_offer_edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "flight_offer_cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
+}

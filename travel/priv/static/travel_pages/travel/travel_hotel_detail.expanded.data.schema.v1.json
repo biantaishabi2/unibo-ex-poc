@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "editing",
+    "record.city_code",
+    "record.hotel_code",
+    "record.hotel_name",
+    "record.hotel_star",
+    "record.status"
+  ],
+  "requiredRoots": [
+    "editing",
+    "record"
+  ],
+  "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "hotel_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "hotel_name": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "city_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "hotel_star": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}
