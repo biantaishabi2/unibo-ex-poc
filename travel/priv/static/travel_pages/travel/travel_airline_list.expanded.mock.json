@@ -1,27 +1,27 @@
 {
   "page_title": "TravelAirline 列表",
-  "rows_empty": true,
+  "rows_empty": false,
   "rows": [
     {
-      "airline_code": "",
-      "airline_name": "",
-      "iata_code": "",
-      "icao_code": "",
-      "status": ""
+      "airline_code": "AIR_CA",
+      "airline_name": "中国国际航空",
+      "iata_code": "CA",
+      "icao_code": "CCA",
+      "status": "active"
     },
     {
-      "airline_code": "",
-      "airline_name": "",
-      "iata_code": "",
-      "icao_code": "",
-      "status": ""
+      "airline_code": "AIR_MU",
+      "airline_name": "中国东方航空",
+      "iata_code": "MU",
+      "icao_code": "CES",
+      "status": "active"
     },
     {
-      "airline_code": "",
-      "airline_name": "",
-      "iata_code": "",
-      "icao_code": "",
-      "status": ""
+      "airline_code": "AIR_CZ",
+      "airline_name": "中国南方航空",
+      "iata_code": "CZ",
+      "icao_code": "CSN",
+      "status": "active"
     }
   ]
 }

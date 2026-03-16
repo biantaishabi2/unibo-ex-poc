@@ -101,53 +101,53 @@
         CONTENT: "expire"
 
   [SECTION: orders_section]
-    [TEXT: orders_table]
+    [TABLE: orders_table]
       [TABLE_HEADER: orders_header]
-        [TEXT: th_tenant_id]
+        [TABLE_HEAD: th_tenant_id]
           CONTENT: "tenant_id"
-        [TEXT: th_host_shop_id]
+        [TABLE_HEAD: th_host_shop_id]
           CONTENT: "宿主商城 ID，用于 sidecar 对接上下文"
-        [TEXT: th_host_member_id]
+        [TABLE_HEAD: th_host_member_id]
           CONTENT: "宿主会员标识，来自 shop caller context"
-        [TEXT: th_host_enterprise_id]
+        [TABLE_HEAD: th_host_enterprise_id]
           CONTENT: "宿主企业标识，来自 shop caller context"
-        [TEXT: th_order_no]
+        [TABLE_HEAD: th_order_no]
           CONTENT: "订单号"
-        [TEXT: th_product_type]
+        [TABLE_HEAD: th_product_type]
           CONTENT: "商品类型"
-        [TEXT: th_booking_mode]
+        [TABLE_HEAD: th_booking_mode]
           CONTENT: "train 订单预订模式"
-        [TEXT: th_contact_name]
+        [TABLE_HEAD: th_contact_name]
           CONTENT: "contact_name"
-        [TEXT: th_contact_phone]
+        [TABLE_HEAD: th_contact_phone]
           CONTENT: "contact_phone"
-        [TEXT: th_traveler_count]
+        [TABLE_HEAD: th_traveler_count]
           CONTENT: "出行人数量"
-        [TEXT: th_total_amount]
+        [TABLE_HEAD: th_total_amount]
           CONTENT: "订单总金额"
-        [TEXT: th_points_to_use]
+        [TABLE_HEAD: th_points_to_use]
           CONTENT: "计划使用的积分数量"
-        [TEXT: th_points_deduction_amount]
+        [TABLE_HEAD: th_points_deduction_amount]
           CONTENT: "积分抵现金额"
-        [TEXT: th_recommended_payment_method]
+        [TABLE_HEAD: th_recommended_payment_method]
           CONTENT: "宿主 quote 返回的推荐支付方式"
-        [TEXT: th_currency]
+        [TABLE_HEAD: th_currency]
           CONTENT: "currency"
-        [TEXT: th_status]
+        [TABLE_HEAD: th_status]
           CONTENT: "status"
-        [TEXT: th_change_status]
+        [TABLE_HEAD: th_change_status]
           CONTENT: "change_status"
-        [TEXT: th_waitlist_status]
+        [TABLE_HEAD: th_waitlist_status]
           CONTENT: "waitlist_status"
-        [TEXT: th_original_order_ref]
+        [TABLE_HEAD: th_original_order_ref]
           CONTENT: "改签链路引用的原订单号或原票号"
-        [TEXT: th_ticket_passenger_infos]
+        [TABLE_HEAD: th_ticket_passenger_infos]
           CONTENT: "乘车人信息快照"
-        [TEXT: th_seat_selection_snapshot]
+        [TABLE_HEAD: th_seat_selection_snapshot]
           CONTENT: "选座与席别偏好快照"
-        [TEXT: th_supplier_order_ref]
+        [TABLE_HEAD: th_supplier_order_ref]
           CONTENT: "供应商订单号"
-        [TEXT: th_payment_external_ref]
+        [TABLE_HEAD: th_payment_external_ref]
           CONTENT: "宿主支付侧外部支付流水号"
       [TABLE_BODY: orders_body]
         [FOR: travel_order in @flight_offer.orders]

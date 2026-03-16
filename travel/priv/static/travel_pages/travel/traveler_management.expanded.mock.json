@@ -1,28 +1,28 @@
 {
-  "travelers_empty": true,
+  "travelers_empty": false,
   "travelers": [
     {
-      "full_name": "",
+      "full_name": "张明",
       "is_self": true,
-      "id_type": "",
-      "id_number": "",
-      "phone": "",
+      "id_type": "身份证",
+      "id_number": "310***********1234",
+      "phone": "138****8001",
       "id": "tra_01"
     },
     {
-      "full_name": "",
-      "is_self": true,
-      "id_type": "",
-      "id_number": "",
-      "phone": "",
+      "full_name": "李华",
+      "is_self": false,
+      "id_type": "身份证",
+      "id_number": "110***********5678",
+      "phone": "139****9002",
       "id": "tra_02"
     },
     {
-      "full_name": "",
-      "is_self": true,
-      "id_type": "",
-      "id_number": "",
-      "phone": "",
+      "full_name": "王芳",
+      "is_self": false,
+      "id_type": "护照",
+      "id_number": "E12****56",
+      "phone": "135****5003",
       "id": "tra_03"
     }
   ]

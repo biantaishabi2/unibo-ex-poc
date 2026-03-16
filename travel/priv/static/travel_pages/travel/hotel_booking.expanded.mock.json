@@ -1,37 +1,33 @@
 {
   "offer": {
-    "hotel_name": "",
+    "hotel_name": "北京国贸大酒店",
     "room_type_ref": {
-      "room_type_name": "",
-      "bed_type": ""
+      "room_type_name": "高级大床房",
+      "bed_type": "大床 1.8m"
     },
-    "checkin_date": "",
-    "checkout_date": "",
-    "cancellation_policy": "",
-    "guarantee_policy": "",
-    "currency": "",
-    "listed_price": "",
-    "total_price": ""
+    "checkin_date": "2026-03-16",
+    "checkout_date": "2026-03-18",
+    "cancellation_policy": "18:00前免费取消",
+    "guarantee_policy": "信用卡担保",
+    "currency": "¥",
+    "listed_price": "688",
+    "total_price": "1,376"
   },
   "travelers": {
     "items": [
       {
         "avatar": "",
-        "name_initial": "",
-        "name": "traveler_1",
-        "id_number_masked": ""
+        "name_initial": "张",
+        "name": "张明",
+        "id_number_masked": "310***1234",
+        "selected": true
       },
       {
         "avatar": "",
-        "name_initial": "",
-        "name": "traveler_2",
-        "id_number_masked": ""
-      },
-      {
-        "avatar": "",
-        "name_initial": "",
-        "name": "traveler_3",
-        "id_number_masked": ""
+        "name_initial": "李",
+        "name": "李华",
+        "id_number_masked": "110***5678",
+        "selected": false
       }
     ]
   }

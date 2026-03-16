@@ -1,40 +1,33 @@
 {
   "flight_offer": {
-    "departure_at": "",
-    "departure_airport_code": "",
-    "arrival_at": "",
-    "arrival_airport_code": "",
-    "flight_no": "",
-    "cabin_class": "",
-    "fare_family": "",
-    "listed_price": "",
-    "settlement_price": "",
-    "currency": "",
-    "seats_available": "",
-    "baggage_policy": "",
-    "refund_change_policy": "",
-    "flight_offer_lifecycle": "",
+    "departure_at": "08:30",
+    "departure_airport_code": "PEK",
+    "arrival_at": "11:05",
+    "arrival_airport_code": "SHA",
+    "flight_no": "CA1234",
+    "cabin_class": "经济舱",
+    "fare_family": "标准经济",
+    "listed_price": "¥1,280",
+    "settlement_price": "¥1,050",
+    "currency": "CNY",
+    "seats_available": "32",
+    "baggage_policy": "托运20kg+手提7kg",
+    "refund_change_policy": "起飞前2h免费退改,之后收30%手续费",
+    "flight_offer_lifecycle": "active",
     "orders": [
       {
-        "order_no": "",
-        "product_type": "",
-        "status": "",
-        "total_amount": "",
-        "traveler_count": ""
+        "order_no": "TO20260316001",
+        "product_type": "机票",
+        "status": "已出票",
+        "total_amount": "¥1,280",
+        "traveler_count": "1"
       },
       {
-        "order_no": "",
-        "product_type": "",
-        "status": "",
-        "total_amount": "",
-        "traveler_count": ""
-      },
-      {
-        "order_no": "",
-        "product_type": "",
-        "status": "",
-        "total_amount": "",
-        "traveler_count": ""
+        "order_no": "TO20260316002",
+        "product_type": "机票",
+        "status": "待支付",
+        "total_amount": "¥2,560",
+        "traveler_count": "2"
       }
     ]
   }

@@ -1,10 +1,10 @@
 {
   "record": {
-    "airline_code": "",
-    "status": "",
-    "airline_name": "",
-    "iata_code": "",
-    "icao_code": ""
+    "airline_code": "AIR_CA",
+    "status": "active",
+    "airline_name": "中国国际航空",
+    "iata_code": "CA",
+    "icao_code": "CCA"
   },
-  "editing": true
+  "editing": false
 }
