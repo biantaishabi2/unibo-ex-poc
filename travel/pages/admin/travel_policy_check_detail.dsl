@@ -1,0 +1,97 @@
+[PAGE: travel_policy_check_detail]
+  ATTR: Title("TravelPolicyCheck 详情")
+
+  [BREADCRUMB: travel_policy_check_breadcrumb]
+    [BREADCRUMB_LIST: travel_policy_check_bc_list]
+      [BREADCRUMB_ITEM: travel_policy_check_bc_list_item]
+        [BREADCRUMB_LINK: travel_policy_check_bc_link]
+          ATTR: Patch("/travel/travel_policy_check")
+          CONTENT: "TravelPolicyCheck 列表"
+      [BREADCRUMB_SEPARATOR: travel_policy_check_bc_sep]
+      [BREADCRUMB_ITEM: travel_policy_check_bc_current_item]
+        [BREADCRUMB_PAGE: travel_policy_check_bc_current]
+          CONTENT: "{{record.id|详情}}"
+
+  [SECTION: travel_policy_check_detail_header]
+    { Direction: "Row", Justify: "Between", Align: "Center" }
+    [FLEX: travel_policy_check_title_group]
+      { Gap: 3, Align: "Center" }
+      [TEXT: travel_policy_check_detail_title]
+        ATTR: Variant("title")
+        CONTENT: "政策校验详情"
+      [BADGE: travel_policy_check_result_badge]
+        CONTENT: "{{record.check_result|}}"
+
+  [CARD: travel_policy_check_info_card]
+    [CARD_HEADER: travel_policy_check_info_header]
+      [CARD_TITLE: travel_policy_check_info_title]
+        CONTENT: "校验信息"
+    [CARD_CONTENT: travel_policy_check_info_content]
+      [GRID: travel_policy_check_info_grid]
+        { Columns: 2, Gap: 4 }
+        [FLEX: field_order_id]
+          [TEXT: label_order_id]
+            ATTR: Variant("muted")
+            CONTENT: "关联订单"
+          [TEXT: value_order_id]
+            CONTENT: "{{record.order_id|}}"
+        [FLEX: field_policy_id]
+          [TEXT: label_policy_id]
+            ATTR: Variant("muted")
+            CONTENT: "关联政策"
+          [TEXT: value_policy_id]
+            CONTENT: "{{record.policy_id|}}"
+        [FLEX: field_check_result]
+          [TEXT: label_check_result]
+            ATTR: Variant("muted")
+            CONTENT: "校验结果"
+          [BADGE: value_check_result]
+            CONTENT: "{{record.check_result|}}"
+        [FLEX: field_policy_amount]
+          [TEXT: label_policy_amount]
+            ATTR: Variant("muted")
+            CONTENT: "差标金额"
+          [TEXT: value_policy_amount]
+            CONTENT: "{{record.policy_amount|}}"
+        [FLEX: field_actual_amount]
+          [TEXT: label_actual_amount]
+            ATTR: Variant("muted")
+            CONTENT: "实际金额"
+          [TEXT: value_actual_amount]
+            CONTENT: "{{record.actual_amount|}}"
+        [FLEX: field_exceed_amount]
+          [TEXT: label_exceed_amount]
+            ATTR: Variant("muted")
+            CONTENT: "超标金额"
+          [TEXT: value_exceed_amount]
+            CONTENT: "{{record.exceed_amount|}}"
+        [FLEX: field_exceed_ratio]
+          [TEXT: label_exceed_ratio]
+            ATTR: Variant("muted")
+            CONTENT: "超标比例"
+          [TEXT: value_exceed_ratio]
+            CONTENT: "{{record.exceed_ratio|}}"
+        [FLEX: field_exceed_strategy]
+          [TEXT: label_exceed_strategy]
+            ATTR: Variant("muted")
+            CONTENT: "命中的超标策略"
+          [TEXT: value_exceed_strategy]
+            CONTENT: "{{record.exceed_strategy|}}"
+        [FLEX: field_exceed_reason]
+          [TEXT: label_exceed_reason]
+            ATTR: Variant("muted")
+            CONTENT: "超标原因"
+          [TEXT: value_exceed_reason]
+            CONTENT: "{{record.exceed_reason|}}"
+        [FLEX: field_personal_pay_amount]
+          [TEXT: label_personal_pay_amount]
+            ATTR: Variant("muted")
+            CONTENT: "个人支付部分"
+          [TEXT: value_personal_pay_amount]
+            CONTENT: "{{record.personal_pay_amount|}}"
+        [FLEX: field_approval_request_id]
+          [TEXT: label_approval_request_id]
+            ATTR: Variant("muted")
+            CONTENT: "审批请求ID"
+          [TEXT: value_approval_request_id]
+            CONTENT: "{{record.approval_request_id|}}"
