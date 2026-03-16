@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "page_id": "shift_type_list",
+  "backend": {
+    "params": {
+      "accept": ["department_id", "enabled", "keyword"]
+    },
+    "info": {
+      "reload_messages": ["page_host_reload"]
+    },
+    "load": {
+      "selection": "id code name start_time: startTime end_time: endTime duration_hours: durationHours is_night: isNight color sort_order: sortOrder enabled"
+    }
+  }
+}

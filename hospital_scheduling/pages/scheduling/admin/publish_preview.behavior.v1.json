@@ -5,8 +5,48 @@
   "entity": "ScheduleVersion",
   "domain": "Scheduling",
   "backend": {
+    "params": {
+      "accept": ["id", "base_version"]
+    },
+    "info": {
+      "reload_messages": ["page_host_reload"]
+    },
+    "load": {
+      "selection": "id title current_version: currentVersion { id version_no: versionNo origin_type: originType constraint_violations: constraintViolations { severity rule_code: ruleCode message } } last_solver_run: lastSolverRun { hard_violation_count: hardViolationCount warning_count: warningCount }",
+      "assigns": {
+        "period": "record",
+        "version": "record.current_version",
+        "changes": {
+          "value": []
+        },
+        "change_count": {
+          "value": 0
+        },
+        "affected_employee_count": {
+          "value": 0
+        },
+        "coverage_rate": {
+          "value": 0
+        },
+        "warning_count": {
+          "from": "record.last_solver_run.warning_count"
+        },
+        "hard_violation_count": {
+          "from": "record.last_solver_run.hard_violation_count"
+        },
+        "has_hard_violations": {
+          "from": "record.last_solver_run.hard_violation_count",
+          "transform": "positive_count"
+        },
+        "has_warnings": {
+          "from": "record.last_solver_run.warning_count",
+          "transform": "positive_count"
+        }
+      }
+    },
     "api_map": {
-      "get": "Scheduling.ScheduleVersion.get",
+      "__load__": "Scheduling.SchedulingPeriod.get",
+      "get": "Scheduling.SchedulingPeriod.get",
       "action_publish": "Scheduling.ScheduleVersion.publish_version",
       "toggle_diff_mode": "Scheduling.ScheduleVersion.get"
     }
@@ -48,7 +88,7 @@
   "e2e": {
     "playwright": {
       "auto": true,
-      "base_path": "/scheduling/publish_preview",
+      "base_path": "/scheduling/publish_preview?id=:id",
       "dto_smoke": [],
       "cases": [
         {

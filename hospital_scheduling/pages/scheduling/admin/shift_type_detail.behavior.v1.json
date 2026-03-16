@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "page_id": "shift_type_detail",
+  "backend": {
+    "params": {
+      "accept": ["id"]
+    },
+    "info": {
+      "reload_messages": ["page_host_reload"]
+    },
+    "load": {
+      "selection": "id name code start_time: startTime end_time: endTime duration_hours: durationHours is_night: isNight color sort_order: sortOrder enabled coverage_requirements: coverageRequirements { requirement_date: requirementDate role_code: roleCode role_name: roleName required_skill_tags: requiredSkillTags min_headcount: minHeadcount target_headcount: targetHeadcount required_lead_count: requiredLeadCount priority notes }"
+    }
+  }
+}

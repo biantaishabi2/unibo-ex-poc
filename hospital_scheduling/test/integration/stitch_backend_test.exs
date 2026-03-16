@@ -217,6 +217,42 @@ defmodule HospitalScheduling.Integration.StitchBackendTest do
       assert backend_result.meta["api_key"] == "update"
       assert backend_result.dto["record"]["name"] == "晚班改"
     end
+
+    test "本地页面 sidecar 可以覆盖 manifest 的 __load__ api_map", %{dept: dept} do
+      period =
+        Ash.create!(
+          Scheduling.SchedulingPeriod
+          |> Ash.Changeset.for_create(:create, %{
+            title: "本地 sidecar 覆盖",
+            start_date: ~D[2026-04-01],
+            end_date: ~D[2026-04-07],
+            department_id: dept.id
+          }),
+          authorize?: false
+        )
+
+      local_contract = %{
+        "backend" => %{
+          "api_map" => %{
+            "__load__" => "Scheduling.SchedulingPeriod.get",
+            "get" => "Scheduling.SchedulingPeriod.get"
+          }
+        }
+      }
+
+      {:ok, backend_result} =
+        StitchBackend.dispatch(
+          "__load__",
+          %{"__page_id" => "requirement_matrix", "id" => period.id},
+          %{
+            "selection" => "id title state",
+            "_page_contract" => local_contract
+          }
+        )
+
+      assert backend_result.meta["api_key"] == "get"
+      assert backend_result.dto["record"]["id"] == period.id
+    end
   end
 
   describe "dispatch 链路 — 自定义 action" do

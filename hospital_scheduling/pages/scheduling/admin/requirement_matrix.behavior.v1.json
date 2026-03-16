@@ -5,7 +5,25 @@
   "entity": "CoverageRequirement",
   "domain": "Scheduling",
   "backend": {
+    "params": {
+      "accept": ["id", "role_code", "week_offset", "shift_type_id"]
+    },
+    "info": {
+      "reload_messages": ["page_host_reload"]
+    },
+    "load": {
+      "selection": "id title state start_date: startDate end_date: endDate coverage_requirements: coverageRequirements { id requirement_date: requirementDate role_code: roleCode role_name: roleName min_headcount: minHeadcount target_headcount: targetHeadcount shift_type: shiftType { id name } }",
+      "assigns": {
+        "period": "record",
+        "shift_types": {
+          "from": "record.coverage_requirements",
+          "transform": "group_requirements_by_shift_type"
+        }
+      }
+    },
     "api_map": {
+      "__load__": "Scheduling.SchedulingPeriod.get",
+      "get": "Scheduling.SchedulingPeriod.get",
       "list": "Scheduling.CoverageRequirement.list",
       "save_requirements": "Scheduling.CoverageRequirement.update",
       "batch_fill_requirements": "Scheduling.CoverageRequirement.update",

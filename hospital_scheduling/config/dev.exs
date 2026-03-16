@@ -1,5 +1,13 @@
 import Config
 
+dev_host = System.get_env("DEV_HOST") || "127.0.0.1"
+dev_port = String.to_integer(System.get_env("DEV_PORT") || "4200")
+dev_ip =
+  case dev_host do
+    "0.0.0.0" -> {0, 0, 0, 0}
+    _ -> {127, 0, 0, 1}
+  end
+
 # Configure your database
 config :hospital_scheduling, HospitalScheduling.Repo,
   username: "postgres",
@@ -19,7 +27,7 @@ config :hospital_scheduling, HospitalScheduling.Repo,
 config :hospital_scheduling, HospitalSchedulingWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
-  http: [ip: {127, 0, 0, 1}, port: 4200],
+  http: [ip: dev_ip, port: dev_port],
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
