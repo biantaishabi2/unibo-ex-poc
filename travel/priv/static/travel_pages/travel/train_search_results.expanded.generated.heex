@@ -25,7 +25,40 @@
     <% end %>
   </.section>
   <.section layout="none" id="results_section">
-    <.stack gap={3} padding={3} direction="column" id="results_list" />
+    <.stack gap={3} padding={3} direction="column" id="results_list">
+      <%= for item <- @trains.items do %>
+        <.card id={"train_card_#{item.id}"}>
+          <.card_content>
+            <.flex justify="between" align="center" direction="row">
+              <.stack gap={0} align="center" direction="column">
+                <.text variant="h3" weight="bold"><%= item.departure_time %></.text>
+                <.text variant="caption" color="muted"><%= item.departure_station %></.text>
+              </.stack>
+              <.stack gap={0} align="center" direction="column">
+                <.text variant="caption" color="muted"><%= item.duration %></.text>
+                <.separator />
+                <.text variant="caption" color="muted"><%= item.train_no %> <%= item.train_type %></.text>
+              </.stack>
+              <.stack gap={0} align="center" direction="column">
+                <.text variant="h3" weight="bold"><%= item.arrival_time %></.text>
+                <.text variant="caption" color="muted"><%= item.arrival_station %></.text>
+              </.stack>
+            </.flex>
+          </.card_content>
+          <.card_footer>
+            <.flex justify="between" align="center" direction="row">
+              <.flex gap={1} wrap={true} direction="row">
+                <.badge variant="outline" size="sm"><%= item.seat_class %></.badge>
+                <%= if item.is_policy_exceeded do %>
+                  <.badge variant="destructive" size="sm">超标</.badge>
+                <% end %>
+              </.flex>
+              <.text variant="h3" color="primary">¥ <%= item.price %></.text>
+            </.flex>
+          </.card_footer>
+        </.card>
+      <% end %>
+    </.stack>
   </.section>
   <.section layout="none" id="empty_section">
     <%= if @results.total_count == 0 do %>
