@@ -40,37 +40,37 @@
         [FLEX: quick_links_grid]
           { Gap: 2, Justify: "SpaceAround", PaddingY: 2, Wrap: true }
           [STACK: link_orders]
+            ATTR: Click("navigate:/travel/orders")
             { Gap: 1, Align: "Center" }
             [ICON: orders_icon]
               ATTR: Name("file-text"), Size("lg"), Color("primary")
             [TEXT: orders_label]
               ATTR: Variant("caption")
               CONTENT: "我的订单"
-            ATTR: Click("navigate:/travel/orders")
           [STACK: link_approvals]
+            ATTR: Click("navigate:/travel/my-approvals")
             { Gap: 1, Align: "Center" }
             [ICON: approvals_icon]
               ATTR: Name("check-square"), Size("lg"), Color("primary")
             [TEXT: approvals_label]
               ATTR: Variant("caption")
               CONTENT: "我的审批"
-            ATTR: Click("navigate:/travel/my-approvals")
           [STACK: link_trip_request]
+            ATTR: Click("navigate:/travel/request/new")
             { Gap: 1, Align: "Center" }
             [ICON: trip_request_icon]
               ATTR: Name("map-pin"), Size("lg"), Color("primary")
             [TEXT: trip_request_label]
               ATTR: Variant("caption")
               CONTENT: "出差申请"
-            ATTR: Click("navigate:/travel/request/new")
           [STACK: link_expense]
+            ATTR: Click("navigate:/travel/expense")
             { Gap: 1, Align: "Center" }
             [ICON: expense_icon]
               ATTR: Name("receipt"), Size("lg"), Color("primary")
             [TEXT: expense_label]
               ATTR: Variant("caption")
               CONTENT: "差旅报销"
-            ATTR: Click("navigate:/travel/expense")
 
   # 出差统计
   [SECTION: stats_section]
@@ -112,7 +112,7 @@
             [FLEX: pending_count_row]
               { Gap: 1, Align: "Center" }
               [TEXT: pending_count_value]
-                ATTR: Variant("h2"), Color("{{stats.pending_count > 0 ? 'warning' : 'primary'}}"), Weight("bold")
+                ATTR: Variant("h2"), Color("primary"), Weight("bold")
                 CONTENT: "{{stats.pending_count|0}}"
             [TEXT: pending_label]
               ATTR: Variant("caption"), Color("muted")
@@ -125,6 +125,7 @@
         [STACK: settings_list]
           { Gap: 0 }
           [FLEX: setting_common_travelers]
+            ATTR: Click("navigate:/travel/traveler-management")
             { Justify: "Between", Align: "Center", PaddingY: 3 }
             [FLEX: setting_item_left]
               { Gap: 3, Align: "Center" }
@@ -135,9 +136,9 @@
                 CONTENT: "常用出行人"
             [ICON: chevron_right_1]
               ATTR: Name("chevron-right"), Size("sm"), Color("muted")
-            ATTR: Click("navigate:/travel/traveler-management")
           [SEPARATOR: sep_travelers]
           [FLEX: setting_invoice_header]
+            ATTR: Click("navigate:/travel/invoice-headers")
             { Justify: "Between", Align: "Center", PaddingY: 3 }
             [FLEX: setting_invoice_left]
               { Gap: 3, Align: "Center" }
@@ -148,9 +149,9 @@
                 CONTENT: "发票抬头"
             [ICON: chevron_right_2]
               ATTR: Name("chevron-right"), Size("sm"), Color("muted")
-            ATTR: Click("navigate:/travel/invoice-headers")
           [SEPARATOR: sep_invoice]
           [FLEX: setting_notifications]
+            ATTR: Click("navigate:/travel/notifications")
             { Justify: "Between", Align: "Center", PaddingY: 3 }
             [FLEX: setting_notif_left]
               { Gap: 3, Align: "Center" }
@@ -161,9 +162,9 @@
                 CONTENT: "消息通知"
             [ICON: chevron_right_3]
               ATTR: Name("chevron-right"), Size("sm"), Color("muted")
-            ATTR: Click("navigate:/travel/notifications")
           [SEPARATOR: sep_notifications]
           [FLEX: setting_policy]
+            ATTR: Click("navigate:/travel/policy")
             { Justify: "Between", Align: "Center", PaddingY: 3 }
             [FLEX: setting_policy_left]
               { Gap: 3, Align: "Center" }
@@ -174,4 +175,3 @@
                 CONTENT: "差旅政策"
             [ICON: chevron_right_4]
               ATTR: Name("chevron-right"), Size("sm"), Color("muted")
-            ATTR: Click("navigate:/travel/policy")

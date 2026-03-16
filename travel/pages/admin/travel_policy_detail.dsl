@@ -99,7 +99,7 @@
             [TEXT: label_is_active]
               ATTR: Variant("muted")
               CONTENT: "是否启用"
-            [TEXT: value_is_active]
+            [BADGE: value_is_active]
               CONTENT: "{{record.is_active|}}"
           [FLEX: field_enterprise_id]
             [TEXT: label_enterprise_id]
@@ -114,12 +114,6 @@
             { Columns: 2, Gap: 4 }
             [INPUT: form_policy_name]
               ATTR: Name("policy_name"), Label("政策名称"), Placeholder("请输入政策名称"), Required("true")
-            [SELECT: form_product_type]
-              ATTR: Name("product_type"), Label("适用商品类型"), Required("true")
-            [INPUT: form_employee_level]
-              ATTR: Name("employee_level"), Label("职级标识"), Placeholder("请输入职级标识")
-            [INPUT: form_city_tier]
-              ATTR: Name("city_tier"), Label("城市等级"), Placeholder("请输入城市等级")
             [INPUT: form_season]
               ATTR: Name("season"), Label("淡旺季标识"), Placeholder("请输入淡旺季标识")
             [INPUT: form_max_amount]
@@ -132,10 +126,8 @@
               ATTR: Name("exceed_strategy"), Label("超标处理策略"), Required("true")
             [INPUT: form_personal_pay_ratio]
               ATTR: Name("personal_pay_ratio"), Label("个人支付比例"), Placeholder("请输入个人支付比例")
-            [INPUT: form_is_active]
-              ATTR: Name("is_active"), Label("是否启用"), Placeholder("请输入是否启用")
-            [INPUT: form_enterprise_id]
-              ATTR: Name("enterprise_id"), Label("企业标识"), Placeholder("请输入企业标识")
+            [SWITCH: form_is_active]
+              ATTR: Name("is_active"), Label("是否启用")
           [FLEX: travel_policy_form_actions]
             { Justify: "End", Gap: 2 }
             [BUTTON: travel_policy_cancel_btn]

@@ -21,77 +21,47 @@
         CONTENT: "改签单详情"
       [BADGE: travel_change_order_status_badge]
         CONTENT: "{{record.status|}}"
-    [FLEX: travel_change_order_actions]
-      { Gap: 2 }
-      [BUTTON: travel_change_order_edit_btn]
-        ATTR: Variant("secondary"), Click("toggle_edit")
-        CONTENT: "编辑"
 
   [CARD: travel_change_order_info_card]
     [CARD_HEADER: travel_change_order_info_header]
       [CARD_TITLE: travel_change_order_info_title]
         CONTENT: "基本信息"
     [CARD_CONTENT: travel_change_order_info_content]
-      [IF: !editing]
-        [GRID: travel_change_order_info_grid]
-          { Columns: 2, Gap: 4 }
-          [FLEX: field_original_order_id]
-            [TEXT: label_original_order_id]
-              ATTR: Variant("muted")
-              CONTENT: "原订单"
-            [TEXT: value_original_order_id]
-              CONTENT: "{{record.original_order_id|}}"
-          [FLEX: field_change_reason]
-            [TEXT: label_change_reason]
-              ATTR: Variant("muted")
-              CONTENT: "改签原因"
-            [TEXT: value_change_reason]
-              CONTENT: "{{record.change_reason|}}"
-          [FLEX: field_price_difference]
-            [TEXT: label_price_difference]
-              ATTR: Variant("muted")
-              CONTENT: "差价"
-            [TEXT: value_price_difference]
-              CONTENT: "{{record.price_difference|}}"
-          [FLEX: field_change_fee]
-            [TEXT: label_change_fee]
-              ATTR: Variant("muted")
-              CONTENT: "改签手续费"
-            [TEXT: value_change_fee]
-              CONTENT: "{{record.change_fee|}}"
-          [FLEX: field_new_offer_id]
-            [TEXT: label_new_offer_id]
-              ATTR: Variant("muted")
-              CONTENT: "新报价ID"
-            [TEXT: value_new_offer_id]
-              CONTENT: "{{record.new_offer_id|}}"
-          [FLEX: field_status]
-            [TEXT: label_status]
-              ATTR: Variant("muted")
-              CONTENT: "状态"
-            [BADGE: value_status]
-              CONTENT: "{{record.status|}}"
-      [ELSE]
-        [FORM: travel_change_order_edit_form]
-          ATTR: Submit("form_submit"), Change("form_change")
-          [GRID: travel_change_order_form_grid]
-            { Columns: 2, Gap: 4 }
-            [INPUT: form_change_reason]
-              ATTR: Name("change_reason"), Label("改签原因"), Placeholder("请输入改签原因")
-            [INPUT: form_price_difference]
-              ATTR: Name("price_difference"), Label("差价"), Placeholder("请输入差价")
-            [INPUT: form_change_fee]
-              ATTR: Name("change_fee"), Label("改签手续费"), Placeholder("请输入改签手续费")
-            [INPUT: form_new_offer_id]
-              ATTR: Name("new_offer_id"), Label("新报价ID"), Placeholder("请输入新报价ID")
-            [SELECT: form_status]
-              ATTR: Name("status"), Label("状态")
-          [FLEX: travel_change_order_form_actions]
-            { Justify: "End", Gap: 2 }
-            [BUTTON: travel_change_order_cancel_btn]
-              ATTR: Variant("secondary"), Click("cancel_edit")
-              CONTENT: "取消"
-            [BUTTON: travel_change_order_save_btn]
-              ATTR: Variant("primary"), Click("form_submit")
-              CONTENT: "保存"
-      [/IF]
+      [GRID: travel_change_order_info_grid]
+        { Columns: 2, Gap: 4 }
+        [FLEX: field_original_order_id]
+          [TEXT: label_original_order_id]
+            ATTR: Variant("muted")
+            CONTENT: "原订单"
+          [TEXT: value_original_order_id]
+            CONTENT: "{{record.original_order_id|}}"
+        [FLEX: field_change_reason]
+          [TEXT: label_change_reason]
+            ATTR: Variant("muted")
+            CONTENT: "改签原因"
+          [TEXT: value_change_reason]
+            CONTENT: "{{record.change_reason|}}"
+        [FLEX: field_price_difference]
+          [TEXT: label_price_difference]
+            ATTR: Variant("muted")
+            CONTENT: "差价"
+          [TEXT: value_price_difference]
+            CONTENT: "{{record.price_difference|}}"
+        [FLEX: field_change_fee]
+          [TEXT: label_change_fee]
+            ATTR: Variant("muted")
+            CONTENT: "改签手续费"
+          [TEXT: value_change_fee]
+            CONTENT: "{{record.change_fee|}}"
+        [FLEX: field_new_offer_id]
+          [TEXT: label_new_offer_id]
+            ATTR: Variant("muted")
+            CONTENT: "新报价ID"
+          [TEXT: value_new_offer_id]
+            CONTENT: "{{record.new_offer_id|}}"
+        [FLEX: field_status]
+          [TEXT: label_status]
+            ATTR: Variant("muted")
+            CONTENT: "状态"
+          [BADGE: value_status]
+            CONTENT: "{{record.status|}}"

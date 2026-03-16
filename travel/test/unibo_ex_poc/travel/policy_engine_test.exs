@@ -92,7 +92,7 @@ defmodule UniboExPoc.Travel.PolicyEngineTest do
   # 构建测试用的 policy struct（不依赖数据库）
   defp build_policy(attrs) do
     defaults = %{
-      id: Ash.UUID.generate(),
+      id: "00000000-0000-0000-0000-000000000001",
       policy_name: "测试差旅标准",
       product_type: :flight,
       employee_level: nil,

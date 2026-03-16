@@ -21,69 +21,41 @@
         CONTENT: "退票单详情"
       [BADGE: travel_refund_order_status_badge]
         CONTENT: "{{record.status|}}"
-    [FLEX: travel_refund_order_actions]
-      { Gap: 2 }
-      [BUTTON: travel_refund_order_edit_btn]
-        ATTR: Variant("secondary"), Click("toggle_edit")
-        CONTENT: "编辑"
 
   [CARD: travel_refund_order_info_card]
     [CARD_HEADER: travel_refund_order_info_header]
       [CARD_TITLE: travel_refund_order_info_title]
         CONTENT: "基本信息"
     [CARD_CONTENT: travel_refund_order_info_content]
-      [IF: !editing]
-        [GRID: travel_refund_order_info_grid]
-          { Columns: 2, Gap: 4 }
-          [FLEX: field_original_order_id]
-            [TEXT: label_original_order_id]
-              ATTR: Variant("muted")
-              CONTENT: "原订单"
-            [TEXT: value_original_order_id]
-              CONTENT: "{{record.original_order_id|}}"
-          [FLEX: field_refund_reason]
-            [TEXT: label_refund_reason]
-              ATTR: Variant("muted")
-              CONTENT: "退票原因"
-            [TEXT: value_refund_reason]
-              CONTENT: "{{record.refund_reason|}}"
-          [FLEX: field_refund_fee]
-            [TEXT: label_refund_fee]
-              ATTR: Variant("muted")
-              CONTENT: "退票手续费"
-            [TEXT: value_refund_fee]
-              CONTENT: "{{record.refund_fee|}}"
-          [FLEX: field_refund_amount]
-            [TEXT: label_refund_amount]
-              ATTR: Variant("muted")
-              CONTENT: "实退金额"
-            [TEXT: value_refund_amount]
-              CONTENT: "{{record.refund_amount|}}"
-          [FLEX: field_status]
-            [TEXT: label_status]
-              ATTR: Variant("muted")
-              CONTENT: "状态"
-            [BADGE: value_status]
-              CONTENT: "{{record.status|}}"
-      [ELSE]
-        [FORM: travel_refund_order_edit_form]
-          ATTR: Submit("form_submit"), Change("form_change")
-          [GRID: travel_refund_order_form_grid]
-            { Columns: 2, Gap: 4 }
-            [INPUT: form_refund_reason]
-              ATTR: Name("refund_reason"), Label("退票原因"), Placeholder("请输入退票原因")
-            [INPUT: form_refund_fee]
-              ATTR: Name("refund_fee"), Label("退票手续费"), Placeholder("请输入退票手续费")
-            [INPUT: form_refund_amount]
-              ATTR: Name("refund_amount"), Label("实退金额"), Placeholder("请输入实退金额")
-            [SELECT: form_status]
-              ATTR: Name("status"), Label("状态")
-          [FLEX: travel_refund_order_form_actions]
-            { Justify: "End", Gap: 2 }
-            [BUTTON: travel_refund_order_cancel_btn]
-              ATTR: Variant("secondary"), Click("cancel_edit")
-              CONTENT: "取消"
-            [BUTTON: travel_refund_order_save_btn]
-              ATTR: Variant("primary"), Click("form_submit")
-              CONTENT: "保存"
-      [/IF]
+      [GRID: travel_refund_order_info_grid]
+        { Columns: 2, Gap: 4 }
+        [FLEX: field_original_order_id]
+          [TEXT: label_original_order_id]
+            ATTR: Variant("muted")
+            CONTENT: "原订单"
+          [TEXT: value_original_order_id]
+            CONTENT: "{{record.original_order_id|}}"
+        [FLEX: field_refund_reason]
+          [TEXT: label_refund_reason]
+            ATTR: Variant("muted")
+            CONTENT: "退票原因"
+          [TEXT: value_refund_reason]
+            CONTENT: "{{record.refund_reason|}}"
+        [FLEX: field_refund_fee]
+          [TEXT: label_refund_fee]
+            ATTR: Variant("muted")
+            CONTENT: "退票手续费"
+          [TEXT: value_refund_fee]
+            CONTENT: "{{record.refund_fee|}}"
+        [FLEX: field_refund_amount]
+          [TEXT: label_refund_amount]
+            ATTR: Variant("muted")
+            CONTENT: "实退金额"
+          [TEXT: value_refund_amount]
+            CONTENT: "{{record.refund_amount|}}"
+        [FLEX: field_status]
+          [TEXT: label_status]
+            ATTR: Variant("muted")
+            CONTENT: "状态"
+          [BADGE: value_status]
+            CONTENT: "{{record.status|}}"

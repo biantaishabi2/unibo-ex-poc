@@ -80,10 +80,10 @@
               ATTR: Name("position_name"), Label("职级名称"), Placeholder("请输入职级名称"), Required("true")
             [INPUT: form_position_code]
               ATTR: Name("position_code"), Label("职级编码"), Placeholder("请输入职级编码"), Required("true")
-            [INPUT: form_position_level]
-              ATTR: Name("position_level"), Label("级别"), Placeholder("请输入级别")
-            [INPUT: form_travel_level]
-              ATTR: Name("travel_level"), Label("差旅等级"), Placeholder("请输入差旅等级")
+            [SELECT: form_position_level]
+              ATTR: Name("position_level"), Label("级别")
+            [SELECT: form_travel_level]
+              ATTR: Name("travel_level"), Label("差旅等级")
             [INPUT: form_description]
               ATTR: Name("description"), Label("描述"), Placeholder("请输入描述")
             [SELECT: form_status]

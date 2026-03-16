@@ -86,10 +86,10 @@
               ATTR: Name("department_name"), Label("部门名称"), Placeholder("请输入部门名称"), Required("true")
             [INPUT: form_department_code]
               ATTR: Name("department_code"), Label("部门编码"), Placeholder("请输入部门编码"), Required("true")
-            [INPUT: form_parent_department]
-              ATTR: Name("parent_department"), Label("上级部门"), Placeholder("请输入上级部门")
-            [INPUT: form_manager_name]
-              ATTR: Name("manager_name"), Label("负责人"), Placeholder("请输入负责人")
+            [SELECT: form_parent_department]
+              ATTR: Name("parent_department"), Label("上级部门")
+            [SELECT: form_manager_name]
+              ATTR: Name("manager_name"), Label("负责人")
             [INPUT: form_description]
               ATTR: Name("description"), Label("描述"), Placeholder("请输入描述")
             [SELECT: form_status]

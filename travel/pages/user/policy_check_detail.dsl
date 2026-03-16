@@ -25,8 +25,9 @@
           CONTENT: "已拦截"
       [/IF]
 
-  # 差标对比卡片
+  # 差标对比卡片（仅非合规场景显示）
   [SECTION: comparison_section]
+    [IF: check.check_result != "compliant"]
     [CARD: comparison_card]
       [CARD_HEADER: comparison_card_header]
         [TEXT: comparison_title]
@@ -71,10 +72,11 @@
             ATTR: Title("超标比例"), Value("{{check.exceed_ratio|0%}}"), Color("destructive")
           [STATISTIC: strategy_stat]
             ATTR: Title("处理策略"), Value("{{check.exceed_strategy_label|}}")
+    [/IF]
 
   # 超标原因
   [SECTION: reason_section]
-    [IF: check.exceed_reason != ""]
+    [IF: check.exceed_reason != nil]
       [CARD: reason_card]
         [CARD_HEADER: reason_card_header]
           [TEXT: reason_title]
@@ -103,9 +105,10 @@
               ATTR: Title("个人支付"), Value("¥{{check.personal_pay_amount|}}"), Color("warning")
     [/IF]
 
-  # 审批链时间线（require_approval 策略时显示）
+  # 审批链时间线（超标且策略为需审批时显示）
   [SECTION: approval_timeline_section]
-    [IF: check.exceed_strategy == "require_approval"]
+    [IF: check.check_result == "exceeded"]
+      [IF: check.exceed_strategy == "require_approval"]
       [CARD: timeline_card]
         [CARD_HEADER: timeline_card_header]
           [TEXT: timeline_title]
@@ -149,17 +152,18 @@
                   [TEXT: node_approver_name]
                     ATTR: Variant("caption"), Color("muted")
                     CONTENT: "{{node.approver_name|}}"
-                  [IF: node.completed_at != ""]
+                  [IF: node.completed_at != nil]
                     [TEXT: node_completed_time]
                       ATTR: Variant("caption"), Color("muted")
                       CONTENT: "{{node.completed_at|}}"
                   [/IF]
-                  [IF: node.comment != ""]
+                  [IF: node.comment != nil]
                     [TEXT: node_comment]
                       ATTR: Variant("caption")
                       CONTENT: "\"{{node.comment|}}\""
                   [/IF]
             [/FOR]
+      [/IF]
     [/IF]
 
   # 关联订单信息

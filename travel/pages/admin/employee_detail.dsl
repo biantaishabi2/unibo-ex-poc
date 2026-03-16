@@ -98,10 +98,10 @@
               ATTR: Name("employee_name"), Label("姓名"), Placeholder("请输入姓名"), Required("true")
             [INPUT: form_employee_code]
               ATTR: Name("employee_code"), Label("员工编号"), Placeholder("请输入员工编号"), Required("true")
-            [INPUT: form_department]
-              ATTR: Name("department"), Label("部门"), Placeholder("请选择部门")
-            [INPUT: form_job_position]
-              ATTR: Name("job_position"), Label("职级"), Placeholder("请选择职级")
+            [SELECT: form_department]
+              ATTR: Name("department"), Label("部门")
+            [SELECT: form_job_position]
+              ATTR: Name("job_position"), Label("职级")
             [INPUT: form_email]
               ATTR: Name("email"), Label("邮箱"), Placeholder("请输入邮箱")
             [INPUT: form_phone]

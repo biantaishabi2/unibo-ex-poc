@@ -212,7 +212,7 @@
 
   # 底部操作栏（仅当前审批人可操作且状态为待审批时显示）
   [IF: approval.current_user_can_act == true]
-    [CONTROLBAR: approval_action_bar]
+    [CONTROL_BAR: approval_action_bar]
       ATTR: Position("sticky_bottom")
       [FLEX: action_bar_content]
         { Gap: 2, Width: "full" }

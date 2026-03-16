@@ -38,7 +38,7 @@
               [TEXTAREA: trip_purpose]
                 ATTR: Label("出差事由"), Name("purpose"), Required(true), Placeholder("请描述出差目的和主要工作内容"), Rows(3)
               [DATE_RANGE_PICKER: trip_date_range]
-                ATTR: Label("出差日期"), Name("date_range", required=true), StartPlaceholder("出发日期"), EndPlaceholder("返回日期")
+                ATTR: Label("出差日期"), Name("date_range"), Required("true"), StartPlaceholder("出发日期"), EndPlaceholder("返回日期")
               [SELECT: trip_destination]
                 ATTR: Label("目的城市"), Name("destination_city"), Required(true), Placeholder("请选择目的城市")
               [INPUT: trip_destination_detail]

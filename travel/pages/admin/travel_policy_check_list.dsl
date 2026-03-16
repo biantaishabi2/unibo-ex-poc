@@ -6,9 +6,6 @@
     [TEXT: travel_policy_check_title]
       ATTR: Variant("title")
       CONTENT: "{{page_title|TravelPolicyCheck 列表}}"
-    [BUTTON: travel_policy_check_create_btn]
-      ATTR: Variant("primary"), Click("navigate_create")
-      CONTENT: "新建"
 
   [CARD: travel_policy_check_filter_card]
     [CARD_CONTENT: travel_policy_check_filter_content]

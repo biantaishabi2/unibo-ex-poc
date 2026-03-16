@@ -10,28 +10,29 @@
       ATTR: Variant("primary"), Click("create_category")
       CONTENT: "新建"
 
-  [STACK: category_list]
+  [FLEX: category_list]
+    { Direction: "Column" }
     [FOR: category in categories]
       [CARD: category_card]
         [CARD_HEADER: category_card_header]
-          { Direction: "Row", Justify: "Between", Align: "Center" }
-          [FLEX: category_card_title_group]
-            { Gap: 3, Align: "Center" }
-            [TEXT: category_name_text]
-              ATTR: Variant("subtitle")
-              CONTENT: "{{category.category_name|}}"
-            [BADGE: category_trigger_badge]
-              CONTENT: "{{category.trigger_condition|}}"
-          [FLEX: category_card_actions]
-            { Gap: 2 }
-            [BUTTON: category_expand_btn]
-              ATTR: Variant("ghost"), Click("toggle_expand")
-              CONTENT: "展开/编辑"
+          [FLEX: category_card_header_row]
+            { Direction: "Row", Justify: "Between", Align: "Center" }
+            [FLEX: category_card_title_group]
+              { Gap: 3, Align: "Center" }
+              [TEXT: category_name_text]
+                ATTR: Variant("subtitle")
+                CONTENT: "{{category.category_name|}}"
+              [BADGE: category_trigger_badge]
+                CONTENT: "{{category.trigger_condition|}}"
+            [FLEX: category_card_actions]
+              { Gap: 2 }
+              [BUTTON: category_expand_btn]
+                ATTR: Variant("ghost"), Click("toggle_expand")
+                CONTENT: "展开/编辑"
         [CARD_CONTENT: category_card_content]
           [TEXT: category_approval_chain_summary]
             ATTR: Variant("muted")
             CONTENT: "{{category.approval_chain_summary|}}"
-      [/CARD]
     [/FOR]
 
   [IF: editing]
@@ -51,7 +52,8 @@
           [TEXT: approval_chain_label]
             ATTR: Variant("subtitle")
             CONTENT: "审批链配置"
-          [STACK: approval_chain_nodes]
+          [FLEX: approval_chain_nodes]
+            { Direction: "Column" }
             [FOR: node in approval_nodes]
               [FLEX: approval_node_row]
                 { Gap: 3, Align: "Center" }

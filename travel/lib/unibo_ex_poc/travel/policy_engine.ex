@@ -93,7 +93,7 @@ defmodule UniboExPoc.Travel.PolicyEngine do
         case policy.exceed_strategy do
           :personal_pay ->
             pay_ratio = policy.personal_pay_ratio || 100
-            div(exceed * pay_ratio, 100)
+            round(exceed * pay_ratio / 100)
 
           _ ->
             nil
@@ -138,6 +138,10 @@ defmodule UniboExPoc.Travel.PolicyEngine do
 
   def apply_strategy(%{check_result: :exceeded, exceed_strategy: "personal_pay"} = check) do
     {:ok, :personal_pay, check.personal_pay_amount}
+  end
+
+  def apply_strategy(%{check_result: :exceeded} = check) do
+    {:error, {:unknown_strategy, check[:exceed_strategy]}}
   end
 
   @doc """

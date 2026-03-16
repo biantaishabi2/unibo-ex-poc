@@ -53,6 +53,12 @@
               CONTENT: "描述"
             [TEXT: value_description]
               CONTENT: "{{record.description|}}"
+          [FLEX: field_members]
+            [TEXT: label_members]
+              ATTR: Variant("muted")
+              CONTENT: "成员列表"
+            [TEXT: value_members]
+              CONTENT: "{{record.members|}}"
           [FLEX: field_permissions]
             [TEXT: label_permissions]
               ATTR: Variant("muted")
