@@ -21,8 +21,20 @@ defmodule HospitalScheduling.Solver.SnapshotAssembler do
          {:ok, constraints} <- load_constraints(period.department_id),
          {:ok, shift_types} <- load_shift_types(period.department_id),
          {:ok, profiles} <- load_medical_staff_profiles(period.department_id),
+         {:ok, employees} <- load_employees(profiles),
          {:ok, preferences} <- load_shift_preferences(period_id) do
-      snapshot = build_snapshot(period, requirements, constraints, shift_types, profiles, preferences, opts)
+      snapshot =
+        build_snapshot(
+          period,
+          requirements,
+          constraints,
+          shift_types,
+          profiles,
+          employees,
+          preferences,
+          opts
+        )
+
       {:ok, snapshot}
     end
   end
@@ -63,6 +75,17 @@ defmodule HospitalScheduling.Solver.SnapshotAssembler do
     |> Ash.read(authorize?: false)
   end
 
+  defp load_employees(profiles) do
+    employee_ids =
+      profiles
+      |> Enum.map(& &1.employee_id)
+      |> Enum.uniq()
+
+    Scheduling.Employee
+    |> Ash.Query.filter(id in ^employee_ids)
+    |> Ash.read(authorize?: false)
+  end
+
   defp load_shift_preferences(period_id) do
     Scheduling.ShiftPreference
     |> Ash.Query.filter(period_id == ^period_id)
@@ -74,21 +97,33 @@ defmodule HospitalScheduling.Solver.SnapshotAssembler do
     end
   end
 
-  defp build_snapshot(period, requirements, constraints, shift_types, profiles, preferences, opts) do
+  defp build_snapshot(
+         period,
+         requirements,
+         constraints,
+         shift_types,
+         profiles,
+         employees,
+         preferences,
+         opts
+       ) do
     locked_assignments = Keyword.get(opts, :locked_assignments, [])
     seed = Keyword.get(opts, :seed, nil)
     timeout_ms = Keyword.get(opts, :timeout_ms, 30_000)
     engine_type = Keyword.get(opts, :engine_type, "cp_sat")
+    mode = Keyword.get(opts, :mode, "solve_from_blank")
 
     %{
       "period" => serialize_period(period),
       "requirements" => Enum.map(requirements, &serialize_requirement/1),
       "constraints" => Enum.map(constraints, &serialize_constraint/1),
       "shift_types" => Enum.map(shift_types, &serialize_shift_type/1),
+      "employees" => Enum.map(employees, &serialize_employee/1),
       "medical_staff_profiles" => Enum.map(profiles, &serialize_profile/1),
       "preferences" => Enum.map(preferences, &serialize_preference/1),
       "locked_assignments" => Enum.map(locked_assignments, &serialize_locked_assignment/1),
       "run_options" => %{
+        "mode" => mode,
         "seed" => seed,
         "timeout_ms" => timeout_ms,
         "engine_type" => engine_type
@@ -107,6 +142,8 @@ defmodule HospitalScheduling.Solver.SnapshotAssembler do
   end
 
   defp serialize_requirement(r) do
+    {starts_at, ends_at} = requirement_datetime_range(r)
+
     %{
       "id" => to_string(r.id),
       "date" => Date.to_iso8601(r.requirement_date),
@@ -116,7 +153,9 @@ defmodule HospitalScheduling.Solver.SnapshotAssembler do
       "min_headcount" => r.min_headcount,
       "target_headcount" => r.target_headcount || r.min_headcount,
       "required_lead_count" => r.required_lead_count,
-      "priority" => r.priority
+      "priority" => r.priority,
+      "starts_at" => starts_at,
+      "ends_at" => ends_at
     }
   end
 
@@ -135,10 +174,19 @@ defmodule HospitalScheduling.Solver.SnapshotAssembler do
       "id" => to_string(st.id),
       "code" => st.code,
       "name" => st.name,
-      "start_time" => st.start_time,
-      "end_time" => st.end_time,
+      "start_time" => time_to_string(st.start_time),
+      "end_time" => time_to_string(st.end_time),
       "duration_hours" => decimal_to_float(st.duration_hours),
       "is_night" => st.is_night
+    }
+  end
+
+  defp serialize_employee(employee) do
+    %{
+      "id" => to_string(employee.id),
+      "employee_code" => employee.employee_code,
+      "name" => employee.name,
+      "department_id" => Map.get(employee, :department_id)
     }
   end
 
@@ -184,6 +232,38 @@ defmodule HospitalScheduling.Solver.SnapshotAssembler do
   defp decimal_to_float(n) when is_number(n), do: n / 1
   defp decimal_to_float(s) when is_binary(s), do: String.to_float(s)
   defp decimal_to_float(nil), do: 0.0
+
+  defp requirement_datetime_range(requirement) do
+    start_time = parse_time!(requirement.shift_type.start_time)
+    end_time = parse_time!(requirement.shift_type.end_time)
+    start_naive = NaiveDateTime.new!(requirement.requirement_date, start_time)
+
+    end_date =
+      if Time.compare(end_time, start_time) in [:lt, :eq] do
+        Date.add(requirement.requirement_date, 1)
+      else
+        requirement.requirement_date
+      end
+
+    end_naive = NaiveDateTime.new!(end_date, end_time)
+
+    {
+      start_naive |> DateTime.from_naive!("Etc/UTC") |> DateTime.to_iso8601(),
+      end_naive |> DateTime.from_naive!("Etc/UTC") |> DateTime.to_iso8601()
+    }
+  end
+
+  defp time_to_string(%Time{} = time), do: Time.to_iso8601(time)
+  defp time_to_string(value), do: to_string(value)
+
+  defp parse_time!(%Time{} = time), do: time
+
+  defp parse_time!(value) when is_binary(value) do
+    case Time.from_iso8601(value) do
+      {:ok, time} -> time
+      {:error, _reason} -> raise ArgumentError, "invalid time string: #{inspect(value)}"
+    end
+  end
 
   defp serialize_locked_assignment(a) do
     %{

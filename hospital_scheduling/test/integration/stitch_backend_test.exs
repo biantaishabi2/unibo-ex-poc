@@ -222,6 +222,31 @@ defmodule HospitalScheduling.Integration.StitchBackendTest do
   describe "dispatch 链路 — 自定义 action" do
     setup do
       dept = create_department!()
+      employee_id = Ash.UUID.generate()
+      {:ok, employee_bin_id} = Ecto.UUID.dump(employee_id)
+
+      {:ok, _} =
+        Ecto.Adapters.SQL.query(
+          HospitalScheduling.Repo,
+          "INSERT INTO scheduling_employees (id, employee_code, name) VALUES ($1, $2, $3)",
+          [employee_bin_id, "N900", "后端联调护士"]
+        )
+
+      {:ok, employee} = Ash.get(Scheduling.Employee, employee_id, authorize?: false)
+
+      shift_type =
+        Ash.create!(
+          Scheduling.ShiftType
+          |> Ash.Changeset.for_create(:create, %{
+            name: "白班",
+            code: "DAY",
+            start_time: "08:00:00",
+            end_time: "16:00:00",
+            duration_hours: 8.0,
+            department_id: dept.id
+          }),
+          authorize?: false
+        )
 
       period =
         Ash.create!(
@@ -235,10 +260,36 @@ defmodule HospitalScheduling.Integration.StitchBackendTest do
           authorize?: false
         )
 
-      %{dept: dept, period: period}
+      _requirement =
+        Ash.create!(
+          Scheduling.CoverageRequirement
+          |> Ash.Changeset.for_create(:create, %{
+            period_id: period.id,
+            shift_type_id: shift_type.id,
+            requirement_date: ~D[2026-04-01],
+            role_code: "nurse",
+            min_headcount: 1
+          }),
+          authorize?: false
+        )
+
+      _profile =
+        Ash.create!(
+          Scheduling.MedicalStaffProfile
+          |> Ash.Changeset.for_create(:create, %{
+            employee_id: employee.id,
+            department_id: dept.id,
+            maturity_score: Decimal.new("60"),
+            can_lead_shift: false,
+            overtime_willing: false
+          }),
+          authorize?: false
+        )
+
+      %{dept: dept, period: period, employee: employee, shift_type: shift_type}
     end
 
-    test "scheduling_period_detail start_generating 状态转换", %{period: period} do
+    test "scheduling_period_detail start_generating 会触发真实求解并产出版本", %{period: period} do
       {:ok, backend_result} =
         StitchBackend.dispatch(
           "action_start_generating",
@@ -247,7 +298,13 @@ defmodule HospitalScheduling.Integration.StitchBackendTest do
         )
 
       assert backend_result.errors == []
-      assert backend_result.dto["record"]["state"] == "generating"
+      assert backend_result.dto["record"]["state"] == "generated"
+
+      updated_period =
+        Ash.get!(Scheduling.SchedulingPeriod, period.id, authorize?: false)
+
+      assert updated_period.current_version_id != nil
+      assert updated_period.last_solver_run_id != nil
     end
   end
 end

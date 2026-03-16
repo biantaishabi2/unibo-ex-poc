@@ -8,7 +8,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   use MyAppWeb, :live_view
 
-  @page_id "MyAppWeb.Pages.StitchGeneratedLive"
+  @page_id "scheduling_period_list"
   @page_title "Untitled Page"
 
   # status.keys preview (first ~40): page_title, rows, rows[], rows[].department, rows[].department.name, rows[].end_date, rows[].generation_mode, rows[].start_date, rows[].state, rows[].title, rows_empty
@@ -56,8 +56,10 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event nil
-  @backend_api_map %{}
-  @status_key_roots []
+  @backend_api_map %{
+    "list" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+  }
+  @status_key_roots [:rows, :rows_empty, :filter, :loading]
   @auth_mode "optional"
   @user_context_assigns []
 

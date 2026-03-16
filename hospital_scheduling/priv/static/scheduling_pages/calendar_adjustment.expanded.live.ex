@@ -8,7 +8,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   use MyAppWeb, :live_view
 
-  @page_id "MyAppWeb.Pages.StitchGeneratedLive"
+  @page_id "calendar_adjustment"
   @page_title "Untitled Page"
 
   # status.keys preview (first ~40): coverage_rate, current_week_label, employees, employees[], employees[].daily_assignments, employees[].daily_assignments[], employees[].daily_assignments[].shift_type, employees[].daily_assignments[].shift_type.name, employees[].name, employees[].role_code, live_violations, live_violations[], live_violations[].message, live_violations[].severity, manual_change_count, no_violations, period, period.title
@@ -93,8 +93,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event nil
-  @backend_api_map %{}
-  @status_key_roots []
+  @backend_api_map %{
+    "list" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "save_draft" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "filter_submit" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+  }
+  @status_key_roots [:period, :employees, :manual_change_count, :coverage_rate, :live_violations, :no_violations, :current_week_label]
   @auth_mode "optional"
   @user_context_assigns []
 

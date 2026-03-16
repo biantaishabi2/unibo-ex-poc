@@ -78,7 +78,7 @@ defmodule HospitalScheduling.Scheduling.ConstraintViolation do
     create :create do
       description "Create Constraint Violation via Create. doc_url: graphql://contract/scheduling/create_scheduling_constraint_violation"
       primary? true
-      accept [:rule_code, :severity, :message, :details_json]
+      accept [:period_id, :version_id, :assignment_id, :requirement_id, :rule_code, :severity, :message, :details_json]
       argument :period_id, :uuid, allow_nil?: false
       change manage_relationship(:period_id, :period, type: :append, on_lookup: :relate)
       argument :version_id, :uuid, allow_nil?: false

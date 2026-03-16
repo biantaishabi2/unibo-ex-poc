@@ -5,7 +5,7 @@ defmodule HospitalScheduling.Solver.Runner do
   负责完整的求解生命周期：
   1. 组装 input_snapshot
   2. 创建 SolverRun 记录
-  3. 调用 solver（当前先用 mock，后续接 Rust Port/NIF）
+  3. 调用 solver（默认走真实 CP-SAT bridge）
   4. 将结果写回数据库
   """
 
@@ -22,12 +22,12 @@ defmodule HospitalScheduling.Solver.Runner do
   - `:timeout_ms` - 超时毫秒数（默认 30000）
   - `:engine_type` - 算法标识（默认 "cp_sat"）
   - `:locked_assignments` - 锁定的排班列表
-  - `:solver_adapter` - solver 适配器模块（默认 MockSolverAdapter，测试用）
+  - `:solver_adapter` - solver 适配器模块（默认读取应用配置）
 
   返回 `{:ok, result}` 或 `{:error, reason}`。
   """
   def run(period_id, opts \\ []) do
-    solver_adapter = Keyword.get(opts, :solver_adapter, HospitalScheduling.Solver.MockAdapter)
+    solver_adapter = Keyword.get(opts, :solver_adapter, configured_solver_adapter())
 
     with {:ok, snapshot} <- SnapshotAssembler.assemble(period_id, opts),
          {:ok, period} <- load_period(period_id),
@@ -102,5 +102,14 @@ defmodule HospitalScheduling.Solver.Runner do
     if period.state == :generating do
       Ash.update(period, %{}, action: :mark_generated, authorize?: false)
     end
+  end
+
+  # 求解器开关统一从应用配置读取，避免页面运行时开关和 solver 开关混在一起。
+  defp configured_solver_adapter do
+    Application.get_env(
+      :hospital_scheduling,
+      :solver_adapter,
+      HospitalScheduling.Solver.MockAdapter
+    )
   end
 end

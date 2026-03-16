@@ -68,7 +68,7 @@ defmodule HospitalScheduling.Scheduling.ShiftPreference do
     create :create do
       description "Create Shift Preference via Create. doc_url: graphql://contract/scheduling/create_scheduling_shift_preference"
       primary? true
-      accept [:preferred_shift_tags, :unavailable_dates, :max_night_shifts, :notes]
+      accept [:employee_id, :period_id, :preferred_shift_tags, :unavailable_dates, :max_night_shifts, :notes]
       argument :employee_id, :uuid, allow_nil?: false
       change manage_relationship(:employee_id, :employee, type: :append, on_lookup: :relate)
     end

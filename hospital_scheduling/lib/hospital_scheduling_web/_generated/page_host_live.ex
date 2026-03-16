@@ -166,12 +166,16 @@ defmodule HospitalSchedulingWeb.Generated.PageHostLive do
   end
 
   defp dispatch_backend(event, params, socket) do
+    merged_params =
+      socket.assigns.page_params
+      |> Map.merge(params || %{})
+
     result =
       PageHostRuntime.dispatch(
         socket.assigns.page_backend,
         socket.assigns.page,
         event,
-        params,
+        merged_params,
         Map.get(socket.assigns, :page_data, %{})
       )
 

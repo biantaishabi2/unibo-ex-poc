@@ -8,7 +8,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   use MyAppWeb, :live_view
 
-  @page_id "MyAppWeb.Pages.StitchGeneratedLive"
+  @page_id "publish_preview"
   @page_title "Untitled Page"
 
   # status.keys preview (first ~40): affected_employee_count, change_count, changes, changes[], changes[].date, changes[].employee, changes[].employee.name, changes[].new_shift_type, changes[].old_shift_type, changes[].reason, coverage_rate, hard_violation_count, has_hard_violations, has_warnings, no_changes, period, period.title, version, version.origin_type, version.version_no, warning_count
@@ -66,8 +66,12 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event nil
-  @backend_api_map %{}
-  @status_key_roots []
+  @backend_api_map %{
+    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "action_publish" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
+    "toggle_diff_mode" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+  }
+  @status_key_roots [:period, :version, :change_count, :affected_employee_count, :coverage_rate, :changes, :no_changes, :has_hard_violations, :warning_count]
   @auth_mode "optional"
   @user_context_assigns []
 

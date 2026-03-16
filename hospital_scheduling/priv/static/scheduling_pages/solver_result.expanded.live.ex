@@ -8,7 +8,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   use MyAppWeb, :live_view
 
-  @page_id "MyAppWeb.Pages.StitchGeneratedLive"
+  @page_id "solver_result"
   @page_title "Untitled Page"
 
   # status.keys preview (first ~40): has_hard_violations, period, period.title, run, run.engine_type, run.hard_violation_count, run.output_snapshot, run.output_snapshot.summary, run.output_snapshot.summary.assignment_count, run.output_snapshot.summary.covered_requirement_count, run.status, run.warning_count, violations, violations[], violations[].message, violations[].rule_code, violations[].severity, violations_empty
@@ -56,8 +56,10 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event nil
-  @backend_api_map %{}
-  @status_key_roots []
+  @backend_api_map %{
+    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+  }
+  @status_key_roots [:period, :run, :has_hard_violations, :violations_empty, :violations]
   @auth_mode "optional"
   @user_context_assigns []
 

@@ -4,9 +4,12 @@
   "domains": {
     "Scheduling": {
       "input_hashes": {
-        "/home/wangbo/document/unibo-origin-master-1257/models/scheduling/scheduling.ubo.yaml": "sha256:91755dd897a939b3cad5cc4bc18a0055c2271830620fcb23a87aecc2c90aea08"
+        "/tmp/.tmpQaN9Pk/scheduling/scheduling.ubo.yaml": "sha256:f857eb2683691da8b79e86833430476d17d177a663af10c1b79b27a633cb01c8"
       },
       "output_files": [
+        "hospital_scheduling/scheduling/changes/schedule_version/publish_version_call_1.ex",
+        "hospital_scheduling/scheduling/changes/scheduling_period/publish_call_5.ex",
+        "hospital_scheduling/scheduling/changes/scheduling_period/start_generating_call_1.ex",
         "hospital_scheduling/scheduling/constraint_violation.ex",
         "hospital_scheduling/scheduling/coverage_requirement.ex",
         "hospital_scheduling/scheduling/department.ex",

@@ -164,6 +164,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
         end
       end
       # message: "只有草稿状态可以开始生成"
+      change HospitalScheduling.Scheduling.Changes.SchedulingPeriod.StartGeneratingCall1
       change set_attribute(:state, :generating)
       require_atomic? false
     end
@@ -197,6 +198,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
         end
       end
       # message: "只有已生成或已调整状态可以发布"
+      change HospitalScheduling.Scheduling.Changes.SchedulingPeriod.PublishCall5
       change set_attribute(:state, :published)
       require_atomic? false
     end
