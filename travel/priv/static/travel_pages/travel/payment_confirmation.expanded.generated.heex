@@ -1,0 +1,144 @@
+<.page title="支付确认" id="payment_confirmation">
+  <.section padding={3} layout="none" id="main_content">
+    <.stack gap={3} direction="column" id="content_stack">
+      <.card variant="default" id="status_card">
+        <.card_content id="status_content">
+          <.stack gap={2} align="center" padding={4} direction="column" id="status_stack">
+            <%= if (@payment_completed && @payment_completed != []) do %>
+              <.icon name="check-circle" size="lg" color="success" id="success_icon" />
+              <.text variant="h2" weight="bold" id="success_text">
+                支付成功
+              </.text>
+            <% end %>
+            <%= if (@payment_pending && @payment_pending != []) do %>
+              <.icon name="clock" size="lg" color="warning" id="pending_icon" />
+              <.text variant="h2" weight="bold" id="pending_text">
+                支付处理中
+              </.text>
+            <% end %>
+            <%= if (@payment_failed && @payment_failed != []) do %>
+              <.icon name="x-circle" size="lg" color="destructive" id="fail_icon" />
+              <.text variant="h2" weight="bold" id="fail_text">
+                支付失败
+              </.text>
+              <.text variant="caption" color="muted" id="fail_hint">
+                请重试或选择其他支付方式
+              </.text>
+            <% end %>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="payment_method_card">
+        <.card_header id="method_header">
+          <.text variant="h4" weight="bold" id="method_title">
+            支付方式
+          </.text>
+        </.card_header>
+        <.card_content id="method_content">
+          <.flex justify="between" align="center" direction="row" id="method_row">
+            <.flex gap={2} align="center" direction="row" id="method_info">
+              <.icon name="building" size="sm" id="building_icon" />
+              <.text id="company_pay_label">
+                公司支付
+              </.text>
+            </.flex>
+            <.badge variant="secondary" size="sm" id="method_badge">
+              <%= @order.payment.payment_method %>
+            </.badge>
+          </.flex>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="fee_detail_card">
+        <.card_header id="fee_header">
+          <.text variant="h4" weight="bold" id="fee_title">
+            费用明细
+          </.text>
+        </.card_header>
+        <.card_content id="fee_content">
+          <.stack gap={2} direction="column" id="fee_stack">
+            <.flex justify="between" direction="row" id="total_amount_row">
+              <.text variant="caption" color="muted" id="total_amount_label">
+                订单金额
+              </.text>
+              <.text id="total_amount_value">
+                <%= @order.total_amount %>
+              </.text>
+            </.flex>
+            <%= if (@has_points_deduction && @has_points_deduction != []) do %>
+              <.flex justify="between" direction="row" id="points_row">
+                <.text variant="caption" color="muted" id="points_label">
+                  积分抵扣
+                </.text>
+                <.text color="success" id="points_value">
+                  <%= @order.points_deduction_amount %>
+                </.text>
+              </.flex>
+            <% end %>
+            <.separator id="fee_sep_1" />
+            <.flex justify="between" direction="row" id="payable_row">
+              <.text variant="body" weight="bold" id="payable_label">
+                实付金额
+              </.text>
+              <.text variant="h3" color="primary" id="payable_value">
+                <%= @order.payable_amount %>
+              </.text>
+            </.flex>
+            <.separator id="fee_sep_2" />
+            <.flex justify="between" direction="row" id="currency_row">
+              <.text variant="caption" color="muted" id="currency_label">
+                币种
+              </.text>
+              <.text id="currency_value">
+                <%= @order.currency %>
+              </.text>
+            </.flex>
+          </.stack>
+        </.card_content>
+      </.card>
+      <%= if (@payment_completed && @payment_completed != []) do %>
+        <.card variant="default" id="payment_info_card">
+          <.card_header id="payment_info_header">
+            <.text variant="h4" weight="bold" id="payment_info_title">
+              支付信息
+            </.text>
+          </.card_header>
+          <.card_content id="payment_info_content">
+            <.stack gap={2} direction="column" id="payment_info_stack">
+              <.flex justify="between" direction="row" id="payment_no_row">
+                <.text variant="caption" color="muted" id="payment_no_label">
+                  支付单号
+                </.text>
+                <.text id="payment_no_value">
+                  <%= @order.payment.payment_no %>
+                </.text>
+              </.flex>
+              <.flex justify="between" direction="row" id="paid_at_row">
+                <.text variant="caption" color="muted" id="paid_at_label">
+                  支付时间
+                </.text>
+                <.text id="paid_at_value">
+                  <%= @order.payment.paid_at %>
+                </.text>
+              </.flex>
+            </.stack>
+          </.card_content>
+        </.card>
+      <% end %>
+    </.stack>
+  </.section>
+  <.section layout="none" id="action_bar">
+    <.flex gap={2} direction="row" id="action_row">
+      <.button variant="primary" size="lg" phx-click="navigate:/travel/orders/{{order.id|}}" id="view_order_btn">
+        查看订单
+      </.button>
+      <.button variant="outline" size="lg" phx-click="navigate:/travel" id="go_home_btn">
+        回到首页
+      </.button>
+      <%= if (@payment_failed && @payment_failed != []) do %>
+        <.button variant="destructive" size="lg" id="retry_btn">
+          重新支付
+        </.button>
+      <% end %>
+    </.flex>
+  </.section>
+</.page>

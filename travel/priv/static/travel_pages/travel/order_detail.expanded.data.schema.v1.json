@@ -1,0 +1,449 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "has_points_deduction",
+    "is_flight_order",
+    "is_hotel_order",
+    "is_train_order",
+    "item.id_number",
+    "item.name",
+    "item.phone",
+    "item.room_no",
+    "item.seat_class",
+    "item.seat_no",
+    "item.ticket_status",
+    "order.flight_offer.aircraft_type",
+    "order.flight_offer.airline_name",
+    "order.flight_offer.arrival_airport",
+    "order.flight_offer.arrival_terminal",
+    "order.flight_offer.arrival_time",
+    "order.flight_offer.baggage_allowance",
+    "order.flight_offer.departure_airport",
+    "order.flight_offer.departure_terminal",
+    "order.flight_offer.departure_time",
+    "order.flight_offer.duration",
+    "order.flight_offer.flight_no",
+    "order.flight_offer.meal_info",
+    "order.flight_offer.product_description",
+    "order.flight_offer.refund_change_policy",
+    "order.hotel_offer.address",
+    "order.hotel_offer.bed_type",
+    "order.hotel_offer.breakfast_info",
+    "order.hotel_offer.cancellation_fee",
+    "order.hotel_offer.check_in_date",
+    "order.hotel_offer.check_out_date",
+    "order.hotel_offer.floor_info",
+    "order.hotel_offer.guests",
+    "order.hotel_offer.hotel_name",
+    "order.hotel_offer.night_count",
+    "order.hotel_offer.room_area",
+    "order.hotel_offer.room_count",
+    "order.hotel_offer.room_type_name",
+    "order.hotel_offer.window_type",
+    "order.order_no",
+    "order.payable_amount",
+    "order.points_deduction_amount",
+    "order.seat_selection_snapshot.gate",
+    "order.seat_selection_snapshot.pickup_code",
+    "order.status",
+    "order.ticket_passenger_infos",
+    "order.total_amount",
+    "order.train_offer.arrival_station",
+    "order.train_offer.arrival_time",
+    "order.train_offer.departure_station",
+    "order.train_offer.departure_time",
+    "order.train_offer.duration",
+    "order.train_offer.stop_stations",
+    "order.train_offer.train_no",
+    "order_cancelled_or_failed",
+    "order_pending",
+    "order_status_booked_or_completed",
+    "order_status_completed"
+  ],
+  "requiredRoots": [
+    "has_points_deduction",
+    "is_flight_order",
+    "is_hotel_order",
+    "is_train_order",
+    "item",
+    "order",
+    "order_cancelled_or_failed",
+    "order_pending",
+    "order_status_booked_or_completed",
+    "order_status_completed"
+  ],
+  "schema": {
+    "order_status_booked_or_completed": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "order_pending": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "order_cancelled_or_failed": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "order": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "order_no": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "points_deduction_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "payable_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "flight_offer": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "departure_time": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "departure_airport": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "departure_terminal": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "duration": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "flight_no": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "arrival_time": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "arrival_airport": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "arrival_terminal": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "airline_name": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "aircraft_type": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "meal_info": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "refund_change_policy": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "baggage_allowance": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "product_description": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            }
+          }
+        },
+        "seat_selection_snapshot": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "pickup_code": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "gate": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            }
+          }
+        },
+        "train_offer": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "departure_time": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "departure_station": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "train_no": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "duration": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "arrival_time": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "arrival_station": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "stop_stations": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            }
+          }
+        },
+        "hotel_offer": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "hotel_name": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "address": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "room_type_name": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "room_count": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "night_count": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "bed_type": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "room_area": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "breakfast_info": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "window_type": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "floor_info": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "check_in_date": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "check_out_date": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "cancellation_fee": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "guests": {
+              "type": "array",
+              "required": false,
+              "items": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                  "room_no": {
+                    "type": "string",
+                    "required": false,
+                    "example": ""
+                  },
+                  "name": {
+                    "type": "string",
+                    "required": false,
+                    "example": "order_1"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "required": false,
+                    "example": ""
+                  }
+                }
+              },
+              "exampleCount": 3
+            }
+          }
+        },
+        "ticket_passenger_infos": {
+          "type": "array",
+          "required": false,
+          "items": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "name": {
+                "type": "string",
+                "required": false,
+                "example": "order_1"
+              },
+              "ticket_status": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "id_number": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "seat_no": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "seat_class": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              }
+            }
+          },
+          "exampleCount": 3
+        }
+      }
+    },
+    "order_status_completed": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "has_points_deduction": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "is_flight_order": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "is_train_order": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "is_hotel_order": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "item": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "name": {
+          "type": "unknown",
+          "required": true
+        },
+        "ticket_status": {
+          "type": "unknown",
+          "required": true
+        },
+        "id_number": {
+          "type": "unknown",
+          "required": true
+        },
+        "seat_no": {
+          "type": "unknown",
+          "required": true
+        },
+        "seat_class": {
+          "type": "unknown",
+          "required": true
+        },
+        "room_no": {
+          "type": "unknown",
+          "required": true
+        },
+        "phone": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    }
+  },
+  "notes": []
+}

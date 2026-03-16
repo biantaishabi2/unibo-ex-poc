@@ -9,30 +9,14 @@ defmodule UniboExPoc.Ofbiz.Shipment do
   resources do
     resource UniboExPoc.Ofbiz.Shipment.Picklist
     resource UniboExPoc.Ofbiz.Shipment.PicklistBin
-<<<<<<< Updated upstream
     resource UniboExPoc.Ofbiz.Shipment.RejectionReason
     resource UniboExPoc.Ofbiz.Shipment.ShipmentReceipt
     resource UniboExPoc.Ofbiz.Shipment.CarrierShipmentMethod
-=======
-    resource UniboExPoc.Ofbiz.Shipment.PicklistBin.Version
-    resource UniboExPoc.Ofbiz.Shipment.CarrierShipmentMethod
-    resource UniboExPoc.Ofbiz.Shipment.CarrierShipmentMethod.Version
->>>>>>> Stashed changes
     resource UniboExPoc.Ofbiz.Shipment.Delivery
     resource UniboExPoc.Ofbiz.Shipment.Shipment
-<<<<<<< Updated upstream
     resource UniboExPoc.Ofbiz.Shipment.ShipmentBoxType
     resource UniboExPoc.Ofbiz.Shipment.ShipmentCostEstimate
     resource UniboExPoc.Ofbiz.Shipment.ShipmentItem
-=======
-    resource UniboExPoc.Ofbiz.Shipment.Shipment.Version
-    resource UniboExPoc.Ofbiz.Shipment.ShipmentBoxType
-    resource UniboExPoc.Ofbiz.Shipment.ShipmentBoxType.Version
-    resource UniboExPoc.Ofbiz.Shipment.ShipmentCostEstimate
-    resource UniboExPoc.Ofbiz.Shipment.ShipmentCostEstimate.Version
-    resource UniboExPoc.Ofbiz.Shipment.ShipmentItem
-    resource UniboExPoc.Ofbiz.Shipment.ShipmentItem.Version
->>>>>>> Stashed changes
     resource UniboExPoc.Ofbiz.Shipment.ShipmentMethodType
     resource UniboExPoc.Ofbiz.Shipment.ShipmentPackage
     resource UniboExPoc.Ofbiz.Shipment.ShipmentPackageContent
@@ -40,18 +24,11 @@ defmodule UniboExPoc.Ofbiz.Shipment do
     resource UniboExPoc.Ofbiz.Shipment.ShipmentRouteSegment
     resource UniboExPoc.Ofbiz.Shipment.ShipmentStatus
     resource UniboExPoc.Ofbiz.Shipment.ShipmentType
-<<<<<<< Updated upstream
-=======
-    resource UniboExPoc.Ofbiz.Shipment.ShipmentType.Version
->>>>>>> Stashed changes
     resource UniboExPoc.Ofbiz.Shipment.ContactMech
     resource UniboExPoc.Ofbiz.Shipment.Facility
     resource UniboExPoc.Ofbiz.Shipment.FixedAsset
     resource UniboExPoc.Ofbiz.Shipment.Geo
-<<<<<<< Updated upstream
     resource UniboExPoc.Ofbiz.Shipment.InventoryItem
-=======
->>>>>>> Stashed changes
     resource UniboExPoc.Ofbiz.Shipment.OrderHeader
     resource UniboExPoc.Ofbiz.Shipment.Party
     resource UniboExPoc.Ofbiz.Shipment.Product

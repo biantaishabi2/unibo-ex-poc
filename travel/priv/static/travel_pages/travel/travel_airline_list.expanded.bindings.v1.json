@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "vars": {
+    "page_title": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "travel_airline_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{page_title|TravelAirline 列表}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "navigate_create": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_airline_create_btn",
+          "prop": "click",
+          "raw": "navigate_create"
+        }
+      ]
+    },
+    "filter_submit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_airline_filter_submit",
+          "prop": "click",
+          "raw": "filter_submit"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "vars": {
+    "search.checkin_date": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "checkin_date_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{search.checkin_date|}}"
+        }
+      ]
+    },
+    "search.checkout_date": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "checkout_date_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{search.checkout_date|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "navigate": {
+      "triggers": [
+        {
+          "node_type": "Card",
+          "node_id": "hotel_card",
+          "prop": "click",
+          "raw": "navigate"
+        }
+      ]
+    }
+  }
+}

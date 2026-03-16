@@ -1,0 +1,25 @@
+{
+  "record": {
+    "host_member_id": "MBR_1001",
+    "status": "已出票",
+    "order_no": "TO20260316001",
+    "product_type": "机票",
+    "booking_mode": "实时出票",
+    "contact_name": "张明",
+    "contact_phone": "13800138001",
+    "traveler_count": "1",
+    "total_amount": "¥1,280",
+    "points_to_use": "0",
+    "points_deduction_amount": "¥0",
+    "recommended_payment_method": "企业支付",
+    "currency": "CNY",
+    "change_status": "无",
+    "waitlist_status": "无",
+    "original_order_ref": "-",
+    "ticket_passenger_infos": "张明 310***1234 身份证",
+    "seat_selection_snapshot": "-",
+    "supplier_order_ref": "SUP20260316001",
+    "payment_external_ref": "PAY20260316001"
+  },
+  "editing": false
+}

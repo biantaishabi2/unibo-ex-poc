@@ -13,6 +13,7 @@ config :travel,
     UniboExPoc.Ofbiz.Product,
     UniboExPoc.Ofbiz.Shipment,
     UniboExPoc.Payment,
+    UniboExPoc.Purchasing,
     UniboExPoc.Sales,
     UniboExPoc.Travel
   ],

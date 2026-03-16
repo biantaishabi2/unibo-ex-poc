@@ -1,0 +1,167 @@
+{
+  "backend": {
+    "api_map": {
+      "cancel_fulfillment": "Travel.TravelFulfillment.cancel_fulfillment",
+      "complete_fulfillment": "Travel.TravelFulfillment.complete_fulfillment",
+      "confirm_booking": "Travel.TravelFulfillment.confirm_booking",
+      "destroy": "Travel.TravelFulfillment.destroy",
+      "fail_fulfillment": "Travel.TravelFulfillment.fail_fulfillment",
+      "get": "Travel.TravelFulfillment.get",
+      "issue_voucher_or_ticket": "Travel.TravelFulfillment.issue_voucher_or_ticket",
+      "mark_in_use": "Travel.TravelFulfillment.mark_in_use",
+      "update": "Travel.TravelFulfillment.update"
+    }
+  },
+  "children": [],
+  "domain": "Travel",
+  "e2e": {
+    "playwright": {
+      "auto": true,
+      "base_path": "/travel/travel_fulfillment/:id",
+      "cases": [
+        {
+          "covers": [],
+          "name": "页面加载 + 结构可见",
+          "steps": [
+            {
+              "action": "expect_visible",
+              "selector": "[data-page='travel_fulfillment_detail']"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "toggle_edit"
+          ],
+          "name": "编辑模式切换",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "[data-action='toggle_edit']"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "form, [data-mode='edit']"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "form_submit"
+          ],
+          "name": "表单提交",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "[data-action='form_submit'], button[type='submit']"
+            },
+            {
+              "action": "expect_text_contains",
+              "selector": "#flash-group, [data-flash], [role='alert']",
+              "value": "成功"
+            }
+          ]
+        }
+      ],
+      "dto_smoke": []
+    }
+  },
+  "entity": "TravelFulfillment",
+  "page_id": "travel_fulfillment_detail",
+  "page_type": "object_page",
+  "runtime_monitoring": null,
+  "schema_version": "1.0",
+  "state_transitions": [
+    {
+      "description": "切换编辑模式",
+      "from": "*",
+      "name": "toggle_edit",
+      "to": "*",
+      "trigger": "user_action"
+    },
+    {
+      "description": "取消编辑",
+      "from": "*",
+      "name": "cancel_edit",
+      "to": "*",
+      "trigger": "user_action"
+    },
+    {
+      "description": "表单字段变更",
+      "from": "*",
+      "name": "form_change",
+      "to": "*",
+      "trigger": "user_input"
+    },
+    {
+      "description": "提交表单",
+      "from": "editing",
+      "name": "form_submit",
+      "to": "loading",
+      "trigger": "user_action"
+    },
+    {
+      "description": "confirm_booking",
+      "from": "*",
+      "name": "action_confirm_booking",
+      "to": "loading",
+      "trigger": "user_action"
+    },
+    {
+      "description": "issue_voucher_or_ticket",
+      "from": "*",
+      "name": "action_issue_voucher_or_ticket",
+      "to": "loading",
+      "trigger": "user_action"
+    },
+    {
+      "description": "mark_in_use",
+      "from": "*",
+      "name": "action_mark_in_use",
+      "to": "loading",
+      "trigger": "user_action"
+    },
+    {
+      "description": "complete_fulfillment",
+      "from": "*",
+      "name": "action_complete_fulfillment",
+      "to": "loading",
+      "trigger": "user_action"
+    },
+    {
+      "description": "cancel_fulfillment",
+      "from": "*",
+      "name": "action_cancel_fulfillment",
+      "to": "loading",
+      "trigger": "user_action"
+    },
+    {
+      "description": "fail_fulfillment",
+      "from": "*",
+      "name": "action_fail_fulfillment",
+      "to": "loading",
+      "trigger": "user_action"
+    },
+    {
+      "description": "删除记录",
+      "from": "*",
+      "name": "action_destroy",
+      "navigate_to": "/travel/travel_fulfillment",
+      "to": "loading",
+      "trigger": "user_action"
+    }
+  ],
+  "status_keys": [
+    "record",
+    "editing",
+    "form",
+    "loading"
+  ],
+  "ui": {
+    "sections": [],
+    "template": {
+      "detail": "object_page"
+    }
+  },
+  "version": 1
+}

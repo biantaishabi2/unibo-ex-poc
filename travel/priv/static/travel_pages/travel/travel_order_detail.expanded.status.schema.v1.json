@@ -1,0 +1,281 @@
+{
+  "version": 1,
+  "defaults": {
+    "record": {
+      "host_member_id": "",
+      "status": "",
+      "order_no": "",
+      "product_type": "",
+      "booking_mode": "",
+      "contact_name": "",
+      "contact_phone": "",
+      "traveler_count": "",
+      "total_amount": "",
+      "points_to_use": "",
+      "points_deduction_amount": "",
+      "recommended_payment_method": "",
+      "currency": "",
+      "change_status": "",
+      "waitlist_status": "",
+      "original_order_ref": "",
+      "ticket_passenger_infos": "",
+      "seat_selection_snapshot": "",
+      "supplier_order_ref": "",
+      "payment_external_ref": ""
+    },
+    "editing": true
+  },
+  "keys": [
+    "editing",
+    "record",
+    "record.booking_mode",
+    "record.change_status",
+    "record.contact_name",
+    "record.contact_phone",
+    "record.currency",
+    "record.host_member_id",
+    "record.order_no",
+    "record.original_order_ref",
+    "record.payment_external_ref",
+    "record.points_deduction_amount",
+    "record.points_to_use",
+    "record.product_type",
+    "record.recommended_payment_method",
+    "record.seat_selection_snapshot",
+    "record.status",
+    "record.supplier_order_ref",
+    "record.ticket_passenger_infos",
+    "record.total_amount",
+    "record.traveler_count",
+    "record.waitlist_status"
+  ],
+  "required": [
+    "editing",
+    "record"
+  ],
+  "urlParams": {},
+  "notes": [],
+  "layer2": {
+    "backend": {
+      "api_map": {
+        "approve_cancel": "Travel.TravelOrder.approve_cancel",
+        "cancel_waitlist": "Travel.TravelOrder.cancel_waitlist",
+        "confirm_change": "Travel.TravelOrder.confirm_change",
+        "confirm_quote": "Travel.TravelOrder.confirm_quote",
+        "destroy": "Travel.TravelOrder.destroy",
+        "fulfill_waitlist": "Travel.TravelOrder.fulfill_waitlist",
+        "get": "Travel.TravelOrder.get",
+        "mark_booked": "Travel.TravelOrder.mark_booked",
+        "mark_completed": "Travel.TravelOrder.mark_completed",
+        "mark_order_failed": "Travel.TravelOrder.mark_order_failed",
+        "mark_payment_succeeded": "Travel.TravelOrder.mark_payment_succeeded",
+        "request_cancel": "Travel.TravelOrder.request_cancel",
+        "request_change": "Travel.TravelOrder.request_change",
+        "submit_order": "Travel.TravelOrder.submit_order",
+        "submit_waitlist": "Travel.TravelOrder.submit_waitlist",
+        "update": "Travel.TravelOrder.update"
+      }
+    },
+    "children": [],
+    "domain": "Travel",
+    "e2e": {
+      "playwright": {
+        "auto": true,
+        "base_path": "/travel/travel_order/:id",
+        "cases": [
+          {
+            "covers": [],
+            "name": "页面加载 + 结构可见",
+            "steps": [
+              {
+                "action": "expect_visible",
+                "selector": "[data-page='travel_order_detail']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "toggle_edit"
+            ],
+            "name": "编辑模式切换",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='toggle_edit']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "form, [data-mode='edit']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "form_submit"
+            ],
+            "name": "表单提交",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='form_submit'], button[type='submit']"
+              },
+              {
+                "action": "expect_text_contains",
+                "selector": "#flash-group, [data-flash], [role='alert']",
+                "value": "成功"
+              }
+            ]
+          }
+        ],
+        "dto_smoke": []
+      }
+    },
+    "entity": "TravelOrder",
+    "page_id": "travel_order_detail",
+    "page_type": "object_page",
+    "runtime_monitoring": null,
+    "schema_version": "1.0",
+    "state_transitions": [
+      {
+        "description": "切换编辑模式",
+        "from": "*",
+        "name": "toggle_edit",
+        "to": "*",
+        "trigger": "user_action"
+      },
+      {
+        "description": "取消编辑",
+        "from": "*",
+        "name": "cancel_edit",
+        "to": "*",
+        "trigger": "user_action"
+      },
+      {
+        "description": "表单字段变更",
+        "from": "*",
+        "name": "form_change",
+        "to": "*",
+        "trigger": "user_input"
+      },
+      {
+        "description": "提交表单",
+        "from": "editing",
+        "name": "form_submit",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "confirm_quote",
+        "from": "*",
+        "name": "action_confirm_quote",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "submit_order",
+        "from": "*",
+        "name": "action_submit_order",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "submit_waitlist",
+        "from": "*",
+        "name": "action_submit_waitlist",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "mark_payment_succeeded",
+        "from": "*",
+        "name": "action_mark_payment_succeeded",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "mark_booked",
+        "from": "*",
+        "name": "action_mark_booked",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "fulfill_waitlist",
+        "from": "*",
+        "name": "action_fulfill_waitlist",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "mark_completed",
+        "from": "*",
+        "name": "action_mark_completed",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "request_cancel",
+        "from": "*",
+        "name": "action_request_cancel",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "cancel_waitlist",
+        "from": "*",
+        "name": "action_cancel_waitlist",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "approve_cancel",
+        "from": "*",
+        "name": "action_approve_cancel",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "request_change",
+        "from": "*",
+        "name": "action_request_change",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "confirm_change",
+        "from": "*",
+        "name": "action_confirm_change",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "mark_order_failed",
+        "from": "*",
+        "name": "action_mark_order_failed",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "删除记录",
+        "from": "*",
+        "name": "action_destroy",
+        "navigate_to": "/travel/travel_order",
+        "to": "loading",
+        "trigger": "user_action"
+      }
+    ],
+    "status_keys": [
+      "record",
+      "editing",
+      "form",
+      "loading"
+    ],
+    "ui": {
+      "sections": [],
+      "template": {
+        "detail": "object_page"
+      }
+    },
+    "version": 1
+  }
+}

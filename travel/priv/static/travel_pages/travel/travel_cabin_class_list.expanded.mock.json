@@ -1,0 +1,24 @@
+{
+  "page_title": "TravelCabinClass 列表",
+  "rows_empty": false,
+  "rows": [
+    {
+      "cabin_class_code": "CC_Y",
+      "cabin_class_name": "经济舱",
+      "cabin_rank": "3",
+      "status": "active"
+    },
+    {
+      "cabin_class_code": "CC_C",
+      "cabin_class_name": "公务舱",
+      "cabin_rank": "2",
+      "status": "active"
+    },
+    {
+      "cabin_class_code": "CC_F",
+      "cabin_class_name": "头等舱",
+      "cabin_rank": "1",
+      "status": "active"
+    }
+  ]
+}

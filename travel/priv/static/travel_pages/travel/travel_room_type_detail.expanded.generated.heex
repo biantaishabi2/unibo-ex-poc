@@ -1,0 +1,105 @@
+<.page title="TravelRoomType 详情" id="travel_room_type_detail">
+  <.breadcrumb id="travel_room_type_breadcrumb">
+    <.breadcrumb_list id="travel_room_type_bc_list">
+      <.breadcrumb_item id="travel_room_type_bc_list_item">
+        <.breadcrumb_link id="travel_room_type_bc_link">
+          TravelRoomType 列表
+        </.breadcrumb_link>
+      </.breadcrumb_item>
+      <.breadcrumb_separator id="travel_room_type_bc_sep" />
+      <.breadcrumb_item id="travel_room_type_bc_current_item">
+        <.breadcrumb_page id="travel_room_type_bc_current">
+          <%= @record.room_type_code %>
+        </.breadcrumb_page>
+      </.breadcrumb_item>
+    </.breadcrumb_list>
+  </.breadcrumb>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_room_type_detail_header">
+    <.flex gap={3} align="center" direction="row" id="travel_room_type_title_group">
+      <.text variant="title" id="travel_room_type_detail_title">
+        <%= @record.room_type_code %>
+      </.text>
+      <.badge variant="default" size="sm" id="travel_room_type_status_badge">
+        <%= @record.status %>
+      </.badge>
+    </.flex>
+    <.flex gap={2} direction="row" id="travel_room_type_actions">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="travel_room_type_edit_btn">
+        编辑
+      </.button>
+    </.flex>
+  </.section>
+  <.card variant="default" id="travel_room_type_info_card">
+    <.card_header id="travel_room_type_info_header">
+      <.card_title id="travel_room_type_info_title">
+        基本信息
+      </.card_title>
+    </.card_header>
+    <.card_content id="travel_room_type_info_content">
+      <%= if !(@editing && @editing != []) do %>
+        <.grid columns={2} gap={4} id="travel_room_type_info_grid">
+          <.flex direction="row" id="field_room_type_code">
+            <.text variant="muted" id="label_room_type_code">
+              房型规范编码
+            </.text>
+            <.text id="value_room_type_code">
+              <%= @record.room_type_code %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_room_type_name">
+            <.text variant="muted" id="label_room_type_name">
+              房型名称
+            </.text>
+            <.text id="value_room_type_name">
+              <%= @record.room_type_name %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_hotel_code">
+            <.text variant="muted" id="label_hotel_code">
+              酒店编码冗余（便于兼容检索）
+            </.text>
+            <.text id="value_hotel_code">
+              <%= @record.hotel_code %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_bed_type">
+            <.text variant="muted" id="label_bed_type">
+              床型
+            </.text>
+            <.text id="value_bed_type">
+              <%= @record.bed_type %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_status">
+            <.text variant="muted" id="label_status">
+              status
+            </.text>
+            <.badge variant="default" size="sm" id="value_status">
+              <%= @record.status %>
+            </.badge>
+          </.flex>
+        </.grid>
+      <% else %>
+        <.form phx-submit="form_submit" phx-change="form_change" id="travel_room_type_edit_form">
+          <.grid columns={2} gap={4} id="travel_room_type_form_grid">
+            <.input name="room_type_code" label="房型规范编码" placeholder="请输入房型规范编码" required="true" size="md" id="form_room_type_code" />
+            <.input name="room_type_name" label="房型名称" placeholder="请输入房型名称" required="true" size="md" id="form_room_type_name" />
+            <.input name="hotel_code" label="酒店编码冗余（便于兼容检索）" placeholder="请输入酒店编码冗余（便于兼容检索）" size="md" id="form_hotel_code" />
+            <.input name="bed_type" label="床型" placeholder="请输入床型" size="md" id="form_bed_type" />
+            <.select name="status" label="status" size="md" id="form_status">
+
+            </.select>
+          </.grid>
+          <.flex justify="end" gap={2} direction="row" id="travel_room_type_form_actions">
+            <.button variant="secondary" phx-click="cancel_edit" size="md" id="travel_room_type_cancel_btn">
+              取消
+            </.button>
+            <.button variant="primary" phx-click="form_submit" size="md" id="travel_room_type_save_btn">
+              保存
+            </.button>
+          </.flex>
+        </.form>
+      <% end %>
+    </.card_content>
+  </.card>
+</.page>

@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "flight_offer.arrival_airport_code",
+    "flight_offer.arrival_at",
+    "flight_offer.baggage_policy",
+    "flight_offer.cabin_class",
+    "flight_offer.currency",
+    "flight_offer.departure_airport_code",
+    "flight_offer.departure_at",
+    "flight_offer.fare_family",
+    "flight_offer.flight_no",
+    "flight_offer.flight_offer_lifecycle",
+    "flight_offer.listed_price",
+    "flight_offer.orders",
+    "flight_offer.refund_change_policy",
+    "flight_offer.seats_available",
+    "flight_offer.settlement_price",
+    "travel_order.order_no",
+    "travel_order.product_type",
+    "travel_order.status",
+    "travel_order.total_amount",
+    "travel_order.traveler_count"
+  ],
+  "requiredRoots": [
+    "flight_offer",
+    "travel_order"
+  ],
+  "schema": {
+    "flight_offer": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "departure_at": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "departure_airport_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "arrival_at": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "arrival_airport_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "flight_no": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "cabin_class": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "fare_family": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "listed_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "settlement_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "currency": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "seats_available": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "baggage_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "refund_change_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "flight_offer_lifecycle": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "orders": {
+          "type": "array",
+          "required": false,
+          "items": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "order_no": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "product_type": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "status": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "total_amount": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "traveler_count": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              }
+            }
+          },
+          "exampleCount": 3
+        }
+      }
+    },
+    "travel_order": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "order_no": {
+          "type": "unknown",
+          "required": true
+        },
+        "product_type": {
+          "type": "unknown",
+          "required": true
+        },
+        "status": {
+          "type": "unknown",
+          "required": true
+        },
+        "total_amount": {
+          "type": "unknown",
+          "required": true
+        },
+        "traveler_count": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    }
+  },
+  "notes": []
+}

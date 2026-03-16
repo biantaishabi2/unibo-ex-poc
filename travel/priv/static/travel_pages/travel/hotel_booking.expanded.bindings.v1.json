@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "vars": {
+    "offer.hotel_name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "hotel_name",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.hotel_name|}}"
+        }
+      ]
+    },
+    "offer.room_type_ref.room_type_name": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "room_type_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.room_type_ref.room_type_name|}}"
+        }
+      ]
+    },
+    "offer.room_type_ref.bed_type": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "bed_type_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.room_type_ref.bed_type|}}"
+        }
+      ]
+    },
+    "offer.checkin_date": {
+      "uses": [
+        {
+          "node_type": "Statistic",
+          "node_id": "checkin_stat",
+          "location": "prop",
+          "prop": "value",
+          "template": "{{offer.checkin_date|}}"
+        }
+      ]
+    },
+    "offer.checkout_date": {
+      "uses": [
+        {
+          "node_type": "Statistic",
+          "node_id": "checkout_stat",
+          "location": "prop",
+          "prop": "value",
+          "template": "{{offer.checkout_date|}}"
+        }
+      ]
+    },
+    "offer.cancellation_policy": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "cancellation_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.cancellation_policy|}}"
+        }
+      ]
+    },
+    "offer.guarantee_policy": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "guarantee_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.guarantee_policy|}}"
+        }
+      ]
+    },
+    "offer.currency": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "hotel_currency",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.currency|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "total_currency",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.currency|}}"
+        }
+      ]
+    },
+    "offer.listed_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "hotel_listed_price",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.listed_price|}}"
+        }
+      ]
+    },
+    "offer.total_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "total_price",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.total_price|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "add_traveler": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "btn_add_guest",
+          "prop": "click",
+          "raw": "add_traveler"
+        }
+      ]
+    },
+    "submit_booking": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "btn_submit",
+          "prop": "click",
+          "raw": "submit_booking"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "events": {
+    "navigate:/travel/train/booking/{{item.offer_id|}}": {
+      "name": "navigate:/travel/train/booking/{{item.offer_id|}}",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "events": {
+    "refresh_offers": {
+      "name": "refresh_offers",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate:/travel/hotel/booking/{{item.id|}}": {
+      "name": "navigate:/travel/hotel/booking/{{item.id|}}",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

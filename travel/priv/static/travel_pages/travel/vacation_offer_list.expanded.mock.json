@@ -1,0 +1,57 @@
+{
+  "page_title": "VacationOffer 列表",
+  "rows_empty": false,
+  "rows": [
+    {
+      "supplier_code": "SUP_CTRIP",
+      "package_code": "PKG_HN_001",
+      "package_name": "海南三亚5天4晚阳光度假",
+      "package_type": "跟团游",
+      "departure_city_code": "BJS",
+      "destination_code": "SYX",
+      "start_date": "2026-04-01",
+      "end_date": "2026-04-05",
+      "listed_price": "¥4,580",
+      "settlement_price": "¥3,800",
+      "currency": "CNY",
+      "inventory_count": "20",
+      "booking_rules": "提前7天预订,2人起订",
+      "cancellation_policy": "出发前7天免费取消",
+      "sale_status": "active"
+    },
+    {
+      "supplier_code": "SUP_TUNIU",
+      "package_code": "PKG_YN_002",
+      "package_name": "云南大理丽江6天5晚自由行",
+      "package_type": "自由行",
+      "departure_city_code": "SHA",
+      "destination_code": "DLU",
+      "start_date": "2026-04-10",
+      "end_date": "2026-04-15",
+      "listed_price": "¥3,980",
+      "settlement_price": "¥3,200",
+      "currency": "CNY",
+      "inventory_count": "15",
+      "booking_rules": "提前5天预订",
+      "cancellation_policy": "出发前5天免费取消",
+      "sale_status": "active"
+    },
+    {
+      "supplier_code": "SUP_CTRIP",
+      "package_code": "PKG_JP_003",
+      "package_name": "日本东京大阪7天6晚深度游",
+      "package_type": "跟团游",
+      "departure_city_code": "PVG",
+      "destination_code": "TYO",
+      "start_date": "2026-04-20",
+      "end_date": "2026-04-26",
+      "listed_price": "¥8,980",
+      "settlement_price": "¥7,500",
+      "currency": "CNY",
+      "inventory_count": "8",
+      "booking_rules": "提前15天预订,需有效护照",
+      "cancellation_policy": "出发前15天免费取消",
+      "sale_status": "active"
+    }
+  ]
+}

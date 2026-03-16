@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "editing",
+    "record.arrival_airport_code",
+    "record.arrival_at",
+    "record.baggage_policy",
+    "record.cabin_class",
+    "record.currency",
+    "record.departure_airport_code",
+    "record.departure_at",
+    "record.fare_family",
+    "record.flight_no",
+    "record.itinerary_code",
+    "record.listed_price",
+    "record.refund_change_policy",
+    "record.sale_status",
+    "record.seats_available",
+    "record.settlement_price",
+    "record.supplier_code"
+  ],
+  "requiredRoots": [
+    "editing",
+    "record"
+  ],
+  "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "supplier_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "sale_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "itinerary_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "flight_no": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "departure_airport_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "arrival_airport_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "departure_at": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "arrival_at": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "cabin_class": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "fare_family": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "listed_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "settlement_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "currency": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "seats_available": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "baggage_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "refund_change_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

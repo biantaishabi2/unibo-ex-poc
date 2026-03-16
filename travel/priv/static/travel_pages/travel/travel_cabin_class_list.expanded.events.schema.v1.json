@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "events": {
+    "navigate_create": {
+      "name": "navigate_create",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "filter_submit": {
+      "name": "filter_submit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

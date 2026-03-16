@@ -1,0 +1,94 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "page_title",
+    "row.airline_code",
+    "row.airline_name",
+    "row.iata_code",
+    "row.icao_code",
+    "row.status",
+    "rows",
+    "rows_empty"
+  ],
+  "requiredRoots": [
+    "page_title",
+    "row",
+    "rows",
+    "rows_empty"
+  ],
+  "schema": {
+    "page_title": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "rows": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "airline_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "airline_name": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "iata_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "icao_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "status": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "row": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "airline_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "airline_name": {
+          "type": "unknown",
+          "required": true
+        },
+        "iata_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "icao_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "status": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "rows_empty": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

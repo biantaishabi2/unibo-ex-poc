@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "editing",
+    "record.arrival_at",
+    "record.arrival_station_code",
+    "record.arrival_station_name",
+    "record.booking_rules_snapshot",
+    "record.change_rules_snapshot",
+    "record.currency",
+    "record.departure_at",
+    "record.departure_station_code",
+    "record.departure_station_name",
+    "record.inventory_status",
+    "record.is_no_seat",
+    "record.listed_price",
+    "record.refund_rules_snapshot",
+    "record.sale_status",
+    "record.seat_class",
+    "record.seat_code",
+    "record.settlement_price",
+    "record.supplier_code",
+    "record.train_no",
+    "record.travel_date",
+    "record.waitlist_supported"
+  ],
+  "requiredRoots": [
+    "editing",
+    "record"
+  ],
+  "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "supplier_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "inventory_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "train_no": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "departure_station_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "departure_station_name": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "arrival_station_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "arrival_station_name": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "travel_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "departure_at": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "arrival_at": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "seat_class": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "seat_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "is_no_seat": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "waitlist_supported": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "listed_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "settlement_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "currency": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "booking_rules_snapshot": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "change_rules_snapshot": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "refund_rules_snapshot": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "sale_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

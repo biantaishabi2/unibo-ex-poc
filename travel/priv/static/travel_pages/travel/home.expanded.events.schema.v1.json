@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "events": {
+    "navigate:/travel/flight/search": {
+      "name": "navigate:/travel/flight/search",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate:/travel/hotel/search": {
+      "name": "navigate:/travel/hotel/search",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate:/travel/train/search": {
+      "name": "navigate:/travel/train/search",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate:/travel": {
+      "name": "navigate:/travel",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate:/travel/trips": {
+      "name": "navigate:/travel/trips",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate:/travel/orders": {
+      "name": "navigate:/travel/orders",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate:/travel/profile": {
+      "name": "navigate:/travel/profile",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

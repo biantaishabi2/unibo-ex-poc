@@ -18,6 +18,9 @@ defmodule UniboExPocWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    live "/travel", TravelLive
+    live "/travel/:page", TravelLive
   end
 
   # GraphQL — 验证无 BFF 架构

@@ -1,0 +1,69 @@
+<.page title="TravelAirline 列表" id="travel_airline_list">
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_airline_header">
+    <.text variant="title" id="travel_airline_title">
+      <%= @page_title %>
+    </.text>
+    <.button variant="primary" phx-click="navigate_create" size="md" id="travel_airline_create_btn">
+      新建
+    </.button>
+  </.section>
+  <.card variant="default" id="travel_airline_filter_card">
+    <.card_content id="travel_airline_filter_content">
+      <.flex gap={4} align="center" direction="row" id="travel_airline_filter_row">
+        <.select name="status" label="status" size="md" id="filter_status">
+
+        </.select>
+        <.button variant="secondary" phx-click="filter_submit" size="md" id="travel_airline_filter_submit">
+          查询
+        </.button>
+      </.flex>
+    </.card_content>
+  </.card>
+  <.table id="travel_airline_table">
+    <.table_header id="travel_airline_table_header">
+      <.table_row id="travel_airline_header_row">
+        <.table_head id="th_airline_code">
+          航司规范编码
+        </.table_head>
+        <.table_head id="th_airline_name">
+          航司名称
+        </.table_head>
+        <.table_head id="th_iata_code">
+          IATA 二字码
+        </.table_head>
+        <.table_head id="th_icao_code">
+          ICAO 三字码
+        </.table_head>
+        <.table_head id="th_status">
+          status
+        </.table_head>
+      </.table_row>
+    </.table_header>
+    <.table_body id="travel_airline_table_body">
+      <%= for row <- @rows do %>
+        <.table_row>
+          <.table_cell>
+            <%= row.airline_code %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.airline_name %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.iata_code %>
+          </.table_cell>
+          <.table_cell>
+            <%= row.icao_code %>
+          </.table_cell>
+          <.table_cell>
+            <.badge variant="default" size="sm">
+              <%= row.status %>
+            </.badge>
+          </.table_cell>
+        </.table_row>
+      <% end %>
+    </.table_body>
+  </.table>
+  <%= if (@rows_empty && @rows_empty != []) do %>
+    <.empty_state description="暂无航司主数据（Travel 层,来源 OFBiz PartyGroup）数据" id="travel_airline_no_data" />
+  <% end %>
+</.page>

@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "defaults": {
+    "offer": {
+      "hotel_name": "",
+      "room_type_ref": {
+        "room_type_name": "",
+        "bed_type": ""
+      },
+      "checkin_date": "",
+      "checkout_date": "",
+      "cancellation_policy": "",
+      "guarantee_policy": "",
+      "currency": "",
+      "listed_price": "",
+      "total_price": ""
+    },
+    "travelers": {
+      "items": [
+        {
+          "avatar": "",
+          "name_initial": "",
+          "name": "traveler_1",
+          "id_number_masked": ""
+        },
+        {
+          "avatar": "",
+          "name_initial": "",
+          "name": "traveler_2",
+          "id_number_masked": ""
+        },
+        {
+          "avatar": "",
+          "name_initial": "",
+          "name": "traveler_3",
+          "id_number_masked": ""
+        }
+      ]
+    }
+  },
+  "keys": [
+    "offer",
+    "offer.cancellation_policy",
+    "offer.checkin_date",
+    "offer.checkout_date",
+    "offer.currency",
+    "offer.guarantee_policy",
+    "offer.hotel_name",
+    "offer.listed_price",
+    "offer.room_type_ref",
+    "offer.room_type_ref.bed_type",
+    "offer.room_type_ref.room_type_name",
+    "offer.total_price",
+    "travelers",
+    "travelers.items",
+    "travelers.items[]",
+    "travelers.items[].avatar",
+    "travelers.items[].id_number_masked",
+    "travelers.items[].name",
+    "travelers.items[].name_initial"
+  ],
+  "required": [
+    "offer",
+    "travelers"
+  ],
+  "urlParams": {},
+  "notes": []
+}

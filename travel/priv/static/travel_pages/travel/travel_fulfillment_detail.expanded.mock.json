@@ -1,0 +1,16 @@
+{
+  "record": {
+    "supplier_booking_ref": "SUP20260316001",
+    "status": "completed",
+    "fulfillment_type": "出票",
+    "voucher_or_ticket_ref": "TKT78901234",
+    "ticket_refs": "781-2345678901",
+    "waitlist_result": "-",
+    "change_result": "-",
+    "boarding_status": "已值机",
+    "confirmation_payload": "{\"pnr\":\"ABC123\"}",
+    "failure_reason": "-",
+    "used_at": "2026-03-16 08:00"
+  },
+  "editing": false
+}

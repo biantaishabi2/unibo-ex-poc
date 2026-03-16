@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "item.avatar",
+    "item.id_number_masked",
+    "item.name",
+    "item.name_initial",
+    "offer.cancellation_policy",
+    "offer.checkin_date",
+    "offer.checkout_date",
+    "offer.currency",
+    "offer.guarantee_policy",
+    "offer.hotel_name",
+    "offer.listed_price",
+    "offer.room_type_ref.bed_type",
+    "offer.room_type_ref.room_type_name",
+    "offer.total_price",
+    "travelers.items"
+  ],
+  "requiredRoots": [
+    "item",
+    "offer",
+    "travelers"
+  ],
+  "schema": {
+    "offer": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "hotel_name": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "room_type_ref": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "room_type_name": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            },
+            "bed_type": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            }
+          }
+        },
+        "checkin_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "checkout_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "cancellation_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "guarantee_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "currency": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "listed_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "travelers": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "items": {
+          "type": "array",
+          "required": false,
+          "items": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "avatar": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "name_initial": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "name": {
+                "type": "string",
+                "required": false,
+                "example": "traveler_1"
+              },
+              "id_number_masked": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              }
+            }
+          },
+          "exampleCount": 3
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "avatar": {
+          "type": "unknown",
+          "required": true
+        },
+        "name_initial": {
+          "type": "unknown",
+          "required": true
+        },
+        "name": {
+          "type": "unknown",
+          "required": true
+        },
+        "id_number_masked": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    }
+  },
+  "notes": []
+}

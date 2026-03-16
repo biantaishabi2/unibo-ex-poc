@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "vars": {
+    "hotel.cover_image": {
+      "uses": [
+        {
+          "node_type": "Image",
+          "node_id": "cover_image",
+          "location": "prop",
+          "prop": "src",
+          "template": "{{hotel.cover_image|}}"
+        }
+      ]
+    },
+    "hotel.hotel_name": {
+      "uses": [
+        {
+          "node_type": "Image",
+          "node_id": "cover_image",
+          "location": "prop",
+          "prop": "alt",
+          "template": "{{hotel.hotel_name|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "hotel_name",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{hotel.hotel_name|}}"
+        }
+      ]
+    },
+    "hotel.hotel_star": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "hotel_star",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{hotel.hotel_star|}}"
+        }
+      ]
+    },
+    "hotel.exterior_image": {
+      "uses": [
+        {
+          "node_type": "Image",
+          "node_id": "exterior_img",
+          "location": "prop",
+          "prop": "src",
+          "template": "{{hotel.exterior_image|}}"
+        }
+      ]
+    },
+    "hotel.dining_image": {
+      "uses": [
+        {
+          "node_type": "Image",
+          "node_id": "dining_img",
+          "location": "prop",
+          "prop": "src",
+          "template": "{{hotel.dining_image|}}"
+        }
+      ]
+    },
+    "hotel.room_image": {
+      "uses": [
+        {
+          "node_type": "Image",
+          "node_id": "room_img",
+          "location": "prop",
+          "prop": "src",
+          "template": "{{hotel.room_image|}}"
+        }
+      ]
+    },
+    "hotel.score": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "hotel_score",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{hotel.score|}}"
+        }
+      ]
+    },
+    "hotel.score_label": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "score_label",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{hotel.score_label|}}"
+        }
+      ]
+    },
+    "hotel.address": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "hotel_address",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{hotel.address|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "refresh_offers": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "refresh_btn",
+          "prop": "click",
+          "raw": "refresh_offers"
+        }
+      ]
+    },
+    "navigate:/travel/hotel/booking/{{item.id|}}": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "book_btn",
+          "prop": "click",
+          "raw": "navigate:/travel/hotel/booking/{{item.id|}}"
+        }
+      ]
+    }
+  }
+}

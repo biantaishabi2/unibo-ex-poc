@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "defaults": {
+    "policy": true,
+    "results": true,
+    "search": {
+      "date_range": [
+        {
+          "is_selected": "",
+          "date_label": ""
+        },
+        {
+          "is_selected": "",
+          "date_label": ""
+        },
+        {
+          "is_selected": "",
+          "date_label": ""
+        }
+      ]
+    }
+  },
+  "keys": [
+    "policy",
+    "results",
+    "search",
+    "search.date_range",
+    "search.date_range[]",
+    "search.date_range[].date_label",
+    "search.date_range[].is_selected"
+  ],
+  "required": [
+    "policy",
+    "results",
+    "search"
+  ],
+  "urlParams": {},
+  "notes": []
+}

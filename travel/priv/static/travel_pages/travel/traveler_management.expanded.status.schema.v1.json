@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "defaults": {
+    "travelers_empty": true,
+    "travelers": [
+      {
+        "full_name": "",
+        "id_type": "",
+        "id_number": "",
+        "phone": "",
+        "id": "tra_01"
+      },
+      {
+        "full_name": "",
+        "id_type": "",
+        "id_number": "",
+        "phone": "",
+        "id": "tra_02"
+      },
+      {
+        "full_name": "",
+        "id_type": "",
+        "id_number": "",
+        "phone": "",
+        "id": "tra_03"
+      }
+    ]
+  },
+  "keys": [
+    "travelers",
+    "travelers[]",
+    "travelers[].full_name",
+    "travelers[].id",
+    "travelers[].id_number",
+    "travelers[].id_type",
+    "travelers[].phone",
+    "travelers_empty"
+  ],
+  "required": [
+    "travelers",
+    "travelers_empty"
+  ],
+  "urlParams": {},
+  "notes": []
+}

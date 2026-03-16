@@ -1,0 +1,210 @@
+{
+  "version": 1,
+  "vars": {
+    "offer.airline_ref.logo": {
+      "uses": [
+        {
+          "node_type": "Avatar",
+          "node_id": "airline_avatar",
+          "location": "prop",
+          "prop": "src",
+          "template": "{{offer.airline_ref.logo|}}"
+        }
+      ]
+    },
+    "offer.airline_ref.code": {
+      "uses": [
+        {
+          "node_type": "Avatar",
+          "node_id": "airline_avatar",
+          "location": "prop",
+          "prop": "fallback",
+          "template": "{{offer.airline_ref.code|}}"
+        }
+      ]
+    },
+    "offer.flight_no": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "flight_no_text",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.flight_no|}}"
+        }
+      ]
+    },
+    "offer.cabin_class_ref.name": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "cabin_class_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.cabin_class_ref.name|}}"
+        }
+      ]
+    },
+    "offer.departure_time": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "departure_time",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.departure_time|}}"
+        }
+      ]
+    },
+    "offer.departure_airport_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "departure_airport",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.departure_airport_code|}}"
+        }
+      ]
+    },
+    "offer.date_label": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "date_label",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.date_label|}}"
+        }
+      ]
+    },
+    "offer.arrival_time": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "arrival_time",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.arrival_time|}}"
+        }
+      ]
+    },
+    "offer.arrival_airport_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "arrival_airport",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.arrival_airport_code|}}"
+        }
+      ]
+    },
+    "offer.currency": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "flight_currency",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.currency|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "total_currency",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.currency|}}"
+        }
+      ]
+    },
+    "offer.listed_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "flight_listed_price",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.listed_price|}}"
+        }
+      ]
+    },
+    "offer.refund_change_policy.refund_label": {
+      "uses": [
+        {
+          "node_type": "Statistic",
+          "node_id": "refund_stat",
+          "location": "prop",
+          "prop": "value",
+          "template": "{{offer.refund_change_policy.refund_label|}}"
+        }
+      ]
+    },
+    "offer.refund_change_policy.change_label": {
+      "uses": [
+        {
+          "node_type": "Statistic",
+          "node_id": "change_stat",
+          "location": "prop",
+          "prop": "value",
+          "template": "{{offer.refund_change_policy.change_label|}}"
+        }
+      ]
+    },
+    "offer.baggage_policy": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "baggage_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.baggage_policy|}}"
+        }
+      ]
+    },
+    "offer.fare_family": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "fare_family_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.fare_family|}}"
+        }
+      ]
+    },
+    "offer.total_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "total_price",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{offer.total_price|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "add_traveler": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "btn_add_passenger",
+          "prop": "click",
+          "raw": "add_traveler"
+        }
+      ]
+    },
+    "submit_booking": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "btn_submit",
+          "prop": "click",
+          "raw": "submit_booking"
+        }
+      ]
+    }
+  }
+}

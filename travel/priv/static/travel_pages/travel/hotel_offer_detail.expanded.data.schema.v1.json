@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "editing",
+    "record.cancellation_policy",
+    "record.checkin_date",
+    "record.checkout_date",
+    "record.city_code",
+    "record.currency",
+    "record.guarantee_policy",
+    "record.hotel_code",
+    "record.hotel_name",
+    "record.inventory_count",
+    "record.listed_price",
+    "record.rate_plan_code",
+    "record.room_type_code",
+    "record.sale_status",
+    "record.settlement_price",
+    "record.supplier_code"
+  ],
+  "requiredRoots": [
+    "editing",
+    "record"
+  ],
+  "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "supplier_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "sale_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "hotel_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "hotel_name": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "city_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "room_type_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "rate_plan_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "checkin_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "checkout_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "listed_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "settlement_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "currency": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "inventory_count": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "cancellation_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "guarantee_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

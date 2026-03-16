@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "events": {
+    "add_traveler": {
+      "name": "add_traveler",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "submit_booking": {
+      "name": "submit_booking",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}
