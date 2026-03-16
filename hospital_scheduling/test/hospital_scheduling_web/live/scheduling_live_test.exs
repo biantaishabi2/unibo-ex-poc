@@ -3,6 +3,9 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
 
   import Phoenix.LiveViewTest
 
+  alias HospitalScheduling.Scheduling
+  alias HospitalSchedulingWeb.Graphql.StitchBackend
+
   defmodule FakeBackend do
     def dispatch("__load__", %{"__page_id" => page}, _state)
         when page in ["solver_result", "runtime_page"] do
@@ -226,10 +229,125 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
 
     {:ok, _view, html} = live(conn, "/scheduling")
 
-    assert html =~ "solver_result"
+    assert html =~ "求解结果"
     assert html =~ "/scheduling/periods/:id/result"
-    assert html =~ "publish_preview"
+    assert html =~ "发布预览"
     assert html =~ "/scheduling/periods/:id/publish"
+  end
+
+  test "真实 shift_type_list 页面会按页面契约加载列表字段", %{
+    conn: conn,
+    previous_runtime_config: previous_runtime_config
+  } do
+    dept = create_department!("急诊")
+
+    _shift_type =
+      Ash.create!(Scheduling.ShiftType, %{
+        department_id: dept.id,
+        name: "白班",
+        code: "DAY",
+        start_time: "08:00:00",
+        end_time: "16:00:00",
+        duration_hours: Decimal.new("8")
+      }, authorize?: false)
+
+    Application.put_env(:hospital_scheduling, :scheduling_page_runtime, :graphql)
+    Application.put_env(:hospital_scheduling, :scheduling_page_backend, StitchBackend)
+    Application.delete_env(:hospital_scheduling, :scheduling_pages_dir)
+
+    Application.put_env(
+      :hospital_scheduling,
+      HospitalSchedulingWeb.Graphql.RuntimeConfig,
+      previous_runtime_config
+    )
+
+    {:ok, _view, html} = live(conn, "/scheduling/shift_type_list")
+
+    assert html =~ "白班"
+    assert html =~ "DAY"
+  end
+
+  test "真实 scheduling_period_list 页面会按页面契约加载周期列表字段", %{
+    conn: conn,
+    previous_runtime_config: previous_runtime_config
+  } do
+    dept = create_department!("ICU")
+
+    _period =
+      Ash.create!(Scheduling.SchedulingPeriod, %{
+        department_id: dept.id,
+        title: "ICU 四月排班",
+        start_date: ~D[2026-04-01],
+        end_date: ~D[2026-04-07]
+      }, authorize?: false)
+
+    Application.put_env(:hospital_scheduling, :scheduling_page_runtime, :graphql)
+    Application.put_env(:hospital_scheduling, :scheduling_page_backend, StitchBackend)
+    Application.delete_env(:hospital_scheduling, :scheduling_pages_dir)
+
+    Application.put_env(
+      :hospital_scheduling,
+      HospitalSchedulingWeb.Graphql.RuntimeConfig,
+      previous_runtime_config
+    )
+
+    {:ok, _view, html} = live(conn, "/scheduling/scheduling_period_list")
+
+    assert html =~ "ICU 四月排班"
+    assert html =~ "ICU"
+  end
+
+  test "真实 requirement_matrix 页面会按页面契约加载矩阵数据", %{
+    conn: conn,
+    previous_runtime_config: previous_runtime_config
+  } do
+    dept = create_department!("手术室")
+
+    shift_type =
+      Ash.create!(Scheduling.ShiftType, %{
+        department_id: dept.id,
+        name: "白班",
+        code: "DAY",
+        start_time: "08:00:00",
+        end_time: "16:00:00",
+        duration_hours: Decimal.new("8")
+      }, authorize?: false)
+
+    period =
+      Ash.create!(Scheduling.SchedulingPeriod, %{
+        department_id: dept.id,
+        title: "手术室四月排班",
+        start_date: ~D[2026-04-01],
+        end_date: ~D[2026-04-07]
+      }, authorize?: false)
+
+    _requirement =
+      Ash.create!(Scheduling.CoverageRequirement, %{
+        period_id: period.id,
+        shift_type_id: shift_type.id,
+        requirement_date: ~D[2026-04-01],
+        role_code: "nurse",
+        role_name: "护士",
+        min_headcount: 2,
+        target_headcount: 3
+      }, authorize?: false)
+
+    Application.put_env(:hospital_scheduling, :scheduling_page_runtime, :graphql)
+    Application.put_env(:hospital_scheduling, :scheduling_page_backend, StitchBackend)
+    Application.delete_env(:hospital_scheduling, :scheduling_pages_dir)
+
+    Application.put_env(
+      :hospital_scheduling,
+      HospitalSchedulingWeb.Graphql.RuntimeConfig,
+      previous_runtime_config
+    )
+
+    {:ok, _view, html} = live(conn, "/scheduling/requirement_matrix?id=#{period.id}")
+
+    assert html =~ "手术室四月排班"
+    assert html =~ "白班"
+    assert html =~ "最低 2"
+    assert html =~ "目标 3"
   end
 
   test "manifest 缺失时列表页回退到目录扫描", %{conn: conn, tmp_dir: tmp_dir} do
@@ -291,6 +409,20 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
       Path.join(tmp_dir, "#{page}.expanded.behavior.v1.json"),
       Jason.encode!(payload)
     )
+  end
+
+  defp create_department!(name) do
+    id = Ash.UUID.generate()
+    {:ok, bin_id} = Ecto.UUID.dump(id)
+
+    {:ok, _} =
+      Ecto.Adapters.SQL.query(
+        HospitalScheduling.Repo,
+        "INSERT INTO scheduling_departments (id, name) VALUES ($1, $2)",
+        [bin_id, name]
+      )
+
+    Ash.get!(Scheduling.Department, id, authorize?: false)
   end
 
   defp restore_env(key, nil), do: Application.delete_env(:hospital_scheduling, key)
