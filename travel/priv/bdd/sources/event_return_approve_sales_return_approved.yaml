@@ -1,5 +1,0 @@
-module: SALES_RETURN
-contract: Return.approve event contract
-edge_class: event_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/sales/sales.ubo.yaml
-source_summary: GIVEN 实体 Return 的动作 approve 完成 / WHEN 触发事件发布 / THEN 应广播 topic `sales.return.approved`

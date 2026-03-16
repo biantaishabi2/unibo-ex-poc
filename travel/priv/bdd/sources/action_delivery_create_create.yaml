@@ -1,5 +1,0 @@
-module: DELIVERY_DELIVERY
-contract: Delivery.create action contract
-edge_class: action_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/delivery/delivery.ubo.yaml
-source_summary: GIVEN 实体 Delivery 的动作 create 可执行，accept=[delivery_id, origin_facility_id, dest_facility_id, estimated_start_date, estimated_arrival_date, fixed_asset_id, start_mileage]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

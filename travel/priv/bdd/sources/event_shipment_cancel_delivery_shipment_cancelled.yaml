@@ -1,5 +1,0 @@
-module: DELIVERY_SHIPMENT
-contract: Shipment.cancel event contract
-edge_class: event_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/delivery/delivery.ubo.yaml
-source_summary: GIVEN 实体 Shipment 的动作 cancel 完成 / WHEN 触发事件发布 / THEN 应广播 topic `delivery.shipment.cancelled`

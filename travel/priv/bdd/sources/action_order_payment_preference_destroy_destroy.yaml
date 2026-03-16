@@ -1,5 +1,0 @@
-module: ORDER_ORDER_PAYMENT_PREFERENCE
-contract: OrderPaymentPreference.destroy action contract
-edge_class: action_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/ofbiz/order.ubo.yaml
-source_summary: GIVEN 实体 OrderPaymentPreference 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 状态变更与副作用应生效

@@ -1,5 +1,0 @@
-module: PAYMENT_PAYMENT_PROVIDER
-contract: PaymentProvider.payment_provider_lifecycle workflow contract
-edge_class: workflow_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/payment/payment.ubo.yaml
-source_summary: GIVEN 实体 PaymentProvider 定义工作流 payment_provider_lifecycle / WHEN 按步骤执行 create -> update -> activate -> toggle_test_mode -> destroy / THEN 流程顺序应满足声明约束

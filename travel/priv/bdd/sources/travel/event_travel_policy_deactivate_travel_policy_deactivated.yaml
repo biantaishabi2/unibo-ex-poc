@@ -1,0 +1,8 @@
+module: TRAVEL_TRAVEL_POLICY
+contract: TravelPolicy.deactivate event contract
+edge_class: event_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelPolicy 的动作 deactivate 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.policy.deactivated`
+expected_facts:
+- event_checked
+- notifier_verified

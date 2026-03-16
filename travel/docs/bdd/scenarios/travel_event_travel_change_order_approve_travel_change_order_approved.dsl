@@ -1,0 +1,4 @@
+[SCENARIO: BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-travel_event_travel_change_order_approve_travel_change_order_approved] TITLE: TRAVEL_TRAVEL_CHANGE_ORDER contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="travel_event_travel_change_order_approve_travel_change_order_approved" module="TRAVEL_TRAVEL_CHANGE_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CHANGE_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CHANGE_ORDER"

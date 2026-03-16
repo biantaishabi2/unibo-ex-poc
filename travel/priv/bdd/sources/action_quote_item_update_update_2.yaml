@@ -1,5 +1,0 @@
-module: SALES_QUOTE_ITEM
-contract: QuoteItem.update action contract
-edge_class: action_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/sales/sales.ubo.yaml
-source_summary: GIVEN 实体 QuoteItem 的动作 update 可执行，accept=[quantity, quote_unit_price, comments, estimated_delivery_date, seq_id, is_promo, lead_time_days]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效，应符合工作流步骤约束

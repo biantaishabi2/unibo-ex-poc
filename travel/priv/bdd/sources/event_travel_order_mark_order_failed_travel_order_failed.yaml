@@ -1,5 +1,0 @@
-module: TRAVEL_TRAVEL_ORDER
-contract: TravelOrder.mark_order_failed event contract
-edge_class: event_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/travel/travel.ubo.yaml
-source_summary: GIVEN 实体 TravelOrder 的动作 mark_order_failed 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.order.failed`

@@ -1,5 +1,0 @@
-module: ACCOUNTING_JOURNAL_ENTRY
-contract: JournalEntry.reset_to_draft action contract
-edge_class: action_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/accounting/accounting.ubo.yaml
-source_summary: GIVEN 实体 JournalEntry 的动作 reset_to_draft 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 reset_to_draft / THEN 输入应满足校验规则，状态变更与副作用应生效，应触发关联事件，应符合工作流步骤约束

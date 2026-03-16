@@ -1,5 +1,0 @@
-module: SHIPMENT_SHIPMENT_PACKAGE_CONTENT
-contract: ShipmentPackageContent.create action contract
-edge_class: action_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/ofbiz/shipment.ubo.yaml
-source_summary: GIVEN 实体 ShipmentPackageContent 的动作 create 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 create / THEN 状态变更与副作用应生效

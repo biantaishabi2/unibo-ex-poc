@@ -1,0 +1,13 @@
+module: TRAVEL_TRAVEL_REFUND_ORDER
+contract: TravelRefundOrder.refund_order_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelRefundOrder 定义工作流 refund_order_lifecycle / WHEN 验证工作流动作链 ACTION_PATH=create -> approve -> reject -> refund / THEN 流程顺序应满足声明约束
+expected_facts:
+- workflow_checked
+- steps_verified
+action_path:
+- create
+- approve
+- reject
+- refund

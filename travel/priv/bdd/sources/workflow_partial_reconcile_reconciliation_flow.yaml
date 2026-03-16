@@ -1,5 +1,0 @@
-module: ACCOUNTING_PARTIAL_RECONCILE
-contract: PartialReconcile.reconciliation_flow workflow contract
-edge_class: workflow_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/accounting/accounting.ubo.yaml
-source_summary: GIVEN 实体 PartialReconcile 定义工作流 reconciliation_flow / WHEN 按步骤执行 create -> destroy / THEN 流程顺序应满足声明约束

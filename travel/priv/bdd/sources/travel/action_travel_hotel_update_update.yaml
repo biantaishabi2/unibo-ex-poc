@@ -1,0 +1,8 @@
+module: TRAVEL_TRAVEL_HOTEL
+contract: TravelHotel.update action contract
+edge_class: action_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelHotel 的动作 update 可执行，accept=[hotel_name, city_id, city_code, hotel_star, status]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效
+expected_facts:
+- action_executed
+- state_change

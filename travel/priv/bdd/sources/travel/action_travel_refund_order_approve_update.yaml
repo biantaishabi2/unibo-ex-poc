@@ -1,0 +1,8 @@
+module: TRAVEL_TRAVEL_REFUND_ORDER
+contract: TravelRefundOrder.approve action contract
+edge_class: action_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelRefundOrder 的动作 approve 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 approve / THEN 输入应满足校验规则，状态变更与副作用应生效 / 补充场景：create 创建退票单 -> approve 审批通过 -> refund 退款完成
+expected_facts:
+- action_executed
+- state_change

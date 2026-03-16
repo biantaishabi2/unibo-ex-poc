@@ -1,0 +1,28 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.shop_eligibility_quote integration contract
+edge_class: integration_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelOrder 声明 integration shop_eligibility_quote（mode=sync） / WHEN 绑定动作 [confirm_quote] 触发外部调用 / THEN 调用结果需满足 声明错误码 shop_quote_rejected, shop_quote_timeout 且 业务后置条件 allowed, amount, available_points, cash_payment_enabled, member_id, mixed_payment_allowed, payable_amount, points_deduction_amount, points_enabled, points_requested, points_sufficient, product_type, reason, recommended_payment_method, shop_id, travel_enabled
+expected_facts:
+- integration_invoked
+- post_conditions_checked
+declared_error_codes:
+- shop_quote_rejected
+- shop_quote_timeout
+business_post_conditions:
+- allowed
+- amount
+- available_points
+- cash_payment_enabled
+- member_id
+- mixed_payment_allowed
+- payable_amount
+- points_deduction_amount
+- points_enabled
+- points_requested
+- points_sufficient
+- product_type
+- reason
+- recommended_payment_method
+- shop_id
+- travel_enabled

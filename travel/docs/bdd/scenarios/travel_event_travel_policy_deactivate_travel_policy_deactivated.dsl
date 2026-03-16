@@ -1,0 +1,4 @@
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-travel_event_travel_policy_deactivate_travel_policy_deactivated] TITLE: TRAVEL_TRAVEL_POLICY contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="travel_event_travel_policy_deactivate_travel_policy_deactivated" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"

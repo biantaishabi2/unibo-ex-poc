@@ -1,44 +1,2859 @@
 {
-  "total_models": 12,
-  "generated_files": 852,
-  "action_sources": 742,
-  "event_sources": 56,
-  "workflow_sources": 47,
+  "total_models": 1,
+  "generated_files": 136,
+  "action_sources": 87,
+  "event_sources": 33,
+  "workflow_sources": 9,
   "integration_sources": 7,
-  "scenario_total": 0,
-  "scenario_associated": 0,
+  "scenario_total": 36,
+  "scenario_associated": 36,
   "scenario_unassociated": 0,
   "unassociated_scenarios": [],
-  "scenario_resolutions": [],
+  "scenario_resolutions": [
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "path": "entities[10].scenarios",
+      "scenario": "create_fulfillment 创建 train 履约单 -> confirm_booking 候补确认中 -> issue_voucher_or_ticket 出票或兑现 -> complete_fulfillment 完成履约",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.complete_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.confirm_booking (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.create_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.issue_voucher_or_ticket (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.complete_fulfillment:travel.fulfillment.completed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.confirm_booking:travel.fulfillment.confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.issue_voucher_or_ticket:travel.fulfillment.issued (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelFulfillment.travel_fulfillment_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelFulfillment.complete_fulfillment (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelFulfillment.complete_fulfillment (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "path": "entities[10].scenarios",
+      "scenario": "create_fulfillment 创建履约单 -> cancel_fulfillment 取消履约",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.cancel_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.create_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.cancel_fulfillment:travel.fulfillment.cancelled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelFulfillment.travel_fulfillment_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelFulfillment.cancel_fulfillment (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelFulfillment.cancel_fulfillment (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "path": "entities[10].scenarios",
+      "scenario": "create_fulfillment 创建履约单 -> confirm_booking 触发 integration supplier_confirm_booking 成功 -> issue_voucher_or_ticket 触发 integration supplier_issue_document 成功 -> complete_fulfillment 完成履约",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.complete_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.confirm_booking (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.create_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.issue_voucher_or_ticket (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.complete_fulfillment:travel.fulfillment.completed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.confirm_booking:travel.fulfillment.confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.issue_voucher_or_ticket:travel.fulfillment.issued (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelFulfillment.travel_fulfillment_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelFulfillment.complete_fulfillment (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelFulfillment.complete_fulfillment (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "path": "entities[10].scenarios",
+      "scenario": "create_fulfillment 创建履约单 -> confirm_booking 触发 integration supplier_confirm_booking 返回 supplier_booking_rejected -> fail_fulfillment 履约失败并记录补偿原因",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.confirm_booking (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.create_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.fail_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.confirm_booking:travel.fulfillment.confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.fail_fulfillment:travel.fulfillment.failed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelFulfillment.travel_fulfillment_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelFulfillment.confirm_booking (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelFulfillment.confirm_booking (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "path": "entities[10].scenarios",
+      "scenario": "create_fulfillment 创建履约单 -> confirm_booking 预订确认 -> issue_voucher_or_ticket 发券出票 -> complete_fulfillment 完成履约",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.complete_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.confirm_booking (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.create_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.issue_voucher_or_ticket (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.complete_fulfillment:travel.fulfillment.completed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.confirm_booking:travel.fulfillment.confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.issue_voucher_or_ticket:travel.fulfillment.issued (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelFulfillment.travel_fulfillment_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelFulfillment.complete_fulfillment (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelFulfillment.complete_fulfillment (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "path": "entities[10].scenarios",
+      "scenario": "create_fulfillment 创建履约单 -> confirm_booking 预订确认 -> issue_voucher_or_ticket 发券出票 -> mark_in_use 标记使用中 -> complete_fulfillment 完成履约",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.complete_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.confirm_booking (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.create_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.issue_voucher_or_ticket (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.mark_in_use (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.complete_fulfillment:travel.fulfillment.completed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.confirm_booking:travel.fulfillment.confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.issue_voucher_or_ticket:travel.fulfillment.issued (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelFulfillment.travel_fulfillment_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelFulfillment.complete_fulfillment (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelFulfillment.complete_fulfillment (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "path": "entities[10].scenarios",
+      "scenario": "create_fulfillment 创建履约单 -> fail_fulfillment 履约失败",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.create_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.fail_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelFulfillment.fail_fulfillment:travel.fulfillment.failed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelFulfillment.travel_fulfillment_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelFulfillment.create_fulfillment (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelFulfillment.create_fulfillment (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "path": "entities[10].scenarios",
+      "scenario": "create_fulfillment 创建履约单 -> update 更新供应商号和确认快照 -> destroy 删除草稿",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.create_fulfillment (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelFulfillment.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelFulfillment.travel_fulfillment_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelFulfillment.create_fulfillment (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelFulfillment.create_fulfillment (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelChangeOrder",
+      "path": "entities[11].scenarios",
+      "scenario": "create 创建改签单 -> approve 审批通过 -> complete 改签完成",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelChangeOrder.approve (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelChangeOrder.complete (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelChangeOrder.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelChangeOrder.approve:travel.change_order.approved (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelChangeOrder.complete:travel.change_order.completed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelChangeOrder.change_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelChangeOrder.approve (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelChangeOrder.approve (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelChangeOrder",
+      "path": "entities[11].scenarios",
+      "scenario": "create 创建改签单 -> reject 审批拒绝",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelChangeOrder.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelChangeOrder.reject (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelChangeOrder.reject:travel.change_order.rejected (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelChangeOrder.change_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelChangeOrder.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelChangeOrder.create (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelRefundOrder",
+      "path": "entities[12].scenarios",
+      "scenario": "create 创建退票单 -> approve 审批通过 -> refund 退款完成",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelRefundOrder.approve (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelRefundOrder.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelRefundOrder.refund (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelRefundOrder.approve:travel.refund_order.approved (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelRefundOrder.refund:travel.refund_order.refunded (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelRefundOrder.refund_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelRefundOrder.approve (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelRefundOrder.approve (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelRefundOrder",
+      "path": "entities[12].scenarios",
+      "scenario": "create 创建退票单 -> reject 审批拒绝",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelRefundOrder.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelRefundOrder.reject (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelRefundOrder.reject:travel.refund_order.rejected (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelRefundOrder.refund_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelRefundOrder.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelRefundOrder.create (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelPolicy",
+      "path": "entities[13].scenarios",
+      "scenario": "create 创建差旅政策 -> deactivate 停用政策 -> activate 重新激活",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelPolicy.activate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelPolicy.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelPolicy.deactivate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelPolicy.activate:travel.policy.activated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelPolicy.deactivate:travel.policy.deactivated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelPolicy.policy_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelPolicy.activate (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelPolicy.activate (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelPolicy",
+      "path": "entities[13].scenarios",
+      "scenario": "create 创建差旅政策 -> update 修改政策参数",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelPolicy.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelPolicy.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelPolicy.policy_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelPolicy.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelPolicy.create (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "HotelOffer",
+      "path": "entities[5].scenarios",
+      "scenario": "create 创建 hotel offer -> activate 上架 -> expire 过期",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "HotelOffer.activate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "HotelOffer.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "HotelOffer.expire (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "HotelOffer.activate:travel.catalog.hotel_offer.activated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "HotelOffer.expire:travel.catalog.hotel_offer.expired (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "HotelOffer.hotel_offer_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "HotelOffer.activate (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 HotelOffer.activate (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "HotelOffer",
+      "path": "entities[5].scenarios",
+      "scenario": "create 创建 hotel offer -> destroy 删除草稿",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "HotelOffer.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "HotelOffer.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "HotelOffer.hotel_offer_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "HotelOffer.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 HotelOffer.create (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "HotelOffer",
+      "path": "entities[5].scenarios",
+      "scenario": "create 创建 hotel offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "HotelOffer.activate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "HotelOffer.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "HotelOffer.deactivate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "HotelOffer.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "HotelOffer.activate:travel.catalog.hotel_offer.activated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "HotelOffer.deactivate:travel.catalog.hotel_offer.deactivated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "HotelOffer.hotel_offer_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "HotelOffer.activate (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 HotelOffer.activate (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "FlightOffer",
+      "path": "entities[6].scenarios",
+      "scenario": "create 创建 flight offer -> activate 上架 -> expire 过期",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "FlightOffer.activate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "FlightOffer.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "FlightOffer.expire (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "FlightOffer.activate:travel.catalog.flight_offer.activated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "FlightOffer.expire:travel.catalog.flight_offer.expired (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "FlightOffer.flight_offer_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "FlightOffer.activate (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 FlightOffer.activate (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "FlightOffer",
+      "path": "entities[6].scenarios",
+      "scenario": "create 创建 flight offer -> destroy 删除草稿",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "FlightOffer.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "FlightOffer.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "FlightOffer.flight_offer_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "FlightOffer.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 FlightOffer.create (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "FlightOffer",
+      "path": "entities[6].scenarios",
+      "scenario": "create 创建 flight offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "FlightOffer.activate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "FlightOffer.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "FlightOffer.deactivate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "FlightOffer.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "FlightOffer.activate:travel.catalog.flight_offer.activated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "FlightOffer.deactivate:travel.catalog.flight_offer.deactivated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "FlightOffer.flight_offer_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "FlightOffer.activate (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 FlightOffer.activate (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "VacationOffer",
+      "path": "entities[7].scenarios",
+      "scenario": "create 创建 vacation offer -> activate 上架 -> expire 过期",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "VacationOffer.activate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "VacationOffer.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "VacationOffer.expire (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "VacationOffer.activate:travel.catalog.vacation_offer.activated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "VacationOffer.expire:travel.catalog.vacation_offer.expired (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "VacationOffer.vacation_offer_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "VacationOffer.activate (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 VacationOffer.activate (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "VacationOffer",
+      "path": "entities[7].scenarios",
+      "scenario": "create 创建 vacation offer -> destroy 删除草稿",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "VacationOffer.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "VacationOffer.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "VacationOffer.vacation_offer_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "VacationOffer.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 VacationOffer.create (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "VacationOffer",
+      "path": "entities[7].scenarios",
+      "scenario": "create 创建 vacation offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "VacationOffer.activate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "VacationOffer.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "VacationOffer.deactivate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "VacationOffer.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "VacationOffer.activate:travel.catalog.vacation_offer.activated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "VacationOffer.deactivate:travel.catalog.vacation_offer.deactivated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "VacationOffer.vacation_offer_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "VacationOffer.activate (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 VacationOffer.activate (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TrainOffer",
+      "path": "entities[8].scenarios",
+      "scenario": "create 创建 train offer -> activate 上架 -> expire 过期",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TrainOffer.activate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TrainOffer.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TrainOffer.expire (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TrainOffer.activate:travel.catalog.train_offer.activated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TrainOffer.expire:travel.catalog.train_offer.expired (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TrainOffer.train_offer_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TrainOffer.activate (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TrainOffer.activate (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TrainOffer",
+      "path": "entities[8].scenarios",
+      "scenario": "create 创建 train offer -> destroy 删除草稿",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TrainOffer.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TrainOffer.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TrainOffer.train_offer_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TrainOffer.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TrainOffer.create (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TrainOffer",
+      "path": "entities[8].scenarios",
+      "scenario": "create 创建 train offer -> update 更新票价规则和候补能力 -> activate 上架 -> deactivate 下架",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TrainOffer.activate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TrainOffer.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TrainOffer.deactivate (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TrainOffer.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TrainOffer.activate:travel.catalog.train_offer.activated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TrainOffer.deactivate:travel.catalog.train_offer.deactivated (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TrainOffer.train_offer_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TrainOffer.activate (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TrainOffer.activate (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "path": "entities[9].scenarios",
+      "scenario": "create_order 创建 hotel/flight/vacation/train 标准订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功 -> mark_completed 完成订单",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelOrder.confirm_quote (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.create_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_booked (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_completed (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_payment_succeeded (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.submit_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.mark_payment_succeeded:travel.order.payment_confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.submit_order:travel.order.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.travel_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelOrder.confirm_quote (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelOrder.confirm_quote (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "path": "entities[9].scenarios",
+      "scenario": "create_order 创建 train 订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 已出票 -> request_change 发起改签 -> confirm_change 改签成功",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelOrder.confirm_change (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.confirm_quote (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.create_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_booked (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_payment_succeeded (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.request_change (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.submit_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.confirm_change:travel.order.change_confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.mark_payment_succeeded:travel.order.payment_confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.submit_order:travel.order.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.travel_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelOrder.confirm_change (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelOrder.confirm_change (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "path": "entities[9].scenarios",
+      "scenario": "create_order 创建 train 订单 -> confirm_quote 确认报价 -> submit_waitlist 提交候补 -> mark_payment_succeeded 支付成功 -> cancel_waitlist 取消候补",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelOrder.cancel_waitlist (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.confirm_quote (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.create_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_payment_succeeded (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.submit_waitlist (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.cancel_waitlist:travel.order.waitlist_cancelled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.mark_payment_succeeded:travel.order.payment_confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.submit_waitlist:travel.order.waitlist_submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.travel_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelOrder.cancel_waitlist (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelOrder.cancel_waitlist (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "path": "entities[9].scenarios",
+      "scenario": "create_order 创建 train 订单 -> confirm_quote 确认报价 -> submit_waitlist 提交候补 -> mark_payment_succeeded 支付成功 -> fulfill_waitlist 候补兑现",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelOrder.confirm_quote (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.create_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.fulfill_waitlist (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_payment_succeeded (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.submit_waitlist (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.fulfill_waitlist:travel.order.waitlist_fulfilled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.mark_payment_succeeded:travel.order.payment_confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.submit_waitlist:travel.order.waitlist_submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.travel_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelOrder.confirm_quote (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelOrder.confirm_quote (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "path": "entities[9].scenarios",
+      "scenario": "create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_order_failed 标记失败",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelOrder.confirm_quote (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.create_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_order_failed (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.submit_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.mark_order_failed:travel.order.failed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.submit_order:travel.order.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.travel_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelOrder.confirm_quote (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelOrder.confirm_quote (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "path": "entities[9].scenarios",
+      "scenario": "create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功 -> request_cancel 发起取消 -> approve_cancel 取消成功",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelOrder.approve_cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.confirm_quote (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.create_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_booked (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_payment_succeeded (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.request_cancel (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.submit_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.approve_cancel:travel.order.cancelled (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.mark_payment_succeeded:travel.order.payment_confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.submit_order:travel.order.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.travel_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelOrder.approve_cancel (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelOrder.approve_cancel (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "path": "entities[9].scenarios",
+      "scenario": "create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 触发 integration payment_capture 成功 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelOrder.confirm_quote (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.create_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_booked (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_payment_succeeded (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.submit_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.mark_payment_succeeded:travel.order.payment_confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.submit_order:travel.order.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.travel_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelOrder.confirm_quote (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelOrder.confirm_quote (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "path": "entities[9].scenarios",
+      "scenario": "create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 触发 integration payment_capture 返回 payment_declined -> mark_order_failed 标记失败并触发库存补偿",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelOrder.confirm_quote (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.create_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_order_failed (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.submit_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.mark_order_failed:travel.order.failed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.submit_order:travel.order.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.travel_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelOrder.confirm_quote (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelOrder.confirm_quote (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "path": "entities[9].scenarios",
+      "scenario": "create_order 创建订单 -> integration shop_caller_context_resolve 校验宿主上下文 -> confirm_quote 调用 integration shop_eligibility_quote 返回可支付策略 -> submit_order 调用 integration payment_capture 成功 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelOrder.confirm_quote (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.create_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_booked (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.mark_payment_succeeded (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.submit_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.mark_payment_succeeded:travel.order.payment_confirmed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelOrder.submit_order:travel.order.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.travel_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelOrder.confirm_quote (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelOrder.confirm_quote (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "path": "entities[9].scenarios",
+      "scenario": "create_order 创建订单 -> update 更新联系人和出行人数量 -> destroy 删除草稿",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelOrder.create_order (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.destroy (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelOrder.update (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.travel_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelOrder.create_order (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelOrder.create_order (action)（score=70）"
+    }
+  ],
   "auto_anchor_enabled": true,
-  "auto_anchor_total": 0,
-  "auto_anchor_mapped": 0,
+  "auto_anchor_total": 36,
+  "auto_anchor_mapped": 36,
   "auto_anchor_unmapped": 0,
-  "auto_anchor_results": [],
-  "weak_assertion_count": 1,
+  "auto_anchor_results": [
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "FlightOffer",
+      "action": "activate",
+      "scenario": "create 创建 flight offer -> activate 上架 -> expire 过期",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "FlightOffer",
+      "action": "activate",
+      "scenario": "create 创建 flight offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "FlightOffer",
+      "action": "create",
+      "scenario": "create 创建 flight offer -> destroy 删除草稿",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "HotelOffer",
+      "action": "activate",
+      "scenario": "create 创建 hotel offer -> activate 上架 -> expire 过期",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "HotelOffer",
+      "action": "activate",
+      "scenario": "create 创建 hotel offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "HotelOffer",
+      "action": "create",
+      "scenario": "create 创建 hotel offer -> destroy 删除草稿",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TrainOffer",
+      "action": "activate",
+      "scenario": "create 创建 train offer -> activate 上架 -> expire 过期",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TrainOffer",
+      "action": "activate",
+      "scenario": "create 创建 train offer -> update 更新票价规则和候补能力 -> activate 上架 -> deactivate 下架",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TrainOffer",
+      "action": "create",
+      "scenario": "create 创建 train offer -> destroy 删除草稿",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelChangeOrder",
+      "action": "approve",
+      "scenario": "create 创建改签单 -> approve 审批通过 -> complete 改签完成",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelChangeOrder",
+      "action": "create",
+      "scenario": "create 创建改签单 -> reject 审批拒绝",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "action": "cancel_fulfillment",
+      "scenario": "create_fulfillment 创建履约单 -> cancel_fulfillment 取消履约",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "action": "complete_fulfillment",
+      "scenario": "create_fulfillment 创建 train 履约单 -> confirm_booking 候补确认中 -> issue_voucher_or_ticket 出票或兑现 -> complete_fulfillment 完成履约",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "action": "complete_fulfillment",
+      "scenario": "create_fulfillment 创建履约单 -> confirm_booking 触发 integration supplier_confirm_booking 成功 -> issue_voucher_or_ticket 触发 integration supplier_issue_document 成功 -> complete_fulfillment 完成履约",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "action": "complete_fulfillment",
+      "scenario": "create_fulfillment 创建履约单 -> confirm_booking 预订确认 -> issue_voucher_or_ticket 发券出票 -> complete_fulfillment 完成履约",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "action": "complete_fulfillment",
+      "scenario": "create_fulfillment 创建履约单 -> confirm_booking 预订确认 -> issue_voucher_or_ticket 发券出票 -> mark_in_use 标记使用中 -> complete_fulfillment 完成履约",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "action": "confirm_booking",
+      "scenario": "create_fulfillment 创建履约单 -> confirm_booking 触发 integration supplier_confirm_booking 返回 supplier_booking_rejected -> fail_fulfillment 履约失败并记录补偿原因",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "action": "create_fulfillment",
+      "scenario": "create_fulfillment 创建履约单 -> fail_fulfillment 履约失败",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelFulfillment",
+      "action": "create_fulfillment",
+      "scenario": "create_fulfillment 创建履约单 -> update 更新供应商号和确认快照 -> destroy 删除草稿",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "approve_cancel",
+      "scenario": "create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功 -> request_cancel 发起取消 -> approve_cancel 取消成功",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "cancel_waitlist",
+      "scenario": "create_order 创建 train 订单 -> confirm_quote 确认报价 -> submit_waitlist 提交候补 -> mark_payment_succeeded 支付成功 -> cancel_waitlist 取消候补",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "confirm_change",
+      "scenario": "create_order 创建 train 订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 已出票 -> request_change 发起改签 -> confirm_change 改签成功",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "confirm_quote",
+      "scenario": "create_order 创建 hotel/flight/vacation/train 标准订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功 -> mark_completed 完成订单",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "confirm_quote",
+      "scenario": "create_order 创建 train 订单 -> confirm_quote 确认报价 -> submit_waitlist 提交候补 -> mark_payment_succeeded 支付成功 -> fulfill_waitlist 候补兑现",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "confirm_quote",
+      "scenario": "create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_order_failed 标记失败",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "confirm_quote",
+      "scenario": "create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 触发 integration payment_capture 成功 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "confirm_quote",
+      "scenario": "create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 触发 integration payment_capture 返回 payment_declined -> mark_order_failed 标记失败并触发库存补偿",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "confirm_quote",
+      "scenario": "create_order 创建订单 -> integration shop_caller_context_resolve 校验宿主上下文 -> confirm_quote 调用 integration shop_eligibility_quote 返回可支付策略 -> submit_order 调用 integration payment_capture 成功 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功",
+      "status": "mapped",
+      "anchor_candidates": [
+        "validation",
+        "change"
+      ],
+      "reason": "命中规则：validation + change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "create_order",
+      "scenario": "create_order 创建订单 -> update 更新联系人和出行人数量 -> destroy 删除草稿",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelPolicy",
+      "action": "activate",
+      "scenario": "create 创建差旅政策 -> deactivate 停用政策 -> activate 重新激活",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelPolicy",
+      "action": "create",
+      "scenario": "create 创建差旅政策 -> update 修改政策参数",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelRefundOrder",
+      "action": "approve",
+      "scenario": "create 创建退票单 -> approve 审批通过 -> refund 退款完成",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelRefundOrder",
+      "action": "create",
+      "scenario": "create 创建退票单 -> reject 审批拒绝",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "VacationOffer",
+      "action": "activate",
+      "scenario": "create 创建 vacation offer -> activate 上架 -> expire 过期",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "VacationOffer",
+      "action": "activate",
+      "scenario": "create 创建 vacation offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "VacationOffer",
+      "action": "create",
+      "scenario": "create 创建 vacation offer -> destroy 删除草稿",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    }
+  ],
+  "weak_assertion_count": 0,
   "weak_assertion_read_count": 0,
   "weak_assertion_write_count": 0,
-  "weak_assertion_other_count": 1,
-  "weak_assertion_effective_count": 1,
+  "weak_assertion_other_count": 0,
+  "weak_assertion_effective_count": 0,
   "weak_assertion_effective_read_count": 0,
   "weak_assertion_effective_write_count": 0,
-  "weak_assertion_effective_other_count": 1,
+  "weak_assertion_effective_other_count": 0,
   "weak_whitelist_path": null,
   "weak_whitelist_rule_count": 0,
   "weak_whitelist_active_rule_count": 0,
   "weak_whitelist_hit_count": 0,
   "weak_whitelist_hits": [],
-  "weak_assertions": [
-    {
-      "file": "workflow_shipment_status_shipment_status_record_flow.yaml",
-      "model": "delivery.ubo.yaml",
-      "entity": "ShipmentStatus",
-      "kind": "workflow",
-      "subject": "shipment_status_record_flow",
-      "bucket": "other_weak",
-      "reasons": [
-        "workflow 步骤少于 2，断言信息较弱"
-      ]
-    }
-  ]
+  "weak_assertions": []
 }

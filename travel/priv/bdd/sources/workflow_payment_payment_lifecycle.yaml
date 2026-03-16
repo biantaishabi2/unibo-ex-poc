@@ -1,5 +1,0 @@
-module: ACCOUNTING_PAYMENT
-contract: Payment.payment_lifecycle workflow contract
-edge_class: workflow_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/accounting/accounting.ubo.yaml
-source_summary: GIVEN 实体 Payment 定义工作流 payment_lifecycle / WHEN 按步骤执行 create -> post -> cancel -> reset_to_draft / THEN 流程顺序应满足声明约束

@@ -1,5 +1,0 @@
-module: PAYMENT_PAYMENT_REFUND
-contract: PaymentRefund.process event contract
-edge_class: event_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/payment/payment.ubo.yaml
-source_summary: GIVEN 实体 PaymentRefund 的动作 process 完成 / WHEN 触发事件发布 / THEN 应广播 topic `payment.refund.processed`

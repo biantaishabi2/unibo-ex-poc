@@ -1,0 +1,4 @@
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY_READ-SEED-travel_action_travel_policy_read_read] TITLE: TRAVEL_TRAVEL_POLICY_READ contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="travel_action_travel_policy_read_read" module="TRAVEL_TRAVEL_POLICY_READ"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY_READ"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY_READ"

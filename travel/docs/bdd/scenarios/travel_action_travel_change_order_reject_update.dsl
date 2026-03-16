@@ -1,0 +1,4 @@
+[SCENARIO: BDD-TRAVEL_TRAVEL_CHANGE_ORDER_REJECT-SEED-travel_action_travel_change_order_reject_update] TITLE: TRAVEL_TRAVEL_CHANGE_ORDER_REJECT contract seed scenario TAGS: seed action_contract
+GIVEN given_seed_context id="travel_action_travel_change_order_reject_update" module="TRAVEL_TRAVEL_CHANGE_ORDER_REJECT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CHANGE_ORDER_REJECT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CHANGE_ORDER_REJECT"

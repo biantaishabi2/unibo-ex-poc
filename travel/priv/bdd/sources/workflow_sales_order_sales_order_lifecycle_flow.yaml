@@ -1,5 +1,0 @@
-module: SALES_SALES_ORDER
-contract: SalesOrder.sales_order_lifecycle_flow workflow contract
-edge_class: workflow_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/sales/sales.ubo.yaml
-source_summary: GIVEN 实体 SalesOrder 定义工作流 sales_order_lifecycle_flow / WHEN 按步骤执行 create -> action_quotation_send -> action_confirm -> create_invoices -> action_done / THEN 流程顺序应满足声明约束

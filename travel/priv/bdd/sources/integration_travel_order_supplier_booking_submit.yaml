@@ -1,8 +1,0 @@
-module: TRAVEL_TRAVEL_ORDER
-contract: TravelOrder.supplier_booking_submit integration contract
-edge_class: integration_contract
-source_file: /tmp/travel_bdd_closure.X0Pe2B/travel/travel.ubo.yaml
-source_summary: GIVEN 实体 TravelOrder 声明 integration supplier_booking_submit（mode=async） / WHEN 绑定动作 [mark_payment_succeeded] 触发外部调用 / THEN 调用结果需满足 声明错误码 supplier_timeout, supplier_inventory_unavailable 且 无显式业务后置条件
-declared_error_codes:
-- supplier_timeout
-- supplier_inventory_unavailable
