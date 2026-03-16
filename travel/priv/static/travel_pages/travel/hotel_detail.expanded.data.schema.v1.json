@@ -118,6 +118,16 @@
             "required": false,
             "example": ""
           },
+          "is_breakfast_included": {
+            "type": "boolean",
+            "required": false,
+            "example": true
+          },
+          "exceeds_policy": {
+            "type": "boolean",
+            "required": false,
+            "example": true
+          },
           "currency": {
             "type": "string",
             "required": false,

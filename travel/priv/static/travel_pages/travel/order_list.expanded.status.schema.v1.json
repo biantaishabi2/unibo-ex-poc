@@ -9,7 +9,9 @@
         "status": "",
         "summary": "",
         "order_no": "",
+        "has_travel_purpose": true,
         "travel_purpose": "",
+        "has_change": true,
         "total_amount": ""
       },
       {
@@ -18,7 +20,9 @@
         "status": "",
         "summary": "",
         "order_no": "",
+        "has_travel_purpose": true,
         "travel_purpose": "",
+        "has_change": true,
         "total_amount": ""
       },
       {
@@ -27,7 +31,9 @@
         "status": "",
         "summary": "",
         "order_no": "",
+        "has_travel_purpose": true,
         "travel_purpose": "",
+        "has_change": true,
         "total_amount": ""
       }
     ]
@@ -35,6 +41,8 @@
   "keys": [
     "orders",
     "orders[]",
+    "orders[].has_change",
+    "orders[].has_travel_purpose",
     "orders[].id",
     "orders[].order_no",
     "orders[].product_type",

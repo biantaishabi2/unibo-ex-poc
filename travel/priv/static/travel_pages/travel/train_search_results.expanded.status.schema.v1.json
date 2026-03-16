@@ -1,8 +1,12 @@
 {
   "version": 1,
   "defaults": {
-    "policy": true,
-    "results": true,
+    "policy": {
+      "exceeded": true
+    },
+    "results": {
+      "total_count": true
+    },
     "search": {
       "date_range": [
         {
@@ -22,7 +26,9 @@
   },
   "keys": [
     "policy",
+    "policy.exceeded",
     "results",
+    "results.total_count",
     "search",
     "search.date_range",
     "search.date_range[]",

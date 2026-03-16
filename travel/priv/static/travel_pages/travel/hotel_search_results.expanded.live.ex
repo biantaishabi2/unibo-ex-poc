@@ -11,15 +11,18 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): hotels, hotels.items, hotels.items[], hotels.items[].currency, hotels.items[].hotel_code, hotels.items[].hotel_name, hotels.items[].hotel_ref, hotels.items[].hotel_ref.address, hotels.items[].hotel_ref.cover_image, hotels.items[].hotel_ref.facilities, hotels.items[].hotel_ref.facilities[], hotels.items[].hotel_ref.facilities[].name, hotels.items[].hotel_ref.hotel_star, hotels.items[].hotel_ref.score, hotels.items[].listed_price, policy, search, search.checkin_date, search.checkout_date
+  # status.keys preview (first ~40): hotels, hotels.items, hotels.items[], hotels.items[].currency, hotels.items[].hotel_code, hotels.items[].hotel_name, hotels.items[].hotel_ref, hotels.items[].hotel_ref.address, hotels.items[].hotel_ref.cover_image, hotels.items[].hotel_ref.facilities, hotels.items[].hotel_ref.facilities[], hotels.items[].hotel_ref.facilities[].name, hotels.items[].hotel_ref.hotel_star, hotels.items[].hotel_ref.score, hotels.items[].is_agreement, hotels.items[].listed_price, hotels.total_count, policy, policy.exceeded, search, search.checkin_date, search.checkout_date
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
   \"search\": {
     \"checkin_date\": \"\",
     \"checkout_date\": \"\"
   },
-  \"policy\": true,
+  \"policy\": {
+    \"exceeded\": true
+  },
   \"hotels\": {
+    \"total_count\": true,
     \"items\": [
       {
         \"hotel_code\": \"\",
@@ -38,6 +41,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
           ]
         },
         \"hotel_name\": \"\",
+        \"is_agreement\": true,
         \"currency\": \"\",
         \"listed_price\": \"\"
       },
@@ -58,6 +62,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
           ]
         },
         \"hotel_name\": \"\",
+        \"is_agreement\": true,
         \"currency\": \"\",
         \"listed_price\": \"\"
       },
@@ -78,6 +83,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
           ]
         },
         \"hotel_name\": \"\",
+        \"is_agreement\": true,
         \"currency\": \"\",
         \"listed_price\": \"\"
       }

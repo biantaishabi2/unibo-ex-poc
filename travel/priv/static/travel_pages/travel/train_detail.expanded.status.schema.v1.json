@@ -13,6 +13,7 @@
       "seat_options": [
         {
           "seat_class_name": "",
+          "not_policy_compliant": true,
           "tickets_label": "",
           "currency": "",
           "price": "",
@@ -20,6 +21,7 @@
         },
         {
           "seat_class_name": "",
+          "not_policy_compliant": true,
           "tickets_label": "",
           "currency": "",
           "price": "",
@@ -27,6 +29,7 @@
         },
         {
           "seat_class_name": "",
+          "not_policy_compliant": true,
           "tickets_label": "",
           "currency": "",
           "price": "",
@@ -46,6 +49,7 @@
     "offer.seat_options",
     "offer.seat_options[]",
     "offer.seat_options[].currency",
+    "offer.seat_options[].not_policy_compliant",
     "offer.seat_options[].offer_id",
     "offer.seat_options[].price",
     "offer.seat_options[].seat_class_name",

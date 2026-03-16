@@ -28,6 +28,11 @@
             "required": false,
             "example": ""
           },
+          "is_self": {
+            "type": "boolean",
+            "required": false,
+            "example": true
+          },
           "id_type": {
             "type": "string",
             "required": false,

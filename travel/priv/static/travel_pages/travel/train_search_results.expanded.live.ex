@@ -11,11 +11,15 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): policy, results, search, search.date_range, search.date_range[], search.date_range[].date_label, search.date_range[].is_selected
+  # status.keys preview (first ~40): policy, policy.exceeded, results, results.total_count, search, search.date_range, search.date_range[], search.date_range[].date_label, search.date_range[].is_selected
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"policy\": true,
-  \"results\": true,
+  \"policy\": {
+    \"exceeded\": true
+  },
+  \"results\": {
+    \"total_count\": true
+  },
   \"search\": {
     \"date_range\": [
       {

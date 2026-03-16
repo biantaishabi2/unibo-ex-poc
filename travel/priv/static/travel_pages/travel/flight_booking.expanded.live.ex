@@ -11,7 +11,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): offer, offer.airline_ref, offer.airline_ref.code, offer.airline_ref.logo, offer.arrival_airport_code, offer.arrival_time, offer.baggage_policy, offer.cabin_class_ref, offer.cabin_class_ref.name, offer.currency, offer.date_label, offer.departure_airport_code, offer.departure_time, offer.fare_family, offer.flight_no, offer.listed_price, offer.refund_change_policy, offer.refund_change_policy.change_label, offer.refund_change_policy.refund_label, offer.total_price, travelers, travelers.items, travelers.items[], travelers.items[].avatar, travelers.items[].id_type_label, travelers.items[].name, travelers.items[].name_initial
+  # status.keys preview (first ~40): offer, offer.airline_ref, offer.airline_ref.code, offer.airline_ref.logo, offer.arrival_airport_code, offer.arrival_time, offer.baggage_policy, offer.cabin_class_ref, offer.cabin_class_ref.name, offer.currency, offer.date_label, offer.departure_airport_code, offer.departure_time, offer.fare_family, offer.flight_no, offer.is_policy_exceeded, offer.listed_price, offer.refund_change_policy, offer.refund_change_policy.change_label, offer.refund_change_policy.refund_label, offer.total_price, travelers, travelers.items, travelers.items[], travelers.items[].avatar, travelers.items[].id_type_label, travelers.items[].name, travelers.items[].name_initial
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
   \"offer\": {
@@ -36,6 +36,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     },
     \"baggage_policy\": \"\",
     \"fare_family\": \"\",
+    \"is_policy_exceeded\": true,
     \"total_price\": \"\"
   },
   \"travelers\": {

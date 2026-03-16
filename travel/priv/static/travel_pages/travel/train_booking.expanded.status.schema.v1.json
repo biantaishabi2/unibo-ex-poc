@@ -12,6 +12,7 @@
       "arrival_station_name": "",
       "currency": "",
       "selected_seat_price": "",
+      "is_policy_exceeded": true,
       "total_price": ""
     },
     "travelers": {
@@ -45,6 +46,7 @@
     "offer.date_label",
     "offer.departure_station_name",
     "offer.departure_time",
+    "offer.is_policy_exceeded",
     "offer.selected_seat_class_name",
     "offer.selected_seat_price",
     "offer.total_price",

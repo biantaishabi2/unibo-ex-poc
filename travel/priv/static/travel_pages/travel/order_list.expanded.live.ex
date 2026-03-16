@@ -11,7 +11,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): orders, orders[], orders[].id, orders[].order_no, orders[].product_type, orders[].status, orders[].summary, orders[].total_amount, orders[].travel_purpose, orders_empty
+  # status.keys preview (first ~40): orders, orders[], orders[].has_change, orders[].has_travel_purpose, orders[].id, orders[].order_no, orders[].product_type, orders[].status, orders[].summary, orders[].total_amount, orders[].travel_purpose, orders_empty
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
   \"orders_empty\": true,
@@ -22,7 +22,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"status\": \"\",
       \"summary\": \"\",
       \"order_no\": \"\",
+      \"has_travel_purpose\": true,
       \"travel_purpose\": \"\",
+      \"has_change\": true,
       \"total_amount\": \"\"
     },
     {
@@ -31,7 +33,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"status\": \"\",
       \"summary\": \"\",
       \"order_no\": \"\",
+      \"has_travel_purpose\": true,
       \"travel_purpose\": \"\",
+      \"has_change\": true,
       \"total_amount\": \"\"
     },
     {
@@ -40,7 +44,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"status\": \"\",
       \"summary\": \"\",
       \"order_no\": \"\",
+      \"has_travel_purpose\": true,
       \"travel_purpose\": \"\",
+      \"has_change\": true,
       \"total_amount\": \"\"
     }
   ]

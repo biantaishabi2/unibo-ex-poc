@@ -45,12 +45,23 @@
     "policy": {
       "type": "object",
       "required": true,
-      "properties": {}
+      "properties": {
+        "exceeded": {
+          "type": "boolean",
+          "required": false,
+          "example": true
+        }
+      }
     },
     "hotels": {
       "type": "object",
       "required": true,
       "properties": {
+        "total_count": {
+          "type": "boolean",
+          "required": false,
+          "example": true
+        },
         "items": {
           "type": "array",
           "required": false,
@@ -109,6 +120,11 @@
                 "type": "string",
                 "required": false,
                 "example": ""
+              },
+              "is_agreement": {
+                "type": "boolean",
+                "required": false,
+                "example": true
               },
               "currency": {
                 "type": "string",

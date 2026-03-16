@@ -79,6 +79,11 @@
           "required": false,
           "example": ""
         },
+        "is_policy_exceeded": {
+          "type": "boolean",
+          "required": false,
+          "example": true
+        },
         "total_price": {
           "type": "string",
           "required": false,

@@ -5,8 +5,11 @@
       "checkin_date": "",
       "checkout_date": ""
     },
-    "policy": true,
+    "policy": {
+      "exceeded": true
+    },
     "hotels": {
+      "total_count": true,
       "items": [
         {
           "hotel_code": "",
@@ -25,6 +28,7 @@
             ]
           },
           "hotel_name": "",
+          "is_agreement": true,
           "currency": "",
           "listed_price": ""
         },
@@ -45,6 +49,7 @@
             ]
           },
           "hotel_name": "",
+          "is_agreement": true,
           "currency": "",
           "listed_price": ""
         },
@@ -65,6 +70,7 @@
             ]
           },
           "hotel_name": "",
+          "is_agreement": true,
           "currency": "",
           "listed_price": ""
         }
@@ -86,8 +92,11 @@
     "hotels.items[].hotel_ref.facilities[].name",
     "hotels.items[].hotel_ref.hotel_star",
     "hotels.items[].hotel_ref.score",
+    "hotels.items[].is_agreement",
     "hotels.items[].listed_price",
+    "hotels.total_count",
     "policy",
+    "policy.exceeded",
     "search",
     "search.checkin_date",
     "search.checkout_date"

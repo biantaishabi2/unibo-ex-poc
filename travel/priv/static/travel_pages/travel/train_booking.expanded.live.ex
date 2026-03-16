@@ -11,7 +11,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): offer, offer.arrival_station_name, offer.arrival_time, offer.currency, offer.date_label, offer.departure_station_name, offer.departure_time, offer.selected_seat_class_name, offer.selected_seat_price, offer.total_price, offer.train_no, offer.train_type_label, travelers, travelers.items, travelers.items[], travelers.items[].avatar, travelers.items[].id_type_label, travelers.items[].name, travelers.items[].name_initial
+  # status.keys preview (first ~40): offer, offer.arrival_station_name, offer.arrival_time, offer.currency, offer.date_label, offer.departure_station_name, offer.departure_time, offer.is_policy_exceeded, offer.selected_seat_class_name, offer.selected_seat_price, offer.total_price, offer.train_no, offer.train_type_label, travelers, travelers.items, travelers.items[], travelers.items[].avatar, travelers.items[].id_type_label, travelers.items[].name, travelers.items[].name_initial
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
   \"offer\": {
@@ -25,6 +25,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     \"arrival_station_name\": \"\",
     \"currency\": \"\",
     \"selected_seat_price\": \"\",
+    \"is_policy_exceeded\": true,
     \"total_price\": \"\"
   },
   \"travelers\": {

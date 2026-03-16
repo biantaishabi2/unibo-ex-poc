@@ -1,17 +1,17 @@
 <.page title="我的行程" id="order_list">
   <.section layout="none" id="filter_section">
-    <.tabs default="all" id="product_type_tabs">
+    <.tabs default_value="all" id="product_type_tabs">
       <.tabs_list id="type_tab_list">
-        <.tabs_trigger value="all" id="trigger_all">
+        <.tabs_trigger value="all" active_value="all" id="trigger_all">
           全部
         </.tabs_trigger>
-        <.tabs_trigger value="flight" id="trigger_flight">
+        <.tabs_trigger value="flight" active_value="all" id="trigger_flight">
           机票
         </.tabs_trigger>
-        <.tabs_trigger value="hotel" id="trigger_hotel">
+        <.tabs_trigger value="hotel" active_value="all" id="trigger_hotel">
           酒店
         </.tabs_trigger>
-        <.tabs_trigger value="train" id="trigger_train">
+        <.tabs_trigger value="train" active_value="all" id="trigger_train">
           火车
         </.tabs_trigger>
       </.tabs_list>

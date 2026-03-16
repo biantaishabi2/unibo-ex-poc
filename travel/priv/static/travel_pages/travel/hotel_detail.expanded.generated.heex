@@ -12,25 +12,25 @@
           <%= @hotel.hotel_star %>
         </.badge>
       </.flex>
-      <.tabs default="exterior" id="photo_tabs">
+      <.tabs default_value="exterior" id="photo_tabs">
         <.tabs_list id="photo_tab_list">
-          <.tabs_trigger value="exterior" id="trigger_exterior">
+          <.tabs_trigger value="exterior" active_value="exterior" id="trigger_exterior">
             外观
           </.tabs_trigger>
-          <.tabs_trigger value="dining" id="trigger_dining">
+          <.tabs_trigger value="dining" active_value="exterior" id="trigger_dining">
             餐饮
           </.tabs_trigger>
-          <.tabs_trigger value="room" id="trigger_room">
+          <.tabs_trigger value="room" active_value="exterior" id="trigger_room">
             客房
           </.tabs_trigger>
         </.tabs_list>
-        <.tabs_content value="exterior" id="exterior_content">
+        <.tabs_content value="exterior" active_value="exterior" id="exterior_content">
           <.image src={@hotel.exterior_image} alt="外观" id="exterior_img" />
         </.tabs_content>
-        <.tabs_content value="dining" id="dining_content">
+        <.tabs_content value="dining" active_value="exterior" id="dining_content">
           <.image src={@hotel.dining_image} alt="餐饮" id="dining_img" />
         </.tabs_content>
-        <.tabs_content value="room" id="room_content_tab">
+        <.tabs_content value="room" active_value="exterior" id="room_content_tab">
           <.image src={@hotel.room_image} alt="客房" id="room_img" />
         </.tabs_content>
       </.tabs>

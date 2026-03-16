@@ -50,10 +50,20 @@
             "required": false,
             "example": ""
           },
+          "has_travel_purpose": {
+            "type": "boolean",
+            "required": false,
+            "example": true
+          },
           "travel_purpose": {
             "type": "string",
             "required": false,
             "example": ""
+          },
+          "has_change": {
+            "type": "boolean",
+            "required": false,
+            "example": true
           },
           "total_amount": {
             "type": "string",

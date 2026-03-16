@@ -11,7 +11,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): offer, offer.arrival_station_name, offer.arrival_time, offer.date_label, offer.departure_station_name, offer.departure_time, offer.duration_label, offer.seat_options, offer.seat_options[], offer.seat_options[].currency, offer.seat_options[].offer_id, offer.seat_options[].price, offer.seat_options[].seat_class_name, offer.seat_options[].tickets_label, offer.train_no, offer.train_type_label
+  # status.keys preview (first ~40): offer, offer.arrival_station_name, offer.arrival_time, offer.date_label, offer.departure_station_name, offer.departure_time, offer.duration_label, offer.seat_options, offer.seat_options[], offer.seat_options[].currency, offer.seat_options[].not_policy_compliant, offer.seat_options[].offer_id, offer.seat_options[].price, offer.seat_options[].seat_class_name, offer.seat_options[].tickets_label, offer.train_no, offer.train_type_label
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
   \"offer\": {
@@ -26,6 +26,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     \"seat_options\": [
       {
         \"seat_class_name\": \"\",
+        \"not_policy_compliant\": true,
         \"tickets_label\": \"\",
         \"currency\": \"\",
         \"price\": \"\",
@@ -33,6 +34,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       },
       {
         \"seat_class_name\": \"\",
+        \"not_policy_compliant\": true,
         \"tickets_label\": \"\",
         \"currency\": \"\",
         \"price\": \"\",
@@ -40,6 +42,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       },
       {
         \"seat_class_name\": \"\",
+        \"not_policy_compliant\": true,
         \"tickets_label\": \"\",
         \"currency\": \"\",
         \"price\": \"\",

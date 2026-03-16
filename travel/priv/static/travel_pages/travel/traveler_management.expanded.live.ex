@@ -11,13 +11,14 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): travelers, travelers[], travelers[].full_name, travelers[].id, travelers[].id_number, travelers[].id_type, travelers[].phone, travelers_empty
+  # status.keys preview (first ~40): travelers, travelers[], travelers[].full_name, travelers[].id, travelers[].id_number, travelers[].id_type, travelers[].is_self, travelers[].phone, travelers_empty
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
   \"travelers_empty\": true,
   \"travelers\": [
     {
       \"full_name\": \"\",
+      \"is_self\": true,
       \"id_type\": \"\",
       \"id_number\": \"\",
       \"phone\": \"\",
@@ -25,6 +26,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     },
     {
       \"full_name\": \"\",
+      \"is_self\": true,
       \"id_type\": \"\",
       \"id_number\": \"\",
       \"phone\": \"\",
@@ -32,6 +34,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     },
     {
       \"full_name\": \"\",
+      \"is_self\": true,
       \"id_type\": \"\",
       \"id_number\": \"\",
       \"phone\": \"\",

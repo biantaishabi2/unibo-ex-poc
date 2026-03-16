@@ -23,6 +23,7 @@
       },
       "baggage_policy": "",
       "fare_family": "",
+      "is_policy_exceeded": true,
       "total_price": ""
     },
     "travelers": {
@@ -64,6 +65,7 @@
     "offer.departure_time",
     "offer.fare_family",
     "offer.flight_no",
+    "offer.is_policy_exceeded",
     "offer.listed_price",
     "offer.refund_change_policy",
     "offer.refund_change_policy.change_label",

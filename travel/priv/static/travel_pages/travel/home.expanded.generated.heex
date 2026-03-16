@@ -1,18 +1,18 @@
 <.page title="差旅" id="home">
   <.section layout="none" id="search_section">
-    <.tabs default="flight" id="search_tabs">
+    <.tabs default_value="flight" id="search_tabs">
       <.tabs_list id="tab_list">
-        <.tabs_trigger value="flight" id="trigger_flight">
+        <.tabs_trigger value="flight" active_value="flight" id="trigger_flight">
           机票
         </.tabs_trigger>
-        <.tabs_trigger value="hotel" id="trigger_hotel">
+        <.tabs_trigger value="hotel" active_value="flight" id="trigger_hotel">
           酒店
         </.tabs_trigger>
-        <.tabs_trigger value="train" id="trigger_train">
+        <.tabs_trigger value="train" active_value="flight" id="trigger_train">
           火车票
         </.tabs_trigger>
       </.tabs_list>
-      <.tabs_content value="flight" id="flight_tab_content">
+      <.tabs_content value="flight" active_value="flight" id="flight_tab_content">
         <.stack gap={4} direction="column" id="flight_form">
           <.stack gap={3} direction="column" id="flight_fields">
             <.input label="出发城市" placeholder="请选择出发城市" bind="form.departure_city" size="md" id="departure_city_input" />
@@ -27,7 +27,7 @@
           </.stack>
         </.stack>
       </.tabs_content>
-      <.tabs_content value="hotel" id="hotel_tab_content">
+      <.tabs_content value="hotel" active_value="flight" id="hotel_tab_content">
         <.stack gap={4} direction="column" id="hotel_form">
           <.stack gap={3} direction="column" id="hotel_fields">
             <.input label="城市" placeholder="请选择城市" bind="form.hotel_city" size="md" id="hotel_city_input" />
@@ -42,7 +42,7 @@
           </.stack>
         </.stack>
       </.tabs_content>
-      <.tabs_content value="train" id="train_tab_content">
+      <.tabs_content value="train" active_value="flight" id="train_tab_content">
         <.stack gap={4} direction="column" id="train_form">
           <.stack gap={3} direction="column" id="train_fields">
             <.input label="出发站" placeholder="请选择出发站" bind="form.departure_station" size="md" id="departure_station_input" />

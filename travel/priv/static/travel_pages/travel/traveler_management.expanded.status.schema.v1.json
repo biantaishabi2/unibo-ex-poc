@@ -5,6 +5,7 @@
     "travelers": [
       {
         "full_name": "",
+        "is_self": true,
         "id_type": "",
         "id_number": "",
         "phone": "",
@@ -12,6 +13,7 @@
       },
       {
         "full_name": "",
+        "is_self": true,
         "id_type": "",
         "id_number": "",
         "phone": "",
@@ -19,6 +21,7 @@
       },
       {
         "full_name": "",
+        "is_self": true,
         "id_type": "",
         "id_number": "",
         "phone": "",
@@ -33,6 +36,7 @@
     "travelers[].id",
     "travelers[].id_number",
     "travelers[].id_type",
+    "travelers[].is_self",
     "travelers[].phone",
     "travelers_empty"
   ],

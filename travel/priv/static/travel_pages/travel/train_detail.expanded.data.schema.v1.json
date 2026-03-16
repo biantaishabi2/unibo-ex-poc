@@ -78,6 +78,11 @@
                 "required": false,
                 "example": ""
               },
+              "not_policy_compliant": {
+                "type": "boolean",
+                "required": false,
+                "example": true
+              },
               "tickets_label": {
                 "type": "string",
                 "required": false,

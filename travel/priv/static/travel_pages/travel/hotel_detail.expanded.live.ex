@@ -11,7 +11,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): hotel, hotel.address, hotel.cover_image, hotel.dining_image, hotel.exterior_image, hotel.hotel_name, hotel.hotel_star, hotel.room_image, hotel.score, hotel.score_label, offers, offers[], offers[].area_label, offers[].bed_type, offers[].cancellation_policy, offers[].currency, offers[].floor_label, offers[].id, offers[].listed_price, offers[].rate_plan_code, offers[].room_type_name, offers_empty
+  # status.keys preview (first ~40): hotel, hotel.address, hotel.cover_image, hotel.dining_image, hotel.exterior_image, hotel.hotel_name, hotel.hotel_star, hotel.room_image, hotel.score, hotel.score_label, offers, offers[], offers[].area_label, offers[].bed_type, offers[].cancellation_policy, offers[].currency, offers[].exceeds_policy, offers[].floor_label, offers[].id, offers[].is_breakfast_included, offers[].listed_price, offers[].rate_plan_code, offers[].room_type_name, offers_empty
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
   \"hotel\": {
@@ -34,6 +34,8 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"floor_label\": \"\",
       \"rate_plan_code\": \"\",
       \"cancellation_policy\": \"\",
+      \"is_breakfast_included\": true,
+      \"exceeds_policy\": true,
       \"currency\": \"\",
       \"listed_price\": \"\",
       \"id\": \"off_01\"
@@ -45,6 +47,8 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"floor_label\": \"\",
       \"rate_plan_code\": \"\",
       \"cancellation_policy\": \"\",
+      \"is_breakfast_included\": true,
+      \"exceeds_policy\": true,
       \"currency\": \"\",
       \"listed_price\": \"\",
       \"id\": \"off_02\"
@@ -56,6 +60,8 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"floor_label\": \"\",
       \"rate_plan_code\": \"\",
       \"cancellation_policy\": \"\",
+      \"is_breakfast_included\": true,
+      \"exceeds_policy\": true,
       \"currency\": \"\",
       \"listed_price\": \"\",
       \"id\": \"off_03\"

@@ -21,6 +21,8 @@
         "floor_label": "",
         "rate_plan_code": "",
         "cancellation_policy": "",
+        "is_breakfast_included": true,
+        "exceeds_policy": true,
         "currency": "",
         "listed_price": "",
         "id": "off_01"
@@ -32,6 +34,8 @@
         "floor_label": "",
         "rate_plan_code": "",
         "cancellation_policy": "",
+        "is_breakfast_included": true,
+        "exceeds_policy": true,
         "currency": "",
         "listed_price": "",
         "id": "off_02"
@@ -43,6 +47,8 @@
         "floor_label": "",
         "rate_plan_code": "",
         "cancellation_policy": "",
+        "is_breakfast_included": true,
+        "exceeds_policy": true,
         "currency": "",
         "listed_price": "",
         "id": "off_03"
@@ -66,8 +72,10 @@
     "offers[].bed_type",
     "offers[].cancellation_policy",
     "offers[].currency",
+    "offers[].exceeds_policy",
     "offers[].floor_label",
     "offers[].id",
+    "offers[].is_breakfast_included",
     "offers[].listed_price",
     "offers[].rate_plan_code",
     "offers[].room_type_name",
