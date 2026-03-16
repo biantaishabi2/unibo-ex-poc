@@ -3,6 +3,15 @@
   "page_id": "scheduling_period_detail",
   "layer": 2,
   "backend": {
+    "params": {
+      "accept": ["id"]
+    },
+    "info": {
+      "reload_messages": ["page_host_reload"]
+    },
+    "load": {
+      "selection": "id title state generation_mode: generationMode department { name } start_date: startDate end_date: endDate current_version: currentVersion { id version_no: versionNo } last_solver_run: lastSolverRun { id status } schedule_versions: scheduleVersions { id version_no: versionNo status origin_type: originType change_summary: changeSummary } solver_runs: solverRuns { id engine_type: engineType status score hard_violation_count: hardViolationCount started_at: startedAt completed_at: completedAt }"
+    },
     "api_map": {
       "destroy": "Scheduling.SchedulingPeriod.destroy",
       "get": "Scheduling.SchedulingPeriod.get",

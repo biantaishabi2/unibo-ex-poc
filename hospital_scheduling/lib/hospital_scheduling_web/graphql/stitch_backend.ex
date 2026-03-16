@@ -35,6 +35,7 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
 
     with {:ok, page_id} <- resolve_page_id(params, state),
          {:ok, page} <- page(page_id),
+         page <- merge_state_page_contract(page, state),
          {:ok, operation} <- resolve_operation(page, event, params),
          {:ok, query, variables} <- build_graphql_request(page, operation, params, state),
          {:ok, result} <- call_graphql(query, variables, state),
@@ -45,9 +46,11 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
 
   defp resolve_page_id(params, state) do
     page_id =
-      normalize_string(map_get(params, "__page_id")) ||
-        normalize_string(map_get(state, "__page_id")) ||
-        normalize_string(map_get(map_get(state, "_meta") || %{}, "page_id"))
+      first_present_string([
+        map_get(params, "__page_id"),
+        map_get(state, "__page_id"),
+        map_get(map_get(state, "_meta") || %{}, "page_id")
+      ])
 
     case page_id do
       "" -> {:error, :stitch_backend_page_not_found}
@@ -60,6 +63,35 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
   end
 
   defp page(_page_id), do: {:error, :stitch_backend_page_not_found}
+
+  defp merge_state_page_contract(page, state) do
+    override =
+      state
+      |> map_get("_page_contract")
+      |> normalize_map()
+
+    if override == %{} do
+      page
+    else
+      page
+      |> Map.merge(Map.drop(override, ["backend"]))
+      |> Map.put(
+        "backend",
+        normalize_map(map_get(page, "backend"))
+        |> Map.merge(normalize_map(map_get(override, "backend")))
+        |> Map.put(
+          "api_map",
+          normalize_map(map_get(normalize_map(map_get(page, "backend")), "api_map"))
+          |> Map.merge(normalize_map(map_get(normalize_map(map_get(override, "backend")), "api_map")))
+        )
+      )
+      |> Map.put(
+        "api_map",
+        normalize_map(map_get(page, "api_map"))
+        |> Map.merge(normalize_map(map_get(normalize_map(map_get(override, "backend")), "api_map")))
+      )
+    end
+  end
 
   defp resolve_operation(page, event, params) do
     api_map = normalize_map(map_get(page, "api_map"))
@@ -180,9 +212,11 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
 
       "get" ->
         id =
-          normalize_string(map_get(params, "id")) ||
-            normalize_string(map_get(state, "id")) ||
-            normalize_string(map_get(map_get(state, "record") || %{}, "id"))
+          first_present_string([
+            map_get(params, "id"),
+            map_get(state, "id"),
+            map_get(map_get(state, "record") || %{}, "id")
+          ])
 
         {:ok,
          "query StitchGet($id: ID!) { #{field}(id: $id) { #{selection} } }",
@@ -242,9 +276,17 @@ defmodule HospitalSchedulingWeb.Graphql.StitchBackend do
   end
 
   defp resolve_id(params, state) do
-    normalize_string(map_get(params, "id")) ||
-      normalize_string(map_get(state, "id")) ||
-      normalize_string(map_get(map_get(state, "record") || %{}, "id"))
+    first_present_string([
+      map_get(params, "id"),
+      map_get(state, "id"),
+      map_get(map_get(state, "record") || %{}, "id")
+    ])
+  end
+
+  defp first_present_string(values) when is_list(values) do
+    values
+    |> Enum.map(&normalize_string/1)
+    |> Enum.find("", &(&1 != ""))
   end
 
   defp input_type_decl(input_type) when input_type != "" do

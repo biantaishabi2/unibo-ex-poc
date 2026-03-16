@@ -13,18 +13,23 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
 
   @impl true
   def mount(%{"page" => page} = params, _session, socket) do
+    page_params =
+      params
+      |> Map.delete("page")
+      |> then(&PageHostRuntime.normalize_page_params(page, &1))
+
     socket =
       socket
       |> assign(:runtime_mode, PageHostRuntime.runtime_mode())
       |> assign(:page_backend, PageHostRuntime.page_backend())
       |> assign(:page, page)
-      |> assign(:page_params, Map.delete(params, "page"))
+      |> assign(:page_params, page_params)
       |> assign(:error, nil)
       |> assign(:page_source_path, nil)
       |> assign(:page_template_content, nil)
       |> assign(:page_data, PageHostRuntime.default_assigns())
       |> assign(:rendered_content, nil)
-      |> load_and_render(page, Map.delete(params, "page"))
+      |> load_and_render(page, page_params)
 
     {:ok, socket}
   end
@@ -47,12 +52,17 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
 
   @impl true
   def handle_params(%{"page" => page} = params, _uri, socket) do
+    page_params =
+      params
+      |> Map.delete("page")
+      |> then(&PageHostRuntime.normalize_page_params(page, &1))
+
     socket =
       socket
       |> assign(:page, page)
-      |> assign(:page_params, Map.delete(params, "page"))
+      |> assign(:page_params, page_params)
       |> assign(:error, nil)
-      |> load_and_render(page, Map.delete(params, "page"))
+      |> load_and_render(page, page_params)
 
     {:noreply, socket}
   end
@@ -76,6 +86,26 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
     {:noreply, socket}
   end
 
+  @impl true
+  def handle_info({:page_host_reload, params}, %{assigns: %{page: page}} = socket)
+      when is_binary(page) and is_map(params) do
+    if PageHostRuntime.supports_reload?(page) do
+      merged_params =
+        socket.assigns
+        |> Map.get(:page_params, %{})
+        |> Map.merge(PageHostRuntime.normalize_page_params(page, params))
+
+      {:noreply,
+       socket
+       |> assign(:page_params, merged_params)
+       |> load_and_render(page, merged_params)}
+    else
+      {:noreply, socket}
+    end
+  end
+
+  def handle_info(_message, socket), do: {:noreply, socket}
+
   defp load_and_render(socket, page, params) do
     case PageHostRuntime.load_page(
            page,
@@ -84,11 +114,17 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
            socket.assigns.page_backend
          ) do
       {:ok, %{path: path, content: content, page_data: page_data}} ->
-        socket
-        |> assign(:page_source_path, path)
-        |> assign(:page_template_content, content)
-        |> render_page(content, page_data)
-        |> assign(:error, nil)
+        socket =
+          socket
+          |> assign(:page_source_path, path)
+          |> assign(:page_template_content, content)
+          |> render_page(content, page_data)
+
+        if is_nil(socket.assigns[:error]) do
+          assign(socket, :error, nil)
+        else
+          socket
+        end
 
       {:error, message} ->
         assign(socket, :error, message)
@@ -98,7 +134,10 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
   defp render_page(socket, content, page_data) do
     try do
       module_name = :"Elixir.SchedulingDynamic.Render#{:erlang.unique_integer([:positive])}"
-      indented_content = indent_template(content)
+      indented_content =
+        content
+        |> sanitize_dynamic_template()
+        |> indent_template()
 
       module_code = """
       defmodule #{module_name} do
@@ -141,17 +180,29 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
         |> Map.put(:__changed__, nil)
 
       result = apply(module_name, :render, [assigns])
+      rendered_html =
+        result
+        |> Phoenix.HTML.Safe.to_iodata()
+        |> IO.iodata_to_binary()
 
       :code.purge(module_name)
       :code.delete(module_name)
 
       socket
       |> assign(:page_data, page_data)
-      |> assign(:rendered_content, result)
+      |> assign(:rendered_content, rendered_html)
     rescue
       e ->
-        assign(socket, :error, "编译错误: #{Exception.message(e)}")
+        socket
+        |> assign(:rendered_content, nil)
+        |> assign(:error, "编译错误: #{Exception.message(e)}")
     end
+  end
+
+  # 动态 HEEx 编译时，模型描述里裸露的 "<" 会被当成标签起始符。
+  # 这里先做最小转义，避免像 "end < start" 这类文案把页面直接编炸。
+  defp sanitize_dynamic_template(content) do
+    String.replace(content, " < ", " &lt; ")
   end
 
   defp indent_template(content) do
@@ -164,18 +215,7 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
     merged_params =
       socket.assigns
       |> Map.get(:page_params, %{})
-      |> Map.merge(params || %{})
-
-    IO.inspect(
-      %{
-        event: event,
-        page: socket.assigns.page,
-        page_params: Map.get(socket.assigns, :page_params, %{}),
-        raw_params: params,
-        merged_params: merged_params
-      },
-      label: "SchedulingLive.dispatch_backend"
-    )
+      |> Map.merge(PageHostRuntime.normalize_page_params(socket.assigns.page, params || %{}))
 
     result =
       PageHostRuntime.dispatch(
@@ -273,7 +313,7 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
           ← 列表
         </a>
       </div>
-      {@rendered_content}
+      {Phoenix.HTML.raw(@rendered_content || "")}
     </div>
     """
   end

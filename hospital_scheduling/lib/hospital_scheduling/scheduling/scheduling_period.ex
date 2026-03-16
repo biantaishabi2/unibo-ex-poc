@@ -110,27 +110,27 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
     end
     has_many :coverage_requirements, HospitalScheduling.Scheduling.CoverageRequirement do
       public? true
-      source_attribute :source_period_id
+      source_attribute :id
       destination_attribute :period_id
     end
     has_many :schedule_versions, HospitalScheduling.Scheduling.ScheduleVersion do
       public? true
-      source_attribute :source_period_id
+      source_attribute :id
       destination_attribute :period_id
     end
     has_many :solver_runs, HospitalScheduling.Scheduling.SolverRun do
       public? true
-      source_attribute :source_period_id
+      source_attribute :id
       destination_attribute :period_id
     end
     has_many :shift_assignments, HospitalScheduling.Scheduling.ShiftAssignment do
       public? true
-      source_attribute :source_period_id
+      source_attribute :id
       destination_attribute :period_id
     end
     has_many :constraint_violations, HospitalScheduling.Scheduling.ConstraintViolation do
       public? true
-      source_attribute :source_period_id
+      source_attribute :id
       destination_attribute :period_id
     end
   end
