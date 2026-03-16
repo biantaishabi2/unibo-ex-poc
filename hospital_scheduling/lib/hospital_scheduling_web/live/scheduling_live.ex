@@ -13,18 +13,23 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
 
   @impl true
   def mount(%{"page" => page} = params, _session, socket) do
+    page_params =
+      params
+      |> Map.delete("page")
+      |> PageHostRuntime.normalize_page_params(page)
+
     socket =
       socket
       |> assign(:runtime_mode, PageHostRuntime.runtime_mode())
       |> assign(:page_backend, PageHostRuntime.page_backend())
       |> assign(:page, page)
-      |> assign(:page_params, Map.delete(params, "page"))
+      |> assign(:page_params, page_params)
       |> assign(:error, nil)
       |> assign(:page_source_path, nil)
       |> assign(:page_template_content, nil)
       |> assign(:page_data, PageHostRuntime.default_assigns())
       |> assign(:rendered_content, nil)
-      |> load_and_render(page, Map.delete(params, "page"))
+      |> load_and_render(page, page_params)
 
     {:ok, socket}
   end
@@ -47,12 +52,17 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
 
   @impl true
   def handle_params(%{"page" => page} = params, _uri, socket) do
+    page_params =
+      params
+      |> Map.delete("page")
+      |> PageHostRuntime.normalize_page_params(page)
+
     socket =
       socket
       |> assign(:page, page)
-      |> assign(:page_params, Map.delete(params, "page"))
+      |> assign(:page_params, page_params)
       |> assign(:error, nil)
-      |> load_and_render(page, Map.delete(params, "page"))
+      |> load_and_render(page, page_params)
 
     {:noreply, socket}
   end
@@ -75,6 +85,26 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
 
     {:noreply, socket}
   end
+
+  @impl true
+  def handle_info({:page_host_reload, params}, %{assigns: %{page: page}} = socket)
+      when is_binary(page) and is_map(params) do
+    if PageHostRuntime.supports_reload?(page) do
+      merged_params =
+        socket.assigns
+        |> Map.get(:page_params, %{})
+        |> Map.merge(PageHostRuntime.normalize_page_params(page, params))
+
+      {:noreply,
+       socket
+       |> assign(:page_params, merged_params)
+       |> load_and_render(page, merged_params)}
+    else
+      {:noreply, socket}
+    end
+  end
+
+  def handle_info(_message, socket), do: {:noreply, socket}
 
   defp load_and_render(socket, page, params) do
     case PageHostRuntime.load_page(
@@ -164,7 +194,7 @@ defmodule HospitalSchedulingWeb.SchedulingLive do
     merged_params =
       socket.assigns
       |> Map.get(:page_params, %{})
-      |> Map.merge(params || %{})
+      |> Map.merge(PageHostRuntime.normalize_page_params(socket.assigns.page, params || %{}))
 
     IO.inspect(
       %{

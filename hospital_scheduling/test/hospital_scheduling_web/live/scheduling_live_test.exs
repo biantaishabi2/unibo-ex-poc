@@ -175,6 +175,40 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
     assert html =~ "渲染错误"
   end
 
+  test "graphql 模式下支持 page_host_reload 消息刷新页面", %{conn: conn, tmp_dir: tmp_dir} do
+    write_page!(tmp_dir, "solver_result", """
+    <div id="page_title"><%= @period[:title] %></div>
+    <div id="run_status"><%= @run[:status] %></div>
+    """)
+
+    write_status_defaults!(tmp_dir, "solver_result", %{
+      "period" => %{"title" => ""},
+      "run" => %{"status" => ""}
+    })
+
+    write_behavior!(tmp_dir, "solver_result", %{
+      "backend" => %{
+        "info" => %{
+          "reload_messages" => ["page_host_reload"]
+        }
+      }
+    })
+
+    set_graphql_runtime!(tmp_dir, %{
+      "pages" => [%{"page_id" => "solver_result", "page_type" => "composition"}],
+      "route_map" => [%{"page_id" => "solver_result", "path" => "/scheduling/periods/:id/result"}]
+    })
+
+    {:ok, view, _html} = live(conn, "/scheduling/solver_result")
+
+    send(view.pid, {:page_host_reload, %{"id" => "period-1"}})
+
+    html = render(view)
+
+    assert html =~ "ICU 四月排班"
+    assert html =~ "generated"
+  end
+
   test "列表页优先展示 frontend manifest 里的页面和路由", %{conn: conn, tmp_dir: tmp_dir} do
     set_graphql_runtime!(tmp_dir, %{
       "pages" => [
@@ -246,6 +280,13 @@ defmodule HospitalSchedulingWeb.SchedulingLiveTest do
     File.write!(
       Path.join(tmp_dir, "#{page}.expanded.status.schema.v1.json"),
       Jason.encode!(%{"defaults" => defaults})
+    )
+  end
+
+  defp write_behavior!(tmp_dir, page, payload) do
+    File.write!(
+      Path.join(tmp_dir, "#{page}.expanded.behavior.v1.json"),
+      Jason.encode!(payload)
     )
   end
 

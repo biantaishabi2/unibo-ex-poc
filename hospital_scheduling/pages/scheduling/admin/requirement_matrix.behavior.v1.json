@@ -5,6 +5,15 @@
   "entity": "CoverageRequirement",
   "domain": "Scheduling",
   "backend": {
+    "params": {
+      "accept": ["id", "department_id", "week_offset", "shift_type_id"]
+    },
+    "info": {
+      "reload_messages": ["page_host_reload"]
+    },
+    "load": {
+      "selection": "id title state start_date: startDate end_date: endDate"
+    },
     "api_map": {
       "list": "Scheduling.CoverageRequirement.list",
       "save_requirements": "Scheduling.CoverageRequirement.update",

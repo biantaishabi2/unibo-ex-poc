@@ -162,6 +162,53 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
     end
   end
 
+  def page_contract(page) when is_binary(page) do
+    case page_template(page) do
+      {:ok, path, _content} -> load_behavior_contract(path)
+      _ -> %{}
+    end
+  end
+
+  def page_contract(_page), do: %{}
+
+  def normalize_page_params(page, params) when is_binary(page) and is_map(params) do
+    params = stringify_map(params)
+
+    accepted =
+      page
+      |> page_contract()
+      |> map_get("backend")
+      |> map_get("params")
+      |> map_get("accept")
+      |> normalize_string_list()
+
+    case accepted do
+      [] ->
+        params
+
+      values ->
+        allowed = Enum.uniq(["id" | values])
+        Map.take(params, allowed)
+    end
+  end
+
+  def normalize_page_params(_page, params) when is_map(params), do: stringify_map(params)
+  def normalize_page_params(_page, _params), do: %{}
+
+  def supports_reload?(page) when is_binary(page) do
+    messages =
+      page
+      |> page_contract()
+      |> map_get("backend")
+      |> map_get("info")
+      |> map_get("reload_messages")
+      |> normalize_string_list()
+
+    messages == [] or "page_host_reload" in messages
+  end
+
+  def supports_reload?(_page), do: false
+
   def normalize_map(map) when is_map(map) do
     Enum.into(map, %{}, fn
       {key, value} when is_atom(key) -> {Atom.to_string(key), value}
@@ -205,6 +252,14 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
   def normalize_string(value) when is_atom(value), do: value |> Atom.to_string() |> String.trim()
   def normalize_string(value), do: value |> to_string() |> String.trim()
 
+  def normalize_string_list(values) when is_list(values) do
+    values
+    |> Enum.map(&normalize_string/1)
+    |> Enum.reject(&(&1 == ""))
+  end
+
+  def normalize_string_list(_values), do: []
+
   def map_get(map, key) when is_map(map) and is_atom(key), do: map_get(map, Atom.to_string(key))
 
   def map_get(map, key) when is_map(map) and is_binary(key) do
@@ -239,11 +294,12 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
   end
 
   defp load_page_data(path, page, params, :graphql, backend) do
-    selection = page_selection(page)
+    status_defaults = load_status_defaults(path)
+    selection = page_selection(page, path, status_defaults)
 
     defaults =
       @default_assigns
-      |> Map.merge(load_status_defaults(path))
+      |> Map.merge(status_defaults)
       |> Map.put(:page_title, page)
       |> Map.put(:selection, selection)
 
@@ -304,6 +360,9 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
   defp build_selection_from_defaults(defaults) do
     sample =
       cond do
+        is_list(defaults[:rows]) and match?([first | _] when is_map(first), defaults[:rows]) ->
+          List.first(defaults[:rows])
+
         is_map(defaults[:record]) and map_size(defaults[:record]) > 0 ->
           defaults[:record]
 
@@ -320,11 +379,64 @@ defmodule HospitalSchedulingWeb.Live.PageHostRuntime do
     end
   end
 
-  defp page_selection("scheduling_period_detail") do
-    "id title state generation_mode: generationMode department { name } start_date: startDate end_date: endDate"
+  defp page_selection(page, path, status_defaults) do
+    explicit_selection =
+      path
+      |> load_behavior_contract()
+      |> map_get("backend")
+      |> map_get("load")
+      |> map_get("selection")
+      |> normalize_string()
+
+    cond do
+      explicit_selection != "" ->
+        explicit_selection
+
+      page == "scheduling_period_detail" ->
+        "id title state generation_mode: generationMode department { name } start_date: startDate end_date: endDate"
+
+      true ->
+        build_selection_from_defaults(status_defaults)
+    end
   end
 
-  defp page_selection(_page), do: build_selection_from_defaults(@default_assigns)
+  defp load_behavior_contract(heex_path) do
+    heex_path
+    |> behavior_path_candidates()
+    |> Enum.find_value(%{}, fn path ->
+      if File.exists?(path) do
+        case File.read(path) do
+          {:ok, json} ->
+            case Jason.decode(json) do
+              {:ok, %{} = data} -> data
+              _ -> nil
+            end
+
+          _ ->
+            nil
+        end
+      end
+    end)
+  end
+
+  defp behavior_path_candidates(heex_path) do
+    page_id =
+      heex_path
+      |> Path.basename()
+      |> String.replace_suffix(".expanded.generated.heex", "")
+      |> String.replace_suffix(".generated.heex", "")
+      |> String.replace_suffix(".heex", "")
+
+    app_root = File.cwd!()
+
+    [
+      String.replace_suffix(heex_path, ".expanded.generated.heex", ".expanded.behavior.v1.json"),
+      String.replace_suffix(heex_path, ".generated.heex", ".behavior.v1.json"),
+      String.replace_suffix(heex_path, ".heex", ".behavior.v1.json"),
+      Path.join(app_root, "pages/scheduling/admin/#{page_id}.behavior.v1.json")
+    ]
+    |> Enum.uniq()
+  end
 
   defp extract_selection_fields(map) when is_map(map) do
     map
