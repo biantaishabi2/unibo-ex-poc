@@ -1,18 +1,18 @@
 {
   "order": {
     "payment": {
-      "payment_method": "企业支付",
-      "payment_no": "PAY20260316001",
-      "paid_at": "2026-03-16 09:15:30"
+      "payment_method": "",
+      "payment_no": "",
+      "paid_at": ""
     },
-    "total_amount": "¥1,280",
-    "points_deduction_amount": "-¥50",
-    "payable_amount": "¥1,230",
-    "currency": "CNY",
-    "id": "ord_01"
+    "total_amount": "",
+    "points_deduction_amount": "",
+    "payable_amount": "",
+    "currency": "",
+    "id": ""
   },
   "payment_completed": true,
-  "payment_pending": false,
-  "payment_failed": false,
+  "payment_pending": true,
+  "payment_failed": true,
   "has_points_deduction": true
 }

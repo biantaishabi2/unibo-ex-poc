@@ -1,33 +1,37 @@
 {
   "offer": {
-    "train_no": "G1",
-    "train_type_label": "高铁",
-    "selected_seat_class_name": "二等座",
-    "departure_time": "07:00",
-    "departure_station_name": "北京南站",
-    "date_label": "03-16 周日",
-    "arrival_time": "11:28",
-    "arrival_station_name": "上海虹桥站",
-    "currency": "¥",
-    "selected_seat_price": "553",
-    "is_policy_exceeded": false,
-    "total_price": "553"
+    "train_no": "",
+    "train_type_label": "",
+    "selected_seat_class_name": "",
+    "departure_time": "",
+    "departure_station_name": "",
+    "date_label": "",
+    "arrival_time": "",
+    "arrival_station_name": "",
+    "currency": "",
+    "selected_seat_price": "",
+    "is_policy_exceeded": true,
+    "total_price": ""
   },
   "travelers": {
     "items": [
       {
         "avatar": "",
-        "name_initial": "张",
-        "name": "张明",
-        "id_type_label": "身份证 310***1234",
-        "selected": true
+        "name_initial": "",
+        "name": "traveler_1",
+        "id_type_label": ""
       },
       {
         "avatar": "",
-        "name_initial": "李",
-        "name": "李华",
-        "id_type_label": "身份证 110***5678",
-        "selected": false
+        "name_initial": "",
+        "name": "traveler_2",
+        "id_type_label": ""
+      },
+      {
+        "avatar": "",
+        "name_initial": "",
+        "name": "traveler_3",
+        "id_type_label": ""
       }
     ]
   }

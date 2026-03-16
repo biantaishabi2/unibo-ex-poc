@@ -1,21 +1,21 @@
 {
   "record": {
-    "supplier_code": "SUP_CTRIP",
-    "sale_status": "active",
-    "itinerary_code": "ITN20260316001",
-    "flight_no": "CA1234",
-    "departure_airport_code": "PEK",
-    "arrival_airport_code": "SHA",
-    "departure_at": "2026-03-16 08:30",
-    "arrival_at": "2026-03-16 11:05",
-    "cabin_class": "经济舱",
-    "fare_family": "标准经济",
-    "listed_price": "¥1,280",
-    "settlement_price": "¥1,050",
-    "currency": "CNY",
-    "seats_available": "32",
-    "baggage_policy": "托运20kg+手提7kg",
-    "refund_change_policy": "起飞前2h免费退改,之后收30%手续费"
+    "supplier_code": "",
+    "sale_status": "",
+    "itinerary_code": "",
+    "flight_no": "",
+    "departure_airport_code": "",
+    "arrival_airport_code": "",
+    "departure_at": "",
+    "arrival_at": "",
+    "cabin_class": "",
+    "fare_family": "",
+    "listed_price": "",
+    "settlement_price": "",
+    "currency": "",
+    "seats_available": "",
+    "baggage_policy": "",
+    "refund_change_policy": ""
   },
-  "editing": false
+  "editing": true
 }

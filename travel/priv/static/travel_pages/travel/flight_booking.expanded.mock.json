@@ -2,43 +2,47 @@
   "offer": {
     "airline_ref": {
       "logo": "",
-      "code": "CA"
+      "code": ""
     },
-    "flight_no": "CA1234",
+    "flight_no": "",
     "cabin_class_ref": {
-      "name": "经济舱"
+      "name": ""
     },
-    "departure_time": "08:30",
-    "departure_airport_code": "PEK",
-    "date_label": "03-16 周日",
-    "arrival_time": "11:05",
-    "arrival_airport_code": "SHA",
-    "currency": "¥",
-    "listed_price": "1,280",
+    "departure_time": "",
+    "departure_airport_code": "",
+    "date_label": "",
+    "arrival_time": "",
+    "arrival_airport_code": "",
+    "currency": "",
+    "listed_price": "",
     "refund_change_policy": {
-      "refund_label": "起飞前2h免费",
-      "change_label": "起飞前2h免费"
+      "refund_label": "",
+      "change_label": ""
     },
-    "baggage_policy": "托运20kg+手提7kg",
-    "fare_family": "标准经济",
-    "is_policy_exceeded": false,
-    "total_price": "1,280"
+    "baggage_policy": "",
+    "fare_family": "",
+    "is_policy_exceeded": true,
+    "total_price": ""
   },
   "travelers": {
     "items": [
       {
         "avatar": "",
-        "name_initial": "张",
-        "name": "张明",
-        "id_type_label": "身份证 310***1234",
-        "selected": true
+        "name_initial": "",
+        "name": "traveler_1",
+        "id_type_label": ""
       },
       {
         "avatar": "",
-        "name_initial": "李",
-        "name": "李华",
-        "id_type_label": "身份证 110***5678",
-        "selected": false
+        "name_initial": "",
+        "name": "traveler_2",
+        "id_type_label": ""
+      },
+      {
+        "avatar": "",
+        "name_initial": "",
+        "name": "traveler_3",
+        "id_type_label": ""
       }
     ]
   }

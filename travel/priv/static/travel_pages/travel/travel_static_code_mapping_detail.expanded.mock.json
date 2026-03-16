@@ -1,11 +1,11 @@
 {
   "record": {
-    "supplier_code": "SUP_CTRIP",
-    "status": "active",
-    "object_type": "airport",
-    "canonical_entity": "Travel.Airport",
-    "external_code": "PEK",
-    "external_name": "北京首都国际机场"
+    "supplier_code": "",
+    "status": "",
+    "object_type": "",
+    "canonical_entity": "",
+    "external_code": "",
+    "external_name": ""
   },
-  "editing": false
+  "editing": true
 }

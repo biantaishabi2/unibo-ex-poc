@@ -1,66 +1,76 @@
 {
   "search": {
-    "checkin_date": "2026-03-16",
-    "checkout_date": "2026-03-18"
+    "checkin_date": "",
+    "checkout_date": ""
   },
   "policy": {
-    "exceeded": false
+    "exceeded": true
   },
   "hotels": {
-    "total_count": 3,
+    "total_count": true,
     "items": [
       {
-        "hotel_code": "HTL_BJ_001",
+        "hotel_code": "",
         "hotel_ref": {
           "cover_image": "",
-          "hotel_star": "五星级",
-          "score": "4.8",
-          "address": "北京市朝阳区建国门外大街1号",
+          "hotel_star": "",
+          "score": "",
+          "address": "",
           "facilities": [
-            { "name": "免费WiFi" },
-            { "name": "健身房" },
-            { "name": "商务中心" }
+            {
+              "name": "facilitie_1"
+            },
+            {
+              "name": "facilitie_2"
+            }
           ]
         },
-        "hotel_name": "北京国贸大酒店",
+        "hotel_name": "",
         "is_agreement": true,
-        "currency": "¥",
-        "listed_price": "688"
+        "currency": "",
+        "listed_price": ""
       },
       {
-        "hotel_code": "HTL_BJ_002",
+        "hotel_code": "",
         "hotel_ref": {
           "cover_image": "",
-          "hotel_star": "四星级",
-          "score": "4.5",
-          "address": "北京市东城区王府井大街138号",
+          "hotel_star": "",
+          "score": "",
+          "address": "",
           "facilities": [
-            { "name": "免费WiFi" },
-            { "name": "餐厅" }
+            {
+              "name": "facilitie_1"
+            },
+            {
+              "name": "facilitie_2"
+            }
           ]
         },
-        "hotel_name": "王府井希尔顿酒店",
-        "is_agreement": false,
-        "currency": "¥",
-        "listed_price": "528"
+        "hotel_name": "",
+        "is_agreement": true,
+        "currency": "",
+        "listed_price": ""
       },
       {
-        "hotel_code": "HTL_BJ_003",
+        "hotel_code": "",
         "hotel_ref": {
           "cover_image": "",
-          "hotel_star": "四星级",
-          "score": "4.6",
-          "address": "北京市海淀区中关村南大街27号",
+          "hotel_star": "",
+          "score": "",
+          "address": "",
           "facilities": [
-            { "name": "免费WiFi" },
-            { "name": "停车场" },
-            { "name": "接机服务" }
+            {
+              "name": "facilitie_1"
+            },
+            {
+              "name": "facilitie_2"
+            }
           ]
         },
-        "hotel_name": "中关村皇冠假日酒店",
+        "hotel_name": "",
         "is_agreement": true,
-        "currency": "¥",
-        "listed_price": "458"
+        "currency": "",
+        "listed_price": ""
       }
     ]
   }

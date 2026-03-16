@@ -1,31 +1,23 @@
 {
   "policy": {
-    "exceeded": false
+    "exceeded": true
   },
   "results": {
-    "total_count": 3
+    "total_count": true
   },
   "search": {
     "date_range": [
       {
-        "is_selected": "default",
-        "date_label": "03-15 周六"
+        "is_selected": "",
+        "date_label": ""
       },
       {
-        "is_selected": "primary",
-        "date_label": "03-16 周日"
+        "is_selected": "",
+        "date_label": ""
       },
       {
-        "is_selected": "default",
-        "date_label": "03-17 周一"
-      },
-      {
-        "is_selected": "default",
-        "date_label": "03-18 周二"
-      },
-      {
-        "is_selected": "default",
-        "date_label": "03-19 周三"
+        "is_selected": "",
+        "date_label": ""
       }
     ]
   }

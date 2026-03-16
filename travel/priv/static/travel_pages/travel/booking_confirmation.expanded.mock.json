@@ -1,23 +1,23 @@
 {
   "order": {
-    "order_no": "TO20260316001",
-    "product_type": "机票",
+    "order_no": "",
+    "product_type": "",
     "flight_offer": {
-      "flight_no": "CA1234"
+      "flight_no": ""
     },
     "hotel_offer": {
-      "hotel_name": "北京国贸大酒店"
+      "hotel_name": ""
     },
     "train_offer": {
-      "train_no": "G1"
+      "train_no": ""
     },
-    "traveler_count": "1",
-    "total_amount": "¥1,280",
-    "id": "ord_01"
+    "traveler_count": "",
+    "total_amount": "",
+    "id": ""
   },
   "order_booking_success": true,
-  "order_status_failed": false,
+  "order_status_failed": true,
   "is_flight_order": true,
-  "is_hotel_order": false,
-  "is_train_order": false
+  "is_hotel_order": true,
+  "is_train_order": true
 }
