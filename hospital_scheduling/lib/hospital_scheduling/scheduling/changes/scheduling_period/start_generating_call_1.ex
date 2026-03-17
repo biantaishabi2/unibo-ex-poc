@@ -3,12 +3,12 @@ defmodule HospitalScheduling.Scheduling.Changes.SchedulingPeriod.StartGenerating
 
   @impl true
   def change(changeset, _opts, context) do
-    module_ref = "Scheduling"
+    module_ref = "HospitalScheduling.SchedulingBridge"
     module = resolve_call_module(module_ref)
     if is_atom(module) and Code.ensure_loaded?(module) and function_exported?(module, :trigger_solver_run, 2) do
       apply(module, :trigger_solver_run, [changeset, context])
     else
-      Ash.Changeset.add_error(changeset, "call 目标不存在: #Scheduling.trigger_solver_run/2")
+      Ash.Changeset.add_error(changeset, "call 目标不存在: #HospitalScheduling.SchedulingBridge.trigger_solver_run/2")
     end
   end
 

@@ -6,7 +6,7 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
 
       config :hospital_scheduling, HospitalSchedulingWeb.Graphql.RuntimeConfig,
         source: :default,
-        schema: HospitalSchedulingWeb.Generated.Schema.Scheduling,
+        schema: HospitalSchedulingWeb.Schema,
         manifest: "priv/unibo/graphql/manifest.json",
         frontend_manifest: "priv/unibo/frontend_manifest.v1.json",
         entry_auth_matrix: [query: :compat, mutation: :strict, subscription: :compat],
@@ -32,7 +32,7 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
   end
 
   def schema_module do
-    Keyword.get(config(), :schema, HospitalSchedulingWeb.Generated.Schema.Scheduling)
+    Keyword.get(config(), :schema, HospitalSchedulingWeb.Schema)
   end
 
   def runtime_consistency_error do
@@ -142,11 +142,45 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
   end
 
   def page_host_pages_dir do
-    Keyword.get(
-      config(),
-      :page_host_pages_dir,
-      Path.join(:code.priv_dir(@app), "static/365_pages")
-    )
+    case Keyword.get(config(), :page_host_pages_dir) do
+      value when is_binary(value) ->
+        value
+        |> String.trim()
+        |> case do
+          "" -> default_page_host_pages_dir()
+          path -> path
+        end
+
+      _ ->
+        default_page_host_pages_dir()
+    end
+  end
+
+  defp default_page_host_pages_dir do
+    static_dir = Path.join(:code.priv_dir(@app), "static")
+
+    candidates =
+      if File.dir?(static_dir) do
+        static_dir
+        |> File.ls!()
+        |> Enum.filter(fn entry ->
+          String.ends_with?(entry, "_pages") and File.dir?(Path.join(static_dir, entry))
+        end)
+        |> Enum.sort()
+      else
+        []
+      end
+
+    cond do
+      "365_pages" in candidates ->
+        Path.join(static_dir, "365_pages")
+
+      length(candidates) == 1 ->
+        Path.join(static_dir, hd(candidates))
+
+      true ->
+        Path.join(static_dir, "365_pages")
+    end
   end
 
   def page_host_runtime do

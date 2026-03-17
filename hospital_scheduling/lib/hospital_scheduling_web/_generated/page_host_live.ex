@@ -29,7 +29,10 @@ defmodule HospitalSchedulingWeb.Generated.PageHostLive do
     socket =
       case PageHostRuntime.resolve_host_route(route_segments) do
         {:ok, %{page_id: page_id, page_params: page_params}} ->
-          merged_params = Map.merge(query_params, page_params)
+          merged_params =
+            page_params
+            |> Map.merge(query_params)
+            |> then(&PageHostRuntime.normalize_page_params(page_id, &1))
 
           socket
           |> assign(:page, page_id)
@@ -73,8 +76,21 @@ defmodule HospitalSchedulingWeb.Generated.PageHostLive do
   end
 
   @impl true
-  def handle_info({:page_host_reload, params}, socket) when is_map(params) do
-    {:noreply, load_and_render(socket, socket.assigns.page, params)}
+  def handle_info({:page_host_reload, params}, %{assigns: %{page: page}} = socket)
+      when is_binary(page) and is_map(params) do
+    if PageHostRuntime.supports_reload?(page) do
+      merged_params =
+        socket.assigns
+        |> Map.get(:page_params, %{})
+        |> Map.merge(PageHostRuntime.normalize_page_params(page, params))
+
+      {:noreply,
+       socket
+       |> assign(:page_params, merged_params)
+       |> load_and_render(page, merged_params)}
+    else
+      {:noreply, socket}
+    end
   end
 
   def handle_info(_message, socket), do: {:noreply, socket}
@@ -91,7 +107,6 @@ defmodule HospitalSchedulingWeb.Generated.PageHostLive do
         |> assign(:page_source_path, path)
         |> assign(:page_template_content, content)
         |> render_page(content, page_data)
-        |> assign(:error, nil)
 
       {:error, reason} ->
         socket
@@ -103,7 +118,10 @@ defmodule HospitalSchedulingWeb.Generated.PageHostLive do
   defp render_page(socket, content, page_data) do
     try do
       module_name = :"Elixir.PageHostDynamic.Render#{:erlang.unique_integer([:positive])}"
-      indented_content = indent_template(content)
+      indented_content =
+        content
+        |> sanitize_dynamic_template()
+        |> indent_template()
 
       module_code = """
       defmodule #{module_name} do
@@ -153,6 +171,7 @@ defmodule HospitalSchedulingWeb.Generated.PageHostLive do
       socket
       |> assign(:page_data, page_data)
       |> assign(:rendered_content, result)
+      |> assign(:error, nil)
     rescue
       e ->
         assign(socket, :error, "page host compile error: " <> Exception.message(e))
@@ -165,10 +184,50 @@ defmodule HospitalSchedulingWeb.Generated.PageHostLive do
     |> Enum.map_join("\n", fn line -> "          " <> line end)
   end
 
+  # 动态 HEEx 编译时，模型文案里的裸 `<` 会被当成标签起始符。
+  # 这里只转义明显像文本比较符的 `<`，避免把真正的标签起始符也误伤。
+  defp sanitize_dynamic_template(content) do
+    graphemes = String.graphemes(content)
+
+    graphemes
+    |> Enum.with_index()
+    |> Enum.map_join(fn {grapheme, idx} ->
+      if grapheme == "<" and comparison_like_angle_bracket?(graphemes, idx) do
+        "&lt;"
+      else
+        grapheme
+      end
+    end)
+  end
+
+  defp comparison_like_angle_bracket?(graphemes, idx) do
+    prev = neighboring_grapheme(graphemes, idx - 1)
+    next = neighboring_grapheme(graphemes, idx + 1)
+
+    previous_suggests_text?(prev) or next_suggests_comparison?(next)
+  end
+
+  defp neighboring_grapheme(_graphemes, idx) when idx < 0, do: nil
+  defp neighboring_grapheme(graphemes, idx), do: Enum.at(graphemes, idx)
+
+  defp previous_suggests_text?(value)
+       when value in [nil, " ", "\\n", "\\t", "\\r", ">", "(", "[", "{"] do
+    false
+  end
+
+  defp previous_suggests_text?(_value), do: true
+
+  defp next_suggests_comparison?(value) when value in [nil, " ", "\\n", "\\t", "\\r", "="] do
+    true
+  end
+
+  defp next_suggests_comparison?(value), do: String.match?(value, ~r/^\\d$/)
+
   defp dispatch_backend(event, params, socket) do
     merged_params =
-      socket.assigns.page_params
-      |> Map.merge(params || %{})
+      socket.assigns
+      |> Map.get(:page_params, %{})
+      |> Map.merge(PageHostRuntime.normalize_page_params(socket.assigns.page, params || %{}))
 
     result =
       PageHostRuntime.dispatch(
@@ -193,7 +252,6 @@ defmodule HospitalSchedulingWeb.Generated.PageHostLive do
     socket
     |> apply_effects(effects)
     |> render_page(socket.assigns.page_template_content, page_data)
-    |> assign(:error, nil)
   end
 
   defp apply_backend_result(socket, {:error, reason}) do

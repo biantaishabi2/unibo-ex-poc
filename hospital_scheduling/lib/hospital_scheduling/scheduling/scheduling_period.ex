@@ -110,27 +110,22 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
     end
     has_many :coverage_requirements, HospitalScheduling.Scheduling.CoverageRequirement do
       public? true
-      source_attribute :id
       destination_attribute :period_id
     end
     has_many :schedule_versions, HospitalScheduling.Scheduling.ScheduleVersion do
       public? true
-      source_attribute :id
       destination_attribute :period_id
     end
     has_many :solver_runs, HospitalScheduling.Scheduling.SolverRun do
       public? true
-      source_attribute :id
       destination_attribute :period_id
     end
     has_many :shift_assignments, HospitalScheduling.Scheduling.ShiftAssignment do
       public? true
-      source_attribute :id
       destination_attribute :period_id
     end
     has_many :constraint_violations, HospitalScheduling.Scheduling.ConstraintViolation do
       public? true
-      source_attribute :id
       destination_attribute :period_id
     end
   end
@@ -198,7 +193,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
         end
       end
       # message: "只有已生成或已调整状态可以发布"
-      change HospitalScheduling.Scheduling.Changes.SchedulingPeriod.PublishCall5
+      change HospitalScheduling.Scheduling.Changes.SchedulingPeriod.PublishCall1
       change set_attribute(:state, :published)
       require_atomic? false
     end

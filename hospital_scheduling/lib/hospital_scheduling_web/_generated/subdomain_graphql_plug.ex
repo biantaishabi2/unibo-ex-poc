@@ -5,13 +5,10 @@ defmodule HospitalSchedulingWeb.Plugs.SubdomainGraphql do
   由 UniBO 编译器自动生成，请勿手动编辑。
   """
 
-  # 子域映射由编译器自动生成
   @subdomains HospitalSchedulingWeb.Generated.SubdomainGraphql.subdomains()
 
   for {name, schema} <- @subdomains do
-    # GraphQL API Plug
     api_module = Module.concat([HospitalSchedulingWeb.Plugs.SubdomainGraphql, Macro.camelize(to_string(name))])
-
     defmodule api_module do
       @behaviour Plug
       @impl true
@@ -24,9 +21,7 @@ defmodule HospitalSchedulingWeb.Plugs.SubdomainGraphql do
       end
     end
 
-    # GraphiQL Playground Plug
     ui_module = Module.concat([HospitalSchedulingWeb.Plugs.SubdomainGraphiql, Macro.camelize(to_string(name))])
-
     defmodule ui_module do
       @behaviour Plug
       @impl true
@@ -36,7 +31,6 @@ defmodule HospitalSchedulingWeb.Plugs.SubdomainGraphql do
         |> Keyword.put(:interface, :playground)
         |> Absinthe.Plug.GraphiQL.init()
       end
-
       @impl true
       def call(conn, opts), do: Absinthe.Plug.GraphiQL.call(conn, opts)
     end
