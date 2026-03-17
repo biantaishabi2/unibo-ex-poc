@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_ORDER
 contract: TravelOrder.submit_order event contract (risk:normal_publish)
 edge_class: event_contract
-source_file: models/travel/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelOrder 动作 submit_order 触发事件 / WHEN 发布 topic `travel.order.submitted` / THEN 消费方应收到一次有效通知
 expected_facts:
 - event_checked

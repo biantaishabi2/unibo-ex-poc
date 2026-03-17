@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_ORDER
 contract: TravelOrder.payment_capture integration contract (risk:post_condition)
 edge_class: integration_contract
-source_file: models/travel/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
 source_summary: GIVEN integration payment_capture 定义业务后置条件 [cash_amount, external_ref, method, points_deduction_amount, points_used, reason, status] / WHEN 调用成功 / THEN 返回结果必须满足后置条件
 expected_facts:
 - integration_invoked

@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_FULFILLMENT
 contract: TravelFulfillment.supplier_issue_document integration contract (risk:post_condition)
 edge_class: integration_contract
-source_file: models/travel/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
 source_summary: GIVEN integration supplier_issue_document 定义业务后置条件 [issue_status, ticket_refs, voucher_or_ticket_ref] / WHEN 调用成功 / THEN 返回结果必须满足后置条件
 expected_facts:
 - integration_invoked

@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_ROOM_TYPE
 contract: TravelRoomType.update action contract
 edge_class: action_contract
-source_file: models/travel/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelRoomType 的动作 update 可执行，accept=[room_type_name, hotel_id, hotel_code, bed_type, status]，args=[无显式参数] / WHEN 执行动作 update / THEN 状态变更与副作用应生效
 expected_facts:
 - action_executed

@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_FULFILLMENT
 contract: TravelFulfillment.confirm_booking action contract (risk:change_effect)
 edge_class: action_contract
-source_file: models/travel/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelFulfillment 的动作 confirm_booking 触发副作用 / WHEN 执行动作 confirm_booking / THEN 变更副作用应完整生效且状态一致 / 补充场景：create_fulfillment 创建履约单 -> confirm_booking 触发 integration supplier_confirm_booking 返回 supplier_booking_rejected -> fail_fulfillment 履约失败并记录补偿原因
 expected_facts:
 - record_persisted

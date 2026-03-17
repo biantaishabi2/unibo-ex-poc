@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_ORDER
 contract: TravelOrder.approve_cancel event contract
 edge_class: event_contract
-source_file: models/travel/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelOrder 的动作 approve_cancel 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.order.cancelled`
 expected_facts:
 - event_checked

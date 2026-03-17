@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_ORDER
 contract: TravelOrder.confirm_quote action contract (risk:validation_fail)
 edge_class: action_contract
-source_file: models/travel/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelOrder 的动作 confirm_quote 输入非法 / WHEN 执行动作 confirm_quote / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create_order 创建订单 -> integration shop_caller_context_resolve 校验宿主上下文 -> confirm_quote 调用 integration shop_eligibility_quote 返回可支付策略 -> submit_order 调用 integration payment_capture 成功 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功；create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 触发 integration payment_capture 成功 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功；create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 触发 integration payment_capture 返回 payment_declined -> mark_order_failed 标记失败并触发库存补偿；create_order 创建 hotel/flight/vacation/train 标准订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功 -> mark_completed 完成订单；create_order 创建 train 订单 -> confirm_quote 确认报价 -> submit_waitlist 提交候补 -> mark_payment_succeeded 支付成功 -> fulfill_waitlist 候补兑现；create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_order_failed 标记失败
 expected_facts:
 - validation_triggered

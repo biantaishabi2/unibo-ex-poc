@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_FULFILLMENT
 contract: TravelFulfillment.create_fulfillment action contract (risk:change_effect)
 edge_class: action_contract
-source_file: models/travel/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelFulfillment 的动作 create_fulfillment 触发副作用 / WHEN 执行动作 create_fulfillment / THEN 变更副作用应完整生效且状态一致 / 补充场景：create_fulfillment 创建履约单 -> fail_fulfillment 履约失败；create_fulfillment 创建履约单 -> update 更新供应商号和确认快照 -> destroy 删除草稿
 expected_facts:
 - record_persisted

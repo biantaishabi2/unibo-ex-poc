@@ -1,7 +1,7 @@
 module: TRAVEL_FLIGHT_OFFER
 contract: FlightOffer.deactivate action contract (risk:change_effect)
 edge_class: action_contract
-source_file: models/travel/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 FlightOffer 的动作 deactivate 触发副作用 / WHEN 执行动作 deactivate / THEN 变更副作用应完整生效且状态一致
 expected_facts:
 - record_persisted

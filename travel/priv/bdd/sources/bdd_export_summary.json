@@ -1,10 +1,11 @@
 {
   "total_models": 1,
-  "generated_files": 445,
+  "generated_files": 461,
   "action_sources": 291,
   "event_sources": 99,
   "workflow_sources": 27,
   "integration_sources": 28,
+  "determination_sources": 16,
   "scenario_total": 36,
   "scenario_associated": 36,
   "scenario_unassociated": 0,

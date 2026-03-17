@@ -1,7 +1,7 @@
 module: TRAVEL_VACATION_OFFER
 contract: VacationOffer.vacation_offer_lifecycle workflow contract (risk:branch_or_exception)
 edge_class: workflow_contract
-source_file: models/travel/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 VacationOffer 的工作流 vacation_offer_lifecycle 存在分支或异常可能 / WHEN 验证工作流动作链 ACTION_PATH=create -> update -> activate -> deactivate -> expire -> destroy / THEN 流程应可恢复并保持状态一致
 expected_facts:
 - workflow_checked

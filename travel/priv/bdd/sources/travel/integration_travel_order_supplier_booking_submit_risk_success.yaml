@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_ORDER
 contract: TravelOrder.supplier_booking_submit integration contract (risk:success)
 edge_class: integration_contract
-source_file: models/travel/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelOrder 的 integration supplier_booking_submit 已声明 fake adapter / WHEN 执行绑定动作 [mark_payment_succeeded] / THEN 调用结果应成功并满足契约模式 async
 expected_facts:
 - integration_invoked

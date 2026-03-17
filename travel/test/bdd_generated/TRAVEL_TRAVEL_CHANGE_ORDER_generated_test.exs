@@ -489,4 +489,71 @@ defmodule UniboExPoc.BDD.Generated.TRAVEL_TRAVEL_CHANGE_ORDERTest do
     :ok
   end
 
+  # Source: BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-travel_travel_change_order_determination_travel_change_order_notify_order_change_approved
+  @tag :determination_contract
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-travel_travel_change_order_determination_travel_change_order_notify_order_change_approved]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-travel_travel_change_order_determination_travel_change_order_notify_order_change_approved"}
+    # line 150: GIVEN given_seed_context id="travel_travel_change_order_determination_travel_change_order_notify_order_change_approved" module="TRAVEL_TRAVEL_CHANGE_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_change_order_determination_travel_change_order_notify_order_change_approved", module: "TRAVEL_TRAVEL_CHANGE_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CHANGE_ORDER.dsl", line: 150, raw: "GIVEN given_seed_context id=\"travel_travel_change_order_determination_travel_change_order_notify_order_change_approved\" module=\"TRAVEL_TRAVEL_CHANGE_ORDER\""}, 150)
+    # line 151: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CHANGE_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_CHANGE_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CHANGE_ORDER.dsl", line: 151, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_CHANGE_ORDER\""}, 151)
+    # line 152: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CHANGE_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_CHANGE_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CHANGE_ORDER.dsl", line: 152, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_CHANGE_ORDER\""}, 152)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_success
+  @tag :determination_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_success"}
+    # line 155: GIVEN given_seed_context id="travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_success" module="TRAVEL_TRAVEL_CHANGE_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_success", module: "TRAVEL_TRAVEL_CHANGE_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CHANGE_ORDER.dsl", line: 155, raw: "GIVEN given_seed_context id=\"travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_success\" module=\"TRAVEL_TRAVEL_CHANGE_ORDER\""}, 155)
+    # line 156: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CHANGE_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_CHANGE_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CHANGE_ORDER.dsl", line: 156, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_CHANGE_ORDER\""}, 156)
+    # line 157: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CHANGE_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_CHANGE_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CHANGE_ORDER.dsl", line: 157, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_CHANGE_ORDER\""}, 157)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_async_timeout
+  @tag :determination_contract
+  @tag :risk_async_timeout
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_async_timeout]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_async_timeout"}
+    # line 160: GIVEN given_seed_context id="travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_async_timeout" module="TRAVEL_TRAVEL_CHANGE_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_async_timeout", module: "TRAVEL_TRAVEL_CHANGE_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CHANGE_ORDER.dsl", line: 160, raw: "GIVEN given_seed_context id=\"travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_async_timeout\" module=\"TRAVEL_TRAVEL_CHANGE_ORDER\""}, 160)
+    # line 161: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CHANGE_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_CHANGE_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CHANGE_ORDER.dsl", line: 161, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_CHANGE_ORDER\""}, 161)
+    # line 162: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CHANGE_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_CHANGE_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CHANGE_ORDER.dsl", line: 162, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_CHANGE_ORDER\""}, 162)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_read_set_unavailable
+  @tag :determination_contract
+  @tag :risk_read_set_unavailable
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_read_set_unavailable]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_read_set_unavailable"}
+    # line 165: GIVEN given_seed_context id="travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_read_set_unavailable" module="TRAVEL_TRAVEL_CHANGE_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_read_set_unavailable", module: "TRAVEL_TRAVEL_CHANGE_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CHANGE_ORDER.dsl", line: 165, raw: "GIVEN given_seed_context id=\"travel_travel_change_order_determination_travel_change_order_notify_order_change_approved_risk_read_set_unavailable\" module=\"TRAVEL_TRAVEL_CHANGE_ORDER\""}, 165)
+    # line 166: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CHANGE_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_CHANGE_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CHANGE_ORDER.dsl", line: 166, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_CHANGE_ORDER\""}, 166)
+    # line 167: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CHANGE_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_CHANGE_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CHANGE_ORDER.dsl", line: 167, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_CHANGE_ORDER\""}, 167)
+    _ctx = ctx
+    :ok
+  end
+
 end

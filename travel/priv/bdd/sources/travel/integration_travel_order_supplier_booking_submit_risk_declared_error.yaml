@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_ORDER
 contract: TravelOrder.supplier_booking_submit integration contract (risk:declared_error)
 edge_class: integration_contract
-source_file: models/travel/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
 source_summary: GIVEN integration supplier_booking_submit 声明错误码 [supplier_timeout, supplier_inventory_unavailable] / WHEN fake adapter 返回错误 / THEN 错误码必须命中声明集合
 expected_facts:
 - integration_invoked

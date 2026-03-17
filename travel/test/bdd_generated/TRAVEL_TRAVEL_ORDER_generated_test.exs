@@ -1811,4 +1811,138 @@ defmodule UniboExPoc.BDD.Generated.TRAVEL_TRAVEL_ORDERTest do
     :ok
   end
 
+  # Source: BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_fulfillment_creation
+  @tag :determination_contract
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_fulfillment_creation]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_fulfillment_creation"}
+    # line 545: GIVEN given_seed_context id="travel_travel_order_determination_travel_order_trigger_fulfillment_creation" module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_order_determination_travel_order_trigger_fulfillment_creation", module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 545, raw: "GIVEN given_seed_context id=\"travel_travel_order_determination_travel_order_trigger_fulfillment_creation\" module=\"TRAVEL_TRAVEL_ORDER\""}, 545)
+    # line 546: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 546, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_ORDER\""}, 546)
+    # line 547: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 547, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_ORDER\""}, 547)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_success
+  @tag :determination_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_success"}
+    # line 550: GIVEN given_seed_context id="travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_success" module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_success", module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 550, raw: "GIVEN given_seed_context id=\"travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_success\" module=\"TRAVEL_TRAVEL_ORDER\""}, 550)
+    # line 551: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 551, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_ORDER\""}, 551)
+    # line 552: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 552, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_ORDER\""}, 552)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_async_timeout
+  @tag :determination_contract
+  @tag :risk_async_timeout
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_async_timeout]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_async_timeout"}
+    # line 555: GIVEN given_seed_context id="travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_async_timeout" module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_async_timeout", module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 555, raw: "GIVEN given_seed_context id=\"travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_async_timeout\" module=\"TRAVEL_TRAVEL_ORDER\""}, 555)
+    # line 556: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 556, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_ORDER\""}, 556)
+    # line 557: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 557, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_ORDER\""}, 557)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_read_set_unavailable
+  @tag :determination_contract
+  @tag :risk_read_set_unavailable
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_read_set_unavailable]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_read_set_unavailable"}
+    # line 560: GIVEN given_seed_context id="travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_read_set_unavailable" module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_read_set_unavailable", module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 560, raw: "GIVEN given_seed_context id=\"travel_travel_order_determination_travel_order_trigger_fulfillment_creation_risk_read_set_unavailable\" module=\"TRAVEL_TRAVEL_ORDER\""}, 560)
+    # line 561: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 561, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_ORDER\""}, 561)
+    # line 562: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 562, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_ORDER\""}, 562)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_policy_check
+  @tag :determination_contract
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_policy_check]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_policy_check"}
+    # line 565: GIVEN given_seed_context id="travel_travel_order_determination_travel_order_trigger_policy_check" module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_order_determination_travel_order_trigger_policy_check", module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 565, raw: "GIVEN given_seed_context id=\"travel_travel_order_determination_travel_order_trigger_policy_check\" module=\"TRAVEL_TRAVEL_ORDER\""}, 565)
+    # line 566: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 566, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_ORDER\""}, 566)
+    # line 567: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 567, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_ORDER\""}, 567)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_policy_check_risk_success
+  @tag :determination_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_policy_check_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_policy_check_risk_success"}
+    # line 570: GIVEN given_seed_context id="travel_travel_order_determination_travel_order_trigger_policy_check_risk_success" module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_order_determination_travel_order_trigger_policy_check_risk_success", module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 570, raw: "GIVEN given_seed_context id=\"travel_travel_order_determination_travel_order_trigger_policy_check_risk_success\" module=\"TRAVEL_TRAVEL_ORDER\""}, 570)
+    # line 571: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 571, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_ORDER\""}, 571)
+    # line 572: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 572, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_ORDER\""}, 572)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_policy_check_risk_async_timeout
+  @tag :determination_contract
+  @tag :risk_async_timeout
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_policy_check_risk_async_timeout]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_policy_check_risk_async_timeout"}
+    # line 575: GIVEN given_seed_context id="travel_travel_order_determination_travel_order_trigger_policy_check_risk_async_timeout" module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_order_determination_travel_order_trigger_policy_check_risk_async_timeout", module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 575, raw: "GIVEN given_seed_context id=\"travel_travel_order_determination_travel_order_trigger_policy_check_risk_async_timeout\" module=\"TRAVEL_TRAVEL_ORDER\""}, 575)
+    # line 576: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 576, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_ORDER\""}, 576)
+    # line 577: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 577, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_ORDER\""}, 577)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_policy_check_risk_read_set_unavailable
+  @tag :determination_contract
+  @tag :risk_read_set_unavailable
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_policy_check_risk_read_set_unavailable]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_ORDER-SEED-travel_travel_order_determination_travel_order_trigger_policy_check_risk_read_set_unavailable"}
+    # line 580: GIVEN given_seed_context id="travel_travel_order_determination_travel_order_trigger_policy_check_risk_read_set_unavailable" module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_order_determination_travel_order_trigger_policy_check_risk_read_set_unavailable", module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 580, raw: "GIVEN given_seed_context id=\"travel_travel_order_determination_travel_order_trigger_policy_check_risk_read_set_unavailable\" module=\"TRAVEL_TRAVEL_ORDER\""}, 580)
+    # line 581: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 581, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_ORDER\""}, 581)
+    # line 582: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_ORDER.dsl", line: 582, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_ORDER\""}, 582)
+    _ctx = ctx
+    :ok
+  end
+
 end

@@ -1,7 +1,7 @@
 module: TRAVEL_TRAIN_OFFER
 contract: TrainOffer.expire event contract
 edge_class: event_contract
-source_file: models/travel/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TrainOffer 的动作 expire 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.catalog.train_offer.expired`
 expected_facts:
 - event_checked
