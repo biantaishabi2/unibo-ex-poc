@@ -210,6 +210,9 @@ defmodule UniboExPoc.Purchasing.ProductSupplierinfo do
     policy action_type(:create) do
       authorize_if always()
     end
+    policy always() do
+      authorize_if always()
+    end
   end
 
 end

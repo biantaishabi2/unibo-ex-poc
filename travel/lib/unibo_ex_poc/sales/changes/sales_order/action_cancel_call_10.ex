@@ -3,12 +3,12 @@ defmodule UniboExPoc.Sales.Changes.SalesOrder.ActionCancelCall10 do
 
   @impl true
   def change(changeset, _opts, context) do
-    module_ref = "Sales"
+    module_ref = "UniboExPoc.Sales"
     module = resolve_call_module(module_ref)
     if is_atom(module) and function_exported?(module, :cancel_related, 2) do
       apply(module, :cancel_related, [changeset, context])
     else
-      Ash.Changeset.add_error(changeset, "call 目标不存在: #Sales.cancel_related/2")
+      Ash.Changeset.add_error(changeset, "call 目标不存在: #UniboExPoc.Sales.cancel_related/2")
     end
   end
 

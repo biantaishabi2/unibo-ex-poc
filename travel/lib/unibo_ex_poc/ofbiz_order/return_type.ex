@@ -1,0 +1,50 @@
+defmodule UniboExPoc.Ofbiz.Order.ReturnType do
+  use Ash.Resource,
+    otp_app: :travel,
+    domain: UniboExPoc.Ofbiz.Order,
+    data_layer: AshPostgres.DataLayer,
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
+
+  postgres do
+    table "order_return_types"
+    repo UniboExPoc.Repo
+  end
+
+  graphql do
+    type :ofbiz_order_return_type
+
+    queries do
+      get :get_ofbiz_order_return_type, :read
+      list :list_ofbiz_order_return_types, :read
+    end
+
+    mutations do
+      create :create_ofbiz_order_return_type, :create
+      update :update_ofbiz_order_return_type, :update
+      destroy :delete_ofbiz_order_return_type, :destroy
+    end
+
+  end
+
+  attributes do
+    attribute :id, :string do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
+    attribute :return_type_id, :string, public?: true
+    attribute :parent_type_id, :string, public?: true
+    attribute :has_table, :boolean, public?: true
+    attribute :description, :string, public?: true
+    attribute :sequence_id, :string, public?: true
+    attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
+  end
+
+  actions do
+    defaults [:read, :create, :update, :destroy]
+  end
+
+  archive do
+  end
+
+end

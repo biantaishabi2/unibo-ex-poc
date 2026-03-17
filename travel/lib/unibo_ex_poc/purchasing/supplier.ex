@@ -221,6 +221,9 @@ defmodule UniboExPoc.Purchasing.Supplier do
     policy action_type(:create) do
       authorize_if expr(actor.role in [:buyer, :admin])
     end
+    policy always() do
+      authorize_if always()
+    end
   end
 
 end

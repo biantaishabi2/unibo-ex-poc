@@ -329,6 +329,9 @@ defmodule UniboExPoc.Sales.SalesOrder do
     policy action_type(:create) do
       authorize_if expr(actor.role in [:sales_rep, :admin])
     end
+    policy always() do
+      authorize_if always()
+    end
   end
 
 end

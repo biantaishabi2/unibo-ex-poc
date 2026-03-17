@@ -30,8 +30,11 @@ defmodule UniboExPoc.Travel do
     resource UniboExPoc.Travel.TravelFulfillment
     resource UniboExPoc.Travel.TravelFulfillment.Version
     resource UniboExPoc.Travel.TravelChangeOrder
+    resource UniboExPoc.Travel.TravelChangeOrder.Version
     resource UniboExPoc.Travel.TravelRefundOrder
+    resource UniboExPoc.Travel.TravelRefundOrder.Version
     resource UniboExPoc.Travel.TravelPolicy
+    resource UniboExPoc.Travel.TravelPolicy.Version
     resource UniboExPoc.Travel.TravelPolicyCheck
   end
 end

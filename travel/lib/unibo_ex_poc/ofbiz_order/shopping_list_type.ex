@@ -1,0 +1,47 @@
+defmodule UniboExPoc.Ofbiz.Order.ShoppingListType do
+  use Ash.Resource,
+    otp_app: :travel,
+    domain: UniboExPoc.Ofbiz.Order,
+    data_layer: AshPostgres.DataLayer,
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
+
+  postgres do
+    table "order_shopping_list_types"
+    repo UniboExPoc.Repo
+  end
+
+  graphql do
+    type :ofbiz_order_shopping_list_type
+
+    queries do
+      get :get_ofbiz_order_shopping_list_type, :read
+      list :list_ofbiz_order_shopping_list_types, :read
+    end
+
+    mutations do
+      create :create_ofbiz_order_shopping_list_type, :create
+      update :update_ofbiz_order_shopping_list_type, :update
+      destroy :delete_ofbiz_order_shopping_list_type, :destroy
+    end
+
+  end
+
+  attributes do
+    attribute :id, :string do
+      primary_key? true
+      allow_nil? false
+      public? true
+    end
+    attribute :shopping_list_type_id, :string, public?: true
+    attribute :description, :string, public?: true
+    attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
+  end
+
+  actions do
+    defaults [:read, :create, :update, :destroy]
+  end
+
+  archive do
+  end
+
+end

@@ -312,6 +312,9 @@ defmodule UniboExPoc.Payment.Payment do
       forbid_unless relates_to_actor_via(:company_party)
       authorize_if expr(^actor(:role) in [:finance_clerk, :admin])
     end
+    policy always() do
+      authorize_if always()
+    end
   end
 
 end

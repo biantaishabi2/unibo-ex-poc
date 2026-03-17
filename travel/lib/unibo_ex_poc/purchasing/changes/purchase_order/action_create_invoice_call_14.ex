@@ -3,12 +3,12 @@ defmodule UniboExPoc.Purchasing.Changes.PurchaseOrder.ActionCreateInvoiceCall14 
 
   @impl true
   def change(changeset, _opts, context) do
-    module_ref = "account"
+    module_ref = "UniboExPoc.Account"
     module = resolve_call_module(module_ref)
     if is_atom(module) and function_exported?(module, :create_invoice, 2) do
       apply(module, :create_invoice, [changeset, context])
     else
-      Ash.Changeset.add_error(changeset, "call 目标不存在: #account.create_invoice/2")
+      Ash.Changeset.add_error(changeset, "call 目标不存在: #UniboExPoc.Account.create_invoice/2")
     end
   end
 

@@ -21,7 +21,7 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
   def load_page(page_id, params, runtime_mode, backend) when is_binary(page_id) do
     with {:ok, page} <- RuntimeConfig.frontend_page(page_id),
          {:ok, path, content} <- page_template(page_id, page),
-         {:ok, page_data} <- load_page_data(path, page_id, params, runtime_mode, backend) do
+         {:ok, page_data} <- load_page_data(path, page_id, page, params, runtime_mode, backend) do
       {:ok, %{page: page, path: path, content: content, page_data: page_data}}
     end
   end
@@ -128,6 +128,21 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     end
   end
 
+  def page_contract(page_id) when is_binary(page_id) do
+    case RuntimeConfig.frontend_page(page_id) do
+      {:ok, page} ->
+        case page_template(page_id, page) do
+          {:ok, path, _content} -> load_behavior_contract(path)
+          _ -> %{}
+        end
+
+      _ ->
+        %{}
+    end
+  end
+
+  def page_contract(_page_id), do: %{}
+
   def host_path_for_page(page) when is_map(page) do
     page
     |> map_get("route")
@@ -191,6 +206,14 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
   def normalize_list(values) when is_list(values), do: values
   def normalize_list(_values), do: []
 
+  def normalize_string_list(values) when is_list(values) do
+    values
+    |> Enum.map(&normalize_string/1)
+    |> Enum.reject(&(&1 == ""))
+  end
+
+  def normalize_string_list(_values), do: []
+
   def normalize_string(nil), do: ""
   def normalize_string(value) when is_binary(value), do: String.trim(value)
   def normalize_string(value) when is_atom(value), do: value |> Atom.to_string() |> String.trim()
@@ -212,6 +235,58 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
   end
 
   def map_get(_map, _key), do: nil
+
+  def normalize_page_params(page_id, params) when is_binary(page_id) and is_map(params) do
+    params = stringify_map(params)
+    route_id = map_get(params, "id") |> normalize_string()
+
+    accepted =
+      page_id
+      |> page_contract()
+      |> map_get("backend")
+      |> map_get("params")
+      |> map_get("accept")
+      |> normalize_string_list()
+
+    case accepted do
+      [] ->
+        maybe_put_route_id(params, route_id)
+
+      values ->
+        allowed = Enum.uniq(["id" | values])
+
+        params
+        |> Map.take(allowed)
+        |> maybe_put_route_id(route_id)
+        |> maybe_restore_original_params(params)
+    end
+  end
+
+  def normalize_page_params(_page_id, params) when is_map(params), do: stringify_map(params)
+  def normalize_page_params(_page_id, _params), do: %{}
+
+  def supports_reload?(page_id) when is_binary(page_id) do
+    messages =
+      page_id
+      |> page_contract()
+      |> map_get("backend")
+      |> map_get("info")
+      |> map_get("reload_messages")
+      |> normalize_string_list()
+
+    messages == [] or "page_host_reload" in messages
+  end
+
+  def supports_reload?(_page_id), do: false
+
+  defp maybe_put_route_id(params, ""), do: params
+  defp maybe_put_route_id(params, id), do: Map.put(params, "id", id)
+
+  defp maybe_restore_original_params(%{} = normalized, %{} = original)
+       when map_size(normalized) == 0 and map_size(original) > 0,
+       do: original
+
+  defp maybe_restore_original_params(normalized, _original), do: normalized
 
   defp resolve_host_route_path(path) do
     route_map = RuntimeConfig.frontend_route_map()
@@ -303,6 +378,7 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     domain_snake = page |> map_get("domain_snake") |> normalize_string()
     entity_snake = page |> map_get("entity_snake") |> normalize_string()
     page_kind = page |> map_get("page_kind") |> normalize_string()
+    route_path = page |> map_get("route_path") |> normalize_string()
     normalized_page_id = normalize_string(page_id)
 
     relative_candidates =
@@ -310,6 +386,7 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
       |> maybe_add_dsl_candidates(dsl_file)
       |> maybe_add_behavior_candidates(behavior_file)
       |> maybe_add_entity_candidates(domain_snake, entity_snake, page_kind)
+      |> maybe_add_route_candidates(route_path)
       |> maybe_add_page_id_candidates(normalized_page_id)
 
     absolute_candidates =
@@ -351,6 +428,39 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     ["#{page_id}.expanded.generated.heex", "#{page_id}.generated.heex", "#{page_id}.heex" | candidates]
   end
 
+  defp maybe_add_route_candidates(candidates, ""), do: candidates
+
+  defp maybe_add_route_candidates(candidates, route_path) do
+    segments =
+      route_path
+      |> String.trim()
+      |> String.trim_leading("/")
+      |> String.split("/", trim: true)
+
+    case segments do
+      [] ->
+        candidates
+
+      [single] ->
+        [
+          "#{single}.expanded.generated.heex",
+          "#{single}.generated.heex",
+          "#{single}.heex"
+          | candidates
+        ]
+
+      _ ->
+        relative = Path.join(segments)
+
+        [
+          "#{relative}.expanded.generated.heex",
+          "#{relative}.generated.heex",
+          "#{relative}.heex"
+          | candidates
+        ]
+    end
+  end
+
   defp recursive_basename_candidates(""), do: []
 
   defp recursive_basename_candidates(page_id) do
@@ -364,23 +474,32 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
         filename == "#{page_id}.generated.heex" or
         filename == "#{page_id}.heex"
     end)
+    |> Enum.sort_by(fn path ->
+      path
+      |> Path.relative_to(pages_dir())
+      |> Path.split()
+      |> length()
+    end, :desc)
   end
 
-  defp load_page_data(path, page_id, params, :graphql, backend) do
+  defp load_page_data(path, page_id, page, params, :graphql, backend) do
     status_defaults = load_status_defaults(path)
+    page_contract = load_behavior_contract(path)
+    selection = page_selection(path, status_defaults)
 
     seed =
       @default_assigns
       |> Map.merge(status_defaults)
-      |> Map.merge(load_mock_data(path))
       |> maybe_put_page_title(page_id, status_defaults)
-      |> Map.put(:selection, build_selection_from_defaults(status_defaults))
+      |> Map.put(:selection, selection)
+      |> Map.put(:_page_contract, page_contract)
 
     case dispatch(backend, page_id, @load_event, params, seed) do
       {:ok, %{dto: dto, status: status, effects: effects}} ->
         {:ok,
          seed
          |> merge_backend_payload(dto, status)
+         |> apply_load_assigns()
          |> maybe_put_flash_from_effects(effects)}
 
       {:error, reason} ->
@@ -391,7 +510,7 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     end
   end
 
-  defp load_page_data(path, page_id, _params, _runtime_mode, _backend) do
+  defp load_page_data(path, page_id, _page, _params, _runtime_mode, _backend) do
     status_defaults = load_status_defaults(path)
 
     {:ok,
@@ -406,6 +525,165 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
       page_data
     else
       Map.put(page_data, :page_title, page_id)
+    end
+  end
+
+  defp apply_load_assigns(page_data) do
+    load_assigns =
+      page_data
+      |> Map.get(:_page_contract, %{})
+      |> normalize_map()
+      |> map_get("backend")
+      |> map_get("load")
+      |> map_get("assigns")
+      |> normalize_map()
+
+    Enum.reduce(load_assigns, page_data, fn {key, spec}, acc ->
+      case resolve_load_assign(acc, spec) do
+        {:ok, value} ->
+          assign_key = String.to_atom(key)
+          normalized_value = deep_generated_atomize_keys(value)
+
+          updated_value =
+            case {Map.get(acc, assign_key), normalized_value} do
+              {existing, value} when is_map(existing) and is_map(value) ->
+                deep_merge(existing, value)
+
+              {_existing, value} ->
+                value
+            end
+
+          if is_nil(updated_value) do
+            acc
+          else
+            Map.put(acc, assign_key, updated_value)
+          end
+
+        :error ->
+          acc
+      end
+    end)
+  end
+
+  defp resolve_load_assign(page_data, spec) when is_binary(spec) do
+    case get_by_path(page_data, spec) do
+      nil -> :error
+      value -> {:ok, value}
+    end
+  end
+
+  defp resolve_load_assign(page_data, spec) when is_map(spec) do
+    normalized_spec = normalize_map(spec)
+
+    if Map.has_key?(normalized_spec, "value") do
+      {:ok, map_get(normalized_spec, "value")}
+    else
+      source =
+        normalized_spec
+        |> map_get("from")
+        |> normalize_string()
+
+      transform =
+        normalized_spec
+        |> map_get("transform")
+        |> normalize_string()
+
+      case get_by_path(page_data, source) do
+        nil ->
+          if transform == "" do
+            :error
+          else
+            {:ok, apply_load_transform(nil, transform)}
+          end
+
+        value ->
+          {:ok, apply_load_transform(value, transform)}
+      end
+    end
+  end
+
+  defp resolve_load_assign(_page_data, _spec), do: :error
+
+  defp apply_load_transform(value, ""), do: value
+  defp apply_load_transform(value, "group_requirements_by_shift_type")
+       when is_list(value) do
+    value
+    |> Enum.reduce(%{}, fn requirement, acc ->
+      requirement_map = normalize_map(requirement)
+      shift_type = normalize_map(map_get(requirement_map, "shift_type"))
+      shift_name = normalize_string(map_get(shift_type, "name"))
+      shift_id = normalize_string(map_get(shift_type, "id"))
+
+      if shift_name == "" do
+        acc
+      else
+        existing =
+          Map.get(acc, shift_id, %{"id" => shift_id, "name" => shift_name, "requirements" => []})
+
+        normalized_requirement =
+          %{}
+          |> Map.put("id", normalize_string(map_get(requirement_map, "id")))
+          |> Map.put("requirement_date", normalize_string(map_get(requirement_map, "requirement_date")))
+          |> Map.put("min_headcount", map_get(requirement_map, "min_headcount"))
+          |> Map.put("target_headcount", map_get(requirement_map, "target_headcount"))
+          |> Map.put("role_code", normalize_string(map_get(requirement_map, "role_code")))
+          |> Map.put("role_name", normalize_string(map_get(requirement_map, "role_name")))
+
+        Map.put(
+          acc,
+          shift_id,
+          Map.update!(existing, "requirements", &(&1 ++ [normalized_requirement]))
+        )
+      end
+    end)
+    |> Map.values()
+  end
+
+  defp apply_load_transform(value, "normalize_list"), do: normalize_list(value)
+
+  defp apply_load_transform(value, "date_range_label") when is_map(value) do
+    start_date = value |> map_get("start_date") |> normalize_string()
+    end_date = value |> map_get("end_date") |> normalize_string()
+
+    cond do
+      start_date != "" and end_date != "" -> "#{start_date} ~ #{end_date}"
+      start_date != "" -> start_date
+      end_date != "" -> end_date
+      true -> ""
+    end
+  end
+
+  defp apply_load_transform(value, _transform), do: value
+
+  defp get_by_path(data, path) when is_binary(path) do
+    path
+    |> String.trim_leading("$")
+    |> String.split(".", trim: true)
+    |> Enum.reduce_while(data, fn segment, acc ->
+      case map_get(acc, segment) do
+        nil -> {:halt, nil}
+        value -> {:cont, value}
+      end
+    end)
+  end
+
+  defp get_by_path(_data, _path), do: nil
+
+  defp page_selection(path, status_defaults) do
+    explicit_selection =
+      path
+      |> load_behavior_contract()
+      |> map_get("backend")
+      |> map_get("load")
+      |> map_get("selection")
+      |> normalize_string()
+
+    cond do
+      explicit_selection != "" ->
+        explicit_selection
+
+      true ->
+        build_selection_from_defaults(status_defaults)
     end
   end
 
@@ -469,6 +747,53 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
 
   defp extract_selection_fields(_), do: ""
 
+  defp load_behavior_contract(heex_path) do
+    heex_path
+    |> behavior_path_candidates()
+    |> Enum.reduce(%{}, fn path, acc ->
+      case read_behavior_contract(path) do
+        %{} = data when map_size(data) > 0 -> deep_merge(acc, data)
+        _ -> acc
+      end
+    end)
+  end
+
+  defp read_behavior_contract(path) when is_binary(path) do
+    if File.exists?(path) do
+      case File.read(path) do
+        {:ok, json} ->
+          case Jason.decode(json) do
+            {:ok, %{} = data} -> data
+            _ -> %{}
+          end
+
+        _ ->
+          %{}
+      end
+    else
+      %{}
+    end
+  end
+
+  defp behavior_path_candidates(heex_path) do
+    page_id =
+      heex_path
+      |> Path.basename()
+      |> String.replace_suffix(".expanded.generated.heex", "")
+      |> String.replace_suffix(".generated.heex", "")
+      |> String.replace_suffix(".heex", "")
+
+    app_root = File.cwd!()
+
+    [
+      String.replace_suffix(heex_path, ".expanded.generated.heex", ".expanded.behavior.v1.json"),
+      String.replace_suffix(heex_path, ".generated.heex", ".behavior.v1.json"),
+      String.replace_suffix(heex_path, ".heex", ".behavior.v1.json"),
+      Path.join(app_root, "pages/scheduling/admin/#{page_id}.behavior.v1.json")
+    ]
+    |> Enum.uniq()
+  end
+
   defp load_mock_data(heex_path) do
     heex_path
     |> mock_path_candidates()
@@ -520,8 +845,16 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     |> Enum.map(fn page ->
       page_id = page |> map_get("page_id") |> normalize_string()
       route_path = Map.get(routes_by_page, page_id, "/" <> page_id)
+      display_name =
+        page
+        |> map_get("display_name")
+        |> normalize_string()
+        |> case do
+          "" -> page_id
+          value -> value
+        end
 
-      %{name: page_id, file: page |> map_get("page_type") |> normalize_string(), route: route_path, host_route: normalize_host_target(route_path, page_id)}
+      %{name: display_name, file: page |> map_get("page_type") |> normalize_string(), route: route_path, host_route: normalize_host_target(route_path, page_id)}
     end)
     |> Enum.reject(&(&1.name == ""))
     |> Enum.sort_by(& &1.name)
@@ -531,17 +864,17 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     pages_dir()
     |> Path.join("**/*.heex")
     |> Path.wildcard()
-    |> Enum.map(fn path ->
-      filename = Path.basename(path)
+      |> Enum.map(fn path ->
+        filename = Path.basename(path)
 
-      name =
-        filename
-        |> String.replace_suffix(".expanded.generated.heex", "")
-        |> String.replace_suffix(".generated.heex", "")
-        |> String.replace_suffix(".heex", "")
+        page_id =
+          filename
+          |> String.replace_suffix(".expanded.generated.heex", "")
+          |> String.replace_suffix(".generated.heex", "")
+          |> String.replace_suffix(".heex", "")
 
-      %{name: name, file: Path.relative_to(path, pages_dir()), route: "/" <> name, host_route: normalize_host_target(name, name)}
-    end)
+      %{name: page_id, file: Path.relative_to(path, pages_dir()), route: "/" <> page_id, host_route: normalize_host_target(page_id, page_id)}
+      end)
     |> Enum.reject(&(&1.name == ""))
     |> Enum.sort_by(& &1.name)
     |> Enum.uniq_by(& &1.name)

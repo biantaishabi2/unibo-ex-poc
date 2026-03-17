@@ -419,6 +419,9 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
     policy action(:button_approve) do
       authorize_if expr(^actor(:role) == :purchase_manager or unknown_func())
     end
+    policy always() do
+      authorize_if always()
+    end
   end
 
 end

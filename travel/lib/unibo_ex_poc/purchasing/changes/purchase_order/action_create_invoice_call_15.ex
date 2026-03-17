@@ -3,12 +3,12 @@ defmodule UniboExPoc.Purchasing.Changes.PurchaseOrder.ActionCreateInvoiceCall15 
 
   @impl true
   def change(changeset, _opts, context) do
-    module_ref = "account"
+    module_ref = "UniboExPoc.Account"
     module = resolve_call_module(module_ref)
     if is_atom(module) and function_exported?(module, :switch_move_type_if_negative, 2) do
       apply(module, :switch_move_type_if_negative, [changeset, context])
     else
-      Ash.Changeset.add_error(changeset, "call 目标不存在: #account.switch_move_type_if_negative/2")
+      Ash.Changeset.add_error(changeset, "call 目标不存在: #UniboExPoc.Account.switch_move_type_if_negative/2")
     end
   end
 

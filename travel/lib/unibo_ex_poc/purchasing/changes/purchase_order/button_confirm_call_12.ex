@@ -3,12 +3,12 @@ defmodule UniboExPoc.Purchasing.Changes.PurchaseOrder.ButtonConfirmCall12 do
 
   @impl true
   def change(changeset, _opts, context) do
-    module_ref = "product"
+    module_ref = "UniboExPoc.Product"
     module = resolve_call_module(module_ref)
     if is_atom(module) and function_exported?(module, :add_supplier_to_product, 2) do
       apply(module, :add_supplier_to_product, [changeset, context])
     else
-      Ash.Changeset.add_error(changeset, "call 目标不存在: #product.add_supplier_to_product/2")
+      Ash.Changeset.add_error(changeset, "call 目标不存在: #UniboExPoc.Product.add_supplier_to_product/2")
     end
   end
 

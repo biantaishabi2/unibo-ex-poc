@@ -1,0 +1,73 @@
+defmodule UniboExPoc.Ofbiz.Accounting.FixedAsset do
+  use Ash.Resource,
+    otp_app: :travel,
+    domain: UniboExPoc.Ofbiz.Accounting,
+    data_layer: AshPostgres.DataLayer,
+    extensions: [AshGraphql.Resource, AshArchival.Resource]
+
+  postgres do
+    table "accounting_fixed_assets"
+    repo UniboExPoc.Repo
+  end
+
+  graphql do
+    type :ofbiz_accounting_fixed_asset
+
+    queries do
+      get :get_ofbiz_accounting_fixed_asset, :read
+      list :list_ofbiz_accounting_fixed_assets, :read
+    end
+
+    mutations do
+      create :create_ofbiz_accounting_fixed_asset, :create
+      update :update_ofbiz_accounting_fixed_asset, :update
+      destroy :delete_ofbiz_accounting_fixed_asset, :destroy
+    end
+
+  end
+
+  attributes do
+    uuid_primary_key :id
+    attribute :fixed_asset_id, :string, public?: true
+    attribute :instance_of_product_id, :string, public?: true
+    attribute :class_enum_id, :string, public?: true
+    attribute :party_id, :string, public?: true
+    attribute :role_type_id, :string, public?: true
+    attribute :fixed_asset_name, :string, public?: true
+    attribute :acquire_order_id, :string, public?: true
+    attribute :acquire_order_item_seq_id, :string, public?: true
+    attribute :date_acquired, :utc_datetime, public?: true
+    attribute :date_last_serviced, :utc_datetime, public?: true
+    attribute :date_next_service, :utc_datetime, public?: true
+    attribute :expected_end_of_life, :utc_datetime, public?: true
+    attribute :actual_end_of_life, :utc_datetime, public?: true
+    attribute :production_capacity, :decimal, public?: true
+    attribute :uom_id, :string, public?: true
+    attribute :calendar_id, :string, public?: true
+    attribute :serial_number, :string, public?: true
+    attribute :located_at_facility_id, :string, public?: true
+    attribute :located_at_location_seq_id, :string, public?: true
+    attribute :salvage_value, :decimal, public?: true
+    attribute :depreciation, :decimal, public?: true
+    attribute :purchase_cost, :decimal, public?: true
+    attribute :purchase_cost_uom_id, :string, public?: true
+    attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
+  end
+
+  relationships do
+    belongs_to :fixed_asset_type, UniboExPoc.Ofbiz.Accounting.FixedAssetType do
+      public? true
+    end
+    belongs_to :parent_fixed_asset, UniboExPoc.Ofbiz.Accounting.FixedAsset do
+      public? true
+    end
+  end
+
+  actions do
+    defaults [:read, :create, :update, :destroy]
+  end
+
+  archive do
+  end
+
+end
