@@ -2,6 +2,6 @@ module: TRAVEL_TRAVEL_REFUND_ORDER
 contract: TravelRefundOrder.create action contract (risk:validation_fail)
 edge_class: action_contract
 source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
-source_summary: GIVEN 实体 TravelRefundOrder 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建退票单 -> reject 审批拒绝
+source_summary: GIVEN 实体 TravelRefundOrder 的动作 create 输入非法 / WHEN 执行动作 create / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建退票单 -> reject 审批拒绝；create 创建退票单（approval_mode=none）-> refund_direct 直接退款
 expected_facts:
 - validation_triggered

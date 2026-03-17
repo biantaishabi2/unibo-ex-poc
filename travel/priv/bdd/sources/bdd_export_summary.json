@@ -1,13 +1,13 @@
 {
   "total_models": 1,
-  "generated_files": 461,
-  "action_sources": 291,
-  "event_sources": 99,
+  "generated_files": 475,
+  "action_sources": 299,
+  "event_sources": 105,
   "workflow_sources": 27,
   "integration_sources": 28,
   "determination_sources": 16,
-  "scenario_total": 36,
-  "scenario_associated": 36,
+  "scenario_total": 38,
+  "scenario_associated": 38,
   "scenario_unassociated": 0,
   "unassociated_scenarios": [],
   "scenario_resolutions": [
@@ -671,6 +671,55 @@
     },
     {
       "model": "travel.ubo.yaml",
+      "entity": "TravelChangeOrder",
+      "path": "entities[11].scenarios",
+      "scenario": "create 创建改签单（approval_mode=none）-> complete_direct 直接完成",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelChangeOrder.complete_direct (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelChangeOrder.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelChangeOrder.complete_direct:travel.change_order.completed (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelChangeOrder.change_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelChangeOrder.complete_direct (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelChangeOrder.complete_direct (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
       "entity": "TravelRefundOrder",
       "path": "entities[12].scenarios",
       "scenario": "create 创建退票单 -> approve 审批通过 -> refund 退款完成",
@@ -759,6 +808,55 @@
         {
           "kind": "event",
           "target": "TravelRefundOrder.reject:travel.refund_order.rejected (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelRefundOrder.refund_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        }
+      ],
+      "selected": {
+        "kind": "action",
+        "target": "TravelRefundOrder.create (action)",
+        "score": 70,
+        "rules": [
+          "text"
+        ]
+      },
+      "reason": "命中 TravelRefundOrder.create (action)（score=70）"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelRefundOrder",
+      "path": "entities[12].scenarios",
+      "scenario": "create 创建退票单（approval_mode=none）-> refund_direct 直接退款",
+      "candidates": [
+        {
+          "kind": "action",
+          "target": "TravelRefundOrder.create (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "action",
+          "target": "TravelRefundOrder.refund_direct (action)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "event",
+          "target": "TravelRefundOrder.refund_direct:travel.refund_order.refunded (event)",
           "score": 70,
           "rules": [
             "text"
@@ -2441,8 +2539,8 @@
     }
   ],
   "auto_anchor_enabled": true,
-  "auto_anchor_total": 36,
-  "auto_anchor_mapped": 36,
+  "auto_anchor_total": 38,
+  "auto_anchor_mapped": 38,
   "auto_anchor_unmapped": 0,
   "auto_anchor_results": [
     {
@@ -2549,6 +2647,17 @@
       "entity": "TravelChangeOrder",
       "action": "approve",
       "scenario": "create 创建改签单 -> approve 审批通过 -> complete 改签完成",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelChangeOrder",
+      "action": "complete_direct",
+      "scenario": "create 创建改签单（approval_mode=none）-> complete_direct 直接完成",
       "status": "mapped",
       "anchor_candidates": [
         "change"
@@ -2803,6 +2912,17 @@
       "entity": "TravelRefundOrder",
       "action": "create",
       "scenario": "create 创建退票单 -> reject 审批拒绝",
+      "status": "mapped",
+      "anchor_candidates": [
+        "change"
+      ],
+      "reason": "命中规则：change"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelRefundOrder",
+      "action": "create",
+      "scenario": "create 创建退票单（approval_mode=none）-> refund_direct 直接退款",
       "status": "mapped",
       "anchor_candidates": [
         "change"

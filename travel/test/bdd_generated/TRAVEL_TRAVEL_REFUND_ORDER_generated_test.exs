@@ -556,4 +556,121 @@ defmodule UniboExPoc.BDD.Generated.TRAVEL_TRAVEL_REFUND_ORDERTest do
     :ok
   end
 
+  # Source: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_action_travel_refund_order_refund_direct_update
+  @tag :action_contract
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_action_travel_refund_order_refund_direct_update]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_action_travel_refund_order_refund_direct_update"}
+    # line 170: GIVEN given_seed_context id="travel_travel_refund_order_action_travel_refund_order_refund_direct_update" module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_refund_order_action_travel_refund_order_refund_direct_update", module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 170, raw: "GIVEN given_seed_context id=\"travel_travel_refund_order_action_travel_refund_order_refund_direct_update\" module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 170)
+    # line 171: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 171, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 171)
+    # line 172: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 172, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 172)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_change_effect
+  @tag :action_contract
+  @tag :risk_change_effect
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_change_effect]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_change_effect"}
+    # line 175: GIVEN given_seed_context id="travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_change_effect" module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_change_effect", module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 175, raw: "GIVEN given_seed_context id=\"travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_change_effect\" module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 175)
+    # line 176: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 176, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 176)
+    # line 177: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 177, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 177)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_success"}
+    # line 180: GIVEN given_seed_context id="travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_success" module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_success", module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 180, raw: "GIVEN given_seed_context id=\"travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_success\" module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 180)
+    # line 181: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 181, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 181)
+    # line 182: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 182, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 182)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_validation_fail
+  @tag :action_contract
+  @tag :risk_validation_fail
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_validation_fail]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_validation_fail"}
+    # line 185: GIVEN given_seed_context id="travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_validation_fail" module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_validation_fail", module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 185, raw: "GIVEN given_seed_context id=\"travel_travel_refund_order_action_travel_refund_order_refund_direct_update_risk_validation_fail\" module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 185)
+    # line 186: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 186, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 186)
+    # line 187: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 187, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 187)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded
+  @tag :event_contract
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded"}
+    # line 190: GIVEN given_seed_context id="travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded" module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded", module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 190, raw: "GIVEN given_seed_context id=\"travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded\" module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 190)
+    # line 191: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 191, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 191)
+    # line 192: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 192, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 192)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_idempotent_replay
+  @tag :event_contract
+  @tag :risk_idempotent_replay
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_idempotent_replay]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_idempotent_replay"}
+    # line 195: GIVEN given_seed_context id="travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_idempotent_replay" module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_idempotent_replay", module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 195, raw: "GIVEN given_seed_context id=\"travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_idempotent_replay\" module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 195)
+    # line 196: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 196, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 196)
+    # line 197: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 197, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 197)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_normal_publish
+  @tag :event_contract
+  @tag :risk_normal_publish
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_normal_publish]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_normal_publish"}
+    # line 200: GIVEN given_seed_context id="travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_normal_publish" module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_normal_publish", module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 200, raw: "GIVEN given_seed_context id=\"travel_travel_refund_order_event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_normal_publish\" module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 200)
+    # line 201: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 201, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 201)
+    # line 202: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_REFUND_ORDER"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_REFUND_ORDER.dsl", line: 202, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_REFUND_ORDER\""}, 202)
+    _ctx = ctx
+    :ok
+  end
+
 end
