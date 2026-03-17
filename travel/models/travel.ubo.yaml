@@ -1855,6 +1855,21 @@ entities:
           - action: mark_order_failed
             trigger_event: travel.order.failed
           - action: destroy
+    determine_actions:
+      - name: trigger_fulfillment_creation
+        scope: cross_aggregate
+        mode: derive_only
+        phase: post_commit
+        read_set:
+          - status
+          - product_type
+      - name: trigger_policy_check
+        scope: cross_aggregate
+        mode: derive_only
+        phase: post_commit
+        read_set:
+          - product_type
+          - total_amount
     business_rules:
       - id: TRAVEL-ORDER-01
         description: TravelOrder 是统一订单聚合，不按 hotel/flight/vacation/train 各自拆单独订单聚合
@@ -2267,6 +2282,15 @@ entities:
             trigger_event: travel.change_order.rejected
           - action: complete
             trigger_event: travel.change_order.completed
+    determine_actions:
+      - name: notify_order_change_approved
+        scope: cross_aggregate
+        mode: async_write_back
+        phase: post_commit
+        read_set:
+          - original_order.status
+        write_set:
+          - status
     business_rules:
       - id: TRAVEL-CHANGE-ORDER-01
         description: TravelChangeOrder 通过 original_order_id 关联原订单，new_offer_id 为字符串引用，不做跨实体外键
@@ -2386,6 +2410,15 @@ entities:
             trigger_event: travel.refund_order.rejected
           - action: refund
             trigger_event: travel.refund_order.refunded
+    determine_actions:
+      - name: notify_order_refund_approved
+        scope: cross_aggregate
+        mode: async_write_back
+        phase: post_commit
+        read_set:
+          - original_order.status
+        write_set:
+          - status
     business_rules:
       - id: TRAVEL-REFUND-ORDER-01
         description: TravelRefundOrder 通过 original_order_id 关联原订单，实际退款动作可由 Payment 域处理
