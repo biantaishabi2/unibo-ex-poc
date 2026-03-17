@@ -3,7 +3,6 @@
 
 [PAGE: personal_center]
   ATTR: Title("个人中心")
-  META: Entity("User"), Domain("Travel")
 
   [HEADER: personal_center_header]
     ATTR: Title("个人中心")

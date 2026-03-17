@@ -4,7 +4,6 @@
 
 [PAGE: change_confirm]
   ATTR: Title("确认改签")
-  META: Entity("ChangeRequest"), Domain("Travel")
 
   [HEADER: change_confirm_header]
     ATTR: Back(true), Title("确认改签")

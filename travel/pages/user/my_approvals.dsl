@@ -3,16 +3,6 @@
 
 [PAGE: my_approvals]
   ATTR: Title("我的审批")
-  META: {
-    data_source: "approval_requests",
-    filters: { approver_id: "{{current_user.id|}}" },
-    pagination: { page_size: 20 }
-  }
-  BIND: {
-    rows: "data.items",
-    total_count: "data.total_count",
-    rows_empty: "data.items.length == 0"
-  }
 
   [HEADER: my_approvals_header]
     ATTR: Title("我的审批")

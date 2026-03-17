@@ -3,7 +3,6 @@
 
 [PAGE: travel_request]
   ATTR: Title("出差申请")
-  META: Entity("TravelRequest"), Domain("Travel")
 
   [HEADER: travel_request_header]
     ATTR: Back(true), Title("出差申请")
@@ -37,22 +36,20 @@
               ATTR: Name("basic_info_form")
               [TEXTAREA: trip_purpose]
                 ATTR: Label("出差事由"), Name("purpose"), Required(true), Placeholder("请描述出差目的和主要工作内容"), Rows(3)
-              [DATE_RANGE_PICKER: trip_date_range]
-                ATTR: Label("出差日期"), Name("date_range"), Required("true"), StartPlaceholder("出发日期"), EndPlaceholder("返回日期")
+              [INPUT: trip_start_date]
+                ATTR: Label("出发日期"), Name("start_date"), Required("true"), Type("date")
+              [INPUT: trip_end_date]
+                ATTR: Label("返回日期"), Name("end_date"), Required("true"), Type("date")
               [SELECT: trip_destination]
                 ATTR: Label("目的城市"), Name("destination_city"), Required(true), Placeholder("请选择目的城市")
               [INPUT: trip_destination_detail]
                 ATTR: Label("具体地点"), Name("destination_detail"), Placeholder("如：北京市朝阳区XX大厦（可选）")
               [SELECT: trip_type]
                 ATTR: Label("出差类型"), Name("trip_type"), Required(true)
-                [OPTION: type_domestic] CONTENT: "国内出差"
-                [OPTION: type_overseas] CONTENT: "境外出差"
+                CONTENT: "国内出差:domestic,境外出差:overseas"
               [SELECT: trip_companion_count]
                 ATTR: Label("随行人数"), Name("companion_count")
-                [OPTION: alone] CONTENT: "独自出差"
-                [OPTION: two] CONTENT: "2人"
-                [OPTION: three] CONTENT: "3人"
-                [OPTION: more] CONTENT: "4人及以上"
+                CONTENT: "独自出差:alone,2人:two,3人:three,4人及以上:more"
 
         [CONTROL_BAR: step1_basic_action_bar]
           ATTR: Position("sticky_bottom")

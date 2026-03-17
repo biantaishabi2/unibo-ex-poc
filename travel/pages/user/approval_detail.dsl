@@ -3,7 +3,6 @@
 
 [PAGE: approval_detail]
   ATTR: Title("审批详情")
-  META: Entity("ApprovalRequest"), Domain("Travel")
 
   [HEADER: approval_detail_header]
     ATTR: Back(true), Title("审批详情")

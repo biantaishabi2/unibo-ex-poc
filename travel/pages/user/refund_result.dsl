@@ -3,7 +3,6 @@
 
 [PAGE: refund_result]
   ATTR: Title("退票结果")
-  META: Entity("RefundRequest"), Domain("Travel")
 
   [HEADER: refund_result_header]
     ATTR: Back(false), Title("退票结果")

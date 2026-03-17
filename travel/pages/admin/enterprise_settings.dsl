@@ -38,12 +38,9 @@
       [TEXT: approval_mode_label]
         ATTR: Variant("muted")
         CONTENT: "审批模式"
-      [RADIO_GROUP: approval_mode]
-        ATTR: Name("approval_mode"), Change("approval_mode_change")
-        [RADIO_ITEM: radio_self_approval]
-          ATTR: Value("self"), Label("自建审批")
-        [RADIO_ITEM: radio_oa_approval]
-          ATTR: Value("oa"), Label("OA集成")
+      [SELECT: approval_mode]
+        ATTR: Name("approval_mode"), Label("审批模式"), Change("approval_mode_change")
+        CONTENT: "自建审批:self,OA集成:oa"
       [IF: approval_mode == "oa"]
         [ALERT: oa_integration_alert]
           ATTR: Variant("info")

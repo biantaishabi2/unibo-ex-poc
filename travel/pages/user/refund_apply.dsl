@@ -3,7 +3,6 @@
 
 [PAGE: refund_apply]
   ATTR: Title("退票申请")
-  META: Entity("RefundRequest"), Domain("Travel")
 
   [HEADER: refund_apply_header]
     ATTR: Back(true), Title("退票申请")
@@ -68,12 +67,7 @@
         # 退票原因
         [SELECT: refund_reason]
           ATTR: Label("退票原因"), Name("reason"), Required(true), Placeholder("请选择退票原因")
-          [OPTION: reason_plan_change] CONTENT: "行程变更"
-          [OPTION: reason_business_cancel] CONTENT: "出差取消"
-          [OPTION: reason_force_majeure] CONTENT: "不可抗力（自然灾害/疫情）"
-          [OPTION: reason_visa_issue] CONTENT: "签证/手续问题"
-          [OPTION: reason_personal] CONTENT: "个人原因"
-          [OPTION: reason_other] CONTENT: "其他"
+          CONTENT: "行程变更:plan_change,出差取消:business_cancel,不可抗力（自然灾害/疫情）:force_majeure,签证/手续问题:visa_issue,个人原因:personal,其他:other"
 
         # 退票手续费（只读展示）
         [FLEX: refund_fee_row]
