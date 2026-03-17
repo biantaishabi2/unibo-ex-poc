@@ -1,12 +1,14 @@
-# Workflow: refund_order_lifecycle — 退票单生命周期：pending → approved → refunded，pending → rejected
+# Workflow: refund_order_lifecycle — 退票单生命周期：审批开启时 pending → approved → refunded / rejected；审批关闭时 pending → refunded
 # ```mermaid
 # stateDiagram-v2
 #   [*] --> create
 #   create --> approve
 #   create --> reject
+#   create --> refund_direct
 #   approve --> refund
 #   reject --> [*] : rejected
 #   refund --> [*] : refunded
+#   refund_direct --> [*] : refunded
 # ```
 defmodule UniboExPoc.Travel.TravelRefundOrder do
   use Ash.Resource,
@@ -39,6 +41,7 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
       update :approve_travel_travel_refund_order, :approve
       update :reject_travel_travel_refund_order, :reject
       update :refund_travel_travel_refund_order, :refund
+      update :refund_direct_travel_travel_refund_order, :refund_direct
     end
 
   end
@@ -62,6 +65,12 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
       default :pending
       public? true
     end
+    attribute :approval_mode, :atom do
+      constraints one_of: [:none, :self, :oa]
+      default :self
+      public? true
+      description "审批模式快照；none 表示跳过审批，self/oa 表示进入审批流"
+    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -78,7 +87,7 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
     create :create do
       description "Create Travel Refund Order via Create. doc_url: graphql://contract/travel/create_travel_travel_refund_order"
       primary? true
-      accept [:original_order_id, :refund_reason, :refund_fee, :refund_amount]
+      accept [:original_order_id, :refund_reason, :refund_fee, :refund_amount, :approval_mode]
       argument :original_order_id, :uuid, allow_nil?: false
       change manage_relationship(:original_order_id, :original_order, type: :append, on_lookup: :relate)
       validate present(:original_order_id)
@@ -127,6 +136,58 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
       end
       # message: "只有 approved 退票单可以执行退款"
       change set_attribute(:status, :refunded)
+      require_atomic? false
+    end
+    update :refund_direct do
+      description "Update Travel Refund Order via Refund Direct. doc_url: graphql://contract/travel/refund_direct_travel_travel_refund_order"
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :approval_mode)
+        if current == :none do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :approval_mode, message: "must equal %{value}", vars: %{value: :none}))
+        end
+      end
+      # message: "只有关闭审批的退票单可以直接退款"
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :pending do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :pending}))
+        end
+      end
+      # message: "关闭审批时，pending 退票单可直接退款"
+      change set_attribute(:status, :refunded)
+      require_atomic? false
+    end
+
+    update :notify_order_refund_approved do
+      accept []
+      # determination semantics: phase=post_commit, scope=cross_aggregate, mode=async_write_back
+      # 异步写回：通过 AsyncRuntime.Queue 进入 outbox 风格队列
+      change fn changeset, _ctx ->
+        queue_module = UniboExPoc.AsyncRuntime.Queue
+        record_id = changeset.data && changeset.data.id
+        dedup_key = "determination:travel_refund_order:notify_order_refund_approved:#{inspect(record_id)}"
+        payload = %{
+          "entity" => "travel_refund_order",
+          "determination" => "notify_order_refund_approved",
+          "scope" => "cross_aggregate",
+          "mode" => "async_write_back",
+          "record_id" => record_id
+        }
+        if Code.ensure_loaded?(queue_module) and function_exported?(queue_module, :enqueue, 1) do
+          case queue_module.enqueue(%{kind: "determination_async_write_back", dedup_key: dedup_key, payload: payload}) do
+            {:ok, _task} -> changeset
+            {:ok, :duplicate} -> changeset
+            {:error, reason} -> Ash.Changeset.add_error(changeset, "async determination enqueue failed: #{inspect(reason)}")
+          end
+        else
+          Ash.Changeset.add_error(changeset, "async runtime queue unavailable")
+        end
+      end
       require_atomic? false
     end
   end

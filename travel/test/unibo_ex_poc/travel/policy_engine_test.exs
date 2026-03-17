@@ -31,6 +31,7 @@ defmodule UniboExPoc.Travel.PolicyEngineTest do
       assert result.exceed_amount == 500
       assert result.exceed_ratio == "50.0%"
       assert result.exceed_strategy == "require_approval"
+      assert result.approval_mode == "self"
     end
 
     test "personal_pay 策略计算个人支付金额" do
@@ -79,6 +80,15 @@ defmodule UniboExPoc.Travel.PolicyEngineTest do
       assert {:ok, :require_approval, ^check} = PolicyEngine.apply_strategy(check)
     end
 
+    test "超标 + require_approval + approval_mode none → proceed" do
+      assert {:ok, :proceed} =
+               PolicyEngine.apply_strategy(%{
+                 check_result: :exceeded,
+                 exceed_strategy: "require_approval",
+                 approval_mode: "none"
+               })
+    end
+
     test "超标 + personal_pay → ok personal_pay with amount" do
       check = %{
         check_result: :exceeded,
@@ -102,6 +112,7 @@ defmodule UniboExPoc.Travel.PolicyEngineTest do
       cabin_class_limit: "经济舱",
       hotel_star_limit: nil,
       exceed_strategy: :require_approval,
+      approval_mode: :self,
       personal_pay_ratio: nil,
       is_active: true,
       enterprise_id: nil

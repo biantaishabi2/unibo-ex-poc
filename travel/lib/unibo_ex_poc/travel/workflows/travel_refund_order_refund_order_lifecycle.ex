@@ -7,11 +7,11 @@ defmodule UniboExPoc.Travel.Workflows.TravelRefundOrder.RefundOrderLifecycleWork
   alias UniboExPoc.Travel.TravelRefundOrder
 
   def steps do
-    [:s1_create, :s2_approve, :s3_reject, :s4_refund]
+    [:s1_create, :s2_approve, :s3_reject, :s4_refund, :s5_refund_direct]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["approve","reject"],"next_step_ids":["s2_approve","s3_reject"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["refund"],"next_step_ids":["s4_refund"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"approve","step_id":"s2_approve"},{"idempotency_key":null,"next":["refund"],"next_step_ids":["s4_refund"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"reject","step_id":"s3_reject"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"refund","step_id":"s4_refund"}],"workflow":"refund_order_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["approve","reject","refund_direct"],"next_step_ids":["s2_approve","s3_reject","s5_refund_direct"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["refund"],"next_step_ids":["s4_refund"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"approve","step_id":"s2_approve"},{"idempotency_key":null,"next":["refund"],"next_step_ids":["s4_refund"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"reject","step_id":"s3_reject"},{"idempotency_key":null,"next":["refund_direct"],"next_step_ids":["s5_refund_direct"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"refund","step_id":"s4_refund"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"refund_direct","step_id":"s5_refund_direct"}],"workflow":"refund_order_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -106,6 +106,8 @@ defmodule UniboExPoc.Travel.Workflows.TravelRefundOrder.RefundOrderLifecycleWork
         Ash.update(Ash.Changeset.for_update(record, :reject, params), ash_opts)
       :s4_refund ->
         Ash.update(Ash.Changeset.for_update(record, :refund, params), ash_opts)
+      :s5_refund_direct ->
+        Ash.update(Ash.Changeset.for_update(record, :refund_direct, params), ash_opts)
       _ -> {:ok, record}
     end
   end
@@ -130,10 +132,11 @@ defmodule UniboExPoc.Travel.Workflows.TravelRefundOrder.RefundOrderLifecycleWork
 
   defp next_candidates(step) do
     case step do
-      :s1_create -> [:s2_approve, :s3_reject]
+      :s1_create -> [:s2_approve, :s3_reject, :s5_refund_direct]
       :s2_approve -> [:s4_refund]
       :s3_reject -> [:s4_refund]
-      :s4_refund -> []
+      :s4_refund -> [:s5_refund_direct]
+      :s5_refund_direct -> []
       _ -> []
     end
   end
@@ -144,6 +147,7 @@ defmodule UniboExPoc.Travel.Workflows.TravelRefundOrder.RefundOrderLifecycleWork
       :s2_approve -> []
       :s3_reject -> []
       :s4_refund -> []
+      :s5_refund_direct -> []
       _ -> []
     end
   end
@@ -154,6 +158,7 @@ defmodule UniboExPoc.Travel.Workflows.TravelRefundOrder.RefundOrderLifecycleWork
       :s2_approve -> nil
       :s3_reject -> nil
       :s4_refund -> nil
+      :s5_refund_direct -> nil
       _ -> nil
     end
   end
@@ -164,6 +169,7 @@ defmodule UniboExPoc.Travel.Workflows.TravelRefundOrder.RefundOrderLifecycleWork
       :s2_approve -> false
       :s3_reject -> false
       :s4_refund -> false
+      :s5_refund_direct -> false
       _ -> false
     end
   end
@@ -174,6 +180,7 @@ defmodule UniboExPoc.Travel.Workflows.TravelRefundOrder.RefundOrderLifecycleWork
       :s2_approve -> %{max_attempts: 1, backoff_ms: 0}
       :s3_reject -> %{max_attempts: 1, backoff_ms: 0}
       :s4_refund -> %{max_attempts: 1, backoff_ms: 0}
+      :s5_refund_direct -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
@@ -184,6 +191,7 @@ defmodule UniboExPoc.Travel.Workflows.TravelRefundOrder.RefundOrderLifecycleWork
       :s2_approve -> nil
       :s3_reject -> nil
       :s4_refund -> nil
+      :s5_refund_direct -> nil
       _ -> nil
     end
   end

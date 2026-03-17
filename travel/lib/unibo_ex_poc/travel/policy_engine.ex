@@ -65,6 +65,7 @@ defmodule UniboExPoc.Travel.PolicyEngine do
       exceed_amount: nil,
       exceed_ratio: nil,
       exceed_strategy: nil,
+      approval_mode: nil,
       exceed_reason: nil,
       personal_pay_amount: nil
     }
@@ -73,6 +74,7 @@ defmodule UniboExPoc.Travel.PolicyEngine do
   def check_compliance(order_params, policy) do
     actual = order_params[:actual_amount] || 0
     limit = policy.max_amount || 0
+    approval_mode = policy.approval_mode |> to_string()
 
     if actual <= limit do
       %{
@@ -82,6 +84,7 @@ defmodule UniboExPoc.Travel.PolicyEngine do
         exceed_amount: 0,
         exceed_ratio: "0%",
         exceed_strategy: to_string(policy.exceed_strategy),
+        approval_mode: approval_mode,
         exceed_reason: nil,
         personal_pay_amount: nil
       }
@@ -106,6 +109,7 @@ defmodule UniboExPoc.Travel.PolicyEngine do
         exceed_amount: exceed,
         exceed_ratio: "#{ratio}%",
         exceed_strategy: to_string(policy.exceed_strategy),
+        approval_mode: approval_mode,
         exceed_reason: nil,
         personal_pay_amount: personal_pay
       }
@@ -130,6 +134,14 @@ defmodule UniboExPoc.Travel.PolicyEngine do
 
   def apply_strategy(%{check_result: :exceeded, exceed_strategy: "require_reason"}) do
     {:ok, :require_reason}
+  end
+
+  def apply_strategy(%{
+        check_result: :exceeded,
+        exceed_strategy: "require_approval",
+        approval_mode: "none"
+      }) do
+    {:ok, :proceed}
   end
 
   def apply_strategy(%{check_result: :exceeded, exceed_strategy: "require_approval"} = check) do

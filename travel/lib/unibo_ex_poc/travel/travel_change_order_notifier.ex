@@ -7,6 +7,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder.Notifier do
       :approve -> "travel.change_order.approved"
       :reject -> "travel.change_order.rejected"
       :complete -> "travel.change_order.completed"
+      :complete_direct -> "travel.change_order.completed"
       _ -> nil
     end
 

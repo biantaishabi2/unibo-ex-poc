@@ -69,6 +69,12 @@ defmodule UniboExPoc.Travel.TravelPolicyCheck do
       public? true
       description "审批请求ID（不做跨域外键）"
     end
+    attribute :approval_mode, :atom do
+      constraints one_of: [:none, :self, :oa]
+      default :self
+      public? true
+      description "命中政策时的审批模式快照"
+    end
     create_timestamp :inserted_at
     update_timestamp :updated_at
   end
@@ -89,7 +95,7 @@ defmodule UniboExPoc.Travel.TravelPolicyCheck do
     create :create do
       description "Create Travel Policy Check via Create. doc_url: graphql://contract/travel/create_travel_travel_policy_check"
       primary? true
-      accept [:order_id, :policy_id, :check_result, :policy_amount, :actual_amount, :exceed_amount, :exceed_ratio, :exceed_strategy, :exceed_reason, :personal_pay_amount, :approval_request_id]
+      accept [:order_id, :policy_id, :check_result, :policy_amount, :actual_amount, :exceed_amount, :exceed_ratio, :exceed_strategy, :exceed_reason, :personal_pay_amount, :approval_request_id, :approval_mode]
       argument :order_id, :uuid, allow_nil?: false
       change manage_relationship(:order_id, :order, type: :append, on_lookup: :relate)
       argument :policy_id, :uuid, allow_nil?: false
