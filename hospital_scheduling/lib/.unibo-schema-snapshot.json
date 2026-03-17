@@ -400,24 +400,62 @@
             "name": "start_generating",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "invoke",
+                "method": "trigger_solver_run",
+                "target": "SchedulingBridge"
+              },
+              {
+                "effect": "set_attribute",
+                "field": "state",
+                "value": "generating"
+              }
+            ],
             "description": "开始自动生成排班"
           },
           {
             "name": "mark_generated",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "state",
+                "value": "generated"
+              }
+            ],
             "description": "求解完成，标记为已生成"
           },
           {
             "name": "mark_adjusted",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "state",
+                "value": "adjusted"
+              }
+            ],
             "description": "人工调班后标记"
           },
           {
             "name": "publish",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "invoke",
+                "method": "publish_period_current_version",
+                "target": "SchedulingBridge"
+              },
+              {
+                "effect": "set_attribute",
+                "field": "state",
+                "value": "published"
+              }
+            ],
             "description": "发布排班（需无 error 级违反）"
           }
         ],
@@ -456,58 +494,6 @@
               "publish"
             ],
             "message": "只有已生成或已调整状态可以发布"
-          }
-        ],
-        "changes": [
-          {
-            "description": "状态切到 generating 后立即触发真实求解运行",
-            "effect": "invoke",
-            "on": [
-              "start_generating"
-            ],
-            "module": "Scheduling",
-            "method": "trigger_solver_run"
-          },
-          {
-            "effect": "set_attribute",
-            "field": "state",
-            "value": "generating",
-            "on": [
-              "start_generating"
-            ]
-          },
-          {
-            "effect": "set_attribute",
-            "field": "state",
-            "value": "generated",
-            "on": [
-              "mark_generated"
-            ]
-          },
-          {
-            "effect": "set_attribute",
-            "field": "state",
-            "value": "adjusted",
-            "on": [
-              "mark_adjusted"
-            ]
-          },
-          {
-            "description": "校验当前版本可发布，并同步 period 的 published_version",
-            "effect": "invoke",
-            "on": [
-              "publish"
-            ],
-            "module": "Scheduling",
-            "method": "publish_period_current_version"
-          },
-          {
-            "effect": "set_attribute",
-            "field": "state",
-            "value": "published",
-            "on": [
-              "publish"
-            ]
           }
         ],
         "workflows": [
@@ -858,12 +844,31 @@
             "name": "publish_version",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "invoke",
+                "method": "publish_schedule_version",
+                "target": "SchedulingBridge"
+              },
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "published"
+              }
+            ],
             "description": "发布此版本"
           },
           {
             "name": "archive_version",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "archived"
+              }
+            ],
             "description": "归档此版本"
           }
         ],
@@ -894,33 +899,6 @@
               "archive_version"
             ],
             "message": "只有工作中或已发布的版本可以归档"
-          }
-        ],
-        "changes": [
-          {
-            "description": "发布前校验版本可发布，并同步所属 period 的 published_version/state",
-            "effect": "invoke",
-            "on": [
-              "publish_version"
-            ],
-            "module": "Scheduling",
-            "method": "publish_schedule_version"
-          },
-          {
-            "effect": "set_attribute",
-            "field": "status",
-            "value": "published",
-            "on": [
-              "publish_version"
-            ]
-          },
-          {
-            "effect": "set_attribute",
-            "field": "status",
-            "value": "archived",
-            "on": [
-              "archive_version"
-            ]
           }
         ],
         "identities": [
@@ -1342,7 +1320,6 @@
             "name": "create",
             "type": "create",
             "accept": [
-              "employee_id",
               "period_id",
               "preferred_shift_tags",
               "unavailable_dates",
@@ -1635,6 +1612,13 @@
             "name": "start_run",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "running"
+              }
+            ],
             "description": "标记求解开始"
           },
           {
@@ -1645,6 +1629,13 @@
               "hard_violation_count",
               "warning_count",
               "output_snapshot"
+            ],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "feasible"
+              }
             ],
             "description": "求解完成（可行解）"
           },
@@ -1658,6 +1649,13 @@
               "output_snapshot",
               "error_message"
             ],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "infeasible"
+              }
+            ],
             "description": "求解完成（不可行）"
           },
           {
@@ -1669,6 +1667,13 @@
               "warning_count",
               "output_snapshot"
             ],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "timeout"
+              }
+            ],
             "description": "求解超时"
           },
           {
@@ -1677,12 +1682,26 @@
             "accept": [
               "error_message"
             ],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "error"
+              }
+            ],
             "description": "求解出错"
           },
           {
             "name": "mark_completed",
             "type": "update",
             "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "completed"
+              }
+            ],
             "description": "最终完成（用户确认采用此结果）"
           }
         ],
@@ -1715,56 +1734,6 @@
               "mark_error"
             ],
             "message": "只有运行中状态可以完成"
-          }
-        ],
-        "changes": [
-          {
-            "effect": "set_attribute",
-            "field": "status",
-            "value": "running",
-            "on": [
-              "start_run"
-            ]
-          },
-          {
-            "effect": "set_attribute",
-            "field": "status",
-            "value": "feasible",
-            "on": [
-              "complete_feasible"
-            ]
-          },
-          {
-            "effect": "set_attribute",
-            "field": "status",
-            "value": "infeasible",
-            "on": [
-              "complete_infeasible"
-            ]
-          },
-          {
-            "effect": "set_attribute",
-            "field": "status",
-            "value": "timeout",
-            "on": [
-              "mark_timeout"
-            ]
-          },
-          {
-            "effect": "set_attribute",
-            "field": "status",
-            "value": "error",
-            "on": [
-              "mark_error"
-            ]
-          },
-          {
-            "effect": "set_attribute",
-            "field": "status",
-            "value": "completed",
-            "on": [
-              "mark_completed"
-            ]
           }
         ],
         "workflows": [

@@ -1,8 +1,32 @@
 defmodule HospitalSchedulingWeb.Schema do
-  @moduledoc """
-  历史宿主 Schema 占位模块。
+  # 本文件由 compile-project 自动生成，请勿只单独复制或替换 schema.ex。
+  # GraphQL 宿主必须与 lib/**、config/config.exs、test/support 一起整套同步，否则 ash_domains 与生成域模块可能失配。
+  use Absinthe.Schema
 
-  运行时已经切到自动生成的 `HospitalSchedulingWeb.Generated.Schema.Scheduling`，
-  这里保留同名模块只是为了兼容旧引用，避免再定义一套 AshGraphql schema。
-  """
+  def unibo_runtime_domains do
+    [
+    ]
+  end
+
+  object :graphql_contract do
+    field :field, :string
+    field :summary, :string
+    field :doc_url, :string
+    field :required_headers, list_of(:string)
+    field :conditional_requirements, list_of(:string)
+    field :body, :string
+  end
+
+  # GraphQL 域由子域 Schema 分别处理，主 Schema 仅提供最小定义
+
+  query do
+    field :graphql_contract, :graphql_contract do
+      arg :field, :string
+      arg :doc_url, :string
+      resolve(fn _, args, _ -> {:ok, HospitalSchedulingWeb.Graphql.RuntimeConfig.graphql_contract(Map.get(args, :doc_url) || Map.get(args, "doc_url") || Map.get(args, :field) || Map.get(args, "field"))} end)
+    end
+    field :health, :string do
+      resolve(fn _, _, _ -> {:ok, "ok"} end)
+    end
+  end
 end

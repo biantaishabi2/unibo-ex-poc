@@ -1,8 +1,8 @@
-defmodule Scheduling do
+defmodule HospitalScheduling.SchedulingBridge do
   @moduledoc """
   排班领域的运行时桥接入口。
 
-  这里承接 UniBO 模型里的 `invoke module: Scheduling.*` 钩子，
+  这里承接 UniBO 模型里的 `invoke module: SchedulingBridge.*` 钩子，
   把“浅状态流转 action”补成真正的业务命令。
   """
 

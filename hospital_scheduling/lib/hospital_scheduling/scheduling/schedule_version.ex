@@ -78,12 +78,10 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
     end
     has_many :shift_assignments, HospitalScheduling.Scheduling.ShiftAssignment do
       public? true
-      source_attribute :source_version_id
       destination_attribute :version_id
     end
     has_many :constraint_violations, HospitalScheduling.Scheduling.ConstraintViolation do
       public? true
-      source_attribute :source_version_id
       destination_attribute :version_id
     end
   end

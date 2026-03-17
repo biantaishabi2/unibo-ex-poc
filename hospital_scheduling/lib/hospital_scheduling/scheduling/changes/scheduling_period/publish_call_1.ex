@@ -1,14 +1,14 @@
-defmodule HospitalScheduling.Scheduling.Changes.ScheduleVersion.PublishVersionCall1 do
+defmodule HospitalScheduling.Scheduling.Changes.SchedulingPeriod.PublishCall1 do
   use Ash.Resource.Change
 
   @impl true
   def change(changeset, _opts, context) do
     module_ref = "HospitalScheduling.SchedulingBridge"
     module = resolve_call_module(module_ref)
-    if is_atom(module) and Code.ensure_loaded?(module) and function_exported?(module, :publish_schedule_version, 2) do
-      apply(module, :publish_schedule_version, [changeset, context])
+    if is_atom(module) and Code.ensure_loaded?(module) and function_exported?(module, :publish_period_current_version, 2) do
+      apply(module, :publish_period_current_version, [changeset, context])
     else
-      Ash.Changeset.add_error(changeset, "call 目标不存在: #HospitalScheduling.SchedulingBridge.publish_schedule_version/2")
+      Ash.Changeset.add_error(changeset, "call 目标不存在: #HospitalScheduling.SchedulingBridge.publish_period_current_version/2")
     end
   end
 
