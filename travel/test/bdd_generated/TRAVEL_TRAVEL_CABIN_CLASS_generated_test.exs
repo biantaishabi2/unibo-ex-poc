@@ -53,4 +53,72 @@ defmodule UniboExPoc.BDD.Generated.TRAVEL_TRAVEL_CABIN_CLASSTest do
     :ok
   end
 
+  # Source: BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-travel_travel_cabin_class_action_travel_cabin_class_create_create_risk_change_effect
+  @tag :action_contract
+  @tag :risk_change_effect
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-travel_travel_cabin_class_action_travel_cabin_class_create_create_risk_change_effect]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-travel_travel_cabin_class_action_travel_cabin_class_create_create_risk_change_effect"}
+    # line 20: GIVEN given_seed_context id="travel_travel_cabin_class_action_travel_cabin_class_create_create_risk_change_effect" module="TRAVEL_TRAVEL_CABIN_CLASS"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_cabin_class_action_travel_cabin_class_create_create_risk_change_effect", module: "TRAVEL_TRAVEL_CABIN_CLASS"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CABIN_CLASS.dsl", line: 20, raw: "GIVEN given_seed_context id=\"travel_travel_cabin_class_action_travel_cabin_class_create_create_risk_change_effect\" module=\"TRAVEL_TRAVEL_CABIN_CLASS\""}, 20)
+    # line 21: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_CABIN_CLASS"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CABIN_CLASS.dsl", line: 21, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_CABIN_CLASS\""}, 21)
+    # line 22: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_CABIN_CLASS"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CABIN_CLASS.dsl", line: 22, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_CABIN_CLASS\""}, 22)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-travel_travel_cabin_class_action_travel_cabin_class_create_create_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-travel_travel_cabin_class_action_travel_cabin_class_create_create_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-travel_travel_cabin_class_action_travel_cabin_class_create_create_risk_success"}
+    # line 25: GIVEN given_seed_context id="travel_travel_cabin_class_action_travel_cabin_class_create_create_risk_success" module="TRAVEL_TRAVEL_CABIN_CLASS"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_cabin_class_action_travel_cabin_class_create_create_risk_success", module: "TRAVEL_TRAVEL_CABIN_CLASS"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CABIN_CLASS.dsl", line: 25, raw: "GIVEN given_seed_context id=\"travel_travel_cabin_class_action_travel_cabin_class_create_create_risk_success\" module=\"TRAVEL_TRAVEL_CABIN_CLASS\""}, 25)
+    # line 26: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_CABIN_CLASS"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CABIN_CLASS.dsl", line: 26, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_CABIN_CLASS\""}, 26)
+    # line 27: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_CABIN_CLASS"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CABIN_CLASS.dsl", line: 27, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_CABIN_CLASS\""}, 27)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-travel_travel_cabin_class_action_travel_cabin_class_update_update_risk_change_effect
+  @tag :action_contract
+  @tag :risk_change_effect
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-travel_travel_cabin_class_action_travel_cabin_class_update_update_risk_change_effect]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-travel_travel_cabin_class_action_travel_cabin_class_update_update_risk_change_effect"}
+    # line 30: GIVEN given_seed_context id="travel_travel_cabin_class_action_travel_cabin_class_update_update_risk_change_effect" module="TRAVEL_TRAVEL_CABIN_CLASS"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_cabin_class_action_travel_cabin_class_update_update_risk_change_effect", module: "TRAVEL_TRAVEL_CABIN_CLASS"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CABIN_CLASS.dsl", line: 30, raw: "GIVEN given_seed_context id=\"travel_travel_cabin_class_action_travel_cabin_class_update_update_risk_change_effect\" module=\"TRAVEL_TRAVEL_CABIN_CLASS\""}, 30)
+    # line 31: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_CABIN_CLASS"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CABIN_CLASS.dsl", line: 31, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_CABIN_CLASS\""}, 31)
+    # line 32: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_CABIN_CLASS"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CABIN_CLASS.dsl", line: 32, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_CABIN_CLASS\""}, 32)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-travel_travel_cabin_class_action_travel_cabin_class_update_update_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-travel_travel_cabin_class_action_travel_cabin_class_update_update_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-travel_travel_cabin_class_action_travel_cabin_class_update_update_risk_success"}
+    # line 35: GIVEN given_seed_context id="travel_travel_cabin_class_action_travel_cabin_class_update_update_risk_success" module="TRAVEL_TRAVEL_CABIN_CLASS"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_cabin_class_action_travel_cabin_class_update_update_risk_success", module: "TRAVEL_TRAVEL_CABIN_CLASS"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CABIN_CLASS.dsl", line: 35, raw: "GIVEN given_seed_context id=\"travel_travel_cabin_class_action_travel_cabin_class_update_update_risk_success\" module=\"TRAVEL_TRAVEL_CABIN_CLASS\""}, 35)
+    # line 36: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_CABIN_CLASS"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CABIN_CLASS.dsl", line: 36, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_CABIN_CLASS\""}, 36)
+    # line 37: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_CABIN_CLASS"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_CABIN_CLASS.dsl", line: 37, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_CABIN_CLASS\""}, 37)
+    _ctx = ctx
+    :ok
+  end
+
 end

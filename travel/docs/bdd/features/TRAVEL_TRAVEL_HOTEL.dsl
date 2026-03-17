@@ -15,3 +15,23 @@ GIVEN given_seed_context id="travel_travel_hotel_action_travel_hotel_create_crea
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_HOTEL"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_HOTEL"
 
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_HOTEL-SEED-travel_travel_hotel_action_travel_hotel_create_create_risk_change_effect] TITLE: TRAVEL_TRAVEL_HOTEL contract seed scenario TAGS: seed action_contract risk_change_effect
+GIVEN given_seed_context id="travel_travel_hotel_action_travel_hotel_create_create_risk_change_effect" module="TRAVEL_TRAVEL_HOTEL"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_HOTEL"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_HOTEL"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_HOTEL-SEED-travel_travel_hotel_action_travel_hotel_create_create_risk_success] TITLE: TRAVEL_TRAVEL_HOTEL contract seed scenario TAGS: seed action_contract risk_success
+GIVEN given_seed_context id="travel_travel_hotel_action_travel_hotel_create_create_risk_success" module="TRAVEL_TRAVEL_HOTEL"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_HOTEL"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_HOTEL"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_HOTEL-SEED-travel_travel_hotel_action_travel_hotel_update_update_risk_change_effect] TITLE: TRAVEL_TRAVEL_HOTEL contract seed scenario TAGS: seed action_contract risk_change_effect
+GIVEN given_seed_context id="travel_travel_hotel_action_travel_hotel_update_update_risk_change_effect" module="TRAVEL_TRAVEL_HOTEL"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_HOTEL"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_HOTEL"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_HOTEL-SEED-travel_travel_hotel_action_travel_hotel_update_update_risk_success] TITLE: TRAVEL_TRAVEL_HOTEL contract seed scenario TAGS: seed action_contract risk_success
+GIVEN given_seed_context id="travel_travel_hotel_action_travel_hotel_update_update_risk_success" module="TRAVEL_TRAVEL_HOTEL"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_HOTEL"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_HOTEL"

@@ -309,4 +309,786 @@ defmodule UniboExPoc.BDD.Generated.TRAVEL_TRAVEL_FULFILLMENTTest do
     :ok
   end
 
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_change_effect
+  @tag :action_contract
+  @tag :risk_change_effect
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_change_effect]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_change_effect"}
+    # line 100: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_change_effect", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 100, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_change_effect\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 100)
+    # line 101: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 101, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 101)
+    # line 102: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 102, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 102)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_success"}
+    # line 105: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_success", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 105, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_success\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 105)
+    # line 106: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 106, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 106)
+    # line 107: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 107, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 107)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_validation_fail
+  @tag :action_contract
+  @tag :risk_validation_fail
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_validation_fail]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_validation_fail"}
+    # line 110: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_validation_fail", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 110, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_cancel_fulfillment_update_risk_validation_fail\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 110)
+    # line 111: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 111, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 111)
+    # line 112: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 112, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 112)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_change_effect
+  @tag :action_contract
+  @tag :risk_change_effect
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_change_effect]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_change_effect"}
+    # line 115: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_change_effect", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 115, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_change_effect\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 115)
+    # line 116: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 116, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 116)
+    # line 117: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 117, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 117)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_success"}
+    # line 120: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_success", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 120, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_success\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 120)
+    # line 121: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 121, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 121)
+    # line 122: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 122, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 122)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_validation_fail
+  @tag :action_contract
+  @tag :risk_validation_fail
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_validation_fail]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_validation_fail"}
+    # line 125: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_validation_fail", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 125, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_complete_fulfillment_update_risk_validation_fail\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 125)
+    # line 126: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 126, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 126)
+    # line 127: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 127, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 127)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_change_effect
+  @tag :action_contract
+  @tag :risk_change_effect
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_change_effect]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_change_effect"}
+    # line 130: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_change_effect", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 130, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_change_effect\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 130)
+    # line 131: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 131, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 131)
+    # line 132: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 132, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 132)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_success"}
+    # line 135: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_success", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 135, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_success\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 135)
+    # line 136: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 136, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 136)
+    # line 137: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 137, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 137)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_validation_fail
+  @tag :action_contract
+  @tag :risk_validation_fail
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_validation_fail]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_validation_fail"}
+    # line 140: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_validation_fail", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 140, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_confirm_booking_update_risk_validation_fail\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 140)
+    # line 141: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 141, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 141)
+    # line 142: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 142, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 142)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_change_effect
+  @tag :action_contract
+  @tag :risk_change_effect
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_change_effect]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_change_effect"}
+    # line 145: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_change_effect", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 145, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_change_effect\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 145)
+    # line 146: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 146, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 146)
+    # line 147: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 147, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 147)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_success"}
+    # line 150: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_success", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 150, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_success\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 150)
+    # line 151: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 151, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 151)
+    # line 152: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 152, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 152)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_validation_fail
+  @tag :action_contract
+  @tag :risk_validation_fail
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_validation_fail]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_validation_fail"}
+    # line 155: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_validation_fail", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 155, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_create_fulfillment_create_risk_validation_fail\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 155)
+    # line 156: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 156, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 156)
+    # line 157: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 157, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 157)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_destroy_destroy_risk_change_effect
+  @tag :action_contract
+  @tag :risk_change_effect
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_destroy_destroy_risk_change_effect]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_destroy_destroy_risk_change_effect"}
+    # line 160: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_destroy_destroy_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_destroy_destroy_risk_change_effect", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 160, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_destroy_destroy_risk_change_effect\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 160)
+    # line 161: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 161, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 161)
+    # line 162: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 162, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 162)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_destroy_destroy_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_destroy_destroy_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_destroy_destroy_risk_success"}
+    # line 165: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_destroy_destroy_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_destroy_destroy_risk_success", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 165, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_destroy_destroy_risk_success\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 165)
+    # line 166: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 166, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 166)
+    # line 167: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 167, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 167)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_change_effect
+  @tag :action_contract
+  @tag :risk_change_effect
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_change_effect]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_change_effect"}
+    # line 170: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_change_effect", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 170, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_change_effect\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 170)
+    # line 171: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 171, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 171)
+    # line 172: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 172, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 172)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_success"}
+    # line 175: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_success", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 175, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_success\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 175)
+    # line 176: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 176, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 176)
+    # line 177: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 177, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 177)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_validation_fail
+  @tag :action_contract
+  @tag :risk_validation_fail
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_validation_fail]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_validation_fail"}
+    # line 180: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_validation_fail", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 180, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_fail_fulfillment_update_risk_validation_fail\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 180)
+    # line 181: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 181, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 181)
+    # line 182: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 182, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 182)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_change_effect
+  @tag :action_contract
+  @tag :risk_change_effect
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_change_effect]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_change_effect"}
+    # line 185: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_change_effect", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 185, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_change_effect\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 185)
+    # line 186: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 186, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 186)
+    # line 187: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 187, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 187)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_success"}
+    # line 190: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_success", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 190, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_success\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 190)
+    # line 191: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 191, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 191)
+    # line 192: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 192, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 192)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_validation_fail
+  @tag :action_contract
+  @tag :risk_validation_fail
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_validation_fail]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_validation_fail"}
+    # line 195: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_validation_fail", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 195, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_issue_voucher_or_ticket_update_risk_validation_fail\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 195)
+    # line 196: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 196, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 196)
+    # line 197: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 197, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 197)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_change_effect
+  @tag :action_contract
+  @tag :risk_change_effect
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_change_effect]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_change_effect"}
+    # line 200: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_change_effect", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 200, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_change_effect\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 200)
+    # line 201: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 201, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 201)
+    # line 202: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 202, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 202)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_success"}
+    # line 205: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_success", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 205, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_success\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 205)
+    # line 206: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 206, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 206)
+    # line 207: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 207, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 207)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_validation_fail
+  @tag :action_contract
+  @tag :risk_validation_fail
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_validation_fail]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_validation_fail"}
+    # line 210: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_validation_fail", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 210, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_mark_in_use_update_risk_validation_fail\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 210)
+    # line 211: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 211, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 211)
+    # line 212: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 212, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 212)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_update_update_risk_change_effect
+  @tag :action_contract
+  @tag :risk_change_effect
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_update_update_risk_change_effect]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_update_update_risk_change_effect"}
+    # line 215: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_update_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_update_update_risk_change_effect", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 215, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_update_update_risk_change_effect\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 215)
+    # line 216: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 216, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 216)
+    # line 217: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 217, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 217)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_update_update_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_update_update_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_action_travel_fulfillment_update_update_risk_success"}
+    # line 220: GIVEN given_seed_context id="travel_travel_fulfillment_action_travel_fulfillment_update_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_action_travel_fulfillment_update_update_risk_success", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 220, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_action_travel_fulfillment_update_update_risk_success\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 220)
+    # line 221: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 221, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 221)
+    # line 222: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 222, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 222)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_idempotent_replay
+  @tag :event_contract
+  @tag :risk_idempotent_replay
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_idempotent_replay]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_idempotent_replay"}
+    # line 225: GIVEN given_seed_context id="travel_travel_fulfillment_event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_idempotent_replay" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_idempotent_replay", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 225, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_idempotent_replay\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 225)
+    # line 226: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 226, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 226)
+    # line 227: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 227, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 227)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_normal_publish
+  @tag :event_contract
+  @tag :risk_normal_publish
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_normal_publish]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_normal_publish"}
+    # line 230: GIVEN given_seed_context id="travel_travel_fulfillment_event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_normal_publish" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_normal_publish", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 230, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_normal_publish\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 230)
+    # line 231: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 231, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 231)
+    # line 232: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 232, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 232)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_idempotent_replay
+  @tag :event_contract
+  @tag :risk_idempotent_replay
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_idempotent_replay]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_idempotent_replay"}
+    # line 235: GIVEN given_seed_context id="travel_travel_fulfillment_event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_idempotent_replay" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_idempotent_replay", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 235, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_idempotent_replay\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 235)
+    # line 236: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 236, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 236)
+    # line 237: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 237, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 237)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_normal_publish
+  @tag :event_contract
+  @tag :risk_normal_publish
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_normal_publish]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_normal_publish"}
+    # line 240: GIVEN given_seed_context id="travel_travel_fulfillment_event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_normal_publish" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_normal_publish", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 240, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_normal_publish\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 240)
+    # line 241: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 241, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 241)
+    # line 242: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 242, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 242)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_idempotent_replay
+  @tag :event_contract
+  @tag :risk_idempotent_replay
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_idempotent_replay]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_idempotent_replay"}
+    # line 245: GIVEN given_seed_context id="travel_travel_fulfillment_event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_idempotent_replay" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_idempotent_replay", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 245, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_idempotent_replay\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 245)
+    # line 246: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 246, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 246)
+    # line 247: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 247, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 247)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_normal_publish
+  @tag :event_contract
+  @tag :risk_normal_publish
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_normal_publish]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_normal_publish"}
+    # line 250: GIVEN given_seed_context id="travel_travel_fulfillment_event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_normal_publish" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_normal_publish", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 250, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_normal_publish\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 250)
+    # line 251: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 251, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 251)
+    # line 252: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 252, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 252)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_idempotent_replay
+  @tag :event_contract
+  @tag :risk_idempotent_replay
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_idempotent_replay]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_idempotent_replay"}
+    # line 255: GIVEN given_seed_context id="travel_travel_fulfillment_event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_idempotent_replay" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_idempotent_replay", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 255, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_idempotent_replay\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 255)
+    # line 256: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 256, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 256)
+    # line 257: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 257, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 257)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_normal_publish
+  @tag :event_contract
+  @tag :risk_normal_publish
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_normal_publish]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_normal_publish"}
+    # line 260: GIVEN given_seed_context id="travel_travel_fulfillment_event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_normal_publish" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_normal_publish", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 260, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_normal_publish\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 260)
+    # line 261: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 261, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 261)
+    # line 262: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 262, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 262)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_idempotent_replay
+  @tag :event_contract
+  @tag :risk_idempotent_replay
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_idempotent_replay]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_idempotent_replay"}
+    # line 265: GIVEN given_seed_context id="travel_travel_fulfillment_event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_idempotent_replay" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_idempotent_replay", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 265, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_idempotent_replay\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 265)
+    # line 266: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 266, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 266)
+    # line 267: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 267, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 267)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_normal_publish
+  @tag :event_contract
+  @tag :risk_normal_publish
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_normal_publish]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_normal_publish"}
+    # line 270: GIVEN given_seed_context id="travel_travel_fulfillment_event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_normal_publish" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_normal_publish", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 270, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_normal_publish\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 270)
+    # line 271: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 271, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 271)
+    # line 272: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 272, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 272)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_cancel_booking_risk_declared_error
+  @tag :integration_contract
+  @tag :risk_error
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_cancel_booking_risk_declared_error]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_cancel_booking_risk_declared_error"}
+    # line 275: GIVEN given_seed_context id="travel_travel_fulfillment_integration_travel_fulfillment_supplier_cancel_booking_risk_declared_error" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_integration_travel_fulfillment_supplier_cancel_booking_risk_declared_error", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 275, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_integration_travel_fulfillment_supplier_cancel_booking_risk_declared_error\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 275)
+    # line 276: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 276, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 276)
+    # line 277: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 277, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 277)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_cancel_booking_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_cancel_booking_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_cancel_booking_risk_success"}
+    # line 280: GIVEN given_seed_context id="travel_travel_fulfillment_integration_travel_fulfillment_supplier_cancel_booking_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_integration_travel_fulfillment_supplier_cancel_booking_risk_success", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 280, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_integration_travel_fulfillment_supplier_cancel_booking_risk_success\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 280)
+    # line 281: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 281, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 281)
+    # line 282: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 282, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 282)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_compensation
+  @tag :integration_contract
+  @tag :risk_compensation
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_compensation]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_compensation"}
+    # line 285: GIVEN given_seed_context id="travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_compensation" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_compensation", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 285, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_compensation\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 285)
+    # line 286: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 286, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 286)
+    # line 287: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 287, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 287)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_declared_error
+  @tag :integration_contract
+  @tag :risk_error
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_declared_error]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_declared_error"}
+    # line 290: GIVEN given_seed_context id="travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_declared_error" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_declared_error", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 290, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_declared_error\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 290)
+    # line 291: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 291, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 291)
+    # line 292: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 292, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 292)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_post_condition
+  @tag :integration_contract
+  @tag :risk_postcondition
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_post_condition]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_post_condition"}
+    # line 295: GIVEN given_seed_context id="travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_post_condition" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_post_condition", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 295, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_post_condition\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 295)
+    # line 296: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 296, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 296)
+    # line 297: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 297, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 297)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_success"}
+    # line 300: GIVEN given_seed_context id="travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_success", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 300, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_integration_travel_fulfillment_supplier_confirm_booking_risk_success\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 300)
+    # line 301: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 301, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 301)
+    # line 302: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 302, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 302)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_declared_error
+  @tag :integration_contract
+  @tag :risk_error
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_declared_error]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_declared_error"}
+    # line 305: GIVEN given_seed_context id="travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_declared_error" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_declared_error", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 305, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_declared_error\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 305)
+    # line 306: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 306, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 306)
+    # line 307: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 307, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 307)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_post_condition
+  @tag :integration_contract
+  @tag :risk_postcondition
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_post_condition]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_post_condition"}
+    # line 310: GIVEN given_seed_context id="travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_post_condition" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_post_condition", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 310, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_post_condition\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 310)
+    # line 311: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 311, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 311)
+    # line 312: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 312, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 312)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_success"}
+    # line 315: GIVEN given_seed_context id="travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_success", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 315, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_integration_travel_fulfillment_supplier_issue_document_risk_success\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 315)
+    # line 316: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 316, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 316)
+    # line 317: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 317, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 317)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_branch_or_exception
+  @tag :risk_branch
+  @tag :seed
+  @tag :workflow_contract
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_branch_or_exception]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_branch_or_exception"}
+    # line 320: GIVEN given_seed_context id="travel_travel_fulfillment_workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_branch_or_exception" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_branch_or_exception", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 320, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_branch_or_exception\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 320)
+    # line 321: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 321, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 321)
+    # line 322: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 322, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 322)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_mainline
+  @tag :risk_mainline
+  @tag :seed
+  @tag :workflow_contract
+  test "[BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_mainline]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-travel_travel_fulfillment_workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_mainline"}
+    # line 325: GIVEN given_seed_context id="travel_travel_fulfillment_workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_mainline" module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_fulfillment_workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_mainline", module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 325, raw: "GIVEN given_seed_context id=\"travel_travel_fulfillment_workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_mainline\" module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 325)
+    # line 326: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 326, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 326)
+    # line 327: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_FULFILLMENT"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_FULFILLMENT.dsl", line: 327, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_FULFILLMENT\""}, 327)
+    _ctx = ctx
+    :ok
+  end
+
 end

@@ -1,0 +1,9 @@
+module: TRAVEL_FLIGHT_OFFER
+contract: FlightOffer.activate action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 FlightOffer 的动作 activate 触发副作用 / WHEN 执行动作 activate / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建 flight offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架；create 创建 flight offer -> activate 上架 -> expire 过期
+expected_facts:
+- record_persisted
+- state_change
+- change_effect

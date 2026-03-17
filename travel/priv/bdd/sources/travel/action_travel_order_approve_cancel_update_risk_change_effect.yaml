@@ -1,0 +1,11 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.approve_cancel action contract (risk:change_effect)
+edge_class: action_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelOrder 的动作 approve_cancel 触发副作用 / WHEN 执行动作 approve_cancel / THEN 变更副作用应完整生效且状态一致 / 补充场景：create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功 -> request_cancel 发起取消 -> approve_cancel 取消成功
+expected_facts:
+- record_persisted
+- state_change
+- change_effect
+precondition_actions:
+- request_cancel

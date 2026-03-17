@@ -1,0 +1,10 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.submit_order action contract (risk:success)
+edge_class: action_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelOrder 的动作 submit_order 可执行 / WHEN 执行动作 submit_order / THEN 成功路径应满足业务约束并持久化结果
+expected_facts:
+- record_persisted
+- state_change
+precondition_actions:
+- confirm_quote

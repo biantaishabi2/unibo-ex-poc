@@ -1,0 +1,10 @@
+module: TRAVEL_VACATION_OFFER
+contract: VacationOffer.expire action contract (risk:success)
+edge_class: action_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 VacationOffer 的动作 expire 可执行 / WHEN 执行动作 expire / THEN 成功路径应满足业务约束并持久化结果
+expected_facts:
+- record_persisted
+- state_change
+precondition_actions:
+- activate

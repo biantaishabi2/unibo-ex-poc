@@ -15,3 +15,23 @@ GIVEN given_seed_context id="travel_travel_airline_action_travel_airline_update_
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"
 
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_AIRLINE-SEED-travel_travel_airline_action_travel_airline_create_create_risk_change_effect] TITLE: TRAVEL_TRAVEL_AIRLINE contract seed scenario TAGS: seed action_contract risk_change_effect
+GIVEN given_seed_context id="travel_travel_airline_action_travel_airline_create_create_risk_change_effect" module="TRAVEL_TRAVEL_AIRLINE"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_AIRLINE-SEED-travel_travel_airline_action_travel_airline_create_create_risk_success] TITLE: TRAVEL_TRAVEL_AIRLINE contract seed scenario TAGS: seed action_contract risk_success
+GIVEN given_seed_context id="travel_travel_airline_action_travel_airline_create_create_risk_success" module="TRAVEL_TRAVEL_AIRLINE"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_AIRLINE-SEED-travel_travel_airline_action_travel_airline_update_update_risk_change_effect] TITLE: TRAVEL_TRAVEL_AIRLINE contract seed scenario TAGS: seed action_contract risk_change_effect
+GIVEN given_seed_context id="travel_travel_airline_action_travel_airline_update_update_risk_change_effect" module="TRAVEL_TRAVEL_AIRLINE"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_AIRLINE-SEED-travel_travel_airline_action_travel_airline_update_update_risk_success] TITLE: TRAVEL_TRAVEL_AIRLINE contract seed scenario TAGS: seed action_contract risk_success
+GIVEN given_seed_context id="travel_travel_airline_action_travel_airline_update_update_risk_success" module="TRAVEL_TRAVEL_AIRLINE"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"

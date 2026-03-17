@@ -1,0 +1,15 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.shop_caller_context_resolve integration contract (risk:success)
+edge_class: integration_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelOrder 的 integration shop_caller_context_resolve 已声明 fake adapter / WHEN 执行绑定动作 [create_order] / THEN 调用结果应成功并满足契约模式 sync
+expected_facts:
+- integration_invoked
+- post_conditions_checked
+declared_error_codes:
+- shop_context_not_found
+- shop_context_timeout
+business_post_conditions:
+- current_shop_id
+- enterprise_id
+- member_id

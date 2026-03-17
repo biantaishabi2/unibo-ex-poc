@@ -1,0 +1,8 @@
+module: TRAVEL_TRAVEL_FULFILLMENT
+contract: TravelFulfillment.fail_fulfillment action contract (risk:success)
+edge_class: action_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelFulfillment 的动作 fail_fulfillment 可执行 / WHEN 执行动作 fail_fulfillment / THEN 成功路径应满足业务约束并持久化结果
+expected_facts:
+- record_persisted
+- state_change

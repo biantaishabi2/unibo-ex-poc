@@ -37,4 +37,55 @@ defmodule UniboExPoc.BDD.Generated.TRAVEL_TRAVEL_POLICY_CHECKTest do
     :ok
   end
 
+  # Source: BDD-TRAVEL_TRAVEL_POLICY_CHECK-SEED-travel_travel_policy_check_action_travel_policy_check_create_create_risk_change_effect
+  @tag :action_contract
+  @tag :risk_change_effect
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_POLICY_CHECK-SEED-travel_travel_policy_check_action_travel_policy_check_create_create_risk_change_effect]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_POLICY_CHECK-SEED-travel_travel_policy_check_action_travel_policy_check_create_create_risk_change_effect"}
+    # line 15: GIVEN given_seed_context id="travel_travel_policy_check_action_travel_policy_check_create_create_risk_change_effect" module="TRAVEL_TRAVEL_POLICY_CHECK"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_policy_check_action_travel_policy_check_create_create_risk_change_effect", module: "TRAVEL_TRAVEL_POLICY_CHECK"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_POLICY_CHECK.dsl", line: 15, raw: "GIVEN given_seed_context id=\"travel_travel_policy_check_action_travel_policy_check_create_create_risk_change_effect\" module=\"TRAVEL_TRAVEL_POLICY_CHECK\""}, 15)
+    # line 16: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY_CHECK"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_POLICY_CHECK"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_POLICY_CHECK.dsl", line: 16, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_POLICY_CHECK\""}, 16)
+    # line 17: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY_CHECK"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_POLICY_CHECK"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_POLICY_CHECK.dsl", line: 17, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_POLICY_CHECK\""}, 17)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_POLICY_CHECK-SEED-travel_travel_policy_check_action_travel_policy_check_create_create_risk_success
+  @tag :action_contract
+  @tag :risk_success
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_POLICY_CHECK-SEED-travel_travel_policy_check_action_travel_policy_check_create_create_risk_success]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_POLICY_CHECK-SEED-travel_travel_policy_check_action_travel_policy_check_create_create_risk_success"}
+    # line 20: GIVEN given_seed_context id="travel_travel_policy_check_action_travel_policy_check_create_create_risk_success" module="TRAVEL_TRAVEL_POLICY_CHECK"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_policy_check_action_travel_policy_check_create_create_risk_success", module: "TRAVEL_TRAVEL_POLICY_CHECK"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_POLICY_CHECK.dsl", line: 20, raw: "GIVEN given_seed_context id=\"travel_travel_policy_check_action_travel_policy_check_create_create_risk_success\" module=\"TRAVEL_TRAVEL_POLICY_CHECK\""}, 20)
+    # line 21: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY_CHECK"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_POLICY_CHECK"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_POLICY_CHECK.dsl", line: 21, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_POLICY_CHECK\""}, 21)
+    # line 22: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY_CHECK"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_POLICY_CHECK"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_POLICY_CHECK.dsl", line: 22, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_POLICY_CHECK\""}, 22)
+    _ctx = ctx
+    :ok
+  end
+
+  # Source: BDD-TRAVEL_TRAVEL_POLICY_CHECK-SEED-travel_travel_policy_check_action_travel_policy_check_create_create_risk_validation_fail
+  @tag :action_contract
+  @tag :risk_validation_fail
+  @tag :seed
+  test "[BDD-TRAVEL_TRAVEL_POLICY_CHECK-SEED-travel_travel_policy_check_action_travel_policy_check_create_create_risk_validation_fail]" do
+    run_id = UniboExPoc.BDD.Instructions.V1.new_run_id()
+    ctx = %{run_id: run_id, scenario_id: "BDD-TRAVEL_TRAVEL_POLICY_CHECK-SEED-travel_travel_policy_check_action_travel_policy_check_create_create_risk_validation_fail"}
+    # line 25: GIVEN given_seed_context id="travel_travel_policy_check_action_travel_policy_check_create_create_risk_validation_fail" module="TRAVEL_TRAVEL_POLICY_CHECK"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "travel_travel_policy_check_action_travel_policy_check_create_create_risk_validation_fail", module: "TRAVEL_TRAVEL_POLICY_CHECK"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_POLICY_CHECK.dsl", line: 25, raw: "GIVEN given_seed_context id=\"travel_travel_policy_check_action_travel_policy_check_create_create_risk_validation_fail\" module=\"TRAVEL_TRAVEL_POLICY_CHECK\""}, 25)
+    # line 26: WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY_CHECK"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "TRAVEL_TRAVEL_POLICY_CHECK"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_POLICY_CHECK.dsl", line: 26, raw: "WHEN when_execute_seed_contract module=\"TRAVEL_TRAVEL_POLICY_CHECK\""}, 26)
+    # line 27: THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY_CHECK"
+    ctx = UniboExPoc.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "TRAVEL_TRAVEL_POLICY_CHECK"}, %{file: "/home/wangbo/document/unibo_ex_poc/travel/docs/bdd/features/TRAVEL_TRAVEL_POLICY_CHECK.dsl", line: 27, raw: "THEN then_seed_contract_should_hold module=\"TRAVEL_TRAVEL_POLICY_CHECK\""}, 27)
+    _ctx = ctx
+    :ok
+  end
+
 end

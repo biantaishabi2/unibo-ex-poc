@@ -1,0 +1,11 @@
+module: TRAVEL_TRAVEL_FULFILLMENT
+contract: TravelFulfillment.supplier_cancel_booking integration contract (risk:declared_error)
+edge_class: integration_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN integration supplier_cancel_booking 声明错误码 [cancel_timeout, cancel_rejected] / WHEN fake adapter 返回错误 / THEN 错误码必须命中声明集合
+expected_facts:
+- integration_invoked
+- error_code_validated
+declared_error_codes:
+- cancel_timeout
+- cancel_rejected

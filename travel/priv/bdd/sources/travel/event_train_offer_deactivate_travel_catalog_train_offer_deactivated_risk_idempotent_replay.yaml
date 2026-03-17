@@ -1,0 +1,8 @@
+module: TRAVEL_TRAIN_OFFER
+contract: TrainOffer.deactivate event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN 实体 TrainOffer 动作 deactivate 事件被重复投递 / WHEN 重放 topic `travel.catalog.train_offer.deactivated` / THEN 消费方处理应保持幂等且无重复副作用
+expected_facts:
+- event_checked
+- notifier_verified

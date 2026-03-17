@@ -1,0 +1,28 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.shop_eligibility_quote integration contract (risk:declared_error)
+edge_class: integration_contract
+source_file: models/travel/travel.ubo.yaml
+source_summary: GIVEN integration shop_eligibility_quote 声明错误码 [shop_quote_rejected, shop_quote_timeout] / WHEN fake adapter 返回错误 / THEN 错误码必须命中声明集合
+expected_facts:
+- integration_invoked
+- error_code_validated
+declared_error_codes:
+- shop_quote_rejected
+- shop_quote_timeout
+business_post_conditions:
+- allowed
+- amount
+- available_points
+- cash_payment_enabled
+- member_id
+- mixed_payment_allowed
+- payable_amount
+- points_deduction_amount
+- points_enabled
+- points_requested
+- points_sufficient
+- product_type
+- reason
+- recommended_payment_method
+- shop_id
+- travel_enabled
