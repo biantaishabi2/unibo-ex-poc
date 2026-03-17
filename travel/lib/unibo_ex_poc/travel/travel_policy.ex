@@ -87,6 +87,12 @@ defmodule UniboExPoc.Travel.TravelPolicy do
       public? true
       description "超标处理策略"
     end
+    attribute :approval_mode, :atom do
+      constraints one_of: [:none, :self, :oa]
+      default :self
+      public? true
+      description "审批模式；none 表示关闭审批，self/oa 表示进入对应审批流"
+    end
     attribute :personal_pay_ratio, :integer do
       public? true
       description "个人支付比例 0-100"
@@ -109,7 +115,7 @@ defmodule UniboExPoc.Travel.TravelPolicy do
     create :create do
       description "Create Travel Policy via Create. doc_url: graphql://contract/travel/create_travel_travel_policy"
       primary? true
-      accept [:policy_name, :product_type, :employee_level, :city_tier, :season, :max_amount, :cabin_class_limit, :hotel_star_limit, :exceed_strategy, :personal_pay_ratio, :enterprise_id]
+      accept [:policy_name, :product_type, :employee_level, :city_tier, :season, :max_amount, :cabin_class_limit, :hotel_star_limit, :exceed_strategy, :approval_mode, :personal_pay_ratio, :enterprise_id]
       validate present(:policy_name)
       validate present(:product_type)
       validate present(:exceed_strategy)
@@ -117,7 +123,7 @@ defmodule UniboExPoc.Travel.TravelPolicy do
     update :update do
       description "Update Travel Policy via Update. doc_url: graphql://contract/travel/update_travel_travel_policy"
       primary? true
-      accept [:policy_name, :season, :max_amount, :cabin_class_limit, :hotel_star_limit, :exceed_strategy, :personal_pay_ratio]
+      accept [:policy_name, :season, :max_amount, :cabin_class_limit, :hotel_star_limit, :exceed_strategy, :approval_mode, :personal_pay_ratio]
       require_atomic? false
     end
     update :activate do

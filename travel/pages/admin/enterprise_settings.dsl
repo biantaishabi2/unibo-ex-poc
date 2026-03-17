@@ -40,7 +40,7 @@
         CONTENT: "审批模式"
       [SELECT: approval_mode]
         ATTR: Name("approval_mode"), Label("审批模式"), Change("approval_mode_change")
-        CONTENT: "自建审批:self,OA集成:oa"
+        CONTENT: "关闭审批:none,自建审批:self,OA集成:oa"
       [IF: approval_mode == "oa"]
         [ALERT: oa_integration_alert]
           ATTR: Variant("info")

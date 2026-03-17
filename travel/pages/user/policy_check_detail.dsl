@@ -108,7 +108,7 @@
   # 审批链时间线（超标且策略为需审批时显示）
   [SECTION: approval_timeline_section]
     [IF: check.check_result == "exceeded"]
-      [IF: check.exceed_strategy == "require_approval"]
+      [IF: check.exceed_strategy == "require_approval" && check.approval_mode != "none"]
       [CARD: timeline_card]
         [CARD_HEADER: timeline_card_header]
           [TEXT: timeline_title]

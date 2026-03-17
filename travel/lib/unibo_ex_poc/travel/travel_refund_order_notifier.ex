@@ -7,6 +7,7 @@ defmodule UniboExPoc.Travel.TravelRefundOrder.Notifier do
       :approve -> "travel.refund_order.approved"
       :reject -> "travel.refund_order.rejected"
       :refund -> "travel.refund_order.refunded"
+      :refund_direct -> "travel.refund_order.refunded"
       _ -> nil
     end
 
