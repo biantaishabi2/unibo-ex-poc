@@ -8,6 +8,13 @@ entities:
 
   # ── 跨域引用 ────────────────────────────────────────────────
 
+  # authorization_plan:
+  #   status: planned
+  #   mode: authz_domain
+  #   data_scope: public_readonly
+  #   capabilities:
+  #     - scheduling_view: [read]
+  #   notes: 跨域只读引用，权限由 HR 域控制
   - name: Employee
     description: 跨域引用 HR.Employee（护士/医护人员）
     cross_domain_ref:
@@ -28,6 +35,13 @@ entities:
         type: read
         primary: true
 
+  # authorization_plan:
+  #   status: planned
+  #   mode: authz_domain
+  #   data_scope: public_readonly
+  #   capabilities:
+  #     - scheduling_view: [read]
+  #   notes: 跨域只读引用，权限由 HR 域控制
   - name: Department
     description: 跨域引用 HR.Department（科室）
     cross_domain_ref:
@@ -48,6 +62,14 @@ entities:
 
   # ── 本域实体 ────────────────────────────────────────────────
 
+  # authorization_plan:
+  #   status: planned
+  #   mode: authz_domain
+  #   data_scope: org_scope
+  #   capabilities:
+  #     - scheduling_admin: [create, update, destroy]
+  #     - scheduling_view: [read]
+  #   notes: 管理员配置班次类型，本科室可查看
   - name: ShiftType
     description: 班次类型定义（早班/中班/夜班等），是排班的基础维度
     aggregate_root: true
@@ -151,6 +173,14 @@ entities:
         field: name
         on: [create]
 
+  # authorization_plan:
+  #   status: planned
+  #   mode: authz_domain
+  #   data_scope: org_scope
+  #   capabilities:
+  #     - scheduling_manage: [create, update, destroy, start_generating, mark_generated, mark_adjusted, publish]
+  #     - scheduling_view: [read]
+  #   notes: 护长/科主任可管理排班周期，本科室人员可查看
   - name: SchedulingPeriod
     description: 一次科室月排班工作空间，承载需求、版本、求解运行
     aggregate_root: true
@@ -401,6 +431,14 @@ entities:
       - on: mark_adjusted
         topic: scheduling.period.adjusted
 
+  # authorization_plan:
+  #   status: planned
+  #   mode: authz_domain
+  #   data_scope: org_scope
+  #   capabilities:
+  #     - scheduling_admin: [create, update, destroy]
+  #     - scheduling_view: [read]
+  #   notes: 管理员配置覆盖需求，本科室可查看
   - name: CoverageRequirement
     description: 定义某天某班次某岗位需要多少人
     aggregate_root: false
@@ -510,6 +548,14 @@ entities:
         field: role_code
         on: [create]
 
+  # authorization_plan:
+  #   status: planned
+  #   mode: authz_domain
+  #   data_scope: org_scope
+  #   capabilities:
+  #     - scheduling_manage: [create, update, publish_version, archive_version, destroy]
+  #     - scheduling_view: [read]
+  #   notes: 护长可发布/归档版本，本科室人员可查看
   - name: ScheduleVersion
     description: 一个周期内的工作版本或已发布版本
     aggregate_root: false
@@ -639,6 +685,14 @@ entities:
       - on: archive_version
         topic: scheduling.version.archived
 
+  # authorization_plan:
+  #   status: planned
+  #   mode: authz_domain
+  #   data_scope: org_scope
+  #   capabilities:
+  #     - scheduling_manage: [create, update, destroy, lock, unlock]
+  #     - scheduling_view: [read]
+  #   notes: 护长可分配/锁定/解锁排班，护士可查看自己的排班
   - name: ShiftAssignment
     description: 把某个覆盖需求分配给具体护士和时段
     aggregate_root: false
@@ -780,6 +834,14 @@ entities:
       - on: unlock
         topic: scheduling.assignment.unlocked
 
+  # authorization_plan:
+  #   status: planned
+  #   mode: authz_domain
+  #   data_scope: org_scope
+  #   capabilities:
+  #     - scheduling_admin: [create, update, destroy]
+  #     - scheduling_view: [read]
+  #   notes: 管理员配置约束规则，本科室可查看
   - name: SchedulingConstraint
     description: 合法性约束和评分规则定义，不承载需求人数
     aggregate_root: true
@@ -883,6 +945,14 @@ entities:
         field: category
         on: [create]
 
+  # authorization_plan:
+  #   status: planned
+  #   mode: authz_domain
+  #   data_scope: org_scope
+  #   capabilities:
+  #     - scheduling_manage: [read]
+  #     - scheduling_self: [create, update, destroy, read]
+  #   notes: 护士可管理自己的偏好，护长可查看本科室护士偏好
   - name: ShiftPreference
     description: 护士个人排班偏好
     aggregate_root: false
@@ -953,6 +1023,15 @@ entities:
         type: destroy
         primary: true
 
+  # authorization_plan:
+  #   status: planned
+  #   mode: authz_domain
+  #   data_scope: org_scope
+  #   capabilities:
+  #     - scheduling_admin: [create, update]
+  #     - scheduling_self: [read]
+  #     - scheduling_view: [read]
+  #   notes: 管理员管理护士画像，本人可查看自己的画像
   - name: MedicalStaffProfile
     description: 排班域专属护士画像，不复制 HR 主数据
     aggregate_root: false
@@ -1032,6 +1111,14 @@ entities:
         type: read
         primary: true
 
+  # authorization_plan:
+  #   status: planned
+  #   mode: authz_domain
+  #   data_scope: org_scope
+  #   capabilities:
+  #     - scheduling_system: [create, start_run, complete_feasible, complete_infeasible, mark_timeout, mark_error, mark_completed]
+  #     - scheduling_manage: [read]
+  #   notes: 仅系统/管理员可触发求解，护长可查看求解结果
   - name: SolverRun
     description: 一次求解执行记录与输入/输出快照载体
     aggregate_root: false
@@ -1251,6 +1338,15 @@ entities:
           timeout_ms: 300000
           idempotency_key: period_id
 
+  # authorization_plan:
+  #   status: planned
+  #   mode: authz_domain
+  #   data_scope: org_scope
+  #   capabilities:
+  #     - scheduling_system: [create, destroy]
+  #     - scheduling_manage: [read]
+  #     - scheduling_view: [read]
+  #   notes: 系统生成违反记录，护长和本科室人员可查看
   - name: ConstraintViolation
     description: 结构化记录约束违反（error 或 warning）
     aggregate_root: false
