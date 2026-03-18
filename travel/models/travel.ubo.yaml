@@ -1693,6 +1693,8 @@ entities:
         topic: travel.order.waitlist_fulfilled
       - on: cancel_waitlist
         topic: travel.order.waitlist_cancelled
+      - on: request_cancel
+        topic: travel.order.cancel_requested
       - on: approve_cancel
         topic: travel.order.cancelled
       - on: confirm_change
