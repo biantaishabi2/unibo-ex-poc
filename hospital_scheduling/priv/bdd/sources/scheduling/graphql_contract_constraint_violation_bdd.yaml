@@ -1,7 +1,7 @@
 module: SCHEDULING_CONSTRAINT_VIOLATION
 contract: Scheduling.ConstraintViolation graphql contract
 edge_class: graphql_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-graphql/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-runtime/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: 'GIVEN 实体 Scheduling.ConstraintViolation 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 4 个 field 应存在: [get_scheduling_constraint_violation(query:get:read), list_scheduling_constraint_violations(query:list:read), create_scheduling_constraint_violation(mutation:create:create), delete_scheduling_constraint_violation(mutation:destroy:destroy)]'
 expected_facts:
 - graphql_schema_loaded

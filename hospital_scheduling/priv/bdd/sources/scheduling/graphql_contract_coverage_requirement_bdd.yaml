@@ -1,7 +1,7 @@
 module: SCHEDULING_COVERAGE_REQUIREMENT
 contract: Scheduling.CoverageRequirement graphql contract
 edge_class: graphql_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-graphql/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-runtime/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: 'GIVEN 实体 Scheduling.CoverageRequirement 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 5 个 field 应存在: [get_scheduling_coverage_requirement(query:get:read), list_scheduling_coverage_requirements(query:list:read), create_scheduling_coverage_requirement(mutation:create:create), update_scheduling_coverage_requirement(mutation:update:update), delete_scheduling_coverage_requirement(mutation:destroy:destroy)]'
 expected_facts:
 - graphql_schema_loaded
