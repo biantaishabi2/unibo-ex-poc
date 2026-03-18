@@ -14,10 +14,7 @@ defmodule HospitalScheduling.Application do
       HospitalScheduling.Repo,
       {Phoenix.PubSub, name: HospitalScheduling.PubSub},
       HospitalSchedulingWeb.Telemetry,
-      HospitalSchedulingWeb.Endpoint,
-      HospitalScheduling.AsyncRuntime.Store,
-      HospitalScheduling.AsyncRuntime.Queue,
-      HospitalScheduling.AsyncRuntime.Telemetry
+      HospitalSchedulingWeb.Endpoint
     ]
 
     opts = [strategy: :one_for_one, name: HospitalScheduling.Supervisor]

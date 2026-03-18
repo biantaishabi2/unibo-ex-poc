@@ -47,7 +47,7 @@ defmodule HospitalScheduling.Scheduling.ConstraintViolation do
       public? true
       description "面向用户的说明"
     end
-    attribute :details_json, :string do
+    attribute :details_json, :map do
       allow_nil? false
       public? true
       description "结构化细节"

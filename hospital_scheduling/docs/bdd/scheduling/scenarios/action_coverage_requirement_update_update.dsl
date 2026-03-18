@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SCHEDULING_COVERAGE_REQUIREMENT-SEED-action_coverage_requirement_update_update] TITLE: SCHEDULING_COVERAGE_REQUIREMENT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_coverage_requirement_update_update" module="SCHEDULING_COVERAGE_REQUIREMENT"
+WHEN when_execute_seed_contract module="SCHEDULING_COVERAGE_REQUIREMENT"
+THEN then_seed_contract_should_hold module="SCHEDULING_COVERAGE_REQUIREMENT"

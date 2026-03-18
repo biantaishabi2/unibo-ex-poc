@@ -1,0 +1,35 @@
+[SCENARIO: BDD-SCHEDULING_SHIFT_PREFERENCE-SEED-action_shift_preference_create_create_risk_success] TITLE: SCHEDULING_SHIFT_PREFERENCE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_shift_preference_create_create_risk_success" module="SCHEDULING_SHIFT_PREFERENCE"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_PREFERENCE"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_PREFERENCE"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_PREFERENCE-SEED-action_shift_preference_create_create] TITLE: SCHEDULING_SHIFT_PREFERENCE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_shift_preference_create_create" module="SCHEDULING_SHIFT_PREFERENCE"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_PREFERENCE"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_PREFERENCE"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_PREFERENCE-SEED-action_shift_preference_destroy_destroy_risk_success] TITLE: SCHEDULING_SHIFT_PREFERENCE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_shift_preference_destroy_destroy_risk_success" module="SCHEDULING_SHIFT_PREFERENCE"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_PREFERENCE"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_PREFERENCE"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_PREFERENCE-SEED-action_shift_preference_destroy_destroy] TITLE: SCHEDULING_SHIFT_PREFERENCE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_shift_preference_destroy_destroy" module="SCHEDULING_SHIFT_PREFERENCE"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_PREFERENCE"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_PREFERENCE"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_PREFERENCE-SEED-action_shift_preference_read_read] TITLE: SCHEDULING_SHIFT_PREFERENCE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_shift_preference_read_read" module="SCHEDULING_SHIFT_PREFERENCE"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_PREFERENCE"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_PREFERENCE"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_PREFERENCE-SEED-action_shift_preference_update_update_risk_success] TITLE: SCHEDULING_SHIFT_PREFERENCE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_shift_preference_update_update_risk_success" module="SCHEDULING_SHIFT_PREFERENCE"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_PREFERENCE"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_PREFERENCE"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_PREFERENCE-SEED-action_shift_preference_update_update] TITLE: SCHEDULING_SHIFT_PREFERENCE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_shift_preference_update_update" module="SCHEDULING_SHIFT_PREFERENCE"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_PREFERENCE"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_PREFERENCE"
+

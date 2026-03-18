@@ -32,11 +32,11 @@ defmodule HospitalScheduling.Scheduling.ShiftPreference do
 
   attributes do
     uuid_primary_key :id
-    attribute :preferred_shift_tags, :string do
+    attribute :preferred_shift_tags, {:array, :string} do
       public? true
       description "偏好班次标签"
     end
-    attribute :unavailable_dates, :string do
+    attribute :unavailable_dates, {:array, :string} do
       public? true
       description "不可排日期列表（本地业务日）"
     end

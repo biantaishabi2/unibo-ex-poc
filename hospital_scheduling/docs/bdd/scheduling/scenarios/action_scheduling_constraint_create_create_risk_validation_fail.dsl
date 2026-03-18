@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_CONSTRAINT-SEED-action_scheduling_constraint_create_create_risk_validation_fail] TITLE: SCHEDULING_SCHEDULING_CONSTRAINT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_constraint_create_create_risk_validation_fail" module="SCHEDULING_SCHEDULING_CONSTRAINT"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_CONSTRAINT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_CONSTRAINT"

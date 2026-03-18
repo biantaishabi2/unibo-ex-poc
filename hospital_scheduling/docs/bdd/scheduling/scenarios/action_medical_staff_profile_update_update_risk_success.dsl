@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SCHEDULING_MEDICAL_STAFF_PROFILE-SEED-action_medical_staff_profile_update_update_risk_success] TITLE: SCHEDULING_MEDICAL_STAFF_PROFILE contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_medical_staff_profile_update_update_risk_success" module="SCHEDULING_MEDICAL_STAFF_PROFILE"
+WHEN when_execute_seed_contract module="SCHEDULING_MEDICAL_STAFF_PROFILE"
+THEN then_seed_contract_should_hold module="SCHEDULING_MEDICAL_STAFF_PROFILE"

@@ -305,13 +305,13 @@ entities:
       transitions:
         - from: draft
           to: generating
-          event: start_generation
+          event: start_generating
         - from: generating
           to: generated
-          event: complete_generation
+          event: mark_generated
         - from: generated
           to: adjusted
-          event: adjust
+          event: mark_adjusted
         - from: adjusted
           to: published
           event: publish
@@ -335,7 +335,7 @@ entities:
         message: 只有已生成或已调整状态可以发布
     event_consumers:
       # ScheduleVersion 发布后，回写 SchedulingPeriod.published_version_id
-      - event: ScheduleVersion.published_version
+      - topic: ScheduleVersion.published_version
         action: update
         description: 版本发布后更新 SchedulingPeriod 的 published_version_id
         changes:
@@ -346,7 +346,7 @@ entities:
             field: state
             value: published
       # SolverRun 完成可行解后，回写 current_version_id / last_solver_run_id
-      - event: SolverRun.complete_feasible
+      - topic: SolverRun.complete_feasible
         action: update
         description: 求解完成后更新 SchedulingPeriod 的 current_version_id 和 last_solver_run_id
         changes:
@@ -358,19 +358,25 @@ entities:
             value: generated
     determine_actions:
       # SolverRun 完成后跨聚合写回 SchedulingPeriod（current_version_id / last_solver_run_id）
-      - trigger: SolverRun.complete_feasible
+      - name: on_solver_run_complete_feasible
+        trigger: SolverRun.complete_feasible
         target_entity: SchedulingPeriod
         target_action: mark_generated
         description: 求解可行解完成 → 更新排班周期为 generated 并记录 last_solver_run_id
         lookup:
           via: SolverRun.period_id
+        scope: cross_aggregate
+        mode: async_write_back
       # ScheduleVersion 发布后跨聚合写回 SchedulingPeriod.published_version_id
-      - trigger: ScheduleVersion.publish_version
+      - name: on_schedule_version_publish
+        trigger: ScheduleVersion.publish_version
         target_entity: SchedulingPeriod
         target_action: publish
         description: 版本发布 → 排班周期状态迁移到 published 并记录 published_version_id
         lookup:
           via: ScheduleVersion.period_id
+        scope: cross_aggregate
+        mode: async_write_back
     workflows:
       - name: scheduling_period_lifecycle
         description: 排班周期生命周期
@@ -421,7 +427,7 @@ entities:
         type: string
         description: 岗位名称
       - name: required_skill_tags
-        type: jsonb
+        type: array
         default: []
         description: 所需技能标签，如 ["ICU"]
       - name: min_headcount
@@ -877,11 +883,11 @@ entities:
         primary_key: true
         generated: true
       - name: preferred_shift_tags
-        type: jsonb
+        type: array
         default: []
         description: 偏好班次标签
       - name: unavailable_dates
-        type: jsonb
+        type: array
         default: []
         description: 不可排日期列表（本地业务日）
       - name: max_night_shifts
@@ -957,7 +963,7 @@ entities:
         default: false
         description: 是否可带班
       - name: work_restrictions
-        type: jsonb
+        type: array
         default: []
         description: 工作限制，如 pregnant、breastfeeding
       - name: overtime_willing
@@ -1140,13 +1146,13 @@ entities:
       transitions:
         - from: pending
           to: running
-          event: start
+          event: start_run
         - from: running
           to: feasible
-          event: mark_feasible
+          event: complete_feasible
         - from: running
           to: infeasible
-          event: mark_infeasible
+          event: complete_infeasible
         - from: running
           to: timeout
           event: mark_timeout
@@ -1155,7 +1161,7 @@ entities:
           event: mark_error
         - from: feasible
           to: completed
-          event: complete
+          event: mark_completed
     validations:
       - rule: one_of
         field: status

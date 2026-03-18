@@ -1,0 +1,25 @@
+[SCENARIO: BDD-SCHEDULING_CONSTRAINT_VIOLATION-SEED-action_constraint_violation_create_create_risk_success] TITLE: SCHEDULING_CONSTRAINT_VIOLATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_constraint_violation_create_create_risk_success" module="SCHEDULING_CONSTRAINT_VIOLATION"
+WHEN when_execute_seed_contract module="SCHEDULING_CONSTRAINT_VIOLATION"
+THEN then_seed_contract_should_hold module="SCHEDULING_CONSTRAINT_VIOLATION"
+
+[SCENARIO: BDD-SCHEDULING_CONSTRAINT_VIOLATION-SEED-action_constraint_violation_create_create] TITLE: SCHEDULING_CONSTRAINT_VIOLATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_constraint_violation_create_create" module="SCHEDULING_CONSTRAINT_VIOLATION"
+WHEN when_execute_seed_contract module="SCHEDULING_CONSTRAINT_VIOLATION"
+THEN then_seed_contract_should_hold module="SCHEDULING_CONSTRAINT_VIOLATION"
+
+[SCENARIO: BDD-SCHEDULING_CONSTRAINT_VIOLATION-SEED-action_constraint_violation_destroy_destroy_risk_success] TITLE: SCHEDULING_CONSTRAINT_VIOLATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_constraint_violation_destroy_destroy_risk_success" module="SCHEDULING_CONSTRAINT_VIOLATION"
+WHEN when_execute_seed_contract module="SCHEDULING_CONSTRAINT_VIOLATION"
+THEN then_seed_contract_should_hold module="SCHEDULING_CONSTRAINT_VIOLATION"
+
+[SCENARIO: BDD-SCHEDULING_CONSTRAINT_VIOLATION-SEED-action_constraint_violation_destroy_destroy] TITLE: SCHEDULING_CONSTRAINT_VIOLATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_constraint_violation_destroy_destroy" module="SCHEDULING_CONSTRAINT_VIOLATION"
+WHEN when_execute_seed_contract module="SCHEDULING_CONSTRAINT_VIOLATION"
+THEN then_seed_contract_should_hold module="SCHEDULING_CONSTRAINT_VIOLATION"
+
+[SCENARIO: BDD-SCHEDULING_CONSTRAINT_VIOLATION-SEED-action_constraint_violation_read_read] TITLE: SCHEDULING_CONSTRAINT_VIOLATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_constraint_violation_read_read" module="SCHEDULING_CONSTRAINT_VIOLATION"
+WHEN when_execute_seed_contract module="SCHEDULING_CONSTRAINT_VIOLATION"
+THEN then_seed_contract_should_hold module="SCHEDULING_CONSTRAINT_VIOLATION"
+
