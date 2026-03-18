@@ -1,0 +1,8 @@
+module: TRAVEL_FLIGHT_OFFER
+contract: FlightOffer.destroy action contract (risk:change_effect)
+edge_class: action_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 FlightOffer 的动作 destroy 触发副作用 / WHEN 执行动作 destroy / THEN 变更副作用应完整生效且状态一致
+expected_facts:
+- record_destroyed
+- change_effect

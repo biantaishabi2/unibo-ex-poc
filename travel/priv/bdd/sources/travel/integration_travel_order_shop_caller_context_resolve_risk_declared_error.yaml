@@ -1,0 +1,15 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.shop_caller_context_resolve integration contract (risk:declared_error)
+edge_class: integration_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
+source_summary: GIVEN integration shop_caller_context_resolve 声明错误码 [shop_context_not_found, shop_context_timeout] / WHEN fake adapter 返回错误 / THEN 错误码必须命中声明集合
+expected_facts:
+- integration_invoked
+- error_code_validated
+declared_error_codes:
+- shop_context_not_found
+- shop_context_timeout
+business_post_conditions:
+- current_shop_id
+- enterprise_id
+- member_id

@@ -5,8 +5,38 @@ GIVEN given_seed_context id="action_train_offer_activate_update" module="TRAVEL_
 WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
 
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_activate_update_risk_change_effect] TITLE: TrainOffer.activate action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_activate_update_risk_change_effect" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_activate_update_risk_success] TITLE: TrainOffer.activate action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_activate_update_risk_success" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_activate_update_risk_validation_fail] TITLE: TrainOffer.activate action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_activate_update_risk_validation_fail" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
 [SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_create_create] TITLE: TrainOffer.create action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_train_offer_create_create" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_create_create_risk_change_effect] TITLE: TrainOffer.create action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_create_create_risk_change_effect" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_create_create_risk_success] TITLE: TrainOffer.create action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_create_create_risk_success" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_create_create_risk_validation_fail] TITLE: TrainOffer.create action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_create_create_risk_validation_fail" module="TRAVEL_TRAIN_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
 
@@ -15,13 +45,58 @@ GIVEN given_seed_context id="action_train_offer_deactivate_update" module="TRAVE
 WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
 
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_deactivate_update_risk_change_effect] TITLE: TrainOffer.deactivate action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_deactivate_update_risk_change_effect" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_deactivate_update_risk_success] TITLE: TrainOffer.deactivate action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_deactivate_update_risk_success" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_deactivate_update_risk_validation_fail] TITLE: TrainOffer.deactivate action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_deactivate_update_risk_validation_fail" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
 [SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_destroy_destroy] TITLE: TrainOffer.destroy action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_train_offer_destroy_destroy" module="TRAVEL_TRAIN_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
 
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_destroy_destroy_risk_change_effect] TITLE: TrainOffer.destroy action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_destroy_destroy_risk_change_effect" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_destroy_destroy_risk_success] TITLE: TrainOffer.destroy action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_destroy_destroy_risk_success" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_destroy_destroy_risk_validation_fail] TITLE: TrainOffer.destroy action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_destroy_destroy_risk_validation_fail" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
 [SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_expire_update] TITLE: TrainOffer.expire action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_train_offer_expire_update" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_expire_update_risk_change_effect] TITLE: TrainOffer.expire action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_expire_update_risk_change_effect" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_expire_update_risk_success] TITLE: TrainOffer.expire action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_expire_update_risk_success" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_expire_update_risk_validation_fail] TITLE: TrainOffer.expire action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_expire_update_risk_validation_fail" module="TRAVEL_TRAIN_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
 
@@ -35,8 +110,33 @@ GIVEN given_seed_context id="action_train_offer_update_update" module="TRAVEL_TR
 WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
 
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_update_update_risk_change_effect] TITLE: TrainOffer.update action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_update_update_risk_change_effect" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_update_update_risk_success] TITLE: TrainOffer.update action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_update_update_risk_success" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-action_train_offer_update_update_risk_validation_fail] TITLE: TrainOffer.update action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_train_offer_update_update_risk_validation_fail" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
 [SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-event_train_offer_activate_travel_catalog_train_offer_activated] TITLE: TrainOffer.activate event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_train_offer_activate_travel_catalog_train_offer_activated" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-event_train_offer_activate_travel_catalog_train_offer_activated_risk_idempotent_replay] TITLE: TrainOffer.activate event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_train_offer_activate_travel_catalog_train_offer_activated_risk_idempotent_replay" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-event_train_offer_activate_travel_catalog_train_offer_activated_risk_normal_publish] TITLE: TrainOffer.activate event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_train_offer_activate_travel_catalog_train_offer_activated_risk_normal_publish" module="TRAVEL_TRAIN_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
 
@@ -45,8 +145,28 @@ GIVEN given_seed_context id="event_train_offer_deactivate_travel_catalog_train_o
 WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
 
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-event_train_offer_deactivate_travel_catalog_train_offer_deactivated_risk_idempotent_replay] TITLE: TrainOffer.deactivate event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_train_offer_deactivate_travel_catalog_train_offer_deactivated_risk_idempotent_replay" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-event_train_offer_deactivate_travel_catalog_train_offer_deactivated_risk_normal_publish] TITLE: TrainOffer.deactivate event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_train_offer_deactivate_travel_catalog_train_offer_deactivated_risk_normal_publish" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
 [SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-event_train_offer_expire_travel_catalog_train_offer_expired] TITLE: TrainOffer.expire event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_train_offer_expire_travel_catalog_train_offer_expired" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-event_train_offer_expire_travel_catalog_train_offer_expired_risk_idempotent_replay] TITLE: TrainOffer.expire event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_train_offer_expire_travel_catalog_train_offer_expired_risk_idempotent_replay" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-event_train_offer_expire_travel_catalog_train_offer_expired_risk_normal_publish] TITLE: TrainOffer.expire event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_train_offer_expire_travel_catalog_train_offer_expired_risk_normal_publish" module="TRAVEL_TRAIN_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
 
@@ -58,5 +178,15 @@ THEN then_graphql_contract_should_hold module="TRAVEL_TRAIN_OFFER"
 
 [SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-workflow_train_offer_train_offer_lifecycle] TITLE: TrainOffer.train_offer_lifecycle workflow contract TAGS: seed workflow_contract
 GIVEN given_seed_context id="workflow_train_offer_train_offer_lifecycle" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-workflow_train_offer_train_offer_lifecycle_risk_branch_or_exception] TITLE: TrainOffer.train_offer_lifecycle workflow contract (risk:branch_or_exception) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_train_offer_train_offer_lifecycle_risk_branch_or_exception" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-workflow_train_offer_train_offer_lifecycle_risk_mainline] TITLE: TrainOffer.train_offer_lifecycle workflow contract (risk:mainline) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_train_offer_train_offer_lifecycle_risk_mainline" module="TRAVEL_TRAIN_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"

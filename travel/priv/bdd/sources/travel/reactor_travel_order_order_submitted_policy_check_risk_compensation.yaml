@@ -1,0 +1,8 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.order_submitted_policy_check reactor contract (risk:compensation)
+edge_class: reactor_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelOrder 的跨实体 workflow order_submitted_policy_check 第 2 步失败 / WHEN Reactor 触发补偿回滚 / THEN 补偿链应完整执行且数据一致
+expected_facts:
+- reactor_executed
+- compensation_chain_verified

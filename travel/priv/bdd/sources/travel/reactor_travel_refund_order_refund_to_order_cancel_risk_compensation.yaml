@@ -1,0 +1,8 @@
+module: TRAVEL_TRAVEL_REFUND_ORDER
+contract: TravelRefundOrder.refund_to_order_cancel reactor contract (risk:compensation)
+edge_class: reactor_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelRefundOrder 的跨实体 workflow refund_to_order_cancel 第 2 步失败 / WHEN Reactor 触发补偿回滚 / THEN 补偿链应完整执行且数据一致
+expected_facts:
+- reactor_executed
+- compensation_chain_verified

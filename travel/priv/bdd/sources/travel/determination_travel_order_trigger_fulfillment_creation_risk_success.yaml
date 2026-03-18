@@ -1,0 +1,9 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.trigger_fulfillment_creation determination contract (risk:success)
+edge_class: determination_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelOrder 的跨聚合 determine_action trigger_fulfillment_creation 正常执行 / WHEN scope=cross_aggregate mode=derive_only / THEN read_set [status, product_type] 可读且 write_set [无] 写回成功
+expected_facts:
+- determination_checked
+- read_set_verified
+- write_set_verified

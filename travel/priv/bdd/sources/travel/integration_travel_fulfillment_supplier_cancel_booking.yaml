@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_FULFILLMENT
 contract: TravelFulfillment.supplier_cancel_booking integration contract
 edge_class: integration_contract
-source_file: /home/wangbo/unibo_ex_poc-travel-full/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelFulfillment 声明 integration supplier_cancel_booking（mode=async） / WHEN 绑定动作 [cancel_fulfillment] 触发外部调用 / THEN 调用结果需满足 声明错误码 cancel_timeout, cancel_rejected 且 无显式业务后置条件
 expected_facts:
 - integration_invoked

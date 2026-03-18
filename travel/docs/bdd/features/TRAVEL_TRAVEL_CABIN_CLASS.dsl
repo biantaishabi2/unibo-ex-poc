@@ -5,6 +5,16 @@ GIVEN given_seed_context id="action_travel_cabin_class_create_create" module="TR
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-action_travel_cabin_class_create_create_risk_change_effect] TITLE: TravelCabinClass.create action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_cabin_class_create_create_risk_change_effect" module="TRAVEL_TRAVEL_CABIN_CLASS"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-action_travel_cabin_class_create_create_risk_success] TITLE: TravelCabinClass.create action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_cabin_class_create_create_risk_success" module="TRAVEL_TRAVEL_CABIN_CLASS"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-action_travel_cabin_class_read_read] TITLE: TravelCabinClass.read action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_cabin_class_read_read" module="TRAVEL_TRAVEL_CABIN_CLASS"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
@@ -12,6 +22,16 @@ THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"
 
 [SCENARIO: BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-action_travel_cabin_class_update_update] TITLE: TravelCabinClass.update action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_cabin_class_update_update" module="TRAVEL_TRAVEL_CABIN_CLASS"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-action_travel_cabin_class_update_update_risk_change_effect] TITLE: TravelCabinClass.update action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_cabin_class_update_update_risk_change_effect" module="TRAVEL_TRAVEL_CABIN_CLASS"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-action_travel_cabin_class_update_update_risk_success] TITLE: TravelCabinClass.update action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_cabin_class_update_update_risk_success" module="TRAVEL_TRAVEL_CABIN_CLASS"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"
 

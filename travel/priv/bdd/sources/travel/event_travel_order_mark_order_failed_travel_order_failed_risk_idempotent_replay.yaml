@@ -1,0 +1,8 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.mark_order_failed event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelOrder 动作 mark_order_failed 事件被重复投递 / WHEN 重放 topic `travel.order.failed` / THEN 消费方处理应保持幂等且无重复副作用
+expected_facts:
+- event_checked
+- notifier_verified

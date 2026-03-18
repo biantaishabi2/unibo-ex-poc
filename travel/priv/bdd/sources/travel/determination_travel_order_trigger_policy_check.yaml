@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_ORDER
 contract: TravelOrder.trigger_policy_check determination contract
 edge_class: determination_contract
-source_file: /home/wangbo/unibo_ex_poc-travel-full/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelOrder 声明跨聚合 determine_action trigger_policy_check / WHEN 执行 determine_action trigger_policy_check（scope=cross_aggregate, mode=derive_only） / THEN read_set [product_type, total_amount] 字段可读 + write_set [无] 字段已写回 | phase=post_commit | validations=[] | changes=[]
 expected_facts:
 - determination_checked

@@ -1,0 +1,28 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.shop_eligibility_quote integration contract (risk:post_condition)
+edge_class: integration_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
+source_summary: GIVEN integration shop_eligibility_quote 定义业务后置条件 [allowed, amount, available_points, cash_payment_enabled, member_id, mixed_payment_allowed, payable_amount, points_deduction_amount, points_enabled, points_requested, points_sufficient, product_type, reason, recommended_payment_method, shop_id, travel_enabled] / WHEN 调用成功 / THEN 返回结果必须满足后置条件
+expected_facts:
+- integration_invoked
+- post_conditions_checked
+declared_error_codes:
+- shop_quote_rejected
+- shop_quote_timeout
+business_post_conditions:
+- allowed
+- amount
+- available_points
+- cash_payment_enabled
+- member_id
+- mixed_payment_allowed
+- payable_amount
+- points_deduction_amount
+- points_enabled
+- points_requested
+- points_sufficient
+- product_type
+- reason
+- recommended_payment_method
+- shop_id
+- travel_enabled

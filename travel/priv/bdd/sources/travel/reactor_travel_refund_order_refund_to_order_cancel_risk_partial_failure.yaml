@@ -1,0 +1,8 @@
+module: TRAVEL_TRAVEL_REFUND_ORDER
+contract: TravelRefundOrder.refund_to_order_cancel reactor contract (risk:partial_failure)
+edge_class: reactor_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelRefundOrder 的跨实体 workflow refund_to_order_cancel 中间步骤失败 / WHEN Reactor 检测到部分失败 / THEN 已执行步骤应回滚且最终状态一致
+expected_facts:
+- reactor_executed
+- compensation_chain_verified

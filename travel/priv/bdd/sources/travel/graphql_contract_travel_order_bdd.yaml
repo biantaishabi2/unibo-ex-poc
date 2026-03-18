@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_ORDER
 contract: Travel.TravelOrder graphql contract
 edge_class: graphql_contract
-source_file: /home/wangbo/unibo_ex_poc-travel-full/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
 source_summary: 'GIVEN 实体 Travel.TravelOrder 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 18 个 field 应存在: [get_travel_travel_order(query:get:read), list_travel_travel_orders(query:list:read), create_create_order_travel_travel_order(mutation:create:create_order), update_travel_travel_order(mutation:update:update), confirm_quote_travel_travel_order(mutation:update:confirm_quote), submit_order_travel_travel_order(mutation:update:submit_order), submit_waitlist_travel_travel_order(mutation:update:submit_waitlist), mark_payment_succeeded_travel_travel_order(mutation:update:mark_payment_succeeded), mark_booked_travel_travel_order(mutation:update:mark_booked), fulfill_waitlist_travel_travel_order(mutation:update:fulfill_waitlist), mark_completed_travel_travel_order(mutation:update:mark_completed), request_cancel_travel_travel_order(mutation:update:request_cancel), cancel_waitlist_travel_travel_order(mutation:update:cancel_waitlist), approve_cancel_travel_travel_order(mutation:update:approve_cancel), request_change_travel_travel_order(mutation:update:request_change), confirm_change_travel_travel_order(mutation:update:confirm_change), mark_order_failed_travel_travel_order(mutation:update:mark_order_failed), delete_travel_travel_order(mutation:destroy:destroy)]'
 expected_facts:
 - graphql_schema_loaded

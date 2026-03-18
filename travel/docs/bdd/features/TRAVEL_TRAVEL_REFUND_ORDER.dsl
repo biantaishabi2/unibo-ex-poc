@@ -5,8 +5,38 @@ GIVEN given_seed_context id="action_travel_refund_order_approve_update" module="
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_approve_update_risk_change_effect] TITLE: TravelRefundOrder.approve action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_approve_update_risk_change_effect" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_approve_update_risk_success] TITLE: TravelRefundOrder.approve action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_approve_update_risk_success" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_approve_update_risk_validation_fail] TITLE: TravelRefundOrder.approve action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_approve_update_risk_validation_fail" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_create_create] TITLE: TravelRefundOrder.create action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_refund_order_create_create" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_create_create_risk_change_effect] TITLE: TravelRefundOrder.create action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_create_create_risk_change_effect" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_create_create_risk_success] TITLE: TravelRefundOrder.create action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_create_create_risk_success" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_create_create_risk_validation_fail] TITLE: TravelRefundOrder.create action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_create_create_risk_validation_fail" module="TRAVEL_TRAVEL_REFUND_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
 
@@ -20,8 +50,38 @@ GIVEN given_seed_context id="action_travel_refund_order_refund_direct_update" mo
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_refund_direct_update_risk_change_effect] TITLE: TravelRefundOrder.refund_direct action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_refund_direct_update_risk_change_effect" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_refund_direct_update_risk_success] TITLE: TravelRefundOrder.refund_direct action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_refund_direct_update_risk_success" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_refund_direct_update_risk_validation_fail] TITLE: TravelRefundOrder.refund_direct action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_refund_direct_update_risk_validation_fail" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_refund_update] TITLE: TravelRefundOrder.refund action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_refund_order_refund_update" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_refund_update_risk_change_effect] TITLE: TravelRefundOrder.refund action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_refund_update_risk_change_effect" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_refund_update_risk_success] TITLE: TravelRefundOrder.refund action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_refund_update_risk_success" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_refund_update_risk_validation_fail] TITLE: TravelRefundOrder.refund action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_refund_update_risk_validation_fail" module="TRAVEL_TRAVEL_REFUND_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
 
@@ -30,8 +90,38 @@ GIVEN given_seed_context id="action_travel_refund_order_reject_update" module="T
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_reject_update_risk_change_effect] TITLE: TravelRefundOrder.reject action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_reject_update_risk_change_effect" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_reject_update_risk_success] TITLE: TravelRefundOrder.reject action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_reject_update_risk_success" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-action_travel_refund_order_reject_update_risk_validation_fail] TITLE: TravelRefundOrder.reject action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_refund_order_reject_update_risk_validation_fail" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-determination_travel_refund_order_notify_order_refund_approved] TITLE: TravelRefundOrder.notify_order_refund_approved determination contract TAGS: seed determination_contract
 GIVEN given_seed_context id="determination_travel_refund_order_notify_order_refund_approved" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-determination_travel_refund_order_notify_order_refund_approved_risk_async_timeout] TITLE: TravelRefundOrder.notify_order_refund_approved determination contract (risk:async_timeout) TAGS: seed determination_contract
+GIVEN given_seed_context id="determination_travel_refund_order_notify_order_refund_approved_risk_async_timeout" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-determination_travel_refund_order_notify_order_refund_approved_risk_read_set_unavailable] TITLE: TravelRefundOrder.notify_order_refund_approved determination contract (risk:read_set_unavailable) TAGS: seed determination_contract
+GIVEN given_seed_context id="determination_travel_refund_order_notify_order_refund_approved_risk_read_set_unavailable" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-determination_travel_refund_order_notify_order_refund_approved_risk_success] TITLE: TravelRefundOrder.notify_order_refund_approved determination contract (risk:success) TAGS: seed determination_contract
+GIVEN given_seed_context id="determination_travel_refund_order_notify_order_refund_approved_risk_success" module="TRAVEL_TRAVEL_REFUND_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
 
@@ -40,8 +130,28 @@ GIVEN given_seed_context id="event_travel_refund_order_approve_travel_refund_ord
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-event_travel_refund_order_approve_travel_refund_order_approved_risk_idempotent_replay] TITLE: TravelRefundOrder.approve event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_refund_order_approve_travel_refund_order_approved_risk_idempotent_replay" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-event_travel_refund_order_approve_travel_refund_order_approved_risk_normal_publish] TITLE: TravelRefundOrder.approve event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_refund_order_approve_travel_refund_order_approved_risk_normal_publish" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-event_travel_refund_order_refund_direct_travel_refund_order_refunded] TITLE: TravelRefundOrder.refund_direct event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_travel_refund_order_refund_direct_travel_refund_order_refunded" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_idempotent_replay] TITLE: TravelRefundOrder.refund_direct event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_idempotent_replay" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_normal_publish] TITLE: TravelRefundOrder.refund_direct event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_refund_order_refund_direct_travel_refund_order_refunded_risk_normal_publish" module="TRAVEL_TRAVEL_REFUND_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
 
@@ -50,8 +160,28 @@ GIVEN given_seed_context id="event_travel_refund_order_refund_travel_refund_orde
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-event_travel_refund_order_refund_travel_refund_order_refunded_risk_idempotent_replay] TITLE: TravelRefundOrder.refund event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_refund_order_refund_travel_refund_order_refunded_risk_idempotent_replay" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-event_travel_refund_order_refund_travel_refund_order_refunded_risk_normal_publish] TITLE: TravelRefundOrder.refund event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_refund_order_refund_travel_refund_order_refunded_risk_normal_publish" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-event_travel_refund_order_reject_travel_refund_order_rejected] TITLE: TravelRefundOrder.reject event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_travel_refund_order_reject_travel_refund_order_rejected" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-event_travel_refund_order_reject_travel_refund_order_rejected_risk_idempotent_replay] TITLE: TravelRefundOrder.reject event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_refund_order_reject_travel_refund_order_rejected_risk_idempotent_replay" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-event_travel_refund_order_reject_travel_refund_order_rejected_risk_normal_publish] TITLE: TravelRefundOrder.reject event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_refund_order_reject_travel_refund_order_rejected_risk_normal_publish" module="TRAVEL_TRAVEL_REFUND_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
 
@@ -66,12 +196,47 @@ GIVEN given_seed_context id="reactor_travel_refund_order_refund_to_order_cancel"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-reactor_travel_refund_order_refund_to_order_cancel_risk_compensation] TITLE: TravelRefundOrder.refund_to_order_cancel reactor contract (risk:compensation) TAGS: seed
+GIVEN given_seed_context id="reactor_travel_refund_order_refund_to_order_cancel_risk_compensation" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-reactor_travel_refund_order_refund_to_order_cancel_risk_partial_failure] TITLE: TravelRefundOrder.refund_to_order_cancel reactor contract (risk:partial_failure) TAGS: seed
+GIVEN given_seed_context id="reactor_travel_refund_order_refund_to_order_cancel_risk_partial_failure" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-reactor_travel_refund_order_refund_to_order_cancel_risk_success] TITLE: TravelRefundOrder.refund_to_order_cancel reactor contract (risk:success) TAGS: seed
+GIVEN given_seed_context id="reactor_travel_refund_order_refund_to_order_cancel_risk_success" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-workflow_travel_refund_order_refund_order_lifecycle] TITLE: TravelRefundOrder.refund_order_lifecycle workflow contract TAGS: seed workflow_contract
 GIVEN given_seed_context id="workflow_travel_refund_order_refund_order_lifecycle" module="TRAVEL_TRAVEL_REFUND_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-workflow_travel_refund_order_refund_order_lifecycle_risk_branch_or_exception] TITLE: TravelRefundOrder.refund_order_lifecycle workflow contract (risk:branch_or_exception) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_refund_order_refund_order_lifecycle_risk_branch_or_exception" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-workflow_travel_refund_order_refund_order_lifecycle_risk_mainline] TITLE: TravelRefundOrder.refund_order_lifecycle workflow contract (risk:mainline) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_refund_order_refund_order_lifecycle_risk_mainline" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-workflow_travel_refund_order_refund_to_order_cancel] TITLE: TravelRefundOrder.refund_to_order_cancel workflow contract TAGS: seed workflow_contract
 GIVEN given_seed_context id="workflow_travel_refund_order_refund_to_order_cancel" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-workflow_travel_refund_order_refund_to_order_cancel_risk_branch_or_exception] TITLE: TravelRefundOrder.refund_to_order_cancel workflow contract (risk:branch_or_exception) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_refund_order_refund_to_order_cancel_risk_branch_or_exception" module="TRAVEL_TRAVEL_REFUND_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_REFUND_ORDER-SEED-workflow_travel_refund_order_refund_to_order_cancel_risk_mainline] TITLE: TravelRefundOrder.refund_to_order_cancel workflow contract (risk:mainline) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_refund_order_refund_to_order_cancel_risk_mainline" module="TRAVEL_TRAVEL_REFUND_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_REFUND_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_REFUND_ORDER"

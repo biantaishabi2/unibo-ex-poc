@@ -5,6 +5,16 @@ GIVEN given_seed_context id="action_travel_airline_create_create" module="TRAVEL
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_AIRLINE-SEED-action_travel_airline_create_create_risk_change_effect] TITLE: TravelAirline.create action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_airline_create_create_risk_change_effect" module="TRAVEL_TRAVEL_AIRLINE"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_AIRLINE-SEED-action_travel_airline_create_create_risk_success] TITLE: TravelAirline.create action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_airline_create_create_risk_success" module="TRAVEL_TRAVEL_AIRLINE"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_AIRLINE-SEED-action_travel_airline_read_read] TITLE: TravelAirline.read action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_airline_read_read" module="TRAVEL_TRAVEL_AIRLINE"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
@@ -12,6 +22,16 @@ THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"
 
 [SCENARIO: BDD-TRAVEL_TRAVEL_AIRLINE-SEED-action_travel_airline_update_update] TITLE: TravelAirline.update action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_airline_update_update" module="TRAVEL_TRAVEL_AIRLINE"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_AIRLINE-SEED-action_travel_airline_update_update_risk_change_effect] TITLE: TravelAirline.update action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_airline_update_update_risk_change_effect" module="TRAVEL_TRAVEL_AIRLINE"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_AIRLINE-SEED-action_travel_airline_update_update_risk_success] TITLE: TravelAirline.update action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_airline_update_update_risk_success" module="TRAVEL_TRAVEL_AIRLINE"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"
 

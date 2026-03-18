@@ -5,8 +5,38 @@ GIVEN given_seed_context id="action_hotel_offer_activate_update" module="TRAVEL_
 WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
 
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_activate_update_risk_change_effect] TITLE: HotelOffer.activate action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_activate_update_risk_change_effect" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_activate_update_risk_success] TITLE: HotelOffer.activate action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_activate_update_risk_success" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_activate_update_risk_validation_fail] TITLE: HotelOffer.activate action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_activate_update_risk_validation_fail" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
 [SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_create_create] TITLE: HotelOffer.create action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_hotel_offer_create_create" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_create_create_risk_change_effect] TITLE: HotelOffer.create action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_create_create_risk_change_effect" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_create_create_risk_success] TITLE: HotelOffer.create action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_create_create_risk_success" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_create_create_risk_validation_fail] TITLE: HotelOffer.create action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_create_create_risk_validation_fail" module="TRAVEL_HOTEL_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
 
@@ -15,13 +45,58 @@ GIVEN given_seed_context id="action_hotel_offer_deactivate_update" module="TRAVE
 WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
 
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_deactivate_update_risk_change_effect] TITLE: HotelOffer.deactivate action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_deactivate_update_risk_change_effect" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_deactivate_update_risk_success] TITLE: HotelOffer.deactivate action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_deactivate_update_risk_success" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_deactivate_update_risk_validation_fail] TITLE: HotelOffer.deactivate action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_deactivate_update_risk_validation_fail" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
 [SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_destroy_destroy] TITLE: HotelOffer.destroy action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_hotel_offer_destroy_destroy" module="TRAVEL_HOTEL_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
 
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_destroy_destroy_risk_change_effect] TITLE: HotelOffer.destroy action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_destroy_destroy_risk_change_effect" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_destroy_destroy_risk_success] TITLE: HotelOffer.destroy action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_destroy_destroy_risk_success" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_destroy_destroy_risk_validation_fail] TITLE: HotelOffer.destroy action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_destroy_destroy_risk_validation_fail" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
 [SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_expire_update] TITLE: HotelOffer.expire action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_hotel_offer_expire_update" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_expire_update_risk_change_effect] TITLE: HotelOffer.expire action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_expire_update_risk_change_effect" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_expire_update_risk_success] TITLE: HotelOffer.expire action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_expire_update_risk_success" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_expire_update_risk_validation_fail] TITLE: HotelOffer.expire action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_expire_update_risk_validation_fail" module="TRAVEL_HOTEL_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
 
@@ -35,8 +110,33 @@ GIVEN given_seed_context id="action_hotel_offer_update_update" module="TRAVEL_HO
 WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
 
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_update_update_risk_change_effect] TITLE: HotelOffer.update action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_update_update_risk_change_effect" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_update_update_risk_success] TITLE: HotelOffer.update action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_update_update_risk_success" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-action_hotel_offer_update_update_risk_validation_fail] TITLE: HotelOffer.update action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_hotel_offer_update_update_risk_validation_fail" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
 [SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-event_hotel_offer_activate_travel_catalog_hotel_offer_activated] TITLE: HotelOffer.activate event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_hotel_offer_activate_travel_catalog_hotel_offer_activated" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-event_hotel_offer_activate_travel_catalog_hotel_offer_activated_risk_idempotent_replay] TITLE: HotelOffer.activate event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_hotel_offer_activate_travel_catalog_hotel_offer_activated_risk_idempotent_replay" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-event_hotel_offer_activate_travel_catalog_hotel_offer_activated_risk_normal_publish] TITLE: HotelOffer.activate event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_hotel_offer_activate_travel_catalog_hotel_offer_activated_risk_normal_publish" module="TRAVEL_HOTEL_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
 
@@ -45,8 +145,28 @@ GIVEN given_seed_context id="event_hotel_offer_deactivate_travel_catalog_hotel_o
 WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
 
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-event_hotel_offer_deactivate_travel_catalog_hotel_offer_deactivated_risk_idempotent_replay] TITLE: HotelOffer.deactivate event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_hotel_offer_deactivate_travel_catalog_hotel_offer_deactivated_risk_idempotent_replay" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-event_hotel_offer_deactivate_travel_catalog_hotel_offer_deactivated_risk_normal_publish] TITLE: HotelOffer.deactivate event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_hotel_offer_deactivate_travel_catalog_hotel_offer_deactivated_risk_normal_publish" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
 [SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-event_hotel_offer_expire_travel_catalog_hotel_offer_expired] TITLE: HotelOffer.expire event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_hotel_offer_expire_travel_catalog_hotel_offer_expired" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-event_hotel_offer_expire_travel_catalog_hotel_offer_expired_risk_idempotent_replay] TITLE: HotelOffer.expire event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_hotel_offer_expire_travel_catalog_hotel_offer_expired_risk_idempotent_replay" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-event_hotel_offer_expire_travel_catalog_hotel_offer_expired_risk_normal_publish] TITLE: HotelOffer.expire event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_hotel_offer_expire_travel_catalog_hotel_offer_expired_risk_normal_publish" module="TRAVEL_HOTEL_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
 
@@ -58,5 +178,15 @@ THEN then_graphql_contract_should_hold module="TRAVEL_HOTEL_OFFER"
 
 [SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-workflow_hotel_offer_hotel_offer_lifecycle] TITLE: HotelOffer.hotel_offer_lifecycle workflow contract TAGS: seed workflow_contract
 GIVEN given_seed_context id="workflow_hotel_offer_hotel_offer_lifecycle" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-workflow_hotel_offer_hotel_offer_lifecycle_risk_branch_or_exception] TITLE: HotelOffer.hotel_offer_lifecycle workflow contract (risk:branch_or_exception) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_hotel_offer_hotel_offer_lifecycle_risk_branch_or_exception" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-workflow_hotel_offer_hotel_offer_lifecycle_risk_mainline] TITLE: HotelOffer.hotel_offer_lifecycle workflow contract (risk:mainline) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_hotel_offer_hotel_offer_lifecycle_risk_mainline" module="TRAVEL_HOTEL_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
