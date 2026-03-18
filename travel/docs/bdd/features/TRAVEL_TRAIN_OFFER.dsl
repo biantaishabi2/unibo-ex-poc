@@ -54,3 +54,8 @@ THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
 GIVEN given_seed_context id="workflow_train_offer_train_offer_lifecycle" module="TRAVEL_TRAIN_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"
+
+[SCENARIO: BDD-TRAVEL_TRAIN_OFFER-SEED-graphql_contract_train_offer] TITLE: TRAVEL_TRAIN_OFFER contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_train_offer" module="TRAVEL_TRAIN_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAIN_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAIN_OFFER"

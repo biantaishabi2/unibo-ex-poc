@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_FULFILLMENT
 contract: TravelFulfillment.fail_fulfillment action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-travel-bdd-rerun/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-graphql/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelFulfillment 的动作 fail_fulfillment 可执行，accept=[failure_reason]，args=[无显式参数] / WHEN 执行动作 fail_fulfillment / THEN 输入应满足校验规则，状态变更与副作用应生效
 expected_facts:
 - action_executed

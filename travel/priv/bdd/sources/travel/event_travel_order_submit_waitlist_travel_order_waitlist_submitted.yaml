@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_ORDER
 contract: TravelOrder.submit_waitlist event contract
 edge_class: event_contract
-source_file: /home/wangbo/document/unibo_ex_poc-travel-bdd-rerun/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-graphql/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelOrder 的动作 submit_waitlist 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.order.waitlist_submitted`
 expected_facts:
 - event_checked

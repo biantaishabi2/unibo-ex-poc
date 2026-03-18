@@ -1,0 +1,9 @@
+module: TRAVEL_TRAVEL_REFUND_ORDER
+contract: Travel.TravelRefundOrder graphql contract
+edge_class: graphql_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-graphql/travel/models/travel.ubo.yaml
+source_summary: 'GIVEN 实体 Travel.TravelRefundOrder 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 7 个 field 应存在: [get_travel_travel_refund_order(query:get:read), list_travel_travel_refund_orders(query:list:read), create_travel_travel_refund_order(mutation:create:create), approve_travel_travel_refund_order(mutation:update:approve), reject_travel_travel_refund_order(mutation:update:reject), refund_travel_travel_refund_order(mutation:update:refund), refund_direct_travel_travel_refund_order(mutation:update:refund_direct)]'
+expected_facts:
+- graphql_schema_loaded
+- introspection_fields_verified
+- graphql_contract_holds

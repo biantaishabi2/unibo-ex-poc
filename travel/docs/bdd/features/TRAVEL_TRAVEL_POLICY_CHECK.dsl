@@ -9,3 +9,8 @@ THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY_CHECK"
 GIVEN given_seed_context id="action_travel_policy_check_read_read" module="TRAVEL_TRAVEL_POLICY_CHECK"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY_CHECK"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY_CHECK"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY_CHECK-SEED-graphql_contract_travel_policy_check] TITLE: TRAVEL_TRAVEL_POLICY_CHECK contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_travel_policy_check" module="TRAVEL_TRAVEL_POLICY_CHECK"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY_CHECK"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY_CHECK"

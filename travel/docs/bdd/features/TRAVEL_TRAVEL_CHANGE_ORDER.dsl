@@ -64,3 +64,8 @@ THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CHANGE_ORDER"
 GIVEN given_seed_context id="determination_travel_change_order_notify_order_change_approved" module="TRAVEL_TRAVEL_CHANGE_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CHANGE_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CHANGE_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_CHANGE_ORDER-SEED-graphql_contract_travel_change_order] TITLE: TRAVEL_TRAVEL_CHANGE_ORDER contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_travel_change_order" module="TRAVEL_TRAVEL_CHANGE_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CHANGE_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CHANGE_ORDER"

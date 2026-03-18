@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_FULFILLMENT
 contract: TravelFulfillment.mark_in_use action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-travel-bdd-rerun/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-graphql/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelFulfillment 的动作 mark_in_use 可执行，accept=[used_at]，args=[无显式参数] / WHEN 执行动作 mark_in_use / THEN 输入应满足校验规则，状态变更与副作用应生效
 expected_facts:
 - action_executed

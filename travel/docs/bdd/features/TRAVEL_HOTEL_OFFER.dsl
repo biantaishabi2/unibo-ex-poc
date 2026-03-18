@@ -54,3 +54,8 @@ THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
 GIVEN given_seed_context id="workflow_hotel_offer_hotel_offer_lifecycle" module="TRAVEL_HOTEL_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"
+
+[SCENARIO: BDD-TRAVEL_HOTEL_OFFER-SEED-graphql_contract_hotel_offer] TITLE: TRAVEL_HOTEL_OFFER contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_hotel_offer" module="TRAVEL_HOTEL_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_HOTEL_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_HOTEL_OFFER"

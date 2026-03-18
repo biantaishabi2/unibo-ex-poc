@@ -1,0 +1,37 @@
+type: graphql_contract
+entity: TravelPolicy
+domain: Travel
+module: TRAVEL_TRAVEL_POLICY
+fields:
+  - field: get_travel_travel_policy
+    kind: query
+    mode: get
+    action: read
+  - field: list_travel_travel_policys
+    kind: query
+    mode: list
+    action: read
+  - field: get_match_policy_travel_travel_policy
+    kind: query
+    mode: get
+    action: match_policy
+  - field: list_match_policy_travel_travel_policys
+    kind: query
+    mode: list
+    action: match_policy
+  - field: create_travel_travel_policy
+    kind: mutation
+    mode: create
+    action: create
+  - field: update_travel_travel_policy
+    kind: mutation
+    mode: update
+    action: update
+  - field: activate_travel_travel_policy
+    kind: mutation
+    mode: update
+    action: activate
+  - field: deactivate_travel_travel_policy
+    kind: mutation
+    mode: update
+    action: deactivate

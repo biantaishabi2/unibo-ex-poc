@@ -1,7 +1,7 @@
 module: TRAVEL_TRAIN_OFFER
 contract: TrainOffer.deactivate event contract
 edge_class: event_contract
-source_file: /home/wangbo/document/unibo_ex_poc-travel-bdd-rerun/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-graphql/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TrainOffer 的动作 deactivate 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.catalog.train_offer.deactivated`
 expected_facts:
 - event_checked
