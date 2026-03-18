@@ -13,7 +13,7 @@
         [FLEX: subtitle_row]
           { Gap: 2 }
           [BADGE: run_status_badge]
-            BIND: Enum("status", entity: "SolverRun")
+            BIND: Enum("SolverRun", "status")
             CONTENT: "{{run.status|}}"
           [TEXT: engine_info]
             ATTR: Variant("muted")
@@ -92,7 +92,7 @@
               [TABLE_ROW: vio_row]
                 [TABLE_CELL: td_severity]
                   [BADGE: severity_badge]
-                    BIND: Enum("severity")
+                    BIND: Enum("ConstraintViolation", "severity")
                     CONTENT: "{{vio.severity|}}"
                 [TABLE_CELL: td_rule]
                   CONTENT: "{{vio.rule_code|}}"

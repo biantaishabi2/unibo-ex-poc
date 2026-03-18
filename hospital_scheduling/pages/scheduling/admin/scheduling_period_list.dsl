@@ -18,8 +18,8 @@
         [FLEX: filter_row]
           { Gap: 4, Align: "Center" }
           [SELECT: filter_state]
-            ATTR: Name("state"), Label("状态")
             BIND: Enum("state")
+            ATTR: Name("state"), Label("状态")
           [SELECT: filter_department]
             ATTR: Name("department_id"), Label("科室")
           [INPUT: filter_start_date]
@@ -59,11 +59,9 @@
               CONTENT: "{{row.end_date|}}"
             [TABLE_CELL: td_state]
               [BADGE: state_badge]
-                BIND: Enum("state")
                 CONTENT: "{{row.state|}}"
             [TABLE_CELL: td_generation_mode]
               [BADGE: mode_badge]
-                BIND: Enum("generation_mode")
                 CONTENT: "{{row.generation_mode|}}"
             [TABLE_CELL: td_actions]
               [FLEX: row_actions]
