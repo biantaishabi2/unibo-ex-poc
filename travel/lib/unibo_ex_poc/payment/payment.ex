@@ -27,7 +27,6 @@ defmodule UniboExPoc.Payment.Payment do
     domain: UniboExPoc.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    authorizers: [Ash.Policy.Authorizer],
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
@@ -297,24 +296,6 @@ defmodule UniboExPoc.Payment.Payment do
 
   archive do
     archive_related [:applications, :refunds]
-  end
-
-  policies do
-    policy action_type(:read) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:company_party)
-    end
-    policy action_type(:update) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:company_party)
-    end
-    policy action_type(:create) do
-      forbid_unless relates_to_actor_via(:company_party)
-      authorize_if expr(^actor(:role) in [:finance_clerk, :admin])
-    end
-    policy always() do
-      authorize_if always()
-    end
   end
 
 

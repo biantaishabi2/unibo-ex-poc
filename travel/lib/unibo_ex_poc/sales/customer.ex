@@ -13,8 +13,7 @@ defmodule UniboExPoc.Sales.Customer do
     otp_app: :travel,
     domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    authorizers: [Ash.Policy.Authorizer]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
   resource do
     description "客户主数据（对应 OFBiz PartyGroup + PartyRole CUSTOMER）"
@@ -172,23 +171,6 @@ defmodule UniboExPoc.Sales.Customer do
     change_tracking_mode :full_diff
     store_action_name? true
     ignore_attributes [:inserted_at, :updated_at]
-  end
-
-  policies do
-    policy action_type(:read) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:company_party)
-    end
-    policy action_type(:update) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:company_party)
-    end
-    policy action_type(:create) do
-      authorize_if expr(actor.role in [:sales_rep, :admin])
-    end
-    policy always() do
-      authorize_if always()
-    end
   end
 
 end

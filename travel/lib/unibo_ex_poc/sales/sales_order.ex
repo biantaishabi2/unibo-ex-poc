@@ -31,7 +31,6 @@ defmodule UniboExPoc.Sales.SalesOrder do
     domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    authorizers: [Ash.Policy.Authorizer],
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
@@ -315,23 +314,6 @@ defmodule UniboExPoc.Sales.SalesOrder do
   aggregates do
     count :total_items, :items
     sum :total_quantity, :items, field: :quantity
-  end
-
-  policies do
-    policy action_type(:read) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:company_party)
-    end
-    policy action_type(:update) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:company_party)
-    end
-    policy action_type(:create) do
-      authorize_if expr(actor.role in [:sales_rep, :admin])
-    end
-    policy always() do
-      authorize_if always()
-    end
   end
 
 

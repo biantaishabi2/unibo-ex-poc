@@ -20,8 +20,7 @@ defmodule UniboExPoc.Payment.PaymentMethod do
     otp_app: :travel,
     domain: UniboExPoc.Payment,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    authorizers: [Ash.Policy.Authorizer]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
 
   resource do
     description "支付方式，对应用户/客户绑定的具体支付手段（信用卡、银行账户、礼品卡等）"
@@ -140,24 +139,6 @@ defmodule UniboExPoc.Payment.PaymentMethod do
 
   archive do
     archive_related [:payments, :gateway_responses]
-  end
-
-  policies do
-    policy action_type(:read) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:party)
-    end
-    policy action_type(:update) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:party)
-    end
-    policy action_type(:create) do
-      forbid_unless relates_to_actor_via(:party)
-      authorize_if expr(^actor(:role) in [:finance_clerk, :admin])
-    end
-    policy always() do
-      authorize_if always()
-    end
   end
 
 end

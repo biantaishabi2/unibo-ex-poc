@@ -13,7 +13,6 @@ defmodule UniboExPoc.Accounting.Payment do
     domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    authorizers: [Ash.Policy.Authorizer],
     notifiers: [UniboExPoc.Accounting.Payment.Notifier]
 
   resource do
@@ -207,24 +206,6 @@ defmodule UniboExPoc.Accounting.Payment do
 
   identities do
     identity :unique_payment_number, [:payment_number]
-  end
-
-  policies do
-    policy action_type(:read) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:created_by)
-    end
-    policy action_type(:update) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:created_by)
-    end
-    policy action_type(:create) do
-      forbid_unless relates_to_actor_via(:created_by)
-      authorize_if expr(^actor(:role) == :admin)
-    end
-    policy always() do
-      authorize_if always()
-    end
   end
 
 end

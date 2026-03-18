@@ -43,7 +43,6 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
     domain: UniboExPoc.Purchasing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    authorizers: [Ash.Policy.Authorizer],
     notifiers: [UniboExPoc.Purchasing.PurchaseOrder.Notifier]
 
   resource do
@@ -402,26 +401,6 @@ defmodule UniboExPoc.Purchasing.PurchaseOrder do
     sum :total_quantity, :order_lines, field: :quantity
     sum :total_received, :order_lines, field: :qty_received
     sum :total_invoiced, :order_lines, field: :qty_invoiced
-  end
-
-  policies do
-    policy action_type(:read) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:company)
-    end
-    policy action_type(:update) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:company)
-    end
-    policy action_type(:create) do
-      authorize_if expr(actor.role in [:buyer, :admin])
-    end
-    policy action(:button_approve) do
-      authorize_if expr(^actor(:role) == :purchase_manager or unknown_func())
-    end
-    policy always() do
-      authorize_if always()
-    end
   end
 
 end

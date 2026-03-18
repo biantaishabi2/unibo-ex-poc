@@ -14,7 +14,6 @@ defmodule UniboExPoc.Accounting.JournalEntry do
     domain: UniboExPoc.Accounting,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource],
-    authorizers: [Ash.Policy.Authorizer],
     notifiers: [UniboExPoc.Accounting.JournalEntry.Notifier]
 
   resource do
@@ -255,24 +254,6 @@ reversed: 仅冲销分录匹配
 
   identities do
     identity :unique_entry_number_when_posted, [:entry_number, :journal_id]
-  end
-
-  policies do
-    policy action_type(:read) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:created_by)
-    end
-    policy action_type(:update) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:created_by)
-    end
-    policy action_type(:create) do
-      forbid_unless relates_to_actor_via(:created_by)
-      authorize_if expr(^actor(:role) == :admin)
-    end
-    policy always() do
-      authorize_if always()
-    end
   end
 
 end
