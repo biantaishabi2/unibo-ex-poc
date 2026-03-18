@@ -538,6 +538,65 @@
               }
             ]
           }
+        ],
+        "determine_actions": [
+          {
+            "name": "on_solver_run_complete_feasible",
+            "scope": "cross_aggregate",
+            "mode": "async_write_back"
+          },
+          {
+            "name": "on_schedule_version_publish",
+            "scope": "cross_aggregate",
+            "mode": "async_write_back"
+          }
+        ],
+        "state_machine": {
+          "initial_state": "draft",
+          "states": [
+            "draft",
+            "generating",
+            "generated",
+            "adjusted",
+            "published"
+          ],
+          "transitions": [
+            {
+              "from": "draft",
+              "to": "generating",
+              "event": "start_generating"
+            },
+            {
+              "from": "generating",
+              "to": "generated",
+              "event": "mark_generated"
+            },
+            {
+              "from": "generated",
+              "to": "adjusted",
+              "event": "mark_adjusted"
+            },
+            {
+              "from": "adjusted",
+              "to": "published",
+              "event": "publish"
+            },
+            {
+              "from": "generated",
+              "to": "published",
+              "event": "publish"
+            }
+          ]
+        },
+        "event_consumers": [
+          {
+            "topic": "ScheduleVersion.published_version",
+            "action": "update"
+          },
+          {
+            "topic": "SolverRun.complete_feasible",
+            "action": "update"
+          }
         ]
       },
       {
@@ -570,7 +629,7 @@
           },
           {
             "name": "required_skill_tags",
-            "type": "jsonb",
+            "type": "array",
             "default": [],
             "description": "所需技能标签，如 [\"ICU\"]"
           },
@@ -1269,13 +1328,13 @@
           },
           {
             "name": "preferred_shift_tags",
-            "type": "jsonb",
+            "type": "array",
             "default": [],
             "description": "偏好班次标签"
           },
           {
             "name": "unavailable_dates",
-            "type": "jsonb",
+            "type": "array",
             "default": [],
             "description": "不可排日期列表（本地业务日）"
           },
@@ -1378,7 +1437,7 @@
           },
           {
             "name": "work_restrictions",
-            "type": "jsonb",
+            "type": "array",
             "default": [],
             "description": "工作限制，如 pregnant、breastfeeding"
           },
@@ -1770,7 +1829,52 @@
               }
             ]
           }
-        ]
+        ],
+        "state_machine": {
+          "initial_state": "pending",
+          "states": [
+            "pending",
+            "running",
+            "feasible",
+            "infeasible",
+            "timeout",
+            "error",
+            "completed"
+          ],
+          "transitions": [
+            {
+              "from": "pending",
+              "to": "running",
+              "event": "start_run"
+            },
+            {
+              "from": "running",
+              "to": "feasible",
+              "event": "complete_feasible"
+            },
+            {
+              "from": "running",
+              "to": "infeasible",
+              "event": "complete_infeasible"
+            },
+            {
+              "from": "running",
+              "to": "timeout",
+              "event": "mark_timeout"
+            },
+            {
+              "from": "running",
+              "to": "error",
+              "event": "mark_error"
+            },
+            {
+              "from": "feasible",
+              "to": "completed",
+              "event": "mark_completed"
+            }
+          ],
+          "state_attribute": "status"
+        }
       },
       {
         "name": "ConstraintViolation",

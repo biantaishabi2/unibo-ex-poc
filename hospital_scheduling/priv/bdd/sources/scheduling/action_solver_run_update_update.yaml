@@ -1,7 +1,7 @@
 module: SCHEDULING_SOLVER_RUN
 contract: SolverRun.update action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo/models/scheduling/scheduling.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: GIVEN 实体 SolverRun 的动作 update 可执行，accept=[status, started_at, completed_at, score, hard_violation_count, warning_count, output_snapshot, error_message]，args=[无显式参数] / WHEN 执行动作 update / THEN 保留基础行为占位（建议补充 validation/change）
 expected_facts:
 - action_executed

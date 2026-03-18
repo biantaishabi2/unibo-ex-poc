@@ -87,7 +87,7 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
   end
 
   actions do
-    defaults [:read]
+    defaults [:read, :destroy]
     create :create do
       description "Create Schedule Version via Create. doc_url: graphql://contract/scheduling/create_scheduling_schedule_version"
       primary? true

@@ -1,0 +1,165 @@
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_create_create_risk_success] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_create_create_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_create_create_risk_validation_fail] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_create_create_risk_validation_fail" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_create_create] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_create_create" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_destroy_destroy_risk_success] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_destroy_destroy_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_destroy_destroy_risk_validation_fail] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_destroy_destroy_risk_validation_fail" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_destroy_destroy] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_destroy_destroy" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_mark_adjusted_update_risk_success] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_mark_adjusted_update_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_mark_adjusted_update_risk_validation_fail] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_mark_adjusted_update_risk_validation_fail" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_mark_adjusted_update] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_mark_adjusted_update" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_mark_generated_update_risk_success] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_mark_generated_update_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_mark_generated_update_risk_validation_fail] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_mark_generated_update_risk_validation_fail" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_mark_generated_update] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_mark_generated_update" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_publish_update_risk_success] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_publish_update_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_publish_update_risk_validation_fail] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_publish_update_risk_validation_fail" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_publish_update] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_publish_update" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_read_read] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_read_read" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_start_generating_update_risk_success] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_start_generating_update_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_start_generating_update_risk_validation_fail] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_start_generating_update_risk_validation_fail" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_start_generating_update] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_start_generating_update" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_update_update_risk_success] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_update_update_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_update_update_risk_validation_fail] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_update_update_risk_validation_fail" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_update_update] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_period_update_update" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_schedule_version_publish_risk_async_timeout] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="determination_scheduling_period_on_schedule_version_publish_risk_async_timeout" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_schedule_version_publish_risk_read_set_unavailable] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="determination_scheduling_period_on_schedule_version_publish_risk_read_set_unavailable" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_schedule_version_publish_risk_success] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="determination_scheduling_period_on_schedule_version_publish_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_schedule_version_publish] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="determination_scheduling_period_on_schedule_version_publish" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_solver_run_complete_feasible_risk_async_timeout] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="determination_scheduling_period_on_solver_run_complete_feasible_risk_async_timeout" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_solver_run_complete_feasible_risk_read_set_unavailable] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="determination_scheduling_period_on_solver_run_complete_feasible_risk_read_set_unavailable" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_solver_run_complete_feasible_risk_success] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="determination_scheduling_period_on_solver_run_complete_feasible_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_solver_run_complete_feasible] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="determination_scheduling_period_on_solver_run_complete_feasible" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-workflow_scheduling_period_scheduling_period_lifecycle_risk_branch_or_exception] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="workflow_scheduling_period_scheduling_period_lifecycle_risk_branch_or_exception" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-workflow_scheduling_period_scheduling_period_lifecycle_risk_mainline] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="workflow_scheduling_period_scheduling_period_lifecycle_risk_mainline" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-workflow_scheduling_period_scheduling_period_lifecycle] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="workflow_scheduling_period_scheduling_period_lifecycle" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+

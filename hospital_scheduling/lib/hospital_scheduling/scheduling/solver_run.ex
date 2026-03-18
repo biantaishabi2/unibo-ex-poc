@@ -15,7 +15,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
     otp_app: :hospital_scheduling,
     domain: HospitalScheduling.Scheduling,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshStateMachine]
 
   resource do
     description "一次求解执行记录与输入/输出快照载体"
@@ -96,12 +96,12 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       public? true
       description "警告数"
     end
-    attribute :input_snapshot, :string do
+    attribute :input_snapshot, :map do
       allow_nil? false
       public? true
       description "输入快照（跨域数据在 run 开始时一次性冻结）"
     end
-    attribute :output_snapshot, :string do
+    attribute :output_snapshot, :map do
       public? true
       description "输出摘要（不重复整份 assignment 明细）"
     end
@@ -121,7 +121,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
   end
 
   actions do
-    defaults [:read]
+    defaults [:read, :destroy]
     create :create do
       description "Create Solver Run via Create. doc_url: graphql://contract/scheduling/create_scheduling_solver_run"
       primary? true
@@ -150,6 +150,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       end
       # message: "只有待执行状态可以开始"
       change set_attribute(:status, :running)
+      change transition_state(:running)
       require_atomic? false
     end
     update :complete_feasible do
@@ -167,6 +168,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       end
       # message: "只有运行中状态可以完成"
       change set_attribute(:status, :feasible)
+      change transition_state(:feasible)
       require_atomic? false
     end
     update :complete_infeasible do
@@ -184,6 +186,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       end
       # message: "只有运行中状态可以完成"
       change set_attribute(:status, :infeasible)
+      change transition_state(:infeasible)
       require_atomic? false
     end
     update :mark_timeout do
@@ -201,6 +204,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       end
       # message: "只有运行中状态可以完成"
       change set_attribute(:status, :timeout)
+      change transition_state(:timeout)
       require_atomic? false
     end
     update :mark_error do
@@ -218,6 +222,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       end
       # message: "只有运行中状态可以完成"
       change set_attribute(:status, :error)
+      change transition_state(:error)
       require_atomic? false
     end
     update :mark_completed do
@@ -226,6 +231,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
 最终完成（用户确认采用此结果）. doc_url: graphql://contract/scheduling/mark_completed_scheduling_solver_run"
       accept []
       change set_attribute(:status, :completed)
+      change transition_state(:completed)
       require_atomic? false
     end
   end
@@ -236,4 +242,18 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
     ignore_attributes [:inserted_at, :updated_at]
   end
 
+
+  state_machine do
+    initial_states [:pending]
+    default_initial_state :pending
+    state_attribute :status
+    transitions do
+      transition :start_run, from: :pending, to: :running
+      transition :complete_feasible, from: :running, to: :feasible
+      transition :complete_infeasible, from: :running, to: :infeasible
+      transition :mark_timeout, from: :running, to: :timeout
+      transition :mark_error, from: :running, to: :error
+      transition :mark_completed, from: :feasible, to: :completed
+    end
+  end
 end

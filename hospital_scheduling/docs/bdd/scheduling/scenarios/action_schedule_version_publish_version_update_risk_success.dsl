@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_publish_version_update_risk_success] TITLE: SCHEDULING_SCHEDULE_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_schedule_version_publish_version_update_risk_success" module="SCHEDULING_SCHEDULE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"

@@ -1,0 +1,40 @@
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_CONSTRAINT-SEED-action_scheduling_constraint_create_create_risk_success] TITLE: SCHEDULING_SCHEDULING_CONSTRAINT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_constraint_create_create_risk_success" module="SCHEDULING_SCHEDULING_CONSTRAINT"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_CONSTRAINT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_CONSTRAINT"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_CONSTRAINT-SEED-action_scheduling_constraint_create_create_risk_validation_fail] TITLE: SCHEDULING_SCHEDULING_CONSTRAINT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_constraint_create_create_risk_validation_fail" module="SCHEDULING_SCHEDULING_CONSTRAINT"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_CONSTRAINT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_CONSTRAINT"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_CONSTRAINT-SEED-action_scheduling_constraint_create_create] TITLE: SCHEDULING_SCHEDULING_CONSTRAINT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_constraint_create_create" module="SCHEDULING_SCHEDULING_CONSTRAINT"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_CONSTRAINT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_CONSTRAINT"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_CONSTRAINT-SEED-action_scheduling_constraint_destroy_destroy_risk_success] TITLE: SCHEDULING_SCHEDULING_CONSTRAINT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_constraint_destroy_destroy_risk_success" module="SCHEDULING_SCHEDULING_CONSTRAINT"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_CONSTRAINT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_CONSTRAINT"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_CONSTRAINT-SEED-action_scheduling_constraint_destroy_destroy] TITLE: SCHEDULING_SCHEDULING_CONSTRAINT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_constraint_destroy_destroy" module="SCHEDULING_SCHEDULING_CONSTRAINT"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_CONSTRAINT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_CONSTRAINT"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_CONSTRAINT-SEED-action_scheduling_constraint_read_read] TITLE: SCHEDULING_SCHEDULING_CONSTRAINT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_constraint_read_read" module="SCHEDULING_SCHEDULING_CONSTRAINT"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_CONSTRAINT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_CONSTRAINT"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_CONSTRAINT-SEED-action_scheduling_constraint_update_update_risk_success] TITLE: SCHEDULING_SCHEDULING_CONSTRAINT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_constraint_update_update_risk_success" module="SCHEDULING_SCHEDULING_CONSTRAINT"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_CONSTRAINT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_CONSTRAINT"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_CONSTRAINT-SEED-action_scheduling_constraint_update_update] TITLE: SCHEDULING_SCHEDULING_CONSTRAINT contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_scheduling_constraint_update_update" module="SCHEDULING_SCHEDULING_CONSTRAINT"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_CONSTRAINT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_CONSTRAINT"
+

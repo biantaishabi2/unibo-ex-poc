@@ -47,7 +47,7 @@ defmodule HospitalScheduling.Scheduling.CoverageRequirement do
       public? true
       description "岗位名称"
     end
-    attribute :required_skill_tags, :string do
+    attribute :required_skill_tags, {:array, :string} do
       public? true
       description "所需技能标签，如 [\"ICU\"]"
     end

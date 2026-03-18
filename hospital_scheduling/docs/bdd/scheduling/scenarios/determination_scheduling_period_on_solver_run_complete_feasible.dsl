@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_solver_run_complete_feasible] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="determination_scheduling_period_on_solver_run_complete_feasible" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"

@@ -49,7 +49,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingConstraint do
       public? true
       description "规则类别"
     end
-    attribute :params, :string do
+    attribute :params, :map do
       allow_nil? false
       public? true
       description "规则参数（shape 按 category 不同）"

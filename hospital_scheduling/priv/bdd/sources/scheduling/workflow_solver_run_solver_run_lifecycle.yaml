@@ -1,7 +1,7 @@
 module: SCHEDULING_SOLVER_RUN
 contract: SolverRun.solver_run_lifecycle workflow contract
 edge_class: workflow_contract
-source_file: /home/wangbo/document/unibo/models/scheduling/scheduling.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: GIVEN 实体 SolverRun 定义工作流 solver_run_lifecycle / WHEN 验证工作流动作链 ACTION_PATH=create -> start_run -> complete_feasible -> mark_timeout / THEN 流程顺序应满足声明约束
 expected_facts:
 - workflow_checked

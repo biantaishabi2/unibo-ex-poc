@@ -1,0 +1,4 @@
+[SCENARIO: BDD-SCHEDULING_CONSTRAINT_VIOLATION-SEED-action_constraint_violation_create_create] TITLE: SCHEDULING_CONSTRAINT_VIOLATION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_constraint_violation_create_create" module="SCHEDULING_CONSTRAINT_VIOLATION"
+WHEN when_execute_seed_contract module="SCHEDULING_CONSTRAINT_VIOLATION"
+THEN then_seed_contract_should_hold module="SCHEDULING_CONSTRAINT_VIOLATION"

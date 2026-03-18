@@ -44,7 +44,7 @@ defmodule HospitalScheduling.Scheduling.MedicalStaffProfile do
       public? true
       description "是否可带班"
     end
-    attribute :work_restrictions, :string do
+    attribute :work_restrictions, {:array, :string} do
       public? true
       description "工作限制，如 pregnant、breastfeeding"
     end

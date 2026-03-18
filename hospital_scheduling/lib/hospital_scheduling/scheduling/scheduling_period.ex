@@ -18,7 +18,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
     otp_app: :hospital_scheduling,
     domain: HospitalScheduling.Scheduling,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource, AshStateMachine]
 
   resource do
     description "一次科室月排班工作空间，承载需求、版本、求解运行"
@@ -161,6 +161,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
       # message: "只有草稿状态可以开始生成"
       change HospitalScheduling.Scheduling.Changes.SchedulingPeriod.StartGeneratingCall1
       change set_attribute(:state, :generating)
+      change transition_state(:generating)
       require_atomic? false
     end
     update :mark_generated do
@@ -169,6 +170,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
 求解完成，标记为已生成. doc_url: graphql://contract/scheduling/mark_generated_scheduling_scheduling_period"
       accept []
       change set_attribute(:state, :generated)
+      change transition_state(:generated)
       require_atomic? false
     end
     update :mark_adjusted do
@@ -177,6 +179,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
 人工调班后标记. doc_url: graphql://contract/scheduling/mark_adjusted_scheduling_scheduling_period"
       accept []
       change set_attribute(:state, :adjusted)
+      change transition_state(:adjusted)
       require_atomic? false
     end
     update :publish do
@@ -195,6 +198,63 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
       # message: "只有已生成或已调整状态可以发布"
       change HospitalScheduling.Scheduling.Changes.SchedulingPeriod.PublishCall1
       change set_attribute(:state, :published)
+      change transition_state(:published)
+      require_atomic? false
+    end
+
+    update :on_solver_run_complete_feasible do
+      accept []
+      # determination semantics: phase=save, scope=cross_aggregate, mode=async_write_back
+      # 异步写回：通过 AsyncRuntime.Queue 进入 outbox 风格队列
+      change fn changeset, _ctx ->
+        queue_module = HospitalScheduling.AsyncRuntime.Queue
+        record_id = changeset.data && changeset.data.id
+        dedup_key = "determination:scheduling_period:on_solver_run_complete_feasible:#{inspect(record_id)}"
+        payload = %{
+          "entity" => "scheduling_period",
+          "determination" => "on_solver_run_complete_feasible",
+          "scope" => "cross_aggregate",
+          "mode" => "async_write_back",
+          "record_id" => record_id
+        }
+        if Code.ensure_loaded?(queue_module) and function_exported?(queue_module, :enqueue, 1) do
+          case queue_module.enqueue(%{kind: "determination_async_write_back", dedup_key: dedup_key, payload: payload}) do
+            {:ok, _task} -> changeset
+            {:ok, :duplicate} -> changeset
+            {:error, reason} -> Ash.Changeset.add_error(changeset, "async determination enqueue failed: #{inspect(reason)}")
+          end
+        else
+          Ash.Changeset.add_error(changeset, "async runtime queue unavailable")
+        end
+      end
+      require_atomic? false
+    end
+
+    update :on_schedule_version_publish do
+      accept []
+      # determination semantics: phase=save, scope=cross_aggregate, mode=async_write_back
+      # 异步写回：通过 AsyncRuntime.Queue 进入 outbox 风格队列
+      change fn changeset, _ctx ->
+        queue_module = HospitalScheduling.AsyncRuntime.Queue
+        record_id = changeset.data && changeset.data.id
+        dedup_key = "determination:scheduling_period:on_schedule_version_publish:#{inspect(record_id)}"
+        payload = %{
+          "entity" => "scheduling_period",
+          "determination" => "on_schedule_version_publish",
+          "scope" => "cross_aggregate",
+          "mode" => "async_write_back",
+          "record_id" => record_id
+        }
+        if Code.ensure_loaded?(queue_module) and function_exported?(queue_module, :enqueue, 1) do
+          case queue_module.enqueue(%{kind: "determination_async_write_back", dedup_key: dedup_key, payload: payload}) do
+            {:ok, _task} -> changeset
+            {:ok, :duplicate} -> changeset
+            {:error, reason} -> Ash.Changeset.add_error(changeset, "async determination enqueue failed: #{inspect(reason)}")
+          end
+        else
+          Ash.Changeset.add_error(changeset, "async runtime queue unavailable")
+        end
+      end
       require_atomic? false
     end
   end
@@ -213,4 +273,17 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
     archive_related [:coverage_requirements, :schedule_versions, :solver_runs, :shift_assignments, :constraint_violations]
   end
 
+
+  state_machine do
+    initial_states [:draft]
+    default_initial_state :draft
+    state_attribute :state
+    transitions do
+      transition :start_generating, from: :draft, to: :generating
+      transition :mark_generated, from: :generating, to: :generated
+      transition :mark_adjusted, from: :generated, to: :adjusted
+      transition :publish, from: :adjusted, to: :published
+      transition :publish, from: :generated, to: :published
+    end
+  end
 end

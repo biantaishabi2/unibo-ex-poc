@@ -1,0 +1,55 @@
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_archive_version_update_risk_success] TITLE: SCHEDULING_SCHEDULE_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_schedule_version_archive_version_update_risk_success" module="SCHEDULING_SCHEDULE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_archive_version_update_risk_validation_fail] TITLE: SCHEDULING_SCHEDULE_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_schedule_version_archive_version_update_risk_validation_fail" module="SCHEDULING_SCHEDULE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_archive_version_update] TITLE: SCHEDULING_SCHEDULE_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_schedule_version_archive_version_update" module="SCHEDULING_SCHEDULE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_create_create_risk_success] TITLE: SCHEDULING_SCHEDULE_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_schedule_version_create_create_risk_success" module="SCHEDULING_SCHEDULE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_create_create] TITLE: SCHEDULING_SCHEDULE_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_schedule_version_create_create" module="SCHEDULING_SCHEDULE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_publish_version_update_risk_success] TITLE: SCHEDULING_SCHEDULE_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_schedule_version_publish_version_update_risk_success" module="SCHEDULING_SCHEDULE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_publish_version_update_risk_validation_fail] TITLE: SCHEDULING_SCHEDULE_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_schedule_version_publish_version_update_risk_validation_fail" module="SCHEDULING_SCHEDULE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_publish_version_update] TITLE: SCHEDULING_SCHEDULE_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_schedule_version_publish_version_update" module="SCHEDULING_SCHEDULE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_read_read] TITLE: SCHEDULING_SCHEDULE_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_schedule_version_read_read" module="SCHEDULING_SCHEDULE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_update_update_risk_success] TITLE: SCHEDULING_SCHEDULE_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_schedule_version_update_update_risk_success" module="SCHEDULING_SCHEDULE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-action_schedule_version_update_update] TITLE: SCHEDULING_SCHEDULE_VERSION contract seed scenario TAGS: seed all
+GIVEN given_seed_context id="action_schedule_version_update_update" module="SCHEDULING_SCHEDULE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"
+

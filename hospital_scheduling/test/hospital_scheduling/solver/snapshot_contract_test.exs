@@ -59,7 +59,7 @@ defmodule HospitalScheduling.Solver.SnapshotContractTest do
         shift_type_id: shift_type.id,
         requirement_date: ~D[2026-04-01],
         role_code: "duty_nurse",
-        required_skill_tags: Jason.encode!(["ICU"]),
+        required_skill_tags: ["ICU"],
         min_headcount: 2,
         target_headcount: 3,
         required_lead_count: 1,
@@ -72,7 +72,7 @@ defmodule HospitalScheduling.Solver.SnapshotContractTest do
         name: "夜班后休息",
         constraint_type: :hard,
         category: :rest_after_night,
-        params: Jason.encode!(%{"min_hours" => 12})
+        params: %{"min_hours" => 12}
       }, authorize?: false)
 
       # 创建 profile
@@ -81,7 +81,7 @@ defmodule HospitalScheduling.Solver.SnapshotContractTest do
         department_id: dept.id,
         maturity_score: Decimal.new("85"),
         can_lead_shift: true,
-        work_restrictions: "[]",
+        work_restrictions: [],
         overtime_willing: false
       }, authorize?: false)
 
@@ -89,8 +89,8 @@ defmodule HospitalScheduling.Solver.SnapshotContractTest do
       {:ok, _pref} = Ash.create(Scheduling.ShiftPreference, %{
         employee_id: emp.id,
         period_id: period.id,
-        preferred_shift_tags: Jason.encode!(["day"]),
-        unavailable_dates: Jason.encode!(["2026-04-05"]),
+        preferred_shift_tags: ["day"],
+        unavailable_dates: ["2026-04-05"],
         max_night_shifts: 4
       }, authorize?: false)
 

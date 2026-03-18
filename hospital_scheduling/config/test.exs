@@ -31,4 +31,4 @@ config :phoenix_live_view,
   enable_expensive_runtime_checks: true
 
 config :hospital_scheduling,
-  solver_adapter: HospitalScheduling.Scheduling.SolverAdapter
+  solver_adapter: HospitalScheduling.Solver.MockAdapter

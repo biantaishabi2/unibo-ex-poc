@@ -1,7 +1,7 @@
 module: SCHEDULING_SHIFT_PREFERENCE
 contract: ShiftPreference.create action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo/models/scheduling/scheduling.ubo.yaml
-source_summary: GIVEN 实体 ShiftPreference 的动作 create 可执行，accept=[preferred_shift_tags, unavailable_dates, max_night_shifts, notes]，args=[无显式参数] / WHEN 执行动作 create / THEN 保留基础行为占位（建议补充 validation/change）
+source_file: /home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/models/scheduling.ubo.yaml
+source_summary: GIVEN 实体 ShiftPreference 的动作 create 可执行，accept=[period_id, preferred_shift_tags, unavailable_dates, max_night_shifts, notes]，args=[无显式参数] / WHEN 执行动作 create / THEN 保留基础行为占位（建议补充 validation/change）
 expected_facts:
 - action_executed

@@ -1,0 +1,8 @@
+module: SCHEDULING_MEDICAL_STAFF_PROFILE
+contract: MedicalStaffProfile.update action contract (risk:success)
+edge_class: action_contract
+source_file: /home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/models/scheduling.ubo.yaml
+source_summary: GIVEN 实体 MedicalStaffProfile 的动作 update 可执行 / WHEN 执行动作 update / THEN 成功路径应满足业务约束并持久化结果
+expected_facts:
+- record_persisted
+- state_change

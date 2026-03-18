@@ -415,9 +415,9 @@ defmodule HospitalScheduling.Integration.GraphqlFlowTest do
       violations = get_in(viol_result, [:data, "listSchedulingConstraintViolations", "results"])
       assert length(violations) > 0
 
-      # 至少有一个 coverage_missing error
+      # 至少有一个覆盖不足的 error（MockAdapter 产生 min_headcount，真实 solver 可能产生 coverage_missing）
       assert Enum.any?(violations, fn v ->
-        v["ruleCode"] == "coverage_missing" and v["severity"] == "error"
+        v["ruleCode"] in ["coverage_missing", "min_headcount"] and v["severity"] == "error"
       end)
     end
   end
