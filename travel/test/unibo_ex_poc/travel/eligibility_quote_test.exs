@@ -1,10 +1,10 @@
 defmodule UniboExPoc.Travel.EligibilityQuoteTest do
   use ExUnit.Case, async: true
 
-  alias UniboExPoc.TravelHost.CallerContext
-  alias UniboExPoc.TravelHost.EligibilityOrQuote
-  alias UniboExPoc.TravelHost.HostConfig
-  alias UniboExPoc.TravelHost.PaymentExecution
+  alias Travel.TravelHost.CallerContext
+  alias Travel.TravelHost.EligibilityOrQuote
+  alias Travel.TravelHost.HostConfig
+  alias Travel.TravelHost.PaymentExecution
 
   test "宿主关闭 travel 时，quote 会直接拒绝" do
     {:ok, context} =

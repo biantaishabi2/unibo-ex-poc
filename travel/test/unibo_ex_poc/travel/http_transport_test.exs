@@ -1,7 +1,7 @@
 defmodule UniboExPoc.Travel.HTTPTransportTest do
   use ExUnit.Case, async: true
 
-  alias UniboExPoc.TravelHost.HTTPTransport
+  alias Travel.TravelHost.HTTPTransport
 
   test "request 会把操作映射到宿主 endpoint 并解析 JSON 响应" do
     payload = %{caller_context: %{user_id: "user-1"}}

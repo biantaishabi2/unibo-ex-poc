@@ -1,7 +1,7 @@
 defmodule UniboExPoc.Travel.CallerContextTest do
   use ExUnit.Case, async: true
 
-  alias UniboExPoc.TravelHost.CallerContext
+  alias Travel.TravelHost.CallerContext
 
   test "可以从宿主 header 风格字段归一化 CallerContext" do
     assert {:ok, context} =
