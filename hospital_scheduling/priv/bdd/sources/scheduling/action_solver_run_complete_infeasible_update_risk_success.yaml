@@ -1,0 +1,8 @@
+module: SCHEDULING_SOLVER_RUN
+contract: SolverRun.complete_infeasible action contract (risk:success)
+edge_class: action_contract
+source_file: /home/wangbo/unibo_ex_poc-sched-risk/hospital_scheduling/models/scheduling.ubo.yaml
+source_summary: GIVEN 实体 SolverRun 的动作 complete_infeasible 可执行 / WHEN 执行动作 complete_infeasible / THEN 成功路径应满足业务约束并持久化结果
+expected_facts:
+- record_persisted
+- state_change

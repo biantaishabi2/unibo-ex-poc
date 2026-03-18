@@ -1,7 +1,7 @@
 module: SCHEDULING_SHIFT_ASSIGNMENT
 contract: Scheduling.ShiftAssignment graphql contract
 edge_class: graphql_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-runtime/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-risk/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: 'GIVEN 实体 Scheduling.ShiftAssignment 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 7 个 field 应存在: [get_scheduling_shift_assignment(query:get:read), list_scheduling_shift_assignments(query:list:read), create_scheduling_shift_assignment(mutation:create:create), update_scheduling_shift_assignment(mutation:update:update), lock_scheduling_shift_assignment(mutation:update:lock), unlock_scheduling_shift_assignment(mutation:update:unlock), delete_scheduling_shift_assignment(mutation:destroy:destroy)]'
 expected_facts:
 - graphql_schema_loaded
