@@ -1,9 +1,9 @@
 defmodule UniboExPoc.Travel.ShopBridgeClientTest do
   use ExUnit.Case, async: true
 
-  alias UniboExPoc.TestSupport.FakeShopTransport
-  alias UniboExPoc.TravelHost.CallerContext
-  alias UniboExPoc.TravelHost.ShopBridgeClient
+  alias Travel.TestSupport.FakeShopTransport
+  alias Travel.TravelHost.CallerContext
+  alias Travel.TravelHost.ShopBridgeClient
 
   test "resolve_context 可以把宿主 bridge 返回映射成 CallerContext" do
     assert {:ok, context} =
@@ -109,7 +109,7 @@ defmodule UniboExPoc.Travel.ShopBridgeClientTest do
   end
 
   test "execute_payment 成功时会把 shop bridge 响应映射成 PaymentExecution" do
-    quote = %UniboExPoc.TravelHost.EligibilityOrQuote{
+    quote = %Travel.TravelHost.EligibilityOrQuote{
       allowed?: true,
       product_type: :hotel,
       travel_enabled: true,

@@ -1,8 +1,8 @@
 defmodule UniboExPoc.Travel.HotelSupplierAdapterPrepTest do
   use ExUnit.Case, async: true
 
-  alias UniboExPoc.TravelStack.HotelFlow
-  alias UniboExPoc.TravelSupplier.HotelMockAdapter
+  alias Travel.TravelStack.HotelFlow
+  alias Travel.TravelSupplier.HotelMockAdapter
 
   test "成功场景：supplier book 返回 confirmed" do
     assert {:ok, result} =

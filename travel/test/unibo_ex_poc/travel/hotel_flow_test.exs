@@ -1,11 +1,11 @@
 defmodule UniboExPoc.Travel.HotelFlowTest do
   use ExUnit.Case, async: true
 
-  alias UniboExPoc.TestSupport.FakeShopTransport
-  alias UniboExPoc.TravelStack.HotelFlow
+  alias Travel.TestSupport.FakeShopTransport
+  alias Travel.TravelStack.HotelFlow
   alias UniboExPoc.Travel.TravelFulfillment
   alias UniboExPoc.Travel.TravelOrder
-  alias UniboExPoc.TravelHost.ShopBridgeClient
+  alias Travel.TravelHost.ShopBridgeClient
 
   test "HotelFlow 仅作为测试辅助时，hotel 闭环可通过 DefaultBridge 跑通" do
     input = %{
