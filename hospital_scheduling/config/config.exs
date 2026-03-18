@@ -12,6 +12,7 @@ config :hospital_scheduling,
   generators: [timestamp_type: :utc_datetime],
   solver_adapter: HospitalScheduling.Solver.MockAdapter,
   ash_domains: [
+    HospitalScheduling.Accounts,
     HospitalScheduling.Scheduling
   ]
 
