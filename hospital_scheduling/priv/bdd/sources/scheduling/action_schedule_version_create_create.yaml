@@ -1,7 +1,7 @@
 module: SCHEDULING_SCHEDULE_VERSION
 contract: ScheduleVersion.create action contract
 edge_class: action_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-graphql/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-runtime/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: GIVEN 实体 ScheduleVersion 的动作 create 可执行，accept=[period_id, version_no, origin_type, created_by, based_on_run_id, source_version_id, change_summary]，args=[无显式参数] / WHEN 执行动作 create / THEN 保留基础行为占位（建议补充 validation/change）
 expected_facts:
 - action_executed
