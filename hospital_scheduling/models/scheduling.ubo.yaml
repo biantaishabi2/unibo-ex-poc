@@ -311,6 +311,7 @@ entities:
             value: generated
       - name: mark_adjusted
         type: update
+        public: false
         description: 人工调班后标记
         accept: []
         changes:
