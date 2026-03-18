@@ -1,0 +1,9 @@
+module: TRAVEL_TRAIN_OFFER
+contract: Travel.TrainOffer graphql contract
+edge_class: graphql_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: 'GIVEN 实体 Travel.TrainOffer 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 8 个 field 应存在: [get_travel_train_offer(query:get:read), list_travel_train_offers(query:list:read), create_travel_train_offer(mutation:create:create), update_travel_train_offer(mutation:update:update), activate_travel_train_offer(mutation:update:activate), deactivate_travel_train_offer(mutation:update:deactivate), expire_travel_train_offer(mutation:update:expire), delete_travel_train_offer(mutation:destroy:destroy)]'
+expected_facts:
+- graphql_schema_loaded
+- introspection_fields_verified
+- graphql_contract_holds

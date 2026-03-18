@@ -1,0 +1,7 @@
+module: TRAVEL_TRAVEL_REFUND_ORDER
+contract: TravelRefundOrder.create action contract
+edge_class: action_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelRefundOrder 的动作 create 可执行，accept=[original_order_id, refund_reason, refund_fee, refund_amount, approval_mode]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效 / 补充场景：create 创建退票单 -> reject 审批拒绝；create 创建退票单（approval_mode=none）-> refund_direct 直接退款
+expected_facts:
+- action_executed

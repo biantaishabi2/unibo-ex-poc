@@ -1,0 +1,15 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.state_machine.booking_pending->cancelled.cancel_waitlist
+edge_class: state_machine_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: state transition booking_pending → cancelled via cancel_waitlist should succeed
+expected_facts:
+- state_transition_verified
+entity: TravelOrder
+domain: Travel
+transition:
+  from: booking_pending
+  to: cancelled
+  event: cancel_waitlist
+  expected: success
+state_attribute: status

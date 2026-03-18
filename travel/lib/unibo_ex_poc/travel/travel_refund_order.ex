@@ -10,6 +10,13 @@
 #   refund --> [*] : refunded
 #   refund_direct --> [*] : refunded
 # ```
+# Workflow: refund_to_order_cancel — 退票单退款完成后，触发原订单执行 approve_cancel；失败时退票单状态仍保持 refunded（退款已完成，订单取消为最终补偿）
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> refund
+#   refund --> [*]
+#   approve_cancel --> [*]
+# ```
 defmodule UniboExPoc.Travel.TravelRefundOrder do
   use Ash.Resource,
     otp_app: :travel,

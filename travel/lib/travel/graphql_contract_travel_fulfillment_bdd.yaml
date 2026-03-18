@@ -1,0 +1,9 @@
+module: TRAVEL_TRAVEL_FULFILLMENT
+contract: Travel.TravelFulfillment graphql contract
+edge_class: graphql_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: 'GIVEN 实体 Travel.TravelFulfillment 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 11 个 field 应存在: [get_travel_travel_fulfillment(query:get:read), list_travel_travel_fulfillments(query:list:read), create_create_fulfillment_travel_travel_fulfillment(mutation:create:create_fulfillment), update_travel_travel_fulfillment(mutation:update:update), confirm_booking_travel_travel_fulfillment(mutation:update:confirm_booking), issue_voucher_or_ticket_travel_travel_fulfillment(mutation:update:issue_voucher_or_ticket), mark_in_use_travel_travel_fulfillment(mutation:update:mark_in_use), complete_fulfillment_travel_travel_fulfillment(mutation:update:complete_fulfillment), cancel_fulfillment_travel_travel_fulfillment(mutation:update:cancel_fulfillment), fail_fulfillment_travel_travel_fulfillment(mutation:update:fail_fulfillment), delete_travel_travel_fulfillment(mutation:destroy:destroy)]'
+expected_facts:
+- graphql_schema_loaded
+- introspection_fields_verified
+- graphql_contract_holds

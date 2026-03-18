@@ -1,0 +1,9 @@
+module: TRAVEL_TRAVEL_REFUND_ORDER
+contract: TravelRefundOrder.refund_to_order_cancel reactor contract
+edge_class: reactor_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: 'GIVEN 实体 TravelRefundOrder 声明跨实体 workflow refund_to_order_cancel / WHEN 执行 Reactor 编排（步骤: refund[TravelRefundOrder] → approve_cancel[TravelOrder]）/ THEN 跨实体级联应成功且补偿链完整'
+expected_facts:
+- reactor_executed
+- cross_entity_cascade_verified
+- compensation_chain_verified

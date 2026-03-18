@@ -1,0 +1,11 @@
+module: TRAVEL_TRAVEL_FULFILLMENT
+contract: TravelFulfillment.issue_voucher_or_ticket action contract (risk:change_effect)
+edge_class: action_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelFulfillment 的动作 issue_voucher_or_ticket 触发副作用 / WHEN 执行动作 issue_voucher_or_ticket / THEN 变更副作用应完整生效且状态一致
+expected_facts:
+- record_persisted
+- state_change
+- change_effect
+precondition_actions:
+- confirm_booking

@@ -10,6 +10,13 @@
 #   complete --> [*] : completed
 #   complete_direct --> [*] : completed
 # ```
+# Workflow: change_approval_to_order_confirm — 改签审批完成后，触发原订单执行 confirm_change；失败时回滚改签单为 rejected
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> complete
+#   complete --> [*]
+#   confirm_change --> [*]
+# ```
 defmodule UniboExPoc.Travel.TravelChangeOrder do
   use Ash.Resource,
     otp_app: :travel,

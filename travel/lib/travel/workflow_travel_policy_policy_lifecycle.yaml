@@ -1,0 +1,13 @@
+module: TRAVEL_TRAVEL_POLICY
+contract: TravelPolicy.policy_lifecycle workflow contract
+edge_class: workflow_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelPolicy 定义工作流 policy_lifecycle / WHEN 验证工作流动作链 ACTION_PATH=create -> update -> deactivate -> activate / THEN 流程顺序应满足声明约束
+expected_facts:
+- workflow_checked
+- steps_verified
+action_path:
+- create
+- update
+- deactivate
+- activate

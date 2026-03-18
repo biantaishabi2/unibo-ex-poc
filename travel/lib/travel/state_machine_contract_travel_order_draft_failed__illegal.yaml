@@ -1,0 +1,15 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.state_machine.draft->failed._illegal
+edge_class: state_machine_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: state transition draft → failed (illegal, no direct transition) should be rejected
+expected_facts:
+- state_transition_rejected_verified
+entity: TravelOrder
+domain: Travel
+transition:
+  from: draft
+  to: failed
+  event: ''
+  expected: rejected
+state_attribute: status

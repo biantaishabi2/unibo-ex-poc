@@ -1,0 +1,18 @@
+module: TRAVEL_TRAVEL_FULFILLMENT
+contract: TravelFulfillment.supplier_confirm_booking integration contract (risk:compensation)
+edge_class: integration_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: GIVEN integration supplier_confirm_booking 的失败路径声明补偿线索 [fail_fulfillment 履约失败并记录补偿原因] / WHEN fake adapter 返回声明错误 / THEN 应记录补偿动作并满足补偿断言
+expected_facts:
+- integration_invoked
+- error_code_validated
+- compensation_checked
+declared_error_codes:
+- supplier_booking_rejected
+- supplier_timeout
+business_post_conditions:
+- confirm_status
+- confirmation_payload
+- supplier_booking_ref
+compensation_clues:
+- fail_fulfillment 履约失败并记录补偿原因

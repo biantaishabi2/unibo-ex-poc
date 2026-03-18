@@ -1,0 +1,7 @@
+module: TRAVEL_TRAVEL_FULFILLMENT
+contract: TravelFulfillment.destroy action contract (risk:success)
+edge_class: action_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelFulfillment 的动作 destroy 可执行 / WHEN 执行动作 destroy / THEN 成功路径应满足业务约束并持久化结果
+expected_facts:
+- record_destroyed

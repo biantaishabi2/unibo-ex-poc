@@ -1,0 +1,9 @@
+module: TRAVEL_TRAVEL_POLICY_CHECK
+contract: Travel.TravelPolicyCheck graphql contract
+edge_class: graphql_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: 'GIVEN 实体 Travel.TravelPolicyCheck 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 3 个 field 应存在: [get_travel_travel_policy_check(query:get:read), list_travel_travel_policy_checks(query:list:read), create_travel_travel_policy_check(mutation:create:create)]'
+expected_facts:
+- graphql_schema_loaded
+- introspection_fields_verified
+- graphql_contract_holds

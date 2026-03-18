@@ -54,12 +54,12 @@ defmodule Travel.MixProject do
       {:ash_phoenix, "~> 2.3"},
       {:ash_graphql, "~> 1.8"},
       {:absinthe_plug, "~> 1.5"},
-      {:unibo_graphql_runtime, path: "../../unibo/targets/elixir/unibo_graphql_runtime"},
+      {:unibo_graphql_runtime, path: "../../document/unibo/targets/elixir/unibo_graphql_runtime"},
       {:ash_paper_trail, "~> 0.5"},
       {:ash_archival, "~> 2.0"},
       {:ash_state_machine, "~> 0.2"},
       {:unibo_bdd_runtime, path: "../../unibo/targets/elixir/unibo_bdd_runtime"},
-      {:stitch_ui, path: "../../stitch/packages/liveview"},
+      {:stitch_ui, path: "../../document/stitch/packages/liveview"},
     ]
   end
 

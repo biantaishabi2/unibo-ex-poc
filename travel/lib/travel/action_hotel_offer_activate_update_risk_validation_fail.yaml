@@ -1,0 +1,7 @@
+module: TRAVEL_HOTEL_OFFER
+contract: HotelOffer.activate action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 HotelOffer 的动作 activate 输入非法 / WHEN 执行动作 activate / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create 创建 hotel offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架；create 创建 hotel offer -> activate 上架 -> expire 过期
+expected_facts:
+- validation_triggered

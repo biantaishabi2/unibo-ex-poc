@@ -3,19 +3,19 @@ import Config
 config :travel,
   ecto_repos: [UniboExPoc.Repo],
   ash_domains: [
-    UniboExPoc.Accounting,
-    UniboExPoc.Delivery,
+    UniboExPoc.Travel,
     UniboExPoc.Ecommerce,
-    UniboExPoc.Ofbiz.Accounting,
+    UniboExPoc.Sales,
+    UniboExPoc.Payment,
+    UniboExPoc.Delivery,
+    UniboExPoc.Purchasing,
+    UniboExPoc.Accounting,
     UniboExPoc.Ofbiz.Common,
-    UniboExPoc.Ofbiz.Order,
     UniboExPoc.Ofbiz.Party,
     UniboExPoc.Ofbiz.Product,
+    UniboExPoc.Ofbiz.Order,
     UniboExPoc.Ofbiz.Shipment,
-    UniboExPoc.Payment,
-    UniboExPoc.Purchasing,
-    UniboExPoc.Sales,
-    UniboExPoc.Travel
+    UniboExPoc.Ofbiz.Accounting
   ],
   travel_host_bridge: UniboExPoc.TravelHost.DefaultBridge,
   generators: [timestamp_type: :utc_datetime]
