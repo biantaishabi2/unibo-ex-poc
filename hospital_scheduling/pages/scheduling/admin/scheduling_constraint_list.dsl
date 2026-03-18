@@ -68,10 +68,12 @@
               CONTENT: "{{row.name|}}"
             [TABLE_CELL: td_type]
               [BADGE: type_badge]
+                BIND: Enum("constraint_type")
                 CONTENT: "{{row.constraint_type|}}"
             [TABLE_CELL: td_category]
               [BADGE: category_badge]
                 ATTR: Variant("secondary")
+                BIND: Enum("category")
                 CONTENT: "{{row.category|}}"
             [TABLE_CELL: td_weight]
               CONTENT: "{{row.weight|}}"
