@@ -1,7 +1,7 @@
 module: TRAVEL_HOTEL_OFFER
 contract: HotelOffer.create action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-travel-bdd-rerun/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 HotelOffer 的动作 create 可执行，accept=[tenant_id, host_shop_id, supplier_code, hotel_code, hotel_ref_id, hotel_name, city_code, city_ref_id, room_type_code, room_type_ref_id, rate_plan_code, checkin_date, checkout_date, listed_price, settlement_price, currency, inventory_count, cancellation_policy, guarantee_policy, sale_status]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效 / 补充场景：create 创建 hotel offer -> destroy 删除草稿
 expected_facts:
 - action_executed

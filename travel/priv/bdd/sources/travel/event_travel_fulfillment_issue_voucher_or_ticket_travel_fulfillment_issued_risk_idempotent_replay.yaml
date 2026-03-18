@@ -1,8 +1,0 @@
-module: TRAVEL_TRAVEL_FULFILLMENT
-contract: TravelFulfillment.issue_voucher_or_ticket event contract (risk:idempotent_replay)
-edge_class: event_contract
-source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
-source_summary: GIVEN 实体 TravelFulfillment 动作 issue_voucher_or_ticket 事件被重复投递 / WHEN 重放 topic `travel.fulfillment.issued` / THEN 消费方处理应保持幂等且无重复副作用
-expected_facts:
-- event_checked
-- notifier_verified

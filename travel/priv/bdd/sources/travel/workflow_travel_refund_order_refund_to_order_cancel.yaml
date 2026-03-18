@@ -1,0 +1,11 @@
+module: TRAVEL_TRAVEL_REFUND_ORDER
+contract: TravelRefundOrder.refund_to_order_cancel workflow contract
+edge_class: workflow_contract
+source_file: /home/wangbo/document/unibo_ex_poc-travel-bdd-rerun/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelRefundOrder 定义工作流 refund_to_order_cancel / WHEN 验证工作流动作链 ACTION_PATH=refund -> approve_cancel / THEN 流程顺序应满足声明约束
+expected_facts:
+- workflow_checked
+- steps_verified
+action_path:
+- refund
+- approve_cancel

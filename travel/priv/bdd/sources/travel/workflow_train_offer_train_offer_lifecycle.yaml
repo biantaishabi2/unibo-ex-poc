@@ -1,7 +1,7 @@
 module: TRAVEL_TRAIN_OFFER
 contract: TrainOffer.train_offer_lifecycle workflow contract
 edge_class: workflow_contract
-source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-travel-bdd-rerun/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TrainOffer 定义工作流 train_offer_lifecycle / WHEN 验证工作流动作链 ACTION_PATH=create -> update -> activate -> deactivate -> expire -> destroy / THEN 流程顺序应满足声明约束
 expected_facts:
 - workflow_checked

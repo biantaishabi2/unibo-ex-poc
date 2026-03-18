@@ -1,8 +1,0 @@
-module: TRAVEL_TRAVEL_ORDER
-contract: TravelOrder.trigger_policy_check determination contract (risk:async_timeout)
-edge_class: determination_contract
-source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
-source_summary: GIVEN 实体 TravelOrder 的跨聚合 determine_action trigger_policy_check 使用 async_write_back / WHEN 写回超时 / THEN 应记录超时错误且不产生不一致状态
-expected_facts:
-- determination_checked
-- timeout_handled

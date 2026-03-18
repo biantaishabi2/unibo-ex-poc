@@ -1,7 +1,7 @@
 module: TRAVEL_VACATION_OFFER
 contract: VacationOffer.create action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-travel-bdd-rerun/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 VacationOffer 的动作 create 可执行，accept=[tenant_id, host_shop_id, supplier_code, package_code, package_name, package_type, departure_city_code, departure_city_ref_id, destination_code, destination_ref_id, start_date, end_date, listed_price, settlement_price, currency, inventory_count, booking_rules, cancellation_policy, sale_status]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效 / 补充场景：create 创建 vacation offer -> destroy 删除草稿
 expected_facts:
 - action_executed

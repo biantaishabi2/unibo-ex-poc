@@ -1,8 +1,0 @@
-module: TRAVEL_TRAVEL_CHANGE_ORDER
-contract: TravelChangeOrder.approve action contract (risk:success)
-edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
-source_summary: GIVEN 实体 TravelChangeOrder 的动作 approve 可执行 / WHEN 执行动作 approve / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create 创建改签单 -> approve 审批通过 -> complete 改签完成
-expected_facts:
-- record_persisted
-- state_change
