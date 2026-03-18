@@ -1,7 +1,7 @@
 module: SCHEDULING_SOLVER_RUN
 contract: SolverRun.complete_feasible action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-sched-bdd-rerun/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: GIVEN 实体 SolverRun 的动作 complete_feasible 可执行，accept=[score, hard_violation_count, warning_count, output_snapshot]，args=[无显式参数] / WHEN 执行动作 complete_feasible / THEN 输入应满足校验规则
 expected_facts:
 - action_executed
