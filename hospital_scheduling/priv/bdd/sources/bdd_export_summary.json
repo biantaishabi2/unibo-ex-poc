@@ -1,7 +1,7 @@
 {
   "total_models": 1,
-  "generated_files": 128,
-  "action_sources": 114,
+  "generated_files": 125,
+  "action_sources": 111,
   "event_sources": 0,
   "workflow_sources": 6,
   "integration_sources": 0,
@@ -263,6 +263,15 @@
         "未找到匹配该 action 的 validation",
         "未找到匹配该 action 的 change"
       ]
+    }
+  ],
+  "complex_precondition_skipped": 1,
+  "complex_precondition_skipped_actions": [
+    {
+      "model": "scheduling.ubo.yaml",
+      "entity": "SchedulingPeriod",
+      "action": "publish",
+      "reason": "[complex_precondition] action `publish` 要求 state=generated 需从 initial_state `draft` 经 2 步到达，DataFactory 无法自动处理跨实体前置条件"
     }
   ]
 }

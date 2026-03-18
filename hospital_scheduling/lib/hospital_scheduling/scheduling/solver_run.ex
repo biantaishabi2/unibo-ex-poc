@@ -121,7 +121,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
   end
 
   actions do
-    defaults [:read]
+    defaults [:read, :destroy]
     create :create do
       description "Create Solver Run via Create. doc_url: graphql://contract/scheduling/create_scheduling_solver_run"
       primary? true

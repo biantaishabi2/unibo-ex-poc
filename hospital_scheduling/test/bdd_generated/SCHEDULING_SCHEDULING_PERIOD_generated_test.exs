@@ -197,66 +197,18 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
     :ok
   end
 
-  # Source: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_publish_update_risk_success
-  @tag :all
-  @tag :seed
-  test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_publish_update_risk_success] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
-    run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
-    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_publish_update_risk_success"}
-    # line 62: GIVEN given_seed_context id="action_scheduling_period_publish_update_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_publish_update_risk_success", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 62, raw: "GIVEN given_seed_context id=\"action_scheduling_period_publish_update_risk_success\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 62)
-    # line 63: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 63, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 63)
-    # line 64: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 64, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 64)
-    _ctx = ctx
-    :ok
-  end
-
-  # Source: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_publish_update_risk_validation_fail
-  @tag :all
-  @tag :seed
-  test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_publish_update_risk_validation_fail] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
-    run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
-    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_publish_update_risk_validation_fail"}
-    # line 67: GIVEN given_seed_context id="action_scheduling_period_publish_update_risk_validation_fail" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_publish_update_risk_validation_fail", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 67, raw: "GIVEN given_seed_context id=\"action_scheduling_period_publish_update_risk_validation_fail\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 67)
-    # line 68: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 68, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 68)
-    # line 69: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 69, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 69)
-    _ctx = ctx
-    :ok
-  end
-
-  # Source: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_publish_update
-  @tag :all
-  @tag :seed
-  test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_publish_update] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
-    run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
-    ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_publish_update"}
-    # line 72: GIVEN given_seed_context id="action_scheduling_period_publish_update" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_publish_update", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 72, raw: "GIVEN given_seed_context id=\"action_scheduling_period_publish_update\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 72)
-    # line 73: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 73, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 73)
-    # line 74: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 74, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 74)
-    _ctx = ctx
-    :ok
-  end
-
   # Source: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_read_read
   @tag :all
   @tag :seed
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_read_read] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_read_read"}
-    # line 77: GIVEN given_seed_context id="action_scheduling_period_read_read" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_read_read", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 77, raw: "GIVEN given_seed_context id=\"action_scheduling_period_read_read\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 77)
-    # line 78: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 78, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 78)
-    # line 79: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 79, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 79)
+    # line 62: GIVEN given_seed_context id="action_scheduling_period_read_read" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_read_read", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 62, raw: "GIVEN given_seed_context id=\"action_scheduling_period_read_read\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 62)
+    # line 63: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 63, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 63)
+    # line 64: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 64, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 64)
     _ctx = ctx
     :ok
   end
@@ -267,12 +219,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_start_generating_update_risk_success] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_start_generating_update_risk_success"}
-    # line 82: GIVEN given_seed_context id="action_scheduling_period_start_generating_update_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_start_generating_update_risk_success", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 82, raw: "GIVEN given_seed_context id=\"action_scheduling_period_start_generating_update_risk_success\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 82)
-    # line 83: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 83, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 83)
-    # line 84: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 84, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 84)
+    # line 67: GIVEN given_seed_context id="action_scheduling_period_start_generating_update_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_start_generating_update_risk_success", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 67, raw: "GIVEN given_seed_context id=\"action_scheduling_period_start_generating_update_risk_success\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 67)
+    # line 68: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 68, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 68)
+    # line 69: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 69, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 69)
     _ctx = ctx
     :ok
   end
@@ -283,12 +235,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_start_generating_update_risk_validation_fail] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_start_generating_update_risk_validation_fail"}
-    # line 87: GIVEN given_seed_context id="action_scheduling_period_start_generating_update_risk_validation_fail" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_start_generating_update_risk_validation_fail", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 87, raw: "GIVEN given_seed_context id=\"action_scheduling_period_start_generating_update_risk_validation_fail\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 87)
-    # line 88: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 88, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 88)
-    # line 89: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 89, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 89)
+    # line 72: GIVEN given_seed_context id="action_scheduling_period_start_generating_update_risk_validation_fail" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_start_generating_update_risk_validation_fail", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 72, raw: "GIVEN given_seed_context id=\"action_scheduling_period_start_generating_update_risk_validation_fail\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 72)
+    # line 73: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 73, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 73)
+    # line 74: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 74, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 74)
     _ctx = ctx
     :ok
   end
@@ -299,12 +251,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_start_generating_update] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_start_generating_update"}
-    # line 92: GIVEN given_seed_context id="action_scheduling_period_start_generating_update" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_start_generating_update", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 92, raw: "GIVEN given_seed_context id=\"action_scheduling_period_start_generating_update\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 92)
-    # line 93: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 93, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 93)
-    # line 94: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 94, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 94)
+    # line 77: GIVEN given_seed_context id="action_scheduling_period_start_generating_update" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_start_generating_update", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 77, raw: "GIVEN given_seed_context id=\"action_scheduling_period_start_generating_update\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 77)
+    # line 78: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 78, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 78)
+    # line 79: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 79, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 79)
     _ctx = ctx
     :ok
   end
@@ -315,12 +267,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_update_update_risk_success] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_update_update_risk_success"}
-    # line 97: GIVEN given_seed_context id="action_scheduling_period_update_update_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_update_update_risk_success", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 97, raw: "GIVEN given_seed_context id=\"action_scheduling_period_update_update_risk_success\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 97)
-    # line 98: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 98, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 98)
-    # line 99: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 99, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 99)
+    # line 82: GIVEN given_seed_context id="action_scheduling_period_update_update_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_update_update_risk_success", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 82, raw: "GIVEN given_seed_context id=\"action_scheduling_period_update_update_risk_success\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 82)
+    # line 83: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 83, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 83)
+    # line 84: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 84, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 84)
     _ctx = ctx
     :ok
   end
@@ -331,12 +283,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_update_update_risk_validation_fail] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_update_update_risk_validation_fail"}
-    # line 102: GIVEN given_seed_context id="action_scheduling_period_update_update_risk_validation_fail" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_update_update_risk_validation_fail", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 102, raw: "GIVEN given_seed_context id=\"action_scheduling_period_update_update_risk_validation_fail\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 102)
-    # line 103: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 103, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 103)
-    # line 104: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 104, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 104)
+    # line 87: GIVEN given_seed_context id="action_scheduling_period_update_update_risk_validation_fail" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_update_update_risk_validation_fail", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 87, raw: "GIVEN given_seed_context id=\"action_scheduling_period_update_update_risk_validation_fail\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 87)
+    # line 88: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 88, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 88)
+    # line 89: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 89, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 89)
     _ctx = ctx
     :ok
   end
@@ -347,12 +299,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_update_update] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-action_scheduling_period_update_update"}
-    # line 107: GIVEN given_seed_context id="action_scheduling_period_update_update" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_update_update", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 107, raw: "GIVEN given_seed_context id=\"action_scheduling_period_update_update\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 107)
-    # line 108: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 108, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 108)
-    # line 109: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 109, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 109)
+    # line 92: GIVEN given_seed_context id="action_scheduling_period_update_update" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "action_scheduling_period_update_update", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 92, raw: "GIVEN given_seed_context id=\"action_scheduling_period_update_update\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 92)
+    # line 93: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 93, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 93)
+    # line 94: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 94, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 94)
     _ctx = ctx
     :ok
   end
@@ -363,12 +315,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_schedule_version_publish_risk_async_timeout] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_schedule_version_publish_risk_async_timeout"}
-    # line 112: GIVEN given_seed_context id="determination_scheduling_period_on_schedule_version_publish_risk_async_timeout" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_schedule_version_publish_risk_async_timeout", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 112, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_schedule_version_publish_risk_async_timeout\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 112)
-    # line 113: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 113, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 113)
-    # line 114: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 114, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 114)
+    # line 97: GIVEN given_seed_context id="determination_scheduling_period_on_schedule_version_publish_risk_async_timeout" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_schedule_version_publish_risk_async_timeout", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 97, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_schedule_version_publish_risk_async_timeout\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 97)
+    # line 98: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 98, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 98)
+    # line 99: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 99, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 99)
     _ctx = ctx
     :ok
   end
@@ -379,12 +331,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_schedule_version_publish_risk_read_set_unavailable] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_schedule_version_publish_risk_read_set_unavailable"}
-    # line 117: GIVEN given_seed_context id="determination_scheduling_period_on_schedule_version_publish_risk_read_set_unavailable" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_schedule_version_publish_risk_read_set_unavailable", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 117, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_schedule_version_publish_risk_read_set_unavailable\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 117)
-    # line 118: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 118, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 118)
-    # line 119: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 119, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 119)
+    # line 102: GIVEN given_seed_context id="determination_scheduling_period_on_schedule_version_publish_risk_read_set_unavailable" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_schedule_version_publish_risk_read_set_unavailable", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 102, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_schedule_version_publish_risk_read_set_unavailable\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 102)
+    # line 103: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 103, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 103)
+    # line 104: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 104, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 104)
     _ctx = ctx
     :ok
   end
@@ -395,12 +347,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_schedule_version_publish_risk_success] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_schedule_version_publish_risk_success"}
-    # line 122: GIVEN given_seed_context id="determination_scheduling_period_on_schedule_version_publish_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_schedule_version_publish_risk_success", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 122, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_schedule_version_publish_risk_success\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 122)
-    # line 123: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 123, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 123)
-    # line 124: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 124, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 124)
+    # line 107: GIVEN given_seed_context id="determination_scheduling_period_on_schedule_version_publish_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_schedule_version_publish_risk_success", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 107, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_schedule_version_publish_risk_success\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 107)
+    # line 108: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 108, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 108)
+    # line 109: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 109, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 109)
     _ctx = ctx
     :ok
   end
@@ -411,12 +363,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_schedule_version_publish] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_schedule_version_publish"}
-    # line 127: GIVEN given_seed_context id="determination_scheduling_period_on_schedule_version_publish" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_schedule_version_publish", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 127, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_schedule_version_publish\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 127)
-    # line 128: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 128, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 128)
-    # line 129: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 129, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 129)
+    # line 112: GIVEN given_seed_context id="determination_scheduling_period_on_schedule_version_publish" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_schedule_version_publish", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 112, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_schedule_version_publish\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 112)
+    # line 113: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 113, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 113)
+    # line 114: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 114, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 114)
     _ctx = ctx
     :ok
   end
@@ -427,12 +379,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_solver_run_complete_feasible_risk_async_timeout] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_solver_run_complete_feasible_risk_async_timeout"}
-    # line 132: GIVEN given_seed_context id="determination_scheduling_period_on_solver_run_complete_feasible_risk_async_timeout" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_solver_run_complete_feasible_risk_async_timeout", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 132, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_solver_run_complete_feasible_risk_async_timeout\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 132)
-    # line 133: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 133, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 133)
-    # line 134: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 134, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 134)
+    # line 117: GIVEN given_seed_context id="determination_scheduling_period_on_solver_run_complete_feasible_risk_async_timeout" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_solver_run_complete_feasible_risk_async_timeout", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 117, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_solver_run_complete_feasible_risk_async_timeout\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 117)
+    # line 118: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 118, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 118)
+    # line 119: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 119, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 119)
     _ctx = ctx
     :ok
   end
@@ -443,12 +395,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_solver_run_complete_feasible_risk_read_set_unavailable] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_solver_run_complete_feasible_risk_read_set_unavailable"}
-    # line 137: GIVEN given_seed_context id="determination_scheduling_period_on_solver_run_complete_feasible_risk_read_set_unavailable" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_solver_run_complete_feasible_risk_read_set_unavailable", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 137, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_solver_run_complete_feasible_risk_read_set_unavailable\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 137)
-    # line 138: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 138, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 138)
-    # line 139: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 139, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 139)
+    # line 122: GIVEN given_seed_context id="determination_scheduling_period_on_solver_run_complete_feasible_risk_read_set_unavailable" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_solver_run_complete_feasible_risk_read_set_unavailable", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 122, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_solver_run_complete_feasible_risk_read_set_unavailable\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 122)
+    # line 123: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 123, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 123)
+    # line 124: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 124, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 124)
     _ctx = ctx
     :ok
   end
@@ -459,12 +411,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_solver_run_complete_feasible_risk_success] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_solver_run_complete_feasible_risk_success"}
-    # line 142: GIVEN given_seed_context id="determination_scheduling_period_on_solver_run_complete_feasible_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_solver_run_complete_feasible_risk_success", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 142, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_solver_run_complete_feasible_risk_success\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 142)
-    # line 143: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 143, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 143)
-    # line 144: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 144, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 144)
+    # line 127: GIVEN given_seed_context id="determination_scheduling_period_on_solver_run_complete_feasible_risk_success" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_solver_run_complete_feasible_risk_success", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 127, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_solver_run_complete_feasible_risk_success\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 127)
+    # line 128: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 128, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 128)
+    # line 129: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 129, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 129)
     _ctx = ctx
     :ok
   end
@@ -475,12 +427,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_solver_run_complete_feasible] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-determination_scheduling_period_on_solver_run_complete_feasible"}
-    # line 147: GIVEN given_seed_context id="determination_scheduling_period_on_solver_run_complete_feasible" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_solver_run_complete_feasible", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 147, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_solver_run_complete_feasible\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 147)
-    # line 148: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 148, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 148)
-    # line 149: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 149, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 149)
+    # line 132: GIVEN given_seed_context id="determination_scheduling_period_on_solver_run_complete_feasible" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "determination_scheduling_period_on_solver_run_complete_feasible", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 132, raw: "GIVEN given_seed_context id=\"determination_scheduling_period_on_solver_run_complete_feasible\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 132)
+    # line 133: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 133, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 133)
+    # line 134: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 134, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 134)
     _ctx = ctx
     :ok
   end
@@ -491,12 +443,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-workflow_scheduling_period_scheduling_period_lifecycle_risk_branch_or_exception] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-workflow_scheduling_period_scheduling_period_lifecycle_risk_branch_or_exception"}
-    # line 152: GIVEN given_seed_context id="workflow_scheduling_period_scheduling_period_lifecycle_risk_branch_or_exception" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "workflow_scheduling_period_scheduling_period_lifecycle_risk_branch_or_exception", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 152, raw: "GIVEN given_seed_context id=\"workflow_scheduling_period_scheduling_period_lifecycle_risk_branch_or_exception\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 152)
-    # line 153: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 153, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 153)
-    # line 154: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 154, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 154)
+    # line 137: GIVEN given_seed_context id="workflow_scheduling_period_scheduling_period_lifecycle_risk_branch_or_exception" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "workflow_scheduling_period_scheduling_period_lifecycle_risk_branch_or_exception", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 137, raw: "GIVEN given_seed_context id=\"workflow_scheduling_period_scheduling_period_lifecycle_risk_branch_or_exception\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 137)
+    # line 138: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 138, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 138)
+    # line 139: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 139, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 139)
     _ctx = ctx
     :ok
   end
@@ -507,12 +459,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-workflow_scheduling_period_scheduling_period_lifecycle_risk_mainline] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-workflow_scheduling_period_scheduling_period_lifecycle_risk_mainline"}
-    # line 157: GIVEN given_seed_context id="workflow_scheduling_period_scheduling_period_lifecycle_risk_mainline" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "workflow_scheduling_period_scheduling_period_lifecycle_risk_mainline", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 157, raw: "GIVEN given_seed_context id=\"workflow_scheduling_period_scheduling_period_lifecycle_risk_mainline\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 157)
-    # line 158: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 158, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 158)
-    # line 159: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 159, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 159)
+    # line 142: GIVEN given_seed_context id="workflow_scheduling_period_scheduling_period_lifecycle_risk_mainline" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "workflow_scheduling_period_scheduling_period_lifecycle_risk_mainline", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 142, raw: "GIVEN given_seed_context id=\"workflow_scheduling_period_scheduling_period_lifecycle_risk_mainline\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 142)
+    # line 143: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 143, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 143)
+    # line 144: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 144, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 144)
     _ctx = ctx
     :ok
   end
@@ -523,12 +475,12 @@ defmodule HospitalScheduling.BDD.Generated.SCHEDULING_SCHEDULING_PERIODTest do
   test "[BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-workflow_scheduling_period_scheduling_period_lifecycle] SCHEDULING_SCHEDULING_PERIOD contract seed scenario" do
     run_id = HospitalScheduling.BDD.Instructions.V1.new_run_id()
     ctx = %{run_id: run_id, scenario_id: "BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-workflow_scheduling_period_scheduling_period_lifecycle"}
-    # line 162: GIVEN given_seed_context id="workflow_scheduling_period_scheduling_period_lifecycle" module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "workflow_scheduling_period_scheduling_period_lifecycle", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 162, raw: "GIVEN given_seed_context id=\"workflow_scheduling_period_scheduling_period_lifecycle\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 162)
-    # line 163: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 163, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 163)
-    # line 164: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
-    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 164, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 164)
+    # line 147: GIVEN given_seed_context id="workflow_scheduling_period_scheduling_period_lifecycle" module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :given, :given_seed_context, %{id: "workflow_scheduling_period_scheduling_period_lifecycle", module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 147, raw: "GIVEN given_seed_context id=\"workflow_scheduling_period_scheduling_period_lifecycle\" module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 147)
+    # line 148: WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :when, :when_execute_seed_contract, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 148, raw: "WHEN when_execute_seed_contract module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 148)
+    # line 149: THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
+    ctx = HospitalScheduling.BDD.Instructions.V1.run_step!(ctx, :then, :then_seed_contract_should_hold, %{module: "SCHEDULING_SCHEDULING_PERIOD"}, %{file: "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/docs/bdd/SCHEDULING_SCHEDULING_PERIOD.dsl", line: 149, raw: "THEN then_seed_contract_should_hold module=\"SCHEDULING_SCHEDULING_PERIOD\""}, 149)
     _ctx = ctx
     :ok
   end
