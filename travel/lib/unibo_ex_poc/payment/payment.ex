@@ -28,7 +28,7 @@ defmodule UniboExPoc.Payment.Payment do
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
     authorizers: [Ash.Policy.Authorizer],
-    notifiers: [UniboExPoc.Payment.Payment.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "核心支付流水实体，记录每笔实际支付的完整信息，支持状态流转（draft→pending→authorized→captured→refunded/cancelled/failed）"
@@ -317,4 +317,15 @@ defmodule UniboExPoc.Payment.Payment do
     end
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "payment"
+
+    publish :authorize, ["payment.payment.authorized"]
+    publish :capture, ["payment.payment.captured"]
+    publish :refund, ["payment.payment.refunded"]
+    publish :cancel, ["payment.payment.cancelled"]
+    publish :mark_failed, ["payment.payment.failed"]
+  end
 end

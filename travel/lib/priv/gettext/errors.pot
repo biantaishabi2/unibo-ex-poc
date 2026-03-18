@@ -1,222 +1,6 @@
 # 从 YAML 模型自动生成 — 验证消息翻译模板
 # UniBO Compiler — Gettext Errors POT
 
-#. domain: Delivery, entity: Shipment, validation: one_of, on: cancel
-msgid "已发出的发货单不能直接取消，需走逆向退货流程"
-msgstr ""
-
-#. domain: Delivery, entity: CrossOrgTransaction, validation: compare, on: create
-msgid "source_party_id 与 target_party_id 不能相同"
-msgstr ""
-
-#. domain: Delivery, entity: CrossOrgTransaction, validation: one_of, on: confirm_source
-msgid "只有草稿状态可以确认源销售单"
-msgstr ""
-
-#. domain: Delivery, entity: CrossOrgTransaction, validation: one_of, on: create_mirror_purchase_order
-msgid "只有源单确认后才允许创建镜像采购单"
-msgstr ""
-
-#. domain: Delivery, entity: CrossOrgTransaction, validation: one_of, on: mark_fulfilled
-msgid "只有镜像单创建完成后才允许标记履约完成"
-msgstr ""
-
-#. domain: Delivery, entity: CrossOrgTransaction, validation: one_of, on: mark_settled
-msgid "只有履约完成后才允许标记结算完成"
-msgstr ""
-
-#. domain: Delivery, entity: CrossOrgTransaction, validation: one_of, on: mark_failed
-msgid "只有编排中的事务才能标记失败"
-msgstr ""
-
-#. domain: Delivery, entity: CrossOrgTransaction, validation: custom, on: cancel
-msgid "已结算事务不允许取消"
-msgstr ""
-
-#. domain: Delivery, entity: ShipmentItem, validation: compare, on: create, update
-msgid "发货数量必须大于 0"
-msgstr ""
-
-#. domain: Delivery, entity: ShipmentPackageContent, validation: compare, on: create, update
-msgid "装入数量必须大于 0"
-msgstr ""
-
-#. domain: Payment, entity: Payment, validation: compare
-msgid "支付金额必须大于零"
-msgstr ""
-
-#. domain: Payment, entity: Payment, validation: one_of, on: submit
-msgid "只有草稿状态可以提交"
-msgstr ""
-
-#. domain: Payment, entity: Payment, validation: one_of, on: authorize
-msgid "只有待处理状态可以授权"
-msgstr ""
-
-#. domain: Payment, entity: Payment, validation: one_of, on: capture
-msgid "只有已授权状态可以捕获扣款"
-msgstr ""
-
-#. domain: Payment, entity: Payment, validation: one_of, on: refund
-msgid "只有已捕获状态可以退款"
-msgstr ""
-
-#. domain: Payment, entity: Payment, validation: one_of, on: cancel
-msgid "已捕获/已退款/已失败的支付不能取消"
-msgstr ""
-
-#. domain: Payment, entity: Payment, validation: one_of, on: mark_failed
-msgid "只有待处理或已授权状态可以标记失败"
-msgstr ""
-
-#. domain: Payment, entity: PaymentRefund, validation: compare
-msgid "退款金额必须大于零"
-msgstr ""
-
-#. domain: Payment, entity: PaymentRefund, validation: one_of, on: approve
-msgid "只有待处理状态可以审批"
-msgstr ""
-
-#. domain: Payment, entity: PaymentRefund, validation: one_of, on: process
-msgid "只有已审批状态可以处理"
-msgstr ""
-
-#. domain: Payment, entity: PaymentRefund, validation: one_of, on: reject
-msgid "只有待处理状态可以拒绝"
-msgstr ""
-
-#. domain: Payment, entity: PaymentToken, validation: one_of, on: revoke
-msgid "只有活跃状态的令牌可以吊销"
-msgstr ""
-
-#. domain: Payment, entity: PaymentToken, validation: one_of, on: expire
-msgid "只有活跃状态的令牌可以标记过期"
-msgstr ""
-
-#. domain: Payment, entity: PaymentApplication, validation: compare
-msgid "核销金额必须大于零"
-msgstr ""
-
-#. domain: Sales, entity: Customer, validation: one_of, on: block
-msgid "只有活跃状态可以冻结"
-msgstr ""
-
-#. domain: Sales, entity: Quote, validation: one_of, on: submit
-msgid "只有草稿状态可以发送"
-msgstr ""
-
-#. domain: Sales, entity: Quote, validation: one_of, on: accept
-msgid "只有已发送状态可以接受"
-msgstr ""
-
-#. domain: Sales, entity: Quote, validation: one_of, on: reject
-msgid "只有已发送状态可以拒绝"
-msgstr ""
-
-#. domain: Sales, entity: QuoteItem, validation: compare
-msgid "数量必须大于零"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, validation: present, on: create
-msgid "创建销售订单时必须包含至少一条订单行"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, validation: custom, on: create
-msgid "创建销售订单时必须选择客户"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, validation: one_of, on: action_quotation_send
-msgid "只有草稿状态可以发送报价"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, validation: one_of, on: action_confirm
-msgid "只有草稿或已发送状态可以确认"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, validation: present, on: action_confirm
-msgid "订单行不能为空"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, validation: custom, on: action_confirm
-msgid "税务配置校验失败"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, validation: custom, on: action_confirm
-msgid "分析分配校验失败"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, validation: one_of, on: action_done
-msgid "只有已确认(sale)状态可以锁定"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, validation: compare, on: action_cancel
-msgid "已锁定的订单不能取消"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, validation: one_of, on: action_draft
-msgid "只有已取消状态可以重置为草稿"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, validation: one_of, on: create_invoices
-msgid "只能对已确认订单创建发票"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrder, validation: custom, on: create_invoices
-msgid "至少有一行的待开票数量大于0"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrderItem, validation: compare, on: create, update
-msgid "订购数量必须大于零"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrderItem, validation: compare
-msgid "折扣百分比不能超过100"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrderItem, validation: immutable, on: update
-msgid "已确认订单中已有发票或已发货的行不可修改产品"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrderItem, validation: immutable, on: update
-msgid "已锁定订单的价格、数量、折扣、税率均不可修改"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrderItem, validation: custom, on: destroy
-msgid "已确认的非预付款订单行不可删除"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrderShipment, validation: one_of, on: ship
-msgid "只有草稿状态可以发货"
-msgstr ""
-
-#. domain: Sales, entity: SalesOrderShipment, validation: one_of, on: deliver
-msgid "只有已发货状态可以标记送达"
-msgstr ""
-
-#. domain: Sales, entity: Return, validation: one_of, on: approve
-msgid "只有已申请状态可以审批"
-msgstr ""
-
-#. domain: Sales, entity: Return, validation: one_of, on: receive
-msgid "只有已审批状态可以收货"
-msgstr ""
-
-#. domain: Sales, entity: Return, validation: one_of, on: complete
-msgid "只有已收货状态可以完成"
-msgstr ""
-
-#. domain: Sales, entity: Return, validation: one_of, on: cancel
-msgid "只有已申请状态可以取消"
-msgstr ""
-
-#. domain: Sales, entity: ReturnItem, validation: compare
-msgid "退货数量必须大于零"
-msgstr ""
-
-#. domain: Sales, entity: ReturnItem, validation: compare
-msgid "退货单价不能为负"
-msgstr ""
-
 #. domain: Travel, entity: HotelOffer, validation: compare
 msgid "listed_price 不能为负数"
 msgstr ""
@@ -333,12 +117,28 @@ msgstr ""
 msgid "只有 approved 改签单可以完成"
 msgstr ""
 
+#. domain: Travel, entity: TravelChangeOrder, validation: one_of, on: complete_direct
+msgid "只有关闭审批的改签单可以直接完成"
+msgstr ""
+
+#. domain: Travel, entity: TravelChangeOrder, validation: one_of, on: complete_direct
+msgid "关闭审批时，pending 改签单可直接完成"
+msgstr ""
+
 #. domain: Travel, entity: TravelRefundOrder, validation: one_of, on: approve, reject
 msgid "只有 pending 退票单可以审批或拒绝"
 msgstr ""
 
 #. domain: Travel, entity: TravelRefundOrder, validation: one_of, on: refund
 msgid "只有 approved 退票单可以执行退款"
+msgstr ""
+
+#. domain: Travel, entity: TravelRefundOrder, validation: one_of, on: refund_direct
+msgid "只有关闭审批的退票单可以直接退款"
+msgstr ""
+
+#. domain: Travel, entity: TravelRefundOrder, validation: one_of, on: refund_direct
+msgid "关闭审批时，pending 退票单可直接退款"
 msgstr ""
 
 #. domain: Travel, entity: TravelPolicy, validation: one_of, on: activate

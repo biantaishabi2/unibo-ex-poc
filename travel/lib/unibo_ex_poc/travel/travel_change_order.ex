@@ -15,8 +15,8 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboExPoc.Travel.TravelChangeOrder.Notifier]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshStateMachine],
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态"
@@ -65,6 +65,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       description "新报价ID（可能是 FlightOffer/TrainOffer/HotelOffer，不做外键）"
     end
     attribute :status, :atom do
+      allow_nil? false
       constraints one_of: [:pending, :approved, :completed, :rejected]
       default :pending
       public? true
@@ -110,6 +111,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       end
       # message: "只有 pending 改签单可以审批或拒绝"
       change set_attribute(:status, :approved)
+      change transition_state(:approved)
       require_atomic? false
     end
     update :reject do
@@ -125,6 +127,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       end
       # message: "只有 pending 改签单可以审批或拒绝"
       change set_attribute(:status, :rejected)
+      change transition_state(:rejected)
       require_atomic? false
     end
     update :complete do
@@ -140,6 +143,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       end
       # message: "只有 approved 改签单可以完成"
       change set_attribute(:status, :completed)
+      change transition_state(:completed)
       require_atomic? false
     end
     update :complete_direct do
@@ -164,6 +168,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       end
       # message: "关闭审批时，pending 改签单可直接完成"
       change set_attribute(:status, :completed)
+      change transition_state(:completed)
       require_atomic? false
     end
 
@@ -206,4 +211,26 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
     ignore_attributes [:inserted_at, :updated_at]
   end
 
+
+  state_machine do
+    initial_states [:pending]
+    default_initial_state :pending
+    state_attribute :status
+    transitions do
+      transition :approve, from: :pending, to: :approved
+      transition :reject, from: :pending, to: :rejected
+      transition :complete, from: :approved, to: :completed
+      transition :complete_direct, from: :pending, to: :completed
+    end
+  end
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "travel_change_order"
+
+    publish :approve, ["travel.change_order.approved"]
+    publish :reject, ["travel.change_order.rejected"]
+    publish :complete, ["travel.change_order.completed"]
+    publish :complete_direct, ["travel.change_order.completed"]
+  end
 end

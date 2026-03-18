@@ -9,8 +9,6 @@ defmodule UniboExPoc.Ofbiz.Shipment do
   resources do
     resource UniboExPoc.Ofbiz.Shipment.Picklist
     resource UniboExPoc.Ofbiz.Shipment.PicklistBin
-    resource UniboExPoc.Ofbiz.Shipment.RejectionReason
-    resource UniboExPoc.Ofbiz.Shipment.ShipmentReceipt
     resource UniboExPoc.Ofbiz.Shipment.CarrierShipmentMethod
     resource UniboExPoc.Ofbiz.Shipment.Delivery
     resource UniboExPoc.Ofbiz.Shipment.Shipment
@@ -28,7 +26,6 @@ defmodule UniboExPoc.Ofbiz.Shipment do
     resource UniboExPoc.Ofbiz.Shipment.Facility
     resource UniboExPoc.Ofbiz.Shipment.FixedAsset
     resource UniboExPoc.Ofbiz.Shipment.Geo
-    resource UniboExPoc.Ofbiz.Shipment.InventoryItem
     resource UniboExPoc.Ofbiz.Shipment.OrderHeader
     resource UniboExPoc.Ofbiz.Shipment.Party
     resource UniboExPoc.Ofbiz.Shipment.Product

@@ -57,6 +57,7 @@ defmodule Travel.MixProject do
       {:unibo_graphql_runtime, path: "../../unibo/targets/elixir/unibo_graphql_runtime"},
       {:ash_paper_trail, "~> 0.5"},
       {:ash_archival, "~> 2.0"},
+      {:ash_state_machine, "~> 0.2"},
       {:unibo_bdd_runtime, path: "../../unibo/targets/elixir/unibo_bdd_runtime"},
       {:stitch_ui, path: "../../stitch/packages/liveview"},
     ]

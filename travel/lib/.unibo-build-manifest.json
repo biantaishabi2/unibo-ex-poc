@@ -2,173 +2,13 @@
   "version": 1,
   "compiler_version": "0.1.0",
   "domains": {
-    "Delivery": {
-      "input_hashes": {
-        "/tmp/.tmpVvGGCD/delivery/delivery.ubo.yaml": "sha256:1ccf81d8e830e02fb1996e126a89ecd9ca258e5ad40ae1e331672575846da657"
-      },
-      "output_files": [
-        "unibo_ex_poc/delivery/calculations/shipment/item_count.ex",
-        "unibo_ex_poc/delivery/calculations/shipment/package_count.ex",
-        "unibo_ex_poc/delivery/calculations/shipment/total_weight.ex",
-        "unibo_ex_poc/delivery/carrier_shipment_method.ex",
-        "unibo_ex_poc/delivery/changes/cross_org_transaction/create_mirror_purchase_order_call_5.ex",
-        "unibo_ex_poc/delivery/cross_org_transaction.ex",
-        "unibo_ex_poc/delivery/cross_org_transaction_notifier.ex",
-        "unibo_ex_poc/delivery/delivery.ex",
-        "unibo_ex_poc/delivery/delivery_domain.ex",
-        "unibo_ex_poc/delivery/facility.ex",
-        "unibo_ex_poc/delivery/fixed_asset.ex",
-        "unibo_ex_poc/delivery/party.ex",
-        "unibo_ex_poc/delivery/product.ex",
-        "unibo_ex_poc/delivery/shipment.ex",
-        "unibo_ex_poc/delivery/shipment_box_type.ex",
-        "unibo_ex_poc/delivery/shipment_cost_estimate.ex",
-        "unibo_ex_poc/delivery/shipment_item.ex",
-        "unibo_ex_poc/delivery/shipment_method_type.ex",
-        "unibo_ex_poc/delivery/shipment_notifier.ex",
-        "unibo_ex_poc/delivery/shipment_package.ex",
-        "unibo_ex_poc/delivery/shipment_package_content.ex",
-        "unibo_ex_poc/delivery/shipment_package_route_seg.ex",
-        "unibo_ex_poc/delivery/shipment_route_segment.ex",
-        "unibo_ex_poc/delivery/shipment_route_segment_notifier.ex",
-        "unibo_ex_poc/delivery/shipment_status.ex",
-        "unibo_ex_poc/delivery/shipment_type.ex",
-        "unibo_ex_poc/delivery/workflows/carrier_shipment_method_carrier_method_bind_flow.ex",
-        "unibo_ex_poc/delivery/workflows/cross_org_transaction_cross_org_transaction_lifecycle.ex",
-        "unibo_ex_poc/delivery/workflows/delivery_delivery_trip_flow.ex",
-        "unibo_ex_poc/delivery/workflows/shipment_box_type_shipment_box_type_maintain_flow.ex",
-        "unibo_ex_poc/delivery/workflows/shipment_cost_estimate_cost_estimate_maintain_flow.ex",
-        "unibo_ex_poc/delivery/workflows/shipment_item_shipment_item_flow.ex",
-        "unibo_ex_poc/delivery/workflows/shipment_method_type_shipment_method_type_maintain_flow.ex",
-        "unibo_ex_poc/delivery/workflows/shipment_package_content_shipment_package_content_flow.ex",
-        "unibo_ex_poc/delivery/workflows/shipment_package_route_seg_package_route_seg_flow.ex",
-        "unibo_ex_poc/delivery/workflows/shipment_package_shipment_package_flow.ex",
-        "unibo_ex_poc/delivery/workflows/shipment_route_segment_route_segment_flow.ex",
-        "unibo_ex_poc/delivery/workflows/shipment_shipment_lifecycle_flow.ex",
-        "unibo_ex_poc/delivery/workflows/shipment_status_shipment_status_record_flow.ex",
-        "unibo_ex_poc/delivery/workflows/shipment_type_shipment_type_maintain_flow.ex"
-      ],
-      "entity_count": 18,
-      "notifier_count": 3,
-      "has_policy_entities": false,
-      "has_scheduled_tasks": false,
-      "subdomain": "purchasing",
-      "cross_domain_refs": [
-        "Purchasing",
-        "Sales"
-      ]
-    },
-    "Ecommerce": {
-      "input_hashes": {
-        "/tmp/.tmpVvGGCD/ecommerce/ecommerce.ubo.yaml": "sha256:8f86eb3081773357410e41ea5b1ee53f55233e3c9b76caf8e1f703c2338b2c40"
-      },
-      "output_files": [
-        "unibo_ex_poc/ecommerce/ecommerce.ex",
-        "unibo_ex_poc/ecommerce/travel_airport.ex",
-        "unibo_ex_poc/ecommerce/travel_city.ex",
-        "unibo_ex_poc/ecommerce/travel_station.ex"
-      ],
-      "entity_count": 3,
-      "notifier_count": 0,
-      "has_policy_entities": false,
-      "has_scheduled_tasks": false,
-      "subdomain": "sales"
-    },
-    "Payment": {
-      "input_hashes": {
-        "/tmp/.tmpVvGGCD/payment/payment.ubo.yaml": "sha256:01c0146f3af9baf2c27e78d955327f7cc298f8cd972e28a678efb92ad12a9f6c"
-      },
-      "output_files": [
-        "unibo_ex_poc/payment/calculations/payment/refunded_amount.ex",
-        "unibo_ex_poc/payment/invoice.ex",
-        "unibo_ex_poc/payment/party.ex",
-        "unibo_ex_poc/payment/payment.ex",
-        "unibo_ex_poc/payment/payment_application.ex",
-        "unibo_ex_poc/payment/payment_domain.ex",
-        "unibo_ex_poc/payment/payment_gateway_response.ex",
-        "unibo_ex_poc/payment/payment_method.ex",
-        "unibo_ex_poc/payment/payment_notifier.ex",
-        "unibo_ex_poc/payment/payment_provider.ex",
-        "unibo_ex_poc/payment/payment_refund.ex",
-        "unibo_ex_poc/payment/payment_refund_notifier.ex",
-        "unibo_ex_poc/payment/payment_token.ex",
-        "unibo_ex_poc/payment/payment_type.ex",
-        "unibo_ex_poc/payment/workflows/payment_application_payment_application_flow.ex",
-        "unibo_ex_poc/payment/workflows/payment_gateway_response_gateway_response_record_flow.ex",
-        "unibo_ex_poc/payment/workflows/payment_method_payment_method_lifecycle.ex",
-        "unibo_ex_poc/payment/workflows/payment_payment_lifecycle.ex",
-        "unibo_ex_poc/payment/workflows/payment_provider_payment_provider_lifecycle.ex",
-        "unibo_ex_poc/payment/workflows/payment_refund_refund_lifecycle.ex",
-        "unibo_ex_poc/payment/workflows/payment_token_token_lifecycle.ex",
-        "unibo_ex_poc/payment/workflows/payment_type_payment_type_lifecycle.ex"
-      ],
-      "entity_count": 10,
-      "notifier_count": 2,
-      "has_policy_entities": false,
-      "has_scheduled_tasks": false,
-      "subdomain": "finance"
-    },
-    "Sales": {
-      "input_hashes": {
-        "/tmp/.tmpVvGGCD/sales/sales.ubo.yaml": "sha256:aeafa14e6e62ec48ebc88b987758c5d456547c1d0c81249383142ea94cec06f3"
-      },
-      "output_files": [
-        "unibo_ex_poc/sales/changes/quote/compute_total_amount.ex",
-        "unibo_ex_poc/sales/changes/return/compute_total_refund_amount.ex",
-        "unibo_ex_poc/sales/changes/sales_order/action_cancel_call_10.ex",
-        "unibo_ex_poc/sales/changes/sales_order/action_cancel_call_11.ex",
-        "unibo_ex_poc/sales/changes/sales_order/action_confirm_call_6.ex",
-        "unibo_ex_poc/sales/changes/sales_order/action_confirm_create_related_5.ex",
-        "unibo_ex_poc/sales/changes/sales_order/create_invoices_call_15.ex",
-        "unibo_ex_poc/sales/changes/sales_order/create_invoices_create_related_14.ex",
-        "unibo_ex_poc/sales/changes/sales_order_item/compute_price_subtotal.ex",
-        "unibo_ex_poc/sales/changes/sales_order_item/compute_price_tax.ex",
-        "unibo_ex_poc/sales/customer.ex",
-        "unibo_ex_poc/sales/party.ex",
-        "unibo_ex_poc/sales/product.ex",
-        "unibo_ex_poc/sales/quote.ex",
-        "unibo_ex_poc/sales/quote_item.ex",
-        "unibo_ex_poc/sales/quote_notifier.ex",
-        "unibo_ex_poc/sales/return.ex",
-        "unibo_ex_poc/sales/return_item.ex",
-        "unibo_ex_poc/sales/return_notifier.ex",
-        "unibo_ex_poc/sales/sales.ex",
-        "unibo_ex_poc/sales/sales_order.ex",
-        "unibo_ex_poc/sales/sales_order_item.ex",
-        "unibo_ex_poc/sales/sales_order_item_tax_rel.ex",
-        "unibo_ex_poc/sales/sales_order_notifier.ex",
-        "unibo_ex_poc/sales/sales_order_shipment.ex",
-        "unibo_ex_poc/sales/sales_order_shipment_notifier.ex",
-        "unibo_ex_poc/sales/tax.ex",
-        "unibo_ex_poc/sales/workflows/customer_customer_lifecycle.ex",
-        "unibo_ex_poc/sales/workflows/quote_item_quote_item_editing.ex",
-        "unibo_ex_poc/sales/workflows/quote_quote_lifecycle.ex",
-        "unibo_ex_poc/sales/workflows/return_item_return_item_editing.ex",
-        "unibo_ex_poc/sales/workflows/return_return_lifecycle.ex",
-        "unibo_ex_poc/sales/workflows/sales_order_item_order_item_editing.ex",
-        "unibo_ex_poc/sales/workflows/sales_order_pricing_chain.ex",
-        "unibo_ex_poc/sales/workflows/sales_order_sales_order_lifecycle_flow.ex",
-        "unibo_ex_poc/sales/workflows/sales_order_sales_order_reopen_flow.ex",
-        "unibo_ex_poc/sales/workflows/sales_order_shipment_shipment_lifecycle.ex"
-      ],
-      "entity_count": 12,
-      "notifier_count": 4,
-      "has_policy_entities": true,
-      "has_scheduled_tasks": false,
-      "subdomain": "sales",
-      "cross_domain_refs": [
-        "Delivery"
-      ]
-    },
     "Travel": {
       "input_hashes": {
-        "/tmp/.tmpVvGGCD/travel/travel.ubo.yaml": "sha256:4cfd132e3b51c4dd13fddf1f6f2c2cf7ebb32e249a77403e05d83bf3cb49cd2b"
+        "/home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml": "sha256:fda56e0bbab0c30a7a82e674f344b9fa3f627a61066085a68f599f9f165bb32c"
       },
       "output_files": [
         "unibo_ex_poc/travel/flight_offer.ex",
-        "unibo_ex_poc/travel/flight_offer_notifier.ex",
         "unibo_ex_poc/travel/hotel_offer.ex",
-        "unibo_ex_poc/travel/hotel_offer_notifier.ex",
         "unibo_ex_poc/travel/integration/runtime.ex",
         "unibo_ex_poc/travel/integrations/travel_fulfillment/cancel_fulfillment_supplier_cancel_booking_bridge.ex",
         "unibo_ex_poc/travel/integrations/travel_fulfillment/confirm_booking_supplier_confirm_booking_bridge.ex",
@@ -179,26 +19,19 @@
         "unibo_ex_poc/travel/integrations/travel_order/submit_order_payment_capture_bridge.ex",
         "unibo_ex_poc/travel/integrations/travel_order/submit_waitlist_payment_capture_bridge.ex",
         "unibo_ex_poc/travel/train_offer.ex",
-        "unibo_ex_poc/travel/train_offer_notifier.ex",
         "unibo_ex_poc/travel/travel.ex",
         "unibo_ex_poc/travel/travel_airline.ex",
         "unibo_ex_poc/travel/travel_cabin_class.ex",
         "unibo_ex_poc/travel/travel_change_order.ex",
-        "unibo_ex_poc/travel/travel_change_order_notifier.ex",
         "unibo_ex_poc/travel/travel_fulfillment.ex",
-        "unibo_ex_poc/travel/travel_fulfillment_notifier.ex",
         "unibo_ex_poc/travel/travel_hotel.ex",
         "unibo_ex_poc/travel/travel_order.ex",
-        "unibo_ex_poc/travel/travel_order_notifier.ex",
         "unibo_ex_poc/travel/travel_policy.ex",
         "unibo_ex_poc/travel/travel_policy_check.ex",
-        "unibo_ex_poc/travel/travel_policy_notifier.ex",
         "unibo_ex_poc/travel/travel_refund_order.ex",
-        "unibo_ex_poc/travel/travel_refund_order_notifier.ex",
         "unibo_ex_poc/travel/travel_room_type.ex",
         "unibo_ex_poc/travel/travel_static_code_mapping.ex",
         "unibo_ex_poc/travel/vacation_offer.ex",
-        "unibo_ex_poc/travel/vacation_offer_notifier.ex",
         "unibo_ex_poc/travel/workflows/flight_offer_flight_offer_lifecycle.ex",
         "unibo_ex_poc/travel/workflows/hotel_offer_hotel_offer_lifecycle.ex",
         "unibo_ex_poc/travel/workflows/train_offer_train_offer_lifecycle.ex",
@@ -210,7 +43,7 @@
         "unibo_ex_poc/travel/workflows/vacation_offer_vacation_offer_lifecycle.ex"
       ],
       "entity_count": 15,
-      "notifier_count": 9,
+      "notifier_count": 0,
       "has_policy_entities": false,
       "has_scheduled_tasks": false,
       "subdomain": "travel",
@@ -220,192 +53,6 @@
         "Payment",
         "Sales"
       ]
-    },
-    "ofbiz::Accounting": {
-      "input_hashes": {
-        "/tmp/.tmpVvGGCD/ofbiz/accounting.ubo.yaml": "sha256:3ef7234d7992adeca91bb0eb416adbd7e4cf836618394179669328a96986b82d"
-      },
-      "output_files": [
-        "unibo_ex_poc/ofbiz_accounting/accounting.ex",
-        "unibo_ex_poc/ofbiz_accounting/billing_account.ex",
-        "unibo_ex_poc/ofbiz_accounting/credit_card.ex",
-        "unibo_ex_poc/ofbiz_accounting/eft_account.ex",
-        "unibo_ex_poc/ofbiz_accounting/fin_account.ex",
-        "unibo_ex_poc/ofbiz_accounting/fin_account_trans.ex",
-        "unibo_ex_poc/ofbiz_accounting/fin_account_trans_type.ex",
-        "unibo_ex_poc/ofbiz_accounting/fin_account_type.ex",
-        "unibo_ex_poc/ofbiz_accounting/fixed_asset.ex",
-        "unibo_ex_poc/ofbiz_accounting/fixed_asset_type.ex",
-        "unibo_ex_poc/ofbiz_accounting/gift_card.ex",
-        "unibo_ex_poc/ofbiz_accounting/gl_account.ex",
-        "unibo_ex_poc/ofbiz_accounting/gl_account_class.ex",
-        "unibo_ex_poc/ofbiz_accounting/gl_account_type.ex",
-        "unibo_ex_poc/ofbiz_accounting/gl_reconciliation.ex",
-        "unibo_ex_poc/ofbiz_accounting/gl_resource_type.ex",
-        "unibo_ex_poc/ofbiz_accounting/gl_xbrl_class.ex",
-        "unibo_ex_poc/ofbiz_accounting/invoice.ex",
-        "unibo_ex_poc/ofbiz_accounting/invoice_type.ex",
-        "unibo_ex_poc/ofbiz_accounting/payment.ex",
-        "unibo_ex_poc/ofbiz_accounting/payment_application.ex",
-        "unibo_ex_poc/ofbiz_accounting/payment_gateway_config.ex",
-        "unibo_ex_poc/ofbiz_accounting/payment_gateway_config_type.ex",
-        "unibo_ex_poc/ofbiz_accounting/payment_gateway_response.ex",
-        "unibo_ex_poc/ofbiz_accounting/payment_method.ex",
-        "unibo_ex_poc/ofbiz_accounting/payment_method_type.ex",
-        "unibo_ex_poc/ofbiz_accounting/payment_type.ex",
-        "unibo_ex_poc/ofbiz_accounting/tax_authority.ex"
-      ],
-      "entity_count": 27,
-      "notifier_count": 0,
-      "has_policy_entities": false,
-      "has_scheduled_tasks": false
-    },
-    "ofbiz::Common": {
-      "input_hashes": {
-        "/tmp/.tmpVvGGCD/ofbiz/common.ubo.yaml": "sha256:50a20cb4b95de531a14f94804d528374352e6bc282599df583c12985784e157a"
-      },
-      "output_files": [
-        "unibo_ex_poc/ofbiz_common/common.ex",
-        "unibo_ex_poc/ofbiz_common/data_source.ex",
-        "unibo_ex_poc/ofbiz_common/data_source_type.ex",
-        "unibo_ex_poc/ofbiz_common/enumeration.ex",
-        "unibo_ex_poc/ofbiz_common/enumeration_type.ex",
-        "unibo_ex_poc/ofbiz_common/geo.ex",
-        "unibo_ex_poc/ofbiz_common/geo_type.ex"
-      ],
-      "entity_count": 6,
-      "notifier_count": 0,
-      "has_policy_entities": false,
-      "has_scheduled_tasks": false
-    },
-    "ofbiz::Order": {
-      "input_hashes": {
-        "/tmp/.tmpVvGGCD/ofbiz/order.ubo.yaml": "sha256:2449b830ae128ff8691b3f8b773cea1af659a7e899e9ace2d6a5d52f8fb922a0"
-      },
-      "output_files": [
-        "unibo_ex_poc/ofbiz_order/cust_request.ex",
-        "unibo_ex_poc/ofbiz_order/cust_request_category.ex",
-        "unibo_ex_poc/ofbiz_order/cust_request_type.ex",
-        "unibo_ex_poc/ofbiz_order/order.ex",
-        "unibo_ex_poc/ofbiz_order/order_adjustment.ex",
-        "unibo_ex_poc/ofbiz_order/order_adjustment_type.ex",
-        "unibo_ex_poc/ofbiz_order/order_header.ex",
-        "unibo_ex_poc/ofbiz_order/order_item.ex",
-        "unibo_ex_poc/ofbiz_order/order_item_type.ex",
-        "unibo_ex_poc/ofbiz_order/order_payment_preference.ex",
-        "unibo_ex_poc/ofbiz_order/order_role.ex",
-        "unibo_ex_poc/ofbiz_order/order_type.ex",
-        "unibo_ex_poc/ofbiz_order/quote.ex",
-        "unibo_ex_poc/ofbiz_order/quote_item.ex",
-        "unibo_ex_poc/ofbiz_order/quote_note.ex",
-        "unibo_ex_poc/ofbiz_order/quote_type.ex",
-        "unibo_ex_poc/ofbiz_order/return_header.ex",
-        "unibo_ex_poc/ofbiz_order/return_header_type.ex",
-        "unibo_ex_poc/ofbiz_order/return_item.ex",
-        "unibo_ex_poc/ofbiz_order/return_item_response.ex",
-        "unibo_ex_poc/ofbiz_order/return_item_type.ex",
-        "unibo_ex_poc/ofbiz_order/return_reason.ex",
-        "unibo_ex_poc/ofbiz_order/return_type.ex",
-        "unibo_ex_poc/ofbiz_order/shopping_list.ex",
-        "unibo_ex_poc/ofbiz_order/shopping_list_type.ex"
-      ],
-      "entity_count": 24,
-      "notifier_count": 0,
-      "has_policy_entities": false,
-      "has_scheduled_tasks": false
-    },
-    "ofbiz::Party": {
-      "input_hashes": {
-        "/tmp/.tmpVvGGCD/ofbiz/party.ubo.yaml": "sha256:c4580eab06421e56898c429003b6ad59bedc34390432372b0bd37bcab93da759"
-      },
-      "output_files": [
-        "unibo_ex_poc/ofbiz_party/data_source.ex",
-        "unibo_ex_poc/ofbiz_party/party.ex",
-        "unibo_ex_poc/ofbiz_party/party_domain.ex",
-        "unibo_ex_poc/ofbiz_party/party_group.ex",
-        "unibo_ex_poc/ofbiz_party/party_role.ex",
-        "unibo_ex_poc/ofbiz_party/party_type.ex",
-        "unibo_ex_poc/ofbiz_party/role_type.ex",
-        "unibo_ex_poc/ofbiz_party/status_item.ex",
-        "unibo_ex_poc/ofbiz_party/uom.ex",
-        "unibo_ex_poc/ofbiz_party/user_login.ex"
-      ],
-      "entity_count": 9,
-      "notifier_count": 0,
-      "has_policy_entities": false,
-      "has_scheduled_tasks": false
-    },
-    "ofbiz::Product": {
-      "input_hashes": {
-        "/tmp/.tmpVvGGCD/ofbiz/product.ubo.yaml": "sha256:ef9c93f39b20162976bff4fad6e6bc54b046a8e14a4d4cfbc1e4e6f3243eb315"
-      },
-      "output_files": [
-        "unibo_ex_poc/ofbiz_product/facility.ex",
-        "unibo_ex_poc/ofbiz_product/facility_group.ex",
-        "unibo_ex_poc/ofbiz_product/facility_group_type.ex",
-        "unibo_ex_poc/ofbiz_product/facility_type.ex",
-        "unibo_ex_poc/ofbiz_product/inventory_item_type.ex",
-        "unibo_ex_poc/ofbiz_product/product.ex",
-        "unibo_ex_poc/ofbiz_product/product_category.ex",
-        "unibo_ex_poc/ofbiz_product/product_category_type.ex",
-        "unibo_ex_poc/ofbiz_product/product_domain.ex",
-        "unibo_ex_poc/ofbiz_product/product_feature.ex",
-        "unibo_ex_poc/ofbiz_product/product_feature_appl.ex",
-        "unibo_ex_poc/ofbiz_product/product_feature_appl_type.ex",
-        "unibo_ex_poc/ofbiz_product/product_feature_category.ex",
-        "unibo_ex_poc/ofbiz_product/product_feature_type.ex",
-        "unibo_ex_poc/ofbiz_product/product_store.ex",
-        "unibo_ex_poc/ofbiz_product/product_store_group.ex",
-        "unibo_ex_poc/ofbiz_product/product_store_group_type.ex",
-        "unibo_ex_poc/ofbiz_product/product_type.ex"
-      ],
-      "entity_count": 17,
-      "notifier_count": 0,
-      "has_policy_entities": false,
-      "has_scheduled_tasks": false
-    },
-    "ofbiz::Shipment": {
-      "input_hashes": {
-        "/tmp/.tmpVvGGCD/ofbiz/shipment.ubo.yaml": "sha256:b70064aad1b8390b34292a1990babe3190b2ba993874ef4be650fa323d6bcf42"
-      },
-      "output_files": [
-        "unibo_ex_poc/ofbiz_shipment/carrier_shipment_method.ex",
-        "unibo_ex_poc/ofbiz_shipment/contact_mech.ex",
-        "unibo_ex_poc/ofbiz_shipment/delivery.ex",
-        "unibo_ex_poc/ofbiz_shipment/facility.ex",
-        "unibo_ex_poc/ofbiz_shipment/fixed_asset.ex",
-        "unibo_ex_poc/ofbiz_shipment/geo.ex",
-        "unibo_ex_poc/ofbiz_shipment/order_header.ex",
-        "unibo_ex_poc/ofbiz_shipment/party.ex",
-        "unibo_ex_poc/ofbiz_shipment/picklist.ex",
-        "unibo_ex_poc/ofbiz_shipment/picklist_bin.ex",
-        "unibo_ex_poc/ofbiz_shipment/product.ex",
-        "unibo_ex_poc/ofbiz_shipment/product_store_shipment_meth.ex",
-        "unibo_ex_poc/ofbiz_shipment/quantity_break.ex",
-        "unibo_ex_poc/ofbiz_shipment/return_header.ex",
-        "unibo_ex_poc/ofbiz_shipment/role_type.ex",
-        "unibo_ex_poc/ofbiz_shipment/shipment.ex",
-        "unibo_ex_poc/ofbiz_shipment/shipment_box_type.ex",
-        "unibo_ex_poc/ofbiz_shipment/shipment_cost_estimate.ex",
-        "unibo_ex_poc/ofbiz_shipment/shipment_domain.ex",
-        "unibo_ex_poc/ofbiz_shipment/shipment_item.ex",
-        "unibo_ex_poc/ofbiz_shipment/shipment_method_type.ex",
-        "unibo_ex_poc/ofbiz_shipment/shipment_package.ex",
-        "unibo_ex_poc/ofbiz_shipment/shipment_package_content.ex",
-        "unibo_ex_poc/ofbiz_shipment/shipment_package_route_seg.ex",
-        "unibo_ex_poc/ofbiz_shipment/shipment_route_segment.ex",
-        "unibo_ex_poc/ofbiz_shipment/shipment_status.ex",
-        "unibo_ex_poc/ofbiz_shipment/shipment_type.ex",
-        "unibo_ex_poc/ofbiz_shipment/status_item.ex",
-        "unibo_ex_poc/ofbiz_shipment/telecom_number.ex",
-        "unibo_ex_poc/ofbiz_shipment/uom.ex",
-        "unibo_ex_poc/ofbiz_shipment/user_login.ex",
-        "unibo_ex_poc/ofbiz_shipment/work_effort.ex"
-      ],
-      "entity_count": 31,
-      "notifier_count": 0,
-      "has_policy_entities": false,
-      "has_scheduled_tasks": false
     }
   }
 }

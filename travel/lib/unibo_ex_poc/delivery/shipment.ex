@@ -24,7 +24,7 @@ defmodule UniboExPoc.Delivery.Shipment do
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
     authorizers: [Ash.Policy.Authorizer],
-    notifiers: [UniboExPoc.Delivery.Shipment.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "发货单，管理出货/入货/调拨/退货的全生命周期"
@@ -304,4 +304,13 @@ defmodule UniboExPoc.Delivery.Shipment do
     end
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "shipment"
+
+    publish :ship, ["delivery.shipment.dispatched"]
+    publish :deliver, ["delivery.shipment.delivered"]
+    publish :cancel, ["delivery.shipment.cancelled"]
+  end
 end

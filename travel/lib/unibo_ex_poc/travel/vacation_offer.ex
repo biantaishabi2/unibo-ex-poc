@@ -19,7 +19,7 @@ defmodule UniboExPoc.Travel.VacationOffer do
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboExPoc.Travel.VacationOffer.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "度假可售 offer，承载套餐、出发日期和预订规则快照"
@@ -242,4 +242,13 @@ defmodule UniboExPoc.Travel.VacationOffer do
     archive_related [:orders]
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "vacation_offer"
+
+    publish :activate, ["travel.catalog.vacation_offer.activated"]
+    publish :deactivate, ["travel.catalog.vacation_offer.deactivated"]
+    publish :expire, ["travel.catalog.vacation_offer.expired"]
+  end
 end

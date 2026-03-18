@@ -14,7 +14,7 @@ defmodule UniboExPoc.Payment.PaymentRefund do
     domain: UniboExPoc.Payment,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboExPoc.Payment.PaymentRefund.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "支付退款记录，记录每笔退款的金额、原因、状态和处理时间"
@@ -154,4 +154,13 @@ defmodule UniboExPoc.Payment.PaymentRefund do
     ignore_attributes [:inserted_at, :updated_at]
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "payment_refund"
+
+    publish :approve, ["payment.refund.approved"]
+    publish :process, ["payment.refund.processed"]
+    publish :reject, ["payment.refund.rejected"]
+  end
 end
