@@ -13,6 +13,7 @@
         [FLEX: subtitle_row]
           { Gap: 2 }
           [BADGE: state_badge]
+            BIND: Enum("state")
             CONTENT: "{{period.state|}}"
           [TEXT: date_range]
             ATTR: Variant("muted")

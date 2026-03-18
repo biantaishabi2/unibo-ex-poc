@@ -23,9 +23,11 @@
           ATTR: Variant("title")
           CONTENT: "{{record.title|}}"
         [BADGE: state_badge]
+          BIND: Enum("state")
           CONTENT: "{{record.state|}}"
         [BADGE: mode_badge]
           ATTR: Variant("secondary")
+          BIND: Enum("generation_mode")
           CONTENT: "{{record.generation_mode|}}"
       [FLEX: actions_group]
         { Gap: 2 }
@@ -80,6 +82,7 @@
               ATTR: Variant("caption"), Color("muted")
               CONTENT: "最近求解"
             [BADGE: run_status_badge]
+              BIND: Enum("status", entity: "SolverRun")
               CONTENT: "{{record.last_solver_run.status|}}"
 
   [SECTION: nav_section]
@@ -145,10 +148,12 @@
                   CONTENT: "v{{ver.version_no|}}"
                 [TABLE_CELL: td_ver_status]
                   [BADGE: ver_status_badge]
+                    BIND: Enum("status", entity: "ScheduleVersion")
                     CONTENT: "{{ver.status|}}"
                 [TABLE_CELL: td_ver_origin]
                   [BADGE: ver_origin_badge]
                     ATTR: Variant("secondary")
+                    BIND: Enum("origin_type")
                     CONTENT: "{{ver.origin_type|}}"
                 [TABLE_CELL: td_ver_summary]
                   CONTENT: "{{ver.change_summary|}}"
@@ -182,6 +187,7 @@
                   CONTENT: "{{run.engine_type|}}"
                 [TABLE_CELL: td_run_status]
                   [BADGE: run_status]
+                    BIND: Enum("status", entity: "SolverRun")
                     CONTENT: "{{run.status|}}"
                 [TABLE_CELL: td_run_score]
                   CONTENT: "{{run.score|}}"
