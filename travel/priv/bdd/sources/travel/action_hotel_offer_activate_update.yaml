@@ -1,7 +1,7 @@
 module: TRAVEL_HOTEL_OFFER
 contract: HotelOffer.activate action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-travel-bdd-rerun/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 HotelOffer 的动作 activate 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 activate / THEN 输入应满足校验规则，状态变更与副作用应生效 / 补充场景：create 创建 hotel offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架；create 创建 hotel offer -> activate 上架 -> expire 过期
 expected_facts:
 - action_executed

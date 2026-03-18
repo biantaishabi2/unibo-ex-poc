@@ -1,8 +1,0 @@
-module: TRAVEL_TRAVEL_REFUND_ORDER
-contract: TravelRefundOrder.create action contract (risk:change_effect)
-edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
-source_summary: GIVEN 实体 TravelRefundOrder 的动作 create 触发副作用 / WHEN 执行动作 create / THEN 变更副作用应完整生效且状态一致 / 补充场景：create 创建退票单 -> reject 审批拒绝；create 创建退票单（approval_mode=none）-> refund_direct 直接退款
-expected_facts:
-- record_persisted
-- change_effect

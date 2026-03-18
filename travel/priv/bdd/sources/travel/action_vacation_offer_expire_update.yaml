@@ -1,7 +1,7 @@
 module: TRAVEL_VACATION_OFFER
 contract: VacationOffer.expire action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-travel-bdd-rerun/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 VacationOffer 的动作 expire 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 expire / THEN 输入应满足校验规则，状态变更与副作用应生效
 expected_facts:
 - action_executed

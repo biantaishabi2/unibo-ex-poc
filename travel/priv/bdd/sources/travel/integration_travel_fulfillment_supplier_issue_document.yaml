@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_FULFILLMENT
 contract: TravelFulfillment.supplier_issue_document integration contract
 edge_class: integration_contract
-source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-travel-bdd-rerun/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelFulfillment 声明 integration supplier_issue_document（mode=sync） / WHEN 绑定动作 [issue_voucher_or_ticket] 触发外部调用 / THEN 调用结果需满足 声明错误码 issue_failed, issue_timeout 且 业务后置条件 issue_status, ticket_refs, voucher_or_ticket_ref
 expected_facts:
 - integration_invoked

@@ -1,9 +1,0 @@
-module: TRAVEL_TRAVEL_REFUND_ORDER
-contract: TravelRefundOrder.refund_direct action contract (risk:change_effect)
-edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
-source_summary: GIVEN 实体 TravelRefundOrder 的动作 refund_direct 触发副作用 / WHEN 执行动作 refund_direct / THEN 变更副作用应完整生效且状态一致
-expected_facts:
-- record_persisted
-- state_change
-- change_effect

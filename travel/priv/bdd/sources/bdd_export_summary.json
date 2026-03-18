@@ -1,11 +1,11 @@
 {
   "total_models": 1,
-  "generated_files": 476,
-  "action_sources": 300,
-  "event_sources": 105,
-  "workflow_sources": 27,
-  "integration_sources": 28,
-  "determination_sources": 16,
+  "generated_files": 144,
+  "action_sources": 81,
+  "event_sources": 35,
+  "workflow_sources": 13,
+  "integration_sources": 7,
+  "determination_sources": 4,
   "scenario_total": 38,
   "scenario_associated": 38,
   "scenario_unassociated": 0,
@@ -603,6 +603,14 @@
         },
         {
           "kind": "workflow",
+          "target": "TravelChangeOrder.change_approval_to_order_confirm (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
           "target": "TravelChangeOrder.change_order_lifecycle (workflow)",
           "score": 70,
           "rules": [
@@ -767,6 +775,14 @@
         {
           "kind": "workflow",
           "target": "TravelRefundOrder.refund_order_lifecycle (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelRefundOrder.refund_to_order_cancel (workflow)",
           "score": 70,
           "rules": [
             "text"
@@ -1775,6 +1791,22 @@
         },
         {
           "kind": "workflow",
+          "target": "TravelOrder.order_submitted_policy_check (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.payment_confirmed_to_fulfillment (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
           "target": "TravelOrder.travel_order_lifecycle (workflow)",
           "score": 70,
           "rules": [
@@ -1880,6 +1912,22 @@
         },
         {
           "kind": "workflow",
+          "target": "TravelOrder.order_submitted_policy_check (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.payment_confirmed_to_fulfillment (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
           "target": "TravelOrder.travel_order_lifecycle (workflow)",
           "score": 70,
           "rules": [
@@ -1962,6 +2010,14 @@
         {
           "kind": "event",
           "target": "TravelOrder.submit_waitlist:travel.order.waitlist_submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.payment_confirmed_to_fulfillment (workflow)",
           "score": 70,
           "rules": [
             "text"
@@ -2058,6 +2114,14 @@
         },
         {
           "kind": "workflow",
+          "target": "TravelOrder.payment_confirmed_to_fulfillment (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
           "target": "TravelOrder.travel_order_lifecycle (workflow)",
           "score": 70,
           "rules": [
@@ -2124,6 +2188,14 @@
         {
           "kind": "event",
           "target": "TravelOrder.submit_order:travel.order.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.order_submitted_policy_check (workflow)",
           "score": 70,
           "rules": [
             "text"
@@ -2236,6 +2308,22 @@
         },
         {
           "kind": "workflow",
+          "target": "TravelOrder.order_submitted_policy_check (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.payment_confirmed_to_fulfillment (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
           "target": "TravelOrder.travel_order_lifecycle (workflow)",
           "score": 70,
           "rules": [
@@ -2317,6 +2405,22 @@
         },
         {
           "kind": "workflow",
+          "target": "TravelOrder.order_submitted_policy_check (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.payment_confirmed_to_fulfillment (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
           "target": "TravelOrder.travel_order_lifecycle (workflow)",
           "score": 70,
           "rules": [
@@ -2383,6 +2487,14 @@
         {
           "kind": "event",
           "target": "TravelOrder.submit_order:travel.order.submitted (event)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.order_submitted_policy_check (workflow)",
           "score": 70,
           "rules": [
             "text"
@@ -2471,6 +2583,22 @@
         },
         {
           "kind": "workflow",
+          "target": "TravelOrder.order_submitted_policy_check (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
+          "target": "TravelOrder.payment_confirmed_to_fulfillment (workflow)",
+          "score": 70,
+          "rules": [
+            "text"
+          ]
+        },
+        {
+          "kind": "workflow",
           "target": "TravelOrder.travel_order_lifecycle (workflow)",
           "score": 70,
           "rules": [
@@ -2539,8 +2667,8 @@
     }
   ],
   "auto_anchor_enabled": true,
-  "auto_anchor_total": 38,
-  "auto_anchor_mapped": 38,
+  "auto_anchor_total": 36,
+  "auto_anchor_mapped": 36,
   "auto_anchor_unmapped": 0,
   "auto_anchor_results": [
     {
@@ -2766,28 +2894,6 @@
     {
       "model": "travel.ubo.yaml",
       "entity": "TravelOrder",
-      "action": "approve_cancel",
-      "scenario": "create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功 -> request_cancel 发起取消 -> approve_cancel 取消成功",
-      "status": "mapped",
-      "anchor_candidates": [
-        "change"
-      ],
-      "reason": "命中规则：change"
-    },
-    {
-      "model": "travel.ubo.yaml",
-      "entity": "TravelOrder",
-      "action": "cancel_waitlist",
-      "scenario": "create_order 创建 train 订单 -> confirm_quote 确认报价 -> submit_waitlist 提交候补 -> mark_payment_succeeded 支付成功 -> cancel_waitlist 取消候补",
-      "status": "mapped",
-      "anchor_candidates": [
-        "change"
-      ],
-      "reason": "命中规则：change"
-    },
-    {
-      "model": "travel.ubo.yaml",
-      "entity": "TravelOrder",
       "action": "confirm_change",
       "scenario": "create_order 创建 train 订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 已出票 -> request_change 发起改签 -> confirm_change 改签成功",
       "status": "mapped",
@@ -2976,5 +3082,62 @@
   "weak_whitelist_active_rule_count": 0,
   "weak_whitelist_hit_count": 0,
   "weak_whitelist_hits": [],
-  "weak_assertions": []
+  "weak_assertions": [],
+  "complex_precondition_skipped": 9,
+  "complex_precondition_skipped_actions": [
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "mark_payment_succeeded",
+      "reason": "[complex_precondition] action `mark_payment_succeeded` 要求 status=submitted 需从 initial_state `draft` 经 2 步到达，DataFactory 无法自动处理跨实体前置条件"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "mark_booked",
+      "reason": "[complex_precondition] action `mark_booked` 要求 status=booking_pending 需从 initial_state `draft` 经 3 步到达，DataFactory 无法自动处理跨实体前置条件"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "fulfill_waitlist",
+      "reason": "[complex_precondition] action `fulfill_waitlist` 要求 status=booking_pending 需从 initial_state `draft` 经 3 步到达，DataFactory 无法自动处理跨实体前置条件"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "mark_completed",
+      "reason": "[complex_precondition] action `mark_completed` 要求 status=booked 需从 initial_state `draft` 经 4 步到达，DataFactory 无法自动处理跨实体前置条件"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "request_cancel",
+      "reason": "[complex_precondition] action `request_cancel` 要求 status=booked 需从 initial_state `draft` 经 4 步到达，DataFactory 无法自动处理跨实体前置条件"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "cancel_waitlist",
+      "reason": "[complex_precondition] action `cancel_waitlist` 要求 status=booking_pending 需从 initial_state `draft` 经 3 步到达，DataFactory 无法自动处理跨实体前置条件"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "approve_cancel",
+      "reason": "[complex_precondition] action `approve_cancel` 要求 status=cancel_pending 需从 initial_state `draft` 经 5 步到达，DataFactory 无法自动处理跨实体前置条件"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "request_change",
+      "reason": "[complex_precondition] action `request_change` 要求 status=booked 需从 initial_state `draft` 经 4 步到达，DataFactory 无法自动处理跨实体前置条件"
+    },
+    {
+      "model": "travel.ubo.yaml",
+      "entity": "TravelOrder",
+      "action": "mark_order_failed",
+      "reason": "[complex_precondition] action `mark_order_failed` 要求 status=submitted 需从 initial_state `draft` 经 2 步到达，DataFactory 无法自动处理跨实体前置条件"
+    }
+  ]
 }

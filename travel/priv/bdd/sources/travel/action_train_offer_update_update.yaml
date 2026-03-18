@@ -1,7 +1,7 @@
 module: TRAVEL_TRAIN_OFFER
 contract: TrainOffer.update action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-travel-bdd-rerun/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TrainOffer 的动作 update 可执行，accept=[departure_station_ref_id, arrival_station_ref_id, departure_station_name, arrival_station_name, departure_at, arrival_at, seat_class, is_no_seat, inventory_status, waitlist_supported, listed_price, settlement_price, currency, booking_rules_snapshot, change_rules_snapshot, refund_rules_snapshot]，args=[无显式参数] / WHEN 执行动作 update / THEN 输入应满足校验规则，状态变更与副作用应生效
 expected_facts:
 - action_executed
