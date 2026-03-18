@@ -30,7 +30,15 @@
             BIND: Enum("category")
           [SELECT: filter_enabled]
             ATTR: Name("enabled"), Label("状态")
-            BIND: Enum("enabled")
+            [OPTION: opt_all]
+              ATTR: Value("")
+              CONTENT: "全部"
+            [OPTION: opt_true]
+              ATTR: Value("true")
+              CONTENT: "启用"
+            [OPTION: opt_false]
+              ATTR: Value("false")
+              CONTENT: "禁用"
           [BUTTON: filter_submit]
             ATTR: Variant("secondary"), Click("filter_submit")
             CONTENT: "查询"
@@ -60,18 +68,15 @@
               CONTENT: "{{row.name|}}"
             [TABLE_CELL: td_type]
               [BADGE: type_badge]
-                BIND: Enum("constraint_type")
                 CONTENT: "{{row.constraint_type|}}"
             [TABLE_CELL: td_category]
               [BADGE: category_badge]
                 ATTR: Variant("secondary")
-                BIND: Enum("category")
                 CONTENT: "{{row.category|}}"
             [TABLE_CELL: td_weight]
               CONTENT: "{{row.weight|}}"
             [TABLE_CELL: td_enabled]
               [BADGE: enabled_badge]
-                BIND: Enum("enabled")
                 CONTENT: "{{row.enabled|}}"
             [TABLE_CELL: td_notes]
               CONTENT: "{{row.notes|}}"
