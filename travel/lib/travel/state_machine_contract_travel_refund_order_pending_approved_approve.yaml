@@ -1,0 +1,15 @@
+module: TRAVEL_TRAVEL_REFUND_ORDER
+contract: TravelRefundOrder.state_machine.pending->approved.approve
+edge_class: state_machine_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: state transition pending → approved via approve should succeed
+expected_facts:
+- state_transition_verified
+entity: TravelRefundOrder
+domain: Travel
+transition:
+  from: pending
+  to: approved
+  event: approve
+  expected: success
+state_attribute: status

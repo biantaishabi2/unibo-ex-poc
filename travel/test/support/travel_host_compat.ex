@@ -1,4 +1,4 @@
-defmodule Travel.TravelHost.CallerContext do
+defmodule UniboExPoc.TravelHost.CallerContext do
   @moduledoc false
 
   defstruct [
@@ -43,7 +43,7 @@ defmodule Travel.TravelHost.CallerContext do
   end
 end
 
-defmodule Travel.TravelHost.HostConfig do
+defmodule UniboExPoc.TravelHost.HostConfig do
   @moduledoc false
 
   defstruct [
@@ -84,11 +84,11 @@ defmodule Travel.TravelHost.HostConfig do
   defp to_decimal(_value), do: Decimal.new("0")
 end
 
-defmodule Travel.TravelHost.EligibilityOrQuote do
+defmodule UniboExPoc.TravelHost.EligibilityOrQuote do
   @moduledoc false
 
-  alias Travel.TravelHost.CallerContext
-  alias Travel.TravelHost.HostConfig
+  alias UniboExPoc.TravelHost.CallerContext
+  alias UniboExPoc.TravelHost.HostConfig
 
   defstruct [
     :reason,
@@ -256,10 +256,10 @@ defmodule Travel.TravelHost.EligibilityOrQuote do
   defp to_decimal(_value), do: Decimal.new("0")
 end
 
-defmodule Travel.TravelHost.PaymentExecution do
+defmodule UniboExPoc.TravelHost.PaymentExecution do
   @moduledoc false
 
-  alias Travel.TravelHost.EligibilityOrQuote
+  alias UniboExPoc.TravelHost.EligibilityOrQuote
 
   defstruct [
     status: :approved,
@@ -320,7 +320,7 @@ defmodule Travel.TravelHost.PaymentExecution do
   defp to_decimal(_value), do: Decimal.new("0")
 end
 
-defmodule Travel.TravelHost.HTTPTransport do
+defmodule UniboExPoc.TravelHost.HTTPTransport do
   @moduledoc false
 
   def request(operation, payload, opts) do
@@ -350,13 +350,13 @@ defmodule Travel.TravelHost.HTTPTransport do
   end
 end
 
-defmodule Travel.TravelHost.ShopBridgeClient do
+defmodule UniboExPoc.TravelHost.ShopBridgeClient do
   @moduledoc false
 
-  alias Travel.TravelHost.CallerContext
-  alias Travel.TravelHost.EligibilityOrQuote
-  alias Travel.TravelHost.HTTPTransport
-  alias Travel.TravelHost.PaymentExecution
+  alias UniboExPoc.TravelHost.CallerContext
+  alias UniboExPoc.TravelHost.EligibilityOrQuote
+  alias UniboExPoc.TravelHost.HTTPTransport
+  alias UniboExPoc.TravelHost.PaymentExecution
 
   def resolve_context(headers, opts \\ []) do
     transport = Keyword.get(opts, :transport, HTTPTransport)
@@ -412,7 +412,7 @@ defmodule Travel.TravelHost.ShopBridgeClient do
   end
 end
 
-defmodule Travel.TestSupport.FakeShopTransport do
+defmodule UniboExPoc.TestSupport.FakeShopTransport do
   @moduledoc false
 
   def request(operation, payload, opts) do
@@ -429,7 +429,7 @@ defmodule Travel.TestSupport.FakeShopTransport do
   end
 end
 
-defmodule Travel.TravelSupplier.HotelMockAdapter do
+defmodule UniboExPoc.TravelSupplier.HotelMockAdapter do
   @moduledoc false
 
   def pull_incremental_updates(cursor, opts \\ []) do
@@ -453,15 +453,15 @@ defmodule Travel.TravelSupplier.HotelMockAdapter do
   end
 end
 
-defmodule Travel.TravelStack.HotelFlow do
+defmodule UniboExPoc.TravelStack.HotelFlow do
   @moduledoc false
 
-  alias Travel.Travel.TravelFulfillment
-  alias Travel.Travel.TravelOrder
-  alias Travel.TravelHost.CallerContext
-  alias Travel.TravelHost.EligibilityOrQuote
-  alias Travel.TravelHost.HostConfig
-  alias Travel.TravelHost.PaymentExecution
+  alias UniboExPoc.Travel.TravelFulfillment
+  alias UniboExPoc.Travel.TravelOrder
+  alias UniboExPoc.TravelHost.CallerContext
+  alias UniboExPoc.TravelHost.EligibilityOrQuote
+  alias UniboExPoc.TravelHost.HostConfig
+  alias UniboExPoc.TravelHost.PaymentExecution
 
   def book(input, opts \\ []) do
     with {:ok, context} <- resolve_context(input, opts),

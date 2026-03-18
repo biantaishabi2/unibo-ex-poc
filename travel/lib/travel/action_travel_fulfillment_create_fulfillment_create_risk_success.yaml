@@ -1,0 +1,7 @@
+module: TRAVEL_TRAVEL_FULFILLMENT
+contract: TravelFulfillment.create_fulfillment action contract (risk:success)
+edge_class: action_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelFulfillment 的动作 create_fulfillment 可执行 / WHEN 执行动作 create_fulfillment / THEN 成功路径应满足业务约束并持久化结果 / 补充场景：create_fulfillment 创建履约单 -> fail_fulfillment 履约失败；create_fulfillment 创建履约单 -> update 更新供应商号和确认快照 -> destroy 删除草稿
+expected_facts:
+- record_persisted

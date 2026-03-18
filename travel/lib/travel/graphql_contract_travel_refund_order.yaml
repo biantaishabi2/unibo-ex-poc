@@ -1,0 +1,33 @@
+type: graphql_contract
+entity: TravelRefundOrder
+domain: Travel
+module: TRAVEL_TRAVEL_REFUND_ORDER
+fields:
+  - field: get_travel_travel_refund_order
+    kind: query
+    mode: get
+    action: read
+  - field: list_travel_travel_refund_orders
+    kind: query
+    mode: list
+    action: read
+  - field: create_travel_travel_refund_order
+    kind: mutation
+    mode: create
+    action: create
+  - field: approve_travel_travel_refund_order
+    kind: mutation
+    mode: update
+    action: approve
+  - field: reject_travel_travel_refund_order
+    kind: mutation
+    mode: update
+    action: reject
+  - field: refund_travel_travel_refund_order
+    kind: mutation
+    mode: update
+    action: refund
+  - field: refund_direct_travel_travel_refund_order
+    kind: mutation
+    mode: update
+    action: refund_direct

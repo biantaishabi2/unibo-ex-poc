@@ -1,0 +1,14 @@
+module: TRAVEL_TRAVEL_CHANGE_ORDER
+contract: TravelChangeOrder.change_order_lifecycle workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelChangeOrder 定义工作流 change_order_lifecycle / WHEN 验证工作流动作链 ACTION_PATH=create -> approve -> reject -> complete -> complete_direct / THEN 主流程应可达并保持顺序一致
+expected_facts:
+- workflow_checked
+- steps_verified
+action_path:
+- create
+- approve
+- reject
+- complete
+- complete_direct

@@ -1,0 +1,37 @@
+type: graphql_contract
+entity: VacationOffer
+domain: Travel
+module: TRAVEL_VACATION_OFFER
+fields:
+  - field: get_travel_vacation_offer
+    kind: query
+    mode: get
+    action: read
+  - field: list_travel_vacation_offers
+    kind: query
+    mode: list
+    action: read
+  - field: create_travel_vacation_offer
+    kind: mutation
+    mode: create
+    action: create
+  - field: update_travel_vacation_offer
+    kind: mutation
+    mode: update
+    action: update
+  - field: activate_travel_vacation_offer
+    kind: mutation
+    mode: update
+    action: activate
+  - field: deactivate_travel_vacation_offer
+    kind: mutation
+    mode: update
+    action: deactivate
+  - field: expire_travel_vacation_offer
+    kind: mutation
+    mode: update
+    action: expire
+  - field: delete_travel_vacation_offer
+    kind: mutation
+    mode: destroy
+    action: destroy

@@ -1,0 +1,9 @@
+module: TRAVEL_TRAVEL_CHANGE_ORDER
+contract: TravelChangeOrder.change_approval_to_order_confirm reactor contract
+edge_class: reactor_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: 'GIVEN 实体 TravelChangeOrder 声明跨实体 workflow change_approval_to_order_confirm / WHEN 执行 Reactor 编排（步骤: complete[TravelChangeOrder] → confirm_change[TravelOrder]）/ THEN 跨实体级联应成功且补偿链完整'
+expected_facts:
+- reactor_executed
+- cross_entity_cascade_verified
+- compensation_chain_verified

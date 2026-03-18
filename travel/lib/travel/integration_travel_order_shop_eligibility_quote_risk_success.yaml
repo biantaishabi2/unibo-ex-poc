@@ -1,0 +1,28 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.shop_eligibility_quote integration contract (risk:success)
+edge_class: integration_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelOrder 的 integration shop_eligibility_quote 已声明 fake adapter / WHEN 执行绑定动作 [confirm_quote] / THEN 调用结果应成功并满足契约模式 sync
+expected_facts:
+- integration_invoked
+- post_conditions_checked
+declared_error_codes:
+- shop_quote_rejected
+- shop_quote_timeout
+business_post_conditions:
+- allowed
+- amount
+- available_points
+- cash_payment_enabled
+- member_id
+- mixed_payment_allowed
+- payable_amount
+- points_deduction_amount
+- points_enabled
+- points_requested
+- points_sufficient
+- product_type
+- reason
+- recommended_payment_method
+- shop_id
+- travel_enabled

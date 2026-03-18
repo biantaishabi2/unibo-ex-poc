@@ -1,0 +1,49 @@
+type: graphql_contract
+entity: TravelFulfillment
+domain: Travel
+module: TRAVEL_TRAVEL_FULFILLMENT
+fields:
+  - field: get_travel_travel_fulfillment
+    kind: query
+    mode: get
+    action: read
+  - field: list_travel_travel_fulfillments
+    kind: query
+    mode: list
+    action: read
+  - field: create_create_fulfillment_travel_travel_fulfillment
+    kind: mutation
+    mode: create
+    action: create_fulfillment
+  - field: update_travel_travel_fulfillment
+    kind: mutation
+    mode: update
+    action: update
+  - field: confirm_booking_travel_travel_fulfillment
+    kind: mutation
+    mode: update
+    action: confirm_booking
+  - field: issue_voucher_or_ticket_travel_travel_fulfillment
+    kind: mutation
+    mode: update
+    action: issue_voucher_or_ticket
+  - field: mark_in_use_travel_travel_fulfillment
+    kind: mutation
+    mode: update
+    action: mark_in_use
+  - field: complete_fulfillment_travel_travel_fulfillment
+    kind: mutation
+    mode: update
+    action: complete_fulfillment
+  - field: cancel_fulfillment_travel_travel_fulfillment
+    kind: mutation
+    mode: update
+    action: cancel_fulfillment
+  - field: fail_fulfillment_travel_travel_fulfillment
+    kind: mutation
+    mode: update
+    action: fail_fulfillment
+  - field: delete_travel_travel_fulfillment
+    kind: mutation
+    mode: destroy
+    action: destroy

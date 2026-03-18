@@ -1,0 +1,8 @@
+module: TRAVEL_TRAVEL_CHANGE_ORDER
+contract: TravelChangeOrder.change_approval_to_order_confirm reactor contract (risk:partial_failure)
+edge_class: reactor_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelChangeOrder 的跨实体 workflow change_approval_to_order_confirm 中间步骤失败 / WHEN Reactor 检测到部分失败 / THEN 已执行步骤应回滚且最终状态一致
+expected_facts:
+- reactor_executed
+- compensation_chain_verified

@@ -1,0 +1,15 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.state_machine.draft->quoted.confirm_quote
+edge_class: state_machine_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: state transition draft → quoted via confirm_quote should succeed
+expected_facts:
+- state_transition_verified
+entity: TravelOrder
+domain: Travel
+transition:
+  from: draft
+  to: quoted
+  event: confirm_quote
+  expected: success
+state_attribute: status

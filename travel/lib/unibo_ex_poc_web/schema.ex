@@ -5,19 +5,19 @@ defmodule UniboExPocWeb.Schema do
 
   def unibo_runtime_domains do
     [
-      UniboExPoc.Accounting,
-      UniboExPoc.Delivery,
+      UniboExPoc.Travel,
       UniboExPoc.Ecommerce,
-      UniboExPoc.Ofbiz.Accounting,
+      UniboExPoc.Sales,
+      UniboExPoc.Payment,
+      UniboExPoc.Delivery,
+      UniboExPoc.Purchasing,
+      UniboExPoc.Accounting,
       UniboExPoc.Ofbiz.Common,
-      UniboExPoc.Ofbiz.Order,
       UniboExPoc.Ofbiz.Party,
       UniboExPoc.Ofbiz.Product,
+      UniboExPoc.Ofbiz.Order,
       UniboExPoc.Ofbiz.Shipment,
-      UniboExPoc.Payment,
-      UniboExPoc.Purchasing,
-      UniboExPoc.Sales,
-      UniboExPoc.Travel,
+      UniboExPoc.Ofbiz.Accounting,
     ]
   end
 
@@ -32,19 +32,19 @@ defmodule UniboExPocWeb.Schema do
 
   use AshGraphql,
     domains: [
-      UniboExPoc.Accounting,
-      UniboExPoc.Delivery,
+      UniboExPoc.Travel,
       UniboExPoc.Ecommerce,
-      UniboExPoc.Ofbiz.Accounting,
+      UniboExPoc.Sales,
+      UniboExPoc.Payment,
+      UniboExPoc.Delivery,
+      UniboExPoc.Purchasing,
+      UniboExPoc.Accounting,
       UniboExPoc.Ofbiz.Common,
-      UniboExPoc.Ofbiz.Order,
       UniboExPoc.Ofbiz.Party,
       UniboExPoc.Ofbiz.Product,
+      UniboExPoc.Ofbiz.Order,
       UniboExPoc.Ofbiz.Shipment,
-      UniboExPoc.Payment,
-      UniboExPoc.Purchasing,
-      UniboExPoc.Sales,
-      UniboExPoc.Travel,
+      UniboExPoc.Ofbiz.Accounting,
     ]
 
   query do

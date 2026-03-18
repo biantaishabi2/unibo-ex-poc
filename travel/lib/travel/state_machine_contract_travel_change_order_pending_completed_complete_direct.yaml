@@ -1,0 +1,15 @@
+module: TRAVEL_TRAVEL_CHANGE_ORDER
+contract: TravelChangeOrder.state_machine.pending->completed.complete_direct
+edge_class: state_machine_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: state transition pending → completed via complete_direct should succeed
+expected_facts:
+- state_transition_verified
+entity: TravelChangeOrder
+domain: Travel
+transition:
+  from: pending
+  to: completed
+  event: complete_direct
+  expected: success
+state_attribute: status

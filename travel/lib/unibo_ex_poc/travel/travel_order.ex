@@ -31,6 +31,20 @@
 #   mark_order_failed --> [*] : failed
 #   destroy --> [*]
 # ```
+# Workflow: payment_confirmed_to_fulfillment — 订单支付确认后，跨实体创建 TravelFulfillment 并发起供应商预订确认；履约失败时由 TravelFulfillment 自行处理 fail_fulfillment
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> mark_payment_succeeded
+#   mark_payment_succeeded --> [*]
+#   create_fulfillment --> [*]
+# ```
+# Workflow: order_submitted_policy_check — 订单提交后，跨实体创建 TravelPolicyCheck 记录差标校验结果
+# ```mermaid
+# stateDiagram-v2
+#   [*] --> submit_order
+#   submit_order --> [*]
+#   create --> [*]
+# ```
 defmodule UniboExPoc.Travel.TravelOrder do
   use Ash.Resource,
     otp_app: :travel,
@@ -552,6 +566,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
     publish :mark_payment_succeeded, ["travel.order.payment_confirmed"]
     publish :fulfill_waitlist, ["travel.order.waitlist_fulfilled"]
     publish :cancel_waitlist, ["travel.order.waitlist_cancelled"]
+    publish :request_cancel, ["travel.order.cancel_requested"]
     publish :approve_cancel, ["travel.order.cancelled"]
     publish :confirm_change, ["travel.order.change_confirmed"]
     publish :mark_order_failed, ["travel.order.failed"]

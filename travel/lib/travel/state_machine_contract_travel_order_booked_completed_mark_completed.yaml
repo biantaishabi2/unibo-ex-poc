@@ -1,0 +1,15 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.state_machine.booked->completed.mark_completed
+edge_class: state_machine_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: state transition booked → completed via mark_completed should succeed
+expected_facts:
+- state_transition_verified
+entity: TravelOrder
+domain: Travel
+transition:
+  from: booked
+  to: completed
+  event: mark_completed
+  expected: success
+state_attribute: status

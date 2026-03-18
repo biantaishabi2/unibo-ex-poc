@@ -1,0 +1,15 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.shop_caller_context_resolve integration contract (risk:post_condition)
+edge_class: integration_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml
+source_summary: GIVEN integration shop_caller_context_resolve 定义业务后置条件 [current_shop_id, enterprise_id, member_id] / WHEN 调用成功 / THEN 返回结果必须满足后置条件
+expected_facts:
+- integration_invoked
+- post_conditions_checked
+declared_error_codes:
+- shop_context_not_found
+- shop_context_timeout
+business_post_conditions:
+- current_shop_id
+- enterprise_id
+- member_id

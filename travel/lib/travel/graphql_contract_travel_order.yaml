@@ -1,0 +1,77 @@
+type: graphql_contract
+entity: TravelOrder
+domain: Travel
+module: TRAVEL_TRAVEL_ORDER
+fields:
+  - field: get_travel_travel_order
+    kind: query
+    mode: get
+    action: read
+  - field: list_travel_travel_orders
+    kind: query
+    mode: list
+    action: read
+  - field: create_create_order_travel_travel_order
+    kind: mutation
+    mode: create
+    action: create_order
+  - field: update_travel_travel_order
+    kind: mutation
+    mode: update
+    action: update
+  - field: confirm_quote_travel_travel_order
+    kind: mutation
+    mode: update
+    action: confirm_quote
+  - field: submit_order_travel_travel_order
+    kind: mutation
+    mode: update
+    action: submit_order
+  - field: submit_waitlist_travel_travel_order
+    kind: mutation
+    mode: update
+    action: submit_waitlist
+  - field: mark_payment_succeeded_travel_travel_order
+    kind: mutation
+    mode: update
+    action: mark_payment_succeeded
+  - field: mark_booked_travel_travel_order
+    kind: mutation
+    mode: update
+    action: mark_booked
+  - field: fulfill_waitlist_travel_travel_order
+    kind: mutation
+    mode: update
+    action: fulfill_waitlist
+  - field: mark_completed_travel_travel_order
+    kind: mutation
+    mode: update
+    action: mark_completed
+  - field: request_cancel_travel_travel_order
+    kind: mutation
+    mode: update
+    action: request_cancel
+  - field: cancel_waitlist_travel_travel_order
+    kind: mutation
+    mode: update
+    action: cancel_waitlist
+  - field: approve_cancel_travel_travel_order
+    kind: mutation
+    mode: update
+    action: approve_cancel
+  - field: request_change_travel_travel_order
+    kind: mutation
+    mode: update
+    action: request_change
+  - field: confirm_change_travel_travel_order
+    kind: mutation
+    mode: update
+    action: confirm_change
+  - field: mark_order_failed_travel_travel_order
+    kind: mutation
+    mode: update
+    action: mark_order_failed
+  - field: delete_travel_travel_order
+    kind: mutation
+    mode: destroy
+    action: destroy
