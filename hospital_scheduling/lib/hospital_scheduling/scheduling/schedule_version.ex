@@ -1,9 +1,9 @@
 defmodule HospitalScheduling.Scheduling.ScheduleVersion do
   use Ash.Resource,
-    otp_app: :unibo_v4,
+    otp_app: :hospital_scheduling,
     domain: HospitalScheduling.Scheduling,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
@@ -29,6 +29,7 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
       update :update_scheduling_schedule_version, :update
       update :publish_version_scheduling_schedule_version, :publish_version
       update :archive_version_scheduling_schedule_version, :archive_version
+      destroy :delete_scheduling_schedule_version, :destroy
     end
 
   end
@@ -64,6 +65,7 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
+    attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
@@ -88,7 +90,7 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
   end
 
   actions do
-    defaults [:read]
+    defaults [:read, :destroy]
     create :create do
       description "Create Schedule Version via Create. doc_url: graphql://contract/scheduling/create_scheduling_schedule_version"
       primary? true
@@ -148,6 +150,10 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
     store_action_name? true
     belongs_to_actor :user, HospitalScheduling.Accounts.User, allow_nil?: true
     ignore_attributes [:inserted_at, :updated_at]
+  end
+
+  archive do
+    archive_related [:shift_assignments, :constraint_violations]
   end
 
 

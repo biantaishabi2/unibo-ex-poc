@@ -496,6 +496,20 @@
             "message": "只有已生成或已调整状态可以发布"
           }
         ],
+        "events": [
+          {
+            "on": "create",
+            "topic": "scheduling.period.created"
+          },
+          {
+            "on": "mark_generated",
+            "topic": "scheduling.period.generated"
+          },
+          {
+            "on": "mark_adjusted",
+            "topic": "scheduling.period.adjusted"
+          }
+        ],
         "workflows": [
           {
             "name": "scheduling_period_lifecycle",
@@ -543,12 +557,18 @@
           {
             "name": "on_solver_run_complete_feasible",
             "scope": "cross_aggregate",
-            "mode": "async_write_back"
+            "mode": "async_write_back",
+            "write_set": [
+              "state"
+            ]
           },
           {
             "name": "on_schedule_version_publish",
             "scope": "cross_aggregate",
-            "mode": "async_write_back"
+            "mode": "async_write_back",
+            "write_set": [
+              "state"
+            ]
           }
         ],
         "state_machine": {
@@ -929,6 +949,10 @@
               }
             ],
             "description": "归档此版本"
+          },
+          {
+            "name": "destroy",
+            "type": "destroy"
           }
         ],
         "validations": [
@@ -967,6 +991,16 @@
               "period_id",
               "version_no"
             ]
+          }
+        ],
+        "events": [
+          {
+            "on": "publish_version",
+            "topic": "scheduling.version.published"
+          },
+          {
+            "on": "archive_version",
+            "topic": "scheduling.version.archived"
           }
         ]
       },
@@ -1162,6 +1196,20 @@
               "employee_id",
               "starts_at"
             ]
+          }
+        ],
+        "events": [
+          {
+            "on": "create",
+            "topic": "scheduling.assignment.created"
+          },
+          {
+            "on": "lock",
+            "topic": "scheduling.assignment.locked"
+          },
+          {
+            "on": "unlock",
+            "topic": "scheduling.assignment.unlocked"
           }
         ]
       },
@@ -1762,6 +1810,10 @@
               }
             ],
             "description": "最终完成（用户确认采用此结果）"
+          },
+          {
+            "name": "destroy",
+            "type": "destroy"
           }
         ],
         "validations": [
@@ -1795,6 +1847,28 @@
             "message": "只有运行中状态可以完成"
           }
         ],
+        "events": [
+          {
+            "on": "start_run",
+            "topic": "scheduling.solver.started"
+          },
+          {
+            "on": "complete_feasible",
+            "topic": "scheduling.solver.completed"
+          },
+          {
+            "on": "complete_infeasible",
+            "topic": "scheduling.solver.infeasible"
+          },
+          {
+            "on": "mark_error",
+            "topic": "scheduling.solver.errored"
+          },
+          {
+            "on": "mark_timeout",
+            "topic": "scheduling.solver.timed_out"
+          }
+        ],
         "workflows": [
           {
             "name": "solver_run_lifecycle",
@@ -1826,6 +1900,62 @@
                 "next": [
                   "mark_completed"
                 ]
+              }
+            ]
+          }
+        ],
+        "integrations": [
+          {
+            "name": "rust_solver_invoke",
+            "on": [
+              "start_run"
+            ],
+            "mode": "async",
+            "request": [
+              {
+                "name": "period_id",
+                "type": "uuid"
+              },
+              {
+                "name": "constraints",
+                "type": "map"
+              },
+              {
+                "name": "preferences",
+                "type": "map"
+              }
+            ],
+            "response": [
+              {
+                "name": "solution",
+                "type": "map"
+              },
+              {
+                "name": "feasibility",
+                "type": "string"
+              },
+              {
+                "name": "score",
+                "type": "decimal"
+              }
+            ],
+            "async": {
+              "queue": "solver_jobs",
+              "timeout_ms": 300000,
+              "idempotency_key": "period_id"
+            },
+            "errors": [
+              {
+                "code": "solver_timeout",
+                "retryable": true
+              },
+              {
+                "code": "solver_crash",
+                "retryable": true
+              },
+              {
+                "code": "invalid_input",
+                "retryable": false
               }
             ]
           }

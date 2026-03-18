@@ -620,6 +620,8 @@ entities:
           - effect: set_attribute
             field: status
             value: archived
+      - name: destroy
+        type: destroy
     validations:
       - rule: one_of
         field: status
@@ -1160,6 +1162,8 @@ entities:
           - effect: set_attribute
             field: status
             value: completed
+      - name: destroy
+        type: destroy
     state_machine:
       initial_state: pending
       state_attribute: status
