@@ -1,0 +1,45 @@
+type: graphql_contract
+entity: SolverRun
+domain: Scheduling
+module: SCHEDULING_SOLVER_RUN
+fields:
+  - field: get_scheduling_solver_run
+    kind: query
+    mode: get
+    action: read
+  - field: list_scheduling_solver_runs
+    kind: query
+    mode: list
+    action: read
+  - field: create_scheduling_solver_run
+    kind: mutation
+    mode: create
+    action: create
+  - field: update_scheduling_solver_run
+    kind: mutation
+    mode: update
+    action: update
+  - field: start_run_scheduling_solver_run
+    kind: mutation
+    mode: update
+    action: start_run
+  - field: complete_feasible_scheduling_solver_run
+    kind: mutation
+    mode: update
+    action: complete_feasible
+  - field: complete_infeasible_scheduling_solver_run
+    kind: mutation
+    mode: update
+    action: complete_infeasible
+  - field: mark_timeout_scheduling_solver_run
+    kind: mutation
+    mode: update
+    action: mark_timeout
+  - field: mark_error_scheduling_solver_run
+    kind: mutation
+    mode: update
+    action: mark_error
+  - field: mark_completed_scheduling_solver_run
+    kind: mutation
+    mode: update
+    action: mark_completed

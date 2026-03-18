@@ -78,3 +78,8 @@ GIVEN given_seed_context id="action_shift_assignment_update_update" module="SCHE
 WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
 THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"
 
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-graphql_contract_shift_assignment] TITLE: SCHEDULING_SHIFT_ASSIGNMENT contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_shift_assignment" module="SCHEDULING_SHIFT_ASSIGNMENT"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"

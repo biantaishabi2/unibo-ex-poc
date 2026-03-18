@@ -1,0 +1,29 @@
+type: graphql_contract
+entity: ScheduleVersion
+domain: Scheduling
+module: SCHEDULING_SCHEDULE_VERSION
+fields:
+  - field: get_scheduling_schedule_version
+    kind: query
+    mode: get
+    action: read
+  - field: list_scheduling_schedule_versions
+    kind: query
+    mode: list
+    action: read
+  - field: create_scheduling_schedule_version
+    kind: mutation
+    mode: create
+    action: create
+  - field: update_scheduling_schedule_version
+    kind: mutation
+    mode: update
+    action: update
+  - field: publish_version_scheduling_schedule_version
+    kind: mutation
+    mode: update
+    action: publish_version
+  - field: archive_version_scheduling_schedule_version
+    kind: mutation
+    mode: update
+    action: archive_version

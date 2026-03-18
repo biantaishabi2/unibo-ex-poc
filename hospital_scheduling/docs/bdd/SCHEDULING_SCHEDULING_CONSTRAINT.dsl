@@ -17,3 +17,8 @@ THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_CONSTRAINT"
 GIVEN given_seed_context id="action_scheduling_constraint_update_update" module="SCHEDULING_SCHEDULING_CONSTRAINT"
 WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_CONSTRAINT"
 THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_CONSTRAINT"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_CONSTRAINT-SEED-graphql_contract_scheduling_constraint] TITLE: SCHEDULING_SCHEDULING_CONSTRAINT contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_scheduling_constraint" module="SCHEDULING_SCHEDULING_CONSTRAINT"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_CONSTRAINT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_CONSTRAINT"

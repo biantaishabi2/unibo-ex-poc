@@ -1,0 +1,33 @@
+type: graphql_contract
+entity: ShiftAssignment
+domain: Scheduling
+module: SCHEDULING_SHIFT_ASSIGNMENT
+fields:
+  - field: get_scheduling_shift_assignment
+    kind: query
+    mode: get
+    action: read
+  - field: list_scheduling_shift_assignments
+    kind: query
+    mode: list
+    action: read
+  - field: create_scheduling_shift_assignment
+    kind: mutation
+    mode: create
+    action: create
+  - field: update_scheduling_shift_assignment
+    kind: mutation
+    mode: update
+    action: update
+  - field: lock_scheduling_shift_assignment
+    kind: mutation
+    mode: update
+    action: lock
+  - field: unlock_scheduling_shift_assignment
+    kind: mutation
+    mode: update
+    action: unlock
+  - field: delete_scheduling_shift_assignment
+    kind: mutation
+    mode: destroy
+    action: destroy

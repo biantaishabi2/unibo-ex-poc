@@ -1,0 +1,41 @@
+type: graphql_contract
+entity: SchedulingPeriod
+domain: Scheduling
+module: SCHEDULING_SCHEDULING_PERIOD
+fields:
+  - field: get_scheduling_scheduling_period
+    kind: query
+    mode: get
+    action: read
+  - field: list_scheduling_scheduling_periods
+    kind: query
+    mode: list
+    action: read
+  - field: create_scheduling_scheduling_period
+    kind: mutation
+    mode: create
+    action: create
+  - field: update_scheduling_scheduling_period
+    kind: mutation
+    mode: update
+    action: update
+  - field: start_generating_scheduling_scheduling_period
+    kind: mutation
+    mode: update
+    action: start_generating
+  - field: mark_generated_scheduling_scheduling_period
+    kind: mutation
+    mode: update
+    action: mark_generated
+  - field: mark_adjusted_scheduling_scheduling_period
+    kind: mutation
+    mode: update
+    action: mark_adjusted
+  - field: publish_scheduling_scheduling_period
+    kind: mutation
+    mode: update
+    action: publish
+  - field: delete_scheduling_scheduling_period
+    kind: mutation
+    mode: destroy
+    action: destroy

@@ -1,0 +1,13 @@
+type: graphql_contract
+entity: Department
+domain: Scheduling
+module: SCHEDULING_DEPARTMENT
+fields:
+  - field: get_scheduling_department
+    kind: query
+    mode: get
+    action: read
+  - field: list_scheduling_departments
+    kind: query
+    mode: list
+    action: read
