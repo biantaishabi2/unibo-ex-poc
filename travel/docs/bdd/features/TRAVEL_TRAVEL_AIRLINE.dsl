@@ -14,3 +14,8 @@ THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"
 GIVEN given_seed_context id="action_travel_airline_update_update" module="TRAVEL_TRAVEL_AIRLINE"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_AIRLINE-SEED-graphql_contract_travel_airline] TITLE: TRAVEL_TRAVEL_AIRLINE contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_travel_airline" module="TRAVEL_TRAVEL_AIRLINE"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_AIRLINE"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_AIRLINE"

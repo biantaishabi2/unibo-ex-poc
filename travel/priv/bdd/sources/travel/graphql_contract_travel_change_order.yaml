@@ -1,0 +1,33 @@
+type: graphql_contract
+entity: TravelChangeOrder
+domain: Travel
+module: TRAVEL_TRAVEL_CHANGE_ORDER
+fields:
+  - field: get_travel_travel_change_order
+    kind: query
+    mode: get
+    action: read
+  - field: list_travel_travel_change_orders
+    kind: query
+    mode: list
+    action: read
+  - field: create_travel_travel_change_order
+    kind: mutation
+    mode: create
+    action: create
+  - field: approve_travel_travel_change_order
+    kind: mutation
+    mode: update
+    action: approve
+  - field: reject_travel_travel_change_order
+    kind: mutation
+    mode: update
+    action: reject
+  - field: complete_travel_travel_change_order
+    kind: mutation
+    mode: update
+    action: complete
+  - field: complete_direct_travel_travel_change_order
+    kind: mutation
+    mode: update
+    action: complete_direct

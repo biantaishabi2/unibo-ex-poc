@@ -1,0 +1,21 @@
+type: graphql_contract
+entity: TravelStaticCodeMapping
+domain: Travel
+module: TRAVEL_TRAVEL_STATIC_CODE_MAPPING
+fields:
+  - field: get_travel_travel_static_code_mapping
+    kind: query
+    mode: get
+    action: read
+  - field: list_travel_travel_static_code_mappings
+    kind: query
+    mode: list
+    action: read
+  - field: create_travel_travel_static_code_mapping
+    kind: mutation
+    mode: create
+    action: create
+  - field: update_travel_travel_static_code_mapping
+    kind: mutation
+    mode: update
+    action: update

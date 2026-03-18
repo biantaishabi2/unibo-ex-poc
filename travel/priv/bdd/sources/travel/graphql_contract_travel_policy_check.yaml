@@ -1,0 +1,17 @@
+type: graphql_contract
+entity: TravelPolicyCheck
+domain: Travel
+module: TRAVEL_TRAVEL_POLICY_CHECK
+fields:
+  - field: get_travel_travel_policy_check
+    kind: query
+    mode: get
+    action: read
+  - field: list_travel_travel_policy_checks
+    kind: query
+    mode: list
+    action: read
+  - field: create_travel_travel_policy_check
+    kind: mutation
+    mode: create
+    action: create

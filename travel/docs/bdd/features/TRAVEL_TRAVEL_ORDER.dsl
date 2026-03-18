@@ -124,3 +124,8 @@ THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 GIVEN given_seed_context id="integration_travel_order_supplier_booking_submit" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-graphql_contract_travel_order] TITLE: TRAVEL_TRAVEL_ORDER contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_travel_order" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"

@@ -1,0 +1,21 @@
+type: graphql_contract
+entity: TravelRoomType
+domain: Travel
+module: TRAVEL_TRAVEL_ROOM_TYPE
+fields:
+  - field: get_travel_travel_room_type
+    kind: query
+    mode: get
+    action: read
+  - field: list_travel_travel_room_types
+    kind: query
+    mode: list
+    action: read
+  - field: create_travel_travel_room_type
+    kind: mutation
+    mode: create
+    action: create
+  - field: update_travel_travel_room_type
+    kind: mutation
+    mode: update
+    action: update

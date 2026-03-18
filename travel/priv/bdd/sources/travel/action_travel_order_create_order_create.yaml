@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_ORDER
 contract: TravelOrder.create_order action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-travel-bdd-rerun/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-graphql/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelOrder 的动作 create_order 可执行，accept=[tenant_id, host_shop_id, hotel_offer_id, flight_offer_id, vacation_offer_id, train_offer_id, order_no, product_type, customer_id, contact_name, contact_phone, traveler_count, total_amount, points_to_use, points_deduction_amount, currency, ticket_passenger_infos, seat_selection_snapshot]，args=[无显式参数] / WHEN 执行动作 create_order / THEN 输入应满足校验规则，状态变更与副作用应生效 / 补充场景：create_order 创建订单 -> update 更新联系人和出行人数量 -> destroy 删除草稿
 expected_facts:
 - action_executed

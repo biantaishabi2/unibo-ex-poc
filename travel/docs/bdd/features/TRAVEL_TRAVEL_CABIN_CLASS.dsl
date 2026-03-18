@@ -14,3 +14,8 @@ THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"
 GIVEN given_seed_context id="action_travel_cabin_class_update_update" module="TRAVEL_TRAVEL_CABIN_CLASS"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_CABIN_CLASS-SEED-graphql_contract_travel_cabin_class] TITLE: TRAVEL_TRAVEL_CABIN_CLASS contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_travel_cabin_class" module="TRAVEL_TRAVEL_CABIN_CLASS"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_CABIN_CLASS"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_CABIN_CLASS"

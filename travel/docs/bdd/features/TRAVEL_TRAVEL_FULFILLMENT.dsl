@@ -94,3 +94,8 @@ THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 GIVEN given_seed_context id="integration_travel_fulfillment_supplier_issue_document" module="TRAVEL_TRAVEL_FULFILLMENT"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-graphql_contract_travel_fulfillment] TITLE: TRAVEL_TRAVEL_FULFILLMENT contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_travel_fulfillment" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"

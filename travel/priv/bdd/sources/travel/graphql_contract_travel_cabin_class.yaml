@@ -1,0 +1,21 @@
+type: graphql_contract
+entity: TravelCabinClass
+domain: Travel
+module: TRAVEL_TRAVEL_CABIN_CLASS
+fields:
+  - field: get_travel_travel_cabin_class
+    kind: query
+    mode: get
+    action: read
+  - field: list_travel_travel_cabin_classs
+    kind: query
+    mode: list
+    action: read
+  - field: create_travel_travel_cabin_class
+    kind: mutation
+    mode: create
+    action: create
+  - field: update_travel_travel_cabin_class
+    kind: mutation
+    mode: update
+    action: update

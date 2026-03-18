@@ -44,3 +44,8 @@ THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
 GIVEN given_seed_context id="workflow_travel_policy_policy_lifecycle" module="TRAVEL_TRAVEL_POLICY"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-graphql_contract_travel_policy] TITLE: TRAVEL_TRAVEL_POLICY contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_travel_policy" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"

@@ -1,6 +1,6 @@
 {
   "total_models": 1,
-  "generated_files": 144,
+  "generated_files": 159,
   "action_sources": 81,
   "event_sources": 35,
   "workflow_sources": 13,
@@ -3083,6 +3083,7 @@
   "weak_whitelist_hit_count": 0,
   "weak_whitelist_hits": [],
   "weak_assertions": [],
+  "graphql_contract_sources": 15,
   "complex_precondition_skipped": 9,
   "complex_precondition_skipped_actions": [
     {
