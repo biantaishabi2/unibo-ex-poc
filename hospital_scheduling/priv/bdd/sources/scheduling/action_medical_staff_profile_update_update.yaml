@@ -1,7 +1,7 @@
 module: SCHEDULING_MEDICAL_STAFF_PROFILE
 contract: MedicalStaffProfile.update action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-sched-bdd-rerun/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: GIVEN 实体 MedicalStaffProfile 的动作 update 可执行，accept=[maturity_score, can_lead_shift, work_restrictions, overtime_willing, notes]，args=[无显式参数] / WHEN 执行动作 update / THEN 保留基础行为占位（建议补充 validation/change）
 expected_facts:
 - action_executed

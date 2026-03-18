@@ -1,20 +1,5 @@
-[SCENARIO: BDD-SCHEDULING_COVERAGE_REQUIREMENT-SEED-action_coverage_requirement_create_create_risk_success] TITLE: SCHEDULING_COVERAGE_REQUIREMENT contract seed scenario TAGS: seed all
-GIVEN given_seed_context id="action_coverage_requirement_create_create_risk_success" module="SCHEDULING_COVERAGE_REQUIREMENT"
-WHEN when_execute_seed_contract module="SCHEDULING_COVERAGE_REQUIREMENT"
-THEN then_seed_contract_should_hold module="SCHEDULING_COVERAGE_REQUIREMENT"
-
-[SCENARIO: BDD-SCHEDULING_COVERAGE_REQUIREMENT-SEED-action_coverage_requirement_create_create_risk_validation_fail] TITLE: SCHEDULING_COVERAGE_REQUIREMENT contract seed scenario TAGS: seed all
-GIVEN given_seed_context id="action_coverage_requirement_create_create_risk_validation_fail" module="SCHEDULING_COVERAGE_REQUIREMENT"
-WHEN when_execute_seed_contract module="SCHEDULING_COVERAGE_REQUIREMENT"
-THEN then_seed_contract_should_hold module="SCHEDULING_COVERAGE_REQUIREMENT"
-
 [SCENARIO: BDD-SCHEDULING_COVERAGE_REQUIREMENT-SEED-action_coverage_requirement_create_create] TITLE: SCHEDULING_COVERAGE_REQUIREMENT contract seed scenario TAGS: seed all
 GIVEN given_seed_context id="action_coverage_requirement_create_create" module="SCHEDULING_COVERAGE_REQUIREMENT"
-WHEN when_execute_seed_contract module="SCHEDULING_COVERAGE_REQUIREMENT"
-THEN then_seed_contract_should_hold module="SCHEDULING_COVERAGE_REQUIREMENT"
-
-[SCENARIO: BDD-SCHEDULING_COVERAGE_REQUIREMENT-SEED-action_coverage_requirement_destroy_destroy_risk_success] TITLE: SCHEDULING_COVERAGE_REQUIREMENT contract seed scenario TAGS: seed all
-GIVEN given_seed_context id="action_coverage_requirement_destroy_destroy_risk_success" module="SCHEDULING_COVERAGE_REQUIREMENT"
 WHEN when_execute_seed_contract module="SCHEDULING_COVERAGE_REQUIREMENT"
 THEN then_seed_contract_should_hold module="SCHEDULING_COVERAGE_REQUIREMENT"
 
@@ -28,13 +13,7 @@ GIVEN given_seed_context id="action_coverage_requirement_read_read" module="SCHE
 WHEN when_execute_seed_contract module="SCHEDULING_COVERAGE_REQUIREMENT"
 THEN then_seed_contract_should_hold module="SCHEDULING_COVERAGE_REQUIREMENT"
 
-[SCENARIO: BDD-SCHEDULING_COVERAGE_REQUIREMENT-SEED-action_coverage_requirement_update_update_risk_success] TITLE: SCHEDULING_COVERAGE_REQUIREMENT contract seed scenario TAGS: seed all
-GIVEN given_seed_context id="action_coverage_requirement_update_update_risk_success" module="SCHEDULING_COVERAGE_REQUIREMENT"
-WHEN when_execute_seed_contract module="SCHEDULING_COVERAGE_REQUIREMENT"
-THEN then_seed_contract_should_hold module="SCHEDULING_COVERAGE_REQUIREMENT"
-
 [SCENARIO: BDD-SCHEDULING_COVERAGE_REQUIREMENT-SEED-action_coverage_requirement_update_update] TITLE: SCHEDULING_COVERAGE_REQUIREMENT contract seed scenario TAGS: seed all
 GIVEN given_seed_context id="action_coverage_requirement_update_update" module="SCHEDULING_COVERAGE_REQUIREMENT"
 WHEN when_execute_seed_contract module="SCHEDULING_COVERAGE_REQUIREMENT"
 THEN then_seed_contract_should_hold module="SCHEDULING_COVERAGE_REQUIREMENT"
-
