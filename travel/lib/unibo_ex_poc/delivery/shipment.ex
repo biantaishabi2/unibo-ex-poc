@@ -23,7 +23,6 @@ defmodule UniboExPoc.Delivery.Shipment do
     domain: UniboExPoc.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    authorizers: [Ash.Policy.Authorizer],
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
@@ -284,24 +283,6 @@ defmodule UniboExPoc.Delivery.Shipment do
 
   archive do
     archive_related [:shipment_items, :shipment_packages, :route_segments, :status_history]
-  end
-
-  policies do
-    policy action_type(:read) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:company_party)
-    end
-    policy action_type(:update) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:company_party)
-    end
-    policy action_type(:create) do
-      forbid_unless relates_to_actor_via(:company_party)
-      authorize_if expr(^actor(:role) in [:logistics_manager, :admin])
-    end
-    policy always() do
-      authorize_if always()
-    end
   end
 
 

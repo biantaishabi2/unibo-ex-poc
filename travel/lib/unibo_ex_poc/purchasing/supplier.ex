@@ -16,8 +16,7 @@ defmodule UniboExPoc.Purchasing.Supplier do
     otp_app: :travel,
     domain: UniboExPoc.Purchasing,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    authorizers: [Ash.Policy.Authorizer]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
 
   resource do
     description "供应商主数据（对应 OFBiz PartyGroup + PartyRole SUPPLIER）"
@@ -207,23 +206,6 @@ defmodule UniboExPoc.Purchasing.Supplier do
     change_tracking_mode :full_diff
     store_action_name? true
     ignore_attributes [:inserted_at, :updated_at]
-  end
-
-  policies do
-    policy action_type(:read) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:company_party)
-    end
-    policy action_type(:update) do
-      authorize_if expr(^actor(:role) == :admin)
-      authorize_if relates_to_actor_via(:company_party)
-    end
-    policy action_type(:create) do
-      authorize_if expr(actor.role in [:buyer, :admin])
-    end
-    policy always() do
-      authorize_if always()
-    end
   end
 
 end

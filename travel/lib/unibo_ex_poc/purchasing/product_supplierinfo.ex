@@ -14,7 +14,6 @@ defmodule UniboExPoc.Purchasing.ProductSupplierinfo do
     domain: UniboExPoc.Purchasing,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    authorizers: [Ash.Policy.Authorizer],
     notifiers: [UniboExPoc.Purchasing.ProductSupplierinfo.Notifier]
 
   resource do
@@ -204,15 +203,6 @@ defmodule UniboExPoc.Purchasing.ProductSupplierinfo do
   end
 
   archive do
-  end
-
-  policies do
-    policy action_type(:create) do
-      authorize_if always()
-    end
-    policy always() do
-      authorize_if always()
-    end
   end
 
 end
