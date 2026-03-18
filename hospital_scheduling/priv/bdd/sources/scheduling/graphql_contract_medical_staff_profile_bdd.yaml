@@ -1,7 +1,7 @@
 module: SCHEDULING_MEDICAL_STAFF_PROFILE
 contract: Scheduling.MedicalStaffProfile graphql contract
 edge_class: graphql_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-runtime/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-risk/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: 'GIVEN 实体 Scheduling.MedicalStaffProfile 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 4 个 field 应存在: [get_scheduling_medical_staff_profile(query:get:read), list_scheduling_medical_staff_profiles(query:list:read), create_scheduling_medical_staff_profile(mutation:create:create), update_scheduling_medical_staff_profile(mutation:update:update)]'
 expected_facts:
 - graphql_schema_loaded

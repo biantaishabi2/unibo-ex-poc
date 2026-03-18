@@ -1,0 +1,8 @@
+module: SCHEDULING_SCHEDULING_PERIOD
+contract: SchedulingPeriod.on_schedule_version_publish determination contract (risk:read_set_unavailable)
+edge_class: determination_contract
+source_file: /home/wangbo/unibo_ex_poc-sched-risk/hospital_scheduling/models/scheduling.ubo.yaml
+source_summary: GIVEN 实体 SchedulingPeriod 的跨聚合 determine_action on_schedule_version_publish 的 read_set [无] 包含不可达路径 / WHEN 读取失败 / THEN 应返回明确错误且不执行写回
+expected_facts:
+- determination_checked
+- read_failure_handled

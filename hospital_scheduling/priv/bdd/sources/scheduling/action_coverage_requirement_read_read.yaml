@@ -1,7 +1,7 @@
 module: SCHEDULING_COVERAGE_REQUIREMENT
 contract: CoverageRequirement.read action contract
 edge_class: action_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-runtime/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-risk/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: GIVEN 实体 CoverageRequirement 的动作 read 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 read / THEN 读取结果应符合查询语义
 expected_facts:
 - action_executed

@@ -36,5 +36,40 @@
     async?: false,
     eventually?: false,
     assert_class: nil
+  },
+
+  # -- graphql contract 指令 --
+  given_graphql_schema_loaded: %{
+    args: %{module: %{type: :string, required?: true, allowed: nil}},
+    kind: :given,
+    outputs: %{},
+    rules: [],
+    scopes: [:integration, :e2e],
+    boundary: :service,
+    async?: false,
+    eventually?: false,
+    assert_class: nil
+  },
+  when_introspect_graphql_fields: %{
+    args: %{module: %{type: :string, required?: true, allowed: nil}},
+    kind: :when,
+    outputs: %{},
+    rules: [],
+    scopes: [:integration, :e2e],
+    boundary: :service,
+    async?: false,
+    eventually?: false,
+    assert_class: nil
+  },
+  then_graphql_contract_should_hold: %{
+    args: %{module: %{type: :string, required?: true, allowed: nil}},
+    kind: :then,
+    outputs: %{},
+    rules: [],
+    scopes: [:integration, :e2e],
+    boundary: :service,
+    async?: false,
+    eventually?: false,
+    assert_class: nil
   }
 }
