@@ -97,6 +97,7 @@
             [FLEX: vio_item]
               { Gap: 2, Align: "Center" }
               [BADGE: vio_severity]
+                BIND: Enum("severity")
                 CONTENT: "{{vio.severity|}}"
               [TEXT: vio_message]
                 ATTR: Variant("caption")

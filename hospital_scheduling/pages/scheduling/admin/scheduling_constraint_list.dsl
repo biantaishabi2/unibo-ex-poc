@@ -24,13 +24,13 @@
           { Gap: 4, Align: "Center" }
           [SELECT: filter_constraint_type]
             ATTR: Name("constraint_type"), Label("约束类型")
-            CONTENT: "全部:,硬约束:hard,软约束:soft"
+            BIND: Enum("constraint_type")
           [SELECT: filter_category]
             ATTR: Name("category"), Label("规则类别")
-            CONTENT: "全部:,夜班后休息:rest_after_night,最大连续天数:max_consecutive_days,请假尊重:respect_leave,技能要求:skill_requirement,月度工时上限:max_monthly_hours,带班覆盖:lead_coverage,夜班公平:fair_night_distribution,周末公平:fair_weekend_distribution,偏好尊重:respect_preference,连续夜班限制:limit_consecutive_nights,班次连续性:shift_continuity"
+            BIND: Enum("category")
           [SELECT: filter_enabled]
             ATTR: Name("enabled"), Label("状态")
-            CONTENT: "全部:,启用:true,停用:false"
+            BIND: Enum("enabled")
           [BUTTON: filter_submit]
             ATTR: Variant("secondary"), Click("filter_submit")
             CONTENT: "查询"
@@ -60,15 +60,18 @@
               CONTENT: "{{row.name|}}"
             [TABLE_CELL: td_type]
               [BADGE: type_badge]
+                BIND: Enum("constraint_type")
                 CONTENT: "{{row.constraint_type|}}"
             [TABLE_CELL: td_category]
               [BADGE: category_badge]
                 ATTR: Variant("secondary")
+                BIND: Enum("category")
                 CONTENT: "{{row.category|}}"
             [TABLE_CELL: td_weight]
               CONTENT: "{{row.weight|}}"
             [TABLE_CELL: td_enabled]
               [BADGE: enabled_badge]
+                BIND: Enum("enabled")
                 CONTENT: "{{row.enabled|}}"
             [TABLE_CELL: td_notes]
               CONTENT: "{{row.notes|}}"
