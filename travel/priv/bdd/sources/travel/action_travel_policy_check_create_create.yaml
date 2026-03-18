@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_POLICY_CHECK
 contract: TravelPolicyCheck.create action contract
 edge_class: action_contract
-source_file: /home/wangbo/unibo_ex_poc-travel-full/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelPolicyCheck 的动作 create 可执行，accept=[order_id, policy_id, check_result, policy_amount, actual_amount, exceed_amount, exceed_ratio, exceed_strategy, exceed_reason, personal_pay_amount, approval_request_id, approval_mode]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效
 expected_facts:
 - action_executed

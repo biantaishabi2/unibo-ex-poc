@@ -5,8 +5,38 @@ GIVEN given_seed_context id="action_travel_fulfillment_cancel_fulfillment_update
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_cancel_fulfillment_update_risk_change_effect] TITLE: TravelFulfillment.cancel_fulfillment action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_cancel_fulfillment_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_cancel_fulfillment_update_risk_success] TITLE: TravelFulfillment.cancel_fulfillment action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_cancel_fulfillment_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_cancel_fulfillment_update_risk_validation_fail] TITLE: TravelFulfillment.cancel_fulfillment action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_cancel_fulfillment_update_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_complete_fulfillment_update] TITLE: TravelFulfillment.complete_fulfillment action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_fulfillment_complete_fulfillment_update" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_complete_fulfillment_update_risk_change_effect] TITLE: TravelFulfillment.complete_fulfillment action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_complete_fulfillment_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_complete_fulfillment_update_risk_success] TITLE: TravelFulfillment.complete_fulfillment action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_complete_fulfillment_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_complete_fulfillment_update_risk_validation_fail] TITLE: TravelFulfillment.complete_fulfillment action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_complete_fulfillment_update_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
@@ -15,8 +45,38 @@ GIVEN given_seed_context id="action_travel_fulfillment_confirm_booking_update" m
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_confirm_booking_update_risk_change_effect] TITLE: TravelFulfillment.confirm_booking action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_confirm_booking_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_confirm_booking_update_risk_success] TITLE: TravelFulfillment.confirm_booking action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_confirm_booking_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_confirm_booking_update_risk_validation_fail] TITLE: TravelFulfillment.confirm_booking action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_confirm_booking_update_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_create_fulfillment_create] TITLE: TravelFulfillment.create_fulfillment action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_fulfillment_create_fulfillment_create" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_create_fulfillment_create_risk_change_effect] TITLE: TravelFulfillment.create_fulfillment action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_create_fulfillment_create_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_create_fulfillment_create_risk_success] TITLE: TravelFulfillment.create_fulfillment action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_create_fulfillment_create_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_create_fulfillment_create_risk_validation_fail] TITLE: TravelFulfillment.create_fulfillment action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_create_fulfillment_create_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
@@ -25,8 +85,33 @@ GIVEN given_seed_context id="action_travel_fulfillment_destroy_destroy" module="
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_destroy_destroy_risk_change_effect] TITLE: TravelFulfillment.destroy action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_destroy_destroy_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_destroy_destroy_risk_success] TITLE: TravelFulfillment.destroy action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_destroy_destroy_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_fail_fulfillment_update] TITLE: TravelFulfillment.fail_fulfillment action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_fulfillment_fail_fulfillment_update" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_fail_fulfillment_update_risk_change_effect] TITLE: TravelFulfillment.fail_fulfillment action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_fail_fulfillment_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_fail_fulfillment_update_risk_success] TITLE: TravelFulfillment.fail_fulfillment action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_fail_fulfillment_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_fail_fulfillment_update_risk_validation_fail] TITLE: TravelFulfillment.fail_fulfillment action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_fail_fulfillment_update_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
@@ -35,8 +120,38 @@ GIVEN given_seed_context id="action_travel_fulfillment_issue_voucher_or_ticket_u
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_issue_voucher_or_ticket_update_risk_change_effect] TITLE: TravelFulfillment.issue_voucher_or_ticket action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_issue_voucher_or_ticket_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_issue_voucher_or_ticket_update_risk_success] TITLE: TravelFulfillment.issue_voucher_or_ticket action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_issue_voucher_or_ticket_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_issue_voucher_or_ticket_update_risk_validation_fail] TITLE: TravelFulfillment.issue_voucher_or_ticket action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_issue_voucher_or_ticket_update_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_mark_in_use_update] TITLE: TravelFulfillment.mark_in_use action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_fulfillment_mark_in_use_update" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_mark_in_use_update_risk_change_effect] TITLE: TravelFulfillment.mark_in_use action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_mark_in_use_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_mark_in_use_update_risk_success] TITLE: TravelFulfillment.mark_in_use action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_mark_in_use_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_mark_in_use_update_risk_validation_fail] TITLE: TravelFulfillment.mark_in_use action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_mark_in_use_update_risk_validation_fail" module="TRAVEL_TRAVEL_FULFILLMENT"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
@@ -50,8 +165,28 @@ GIVEN given_seed_context id="action_travel_fulfillment_update_update" module="TR
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_update_update_risk_change_effect] TITLE: TravelFulfillment.update action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_update_update_risk_change_effect" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-action_travel_fulfillment_update_update_risk_success] TITLE: TravelFulfillment.update action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_fulfillment_update_update_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled] TITLE: TravelFulfillment.cancel_fulfillment event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_idempotent_replay] TITLE: TravelFulfillment.cancel_fulfillment event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_idempotent_replay" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_normal_publish] TITLE: TravelFulfillment.cancel_fulfillment event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_fulfillment_cancel_fulfillment_travel_fulfillment_cancelled_risk_normal_publish" module="TRAVEL_TRAVEL_FULFILLMENT"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
@@ -60,8 +195,28 @@ GIVEN given_seed_context id="event_travel_fulfillment_complete_fulfillment_trave
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_idempotent_replay] TITLE: TravelFulfillment.complete_fulfillment event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_idempotent_replay" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_normal_publish] TITLE: TravelFulfillment.complete_fulfillment event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_fulfillment_complete_fulfillment_travel_fulfillment_completed_risk_normal_publish" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed] TITLE: TravelFulfillment.confirm_booking event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_idempotent_replay] TITLE: TravelFulfillment.confirm_booking event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_idempotent_replay" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_normal_publish] TITLE: TravelFulfillment.confirm_booking event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_fulfillment_confirm_booking_travel_fulfillment_confirmed_risk_normal_publish" module="TRAVEL_TRAVEL_FULFILLMENT"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
@@ -70,8 +225,28 @@ GIVEN given_seed_context id="event_travel_fulfillment_fail_fulfillment_travel_fu
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_idempotent_replay] TITLE: TravelFulfillment.fail_fulfillment event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_idempotent_replay" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_normal_publish] TITLE: TravelFulfillment.fail_fulfillment event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_fulfillment_fail_fulfillment_travel_fulfillment_failed_risk_normal_publish" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued] TITLE: TravelFulfillment.issue_voucher_or_ticket event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_idempotent_replay] TITLE: TravelFulfillment.issue_voucher_or_ticket event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_idempotent_replay" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_normal_publish] TITLE: TravelFulfillment.issue_voucher_or_ticket event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_fulfillment_issue_voucher_or_ticket_travel_fulfillment_issued_risk_normal_publish" module="TRAVEL_TRAVEL_FULFILLMENT"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
@@ -86,8 +261,38 @@ GIVEN given_seed_context id="integration_travel_fulfillment_supplier_cancel_book
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-integration_travel_fulfillment_supplier_cancel_booking_risk_declared_error] TITLE: TravelFulfillment.supplier_cancel_booking integration contract (risk:declared_error) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_fulfillment_supplier_cancel_booking_risk_declared_error" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-integration_travel_fulfillment_supplier_cancel_booking_risk_success] TITLE: TravelFulfillment.supplier_cancel_booking integration contract (risk:success) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_fulfillment_supplier_cancel_booking_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-integration_travel_fulfillment_supplier_confirm_booking] TITLE: TravelFulfillment.supplier_confirm_booking integration contract TAGS: seed integration_contract
 GIVEN given_seed_context id="integration_travel_fulfillment_supplier_confirm_booking" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-integration_travel_fulfillment_supplier_confirm_booking_risk_compensation] TITLE: TravelFulfillment.supplier_confirm_booking integration contract (risk:compensation) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_fulfillment_supplier_confirm_booking_risk_compensation" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-integration_travel_fulfillment_supplier_confirm_booking_risk_declared_error] TITLE: TravelFulfillment.supplier_confirm_booking integration contract (risk:declared_error) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_fulfillment_supplier_confirm_booking_risk_declared_error" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-integration_travel_fulfillment_supplier_confirm_booking_risk_post_condition] TITLE: TravelFulfillment.supplier_confirm_booking integration contract (risk:post_condition) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_fulfillment_supplier_confirm_booking_risk_post_condition" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-integration_travel_fulfillment_supplier_confirm_booking_risk_success] TITLE: TravelFulfillment.supplier_confirm_booking integration contract (risk:success) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_fulfillment_supplier_confirm_booking_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
@@ -96,7 +301,32 @@ GIVEN given_seed_context id="integration_travel_fulfillment_supplier_issue_docum
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-integration_travel_fulfillment_supplier_issue_document_risk_declared_error] TITLE: TravelFulfillment.supplier_issue_document integration contract (risk:declared_error) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_fulfillment_supplier_issue_document_risk_declared_error" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-integration_travel_fulfillment_supplier_issue_document_risk_post_condition] TITLE: TravelFulfillment.supplier_issue_document integration contract (risk:post_condition) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_fulfillment_supplier_issue_document_risk_post_condition" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-integration_travel_fulfillment_supplier_issue_document_risk_success] TITLE: TravelFulfillment.supplier_issue_document integration contract (risk:success) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_fulfillment_supplier_issue_document_risk_success" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-workflow_travel_fulfillment_travel_fulfillment_lifecycle] TITLE: TravelFulfillment.travel_fulfillment_lifecycle workflow contract TAGS: seed workflow_contract
 GIVEN given_seed_context id="workflow_travel_fulfillment_travel_fulfillment_lifecycle" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_branch_or_exception] TITLE: TravelFulfillment.travel_fulfillment_lifecycle workflow contract (risk:branch_or_exception) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_branch_or_exception" module="TRAVEL_TRAVEL_FULFILLMENT"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_FULFILLMENT-SEED-workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_mainline] TITLE: TravelFulfillment.travel_fulfillment_lifecycle workflow contract (risk:mainline) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_fulfillment_travel_fulfillment_lifecycle_risk_mainline" module="TRAVEL_TRAVEL_FULFILLMENT"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_FULFILLMENT"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_FULFILLMENT"

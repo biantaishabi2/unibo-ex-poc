@@ -5,8 +5,38 @@ GIVEN given_seed_context id="action_flight_offer_activate_update" module="TRAVEL
 WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
 
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_activate_update_risk_change_effect] TITLE: FlightOffer.activate action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_activate_update_risk_change_effect" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_activate_update_risk_success] TITLE: FlightOffer.activate action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_activate_update_risk_success" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_activate_update_risk_validation_fail] TITLE: FlightOffer.activate action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_activate_update_risk_validation_fail" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
 [SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_create_create] TITLE: FlightOffer.create action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_flight_offer_create_create" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_create_create_risk_change_effect] TITLE: FlightOffer.create action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_create_create_risk_change_effect" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_create_create_risk_success] TITLE: FlightOffer.create action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_create_create_risk_success" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_create_create_risk_validation_fail] TITLE: FlightOffer.create action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_create_create_risk_validation_fail" module="TRAVEL_FLIGHT_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
 
@@ -15,13 +45,58 @@ GIVEN given_seed_context id="action_flight_offer_deactivate_update" module="TRAV
 WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
 
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_deactivate_update_risk_change_effect] TITLE: FlightOffer.deactivate action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_deactivate_update_risk_change_effect" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_deactivate_update_risk_success] TITLE: FlightOffer.deactivate action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_deactivate_update_risk_success" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_deactivate_update_risk_validation_fail] TITLE: FlightOffer.deactivate action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_deactivate_update_risk_validation_fail" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
 [SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_destroy_destroy] TITLE: FlightOffer.destroy action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_flight_offer_destroy_destroy" module="TRAVEL_FLIGHT_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
 
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_destroy_destroy_risk_change_effect] TITLE: FlightOffer.destroy action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_destroy_destroy_risk_change_effect" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_destroy_destroy_risk_success] TITLE: FlightOffer.destroy action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_destroy_destroy_risk_success" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_destroy_destroy_risk_validation_fail] TITLE: FlightOffer.destroy action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_destroy_destroy_risk_validation_fail" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
 [SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_expire_update] TITLE: FlightOffer.expire action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_flight_offer_expire_update" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_expire_update_risk_change_effect] TITLE: FlightOffer.expire action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_expire_update_risk_change_effect" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_expire_update_risk_success] TITLE: FlightOffer.expire action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_expire_update_risk_success" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_expire_update_risk_validation_fail] TITLE: FlightOffer.expire action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_expire_update_risk_validation_fail" module="TRAVEL_FLIGHT_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
 
@@ -35,8 +110,33 @@ GIVEN given_seed_context id="action_flight_offer_update_update" module="TRAVEL_F
 WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
 
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_update_update_risk_change_effect] TITLE: FlightOffer.update action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_update_update_risk_change_effect" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_update_update_risk_success] TITLE: FlightOffer.update action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_update_update_risk_success" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-action_flight_offer_update_update_risk_validation_fail] TITLE: FlightOffer.update action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_flight_offer_update_update_risk_validation_fail" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
 [SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-event_flight_offer_activate_travel_catalog_flight_offer_activated] TITLE: FlightOffer.activate event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_flight_offer_activate_travel_catalog_flight_offer_activated" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-event_flight_offer_activate_travel_catalog_flight_offer_activated_risk_idempotent_replay] TITLE: FlightOffer.activate event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_flight_offer_activate_travel_catalog_flight_offer_activated_risk_idempotent_replay" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-event_flight_offer_activate_travel_catalog_flight_offer_activated_risk_normal_publish] TITLE: FlightOffer.activate event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_flight_offer_activate_travel_catalog_flight_offer_activated_risk_normal_publish" module="TRAVEL_FLIGHT_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
 
@@ -45,8 +145,28 @@ GIVEN given_seed_context id="event_flight_offer_deactivate_travel_catalog_flight
 WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
 
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-event_flight_offer_deactivate_travel_catalog_flight_offer_deactivated_risk_idempotent_replay] TITLE: FlightOffer.deactivate event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_flight_offer_deactivate_travel_catalog_flight_offer_deactivated_risk_idempotent_replay" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-event_flight_offer_deactivate_travel_catalog_flight_offer_deactivated_risk_normal_publish] TITLE: FlightOffer.deactivate event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_flight_offer_deactivate_travel_catalog_flight_offer_deactivated_risk_normal_publish" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
 [SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-event_flight_offer_expire_travel_catalog_flight_offer_expired] TITLE: FlightOffer.expire event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_flight_offer_expire_travel_catalog_flight_offer_expired" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-event_flight_offer_expire_travel_catalog_flight_offer_expired_risk_idempotent_replay] TITLE: FlightOffer.expire event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_flight_offer_expire_travel_catalog_flight_offer_expired_risk_idempotent_replay" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-event_flight_offer_expire_travel_catalog_flight_offer_expired_risk_normal_publish] TITLE: FlightOffer.expire event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_flight_offer_expire_travel_catalog_flight_offer_expired_risk_normal_publish" module="TRAVEL_FLIGHT_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
 
@@ -58,5 +178,15 @@ THEN then_graphql_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
 
 [SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-workflow_flight_offer_flight_offer_lifecycle] TITLE: FlightOffer.flight_offer_lifecycle workflow contract TAGS: seed workflow_contract
 GIVEN given_seed_context id="workflow_flight_offer_flight_offer_lifecycle" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-workflow_flight_offer_flight_offer_lifecycle_risk_branch_or_exception] TITLE: FlightOffer.flight_offer_lifecycle workflow contract (risk:branch_or_exception) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_flight_offer_flight_offer_lifecycle_risk_branch_or_exception" module="TRAVEL_FLIGHT_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"
+
+[SCENARIO: BDD-TRAVEL_FLIGHT_OFFER-SEED-workflow_flight_offer_flight_offer_lifecycle_risk_mainline] TITLE: FlightOffer.flight_offer_lifecycle workflow contract (risk:mainline) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_flight_offer_flight_offer_lifecycle_risk_mainline" module="TRAVEL_FLIGHT_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_FLIGHT_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_FLIGHT_OFFER"

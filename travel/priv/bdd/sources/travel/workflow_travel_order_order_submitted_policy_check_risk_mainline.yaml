@@ -1,0 +1,11 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.order_submitted_policy_check workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelOrder 定义工作流 order_submitted_policy_check / WHEN 验证工作流动作链 ACTION_PATH=submit_order -> create / THEN 主流程应可达并保持顺序一致
+expected_facts:
+- workflow_checked
+- steps_verified
+action_path:
+- submit_order
+- create

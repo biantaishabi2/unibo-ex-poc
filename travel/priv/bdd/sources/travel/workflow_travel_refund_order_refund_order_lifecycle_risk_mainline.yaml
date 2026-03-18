@@ -1,0 +1,14 @@
+module: TRAVEL_TRAVEL_REFUND_ORDER
+contract: TravelRefundOrder.refund_order_lifecycle workflow contract (risk:mainline)
+edge_class: workflow_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelRefundOrder 定义工作流 refund_order_lifecycle / WHEN 验证工作流动作链 ACTION_PATH=create -> approve -> reject -> refund -> refund_direct / THEN 主流程应可达并保持顺序一致
+expected_facts:
+- workflow_checked
+- steps_verified
+action_path:
+- create
+- approve
+- reject
+- refund
+- refund_direct

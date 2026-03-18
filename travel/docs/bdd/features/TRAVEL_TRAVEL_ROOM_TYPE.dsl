@@ -5,6 +5,16 @@ GIVEN given_seed_context id="action_travel_room_type_create_create" module="TRAV
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ROOM_TYPE"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ROOM_TYPE"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ROOM_TYPE-SEED-action_travel_room_type_create_create_risk_change_effect] TITLE: TravelRoomType.create action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_room_type_create_create_risk_change_effect" module="TRAVEL_TRAVEL_ROOM_TYPE"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ROOM_TYPE"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ROOM_TYPE"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ROOM_TYPE-SEED-action_travel_room_type_create_create_risk_success] TITLE: TravelRoomType.create action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_room_type_create_create_risk_success" module="TRAVEL_TRAVEL_ROOM_TYPE"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ROOM_TYPE"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ROOM_TYPE"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ROOM_TYPE-SEED-action_travel_room_type_read_read] TITLE: TravelRoomType.read action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_room_type_read_read" module="TRAVEL_TRAVEL_ROOM_TYPE"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ROOM_TYPE"
@@ -12,6 +22,16 @@ THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ROOM_TYPE"
 
 [SCENARIO: BDD-TRAVEL_TRAVEL_ROOM_TYPE-SEED-action_travel_room_type_update_update] TITLE: TravelRoomType.update action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_room_type_update_update" module="TRAVEL_TRAVEL_ROOM_TYPE"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ROOM_TYPE"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ROOM_TYPE"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ROOM_TYPE-SEED-action_travel_room_type_update_update_risk_change_effect] TITLE: TravelRoomType.update action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_room_type_update_update_risk_change_effect" module="TRAVEL_TRAVEL_ROOM_TYPE"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ROOM_TYPE"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ROOM_TYPE"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ROOM_TYPE-SEED-action_travel_room_type_update_update_risk_success] TITLE: TravelRoomType.update action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_room_type_update_update_risk_success" module="TRAVEL_TRAVEL_ROOM_TYPE"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ROOM_TYPE"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ROOM_TYPE"
 

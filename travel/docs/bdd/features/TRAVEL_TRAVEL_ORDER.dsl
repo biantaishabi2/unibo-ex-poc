@@ -5,8 +5,38 @@ GIVEN given_seed_context id="action_travel_order_confirm_change_update" module="
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_confirm_change_update_risk_change_effect] TITLE: TravelOrder.confirm_change action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_confirm_change_update_risk_change_effect" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_confirm_change_update_risk_success] TITLE: TravelOrder.confirm_change action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_confirm_change_update_risk_success" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_confirm_change_update_risk_validation_fail] TITLE: TravelOrder.confirm_change action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_confirm_change_update_risk_validation_fail" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_confirm_quote_update] TITLE: TravelOrder.confirm_quote action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_order_confirm_quote_update" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_confirm_quote_update_risk_change_effect] TITLE: TravelOrder.confirm_quote action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_confirm_quote_update_risk_change_effect" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_confirm_quote_update_risk_success] TITLE: TravelOrder.confirm_quote action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_confirm_quote_update_risk_success" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_confirm_quote_update_risk_validation_fail] TITLE: TravelOrder.confirm_quote action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_confirm_quote_update_risk_validation_fail" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
@@ -15,8 +45,38 @@ GIVEN given_seed_context id="action_travel_order_create_order_create" module="TR
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_create_order_create_risk_change_effect] TITLE: TravelOrder.create_order action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_create_order_create_risk_change_effect" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_create_order_create_risk_success] TITLE: TravelOrder.create_order action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_create_order_create_risk_success" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_create_order_create_risk_validation_fail] TITLE: TravelOrder.create_order action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_create_order_create_risk_validation_fail" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_destroy_destroy] TITLE: TravelOrder.destroy action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_order_destroy_destroy" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_destroy_destroy_risk_change_effect] TITLE: TravelOrder.destroy action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_destroy_destroy_risk_change_effect" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_destroy_destroy_risk_success] TITLE: TravelOrder.destroy action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_destroy_destroy_risk_success" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_destroy_destroy_risk_validation_fail] TITLE: TravelOrder.destroy action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_destroy_destroy_risk_validation_fail" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
@@ -30,8 +90,38 @@ GIVEN given_seed_context id="action_travel_order_submit_order_update" module="TR
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_submit_order_update_risk_change_effect] TITLE: TravelOrder.submit_order action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_submit_order_update_risk_change_effect" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_submit_order_update_risk_success] TITLE: TravelOrder.submit_order action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_submit_order_update_risk_success" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_submit_order_update_risk_validation_fail] TITLE: TravelOrder.submit_order action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_submit_order_update_risk_validation_fail" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_submit_waitlist_update] TITLE: TravelOrder.submit_waitlist action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_order_submit_waitlist_update" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_submit_waitlist_update_risk_change_effect] TITLE: TravelOrder.submit_waitlist action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_submit_waitlist_update_risk_change_effect" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_submit_waitlist_update_risk_success] TITLE: TravelOrder.submit_waitlist action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_submit_waitlist_update_risk_success" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_submit_waitlist_update_risk_validation_fail] TITLE: TravelOrder.submit_waitlist action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_submit_waitlist_update_risk_validation_fail" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
@@ -40,8 +130,38 @@ GIVEN given_seed_context id="action_travel_order_update_update" module="TRAVEL_T
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_update_update_risk_change_effect] TITLE: TravelOrder.update action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_update_update_risk_change_effect" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_update_update_risk_success] TITLE: TravelOrder.update action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_update_update_risk_success" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-action_travel_order_update_update_risk_validation_fail] TITLE: TravelOrder.update action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_order_update_update_risk_validation_fail" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-determination_travel_order_trigger_fulfillment_creation] TITLE: TravelOrder.trigger_fulfillment_creation determination contract TAGS: seed determination_contract
 GIVEN given_seed_context id="determination_travel_order_trigger_fulfillment_creation" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-determination_travel_order_trigger_fulfillment_creation_risk_async_timeout] TITLE: TravelOrder.trigger_fulfillment_creation determination contract (risk:async_timeout) TAGS: seed determination_contract
+GIVEN given_seed_context id="determination_travel_order_trigger_fulfillment_creation_risk_async_timeout" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-determination_travel_order_trigger_fulfillment_creation_risk_read_set_unavailable] TITLE: TravelOrder.trigger_fulfillment_creation determination contract (risk:read_set_unavailable) TAGS: seed determination_contract
+GIVEN given_seed_context id="determination_travel_order_trigger_fulfillment_creation_risk_read_set_unavailable" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-determination_travel_order_trigger_fulfillment_creation_risk_success] TITLE: TravelOrder.trigger_fulfillment_creation determination contract (risk:success) TAGS: seed determination_contract
+GIVEN given_seed_context id="determination_travel_order_trigger_fulfillment_creation_risk_success" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
@@ -50,8 +170,33 @@ GIVEN given_seed_context id="determination_travel_order_trigger_policy_check" mo
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-determination_travel_order_trigger_policy_check_risk_async_timeout] TITLE: TravelOrder.trigger_policy_check determination contract (risk:async_timeout) TAGS: seed determination_contract
+GIVEN given_seed_context id="determination_travel_order_trigger_policy_check_risk_async_timeout" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-determination_travel_order_trigger_policy_check_risk_read_set_unavailable] TITLE: TravelOrder.trigger_policy_check determination contract (risk:read_set_unavailable) TAGS: seed determination_contract
+GIVEN given_seed_context id="determination_travel_order_trigger_policy_check_risk_read_set_unavailable" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-determination_travel_order_trigger_policy_check_risk_success] TITLE: TravelOrder.trigger_policy_check determination contract (risk:success) TAGS: seed determination_contract
+GIVEN given_seed_context id="determination_travel_order_trigger_policy_check_risk_success" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_approve_cancel_travel_order_cancelled] TITLE: TravelOrder.approve_cancel event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_travel_order_approve_cancel_travel_order_cancelled" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_approve_cancel_travel_order_cancelled_risk_idempotent_replay] TITLE: TravelOrder.approve_cancel event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_approve_cancel_travel_order_cancelled_risk_idempotent_replay" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_approve_cancel_travel_order_cancelled_risk_normal_publish] TITLE: TravelOrder.approve_cancel event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_approve_cancel_travel_order_cancelled_risk_normal_publish" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
@@ -60,8 +205,28 @@ GIVEN given_seed_context id="event_travel_order_cancel_waitlist_travel_order_wai
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_cancel_waitlist_travel_order_waitlist_cancelled_risk_idempotent_replay] TITLE: TravelOrder.cancel_waitlist event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_cancel_waitlist_travel_order_waitlist_cancelled_risk_idempotent_replay" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_cancel_waitlist_travel_order_waitlist_cancelled_risk_normal_publish] TITLE: TravelOrder.cancel_waitlist event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_cancel_waitlist_travel_order_waitlist_cancelled_risk_normal_publish" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_confirm_change_travel_order_change_confirmed] TITLE: TravelOrder.confirm_change event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_travel_order_confirm_change_travel_order_change_confirmed" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_confirm_change_travel_order_change_confirmed_risk_idempotent_replay] TITLE: TravelOrder.confirm_change event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_confirm_change_travel_order_change_confirmed_risk_idempotent_replay" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_confirm_change_travel_order_change_confirmed_risk_normal_publish] TITLE: TravelOrder.confirm_change event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_confirm_change_travel_order_change_confirmed_risk_normal_publish" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
@@ -70,8 +235,28 @@ GIVEN given_seed_context id="event_travel_order_fulfill_waitlist_travel_order_wa
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_fulfill_waitlist_travel_order_waitlist_fulfilled_risk_idempotent_replay] TITLE: TravelOrder.fulfill_waitlist event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_fulfill_waitlist_travel_order_waitlist_fulfilled_risk_idempotent_replay" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_fulfill_waitlist_travel_order_waitlist_fulfilled_risk_normal_publish] TITLE: TravelOrder.fulfill_waitlist event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_fulfill_waitlist_travel_order_waitlist_fulfilled_risk_normal_publish" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_mark_order_failed_travel_order_failed] TITLE: TravelOrder.mark_order_failed event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_travel_order_mark_order_failed_travel_order_failed" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_mark_order_failed_travel_order_failed_risk_idempotent_replay] TITLE: TravelOrder.mark_order_failed event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_mark_order_failed_travel_order_failed_risk_idempotent_replay" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_mark_order_failed_travel_order_failed_risk_normal_publish] TITLE: TravelOrder.mark_order_failed event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_mark_order_failed_travel_order_failed_risk_normal_publish" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
@@ -80,13 +265,43 @@ GIVEN given_seed_context id="event_travel_order_mark_payment_succeeded_travel_or
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_mark_payment_succeeded_travel_order_payment_confirmed_risk_idempotent_replay] TITLE: TravelOrder.mark_payment_succeeded event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_mark_payment_succeeded_travel_order_payment_confirmed_risk_idempotent_replay" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_mark_payment_succeeded_travel_order_payment_confirmed_risk_normal_publish] TITLE: TravelOrder.mark_payment_succeeded event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_mark_payment_succeeded_travel_order_payment_confirmed_risk_normal_publish" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_submit_order_travel_order_submitted] TITLE: TravelOrder.submit_order event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_travel_order_submit_order_travel_order_submitted" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_submit_order_travel_order_submitted_risk_idempotent_replay] TITLE: TravelOrder.submit_order event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_submit_order_travel_order_submitted_risk_idempotent_replay" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_submit_order_travel_order_submitted_risk_normal_publish] TITLE: TravelOrder.submit_order event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_submit_order_travel_order_submitted_risk_normal_publish" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_submit_waitlist_travel_order_waitlist_submitted] TITLE: TravelOrder.submit_waitlist event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_travel_order_submit_waitlist_travel_order_waitlist_submitted" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_submit_waitlist_travel_order_waitlist_submitted_risk_idempotent_replay] TITLE: TravelOrder.submit_waitlist event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_submit_waitlist_travel_order_waitlist_submitted_risk_idempotent_replay" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-event_travel_order_submit_waitlist_travel_order_waitlist_submitted_risk_normal_publish] TITLE: TravelOrder.submit_waitlist event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_order_submit_waitlist_travel_order_waitlist_submitted_risk_normal_publish" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
@@ -101,8 +316,43 @@ GIVEN given_seed_context id="integration_travel_order_payment_capture" module="T
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_payment_capture_risk_compensation] TITLE: TravelOrder.payment_capture integration contract (risk:compensation) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_order_payment_capture_risk_compensation" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_payment_capture_risk_declared_error] TITLE: TravelOrder.payment_capture integration contract (risk:declared_error) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_order_payment_capture_risk_declared_error" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_payment_capture_risk_post_condition] TITLE: TravelOrder.payment_capture integration contract (risk:post_condition) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_order_payment_capture_risk_post_condition" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_payment_capture_risk_success] TITLE: TravelOrder.payment_capture integration contract (risk:success) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_order_payment_capture_risk_success" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_shop_caller_context_resolve] TITLE: TravelOrder.shop_caller_context_resolve integration contract TAGS: seed integration_contract
 GIVEN given_seed_context id="integration_travel_order_shop_caller_context_resolve" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_shop_caller_context_resolve_risk_declared_error] TITLE: TravelOrder.shop_caller_context_resolve integration contract (risk:declared_error) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_order_shop_caller_context_resolve_risk_declared_error" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_shop_caller_context_resolve_risk_post_condition] TITLE: TravelOrder.shop_caller_context_resolve integration contract (risk:post_condition) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_order_shop_caller_context_resolve_risk_post_condition" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_shop_caller_context_resolve_risk_success] TITLE: TravelOrder.shop_caller_context_resolve integration contract (risk:success) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_order_shop_caller_context_resolve_risk_success" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
@@ -111,8 +361,33 @@ GIVEN given_seed_context id="integration_travel_order_shop_eligibility_quote" mo
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_shop_eligibility_quote_risk_declared_error] TITLE: TravelOrder.shop_eligibility_quote integration contract (risk:declared_error) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_order_shop_eligibility_quote_risk_declared_error" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_shop_eligibility_quote_risk_post_condition] TITLE: TravelOrder.shop_eligibility_quote integration contract (risk:post_condition) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_order_shop_eligibility_quote_risk_post_condition" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_shop_eligibility_quote_risk_success] TITLE: TravelOrder.shop_eligibility_quote integration contract (risk:success) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_order_shop_eligibility_quote_risk_success" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_supplier_booking_submit] TITLE: TravelOrder.supplier_booking_submit integration contract TAGS: seed integration_contract
 GIVEN given_seed_context id="integration_travel_order_supplier_booking_submit" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_supplier_booking_submit_risk_declared_error] TITLE: TravelOrder.supplier_booking_submit integration contract (risk:declared_error) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_order_supplier_booking_submit_risk_declared_error" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-integration_travel_order_supplier_booking_submit_risk_success] TITLE: TravelOrder.supplier_booking_submit integration contract (risk:success) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_travel_order_supplier_booking_submit_risk_success" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
@@ -121,8 +396,38 @@ GIVEN given_seed_context id="reactor_travel_order_order_submitted_policy_check" 
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-reactor_travel_order_order_submitted_policy_check_risk_compensation] TITLE: TravelOrder.order_submitted_policy_check reactor contract (risk:compensation) TAGS: seed
+GIVEN given_seed_context id="reactor_travel_order_order_submitted_policy_check_risk_compensation" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-reactor_travel_order_order_submitted_policy_check_risk_partial_failure] TITLE: TravelOrder.order_submitted_policy_check reactor contract (risk:partial_failure) TAGS: seed
+GIVEN given_seed_context id="reactor_travel_order_order_submitted_policy_check_risk_partial_failure" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-reactor_travel_order_order_submitted_policy_check_risk_success] TITLE: TravelOrder.order_submitted_policy_check reactor contract (risk:success) TAGS: seed
+GIVEN given_seed_context id="reactor_travel_order_order_submitted_policy_check_risk_success" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-reactor_travel_order_payment_confirmed_to_fulfillment] TITLE: TravelOrder.payment_confirmed_to_fulfillment reactor contract TAGS: seed
 GIVEN given_seed_context id="reactor_travel_order_payment_confirmed_to_fulfillment" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-reactor_travel_order_payment_confirmed_to_fulfillment_risk_compensation] TITLE: TravelOrder.payment_confirmed_to_fulfillment reactor contract (risk:compensation) TAGS: seed
+GIVEN given_seed_context id="reactor_travel_order_payment_confirmed_to_fulfillment_risk_compensation" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-reactor_travel_order_payment_confirmed_to_fulfillment_risk_partial_failure] TITLE: TravelOrder.payment_confirmed_to_fulfillment reactor contract (risk:partial_failure) TAGS: seed
+GIVEN given_seed_context id="reactor_travel_order_payment_confirmed_to_fulfillment_risk_partial_failure" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-reactor_travel_order_payment_confirmed_to_fulfillment_risk_success] TITLE: TravelOrder.payment_confirmed_to_fulfillment reactor contract (risk:success) TAGS: seed
+GIVEN given_seed_context id="reactor_travel_order_payment_confirmed_to_fulfillment_risk_success" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
@@ -131,12 +436,42 @@ GIVEN given_seed_context id="workflow_travel_order_order_submitted_policy_check"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-workflow_travel_order_order_submitted_policy_check_risk_branch_or_exception] TITLE: TravelOrder.order_submitted_policy_check workflow contract (risk:branch_or_exception) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_order_order_submitted_policy_check_risk_branch_or_exception" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-workflow_travel_order_order_submitted_policy_check_risk_mainline] TITLE: TravelOrder.order_submitted_policy_check workflow contract (risk:mainline) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_order_order_submitted_policy_check_risk_mainline" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-workflow_travel_order_payment_confirmed_to_fulfillment] TITLE: TravelOrder.payment_confirmed_to_fulfillment workflow contract TAGS: seed workflow_contract
 GIVEN given_seed_context id="workflow_travel_order_payment_confirmed_to_fulfillment" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-workflow_travel_order_payment_confirmed_to_fulfillment_risk_branch_or_exception] TITLE: TravelOrder.payment_confirmed_to_fulfillment workflow contract (risk:branch_or_exception) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_order_payment_confirmed_to_fulfillment_risk_branch_or_exception" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-workflow_travel_order_payment_confirmed_to_fulfillment_risk_mainline] TITLE: TravelOrder.payment_confirmed_to_fulfillment workflow contract (risk:mainline) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_order_payment_confirmed_to_fulfillment_risk_mainline" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-workflow_travel_order_travel_order_lifecycle] TITLE: TravelOrder.travel_order_lifecycle workflow contract TAGS: seed workflow_contract
 GIVEN given_seed_context id="workflow_travel_order_travel_order_lifecycle" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-workflow_travel_order_travel_order_lifecycle_risk_branch_or_exception] TITLE: TravelOrder.travel_order_lifecycle workflow contract (risk:branch_or_exception) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_order_travel_order_lifecycle_risk_branch_or_exception" module="TRAVEL_TRAVEL_ORDER"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_ORDER-SEED-workflow_travel_order_travel_order_lifecycle_risk_mainline] TITLE: TravelOrder.travel_order_lifecycle workflow contract (risk:mainline) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_order_travel_order_lifecycle_risk_mainline" module="TRAVEL_TRAVEL_ORDER"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_ORDER"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_ORDER"

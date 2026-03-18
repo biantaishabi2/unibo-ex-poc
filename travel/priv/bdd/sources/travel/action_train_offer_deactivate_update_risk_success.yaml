@@ -1,0 +1,10 @@
+module: TRAVEL_TRAIN_OFFER
+contract: TrainOffer.deactivate action contract (risk:success)
+edge_class: action_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TrainOffer 的动作 deactivate 可执行 / WHEN 执行动作 deactivate / THEN 成功路径应满足业务约束并持久化结果
+expected_facts:
+- record_persisted
+- state_change
+precondition_actions:
+- activate

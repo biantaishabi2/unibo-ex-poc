@@ -5,6 +5,16 @@ GIVEN given_seed_context id="action_travel_hotel_create_create" module="TRAVEL_T
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_HOTEL"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_HOTEL"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_HOTEL-SEED-action_travel_hotel_create_create_risk_change_effect] TITLE: TravelHotel.create action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_hotel_create_create_risk_change_effect" module="TRAVEL_TRAVEL_HOTEL"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_HOTEL"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_HOTEL"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_HOTEL-SEED-action_travel_hotel_create_create_risk_success] TITLE: TravelHotel.create action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_hotel_create_create_risk_success" module="TRAVEL_TRAVEL_HOTEL"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_HOTEL"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_HOTEL"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_HOTEL-SEED-action_travel_hotel_read_read] TITLE: TravelHotel.read action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_hotel_read_read" module="TRAVEL_TRAVEL_HOTEL"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_HOTEL"
@@ -12,6 +22,16 @@ THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_HOTEL"
 
 [SCENARIO: BDD-TRAVEL_TRAVEL_HOTEL-SEED-action_travel_hotel_update_update] TITLE: TravelHotel.update action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_hotel_update_update" module="TRAVEL_TRAVEL_HOTEL"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_HOTEL"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_HOTEL"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_HOTEL-SEED-action_travel_hotel_update_update_risk_change_effect] TITLE: TravelHotel.update action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_hotel_update_update_risk_change_effect" module="TRAVEL_TRAVEL_HOTEL"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_HOTEL"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_HOTEL"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_HOTEL-SEED-action_travel_hotel_update_update_risk_success] TITLE: TravelHotel.update action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_hotel_update_update_risk_success" module="TRAVEL_TRAVEL_HOTEL"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_HOTEL"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_HOTEL"
 

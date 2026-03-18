@@ -5,6 +5,16 @@ GIVEN given_seed_context id="action_travel_static_code_mapping_create_create" mo
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_STATIC_CODE_MAPPING-SEED-action_travel_static_code_mapping_create_create_risk_change_effect] TITLE: TravelStaticCodeMapping.create action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_static_code_mapping_create_create_risk_change_effect" module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_STATIC_CODE_MAPPING-SEED-action_travel_static_code_mapping_create_create_risk_success] TITLE: TravelStaticCodeMapping.create action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_static_code_mapping_create_create_risk_success" module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_STATIC_CODE_MAPPING-SEED-action_travel_static_code_mapping_read_read] TITLE: TravelStaticCodeMapping.read action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_static_code_mapping_read_read" module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
@@ -12,6 +22,16 @@ THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
 
 [SCENARIO: BDD-TRAVEL_TRAVEL_STATIC_CODE_MAPPING-SEED-action_travel_static_code_mapping_update_update] TITLE: TravelStaticCodeMapping.update action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_static_code_mapping_update_update" module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_STATIC_CODE_MAPPING-SEED-action_travel_static_code_mapping_update_update_risk_change_effect] TITLE: TravelStaticCodeMapping.update action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_static_code_mapping_update_update_risk_change_effect" module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_STATIC_CODE_MAPPING-SEED-action_travel_static_code_mapping_update_update_risk_success] TITLE: TravelStaticCodeMapping.update action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_static_code_mapping_update_update_risk_success" module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_STATIC_CODE_MAPPING"
 

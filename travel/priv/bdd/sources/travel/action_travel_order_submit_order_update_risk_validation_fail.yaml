@@ -1,0 +1,9 @@
+module: TRAVEL_TRAVEL_ORDER
+contract: TravelOrder.submit_order action contract (risk:validation_fail)
+edge_class: action_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelOrder 的动作 submit_order 输入非法 / WHEN 执行动作 submit_order / THEN 应返回校验失败且不产生持久化副作用
+expected_facts:
+- validation_triggered
+precondition_actions:
+- confirm_quote

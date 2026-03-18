@@ -1,0 +1,17 @@
+module: TRAVEL_TRAVEL_FULFILLMENT
+contract: TravelFulfillment.supplier_confirm_booking integration contract (risk:success)
+edge_class: integration_contract
+source_file: /home/wangbo/unibo_ex_poc-travel-risk/travel/models/travel.ubo.yaml
+source_summary: GIVEN 实体 TravelFulfillment 的 integration supplier_confirm_booking 已声明 fake adapter / WHEN 执行绑定动作 [confirm_booking] / THEN 调用结果应成功并满足契约模式 sync
+expected_facts:
+- integration_invoked
+- post_conditions_checked
+declared_error_codes:
+- supplier_booking_rejected
+- supplier_timeout
+business_post_conditions:
+- confirm_status
+- confirmation_payload
+- supplier_booking_ref
+compensation_clues:
+- fail_fulfillment 履约失败并记录补偿原因

@@ -5,13 +5,58 @@ GIVEN given_seed_context id="action_travel_policy_activate_update" module="TRAVE
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_activate_update_risk_change_effect] TITLE: TravelPolicy.activate action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_policy_activate_update_risk_change_effect" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_activate_update_risk_success] TITLE: TravelPolicy.activate action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_policy_activate_update_risk_success" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_activate_update_risk_validation_fail] TITLE: TravelPolicy.activate action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_policy_activate_update_risk_validation_fail" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_create_create] TITLE: TravelPolicy.create action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_policy_create_create" module="TRAVEL_TRAVEL_POLICY"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_create_create_risk_change_effect] TITLE: TravelPolicy.create action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_policy_create_create_risk_change_effect" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_create_create_risk_success] TITLE: TravelPolicy.create action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_policy_create_create_risk_success" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_create_create_risk_validation_fail] TITLE: TravelPolicy.create action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_policy_create_create_risk_validation_fail" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_deactivate_update] TITLE: TravelPolicy.deactivate action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_travel_policy_deactivate_update" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_deactivate_update_risk_change_effect] TITLE: TravelPolicy.deactivate action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_policy_deactivate_update_risk_change_effect" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_deactivate_update_risk_success] TITLE: TravelPolicy.deactivate action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_policy_deactivate_update_risk_success" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_deactivate_update_risk_validation_fail] TITLE: TravelPolicy.deactivate action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_policy_deactivate_update_risk_validation_fail" module="TRAVEL_TRAVEL_POLICY"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
 
@@ -30,13 +75,48 @@ GIVEN given_seed_context id="action_travel_policy_update_update" module="TRAVEL_
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_update_update_risk_change_effect] TITLE: TravelPolicy.update action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_policy_update_update_risk_change_effect" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_update_update_risk_success] TITLE: TravelPolicy.update action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_policy_update_update_risk_success" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-action_travel_policy_update_update_risk_validation_fail] TITLE: TravelPolicy.update action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_travel_policy_update_update_risk_validation_fail" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-event_travel_policy_activate_travel_policy_activated] TITLE: TravelPolicy.activate event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_travel_policy_activate_travel_policy_activated" module="TRAVEL_TRAVEL_POLICY"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
 
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-event_travel_policy_activate_travel_policy_activated_risk_idempotent_replay] TITLE: TravelPolicy.activate event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_policy_activate_travel_policy_activated_risk_idempotent_replay" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-event_travel_policy_activate_travel_policy_activated_risk_normal_publish] TITLE: TravelPolicy.activate event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_policy_activate_travel_policy_activated_risk_normal_publish" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
 [SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-event_travel_policy_deactivate_travel_policy_deactivated] TITLE: TravelPolicy.deactivate event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_travel_policy_deactivate_travel_policy_deactivated" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-event_travel_policy_deactivate_travel_policy_deactivated_risk_idempotent_replay] TITLE: TravelPolicy.deactivate event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_policy_deactivate_travel_policy_deactivated_risk_idempotent_replay" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-event_travel_policy_deactivate_travel_policy_deactivated_risk_normal_publish] TITLE: TravelPolicy.deactivate event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_travel_policy_deactivate_travel_policy_deactivated_risk_normal_publish" module="TRAVEL_TRAVEL_POLICY"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
 
@@ -48,5 +128,15 @@ THEN then_graphql_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
 
 [SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-workflow_travel_policy_policy_lifecycle] TITLE: TravelPolicy.policy_lifecycle workflow contract TAGS: seed workflow_contract
 GIVEN given_seed_context id="workflow_travel_policy_policy_lifecycle" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-workflow_travel_policy_policy_lifecycle_risk_branch_or_exception] TITLE: TravelPolicy.policy_lifecycle workflow contract (risk:branch_or_exception) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_policy_policy_lifecycle_risk_branch_or_exception" module="TRAVEL_TRAVEL_POLICY"
+WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
+THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"
+
+[SCENARIO: BDD-TRAVEL_TRAVEL_POLICY-SEED-workflow_travel_policy_policy_lifecycle_risk_mainline] TITLE: TravelPolicy.policy_lifecycle workflow contract (risk:mainline) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_travel_policy_policy_lifecycle_risk_mainline" module="TRAVEL_TRAVEL_POLICY"
 WHEN when_execute_seed_contract module="TRAVEL_TRAVEL_POLICY"
 THEN then_seed_contract_should_hold module="TRAVEL_TRAVEL_POLICY"

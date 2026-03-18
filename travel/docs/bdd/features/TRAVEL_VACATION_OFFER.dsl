@@ -5,8 +5,38 @@ GIVEN given_seed_context id="action_vacation_offer_activate_update" module="TRAV
 WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
 
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_activate_update_risk_change_effect] TITLE: VacationOffer.activate action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_activate_update_risk_change_effect" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_activate_update_risk_success] TITLE: VacationOffer.activate action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_activate_update_risk_success" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_activate_update_risk_validation_fail] TITLE: VacationOffer.activate action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_activate_update_risk_validation_fail" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
 [SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_create_create] TITLE: VacationOffer.create action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_vacation_offer_create_create" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_create_create_risk_change_effect] TITLE: VacationOffer.create action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_create_create_risk_change_effect" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_create_create_risk_success] TITLE: VacationOffer.create action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_create_create_risk_success" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_create_create_risk_validation_fail] TITLE: VacationOffer.create action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_create_create_risk_validation_fail" module="TRAVEL_VACATION_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
 
@@ -15,13 +45,58 @@ GIVEN given_seed_context id="action_vacation_offer_deactivate_update" module="TR
 WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
 
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_deactivate_update_risk_change_effect] TITLE: VacationOffer.deactivate action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_deactivate_update_risk_change_effect" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_deactivate_update_risk_success] TITLE: VacationOffer.deactivate action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_deactivate_update_risk_success" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_deactivate_update_risk_validation_fail] TITLE: VacationOffer.deactivate action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_deactivate_update_risk_validation_fail" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
 [SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_destroy_destroy] TITLE: VacationOffer.destroy action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_vacation_offer_destroy_destroy" module="TRAVEL_VACATION_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
 
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_destroy_destroy_risk_change_effect] TITLE: VacationOffer.destroy action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_destroy_destroy_risk_change_effect" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_destroy_destroy_risk_success] TITLE: VacationOffer.destroy action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_destroy_destroy_risk_success" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_destroy_destroy_risk_validation_fail] TITLE: VacationOffer.destroy action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_destroy_destroy_risk_validation_fail" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
 [SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_expire_update] TITLE: VacationOffer.expire action contract TAGS: seed action_contract
 GIVEN given_seed_context id="action_vacation_offer_expire_update" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_expire_update_risk_change_effect] TITLE: VacationOffer.expire action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_expire_update_risk_change_effect" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_expire_update_risk_success] TITLE: VacationOffer.expire action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_expire_update_risk_success" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_expire_update_risk_validation_fail] TITLE: VacationOffer.expire action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_expire_update_risk_validation_fail" module="TRAVEL_VACATION_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
 
@@ -35,8 +110,33 @@ GIVEN given_seed_context id="action_vacation_offer_update_update" module="TRAVEL
 WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
 
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_update_update_risk_change_effect] TITLE: VacationOffer.update action contract (risk:change_effect) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_update_update_risk_change_effect" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_update_update_risk_success] TITLE: VacationOffer.update action contract (risk:success) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_update_update_risk_success" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-action_vacation_offer_update_update_risk_validation_fail] TITLE: VacationOffer.update action contract (risk:validation_fail) TAGS: seed action_contract
+GIVEN given_seed_context id="action_vacation_offer_update_update_risk_validation_fail" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
 [SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-event_vacation_offer_activate_travel_catalog_vacation_offer_activated] TITLE: VacationOffer.activate event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_vacation_offer_activate_travel_catalog_vacation_offer_activated" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-event_vacation_offer_activate_travel_catalog_vacation_offer_activated_risk_idempotent_replay] TITLE: VacationOffer.activate event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_vacation_offer_activate_travel_catalog_vacation_offer_activated_risk_idempotent_replay" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-event_vacation_offer_activate_travel_catalog_vacation_offer_activated_risk_normal_publish] TITLE: VacationOffer.activate event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_vacation_offer_activate_travel_catalog_vacation_offer_activated_risk_normal_publish" module="TRAVEL_VACATION_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
 
@@ -45,8 +145,28 @@ GIVEN given_seed_context id="event_vacation_offer_deactivate_travel_catalog_vaca
 WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
 
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-event_vacation_offer_deactivate_travel_catalog_vacation_offer_deactivated_risk_idempotent_replay] TITLE: VacationOffer.deactivate event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_vacation_offer_deactivate_travel_catalog_vacation_offer_deactivated_risk_idempotent_replay" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-event_vacation_offer_deactivate_travel_catalog_vacation_offer_deactivated_risk_normal_publish] TITLE: VacationOffer.deactivate event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_vacation_offer_deactivate_travel_catalog_vacation_offer_deactivated_risk_normal_publish" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
 [SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-event_vacation_offer_expire_travel_catalog_vacation_offer_expired] TITLE: VacationOffer.expire event contract TAGS: seed event_contract
 GIVEN given_seed_context id="event_vacation_offer_expire_travel_catalog_vacation_offer_expired" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-event_vacation_offer_expire_travel_catalog_vacation_offer_expired_risk_idempotent_replay] TITLE: VacationOffer.expire event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_vacation_offer_expire_travel_catalog_vacation_offer_expired_risk_idempotent_replay" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-event_vacation_offer_expire_travel_catalog_vacation_offer_expired_risk_normal_publish] TITLE: VacationOffer.expire event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_vacation_offer_expire_travel_catalog_vacation_offer_expired_risk_normal_publish" module="TRAVEL_VACATION_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
 
@@ -58,5 +178,15 @@ THEN then_graphql_contract_should_hold module="TRAVEL_VACATION_OFFER"
 
 [SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-workflow_vacation_offer_vacation_offer_lifecycle] TITLE: VacationOffer.vacation_offer_lifecycle workflow contract TAGS: seed workflow_contract
 GIVEN given_seed_context id="workflow_vacation_offer_vacation_offer_lifecycle" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-workflow_vacation_offer_vacation_offer_lifecycle_risk_branch_or_exception] TITLE: VacationOffer.vacation_offer_lifecycle workflow contract (risk:branch_or_exception) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_vacation_offer_vacation_offer_lifecycle_risk_branch_or_exception" module="TRAVEL_VACATION_OFFER"
+WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
+THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
+
+[SCENARIO: BDD-TRAVEL_VACATION_OFFER-SEED-workflow_vacation_offer_vacation_offer_lifecycle_risk_mainline] TITLE: VacationOffer.vacation_offer_lifecycle workflow contract (risk:mainline) TAGS: seed workflow_contract
+GIVEN given_seed_context id="workflow_vacation_offer_vacation_offer_lifecycle_risk_mainline" module="TRAVEL_VACATION_OFFER"
 WHEN when_execute_seed_contract module="TRAVEL_VACATION_OFFER"
 THEN then_seed_contract_should_hold module="TRAVEL_VACATION_OFFER"
