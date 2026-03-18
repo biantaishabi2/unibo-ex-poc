@@ -22,8 +22,6 @@ defmodule UniboExPoc.Ofbiz.Order do
     resource UniboExPoc.Ofbiz.Order.CustRequest
     resource UniboExPoc.Ofbiz.Order.CustRequestCategory
     resource UniboExPoc.Ofbiz.Order.CustRequestType
-    resource UniboExPoc.Ofbiz.Order.Requirement
-    resource UniboExPoc.Ofbiz.Order.RequirementType
     resource UniboExPoc.Ofbiz.Order.ReturnHeader
     resource UniboExPoc.Ofbiz.Order.ReturnHeaderType
     resource UniboExPoc.Ofbiz.Order.ReturnItem

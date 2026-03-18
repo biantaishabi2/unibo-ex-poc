@@ -1,7 +1,7 @@
 module: TRAVEL_VACATION_OFFER
 contract: VacationOffer.vacation_offer_lifecycle workflow contract (risk:mainline)
 edge_class: workflow_contract
-source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 VacationOffer 定义工作流 vacation_offer_lifecycle / WHEN 验证工作流动作链 ACTION_PATH=create -> update -> activate -> deactivate -> expire -> destroy / THEN 主流程应可达并保持顺序一致
 expected_facts:
 - workflow_checked

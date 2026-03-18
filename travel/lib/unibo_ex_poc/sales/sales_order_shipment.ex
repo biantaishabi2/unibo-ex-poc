@@ -12,7 +12,7 @@ defmodule UniboExPoc.Sales.SalesOrderShipment do
     domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboExPoc.Sales.SalesOrderShipment.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "销售发货单"
@@ -167,4 +167,12 @@ defmodule UniboExPoc.Sales.SalesOrderShipment do
     ignore_attributes [:inserted_at, :updated_at]
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "sales_order_shipment"
+
+    publish :ship, ["sales.shipment.shipped"]
+    publish :deliver, ["sales.shipment.delivered"]
+  end
 end

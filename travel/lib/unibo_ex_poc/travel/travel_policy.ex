@@ -15,7 +15,7 @@ defmodule UniboExPoc.Travel.TravelPolicy do
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboExPoc.Travel.TravelPolicy.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "差旅标准政策，定义不同企业、职级、城市等级下的差旅费用上限与超标策略"
@@ -33,6 +33,8 @@ defmodule UniboExPoc.Travel.TravelPolicy do
     queries do
       get :get_travel_travel_policy, :read
       list :list_travel_travel_policys, :read
+      get :get_match_policy_travel_travel_policy, :match_policy
+      list :list_match_policy_travel_travel_policys, :match_policy
     end
 
     mutations do
@@ -126,6 +128,17 @@ defmodule UniboExPoc.Travel.TravelPolicy do
       accept [:policy_name, :season, :max_amount, :cabin_class_limit, :hotel_star_limit, :exceed_strategy, :approval_mode, :personal_pay_ratio]
       require_atomic? false
     end
+    read :match_policy do
+      argument :product_type, :string, allow_nil?: false
+      argument :employee_level, :string
+      argument :city_tier, :string
+      filter expr(is_active == true and product_type == ^arg(:product_type))
+      prepare fn query, _ctx ->
+        query = Ash.Query.sort(query, [:employee_level, :city_tier])
+        query = Ash.Query.limit(query, 1)
+        query
+      end
+    end
     update :activate do
       description "Update Travel Policy via Activate. doc_url: graphql://contract/travel/activate_travel_travel_policy"
       accept []
@@ -172,4 +185,12 @@ defmodule UniboExPoc.Travel.TravelPolicy do
     ignore_attributes [:inserted_at, :updated_at]
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "travel_policy"
+
+    publish :activate, ["travel.policy.activated"]
+    publish :deactivate, ["travel.policy.deactivated"]
+  end
 end

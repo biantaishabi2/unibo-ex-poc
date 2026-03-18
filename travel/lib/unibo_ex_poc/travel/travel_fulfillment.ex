@@ -26,7 +26,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboExPoc.Travel.TravelFulfillment.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "统一酒旅履约聚合，承接预订确认、发券出票、候补兑现、乘车使用和失败结果；可选关联 Delivery::Shipment"
@@ -259,4 +259,15 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
   archive do
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "travel_fulfillment"
+
+    publish :confirm_booking, ["travel.fulfillment.confirmed"]
+    publish :issue_voucher_or_ticket, ["travel.fulfillment.issued"]
+    publish :complete_fulfillment, ["travel.fulfillment.completed"]
+    publish :cancel_fulfillment, ["travel.fulfillment.cancelled"]
+    publish :fail_fulfillment, ["travel.fulfillment.failed"]
+  end
 end

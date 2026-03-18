@@ -16,7 +16,7 @@ defmodule UniboExPoc.Sales.Return do
     domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboExPoc.Sales.Return.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "销售退货单"
@@ -217,4 +217,12 @@ defmodule UniboExPoc.Sales.Return do
     ignore_attributes [:inserted_at, :updated_at]
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "return"
+
+    publish :approve, ["sales.return.approved"]
+    publish :complete, ["sales.return.completed"]
+  end
 end

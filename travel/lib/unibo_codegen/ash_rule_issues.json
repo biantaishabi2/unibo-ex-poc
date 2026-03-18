@@ -1,6 +1,151 @@
 {
-  "total": 0,
-  "errors": 0,
-  "warnings": 0,
-  "issues": []
+  "total": 16,
+  "errors": 5,
+  "warnings": 11,
+  "issues": [
+    {
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "action": "arrival_airport_ref",
+      "rule_code": "cross_domain_target_missing",
+      "path": "entities.FlightOffer.relationships[1].target",
+      "severity": "warning",
+      "reason": "跨域目标实体不存在：Ecommerce.TravelAirport（project known entities）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "action": "departure_airport_ref",
+      "rule_code": "cross_domain_target_missing",
+      "path": "entities.FlightOffer.relationships[0].target",
+      "severity": "warning",
+      "reason": "跨域目标实体不存在：Ecommerce.TravelAirport（project known entities）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "action": "city_ref",
+      "rule_code": "cross_domain_target_missing",
+      "path": "entities.HotelOffer.relationships[0].target",
+      "severity": "warning",
+      "reason": "跨域目标实体不存在：Ecommerce.TravelCity（project known entities）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "action": "arrival_station_ref",
+      "rule_code": "cross_domain_target_missing",
+      "path": "entities.TrainOffer.relationships[1].target",
+      "severity": "warning",
+      "reason": "跨域目标实体不存在：Ecommerce.TravelStation（project known entities）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "action": "departure_station_ref",
+      "rule_code": "cross_domain_target_missing",
+      "path": "entities.TrainOffer.relationships[0].target",
+      "severity": "warning",
+      "reason": "跨域目标实体不存在：Ecommerce.TravelStation（project known entities）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelAirline",
+      "action": null,
+      "rule_code": "source_domain_not_found",
+      "path": "entities.TravelAirline.source.domain",
+      "severity": "error",
+      "reason": "source.domain=`ofbiz/party` 未在输入模型中解析到对应域（entity=TravelAirline，source=/home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelCabinClass",
+      "action": null,
+      "rule_code": "source_domain_not_found",
+      "path": "entities.TravelCabinClass.source.domain",
+      "severity": "error",
+      "reason": "source.domain=`ofbiz/common` 未在输入模型中解析到对应域（entity=TravelCabinClass，source=/home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "action": "shipment",
+      "rule_code": "cross_domain_target_missing",
+      "path": "entities.TravelFulfillment.relationships[1].target",
+      "severity": "warning",
+      "reason": "跨域目标实体不存在：Delivery.Shipment（project known entities）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelHotel",
+      "action": null,
+      "rule_code": "source_domain_not_found",
+      "path": "entities.TravelHotel.source.domain",
+      "severity": "error",
+      "reason": "source.domain=`ofbiz/product` 未在输入模型中解析到对应域（entity=TravelHotel，source=/home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelHotel",
+      "action": "city",
+      "rule_code": "cross_domain_target_missing",
+      "path": "entities.TravelHotel.relationships[0].target",
+      "severity": "warning",
+      "reason": "跨域目标实体不存在：Ecommerce.TravelCity（project known entities）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": "customer",
+      "rule_code": "cross_domain_target_missing",
+      "path": "entities.TravelOrder.relationships[5].target",
+      "severity": "warning",
+      "reason": "跨域目标实体不存在：Sales.Customer（project known entities）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": "payment",
+      "rule_code": "cross_domain_target_missing",
+      "path": "entities.TravelOrder.relationships[6].target",
+      "severity": "warning",
+      "reason": "跨域目标实体不存在：Payment.Payment（project known entities）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelRoomType",
+      "action": null,
+      "rule_code": "source_domain_not_found",
+      "path": "entities.TravelRoomType.source.domain",
+      "severity": "error",
+      "reason": "source.domain=`ofbiz/product` 未在输入模型中解析到对应域（entity=TravelRoomType，source=/home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelStaticCodeMapping",
+      "action": null,
+      "rule_code": "source_domain_not_found",
+      "path": "entities.TravelStaticCodeMapping.source.domain",
+      "severity": "error",
+      "reason": "source.domain=`ofbiz/common` 未在输入模型中解析到对应域（entity=TravelStaticCodeMapping，source=/home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "action": "departure_city_ref",
+      "rule_code": "cross_domain_target_missing",
+      "path": "entities.VacationOffer.relationships[0].target",
+      "severity": "warning",
+      "reason": "跨域目标实体不存在：Ecommerce.TravelCity（project known entities）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "action": "destination_ref",
+      "rule_code": "cross_domain_target_missing",
+      "path": "entities.VacationOffer.relationships[1].target",
+      "severity": "warning",
+      "reason": "跨域目标实体不存在：Ecommerce.TravelCity（project known entities）"
+    }
+  ]
 }

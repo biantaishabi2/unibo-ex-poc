@@ -24,8 +24,5 @@ defmodule UniboExPoc.Ofbiz.Product do
     resource UniboExPoc.Ofbiz.Product.ProductStore
     resource UniboExPoc.Ofbiz.Product.ProductStoreGroup
     resource UniboExPoc.Ofbiz.Product.ProductStoreGroupType
-    resource UniboExPoc.Ofbiz.Product.SupplierPrefOrder
-    resource UniboExPoc.Ofbiz.Product.SupplierProduct
-    resource UniboExPoc.Ofbiz.Product.SupplierRatingType
   end
 end

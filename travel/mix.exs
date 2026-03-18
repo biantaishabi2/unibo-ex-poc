@@ -57,6 +57,7 @@ defmodule Travel.MixProject do
       {:unibo_graphql_runtime, path: "../../unibo/targets/elixir/unibo_graphql_runtime"},
       {:ash_paper_trail, "~> 0.5"},
       {:ash_archival, "~> 2.0"},
+      {:ash_state_machine, "~> 0.2"},
       {:unibo_bdd_runtime, path: "../../unibo/targets/elixir/unibo_bdd_runtime"},
       {:stitch_ui, path: "../../stitch/packages/liveview"},
     ]
@@ -67,7 +68,10 @@ defmodule Travel.MixProject do
       setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
+      "assets.build": ["tailwind travel", "esbuild travel"],
+      "assets.deploy": ["tailwind travel --minify", "esbuild travel --minify", "phx.digest"],
     ]
   end
 end

@@ -1,7 +1,7 @@
 module: TRAVEL_FLIGHT_OFFER
 contract: FlightOffer.activate event contract (risk:normal_publish)
 edge_class: event_contract
-source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 FlightOffer 动作 activate 触发事件 / WHEN 发布 topic `travel.catalog.flight_offer.activated` / THEN 消费方应收到一次有效通知
 expected_facts:
 - event_checked

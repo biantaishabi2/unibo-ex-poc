@@ -24,7 +24,7 @@ defmodule UniboExPoc.Delivery.CrossOrgTransaction do
     domain: UniboExPoc.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboExPoc.Delivery.CrossOrgTransaction.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "跨组织事务编排骨架，串联源销售单、镜像采购单与履约发货链路"
@@ -252,4 +252,16 @@ defmodule UniboExPoc.Delivery.CrossOrgTransaction do
     ignore_attributes [:inserted_at, :updated_at]
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "cross_org_transaction"
+
+    publish :confirm_source, ["delivery.cross_org_transaction.source_confirmed"]
+    publish :create_mirror_purchase_order, ["delivery.cross_org_transaction.mirror_created"]
+    publish :mark_fulfilled, ["delivery.cross_org_transaction.fulfilled"]
+    publish :mark_settled, ["delivery.cross_org_transaction.settled"]
+    publish :mark_failed, ["delivery.cross_org_transaction.failed"]
+    publish :cancel, ["delivery.cross_org_transaction.cancelled"]
+  end
 end

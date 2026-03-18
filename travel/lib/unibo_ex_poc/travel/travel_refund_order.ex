@@ -15,8 +15,8 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboExPoc.Travel.TravelRefundOrder.Notifier]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshStateMachine],
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "退票/退订单，记录针对已有 TravelOrder 的退票请求、手续费与退款状态"
@@ -61,6 +61,7 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
       description "实退金额"
     end
     attribute :status, :atom do
+      allow_nil? false
       constraints one_of: [:pending, :approved, :refunded, :rejected]
       default :pending
       public? true
@@ -106,6 +107,7 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
       end
       # message: "只有 pending 退票单可以审批或拒绝"
       change set_attribute(:status, :approved)
+      change transition_state(:approved)
       require_atomic? false
     end
     update :reject do
@@ -121,6 +123,7 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
       end
       # message: "只有 pending 退票单可以审批或拒绝"
       change set_attribute(:status, :rejected)
+      change transition_state(:rejected)
       require_atomic? false
     end
     update :refund do
@@ -136,6 +139,7 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
       end
       # message: "只有 approved 退票单可以执行退款"
       change set_attribute(:status, :refunded)
+      change transition_state(:refunded)
       require_atomic? false
     end
     update :refund_direct do
@@ -160,6 +164,7 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
       end
       # message: "关闭审批时，pending 退票单可直接退款"
       change set_attribute(:status, :refunded)
+      change transition_state(:refunded)
       require_atomic? false
     end
 
@@ -202,4 +207,26 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
     ignore_attributes [:inserted_at, :updated_at]
   end
 
+
+  state_machine do
+    initial_states [:pending]
+    default_initial_state :pending
+    state_attribute :status
+    transitions do
+      transition :approve, from: :pending, to: :approved
+      transition :reject, from: :pending, to: :rejected
+      transition :refund, from: :approved, to: :refunded
+      transition :refund_direct, from: :pending, to: :refunded
+    end
+  end
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "travel_refund_order"
+
+    publish :approve, ["travel.refund_order.approved"]
+    publish :reject, ["travel.refund_order.rejected"]
+    publish :refund, ["travel.refund_order.refunded"]
+    publish :refund_direct, ["travel.refund_order.refunded"]
+  end
 end

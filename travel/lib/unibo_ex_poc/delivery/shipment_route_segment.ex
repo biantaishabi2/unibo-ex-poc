@@ -19,7 +19,7 @@ defmodule UniboExPoc.Delivery.ShipmentRouteSegment do
     domain: UniboExPoc.Delivery,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboExPoc.Delivery.ShipmentRouteSegment.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "运输路段，记录承运商、追踪号、实际费用等，支持多段路线（转运）"
@@ -246,4 +246,11 @@ defmodule UniboExPoc.Delivery.ShipmentRouteSegment do
     archive_related [:package_route_segs]
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "shipment_route_segment"
+
+    publish :update_tracking, ["delivery.tracking.updated"]
+  end
 end

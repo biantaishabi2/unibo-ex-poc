@@ -32,7 +32,7 @@ defmodule UniboExPoc.Sales.SalesOrder do
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
     authorizers: [Ash.Policy.Authorizer],
-    notifiers: [UniboExPoc.Sales.SalesOrder.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "销售订单（状态机对齐 Odoo：draft → sent → sale → done → cancel）"
@@ -334,4 +334,16 @@ defmodule UniboExPoc.Sales.SalesOrder do
     end
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "sales_order"
+
+    publish :action_quotation_send, ["sales.order.sent"]
+    publish :action_confirm, ["sales.order.confirmed"]
+    publish :action_done, ["sales.order.done"]
+    publish :action_cancel, ["sales.order.cancelled"]
+    publish :action_draft, ["sales.order.reset_to_draft"]
+    publish :create_invoices, ["sales.order.invoice_created"]
+  end
 end

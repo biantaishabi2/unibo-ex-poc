@@ -5,7 +5,7 @@ defmodule UniboExPoc.Sales.Changes.SalesOrder.CreateInvoicesCall15 do
   def change(changeset, _opts, context) do
     module_ref = "UniboExPoc.Sales"
     module = resolve_call_module(module_ref)
-    if is_atom(module) and function_exported?(module, :convert_to_refund, 2) do
+    if is_atom(module) and Code.ensure_loaded?(module) and function_exported?(module, :convert_to_refund, 2) do
       apply(module, :convert_to_refund, [changeset, context])
     else
       Ash.Changeset.add_error(changeset, "call 目标不存在: #UniboExPoc.Sales.convert_to_refund/2")

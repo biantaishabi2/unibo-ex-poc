@@ -19,7 +19,7 @@ defmodule UniboExPoc.Travel.TrainOffer do
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboExPoc.Travel.TrainOffer.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "火车票可售 offer，承载车次、席别、候补和退改规则快照"
@@ -272,4 +272,13 @@ defmodule UniboExPoc.Travel.TrainOffer do
     archive_related [:orders]
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "train_offer"
+
+    publish :activate, ["travel.catalog.train_offer.activated"]
+    publish :deactivate, ["travel.catalog.train_offer.deactivated"]
+    publish :expire, ["travel.catalog.train_offer.expired"]
+  end
 end

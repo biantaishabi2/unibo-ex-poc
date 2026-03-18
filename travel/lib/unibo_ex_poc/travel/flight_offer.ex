@@ -19,7 +19,7 @@ defmodule UniboExPoc.Travel.FlightOffer do
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboExPoc.Travel.FlightOffer.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "机票可售 offer，承载航班、舱位、票规和库存快照"
@@ -252,4 +252,13 @@ defmodule UniboExPoc.Travel.FlightOffer do
     archive_related [:orders]
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "flight_offer"
+
+    publish :activate, ["travel.catalog.flight_offer.activated"]
+    publish :deactivate, ["travel.catalog.flight_offer.deactivated"]
+    publish :expire, ["travel.catalog.flight_offer.expired"]
+  end
 end

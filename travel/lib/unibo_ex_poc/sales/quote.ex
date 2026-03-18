@@ -14,7 +14,7 @@ defmodule UniboExPoc.Sales.Quote do
     domain: UniboExPoc.Sales,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
-    notifiers: [UniboExPoc.Sales.Quote.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "销售报价单"
@@ -205,4 +205,12 @@ defmodule UniboExPoc.Sales.Quote do
     ignore_attributes [:inserted_at, :updated_at]
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "quote"
+
+    publish :submit, ["sales.quote.submitted"]
+    publish :accept, ["sales.quote.accepted"]
+  end
 end

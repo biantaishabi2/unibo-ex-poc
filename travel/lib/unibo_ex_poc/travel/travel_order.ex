@@ -36,8 +36,8 @@ defmodule UniboExPoc.Travel.TravelOrder do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboExPoc.Travel.TravelOrder.Notifier]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource, AshStateMachine],
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "统一酒旅订单，承接 hotel、flight、vacation、train 四类商品的下单和状态流转；通过跨域引用关联 Sales::Customer 和 Payment::Payment"
@@ -155,6 +155,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
       public? true
     end
     attribute :status, :atom do
+      allow_nil? false
       constraints one_of: [:draft, :quoted, :submitted, :booking_pending, :booked, :cancel_pending, :cancelled, :completed, :failed]
       default :draft
       public? true
@@ -266,6 +267,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "只有 draft 订单可以 confirm_quote"
       change set_attribute(:status, :quoted)
       change UniboExPoc.Travel.Integrations.TravelOrder.ConfirmQuoteShopEligibilityQuoteBridge
+      change transition_state(:quoted)
       require_atomic? false
     end
     update :submit_order do
@@ -282,6 +284,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "只有 quoted 订单可以提交普通购票或候补"
       change set_attribute(:status, :submitted)
       change UniboExPoc.Travel.Integrations.TravelOrder.SubmitOrderPaymentCaptureBridge
+      change transition_state(:submitted)
       require_atomic? false
     end
     update :submit_waitlist do
@@ -300,6 +303,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
       change set_attribute(:booking_mode, :waitlist)
       change set_attribute(:waitlist_status, :pending)
       change UniboExPoc.Travel.Integrations.TravelOrder.SubmitWaitlistPaymentCaptureBridge
+      change transition_state(:submitted)
       require_atomic? false
     end
     update :mark_payment_succeeded do
@@ -316,6 +320,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "只有 submitted 订单可以进入支付成功或失败结果"
       change set_attribute(:status, :booking_pending)
       change UniboExPoc.Travel.Integrations.TravelOrder.MarkPaymentSucceededSupplierBookingSubmitBridge
+      change transition_state(:booking_pending)
       require_atomic? false
     end
     update :mark_booked do
@@ -331,6 +336,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 booking_pending 订单可以完成出票、兑现候补或取消候补"
       change set_attribute(:status, :booked)
+      change transition_state(:booked)
       require_atomic? false
     end
     update :fulfill_waitlist do
@@ -356,6 +362,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "只有 waitlist_pending 的订单可以兑现或取消候补"
       change set_attribute(:status, :booked)
       change set_attribute(:waitlist_status, :fulfilled)
+      change transition_state(:booked)
       require_atomic? false
     end
     update :mark_completed do
@@ -371,6 +378,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 booked 订单可以完成、取消或改签"
       change set_attribute(:status, :completed)
+      change transition_state(:completed)
       require_atomic? false
     end
     update :request_cancel do
@@ -386,6 +394,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 booked 订单可以完成、取消或改签"
       change set_attribute(:status, :cancel_pending)
+      change transition_state(:cancel_pending)
       require_atomic? false
     end
     update :cancel_waitlist do
@@ -411,6 +420,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
       # message: "只有 waitlist_pending 的订单可以兑现或取消候补"
       change set_attribute(:status, :cancelled)
       change set_attribute(:waitlist_status, :cancelled)
+      change transition_state(:cancelled)
       require_atomic? false
     end
     update :approve_cancel do
@@ -426,6 +436,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 cancel_pending 订单可以 approve_cancel"
       change set_attribute(:status, :cancelled)
+      change transition_state(:cancelled)
       require_atomic? false
     end
     update :request_change do
@@ -473,6 +484,19 @@ defmodule UniboExPoc.Travel.TravelOrder do
       end
       # message: "只有 submitted 订单可以进入支付成功或失败结果"
       change set_attribute(:status, :failed)
+      change transition_state(:failed)
+      require_atomic? false
+    end
+
+    update :trigger_fulfillment_creation do
+      accept []
+      # determination semantics: phase=post_commit, scope=cross_aggregate, mode=derive_only
+      require_atomic? false
+    end
+
+    update :trigger_policy_check do
+      accept []
+      # determination semantics: phase=post_commit, scope=cross_aggregate, mode=derive_only
       require_atomic? false
     end
   end
@@ -499,4 +523,37 @@ defmodule UniboExPoc.Travel.TravelOrder do
     archive_related [:fulfillments]
   end
 
+
+  state_machine do
+    initial_states [:draft]
+    default_initial_state :draft
+    state_attribute :status
+    transitions do
+      transition :confirm_quote, from: :draft, to: :quoted
+      transition :submit_order, from: :quoted, to: :submitted
+      transition :submit_waitlist, from: :quoted, to: :submitted
+      transition :mark_payment_succeeded, from: :submitted, to: :booking_pending
+      transition :mark_order_failed, from: :submitted, to: :failed
+      transition :mark_booked, from: :booking_pending, to: :booked
+      transition :fulfill_waitlist, from: :booking_pending, to: :booked
+      transition :cancel_waitlist, from: :booking_pending, to: :cancelled
+      transition :mark_completed, from: :booked, to: :completed
+      transition :request_cancel, from: :booked, to: :cancel_pending
+      transition :approve_cancel, from: :cancel_pending, to: :cancelled
+    end
+  end
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "travel_order"
+
+    publish :submit_order, ["travel.order.submitted"]
+    publish :submit_waitlist, ["travel.order.waitlist_submitted"]
+    publish :mark_payment_succeeded, ["travel.order.payment_confirmed"]
+    publish :fulfill_waitlist, ["travel.order.waitlist_fulfilled"]
+    publish :cancel_waitlist, ["travel.order.waitlist_cancelled"]
+    publish :approve_cancel, ["travel.order.cancelled"]
+    publish :confirm_change, ["travel.order.change_confirmed"]
+    publish :mark_order_failed, ["travel.order.failed"]
+  end
 end

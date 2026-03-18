@@ -19,7 +19,7 @@ defmodule UniboExPoc.Travel.HotelOffer do
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
-    notifiers: [UniboExPoc.Travel.HotelOffer.Notifier]
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "酒店可售 offer，承载房型、价计划、价态和可售规则快照"
@@ -246,4 +246,13 @@ defmodule UniboExPoc.Travel.HotelOffer do
     archive_related [:orders]
   end
 
+
+  pub_sub do
+    module UniboExPoc.PubSub
+    prefix "hotel_offer"
+
+    publish :activate, ["travel.catalog.hotel_offer.activated"]
+    publish :deactivate, ["travel.catalog.hotel_offer.deactivated"]
+    publish :expire, ["travel.catalog.hotel_offer.expired"]
+  end
 end

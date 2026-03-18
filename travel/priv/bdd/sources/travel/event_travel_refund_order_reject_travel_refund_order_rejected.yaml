@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_REFUND_ORDER
 contract: TravelRefundOrder.reject event contract
 edge_class: event_contract
-source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelRefundOrder 的动作 reject 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.refund_order.rejected`
 expected_facts:
 - event_checked

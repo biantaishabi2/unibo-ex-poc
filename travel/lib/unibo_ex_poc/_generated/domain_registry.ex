@@ -4,12 +4,6 @@ defmodule UniboExPoc.Generated.DomainRegistry do
   @doc "返回所有已注册的 Ash Domain 模块列表"
   def domains do
     [
-      UniboExPoc.Accounting,
-      UniboExPoc.Delivery,
-      UniboExPoc.Ecommerce,
-      UniboExPoc.Payment,
-      UniboExPoc.Purchasing,
-      UniboExPoc.Sales,
       UniboExPoc.Travel,
     ]
   end

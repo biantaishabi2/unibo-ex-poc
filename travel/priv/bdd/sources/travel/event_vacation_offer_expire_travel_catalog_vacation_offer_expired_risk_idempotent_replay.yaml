@@ -1,7 +1,7 @@
 module: TRAVEL_VACATION_OFFER
 contract: VacationOffer.expire event contract (risk:idempotent_replay)
 edge_class: event_contract
-source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 VacationOffer 动作 expire 事件被重复投递 / WHEN 重放 topic `travel.catalog.vacation_offer.expired` / THEN 消费方处理应保持幂等且无重复副作用
 expected_facts:
 - event_checked
