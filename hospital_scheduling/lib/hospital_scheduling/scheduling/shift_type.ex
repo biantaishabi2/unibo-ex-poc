@@ -1,6 +1,6 @@
 defmodule HospitalScheduling.Scheduling.ShiftType do
   use Ash.Resource,
-    otp_app: :hospital_scheduling,
+    otp_app: :unibo_v4,
     domain: HospitalScheduling.Scheduling,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
@@ -122,6 +122,7 @@ defmodule HospitalScheduling.Scheduling.ShiftType do
   paper_trail do
     change_tracking_mode :full_diff
     store_action_name? true
+    belongs_to_actor :user, HospitalScheduling.Accounts.User, allow_nil?: true
     ignore_attributes [:inserted_at, :updated_at]
   end
 

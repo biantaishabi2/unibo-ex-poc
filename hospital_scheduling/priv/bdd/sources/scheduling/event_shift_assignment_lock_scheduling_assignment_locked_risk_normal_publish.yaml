@@ -1,0 +1,8 @@
+module: SCHEDULING_SHIFT_ASSIGNMENT
+contract: ShiftAssignment.lock event contract (risk:normal_publish)
+edge_class: event_contract
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
+source_summary: GIVEN 实体 ShiftAssignment 动作 lock 触发事件 / WHEN 发布 topic `scheduling.assignment.locked` / THEN 消费方应收到一次有效通知
+expected_facts:
+- event_checked
+- notifier_verified

@@ -1,8 +1,8 @@
 module: SCHEDULING_SCHEDULING_PERIOD
 contract: SchedulingPeriod.on_schedule_version_publish determination contract (risk:success)
 edge_class: determination_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-risk/hospital_scheduling/models/scheduling.ubo.yaml
-source_summary: GIVEN 实体 SchedulingPeriod 的跨聚合 determine_action on_schedule_version_publish 正常执行 / WHEN scope=cross_aggregate mode=async_write_back / THEN read_set [无] 可读且 write_set [无] 写回成功
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
+source_summary: GIVEN 实体 SchedulingPeriod 的跨聚合 determine_action on_schedule_version_publish 正常执行 / WHEN scope=cross_aggregate mode=async_write_back / THEN read_set [无] 可读且 write_set [state] 写回成功
 expected_facts:
 - determination_checked
 - read_set_verified

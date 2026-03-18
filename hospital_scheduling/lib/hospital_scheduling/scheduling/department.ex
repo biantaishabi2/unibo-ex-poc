@@ -1,6 +1,6 @@
 defmodule HospitalScheduling.Scheduling.Department do
   use Ash.Resource,
-    otp_app: :hospital_scheduling,
+    otp_app: :unibo_v4,
     domain: HospitalScheduling.Scheduling,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource]

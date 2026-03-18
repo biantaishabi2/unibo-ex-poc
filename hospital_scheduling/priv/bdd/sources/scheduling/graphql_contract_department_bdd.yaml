@@ -1,7 +1,7 @@
 module: SCHEDULING_DEPARTMENT
 contract: Scheduling.Department graphql contract
 edge_class: graphql_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-risk/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: 'GIVEN 实体 Scheduling.Department 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 2 个 field 应存在: [get_scheduling_department(query:get:read), list_scheduling_departments(query:list:read)]'
 expected_facts:
 - graphql_schema_loaded

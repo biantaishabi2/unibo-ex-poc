@@ -12,10 +12,11 @@
 # ```
 defmodule HospitalScheduling.Scheduling.SolverRun do
   use Ash.Resource,
-    otp_app: :hospital_scheduling,
+    otp_app: :unibo_v4,
     domain: HospitalScheduling.Scheduling,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshStateMachine]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshStateMachine],
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "一次求解执行记录与输入/输出快照载体"
@@ -121,7 +122,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
   end
 
   actions do
-    defaults [:read, :destroy]
+    defaults [:read]
     create :create do
       description "Create Solver Run via Create. doc_url: graphql://contract/scheduling/create_scheduling_solver_run"
       primary? true
@@ -150,6 +151,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       end
       # message: "只有待执行状态可以开始"
       change set_attribute(:status, :running)
+      change HospitalScheduling.Scheduling.Integrations.SolverRun.StartRunRustSolverInvokeBridge
       change transition_state(:running)
       require_atomic? false
     end
@@ -239,6 +241,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
   paper_trail do
     change_tracking_mode :full_diff
     store_action_name? true
+    belongs_to_actor :user, HospitalScheduling.Accounts.User, allow_nil?: true
     ignore_attributes [:inserted_at, :updated_at]
   end
 
@@ -255,5 +258,16 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       transition :mark_error, from: :running, to: :error
       transition :mark_completed, from: :feasible, to: :completed
     end
+  end
+
+  pub_sub do
+    module HospitalScheduling.PubSub
+    prefix "solver_run"
+
+    publish :start_run, ["scheduling.solver.started"]
+    publish :complete_feasible, ["scheduling.solver.completed"]
+    publish :complete_infeasible, ["scheduling.solver.infeasible"]
+    publish :mark_error, ["scheduling.solver.errored"]
+    publish :mark_timeout, ["scheduling.solver.timed_out"]
   end
 end

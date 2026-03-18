@@ -1,0 +1,14 @@
+module: SCHEDULING_SOLVER_RUN
+contract: SolverRun.rust_solver_invoke integration contract (risk:declared_error)
+edge_class: integration_contract
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
+source_summary: GIVEN integration rust_solver_invoke 声明错误码 [solver_timeout, solver_crash, invalid_input] / WHEN fake adapter 返回错误 / THEN 错误码必须命中声明集合
+expected_facts:
+- integration_invoked
+- error_code_validated
+declared_error_codes:
+- solver_timeout
+- solver_crash
+- invalid_input
+business_post_conditions:
+- response_present

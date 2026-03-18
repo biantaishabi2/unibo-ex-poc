@@ -1,0 +1,14 @@
+module: SCHEDULING_SOLVER_RUN
+contract: SolverRun.rust_solver_invoke integration contract
+edge_class: integration_contract
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
+source_summary: GIVEN 实体 SolverRun 声明 integration rust_solver_invoke（mode=async） / WHEN 绑定动作 [start_run] 触发外部调用 / THEN 调用结果需满足 声明错误码 solver_timeout, solver_crash, invalid_input 且 业务后置条件 response_present
+expected_facts:
+- integration_invoked
+- post_conditions_checked
+declared_error_codes:
+- solver_timeout
+- solver_crash
+- invalid_input
+business_post_conditions:
+- response_present

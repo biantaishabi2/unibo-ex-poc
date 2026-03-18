@@ -1,0 +1,8 @@
+module: SCHEDULING_SOLVER_RUN
+contract: SolverRun.start_run event contract (risk:idempotent_replay)
+edge_class: event_contract
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
+source_summary: GIVEN 实体 SolverRun 动作 start_run 事件被重复投递 / WHEN 重放 topic `scheduling.solver.started` / THEN 消费方处理应保持幂等且无重复副作用
+expected_facts:
+- event_checked
+- notifier_verified
