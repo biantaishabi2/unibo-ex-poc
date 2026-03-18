@@ -1266,6 +1266,44 @@ entities:
   - name: TravelOrder
     description: 统一酒旅订单，承接 hotel、flight、vacation、train 四类商品的下单和状态流转；通过跨域引用关联 Sales::Customer 和 Payment::Payment
     aggregate_root: true
+    state_machine:
+      initial_state: draft
+      state_attribute: status
+      states: [draft, quoted, submitted, booking_pending, booked, cancel_pending, cancelled, completed, failed]
+      transitions:
+        - from: draft
+          to: quoted
+          event: confirm_quote
+        - from: quoted
+          to: submitted
+          event: submit_order
+        - from: quoted
+          to: submitted
+          event: submit_waitlist
+        - from: submitted
+          to: booking_pending
+          event: mark_payment_succeeded
+        - from: submitted
+          to: failed
+          event: mark_order_failed
+        - from: booking_pending
+          to: booked
+          event: mark_booked
+        - from: booking_pending
+          to: booked
+          event: fulfill_waitlist
+        - from: booking_pending
+          to: cancelled
+          event: cancel_waitlist
+        - from: booked
+          to: completed
+          event: mark_completed
+        - from: booked
+          to: cancel_pending
+          event: request_cancel
+        - from: cancel_pending
+          to: cancelled
+          event: approve_cancel
     tenancy:
       strategy: attribute
       attribute: tenant_id
@@ -2169,6 +2207,23 @@ entities:
   - name: TravelChangeOrder
     description: 改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态
     aggregate_root: true
+    state_machine:
+      initial_state: pending
+      state_attribute: status
+      states: [pending, approved, completed, rejected]
+      transitions:
+        - from: pending
+          to: approved
+          event: approve
+        - from: pending
+          to: rejected
+          event: reject
+        - from: approved
+          to: completed
+          event: complete
+        - from: pending
+          to: completed
+          event: complete_direct
     attributes:
       - name: id
         type: uuid
@@ -2330,6 +2385,23 @@ entities:
   - name: TravelRefundOrder
     description: 退票/退订单，记录针对已有 TravelOrder 的退票请求、手续费与退款状态
     aggregate_root: true
+    state_machine:
+      initial_state: pending
+      state_attribute: status
+      states: [pending, approved, refunded, rejected]
+      transitions:
+        - from: pending
+          to: approved
+          event: approve
+        - from: pending
+          to: rejected
+          event: reject
+        - from: approved
+          to: refunded
+          event: refund
+        - from: pending
+          to: refunded
+          event: refund_direct
     attributes:
       - name: id
         type: uuid
@@ -2564,6 +2636,25 @@ entities:
         type: update
         primary: true
         accept: [policy_name, season, max_amount, cabin_class_limit, hotel_star_limit, exceed_strategy, approval_mode, personal_pay_ratio]
+      - name: match_policy
+        type: read
+        arguments:
+          - name: product_type
+            type: string
+            required: true
+          - name: employee_level
+            type: string
+          - name: city_tier
+            type: string
+        filter:
+          - field: is_active
+            op: eq
+            value: true
+          - field: product_type
+            op: eq
+            value: { arg: product_type }
+        sort: [employee_level, city_tier]
+        limit: 1
       - name: activate
         type: update
         accept: []

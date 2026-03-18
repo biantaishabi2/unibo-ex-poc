@@ -33,6 +33,7 @@ defmodule UniboExPoc.Travel.TravelPolicy do
     queries do
       get :get_travel_travel_policy, :read
       list :list_travel_travel_policys, :read
+      list :match_travel_travel_policy, :match_policy
     end
 
     mutations do
@@ -112,6 +113,20 @@ defmodule UniboExPoc.Travel.TravelPolicy do
 
   actions do
     defaults [:read]
+    read :match_policy do
+      description "按商品类型、职级、城市等级匹配最优差旅政策"
+      argument :product_type, :string do
+        allow_nil? false
+      end
+      argument :employee_level, :string
+      argument :city_tier, :string
+      filter expr(is_active == true and product_type == ^arg(:product_type))
+      prepare fn query, _context ->
+        query
+        |> Ash.Query.sort([:employee_level, :city_tier])
+        |> Ash.Query.limit(1)
+      end
+    end
     create :create do
       description "Create Travel Policy via Create. doc_url: graphql://contract/travel/create_travel_travel_policy"
       primary? true

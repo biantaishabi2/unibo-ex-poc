@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_FULFILLMENT
 contract: TravelFulfillment.supplier_issue_document integration contract (risk:success)
 edge_class: integration_contract
-source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelFulfillment 的 integration supplier_issue_document 已声明 fake adapter / WHEN 执行绑定动作 [issue_voucher_or_ticket] / THEN 调用结果应成功并满足契约模式 sync
 expected_facts:
 - integration_invoked

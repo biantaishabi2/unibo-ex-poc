@@ -1,6 +1,16 @@
 {
-  "total": 0,
+  "total": 1,
   "errors": 0,
-  "warnings": 0,
-  "issues": []
+  "warnings": 1,
+  "issues": [
+    {
+      "domain": "Delivery",
+      "entity": "CrossOrgTransaction",
+      "action": "target_purchase_order",
+      "rule_code": "cross_domain_target_missing",
+      "path": "entities.CrossOrgTransaction.relationships[3].target",
+      "severity": "warning",
+      "reason": "跨域目标实体不存在：Purchasing.PurchaseOrder（project known entities）"
+    }
+  ]
 }

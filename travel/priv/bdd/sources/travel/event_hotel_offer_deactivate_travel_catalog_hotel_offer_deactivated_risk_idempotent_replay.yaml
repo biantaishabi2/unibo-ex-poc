@@ -1,7 +1,7 @@
 module: TRAVEL_HOTEL_OFFER
 contract: HotelOffer.deactivate event contract (risk:idempotent_replay)
 edge_class: event_contract
-source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 HotelOffer 动作 deactivate 事件被重复投递 / WHEN 重放 topic `travel.catalog.hotel_offer.deactivated` / THEN 消费方处理应保持幂等且无重复副作用
 expected_facts:
 - event_checked

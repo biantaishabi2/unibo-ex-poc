@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_FULFILLMENT
 contract: TravelFulfillment.complete_fulfillment action contract (risk:validation_fail)
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelFulfillment 的动作 complete_fulfillment 输入非法 / WHEN 执行动作 complete_fulfillment / THEN 应返回校验失败且不产生持久化副作用 / 补充场景：create_fulfillment 创建履约单 -> confirm_booking 触发 integration supplier_confirm_booking 成功 -> issue_voucher_or_ticket 触发 integration supplier_issue_document 成功 -> complete_fulfillment 完成履约；create_fulfillment 创建履约单 -> confirm_booking 预订确认 -> issue_voucher_or_ticket 发券出票 -> mark_in_use 标记使用中 -> complete_fulfillment 完成履约；create_fulfillment 创建履约单 -> confirm_booking 预订确认 -> issue_voucher_or_ticket 发券出票 -> complete_fulfillment 完成履约；create_fulfillment 创建 train 履约单 -> confirm_booking 候补确认中 -> issue_voucher_or_ticket 出票或兑现 -> complete_fulfillment 完成履约
 expected_facts:
 - validation_triggered

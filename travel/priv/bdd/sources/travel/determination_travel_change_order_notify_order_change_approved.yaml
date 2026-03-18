@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_CHANGE_ORDER
 contract: TravelChangeOrder.notify_order_change_approved determination contract
 edge_class: determination_contract
-source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelChangeOrder 声明跨聚合 determine_action notify_order_change_approved / WHEN 执行 determine_action notify_order_change_approved（scope=cross_aggregate, mode=async_write_back） / THEN read_set [original_order.status] 字段可读 + write_set [status] 字段已写回 | phase=post_commit | validations=[] | changes=[]
 expected_facts:
 - determination_checked

@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_ORDER
 contract: TravelOrder.payment_capture integration contract (risk:compensation)
 edge_class: integration_contract
-source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
 source_summary: GIVEN integration payment_capture 的失败路径声明补偿线索 [mark_order_failed 标记失败并触发库存补偿] / WHEN fake adapter 返回声明错误 / THEN 应记录补偿动作并满足补偿断言
 expected_facts:
 - integration_invoked

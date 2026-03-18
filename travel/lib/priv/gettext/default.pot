@@ -1,395 +1,6 @@
 # 从 YAML 模型自动生成，请勿手动编辑
 # UniBO Compiler — Gettext POT
 
-#. domain: Accounting
-msgid "财务管理领域模型，涵盖科目、凭证、发票、付款、核销、预算"
-msgstr ""
-
-#. domain: Accounting, entity: GlAccount
-msgid "总账科目"
-msgstr ""
-
-#. domain: Accounting, entity: GlAccount, attribute: account_code
-msgid "科目编号"
-msgstr ""
-
-#. domain: Accounting, entity: GlAccount, attribute: account_name
-msgid "科目名称"
-msgstr ""
-
-#. domain: Accounting, entity: GlAccount, attribute: account_type
-msgid "科目类型（细分类型，兼容 Odoo 17 account_type）"
-msgstr ""
-
-#. domain: Accounting, entity: GlAccount, attribute: reconcile
-msgid "是否允许核销（应收/应付必须为 true）[R-GL-001]"
-msgstr ""
-
-#. domain: Accounting, entity: GlAccount, attribute: parent_account_code
-msgid "上级科目编号"
-msgstr ""
-
-#. domain: Accounting, entity: GlAccount, attribute: is_active
-msgid "是否启用；已停用科目不可用于新分录 [R-GL-002]"
-msgstr ""
-
-#. domain: Accounting, entity: GlAccount, attribute: currency_id
-msgid "外币限定（可选，限定该科目只能用某一外币记账）"
-msgstr ""
-
-#. domain: Accounting, entity: GlAccount, action: deactivate
-msgid "停用科目 [R-GL-002]"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry
-msgid "记账凭证（会计分录），涵盖普通凭证、销售发票、采购账单、收据等"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: entry_number
-msgid "凭证号，草稿时为 '/'，过账时由 journal sequence 生成 [R-ACC-007]"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: move_type
-msgid "凭证类型"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: status
-msgid "凭证状态（draft → posted → cancel，cancel → draft）"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: entry_date
-msgid "会计日期 [R-ACC-002]"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: invoice_date
-msgid "发票日期（仅 invoice 类型使用）[R-ACC-005]"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: invoice_date_due
-msgid "到期日"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: currency_id
-msgid "币种"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: fiscal_position_id
-msgid "税务位置 [R-ACC-004]"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: invoice_origin
-msgid "来源单据号（SO/PO 编号）"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: ref
-msgid "参考号"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: amount_untaxed
-msgid "未税合计（计算字段）
-公式: sign * SUM(line.balance) WHERE line.display_type IN ('product','rounding')
-sign = +1（出站）或 -1（入站）[R-DIR-001][R-DIR-002][R-DIR-003]
-"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: amount_tax
-msgid "税额合计（计算字段）
-公式: sign * SUM(line.balance) WHERE line.display_type = 'tax'
-"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: amount_total
-msgid "含税合计（计算字段）
-公式: amount_untaxed + amount_tax
-"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: amount_residual
-msgid "未付余额（计算字段）
-公式: -sign * SUM(line.amount_residual_currency) WHERE line.display_type = 'payment_term'
-"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: amount_residual_signed
-msgid "已签署未付余额（计算字段）
-公式: SUM(line.amount_residual) WHERE line.display_type = 'payment_term'
-"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: payment_state
-msgid "付款状态（计算字段）[R-REC-004]
-not_paid: 无核销记录
-partial: 存在核销但 amount_residual != 0
-in_payment: amount_residual = 0 但部分付款未匹配银行对账单
-paid: amount_residual = 0 且所有付款已匹配银行对账单
-reversed: 仅冲销分录匹配
-"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: total_debit
-msgid "借方合计"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, attribute: total_credit
-msgid "贷方合计"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, action: post
-msgid "过账 [R-ACC-001 ~ R-ACC-007]"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, action: cancel
-msgid "取消（可能生成冲销分录）"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntry, action: reset_to_draft
-msgid "重置为草稿"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntryLine
-msgid "凭证分录行"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntryLine, attribute: debit_amount
-msgid "借方金额"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntryLine, attribute: credit_amount
-msgid "贷方金额"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntryLine, attribute: balance
-msgid "计算字段: debit_amount - credit_amount"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntryLine, attribute: amount_currency
-msgid "外币金额"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntryLine, attribute: amount_residual
-msgid "未核销余额（本位币）"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntryLine, attribute: amount_residual_currency
-msgid "未核销外币余额"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntryLine, attribute: display_type
-msgid "行类型（产品行、税行、付款条件行、舍入行、备注行、分节行）"
-msgstr ""
-
-#. domain: Accounting, entity: Invoice
-msgid "发票（应收/应付）— 业务视图，底层映射为 JournalEntry（move_type = out_invoice/in_invoice 等）"
-msgstr ""
-
-#. domain: Accounting, entity: Invoice, attribute: invoice_number
-msgid "发票号"
-msgstr ""
-
-#. domain: Accounting, entity: Invoice, attribute: invoice_type
-msgid "发票类型"
-msgstr ""
-
-#. domain: Accounting, entity: Invoice, attribute: total_amount
-msgid "发票总金额"
-msgstr ""
-
-#. domain: Accounting, entity: Invoice, attribute: paid_amount
-msgid "已付金额"
-msgstr ""
-
-#. domain: Accounting, entity: Invoice, attribute: invoice_origin
-msgid "来源单据号（SO/PO 编号），跨模块调用时由 sale/purchase 模块设置"
-msgstr ""
-
-#. domain: Accounting, entity: Invoice, action: approve
-msgid "审批发票"
-msgstr ""
-
-#. domain: Accounting, entity: Invoice, action: send
-msgid "发送发票"
-msgstr ""
-
-#. domain: Accounting, entity: Invoice, action: void
-msgid "作废发票"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem
-msgid "发票明细行（对齐 OFBiz InvoiceItem）"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem, attribute: invoice_item_type_id
-msgid "发票行类型（对齐 OFBiz InvoiceItemType，如 产品/服务/税/折扣）"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem, attribute: seq_id
-msgid "行序号（对齐 OFBiz invoice_item_seq_id）"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem, attribute: description
-msgid "行描述（对齐 OFBiz description）"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem, attribute: quantity
-msgid "数量（对齐 OFBiz quantity，类型从 integer 改为 decimal）"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem, attribute: amount
-msgid "单价/行金额（对齐 OFBiz amount）"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem, attribute: taxable_flag
-msgid "是否应税（对齐 OFBiz taxable_flag）"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem, attribute: tax_auth_party_id
-msgid "税务机关方（对齐 OFBiz tax_auth_party_id）"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem, attribute: tax_auth_geo_id
-msgid "税务地区（对齐 OFBiz tax_auth_geo_id）"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem, attribute: product_id
-msgid "产品引用（对齐 OFBiz product_id）"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem, attribute: unit_price
-msgid "单价（业务扩展，OFBiz 用 amount 表示单行金额）"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem, attribute: tax_rate
-msgid "税率百分比（业务扩展，OFBiz 通过 TaxAuthorityRateProduct 引用）"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem, attribute: tax_amount
-msgid "税额（computed，业务扩展）"
-msgstr ""
-
-#. domain: Accounting, entity: Payment
-msgid "付款/收款记录。在 Odoo 中通过 _inherits 委托继承 account.move，每个 Payment 即是一个 JournalEntry"
-msgstr ""
-
-#. domain: Accounting, entity: Payment, attribute: payment_number
-msgid "付款编号"
-msgstr ""
-
-#. domain: Accounting, entity: Payment, attribute: payment_type
-msgid "收款(inbound) / 付款(outbound)"
-msgstr ""
-
-#. domain: Accounting, entity: Payment, attribute: partner_type
-msgid "客户/供应商"
-msgstr ""
-
-#. domain: Accounting, entity: Payment, attribute: status
-msgid "付款状态，由底层 move.state 驱动"
-msgstr ""
-
-#. domain: Accounting, entity: Payment, attribute: amount
-msgid "付款金额 [R-PAY-001] 必须 >= 0"
-msgstr ""
-
-#. domain: Accounting, entity: Payment, attribute: payment_method
-msgid "付款方式 [R-PAY-002]"
-msgstr ""
-
-#. domain: Accounting, entity: Payment, attribute: destination_account_id
-msgid "应收/应付科目 [R-PAY-003]"
-msgstr ""
-
-#. domain: Accounting, entity: Payment, attribute: reference_number
-msgid "银行流水号"
-msgstr ""
-
-#. domain: Accounting, entity: Payment, attribute: is_reconciled
-msgid "计算字段 [R-REC-005]: 对方行 + 差额调整行全部已核销（发票已匹配）
-公式: ALL(line.amount_residual == 0) WHERE line IN (counterpart_lines + writeoff_lines)
-"
-msgstr ""
-
-#. domain: Accounting, entity: Payment, attribute: is_matched
-msgid "计算字段 [R-REC-006]: 流动性行全部已核销（银行对账单已匹配）
-公式: ALL(line.amount_residual == 0) WHERE line IN (liquidity_lines)
-"
-msgstr ""
-
-#. domain: Accounting, entity: Payment, attribute: paired_internal_transfer_payment_id
-msgid "内部调拨配对付款 [R-PAY-005]"
-msgstr ""
-
-#. domain: Accounting, entity: Payment, action: post
-msgid "确认付款（过账底层 move）[R-PAY-003]"
-msgstr ""
-
-#. domain: Accounting, entity: Payment, action: cancel
-msgid "取消付款"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentApplication
-msgid "付款与发票的核销关系"
-msgstr ""
-
-#. domain: Accounting, entity: PaymentApplication, attribute: applied_amount
-msgid "核销金额"
-msgstr ""
-
-#. domain: Accounting, entity: PartialReconcile
-msgid "部分核销记录，连接借方行与贷方行 [R-REC-001][R-REC-002]"
-msgstr ""
-
-#. domain: Accounting, entity: PartialReconcile, attribute: amount
-msgid "核销金额（本位币）"
-msgstr ""
-
-#. domain: Accounting, entity: PartialReconcile, attribute: debit_amount_currency
-msgid "借方外币核销金额"
-msgstr ""
-
-#. domain: Accounting, entity: PartialReconcile, attribute: credit_amount_currency
-msgid "贷方外币核销金额"
-msgstr ""
-
-#. domain: Accounting, entity: FullReconcile
-msgid "完全核销组，当一组行的 amount_residual 全部归零时创建 [R-REC-003]"
-msgstr ""
-
-#. domain: Accounting, entity: BillingAccount
-msgid "客户/供应商账户余额"
-msgstr ""
-
-#. domain: Accounting, entity: BillingAccount, attribute: account_number
-msgid "账户编号"
-msgstr ""
-
-#. domain: Accounting, entity: BillingAccount, attribute: account_type
-msgid "应收/应付"
-msgstr ""
-
-#. domain: Accounting, entity: BillingAccount, attribute: balance
-msgid "当前余额"
-msgstr ""
-
-#. domain: Accounting, entity: BillingAccount, attribute: credit_limit
-msgid "信用额度"
-msgstr ""
-
-#. domain: Accounting, entity: Journal
-msgid "日记账占位实体（跨域引用，最小字段）"
-msgstr ""
-
-#. domain: Accounting, entity: Tax
-msgid "税率占位实体（跨域引用，最小字段）"
-msgstr ""
-
-#. domain: Accounting, entity: JournalEntryLineTaxRel
-msgid "分录行与税率的关联占位实体"
-msgstr ""
-
-#. domain: Accounting, entity: Party
-msgid "跨域引用 Organization.Party（统一主体）"
-msgstr ""
-
 #. domain: Delivery
 msgid "物流配送域，管理发货单生命周期、运输路段追踪、包裹管理、 物流行程调度及运费估算规则。基于 OFBiz Shipment 领域建模， 覆盖 B2C/B2B 出货、采购入货、内部调拨、退货等场景。
 "
@@ -1141,10 +752,6 @@ msgstr ""
 
 #. domain: Accounting, entity: FinAccountTrans, attribute: order_item_seq_id
 msgid "与订单编号一起使用，指向表示购买产品以向账户添加资金的订单项"
-msgstr ""
-
-#. domain: Accounting, entity: InvoiceItem, attribute: override_org_party_id
-msgid "用于指定组织覆盖而不是使用payToPartyId"
 msgstr ""
 
 #. domain: Accounting, entity: GlAccount, attribute: external_id
@@ -1963,562 +1570,6 @@ msgstr ""
 msgid "发票编号"
 msgstr ""
 
-#. domain: Purchasing
-msgid "采购管理领域模型，涵盖供应商、采购申请、采购订单、收货、供应商产品信息"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier
-msgid "供应商主数据（对应 OFBiz PartyGroup + PartyRole SUPPLIER）"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, attribute: supplier_code
-msgid "供应商编号"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, attribute: name
-msgid "供应商名称"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, attribute: contact_name
-msgid "联系人"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, attribute: payment_terms
-msgid "付款条件（如 Net30, Net60）"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, attribute: tax_id
-msgid "税务登记号"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, attribute: purchase_warn
-msgid "采购警告级别；block 时阻止选择该供应商"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, attribute: purchase_warn_msg
-msgid "采购警告消息内容"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, attribute: parent_id
-msgid "上级联系人（子联系人的父公司）；供应商注册时用 parent_id 作为实际供应商"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, action: list
-msgid "列表查询"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, action: search
-msgid "条件检索"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, action: get
-msgid "详情查询"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, action: preview
-msgid "预览查询"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, action: compute
-msgid "计算查询"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, action: lookup
-msgid "快速检索"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, action: activate
-msgid "启用供应商"
-msgstr ""
-
-#. domain: Purchasing, entity: Supplier, action: block
-msgid "冻结供应商"
-msgstr ""
-
-#. domain: Purchasing, entity: SupplierProduct
-msgid "供应商产品价格目录"
-msgstr ""
-
-#. domain: Purchasing, entity: SupplierProduct, attribute: product_code
-msgid "产品编号/SKU"
-msgstr ""
-
-#. domain: Purchasing, entity: SupplierProduct, attribute: unit_price
-msgid "单价"
-msgstr ""
-
-#. domain: Purchasing, entity: SupplierProduct, attribute: min_order_quantity
-msgid "最小起订量"
-msgstr ""
-
-#. domain: Purchasing, entity: SupplierProduct, attribute: lead_time_days
-msgid "交货周期（天）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionType
-msgid "采购申请类型（对齐 OFBiz RequirementType），控制独占/多选模式和数量/行复制行为"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionType, attribute: description
-msgid "类型描述（对齐 OFBiz RequirementType.description）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionType, attribute: has_table
-msgid "是否有扩展表（对齐 OFBiz has_table）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionType, attribute: name
-msgid "类型名称（业务扩展，可翻译）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionType, attribute: sequence
-msgid "排序权重"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionType, attribute: exclusive
-msgid "独占模式（exclusive=只选一家供应商）或多选模式（multiple=可多个 RFQ）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionType, attribute: quantity_copy
-msgid "是否复制协议数量到采购订单（copy=使用协议数量，none=手动设置）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionType, attribute: line_copy
-msgid "是否自动复制协议行到采购订单（copy=自动创建，none=不自动创建）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition
-msgid "采购申请单/采购协议，支持状态机（draft→in_progress/ongoing→open→done/cancel）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, attribute: name
-msgid "申请单号/协议编号（默认 New，确认时自动生成序列号）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, attribute: origin
-msgid "来源文档编号"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, attribute: state
-msgid "协议状态（draft→in_progress 普通 / draft→ongoing Blanket Order）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, attribute: description
-msgid "协议描述（HTML）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, attribute: ordering_date
-msgid "下单日期"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, attribute: date_end
-msgid "协议截止日期"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, attribute: schedule_date
-msgid "预计交付日期"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, action: action_in_progress
-msgid "确认协议（draft → in_progress / ongoing，Blanket Order 校验价格和数量）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, action: action_open
-msgid "进入投标选择（in_progress/ongoing → open）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, action: action_done
-msgid "关闭协议（open → done，检查无未确认的 RFQ）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, action: action_cancel
-msgid "取消协议及关联报价单"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisition, action: action_draft
-msgid "重置为草稿（cancel → draft）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionItem
-msgid "采购申请/协议明细行（对齐 OFBiz Requirement），记录产品、数量、单价，支持已下单数量追踪"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionItem, attribute: status_id
-msgid "需求状态（对齐 OFBiz Requirement.status_id）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionItem, attribute: quantity
-msgid "需求数量（对齐 OFBiz Requirement.quantity）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionItem, attribute: description
-msgid "描述（对齐 OFBiz Requirement.description）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionItem, attribute: required_by_date
-msgid "需求截止日（对齐 OFBiz Requirement.required_by_date）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionItem, attribute: estimated_budget
-msgid "预估预算（对齐 OFBiz Requirement.estimated_budget）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionItem, attribute: reason
-msgid "原因（对齐 OFBiz Requirement.reason）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionItem, attribute: product_name
-msgid "产品名称（业务扩展，OFBiz 通过 product_id 关联）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionItem, attribute: product_description_variants
-msgid "产品变体描述"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionItem, attribute: unit_price
-msgid "单价（业务扩展，对齐 OrderItem.unit_price 命名）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionItem, attribute: qty_ordered
-msgid "已下单数量（从关联 PO 行聚合，业务扩展）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseRequisitionItem, attribute: estimated_amount
-msgid "预估金额（computed = quantity * unit_price）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder
-msgid "采购订单（状态机对齐 Odoo：draft/sent/to_approve/purchase/done/cancel）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: name
-msgid "订单编号（序列号自动生成）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: status
-msgid "状态：draft=询价单草稿, sent=已发送RFQ, to_approve=待审批, purchase=采购订单, done=已锁定, cancel=已取消"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: date_order
-msgid "订单日期"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: date_approve
-msgid "审批日期，审批时自动写入"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: date_planned
-msgid "最早交货日期（计算字段）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: currency_id
-msgid "币种（关联 res.currency）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: currency_rate
-msgid "汇率（计算字段），基于 date_order"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: fiscal_position_id
-msgid "财务位置（关联 account.fiscal.position）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: payment_term_id
-msgid "付款条款（关联 account.payment.term）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: amount_untaxed
-msgid "未税金额（计算字段）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: amount_tax
-msgid "税额（计算字段）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: amount_total
-msgid "总金额 = amount_untaxed + amount_tax（计算字段）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: invoice_status
-msgid "开票状态（计算字段）：no=无需开票, to_invoice=待开票, invoiced=已开票"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: invoice_count
-msgid "关联发票数（计算字段）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: receipt_status
-msgid "收货状态（聚合计算）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: tax_country_id
-msgid "税务国家（计算字段），取自 fiscal_position 的 foreign_vat 或公司所在国"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: tax_totals
-msgid "税务汇总 JSON（非持久化），via account.tax._prepare_tax_totals()"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, attribute: mail_reminder_confirmed
-msgid "邮件提醒确认标记，取消时重置为 false"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, action: print_quotation
-msgid "打印报价单（RFQ），副作用将 draft 转为 sent"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, action: send_rfq
-msgid "通过邮件发送 RFQ 给供应商"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, action: button_confirm
-msgid "确认订单（根据审批路由进入 purchase 或 to_approve）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, action: button_approve
-msgid "审批通过（管理员操作或自动审批）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, action: button_done
-msgid "锁定订单"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, action: button_unlock
-msgid "解锁订单（done -> purchase）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, action: button_cancel
-msgid "取消订单"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrder, action: action_create_invoice
-msgid "从采购单创建供应商发票"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine
-msgid "采购订单明细行（对齐 OFBiz OrderItem）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: order_item_type_id
-msgid "行类型（对齐 OFBiz order_item_type_id，替代 Odoo display_type）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: seq_id
-msgid "行序号（对齐 OFBiz order_item_seq_id）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: item_description
-msgid "行描述（对齐 OFBiz item_description）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: product_id
-msgid "产品（对齐 OFBiz product_id，非 display 行必填）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: quantity
-msgid "数量（对齐 OFBiz quantity）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: cancel_quantity
-msgid "取消数量（对齐 OFBiz cancel_quantity）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: unit_price
-msgid "成交单价（对齐 OFBiz unit_price）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: unit_list_price
-msgid "目录/标牌价（对齐 OFBiz unit_list_price）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: discount_rate
-msgid "折扣率（对齐 OFBiz discount_rate）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: status_id
-msgid "行状态（对齐 OFBiz status_id）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: estimated_delivery_date
-msgid "预计交货日（对齐 OFBiz estimated_delivery_date）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: comments
-msgid "备注（对齐 OFBiz comments）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: supplier_product_id
-msgid "供应商产品编号（对齐 OFBiz supplier_product_id）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: corresponding_po_id
-msgid "对应采购单（对齐 OFBiz corresponding_po_id）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: is_promo
-msgid "是否促销项（对齐 OFBiz is_promo）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: product_uom_id
-msgid "产品单位（业务扩展，OFBiz 在 Product 上）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: product_packaging_id
-msgid "包装（业务扩展）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: product_packaging_qty
-msgid "包装数量（业务扩展）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: price_subtotal
-msgid "未税小计（computed）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: price_total
-msgid "含税小计（computed）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: price_tax
-msgid "税额（computed）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: qty_received_method
-msgid "收货计算方式：manual（消耗品/服务）或 stock_move"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: qty_received
-msgid "已收货数量（computed）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: qty_received_manual
-msgid "手动填写的收货数量"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: qty_invoiced
-msgid "已开票数量（computed）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: qty_to_invoice
-msgid "待开票数量（computed）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: taxes_id
-msgid "税种（业务扩展，OFBiz 用 OrderAdjustment 外置）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: analytic_distribution
-msgid "分析账户分配 JSON（业务扩展）"
-msgstr ""
-
-#. domain: Purchasing, entity: PurchaseOrderLine, attribute: company_id
-msgid "公司（继承自订单）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo
-msgid "产品供应商报价记录（对齐 OFBiz SupplierProduct），由 PurchaseOrder 确认时自动写入"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: partner_id
-msgid "供应商（对齐 OFBiz party_id，子联系人取 parent_id）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: product_id
-msgid "产品（对齐 OFBiz product_id）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: available_from_date
-msgid "供应起始日（对齐 OFBiz available_from_date）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: available_thru_date
-msgid "供应截止日（对齐 OFBiz available_thru_date）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: minimum_order_quantity
-msgid "最小采购量（对齐 OFBiz minimum_order_quantity）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: standard_lead_time_days
-msgid "标准交货提前期天数（对齐 OFBiz standard_lead_time_days）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: last_price
-msgid "最近报价（对齐 OFBiz last_price）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: shipping_price
-msgid "运费（对齐 OFBiz shipping_price）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: currency_uom_id
-msgid "报价币种（对齐 OFBiz currency_uom_id）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: supplier_product_name
-msgid "供应商产品名称（对齐 OFBiz supplier_product_name）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: can_drop_ship
-msgid "是否支持直发（对齐 OFBiz can_drop_ship）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: order_qty_increments
-msgid "订单数量增量（对齐 OFBiz order_qty_increments）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: product_tmpl_id
-msgid "产品模板（业务扩展，Odoo 模板概念）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: discount
-msgid "折扣率%（业务扩展）"
-msgstr ""
-
-#. domain: Purchasing, entity: ProductSupplierinfo, attribute: sequence
-msgid "排序序号（业务扩展）"
-msgstr ""
-
-#. domain: Purchasing, entity: GoodsReceipt
-msgid "收货单"
-msgstr ""
-
-#. domain: Purchasing, entity: GoodsReceipt, attribute: receipt_number
-msgid "收货单号"
-msgstr ""
-
-#. domain: Purchasing, entity: GoodsReceipt, action: confirm
-msgid "确认收货"
-msgstr ""
-
-#. domain: Purchasing, entity: GoodsReceipt, action: cancel
-msgid "取消收货"
-msgstr ""
-
-#. domain: Purchasing, entity: GoodsReceiptItem
-msgid "收货单明细"
-msgstr ""
-
-#. domain: Purchasing, entity: GoodsReceiptItem, attribute: quantity_received
-msgid "本次收货数量"
-msgstr ""
-
-#. domain: Purchasing, entity: GoodsReceiptItem, attribute: quantity_accepted
-msgid "合格数量"
-msgstr ""
-
-#. domain: Purchasing, entity: GoodsReceiptItem, attribute: quantity_rejected
-msgid "不合格数量"
-msgstr ""
-
-#. domain: Purchasing, entity: AccountMove
-msgid "供应商发票占位实体（跨域引用，最小字段）"
-msgstr ""
-
-#. domain: Purchasing, entity: AccountMoveLine
-msgid "发票行占位实体（跨域引用，最小字段）"
-msgstr ""
-
 #. domain: Sales
 msgid "销售管理领域模型，涵盖客户、报价、销售订单、退货"
 msgstr ""
@@ -2535,8 +1586,36 @@ msgstr ""
 msgid "客户名称"
 msgstr ""
 
+#. domain: Sales, entity: Customer, attribute: credit_limit
+msgid "信用额度"
+msgstr ""
+
 #. domain: Sales, entity: Customer, attribute: payment_terms
 msgid "付款条件"
+msgstr ""
+
+#. domain: Sales, entity: Customer, action: list
+msgid "列表查询"
+msgstr ""
+
+#. domain: Sales, entity: Customer, action: search
+msgid "条件检索"
+msgstr ""
+
+#. domain: Sales, entity: Customer, action: get
+msgid "详情查询"
+msgstr ""
+
+#. domain: Sales, entity: Customer, action: preview
+msgid "预览查询"
+msgstr ""
+
+#. domain: Sales, entity: Customer, action: compute
+msgid "计算查询"
+msgstr ""
+
+#. domain: Sales, entity: Customer, action: lookup
+msgid "快速检索"
 msgstr ""
 
 #. domain: Sales, entity: Customer, action: block
@@ -2575,6 +1654,10 @@ msgstr ""
 msgid "报价单明细行（对齐 OFBiz QuoteItem）"
 msgstr ""
 
+#. domain: Sales, entity: QuoteItem, attribute: quantity
+msgid "数量（对齐 OFBiz quantity，类型从 integer 改为 decimal）"
+msgstr ""
+
 #. domain: Sales, entity: QuoteItem, attribute: quote_unit_price
 msgid "报价单价（对齐 OFBiz quote_unit_price）"
 msgstr ""
@@ -2583,12 +1666,24 @@ msgstr ""
 msgid "预计交付日（对齐 OFBiz estimated_delivery_date）"
 msgstr ""
 
+#. domain: Sales, entity: QuoteItem, attribute: comments
+msgid "备注（对齐 OFBiz comments）"
+msgstr ""
+
 #. domain: Sales, entity: QuoteItem, attribute: seq_id
 msgid "行序号（对齐 OFBiz quote_item_seq_id）"
 msgstr ""
 
+#. domain: Sales, entity: QuoteItem, attribute: is_promo
+msgid "是否促销项（对齐 OFBiz is_promo）"
+msgstr ""
+
 #. domain: Sales, entity: QuoteItem, attribute: lead_time_days
 msgid "交付提前期天数（对齐 OFBiz lead_time_days）"
+msgstr ""
+
+#. domain: Sales, entity: QuoteItem, attribute: product_name
+msgid "产品名称（业务扩展，OFBiz 通过 product_id 关联）"
 msgstr ""
 
 #. domain: Sales, entity: QuoteItem, attribute: product_code
@@ -2615,6 +1710,10 @@ msgstr ""
 msgid "锁定标记，sale 状态下 action_done 时置 true"
 msgstr ""
 
+#. domain: Sales, entity: SalesOrder, attribute: date_order
+msgid "订单日期"
+msgstr ""
+
 #. domain: Sales, entity: SalesOrder, attribute: promised_delivery_date
 msgid "承诺交付日期"
 msgstr ""
@@ -2633,6 +1732,10 @@ msgstr ""
 
 #. domain: Sales, entity: SalesOrder, attribute: invoice_status
 msgid "开票状态（聚合自订单行）"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrder, attribute: currency
+msgid "币种"
 msgstr ""
 
 #. domain: Sales, entity: SalesOrder, attribute: shipping_address
@@ -2655,6 +1758,10 @@ msgstr ""
 msgid "取消订单（any → cancel，locked==false 时可执行）"
 msgstr ""
 
+#. domain: Sales, entity: SalesOrder, action: action_draft
+msgid "重置为草稿（cancel → draft）"
+msgstr ""
+
 #. domain: Sales, entity: SalesOrder, action: create_invoices
 msgid "手动创建发票（state == sale 时可执行）"
 msgstr ""
@@ -2663,12 +1770,48 @@ msgstr ""
 msgid "销售订单明细（对齐 OFBiz OrderItem）"
 msgstr ""
 
+#. domain: Sales, entity: SalesOrderItem, attribute: order_item_type_id
+msgid "行类型（对齐 OFBiz order_item_type_id，替代 Odoo display_type）"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, attribute: seq_id
+msgid "行序号（对齐 OFBiz order_item_seq_id）"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, attribute: item_description
+msgid "行描述（对齐 OFBiz item_description）"
+msgstr ""
+
 #. domain: Sales, entity: SalesOrderItem, attribute: quantity
 msgid "订购数量（对齐 OFBiz quantity）"
 msgstr ""
 
+#. domain: Sales, entity: SalesOrderItem, attribute: cancel_quantity
+msgid "取消数量（对齐 OFBiz cancel_quantity）"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, attribute: unit_price
+msgid "成交单价（对齐 OFBiz unit_price）"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, attribute: unit_list_price
+msgid "目录/标牌价（对齐 OFBiz unit_list_price）"
+msgstr ""
+
 #. domain: Sales, entity: SalesOrderItem, attribute: discount_rate
 msgid "折扣率（对齐 OFBiz discount_rate，0-100）"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, attribute: status_id
+msgid "行状态（对齐 OFBiz status_id）"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, attribute: estimated_delivery_date
+msgid "预计交货日（对齐 OFBiz estimated_delivery_date）"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, attribute: corresponding_po_id
+msgid "对应采购单（对齐 OFBiz corresponding_po_id）"
 msgstr ""
 
 #. domain: Sales, entity: SalesOrderItem, attribute: product_name
@@ -2679,8 +1822,20 @@ msgstr ""
 msgid "已发货数量（业务扩展）"
 msgstr ""
 
+#. domain: Sales, entity: SalesOrderItem, attribute: qty_invoiced
+msgid "已开票数量（computed）"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, attribute: qty_to_invoice
+msgid "待开票数量（computed）"
+msgstr ""
+
 #. domain: Sales, entity: SalesOrderItem, attribute: price_subtotal
 msgid "税前小计（computed）"
+msgstr ""
+
+#. domain: Sales, entity: SalesOrderItem, attribute: price_tax
+msgid "税额（computed）"
 msgstr ""
 
 #. domain: Sales, entity: SalesOrderItem, attribute: price_total
@@ -2783,8 +1938,16 @@ msgstr ""
 msgid "退款总额（业务扩展，可 computed = return_quantity * return_price）"
 msgstr ""
 
+#. domain: Sales, entity: Tax
+msgid "税率占位实体（跨域引用，最小字段）"
+msgstr ""
+
 #. domain: Sales, entity: SalesOrderItemTaxRel
 msgid "销售订单行与税率的关联占位实体"
+msgstr ""
+
+#. domain: Sales, entity: Party
+msgid "跨域引用 Organization.Party（统一主体）"
 msgstr ""
 
 #. domain: Travel

@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_AIRLINE
 contract: TravelAirline.create action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/document/unibo_ex_poc-feat-119/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelAirline 的动作 create 可执行，accept=[airline_code, airline_name, iata_code, icao_code, status]，args=[无显式参数] / WHEN 执行动作 create / THEN 状态变更与副作用应生效
 expected_facts:
 - action_executed
