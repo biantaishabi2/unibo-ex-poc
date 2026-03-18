@@ -14,6 +14,9 @@ defmodule UniboExPoc.BDD.Instructions.V1 do
       {:when, :when_execute_seed_contract} -> :ok
       {:then, :assert_noop} -> :ok
       {:then, :then_seed_contract_should_hold} -> :ok
+      {:given, :given_graphql_schema_loaded} -> :ok
+      {:when, :when_introspect_graphql_fields} -> :ok
+      {:then, :then_graphql_contract_should_hold} -> :ok
     end
   end
 end

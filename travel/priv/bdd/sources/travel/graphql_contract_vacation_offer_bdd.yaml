@@ -1,7 +1,7 @@
 module: TRAVEL_VACATION_OFFER
 contract: Travel.VacationOffer graphql contract
 edge_class: graphql_contract
-source_file: /home/wangbo/unibo_ex_poc-travel-graphql/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-full/travel/models/travel.ubo.yaml
 source_summary: 'GIVEN 实体 Travel.VacationOffer 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 8 个 field 应存在: [get_travel_vacation_offer(query:get:read), list_travel_vacation_offers(query:list:read), create_travel_vacation_offer(mutation:create:create), update_travel_vacation_offer(mutation:update:update), activate_travel_vacation_offer(mutation:update:activate), deactivate_travel_vacation_offer(mutation:update:deactivate), expire_travel_vacation_offer(mutation:update:expire), delete_travel_vacation_offer(mutation:destroy:destroy)]'
 expected_facts:
 - graphql_schema_loaded

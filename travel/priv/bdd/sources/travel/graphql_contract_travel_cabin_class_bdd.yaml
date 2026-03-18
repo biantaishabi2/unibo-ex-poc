@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_CABIN_CLASS
 contract: Travel.TravelCabinClass graphql contract
 edge_class: graphql_contract
-source_file: /home/wangbo/unibo_ex_poc-travel-graphql/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-full/travel/models/travel.ubo.yaml
 source_summary: 'GIVEN 实体 Travel.TravelCabinClass 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 4 个 field 应存在: [get_travel_travel_cabin_class(query:get:read), list_travel_travel_cabin_classs(query:list:read), create_travel_travel_cabin_class(mutation:create:create), update_travel_travel_cabin_class(mutation:update:update)]'
 expected_facts:
 - graphql_schema_loaded

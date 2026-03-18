@@ -1,7 +1,7 @@
 module: TRAVEL_HOTEL_OFFER
 contract: HotelOffer.hotel_offer_lifecycle workflow contract
 edge_class: workflow_contract
-source_file: /home/wangbo/unibo_ex_poc-travel-graphql/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-full/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 HotelOffer 定义工作流 hotel_offer_lifecycle / WHEN 验证工作流动作链 ACTION_PATH=create -> update -> activate -> deactivate -> expire -> destroy / THEN 流程顺序应满足声明约束
 expected_facts:
 - workflow_checked
