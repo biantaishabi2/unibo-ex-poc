@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_POLICY
 contract: TravelPolicy.create action contract
 edge_class: action_contract
-source_file: /home/wangbo/unibo_ex_poc-travel-graphql/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-full/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelPolicy 的动作 create 可执行，accept=[policy_name, product_type, employee_level, city_tier, season, max_amount, cabin_class_limit, hotel_star_limit, exceed_strategy, approval_mode, personal_pay_ratio, enterprise_id]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则，状态变更与副作用应生效 / 补充场景：create 创建差旅政策 -> update 修改政策参数
 expected_facts:
 - action_executed

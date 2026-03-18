@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_FULFILLMENT
 contract: TravelFulfillment.cancel_fulfillment action contract
 edge_class: action_contract
-source_file: /home/wangbo/unibo_ex_poc-travel-graphql/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-full/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelFulfillment 的动作 cancel_fulfillment 可执行，accept=[[]]，args=[无显式参数] / WHEN 执行动作 cancel_fulfillment / THEN 输入应满足校验规则，状态变更与副作用应生效 / 补充场景：create_fulfillment 创建履约单 -> cancel_fulfillment 取消履约
 expected_facts:
 - action_executed

@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_ORDER
 contract: TravelOrder.order_submitted_policy_check reactor contract
 edge_class: reactor_contract
-source_file: /home/wangbo/unibo_ex_poc-travel-graphql/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-full/travel/models/travel.ubo.yaml
 source_summary: 'GIVEN 实体 TravelOrder 声明跨实体 workflow order_submitted_policy_check / WHEN 执行 Reactor 编排（步骤: submit_order[TravelOrder] → create[TravelPolicyCheck]）/ THEN 跨实体级联应成功且补偿链完整'
 expected_facts:
 - reactor_executed

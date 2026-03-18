@@ -1,7 +1,7 @@
 module: TRAVEL_TRAVEL_FULFILLMENT
 contract: TravelFulfillment.issue_voucher_or_ticket event contract
 edge_class: event_contract
-source_file: /home/wangbo/unibo_ex_poc-travel-graphql/travel/models/travel.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-travel-full/travel/models/travel.ubo.yaml
 source_summary: GIVEN 实体 TravelFulfillment 的动作 issue_voucher_or_ticket 完成 / WHEN 触发事件发布 / THEN 应广播 topic `travel.fulfillment.issued`
 expected_facts:
 - event_checked
