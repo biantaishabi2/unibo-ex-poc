@@ -51,6 +51,20 @@ entities:
   - name: ShiftType
     description: 班次类型定义（早班/中班/夜班等），是排班的基础维度
     aggregate_root: true
+    read_filters:
+      - name: by_department
+        description: 按科室筛选班次类型
+        filter:
+          department_id: :department_id
+      - name: enabled_only
+        description: 只返回启用的班次类型
+        filter:
+          enabled: true
+      - name: by_department_enabled
+        description: 按科室筛选且只返回启用的班次类型
+        filter:
+          department_id: :department_id
+          enabled: true
     attributes:
       - name: id
         type: uuid
@@ -284,6 +298,26 @@ entities:
           - effect: set_attribute
             field: state
             value: published
+    state_machine:
+      initial_state: draft
+      state_attribute: state
+      states: [draft, generating, generated, adjusted, published]
+      transitions:
+        - from: draft
+          to: generating
+          event: start_generation
+        - from: generating
+          to: generated
+          event: complete_generation
+        - from: generated
+          to: adjusted
+          event: adjust
+        - from: adjusted
+          to: published
+          event: publish
+        - from: generated
+          to: published
+          event: publish
     validations:
       - rule: compare
         field: end_date
@@ -299,6 +333,44 @@ entities:
         params: {values: [generated, adjusted]}
         on: [publish]
         message: 只有已生成或已调整状态可以发布
+    event_consumers:
+      # ScheduleVersion 发布后，回写 SchedulingPeriod.published_version_id
+      - event: ScheduleVersion.published_version
+        action: update
+        description: 版本发布后更新 SchedulingPeriod 的 published_version_id
+        changes:
+          - effect: set_attribute
+            field: published_version_id
+            source: event.entity_id
+          - effect: set_attribute
+            field: state
+            value: published
+      # SolverRun 完成可行解后，回写 current_version_id / last_solver_run_id
+      - event: SolverRun.complete_feasible
+        action: update
+        description: 求解完成后更新 SchedulingPeriod 的 current_version_id 和 last_solver_run_id
+        changes:
+          - effect: set_attribute
+            field: last_solver_run_id
+            source: event.entity_id
+          - effect: set_attribute
+            field: state
+            value: generated
+    determine_actions:
+      # SolverRun 完成后跨聚合写回 SchedulingPeriod（current_version_id / last_solver_run_id）
+      - trigger: SolverRun.complete_feasible
+        target_entity: SchedulingPeriod
+        target_action: mark_generated
+        description: 求解可行解完成 → 更新排班周期为 generated 并记录 last_solver_run_id
+        lookup:
+          via: SolverRun.period_id
+      # ScheduleVersion 发布后跨聚合写回 SchedulingPeriod.published_version_id
+      - trigger: ScheduleVersion.publish_version
+        target_entity: SchedulingPeriod
+        target_action: publish
+        description: 版本发布 → 排班周期状态迁移到 published 并记录 published_version_id
+        lookup:
+          via: ScheduleVersion.period_id
     workflows:
       - name: scheduling_period_lifecycle
         description: 排班周期生命周期
@@ -317,6 +389,21 @@ entities:
   - name: CoverageRequirement
     description: 定义某天某班次某岗位需要多少人
     aggregate_root: false
+    read_filters:
+      - name: by_period
+        description: 按排班周期筛选需求
+        filter:
+          period_id: :period_id
+      - name: by_period_and_date
+        description: 按排班周期和日期筛选需求
+        filter:
+          period_id: :period_id
+          requirement_date: :requirement_date
+      - name: by_period_and_shift_type
+        description: 按排班周期和班次类型筛选需求
+        filter:
+          period_id: :period_id
+          shift_type_id: :shift_type_id
     attributes:
       - name: id
         type: uuid
@@ -411,6 +498,20 @@ entities:
   - name: ScheduleVersion
     description: 一个周期内的工作版本或已发布版本
     aggregate_root: false
+    read_filters:
+      - name: by_period
+        description: 按排班周期筛选版本
+        filter:
+          period_id: :period_id
+      - name: by_period_and_status
+        description: 按排班周期和状态筛选版本
+        filter:
+          period_id: :period_id
+          status: :status
+      - name: published_versions
+        description: 只返回已发布版本
+        filter:
+          status: published
     attributes:
       - name: id
         type: uuid
@@ -519,6 +620,30 @@ entities:
   - name: ShiftAssignment
     description: 把某个覆盖需求分配给具体护士和时段
     aggregate_root: false
+    read_filters:
+      - name: by_version
+        description: 按版本筛选排班分配（高频查询）
+        filter:
+          version_id: :version_id
+      - name: by_period
+        description: 按排班周期筛选分配
+        filter:
+          period_id: :period_id
+      - name: by_version_and_employee
+        description: 按版本和护士筛选分配
+        filter:
+          version_id: :version_id
+          employee_id: :employee_id
+      - name: by_version_and_requirement
+        description: 按版本和需求筛选分配
+        filter:
+          version_id: :version_id
+          requirement_id: :requirement_id
+      - name: locked_assignments
+        description: 只返回锁定的分配
+        filter:
+          version_id: :version_id
+          is_locked: true
     attributes:
       - name: id
         type: uuid
@@ -629,6 +754,21 @@ entities:
   - name: SchedulingConstraint
     description: 合法性约束和评分规则定义，不承载需求人数
     aggregate_root: true
+    read_filters:
+      - name: by_department
+        description: 按科室筛选约束规则
+        filter:
+          department_id: :department_id
+      - name: by_department_and_type
+        description: 按科室和约束类型筛选
+        filter:
+          department_id: :department_id
+          constraint_type: :constraint_type
+      - name: enabled_only
+        description: 按科室筛选且只返回启用的约束规则
+        filter:
+          department_id: :department_id
+          enabled: true
     attributes:
       - name: id
         type: uuid
@@ -717,6 +857,20 @@ entities:
   - name: ShiftPreference
     description: 护士个人排班偏好
     aggregate_root: false
+    read_filters:
+      - name: by_employee
+        description: 按护士筛选偏好（包括长期偏好）
+        filter:
+          employee_id: :employee_id
+      - name: by_employee_and_period
+        description: 按护士和排班周期筛选偏好
+        filter:
+          employee_id: :employee_id
+          period_id: :period_id
+      - name: by_period
+        description: 按排班周期筛选所有护士偏好
+        filter:
+          period_id: :period_id
     attributes:
       - name: id
         type: uuid
@@ -773,6 +927,20 @@ entities:
   - name: MedicalStaffProfile
     description: 排班域专属护士画像，不复制 HR 主数据
     aggregate_root: false
+    read_filters:
+      - name: by_department
+        description: 按科室筛选护士画像
+        filter:
+          department_id: :department_id
+      - name: by_employee
+        description: 按护士筛选画像
+        filter:
+          employee_id: :employee_id
+      - name: leads_only
+        description: 只返回可带班护士
+        filter:
+          department_id: :department_id
+          can_lead_shift: true
     attributes:
       - name: id
         type: uuid
@@ -965,6 +1133,29 @@ entities:
           - effect: set_attribute
             field: status
             value: completed
+    state_machine:
+      initial_state: pending
+      state_attribute: status
+      states: [pending, running, feasible, infeasible, timeout, error, completed]
+      transitions:
+        - from: pending
+          to: running
+          event: start
+        - from: running
+          to: feasible
+          event: mark_feasible
+        - from: running
+          to: infeasible
+          event: mark_infeasible
+        - from: running
+          to: timeout
+          event: mark_timeout
+        - from: running
+          to: error
+          event: mark_error
+        - from: feasible
+          to: completed
+          event: complete
     validations:
       - rule: one_of
         field: status
@@ -992,6 +1183,25 @@ entities:
   - name: ConstraintViolation
     description: 结构化记录约束违反（error 或 warning）
     aggregate_root: false
+    read_filters:
+      - name: by_version
+        description: 按版本筛选约束违反
+        filter:
+          version_id: :version_id
+      - name: by_version_and_severity
+        description: 按版本和严重级别筛选约束违反
+        filter:
+          version_id: :version_id
+          severity: :severity
+      - name: errors_only
+        description: 只返回 error 级违反（用于发布前检查）
+        filter:
+          version_id: :version_id
+          severity: error
+      - name: by_assignment
+        description: 按排班分配筛选相关违反
+        filter:
+          assignment_id: :assignment_id
     attributes:
       - name: id
         type: uuid
