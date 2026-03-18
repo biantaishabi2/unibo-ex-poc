@@ -1,0 +1,14 @@
+module: SCHEDULING_SOLVER_RUN
+contract: SolverRun.rust_solver_invoke integration contract (risk:success)
+edge_class: integration_contract
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
+source_summary: GIVEN 实体 SolverRun 的 integration rust_solver_invoke 已声明 fake adapter / WHEN 执行绑定动作 [start_run] / THEN 调用结果应成功并满足契约模式 async
+expected_facts:
+- integration_invoked
+- post_conditions_checked
+declared_error_codes:
+- solver_timeout
+- solver_crash
+- invalid_input
+business_post_conditions:
+- response_present

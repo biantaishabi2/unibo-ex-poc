@@ -1,7 +1,7 @@
 module: SCHEDULING_SHIFT_PREFERENCE
 contract: Scheduling.ShiftPreference graphql contract
 edge_class: graphql_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-risk/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: 'GIVEN 实体 Scheduling.ShiftPreference 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 5 个 field 应存在: [get_scheduling_shift_preference(query:get:read), list_scheduling_shift_preferences(query:list:read), create_scheduling_shift_preference(mutation:create:create), update_scheduling_shift_preference(mutation:update:update), delete_scheduling_shift_preference(mutation:destroy:destroy)]'
 expected_facts:
 - graphql_schema_loaded

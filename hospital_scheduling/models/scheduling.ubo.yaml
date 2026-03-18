@@ -367,6 +367,7 @@ entities:
           via: SolverRun.period_id
         scope: cross_aggregate
         mode: async_write_back
+        write_set: [state]
       # ScheduleVersion 发布后跨聚合写回 SchedulingPeriod.published_version_id
       - name: on_schedule_version_publish
         trigger: ScheduleVersion.publish_version
@@ -377,6 +378,7 @@ entities:
           via: ScheduleVersion.period_id
         scope: cross_aggregate
         mode: async_write_back
+        write_set: [state]
     workflows:
       - name: scheduling_period_lifecycle
         description: 排班周期生命周期
@@ -391,6 +393,13 @@ entities:
             next: [publish, start_generating]
           - action: publish
             next: [start_generating]
+    events:
+      - on: create
+        topic: scheduling.period.created
+      - on: mark_generated
+        topic: scheduling.period.generated
+      - on: mark_adjusted
+        topic: scheduling.period.adjusted
 
   - name: CoverageRequirement
     description: 定义某天某班次某岗位需要多少人
@@ -622,6 +631,11 @@ entities:
         params: {values: [working, published]}
         on: [archive_version]
         message: 只有工作中或已发布的版本可以归档
+    events:
+      - on: publish_version
+        topic: scheduling.version.published
+      - on: archive_version
+        topic: scheduling.version.archived
 
   - name: ShiftAssignment
     description: 把某个覆盖需求分配给具体护士和时段
@@ -756,6 +770,13 @@ entities:
         field: ends_at
         params: {greater_than: starts_at}
         message: 结束时间必须晚于开始时间
+    events:
+      - on: create
+        topic: scheduling.assignment.created
+      - on: lock
+        topic: scheduling.assignment.locked
+      - on: unlock
+        topic: scheduling.assignment.unlocked
 
   - name: SchedulingConstraint
     description: 合法性约束和评分规则定义，不承载需求人数
@@ -1185,6 +1206,46 @@ entities:
             next: [mark_completed]
           - action: mark_timeout
             next: [mark_completed]
+    events:
+      - on: start_run
+        topic: scheduling.solver.started
+      - on: complete_feasible
+        topic: scheduling.solver.completed
+      - on: complete_infeasible
+        topic: scheduling.solver.infeasible
+      - on: mark_error
+        topic: scheduling.solver.errored
+      - on: mark_timeout
+        topic: scheduling.solver.timed_out
+    integrations:
+      - name: rust_solver_invoke
+        on: [start_run]
+        mode: async
+        request:
+          - name: period_id
+            type: uuid
+          - name: constraints
+            type: map
+          - name: preferences
+            type: map
+        response:
+          - name: solution
+            type: map
+          - name: feasibility
+            type: string
+          - name: score
+            type: decimal
+        errors:
+          - code: solver_timeout
+            retryable: true
+          - code: solver_crash
+            retryable: true
+          - code: invalid_input
+            retryable: false
+        async:
+          queue: solver_jobs
+          timeout_ms: 300000
+          idempotency_key: period_id
 
   - name: ConstraintViolation
     description: 结构化记录约束违反（error 或 warning）

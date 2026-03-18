@@ -1,0 +1,8 @@
+module: SCHEDULING_SOLVER_RUN
+contract: SolverRun.complete_infeasible event contract
+edge_class: event_contract
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
+source_summary: GIVEN 实体 SolverRun 的动作 complete_infeasible 完成 / WHEN 触发事件发布 / THEN 应广播 topic `scheduling.solver.infeasible`
+expected_facts:
+- event_checked
+- notifier_verified

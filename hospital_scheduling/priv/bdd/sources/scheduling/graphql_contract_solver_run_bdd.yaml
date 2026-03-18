@@ -1,7 +1,7 @@
 module: SCHEDULING_SOLVER_RUN
 contract: Scheduling.SolverRun graphql contract
 edge_class: graphql_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-risk/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: 'GIVEN 实体 Scheduling.SolverRun 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 10 个 field 应存在: [get_scheduling_solver_run(query:get:read), list_scheduling_solver_runs(query:list:read), create_scheduling_solver_run(mutation:create:create), update_scheduling_solver_run(mutation:update:update), start_run_scheduling_solver_run(mutation:update:start_run), complete_feasible_scheduling_solver_run(mutation:update:complete_feasible), complete_infeasible_scheduling_solver_run(mutation:update:complete_infeasible), mark_timeout_scheduling_solver_run(mutation:update:mark_timeout), mark_error_scheduling_solver_run(mutation:update:mark_error), mark_completed_scheduling_solver_run(mutation:update:mark_completed)]'
 expected_facts:
 - graphql_schema_loaded

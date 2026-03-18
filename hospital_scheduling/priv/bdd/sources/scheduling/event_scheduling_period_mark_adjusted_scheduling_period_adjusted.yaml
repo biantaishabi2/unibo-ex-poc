@@ -1,0 +1,8 @@
+module: SCHEDULING_SCHEDULING_PERIOD
+contract: SchedulingPeriod.mark_adjusted event contract
+edge_class: event_contract
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
+source_summary: GIVEN 实体 SchedulingPeriod 的动作 mark_adjusted 完成 / WHEN 触发事件发布 / THEN 应广播 topic `scheduling.period.adjusted`
+expected_facts:
+- event_checked
+- notifier_verified

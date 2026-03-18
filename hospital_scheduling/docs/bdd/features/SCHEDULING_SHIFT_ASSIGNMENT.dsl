@@ -80,6 +80,51 @@ GIVEN given_seed_context id="action_shift_assignment_update_update_risk_validati
 WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
 THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"
 
+[SCENARIO: BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-event_shift_assignment_create_scheduling_assignment_created] TITLE: ShiftAssignment.create event contract TAGS: seed event_contract
+GIVEN given_seed_context id="event_shift_assignment_create_scheduling_assignment_created" module="SCHEDULING_SHIFT_ASSIGNMENT"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-event_shift_assignment_create_scheduling_assignment_created_risk_idempotent_replay] TITLE: ShiftAssignment.create event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_shift_assignment_create_scheduling_assignment_created_risk_idempotent_replay" module="SCHEDULING_SHIFT_ASSIGNMENT"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-event_shift_assignment_create_scheduling_assignment_created_risk_normal_publish] TITLE: ShiftAssignment.create event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_shift_assignment_create_scheduling_assignment_created_risk_normal_publish" module="SCHEDULING_SHIFT_ASSIGNMENT"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-event_shift_assignment_lock_scheduling_assignment_locked] TITLE: ShiftAssignment.lock event contract TAGS: seed event_contract
+GIVEN given_seed_context id="event_shift_assignment_lock_scheduling_assignment_locked" module="SCHEDULING_SHIFT_ASSIGNMENT"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-event_shift_assignment_lock_scheduling_assignment_locked_risk_idempotent_replay] TITLE: ShiftAssignment.lock event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_shift_assignment_lock_scheduling_assignment_locked_risk_idempotent_replay" module="SCHEDULING_SHIFT_ASSIGNMENT"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-event_shift_assignment_lock_scheduling_assignment_locked_risk_normal_publish] TITLE: ShiftAssignment.lock event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_shift_assignment_lock_scheduling_assignment_locked_risk_normal_publish" module="SCHEDULING_SHIFT_ASSIGNMENT"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-event_shift_assignment_unlock_scheduling_assignment_unlocked] TITLE: ShiftAssignment.unlock event contract TAGS: seed event_contract
+GIVEN given_seed_context id="event_shift_assignment_unlock_scheduling_assignment_unlocked" module="SCHEDULING_SHIFT_ASSIGNMENT"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-event_shift_assignment_unlock_scheduling_assignment_unlocked_risk_idempotent_replay] TITLE: ShiftAssignment.unlock event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_shift_assignment_unlock_scheduling_assignment_unlocked_risk_idempotent_replay" module="SCHEDULING_SHIFT_ASSIGNMENT"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-event_shift_assignment_unlock_scheduling_assignment_unlocked_risk_normal_publish] TITLE: ShiftAssignment.unlock event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_shift_assignment_unlock_scheduling_assignment_unlocked_risk_normal_publish" module="SCHEDULING_SHIFT_ASSIGNMENT"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_ASSIGNMENT"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_ASSIGNMENT"
+
 [SCENARIO: BDD-SCHEDULING_SHIFT_ASSIGNMENT-SEED-graphql_contract_shift_assignment_bdd] TITLE: Scheduling.ShiftAssignment graphql contract TAGS: graphql
 GIVEN given_seed_context id="graphql_contract_shift_assignment" module="SCHEDULING_SHIFT_ASSIGNMENT"
 GIVEN given_graphql_schema_loaded module="SCHEDULING_SHIFT_ASSIGNMENT"

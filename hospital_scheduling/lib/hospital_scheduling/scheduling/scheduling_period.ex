@@ -15,10 +15,11 @@
 # ```
 defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
   use Ash.Resource,
-    otp_app: :hospital_scheduling,
+    otp_app: :unibo_v4,
     domain: HospitalScheduling.Scheduling,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource, AshStateMachine]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource, AshStateMachine],
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "一次科室月排班工作空间，承载需求、版本、求解运行"
@@ -266,6 +267,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
   paper_trail do
     change_tracking_mode :full_diff
     store_action_name? true
+    belongs_to_actor :user, HospitalScheduling.Accounts.User, allow_nil?: true
     ignore_attributes [:inserted_at, :updated_at]
   end
 
@@ -285,5 +287,14 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
       transition :publish, from: :adjusted, to: :published
       transition :publish, from: :generated, to: :published
     end
+  end
+
+  pub_sub do
+    module HospitalScheduling.PubSub
+    prefix "scheduling_period"
+
+    publish :create, ["scheduling.period.created"]
+    publish :mark_generated, ["scheduling.period.generated"]
+    publish :mark_adjusted, ["scheduling.period.adjusted"]
   end
 end

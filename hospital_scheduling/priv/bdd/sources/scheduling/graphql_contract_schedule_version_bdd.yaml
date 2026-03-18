@@ -1,7 +1,7 @@
 module: SCHEDULING_SCHEDULE_VERSION
 contract: Scheduling.ScheduleVersion graphql contract
 edge_class: graphql_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-risk/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: 'GIVEN 实体 Scheduling.ScheduleVersion 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 6 个 field 应存在: [get_scheduling_schedule_version(query:get:read), list_scheduling_schedule_versions(query:list:read), create_scheduling_schedule_version(mutation:create:create), update_scheduling_schedule_version(mutation:update:update), publish_version_scheduling_schedule_version(mutation:update:publish_version), archive_version_scheduling_schedule_version(mutation:update:archive_version)]'
 expected_facts:
 - graphql_schema_loaded

@@ -1,7 +1,7 @@
 module: SCHEDULING_CONSTRAINT_VIOLATION
 contract: ConstraintViolation.destroy action contract
 edge_class: action_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-risk/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: GIVEN 实体 ConstraintViolation 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 保留基础行为占位（建议补充 validation/change）
 expected_facts:
 - action_executed

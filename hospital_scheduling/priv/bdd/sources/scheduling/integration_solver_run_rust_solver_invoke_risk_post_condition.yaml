@@ -1,0 +1,14 @@
+module: SCHEDULING_SOLVER_RUN
+contract: SolverRun.rust_solver_invoke integration contract (risk:post_condition)
+edge_class: integration_contract
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
+source_summary: GIVEN integration rust_solver_invoke 定义业务后置条件 [response_present] / WHEN 调用成功 / THEN 返回结果必须满足后置条件
+expected_facts:
+- integration_invoked
+- post_conditions_checked
+declared_error_codes:
+- solver_timeout
+- solver_crash
+- invalid_input
+business_post_conditions:
+- response_present

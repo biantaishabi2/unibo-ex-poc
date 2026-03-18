@@ -1,9 +1,10 @@
 defmodule HospitalScheduling.Scheduling.ScheduleVersion do
   use Ash.Resource,
-    otp_app: :hospital_scheduling,
+    otp_app: :unibo_v4,
     domain: HospitalScheduling.Scheduling,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "一个周期内的工作版本或已发布版本"
@@ -87,7 +88,7 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
   end
 
   actions do
-    defaults [:read, :destroy]
+    defaults [:read]
     create :create do
       description "Create Schedule Version via Create. doc_url: graphql://contract/scheduling/create_scheduling_schedule_version"
       primary? true
@@ -145,7 +146,16 @@ defmodule HospitalScheduling.Scheduling.ScheduleVersion do
   paper_trail do
     change_tracking_mode :full_diff
     store_action_name? true
+    belongs_to_actor :user, HospitalScheduling.Accounts.User, allow_nil?: true
     ignore_attributes [:inserted_at, :updated_at]
   end
 
+
+  pub_sub do
+    module HospitalScheduling.PubSub
+    prefix "schedule_version"
+
+    publish :publish_version, ["scheduling.version.published"]
+    publish :archive_version, ["scheduling.version.archived"]
+  end
 end

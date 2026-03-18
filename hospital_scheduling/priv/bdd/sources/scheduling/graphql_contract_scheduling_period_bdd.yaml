@@ -1,7 +1,7 @@
 module: SCHEDULING_SCHEDULING_PERIOD
 contract: Scheduling.SchedulingPeriod graphql contract
 edge_class: graphql_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-risk/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: 'GIVEN 实体 Scheduling.SchedulingPeriod 声明 GraphQL 契约 / WHEN introspect schema fields / THEN 以下 9 个 field 应存在: [get_scheduling_scheduling_period(query:get:read), list_scheduling_scheduling_periods(query:list:read), create_scheduling_scheduling_period(mutation:create:create), update_scheduling_scheduling_period(mutation:update:update), start_generating_scheduling_scheduling_period(mutation:update:start_generating), mark_generated_scheduling_scheduling_period(mutation:update:mark_generated), mark_adjusted_scheduling_scheduling_period(mutation:update:mark_adjusted), publish_scheduling_scheduling_period(mutation:update:publish), delete_scheduling_scheduling_period(mutation:destroy:destroy)]'
 expected_facts:
 - graphql_schema_loaded

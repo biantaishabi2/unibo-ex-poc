@@ -1,7 +1,7 @@
 module: SCHEDULING_SHIFT_TYPE
 contract: ShiftType.create action contract
 edge_class: action_contract
-source_file: /home/wangbo/unibo_ex_poc-sched-risk/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-yaml/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: GIVEN 实体 ShiftType 的动作 create 可执行，accept=[code, name, start_time, end_time, duration_hours, is_night, color, sort_order, enabled]，args=[无显式参数] / WHEN 执行动作 create / THEN 输入应满足校验规则
 expected_facts:
 - action_executed

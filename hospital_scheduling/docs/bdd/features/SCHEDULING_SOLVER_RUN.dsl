@@ -110,11 +110,106 @@ GIVEN given_seed_context id="action_solver_run_update_update_risk_success" modul
 WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
 THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
 
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_complete_feasible_scheduling_solver_completed] TITLE: SolverRun.complete_feasible event contract TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_complete_feasible_scheduling_solver_completed" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_complete_feasible_scheduling_solver_completed_risk_idempotent_replay] TITLE: SolverRun.complete_feasible event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_complete_feasible_scheduling_solver_completed_risk_idempotent_replay" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_complete_feasible_scheduling_solver_completed_risk_normal_publish] TITLE: SolverRun.complete_feasible event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_complete_feasible_scheduling_solver_completed_risk_normal_publish" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_complete_infeasible_scheduling_solver_infeasible] TITLE: SolverRun.complete_infeasible event contract TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_complete_infeasible_scheduling_solver_infeasible" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_complete_infeasible_scheduling_solver_infeasible_risk_idempotent_replay] TITLE: SolverRun.complete_infeasible event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_complete_infeasible_scheduling_solver_infeasible_risk_idempotent_replay" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_complete_infeasible_scheduling_solver_infeasible_risk_normal_publish] TITLE: SolverRun.complete_infeasible event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_complete_infeasible_scheduling_solver_infeasible_risk_normal_publish" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_mark_error_scheduling_solver_errored] TITLE: SolverRun.mark_error event contract TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_mark_error_scheduling_solver_errored" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_mark_error_scheduling_solver_errored_risk_idempotent_replay] TITLE: SolverRun.mark_error event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_mark_error_scheduling_solver_errored_risk_idempotent_replay" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_mark_error_scheduling_solver_errored_risk_normal_publish] TITLE: SolverRun.mark_error event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_mark_error_scheduling_solver_errored_risk_normal_publish" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_mark_timeout_scheduling_solver_timed_out] TITLE: SolverRun.mark_timeout event contract TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_mark_timeout_scheduling_solver_timed_out" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_mark_timeout_scheduling_solver_timed_out_risk_idempotent_replay] TITLE: SolverRun.mark_timeout event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_mark_timeout_scheduling_solver_timed_out_risk_idempotent_replay" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_mark_timeout_scheduling_solver_timed_out_risk_normal_publish] TITLE: SolverRun.mark_timeout event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_mark_timeout_scheduling_solver_timed_out_risk_normal_publish" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_start_run_scheduling_solver_started] TITLE: SolverRun.start_run event contract TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_start_run_scheduling_solver_started" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_start_run_scheduling_solver_started_risk_idempotent_replay] TITLE: SolverRun.start_run event contract (risk:idempotent_replay) TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_start_run_scheduling_solver_started_risk_idempotent_replay" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-event_solver_run_start_run_scheduling_solver_started_risk_normal_publish] TITLE: SolverRun.start_run event contract (risk:normal_publish) TAGS: seed event_contract
+GIVEN given_seed_context id="event_solver_run_start_run_scheduling_solver_started_risk_normal_publish" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
 [SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-graphql_contract_solver_run_bdd] TITLE: Scheduling.SolverRun graphql contract TAGS: graphql
 GIVEN given_seed_context id="graphql_contract_solver_run" module="SCHEDULING_SOLVER_RUN"
 GIVEN given_graphql_schema_loaded module="SCHEDULING_SOLVER_RUN"
 WHEN when_introspect_graphql_fields module="SCHEDULING_SOLVER_RUN"
 THEN then_graphql_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-integration_solver_run_rust_solver_invoke] TITLE: SolverRun.rust_solver_invoke integration contract TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_solver_run_rust_solver_invoke" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-integration_solver_run_rust_solver_invoke_risk_declared_error] TITLE: SolverRun.rust_solver_invoke integration contract (risk:declared_error) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_solver_run_rust_solver_invoke_risk_declared_error" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-integration_solver_run_rust_solver_invoke_risk_post_condition] TITLE: SolverRun.rust_solver_invoke integration contract (risk:post_condition) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_solver_run_rust_solver_invoke_risk_post_condition" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
+
+[SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-integration_solver_run_rust_solver_invoke_risk_success] TITLE: SolverRun.rust_solver_invoke integration contract (risk:success) TAGS: seed integration_contract
+GIVEN given_seed_context id="integration_solver_run_rust_solver_invoke_risk_success" module="SCHEDULING_SOLVER_RUN"
+WHEN when_execute_seed_contract module="SCHEDULING_SOLVER_RUN"
+THEN then_seed_contract_should_hold module="SCHEDULING_SOLVER_RUN"
 
 [SCENARIO: BDD-SCHEDULING_SOLVER_RUN-SEED-workflow_solver_run_solver_run_lifecycle] TITLE: SolverRun.solver_run_lifecycle workflow contract TAGS: seed workflow_contract
 GIVEN given_seed_context id="workflow_solver_run_solver_run_lifecycle" module="SCHEDULING_SOLVER_RUN"

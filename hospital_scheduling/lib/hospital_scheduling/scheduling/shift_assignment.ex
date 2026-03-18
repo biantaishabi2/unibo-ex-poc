@@ -1,9 +1,10 @@
 defmodule HospitalScheduling.Scheduling.ShiftAssignment do
   use Ash.Resource,
-    otp_app: :hospital_scheduling,
+    otp_app: :unibo_v4,
     domain: HospitalScheduling.Scheduling,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
+    notifiers: [Ash.Notifier.PubSub]
 
   resource do
     description "把某个覆盖需求分配给具体护士和时段"
@@ -145,6 +146,7 @@ defmodule HospitalScheduling.Scheduling.ShiftAssignment do
   paper_trail do
     change_tracking_mode :full_diff
     store_action_name? true
+    belongs_to_actor :user, HospitalScheduling.Accounts.User, allow_nil?: true
     ignore_attributes [:inserted_at, :updated_at]
   end
 
@@ -152,4 +154,13 @@ defmodule HospitalScheduling.Scheduling.ShiftAssignment do
     archive_related [:constraint_violations]
   end
 
+
+  pub_sub do
+    module HospitalScheduling.PubSub
+    prefix "shift_assignment"
+
+    publish :create, ["scheduling.assignment.created"]
+    publish :lock, ["scheduling.assignment.locked"]
+    publish :unlock, ["scheduling.assignment.unlocked"]
+  end
 end
