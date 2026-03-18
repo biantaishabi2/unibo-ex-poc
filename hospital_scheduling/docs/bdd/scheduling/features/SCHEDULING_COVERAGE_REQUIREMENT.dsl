@@ -38,3 +38,8 @@ GIVEN given_seed_context id="action_coverage_requirement_update_update" module="
 WHEN when_execute_seed_contract module="SCHEDULING_COVERAGE_REQUIREMENT"
 THEN then_seed_contract_should_hold module="SCHEDULING_COVERAGE_REQUIREMENT"
 
+
+[SCENARIO: BDD-SCHEDULING_COVERAGE_REQUIREMENT-SEED-graphql_contract_coverage_requirement] TITLE: SCHEDULING_COVERAGE_REQUIREMENT contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_coverage_requirement" module="SCHEDULING_COVERAGE_REQUIREMENT"
+WHEN when_execute_seed_contract module="SCHEDULING_COVERAGE_REQUIREMENT"
+THEN then_seed_contract_should_hold module="SCHEDULING_COVERAGE_REQUIREMENT"

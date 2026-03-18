@@ -1,0 +1,21 @@
+type: graphql_contract
+entity: ConstraintViolation
+domain: Scheduling
+module: SCHEDULING_CONSTRAINT_VIOLATION
+fields:
+  - field: get_scheduling_constraint_violation
+    kind: query
+    mode: get
+    action: read
+  - field: list_scheduling_constraint_violations
+    kind: query
+    mode: list
+    action: read
+  - field: create_scheduling_constraint_violation
+    kind: mutation
+    mode: create
+    action: create
+  - field: delete_scheduling_constraint_violation
+    kind: mutation
+    mode: destroy
+    action: destroy

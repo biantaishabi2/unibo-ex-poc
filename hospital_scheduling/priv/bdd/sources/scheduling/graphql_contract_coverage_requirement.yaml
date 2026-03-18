@@ -1,0 +1,25 @@
+type: graphql_contract
+entity: CoverageRequirement
+domain: Scheduling
+module: SCHEDULING_COVERAGE_REQUIREMENT
+fields:
+  - field: get_scheduling_coverage_requirement
+    kind: query
+    mode: get
+    action: read
+  - field: list_scheduling_coverage_requirements
+    kind: query
+    mode: list
+    action: read
+  - field: create_scheduling_coverage_requirement
+    kind: mutation
+    mode: create
+    action: create
+  - field: update_scheduling_coverage_requirement
+    kind: mutation
+    mode: update
+    action: update
+  - field: delete_scheduling_coverage_requirement
+    kind: mutation
+    mode: destroy
+    action: destroy

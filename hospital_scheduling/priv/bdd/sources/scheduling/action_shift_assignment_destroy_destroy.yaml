@@ -1,7 +1,7 @@
 module: SCHEDULING_SHIFT_ASSIGNMENT
 contract: ShiftAssignment.destroy action contract
 edge_class: action_contract
-source_file: /home/wangbo/document/unibo_ex_poc-sched-bdd-rerun/hospital_scheduling/models/scheduling.ubo.yaml
+source_file: /home/wangbo/unibo_ex_poc-sched-graphql/hospital_scheduling/models/scheduling.ubo.yaml
 source_summary: GIVEN 实体 ShiftAssignment 的动作 destroy 可执行，accept=[(未声明)]，args=[无显式参数] / WHEN 执行动作 destroy / THEN 输入应满足校验规则
 expected_facts:
 - action_executed

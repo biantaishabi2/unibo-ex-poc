@@ -22,3 +22,8 @@ THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"
 GIVEN given_seed_context id="action_schedule_version_update_update" module="SCHEDULING_SCHEDULE_VERSION"
 WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
 THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULE_VERSION-SEED-graphql_contract_schedule_version] TITLE: SCHEDULING_SCHEDULE_VERSION contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_schedule_version" module="SCHEDULING_SCHEDULE_VERSION"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULE_VERSION"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULE_VERSION"

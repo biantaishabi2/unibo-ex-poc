@@ -1,0 +1,13 @@
+type: graphql_contract
+entity: Employee
+domain: Scheduling
+module: SCHEDULING_EMPLOYEE
+fields:
+  - field: get_scheduling_employee
+    kind: query
+    mode: get
+    action: read
+  - field: list_scheduling_employees
+    kind: query
+    mode: list
+    action: read

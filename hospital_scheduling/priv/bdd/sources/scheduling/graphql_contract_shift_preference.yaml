@@ -1,0 +1,25 @@
+type: graphql_contract
+entity: ShiftPreference
+domain: Scheduling
+module: SCHEDULING_SHIFT_PREFERENCE
+fields:
+  - field: get_scheduling_shift_preference
+    kind: query
+    mode: get
+    action: read
+  - field: list_scheduling_shift_preferences
+    kind: query
+    mode: list
+    action: read
+  - field: create_scheduling_shift_preference
+    kind: mutation
+    mode: create
+    action: create
+  - field: update_scheduling_shift_preference
+    kind: mutation
+    mode: update
+    action: update
+  - field: delete_scheduling_shift_preference
+    kind: mutation
+    mode: destroy
+    action: destroy

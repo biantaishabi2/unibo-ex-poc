@@ -1,0 +1,21 @@
+type: graphql_contract
+entity: MedicalStaffProfile
+domain: Scheduling
+module: SCHEDULING_MEDICAL_STAFF_PROFILE
+fields:
+  - field: get_scheduling_medical_staff_profile
+    kind: query
+    mode: get
+    action: read
+  - field: list_scheduling_medical_staff_profiles
+    kind: query
+    mode: list
+    action: read
+  - field: create_scheduling_medical_staff_profile
+    kind: mutation
+    mode: create
+    action: create
+  - field: update_scheduling_medical_staff_profile
+    kind: mutation
+    mode: update
+    action: update

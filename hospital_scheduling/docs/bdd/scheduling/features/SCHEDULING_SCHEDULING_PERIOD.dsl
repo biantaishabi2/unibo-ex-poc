@@ -163,3 +163,8 @@ GIVEN given_seed_context id="workflow_scheduling_period_scheduling_period_lifecy
 WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
 THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"
 
+
+[SCENARIO: BDD-SCHEDULING_SCHEDULING_PERIOD-SEED-graphql_contract_scheduling_period] TITLE: SCHEDULING_SCHEDULING_PERIOD contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_scheduling_period" module="SCHEDULING_SCHEDULING_PERIOD"
+WHEN when_execute_seed_contract module="SCHEDULING_SCHEDULING_PERIOD"
+THEN then_seed_contract_should_hold module="SCHEDULING_SCHEDULING_PERIOD"

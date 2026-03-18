@@ -23,3 +23,8 @@ GIVEN given_seed_context id="action_medical_staff_profile_update_update" module=
 WHEN when_execute_seed_contract module="SCHEDULING_MEDICAL_STAFF_PROFILE"
 THEN then_seed_contract_should_hold module="SCHEDULING_MEDICAL_STAFF_PROFILE"
 
+
+[SCENARIO: BDD-SCHEDULING_MEDICAL_STAFF_PROFILE-SEED-graphql_contract_medical_staff_profile] TITLE: SCHEDULING_MEDICAL_STAFF_PROFILE contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_medical_staff_profile" module="SCHEDULING_MEDICAL_STAFF_PROFILE"
+WHEN when_execute_seed_contract module="SCHEDULING_MEDICAL_STAFF_PROFILE"
+THEN then_seed_contract_should_hold module="SCHEDULING_MEDICAL_STAFF_PROFILE"

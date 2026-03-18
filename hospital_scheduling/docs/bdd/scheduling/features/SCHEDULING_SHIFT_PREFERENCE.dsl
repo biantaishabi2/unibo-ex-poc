@@ -33,3 +33,8 @@ GIVEN given_seed_context id="action_shift_preference_update_update" module="SCHE
 WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_PREFERENCE"
 THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_PREFERENCE"
 
+
+[SCENARIO: BDD-SCHEDULING_SHIFT_PREFERENCE-SEED-graphql_contract_shift_preference] TITLE: SCHEDULING_SHIFT_PREFERENCE contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_shift_preference" module="SCHEDULING_SHIFT_PREFERENCE"
+WHEN when_execute_seed_contract module="SCHEDULING_SHIFT_PREFERENCE"
+THEN then_seed_contract_should_hold module="SCHEDULING_SHIFT_PREFERENCE"

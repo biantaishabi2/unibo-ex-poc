@@ -1,6 +1,6 @@
 {
   "total_models": 1,
-  "generated_files": 55,
+  "generated_files": 67,
   "action_sources": 51,
   "event_sources": 0,
   "workflow_sources": 2,
@@ -265,6 +265,7 @@
       ]
     }
   ],
+  "graphql_contract_sources": 12,
   "complex_precondition_skipped": 1,
   "complex_precondition_skipped_actions": [
     {

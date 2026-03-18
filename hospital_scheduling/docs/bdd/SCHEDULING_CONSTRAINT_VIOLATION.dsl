@@ -12,3 +12,8 @@ THEN then_seed_contract_should_hold module="SCHEDULING_CONSTRAINT_VIOLATION"
 GIVEN given_seed_context id="action_constraint_violation_read_read" module="SCHEDULING_CONSTRAINT_VIOLATION"
 WHEN when_execute_seed_contract module="SCHEDULING_CONSTRAINT_VIOLATION"
 THEN then_seed_contract_should_hold module="SCHEDULING_CONSTRAINT_VIOLATION"
+
+[SCENARIO: BDD-SCHEDULING_CONSTRAINT_VIOLATION-SEED-graphql_contract_constraint_violation] TITLE: SCHEDULING_CONSTRAINT_VIOLATION contract seed scenario TAGS: seed graphql_contract
+GIVEN given_seed_context id="graphql_contract_constraint_violation" module="SCHEDULING_CONSTRAINT_VIOLATION"
+WHEN when_execute_seed_contract module="SCHEDULING_CONSTRAINT_VIOLATION"
+THEN then_seed_contract_should_hold module="SCHEDULING_CONSTRAINT_VIOLATION"
