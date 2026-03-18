@@ -4,7 +4,7 @@
   "domains": {
     "Scheduling": {
       "input_hashes": {
-        "/home/wangbo/document/unibo_ex_poc-verify-121/hospital_scheduling/models/scheduling.ubo.yaml": "sha256:61bee6d04a59da4b8b4ccd4ba4ab1f35f74c27250714856ba5761efdfb6a12f5"
+        "/home/wangbo/unibo_ex_poc-fix-destroy/hospital_scheduling/models/scheduling.ubo.yaml": "sha256:27d88fa031b1078db69685af1f6b80510efd2f965e3b5fe1a59dd5ef59e96d44"
       },
       "output_files": [
         "hospital_scheduling/scheduling/changes/schedule_version/publish_version_call_1.ex",
@@ -14,6 +14,7 @@
         "hospital_scheduling/scheduling/coverage_requirement.ex",
         "hospital_scheduling/scheduling/department.ex",
         "hospital_scheduling/scheduling/employee.ex",
+        "hospital_scheduling/scheduling/integrations/solver_run/start_run_rust_solver_invoke_bridge.ex",
         "hospital_scheduling/scheduling/medical_staff_profile.ex",
         "hospital_scheduling/scheduling/schedule_version.ex",
         "hospital_scheduling/scheduling/scheduling.ex",

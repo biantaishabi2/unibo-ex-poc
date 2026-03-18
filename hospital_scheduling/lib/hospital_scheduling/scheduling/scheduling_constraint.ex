@@ -1,6 +1,6 @@
 defmodule HospitalScheduling.Scheduling.SchedulingConstraint do
   use Ash.Resource,
-    otp_app: :unibo_v4,
+    otp_app: :hospital_scheduling,
     domain: HospitalScheduling.Scheduling,
     data_layer: AshPostgres.DataLayer,
     extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource]

@@ -12,10 +12,10 @@
 # ```
 defmodule HospitalScheduling.Scheduling.SolverRun do
   use Ash.Resource,
-    otp_app: :unibo_v4,
+    otp_app: :hospital_scheduling,
     domain: HospitalScheduling.Scheduling,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshStateMachine],
+    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource, AshStateMachine],
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
@@ -44,6 +44,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       update :mark_timeout_scheduling_solver_run, :mark_timeout
       update :mark_error_scheduling_solver_run, :mark_error
       update :mark_completed_scheduling_solver_run, :mark_completed
+      destroy :delete_scheduling_solver_run, :destroy
     end
 
   end
@@ -112,6 +113,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
+    attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
@@ -122,7 +124,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
   end
 
   actions do
-    defaults [:read]
+    defaults [:read, :destroy]
     create :create do
       description "Create Solver Run via Create. doc_url: graphql://contract/scheduling/create_scheduling_solver_run"
       primary? true
@@ -243,6 +245,9 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
     store_action_name? true
     belongs_to_actor :user, HospitalScheduling.Accounts.User, allow_nil?: true
     ignore_attributes [:inserted_at, :updated_at]
+  end
+
+  archive do
   end
 
 
