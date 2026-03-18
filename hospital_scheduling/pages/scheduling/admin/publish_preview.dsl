@@ -16,6 +16,7 @@
             CONTENT: "v{{version.version_no|}}"
           [BADGE: origin_badge]
             ATTR: Variant("secondary")
+            BIND: Enum("origin_type")
             CONTENT: "{{version.origin_type|}}"
       [BUTTON: back_btn]
         ATTR: Variant("secondary"), Click("navigate_back")
