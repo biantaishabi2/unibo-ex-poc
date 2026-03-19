@@ -43,7 +43,6 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
       update :update_scheduling_scheduling_period, :update
       update :start_generating_scheduling_scheduling_period, :start_generating
       update :mark_generated_scheduling_scheduling_period, :mark_generated
-      update :mark_adjusted_scheduling_scheduling_period, :mark_adjusted
       update :publish_scheduling_scheduling_period, :publish
       destroy :delete_scheduling_scheduling_period, :destroy
     end
@@ -175,9 +174,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
       require_atomic? false
     end
     update :mark_adjusted do
-      description "人工调班后标记
-
-人工调班后标记. doc_url: graphql://contract/scheduling/mark_adjusted_scheduling_scheduling_period"
+      description "人工调班后标记"
       accept []
       change set_attribute(:state, :adjusted)
       change transition_state(:adjusted)
