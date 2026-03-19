@@ -66,8 +66,8 @@ defmodule HospitalScheduling.MixProject do
       {:ash_archival, "~> 2.0"},
       {:ash_state_machine, "~> 0.2"},
       {:unibo_bdd_runtime, path: "../../unibo/targets/elixir/unibo_bdd_runtime"},
-      {:unibo_graphql_runtime, path: "../../document/unibo/targets/elixir/unibo_graphql_runtime"},
-      {:stitch_ui, path: "../../document/stitch/packages/liveview"}
+      {:unibo_graphql_runtime, path: "../../unibo/targets/elixir/unibo_graphql_runtime"},
+      {:stitch_ui, path: "../../stitch/packages/liveview"}
     ]
   end
 

@@ -438,6 +438,7 @@
                 "value": "adjusted"
               }
             ],
+            "public": false,
             "description": "人工调班后标记"
           },
           {

@@ -1,6 +1,124 @@
 {
-  "total": 0,
+  "total": 13,
   "errors": 0,
-  "warnings": 0,
-  "issues": []
+  "warnings": 13,
+  "issues": [
+    {
+      "domain": "Scheduling",
+      "entity": "ScheduleVersion",
+      "action": "archive_version",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.ScheduleVersion.events[topic=scheduling.version.archived]",
+      "severity": "info",
+      "reason": "事件 topic `scheduling.version.archived` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Scheduling",
+      "entity": "ScheduleVersion",
+      "action": "publish_version",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.ScheduleVersion.events[topic=scheduling.version.published]",
+      "severity": "info",
+      "reason": "事件 topic `scheduling.version.published` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Scheduling",
+      "entity": "SchedulingPeriod",
+      "action": "create",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.SchedulingPeriod.events[topic=scheduling.period.created]",
+      "severity": "info",
+      "reason": "事件 topic `scheduling.period.created` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Scheduling",
+      "entity": "SchedulingPeriod",
+      "action": "mark_adjusted",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.SchedulingPeriod.events[topic=scheduling.period.adjusted]",
+      "severity": "info",
+      "reason": "事件 topic `scheduling.period.adjusted` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Scheduling",
+      "entity": "SchedulingPeriod",
+      "action": "mark_generated",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.SchedulingPeriod.events[topic=scheduling.period.generated]",
+      "severity": "info",
+      "reason": "事件 topic `scheduling.period.generated` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Scheduling",
+      "entity": "ShiftAssignment",
+      "action": "create",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.ShiftAssignment.events[topic=scheduling.assignment.created]",
+      "severity": "info",
+      "reason": "事件 topic `scheduling.assignment.created` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Scheduling",
+      "entity": "ShiftAssignment",
+      "action": "lock",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.ShiftAssignment.events[topic=scheduling.assignment.locked]",
+      "severity": "info",
+      "reason": "事件 topic `scheduling.assignment.locked` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Scheduling",
+      "entity": "ShiftAssignment",
+      "action": "unlock",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.ShiftAssignment.events[topic=scheduling.assignment.unlocked]",
+      "severity": "info",
+      "reason": "事件 topic `scheduling.assignment.unlocked` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Scheduling",
+      "entity": "SolverRun",
+      "action": "complete_feasible",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.SolverRun.events[topic=scheduling.solver.completed]",
+      "severity": "info",
+      "reason": "事件 topic `scheduling.solver.completed` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Scheduling",
+      "entity": "SolverRun",
+      "action": "complete_infeasible",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.SolverRun.events[topic=scheduling.solver.infeasible]",
+      "severity": "info",
+      "reason": "事件 topic `scheduling.solver.infeasible` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Scheduling",
+      "entity": "SolverRun",
+      "action": "mark_error",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.SolverRun.events[topic=scheduling.solver.errored]",
+      "severity": "info",
+      "reason": "事件 topic `scheduling.solver.errored` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Scheduling",
+      "entity": "SolverRun",
+      "action": "mark_timeout",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.SolverRun.events[topic=scheduling.solver.timed_out]",
+      "severity": "info",
+      "reason": "事件 topic `scheduling.solver.timed_out` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Scheduling",
+      "entity": "SolverRun",
+      "action": "start_run",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.SolverRun.events[topic=scheduling.solver.started]",
+      "severity": "info",
+      "reason": "事件 topic `scheduling.solver.started` 没有任何实体声明 event_consumers 消费"
+    }
+  ]
 }
