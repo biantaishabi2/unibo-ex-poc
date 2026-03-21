@@ -3,6 +3,8 @@
 # 酒店搜索结构差异较大，不使用此模板
 
 [PAGE: base_search_results]
+  META: Entity("FlightOffer"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("搜索结果")
 
   # 顶部导航

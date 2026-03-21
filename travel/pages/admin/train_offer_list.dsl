@@ -1,4 +1,5 @@
 [PAGE: train_offer_list]
+  META: Entity("TrainOffer"), Domain("Travel")
   ATTR: Title("TrainOffer 列表")
 
   [SECTION: train_offer_header]
@@ -30,6 +31,7 @@
           ATTR: Name("inventory_status"), Label("余票或候补可用状态")
         [SELECT: filter_sale_status]
           ATTR: Name("sale_status"), Label("可售状态")
+          BIND: Enum("TrainOffer", "sale_status")
         [BUTTON: train_offer_filter_submit]
           ATTR: Variant("secondary"), Click("filter_submit")
           CONTENT: "查询"

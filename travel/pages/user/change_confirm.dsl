@@ -3,6 +3,8 @@
 # 每步展示不同内容区域
 
 [PAGE: change_confirm]
+  META: Entity("TravelChangeOrder"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("确认改签")
 
   [HEADER: change_confirm_header]

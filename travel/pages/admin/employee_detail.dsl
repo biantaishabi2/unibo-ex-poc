@@ -1,4 +1,5 @@
 [PAGE: employee_detail]
+  META: Entity("TravelOrder"), Domain("Travel")
   ATTR: Title("员工详情")
 
   [BREADCRUMB: employee_breadcrumb]
@@ -112,6 +113,7 @@
               ATTR: Name("entry_date"), Label("入职日期"), Placeholder("请选择入职日期")
             [SELECT: form_status]
               ATTR: Name("status"), Label("状态")
+              BIND: Enum("TravelOrder", "status")
           [FLEX: employee_form_actions]
             { Justify: "End", Gap: 2 }
             [BUTTON: employee_cancel_btn]

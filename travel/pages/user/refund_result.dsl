@@ -2,6 +2,8 @@
 # 根据退票状态（成功/处理中/被拒绝）显示不同内容
 
 [PAGE: refund_result]
+  META: Entity("TravelRefundOrder"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("退票结果")
 
   [HEADER: refund_result_header]

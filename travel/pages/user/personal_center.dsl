@@ -2,6 +2,8 @@
 # 展示用户头像/信息、快捷入口、出差统计、设置入口
 
 [PAGE: personal_center]
+  META: Entity("TravelOrder"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("个人中心")
 
   [HEADER: personal_center_header]

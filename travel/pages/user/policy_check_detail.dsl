@@ -1,4 +1,6 @@
 [PAGE: policy_check_detail]
+  META: Entity("TravelPolicyCheck"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("超标审批详情")
 
   # 顶部导航

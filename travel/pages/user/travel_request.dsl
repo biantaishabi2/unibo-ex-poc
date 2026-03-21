@@ -2,6 +2,7 @@
 # 向导模式：4步（基本信息 → 行程安排 → 预算 → 确认提交）
 
 [PAGE: travel_request]
+  META: Entity("TravelOrder"), Domain("Travel")
   ATTR: Title("出差申请")
 
   [HEADER: travel_request_header]
@@ -34,6 +35,7 @@
           [CARD_CONTENT: basic_info_content]
             [FORM: basic_info_form]
               ATTR: Name("basic_info_form")
+              BIND: Form("create")
               [TEXTAREA: trip_purpose]
                 ATTR: Label("出差事由"), Name("purpose"), Required(true), Placeholder("请描述出差目的和主要工作内容"), Rows(3)
               [INPUT: trip_start_date]

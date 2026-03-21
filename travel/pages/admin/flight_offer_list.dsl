@@ -1,4 +1,5 @@
 [PAGE: flight_offer_list]
+  META: Entity("FlightOffer"), Domain("Travel")
   ATTR: Title("FlightOffer 列表")
 
   [SECTION: flight_offer_header]
@@ -24,6 +25,7 @@
           ATTR: Name("arrival_at_to"), Label("到达时间 止")
         [SELECT: filter_sale_status]
           ATTR: Name("sale_status"), Label("sale_status")
+          BIND: Enum("FlightOffer", "sale_status")
         [BUTTON: flight_offer_filter_submit]
           ATTR: Variant("secondary"), Click("filter_submit")
           CONTENT: "查询"

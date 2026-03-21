@@ -1,4 +1,5 @@
 [PAGE: travel_policy_check_list]
+  META: Entity("TravelPolicyCheck"), Domain("Travel")
   ATTR: Title("TravelPolicyCheck 列表")
 
   [SECTION: travel_policy_check_header]
@@ -13,6 +14,7 @@
         { Gap: 4, Align: "Center" }
         [SELECT: filter_check_result]
           ATTR: Name("check_result"), Label("校验结果")
+          BIND: Enum("TravelPolicyCheck", "check_result")
         [BUTTON: travel_policy_check_filter_submit]
           ATTR: Variant("secondary"), Click("filter_submit")
           CONTENT: "查询"

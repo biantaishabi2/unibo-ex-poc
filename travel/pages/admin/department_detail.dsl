@@ -1,4 +1,5 @@
 [PAGE: department_detail]
+  META: Entity("TravelOrder"), Domain("Travel")
   ATTR: Title("部门详情")
 
   [BREADCRUMB: department_breadcrumb]
@@ -94,6 +95,7 @@
               ATTR: Name("description"), Label("描述"), Placeholder("请输入描述")
             [SELECT: form_status]
               ATTR: Name("status"), Label("状态")
+              BIND: Enum("TravelOrder", "status")
           [FLEX: department_form_actions]
             { Justify: "End", Gap: 2 }
             [BUTTON: department_cancel_btn]

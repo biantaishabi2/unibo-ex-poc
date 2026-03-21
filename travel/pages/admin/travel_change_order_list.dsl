@@ -1,4 +1,5 @@
 [PAGE: travel_change_order_list]
+  META: Entity("TravelChangeOrder"), Domain("Travel")
   ATTR: Title("TravelChangeOrder 列表")
 
   [SECTION: travel_change_order_header]
@@ -16,6 +17,7 @@
         { Gap: 4, Align: "Center" }
         [SELECT: filter_status]
           ATTR: Name("status"), Label("状态")
+          BIND: Enum("TravelChangeOrder", "status")
         [BUTTON: travel_change_order_filter_submit]
           ATTR: Variant("secondary"), Click("filter_submit")
           CONTENT: "查询"

@@ -3,6 +3,8 @@
 
 [PAGE: flight_booking]
   EXTENDS: base_booking_form
+  META: Entity("FlightOffer"), Domain("Travel")
+  BIND: Form("create")
 
   OVERRIDE: section("summary_section")
     [CARD: flight_summary_card]

@@ -1,4 +1,6 @@
 [PAGE: order_list]
+  META: Entity("TravelOrder"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("我的行程")
 
   [SECTION: filter_section]

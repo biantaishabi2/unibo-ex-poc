@@ -1,4 +1,6 @@
 [PAGE: payment_confirmation]
+  META: Entity("TravelOrder"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("支付确认")
 
   [SECTION: main_content]

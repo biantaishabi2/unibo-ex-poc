@@ -1,4 +1,5 @@
 [PAGE: oa_sync_log_list]
+  META: Entity("TravelOrder"), Domain("Travel")
   ATTR: Title("OA 同步日志列表")
 
   [SECTION: oa_sync_log_header]
@@ -13,6 +14,7 @@
         { Gap: 4, Align: "Center" }
         [SELECT: filter_status]
           ATTR: Name("status"), Label("状态")
+          BIND: Enum("TravelOrder", "status")
         [SELECT: filter_sync_type]
           ATTR: Name("sync_type"), Label("同步类型")
         [BUTTON: oa_sync_log_filter_submit]

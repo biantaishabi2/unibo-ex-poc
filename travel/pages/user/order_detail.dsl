@@ -1,4 +1,6 @@
 [PAGE: order_detail]
+  META: Entity("TravelOrder"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("订单详情")
 
   [SECTION: main_content]

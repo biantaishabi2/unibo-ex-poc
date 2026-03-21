@@ -1,4 +1,5 @@
 [PAGE: travel_fulfillment_detail]
+  META: Entity("TravelFulfillment"), Domain("Travel")
   ATTR: Title("TravelFulfillment 详情")
 
   [BREADCRUMB: travel_fulfillment_breadcrumb]
@@ -139,6 +140,7 @@
               ATTR: Name("fulfillment_type"), Label("fulfillment_type")
             [SELECT: form_status]
               ATTR: Name("status"), Label("status")
+              BIND: Enum("TravelFulfillment", "status")
             [INPUT: form_supplier_booking_ref]
               ATTR: Name("supplier_booking_ref"), Label("供应商预订号"), Placeholder("请输入供应商预订号")
             [INPUT: form_voucher_or_ticket_ref]

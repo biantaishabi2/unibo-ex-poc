@@ -1,4 +1,5 @@
 [PAGE: flight_offer_detail]
+  META: Entity("FlightOffer"), Domain("Travel")
   ATTR: Title("FlightOffer 详情")
 
   [BREADCRUMB: flight_offer_breadcrumb]
@@ -196,6 +197,7 @@
               ATTR: Name("refund_change_policy"), Label("退改规则快照"), Placeholder("请输入退改规则快照")
             [SELECT: form_sale_status]
               ATTR: Name("sale_status"), Label("sale_status")
+              BIND: Enum("FlightOffer", "sale_status")
           [FLEX: flight_offer_form_actions]
             { Justify: "End", Gap: 2 }
             [BUTTON: flight_offer_cancel_btn]

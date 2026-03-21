@@ -1,4 +1,5 @@
 [PAGE: hotel_offer_list]
+  META: Entity("HotelOffer"), Domain("Travel")
   ATTR: Title("HotelOffer 列表")
 
   [SECTION: hotel_offer_header]
@@ -24,6 +25,7 @@
           ATTR: Name("checkout_date_to"), Label("离店日期 止")
         [SELECT: filter_sale_status]
           ATTR: Name("sale_status"), Label("可售状态")
+          BIND: Enum("HotelOffer", "sale_status")
         [BUTTON: hotel_offer_filter_submit]
           ATTR: Variant("secondary"), Click("filter_submit")
           CONTENT: "查询"

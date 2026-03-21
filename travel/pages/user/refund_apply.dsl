@@ -2,6 +2,7 @@
 # 表单页：展示原订单信息 + 退票原因选择 + 退款金额预估
 
 [PAGE: refund_apply]
+  META: Entity("TravelRefundOrder"), Domain("Travel")
   ATTR: Title("退票申请")
 
   [HEADER: refund_apply_header]
@@ -63,6 +64,7 @@
     [CARD_CONTENT: refund_form_content]
       [FORM: refund_form]
         ATTR: Name("refund_form"), Action("submit_refund")
+        BIND: Form("create")
 
         # 退票原因
         [SELECT: refund_reason]

@@ -5,6 +5,7 @@
 [PAGE: hotel_search_results]
   ATTR: Title("酒店搜索")
   META: Entity("HotelOffer"), Domain("Travel")
+  BIND: Fields("*")
 
   # 顶部导航
   [SECTION: header_section]

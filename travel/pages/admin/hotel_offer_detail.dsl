@@ -1,4 +1,5 @@
 [PAGE: hotel_offer_detail]
+  META: Entity("HotelOffer"), Domain("Travel")
   ATTR: Title("HotelOffer 详情")
 
   [BREADCRUMB: hotel_offer_breadcrumb]
@@ -188,6 +189,7 @@
               ATTR: Name("guarantee_policy"), Label("担保规则快照"), Placeholder("请输入担保规则快照")
             [SELECT: form_sale_status]
               ATTR: Name("sale_status"), Label("可售状态")
+              BIND: Enum("HotelOffer", "sale_status")
           [FLEX: hotel_offer_form_actions]
             { Justify: "End", Gap: 2 }
             [BUTTON: hotel_offer_cancel_btn]

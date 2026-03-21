@@ -3,6 +3,8 @@
 
 [PAGE: train_booking]
   EXTENDS: base_booking_form
+  META: Entity("TrainOffer"), Domain("Travel")
+  BIND: Form("create")
 
   OVERRIDE: section("summary_section")
     [CARD: train_summary_card]

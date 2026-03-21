@@ -1,4 +1,5 @@
 [PAGE: travel_fulfillment_list]
+  META: Entity("TravelFulfillment"), Domain("Travel")
   ATTR: Title("TravelFulfillment 列表")
 
   [SECTION: travel_fulfillment_header]
@@ -18,6 +19,7 @@
           ATTR: Name("fulfillment_type"), Label("fulfillment_type")
         [SELECT: filter_status]
           ATTR: Name("status"), Label("status")
+          BIND: Enum("TravelFulfillment", "status")
         [SELECT: filter_waitlist_result]
           ATTR: Name("waitlist_result"), Label("train 候补兑现结果")
         [SELECT: filter_change_result]

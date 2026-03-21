@@ -1,4 +1,5 @@
 [PAGE: travel_static_code_mapping_list]
+  META: Entity("TravelStaticCodeMapping"), Domain("Travel")
   ATTR: Title("TravelStaticCodeMapping 列表")
 
   [SECTION: travel_static_code_mapping_header]
@@ -23,6 +24,7 @@
           CONTENT: "查询"
 
   [TABLE: travel_static_code_mapping_table]
+    BIND: Fields("*")
     [TABLE_HEADER: travel_static_code_mapping_table_header]
       [TABLE_ROW: travel_static_code_mapping_header_row]
         [TABLE_HEAD: th_supplier_code]

@@ -1,4 +1,5 @@
 [PAGE: vacation_offer_list]
+  META: Entity("VacationOffer"), Domain("Travel")
   ATTR: Title("VacationOffer 列表")
 
   [SECTION: vacation_offer_header]
@@ -16,6 +17,7 @@
         { Gap: 4, Align: "Center" }
         [SELECT: filter_package_type]
           ATTR: Name("package_type"), Label("套餐类型")
+          BIND: Enum("VacationOffer", "package_type")
         [INPUT: filter_start_date_from]
           ATTR: Name("start_date_from"), Label("出行开始日期 起")
         [INPUT: filter_start_date_to]
@@ -26,6 +28,7 @@
           ATTR: Name("end_date_to"), Label("出行结束日期 止")
         [SELECT: filter_sale_status]
           ATTR: Name("sale_status"), Label("sale_status")
+          BIND: Enum("VacationOffer", "sale_status")
         [BUTTON: vacation_offer_filter_submit]
           ATTR: Variant("secondary"), Click("filter_submit")
           CONTENT: "查询"

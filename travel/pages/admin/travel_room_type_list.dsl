@@ -1,4 +1,5 @@
 [PAGE: travel_room_type_list]
+  META: Entity("TravelRoomType"), Domain("Travel")
   ATTR: Title("TravelRoomType 列表")
 
   [SECTION: travel_room_type_header]
@@ -21,6 +22,7 @@
           CONTENT: "查询"
 
   [TABLE: travel_room_type_table]
+    BIND: Fields("*")
     [TABLE_HEADER: travel_room_type_table_header]
       [TABLE_ROW: travel_room_type_header_row]
         [TABLE_HEAD: th_room_type_code]

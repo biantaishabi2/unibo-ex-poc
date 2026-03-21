@@ -1,4 +1,5 @@
 [PAGE: travel_cabin_class_list]
+  META: Entity("TravelCabinClass"), Domain("Travel")
   ATTR: Title("TravelCabinClass 列表")
 
   [SECTION: travel_cabin_class_header]
@@ -21,6 +22,7 @@
           CONTENT: "查询"
 
   [TABLE: travel_cabin_class_table]
+    BIND: Fields("*")
     [TABLE_HEADER: travel_cabin_class_table_header]
       [TABLE_ROW: travel_cabin_class_header_row]
         [TABLE_HEAD: th_cabin_class_code]

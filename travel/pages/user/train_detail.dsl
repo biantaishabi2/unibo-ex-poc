@@ -1,4 +1,6 @@
 [PAGE: train_detail]
+  META: Entity("TrainOffer"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("车次详情")
 
   [SECTION: route_summary]
