@@ -1,4 +1,6 @@
 [PAGE: traveler_management]
+  META: Entity("TravelOrder"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("出行人管理")
 
   [SECTION: header_section]

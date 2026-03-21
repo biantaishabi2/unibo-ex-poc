@@ -1,4 +1,6 @@
 [PAGE: enterprise_settings]
+  META: Entity("TravelPolicy"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("企业设置")
 
   [SECTION: enterprise_settings_header]

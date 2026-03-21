@@ -1,4 +1,5 @@
 [PAGE: travel_airline_list]
+  META: Entity("TravelAirline"), Domain("Travel")
   ATTR: Title("TravelAirline 列表")
 
   [SECTION: travel_airline_header]
@@ -21,6 +22,7 @@
           CONTENT: "查询"
 
   [TABLE: travel_airline_table]
+    BIND: Fields("*")
     [TABLE_HEADER: travel_airline_table_header]
       [TABLE_ROW: travel_airline_header_row]
         [TABLE_HEAD: th_airline_code]

@@ -1,4 +1,5 @@
 [PAGE: train_offer_detail]
+  META: Entity("TrainOffer"), Domain("Travel")
   ATTR: Title("TrainOffer 详情")
 
   [BREADCRUMB: train_offer_breadcrumb]
@@ -236,6 +237,7 @@
               ATTR: Name("refund_rules_snapshot"), Label("退票规则快照"), Placeholder("请输入退票规则快照")
             [SELECT: form_sale_status]
               ATTR: Name("sale_status"), Label("可售状态")
+              BIND: Enum("TrainOffer", "sale_status")
           [FLEX: train_offer_form_actions]
             { Justify: "End", Gap: 2 }
             [BUTTON: train_offer_cancel_btn]

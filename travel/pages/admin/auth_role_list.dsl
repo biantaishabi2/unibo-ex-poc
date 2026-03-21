@@ -1,4 +1,5 @@
 [PAGE: auth_role_list]
+  META: Entity("TravelPolicy"), Domain("Travel")
   ATTR: Title("角色权限列表")
 
   [SECTION: auth_role_header]
@@ -21,6 +22,7 @@
           CONTENT: "查询"
 
   [TABLE: auth_role_table]
+    BIND: Fields("*")
     [TABLE_HEADER: auth_role_table_header]
       [TABLE_ROW: auth_role_header_row]
         [TABLE_HEAD: th_role_name]

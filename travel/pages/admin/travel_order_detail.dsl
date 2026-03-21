@@ -1,4 +1,5 @@
 [PAGE: travel_order_detail]
+  META: Entity("TravelOrder"), Domain("Travel")
   ATTR: Title("TravelOrder 详情")
 
   [BREADCRUMB: travel_order_breadcrumb]
@@ -232,8 +233,10 @@
               ATTR: Name("order_no"), Label("订单号"), Placeholder("请输入订单号"), Required("true")
             [SELECT: form_product_type]
               ATTR: Name("product_type"), Label("商品类型")
+              BIND: Enum("TravelOrder", "product_type")
             [SELECT: form_booking_mode]
               ATTR: Name("booking_mode"), Label("train 订单预订模式")
+              BIND: Enum("TravelOrder", "booking_mode")
             [INPUT: form_contact_name]
               ATTR: Name("contact_name"), Label("contact_name"), Placeholder("请输入contact_name"), Required("true")
             [INPUT: form_contact_phone]
@@ -252,10 +255,13 @@
               ATTR: Name("currency"), Label("currency"), Placeholder("请输入currency")
             [SELECT: form_status]
               ATTR: Name("status"), Label("status")
+              BIND: Enum("TravelOrder", "status")
             [SELECT: form_change_status]
               ATTR: Name("change_status"), Label("change_status")
+              BIND: Enum("TravelOrder", "change_status")
             [SELECT: form_waitlist_status]
               ATTR: Name("waitlist_status"), Label("waitlist_status")
+              BIND: Enum("TravelOrder", "waitlist_status")
             [INPUT: form_original_order_ref]
               ATTR: Name("original_order_ref"), Label("改签链路引用的原订单号或原票号"), Placeholder("请输入改签链路引用的原订单号或原票号")
             [INPUT: form_ticket_passenger_infos]

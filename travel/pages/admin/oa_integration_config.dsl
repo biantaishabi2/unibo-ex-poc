@@ -1,4 +1,6 @@
 [PAGE: oa_integration_config]
+  META: Entity("TravelOrder"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("OA 集成配置")
 
   [SECTION: oa_integration_header]

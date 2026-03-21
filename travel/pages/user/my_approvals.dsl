@@ -2,6 +2,8 @@
 # 使用 META+BIND 模式，展示待审批/已审批/已拒绝的审批请求列表
 
 [PAGE: my_approvals]
+  META: Entity("TravelPolicyCheck"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("我的审批")
 
   [HEADER: my_approvals_header]

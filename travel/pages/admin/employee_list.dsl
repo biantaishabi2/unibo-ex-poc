@@ -1,4 +1,5 @@
 [PAGE: employee_list]
+  META: Entity("TravelOrder"), Domain("Travel")
   ATTR: Title("员工管理列表")
 
   [SECTION: employee_header]
@@ -16,6 +17,7 @@
         { Gap: 4, Align: "Center" }
         [SELECT: filter_status]
           ATTR: Name("status"), Label("状态")
+          BIND: Enum("TravelOrder", "status")
         [SELECT: filter_department]
           ATTR: Name("department"), Label("部门")
         [BUTTON: employee_filter_submit]

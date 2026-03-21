@@ -1,4 +1,5 @@
 [PAGE: travel_hotel_list]
+  META: Entity("TravelHotel"), Domain("Travel")
   ATTR: Title("TravelHotel 列表")
 
   [SECTION: travel_hotel_header]
@@ -21,6 +22,7 @@
           CONTENT: "查询"
 
   [TABLE: travel_hotel_table]
+    BIND: Fields("*")
     [TABLE_HEADER: travel_hotel_table_header]
       [TABLE_ROW: travel_hotel_header_row]
         [TABLE_HEAD: th_hotel_code]

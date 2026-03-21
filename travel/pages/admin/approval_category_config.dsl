@@ -1,4 +1,6 @@
 [PAGE: approval_category_config]
+  META: Entity("TravelPolicyCheck"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("审批规则配置")
 
   [SECTION: approval_category_header]

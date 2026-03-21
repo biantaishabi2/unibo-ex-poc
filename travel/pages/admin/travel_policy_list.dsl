@@ -1,4 +1,5 @@
 [PAGE: travel_policy_list]
+  META: Entity("TravelPolicy"), Domain("Travel")
   ATTR: Title("TravelPolicy 列表")
 
   [SECTION: travel_policy_header]
@@ -16,6 +17,7 @@
         { Gap: 4, Align: "Center" }
         [SELECT: filter_product_type]
           ATTR: Name("product_type"), Label("适用商品类型")
+          BIND: Enum("TravelPolicy", "product_type")
         [BUTTON: travel_policy_filter_submit]
           ATTR: Variant("secondary"), Click("filter_submit")
           CONTENT: "查询"

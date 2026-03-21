@@ -1,4 +1,5 @@
 [PAGE: pricing_rule]
+  META: Entity("TravelOrder"), Domain("Travel")
   ATTR: Title("定价规则配置")
 
   [SECTION: toolbar_section]
@@ -64,6 +65,7 @@
         { Gap: 3 }
         [SELECT: product_type_select]
           ATTR: Label("产品类型"), Name("product_type"), Required("true")
+          BIND: Enum("TravelOrder", "product_type")
           CONTENT: "酒店:hotel,机票:flight,火车票:train"
         [INPUT: supplier_code_input]
           ATTR: Label("供应商编码"), Placeholder("请输入供应商编码"), Bind("form.supplier_code"), Required("true")
@@ -71,6 +73,7 @@
           ATTR: Label("加价率"), Placeholder("例如 0.15 表示加价 15%"), Bind("form.markup_rate"), Type("number"), Required("true")
         [SELECT: status_select]
           ATTR: Label("状态"), Name("status"), Required("true")
+          BIND: Enum("TravelOrder", "status")
           CONTENT: "启用:active,停用:inactive"
         [BUTTON: submit_create_btn]
           ATTR: Variant("primary"), Click("create")

@@ -1,4 +1,5 @@
 [PAGE: vacation_offer_detail]
+  META: Entity("VacationOffer"), Domain("Travel")
   ATTR: Title("VacationOffer 详情")
 
   [BREADCRUMB: vacation_offer_breadcrumb]
@@ -166,6 +167,7 @@
               ATTR: Name("package_name"), Label("套餐名称"), Placeholder("请输入套餐名称"), Required("true")
             [SELECT: form_package_type]
               ATTR: Name("package_type"), Label("套餐类型")
+              BIND: Enum("VacationOffer", "package_type")
             [INPUT: form_departure_city_code]
               ATTR: Name("departure_city_code"), Label("出发城市编码"), Placeholder("请输入出发城市编码"), Required("true")
             [INPUT: form_destination_code]
@@ -188,6 +190,7 @@
               ATTR: Name("cancellation_policy"), Label("取消规则快照"), Placeholder("请输入取消规则快照")
             [SELECT: form_sale_status]
               ATTR: Name("sale_status"), Label("sale_status")
+              BIND: Enum("VacationOffer", "sale_status")
           [FLEX: vacation_offer_form_actions]
             { Justify: "End", Gap: 2 }
             [BUTTON: vacation_offer_cancel_btn]

@@ -1,4 +1,6 @@
 [PAGE: travel_static_code_mapping_detail]
+  META: Entity("TravelStaticCodeMapping"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("TravelStaticCodeMapping 详情")
 
   [BREADCRUMB: travel_static_code_mapping_breadcrumb]

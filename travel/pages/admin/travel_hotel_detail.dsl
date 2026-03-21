@@ -1,4 +1,6 @@
 [PAGE: travel_hotel_detail]
+  META: Entity("TravelHotel"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("TravelHotel 详情")
 
   [BREADCRUMB: travel_hotel_breadcrumb]

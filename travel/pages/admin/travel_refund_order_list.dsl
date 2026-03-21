@@ -1,4 +1,5 @@
 [PAGE: travel_refund_order_list]
+  META: Entity("TravelRefundOrder"), Domain("Travel")
   ATTR: Title("TravelRefundOrder 列表")
 
   [SECTION: travel_refund_order_header]
@@ -16,6 +17,7 @@
         { Gap: 4, Align: "Center" }
         [SELECT: filter_status]
           ATTR: Name("status"), Label("状态")
+          BIND: Enum("TravelRefundOrder", "status")
         [BUTTON: travel_refund_order_filter_submit]
           ATTR: Variant("secondary"), Click("filter_submit")
           CONTENT: "查询"

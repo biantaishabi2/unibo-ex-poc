@@ -1,4 +1,5 @@
 [PAGE: travel_order_list]
+  META: Entity("TravelOrder"), Domain("Travel")
   ATTR: Title("TravelOrder 列表")
 
   [SECTION: travel_order_header]
@@ -16,14 +17,19 @@
         { Gap: 4, Align: "Center" }
         [SELECT: filter_product_type]
           ATTR: Name("product_type"), Label("商品类型")
+          BIND: Enum("TravelOrder", "product_type")
         [SELECT: filter_booking_mode]
           ATTR: Name("booking_mode"), Label("train 订单预订模式")
+          BIND: Enum("TravelOrder", "booking_mode")
         [SELECT: filter_status]
           ATTR: Name("status"), Label("status")
+          BIND: Enum("TravelOrder", "status")
         [SELECT: filter_change_status]
           ATTR: Name("change_status"), Label("change_status")
+          BIND: Enum("TravelOrder", "change_status")
         [SELECT: filter_waitlist_status]
           ATTR: Name("waitlist_status"), Label("waitlist_status")
+          BIND: Enum("TravelOrder", "waitlist_status")
         [BUTTON: travel_order_filter_submit]
           ATTR: Variant("secondary"), Click("filter_submit")
           CONTENT: "查询"

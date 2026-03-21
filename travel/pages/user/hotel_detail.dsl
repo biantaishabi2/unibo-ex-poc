@@ -1,4 +1,6 @@
 [PAGE: hotel_detail]
+  META: Entity("HotelOffer"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("酒店详情")
 
   [SECTION: hotel_cover]

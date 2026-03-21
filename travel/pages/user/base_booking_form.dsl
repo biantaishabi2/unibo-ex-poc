@@ -2,6 +2,8 @@
 # 共有骨架：导航 → 摘要卡片 → 差标提示 → 出行人 → 联系人 → 支付方式 → 底部提交栏
 
 [PAGE: base_booking_form]
+  META: Entity("TravelOrder"), Domain("Travel")
+  BIND: Form("create")
   ATTR: Title("填写订单")
 
   # 顶部导航

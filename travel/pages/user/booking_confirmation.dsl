@@ -1,4 +1,6 @@
 [PAGE: booking_confirmation]
+  META: Entity("TravelOrder"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("预订结果")
 
   [SECTION: main_content]

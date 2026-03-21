@@ -11,6 +11,7 @@
             ATTR: Name("departure_at_from"), Label("起飞时间 起")
           [SELECT: filter_sale_status]
             ATTR: Name("sale_status"), Label("销售状态")
+            BIND: Enum("FlightOffer", "sale_status")
           [BUTTON: filter_submit]
             ATTR: Variant("secondary"), Click("filter_submit")
             CONTENT: "查询"

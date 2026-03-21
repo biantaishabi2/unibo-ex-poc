@@ -1,4 +1,5 @@
 [PAGE: job_position_detail]
+  META: Entity("TravelOrder"), Domain("Travel")
   ATTR: Title("职级详情")
 
   [BREADCRUMB: job_position_breadcrumb]
@@ -88,6 +89,7 @@
               ATTR: Name("description"), Label("描述"), Placeholder("请输入描述")
             [SELECT: form_status]
               ATTR: Name("status"), Label("状态")
+              BIND: Enum("TravelOrder", "status")
           [FLEX: job_position_form_actions]
             { Justify: "End", Gap: 2 }
             [BUTTON: job_position_cancel_btn]

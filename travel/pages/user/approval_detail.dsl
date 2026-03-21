@@ -2,6 +2,8 @@
 # 展示申请人信息、申请详情（类型相关）、差标检查、审批链时间轴，支持通过/拒绝操作
 
 [PAGE: approval_detail]
+  META: Entity("TravelPolicyCheck"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("审批详情")
 
   [HEADER: approval_detail_header]

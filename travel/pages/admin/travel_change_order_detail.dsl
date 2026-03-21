@@ -1,4 +1,6 @@
 [PAGE: travel_change_order_detail]
+  META: Entity("TravelChangeOrder"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("TravelChangeOrder 详情")
 
   [BREADCRUMB: travel_change_order_breadcrumb]

@@ -1,4 +1,5 @@
 [PAGE: job_position_list]
+  META: Entity("TravelOrder"), Domain("Travel")
   ATTR: Title("职级管理列表")
 
   [SECTION: job_position_header]
@@ -16,6 +17,7 @@
         { Gap: 4, Align: "Center" }
         [SELECT: filter_status]
           ATTR: Name("status"), Label("状态")
+          BIND: Enum("TravelOrder", "status")
         [BUTTON: job_position_filter_submit]
           ATTR: Variant("secondary"), Click("filter_submit")
           CONTENT: "查询"

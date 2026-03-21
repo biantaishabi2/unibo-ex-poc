@@ -1,4 +1,6 @@
 [PAGE: auth_role_detail]
+  META: Entity("TravelPolicy"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("角色权限详情")
 
   [BREADCRUMB: auth_role_breadcrumb]

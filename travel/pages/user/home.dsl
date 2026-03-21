@@ -1,4 +1,6 @@
 [PAGE: home]
+  META: Entity("TravelOrder"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("差旅")
 
   [SECTION: search_section]

@@ -1,4 +1,6 @@
 [PAGE: travel_policy_check_detail]
+  META: Entity("TravelPolicyCheck"), Domain("Travel")
+  BIND: Fields("*")
   ATTR: Title("TravelPolicyCheck 详情")
 
   [BREADCRUMB: travel_policy_check_breadcrumb]

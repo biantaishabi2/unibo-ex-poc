@@ -4,6 +4,7 @@
 [PAGE: train_search_results]
   ATTR: Title("火车票搜索")
   META: Entity("TrainOffer"), Domain("Travel")
+  BIND: Fields("*")
   EXTENDS: base_search_results
 
   # 覆写顶部导航
