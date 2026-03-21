@@ -4,7 +4,6 @@
 [PAGE: change_flight_search]
   ATTR: Title("改签选择")
   META: Entity("FlightOffer"), Domain("Travel")
-  BIND: Fields("*")
   EXTENDS: base_search_results
 
   # 覆写顶部导航

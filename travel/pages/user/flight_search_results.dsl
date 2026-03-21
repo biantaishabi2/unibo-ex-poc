@@ -4,7 +4,6 @@
 [PAGE: flight_search_results]
   ATTR: Title("机票搜索")
   META: Entity("FlightOffer"), Domain("Travel")
-  BIND: Fields("*")
   EXTENDS: base_search_results
 
   # 覆写顶部导航

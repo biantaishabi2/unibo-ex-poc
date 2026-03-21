@@ -4,7 +4,6 @@
 [PAGE: hotel_booking]
   EXTENDS: base_booking_form
   META: Entity("HotelOffer"), Domain("Travel")
-  BIND: Form("create")
 
   OVERRIDE: section("summary_section")
     [CARD: hotel_summary_card]
