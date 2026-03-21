@@ -1,6 +1,8 @@
+EXTENDS: base_list_report
+META: Entity("SchedulingConstraint"), Domain("Scheduling")
+
 [PAGE: scheduling_constraint_list]
-  EXTENDS: base_list_report
-  META: Entity("SchedulingConstraint"), Domain("Scheduling")
+  ATTR: Title("排班约束配置")
 
   OVERRIDE: section("header")
     [FLEX: header_bar]
@@ -68,12 +70,10 @@
               CONTENT: "{{row.name|}}"
             [TABLE_CELL: td_type]
               [BADGE: type_badge]
-                BIND: Enum("constraint_type")
                 CONTENT: "{{row.constraint_type|}}"
             [TABLE_CELL: td_category]
               [BADGE: category_badge]
                 ATTR: Variant("secondary")
-                BIND: Enum("category")
                 CONTENT: "{{row.category|}}"
             [TABLE_CELL: td_weight]
               CONTENT: "{{row.weight|}}"

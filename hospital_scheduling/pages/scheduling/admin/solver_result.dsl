@@ -1,8 +1,10 @@
+EXTENDS: base_overview
+META: Entity("SolverRun"), Domain("Scheduling")
+
 [PAGE: solver_result]
-  META: Entity("SolverRun"), Domain("Scheduling")
   ATTR: Title("排班结果")
 
-  [SECTION: header]
+  OVERRIDE: section("kpi_cards")
     [FLEX: header_bar]
       { Justify: "Between", Align: "Center" }
       [STACK: title_group]
@@ -13,7 +15,6 @@
         [FLEX: subtitle_row]
           { Gap: 2 }
           [BADGE: run_status_badge]
-            BIND: Enum("SolverRun", "status")
             CONTENT: "{{run.status|}}"
           [TEXT: engine_info]
             ATTR: Variant("muted")
@@ -22,7 +23,6 @@
         ATTR: Variant("secondary"), Click("navigate_back")
         CONTENT: "返回周期详情"
 
-  [SECTION: kpi_section]
     [GRID: kpi_grid]
       { Columns: 4, Gap: 3 }
       [CARD: kpi_assignments]
@@ -66,13 +66,12 @@
               ATTR: Variant("h3"), Weight("bold")
               CONTENT: "{{run.warning_count|}}"
 
-  [SECTION: error_alert_section]
+  OVERRIDE: section("charts")
     [IF: has_hard_violations]
       [ALERT: error_alert]
         ATTR: Variant("destructive"), Title("存在硬约束违反"), Description("有 {{run.hard_violation_count|}} 个硬约束违反需要处理，建议进入日历调班页手动调整。")
     [/IF]
 
-  [SECTION: violations_section]
     [CARD: violations_card]
       [CARD_HEADER: violations_header]
         [CARD_TITLE: violations_title]
@@ -92,7 +91,6 @@
               [TABLE_ROW: vio_row]
                 [TABLE_CELL: td_severity]
                   [BADGE: severity_badge]
-                    BIND: Enum("ConstraintViolation", "severity")
                     CONTENT: "{{vio.severity|}}"
                 [TABLE_CELL: td_rule]
                   CONTENT: "{{vio.rule_code|}}"
@@ -104,7 +102,7 @@
             ATTR: Description("无约束违反，排班结果良好")
         [/IF]
 
-  [SECTION: bottom_actions]
+  OVERRIDE: section("activity_feed")
     [FLEX: action_bar]
       { Justify: "End", Gap: 2 }
       [BUTTON: calendar_btn]

@@ -59,11 +59,9 @@
               CONTENT: "{{row.end_date|}}"
             [TABLE_CELL: td_state]
               [BADGE: state_badge]
-                BIND: Enum("state")
                 CONTENT: "{{row.state|}}"
             [TABLE_CELL: td_generation_mode]
               [BADGE: mode_badge]
-                BIND: Enum("generation_mode")
                 CONTENT: "{{row.generation_mode|}}"
             [TABLE_CELL: td_actions]
               [FLEX: row_actions]

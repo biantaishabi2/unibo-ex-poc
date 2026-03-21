@@ -1,8 +1,10 @@
+EXTENDS: base_calendar_schedule
+META: Entity("CoverageRequirement"), Domain("Scheduling")
+
 [PAGE: requirement_matrix]
-  META: Entity("CoverageRequirement"), Domain("Scheduling")
   ATTR: Title("需求矩阵")
 
-  [SECTION: header]
+  OVERRIDE: section("date_nav_section")
     [FLEX: header_bar]
       { Justify: "Between", Align: "Center" }
       [STACK: title_group]
@@ -22,23 +24,23 @@
         ATTR: Variant("secondary"), Click("navigate_back")
         CONTENT: "返回周期详情"
 
-  [SECTION: matrix_section]
+  OVERRIDE: section("resource_section")
+    [FLEX: matrix_toolbar]
+      { Justify: "Between", Align: "Center" }
+      [TEXT: matrix_title]
+        ATTR: Variant("h4"), Weight("bold")
+        CONTENT: "覆盖需求矩阵"
+      [FLEX: matrix_actions]
+        { Gap: 2 }
+        [SELECT: filter_role]
+          ATTR: Name("role_code"), Label("岗位筛选")
+        [BUTTON: batch_fill_btn]
+          ATTR: Variant("secondary"), Click("batch_fill_requirements")
+          CONTENT: "批量填充"
+
+  OVERRIDE: section("matrix_section")
     [CARD: matrix_card]
-      [CARD_HEADER: matrix_header]
-        [FLEX: matrix_toolbar]
-          { Justify: "Between", Align: "Center" }
-          [TEXT: matrix_title]
-            ATTR: Variant("h4"), Weight("bold")
-            CONTENT: "覆盖需求矩阵"
-          [FLEX: matrix_actions]
-            { Gap: 2 }
-            [SELECT: filter_role]
-              ATTR: Name("role_code"), Label("岗位筛选")
-            [BUTTON: batch_fill_btn]
-              ATTR: Variant("secondary"), Click("batch_fill_requirements")
-              CONTENT: "批量填充"
       [CARD_CONTENT: matrix_content]
-        # 日期×班次矩阵网格
         [TABLE: req_matrix_table]
           [TABLE_HEADER: req_matrix_header]
             [TABLE_ROW: matrix_header_row]
@@ -65,7 +67,7 @@
                   [/FOR]
             [/FOR]
 
-  [SECTION: actions_section]
+  OVERRIDE: section("summary_section")
     [FLEX: bottom_actions]
       { Justify: "End", Gap: 2 }
       [BUTTON: save_btn]
