@@ -1,8 +1,10 @@
+EXTENDS: base_object_page
+META: Entity("SchedulingPeriod"), Domain("Scheduling")
+
 [PAGE: scheduling_period_detail]
-  META: Entity("SchedulingPeriod"), Domain("Scheduling")
   ATTR: Title("排班周期详情")
 
-  [SECTION: breadcrumb_section]
+  OVERRIDE: section("breadcrumb_section")
     [BREADCRUMB: period_breadcrumb]
       [BREADCRUMB_LIST: bc_list]
         [BREADCRUMB_ITEM: bc_list_item]
@@ -14,7 +16,7 @@
           [BREADCRUMB_PAGE: bc_current]
             CONTENT: "{{record.title|详情}}"
 
-  [SECTION: detail_header]
+  OVERRIDE: section("detail_header")
     [FLEX: header_bar]
       { Justify: "Between", Align: "Center" }
       [FLEX: title_group]
@@ -23,11 +25,9 @@
           ATTR: Variant("title")
           CONTENT: "{{record.title|}}"
         [BADGE: state_badge]
-          BIND: Enum("state")
           CONTENT: "{{record.state|}}"
         [BADGE: mode_badge]
           ATTR: Variant("secondary")
-          BIND: Enum("generation_mode")
           CONTENT: "{{record.generation_mode|}}"
       [FLEX: actions_group]
         { Gap: 2 }
@@ -41,7 +41,7 @@
           ATTR: Variant("primary"), Click("action_publish")
           CONTENT: "发布"
 
-  [SECTION: info_section]
+  OVERRIDE: section("info_section")
     [GRID: info_cards]
       { Columns: 4, Gap: 3 }
       [CARD: dept_card]
@@ -82,10 +82,8 @@
               ATTR: Variant("caption"), Color("muted")
               CONTENT: "最近求解"
             [BADGE: run_status_badge]
-              BIND: Enum("SolverRun", "status")
               CONTENT: "{{record.last_solver_run.status|}}"
 
-  [SECTION: nav_section]
     [GRID: nav_grid]
       { Columns: 3, Gap: 3 }
       [CARD: req_nav_card]
@@ -122,7 +120,6 @@
             ATTR: Variant("outline"), Click("navigate_calendar")
             CONTENT: "进入日历调班"
 
-  [SECTION: versions_section]
     [CARD: versions_card]
       [CARD_HEADER: versions_header]
         [CARD_TITLE: versions_title]
@@ -148,12 +145,10 @@
                   CONTENT: "v{{ver.version_no|}}"
                 [TABLE_CELL: td_ver_status]
                   [BADGE: ver_status_badge]
-                    BIND: Enum("ScheduleVersion", "status")
                     CONTENT: "{{ver.status|}}"
                 [TABLE_CELL: td_ver_origin]
                   [BADGE: ver_origin_badge]
                     ATTR: Variant("secondary")
-                    BIND: Enum("ScheduleVersion", "origin_type")
                     CONTENT: "{{ver.origin_type|}}"
                 [TABLE_CELL: td_ver_summary]
                   CONTENT: "{{ver.change_summary|}}"
@@ -161,7 +156,6 @@
                   CONTENT: "{{ver.inserted_at|}}"
             [/FOR]
 
-  [SECTION: runs_section]
     [CARD: runs_card]
       [CARD_HEADER: runs_header]
         [CARD_TITLE: runs_title]
@@ -187,7 +181,6 @@
                   CONTENT: "{{run.engine_type|}}"
                 [TABLE_CELL: td_run_status]
                   [BADGE: run_status]
-                    BIND: Enum("SolverRun", "status")
                     CONTENT: "{{run.status|}}"
                 [TABLE_CELL: td_run_score]
                   CONTENT: "{{run.score|}}"

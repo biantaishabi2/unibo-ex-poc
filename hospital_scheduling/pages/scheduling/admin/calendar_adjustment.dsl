@@ -1,8 +1,10 @@
+EXTENDS: base_calendar_schedule
+META: Entity("ShiftAssignment"), Domain("Scheduling")
+
 [PAGE: calendar_adjustment]
-  META: Entity("ShiftAssignment"), Domain("Scheduling")
   ATTR: Title("日历调班")
 
-  [SECTION: date_nav_section]
+  OVERRIDE: section("date_nav_section")
     [FLEX: date_navigator]
       { Justify: "Between", Align: "Center" }
       [FLEX: nav_left]
@@ -24,7 +26,7 @@
           ATTR: Variant("secondary"), Click("navigate_back")
           CONTENT: "返回周期详情"
 
-  [SECTION: resource_section]
+  OVERRIDE: section("resource_section")
     [FLEX: resource_filter]
       { Gap: 4, Align: "Center", Wrap: true }
       [SELECT: filter_role]
@@ -35,7 +37,7 @@
         ATTR: Variant("secondary"), Click("filter_submit")
         CONTENT: "筛选"
 
-  [SECTION: matrix_section]
+  OVERRIDE: section("matrix_section")
     [CARD: calendar_card]
       [CARD_CONTENT: calendar_content]
         [TABLE: calendar_table]
@@ -64,7 +66,7 @@
                   [/FOR]
             [/FOR]
 
-  [SECTION: summary_section]
+  OVERRIDE: section("summary_section")
     [GRID: summary_grid]
       { Columns: 2, Gap: 3 }
       [CARD: stats_card]
