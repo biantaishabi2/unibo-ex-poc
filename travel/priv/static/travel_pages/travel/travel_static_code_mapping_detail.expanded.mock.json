@@ -1,4 +1,13 @@
 {
+  "travel_static_code_mapping": {
+    "supplier_code": "",
+    "object_type": "",
+    "canonical_entity": "",
+    "external_code": "",
+    "external_name": "",
+    "status": ""
+  },
+  "editing": false,
   "record": {
     "supplier_code": "SUP_CTRIP",
     "status": "active",
@@ -6,6 +15,5 @@
     "canonical_entity": "Travel.Airport",
     "external_code": "PEK",
     "external_name": "北京首都国际机场"
-  },
-  "editing": false
+  }
 }

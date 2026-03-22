@@ -21,7 +21,7 @@
     },
     "baggage_policy": "托运20kg+手提7kg",
     "fare_family": "标准经济",
-    "is_policy_exceeded": false,
+    "is_policy_exceeded": true,
     "total_price": "1,280"
   },
   "travelers": {

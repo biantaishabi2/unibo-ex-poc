@@ -1,6 +1,15 @@
 {
+  "travel_airline": {
+    "airline_code": "",
+    "airline_name": "",
+    "iata_code": "",
+    "icao_code": "",
+    "status": "",
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
   "page_title": "TravelAirline 列表",
-  "rows_empty": false,
   "rows": [
     {
       "airline_code": "AIR_CA",

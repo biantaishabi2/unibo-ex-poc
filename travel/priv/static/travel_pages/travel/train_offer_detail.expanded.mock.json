@@ -1,4 +1,28 @@
 {
+  "train_offer": {
+    "supplier_code": "",
+    "train_no": "",
+    "departure_station_code": "",
+    "departure_station_name": "",
+    "arrival_station_code": "",
+    "arrival_station_name": "",
+    "travel_date": "",
+    "departure_at": "",
+    "arrival_at": "",
+    "seat_class": "",
+    "seat_code": "",
+    "is_no_seat": "",
+    "inventory_status": "",
+    "waitlist_supported": "",
+    "listed_price": "",
+    "settlement_price": "",
+    "currency": "",
+    "booking_rules_snapshot": "",
+    "change_rules_snapshot": "",
+    "refund_rules_snapshot": "",
+    "sale_status": ""
+  },
+  "editing": false,
   "record": {
     "supplier_code": "SUP_12306",
     "inventory_status": "有票",
@@ -21,6 +45,5 @@
     "change_rules_snapshot": "开车前48h免费改签1次",
     "refund_rules_snapshot": "开车前15天免费退票,之后收5%-20%手续费",
     "sale_status": "active"
-  },
-  "editing": false
+  }
 }

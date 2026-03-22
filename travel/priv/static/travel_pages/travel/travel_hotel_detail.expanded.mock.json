@@ -1,10 +1,17 @@
 {
+  "travel_hotel": {
+    "hotel_code": "",
+    "hotel_name": "",
+    "city_code": "",
+    "hotel_star": "",
+    "status": ""
+  },
+  "editing": false,
   "record": {
     "hotel_code": "HTL_BJ_001",
     "status": "active",
     "hotel_name": "北京国贸大酒店",
     "city_code": "BJS",
     "hotel_star": "五星级"
-  },
-  "editing": false
+  }
 }

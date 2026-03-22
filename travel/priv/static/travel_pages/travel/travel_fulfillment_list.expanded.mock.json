@@ -1,6 +1,21 @@
 {
+  "travel_fulfillment": {
+    "fulfillment_type": "",
+    "status": "",
+    "supplier_booking_ref": "",
+    "voucher_or_ticket_ref": "",
+    "ticket_refs": "",
+    "waitlist_result": "",
+    "change_result": "",
+    "boarding_status": "",
+    "confirmation_payload": "",
+    "failure_reason": "",
+    "used_at": "",
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
   "page_title": "TravelFulfillment 列表",
-  "rows_empty": false,
   "rows": [
     {
       "fulfillment_type": "出票",

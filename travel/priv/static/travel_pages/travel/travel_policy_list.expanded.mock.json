@@ -1,0 +1,19 @@
+{
+  "travel_policy": {
+    "policy_name": "",
+    "product_type": "",
+    "employee_level": "",
+    "city_tier": "",
+    "season": "",
+    "max_amount": "",
+    "cabin_class_limit": "",
+    "hotel_star_limit": "",
+    "exceed_strategy": "",
+    "approval_mode": "",
+    "personal_pay_ratio": "",
+    "is_active": "",
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true
+}

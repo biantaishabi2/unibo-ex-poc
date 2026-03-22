@@ -1,10 +1,12 @@
 {
   "flight_offer": {
-    "departure_at": "08:30",
-    "departure_airport_code": "PEK",
-    "arrival_at": "11:05",
-    "arrival_airport_code": "SHA",
+    "supplier_code": "",
+    "itinerary_code": "",
     "flight_no": "CA1234",
+    "departure_airport_code": "PEK",
+    "arrival_airport_code": "SHA",
+    "departure_at": "08:30",
+    "arrival_at": "11:05",
     "cabin_class": "经济舱",
     "fare_family": "标准经济",
     "listed_price": "¥1,280",
@@ -13,6 +15,7 @@
     "seats_available": "32",
     "baggage_policy": "托运20kg+手提7kg",
     "refund_change_policy": "起飞前2h免费退改,之后收30%手续费",
+    "sale_status": "",
     "flight_offer_lifecycle": "active",
     "orders": [
       {
@@ -30,5 +33,6 @@
         "traveler_count": "2"
       }
     ]
-  }
+  },
+  "editing": false
 }

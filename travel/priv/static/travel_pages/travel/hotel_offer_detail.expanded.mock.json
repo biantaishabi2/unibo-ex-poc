@@ -1,4 +1,22 @@
 {
+  "hotel_offer": {
+    "supplier_code": "",
+    "hotel_code": "",
+    "hotel_name": "",
+    "city_code": "",
+    "room_type_code": "",
+    "rate_plan_code": "",
+    "checkin_date": "",
+    "checkout_date": "",
+    "listed_price": "",
+    "settlement_price": "",
+    "currency": "",
+    "inventory_count": "",
+    "cancellation_policy": "",
+    "guarantee_policy": "",
+    "sale_status": ""
+  },
+  "editing": false,
   "record": {
     "supplier_code": "SUP_CTRIP",
     "sale_status": "active",
@@ -15,6 +33,5 @@
     "inventory_count": "15",
     "cancellation_policy": "18:00前免费取消",
     "guarantee_policy": "信用卡担保"
-  },
-  "editing": false
+  }
 }

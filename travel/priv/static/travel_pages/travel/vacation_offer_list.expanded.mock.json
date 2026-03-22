@@ -1,6 +1,25 @@
 {
+  "vacation_offer": {
+    "supplier_code": "",
+    "package_code": "",
+    "package_name": "",
+    "package_type": "",
+    "departure_city_code": "",
+    "destination_code": "",
+    "start_date": "",
+    "end_date": "",
+    "listed_price": "",
+    "settlement_price": "",
+    "currency": "",
+    "inventory_count": "",
+    "booking_rules": "",
+    "cancellation_policy": "",
+    "sale_status": "",
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
   "page_title": "VacationOffer 列表",
-  "rows_empty": false,
   "rows": [
     {
       "supplier_code": "SUP_CTRIP",

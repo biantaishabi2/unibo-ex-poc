@@ -1,6 +1,15 @@
 {
+  "travel_room_type": {
+    "room_type_code": "",
+    "room_type_name": "",
+    "hotel_code": "",
+    "bed_type": "",
+    "status": "",
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
   "page_title": "TravelRoomType 列表",
-  "rows_empty": false,
   "rows": [
     {
       "room_type_code": "RT_KING_DLX",

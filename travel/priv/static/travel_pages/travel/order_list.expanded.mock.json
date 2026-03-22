@@ -1,4 +1,28 @@
 {
+  "travel_order": {
+    "order_no": "",
+    "product_type": "",
+    "booking_mode": "",
+    "contact_name": "",
+    "contact_phone": "",
+    "traveler_count": "",
+    "total_amount": "",
+    "points_to_use": "",
+    "points_deduction_amount": "",
+    "recommended_payment_method": "",
+    "currency": "",
+    "status": "",
+    "change_status": "",
+    "waitlist_status": "",
+    "original_order_ref": "",
+    "ticket_passenger_infos": "",
+    "seat_selection_snapshot": "",
+    "supplier_order_ref": "",
+    "payment_external_ref": "",
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
   "orders_empty": false,
   "orders": [
     {

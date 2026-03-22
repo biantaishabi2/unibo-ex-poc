@@ -1,6 +1,16 @@
 {
+  "travel_static_code_mapping": {
+    "supplier_code": "",
+    "object_type": "",
+    "canonical_entity": "",
+    "external_code": "",
+    "external_name": "",
+    "status": "",
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
   "page_title": "TravelStaticCodeMapping 列表",
-  "rows_empty": false,
   "rows": [
     {
       "supplier_code": "SUP_CTRIP",
