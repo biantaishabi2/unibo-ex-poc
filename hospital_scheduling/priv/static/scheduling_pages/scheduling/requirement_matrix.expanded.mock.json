@@ -1,48 +1,45 @@
 {
   "period": {
-    "title": "需求矩阵",
-    "state": "",
-    "start_date": "",
-    "end_date": ""
+    "title": "心内科 2026-03 第4周排班",
+    "state": "generated",
+    "start_date": "2026-03-23",
+    "end_date": "2026-03-29"
   },
   "shift_types": [
     {
-      "name": "shift_type_1",
+      "name": "白班",
       "requirements": [
-        {
-          "min_headcount": "",
-          "target_headcount": ""
-        },
-        {
-          "min_headcount": "",
-          "target_headcount": ""
-        }
+        {"min_headcount": 3, "target_headcount": 4},
+        {"min_headcount": 3, "target_headcount": 4},
+        {"min_headcount": 3, "target_headcount": 4},
+        {"min_headcount": 3, "target_headcount": 4},
+        {"min_headcount": 3, "target_headcount": 4},
+        {"min_headcount": 2, "target_headcount": 3},
+        {"min_headcount": 2, "target_headcount": 3}
       ]
     },
     {
-      "name": "shift_type_2",
+      "name": "小夜班",
       "requirements": [
-        {
-          "min_headcount": "",
-          "target_headcount": ""
-        },
-        {
-          "min_headcount": "",
-          "target_headcount": ""
-        }
+        {"min_headcount": 2, "target_headcount": 3},
+        {"min_headcount": 2, "target_headcount": 3},
+        {"min_headcount": 2, "target_headcount": 3},
+        {"min_headcount": 2, "target_headcount": 3},
+        {"min_headcount": 2, "target_headcount": 3},
+        {"min_headcount": 2, "target_headcount": 2},
+        {"min_headcount": 2, "target_headcount": 2}
       ]
     },
     {
-      "name": "shift_type_3",
+      "name": "大夜班",
       "requirements": [
-        {
-          "min_headcount": "",
-          "target_headcount": ""
-        },
-        {
-          "min_headcount": "",
-          "target_headcount": ""
-        }
+        {"min_headcount": 2, "target_headcount": 2},
+        {"min_headcount": 2, "target_headcount": 2},
+        {"min_headcount": 2, "target_headcount": 2},
+        {"min_headcount": 2, "target_headcount": 2},
+        {"min_headcount": 2, "target_headcount": 2},
+        {"min_headcount": 1, "target_headcount": 2},
+        {"min_headcount": 1, "target_headcount": 2}
       ]
     }
   ]

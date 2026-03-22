@@ -1,73 +1,73 @@
 {
-  "current_week_label": "",
+  "current_week_label": "2026年3月第4周 (03/23 - 03/29)",
   "period": {
-    "title": ""
+    "title": "心内科 2026-03 第4周排班"
   },
-  "manual_change_count": "",
-  "coverage_rate": "",
-  "no_violations": true,
+  "manual_change_count": 2,
+  "coverage_rate": "95.2%",
+  "no_violations": false,
   "employees": [
     {
-      "name": "employee_1",
-      "role_code": "",
+      "name": "张护士",
+      "role_code": "nurse",
       "daily_assignments": [
-        {
-          "shift_type": {
-            "name": "shift_type_1"
-          }
-        },
-        {
-          "shift_type": {
-            "name": "shift_type_2"
-          }
-        }
+        {"shift_type": {"name": "白班"}},
+        {"shift_type": {"name": "白班"}},
+        {"shift_type": {"name": "小夜班"}},
+        {"shift_type": {"name": "休息"}},
+        {"shift_type": {"name": "白班"}},
+        {"shift_type": {"name": "大夜班"}},
+        {"shift_type": {"name": "休息"}}
       ]
     },
     {
-      "name": "employee_2",
-      "role_code": "",
+      "name": "李护士",
+      "role_code": "nurse",
       "daily_assignments": [
-        {
-          "shift_type": {
-            "name": "shift_type_1"
-          }
-        },
-        {
-          "shift_type": {
-            "name": "shift_type_2"
-          }
-        }
+        {"shift_type": {"name": "小夜班"}},
+        {"shift_type": {"name": "大夜班"}},
+        {"shift_type": {"name": "休息"}},
+        {"shift_type": {"name": "白班"}},
+        {"shift_type": {"name": "白班"}},
+        {"shift_type": {"name": "小夜班"}},
+        {"shift_type": {"name": "休息"}}
       ]
     },
     {
-      "name": "employee_3",
-      "role_code": "",
+      "name": "王护士",
+      "role_code": "nurse",
       "daily_assignments": [
-        {
-          "shift_type": {
-            "name": "shift_type_1"
-          }
-        },
-        {
-          "shift_type": {
-            "name": "shift_type_2"
-          }
-        }
+        {"shift_type": {"name": "大夜班"}},
+        {"shift_type": {"name": "休息"}},
+        {"shift_type": {"name": "白班"}},
+        {"shift_type": {"name": "白班"}},
+        {"shift_type": {"name": "小夜班"}},
+        {"shift_type": {"name": "休息"}},
+        {"shift_type": {"name": "白班"}}
+      ]
+    },
+    {
+      "name": "赵护士",
+      "role_code": "nurse",
+      "daily_assignments": [
+        {"shift_type": {"name": "休息"}},
+        {"shift_type": {"name": "小夜班"}},
+        {"shift_type": {"name": "大夜班"}},
+        {"shift_type": {"name": "休息"}},
+        {"shift_type": {"name": "大夜班"}},
+        {"shift_type": {"name": "休息"}},
+        {"shift_type": {"name": "小夜班"}}
       ]
     }
   ],
   "live_violations": [
     {
-      "severity": "",
-      "message": ""
+      "severity": "warning",
+      "message": "赵护士本周夜班3个，超出公平分配偏差阈值"
     },
     {
-      "severity": "",
-      "message": ""
-    },
-    {
-      "severity": "",
-      "message": ""
+      "severity": "warning",
+      "message": "周六白班仅2人，低于目标人数3人"
     }
   ]
 }
