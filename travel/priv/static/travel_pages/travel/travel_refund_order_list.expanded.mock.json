@@ -1,0 +1,12 @@
+{
+  "travel_refund_order": {
+    "refund_reason": "",
+    "refund_fee": "",
+    "refund_amount": "",
+    "status": "",
+    "approval_mode": "",
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true
+}

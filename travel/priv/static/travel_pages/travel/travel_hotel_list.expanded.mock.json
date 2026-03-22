@@ -1,6 +1,15 @@
 {
+  "travel_hotel": {
+    "hotel_code": "",
+    "hotel_name": "",
+    "city_code": "",
+    "hotel_star": "",
+    "status": "",
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
   "page_title": "TravelHotel 列表",
-  "rows_empty": false,
   "rows": [
     {
       "hotel_code": "HTL_BJ_001",

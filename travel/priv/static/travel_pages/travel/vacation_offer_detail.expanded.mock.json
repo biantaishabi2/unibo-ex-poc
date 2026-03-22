@@ -1,4 +1,22 @@
 {
+  "vacation_offer": {
+    "supplier_code": "",
+    "package_code": "",
+    "package_name": "",
+    "package_type": "",
+    "departure_city_code": "",
+    "destination_code": "",
+    "start_date": "",
+    "end_date": "",
+    "listed_price": "",
+    "settlement_price": "",
+    "currency": "",
+    "inventory_count": "",
+    "booking_rules": "",
+    "cancellation_policy": "",
+    "sale_status": ""
+  },
+  "editing": false,
   "record": {
     "supplier_code": "SUP_CTRIP",
     "sale_status": "active",
@@ -15,6 +33,5 @@
     "inventory_count": "20",
     "booking_rules": "提前7天预订,2人起订",
     "cancellation_policy": "出发前7天免费取消"
-  },
-  "editing": false
+  }
 }

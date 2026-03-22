@@ -1,4 +1,28 @@
 {
+  "train_offer": {
+    "supplier_code": "",
+    "train_no": "",
+    "departure_station_code": "",
+    "departure_station_name": "",
+    "arrival_station_code": "",
+    "arrival_station_name": "",
+    "travel_date": "",
+    "departure_at": "",
+    "arrival_at": "",
+    "seat_class": "",
+    "seat_code": "",
+    "is_no_seat": "",
+    "inventory_status": "",
+    "waitlist_supported": "",
+    "listed_price": "",
+    "settlement_price": "",
+    "currency": "",
+    "booking_rules_snapshot": "",
+    "change_rules_snapshot": "",
+    "refund_rules_snapshot": "",
+    "sale_status": ""
+  },
+  "editing": false,
   "offer": {
     "departure_time": "07:00",
     "departure_station_name": "北京南站",

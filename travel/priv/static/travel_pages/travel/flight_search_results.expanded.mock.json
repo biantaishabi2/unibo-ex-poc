@@ -1,4 +1,27 @@
 {
+  "page_title": "搜索",
+  "result_summary": "共 0 条结果",
+  "flight_offer": {
+    "supplier_code": "",
+    "itinerary_code": "",
+    "flight_no": "",
+    "departure_airport_code": "",
+    "arrival_airport_code": "",
+    "departure_at": "",
+    "arrival_at": "",
+    "cabin_class": "",
+    "fare_family": "",
+    "listed_price": "",
+    "settlement_price": "",
+    "currency": "",
+    "seats_available": "",
+    "baggage_policy": "",
+    "refund_change_policy": "",
+    "sale_status": "",
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
   "policy": {
     "exceeded": false
   },
@@ -7,11 +30,26 @@
   },
   "search": {
     "date_range": [
-      { "is_selected": "default", "date_label": "03-15 周六" },
-      { "is_selected": "primary", "date_label": "03-16 周日" },
-      { "is_selected": "default", "date_label": "03-17 周一" },
-      { "is_selected": "default", "date_label": "03-18 周二" },
-      { "is_selected": "default", "date_label": "03-19 周三" }
+      {
+        "is_selected": "default",
+        "date_label": "03-15 周六"
+      },
+      {
+        "is_selected": "primary",
+        "date_label": "03-16 周日"
+      },
+      {
+        "is_selected": "default",
+        "date_label": "03-17 周一"
+      },
+      {
+        "is_selected": "default",
+        "date_label": "03-18 周二"
+      },
+      {
+        "is_selected": "default",
+        "date_label": "03-19 周三"
+      }
     ]
   },
   "flights": {

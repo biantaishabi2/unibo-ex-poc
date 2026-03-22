@@ -1,6 +1,31 @@
 {
+  "train_offer": {
+    "supplier_code": "",
+    "train_no": "",
+    "departure_station_code": "",
+    "departure_station_name": "",
+    "arrival_station_code": "",
+    "arrival_station_name": "",
+    "travel_date": "",
+    "departure_at": "",
+    "arrival_at": "",
+    "seat_class": "",
+    "seat_code": "",
+    "is_no_seat": "",
+    "inventory_status": "",
+    "waitlist_supported": "",
+    "listed_price": "",
+    "settlement_price": "",
+    "currency": "",
+    "booking_rules_snapshot": "",
+    "change_rules_snapshot": "",
+    "refund_rules_snapshot": "",
+    "sale_status": "",
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
   "page_title": "TrainOffer 列表",
-  "rows_empty": false,
   "rows": [
     {
       "supplier_code": "SUP_12306",

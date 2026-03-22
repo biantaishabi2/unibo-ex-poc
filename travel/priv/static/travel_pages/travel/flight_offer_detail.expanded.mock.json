@@ -1,4 +1,23 @@
 {
+  "flight_offer": {
+    "supplier_code": "",
+    "itinerary_code": "",
+    "flight_no": "",
+    "departure_airport_code": "",
+    "arrival_airport_code": "",
+    "departure_at": "",
+    "arrival_at": "",
+    "cabin_class": "",
+    "fare_family": "",
+    "listed_price": "",
+    "settlement_price": "",
+    "currency": "",
+    "seats_available": "",
+    "baggage_policy": "",
+    "refund_change_policy": "",
+    "sale_status": ""
+  },
+  "editing": false,
   "record": {
     "supplier_code": "SUP_CTRIP",
     "sale_status": "active",
@@ -16,6 +35,5 @@
     "seats_available": "32",
     "baggage_policy": "托运20kg+手提7kg",
     "refund_change_policy": "起飞前2h免费退改,之后收30%手续费"
-  },
-  "editing": false
+  }
 }

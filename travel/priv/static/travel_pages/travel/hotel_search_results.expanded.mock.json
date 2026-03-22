@@ -1,4 +1,23 @@
 {
+  "hotel_offer": {
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
+  "items": [
+    {
+      "title": "",
+      "description": ""
+    },
+    {
+      "title": "",
+      "description": ""
+    },
+    {
+      "title": "",
+      "description": ""
+    }
+  ],
   "search": {
     "checkin_date": "2026-03-16",
     "checkout_date": "2026-03-18"
@@ -17,9 +36,15 @@
           "score": "4.8",
           "address": "北京市朝阳区建国门外大街1号",
           "facilities": [
-            { "name": "免费WiFi" },
-            { "name": "健身房" },
-            { "name": "商务中心" }
+            {
+              "name": "免费WiFi"
+            },
+            {
+              "name": "健身房"
+            },
+            {
+              "name": "商务中心"
+            }
           ]
         },
         "hotel_name": "北京国贸大酒店",
@@ -35,8 +60,12 @@
           "score": "4.5",
           "address": "北京市东城区王府井大街138号",
           "facilities": [
-            { "name": "免费WiFi" },
-            { "name": "餐厅" }
+            {
+              "name": "免费WiFi"
+            },
+            {
+              "name": "餐厅"
+            }
           ]
         },
         "hotel_name": "王府井希尔顿酒店",
@@ -52,9 +81,15 @@
           "score": "4.6",
           "address": "北京市海淀区中关村南大街27号",
           "facilities": [
-            { "name": "免费WiFi" },
-            { "name": "停车场" },
-            { "name": "接机服务" }
+            {
+              "name": "免费WiFi"
+            },
+            {
+              "name": "停车场"
+            },
+            {
+              "name": "接机服务"
+            }
           ]
         },
         "hotel_name": "中关村皇冠假日酒店",
