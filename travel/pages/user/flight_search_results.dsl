@@ -1,10 +1,8 @@
-# 机票搜索结果页
-# 按条件搜索航班列表，支持日期横滑、筛选、排序
+EXTENDS: base_list_report
+META: Entity("FlightOffer"), Domain("Travel"), FilterMode("search_only")
 
 [PAGE: flight_search_results]
   ATTR: Title("机票搜索")
-  META: Entity("FlightOffer"), Domain("Travel")
-  EXTENDS: base_search_results
 
   # 覆写顶部导航
   OVERRIDE: header_section
