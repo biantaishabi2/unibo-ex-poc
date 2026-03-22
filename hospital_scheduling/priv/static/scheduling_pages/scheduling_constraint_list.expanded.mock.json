@@ -1,30 +1,46 @@
 {
   "page_title": "排班约束配置",
-  "rows_empty": true,
+  "rows_empty": false,
   "rows": [
     {
-      "name": "row_1",
-      "constraint_type": "",
-      "category": "",
-      "weight": "",
-      "enabled": "",
-      "notes": ""
+      "name": "夜班后必须休息",
+      "constraint_type": "hard",
+      "category": "rest_after_night",
+      "weight": 0,
+      "enabled": true,
+      "notes": "大夜班结束后至少休息12小时，不可接白班"
     },
     {
-      "name": "row_2",
-      "constraint_type": "",
-      "category": "",
-      "weight": "",
-      "enabled": "",
-      "notes": ""
+      "name": "每周最多5班",
+      "constraint_type": "hard",
+      "category": "max_consecutive_days",
+      "weight": 0,
+      "enabled": true,
+      "notes": "每人每周排班不超过5个班次"
     },
     {
-      "name": "row_3",
-      "constraint_type": "",
-      "category": "",
-      "weight": "",
-      "enabled": "",
-      "notes": ""
+      "name": "每班至少1名带班护士",
+      "constraint_type": "hard",
+      "category": "lead_coverage",
+      "weight": 0,
+      "enabled": true,
+      "notes": "确保每个班次有带班能力的护士值班"
+    },
+    {
+      "name": "夜班公平分配",
+      "constraint_type": "soft",
+      "category": "fair_night_distribution",
+      "weight": 80,
+      "enabled": true,
+      "notes": "夜班在全科护士间均匀分配，偏差不超过2个"
+    },
+    {
+      "name": "尊重护士偏好",
+      "constraint_type": "soft",
+      "category": "respect_preference",
+      "weight": 40,
+      "enabled": true,
+      "notes": "尽量满足护士提交的班次偏好和不可用日期"
     }
   ]
 }

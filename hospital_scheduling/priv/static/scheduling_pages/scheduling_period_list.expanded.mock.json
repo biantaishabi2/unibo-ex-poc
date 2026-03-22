@@ -1,36 +1,46 @@
 {
   "page_title": "排班周期管理",
-  "rows_empty": true,
+  "rows_empty": false,
   "rows": [
     {
-      "title": "",
+      "title": "心内科 2026-03 第4周排班",
       "department": {
-        "name": "department_1"
+        "name": "心内科"
       },
-      "start_date": "",
-      "end_date": "",
-      "state": "",
-      "generation_mode": ""
+      "start_date": "2026-03-23",
+      "end_date": "2026-03-29",
+      "state": "generated",
+      "generation_mode": "solver_seeded"
     },
     {
-      "title": "",
+      "title": "骨科 2026-03 第4周排班",
       "department": {
-        "name": "department_2"
+        "name": "骨科"
       },
-      "start_date": "",
-      "end_date": "",
-      "state": "",
-      "generation_mode": ""
+      "start_date": "2026-03-23",
+      "end_date": "2026-03-29",
+      "state": "draft",
+      "generation_mode": "blank"
     },
     {
-      "title": "",
+      "title": "急诊科 2026-03 第4周排班",
       "department": {
-        "name": "department_3"
+        "name": "急诊科"
       },
-      "start_date": "",
-      "end_date": "",
-      "state": "",
-      "generation_mode": ""
+      "start_date": "2026-03-23",
+      "end_date": "2026-03-29",
+      "state": "published",
+      "generation_mode": "solver_seeded"
+    },
+    {
+      "title": "ICU 2026-03 第4周排班",
+      "department": {
+        "name": "ICU"
+      },
+      "start_date": "2026-03-23",
+      "end_date": "2026-03-29",
+      "state": "adjusted",
+      "generation_mode": "solver_seeded"
     }
   ]
 }
