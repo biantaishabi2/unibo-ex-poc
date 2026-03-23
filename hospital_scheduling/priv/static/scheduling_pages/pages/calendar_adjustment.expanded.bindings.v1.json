@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "vars": {
+    "current_week_label": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "current_week",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{current_week_label|}}"
+        }
+      ]
+    },
+    "period.title": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "period_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{period.title|}}"
+        }
+      ]
+    },
+    "manual_change_count": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "manual_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{manual_change_count|}}"
+        }
+      ]
+    },
+    "coverage_rate": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "coverage_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{coverage_rate|}}%"
+        }
+      ]
+    }
+  },
+  "events": {
+    "navigate_prev_week": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "prev_week_btn",
+          "prop": "click",
+          "raw": "navigate_prev_week"
+        }
+      ]
+    },
+    "navigate_next_week": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "next_week_btn",
+          "prop": "click",
+          "raw": "navigate_next_week"
+        }
+      ]
+    },
+    "navigate_back": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "back_btn",
+          "prop": "click",
+          "raw": "navigate_back"
+        }
+      ]
+    },
+    "filter_submit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "filter_submit",
+          "prop": "click",
+          "raw": "filter_submit"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,312 @@
+defmodule MyAppWeb.Pages.StitchGeneratedLive do
+  @moduledoc """
+  Auto-generated LiveView skeleton (dev-only).
+
+  - Event names come from UI action semantics (events.schema).
+  - Backend API names are placeholders by design; wire them to real services later.
+  """
+
+  use MyAppWeb, :live_view
+
+  @page_id "publish_preview"
+  @page_title "Untitled Page"
+
+  # status.keys preview (first ~40): affected_employee_count, change_count, changes, changes[], changes[].date, changes[].employee, changes[].employee.name, changes[].new_shift_type, changes[].old_shift_type, changes[].reason, coverage_rate, hard_violation_count, has_hard_violations, has_warnings, no_changes, period, period.title, record, record.base_version, version, version.origin_type, version.version_no, warning_count
+  # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
+  @status_defaults_raw Jason.decode!("{
+  \"period\": {
+    \"title\": \"\"
+  },
+  \"version\": {
+    \"version_no\": \"\",
+    \"origin_type\": \"\"
+  },
+  \"hard_violation_count\": \"\",
+  \"warning_count\": \"\",
+  \"change_count\": \"\",
+  \"affected_employee_count\": \"\",
+  \"coverage_rate\": \"\",
+  \"has_hard_violations\": \"\",
+  \"has_warnings\": true,
+  \"no_changes\": true,
+  \"changes\": [
+    {
+      \"employee\": {
+        \"name\": \"employee_1\"
+      },
+      \"date\": \"\",
+      \"old_shift_type\": \"\",
+      \"new_shift_type\": \"\",
+      \"reason\": \"\"
+    },
+    {
+      \"employee\": {
+        \"name\": \"employee_2\"
+      },
+      \"date\": \"\",
+      \"old_shift_type\": \"\",
+      \"new_shift_type\": \"\",
+      \"reason\": \"\"
+    },
+    {
+      \"employee\": {
+        \"name\": \"employee_3\"
+      },
+      \"date\": \"\",
+      \"old_shift_type\": \"\",
+      \"new_shift_type\": \"\",
+      \"reason\": \"\"
+    }
+  ],
+  \"record\": {
+    \"base_version\": \"\"
+  }
+}")
+  # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
+
+  # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
+  @backend_mode "api"
+  @backend_mod __MODULE__.Backend
+  @backend_fun :handle_event
+  @backend_load_event "get"
+  @backend_load_selection "id title current_version: currentVersion { id version_no: versionNo origin_type: originType constraint_violations: constraintViolations { severity rule_code: ruleCode message } } last_solver_run: lastSolverRun { hard_violation_count: hardViolationCount warning_count: warningCount }"
+  @backend_load_assigns %{affected_employee_count: %{value: 0}, change_count: %{value: 0}, changes: %{value: []}, coverage_rate: %{value: 0}, hard_violation_count: %{from: "record.last_solver_run.hard_violation_count"}, has_hard_violations: %{from: "record.last_solver_run.hard_violation_count", transform: "positive_count"}, has_warnings: %{from: "record.last_solver_run.warning_count", transform: "positive_count"}, period: "record", version: "record.current_version", warning_count: %{from: "record.last_solver_run.warning_count"}}
+  @backend_params_accept ["id", "base_version"]
+  @backend_info_reload_messages ["page_host_reload"]
+  @backend_api_map %{
+    "__load__" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.get"},
+    "action_publish" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.ScheduleVersion.publish_version"},
+    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.get"},
+    "toggle_diff_mode" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.ScheduleVersion.get"}
+  }
+  @status_key_roots [:period, :version, :change_count, :affected_employee_count, :coverage_rate, :changes, :no_changes, :has_hard_violations, :warning_count]
+  @auth_mode "optional"
+  @user_context_assigns []
+
+  @impl true
+  def mount(params, _session, socket) do
+    socket = ensure_user_context(socket)
+    socket = assign(socket, :page_title, @page_title)
+    defaults = atomize_keys(@status_defaults_raw)
+    socket = assign(socket, defaults)
+    socket = assign(socket, :__status_defaults, defaults)
+    socket = if is_map(@backend_load_assigns) and map_size(@backend_load_assigns) > 0, do: assign(socket, @backend_load_assigns), else: socket
+    socket = apply_derived(socket)
+    socket = apply_params(socket, params)
+    backend_params = __filter_backend_params(params)
+    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
+    {:ok, socket}
+  end
+
+  @impl true
+  def handle_params(params, _uri, socket) do
+    socket = __maybe_assign_self_path(socket, _uri)
+    {:noreply, apply_params(socket, params)}
+  end
+
+  @impl true
+  def handle_info(msg, socket) do
+    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
+    socket =
+      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
+        state0 = __take_status(socket.assigns)
+        apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
+      else
+        socket
+      end
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_publish", params, socket) do
+    # UI action event name: action_publish
+    socket = dispatch_backend("action_publish", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_back", params, socket) do
+    # UI action event name: navigate_back
+    socket = dispatch_backend("navigate_back", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("toggle_diff_mode", params, socket) do
+    # UI action event name: toggle_diff_mode
+    socket = dispatch_backend("toggle_diff_mode", params, socket)
+    {:noreply, socket}
+  end
+
+  defp apply_params(socket, params) when is_map(params) do
+    socket
+  end
+
+  defp __filter_backend_params(params) when is_map(params) do
+    if @backend_params_accept == [] do
+      params
+    else
+      Map.take(params, @backend_params_accept ++ ["__page_id"])
+    end
+  end
+  defp __filter_backend_params(params), do: params
+
+  defp __accept_backend_info?({kind, value}) when is_atom(kind) and is_binary(value) do
+    kind == :page_host_reload and value in @backend_info_reload_messages
+  end
+  defp __accept_backend_info?(value) when is_binary(value), do: value in @backend_info_reload_messages
+  defp __accept_backend_info?(_), do: @backend_info_reload_messages == []
+
+  defp ensure_user_context(socket) do
+    # Thin user-context contract: keep it uniform so skeletons stay generated and diffable.
+    #
+    # - auth_mode is a placeholder; real auth should live in plugs/on_mount hooks.
+    # - assign_new keeps the controller thin and avoids hard-coding session shape here.
+    _ = @auth_mode
+    Enum.reduce(@user_context_assigns, socket, fn key, s ->
+      assign_new(s, key, fn -> nil end)
+    end)
+  end
+
+  defp __maybe_assign_self_path(socket, uri) when is_binary(uri) do
+    path = URI.parse(uri).path
+    if is_binary(path) and String.starts_with?(path, "/") do
+      assign(socket, :self_path, path)
+    else
+      socket
+    end
+  end
+  defp __maybe_assign_self_path(socket, _), do: socket
+
+  defp atomize_keys(value) when is_map(value) do
+    Enum.reduce(value, %{}, fn {k, v}, acc ->
+      key =
+        cond do
+          is_binary(k) ->
+            try do
+              String.to_existing_atom(k)
+            rescue
+              _ -> String.to_atom(k)
+            end
+          true ->
+            k
+        end
+      Map.put(acc, key, atomize_keys(v))
+    end)
+  end
+  defp atomize_keys(value) when is_list(value), do: Enum.map(value, &atomize_keys/1)
+  defp atomize_keys(value), do: value
+
+  defp __take_status(assigns) when is_map(assigns) do
+    st = Map.take(assigns, @status_key_roots)
+    defaults = Map.get(assigns, :__status_defaults, %{})
+    Map.put(st, :__status_defaults, defaults)
+  end
+  defp __take_status(_), do: %{}
+
+  defp dispatch_backend(event, params, socket) do
+    # Unified backend result format (v1):
+    #   {:ok, %{dto: map, status: map, effects: list, errors: list, meta: map}}
+    #
+    # Template compatibility note: this skeleton still assigns flat keys.
+    result =
+      case @backend_mode do
+        "transitions" ->
+          state0 = __take_status(socket.assigns)
+          %{assigns: assigns2, effects: effects} = __apply_transitions(event, params, state0)
+          {dto, st} = __split_dto_status(assigns2)
+          {:ok, %{dto: dto, status: st, effects: effects, errors: [], meta: %{mode: "transitions"}}}
+        "api" ->
+          _mapping = Map.get(@backend_api_map, event)
+          state0 = __take_status(socket.assigns)
+          apply(@backend_mod, @backend_fun, [event, params, state0])
+      end
+
+    apply_backend_result(socket, result)
+  end
+
+  defp __split_dto_status(assigns) when is_map(assigns) do
+    # Split is a hint only. Both dto/status are still assigned as flat keys.
+    if @status_key_roots == [] do
+      {assigns, %{}}
+    else
+      status = Map.take(assigns, @status_key_roots)
+      dto = Map.drop(assigns, @status_key_roots)
+      {dto, status}
+    end
+  end
+
+  defp apply_backend_result(socket, {:ok, %{dto: dto, status: st} = result}) when is_map(dto) and is_map(st) do
+    effects = Map.get(result, :effects, [])
+    errors = Map.get(result, :errors, [])
+    meta = Map.get(result, :meta, %{})
+
+    socket = socket |> assign(dto) |> assign(st)
+    socket = assign(socket, :errors, errors)
+    socket = assign(socket, :_dto, dto)
+    socket = assign(socket, :_status, st)
+    socket = assign(socket, :_effects, effects)
+    socket = assign(socket, :_errors, errors)
+    socket = assign(socket, :_meta, meta)
+    socket = apply_derived(socket)
+    apply_effects(socket, effects)
+  end
+  defp apply_backend_result(socket, {:ok, assigns}) when is_map(assigns) do
+    # Backward compat: treat {:ok, assigns} as dto-only.
+    socket |> assign(assigns) |> assign(:_dto, assigns) |> assign(:_status, %{})
+  end
+  defp apply_backend_result(socket, {:error, reason}) do
+    assign(socket, :error, inspect(reason))
+  end
+  defp apply_backend_result(socket, other) do
+    assign(socket, :error, "Invalid backend return: #{inspect(other)}")
+  end
+
+  defp apply_effects(socket, effects) when is_list(effects) do
+    Enum.reduce(effects, socket, fn effect, s ->
+      case effect do
+        %{type: "patch", to: to} when is_binary(to) ->
+          base = Map.get(s.assigns, :self_path)
+          to2 = __normalize_to(base, to)
+          if is_binary(to2), do: push_patch(s, to: to2), else: s
+        %{type: "navigate", to: to} when is_binary(to) ->
+          base = Map.get(s.assigns, :self_path)
+          to2 = __normalize_to(base, to)
+          if is_binary(to2), do: push_navigate(s, to: to2), else: s
+        %{type: "flash", kind: kind, message: msg} when is_binary(kind) and is_binary(msg) -> put_flash(s, String.to_atom(kind), msg)
+        _ -> s
+      end
+    end)
+  end
+  defp apply_effects(socket, _), do: socket
+
+  defp __normalize_to(base, to) when is_binary(to) do
+    to = String.trim(to)
+    base = if is_binary(base), do: String.trim(base), else: nil
+
+    cond do
+      String.starts_with?(to, "/") -> to
+      String.starts_with?(to, "?") and is_binary(base) and String.starts_with?(base, "/") -> base <> to
+      String.starts_with?(to, "./") and is_binary(base) and String.starts_with?(base, "/") -> base <> "/" <> String.trim_leading(to, "./")
+      (to != "") and is_binary(base) and String.starts_with?(base, "/") -> base <> "/" <> to
+      true -> nil
+    end
+  end
+  defp __normalize_to(_base, _to), do: nil
+
+  defmodule Backend do
+    @moduledoc false
+    # Default no-op backend: keeps the skeleton runnable in mock/dev.
+    def handle_event(_event, _params, assigns), do: {:ok, %{dto: assigns, status: %{}, effects: [], errors: [], meta: %{}}}
+  end
+
+  defp apply_derived(socket), do: socket
+
+  defp __apply_transitions(_event, _params, assigns), do: %{assigns: assigns, effects: []}
+
+  def render(assigns) do
+    # Convention: the compiled HEEx lives in a sibling function component module.
+    # Replace only backend API placeholders; render wiring stays stable.
+    MyAppWeb.Pages.StitchGeneratedLive.HEEx.render(assigns)
+  end
+end

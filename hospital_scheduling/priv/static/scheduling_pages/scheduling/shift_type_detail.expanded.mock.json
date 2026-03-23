@@ -1,49 +1,49 @@
 {
   "record": {
-    "name": "白班",
-    "code": "day",
-    "start_time": "08:00",
-    "end_time": "16:00",
-    "duration_hours": "8",
-    "is_night": false,
-    "color": "#4CAF50",
-    "sort_order": 1,
-    "enabled": true,
+    "name": "",
+    "code": "",
+    "start_time": "",
+    "end_time": "",
+    "duration_hours": "",
+    "is_night": "",
+    "color": "",
+    "sort_order": "",
+    "enabled": "",
     "coverage_requirements": [
       {
-        "requirement_date": "2026-03-23",
-        "role_code": "nurse",
-        "role_name": "护士",
-        "required_skill_tags": [],
-        "min_headcount": 3,
-        "target_headcount": 4,
-        "required_lead_count": 1,
-        "priority": 100,
-        "notes": "周一白班标准配置"
+        "requirement_date": "",
+        "role_code": "",
+        "role_name": "",
+        "required_skill_tags": "",
+        "min_headcount": "",
+        "target_headcount": "",
+        "required_lead_count": "",
+        "priority": "",
+        "notes": ""
       },
       {
-        "requirement_date": "2026-03-24",
-        "role_code": "nurse",
-        "role_name": "护士",
-        "required_skill_tags": [],
-        "min_headcount": 3,
-        "target_headcount": 4,
-        "required_lead_count": 1,
-        "priority": 100,
-        "notes": "周二白班标准配置"
+        "requirement_date": "",
+        "role_code": "",
+        "role_name": "",
+        "required_skill_tags": "",
+        "min_headcount": "",
+        "target_headcount": "",
+        "required_lead_count": "",
+        "priority": "",
+        "notes": ""
       },
       {
-        "requirement_date": "2026-03-28",
-        "role_code": "nurse",
-        "role_name": "护士",
-        "required_skill_tags": [],
-        "min_headcount": 2,
-        "target_headcount": 3,
-        "required_lead_count": 1,
-        "priority": 100,
-        "notes": "周六白班减员配置"
+        "requirement_date": "",
+        "role_code": "",
+        "role_name": "",
+        "required_skill_tags": "",
+        "min_headcount": "",
+        "target_headcount": "",
+        "required_lead_count": "",
+        "priority": "",
+        "notes": ""
       }
     ]
   },
-  "editing": true
+  "editing": false
 }

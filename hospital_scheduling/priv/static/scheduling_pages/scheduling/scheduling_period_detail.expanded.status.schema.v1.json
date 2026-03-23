@@ -4,99 +4,215 @@
     "record": {
       "title": "",
       "state": "",
-      "generation_mode": "",
-      "department": {
-        "name": ""
-      },
       "start_date": "",
       "end_date": "",
-      "current_version": {
-        "version_no": ""
-      },
-      "last_solver_run": {
-        "status": ""
-      },
+      "generation_mode": "",
+      "notes": "",
+      "coverage_requirements": [
+        {
+          "requirement_date": "",
+          "role_code": "",
+          "role_name": "",
+          "required_skill_tags": "",
+          "min_headcount": "",
+          "target_headcount": "",
+          "required_lead_count": "",
+          "priority": "",
+          "notes": ""
+        },
+        {
+          "requirement_date": "",
+          "role_code": "",
+          "role_name": "",
+          "required_skill_tags": "",
+          "min_headcount": "",
+          "target_headcount": "",
+          "required_lead_count": "",
+          "priority": "",
+          "notes": ""
+        },
+        {
+          "requirement_date": "",
+          "role_code": "",
+          "role_name": "",
+          "required_skill_tags": "",
+          "min_headcount": "",
+          "target_headcount": "",
+          "required_lead_count": "",
+          "priority": "",
+          "notes": ""
+        }
+      ],
       "schedule_versions": [
         {
           "version_no": "",
           "status": "",
           "origin_type": "",
-          "change_summary": "",
-          "inserted_at": ""
+          "created_by": "",
+          "change_summary": ""
         },
         {
           "version_no": "",
           "status": "",
           "origin_type": "",
-          "change_summary": "",
-          "inserted_at": ""
+          "created_by": "",
+          "change_summary": ""
         },
         {
           "version_no": "",
           "status": "",
           "origin_type": "",
-          "change_summary": "",
-          "inserted_at": ""
+          "created_by": "",
+          "change_summary": ""
         }
       ],
       "solver_runs": [
         {
-          "engine_type": "",
           "status": "",
+          "engine_type": "",
+          "seed": "",
+          "timeout_ms": "",
+          "started_at": "",
+          "completed_at": "",
           "score": "",
           "hard_violation_count": "",
-          "started_at": "",
-          "completed_at": ""
+          "warning_count": "",
+          "input_snapshot": "",
+          "output_snapshot": "",
+          "error_message": ""
         },
         {
-          "engine_type": "",
           "status": "",
+          "engine_type": "",
+          "seed": "",
+          "timeout_ms": "",
+          "started_at": "",
+          "completed_at": "",
           "score": "",
           "hard_violation_count": "",
-          "started_at": "",
-          "completed_at": ""
+          "warning_count": "",
+          "input_snapshot": "",
+          "output_snapshot": "",
+          "error_message": ""
         },
         {
-          "engine_type": "",
           "status": "",
+          "engine_type": "",
+          "seed": "",
+          "timeout_ms": "",
+          "started_at": "",
+          "completed_at": "",
           "score": "",
           "hard_violation_count": "",
-          "started_at": "",
-          "completed_at": ""
+          "warning_count": "",
+          "input_snapshot": "",
+          "output_snapshot": "",
+          "error_message": ""
+        }
+      ],
+      "shift_assignments": [
+        {
+          "starts_at": "",
+          "ends_at": "",
+          "source": "",
+          "is_locked": "",
+          "notes": ""
+        },
+        {
+          "starts_at": "",
+          "ends_at": "",
+          "source": "",
+          "is_locked": "",
+          "notes": ""
+        },
+        {
+          "starts_at": "",
+          "ends_at": "",
+          "source": "",
+          "is_locked": "",
+          "notes": ""
+        }
+      ],
+      "constraint_violations": [
+        {
+          "rule_code": "",
+          "severity": "",
+          "message": "",
+          "details_json": ""
+        },
+        {
+          "rule_code": "",
+          "severity": "",
+          "message": "",
+          "details_json": ""
+        },
+        {
+          "rule_code": "",
+          "severity": "",
+          "message": "",
+          "details_json": ""
         }
       ]
-    }
+    },
+    "editing": false
   },
   "keys": [
+    "editing",
     "record",
-    "record.current_version",
-    "record.current_version.version_no",
-    "record.department",
-    "record.department.name",
+    "record.constraint_violations",
+    "record.constraint_violations[]",
+    "record.constraint_violations[].details_json",
+    "record.constraint_violations[].message",
+    "record.constraint_violations[].rule_code",
+    "record.constraint_violations[].severity",
+    "record.coverage_requirements",
+    "record.coverage_requirements[]",
+    "record.coverage_requirements[].min_headcount",
+    "record.coverage_requirements[].notes",
+    "record.coverage_requirements[].priority",
+    "record.coverage_requirements[].required_lead_count",
+    "record.coverage_requirements[].required_skill_tags",
+    "record.coverage_requirements[].requirement_date",
+    "record.coverage_requirements[].role_code",
+    "record.coverage_requirements[].role_name",
+    "record.coverage_requirements[].target_headcount",
     "record.end_date",
     "record.generation_mode",
-    "record.last_solver_run",
-    "record.last_solver_run.status",
+    "record.notes",
     "record.schedule_versions",
     "record.schedule_versions[]",
     "record.schedule_versions[].change_summary",
-    "record.schedule_versions[].inserted_at",
+    "record.schedule_versions[].created_by",
     "record.schedule_versions[].origin_type",
     "record.schedule_versions[].status",
     "record.schedule_versions[].version_no",
+    "record.shift_assignments",
+    "record.shift_assignments[]",
+    "record.shift_assignments[].ends_at",
+    "record.shift_assignments[].is_locked",
+    "record.shift_assignments[].notes",
+    "record.shift_assignments[].source",
+    "record.shift_assignments[].starts_at",
     "record.solver_runs",
     "record.solver_runs[]",
     "record.solver_runs[].completed_at",
     "record.solver_runs[].engine_type",
+    "record.solver_runs[].error_message",
     "record.solver_runs[].hard_violation_count",
+    "record.solver_runs[].input_snapshot",
+    "record.solver_runs[].output_snapshot",
     "record.solver_runs[].score",
+    "record.solver_runs[].seed",
     "record.solver_runs[].started_at",
     "record.solver_runs[].status",
+    "record.solver_runs[].timeout_ms",
+    "record.solver_runs[].warning_count",
     "record.start_date",
     "record.state",
     "record.title"
   ],
   "required": [
+    "editing",
     "record"
   ],
   "urlParams": {},
@@ -104,13 +220,27 @@
   "layer2": {
     "backend": {
       "api_map": {
+        "create": "Scheduling.SchedulingPeriod.create",
         "destroy": "Scheduling.SchedulingPeriod.destroy",
         "get": "Scheduling.SchedulingPeriod.get",
-        "mark_adjusted": "Scheduling.SchedulingPeriod.mark_adjusted",
         "mark_generated": "Scheduling.SchedulingPeriod.mark_generated",
         "publish": "Scheduling.SchedulingPeriod.publish",
         "start_generating": "Scheduling.SchedulingPeriod.start_generating",
         "update": "Scheduling.SchedulingPeriod.update"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "constraint_violations { details_json: detailsJson id message rule_code: ruleCode severity } coverage_requirements { id min_headcount: minHeadcount notes priority required_lead_count: requiredLeadCount required_skill_tags: requiredSkillTags requirement_date: requirementDate role_code: roleCode role_name: roleName target_headcount: targetHeadcount } end_date: endDate generation_mode: generationMode id notes schedule_versions { change_summary: changeSummary created_by: createdBy id origin_type: originType status version_no: versionNo } shift_assignments { ends_at: endsAt id is_locked: isLocked notes source starts_at: startsAt } solver_runs { completed_at: completedAt engine_type: engineType error_message: errorMessage hard_violation_count: hardViolationCount id input_snapshot: inputSnapshot output_snapshot: outputSnapshot score seed started_at: startedAt status timeout_ms: timeoutMs warning_count: warningCount } start_date: startDate state title"
+      },
+      "params": {
+        "accept": [
+          "id"
+        ]
       }
     },
     "children": [
@@ -168,6 +298,54 @@
                 "value": "成功"
               }
             ]
+          },
+          {
+            "covers": [
+              "action_start_generating"
+            ],
+            "name": "动作：开始自动生成排班",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_start_generating']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_start_generating']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_mark_generated"
+            ],
+            "name": "动作：求解完成，标记为已生成",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_mark_generated']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_mark_generated']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_publish"
+            ],
+            "name": "动作：发布排班（需无 error 级违反）",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_publish']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_publish']"
+              }
+            ]
           }
         ],
         "dto_smoke": []
@@ -218,13 +396,6 @@
         "description": "求解完成，标记为已生成",
         "from": "*",
         "name": "action_mark_generated",
-        "to": "loading",
-        "trigger": "user_action"
-      },
-      {
-        "description": "人工调班后标记",
-        "from": "*",
-        "name": "action_mark_adjusted",
         "to": "loading",
         "trigger": "user_action"
       },

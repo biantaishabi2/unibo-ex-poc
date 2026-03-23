@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "page_title",
+    "row.approval_mode",
+    "row.cabin_class_limit",
+    "row.city_tier",
+    "row.employee_level",
+    "row.exceed_strategy",
+    "row.hotel_star_limit",
+    "row.id",
+    "row.is_active",
+    "row.max_amount",
+    "row.personal_pay_ratio",
+    "row.policy_name",
+    "row.product_type",
+    "row.season",
+    "rows",
+    "rows_empty"
+  ],
+  "requiredRoots": [
+    "page_title",
+    "row",
+    "rows",
+    "rows_empty"
+  ],
+  "schema": {
+    "page_title": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "rows": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "policy_name": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "product_type": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "employee_level": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "city_tier": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "season": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "max_amount": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "cabin_class_limit": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "hotel_star_limit": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "exceed_strategy": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "approval_mode": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "personal_pay_ratio": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "is_active": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "row_01"
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "row": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "policy_name": {
+          "type": "unknown",
+          "required": true
+        },
+        "product_type": {
+          "type": "unknown",
+          "required": true
+        },
+        "employee_level": {
+          "type": "unknown",
+          "required": true
+        },
+        "city_tier": {
+          "type": "unknown",
+          "required": true
+        },
+        "season": {
+          "type": "unknown",
+          "required": true
+        },
+        "max_amount": {
+          "type": "unknown",
+          "required": true
+        },
+        "cabin_class_limit": {
+          "type": "unknown",
+          "required": true
+        },
+        "hotel_star_limit": {
+          "type": "unknown",
+          "required": true
+        },
+        "exceed_strategy": {
+          "type": "unknown",
+          "required": true
+        },
+        "approval_mode": {
+          "type": "unknown",
+          "required": true
+        },
+        "personal_pay_ratio": {
+          "type": "unknown",
+          "required": true
+        },
+        "is_active": {
+          "type": "unknown",
+          "required": true
+        },
+        "id": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "rows_empty": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

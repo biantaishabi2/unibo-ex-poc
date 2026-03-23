@@ -1,0 +1,1076 @@
+{
+  "capability_contracts": [],
+  "domains": [
+    "scheduling"
+  ],
+  "pages": [
+    {
+      "api_map": {
+        "create": "Scheduling.SchedulingConstraint.create",
+        "destroy": "Scheduling.SchedulingConstraint.destroy",
+        "get": "Scheduling.SchedulingConstraint.get",
+        "update": "Scheduling.SchedulingConstraint.update"
+      },
+      "backend": {
+        "api_map": {
+          "create": "Scheduling.SchedulingConstraint.create",
+          "destroy": "Scheduling.SchedulingConstraint.destroy",
+          "get": "Scheduling.SchedulingConstraint.get",
+          "update": "Scheduling.SchedulingConstraint.update"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "category constraint_type: constraintType enabled id name notes params weight"
+        },
+        "params": {
+          "accept": [
+            "id"
+          ]
+        }
+      },
+      "behavior_file": "scheduling/scheduling_constraint_detail.behavior.v1.json",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/scheduling_constraint_detail.dsl",
+      "entity": "SchedulingConstraint",
+      "entity_snake": "scheduling_constraint",
+      "page_id": "scheduling_constraint_detail",
+      "page_kind": "detail",
+      "page_type": "object_page",
+      "state_schema": {
+        "defaults": {
+          "editing": false,
+          "form": {},
+          "loading": false,
+          "record": null
+        },
+        "status_keys": [
+          "record",
+          "editing",
+          "form",
+          "loading"
+        ]
+      },
+      "status_keys": [
+        "record",
+        "editing",
+        "form",
+        "loading"
+      ],
+      "studio_page_type": "studio_object_page",
+      "template_meta": {
+        "detail": "object_page"
+      },
+      "template_spec": {
+        "canonical_page_type": "object_page",
+        "family": "studio",
+        "legacy_page_type": "studio_object_page",
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": [
+        {
+          "description": "切换编辑模式",
+          "from": "*",
+          "name": "toggle_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "取消编辑",
+          "from": "*",
+          "name": "cancel_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "表单字段变更",
+          "from": "*",
+          "name": "form_change",
+          "to": "*",
+          "trigger": "user_input"
+        },
+        {
+          "description": "提交表单",
+          "from": "editing",
+          "name": "form_submit",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "删除记录",
+          "from": "*",
+          "name": "action_destroy",
+          "navigate_to": "/scheduling/scheduling_constraint",
+          "to": "loading",
+          "trigger": "user_action"
+        }
+      ],
+      "ui_sections": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.SchedulingConstraint.list"
+      },
+      "backend": {
+        "api_map": {
+          "list": "Scheduling.SchedulingConstraint.list"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "id name constraint_type: constraintType category weight enabled notes"
+        },
+        "params": {
+          "accept": [
+            "constraint_type",
+            "category",
+            "enabled"
+          ]
+        }
+      },
+      "behavior_file": "scheduling/scheduling_constraint_list.behavior.v1.json",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/scheduling_constraint_list.dsl",
+      "entity": "SchedulingConstraint",
+      "entity_snake": "scheduling_constraint",
+      "page_id": "scheduling_constraint_list",
+      "page_kind": "list",
+      "page_type": "list_report",
+      "state_schema": {
+        "defaults": {
+          "filter": {},
+          "loading": false,
+          "rows": [],
+          "rows_empty": true
+        },
+        "status_keys": [
+          "rows",
+          "rows_empty",
+          "filter",
+          "loading"
+        ]
+      },
+      "status_keys": [
+        "rows",
+        "rows_empty",
+        "filter",
+        "loading"
+      ],
+      "studio_page_type": "studio_list_report",
+      "template_meta": {
+        "list": "list_report"
+      },
+      "template_spec": {
+        "canonical_page_type": "list_report",
+        "family": "studio",
+        "legacy_page_type": "studio_list_report",
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": [
+        {
+          "description": "筛选条件变更",
+          "from": "*",
+          "name": "filter_change",
+          "to": "*",
+          "trigger": "user_input"
+        },
+        {
+          "description": "提交筛选查询",
+          "from": "*",
+          "name": "filter_submit",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "点击行跳转详情",
+          "from": "*",
+          "name": "row_click",
+          "navigate_to": "/scheduling/scheduling_constraint/{id}",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "跳转新建页",
+          "from": "*",
+          "name": "navigate_create",
+          "navigate_to": "/scheduling/scheduling_constraint/new",
+          "to": "*",
+          "trigger": "user_action"
+        }
+      ],
+      "ui_sections": []
+    },
+    {
+      "api_map": {
+        "destroy": "Scheduling.SchedulingPeriod.destroy",
+        "get": "Scheduling.SchedulingPeriod.get",
+        "mark_adjusted": "Scheduling.SchedulingPeriod.mark_adjusted",
+        "mark_generated": "Scheduling.SchedulingPeriod.mark_generated",
+        "publish": "Scheduling.SchedulingPeriod.publish",
+        "start_generating": "Scheduling.SchedulingPeriod.start_generating",
+        "update": "Scheduling.SchedulingPeriod.update"
+      },
+      "backend": {
+        "api_map": {
+          "destroy": "Scheduling.SchedulingPeriod.destroy",
+          "get": "Scheduling.SchedulingPeriod.get",
+          "mark_adjusted": "Scheduling.SchedulingPeriod.mark_adjusted",
+          "mark_generated": "Scheduling.SchedulingPeriod.mark_generated",
+          "publish": "Scheduling.SchedulingPeriod.publish",
+          "start_generating": "Scheduling.SchedulingPeriod.start_generating",
+          "update": "Scheduling.SchedulingPeriod.update"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "id title state generation_mode: generationMode department { name } start_date: startDate end_date: endDate current_version: currentVersion { id version_no: versionNo } last_solver_run: lastSolverRun { id status } schedule_versions: scheduleVersions { id version_no: versionNo status origin_type: originType change_summary: changeSummary } solver_runs: solverRuns { id engine_type: engineType status score hard_violation_count: hardViolationCount started_at: startedAt completed_at: completedAt }"
+        },
+        "params": {
+          "accept": [
+            "id"
+          ]
+        }
+      },
+      "behavior_file": "scheduling/scheduling_period_detail.behavior.v1.json",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/scheduling_period_detail.dsl",
+      "entity": "SchedulingPeriod",
+      "entity_snake": "scheduling_period",
+      "page_id": "scheduling_period_detail",
+      "page_kind": "detail",
+      "page_type": "object_page",
+      "state_schema": {
+        "defaults": {
+          "editing": false,
+          "form": {},
+          "loading": false,
+          "record": null
+        },
+        "status_keys": [
+          "record",
+          "editing",
+          "form",
+          "loading"
+        ]
+      },
+      "status_keys": [
+        "record",
+        "editing",
+        "form",
+        "loading"
+      ],
+      "studio_page_type": "studio_object_page",
+      "template_meta": {
+        "detail": "object_page"
+      },
+      "template_spec": {
+        "canonical_page_type": "object_page",
+        "family": "studio",
+        "legacy_page_type": "studio_object_page",
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": [
+        {
+          "description": "切换编辑模式",
+          "from": "*",
+          "name": "toggle_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "取消编辑",
+          "from": "*",
+          "name": "cancel_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "表单字段变更",
+          "from": "*",
+          "name": "form_change",
+          "to": "*",
+          "trigger": "user_input"
+        },
+        {
+          "description": "提交表单",
+          "from": "editing",
+          "name": "form_submit",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "开始自动生成排班",
+          "from": "*",
+          "name": "action_start_generating",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "求解完成，标记为已生成",
+          "from": "*",
+          "name": "action_mark_generated",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "发布排班（需无 error 级违反）",
+          "from": "*",
+          "name": "action_publish",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "删除记录",
+          "from": "*",
+          "name": "action_destroy",
+          "navigate_to": "/scheduling/scheduling_period",
+          "to": "loading",
+          "trigger": "user_action"
+        }
+      ],
+      "ui_sections": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.SchedulingPeriod.list"
+      },
+      "backend": {
+        "api_map": {
+          "list": "Scheduling.SchedulingPeriod.list"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "id title department { name } start_date: startDate end_date: endDate state generation_mode: generationMode"
+        },
+        "params": {
+          "accept": [
+            "department_id",
+            "state",
+            "start_date_from"
+          ]
+        }
+      },
+      "behavior_file": "scheduling/scheduling_period_list.behavior.v1.json",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/scheduling_period_list.dsl",
+      "entity": "SchedulingPeriod",
+      "entity_snake": "scheduling_period",
+      "page_id": "scheduling_period_list",
+      "page_kind": "list",
+      "page_type": "list_report",
+      "state_schema": {
+        "defaults": {
+          "filter": {},
+          "loading": false,
+          "rows": [],
+          "rows_empty": true
+        },
+        "status_keys": [
+          "rows",
+          "rows_empty",
+          "filter",
+          "loading"
+        ]
+      },
+      "status_keys": [
+        "rows",
+        "rows_empty",
+        "filter",
+        "loading"
+      ],
+      "studio_page_type": "studio_list_report",
+      "template_meta": {
+        "list": "list_report"
+      },
+      "template_spec": {
+        "canonical_page_type": "list_report",
+        "family": "studio",
+        "legacy_page_type": "studio_list_report",
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": [
+        {
+          "description": "筛选条件变更",
+          "from": "*",
+          "name": "filter_change",
+          "to": "*",
+          "trigger": "user_input"
+        },
+        {
+          "description": "提交筛选查询",
+          "from": "*",
+          "name": "filter_submit",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "点击行跳转详情",
+          "from": "*",
+          "name": "row_click",
+          "navigate_to": "/scheduling/scheduling_period/{id}",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "跳转新建页",
+          "from": "*",
+          "name": "navigate_create",
+          "navigate_to": "/scheduling/scheduling_period/new",
+          "to": "*",
+          "trigger": "user_action"
+        }
+      ],
+      "ui_sections": []
+    },
+    {
+      "api_map": {
+        "create": "Scheduling.ShiftType.create",
+        "destroy": "Scheduling.ShiftType.destroy",
+        "get": "Scheduling.ShiftType.get",
+        "update": "Scheduling.ShiftType.update"
+      },
+      "backend": {
+        "api_map": {
+          "create": "Scheduling.ShiftType.create",
+          "destroy": "Scheduling.ShiftType.destroy",
+          "get": "Scheduling.ShiftType.get",
+          "update": "Scheduling.ShiftType.update"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "code color coverage_requirements { id min_headcount: minHeadcount notes priority required_lead_count: requiredLeadCount required_skill_tags: requiredSkillTags requirement_date: requirementDate role_code: roleCode role_name: roleName target_headcount: targetHeadcount } duration_hours: durationHours enabled end_time: endTime id is_night: isNight name sort_order: sortOrder start_time: startTime"
+        },
+        "params": {
+          "accept": [
+            "id"
+          ]
+        }
+      },
+      "behavior_file": "scheduling/shift_type_detail.behavior.v1.json",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/shift_type_detail.dsl",
+      "entity": "ShiftType",
+      "entity_snake": "shift_type",
+      "page_id": "shift_type_detail",
+      "page_kind": "detail",
+      "page_type": "object_page",
+      "state_schema": {
+        "defaults": {
+          "editing": false,
+          "form": {},
+          "loading": false,
+          "record": null
+        },
+        "status_keys": [
+          "record",
+          "editing",
+          "form",
+          "loading"
+        ]
+      },
+      "status_keys": [
+        "record",
+        "editing",
+        "form",
+        "loading"
+      ],
+      "studio_page_type": "studio_object_page",
+      "template_meta": {
+        "detail": "object_page"
+      },
+      "template_spec": {
+        "canonical_page_type": "object_page",
+        "family": "studio",
+        "legacy_page_type": "studio_object_page",
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": [
+        {
+          "description": "切换编辑模式",
+          "from": "*",
+          "name": "toggle_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "取消编辑",
+          "from": "*",
+          "name": "cancel_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "表单字段变更",
+          "from": "*",
+          "name": "form_change",
+          "to": "*",
+          "trigger": "user_input"
+        },
+        {
+          "description": "提交表单",
+          "from": "editing",
+          "name": "form_submit",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "删除记录",
+          "from": "*",
+          "name": "action_destroy",
+          "navigate_to": "/scheduling/shift_type",
+          "to": "loading",
+          "trigger": "user_action"
+        }
+      ],
+      "ui_sections": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.ShiftType.list"
+      },
+      "backend": {
+        "api_map": {
+          "list": "Scheduling.ShiftType.list"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "code color duration_hours: durationHours enabled end_time: endTime id is_night: isNight name sort_order: sortOrder start_time: startTime"
+        },
+        "params": {
+          "accept": []
+        }
+      },
+      "behavior_file": "scheduling/shift_type_list.behavior.v1.json",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/shift_type_list.dsl",
+      "entity": "ShiftType",
+      "entity_snake": "shift_type",
+      "page_id": "shift_type_list",
+      "page_kind": "list",
+      "page_type": "list_report",
+      "state_schema": {
+        "defaults": {
+          "filter": {},
+          "loading": false,
+          "rows": [],
+          "rows_empty": true
+        },
+        "status_keys": [
+          "rows",
+          "rows_empty",
+          "filter",
+          "loading"
+        ]
+      },
+      "status_keys": [
+        "rows",
+        "rows_empty",
+        "filter",
+        "loading"
+      ],
+      "studio_page_type": "studio_list_report",
+      "template_meta": {
+        "list": "list_report"
+      },
+      "template_spec": {
+        "canonical_page_type": "list_report",
+        "family": "studio",
+        "legacy_page_type": "studio_list_report",
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": [
+        {
+          "description": "筛选条件变更",
+          "from": "*",
+          "name": "filter_change",
+          "to": "*",
+          "trigger": "user_input"
+        },
+        {
+          "description": "提交筛选查询",
+          "from": "*",
+          "name": "filter_submit",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "点击行跳转详情",
+          "from": "*",
+          "name": "row_click",
+          "navigate_to": "/scheduling/shift_type/{id}",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "跳转新建页",
+          "from": "*",
+          "name": "navigate_create",
+          "navigate_to": "/scheduling/shift_type/new",
+          "to": "*",
+          "trigger": "user_action"
+        }
+      ],
+      "ui_sections": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.SolverRun.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/solver_result.dsl",
+      "entity": "SolverRun",
+      "entity_snake": "solver_run",
+      "page_id": "solver_result",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.ScheduleVersion.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/publish_preview.dsl",
+      "entity": "ScheduleVersion",
+      "entity_snake": "schedule_version",
+      "page_id": "publish_preview",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.CoverageRequirement.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/requirement_matrix.dsl",
+      "entity": "CoverageRequirement",
+      "entity_snake": "coverage_requirement",
+      "page_id": "requirement_matrix",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.ShiftAssignment.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/calendar_adjustment.dsl",
+      "entity": "ShiftAssignment",
+      "entity_snake": "shift_assignment",
+      "page_id": "calendar_adjustment",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.SolverRun.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/solver_result.dsl",
+      "entity": "SolverRun",
+      "entity_snake": "solver_run",
+      "page_id": "solver_result",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.ScheduleVersion.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/publish_preview.dsl",
+      "entity": "ScheduleVersion",
+      "entity_snake": "schedule_version",
+      "page_id": "publish_preview",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.SolverRun.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/solver_result.dsl",
+      "entity": "SolverRun",
+      "entity_snake": "solver_run",
+      "page_id": "solver_result",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.ScheduleVersion.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/publish_preview.dsl",
+      "entity": "ScheduleVersion",
+      "entity_snake": "schedule_version",
+      "page_id": "publish_preview",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.CoverageRequirement.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/requirement_matrix.dsl",
+      "entity": "CoverageRequirement",
+      "entity_snake": "coverage_requirement",
+      "page_id": "requirement_matrix",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.ShiftAssignment.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/calendar_adjustment.dsl",
+      "entity": "ShiftAssignment",
+      "entity_snake": "shift_assignment",
+      "page_id": "calendar_adjustment",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.CoverageRequirement.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/requirement_matrix.dsl",
+      "entity": "CoverageRequirement",
+      "entity_snake": "coverage_requirement",
+      "page_id": "requirement_matrix",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.ShiftAssignment.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/calendar_adjustment.dsl",
+      "entity": "ShiftAssignment",
+      "entity_snake": "shift_assignment",
+      "page_id": "calendar_adjustment",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    }
+  ],
+  "route_map": [
+    {
+      "page_id": "scheduling_constraint_list",
+      "path": "/scheduling/scheduling_constraint",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "scheduling_constraint_detail",
+      "path": "/scheduling/scheduling_constraint/:id",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "scheduling_constraint_detail",
+      "path": "/scheduling/scheduling_constraint/new",
+      "route_kind": "new"
+    },
+    {
+      "page_id": "scheduling_period_list",
+      "path": "/scheduling/scheduling_period",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "scheduling_period_detail",
+      "path": "/scheduling/scheduling_period/:id",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "scheduling_period_detail",
+      "path": "/scheduling/scheduling_period/new",
+      "route_kind": "new"
+    },
+    {
+      "page_id": "shift_type_list",
+      "path": "/scheduling/shift_type",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "shift_type_detail",
+      "path": "/scheduling/shift_type/:id",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "shift_type_detail",
+      "path": "/scheduling/shift_type/new",
+      "route_kind": "new"
+    },
+    {
+      "page_id": "solver_result",
+      "path": "/scheduling/solver_result",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "publish_preview",
+      "path": "/scheduling/publish_preview",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "requirement_matrix",
+      "path": "/scheduling/requirement_matrix",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "calendar_adjustment",
+      "path": "/scheduling/calendar_adjustment",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "solver_result",
+      "path": "/scheduling/solver_result",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "publish_preview",
+      "path": "/scheduling/publish_preview",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "solver_result",
+      "path": "/scheduling/solver_result",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "publish_preview",
+      "path": "/scheduling/publish_preview",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "requirement_matrix",
+      "path": "/scheduling/requirement_matrix",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "calendar_adjustment",
+      "path": "/scheduling/calendar_adjustment",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "requirement_matrix",
+      "path": "/scheduling/requirement_matrix",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "calendar_adjustment",
+      "path": "/scheduling/calendar_adjustment",
+      "route_kind": "custom"
+    }
+  ],
+  "schema_version": "1.0",
+  "ui_manifests": []
+}

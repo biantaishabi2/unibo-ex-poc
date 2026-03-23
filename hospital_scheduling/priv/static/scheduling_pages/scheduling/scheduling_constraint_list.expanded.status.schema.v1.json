@@ -1,32 +1,38 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "排班约束配置",
+    "page_title": "SchedulingConstraint 列表",
     "rows_empty": true,
     "rows": [
       {
         "name": "row_1",
         "constraint_type": "",
         "category": "",
+        "params": "",
         "weight": "",
         "enabled": "",
-        "notes": ""
+        "notes": "",
+        "id": "row_01"
       },
       {
         "name": "row_2",
         "constraint_type": "",
         "category": "",
+        "params": "",
         "weight": "",
         "enabled": "",
-        "notes": ""
+        "notes": "",
+        "id": "row_02"
       },
       {
         "name": "row_3",
         "constraint_type": "",
         "category": "",
+        "params": "",
         "weight": "",
         "enabled": "",
-        "notes": ""
+        "notes": "",
+        "id": "row_03"
       }
     ]
   },
@@ -37,8 +43,10 @@
     "rows[].category",
     "rows[].constraint_type",
     "rows[].enabled",
+    "rows[].id",
     "rows[].name",
     "rows[].notes",
+    "rows[].params",
     "rows[].weight",
     "rows_empty"
   ],
@@ -53,6 +61,21 @@
     "backend": {
       "api_map": {
         "list": "Scheduling.SchedulingConstraint.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "category constraint_type: constraintType enabled id name notes params weight"
+      },
+      "params": {
+        "accept": [
+          "constraint_type",
+          "category"
+        ]
       }
     },
     "domain": "Scheduling",

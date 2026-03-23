@@ -1,0 +1,139 @@
+{
+  "backend": {
+    "api_map": {
+      "__load__": "Scheduling.SchedulingPeriod.get",
+      "get": "Scheduling.SchedulingPeriod.get"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {
+        "has_hard_violations": {
+          "from": "record.last_solver_run.hard_violation_count",
+          "transform": "positive_count"
+        },
+        "period": "record",
+        "run": {
+          "from": "record.last_solver_run",
+          "transform": "normalize_solver_run"
+        },
+        "version": "record.current_version",
+        "violations": {
+          "from": "record.current_version.constraint_violations",
+          "transform": "normalize_list"
+        },
+        "violations_empty": {
+          "from": "record.current_version.constraint_violations",
+          "transform": "empty_list"
+        }
+      },
+      "selection": "id title current_version: currentVersion { id version_no: versionNo origin_type: originType constraint_violations: constraintViolations { severity rule_code: ruleCode message } } last_solver_run: lastSolverRun { id status engine_type: engineType output_snapshot: outputSnapshot hard_violation_count: hardViolationCount warning_count: warningCount }"
+    },
+    "params": {
+      "accept": [
+        "id"
+      ]
+    }
+  },
+  "domain": "Scheduling",
+  "e2e": {
+    "playwright": {
+      "auto": true,
+      "base_path": "/scheduling/solver_result?id=:id",
+      "cases": [
+        {
+          "covers": [],
+          "name": "页面加载 + KPI 和违规表可见",
+          "steps": [
+            {
+              "action": "expect_visible",
+              "selector": "#page_title"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#run_status_badge"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#engine_info"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#violations_table"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "navigate_calendar"
+          ],
+          "name": "跳转日历调班",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "#calendar_btn"
+            },
+            {
+              "action": "expect_url_contains",
+              "value": "/scheduling/calendar_adjustment"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "navigate_publish_preview"
+          ],
+          "name": "跳转发布预览",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "#publish_btn"
+            },
+            {
+              "action": "expect_url_contains",
+              "value": "/scheduling/publish_preview"
+            }
+          ]
+        }
+      ],
+      "dto_smoke": []
+    }
+  },
+  "entity": "SolverRun",
+  "page_id": "solver_result",
+  "page_type": "composition",
+  "state_transitions": [
+    {
+      "description": "返回周期详情",
+      "from": "*",
+      "name": "navigate_back",
+      "to": "*",
+      "trigger": "user_action"
+    },
+    {
+      "description": "进入日历调班",
+      "from": "*",
+      "name": "navigate_calendar",
+      "to": "*",
+      "trigger": "user_action"
+    },
+    {
+      "description": "进入发布预览",
+      "from": "*",
+      "name": "navigate_publish_preview",
+      "to": "*",
+      "trigger": "user_action"
+    }
+  ],
+  "status_keys": [
+    "period",
+    "run",
+    "has_hard_violations",
+    "violations_empty",
+    "violations"
+  ],
+  "version": 1
+}

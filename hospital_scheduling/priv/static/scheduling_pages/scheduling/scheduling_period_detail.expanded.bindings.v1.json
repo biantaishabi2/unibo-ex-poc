@@ -5,14 +5,21 @@
       "uses": [
         {
           "node_type": "BreadcrumbPage",
-          "node_id": "bc_current",
+          "node_id": "scheduling_period_bc_current",
           "location": "prop",
           "prop": "content",
           "template": "{{record.title|详情}}"
         },
         {
           "node_type": "Text",
-          "node_id": "detail_title",
+          "node_id": "scheduling_period_detail_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.title|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "value_title",
           "location": "prop",
           "prop": "content",
           "template": "{{record.title|}}"
@@ -23,32 +30,17 @@
       "uses": [
         {
           "node_type": "Badge",
-          "node_id": "state_badge",
+          "node_id": "scheduling_period_status_badge",
           "location": "prop",
           "prop": "content",
           "template": "{{record.state|}}"
-        }
-      ]
-    },
-    "record.generation_mode": {
-      "uses": [
+        },
         {
           "node_type": "Badge",
-          "node_id": "mode_badge",
+          "node_id": "value_state",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.generation_mode|}}"
-        }
-      ]
-    },
-    "record.department.name": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "dept_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.department.name|}}"
+          "template": "{{record.state|}}"
         }
       ]
     },
@@ -56,10 +48,10 @@
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "date_value",
+          "node_id": "value_start_date",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.start_date|}} ~ {{record.end_date|}}"
+          "template": "{{record.start_date|}}"
         }
       ]
     },
@@ -67,32 +59,32 @@
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "date_value",
+          "node_id": "value_end_date",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.start_date|}} ~ {{record.end_date|}}"
+          "template": "{{record.end_date|}}"
         }
       ]
     },
-    "record.current_version.version_no": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "version_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "v{{record.current_version.version_no|}}"
-        }
-      ]
-    },
-    "record.last_solver_run.status": {
+    "record.generation_mode": {
       "uses": [
         {
           "node_type": "Badge",
-          "node_id": "run_status_badge",
+          "node_id": "value_generation_mode",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.last_solver_run.status|}}"
+          "template": "{{record.generation_mode|}}"
+        }
+      ]
+    },
+    "record.notes": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_notes",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.notes|}}"
         }
       ]
     }
@@ -102,7 +94,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "edit_btn",
+          "node_id": "scheduling_period_edit_btn",
           "prop": "click",
           "raw": "toggle_edit"
         }
@@ -112,9 +104,19 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "generate_btn",
+          "node_id": "scheduling_period_action_start_generating",
           "prop": "click",
           "raw": "action_start_generating"
+        }
+      ]
+    },
+    "action_mark_generated": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "scheduling_period_action_mark_generated",
+          "prop": "click",
+          "raw": "action_mark_generated"
         }
       ]
     },
@@ -122,39 +124,55 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "publish_btn",
+          "node_id": "scheduling_period_action_publish",
           "prop": "click",
           "raw": "action_publish"
         }
       ]
     },
-    "navigate_requirements": {
+    "action_destroy": {
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "req_nav_btn",
+          "node_id": "scheduling_period_delete_btn",
           "prop": "click",
-          "raw": "navigate_requirements"
+          "raw": "action_destroy"
         }
       ]
     },
-    "navigate_constraints": {
+    "form_submit": {
       "triggers": [
         {
+          "node_type": "Form",
+          "node_id": "scheduling_period_edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
           "node_type": "Button",
-          "node_id": "constraint_nav_btn",
+          "node_id": "scheduling_period_save_btn",
           "prop": "click",
-          "raw": "navigate_constraints"
+          "raw": "form_submit"
         }
       ]
     },
-    "navigate_calendar": {
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "scheduling_period_edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "calendar_nav_btn",
+          "node_id": "scheduling_period_cancel_btn",
           "prop": "click",
-          "raw": "navigate_calendar"
+          "raw": "cancel_edit"
         }
       ]
     }

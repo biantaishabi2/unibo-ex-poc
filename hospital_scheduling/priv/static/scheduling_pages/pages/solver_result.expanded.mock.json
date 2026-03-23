@@ -1,0 +1,36 @@
+{
+  "period": {
+    "title": ""
+  },
+  "run": {
+    "status": "",
+    "engine_type": "",
+    "output_snapshot": {
+      "summary": {
+        "assignment_count": "",
+        "covered_requirement_count": ""
+      }
+    },
+    "hard_violation_count": "",
+    "warning_count": ""
+  },
+  "has_hard_violations": true,
+  "violations_empty": true,
+  "violations": [
+    {
+      "severity": "",
+      "rule_code": "",
+      "message": ""
+    },
+    {
+      "severity": "",
+      "rule_code": "",
+      "message": ""
+    },
+    {
+      "severity": "",
+      "rule_code": "",
+      "message": ""
+    }
+  ]
+}

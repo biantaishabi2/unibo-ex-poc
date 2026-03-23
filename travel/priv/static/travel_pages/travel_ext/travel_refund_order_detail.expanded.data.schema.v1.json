@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "editing",
+    "record",
+    "record.approval_mode",
+    "record.refund_amount",
+    "record.refund_fee",
+    "record.refund_reason",
+    "record.status"
+  ],
+  "requiredRoots": [
+    "editing",
+    "record"
+  ],
+  "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "refund_reason": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "refund_fee": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "refund_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "approval_mode": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

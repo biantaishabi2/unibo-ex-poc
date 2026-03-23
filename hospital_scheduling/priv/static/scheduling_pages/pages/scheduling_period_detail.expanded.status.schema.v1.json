@@ -1,0 +1,206 @@
+{
+  "version": 1,
+  "defaults": {
+    "record": {
+      "title": "",
+      "state": "",
+      "generation_mode": "",
+      "department": {
+        "name": ""
+      },
+      "start_date": "",
+      "end_date": "",
+      "current_version": {
+        "version_no": ""
+      },
+      "last_solver_run": {
+        "status": ""
+      },
+      "schedule_versions": [
+        {
+          "version_no": "",
+          "status": "",
+          "origin_type": "",
+          "change_summary": "",
+          "inserted_at": ""
+        },
+        {
+          "version_no": "",
+          "status": "",
+          "origin_type": "",
+          "change_summary": "",
+          "inserted_at": ""
+        },
+        {
+          "version_no": "",
+          "status": "",
+          "origin_type": "",
+          "change_summary": "",
+          "inserted_at": ""
+        }
+      ],
+      "solver_runs": [
+        {
+          "engine_type": "",
+          "status": "",
+          "score": "",
+          "hard_violation_count": "",
+          "started_at": "",
+          "completed_at": ""
+        },
+        {
+          "engine_type": "",
+          "status": "",
+          "score": "",
+          "hard_violation_count": "",
+          "started_at": "",
+          "completed_at": ""
+        },
+        {
+          "engine_type": "",
+          "status": "",
+          "score": "",
+          "hard_violation_count": "",
+          "started_at": "",
+          "completed_at": ""
+        }
+      ]
+    }
+  },
+  "keys": [
+    "record",
+    "record.current_version",
+    "record.current_version.version_no",
+    "record.department",
+    "record.department.name",
+    "record.end_date",
+    "record.generation_mode",
+    "record.last_solver_run",
+    "record.last_solver_run.status",
+    "record.schedule_versions",
+    "record.schedule_versions[]",
+    "record.schedule_versions[].change_summary",
+    "record.schedule_versions[].inserted_at",
+    "record.schedule_versions[].origin_type",
+    "record.schedule_versions[].status",
+    "record.schedule_versions[].version_no",
+    "record.solver_runs",
+    "record.solver_runs[]",
+    "record.solver_runs[].completed_at",
+    "record.solver_runs[].engine_type",
+    "record.solver_runs[].hard_violation_count",
+    "record.solver_runs[].score",
+    "record.solver_runs[].started_at",
+    "record.solver_runs[].status",
+    "record.start_date",
+    "record.state",
+    "record.title"
+  ],
+  "required": [
+    "record"
+  ],
+  "urlParams": {},
+  "notes": [],
+  "layer2": {
+    "backend": {
+      "api_map": {
+        "destroy": "Scheduling.SchedulingPeriod.destroy",
+        "get": "Scheduling.SchedulingPeriod.get",
+        "mark_adjusted": "Scheduling.SchedulingPeriod.mark_adjusted",
+        "mark_generated": "Scheduling.SchedulingPeriod.mark_generated",
+        "publish": "Scheduling.SchedulingPeriod.publish",
+        "start_generating": "Scheduling.SchedulingPeriod.start_generating",
+        "update": "Scheduling.SchedulingPeriod.update"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "selection": "id title state generation_mode: generationMode department { name } start_date: startDate end_date: endDate current_version: currentVersion { id version_no: versionNo } last_solver_run: lastSolverRun { id status } schedule_versions: scheduleVersions { id version_no: versionNo status origin_type: originType change_summary: changeSummary } solver_runs: solverRuns { id engine_type: engineType status score hard_violation_count: hardViolationCount started_at: startedAt completed_at: completedAt }"
+      },
+      "params": {
+        "accept": [
+          "id"
+        ]
+      }
+    },
+    "e2e": {
+      "playwright": {
+        "auto": true,
+        "base_path": "/scheduling/scheduling_period_detail?id=:id",
+        "cases": [],
+        "dto_smoke": []
+      }
+    },
+    "layer": 2,
+    "page_id": "scheduling_period_detail",
+    "state_transitions": [
+      {
+        "description": "切换编辑模式",
+        "from": "*",
+        "name": "toggle_edit",
+        "to": "*",
+        "trigger": "user_action"
+      },
+      {
+        "description": "取消编辑",
+        "from": "*",
+        "name": "cancel_edit",
+        "to": "*",
+        "trigger": "user_action"
+      },
+      {
+        "description": "表单字段变更",
+        "from": "*",
+        "name": "form_change",
+        "to": "*",
+        "trigger": "user_input"
+      },
+      {
+        "description": "提交表单",
+        "from": "editing",
+        "name": "form_submit",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "开始自动生成排班",
+        "from": "*",
+        "name": "action_start_generating",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "求解完成，标记为已生成",
+        "from": "*",
+        "name": "action_mark_generated",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "人工调班后标记",
+        "from": "*",
+        "name": "action_mark_adjusted",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "发布排班（需无 error 级违反）",
+        "from": "*",
+        "name": "action_publish",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "删除记录",
+        "from": "*",
+        "name": "action_destroy",
+        "to": "loading",
+        "trigger": "user_action"
+      }
+    ],
+    "version": 1
+  }
+}

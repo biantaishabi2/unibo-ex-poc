@@ -1,0 +1,49 @@
+{
+  "affected_employee_count": "",
+  "change_count": "",
+  "changes": [
+    {
+      "date": "",
+      "employee": {
+        "name": "employee_1"
+      },
+      "new_shift_type": "",
+      "old_shift_type": "",
+      "reason": ""
+    },
+    {
+      "date": "",
+      "employee": {
+        "name": "employee_2"
+      },
+      "new_shift_type": "",
+      "old_shift_type": "",
+      "reason": ""
+    },
+    {
+      "date": "",
+      "employee": {
+        "name": "employee_3"
+      },
+      "new_shift_type": "",
+      "old_shift_type": "",
+      "reason": ""
+    }
+  ],
+  "coverage_rate": "",
+  "hard_violation_count": "",
+  "has_hard_violations": "",
+  "has_warnings": true,
+  "no_changes": true,
+  "period": {
+    "title": ""
+  },
+  "record": {
+    "base_version": ""
+  },
+  "version": {
+    "origin_type": "",
+    "version_no": ""
+  },
+  "warning_count": ""
+}

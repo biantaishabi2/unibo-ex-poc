@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "editing",
+    "record.approval_mode",
+    "record.cabin_class_limit",
+    "record.city_tier",
+    "record.employee_level",
+    "record.exceed_strategy",
+    "record.hotel_star_limit",
+    "record.is_active",
+    "record.max_amount",
+    "record.personal_pay_ratio",
+    "record.policy_name",
+    "record.product_type",
+    "record.season"
+  ],
+  "requiredRoots": [
+    "editing",
+    "record"
+  ],
+  "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "policy_name": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "product_type": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "employee_level": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "city_tier": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "season": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "max_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "cabin_class_limit": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "hotel_star_limit": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "exceed_strategy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "approval_mode": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "personal_pay_ratio": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "is_active": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

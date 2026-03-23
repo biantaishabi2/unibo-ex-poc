@@ -1,67 +1,156 @@
 {
   "record": {
-    "title": "心内科 2026-03 第4周排班",
-    "state": "generated",
-    "generation_mode": "solver_seeded",
-    "department": {
-      "name": "心内科"
-    },
-    "start_date": "2026-03-23",
-    "end_date": "2026-03-29",
-    "current_version": {
-      "version_no": 2
-    },
-    "last_solver_run": {
-      "status": "feasible"
-    },
+    "title": "",
+    "state": "",
+    "start_date": "",
+    "end_date": "",
+    "generation_mode": "",
+    "notes": "",
+    "coverage_requirements": [
+      {
+        "requirement_date": "",
+        "role_code": "",
+        "role_name": "",
+        "required_skill_tags": "",
+        "min_headcount": "",
+        "target_headcount": "",
+        "required_lead_count": "",
+        "priority": "",
+        "notes": ""
+      },
+      {
+        "requirement_date": "",
+        "role_code": "",
+        "role_name": "",
+        "required_skill_tags": "",
+        "min_headcount": "",
+        "target_headcount": "",
+        "required_lead_count": "",
+        "priority": "",
+        "notes": ""
+      },
+      {
+        "requirement_date": "",
+        "role_code": "",
+        "role_name": "",
+        "required_skill_tags": "",
+        "min_headcount": "",
+        "target_headcount": "",
+        "required_lead_count": "",
+        "priority": "",
+        "notes": ""
+      }
+    ],
     "schedule_versions": [
       {
-        "version_no": 1,
-        "status": "archived",
-        "origin_type": "solver",
-        "change_summary": "求解器初始排班方案",
-        "inserted_at": "2026-03-20T09:00:00Z"
+        "version_no": "",
+        "status": "",
+        "origin_type": "",
+        "created_by": "",
+        "change_summary": ""
       },
       {
-        "version_no": 2,
-        "status": "working",
-        "origin_type": "solver",
-        "change_summary": "重新求解，优化夜班分配",
-        "inserted_at": "2026-03-21T14:30:00Z"
+        "version_no": "",
+        "status": "",
+        "origin_type": "",
+        "created_by": "",
+        "change_summary": ""
       },
       {
-        "version_no": 3,
-        "status": "working",
-        "origin_type": "manual",
-        "change_summary": "护长手动微调周三排班",
-        "inserted_at": "2026-03-22T08:15:00Z"
+        "version_no": "",
+        "status": "",
+        "origin_type": "",
+        "created_by": "",
+        "change_summary": ""
       }
     ],
     "solver_runs": [
       {
-        "engine_type": "cp_sat",
-        "status": "completed",
-        "score": "92.5",
-        "hard_violation_count": 0,
-        "started_at": "2026-03-20T08:55:00Z",
-        "completed_at": "2026-03-20T08:55:12Z"
+        "status": "",
+        "engine_type": "",
+        "seed": "",
+        "timeout_ms": "",
+        "started_at": "",
+        "completed_at": "",
+        "score": "",
+        "hard_violation_count": "",
+        "warning_count": "",
+        "input_snapshot": "",
+        "output_snapshot": "",
+        "error_message": ""
       },
       {
-        "engine_type": "cp_sat",
-        "status": "feasible",
-        "score": "96.8",
-        "hard_violation_count": 0,
-        "started_at": "2026-03-21T14:25:00Z",
-        "completed_at": "2026-03-21T14:25:08Z"
+        "status": "",
+        "engine_type": "",
+        "seed": "",
+        "timeout_ms": "",
+        "started_at": "",
+        "completed_at": "",
+        "score": "",
+        "hard_violation_count": "",
+        "warning_count": "",
+        "input_snapshot": "",
+        "output_snapshot": "",
+        "error_message": ""
       },
       {
-        "engine_type": "cp_sat",
-        "status": "timeout",
-        "score": "88.0",
-        "hard_violation_count": 1,
-        "started_at": "2026-03-19T16:00:00Z",
-        "completed_at": "2026-03-19T16:00:30Z"
+        "status": "",
+        "engine_type": "",
+        "seed": "",
+        "timeout_ms": "",
+        "started_at": "",
+        "completed_at": "",
+        "score": "",
+        "hard_violation_count": "",
+        "warning_count": "",
+        "input_snapshot": "",
+        "output_snapshot": "",
+        "error_message": ""
+      }
+    ],
+    "shift_assignments": [
+      {
+        "starts_at": "",
+        "ends_at": "",
+        "source": "",
+        "is_locked": "",
+        "notes": ""
+      },
+      {
+        "starts_at": "",
+        "ends_at": "",
+        "source": "",
+        "is_locked": "",
+        "notes": ""
+      },
+      {
+        "starts_at": "",
+        "ends_at": "",
+        "source": "",
+        "is_locked": "",
+        "notes": ""
+      }
+    ],
+    "constraint_violations": [
+      {
+        "rule_code": "",
+        "severity": "",
+        "message": "",
+        "details_json": ""
+      },
+      {
+        "rule_code": "",
+        "severity": "",
+        "message": "",
+        "details_json": ""
+      },
+      {
+        "rule_code": "",
+        "severity": "",
+        "message": "",
+        "details_json": ""
       }
     ]
-  }
+  },
+  "editing": false
 }

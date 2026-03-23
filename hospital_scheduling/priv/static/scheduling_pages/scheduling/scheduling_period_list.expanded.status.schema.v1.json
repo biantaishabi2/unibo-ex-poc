@@ -1,38 +1,35 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "排班周期管理",
+    "page_title": "SchedulingPeriod 列表",
     "rows_empty": true,
     "rows": [
       {
-        "title": "",
-        "department": {
-          "name": "department_1"
-        },
         "start_date": "",
         "end_date": "",
         "state": "",
-        "generation_mode": ""
+        "title": "",
+        "generation_mode": "",
+        "notes": "",
+        "id": "row_01"
       },
       {
-        "title": "",
-        "department": {
-          "name": "department_2"
-        },
         "start_date": "",
         "end_date": "",
         "state": "",
-        "generation_mode": ""
+        "title": "",
+        "generation_mode": "",
+        "notes": "",
+        "id": "row_02"
       },
       {
-        "title": "",
-        "department": {
-          "name": "department_3"
-        },
         "start_date": "",
         "end_date": "",
         "state": "",
-        "generation_mode": ""
+        "title": "",
+        "generation_mode": "",
+        "notes": "",
+        "id": "row_03"
       }
     ]
   },
@@ -40,10 +37,10 @@
     "page_title",
     "rows",
     "rows[]",
-    "rows[].department",
-    "rows[].department.name",
     "rows[].end_date",
     "rows[].generation_mode",
+    "rows[].id",
+    "rows[].notes",
     "rows[].start_date",
     "rows[].state",
     "rows[].title",
@@ -60,6 +57,23 @@
     "backend": {
       "api_map": {
         "list": "Scheduling.SchedulingPeriod.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "end_date: endDate generation_mode: generationMode id notes start_date: startDate state title"
+      },
+      "params": {
+        "accept": [
+          "start_date",
+          "end_date",
+          "state",
+          "generation_mode"
+        ]
       }
     },
     "domain": "Scheduling",

@@ -1,0 +1,77 @@
+{
+  "coverage_rate": "",
+  "current_week_label": "",
+  "employees": [
+    {
+      "daily_assignments": [
+        {
+          "shift_type": {
+            "name": "shift_type_1"
+          }
+        },
+        {
+          "shift_type": {
+            "name": "shift_type_2"
+          }
+        }
+      ],
+      "name": "employee_1",
+      "role_code": ""
+    },
+    {
+      "daily_assignments": [
+        {
+          "shift_type": {
+            "name": "shift_type_1"
+          }
+        },
+        {
+          "shift_type": {
+            "name": "shift_type_2"
+          }
+        }
+      ],
+      "name": "employee_2",
+      "role_code": ""
+    },
+    {
+      "daily_assignments": [
+        {
+          "shift_type": {
+            "name": "shift_type_1"
+          }
+        },
+        {
+          "shift_type": {
+            "name": "shift_type_2"
+          }
+        }
+      ],
+      "name": "employee_3",
+      "role_code": ""
+    }
+  ],
+  "live_violations": [
+    {
+      "message": "",
+      "severity": ""
+    },
+    {
+      "message": "",
+      "severity": ""
+    },
+    {
+      "message": "",
+      "severity": ""
+    }
+  ],
+  "manual_change_count": "",
+  "no_violations": true,
+  "period": {
+    "title": ""
+  },
+  "record": {
+    "role_code": "",
+    "shift_type_id": ""
+  }
+}

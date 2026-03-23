@@ -1,0 +1,166 @@
+{
+  "version": 1,
+  "vars": {
+    "record.exceed_ratio": {
+      "uses": [
+        {
+          "node_type": "BreadcrumbPage",
+          "node_id": "travel_policy_check_bc_current",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.exceed_ratio|详情}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "travel_policy_check_detail_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.exceed_ratio|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "value_exceed_ratio",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.exceed_ratio|}}"
+        }
+      ]
+    },
+    "record.check_result": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_check_result",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.check_result|}}"
+        }
+      ]
+    },
+    "record.policy_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_policy_amount",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.policy_amount|}}"
+        }
+      ]
+    },
+    "record.actual_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_actual_amount",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.actual_amount|}}"
+        }
+      ]
+    },
+    "record.exceed_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_exceed_amount",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.exceed_amount|}}"
+        }
+      ]
+    },
+    "record.exceed_strategy": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_exceed_strategy",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.exceed_strategy|}}"
+        }
+      ]
+    },
+    "record.exceed_reason": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_exceed_reason",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.exceed_reason|}}"
+        }
+      ]
+    },
+    "record.personal_pay_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_personal_pay_amount",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.personal_pay_amount|}}"
+        }
+      ]
+    },
+    "record.approval_mode": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_approval_mode",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.approval_mode|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_policy_check_edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "travel_policy_check_edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "travel_policy_check_save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "travel_policy_check_edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_policy_check_cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
+}

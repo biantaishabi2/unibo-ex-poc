@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "vars": {
+    "page_title": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "travel_policy_check_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{page_title|TravelPolicyCheck 列表}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "navigate_create": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_policy_check_create_btn",
+          "prop": "click",
+          "raw": "navigate_create"
+        }
+      ]
+    },
+    "filter_submit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_policy_check_filter_submit",
+          "prop": "click",
+          "raw": "filter_submit"
+        }
+      ]
+    }
+  }
+}

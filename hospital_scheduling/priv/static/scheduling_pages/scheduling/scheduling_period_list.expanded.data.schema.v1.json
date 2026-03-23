@@ -2,9 +2,10 @@
   "version": 1,
   "requiredPaths": [
     "page_title",
-    "row.department.name",
     "row.end_date",
     "row.generation_mode",
+    "row.id",
+    "row.notes",
     "row.start_date",
     "row.state",
     "row.title",
@@ -30,22 +31,6 @@
         "type": "object",
         "required": false,
         "properties": {
-          "title": {
-            "type": "string",
-            "required": false,
-            "example": ""
-          },
-          "department": {
-            "type": "object",
-            "required": false,
-            "properties": {
-              "name": {
-                "type": "string",
-                "required": false,
-                "example": "department_1"
-              }
-            }
-          },
           "start_date": {
             "type": "string",
             "required": false,
@@ -61,10 +46,25 @@
             "required": false,
             "example": ""
           },
+          "title": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
           "generation_mode": {
             "type": "string",
             "required": false,
             "example": ""
+          },
+          "notes": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "row_01"
           }
         }
       },
@@ -74,14 +74,6 @@
       "type": "object",
       "required": true,
       "properties": {
-        "title": {
-          "type": "unknown",
-          "required": true
-        },
-        "department": {
-          "type": "unknown",
-          "required": true
-        },
         "start_date": {
           "type": "unknown",
           "required": true
@@ -94,7 +86,19 @@
           "type": "unknown",
           "required": true
         },
+        "title": {
+          "type": "unknown",
+          "required": true
+        },
         "generation_mode": {
+          "type": "unknown",
+          "required": true
+        },
+        "notes": {
+          "type": "unknown",
+          "required": true
+        },
+        "id": {
           "type": "unknown",
           "required": true
         }

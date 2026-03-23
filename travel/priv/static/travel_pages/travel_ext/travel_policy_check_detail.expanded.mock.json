@@ -1,0 +1,15 @@
+{
+  "editing": false,
+  "record": {
+    "actual_amount": "",
+    "approval_mode": "",
+    "approval_request_id": "",
+    "check_result": "",
+    "exceed_amount": "",
+    "exceed_ratio": "",
+    "exceed_reason": "",
+    "exceed_strategy": "",
+    "personal_pay_amount": "",
+    "policy_amount": ""
+  }
+}

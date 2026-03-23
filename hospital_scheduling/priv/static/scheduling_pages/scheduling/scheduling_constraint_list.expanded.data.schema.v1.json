@@ -5,8 +5,10 @@
     "row.category",
     "row.constraint_type",
     "row.enabled",
+    "row.id",
     "row.name",
     "row.notes",
+    "row.params",
     "row.weight",
     "rows",
     "rows_empty"
@@ -45,6 +47,11 @@
             "required": false,
             "example": ""
           },
+          "params": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
           "weight": {
             "type": "string",
             "required": false,
@@ -59,6 +66,11 @@
             "type": "string",
             "required": false,
             "example": ""
+          },
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "row_01"
           }
         }
       },
@@ -80,6 +92,10 @@
           "type": "unknown",
           "required": true
         },
+        "params": {
+          "type": "unknown",
+          "required": true
+        },
         "weight": {
           "type": "unknown",
           "required": true
@@ -89,6 +105,10 @@
           "required": true
         },
         "notes": {
+          "type": "unknown",
+          "required": true
+        },
+        "id": {
           "type": "unknown",
           "required": true
         }

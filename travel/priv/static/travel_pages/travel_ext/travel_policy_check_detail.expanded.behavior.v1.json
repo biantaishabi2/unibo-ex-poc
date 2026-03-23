@@ -1,0 +1,125 @@
+{
+  "backend": {
+    "api_map": {
+      "create": "TravelExt.TravelPolicyCheck.create",
+      "get": "TravelExt.TravelPolicyCheck.get",
+      "update": "TravelExt.TravelPolicyCheck.update"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "actual_amount: actualAmount approval_mode: approvalMode approval_request_id: approvalRequestId check_result: checkResult exceed_amount: exceedAmount exceed_ratio: exceedRatio exceed_reason: exceedReason exceed_strategy: exceedStrategy id personal_pay_amount: personalPayAmount policy_amount: policyAmount"
+    },
+    "params": {
+      "accept": [
+        "id"
+      ]
+    }
+  },
+  "children": [],
+  "domain": "TravelExt",
+  "e2e": {
+    "playwright": {
+      "auto": true,
+      "base_path": "/travel_ext/travel_policy_check/:id",
+      "cases": [
+        {
+          "covers": [],
+          "name": "页面加载 + 结构可见",
+          "steps": [
+            {
+              "action": "expect_visible",
+              "selector": "[data-page='travel_policy_check_detail']"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "toggle_edit"
+          ],
+          "name": "编辑模式切换",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "[data-action='toggle_edit']"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "form, [data-mode='edit']"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "form_submit"
+          ],
+          "name": "表单提交",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "[data-action='form_submit'], button[type='submit']"
+            },
+            {
+              "action": "expect_text_contains",
+              "selector": "#flash-group, [data-flash], [role='alert']",
+              "value": "成功"
+            }
+          ]
+        }
+      ],
+      "dto_smoke": []
+    }
+  },
+  "entity": "TravelPolicyCheck",
+  "page_id": "travel_policy_check_detail",
+  "page_type": "object_page",
+  "runtime_monitoring": null,
+  "schema_version": "1.0",
+  "state_transitions": [
+    {
+      "description": "切换编辑模式",
+      "from": "*",
+      "name": "toggle_edit",
+      "to": "*",
+      "trigger": "user_action"
+    },
+    {
+      "description": "取消编辑",
+      "from": "*",
+      "name": "cancel_edit",
+      "to": "*",
+      "trigger": "user_action"
+    },
+    {
+      "description": "表单字段变更",
+      "from": "*",
+      "name": "form_change",
+      "to": "*",
+      "trigger": "user_input"
+    },
+    {
+      "description": "提交表单",
+      "from": "editing",
+      "name": "form_submit",
+      "to": "loading",
+      "trigger": "user_action"
+    }
+  ],
+  "status_keys": [
+    "record",
+    "editing",
+    "form",
+    "loading"
+  ],
+  "ui": {
+    "sections": [],
+    "template": {
+      "detail": "object_page"
+    }
+  },
+  "version": 1
+}

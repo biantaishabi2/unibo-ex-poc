@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "events": {
+    "navigate_prev_week": {
+      "name": "navigate_prev_week",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_next_week": {
+      "name": "navigate_next_week",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_back": {
+      "name": "navigate_back",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "filter_submit": {
+      "name": "filter_submit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

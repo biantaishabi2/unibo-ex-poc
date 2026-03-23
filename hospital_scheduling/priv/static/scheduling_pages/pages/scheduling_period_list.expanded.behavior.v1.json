@@ -1,0 +1,21 @@
+{
+  "backend": {
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "selection": "id title department { name } start_date: startDate end_date: endDate state generation_mode: generationMode"
+    },
+    "params": {
+      "accept": [
+        "department_id",
+        "state",
+        "start_date_from"
+      ]
+    }
+  },
+  "page_id": "scheduling_period_list",
+  "version": 1
+}

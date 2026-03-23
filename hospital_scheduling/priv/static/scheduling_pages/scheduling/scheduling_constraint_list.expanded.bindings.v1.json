@@ -5,10 +5,10 @@
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "page_title",
+          "node_id": "scheduling_constraint_title",
           "location": "prop",
           "prop": "content",
-          "template": "{{page_title|排班约束配置}}"
+          "template": "{{page_title|SchedulingConstraint 列表}}"
         }
       ]
     }
@@ -18,19 +18,9 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "create_btn",
+          "node_id": "scheduling_constraint_create_btn",
           "prop": "click",
           "raw": "navigate_create"
-        }
-      ]
-    },
-    "navigate_back": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "back_btn",
-          "prop": "click",
-          "raw": "navigate_back"
         }
       ]
     },
@@ -38,39 +28,9 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "filter_submit",
+          "node_id": "scheduling_constraint_filter_submit",
           "prop": "click",
           "raw": "filter_submit"
-        }
-      ]
-    },
-    "navigate_edit": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "edit_btn",
-          "prop": "click",
-          "raw": "navigate_edit"
-        }
-      ]
-    },
-    "toggle_enabled": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "toggle_btn",
-          "prop": "click",
-          "raw": "toggle_enabled"
-        }
-      ]
-    },
-    "action_destroy": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "delete_btn",
-          "prop": "click",
-          "raw": "action_destroy"
         }
       ]
     }

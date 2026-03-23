@@ -14,20 +14,6 @@
         "click"
       ],
       "params": {}
-    },
-    "navigate_detail": {
-      "name": "navigate_detail",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
-    },
-    "action_destroy": {
-      "name": "action_destroy",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
     }
   },
   "notes": []

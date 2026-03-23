@@ -1,0 +1,173 @@
+{
+  "backend": {
+    "api_map": {
+      "activate": "TravelExt.TravelPolicy.activate",
+      "create": "TravelExt.TravelPolicy.create",
+      "deactivate": "TravelExt.TravelPolicy.deactivate",
+      "get": "TravelExt.TravelPolicy.get",
+      "update": "TravelExt.TravelPolicy.update"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "approval_mode: approvalMode cabin_class_limit: cabinClassLimit city_tier: cityTier employee_level: employeeLevel enterprise_id: enterpriseId exceed_strategy: exceedStrategy hotel_star_limit: hotelStarLimit id is_active: isActive max_amount: maxAmount personal_pay_ratio: personalPayRatio policy_name: policyName product_type: productType season"
+    },
+    "params": {
+      "accept": [
+        "id"
+      ]
+    }
+  },
+  "children": [],
+  "domain": "TravelExt",
+  "e2e": {
+    "playwright": {
+      "auto": true,
+      "base_path": "/travel_ext/travel_policy/:id",
+      "cases": [
+        {
+          "covers": [],
+          "name": "页面加载 + 结构可见",
+          "steps": [
+            {
+              "action": "expect_visible",
+              "selector": "[data-page='travel_policy_detail']"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "toggle_edit"
+          ],
+          "name": "编辑模式切换",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "[data-action='toggle_edit']"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "form, [data-mode='edit']"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "form_submit"
+          ],
+          "name": "表单提交",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "[data-action='form_submit'], button[type='submit']"
+            },
+            {
+              "action": "expect_text_contains",
+              "selector": "#flash-group, [data-flash], [role='alert']",
+              "value": "成功"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "action_activate"
+          ],
+          "name": "动作：activate",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "[data-action='action_activate']"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "[data-action='action_activate']"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "action_deactivate"
+          ],
+          "name": "动作：deactivate",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "[data-action='action_deactivate']"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "[data-action='action_deactivate']"
+            }
+          ]
+        }
+      ],
+      "dto_smoke": []
+    }
+  },
+  "entity": "TravelPolicy",
+  "page_id": "travel_policy_detail",
+  "page_type": "object_page",
+  "runtime_monitoring": null,
+  "schema_version": "1.0",
+  "state_transitions": [
+    {
+      "description": "切换编辑模式",
+      "from": "*",
+      "name": "toggle_edit",
+      "to": "*",
+      "trigger": "user_action"
+    },
+    {
+      "description": "取消编辑",
+      "from": "*",
+      "name": "cancel_edit",
+      "to": "*",
+      "trigger": "user_action"
+    },
+    {
+      "description": "表单字段变更",
+      "from": "*",
+      "name": "form_change",
+      "to": "*",
+      "trigger": "user_input"
+    },
+    {
+      "description": "提交表单",
+      "from": "editing",
+      "name": "form_submit",
+      "to": "loading",
+      "trigger": "user_action"
+    },
+    {
+      "description": "activate",
+      "from": "*",
+      "name": "action_activate",
+      "to": "loading",
+      "trigger": "user_action"
+    },
+    {
+      "description": "deactivate",
+      "from": "*",
+      "name": "action_deactivate",
+      "to": "loading",
+      "trigger": "user_action"
+    }
+  ],
+  "status_keys": [
+    "record",
+    "editing",
+    "form",
+    "loading"
+  ],
+  "ui": {
+    "sections": [],
+    "template": {
+      "detail": "object_page"
+    }
+  },
+  "version": 1
+}

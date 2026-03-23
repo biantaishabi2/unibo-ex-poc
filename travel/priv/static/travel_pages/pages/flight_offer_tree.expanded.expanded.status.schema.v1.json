@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "defaults": {
+    "page_title": "数据列表"
+  },
+  "keys": [
+    "page_title"
+  ],
+  "required": [
+    "page_title"
+  ],
+  "urlParams": {},
+  "notes": []
+}

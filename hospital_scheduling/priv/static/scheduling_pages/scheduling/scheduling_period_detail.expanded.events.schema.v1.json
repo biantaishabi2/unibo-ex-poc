@@ -15,6 +15,13 @@
       ],
       "params": {}
     },
+    "action_mark_generated": {
+      "name": "action_mark_generated",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
     "action_publish": {
       "name": "action_publish",
       "triggers": [
@@ -22,22 +29,30 @@
       ],
       "params": {}
     },
-    "navigate_requirements": {
-      "name": "navigate_requirements",
+    "action_destroy": {
+      "name": "action_destroy",
       "triggers": [
         "click"
       ],
       "params": {}
     },
-    "navigate_constraints": {
-      "name": "navigate_constraints",
+    "form_submit": {
+      "name": "form_submit",
       "triggers": [
-        "click"
+        "click",
+        "submit"
       ],
       "params": {}
     },
-    "navigate_calendar": {
-      "name": "navigate_calendar",
+    "form_change": {
+      "name": "form_change",
+      "triggers": [
+        "change"
+      ],
+      "params": {}
+    },
+    "cancel_edit": {
+      "name": "cancel_edit",
       "triggers": [
         "click"
       ],

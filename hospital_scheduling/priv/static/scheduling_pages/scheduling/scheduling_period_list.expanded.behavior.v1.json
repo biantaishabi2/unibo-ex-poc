@@ -2,6 +2,23 @@
   "backend": {
     "api_map": {
       "list": "Scheduling.SchedulingPeriod.list"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "end_date: endDate generation_mode: generationMode id notes start_date: startDate state title"
+    },
+    "params": {
+      "accept": [
+        "start_date",
+        "end_date",
+        "state",
+        "generation_mode"
+      ]
     }
   },
   "domain": "Scheduling",

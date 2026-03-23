@@ -23,7 +23,7 @@
           班次结束时间,如 16:00
         </.table_head>
         <.table_head id="th_duration_hours">
-          时长（小时）,跨午夜时 end < start
+          时长（小时）,跨午夜时 end &lt; start
         </.table_head>
         <.table_head id="th_is_night">
           是否算夜班（影响夜班公平性约束）
@@ -37,41 +37,49 @@
         <.table_head id="th_enabled">
           是否启用
         </.table_head>
+        <.table_head id="shift_type_th_actions">
+          操作
+        </.table_head>
       </.table_row>
     </.table_header>
     <.table_body id="shift_type_table_body">
-      <%= for row <- @rows do %>
+      <%= for row <- (@rows || []) do %>
         <.table_row>
           <.table_cell>
-            <%= row.code %>
+            <%= get_in(row, [:code]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.name %>
+            <%= get_in(row, [:name]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.start_time %>
+            <%= get_in(row, [:start_time]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.end_time %>
+            <%= get_in(row, [:end_time]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.duration_hours %>
-          </.table_cell>
-          <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= row.is_night %>
-            </.badge>
-          </.table_cell>
-          <.table_cell>
-            <%= row.color %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.sort_order %>
+            <%= get_in(row, [:duration_hours]) || "" %>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.enabled %>
+              <%= get_in(row, [:is_night]) || "" %>
             </.badge>
+          </.table_cell>
+          <.table_cell>
+            <%= get_in(row, [:color]) || "" %>
+          </.table_cell>
+          <.table_cell>
+            <%= get_in(row, [:sort_order]) || "" %>
+          </.table_cell>
+          <.table_cell>
+            <.badge variant="default" size="sm">
+              <%= get_in(row, [:enabled]) || "" %>
+            </.badge>
+          </.table_cell>
+          <.table_cell>
+            <.link patch={"/pages/scheduling/shift_type/#{get_in(row, [:id])}"} id="shift_type_view_btn" variant="link" size="sm">
+              查看
+            </.link>
           </.table_cell>
         </.table_row>
       <% end %>

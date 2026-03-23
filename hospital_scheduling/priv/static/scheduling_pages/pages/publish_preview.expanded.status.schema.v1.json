@@ -1,0 +1,262 @@
+{
+  "version": 1,
+  "defaults": {
+    "period": {
+      "title": ""
+    },
+    "version": {
+      "version_no": "",
+      "origin_type": ""
+    },
+    "hard_violation_count": "",
+    "warning_count": "",
+    "change_count": "",
+    "affected_employee_count": "",
+    "coverage_rate": "",
+    "has_hard_violations": "",
+    "has_warnings": true,
+    "no_changes": true,
+    "changes": [
+      {
+        "employee": {
+          "name": "employee_1"
+        },
+        "date": "",
+        "old_shift_type": "",
+        "new_shift_type": "",
+        "reason": ""
+      },
+      {
+        "employee": {
+          "name": "employee_2"
+        },
+        "date": "",
+        "old_shift_type": "",
+        "new_shift_type": "",
+        "reason": ""
+      },
+      {
+        "employee": {
+          "name": "employee_3"
+        },
+        "date": "",
+        "old_shift_type": "",
+        "new_shift_type": "",
+        "reason": ""
+      }
+    ],
+    "record": {
+      "base_version": ""
+    }
+  },
+  "keys": [
+    "affected_employee_count",
+    "change_count",
+    "changes",
+    "changes[]",
+    "changes[].date",
+    "changes[].employee",
+    "changes[].employee.name",
+    "changes[].new_shift_type",
+    "changes[].old_shift_type",
+    "changes[].reason",
+    "coverage_rate",
+    "hard_violation_count",
+    "has_hard_violations",
+    "has_warnings",
+    "no_changes",
+    "period",
+    "period.title",
+    "record",
+    "record.base_version",
+    "version",
+    "version.origin_type",
+    "version.version_no",
+    "warning_count"
+  ],
+  "required": [
+    "affected_employee_count",
+    "change_count",
+    "changes",
+    "coverage_rate",
+    "hard_violation_count",
+    "has_hard_violations",
+    "has_warnings",
+    "no_changes",
+    "period",
+    "record",
+    "version",
+    "warning_count"
+  ],
+  "urlParams": {},
+  "notes": [],
+  "layer2": {
+    "backend": {
+      "api_map": {
+        "__load__": "Scheduling.SchedulingPeriod.get",
+        "action_publish": "Scheduling.ScheduleVersion.publish_version",
+        "get": "Scheduling.SchedulingPeriod.get",
+        "toggle_diff_mode": "Scheduling.ScheduleVersion.get"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {
+          "affected_employee_count": {
+            "value": 0
+          },
+          "change_count": {
+            "value": 0
+          },
+          "changes": {
+            "value": []
+          },
+          "coverage_rate": {
+            "value": 0
+          },
+          "hard_violation_count": {
+            "from": "record.last_solver_run.hard_violation_count"
+          },
+          "has_hard_violations": {
+            "from": "record.last_solver_run.hard_violation_count",
+            "transform": "positive_count"
+          },
+          "has_warnings": {
+            "from": "record.last_solver_run.warning_count",
+            "transform": "positive_count"
+          },
+          "period": "record",
+          "version": "record.current_version",
+          "warning_count": {
+            "from": "record.last_solver_run.warning_count"
+          }
+        },
+        "selection": "id title current_version: currentVersion { id version_no: versionNo origin_type: originType constraint_violations: constraintViolations { severity rule_code: ruleCode message } } last_solver_run: lastSolverRun { hard_violation_count: hardViolationCount warning_count: warningCount }"
+      },
+      "params": {
+        "accept": [
+          "id",
+          "base_version"
+        ]
+      }
+    },
+    "domain": "Scheduling",
+    "e2e": {
+      "playwright": {
+        "auto": true,
+        "base_path": "/scheduling/publish_preview?id=:id",
+        "cases": [
+          {
+            "covers": [],
+            "name": "页面加载 + 差异表可见",
+            "steps": [
+              {
+                "action": "expect_visible",
+                "selector": "#diff_table"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "#version_badge"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "#coverage_value"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "toggle_diff_mode"
+            ],
+            "name": "切换差异模式",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "#toggle_diff_btn"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "#diff_table"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_publish"
+            ],
+            "name": "发布（无硬违规时可点击）",
+            "steps": [
+              {
+                "action": "expect_visible",
+                "selector": "#publish_btn"
+              },
+              {
+                "action": "click",
+                "selector": "#publish_btn"
+              },
+              {
+                "action": "expect_text_contains",
+                "selector": "#flash-group, [data-flash], [role='alert']",
+                "value": "发布"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "navigate_back"
+            ],
+            "name": "返回上一页",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "#back_btn, #cancel_btn"
+              }
+            ]
+          }
+        ],
+        "dto_smoke": []
+      }
+    },
+    "entity": "ScheduleVersion",
+    "page_id": "publish_preview",
+    "page_type": "composition",
+    "state_transitions": [
+      {
+        "description": "切换差异视图模式",
+        "from": "*",
+        "name": "toggle_diff_mode",
+        "to": "*",
+        "trigger": "user_action"
+      },
+      {
+        "description": "发布当前版本",
+        "from": "*",
+        "name": "action_publish",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "返回上一页",
+        "from": "*",
+        "name": "navigate_back",
+        "to": "*",
+        "trigger": "user_action"
+      }
+    ],
+    "status_keys": [
+      "period",
+      "version",
+      "change_count",
+      "affected_employee_count",
+      "coverage_rate",
+      "changes",
+      "no_changes",
+      "has_hard_violations",
+      "warning_count"
+    ],
+    "version": 1
+  }
+}

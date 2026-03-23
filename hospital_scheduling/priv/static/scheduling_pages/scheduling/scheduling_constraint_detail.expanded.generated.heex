@@ -9,7 +9,7 @@
       <.breadcrumb_separator id="scheduling_constraint_bc_sep" />
       <.breadcrumb_item id="scheduling_constraint_bc_current_item">
         <.breadcrumb_page id="scheduling_constraint_bc_current">
-          <%= @record.name %>
+          <%= get_in(@record, [:name]) || "详情" %>
         </.breadcrumb_page>
       </.breadcrumb_item>
     </.breadcrumb_list>
@@ -17,7 +17,7 @@
   <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="scheduling_constraint_detail_header">
     <.flex gap={3} align="center" direction="row" id="scheduling_constraint_title_group">
       <.text variant="title" id="scheduling_constraint_detail_title">
-        <%= @record.name %>
+        <%= get_in(@record, [:name]) || "" %>
       </.text>
     </.flex>
     <.flex gap={2} direction="row" id="scheduling_constraint_actions">
@@ -43,7 +43,7 @@
               规则名称
             </.text>
             <.text id="value_name">
-              <%= @record.name %>
+              <%= get_in(@record, [:name]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_constraint_type">
@@ -51,7 +51,7 @@
               硬约束或软约束
             </.text>
             <.badge variant="default" size="sm" id="value_constraint_type">
-              <%= @record.constraint_type %>
+              <%= get_in(@record, [:constraint_type]) || "" %>
             </.badge>
           </.flex>
           <.flex direction="row" id="field_category">
@@ -59,7 +59,7 @@
               规则类别
             </.text>
             <.badge variant="default" size="sm" id="value_category">
-              <%= @record.category %>
+              <%= get_in(@record, [:category]) || "" %>
             </.badge>
           </.flex>
           <.flex direction="row" id="field_params">
@@ -67,7 +67,7 @@
               规则参数（shape 按 category 不同）
             </.text>
             <.text id="value_params">
-              <%= @record.params %>
+              <%= get_in(@record, [:params]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_weight">
@@ -75,7 +75,7 @@
               软约束权重（硬约束忽略）
             </.text>
             <.text id="value_weight">
-              <%= @record.weight %>
+              <%= get_in(@record, [:weight]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_enabled">
@@ -83,7 +83,7 @@
               是否启用
             </.text>
             <.badge variant="default" size="sm" id="value_enabled">
-              <%= @record.enabled %>
+              <%= get_in(@record, [:enabled]) || "" %>
             </.badge>
           </.flex>
           <.flex direction="row" id="field_notes">
@@ -91,24 +91,24 @@
               备注
             </.text>
             <.text id="value_notes">
-              <%= @record.notes %>
+              <%= get_in(@record, [:notes]) || "" %>
             </.text>
           </.flex>
         </.grid>
       <% else %>
         <.form phx-submit="form_submit" phx-change="form_change" id="scheduling_constraint_edit_form">
           <.grid columns={2} gap={4} id="scheduling_constraint_form_grid">
-            <.input name="name" label="规则名称" placeholder="请输入规则名称" required="true" size="md" id="form_name" />
-            <.select name="constraint_type" label="硬约束或软约束" required="true" size="md" id="form_constraint_type">
+            <.input name="name" label="规则名称" placeholder="请输入规则名称" required="true" size="md" id="form_name" value={@record.name} />
+            <.select name="constraint_type" label="硬约束或软约束" required="true" size="md" id="form_constraint_type" value={@record.constraint_type}>
 
             </.select>
-            <.select name="category" label="规则类别" required="true" size="md" id="form_category">
+            <.select name="category" label="规则类别" required="true" size="md" id="form_category" value={@record.category}>
 
             </.select>
-            <.input name="params" label="规则参数（shape 按 category 不同）" placeholder="请输入规则参数（shape 按 category 不同）" required="true" size="md" id="form_params" />
-            <.input name="weight" label="软约束权重（硬约束忽略）" placeholder="请输入软约束权重（硬约束忽略）" size="md" id="form_weight" />
-            <.switch name="enabled" label="是否启用" size="md" id="form_enabled" />
-            <.textarea name="notes" label="备注" placeholder="请输入备注" id="form_notes" />
+            <.input name="params" label="规则参数（shape 按 category 不同）" placeholder="请输入规则参数（shape 按 category 不同）" required="true" size="md" id="form_params" value={@record.params} />
+            <.input name="weight" label="软约束权重（硬约束忽略）" placeholder="请输入软约束权重（硬约束忽略）" size="md" id="form_weight" value={@record.weight} />
+            <.switch name="enabled" label="是否启用" size="md" id="form_enabled" value={@record.enabled} />
+            <.textarea name="notes" label="备注" placeholder="请输入备注" id="form_notes" value={@record.notes} />
           </.grid>
           <.flex justify="end" gap={2} direction="row" id="scheduling_constraint_form_actions">
             <.button variant="secondary" phx-click="cancel_edit" size="md" id="scheduling_constraint_cancel_btn">

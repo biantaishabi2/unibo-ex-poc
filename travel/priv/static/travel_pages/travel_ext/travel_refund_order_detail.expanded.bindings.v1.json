@@ -1,0 +1,169 @@
+{
+  "version": 1,
+  "vars": {
+    "record.refund_reason": {
+      "uses": [
+        {
+          "node_type": "BreadcrumbPage",
+          "node_id": "travel_refund_order_bc_current",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.refund_reason|详情}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "travel_refund_order_detail_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.refund_reason|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "value_refund_reason",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.refund_reason|}}"
+        }
+      ]
+    },
+    "record.status": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "travel_refund_order_status_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.status|}}"
+        },
+        {
+          "node_type": "Badge",
+          "node_id": "value_status",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.status|}}"
+        }
+      ]
+    },
+    "record.refund_fee": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_refund_fee",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.refund_fee|}}"
+        }
+      ]
+    },
+    "record.refund_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_refund_amount",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.refund_amount|}}"
+        }
+      ]
+    },
+    "record.approval_mode": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_approval_mode",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.approval_mode|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_refund_order_edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_approve": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_refund_order_action_approve",
+          "prop": "click",
+          "raw": "action_approve"
+        }
+      ]
+    },
+    "action_reject": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_refund_order_action_reject",
+          "prop": "click",
+          "raw": "action_reject"
+        }
+      ]
+    },
+    "action_refund": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_refund_order_action_refund",
+          "prop": "click",
+          "raw": "action_refund"
+        }
+      ]
+    },
+    "action_refund_direct": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_refund_order_action_refund_direct",
+          "prop": "click",
+          "raw": "action_refund_direct"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "travel_refund_order_edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "travel_refund_order_save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "travel_refund_order_edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_refund_order_cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "editing",
+    "record",
+    "record.approval_mode",
+    "record.change_fee",
+    "record.change_reason",
+    "record.price_difference",
+    "record.status"
+  ],
+  "requiredRoots": [
+    "editing",
+    "record"
+  ],
+  "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "change_reason": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "price_difference": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "change_fee": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "approval_mode": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

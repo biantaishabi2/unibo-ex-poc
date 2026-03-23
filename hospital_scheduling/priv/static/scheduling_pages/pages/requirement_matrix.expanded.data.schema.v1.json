@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "period.end_date",
+    "period.start_date",
+    "period.state",
+    "period.title",
+    "req.min_headcount",
+    "req.target_headcount",
+    "shift.name",
+    "shift.requirements",
+    "shift_types"
+  ],
+  "requiredRoots": [
+    "period",
+    "req",
+    "shift",
+    "shift_types"
+  ],
+  "schema": {
+    "period": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": false,
+          "example": "需求矩阵"
+        },
+        "state": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "start_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "end_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "shift_types": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "required": false,
+            "example": "shift_type_1"
+          },
+          "requirements": {
+            "type": "array",
+            "required": false,
+            "items": {
+              "type": "object",
+              "required": false,
+              "properties": {
+                "min_headcount": {
+                  "type": "string",
+                  "required": false,
+                  "example": ""
+                },
+                "target_headcount": {
+                  "type": "string",
+                  "required": false,
+                  "example": ""
+                }
+              }
+            },
+            "exampleCount": 2
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "shift": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "name": {
+          "type": "unknown",
+          "required": true
+        },
+        "requirements": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "req": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "min_headcount": {
+          "type": "unknown",
+          "required": true
+        },
+        "target_headcount": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    }
+  },
+  "notes": []
+}

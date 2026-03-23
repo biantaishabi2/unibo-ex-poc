@@ -1,258 +1,461 @@
-<.page title="排班周期详情" id="scheduling_period_detail">
-  <.section layout="none" id="breadcrumb_section">
-    <.breadcrumb id="period_breadcrumb">
-      <.breadcrumb_list id="bc_list">
-        <.breadcrumb_item id="bc_list_item">
-          <.breadcrumb_link id="bc_link">
-            排班周期管理
-          </.breadcrumb_link>
-        </.breadcrumb_item>
-        <.breadcrumb_separator id="bc_sep" />
-        <.breadcrumb_item id="bc_current_item">
-          <.breadcrumb_page id="bc_current">
-            <%= @record.title %>
-          </.breadcrumb_page>
-        </.breadcrumb_item>
-      </.breadcrumb_list>
-    </.breadcrumb>
-  </.section>
-  <.section layout="none" id="detail_header">
-    <.flex justify="between" align="center" direction="row" id="header_bar">
-      <.flex gap={3} align="center" direction="row" id="title_group">
-        <.text variant="title" id="detail_title">
-          <%= @record.title %>
-        </.text>
-        <.badge variant="default" size="sm" id="state_badge">
-          <%= @record.state %>
-        </.badge>
-        <.badge variant="secondary" size="sm" id="mode_badge">
-          <%= @record.generation_mode %>
-        </.badge>
-      </.flex>
-      <.flex gap={2} direction="row" id="actions_group">
-        <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
-          编辑
+<.page title="SchedulingPeriod 详情" id="scheduling_period_detail">
+  <.breadcrumb id="scheduling_period_breadcrumb">
+    <.breadcrumb_list id="scheduling_period_bc_list">
+      <.breadcrumb_item id="scheduling_period_bc_list_item">
+        <.breadcrumb_link id="scheduling_period_bc_link">
+          SchedulingPeriod 列表
+        </.breadcrumb_link>
+      </.breadcrumb_item>
+      <.breadcrumb_separator id="scheduling_period_bc_sep" />
+      <.breadcrumb_item id="scheduling_period_bc_current_item">
+        <.breadcrumb_page id="scheduling_period_bc_current">
+          <%= get_in(@record, [:title]) || "详情" %>
+        </.breadcrumb_page>
+      </.breadcrumb_item>
+    </.breadcrumb_list>
+  </.breadcrumb>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="scheduling_period_detail_header">
+    <.flex gap={3} align="center" direction="row" id="scheduling_period_title_group">
+      <.text variant="title" id="scheduling_period_detail_title">
+        <%= get_in(@record, [:title]) || "" %>
+      </.text>
+      <.badge variant="default" size="sm" id="scheduling_period_status_badge">
+        <%= get_in(@record, [:state]) || "" %>
+      </.badge>
+    </.flex>
+    <.flex gap={2} direction="row" id="scheduling_period_actions">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="scheduling_period_edit_btn">
+        编辑
+      </.button>
+      <%= if @record.state == "draft" do %>
+        <.button variant="secondary" phx-click="action_start_generating" size="md" id="scheduling_period_action_start_generating">
+          开始自动生成排班
         </.button>
-        <.button variant="primary" phx-click="action_start_generating" size="md" id="generate_btn">
-          开始自动排班
+      <% end %>
+      <%= if @record.state == "generating" do %>
+        <.button variant="secondary" phx-click="action_mark_generated" size="md" id="scheduling_period_action_mark_generated">
+          求解完成,标记为已生成
         </.button>
-        <.button variant="primary" phx-click="action_publish" size="md" id="publish_btn">
-          发布
+      <% end %>
+      <%= if @record.state == "adjusted" || @record.state == "generated" do %>
+        <.button variant="secondary" phx-click="action_publish" size="md" id="scheduling_period_action_publish">
+          发布排班（需无 error 级违反）
         </.button>
-      </.flex>
+      <% end %>
+      <.button variant="danger" phx-click="action_destroy" size="md" id="scheduling_period_delete_btn">
+        删除
+      </.button>
     </.flex>
   </.section>
-  <.section layout="none" id="info_section">
-    <.grid columns={4} gap={3} id="info_cards">
-      <.card variant="default" id="dept_card">
-        <.card_content id="dept_content">
-          <.stack gap={0} direction="column" id="dept_stat">
-            <.text variant="caption" color="muted" id="dept_label">
-              科室
+  <.card variant="default" id="scheduling_period_info_card">
+    <.card_header id="scheduling_period_info_header">
+      <.card_title id="scheduling_period_info_title">
+        基本信息
+      </.card_title>
+    </.card_header>
+    <.card_content id="scheduling_period_info_content">
+      <%= if !(@editing && @editing != []) do %>
+        <.grid columns={2} gap={4} id="scheduling_period_info_grid">
+          <.flex direction="row" id="field_start_date">
+            <.text variant="muted" id="label_start_date">
+              周期开始日期（本地业务日）
             </.text>
-            <.text variant="h4" weight="bold" id="dept_value">
-              <%= @record.department.name %>
+            <.text id="value_start_date">
+              <%= get_in(@record, [:start_date]) || "" %>
             </.text>
-          </.stack>
-        </.card_content>
-      </.card>
-      <.card variant="default" id="date_card">
-        <.card_content id="date_content">
-          <.stack gap={0} direction="column" id="date_stat">
-            <.text variant="caption" color="muted" id="date_label">
-              日期范围
+          </.flex>
+          <.flex direction="row" id="field_end_date">
+            <.text variant="muted" id="label_end_date">
+              周期结束日期（本地业务日）
             </.text>
-            <.text variant="h4" weight="bold" id="date_value">
-              <%= @record.start_date %> ~ <%= @record.end_date %>
+            <.text id="value_end_date">
+              <%= get_in(@record, [:end_date]) || "" %>
             </.text>
-          </.stack>
-        </.card_content>
-      </.card>
-      <.card variant="default" id="version_card">
-        <.card_content id="version_content">
-          <.stack gap={0} direction="column" id="version_stat">
-            <.text variant="caption" color="muted" id="version_label">
-              当前版本
+          </.flex>
+          <.flex direction="row" id="field_state">
+            <.text variant="muted" id="label_state">
+              排班周期状态
             </.text>
-            <.text variant="h4" weight="bold" id="version_value">
-              v<%= @record.current_version.version_no %>
-            </.text>
-          </.stack>
-        </.card_content>
-      </.card>
-      <.card variant="default" id="run_card">
-        <.card_content id="run_content">
-          <.stack gap={0} direction="column" id="run_stat">
-            <.text variant="caption" color="muted" id="run_label">
-              最近求解
-            </.text>
-            <.badge variant="default" size="sm" id="run_status_badge">
-              <%= @record.last_solver_run.status %>
+            <.badge variant="default" size="sm" id="value_state">
+              <%= get_in(@record, [:state]) || "" %>
             </.badge>
-          </.stack>
-        </.card_content>
-      </.card>
-    </.grid>
-  </.section>
-  <.section layout="none" id="nav_section">
-    <.grid columns={3} gap={3} id="nav_grid">
-      <.card variant="default" id="req_nav_card">
-        <.card_header id="req_nav_header">
-          <.card_title id="req_nav_title">
-            需求矩阵
-          </.card_title>
-        </.card_header>
-        <.card_content id="req_nav_content">
-          <.text variant="muted" id="req_nav_desc">
-            编辑日期?班次的人员需求
-          </.text>
-          <.button variant="outline" phx-click="navigate_requirements" size="md" id="req_nav_btn">
-            进入需求矩阵
-          </.button>
-        </.card_content>
-      </.card>
-      <.card variant="default" id="constraint_nav_card">
-        <.card_header id="constraint_nav_header">
-          <.card_title id="constraint_nav_title">
-            约束配置
-          </.card_title>
-        </.card_header>
-        <.card_content id="constraint_nav_content">
-          <.text variant="muted" id="constraint_nav_desc">
-            管理排班规则和权重
-          </.text>
-          <.button variant="outline" phx-click="navigate_constraints" size="md" id="constraint_nav_btn">
-            进入约束配置
-          </.button>
-        </.card_content>
-      </.card>
-      <.card variant="default" id="calendar_nav_card">
-        <.card_header id="calendar_nav_header">
-          <.card_title id="calendar_nav_title">
-            日历调班
-          </.card_title>
-        </.card_header>
-        <.card_content id="calendar_nav_content">
-          <.text variant="muted" id="calendar_nav_desc">
-            查看和调整排班结果
-          </.text>
-          <.button variant="outline" phx-click="navigate_calendar" size="md" id="calendar_nav_btn">
-            进入日历调班
-          </.button>
-        </.card_content>
-      </.card>
-    </.grid>
-  </.section>
-  <.section layout="none" id="versions_section">
-    <.card variant="default" id="versions_card">
-      <.card_header id="versions_header">
-        <.card_title id="versions_title">
-          版本历史
-        </.card_title>
-      </.card_header>
-      <.card_content id="versions_content">
-        <.table id="versions_table">
-          <.table_header id="ver_header">
-            <.table_row id="ver_header_row">
-              <.table_head id="th_ver_no">
-                版本号
-              </.table_head>
-              <.table_head id="th_ver_status">
-                状态
-              </.table_head>
-              <.table_head id="th_ver_origin">
-                来源
-              </.table_head>
-              <.table_head id="th_ver_summary">
-                说明
-              </.table_head>
-              <.table_head id="th_ver_created">
-                创建时间
-              </.table_head>
+          </.flex>
+          <.flex direction="row" id="field_title">
+            <.text variant="muted" id="label_title">
+              例如'ICU 2026-04 月排班'
+            </.text>
+            <.text id="value_title">
+              <%= get_in(@record, [:title]) || "" %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_generation_mode">
+            <.text variant="muted" id="label_generation_mode">
+              排班生成方式
+            </.text>
+            <.badge variant="default" size="sm" id="value_generation_mode">
+              <%= get_in(@record, [:generation_mode]) || "" %>
+            </.badge>
+          </.flex>
+          <.flex direction="row" id="field_notes">
+            <.text variant="muted" id="label_notes">
+              备注
+            </.text>
+            <.text id="value_notes">
+              <%= get_in(@record, [:notes]) || "" %>
+            </.text>
+          </.flex>
+        </.grid>
+      <% else %>
+        <.form phx-submit="form_submit" phx-change="form_change" id="scheduling_period_edit_form">
+          <.grid columns={2} gap={4} id="scheduling_period_form_grid">
+            <.input name="start_date" label="周期开始日期（本地业务日）" placeholder="请输入周期开始日期（本地业务日）" required="true" size="md" id="form_start_date" value={@record.start_date} />
+            <.input name="end_date" label="周期结束日期（本地业务日）" placeholder="请输入周期结束日期（本地业务日）" required="true" size="md" id="form_end_date" value={@record.end_date} />
+            <.select name="state" label="排班周期状态" required="true" size="md" id="form_state" value={@record.state}>
+
+            </.select>
+            <.input name="title" label="例如'ICU 2026-04 月排班'" placeholder="请输入例如'ICU 2026-04 月排班'" size="md" id="form_title" value={@record.title} />
+            <.select name="generation_mode" label="排班生成方式" required="true" size="md" id="form_generation_mode" value={@record.generation_mode}>
+
+            </.select>
+            <.textarea name="notes" label="备注" placeholder="请输入备注" id="form_notes" value={@record.notes} />
+          </.grid>
+          <.flex justify="end" gap={2} direction="row" id="scheduling_period_form_actions">
+            <.button variant="secondary" phx-click="cancel_edit" size="md" id="scheduling_period_cancel_btn">
+              取消
+            </.button>
+            <.button variant="primary" phx-click="form_submit" size="md" id="scheduling_period_save_btn">
+              保存
+            </.button>
+          </.flex>
+        </.form>
+      <% end %>
+    </.card_content>
+  </.card>
+  <.card variant="default" id="scheduling_period_coverage_requirement_card">
+    <.card_header id="coverage_requirement_card_header">
+      <.card_title id="coverage_requirement_card_title">
+        定义某天某班次某岗位需要多少人
+      </.card_title>
+    </.card_header>
+    <.card_content id="coverage_requirement_card_content">
+      <.table id="scheduling_period_coverage_requirement_table">
+        <.table_header id="coverage_requirement_table_header">
+          <.table_row id="coverage_requirement_header_row">
+            <.table_head id="coverage_requirement_th_requirement_date">
+              需求日期（本地业务日）
+            </.table_head>
+            <.table_head id="coverage_requirement_th_role_code">
+              岗位编码,如 duty_nurse
+            </.table_head>
+            <.table_head id="coverage_requirement_th_role_name">
+              岗位名称
+            </.table_head>
+            <.table_head id="coverage_requirement_th_required_skill_tags">
+              所需技能标签,如 ['ICU']
+            </.table_head>
+            <.table_head id="coverage_requirement_th_min_headcount">
+              最低人数
+            </.table_head>
+            <.table_head id="coverage_requirement_th_target_headcount">
+              目标人数,不填时等于 min_headcount
+            </.table_head>
+            <.table_head id="coverage_requirement_th_required_lead_count">
+              需要带班人数
+            </.table_head>
+            <.table_head id="coverage_requirement_th_priority">
+              优先级,越小越高
+            </.table_head>
+            <.table_head id="coverage_requirement_th_notes">
+              备注
+            </.table_head>
+          </.table_row>
+        </.table_header>
+        <.table_body id="coverage_requirement_table_body">
+          <%= for item <- (get_in(@record, [:coverage_requirements]) || []) do %>
+            <.table_row>
+              <.table_cell>
+                <%= get_in(item, [:requirement_date]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:role_code]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:role_name]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:required_skill_tags]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:min_headcount]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:target_headcount]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:required_lead_count]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:priority]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:notes]) || "" %>
+              </.table_cell>
             </.table_row>
-          </.table_header>
-          <.table_body id="ver_body">
-            <%= for ver <- @record.schedule_versions do %>
-              <.table_row>
-                <.table_cell>
-                  v<%= ver.version_no %>
-                </.table_cell>
-                <.table_cell>
-                  <.badge variant="default" size="sm">
-                    <%= ver.status %>
-                  </.badge>
-                </.table_cell>
-                <.table_cell>
-                  <.badge variant="secondary" size="sm">
-                    <%= ver.origin_type %>
-                  </.badge>
-                </.table_cell>
-                <.table_cell>
-                  <%= ver.change_summary %>
-                </.table_cell>
-                <.table_cell>
-                  <%= ver.inserted_at %>
-                </.table_cell>
-              </.table_row>
-            <% end %>
-          </.table_body>
-        </.table>
-      </.card_content>
-    </.card>
-  </.section>
-  <.section layout="none" id="runs_section">
-    <.card variant="default" id="runs_card">
-      <.card_header id="runs_header">
-        <.card_title id="runs_title">
-          求解记录
-        </.card_title>
-      </.card_header>
-      <.card_content id="runs_content">
-        <.table id="runs_table">
-          <.table_header id="run_header">
-            <.table_row id="run_header_row">
-              <.table_head id="th_run_engine">
-                算法
-              </.table_head>
-              <.table_head id="th_run_status">
-                状态
-              </.table_head>
-              <.table_head id="th_run_score">
-                评分
-              </.table_head>
-              <.table_head id="th_run_violations">
-                违反数
-              </.table_head>
-              <.table_head id="th_run_time">
-                执行时间
-              </.table_head>
+          <% end %>
+        </.table_body>
+      </.table>
+    </.card_content>
+  </.card>
+  <.card variant="default" id="scheduling_period_schedule_version_card">
+    <.card_header id="schedule_version_card_header">
+      <.card_title id="schedule_version_card_title">
+        一个周期内的工作版本或已发布版本
+      </.card_title>
+    </.card_header>
+    <.card_content id="schedule_version_card_content">
+      <.table id="scheduling_period_schedule_version_table">
+        <.table_header id="schedule_version_table_header">
+          <.table_row id="schedule_version_header_row">
+            <.table_head id="schedule_version_th_version_no">
+              版本号
+            </.table_head>
+            <.table_head id="schedule_version_th_status">
+              版本状态
+            </.table_head>
+            <.table_head id="schedule_version_th_origin_type">
+              版本来源类型
+            </.table_head>
+            <.table_head id="schedule_version_th_created_by">
+              操作者
+            </.table_head>
+            <.table_head id="schedule_version_th_change_summary">
+              版本说明
+            </.table_head>
+          </.table_row>
+        </.table_header>
+        <.table_body id="schedule_version_table_body">
+          <%= for item <- (get_in(@record, [:schedule_versions]) || []) do %>
+            <.table_row>
+              <.table_cell>
+                <%= get_in(item, [:version_no]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <.badge variant="default" size="sm">
+                  <%= get_in(item, [:status]) || "" %>
+                </.badge>
+              </.table_cell>
+              <.table_cell>
+                <.badge variant="default" size="sm">
+                  <%= get_in(item, [:origin_type]) || "" %>
+                </.badge>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:created_by]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:change_summary]) || "" %>
+              </.table_cell>
             </.table_row>
-          </.table_header>
-          <.table_body id="run_body">
-            <%= for run <- @record.solver_runs do %>
-              <.table_row>
-                <.table_cell>
-                  <%= run.engine_type %>
-                </.table_cell>
-                <.table_cell>
-                  <.badge variant="default" size="sm">
-                    <%= run.status %>
-                  </.badge>
-                </.table_cell>
-                <.table_cell>
-                  <%= run.score %>
-                </.table_cell>
-                <.table_cell>
-                  <%= run.hard_violation_count %>
-                </.table_cell>
-                <.table_cell>
-                  <%= run.started_at %> ~ <%= run.completed_at %>
-                </.table_cell>
-              </.table_row>
-            <% end %>
-          </.table_body>
-        </.table>
-      </.card_content>
-    </.card>
-  </.section>
+          <% end %>
+        </.table_body>
+      </.table>
+    </.card_content>
+  </.card>
+  <.card variant="default" id="scheduling_period_solver_run_card">
+    <.card_header id="solver_run_card_header">
+      <.card_title id="solver_run_card_title">
+        一次求解执行记录与输入/输出快照载体
+      </.card_title>
+    </.card_header>
+    <.card_content id="solver_run_card_content">
+      <.table id="scheduling_period_solver_run_table">
+        <.table_header id="solver_run_table_header">
+          <.table_row id="solver_run_header_row">
+            <.table_head id="solver_run_th_status">
+              求解状态
+            </.table_head>
+            <.table_head id="solver_run_th_engine_type">
+              算法标识
+            </.table_head>
+            <.table_head id="solver_run_th_seed">
+              随机种子,用于复现实验
+            </.table_head>
+            <.table_head id="solver_run_th_timeout_ms">
+              超时毫秒数
+            </.table_head>
+            <.table_head id="solver_run_th_started_at">
+              求解开始时间
+            </.table_head>
+            <.table_head id="solver_run_th_completed_at">
+              求解结束时间
+            </.table_head>
+            <.table_head id="solver_run_th_score">
+              总评分
+            </.table_head>
+            <.table_head id="solver_run_th_hard_violation_count">
+              硬约束违反数
+            </.table_head>
+            <.table_head id="solver_run_th_warning_count">
+              警告数
+            </.table_head>
+            <.table_head id="solver_run_th_input_snapshot">
+              输入快照（跨域数据在 run 开始时一次性冻结）
+            </.table_head>
+            <.table_head id="solver_run_th_output_snapshot">
+              输出摘要（不重复整份 assignment 明细）
+            </.table_head>
+            <.table_head id="solver_run_th_error_message">
+              错误信息
+            </.table_head>
+          </.table_row>
+        </.table_header>
+        <.table_body id="solver_run_table_body">
+          <%= for item <- (get_in(@record, [:solver_runs]) || []) do %>
+            <.table_row>
+              <.table_cell>
+                <.badge variant="default" size="sm">
+                  <%= get_in(item, [:status]) || "" %>
+                </.badge>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:engine_type]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:seed]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:timeout_ms]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:started_at]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:completed_at]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:score]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:hard_violation_count]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:warning_count]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:input_snapshot]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:output_snapshot]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:error_message]) || "" %>
+              </.table_cell>
+            </.table_row>
+          <% end %>
+        </.table_body>
+      </.table>
+    </.card_content>
+  </.card>
+  <.card variant="default" id="scheduling_period_shift_assignment_card">
+    <.card_header id="shift_assignment_card_header">
+      <.card_title id="shift_assignment_card_title">
+        把某个覆盖需求分配给具体护士和时段
+      </.card_title>
+    </.card_header>
+    <.card_content id="shift_assignment_card_content">
+      <.table id="scheduling_period_shift_assignment_table">
+        <.table_header id="shift_assignment_table_header">
+          <.table_row id="shift_assignment_header_row">
+            <.table_head id="shift_assignment_th_starts_at">
+              开始时间（UTC）
+            </.table_head>
+            <.table_head id="shift_assignment_th_ends_at">
+              结束时间（UTC）
+            </.table_head>
+            <.table_head id="shift_assignment_th_source">
+              分配来源（copied = 从上一期复制）
+            </.table_head>
+            <.table_head id="shift_assignment_th_is_locked">
+              锁定后重排不动
+            </.table_head>
+            <.table_head id="shift_assignment_th_notes">
+              人工调班说明
+            </.table_head>
+          </.table_row>
+        </.table_header>
+        <.table_body id="shift_assignment_table_body">
+          <%= for item <- (get_in(@record, [:shift_assignments]) || []) do %>
+            <.table_row>
+              <.table_cell>
+                <%= get_in(item, [:starts_at]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:ends_at]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <.badge variant="default" size="sm">
+                  <%= get_in(item, [:source]) || "" %>
+                </.badge>
+              </.table_cell>
+              <.table_cell>
+                <.badge variant="default" size="sm">
+                  <%= get_in(item, [:is_locked]) || "" %>
+                </.badge>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:notes]) || "" %>
+              </.table_cell>
+            </.table_row>
+          <% end %>
+        </.table_body>
+      </.table>
+    </.card_content>
+  </.card>
+  <.card variant="default" id="scheduling_period_constraint_violation_card">
+    <.card_header id="constraint_violation_card_header">
+      <.card_title id="constraint_violation_card_title">
+        结构化记录约束违反（error 或 warning）
+      </.card_title>
+    </.card_header>
+    <.card_content id="constraint_violation_card_content">
+      <.table id="scheduling_period_constraint_violation_table">
+        <.table_header id="constraint_violation_table_header">
+          <.table_row id="constraint_violation_header_row">
+            <.table_head id="constraint_violation_th_rule_code">
+              规则编码,如 rest_after_night
+            </.table_head>
+            <.table_head id="constraint_violation_th_severity">
+              严重级别
+            </.table_head>
+            <.table_head id="constraint_violation_th_message">
+              面向用户的说明
+            </.table_head>
+            <.table_head id="constraint_violation_th_details_json">
+              结构化细节
+            </.table_head>
+          </.table_row>
+        </.table_header>
+        <.table_body id="constraint_violation_table_body">
+          <%= for item <- (get_in(@record, [:constraint_violations]) || []) do %>
+            <.table_row>
+              <.table_cell>
+                <%= get_in(item, [:rule_code]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <.badge variant="default" size="sm">
+                  <%= get_in(item, [:severity]) || "" %>
+                </.badge>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:message]) || "" %>
+              </.table_cell>
+              <.table_cell>
+                <%= get_in(item, [:details_json]) || "" %>
+              </.table_cell>
+            </.table_row>
+          <% end %>
+        </.table_body>
+      </.table>
+    </.card_content>
+  </.card>
 </.page>

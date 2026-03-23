@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "editing",
+    "record.actual_amount",
+    "record.approval_mode",
+    "record.check_result",
+    "record.exceed_amount",
+    "record.exceed_ratio",
+    "record.exceed_reason",
+    "record.exceed_strategy",
+    "record.personal_pay_amount",
+    "record.policy_amount"
+  ],
+  "requiredRoots": [
+    "editing",
+    "record"
+  ],
+  "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "exceed_ratio": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "check_result": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "policy_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "actual_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "exceed_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "exceed_strategy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "exceed_reason": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "personal_pay_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "approval_mode": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
+  "notes": []
+}

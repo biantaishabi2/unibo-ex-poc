@@ -1,0 +1,219 @@
+{
+  "version": 1,
+  "vars": {
+    "record.policy_name": {
+      "uses": [
+        {
+          "node_type": "BreadcrumbPage",
+          "node_id": "travel_policy_bc_current",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.policy_name|详情}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "travel_policy_detail_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.policy_name|}}"
+        },
+        {
+          "node_type": "Text",
+          "node_id": "value_policy_name",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.policy_name|}}"
+        }
+      ]
+    },
+    "record.product_type": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_product_type",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.product_type|}}"
+        }
+      ]
+    },
+    "record.employee_level": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_employee_level",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.employee_level|}}"
+        }
+      ]
+    },
+    "record.city_tier": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_city_tier",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.city_tier|}}"
+        }
+      ]
+    },
+    "record.season": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_season",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.season|}}"
+        }
+      ]
+    },
+    "record.max_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_max_amount",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.max_amount|}}"
+        }
+      ]
+    },
+    "record.cabin_class_limit": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_cabin_class_limit",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.cabin_class_limit|}}"
+        }
+      ]
+    },
+    "record.hotel_star_limit": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_hotel_star_limit",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.hotel_star_limit|}}"
+        }
+      ]
+    },
+    "record.exceed_strategy": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_exceed_strategy",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.exceed_strategy|}}"
+        }
+      ]
+    },
+    "record.approval_mode": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_approval_mode",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.approval_mode|}}"
+        }
+      ]
+    },
+    "record.personal_pay_ratio": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "value_personal_pay_ratio",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.personal_pay_ratio|}}"
+        }
+      ]
+    },
+    "record.is_active": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "value_is_active",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.is_active|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_policy_edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_activate": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_policy_action_activate",
+          "prop": "click",
+          "raw": "action_activate"
+        }
+      ]
+    },
+    "action_deactivate": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_policy_action_deactivate",
+          "prop": "click",
+          "raw": "action_deactivate"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "travel_policy_edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "travel_policy_save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "travel_policy_edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_policy_cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
+}

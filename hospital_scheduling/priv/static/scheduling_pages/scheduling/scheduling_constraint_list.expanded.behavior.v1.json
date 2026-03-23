@@ -2,6 +2,21 @@
   "backend": {
     "api_map": {
       "list": "Scheduling.SchedulingConstraint.list"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "category constraint_type: constraintType enabled id name notes params weight"
+    },
+    "params": {
+      "accept": [
+        "constraint_type",
+        "category"
+      ]
     }
   },
   "domain": "Scheduling",

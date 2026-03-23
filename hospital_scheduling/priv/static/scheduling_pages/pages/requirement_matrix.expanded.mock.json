@@ -1,0 +1,52 @@
+{
+  "period": {
+    "end_date": "",
+    "start_date": "",
+    "state": "",
+    "title": "需求矩阵"
+  },
+  "record": {
+    "role_code": ""
+  },
+  "shift_types": [
+    {
+      "name": "shift_type_1",
+      "requirements": [
+        {
+          "min_headcount": "",
+          "target_headcount": ""
+        },
+        {
+          "min_headcount": "",
+          "target_headcount": ""
+        }
+      ]
+    },
+    {
+      "name": "shift_type_2",
+      "requirements": [
+        {
+          "min_headcount": "",
+          "target_headcount": ""
+        },
+        {
+          "min_headcount": "",
+          "target_headcount": ""
+        }
+      ]
+    },
+    {
+      "name": "shift_type_3",
+      "requirements": [
+        {
+          "min_headcount": "",
+          "target_headcount": ""
+        },
+        {
+          "min_headcount": "",
+          "target_headcount": ""
+        }
+      ]
+    }
+  ]
+}
