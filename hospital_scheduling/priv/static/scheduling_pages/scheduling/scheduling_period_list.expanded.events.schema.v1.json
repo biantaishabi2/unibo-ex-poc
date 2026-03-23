@@ -28,6 +28,20 @@
         "click"
       ],
       "params": {}
+    },
+    "scheduling_period_page_prev": {
+      "name": "scheduling_period_page_prev",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "scheduling_period_page_next": {
+      "name": "scheduling_period_page_next",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
     }
   },
   "notes": []

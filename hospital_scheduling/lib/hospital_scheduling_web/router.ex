@@ -1,5 +1,6 @@
 defmodule HospitalSchedulingWeb.Router do
   use HospitalSchedulingWeb, :router
+  import HospitalSchedulingWeb.Generated.GraphqlRouter
   import HospitalSchedulingWeb.Generated.PageHostRouter
 
   pipeline :browser do
@@ -29,4 +30,5 @@ defmodule HospitalSchedulingWeb.Router do
   #   pipe_through :api
   # end
   page_host_routes()
+  graphql_routes()
 end

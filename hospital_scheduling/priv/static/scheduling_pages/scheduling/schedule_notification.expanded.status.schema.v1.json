@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "defaults": {
+    "scheduling_period": {
+      "page": "",
+      "total_pages": ""
+    },
+    "rows_empty": true,
+    "rows": [
+      {
+        "start_date": "",
+        "end_date": "",
+        "state": "",
+        "title": "",
+        "generation_mode": "",
+        "notes": ""
+      },
+      {
+        "start_date": "",
+        "end_date": "",
+        "state": "",
+        "title": "",
+        "generation_mode": "",
+        "notes": ""
+      },
+      {
+        "start_date": "",
+        "end_date": "",
+        "state": "",
+        "title": "",
+        "generation_mode": "",
+        "notes": ""
+      }
+    ]
+  },
+  "keys": [
+    "rows",
+    "rows[]",
+    "rows[].end_date",
+    "rows[].generation_mode",
+    "rows[].notes",
+    "rows[].start_date",
+    "rows[].state",
+    "rows[].title",
+    "rows_empty",
+    "scheduling_period",
+    "scheduling_period.page",
+    "scheduling_period.total_pages"
+  ],
+  "required": [
+    "rows",
+    "rows_empty",
+    "scheduling_period"
+  ],
+  "urlParams": {},
+  "notes": []
+}

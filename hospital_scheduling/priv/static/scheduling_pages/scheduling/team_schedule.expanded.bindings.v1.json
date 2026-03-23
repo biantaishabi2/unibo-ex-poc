@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "vars": {
+    "shift_assignment.starts_at": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "summary_fields_starts_at_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shift_assignment.starts_at|}}"
+        }
+      ]
+    },
+    "shift_assignment.ends_at": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "summary_fields_ends_at_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shift_assignment.ends_at|}}"
+        }
+      ]
+    },
+    "shift_assignment.source": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "summary_fields_source_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shift_assignment.source|}}"
+        }
+      ]
+    },
+    "shift_assignment.is_locked": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "summary_fields_is_locked_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shift_assignment.is_locked|}}"
+        }
+      ]
+    },
+    "shift_assignment.notes": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "summary_fields_notes_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shift_assignment.notes|}}"
+        }
+      ]
+    }
+  },
+  "events": {}
+}

@@ -1,0 +1,94 @@
+<.page title="列表" id="shift_swap_list">
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.stack direction="column" id="page_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          ShiftPreference
+        </.text>
+        <.text variant="h1" id="page_title">
+          护士个人排班偏好
+        </.text>
+      </.stack>
+      <.button variant="primary" phx-click="navigate_create" size="md" id="create_btn">
+        新建
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="view_tabs">
+    <.tabs default_value="all" id="view_selector">
+      <.tabs_list id="view_tab_list">
+        <.tabs_trigger value="all" active_value="all" id="trigger_all">
+          全部
+        </.tabs_trigger>
+      </.tabs_list>
+    </.tabs>
+  </.section>
+  <.section layout="none" id="filter_section">
+    <.card variant="default" id="filter_card">
+      <.card_content id="filter_content">
+        <.flex gap={4} align="center" direction="row" id="filter_row">
+          <.stack direction="column" id="filter_fields" />
+          <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
+            查询
+          </.button>
+        </.flex>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="table_section">
+    <.table id="data_table">
+      <.table_header id="data_header">
+        <.table_row id="header_row">
+          <.table_head id="th_preferred_shift_tags">
+            偏好班次标签
+          </.table_head>
+          <.table_head id="th_unavailable_dates">
+            不可排日期列表（本地业务日）
+          </.table_head>
+          <.table_head id="th_max_night_shifts">
+            期望夜班上限
+          </.table_head>
+          <.table_head id="th_notes">
+            补充说明
+          </.table_head>
+        </.table_row>
+      </.table_header>
+      <.table_body id="data_body">
+        <%= for row <- @rows do %>
+          <.table_row>
+            <.table_cell>
+              <%= row.preferred_shift_tags %>
+            </.table_cell>
+            <.table_cell>
+              <%= row.unavailable_dates %>
+            </.table_cell>
+            <.table_cell>
+              <%= row.max_night_shifts %>
+            </.table_cell>
+            <.table_cell>
+              <%= row.notes %>
+            </.table_cell>
+          </.table_row>
+        <% end %>
+      </.table_body>
+    </.table>
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if (@rows_empty && @rows_empty != []) do %>
+      <.empty_state description="暂无数据" id="no_data" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="footer">
+    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
+      <.button phx-click="shift_preference_page_prev" variant="primary" size="md" id="page_prev">
+        上一页
+      </.button>
+      <.text id="page_info">
+        <%= @shift_preference.page %> / <%= @shift_preference.total_pages %>
+      </.text>
+      <.button phx-click="shift_preference_page_next" variant="primary" size="md" id="page_next">
+        下一页
+      </.button>
+    </.flex>
+  </.section>
+</.page>

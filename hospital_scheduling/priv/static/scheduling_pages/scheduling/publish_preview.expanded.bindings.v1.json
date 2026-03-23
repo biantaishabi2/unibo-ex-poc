@@ -26,8 +26,8 @@
     "version.origin_type": {
       "uses": [
         {
-          "node_type": "Badge",
-          "node_id": "origin_badge",
+          "node_type": "Option",
+          "node_id": "opt_cloned_from_previous",
           "location": "prop",
           "prop": "content",
           "template": "{{version.origin_type|}}"

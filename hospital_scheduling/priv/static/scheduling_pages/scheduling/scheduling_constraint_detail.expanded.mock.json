@@ -1,12 +1,12 @@
 {
   "record": {
-    "name": "夜班后必须休息",
-    "constraint_type": "hard",
-    "category": "rest_after_night",
-    "params": {"min_rest_hours": 12},
-    "weight": 0,
-    "enabled": true,
-    "notes": "大夜班(0:00-8:00)结束后，至少休息12小时，即当天不可再排白班(8:00-16:00)"
+    "name": "",
+    "constraint_type": "",
+    "category": "",
+    "params": "",
+    "weight": "",
+    "enabled": "",
+    "notes": ""
   },
-  "editing": true
+  "editing": false
 }

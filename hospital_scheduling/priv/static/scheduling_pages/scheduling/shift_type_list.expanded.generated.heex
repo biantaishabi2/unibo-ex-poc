@@ -23,7 +23,7 @@
           班次结束时间,如 16:00
         </.table_head>
         <.table_head id="th_duration_hours">
-          时长（小时）,跨午夜时 end < start
+          时长（小时）,跨午夜时 end &lt; start
         </.table_head>
         <.table_head id="th_is_night">
           是否算夜班（影响夜班公平性约束）
@@ -36,6 +36,9 @@
         </.table_head>
         <.table_head id="th_enabled">
           是否启用
+        </.table_head>
+        <.table_head id="shift_type_th_actions">
+          操作
         </.table_head>
       </.table_row>
     </.table_header>
@@ -72,6 +75,11 @@
             <.badge variant="default" size="sm">
               <%= row.enabled %>
             </.badge>
+          </.table_cell>
+          <.table_cell>
+            <.link patch={"/pages/scheduling/shift_type/#{row.id}"} id="shift_type_view_btn" variant="link" size="sm">
+              查看
+            </.link>
           </.table_cell>
         </.table_row>
       <% end %>

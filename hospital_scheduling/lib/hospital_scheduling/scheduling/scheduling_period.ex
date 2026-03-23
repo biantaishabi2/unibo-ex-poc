@@ -161,7 +161,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
       # message: "只有草稿状态可以开始生成"
       change HospitalScheduling.Scheduling.Changes.SchedulingPeriod.StartGeneratingCall1
       change set_attribute(:state, :generating)
-      change transition_state(:generating)
+      change AshStateMachine.BuiltinChanges.transition_state(:generating)
       require_atomic? false
     end
     update :mark_generated do
@@ -170,14 +170,14 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
 求解完成，标记为已生成. doc_url: graphql://contract/scheduling/mark_generated_scheduling_scheduling_period"
       accept []
       change set_attribute(:state, :generated)
-      change transition_state(:generated)
+      change AshStateMachine.BuiltinChanges.transition_state(:generated)
       require_atomic? false
     end
     update :mark_adjusted do
       description "人工调班后标记"
       accept []
       change set_attribute(:state, :adjusted)
-      change transition_state(:adjusted)
+      change AshStateMachine.BuiltinChanges.transition_state(:adjusted)
       require_atomic? false
     end
     update :publish do
@@ -196,7 +196,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
       # message: "只有已生成或已调整状态可以发布"
       change HospitalScheduling.Scheduling.Changes.SchedulingPeriod.PublishCall1
       change set_attribute(:state, :published)
-      change transition_state(:published)
+      change AshStateMachine.BuiltinChanges.transition_state(:published)
       require_atomic? false
     end
 
@@ -276,6 +276,7 @@ defmodule HospitalScheduling.Scheduling.SchedulingPeriod do
   state_machine do
     initial_states [:draft]
     default_initial_state :draft
+    extra_states [:draft, :generating, :generated, :adjusted, :published]
     state_attribute :state
     transitions do
       transition :start_generating, from: :draft, to: :generating

@@ -1,0 +1,27 @@
+{
+  "shift_preference": {
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
+  "rows": [
+    {
+      "preferred_shift_tags": "",
+      "unavailable_dates": "",
+      "max_night_shifts": "",
+      "notes": ""
+    },
+    {
+      "preferred_shift_tags": "",
+      "unavailable_dates": "",
+      "max_night_shifts": "",
+      "notes": ""
+    },
+    {
+      "preferred_shift_tags": "",
+      "unavailable_dates": "",
+      "max_night_shifts": "",
+      "notes": ""
+    }
+  ]
+}

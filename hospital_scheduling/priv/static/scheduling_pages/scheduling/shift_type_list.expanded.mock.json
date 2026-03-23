@@ -1,39 +1,42 @@
 {
-  "page_title": "班次类型管理",
-  "rows_empty": false,
+  "page_title": "ShiftType 列表",
+  "rows_empty": true,
   "rows": [
     {
-      "code": "day",
-      "name": "白班",
-      "start_time": "08:00",
-      "end_time": "16:00",
-      "duration_hours": "8",
-      "is_night": false,
-      "color": "#4CAF50",
-      "sort_order": 1,
-      "enabled": true
+      "code": "",
+      "name": "row_1",
+      "start_time": "",
+      "end_time": "",
+      "duration_hours": "",
+      "is_night": "",
+      "color": "",
+      "sort_order": "",
+      "enabled": "",
+      "id": "row_01"
     },
     {
-      "code": "evening",
-      "name": "小夜班",
-      "start_time": "16:00",
-      "end_time": "24:00",
-      "duration_hours": "8",
-      "is_night": false,
-      "color": "#FF9800",
-      "sort_order": 2,
-      "enabled": true
+      "code": "",
+      "name": "row_2",
+      "start_time": "",
+      "end_time": "",
+      "duration_hours": "",
+      "is_night": "",
+      "color": "",
+      "sort_order": "",
+      "enabled": "",
+      "id": "row_02"
     },
     {
-      "code": "night",
-      "name": "大夜班",
-      "start_time": "00:00",
-      "end_time": "08:00",
-      "duration_hours": "8",
-      "is_night": true,
-      "color": "#9C27B0",
-      "sort_order": 3,
-      "enabled": true
+      "code": "",
+      "name": "row_3",
+      "start_time": "",
+      "end_time": "",
+      "duration_hours": "",
+      "is_night": "",
+      "color": "",
+      "sort_order": "",
+      "enabled": "",
+      "id": "row_03"
     }
   ]
 }

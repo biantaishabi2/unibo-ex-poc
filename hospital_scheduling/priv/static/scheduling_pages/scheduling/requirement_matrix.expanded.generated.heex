@@ -1,14 +1,18 @@
-<.page title="需求矩阵" id="requirement_matrix">
-  <.section layout="none" id="header">
+<.page title="排期" id="requirement_matrix">
+  <.section layout="none" id="date_nav_section">
     <.flex justify="between" align="center" direction="row" id="header_bar">
       <.stack gap={1} direction="column" id="title_group">
         <.text variant="title" id="page_title">
           <%= @period.title %>
         </.text>
         <.flex gap={2} direction="row" id="subtitle_row">
-          <.badge variant="default" size="sm" id="state_badge">
-            <%= @period.state %>
-          </.badge>
+          <.select bind="coverage_requirement.state" size="md" id="state_badge">
+            <option value="draft">draft</option>
+            <option value="generating">generating</option>
+            <option value="generated">generated</option>
+            <option value="adjusted">adjusted</option>
+            <option value="published"><%= @period.state %></option>
+          </.select>
           <.text variant="muted" id="date_range">
             <%= @period.start_date %> ~ <%= @period.end_date %>
           </.text>
@@ -19,23 +23,23 @@
       </.button>
     </.flex>
   </.section>
+  <.section layout="none" id="resource_section">
+    <.flex justify="between" align="center" direction="row" id="matrix_toolbar">
+      <.text variant="h4" weight="bold" id="matrix_title">
+        覆盖需求矩阵
+      </.text>
+      <.flex gap={2} direction="row" id="matrix_actions">
+        <.select name="role_code" label="岗位筛选" size="md" id="filter_role" value={@record.role_code}>
+
+        </.select>
+        <.button variant="secondary" phx-click="batch_fill_requirements" size="md" id="batch_fill_btn">
+          批量填充
+        </.button>
+      </.flex>
+    </.flex>
+  </.section>
   <.section layout="none" id="matrix_section">
     <.card variant="default" id="matrix_card">
-      <.card_header id="matrix_header">
-        <.flex justify="between" align="center" direction="row" id="matrix_toolbar">
-          <.text variant="h4" weight="bold" id="matrix_title">
-            覆盖需求矩阵
-          </.text>
-          <.flex gap={2} direction="row" id="matrix_actions">
-            <.select name="role_code" label="岗位筛选" size="md" id="filter_role">
-
-            </.select>
-            <.button variant="secondary" phx-click="batch_fill_requirements" size="md" id="batch_fill_btn">
-              批量填充
-            </.button>
-          </.flex>
-        </.flex>
-      </.card_header>
       <.card_content id="matrix_content">
         <.table id="req_matrix_table">
           <.table_header id="req_matrix_header">
@@ -75,7 +79,7 @@
       </.card_content>
     </.card>
   </.section>
-  <.section layout="none" id="actions_section">
+  <.section layout="none" id="summary_section">
     <.flex justify="end" gap={2} direction="row" id="bottom_actions">
       <.button variant="primary" phx-click="save_requirements" size="md" id="save_btn">
         保存修改

@@ -28,20 +28,6 @@
         "click"
       ],
       "params": {}
-    },
-    "save_draft": {
-      "name": "save_draft",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
-    },
-    "navigate_publish_preview": {
-      "name": "navigate_publish_preview",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
     }
   },
   "notes": []

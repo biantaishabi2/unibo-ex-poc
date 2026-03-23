@@ -7,6 +7,7 @@
     "row.duration_hours",
     "row.enabled",
     "row.end_time",
+    "row.id",
     "row.is_night",
     "row.name",
     "row.sort_order",
@@ -77,6 +78,11 @@
             "type": "string",
             "required": false,
             "example": ""
+          },
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "row_01"
           }
         }
       },
@@ -119,6 +125,10 @@
           "required": true
         },
         "enabled": {
+          "type": "unknown",
+          "required": true
+        },
+        "id": {
           "type": "unknown",
           "required": true
         }

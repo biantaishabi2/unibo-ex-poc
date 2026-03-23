@@ -9,13 +9,16 @@
     "row.notes",
     "row.weight",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "scheduling_constraint.page",
+    "scheduling_constraint.total_pages"
   ],
   "requiredRoots": [
     "page_title",
     "row",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "scheduling_constraint"
   ],
   "schema": {
     "page_title": {
@@ -98,6 +101,22 @@
       "type": "object",
       "required": true,
       "properties": {}
+    },
+    "scheduling_constraint": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
     }
   },
   "notes": []

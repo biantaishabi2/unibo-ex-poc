@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "events": {
+    "navigate_create": {
+      "name": "navigate_create",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "filter_submit": {
+      "name": "filter_submit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "shift_preference_page_prev": {
+      "name": "shift_preference_page_prev",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "shift_preference_page_next": {
+      "name": "shift_preference_page_next",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

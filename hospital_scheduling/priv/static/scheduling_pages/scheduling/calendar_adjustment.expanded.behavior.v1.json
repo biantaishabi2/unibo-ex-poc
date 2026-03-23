@@ -1,59 +1,191 @@
 {
-  "version": 1,
-  "page_id": "calendar_adjustment",
-  "page_type": "composition",
-  "entity": "ShiftAssignment",
-  "domain": "Scheduling",
   "backend": {
     "api_map": {
+      "__load__": "Scheduling.SchedulingPeriod.get",
+      "filter_submit": "Scheduling.ShiftAssignment.list",
+      "get": "Scheduling.SchedulingPeriod.get",
       "list": "Scheduling.ShiftAssignment.list",
-      "update": "Scheduling.ShiftAssignment.update",
       "save_draft": "Scheduling.ShiftAssignment.update",
-      "filter_submit": "Scheduling.ShiftAssignment.list"
+      "update": "Scheduling.ShiftAssignment.update"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {
+        "coverage_rate": {
+          "value": 0
+        },
+        "current_week_label": {
+          "from": "record",
+          "transform": "date_range_label"
+        },
+        "employees": {
+          "value": []
+        },
+        "live_violations": {
+          "from": "record.current_version.constraint_violations",
+          "transform": "normalize_list"
+        },
+        "manual_change_count": {
+          "value": 0
+        },
+        "no_violations": {
+          "from": "record.current_version.constraint_violations",
+          "transform": "empty_list"
+        },
+        "period": "record"
+      },
+      "selection": "id title start_date: startDate end_date: endDate current_version: currentVersion { id constraint_violations: constraintViolations { severity rule_code: ruleCode message } }"
+    },
+    "params": {
+      "accept": [
+        "id",
+        "role_code",
+        "shift_type_id"
+      ]
     }
   },
+  "domain": "Scheduling",
+  "e2e": {
+    "playwright": {
+      "auto": true,
+      "base_path": "/scheduling/calendar_adjustment?id=:id",
+      "cases": [
+        {
+          "covers": [],
+          "name": "页面加载 + 日历表格可见",
+          "steps": [
+            {
+              "action": "expect_visible",
+              "selector": "#calendar_table"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#period_badge"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#coverage_value"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "navigate_prev_week"
+          ],
+          "name": "周导航 - 上一周",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "#prev_week_btn"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#current_week_label"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "navigate_next_week"
+          ],
+          "name": "周导航 - 下一周",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "#next_week_btn"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#current_week_label"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "save_draft"
+          ],
+          "name": "保存草稿",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "#save_draft_btn"
+            },
+            {
+              "action": "expect_text_contains",
+              "selector": "#flash-group, [data-flash], [role='alert']",
+              "value": "保存"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "navigate_publish_preview"
+          ],
+          "name": "跳转发布预览",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "#publish_preview_btn"
+            },
+            {
+              "action": "expect_url_contains",
+              "value": "/scheduling/publish_preview"
+            }
+          ]
+        }
+      ],
+      "dto_smoke": []
+    }
+  },
+  "entity": "ShiftAssignment",
+  "page_id": "calendar_adjustment",
+  "page_type": "composition",
   "state_transitions": [
     {
+      "description": "切换到上一周",
+      "from": "*",
       "name": "navigate_prev_week",
-      "from": "*",
       "to": "*",
-      "trigger": "user_action",
-      "description": "切换到上一周"
+      "trigger": "user_action"
     },
     {
+      "description": "切换到下一周",
+      "from": "*",
       "name": "navigate_next_week",
-      "from": "*",
       "to": "*",
-      "trigger": "user_action",
-      "description": "切换到下一周"
+      "trigger": "user_action"
     },
     {
+      "description": "按筛选条件刷新排班矩阵",
+      "from": "*",
       "name": "filter_submit",
-      "from": "*",
       "to": "loading",
-      "trigger": "user_action",
-      "description": "按筛选条件刷新排班矩阵"
+      "trigger": "user_action"
     },
     {
+      "description": "保存当前调班草稿",
+      "from": "*",
       "name": "save_draft",
-      "from": "*",
       "to": "loading",
-      "trigger": "user_action",
-      "description": "保存当前调班草稿"
+      "trigger": "user_action"
     },
     {
+      "description": "进入发布预览",
+      "from": "*",
       "name": "navigate_publish_preview",
-      "from": "*",
       "to": "*",
-      "trigger": "user_action",
-      "description": "进入发布预览"
+      "trigger": "user_action"
     },
     {
-      "name": "navigate_back",
+      "description": "返回周期详情",
       "from": "*",
+      "name": "navigate_back",
       "to": "*",
-      "trigger": "user_action",
-      "description": "返回周期详情"
+      "trigger": "user_action"
     }
   ],
   "status_keys": [
@@ -65,54 +197,5 @@
     "no_violations",
     "current_week_label"
   ],
-  "e2e": {
-    "playwright": {
-      "auto": true,
-      "base_path": "/scheduling/calendar_adjustment",
-      "dto_smoke": [],
-      "cases": [
-        {
-          "name": "页面加载 + 日历表格可见",
-          "covers": [],
-          "steps": [
-            { "action": "expect_visible", "selector": "#calendar_table" },
-            { "action": "expect_visible", "selector": "#period_badge" },
-            { "action": "expect_visible", "selector": "#coverage_value" }
-          ]
-        },
-        {
-          "name": "周导航 - 上一周",
-          "covers": ["navigate_prev_week"],
-          "steps": [
-            { "action": "click", "selector": "#prev_week_btn" },
-            { "action": "expect_visible", "selector": "#current_week_label" }
-          ]
-        },
-        {
-          "name": "周导航 - 下一周",
-          "covers": ["navigate_next_week"],
-          "steps": [
-            { "action": "click", "selector": "#next_week_btn" },
-            { "action": "expect_visible", "selector": "#current_week_label" }
-          ]
-        },
-        {
-          "name": "保存草稿",
-          "covers": ["save_draft"],
-          "steps": [
-            { "action": "click", "selector": "#save_draft_btn" },
-            { "action": "expect_text_contains", "selector": "#flash-group, [data-flash], [role='alert']", "value": "保存" }
-          ]
-        },
-        {
-          "name": "跳转发布预览",
-          "covers": ["navigate_publish_preview"],
-          "steps": [
-            { "action": "click", "selector": "#publish_preview_btn" },
-            { "action": "expect_url_contains", "value": "/scheduling/publish_preview" }
-          ]
-        }
-      ]
-    }
-  }
+  "version": 1
 }
