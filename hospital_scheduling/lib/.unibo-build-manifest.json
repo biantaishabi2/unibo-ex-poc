@@ -4,7 +4,7 @@
   "domains": {
     "Scheduling": {
       "input_hashes": {
-        "/tmp/.tmpstRSU8/scheduling.ubo.yaml": "sha256:dc6c8f175b81c24a644c55dd128a8fe94b38bc94e6392f79742685c1ec06dd8b"
+        "./models/scheduling/scheduling.ubo.yaml": "sha256:b54a5da8a9779646b037598e9bea8b418ef1c31dd7d19138429d56cdbfeb9cd9"
       },
       "output_files": [
         "hospital_scheduling/scheduling/changes/schedule_version/publish_version_call_1.ex",
@@ -31,6 +31,7 @@
       "notifier_count": 0,
       "has_policy_entities": false,
       "has_scheduled_tasks": false,
+      "has_collaboration_entities": false,
       "subdomain": "scheduling"
     }
   }

@@ -154,7 +154,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       # message: "只有待执行状态可以开始"
       change set_attribute(:status, :running)
       change HospitalScheduling.Scheduling.Integrations.SolverRun.StartRunRustSolverInvokeBridge
-      change transition_state(:running)
+      change AshStateMachine.BuiltinChanges.transition_state(:running)
       require_atomic? false
     end
     update :complete_feasible do
@@ -172,7 +172,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       end
       # message: "只有运行中状态可以完成"
       change set_attribute(:status, :feasible)
-      change transition_state(:feasible)
+      change AshStateMachine.BuiltinChanges.transition_state(:feasible)
       require_atomic? false
     end
     update :complete_infeasible do
@@ -190,7 +190,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       end
       # message: "只有运行中状态可以完成"
       change set_attribute(:status, :infeasible)
-      change transition_state(:infeasible)
+      change AshStateMachine.BuiltinChanges.transition_state(:infeasible)
       require_atomic? false
     end
     update :mark_timeout do
@@ -208,7 +208,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       end
       # message: "只有运行中状态可以完成"
       change set_attribute(:status, :timeout)
-      change transition_state(:timeout)
+      change AshStateMachine.BuiltinChanges.transition_state(:timeout)
       require_atomic? false
     end
     update :mark_error do
@@ -226,7 +226,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
       end
       # message: "只有运行中状态可以完成"
       change set_attribute(:status, :error)
-      change transition_state(:error)
+      change AshStateMachine.BuiltinChanges.transition_state(:error)
       require_atomic? false
     end
     update :mark_completed do
@@ -235,7 +235,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
 最终完成（用户确认采用此结果）. doc_url: graphql://contract/scheduling/mark_completed_scheduling_solver_run"
       accept []
       change set_attribute(:status, :completed)
-      change transition_state(:completed)
+      change AshStateMachine.BuiltinChanges.transition_state(:completed)
       require_atomic? false
     end
   end
@@ -254,6 +254,7 @@ defmodule HospitalScheduling.Scheduling.SolverRun do
   state_machine do
     initial_states [:pending]
     default_initial_state :pending
+    extra_states [:pending, :running, :feasible, :infeasible, :timeout, :error, :completed]
     state_attribute :status
     transitions do
       transition :start_run, from: :pending, to: :running
