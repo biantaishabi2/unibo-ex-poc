@@ -13,7 +13,7 @@ relation_mode = "warn"
 autowire_ash_deps = true
 
 [frontend]
-models = ["./models"]
+models = ["./models", "../unibo/models"]
 stitch_bin = "../../stitch/dist/bin/stitch.js"
 output = "./priv/static/travel_pages"
 pages_dir = "./pages"

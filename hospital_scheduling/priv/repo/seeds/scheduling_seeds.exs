@@ -216,7 +216,7 @@ Logger.info("  需求: #{length(requirements)} 条（7天 × 3班次）")
 {:ok, _} = Ash.create(Scheduling.ShiftPreference, %{
   employee_id: zhang.id,
   period_id: period_cardiology.id,
-  preferred_shift_tags: ~s(["day"]),
+  preferred_shift_tags: ["day"],
   max_night_shifts: 1,
   notes: "家中有幼儿，希望尽量安排白班"
 }, authorize?: false)
@@ -225,7 +225,7 @@ Logger.info("  需求: #{length(requirements)} 条（7天 × 3班次）")
 {:ok, _} = Ash.create(Scheduling.ShiftPreference, %{
   employee_id: zhao.id,
   period_id: period_cardiology.id,
-  unavailable_dates: ~s(["2026-03-26"]),
+  unavailable_dates: ["2026-03-26"],
   notes: "周四有进修培训"
 }, authorize?: false)
 
