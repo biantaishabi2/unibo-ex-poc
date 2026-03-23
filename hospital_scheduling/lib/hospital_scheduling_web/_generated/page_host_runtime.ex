@@ -944,5 +944,6 @@ defmodule HospitalSchedulingWeb.Generated.PageHostRuntime do
     end)
   end
 
+  defp deep_merge(left, nil), do: left
   defp deep_merge(_left, right), do: right
 end
