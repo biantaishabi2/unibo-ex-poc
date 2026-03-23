@@ -1,0 +1,19 @@
+[project]
+module_prefix = "HospitalScheduling"
+repo = "HospitalScheduling.Repo"
+otp_app = "hospital_scheduling"
+
+[backend]
+input_dirs = ["./models", "../unibo/models"]
+target = "ash"
+graphql = true
+emit_graphql_schemas = true
+runtime_profile = "strict"
+relation_mode = "warn"
+autowire_ash_deps = true
+
+[frontend]
+stitch_bin = "../../stitch/dist/bin/stitch.js"
+pages_dir = "./pages/scheduling"
+templates_dir = "../pages/bases"
+deploy_dir = "./priv/static/scheduling_pages"
