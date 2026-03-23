@@ -4,7 +4,7 @@ repo = "HospitalScheduling.Repo"
 otp_app = "hospital_scheduling"
 
 [backend]
-input_dirs = ["./models", "../unibo/models"]
+input_dirs = ["./models", "../../unibo/models"]
 output = "./lib"
 target = "ash"
 graphql = true
