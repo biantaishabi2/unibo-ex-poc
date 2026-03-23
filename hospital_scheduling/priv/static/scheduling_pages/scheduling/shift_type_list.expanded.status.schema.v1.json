@@ -13,7 +13,8 @@
         "is_night": "",
         "color": "",
         "sort_order": "",
-        "enabled": ""
+        "enabled": "",
+        "id": "row_01"
       },
       {
         "code": "",
@@ -24,7 +25,8 @@
         "is_night": "",
         "color": "",
         "sort_order": "",
-        "enabled": ""
+        "enabled": "",
+        "id": "row_02"
       },
       {
         "code": "",
@@ -35,7 +37,8 @@
         "is_night": "",
         "color": "",
         "sort_order": "",
-        "enabled": ""
+        "enabled": "",
+        "id": "row_03"
       }
     ]
   },
@@ -48,6 +51,7 @@
     "rows[].duration_hours",
     "rows[].enabled",
     "rows[].end_time",
+    "rows[].id",
     "rows[].is_night",
     "rows[].name",
     "rows[].sort_order",
@@ -65,6 +69,18 @@
     "backend": {
       "api_map": {
         "list": "Scheduling.ShiftType.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "code color duration_hours: durationHours enabled end_time: endTime id is_night: isNight name sort_order: sortOrder start_time: startTime"
+      },
+      "params": {
+        "accept": []
       }
     },
     "domain": "Scheduling",

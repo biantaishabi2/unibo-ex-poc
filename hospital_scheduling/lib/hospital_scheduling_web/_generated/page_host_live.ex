@@ -201,10 +201,14 @@ defmodule HospitalSchedulingWeb.Generated.PageHostLive do
   end
 
   defp comparison_like_angle_bracket?(graphemes, idx) do
-    prev = neighboring_grapheme(graphemes, idx - 1)
     next = neighboring_grapheme(graphemes, idx + 1)
-
-    previous_suggests_text?(prev) or next_suggests_comparison?(next)
+    # 组件调用 <.xxx> 或闭合标签 </xxx> 是合法标签，不转义
+    if next in [".", "/"] do
+      false
+    else
+      prev = neighboring_grapheme(graphemes, idx - 1)
+      previous_suggests_text?(prev) or next_suggests_comparison?(next)
+    end
   end
 
   defp neighboring_grapheme(_graphemes, idx) when idx < 0, do: nil

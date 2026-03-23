@@ -98,17 +98,17 @@
       <% else %>
         <.form phx-submit="form_submit" phx-change="form_change" id="scheduling_constraint_edit_form">
           <.grid columns={2} gap={4} id="scheduling_constraint_form_grid">
-            <.input name="name" label="规则名称" placeholder="请输入规则名称" required="true" size="md" id="form_name" />
-            <.select name="constraint_type" label="硬约束或软约束" required="true" size="md" id="form_constraint_type">
+            <.input name="name" label="规则名称" placeholder="请输入规则名称" required="true" size="md" id="form_name" value={@record.name} />
+            <.select name="constraint_type" label="硬约束或软约束" required="true" size="md" id="form_constraint_type" value={@record.constraint_type}>
 
             </.select>
-            <.select name="category" label="规则类别" required="true" size="md" id="form_category">
+            <.select name="category" label="规则类别" required="true" size="md" id="form_category" value={@record.category}>
 
             </.select>
-            <.input name="params" label="规则参数（shape 按 category 不同）" placeholder="请输入规则参数（shape 按 category 不同）" required="true" size="md" id="form_params" />
-            <.input name="weight" label="软约束权重（硬约束忽略）" placeholder="请输入软约束权重（硬约束忽略）" size="md" id="form_weight" />
-            <.switch name="enabled" label="是否启用" size="md" id="form_enabled" />
-            <.textarea name="notes" label="备注" placeholder="请输入备注" id="form_notes" />
+            <.input name="params" label="规则参数（shape 按 category 不同）" placeholder="请输入规则参数（shape 按 category 不同）" required="true" size="md" id="form_params" value={@record.params} />
+            <.input name="weight" label="软约束权重（硬约束忽略）" placeholder="请输入软约束权重（硬约束忽略）" size="md" id="form_weight" value={@record.weight} />
+            <.switch name="enabled" label="是否启用" size="md" id="form_enabled" value={@record.enabled} />
+            <.textarea name="notes" label="备注" placeholder="请输入备注" id="form_notes" value={@record.notes} />
           </.grid>
           <.flex justify="end" gap={2} direction="row" id="scheduling_constraint_form_actions">
             <.button variant="secondary" phx-click="cancel_edit" size="md" id="scheduling_constraint_cancel_btn">

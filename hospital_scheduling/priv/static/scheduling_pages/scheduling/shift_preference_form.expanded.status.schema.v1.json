@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "defaults": {
+    "section_1_title": "基本信息"
+  },
+  "keys": [
+    "section_1_title"
+  ],
+  "required": [
+    "section_1_title"
+  ],
+  "urlParams": {},
+  "notes": []
+}

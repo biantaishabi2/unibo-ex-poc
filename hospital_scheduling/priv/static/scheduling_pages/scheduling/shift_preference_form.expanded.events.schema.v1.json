@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "events": {
+    "form_cancel": {
+      "name": "form_cancel",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "save_draft": {
+      "name": "save_draft",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "form_submit": {
+      "name": "form_submit",
+      "triggers": [
+        "click",
+        "submit"
+      ],
+      "params": {}
+    },
+    "form_change": {
+      "name": "form_change",
+      "triggers": [
+        "change"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

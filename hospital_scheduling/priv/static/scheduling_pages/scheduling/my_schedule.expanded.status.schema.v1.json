@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "defaults": {
+    "shift_assignment": {
+      "starts_at": "",
+      "ends_at": "",
+      "source": "",
+      "is_locked": "",
+      "notes": ""
+    }
+  },
+  "keys": [
+    "shift_assignment",
+    "shift_assignment.ends_at",
+    "shift_assignment.is_locked",
+    "shift_assignment.notes",
+    "shift_assignment.source",
+    "shift_assignment.starts_at"
+  ],
+  "required": [
+    "shift_assignment"
+  ],
+  "urlParams": {},
+  "notes": []
+}

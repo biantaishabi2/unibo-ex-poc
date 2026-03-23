@@ -1,31 +1,36 @@
 {
   "period": {
-    "title": "心内科 2026-03 第4周排班"
+    "title": ""
   },
   "run": {
-    "status": "feasible",
-    "engine_type": "cp_sat",
+    "status": "",
+    "engine_type": "",
     "output_snapshot": {
       "summary": {
-        "assignment_count": 28,
-        "covered_requirement_count": 21
+        "assignment_count": "",
+        "covered_requirement_count": ""
       }
     },
-    "hard_violation_count": 0,
-    "warning_count": 2
+    "hard_violation_count": "",
+    "warning_count": ""
   },
-  "has_hard_violations": false,
-  "violations_empty": false,
+  "has_hard_violations": true,
+  "violations_empty": true,
   "violations": [
     {
-      "severity": "warning",
-      "rule_code": "fair_night_distribution",
-      "message": "赵护士本周夜班3个，偏差超出阈值(目标均值1.75，偏差>2)"
+      "severity": "",
+      "rule_code": "",
+      "message": ""
     },
     {
-      "severity": "warning",
-      "rule_code": "respect_preference",
-      "message": "张护士偏好白班，但周三被分配小夜班"
+      "severity": "",
+      "rule_code": "",
+      "message": ""
+    },
+    {
+      "severity": "",
+      "rule_code": "",
+      "message": ""
     }
   ]
 }

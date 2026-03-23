@@ -91,8 +91,8 @@ defmodule HospitalSchedulingWeb.Generated.PageHostRuntime do
 
   def merge_backend_payload(page_data, dto, status) do
     page_data
-    |> deep_merge(deep_existing_atomize_keys(normalize_map(dto)))
-    |> deep_merge(deep_existing_atomize_keys(normalize_map(status)))
+    |> deep_merge(deep_generated_atomize_keys(normalize_map(dto)))
+    |> deep_merge(deep_generated_atomize_keys(normalize_map(status)))
   end
 
   def maybe_put_flash_from_effects(page_data, effects) do
@@ -482,7 +482,18 @@ defmodule HospitalSchedulingWeb.Generated.PageHostRuntime do
     end, :desc)
   end
 
+  # custom 页面没有 api_map 时，跳过 GraphQL dispatch，用静态数据加载
   defp load_page_data(path, page_id, page, params, :graphql, backend) do
+    api_map = normalize_map(map_get(page, "api_map"))
+
+    if api_map == %{} do
+      load_page_data(path, page_id, page, params, :static, backend)
+    else
+      load_page_data_graphql(path, page_id, page, params, backend)
+    end
+  end
+
+  defp load_page_data_graphql(path, page_id, _page, params, backend) do
     status_defaults = load_status_defaults(path)
     page_contract = load_behavior_contract(path)
     selection = page_selection(path, status_defaults)

@@ -9,13 +9,16 @@
     "row.state",
     "row.title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "scheduling_period.page",
+    "scheduling_period.total_pages"
   ],
   "requiredRoots": [
     "page_title",
     "row",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "scheduling_period"
   ],
   "schema": {
     "page_title": {
@@ -104,6 +107,22 @@
       "type": "object",
       "required": true,
       "properties": {}
+    },
+    "scheduling_period": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
     }
   },
   "notes": []

@@ -1,0 +1,63 @@
+<.page title="表单" id="leave_request">
+  <.section layout="none" id="breadcrumb_section">
+    <.flex direction="row" id="breadcrumb_bar" />
+  </.section>
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.stack direction="column" id="page_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          ShiftAssignment
+        </.text>
+        <.text variant="h1" id="page_title">
+          把某个覆盖需求分配给具体护士和时段
+        </.text>
+      </.stack>
+      <.flex gap={2} direction="row" id="header_actions">
+        <.button variant="ghost" phx-click="form_cancel" size="md" id="cancel_btn">
+          取消
+        </.button>
+        <.button variant="secondary" phx-click="save_draft" size="md" id="save_draft_btn">
+          保存草稿
+        </.button>
+        <.button variant="primary" phx-click="form_submit" size="md" id="submit_btn">
+          提交
+        </.button>
+      </.flex>
+    </.flex>
+  </.section>
+  <.section layout="none" id="form_section">
+    <.form phx-submit="form_submit" phx-change="form_change" id="main_form">
+      <.card variant="default" id="basic_info_card">
+        <.card_header id="basic_info_header">
+          <.card_title id="basic_info_title">
+            <%= @section_1_title %>
+          </.card_title>
+        </.card_header>
+        <.card_content id="basic_info_content">
+          <.stack direction="column" id="basic_info_grid">
+            <.input bind="shift_assignment.starts_at" size="md" id="create_starts_at" />
+            <.input bind="shift_assignment.ends_at" size="md" id="create_ends_at" />
+            <.select bind="shift_assignment.source" size="md" id="create_source">
+              <option value="auto">auto</option>
+              <option value="manual">manual</option>
+              <option value="swapped">swapped</option>
+              <option value="copied">copied</option>
+            </.select>
+            <.switch bind="shift_assignment.is_locked" size="md" id="create_is_locked" />
+            <.textarea columns={2} gap={4} bind="shift_assignment.notes" id="create_notes" />
+          </.stack>
+        </.card_content>
+      </.card>
+    </.form>
+  </.section>
+  <.section layout="none" id="form_footer">
+    <.flex justify="end" gap={2} direction="row" id="footer_actions">
+      <.button variant="secondary" phx-click="form_cancel" size="md" id="footer_cancel">
+        取消
+      </.button>
+      <.button variant="primary" phx-click="form_submit" size="md" id="footer_submit">
+        提交
+      </.button>
+    </.flex>
+  </.section>
+</.page>

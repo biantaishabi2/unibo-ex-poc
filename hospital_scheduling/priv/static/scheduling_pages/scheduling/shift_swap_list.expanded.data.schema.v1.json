@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "row.max_night_shifts",
+    "row.notes",
+    "row.preferred_shift_tags",
+    "row.unavailable_dates",
+    "rows",
+    "rows_empty",
+    "shift_preference.page",
+    "shift_preference.total_pages"
+  ],
+  "requiredRoots": [
+    "row",
+    "rows",
+    "rows_empty",
+    "shift_preference"
+  ],
+  "schema": {
+    "rows": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "preferred_shift_tags": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "unavailable_dates": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "max_night_shifts": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "notes": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "row": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "preferred_shift_tags": {
+          "type": "unknown",
+          "required": true
+        },
+        "unavailable_dates": {
+          "type": "unknown",
+          "required": true
+        },
+        "max_night_shifts": {
+          "type": "unknown",
+          "required": true
+        },
+        "notes": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "rows_empty": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "shift_preference": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    }
+  },
+  "notes": []
+}

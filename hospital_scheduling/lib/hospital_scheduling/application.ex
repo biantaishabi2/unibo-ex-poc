@@ -7,9 +7,12 @@ defmodule HospitalScheduling.Application do
     children = [
       {DNSCluster, query: Application.get_env(:hospital_scheduling, :dns_cluster_query) || :ignore},
       HospitalScheduling.Repo,
-      {Phoenix.PubSub, name: HospitalScheduling.PubSub},
+      {Phoenix.PubSub, name: HospitalScheduling.InternalPubSub},
       HospitalSchedulingWeb.Telemetry,
-      HospitalSchedulingWeb.Endpoint
+      HospitalSchedulingWeb.Endpoint,
+      HospitalScheduling.AsyncRuntime.Store,
+      HospitalScheduling.AsyncRuntime.Queue,
+      HospitalScheduling.AsyncRuntime.Telemetry
     ]
 
     opts = [strategy: :one_for_one, name: HospitalScheduling.Supervisor]

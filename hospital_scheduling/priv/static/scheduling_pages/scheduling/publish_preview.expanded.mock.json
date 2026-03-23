@@ -1,46 +1,49 @@
 {
-  "period": {
-    "title": "心内科 2026-03 第4周排班"
-  },
-  "version": {
-    "version_no": 2,
-    "origin_type": "solver"
-  },
-  "hard_violation_count": 0,
-  "warning_count": 2,
-  "change_count": 3,
-  "affected_employee_count": 2,
-  "coverage_rate": "95.2%",
-  "has_hard_violations": false,
-  "has_warnings": true,
-  "no_changes": false,
+  "affected_employee_count": "",
+  "change_count": "",
   "changes": [
     {
+      "date": "",
       "employee": {
-        "name": "张护士"
+        "name": "employee_1"
       },
-      "date": "2026-03-25",
-      "old_shift_type": "大夜班",
-      "new_shift_type": "小夜班",
-      "reason": "护士申请调班，避免连续夜班"
+      "new_shift_type": "",
+      "old_shift_type": "",
+      "reason": ""
     },
     {
+      "date": "",
       "employee": {
-        "name": "李护士"
+        "name": "employee_2"
       },
-      "date": "2026-03-25",
-      "old_shift_type": "小夜班",
-      "new_shift_type": "大夜班",
-      "reason": "与张护士对调，补充大夜班人力"
+      "new_shift_type": "",
+      "old_shift_type": "",
+      "reason": ""
     },
     {
+      "date": "",
       "employee": {
-        "name": "赵护士"
+        "name": "employee_3"
       },
-      "date": "2026-03-27",
-      "old_shift_type": "白班",
-      "new_shift_type": "休息",
-      "reason": "护长审批临时请假"
+      "new_shift_type": "",
+      "old_shift_type": "",
+      "reason": ""
     }
-  ]
+  ],
+  "coverage_rate": "",
+  "hard_violation_count": "",
+  "has_hard_violations": "",
+  "has_warnings": true,
+  "no_changes": true,
+  "period": {
+    "title": ""
+  },
+  "record": {
+    "base_version": ""
+  },
+  "version": {
+    "origin_type": "",
+    "version_no": ""
+  },
+  "warning_count": ""
 }

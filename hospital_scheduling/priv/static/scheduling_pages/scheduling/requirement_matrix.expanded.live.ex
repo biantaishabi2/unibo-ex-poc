@@ -11,7 +11,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "requirement_matrix"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): period, period.end_date, period.start_date, period.state, period.title, shift_types, shift_types[], shift_types[].name, shift_types[].requirements, shift_types[].requirements[], shift_types[].requirements[].min_headcount, shift_types[].requirements[].target_headcount
+  # status.keys preview (first ~40): period, period.end_date, period.start_date, period.state, period.title, record, record.role_code, shift_types, shift_types[], shift_types[].name, shift_types[].requirements, shift_types[].requirements[], shift_types[].requirements[].min_headcount, shift_types[].requirements[].target_headcount
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
   \"period\": {
@@ -60,7 +60,10 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
         }
       ]
     }
-  ]
+  ],
+  \"record\": {
+    \"role_code\": \"\"
+  }
 }")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
@@ -68,12 +71,18 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mode "api"
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
-  @backend_load_event nil
+  @backend_load_event "get"
+  @backend_load_selection "id title state start_date: startDate end_date: endDate coverage_requirements: coverageRequirements { id requirement_date: requirementDate role_code: roleCode role_name: roleName min_headcount: minHeadcount target_headcount: targetHeadcount shift_type: shiftType { id name } }"
+  @backend_load_assigns %{period: "record", shift_types: %{from: "record.coverage_requirements", transform: "group_requirements_by_shift_type"}}
+  @backend_params_accept ["id", "role_code", "week_offset", "shift_type_id"]
+  @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
-    "list" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "save_requirements" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "batch_fill_requirements" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil},
-    "action_start_generating" => %{module: __MODULE__.Backend, fun: :handle_event, api: nil}
+    "__load__" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.get"},
+    "action_start_generating" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.start_generating"},
+    "batch_fill_requirements" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.CoverageRequirement.update"},
+    "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.get"},
+    "list" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.CoverageRequirement.list"},
+    "save_requirements" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.CoverageRequirement.update"}
   }
   @status_key_roots [:page_title, :period, :rows, :rows_empty, :filter]
   @auth_mode "optional"
@@ -86,9 +95,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     defaults = atomize_keys(@status_defaults_raw)
     socket = assign(socket, defaults)
     socket = assign(socket, :__status_defaults, defaults)
+    socket = if is_map(@backend_load_assigns) and map_size(@backend_load_assigns) > 0, do: assign(socket, @backend_load_assigns), else: socket
     socket = apply_derived(socket)
     socket = apply_params(socket, params)
-    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(params, "__page_id", @page_id), socket), else: socket
+    backend_params = __filter_backend_params(params)
+    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
     {:ok, socket}
   end
 
@@ -100,9 +111,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: if backend exports handle_info/2, delegate and apply BackendResult v1.
+    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
     socket =
-      if function_exported?(@backend_mod, :handle_info, 2) do
+      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
         state0 = __take_status(socket.assigns)
         apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
       else
@@ -142,6 +153,21 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   defp apply_params(socket, params) when is_map(params) do
     socket
   end
+
+  defp __filter_backend_params(params) when is_map(params) do
+    if @backend_params_accept == [] do
+      params
+    else
+      Map.take(params, @backend_params_accept ++ ["__page_id"])
+    end
+  end
+  defp __filter_backend_params(params), do: params
+
+  defp __accept_backend_info?({kind, value}) when is_atom(kind) and is_binary(value) do
+    kind == :page_host_reload and value in @backend_info_reload_messages
+  end
+  defp __accept_backend_info?(value) when is_binary(value), do: value in @backend_info_reload_messages
+  defp __accept_backend_info?(_), do: @backend_info_reload_messages == []
 
   defp ensure_user_context(socket) do
     # Thin user-context contract: keep it uniform so skeletons stay generated and diffable.

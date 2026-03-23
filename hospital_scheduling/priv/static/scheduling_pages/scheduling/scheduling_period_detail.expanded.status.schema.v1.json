@@ -111,73 +111,32 @@
         "publish": "Scheduling.SchedulingPeriod.publish",
         "start_generating": "Scheduling.SchedulingPeriod.start_generating",
         "update": "Scheduling.SchedulingPeriod.update"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "id title state generation_mode: generationMode department { name } start_date: startDate end_date: endDate current_version: currentVersion { id version_no: versionNo } last_solver_run: lastSolverRun { id status } schedule_versions: scheduleVersions { id version_no: versionNo status origin_type: originType change_summary: changeSummary } solver_runs: solverRuns { id engine_type: engineType status score hard_violation_count: hardViolationCount started_at: startedAt completed_at: completedAt }"
+      },
+      "params": {
+        "accept": [
+          "id"
+        ]
       }
     },
-    "children": [
-      "coverage_requirement",
-      "schedule_version",
-      "solver_run",
-      "shift_assignment",
-      "constraint_violation"
-    ],
-    "domain": "Scheduling",
     "e2e": {
       "playwright": {
         "auto": true,
-        "base_path": "/scheduling/scheduling_period/:id",
-        "cases": [
-          {
-            "covers": [],
-            "name": "页面加载 + 结构可见",
-            "steps": [
-              {
-                "action": "expect_visible",
-                "selector": "[data-page='scheduling_period_detail']"
-              }
-            ]
-          },
-          {
-            "covers": [
-              "toggle_edit"
-            ],
-            "name": "编辑模式切换",
-            "steps": [
-              {
-                "action": "click",
-                "selector": "[data-action='toggle_edit']"
-              },
-              {
-                "action": "expect_visible",
-                "selector": "form, [data-mode='edit']"
-              }
-            ]
-          },
-          {
-            "covers": [
-              "form_submit"
-            ],
-            "name": "表单提交",
-            "steps": [
-              {
-                "action": "click",
-                "selector": "[data-action='form_submit'], button[type='submit']"
-              },
-              {
-                "action": "expect_text_contains",
-                "selector": "#flash-group, [data-flash], [role='alert']",
-                "value": "成功"
-              }
-            ]
-          }
-        ],
+        "base_path": "/scheduling/scheduling_period_detail?id=:id",
+        "cases": [],
         "dto_smoke": []
       }
     },
-    "entity": "SchedulingPeriod",
+    "layer": 2,
     "page_id": "scheduling_period_detail",
-    "page_type": "object_page",
-    "runtime_monitoring": null,
-    "schema_version": "1.0",
     "state_transitions": [
       {
         "description": "切换编辑模式",
@@ -239,23 +198,10 @@
         "description": "删除记录",
         "from": "*",
         "name": "action_destroy",
-        "navigate_to": "/scheduling/scheduling_period",
         "to": "loading",
         "trigger": "user_action"
       }
     ],
-    "status_keys": [
-      "record",
-      "editing",
-      "form",
-      "loading"
-    ],
-    "ui": {
-      "sections": [],
-      "template": {
-        "detail": "object_page"
-      }
-    },
     "version": 1
   }
 }

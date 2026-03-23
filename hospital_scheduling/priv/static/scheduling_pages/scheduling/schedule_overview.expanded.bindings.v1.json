@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "vars": {
+    "chart_1_title": {
+      "uses": [
+        {
+          "node_type": "CardTitle",
+          "node_id": "chart_1_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{chart_1_title|趋势图}}"
+        }
+      ]
+    },
+    "chart_2_title": {
+      "uses": [
+        {
+          "node_type": "CardTitle",
+          "node_id": "chart_2_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{chart_2_title|分布图}}"
+        }
+      ]
+    },
+    "action_1_label": {
+      "uses": [
+        {
+          "node_type": "Button",
+          "node_id": "quick_action_1",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{action_1_label|操作一}}"
+        }
+      ]
+    },
+    "action_2_label": {
+      "uses": [
+        {
+          "node_type": "Button",
+          "node_id": "quick_action_2",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{action_2_label|操作二}}"
+        }
+      ]
+    },
+    "action_3_label": {
+      "uses": [
+        {
+          "node_type": "Button",
+          "node_id": "quick_action_3",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{action_3_label|操作三}}"
+        }
+      ]
+    },
+    "action_4_label": {
+      "uses": [
+        {
+          "node_type": "Button",
+          "node_id": "quick_action_4",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{action_4_label|操作四}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "quick_action_1": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "quick_action_1",
+          "prop": "click",
+          "raw": "quick_action_1"
+        }
+      ]
+    },
+    "quick_action_2": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "quick_action_2",
+          "prop": "click",
+          "raw": "quick_action_2"
+        }
+      ]
+    },
+    "quick_action_3": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "quick_action_3",
+          "prop": "click",
+          "raw": "quick_action_3"
+        }
+      ]
+    },
+    "quick_action_4": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "quick_action_4",
+          "prop": "click",
+          "raw": "quick_action_4"
+        }
+      ]
+    }
+  }
+}

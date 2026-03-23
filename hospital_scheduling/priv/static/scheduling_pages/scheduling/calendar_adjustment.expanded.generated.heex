@@ -1,4 +1,4 @@
-<.page title="日历调班" id="calendar_adjustment">
+<.page title="排期" id="calendar_adjustment">
   <.section layout="none" id="date_nav_section">
     <.flex justify="between" align="center" direction="row" id="date_navigator">
       <.flex gap={2} align="center" direction="row" id="nav_left">
@@ -24,10 +24,10 @@
   </.section>
   <.section layout="none" id="resource_section">
     <.flex gap={4} align="center" wrap={true} direction="row" id="resource_filter">
-      <.select name="role_code" label="岗位筛选" size="md" id="filter_role">
+      <.select name="role_code" label="岗位筛选" size="md" id="filter_role" value={@record.role_code}>
 
       </.select>
-      <.select name="shift_type_id" label="班次类型" size="md" id="filter_shift_type">
+      <.select name="shift_type_id" label="班次类型" size="md" id="filter_shift_type" value={@record.shift_type_id}>
 
       </.select>
       <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
@@ -114,9 +114,10 @@
         <.card_content id="violations_content">
           <%= for vio <- @live_violations do %>
             <.flex gap={2} align="center" direction="row">
-              <.badge variant="default" size="sm">
-                <%= vio.severity %>
-              </.badge>
+              <.select bind="shift_assignment.severity" size="md">
+                <option value="error">error</option>
+                <option value="warning"><%= vio.severity %></option>
+              </.select>
               <.text variant="caption">
                 <%= vio.message %>
               </.text>
@@ -128,15 +129,5 @@
         </.card_content>
       </.card>
     </.grid>
-  </.section>
-  <.section layout="none" id="bottom_actions">
-    <.flex justify="end" gap={2} direction="row" id="action_bar">
-      <.button variant="secondary" phx-click="save_draft" size="md" id="save_draft_btn">
-        保存草稿
-      </.button>
-      <.button variant="primary" phx-click="navigate_publish_preview" size="md" id="publish_preview_btn">
-        发布预览
-      </.button>
-    </.flex>
   </.section>
 </.page>

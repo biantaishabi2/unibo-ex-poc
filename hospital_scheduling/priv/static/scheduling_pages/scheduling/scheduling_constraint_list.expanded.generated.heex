@@ -14,18 +14,40 @@
       </.flex>
     </.flex>
   </.section>
+  <.section layout="none" id="view_tabs">
+    <.tabs default_value="all" id="view_selector">
+      <.tabs_list id="view_tab_list">
+        <.tabs_trigger value="all" active_value="all" id="trigger_all">
+          全部
+        </.tabs_trigger>
+      </.tabs_list>
+    </.tabs>
+  </.section>
   <.section layout="none" id="filter_section">
     <.card variant="default" id="filter_card">
       <.card_content id="filter_content">
         <.flex gap={4} align="center" direction="row" id="filter_row">
-          <.select name="constraint_type" label="约束类型" size="md" id="filter_constraint_type" options={[%{label: "全部", value: ""}, %{label: "硬约束", value: "hard"}, %{label: "软约束", value: "soft"}]}>
-
+          <.select bind="scheduling_constraint.constraint_type" size="md" id="filter_constraint_type">
+            <option value="hard">hard</option>
+            <option>soft</option>
           </.select>
-          <.select name="category" label="规则类别" size="md" id="filter_category" options={[%{label: "全部", value: ""}, %{label: "夜班后休息", value: "rest_after_night"}, %{label: "最大连续天数", value: "max_consecutive_days"}, %{label: "请假尊重", value: "respect_leave"}, %{label: "技能要求", value: "skill_requirement"}, %{label: "月度工时上限", value: "max_monthly_hours"}, %{label: "带班覆盖", value: "lead_coverage"}, %{label: "夜班公平", value: "fair_night_distribution"}, %{label: "周末公平", value: "fair_weekend_distribution"}, %{label: "偏好尊重", value: "respect_preference"}, %{label: "连续夜班限制", value: "limit_consecutive_nights"}, %{label: "班次连续性", value: "shift_continuity"}]}>
-
+          <.select bind="scheduling_constraint.category" size="md" id="filter_category">
+            <option value="rest_after_night">rest_after_night</option>
+            <option value="max_consecutive_days">max_consecutive_days</option>
+            <option value="respect_leave">respect_leave</option>
+            <option value="skill_requirement">skill_requirement</option>
+            <option value="max_monthly_hours">max_monthly_hours</option>
+            <option value="lead_coverage">lead_coverage</option>
+            <option value="fair_night_distribution">fair_night_distribution</option>
+            <option value="fair_weekend_distribution">fair_weekend_distribution</option>
+            <option value="respect_preference">respect_preference</option>
+            <option value="limit_consecutive_nights">limit_consecutive_nights</option>
+            <option>shift_continuity</option>
           </.select>
-          <.select name="enabled" label="状态" size="md" id="filter_enabled" options={[%{label: "全部", value: ""}, %{label: "启用", value: "true"}, %{label: "停用", value: "false"}]}>
-
+          <.select name="enabled" label="状态" size="md" id="filter_enabled">
+            <option>全部</option>
+            <option value="true">启用</option>
+            <option value="false">禁用</option>
           </.select>
           <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
             查询
@@ -112,8 +134,16 @@
     <% end %>
   </.section>
   <.section layout="none" id="footer">
-    <.text id="pagination">
-      分页
-    </.text>
+    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
+      <.button phx-click="scheduling_constraint_page_prev" variant="primary" size="md" id="page_prev">
+        上一页
+      </.button>
+      <.text id="page_info">
+        <%= @scheduling_constraint.page %> / <%= @scheduling_constraint.total_pages %>
+      </.text>
+      <.button phx-click="scheduling_constraint_page_next" variant="primary" size="md" id="page_next">
+        下一页
+      </.button>
+    </.flex>
   </.section>
 </.page>

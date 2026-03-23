@@ -1,4 +1,4 @@
-<.page title="排班周期详情" id="scheduling_period_detail">
+<.page title="详情" id="scheduling_period_detail">
   <.section layout="none" id="breadcrumb_section">
     <.breadcrumb id="period_breadcrumb">
       <.breadcrumb_list id="bc_list">
@@ -42,7 +42,7 @@
       </.flex>
     </.flex>
   </.section>
-  <.section layout="none" id="info_section">
+  <.section layout="grid" columns={4} id="info_section">
     <.grid columns={4} gap={3} id="info_cards">
       <.card variant="default" id="dept_card">
         <.card_content id="dept_content">
@@ -51,7 +51,7 @@
               科室
             </.text>
             <.text variant="h4" weight="bold" id="dept_value">
-              <%= @record.department.name %>
+              <%= (@record[:department] || %{})[:name] %>
             </.text>
           </.stack>
         </.card_content>
@@ -75,7 +75,7 @@
               当前版本
             </.text>
             <.text variant="h4" weight="bold" id="version_value">
-              v<%= @record.current_version.version_no %>
+              v<%= (@record[:current_version] || %{})[:version_no] %>
             </.text>
           </.stack>
         </.card_content>
@@ -87,14 +87,12 @@
               最近求解
             </.text>
             <.badge variant="default" size="sm" id="run_status_badge">
-              <%= @record.last_solver_run.status %>
+              <%= (@record[:last_solver_run] || %{})[:status] %>
             </.badge>
           </.stack>
         </.card_content>
       </.card>
     </.grid>
-  </.section>
-  <.section layout="none" id="nav_section">
     <.grid columns={3} gap={3} id="nav_grid">
       <.card variant="default" id="req_nav_card">
         <.card_header id="req_nav_header">
@@ -142,8 +140,6 @@
         </.card_content>
       </.card>
     </.grid>
-  </.section>
-  <.section layout="none" id="versions_section">
     <.card variant="default" id="versions_card">
       <.card_header id="versions_header">
         <.card_title id="versions_title">
@@ -199,8 +195,6 @@
         </.table>
       </.card_content>
     </.card>
-  </.section>
-  <.section layout="none" id="runs_section">
     <.card variant="default" id="runs_card">
       <.card_header id="runs_header">
         <.card_title id="runs_title">
