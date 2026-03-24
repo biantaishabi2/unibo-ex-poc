@@ -199,11 +199,8 @@
                 <.input bind="flight_offer.seats_available" size="md" id="update_seats_available" />
                 <.textarea bind="flight_offer.baggage_policy" id="update_baggage_policy" />
                 <.textarea bind="flight_offer.refund_change_policy" id="update_refund_change_policy" />
-                <.select bind="flight_offer.sale_status" size="md" id="update_sale_status">
-                  <option value="draft">draft</option>
-                  <option value="active">active</option>
-                  <option value="inactive">inactive</option>
-                  <option value="expired">expired</option>
+                <.select bind="flight_offer.sale_status" size="md" id="update_sale_status" options={[%{label: "draft", value: "draft"}, %{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}, %{label: "expired", value: "expired"}]}>
+
                 </.select>
                 <.input bind="flight_offer.departure_airport_ref_id" size="md" id="update_departure_airport_ref_id" />
                 <.input bind="flight_offer.arrival_airport_ref_id" size="md" id="update_arrival_airport_ref_id" />

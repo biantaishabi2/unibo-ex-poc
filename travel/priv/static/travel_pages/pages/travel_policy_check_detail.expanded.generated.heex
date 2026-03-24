@@ -126,10 +126,8 @@
           <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
             <.grid columns={2} gap={4} id="form_grid">
               <.stack direction="column" id="form_fields">
-                <.select bind="travel_policy_check.check_result" size="md" id="update_check_result">
-                  <option value="compliant">compliant</option>
-                  <option value="exceeded">exceeded</option>
-                  <option value="blocked">blocked</option>
+                <.select bind="travel_policy_check.check_result" size="md" id="update_check_result" options={[%{label: "compliant", value: "compliant"}, %{label: "exceeded", value: "exceeded"}, %{label: "blocked", value: "blocked"}]}>
+
                 </.select>
                 <.input bind="travel_policy_check.policy_amount" size="md" id="update_policy_amount" />
                 <.input bind="travel_policy_check.actual_amount" size="md" id="update_actual_amount" />
@@ -139,10 +137,8 @@
                 <.input bind="travel_policy_check.exceed_reason" size="md" id="update_exceed_reason" />
                 <.input bind="travel_policy_check.personal_pay_amount" size="md" id="update_personal_pay_amount" />
                 <.input bind="travel_policy_check.approval_request_id" size="md" id="update_approval_request_id" />
-                <.select bind="travel_policy_check.approval_mode" size="md" id="update_approval_mode">
-                  <option value="none">none</option>
-                  <option value="self">self</option>
-                  <option value="oa">oa</option>
+                <.select bind="travel_policy_check.approval_mode" size="md" id="update_approval_mode" options={[%{label: "none", value: "none"}, %{label: "self", value: "self"}, %{label: "oa", value: "oa"}]}>
+
                 </.select>
               </.stack>
             </.grid>

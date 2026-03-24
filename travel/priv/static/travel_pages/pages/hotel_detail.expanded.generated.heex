@@ -190,11 +190,8 @@
                 <.input bind="hotel_offer.inventory_count" size="md" id="update_inventory_count" />
                 <.textarea bind="hotel_offer.cancellation_policy" id="update_cancellation_policy" />
                 <.textarea bind="hotel_offer.guarantee_policy" id="update_guarantee_policy" />
-                <.select bind="hotel_offer.sale_status" size="md" id="update_sale_status">
-                  <option value="draft">draft</option>
-                  <option value="active">active</option>
-                  <option value="inactive">inactive</option>
-                  <option value="expired">expired</option>
+                <.select bind="hotel_offer.sale_status" size="md" id="update_sale_status" options={[%{label: "draft", value: "draft"}, %{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}, %{label: "expired", value: "expired"}]}>
+
                 </.select>
                 <.input bind="hotel_offer.city_ref_id" size="md" id="update_city_ref_id" />
               </.stack>

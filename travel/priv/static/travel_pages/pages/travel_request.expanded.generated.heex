@@ -68,15 +68,11 @@
           <.input bind="travel_order.host_member_id" size="md" id="create_host_member_id" />
           <.input bind="travel_order.host_enterprise_id" size="md" id="create_host_enterprise_id" />
           <.input bind="travel_order.order_no" size="md" id="create_order_no" />
-          <.select bind="travel_order.product_type" size="md" id="create_product_type">
-            <option value="hotel">hotel</option>
-            <option value="flight">flight</option>
-            <option value="vacation">vacation</option>
-            <option value="train">train</option>
+          <.select bind="travel_order.product_type" size="md" id="create_product_type" options={[%{label: "hotel", value: "hotel"}, %{label: "flight", value: "flight"}, %{label: "vacation", value: "vacation"}, %{label: "train", value: "train"}]}>
+
           </.select>
-          <.select bind="travel_order.booking_mode" size="md" id="create_booking_mode">
-            <option value="standard">standard</option>
-            <option value="waitlist">waitlist</option>
+          <.select bind="travel_order.booking_mode" size="md" id="create_booking_mode" options={[%{label: "standard", value: "standard"}, %{label: "waitlist", value: "waitlist"}]}>
+
           </.select>
           <.input bind="travel_order.contact_name" size="md" id="create_contact_name" />
           <.input bind="travel_order.contact_phone" size="md" id="create_contact_phone" />
@@ -86,29 +82,14 @@
           <.input bind="travel_order.points_deduction_amount" size="md" id="create_points_deduction_amount" />
           <.input bind="travel_order.recommended_payment_method" size="md" id="create_recommended_payment_method" />
           <.input bind="travel_order.currency" size="md" id="create_currency" />
-          <.select bind="travel_order.status" size="md" id="create_status">
-            <option value="draft">draft</option>
-            <option value="quoted">quoted</option>
-            <option value="submitted">submitted</option>
-            <option value="booking_pending">booking_pending</option>
-            <option value="booked">booked</option>
-            <option value="cancel_pending">cancel_pending</option>
-            <option value="cancelled">cancelled</option>
-            <option value="completed">completed</option>
-            <option value="failed">failed</option>
+          <.select bind="travel_order.status" size="md" id="create_status" options={[%{label: "draft", value: "draft"}, %{label: "quoted", value: "quoted"}, %{label: "submitted", value: "submitted"}, %{label: "booking_pending", value: "booking_pending"}, %{label: "booked", value: "booked"}, %{label: "cancel_pending", value: "cancel_pending"}, %{label: "cancelled", value: "cancelled"}, %{label: "completed", value: "completed"}, %{label: "failed", value: "failed"}]}>
+
           </.select>
-          <.select bind="travel_order.change_status" size="md" id="create_change_status">
-            <option value="none">none</option>
-            <option value="pending">pending</option>
-            <option value="changed">changed</option>
-            <option value="failed">failed</option>
+          <.select bind="travel_order.change_status" size="md" id="create_change_status" options={[%{label: "none", value: "none"}, %{label: "pending", value: "pending"}, %{label: "changed", value: "changed"}, %{label: "failed", value: "failed"}]}>
+
           </.select>
-          <.select bind="travel_order.waitlist_status" size="md" id="create_waitlist_status">
-            <option value="none">none</option>
-            <option value="pending">pending</option>
-            <option value="fulfilled">fulfilled</option>
-            <option value="cancelled">cancelled</option>
-            <option value="failed">failed</option>
+          <.select bind="travel_order.waitlist_status" size="md" id="create_waitlist_status" options={[%{label: "none", value: "none"}, %{label: "pending", value: "pending"}, %{label: "fulfilled", value: "fulfilled"}, %{label: "cancelled", value: "cancelled"}, %{label: "failed", value: "failed"}]}>
+
           </.select>
           <.input bind="travel_order.original_order_ref" size="md" id="create_original_order_ref" />
           <.input bind="travel_order.ticket_passenger_infos" size="md" id="create_ticket_passenger_infos" />

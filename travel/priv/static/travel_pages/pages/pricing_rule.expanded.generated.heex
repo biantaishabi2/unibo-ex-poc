@@ -66,24 +66,13 @@
   <.section layout="none" id="dialog_section">
     <.dialog title="新建规则" id="create_dialog">
       <.stack gap={3} direction="column" id="create_form">
-        <.select bind="travel_order.product_type" size="md" id="product_type_select">
-          <option value="hotel">hotel</option>
-          <option value="flight">flight</option>
-          <option value="vacation">vacation</option>
-          <option>酒店:hotel,机票:flight,火车票:train</option>
+        <.select bind="travel_order.product_type" size="md" id="product_type_select" options={[%{label: "hotel", value: "hotel"}, %{label: "flight", value: "flight"}, %{label: "vacation", value: "vacation"}, %{label: "酒店:hotel,机票:flight,火车票:train", value: ""}]}>
+
         </.select>
         <.input label="供应商编码" placeholder="请输入供应商编码" bind="form.supplier_code" required="true" size="md" id="supplier_code_input" />
         <.input label="加价率" placeholder="例如 0.15 表示加价 15%" bind="form.markup_rate" type="number" required="true" size="md" id="markup_rate_input" />
-        <.select bind="travel_order.status" size="md" id="status_select">
-          <option value="draft">draft</option>
-          <option value="quoted">quoted</option>
-          <option value="submitted">submitted</option>
-          <option value="booking_pending">booking_pending</option>
-          <option value="booked">booked</option>
-          <option value="cancel_pending">cancel_pending</option>
-          <option value="cancelled">cancelled</option>
-          <option value="completed">completed</option>
-          <option>启用:active,停用:inactive</option>
+        <.select bind="travel_order.status" size="md" id="status_select" options={[%{label: "draft", value: "draft"}, %{label: "quoted", value: "quoted"}, %{label: "submitted", value: "submitted"}, %{label: "booking_pending", value: "booking_pending"}, %{label: "booked", value: "booked"}, %{label: "cancel_pending", value: "cancel_pending"}, %{label: "cancelled", value: "cancelled"}, %{label: "completed", value: "completed"}, %{label: "启用:active,停用:inactive", value: ""}]}>
+
         </.select>
         <.button variant="primary" phx-click="create" size="md" id="submit_create_btn">
           创建

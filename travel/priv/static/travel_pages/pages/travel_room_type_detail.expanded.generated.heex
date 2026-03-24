@@ -105,9 +105,8 @@
                 <.input bind="travel_room_type.room_type_name" size="md" id="update_room_type_name" />
                 <.input bind="travel_room_type.hotel_code" size="md" id="update_hotel_code" />
                 <.input bind="travel_room_type.bed_type" size="md" id="update_bed_type" />
-                <.select bind="travel_room_type.status" size="md" id="update_status">
-                  <option value="active">active</option>
-                  <option value="inactive">inactive</option>
+                <.select bind="travel_room_type.status" size="md" id="update_status" options={[%{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}]}>
+
                 </.select>
               </.stack>
             </.grid>

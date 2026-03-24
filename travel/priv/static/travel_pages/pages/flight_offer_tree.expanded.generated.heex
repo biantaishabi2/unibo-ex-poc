@@ -28,11 +28,8 @@
       <.card_content id="filter_content">
         <.flex gap={4} align="center" direction="row" id="filter_row">
           <.input name="departure_at_from" label="起飞时间 起" size="md" id="filter_departure_at" />
-          <.select bind="flight_offer.sale_status" size="md" id="filter_sale_status">
-            <option value="draft">draft</option>
-            <option value="active">active</option>
-            <option value="inactive">inactive</option>
-            <option>expired</option>
+          <.select bind="flight_offer.sale_status" size="md" id="filter_sale_status" options={[%{label: "draft", value: "draft"}, %{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}, %{label: "expired", value: ""}]}>
+
           </.select>
           <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
             查询

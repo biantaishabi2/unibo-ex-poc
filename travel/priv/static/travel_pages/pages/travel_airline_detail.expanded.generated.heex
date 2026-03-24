@@ -105,9 +105,8 @@
                 <.input bind="travel_airline.airline_name" size="md" id="update_airline_name" />
                 <.input bind="travel_airline.iata_code" size="md" id="update_iata_code" />
                 <.input bind="travel_airline.icao_code" size="md" id="update_icao_code" />
-                <.select bind="travel_airline.status" size="md" id="update_status">
-                  <option value="active">active</option>
-                  <option value="inactive">inactive</option>
+                <.select bind="travel_airline.status" size="md" id="update_status" options={[%{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}]}>
+
                 </.select>
               </.stack>
             </.grid>

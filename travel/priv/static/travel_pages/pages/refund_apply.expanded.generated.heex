@@ -38,16 +38,11 @@
             <.input bind="travel_refund_order.refund_reason" size="md" id="create_refund_reason" />
             <.input bind="travel_refund_order.refund_fee" size="md" id="create_refund_fee" />
             <.input bind="travel_refund_order.refund_amount" size="md" id="create_refund_amount" />
-            <.select bind="travel_refund_order.status" size="md" id="create_status">
-              <option value="pending">pending</option>
-              <option value="approved">approved</option>
-              <option value="refunded">refunded</option>
-              <option value="rejected">rejected</option>
+            <.select bind="travel_refund_order.status" size="md" id="create_status" options={[%{label: "pending", value: "pending"}, %{label: "approved", value: "approved"}, %{label: "refunded", value: "refunded"}, %{label: "rejected", value: "rejected"}]}>
+
             </.select>
-            <.select bind="travel_refund_order.approval_mode" size="md" id="create_approval_mode">
-              <option value="none">none</option>
-              <option value="self">self</option>
-              <option value="oa">oa</option>
+            <.select bind="travel_refund_order.approval_mode" size="md" id="create_approval_mode" options={[%{label: "none", value: "none"}, %{label: "self", value: "self"}, %{label: "oa", value: "oa"}]}>
+
             </.select>
           </.stack>
         </.card_content>

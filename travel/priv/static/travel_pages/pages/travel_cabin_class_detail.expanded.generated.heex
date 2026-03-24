@@ -96,9 +96,8 @@
                 <.input bind="travel_cabin_class.cabin_class_code" size="md" id="update_cabin_class_code" />
                 <.input bind="travel_cabin_class.cabin_class_name" size="md" id="update_cabin_class_name" />
                 <.input bind="travel_cabin_class.cabin_rank" size="md" id="update_cabin_rank" />
-                <.select bind="travel_cabin_class.status" size="md" id="update_status">
-                  <option value="active">active</option>
-                  <option value="inactive">inactive</option>
+                <.select bind="travel_cabin_class.status" size="md" id="update_status" options={[%{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}]}>
+
                 </.select>
               </.stack>
             </.grid>

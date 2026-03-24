@@ -160,41 +160,23 @@
             <.grid columns={2} gap={4} id="form_grid">
               <.stack direction="column" id="form_fields">
                 <.input bind="travel_fulfillment.tenant_id" size="md" id="update_tenant_id" />
-                <.select bind="travel_fulfillment.fulfillment_type" size="md" id="update_fulfillment_type">
-                  <option value="reserve_room">reserve_room</option>
-                  <option value="issue_ticket">issue_ticket</option>
-                  <option value="issue_voucher">issue_voucher</option>
-                  <option value="issue_train_ticket">issue_train_ticket</option>
+                <.select bind="travel_fulfillment.fulfillment_type" size="md" id="update_fulfillment_type" options={[%{label: "reserve_room", value: "reserve_room"}, %{label: "issue_ticket", value: "issue_ticket"}, %{label: "issue_voucher", value: "issue_voucher"}, %{label: "issue_train_ticket", value: "issue_train_ticket"}]}>
+
                 </.select>
-                <.select bind="travel_fulfillment.status" size="md" id="update_status">
-                  <option value="pending">pending</option>
-                  <option value="confirmed">confirmed</option>
-                  <option value="issued">issued</option>
-                  <option value="in_use">in_use</option>
-                  <option value="completed">completed</option>
-                  <option value="cancelled">cancelled</option>
-                  <option value="failed">failed</option>
+                <.select bind="travel_fulfillment.status" size="md" id="update_status" options={[%{label: "pending", value: "pending"}, %{label: "confirmed", value: "confirmed"}, %{label: "issued", value: "issued"}, %{label: "in_use", value: "in_use"}, %{label: "completed", value: "completed"}, %{label: "cancelled", value: "cancelled"}, %{label: "failed", value: "failed"}]}>
+
                 </.select>
                 <.input bind="travel_fulfillment.supplier_booking_ref" size="md" id="update_supplier_booking_ref" />
                 <.input bind="travel_fulfillment.voucher_or_ticket_ref" size="md" id="update_voucher_or_ticket_ref" />
                 <.input bind="travel_fulfillment.ticket_refs" size="md" id="update_ticket_refs" />
-                <.select bind="travel_fulfillment.waitlist_result" size="md" id="update_waitlist_result">
-                  <option value="none">none</option>
-                  <option value="pending">pending</option>
-                  <option value="fulfilled">fulfilled</option>
-                  <option value="cancelled">cancelled</option>
-                  <option value="failed">failed</option>
+                <.select bind="travel_fulfillment.waitlist_result" size="md" id="update_waitlist_result" options={[%{label: "none", value: "none"}, %{label: "pending", value: "pending"}, %{label: "fulfilled", value: "fulfilled"}, %{label: "cancelled", value: "cancelled"}, %{label: "failed", value: "failed"}]}>
+
                 </.select>
-                <.select bind="travel_fulfillment.change_result" size="md" id="update_change_result">
-                  <option value="none">none</option>
-                  <option value="pending">pending</option>
-                  <option value="changed">changed</option>
-                  <option value="failed">failed</option>
+                <.select bind="travel_fulfillment.change_result" size="md" id="update_change_result" options={[%{label: "none", value: "none"}, %{label: "pending", value: "pending"}, %{label: "changed", value: "changed"}, %{label: "failed", value: "failed"}]}>
+
                 </.select>
-                <.select bind="travel_fulfillment.boarding_status" size="md" id="update_boarding_status">
-                  <option value="not_started">not_started</option>
-                  <option value="boarded">boarded</option>
-                  <option value="completed">completed</option>
+                <.select bind="travel_fulfillment.boarding_status" size="md" id="update_boarding_status" options={[%{label: "not_started", value: "not_started"}, %{label: "boarded", value: "boarded"}, %{label: "completed", value: "completed"}]}>
+
                 </.select>
                 <.textarea bind="travel_fulfillment.confirmation_payload" id="update_confirmation_payload" />
                 <.textarea bind="travel_fulfillment.failure_reason" id="update_failure_reason" />

@@ -110,22 +110,15 @@
             <.grid columns={2} gap={4} id="form_grid">
               <.stack direction="column" id="form_fields">
                 <.input bind="travel_static_code_mapping.supplier_code" size="md" id="update_supplier_code" />
-                <.select bind="travel_static_code_mapping.object_type" size="md" id="update_object_type">
-                  <option value="city">city</option>
-                  <option value="airport">airport</option>
-                  <option value="station">station</option>
-                  <option value="hotel">hotel</option>
-                  <option value="room_type">room_type</option>
-                  <option value="airline">airline</option>
-                  <option value="cabin_class">cabin_class</option>
+                <.select bind="travel_static_code_mapping.object_type" size="md" id="update_object_type" options={[%{label: "city", value: "city"}, %{label: "airport", value: "airport"}, %{label: "station", value: "station"}, %{label: "hotel", value: "hotel"}, %{label: "room_type", value: "room_type"}, %{label: "airline", value: "airline"}, %{label: "cabin_class", value: "cabin_class"}]}>
+
                 </.select>
                 <.input bind="travel_static_code_mapping.canonical_entity" size="md" id="update_canonical_entity" />
                 <.input bind="travel_static_code_mapping.canonical_id" size="md" id="update_canonical_id" />
                 <.input bind="travel_static_code_mapping.external_code" size="md" id="update_external_code" />
                 <.input bind="travel_static_code_mapping.external_name" size="md" id="update_external_name" />
-                <.select bind="travel_static_code_mapping.status" size="md" id="update_status">
-                  <option value="active">active</option>
-                  <option value="inactive">inactive</option>
+                <.select bind="travel_static_code_mapping.status" size="md" id="update_status" options={[%{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}]}>
+
                 </.select>
               </.stack>
             </.grid>

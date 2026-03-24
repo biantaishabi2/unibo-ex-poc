@@ -109,16 +109,11 @@
                 <.input bind="travel_change_order.price_difference" size="md" id="update_price_difference" />
                 <.input bind="travel_change_order.change_fee" size="md" id="update_change_fee" />
                 <.input bind="travel_change_order.new_offer_id" size="md" id="update_new_offer_id" />
-                <.select bind="travel_change_order.status" size="md" id="update_status">
-                  <option value="pending">pending</option>
-                  <option value="approved">approved</option>
-                  <option value="completed">completed</option>
-                  <option value="rejected">rejected</option>
+                <.select bind="travel_change_order.status" size="md" id="update_status" options={[%{label: "pending", value: "pending"}, %{label: "approved", value: "approved"}, %{label: "completed", value: "completed"}, %{label: "rejected", value: "rejected"}]}>
+
                 </.select>
-                <.select bind="travel_change_order.approval_mode" size="md" id="update_approval_mode">
-                  <option value="none">none</option>
-                  <option value="self">self</option>
-                  <option value="oa">oa</option>
+                <.select bind="travel_change_order.approval_mode" size="md" id="update_approval_mode" options={[%{label: "none", value: "none"}, %{label: "self", value: "self"}, %{label: "oa", value: "oa"}]}>
+
                 </.select>
               </.stack>
             </.grid>

@@ -236,11 +236,8 @@
                 <.input bind="train_offer.seat_class" size="md" id="update_seat_class" />
                 <.input bind="train_offer.seat_code" size="md" id="update_seat_code" />
                 <.switch bind="train_offer.is_no_seat" size="md" id="update_is_no_seat" />
-                <.select bind="train_offer.inventory_status" size="md" id="update_inventory_status">
-                  <option value="available">available</option>
-                  <option value="waitlist_only">waitlist_only</option>
-                  <option value="sold_out">sold_out</option>
-                  <option value="unavailable">unavailable</option>
+                <.select bind="train_offer.inventory_status" size="md" id="update_inventory_status" options={[%{label: "available", value: "available"}, %{label: "waitlist_only", value: "waitlist_only"}, %{label: "sold_out", value: "sold_out"}, %{label: "unavailable", value: "unavailable"}]}>
+
                 </.select>
                 <.switch bind="train_offer.waitlist_supported" size="md" id="update_waitlist_supported" />
                 <.input bind="train_offer.listed_price" size="md" id="update_listed_price" />
@@ -249,11 +246,8 @@
                 <.textarea bind="train_offer.booking_rules_snapshot" id="update_booking_rules_snapshot" />
                 <.textarea bind="train_offer.change_rules_snapshot" id="update_change_rules_snapshot" />
                 <.textarea bind="train_offer.refund_rules_snapshot" id="update_refund_rules_snapshot" />
-                <.select bind="train_offer.sale_status" size="md" id="update_sale_status">
-                  <option value="draft">draft</option>
-                  <option value="active">active</option>
-                  <option value="inactive">inactive</option>
-                  <option value="expired">expired</option>
+                <.select bind="train_offer.sale_status" size="md" id="update_sale_status" options={[%{label: "draft", value: "draft"}, %{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}, %{label: "expired", value: "expired"}]}>
+
                 </.select>
                 <.input bind="train_offer.departure_station_ref_id" size="md" id="update_departure_station_ref_id" />
                 <.input bind="train_offer.arrival_station_ref_id" size="md" id="update_arrival_station_ref_id" />
