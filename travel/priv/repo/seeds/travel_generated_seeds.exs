@@ -37,6 +37,96 @@ Repo.delete_all(UniboExPoc.Travel.TravelCabinClass)
 Repo.delete_all(UniboExPoc.Travel.TravelAirline)
 Repo.delete_all(UniboExPoc.Travel.TrainOffer)
 
+train_offer_001 =
+  %UniboExPoc.Travel.TrainOffer{
+    tenant_id: "00000000-0000-0000-0000-000000000001",
+    host_shop_id: Ash.UUID.generate(),
+    supplier_code: "supplier_code_001",
+    train_no: "train_no_001",
+    departure_station_code: "departure_station_code_001",
+    departure_station_name: "departure_station_name_001",
+    arrival_station_code: "arrival_station_code_001",
+    arrival_station_name: "arrival_station_name_001",
+    travel_date: ~D[2026-01-01],
+    departure_at: ~U[2026-01-01T00:00:00Z],
+    arrival_at: ~U[2026-01-01T00:00:00Z],
+    seat_class: "seat_class_001",
+    seat_code: "seat_code_001",
+    is_no_seat: true,
+    inventory_status: :"available",
+    waitlist_supported: true,
+    listed_price: Decimal.new("100.00"),
+    settlement_price: Decimal.new("100.00"),
+    currency: "currency_001",
+    booking_rules_snapshot: "Lorem ipsum booking_rules_snapshot",
+    change_rules_snapshot: "Lorem ipsum change_rules_snapshot",
+    refund_rules_snapshot: "Lorem ipsum refund_rules_snapshot",
+    sale_status: :"draft",
+    departure_station_ref_id: "departure_station_ref_id_001",
+    arrival_station_ref_id: "arrival_station_ref_id_001"
+  }
+  |> UniboExPoc.Repo.insert!()
+
+train_offer_002 =
+  %UniboExPoc.Travel.TrainOffer{
+    tenant_id: "00000000-0000-0000-0000-000000000001",
+    host_shop_id: Ash.UUID.generate(),
+    supplier_code: "supplier_code_002",
+    train_no: "train_no_002",
+    departure_station_code: "departure_station_code_002",
+    departure_station_name: "departure_station_name_002",
+    arrival_station_code: "arrival_station_code_002",
+    arrival_station_name: "arrival_station_name_002",
+    travel_date: ~D[2026-01-01],
+    departure_at: ~U[2026-01-01T00:00:00Z],
+    arrival_at: ~U[2026-01-01T00:00:00Z],
+    seat_class: "seat_class_002",
+    seat_code: "seat_code_002",
+    is_no_seat: true,
+    inventory_status: :"waitlist_only",
+    waitlist_supported: true,
+    listed_price: Decimal.new("100.00"),
+    settlement_price: Decimal.new("100.00"),
+    currency: "currency_002",
+    booking_rules_snapshot: "Lorem ipsum booking_rules_snapshot",
+    change_rules_snapshot: "Lorem ipsum change_rules_snapshot",
+    refund_rules_snapshot: "Lorem ipsum refund_rules_snapshot",
+    sale_status: :"active",
+    departure_station_ref_id: "departure_station_ref_id_002",
+    arrival_station_ref_id: "arrival_station_ref_id_002"
+  }
+  |> UniboExPoc.Repo.insert!()
+
+train_offer_003 =
+  %UniboExPoc.Travel.TrainOffer{
+    tenant_id: "00000000-0000-0000-0000-000000000001",
+    host_shop_id: Ash.UUID.generate(),
+    supplier_code: "supplier_code_003",
+    train_no: "train_no_003",
+    departure_station_code: "departure_station_code_003",
+    departure_station_name: "departure_station_name_003",
+    arrival_station_code: "arrival_station_code_003",
+    arrival_station_name: "arrival_station_name_003",
+    travel_date: ~D[2026-01-01],
+    departure_at: ~U[2026-01-01T00:00:00Z],
+    arrival_at: ~U[2026-01-01T00:00:00Z],
+    seat_class: "seat_class_003",
+    seat_code: "seat_code_003",
+    is_no_seat: true,
+    inventory_status: :"sold_out",
+    waitlist_supported: true,
+    listed_price: Decimal.new("100.00"),
+    settlement_price: Decimal.new("100.00"),
+    currency: "currency_003",
+    booking_rules_snapshot: "Lorem ipsum booking_rules_snapshot",
+    change_rules_snapshot: "Lorem ipsum change_rules_snapshot",
+    refund_rules_snapshot: "Lorem ipsum refund_rules_snapshot",
+    sale_status: :"inactive",
+    departure_station_ref_id: "departure_station_ref_id_003",
+    arrival_station_ref_id: "arrival_station_ref_id_003"
+  }
+  |> UniboExPoc.Repo.insert!()
+
 travel_airline_001 =
   UniboExPoc.Travel.TravelAirline
   |> Ash.Changeset.for_create(:create, %{
@@ -226,6 +316,159 @@ travel_static_code_mapping_003 =
   })
   |> Ash.create!()
 
+vacation_offer_001 =
+  %UniboExPoc.Travel.VacationOffer{
+    tenant_id: "00000000-0000-0000-0000-000000000001",
+    host_shop_id: Ash.UUID.generate(),
+    supplier_code: "supplier_code_001",
+    package_code: "package_code_001",
+    package_name: "package_name_001",
+    package_type: :"group_tour",
+    departure_city_code: "departure_city_code_001",
+    destination_code: "destination_code_001",
+    start_date: ~D[2026-01-01],
+    end_date: ~D[2026-01-01],
+    listed_price: Decimal.new("100.00"),
+    settlement_price: Decimal.new("100.00"),
+    currency: "currency_001",
+    inventory_count: 1,
+    booking_rules: "Lorem ipsum booking_rules",
+    cancellation_policy: "Lorem ipsum cancellation_policy",
+    sale_status: :"draft",
+    departure_city_ref_id: "departure_city_ref_id_001",
+    destination_ref_id: "destination_ref_id_001"
+  }
+  |> UniboExPoc.Repo.insert!()
+
+vacation_offer_002 =
+  %UniboExPoc.Travel.VacationOffer{
+    tenant_id: "00000000-0000-0000-0000-000000000001",
+    host_shop_id: Ash.UUID.generate(),
+    supplier_code: "supplier_code_002",
+    package_code: "package_code_002",
+    package_name: "package_name_002",
+    package_type: :"free_travel",
+    departure_city_code: "departure_city_code_002",
+    destination_code: "destination_code_002",
+    start_date: ~D[2026-01-01],
+    end_date: ~D[2026-01-01],
+    listed_price: Decimal.new("100.00"),
+    settlement_price: Decimal.new("100.00"),
+    currency: "currency_002",
+    inventory_count: 2,
+    booking_rules: "Lorem ipsum booking_rules",
+    cancellation_policy: "Lorem ipsum cancellation_policy",
+    sale_status: :"active",
+    departure_city_ref_id: "departure_city_ref_id_002",
+    destination_ref_id: "destination_ref_id_002"
+  }
+  |> UniboExPoc.Repo.insert!()
+
+vacation_offer_003 =
+  %UniboExPoc.Travel.VacationOffer{
+    tenant_id: "00000000-0000-0000-0000-000000000001",
+    host_shop_id: Ash.UUID.generate(),
+    supplier_code: "supplier_code_003",
+    package_code: "package_code_003",
+    package_name: "package_name_003",
+    package_type: :"ticket_hotel",
+    departure_city_code: "departure_city_code_003",
+    destination_code: "destination_code_003",
+    start_date: ~D[2026-01-01],
+    end_date: ~D[2026-01-01],
+    listed_price: Decimal.new("100.00"),
+    settlement_price: Decimal.new("100.00"),
+    currency: "currency_003",
+    inventory_count: 3,
+    booking_rules: "Lorem ipsum booking_rules",
+    cancellation_policy: "Lorem ipsum cancellation_policy",
+    sale_status: :"inactive",
+    departure_city_ref_id: "departure_city_ref_id_003",
+    destination_ref_id: "destination_ref_id_003"
+  }
+  |> UniboExPoc.Repo.insert!()
+
+flight_offer_001 =
+  %UniboExPoc.Travel.FlightOffer{
+    tenant_id: "00000000-0000-0000-0000-000000000001",
+    host_shop_id: Ash.UUID.generate(),
+    supplier_code: "supplier_code_001",
+    itinerary_code: "itinerary_code_001",
+    flight_no: "flight_no_001",
+    departure_airport_code: "departure_airport_code_001",
+    arrival_airport_code: "arrival_airport_code_001",
+    departure_at: ~U[2026-01-01T00:00:00Z],
+    arrival_at: ~U[2026-01-01T00:00:00Z],
+    cabin_class: "cabin_class_001",
+    fare_family: "fare_family_001",
+    listed_price: Decimal.new("100.00"),
+    settlement_price: Decimal.new("100.00"),
+    currency: "currency_001",
+    seats_available: 1,
+    baggage_policy: "Lorem ipsum baggage_policy",
+    refund_change_policy: "Lorem ipsum refund_change_policy",
+    sale_status: :"draft",
+    departure_airport_ref_id: "departure_airport_ref_id_001",
+    arrival_airport_ref_id: "arrival_airport_ref_id_001",
+    airline_ref_id: travel_airline_001.id,
+    cabin_class_ref_id: travel_cabin_class_001.id
+  }
+  |> UniboExPoc.Repo.insert!()
+
+flight_offer_002 =
+  %UniboExPoc.Travel.FlightOffer{
+    tenant_id: "00000000-0000-0000-0000-000000000001",
+    host_shop_id: Ash.UUID.generate(),
+    supplier_code: "supplier_code_002",
+    itinerary_code: "itinerary_code_002",
+    flight_no: "flight_no_002",
+    departure_airport_code: "departure_airport_code_002",
+    arrival_airport_code: "arrival_airport_code_002",
+    departure_at: ~U[2026-01-01T00:00:00Z],
+    arrival_at: ~U[2026-01-01T00:00:00Z],
+    cabin_class: "cabin_class_002",
+    fare_family: "fare_family_002",
+    listed_price: Decimal.new("100.00"),
+    settlement_price: Decimal.new("100.00"),
+    currency: "currency_002",
+    seats_available: 2,
+    baggage_policy: "Lorem ipsum baggage_policy",
+    refund_change_policy: "Lorem ipsum refund_change_policy",
+    sale_status: :"active",
+    departure_airport_ref_id: "departure_airport_ref_id_002",
+    arrival_airport_ref_id: "arrival_airport_ref_id_002",
+    airline_ref_id: travel_airline_002.id,
+    cabin_class_ref_id: travel_cabin_class_002.id
+  }
+  |> UniboExPoc.Repo.insert!()
+
+flight_offer_003 =
+  %UniboExPoc.Travel.FlightOffer{
+    tenant_id: "00000000-0000-0000-0000-000000000001",
+    host_shop_id: Ash.UUID.generate(),
+    supplier_code: "supplier_code_003",
+    itinerary_code: "itinerary_code_003",
+    flight_no: "flight_no_003",
+    departure_airport_code: "departure_airport_code_003",
+    arrival_airport_code: "arrival_airport_code_003",
+    departure_at: ~U[2026-01-01T00:00:00Z],
+    arrival_at: ~U[2026-01-01T00:00:00Z],
+    cabin_class: "cabin_class_003",
+    fare_family: "fare_family_003",
+    listed_price: Decimal.new("100.00"),
+    settlement_price: Decimal.new("100.00"),
+    currency: "currency_003",
+    seats_available: 3,
+    baggage_policy: "Lorem ipsum baggage_policy",
+    refund_change_policy: "Lorem ipsum refund_change_policy",
+    sale_status: :"inactive",
+    departure_airport_ref_id: "departure_airport_ref_id_003",
+    arrival_airport_ref_id: "arrival_airport_ref_id_003",
+    cabin_class_ref_id: travel_cabin_class_003.id,
+    airline_ref_id: travel_airline_003.id
+  }
+  |> UniboExPoc.Repo.insert!()
+
 travel_room_type_001 =
   UniboExPoc.Travel.TravelRoomType
   |> Ash.Changeset.for_create(:create, %{
@@ -262,9 +505,84 @@ travel_room_type_003 =
   })
   |> Ash.create!()
 
+hotel_offer_001 =
+  %UniboExPoc.Travel.HotelOffer{
+    tenant_id: "00000000-0000-0000-0000-000000000001",
+    host_shop_id: Ash.UUID.generate(),
+    supplier_code: "supplier_code_001",
+    hotel_code: "hotel_code_001",
+    hotel_name: "hotel_name_001",
+    city_code: "city_code_001",
+    room_type_code: "room_type_code_001",
+    rate_plan_code: "rate_plan_code_001",
+    checkin_date: ~D[2026-01-01],
+    checkout_date: ~D[2026-01-01],
+    listed_price: Decimal.new("100.00"),
+    settlement_price: Decimal.new("100.00"),
+    currency: "currency_001",
+    inventory_count: 1,
+    cancellation_policy: "Lorem ipsum cancellation_policy",
+    guarantee_policy: "Lorem ipsum guarantee_policy",
+    sale_status: :"draft",
+    city_ref_id: "city_ref_id_001",
+    hotel_ref_id: travel_hotel_001.id,
+    room_type_ref_id: travel_room_type_001.id
+  }
+  |> UniboExPoc.Repo.insert!()
+
+hotel_offer_002 =
+  %UniboExPoc.Travel.HotelOffer{
+    tenant_id: "00000000-0000-0000-0000-000000000001",
+    host_shop_id: Ash.UUID.generate(),
+    supplier_code: "supplier_code_002",
+    hotel_code: "hotel_code_002",
+    hotel_name: "hotel_name_002",
+    city_code: "city_code_002",
+    room_type_code: "room_type_code_002",
+    rate_plan_code: "rate_plan_code_002",
+    checkin_date: ~D[2026-01-01],
+    checkout_date: ~D[2026-01-01],
+    listed_price: Decimal.new("100.00"),
+    settlement_price: Decimal.new("100.00"),
+    currency: "currency_002",
+    inventory_count: 2,
+    cancellation_policy: "Lorem ipsum cancellation_policy",
+    guarantee_policy: "Lorem ipsum guarantee_policy",
+    sale_status: :"active",
+    city_ref_id: "city_ref_id_002",
+    room_type_ref_id: travel_room_type_002.id,
+    hotel_ref_id: travel_hotel_002.id
+  }
+  |> UniboExPoc.Repo.insert!()
+
+hotel_offer_003 =
+  %UniboExPoc.Travel.HotelOffer{
+    tenant_id: "00000000-0000-0000-0000-000000000001",
+    host_shop_id: Ash.UUID.generate(),
+    supplier_code: "supplier_code_003",
+    hotel_code: "hotel_code_003",
+    hotel_name: "hotel_name_003",
+    city_code: "city_code_003",
+    room_type_code: "room_type_code_003",
+    rate_plan_code: "rate_plan_code_003",
+    checkin_date: ~D[2026-01-01],
+    checkout_date: ~D[2026-01-01],
+    listed_price: Decimal.new("100.00"),
+    settlement_price: Decimal.new("100.00"),
+    currency: "currency_003",
+    inventory_count: 3,
+    cancellation_policy: "Lorem ipsum cancellation_policy",
+    guarantee_policy: "Lorem ipsum guarantee_policy",
+    sale_status: :"inactive",
+    city_ref_id: "city_ref_id_003",
+    hotel_ref_id: travel_hotel_003.id,
+    room_type_ref_id: travel_room_type_003.id
+  }
+  |> UniboExPoc.Repo.insert!()
+
 travel_order_001 =
   %UniboExPoc.Travel.TravelOrder{
-    tenant_id: Ash.UUID.generate(),
+    tenant_id: "00000000-0000-0000-0000-000000000001",
     host_shop_id: Ash.UUID.generate(),
     host_member_id: "host_member_id_001",
     host_enterprise_id: "host_enterprise_id_001",
@@ -289,16 +607,16 @@ travel_order_001 =
     payment_external_ref: "payment_external_ref_001",
     customer_id: "customer_id_001",
     payment_id: "payment_id_001",
-    hotel_offer_id: nil,
-    flight_offer_id: nil,
-    train_offer_id: nil,
-    vacation_offer_id: nil
+    hotel_offer_id: hotel_offer_001.id,
+    train_offer_id: train_offer_001.id,
+    vacation_offer_id: vacation_offer_001.id,
+    flight_offer_id: flight_offer_001.id
   }
   |> UniboExPoc.Repo.insert!()
 
 travel_order_002 =
   %UniboExPoc.Travel.TravelOrder{
-    tenant_id: Ash.UUID.generate(),
+    tenant_id: "00000000-0000-0000-0000-000000000001",
     host_shop_id: Ash.UUID.generate(),
     host_member_id: "host_member_id_002",
     host_enterprise_id: "host_enterprise_id_002",
@@ -323,16 +641,16 @@ travel_order_002 =
     payment_external_ref: "payment_external_ref_002",
     customer_id: "customer_id_002",
     payment_id: "payment_id_002",
-    hotel_offer_id: nil,
-    train_offer_id: nil,
-    flight_offer_id: nil,
-    vacation_offer_id: nil
+    flight_offer_id: flight_offer_002.id,
+    hotel_offer_id: hotel_offer_002.id,
+    train_offer_id: train_offer_002.id,
+    vacation_offer_id: vacation_offer_002.id
   }
   |> UniboExPoc.Repo.insert!()
 
 travel_order_003 =
   %UniboExPoc.Travel.TravelOrder{
-    tenant_id: Ash.UUID.generate(),
+    tenant_id: "00000000-0000-0000-0000-000000000001",
     host_shop_id: Ash.UUID.generate(),
     host_member_id: "host_member_id_003",
     host_enterprise_id: "host_enterprise_id_003",
@@ -357,10 +675,10 @@ travel_order_003 =
     payment_external_ref: "payment_external_ref_003",
     customer_id: "customer_id_003",
     payment_id: "payment_id_003",
-    train_offer_id: nil,
-    flight_offer_id: nil,
-    hotel_offer_id: nil,
-    vacation_offer_id: nil
+    train_offer_id: train_offer_003.id,
+    vacation_offer_id: vacation_offer_003.id,
+    flight_offer_id: flight_offer_003.id,
+    hotel_offer_id: hotel_offer_003.id
   }
   |> UniboExPoc.Repo.insert!()
 
@@ -400,255 +718,9 @@ travel_change_order_003 =
   }
   |> UniboExPoc.Repo.insert!()
 
-hotel_offer_001 =
-  %UniboExPoc.Travel.HotelOffer{
-    tenant_id: Ash.UUID.generate(),
-    host_shop_id: Ash.UUID.generate(),
-    supplier_code: "supplier_code_001",
-    hotel_code: "hotel_code_001",
-    hotel_name: "hotel_name_001",
-    city_code: "city_code_001",
-    room_type_code: "room_type_code_001",
-    rate_plan_code: "rate_plan_code_001",
-    checkin_date: ~D[2026-01-01],
-    checkout_date: ~D[2026-01-01],
-    listed_price: Decimal.new("100.00"),
-    settlement_price: Decimal.new("100.00"),
-    currency: "currency_001",
-    inventory_count: 1,
-    cancellation_policy: "Lorem ipsum cancellation_policy",
-    guarantee_policy: "Lorem ipsum guarantee_policy",
-    sale_status: :"draft",
-    city_ref_id: "city_ref_id_001",
-    room_type_ref_id: travel_room_type_001.id,
-    hotel_ref_id: travel_hotel_001.id
-  }
-  |> UniboExPoc.Repo.insert!()
-
-hotel_offer_002 =
-  %UniboExPoc.Travel.HotelOffer{
-    tenant_id: Ash.UUID.generate(),
-    host_shop_id: Ash.UUID.generate(),
-    supplier_code: "supplier_code_002",
-    hotel_code: "hotel_code_002",
-    hotel_name: "hotel_name_002",
-    city_code: "city_code_002",
-    room_type_code: "room_type_code_002",
-    rate_plan_code: "rate_plan_code_002",
-    checkin_date: ~D[2026-01-01],
-    checkout_date: ~D[2026-01-01],
-    listed_price: Decimal.new("100.00"),
-    settlement_price: Decimal.new("100.00"),
-    currency: "currency_002",
-    inventory_count: 2,
-    cancellation_policy: "Lorem ipsum cancellation_policy",
-    guarantee_policy: "Lorem ipsum guarantee_policy",
-    sale_status: :"active",
-    city_ref_id: "city_ref_id_002",
-    room_type_ref_id: travel_room_type_002.id,
-    hotel_ref_id: travel_hotel_002.id
-  }
-  |> UniboExPoc.Repo.insert!()
-
-hotel_offer_003 =
-  %UniboExPoc.Travel.HotelOffer{
-    tenant_id: Ash.UUID.generate(),
-    host_shop_id: Ash.UUID.generate(),
-    supplier_code: "supplier_code_003",
-    hotel_code: "hotel_code_003",
-    hotel_name: "hotel_name_003",
-    city_code: "city_code_003",
-    room_type_code: "room_type_code_003",
-    rate_plan_code: "rate_plan_code_003",
-    checkin_date: ~D[2026-01-01],
-    checkout_date: ~D[2026-01-01],
-    listed_price: Decimal.new("100.00"),
-    settlement_price: Decimal.new("100.00"),
-    currency: "currency_003",
-    inventory_count: 3,
-    cancellation_policy: "Lorem ipsum cancellation_policy",
-    guarantee_policy: "Lorem ipsum guarantee_policy",
-    sale_status: :"inactive",
-    city_ref_id: "city_ref_id_003",
-    room_type_ref_id: travel_room_type_003.id,
-    hotel_ref_id: travel_hotel_003.id
-  }
-  |> UniboExPoc.Repo.insert!()
-
-train_offer_001 =
-  %UniboExPoc.Travel.TrainOffer{
-    tenant_id: Ash.UUID.generate(),
-    host_shop_id: Ash.UUID.generate(),
-    supplier_code: "supplier_code_001",
-    train_no: "train_no_001",
-    departure_station_code: "departure_station_code_001",
-    departure_station_name: "departure_station_name_001",
-    arrival_station_code: "arrival_station_code_001",
-    arrival_station_name: "arrival_station_name_001",
-    travel_date: ~D[2026-01-01],
-    departure_at: ~U[2026-01-01T00:00:00Z],
-    arrival_at: ~U[2026-01-01T00:00:00Z],
-    seat_class: "seat_class_001",
-    seat_code: "seat_code_001",
-    is_no_seat: true,
-    inventory_status: :"available",
-    waitlist_supported: true,
-    listed_price: Decimal.new("100.00"),
-    settlement_price: Decimal.new("100.00"),
-    currency: "currency_001",
-    booking_rules_snapshot: "Lorem ipsum booking_rules_snapshot",
-    change_rules_snapshot: "Lorem ipsum change_rules_snapshot",
-    refund_rules_snapshot: "Lorem ipsum refund_rules_snapshot",
-    sale_status: :"draft",
-    departure_station_ref_id: "departure_station_ref_id_001",
-    arrival_station_ref_id: "arrival_station_ref_id_001"
-  }
-  |> UniboExPoc.Repo.insert!()
-
-train_offer_002 =
-  %UniboExPoc.Travel.TrainOffer{
-    tenant_id: Ash.UUID.generate(),
-    host_shop_id: Ash.UUID.generate(),
-    supplier_code: "supplier_code_002",
-    train_no: "train_no_002",
-    departure_station_code: "departure_station_code_002",
-    departure_station_name: "departure_station_name_002",
-    arrival_station_code: "arrival_station_code_002",
-    arrival_station_name: "arrival_station_name_002",
-    travel_date: ~D[2026-01-01],
-    departure_at: ~U[2026-01-01T00:00:00Z],
-    arrival_at: ~U[2026-01-01T00:00:00Z],
-    seat_class: "seat_class_002",
-    seat_code: "seat_code_002",
-    is_no_seat: true,
-    inventory_status: :"waitlist_only",
-    waitlist_supported: true,
-    listed_price: Decimal.new("100.00"),
-    settlement_price: Decimal.new("100.00"),
-    currency: "currency_002",
-    booking_rules_snapshot: "Lorem ipsum booking_rules_snapshot",
-    change_rules_snapshot: "Lorem ipsum change_rules_snapshot",
-    refund_rules_snapshot: "Lorem ipsum refund_rules_snapshot",
-    sale_status: :"active",
-    departure_station_ref_id: "departure_station_ref_id_002",
-    arrival_station_ref_id: "arrival_station_ref_id_002"
-  }
-  |> UniboExPoc.Repo.insert!()
-
-train_offer_003 =
-  %UniboExPoc.Travel.TrainOffer{
-    tenant_id: Ash.UUID.generate(),
-    host_shop_id: Ash.UUID.generate(),
-    supplier_code: "supplier_code_003",
-    train_no: "train_no_003",
-    departure_station_code: "departure_station_code_003",
-    departure_station_name: "departure_station_name_003",
-    arrival_station_code: "arrival_station_code_003",
-    arrival_station_name: "arrival_station_name_003",
-    travel_date: ~D[2026-01-01],
-    departure_at: ~U[2026-01-01T00:00:00Z],
-    arrival_at: ~U[2026-01-01T00:00:00Z],
-    seat_class: "seat_class_003",
-    seat_code: "seat_code_003",
-    is_no_seat: true,
-    inventory_status: :"sold_out",
-    waitlist_supported: true,
-    listed_price: Decimal.new("100.00"),
-    settlement_price: Decimal.new("100.00"),
-    currency: "currency_003",
-    booking_rules_snapshot: "Lorem ipsum booking_rules_snapshot",
-    change_rules_snapshot: "Lorem ipsum change_rules_snapshot",
-    refund_rules_snapshot: "Lorem ipsum refund_rules_snapshot",
-    sale_status: :"inactive",
-    departure_station_ref_id: "departure_station_ref_id_003",
-    arrival_station_ref_id: "arrival_station_ref_id_003"
-  }
-  |> UniboExPoc.Repo.insert!()
-
-flight_offer_001 =
-  %UniboExPoc.Travel.FlightOffer{
-    tenant_id: Ash.UUID.generate(),
-    host_shop_id: Ash.UUID.generate(),
-    supplier_code: "supplier_code_001",
-    itinerary_code: "itinerary_code_001",
-    flight_no: "flight_no_001",
-    departure_airport_code: "departure_airport_code_001",
-    arrival_airport_code: "arrival_airport_code_001",
-    departure_at: ~U[2026-01-01T00:00:00Z],
-    arrival_at: ~U[2026-01-01T00:00:00Z],
-    cabin_class: "cabin_class_001",
-    fare_family: "fare_family_001",
-    listed_price: Decimal.new("100.00"),
-    settlement_price: Decimal.new("100.00"),
-    currency: "currency_001",
-    seats_available: 1,
-    baggage_policy: "Lorem ipsum baggage_policy",
-    refund_change_policy: "Lorem ipsum refund_change_policy",
-    sale_status: :"draft",
-    departure_airport_ref_id: "departure_airport_ref_id_001",
-    arrival_airport_ref_id: "arrival_airport_ref_id_001",
-    cabin_class_ref_id: travel_cabin_class_001.id,
-    airline_ref_id: travel_airline_001.id
-  }
-  |> UniboExPoc.Repo.insert!()
-
-flight_offer_002 =
-  %UniboExPoc.Travel.FlightOffer{
-    tenant_id: Ash.UUID.generate(),
-    host_shop_id: Ash.UUID.generate(),
-    supplier_code: "supplier_code_002",
-    itinerary_code: "itinerary_code_002",
-    flight_no: "flight_no_002",
-    departure_airport_code: "departure_airport_code_002",
-    arrival_airport_code: "arrival_airport_code_002",
-    departure_at: ~U[2026-01-01T00:00:00Z],
-    arrival_at: ~U[2026-01-01T00:00:00Z],
-    cabin_class: "cabin_class_002",
-    fare_family: "fare_family_002",
-    listed_price: Decimal.new("100.00"),
-    settlement_price: Decimal.new("100.00"),
-    currency: "currency_002",
-    seats_available: 2,
-    baggage_policy: "Lorem ipsum baggage_policy",
-    refund_change_policy: "Lorem ipsum refund_change_policy",
-    sale_status: :"active",
-    departure_airport_ref_id: "departure_airport_ref_id_002",
-    arrival_airport_ref_id: "arrival_airport_ref_id_002",
-    cabin_class_ref_id: travel_cabin_class_002.id,
-    airline_ref_id: travel_airline_002.id
-  }
-  |> UniboExPoc.Repo.insert!()
-
-flight_offer_003 =
-  %UniboExPoc.Travel.FlightOffer{
-    tenant_id: Ash.UUID.generate(),
-    host_shop_id: Ash.UUID.generate(),
-    supplier_code: "supplier_code_003",
-    itinerary_code: "itinerary_code_003",
-    flight_no: "flight_no_003",
-    departure_airport_code: "departure_airport_code_003",
-    arrival_airport_code: "arrival_airport_code_003",
-    departure_at: ~U[2026-01-01T00:00:00Z],
-    arrival_at: ~U[2026-01-01T00:00:00Z],
-    cabin_class: "cabin_class_003",
-    fare_family: "fare_family_003",
-    listed_price: Decimal.new("100.00"),
-    settlement_price: Decimal.new("100.00"),
-    currency: "currency_003",
-    seats_available: 3,
-    baggage_policy: "Lorem ipsum baggage_policy",
-    refund_change_policy: "Lorem ipsum refund_change_policy",
-    sale_status: :"inactive",
-    departure_airport_ref_id: "departure_airport_ref_id_003",
-    arrival_airport_ref_id: "arrival_airport_ref_id_003",
-    airline_ref_id: travel_airline_003.id,
-    cabin_class_ref_id: travel_cabin_class_003.id
-  }
-  |> UniboExPoc.Repo.insert!()
-
 travel_fulfillment_001 =
   %UniboExPoc.Travel.TravelFulfillment{
-    tenant_id: Ash.UUID.generate(),
+    tenant_id: "00000000-0000-0000-0000-000000000001",
     fulfillment_type: :"reserve_room",
     status: :"pending",
     supplier_booking_ref: "supplier_booking_ref_001",
@@ -667,7 +739,7 @@ travel_fulfillment_001 =
 
 travel_fulfillment_002 =
   %UniboExPoc.Travel.TravelFulfillment{
-    tenant_id: Ash.UUID.generate(),
+    tenant_id: "00000000-0000-0000-0000-000000000001",
     fulfillment_type: :"issue_ticket",
     status: :"confirmed",
     supplier_booking_ref: "supplier_booking_ref_002",
@@ -686,7 +758,7 @@ travel_fulfillment_002 =
 
 travel_fulfillment_003 =
   %UniboExPoc.Travel.TravelFulfillment{
-    tenant_id: Ash.UUID.generate(),
+    tenant_id: "00000000-0000-0000-0000-000000000001",
     fulfillment_type: :"issue_voucher",
     status: :"issued",
     supplier_booking_ref: "supplier_booking_ref_003",
@@ -700,111 +772,6 @@ travel_fulfillment_003 =
     used_at: ~U[2026-01-01T00:00:00Z],
     shipment_id: "shipment_id_003",
     travel_order_id: travel_order_003.id
-  }
-  |> UniboExPoc.Repo.insert!()
-
-vacation_offer_001 =
-  %UniboExPoc.Travel.VacationOffer{
-    tenant_id: Ash.UUID.generate(),
-    host_shop_id: Ash.UUID.generate(),
-    supplier_code: "supplier_code_001",
-    package_code: "package_code_001",
-    package_name: "package_name_001",
-    package_type: :"group_tour",
-    departure_city_code: "departure_city_code_001",
-    destination_code: "destination_code_001",
-    start_date: ~D[2026-01-01],
-    end_date: ~D[2026-01-01],
-    listed_price: Decimal.new("100.00"),
-    settlement_price: Decimal.new("100.00"),
-    currency: "currency_001",
-    inventory_count: 1,
-    booking_rules: "Lorem ipsum booking_rules",
-    cancellation_policy: "Lorem ipsum cancellation_policy",
-    sale_status: :"draft",
-    departure_city_ref_id: "departure_city_ref_id_001",
-    destination_ref_id: "destination_ref_id_001"
-  }
-  |> UniboExPoc.Repo.insert!()
-
-vacation_offer_002 =
-  %UniboExPoc.Travel.VacationOffer{
-    tenant_id: Ash.UUID.generate(),
-    host_shop_id: Ash.UUID.generate(),
-    supplier_code: "supplier_code_002",
-    package_code: "package_code_002",
-    package_name: "package_name_002",
-    package_type: :"free_travel",
-    departure_city_code: "departure_city_code_002",
-    destination_code: "destination_code_002",
-    start_date: ~D[2026-01-01],
-    end_date: ~D[2026-01-01],
-    listed_price: Decimal.new("100.00"),
-    settlement_price: Decimal.new("100.00"),
-    currency: "currency_002",
-    inventory_count: 2,
-    booking_rules: "Lorem ipsum booking_rules",
-    cancellation_policy: "Lorem ipsum cancellation_policy",
-    sale_status: :"active",
-    departure_city_ref_id: "departure_city_ref_id_002",
-    destination_ref_id: "destination_ref_id_002"
-  }
-  |> UniboExPoc.Repo.insert!()
-
-vacation_offer_003 =
-  %UniboExPoc.Travel.VacationOffer{
-    tenant_id: Ash.UUID.generate(),
-    host_shop_id: Ash.UUID.generate(),
-    supplier_code: "supplier_code_003",
-    package_code: "package_code_003",
-    package_name: "package_name_003",
-    package_type: :"ticket_hotel",
-    departure_city_code: "departure_city_code_003",
-    destination_code: "destination_code_003",
-    start_date: ~D[2026-01-01],
-    end_date: ~D[2026-01-01],
-    listed_price: Decimal.new("100.00"),
-    settlement_price: Decimal.new("100.00"),
-    currency: "currency_003",
-    inventory_count: 3,
-    booking_rules: "Lorem ipsum booking_rules",
-    cancellation_policy: "Lorem ipsum cancellation_policy",
-    sale_status: :"inactive",
-    departure_city_ref_id: "departure_city_ref_id_003",
-    destination_ref_id: "destination_ref_id_003"
-  }
-  |> UniboExPoc.Repo.insert!()
-
-travel_refund_order_001 =
-  %UniboExPoc.Travel.TravelRefundOrder{
-    refund_reason: "refund_reason_001",
-    refund_fee: "refund_fee_001",
-    refund_amount: "refund_amount_001",
-    status: :"pending",
-    approval_mode: :"none",
-    original_order_id: travel_order_001.id
-  }
-  |> UniboExPoc.Repo.insert!()
-
-travel_refund_order_002 =
-  %UniboExPoc.Travel.TravelRefundOrder{
-    refund_reason: "refund_reason_002",
-    refund_fee: "refund_fee_002",
-    refund_amount: "refund_amount_002",
-    status: :"approved",
-    approval_mode: :"self",
-    original_order_id: travel_order_002.id
-  }
-  |> UniboExPoc.Repo.insert!()
-
-travel_refund_order_003 =
-  %UniboExPoc.Travel.TravelRefundOrder{
-    refund_reason: "refund_reason_003",
-    refund_fee: "refund_fee_003",
-    refund_amount: "refund_amount_003",
-    status: :"refunded",
-    approval_mode: :"oa",
-    original_order_id: travel_order_003.id
   }
   |> UniboExPoc.Repo.insert!()
 
@@ -839,8 +806,8 @@ travel_policy_check_002 =
     personal_pay_amount: 2,
     approval_request_id: "approval_request_id_002",
     approval_mode: :"self",
-    policy_id: travel_policy_002.id,
-    order_id: travel_order_002.id
+    order_id: travel_order_002.id,
+    policy_id: travel_policy_002.id
   })
   |> Ash.create!()
 
@@ -861,4 +828,37 @@ travel_policy_check_003 =
     policy_id: travel_policy_003.id
   })
   |> Ash.create!()
+
+travel_refund_order_001 =
+  %UniboExPoc.Travel.TravelRefundOrder{
+    refund_reason: "refund_reason_001",
+    refund_fee: "refund_fee_001",
+    refund_amount: "refund_amount_001",
+    status: :"pending",
+    approval_mode: :"none",
+    original_order_id: travel_order_001.id
+  }
+  |> UniboExPoc.Repo.insert!()
+
+travel_refund_order_002 =
+  %UniboExPoc.Travel.TravelRefundOrder{
+    refund_reason: "refund_reason_002",
+    refund_fee: "refund_fee_002",
+    refund_amount: "refund_amount_002",
+    status: :"approved",
+    approval_mode: :"self",
+    original_order_id: travel_order_002.id
+  }
+  |> UniboExPoc.Repo.insert!()
+
+travel_refund_order_003 =
+  %UniboExPoc.Travel.TravelRefundOrder{
+    refund_reason: "refund_reason_003",
+    refund_fee: "refund_fee_003",
+    refund_amount: "refund_amount_003",
+    status: :"refunded",
+    approval_mode: :"oa",
+    original_order_id: travel_order_003.id
+  }
+  |> UniboExPoc.Repo.insert!()
 
