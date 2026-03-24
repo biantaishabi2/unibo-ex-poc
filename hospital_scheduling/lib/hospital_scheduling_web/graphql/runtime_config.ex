@@ -6,7 +6,7 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
 
       config :hospital_scheduling, HospitalSchedulingWeb.Graphql.RuntimeConfig,
         source: :default,
-        schema: HospitalSchedulingWeb.Schema,
+        schema: HospitalSchedulingWeb.Generated.Schema.Scheduling,
         manifest: "priv/unibo/graphql/manifest.json",
         frontend_manifest: "priv/unibo/frontend_manifest.v1.json",
         entry_auth_matrix: [query: :compat, mutation: :strict, subscription: :compat],
@@ -32,7 +32,7 @@ defmodule HospitalSchedulingWeb.Graphql.RuntimeConfig do
   end
 
   def schema_module do
-    Keyword.get(config(), :schema, HospitalSchedulingWeb.Schema)
+    Keyword.get(config(), :schema, HospitalSchedulingWeb.Generated.Schema.Scheduling)
   end
 
   def runtime_consistency_error do
