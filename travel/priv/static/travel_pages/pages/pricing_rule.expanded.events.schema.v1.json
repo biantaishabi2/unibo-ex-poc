@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "events": {
+    "open_dialog:create_dialog": {
+      "name": "open_dialog:create_dialog",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "update": {
+      "name": "update",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "destroy": {
+      "name": "destroy",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "create": {
+      "name": "create",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

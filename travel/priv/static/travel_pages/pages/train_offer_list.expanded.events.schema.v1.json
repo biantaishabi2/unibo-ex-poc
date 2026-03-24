@@ -1,5 +1,34 @@
 {
   "version": 1,
-  "events": {},
+  "events": {
+    "navigate_create": {
+      "name": "navigate_create",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "filter_submit": {
+      "name": "filter_submit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "train_offer_page_prev": {
+      "name": "train_offer_page_prev",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "train_offer_page_next": {
+      "name": "train_offer_page_next",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
   "notes": []
 }

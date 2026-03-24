@@ -3,7 +3,7 @@ import Config
 config :travel,
   ecto_repos: [UniboExPoc.Repo],
   ash_domains: [
-    UniboExPoc.TravelExt
+    UniboExPoc.Travel
   ],
   travel_host_bridge: UniboExPoc.TravelHost.DefaultBridge,
   generators: [timestamp_type: :utc_datetime]

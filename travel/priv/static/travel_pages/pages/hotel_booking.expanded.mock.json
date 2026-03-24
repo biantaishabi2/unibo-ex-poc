@@ -1,0 +1,38 @@
+{
+  "offer": {
+    "hotel_name": "",
+    "room_type_ref": {
+      "room_type_name": "",
+      "bed_type": ""
+    },
+    "checkin_date": "",
+    "checkout_date": "",
+    "cancellation_policy": "",
+    "guarantee_policy": "",
+    "currency": "",
+    "listed_price": "",
+    "total_price": ""
+  },
+  "travelers": {
+    "items": [
+      {
+        "avatar": "",
+        "name_initial": "",
+        "name": "traveler_1",
+        "id_number_masked": ""
+      },
+      {
+        "avatar": "",
+        "name_initial": "",
+        "name": "traveler_2",
+        "id_number_masked": ""
+      },
+      {
+        "avatar": "",
+        "name_initial": "",
+        "name": "traveler_3",
+        "id_number_masked": ""
+      }
+    ]
+  }
+}

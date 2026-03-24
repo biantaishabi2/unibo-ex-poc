@@ -43,32 +43,40 @@
         <.table_head id="th_status">
           status
         </.table_head>
+        <.table_head id="travel_static_code_mapping_th_actions">
+          操作
+        </.table_head>
       </.table_row>
     </.table_header>
     <.table_body id="travel_static_code_mapping_table_body">
-      <%= for row <- @rows do %>
+      <%= for row <- (@rows || []) do %>
         <.table_row>
           <.table_cell>
-            <%= row.supplier_code %>
+            <%= get_in(row, [:supplier_code]) || "" %>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.object_type %>
+              <%= get_in(row, [:object_type]) || "" %>
             </.badge>
           </.table_cell>
           <.table_cell>
-            <%= row.canonical_entity %>
+            <%= get_in(row, [:canonical_entity]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.external_code %>
+            <%= get_in(row, [:external_code]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.external_name %>
+            <%= get_in(row, [:external_name]) || "" %>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.status %>
+              <%= get_in(row, [:status]) || "" %>
             </.badge>
+          </.table_cell>
+          <.table_cell>
+            <.link patch={"/pages/travel/travel_static_code_mapping/#{get_in(row, [:id])}"} id="travel_static_code_mapping_view_btn" variant="link" size="sm">
+              查看
+            </.link>
           </.table_cell>
         </.table_row>
       <% end %>

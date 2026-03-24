@@ -1,1 +1,10 @@
-{}
+{
+  "travel_refund_order": {
+    "refund_reason": "",
+    "refund_fee": "",
+    "refund_amount": "",
+    "status": "",
+    "approval_mode": ""
+  },
+  "editing": false
+}

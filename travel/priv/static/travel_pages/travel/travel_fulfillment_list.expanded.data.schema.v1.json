@@ -7,6 +7,7 @@
     "row.confirmation_payload",
     "row.failure_reason",
     "row.fulfillment_type",
+    "row.id",
     "row.status",
     "row.supplier_booking_ref",
     "row.ticket_refs",
@@ -89,6 +90,11 @@
             "type": "string",
             "required": false,
             "example": ""
+          },
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "row_01"
           }
         }
       },
@@ -139,6 +145,10 @@
           "required": true
         },
         "used_at": {
+          "type": "unknown",
+          "required": true
+        },
+        "id": {
           "type": "unknown",
           "required": true
         }

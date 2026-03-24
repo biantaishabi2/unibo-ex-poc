@@ -1,7 +1,106 @@
 {
   "version": 1,
-  "requiredPaths": [],
-  "requiredRoots": [],
-  "schema": {},
+  "requiredPaths": [
+    "row.approval_mode",
+    "row.change_fee",
+    "row.change_reason",
+    "row.price_difference",
+    "row.status",
+    "rows",
+    "rows_empty",
+    "travel_change_order.page",
+    "travel_change_order.total_pages"
+  ],
+  "requiredRoots": [
+    "row",
+    "rows",
+    "rows_empty",
+    "travel_change_order"
+  ],
+  "schema": {
+    "rows": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "change_reason": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "price_difference": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "change_fee": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "status": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "approval_mode": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "row": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "change_reason": {
+          "type": "unknown",
+          "required": true
+        },
+        "price_difference": {
+          "type": "unknown",
+          "required": true
+        },
+        "change_fee": {
+          "type": "unknown",
+          "required": true
+        },
+        "status": {
+          "type": "unknown",
+          "required": true
+        },
+        "approval_mode": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "rows_empty": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_change_order": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    }
+  },
   "notes": []
 }

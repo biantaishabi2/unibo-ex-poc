@@ -11,7 +11,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_order_detail"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): editing, record, record.booking_mode, record.change_status, record.contact_name, record.contact_phone, record.currency, record.host_member_id, record.order_no, record.original_order_ref, record.payment_external_ref, record.points_deduction_amount, record.points_to_use, record.product_type, record.recommended_payment_method, record.seat_selection_snapshot, record.status, record.supplier_order_ref, record.ticket_passenger_infos, record.total_amount, record.traveler_count, record.waitlist_status
+  # status.keys preview (first ~40): editing, record, record.booking_mode, record.change_status, record.contact_name, record.contact_phone, record.currency, record.customer_id, record.host_enterprise_id, record.host_member_id, record.host_shop_id, record.order_no, record.original_order_ref, record.payment_external_ref, record.payment_id, record.points_deduction_amount, record.points_to_use, record.product_type, record.recommended_payment_method, record.seat_selection_snapshot, record.status, record.supplier_order_ref, record.tenant_id, record.ticket_passenger_infos, record.total_amount, record.traveler_count, record.waitlist_status
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
   \"record\": {
@@ -34,9 +34,14 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     \"ticket_passenger_infos\": \"\",
     \"seat_selection_snapshot\": \"\",
     \"supplier_order_ref\": \"\",
-    \"payment_external_ref\": \"\"
+    \"payment_external_ref\": \"\",
+    \"tenant_id\": \"\",
+    \"host_shop_id\": \"\",
+    \"host_enterprise_id\": \"\",
+    \"customer_id\": \"\",
+    \"payment_id\": \"\"
   },
-  \"editing\": true
+  \"editing\": false
 }")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
@@ -44,13 +49,19 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mode "api"
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
-  @backend_load_event nil
+  @backend_load_event "get"
+  @backend_load_selection "booking_mode: bookingMode change_status: changeStatus contact_name: contactName contact_phone: contactPhone currency customer_id: customerId host_enterprise_id: hostEnterpriseId host_member_id: hostMemberId host_shop_id: hostShopId id order_no: orderNo original_order_ref: originalOrderRef payment_external_ref: paymentExternalRef payment_id: paymentId points_deduction_amount: pointsDeductionAmount points_to_use: pointsToUse product_type: productType recommended_payment_method: recommendedPaymentMethod seat_selection_snapshot: seatSelectionSnapshot status supplier_order_ref: supplierOrderRef tenant_id: tenantId ticket_passenger_infos: ticketPassengerInfos total_amount: totalAmount traveler_count: travelerCount waitlist_status: waitlistStatus"
+  @backend_load_assigns %{}
+  @backend_params_accept ["id"]
+  @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
-    "approve_cancel" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.approve_cancel"},
+    "cancel_cancel_request" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.cancel_cancel_request"},
     "cancel_waitlist" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.cancel_waitlist"},
     "confirm_change" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.confirm_change"},
     "confirm_quote" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.confirm_quote"},
+    "create" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.create"},
     "destroy" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.destroy"},
+    "execute_cancel" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.execute_cancel"},
     "fulfill_waitlist" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.fulfill_waitlist"},
     "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.get"},
     "mark_booked" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.mark_booked"},
@@ -74,9 +85,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     defaults = atomize_keys(@status_defaults_raw)
     socket = assign(socket, defaults)
     socket = assign(socket, :__status_defaults, defaults)
+    socket = if is_map(@backend_load_assigns) and map_size(@backend_load_assigns) > 0, do: assign(socket, @backend_load_assigns), else: socket
     socket = apply_derived(socket)
     socket = apply_params(socket, params)
-    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(params, "__page_id", @page_id), socket), else: socket
+    backend_params = __filter_backend_params(params)
+    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
     {:ok, socket}
   end
 
@@ -88,9 +101,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: if backend exports handle_info/2, delegate and apply BackendResult v1.
+    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
     socket =
-      if function_exported?(@backend_mod, :handle_info, 2) do
+      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
         state0 = __take_status(socket.assigns)
         apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
       else
@@ -100,9 +113,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("action_approve_cancel", params, socket) do
-    # UI action event name: action_approve_cancel
-    socket = dispatch_backend("action_approve_cancel", params, socket)
+  def handle_event("action_cancel_cancel_request", params, socket) do
+    # UI action event name: action_cancel_cancel_request
+    socket = dispatch_backend("action_cancel_cancel_request", params, socket)
     {:noreply, socket}
   end
 
@@ -131,6 +144,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   def handle_event("action_destroy", params, socket) do
     # UI action event name: action_destroy
     socket = dispatch_backend("action_destroy", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_execute_cancel", params, socket) do
+    # UI action event name: action_execute_cancel
+    socket = dispatch_backend("action_execute_cancel", params, socket)
     {:noreply, socket}
   end
 
@@ -228,6 +248,21 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   defp apply_params(socket, params) when is_map(params) do
     socket
   end
+
+  defp __filter_backend_params(params) when is_map(params) do
+    if @backend_params_accept == [] do
+      params
+    else
+      Map.take(params, @backend_params_accept ++ ["__page_id"])
+    end
+  end
+  defp __filter_backend_params(params), do: params
+
+  defp __accept_backend_info?({kind, value}) when is_atom(kind) and is_binary(value) do
+    kind == :page_host_reload and value in @backend_info_reload_messages
+  end
+  defp __accept_backend_info?(value) when is_binary(value), do: value in @backend_info_reload_messages
+  defp __accept_backend_info?(_), do: @backend_info_reload_messages == []
 
   defp ensure_user_context(socket) do
     # Thin user-context contract: keep it uniform so skeletons stay generated and diffable.

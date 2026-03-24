@@ -34,24 +34,32 @@
         <.table_head id="th_status">
           status
         </.table_head>
+        <.table_head id="travel_cabin_class_th_actions">
+          操作
+        </.table_head>
       </.table_row>
     </.table_header>
     <.table_body id="travel_cabin_class_table_body">
-      <%= for row <- @rows do %>
+      <%= for row <- (@rows || []) do %>
         <.table_row>
           <.table_cell>
-            <%= row.cabin_class_code %>
+            <%= get_in(row, [:cabin_class_code]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.cabin_class_name %>
+            <%= get_in(row, [:cabin_class_name]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.cabin_rank %>
+            <%= get_in(row, [:cabin_rank]) || "" %>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.status %>
+              <%= get_in(row, [:status]) || "" %>
             </.badge>
+          </.table_cell>
+          <.table_cell>
+            <.link patch={"/pages/travel/travel_cabin_class/#{get_in(row, [:id])}"} id="travel_cabin_class_view_btn" variant="link" size="sm">
+              查看
+            </.link>
           </.table_cell>
         </.table_row>
       <% end %>

@@ -1,5 +1,28 @@
 {
   "version": 1,
-  "vars": {},
+  "vars": {
+    "page_title": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "profile_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{page_title|个人中心}}"
+        }
+      ]
+    },
+    "profile_description": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "profile_desc",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{profile_description|}}"
+        }
+      ]
+    }
+  },
   "events": {}
 }

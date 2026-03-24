@@ -1,0 +1,73 @@
+<.page title="列表" id="hotel_search_results">
+  <.section layout="grid" columns={2} id="header">
+    <.flex justify="around" direction="row" id="shell_nav">
+      <.button variant="ghost" icon="house" phx-click="navigate:/home" size="md" id="tab_home">
+        首页
+      </.button>
+      <.button variant="ghost" icon="grid-2x2" phx-click="navigate:/services" size="md" id="tab_services">
+        服务
+      </.button>
+      <.button variant="ghost" icon="user-round" phx-click="navigate:/me" size="md" id="tab_me">
+        我的
+      </.button>
+    </.flex>
+    <.flex gap={2} paddingx={3} paddingy={2} wrap={true} direction="row" id="filter_bar">
+      <.input name="keyword" placeholder="搜索" size="md" id="search_input" />
+    </.flex>
+  </.section>
+  <.section layout="none" id="view_tabs">
+    <.tabs default_value="all" id="view_selector">
+      <.tabs_list id="view_tab_list">
+        <.tabs_trigger value="all" active_value="all" id="trigger_all">
+          全部
+        </.tabs_trigger>
+      </.tabs_list>
+    </.tabs>
+  </.section>
+  <.section layout="none" id="filter_section">
+    <.card variant="default" id="filter_card">
+      <.card_content id="filter_content">
+        <.flex gap={4} align="center" direction="row" id="filter_row">
+          <.stack direction="column" id="filter_fields" />
+          <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
+            查询
+          </.button>
+        </.flex>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="table_section">
+    <.grid columns={2} gap={3} padding={3} id="result_grid">
+      <%= for item <- (@items || []) do %>
+        <.card phx-click="navigate" variant="default">
+          <.card_content>
+            <.text variant="h4" weight="bold">
+              <%= get_in(item, [:title]) || "" %>
+            </.text>
+            <.text variant="caption" color="muted">
+              <%= get_in(item, [:description]) || "" %>
+            </.text>
+          </.card_content>
+        </.card>
+      <% end %>
+    </.grid>
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if (@rows_empty && @rows_empty != []) do %>
+      <.empty_state description="暂无数据" id="no_data" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="footer">
+    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
+      <.button phx-click="hotel_offer_page_prev" variant="primary" size="md" id="page_prev">
+        上一页
+      </.button>
+      <.text id="page_info">
+        <%= get_in(@hotel_offer, [:page]) || "" %> / <%= get_in(@hotel_offer, [:total_pages]) || "" %>
+      </.text>
+      <.button phx-click="hotel_offer_page_next" variant="primary" size="md" id="page_next">
+        下一页
+      </.button>
+    </.flex>
+  </.section>
+</.page>

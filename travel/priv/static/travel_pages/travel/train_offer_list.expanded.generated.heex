@@ -94,81 +94,89 @@
         <.table_head id="th_sale_status">
           可售状态
         </.table_head>
+        <.table_head id="train_offer_th_actions">
+          操作
+        </.table_head>
       </.table_row>
     </.table_header>
     <.table_body id="train_offer_table_body">
-      <%= for row <- @rows do %>
+      <%= for row <- (@rows || []) do %>
         <.table_row>
           <.table_cell>
-            <%= row.supplier_code %>
+            <%= get_in(row, [:supplier_code]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.train_no %>
+            <%= get_in(row, [:train_no]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.departure_station_code %>
+            <%= get_in(row, [:departure_station_code]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.departure_station_name %>
+            <%= get_in(row, [:departure_station_name]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.arrival_station_code %>
+            <%= get_in(row, [:arrival_station_code]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.arrival_station_name %>
+            <%= get_in(row, [:arrival_station_name]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.travel_date %>
+            <%= get_in(row, [:travel_date]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.departure_at %>
+            <%= get_in(row, [:departure_at]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.arrival_at %>
+            <%= get_in(row, [:arrival_at]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.seat_class %>
+            <%= get_in(row, [:seat_class]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.seat_code %>
+            <%= get_in(row, [:seat_code]) || "" %>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.is_no_seat %>
+              <%= get_in(row, [:is_no_seat]) || "" %>
             </.badge>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.inventory_status %>
+              <%= get_in(row, [:inventory_status]) || "" %>
             </.badge>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.waitlist_supported %>
+              <%= get_in(row, [:waitlist_supported]) || "" %>
             </.badge>
           </.table_cell>
           <.table_cell>
-            <%= row.listed_price %>
+            <%= get_in(row, [:listed_price]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.settlement_price %>
+            <%= get_in(row, [:settlement_price]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.currency %>
+            <%= get_in(row, [:currency]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.booking_rules_snapshot %>
+            <%= get_in(row, [:booking_rules_snapshot]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.change_rules_snapshot %>
+            <%= get_in(row, [:change_rules_snapshot]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.refund_rules_snapshot %>
+            <%= get_in(row, [:refund_rules_snapshot]) || "" %>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.sale_status %>
+              <%= get_in(row, [:sale_status]) || "" %>
             </.badge>
+          </.table_cell>
+          <.table_cell>
+            <.link patch={"/pages/travel/train_offer/#{get_in(row, [:id])}"} id="train_offer_view_btn" variant="link" size="sm">
+              查看
+            </.link>
           </.table_cell>
         </.table_row>
       <% end %>

@@ -11,7 +11,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_fulfillment_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].boarding_status, rows[].change_result, rows[].confirmation_payload, rows[].failure_reason, rows[].fulfillment_type, rows[].status, rows[].supplier_booking_ref, rows[].ticket_refs, rows[].used_at, rows[].voucher_or_ticket_ref, rows[].waitlist_result, rows_empty
+  # status.keys preview (first ~40): page_title, rows, rows[], rows[].boarding_status, rows[].change_result, rows[].confirmation_payload, rows[].failure_reason, rows[].fulfillment_type, rows[].id, rows[].status, rows[].supplier_booking_ref, rows[].ticket_refs, rows[].used_at, rows[].voucher_or_ticket_ref, rows[].waitlist_result, rows_empty
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
   \"page_title\": \"TravelFulfillment 列表\",
@@ -28,7 +28,8 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"boarding_status\": \"\",
       \"confirmation_payload\": \"\",
       \"failure_reason\": \"\",
-      \"used_at\": \"\"
+      \"used_at\": \"\",
+      \"id\": \"row_01\"
     },
     {
       \"fulfillment_type\": \"\",
@@ -41,7 +42,8 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"boarding_status\": \"\",
       \"confirmation_payload\": \"\",
       \"failure_reason\": \"\",
-      \"used_at\": \"\"
+      \"used_at\": \"\",
+      \"id\": \"row_02\"
     },
     {
       \"fulfillment_type\": \"\",
@@ -54,7 +56,8 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"boarding_status\": \"\",
       \"confirmation_payload\": \"\",
       \"failure_reason\": \"\",
-      \"used_at\": \"\"
+      \"used_at\": \"\",
+      \"id\": \"row_03\"
     }
   ]
 }")
@@ -64,7 +67,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mode "api"
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
-  @backend_load_event nil
+  @backend_load_event "list"
+  @backend_load_selection "boarding_status: boardingStatus change_result: changeResult confirmation_payload: confirmationPayload failure_reason: failureReason fulfillment_type: fulfillmentType id shipment_id: shipmentId status supplier_booking_ref: supplierBookingRef tenant_id: tenantId ticket_refs: ticketRefs used_at: usedAt voucher_or_ticket_ref: voucherOrTicketRef waitlist_result: waitlistResult"
+  @backend_load_assigns %{}
+  @backend_params_accept ["fulfillment_type", "status", "waitlist_result", "change_result", "boarding_status", "used_at"]
+  @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
     "list" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelFulfillment.list"}
   }
@@ -79,9 +86,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     defaults = atomize_keys(@status_defaults_raw)
     socket = assign(socket, defaults)
     socket = assign(socket, :__status_defaults, defaults)
+    socket = if is_map(@backend_load_assigns) and map_size(@backend_load_assigns) > 0, do: assign(socket, @backend_load_assigns), else: socket
     socket = apply_derived(socket)
     socket = apply_params(socket, params)
-    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(params, "__page_id", @page_id), socket), else: socket
+    backend_params = __filter_backend_params(params)
+    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
     {:ok, socket}
   end
 
@@ -93,9 +102,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: if backend exports handle_info/2, delegate and apply BackendResult v1.
+    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
     socket =
-      if function_exported?(@backend_mod, :handle_info, 2) do
+      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
         state0 = __take_status(socket.assigns)
         apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
       else
@@ -121,6 +130,21 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   defp apply_params(socket, params) when is_map(params) do
     socket
   end
+
+  defp __filter_backend_params(params) when is_map(params) do
+    if @backend_params_accept == [] do
+      params
+    else
+      Map.take(params, @backend_params_accept ++ ["__page_id"])
+    end
+  end
+  defp __filter_backend_params(params), do: params
+
+  defp __accept_backend_info?({kind, value}) when is_atom(kind) and is_binary(value) do
+    kind == :page_host_reload and value in @backend_info_reload_messages
+  end
+  defp __accept_backend_info?(value) when is_binary(value), do: value in @backend_info_reload_messages
+  defp __accept_backend_info?(_), do: @backend_info_reload_messages == []
 
   defp ensure_user_context(socket) do
     # Thin user-context contract: keep it uniform so skeletons stay generated and diffable.

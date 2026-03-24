@@ -1,7 +1,114 @@
 {
   "version": 1,
-  "requiredPaths": [],
-  "requiredRoots": [],
-  "schema": {},
+  "requiredPaths": [
+    "editing",
+    "hotel_offer.cancellation_policy",
+    "hotel_offer.checkin_date",
+    "hotel_offer.checkout_date",
+    "hotel_offer.city_code",
+    "hotel_offer.currency",
+    "hotel_offer.guarantee_policy",
+    "hotel_offer.hotel_code",
+    "hotel_offer.hotel_name",
+    "hotel_offer.inventory_count",
+    "hotel_offer.listed_price",
+    "hotel_offer.rate_plan_code",
+    "hotel_offer.room_type_code",
+    "hotel_offer.sale_status",
+    "hotel_offer.settlement_price",
+    "hotel_offer.supplier_code"
+  ],
+  "requiredRoots": [
+    "editing",
+    "hotel_offer"
+  ],
+  "schema": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "hotel_offer": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "supplier_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "hotel_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "hotel_name": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "city_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "room_type_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "rate_plan_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "checkin_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "checkout_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "listed_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "settlement_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "currency": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "inventory_count": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "cancellation_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "guarantee_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "sale_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    }
+  },
   "notes": []
 }

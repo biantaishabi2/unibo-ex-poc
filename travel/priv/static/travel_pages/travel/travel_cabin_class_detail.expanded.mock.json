@@ -1,15 +1,9 @@
 {
-  "travel_cabin_class": {
-    "cabin_class_code": "",
-    "cabin_class_name": "",
-    "cabin_rank": "",
-    "status": ""
-  },
-  "editing": false,
   "record": {
-    "cabin_class_code": "CC_Y",
-    "status": "active",
-    "cabin_class_name": "经济舱",
-    "cabin_rank": "3"
-  }
+    "cabin_class_code": "",
+    "status": "",
+    "cabin_class_name": "",
+    "cabin_rank": ""
+  },
+  "editing": false
 }

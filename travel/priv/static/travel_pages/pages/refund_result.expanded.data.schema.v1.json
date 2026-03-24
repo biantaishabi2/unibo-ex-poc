@@ -1,7 +1,54 @@
 {
   "version": 1,
-  "requiredPaths": [],
-  "requiredRoots": [],
-  "schema": {},
+  "requiredPaths": [
+    "editing",
+    "travel_refund_order.approval_mode",
+    "travel_refund_order.refund_amount",
+    "travel_refund_order.refund_fee",
+    "travel_refund_order.refund_reason",
+    "travel_refund_order.status"
+  ],
+  "requiredRoots": [
+    "editing",
+    "travel_refund_order"
+  ],
+  "schema": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_refund_order": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "refund_reason": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "refund_fee": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "refund_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "approval_mode": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    }
+  },
   "notes": []
 }

@@ -11,9 +11,68 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): 
+  # status.keys preview (first ~40): hotel_offer, hotel_offer.page, hotel_offer.total_pages, rows, rows[], rows[].cancellation_policy, rows[].checkin_date, rows[].checkout_date, rows[].city_code, rows[].currency, rows[].guarantee_policy, rows[].hotel_code, rows[].hotel_name, rows[].inventory_count, rows[].listed_price, rows[].rate_plan_code, rows[].room_type_code, rows[].sale_status, rows[].settlement_price, rows[].supplier_code, rows_empty
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
-  @status_defaults_raw Jason.decode!("{}")
+  @status_defaults_raw Jason.decode!("{
+  \"hotel_offer\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
+  \"rows_empty\": true,
+  \"rows\": [
+    {
+      \"supplier_code\": \"\",
+      \"hotel_code\": \"\",
+      \"hotel_name\": \"\",
+      \"city_code\": \"\",
+      \"room_type_code\": \"\",
+      \"rate_plan_code\": \"\",
+      \"checkin_date\": \"\",
+      \"checkout_date\": \"\",
+      \"listed_price\": \"\",
+      \"settlement_price\": \"\",
+      \"currency\": \"\",
+      \"inventory_count\": \"\",
+      \"cancellation_policy\": \"\",
+      \"guarantee_policy\": \"\",
+      \"sale_status\": \"\"
+    },
+    {
+      \"supplier_code\": \"\",
+      \"hotel_code\": \"\",
+      \"hotel_name\": \"\",
+      \"city_code\": \"\",
+      \"room_type_code\": \"\",
+      \"rate_plan_code\": \"\",
+      \"checkin_date\": \"\",
+      \"checkout_date\": \"\",
+      \"listed_price\": \"\",
+      \"settlement_price\": \"\",
+      \"currency\": \"\",
+      \"inventory_count\": \"\",
+      \"cancellation_policy\": \"\",
+      \"guarantee_policy\": \"\",
+      \"sale_status\": \"\"
+    },
+    {
+      \"supplier_code\": \"\",
+      \"hotel_code\": \"\",
+      \"hotel_name\": \"\",
+      \"city_code\": \"\",
+      \"room_type_code\": \"\",
+      \"rate_plan_code\": \"\",
+      \"checkin_date\": \"\",
+      \"checkout_date\": \"\",
+      \"listed_price\": \"\",
+      \"settlement_price\": \"\",
+      \"currency\": \"\",
+      \"inventory_count\": \"\",
+      \"cancellation_policy\": \"\",
+      \"guarantee_policy\": \"\",
+      \"sale_status\": \"\"
+    }
+  ]
+}")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
@@ -65,8 +124,30 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event(_event, _params, socket) do
-    # No events declared by events.schema
+  def handle_event("filter_submit", params, socket) do
+    # UI action event name: filter_submit
+    socket = dispatch_backend("filter_submit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("hotel_offer_page_next", params, socket) do
+    # UI action event name: hotel_offer_page_next
+    socket = dispatch_backend("hotel_offer_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("hotel_offer_page_prev", params, socket) do
+    # UI action event name: hotel_offer_page_prev
+    socket = dispatch_backend("hotel_offer_page_prev", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_create", params, socket) do
+    # UI action event name: navigate_create
+    socket = dispatch_backend("navigate_create", params, socket)
     {:noreply, socket}
   end
 

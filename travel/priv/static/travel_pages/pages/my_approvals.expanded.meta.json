@@ -1,1 +1,1 @@
-{"entity":"MyApprovals","domain":"Pages","page_type":"custom"}
+{"entity":"TravelPolicyCheck","domain":"Travel","page_type":"custom","extends_template":"base_worklist"}

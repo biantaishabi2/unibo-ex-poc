@@ -1,5 +1,69 @@
 {
   "version": 1,
-  "vars": {},
-  "events": {}
+  "vars": {
+    "travel_hotel.page": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_hotel.page|}} / {{travel_hotel.total_pages|}}"
+        }
+      ]
+    },
+    "travel_hotel.total_pages": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_hotel.page|}} / {{travel_hotel.total_pages|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "navigate_create": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "create_btn",
+          "prop": "click",
+          "raw": "navigate_create"
+        }
+      ]
+    },
+    "filter_submit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "filter_submit",
+          "prop": "click",
+          "raw": "filter_submit"
+        }
+      ]
+    },
+    "travel_hotel_page_prev": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_prev",
+          "prop": "click",
+          "raw": "travel_hotel_page_prev"
+        }
+      ]
+    },
+    "travel_hotel_page_next": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_next",
+          "prop": "click",
+          "raw": "travel_hotel_page_next"
+        }
+      ]
+    }
+  }
 }

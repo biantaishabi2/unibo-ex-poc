@@ -1,0 +1,82 @@
+<.page title="TravelRefundOrder 列表" id="travel_refund_order_list">
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_refund_order_header">
+    <.text variant="title" id="travel_refund_order_title">
+      <%= @page_title %>
+    </.text>
+    <.button variant="primary" phx-click="navigate_create" size="md" id="travel_refund_order_create_btn">
+      新建
+    </.button>
+  </.section>
+  <.card variant="default" id="travel_refund_order_filter_card">
+    <.card_content id="travel_refund_order_filter_content">
+      <.flex gap={4} align="center" direction="row" id="travel_refund_order_filter_row">
+        <.select name="status" label="status" size="md" id="filter_status">
+
+        </.select>
+        <.select name="approval_mode" label="审批模式快照;none 表示跳过审批,self/oa 表示进入审批流" size="md" id="filter_approval_mode">
+
+        </.select>
+        <.button variant="secondary" phx-click="filter_submit" size="md" id="travel_refund_order_filter_submit">
+          查询
+        </.button>
+      </.flex>
+    </.card_content>
+  </.card>
+  <.table id="travel_refund_order_table">
+    <.table_header id="travel_refund_order_table_header">
+      <.table_row id="travel_refund_order_header_row">
+        <.table_head id="th_refund_reason">
+          退票原因
+        </.table_head>
+        <.table_head id="th_refund_fee">
+          退票手续费
+        </.table_head>
+        <.table_head id="th_refund_amount">
+          实退金额
+        </.table_head>
+        <.table_head id="th_status">
+          status
+        </.table_head>
+        <.table_head id="th_approval_mode">
+          审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
+        </.table_head>
+        <.table_head id="travel_refund_order_th_actions">
+          操作
+        </.table_head>
+      </.table_row>
+    </.table_header>
+    <.table_body id="travel_refund_order_table_body">
+      <%= for row <- (@rows || []) do %>
+        <.table_row>
+          <.table_cell>
+            <%= get_in(row, [:refund_reason]) || "" %>
+          </.table_cell>
+          <.table_cell>
+            <%= get_in(row, [:refund_fee]) || "" %>
+          </.table_cell>
+          <.table_cell>
+            <%= get_in(row, [:refund_amount]) || "" %>
+          </.table_cell>
+          <.table_cell>
+            <.badge variant="default" size="sm">
+              <%= get_in(row, [:status]) || "" %>
+            </.badge>
+          </.table_cell>
+          <.table_cell>
+            <.badge variant="default" size="sm">
+              <%= get_in(row, [:approval_mode]) || "" %>
+            </.badge>
+          </.table_cell>
+          <.table_cell>
+            <.link patch={"/pages/travel/travel_refund_order/#{get_in(row, [:id])}"} id="travel_refund_order_view_btn" variant="link" size="sm">
+              查看
+            </.link>
+          </.table_cell>
+        </.table_row>
+      <% end %>
+    </.table_body>
+  </.table>
+  <%= if (@rows_empty && @rows_empty != []) do %>
+    <.empty_state description="暂无退票/退订单,记录针对已有 TravelOrder 的退票请求、手续费与退款状态;审批通过 overlay on Approvals 域数据" id="travel_refund_order_no_data" />
+  <% end %>
+</.page>

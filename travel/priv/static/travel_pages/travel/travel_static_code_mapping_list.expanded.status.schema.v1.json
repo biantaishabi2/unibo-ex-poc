@@ -10,7 +10,8 @@
         "canonical_entity": "",
         "external_code": "",
         "external_name": "",
-        "status": ""
+        "status": "",
+        "id": "row_01"
       },
       {
         "supplier_code": "",
@@ -18,7 +19,8 @@
         "canonical_entity": "",
         "external_code": "",
         "external_name": "",
-        "status": ""
+        "status": "",
+        "id": "row_02"
       },
       {
         "supplier_code": "",
@@ -26,7 +28,8 @@
         "canonical_entity": "",
         "external_code": "",
         "external_name": "",
-        "status": ""
+        "status": "",
+        "id": "row_03"
       }
     ]
   },
@@ -37,6 +40,7 @@
     "rows[].canonical_entity",
     "rows[].external_code",
     "rows[].external_name",
+    "rows[].id",
     "rows[].object_type",
     "rows[].status",
     "rows[].supplier_code",
@@ -53,6 +57,21 @@
     "backend": {
       "api_map": {
         "list": "Travel.TravelStaticCodeMapping.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "canonical_entity: canonicalEntity canonical_id: canonicalId external_code: externalCode external_name: externalName id object_type: objectType status supplier_code: supplierCode"
+      },
+      "params": {
+        "accept": [
+          "object_type",
+          "status"
+        ]
       }
     },
     "domain": "Travel",

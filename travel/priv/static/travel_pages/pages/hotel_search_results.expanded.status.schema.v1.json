@@ -1,8 +1,41 @@
 {
   "version": 1,
-  "defaults": {},
-  "keys": [],
-  "required": [],
+  "defaults": {
+    "hotel_offer": {
+      "page": "",
+      "total_pages": ""
+    },
+    "rows_empty": true,
+    "items": [
+      {
+        "title": "",
+        "description": ""
+      },
+      {
+        "title": "",
+        "description": ""
+      },
+      {
+        "title": "",
+        "description": ""
+      }
+    ]
+  },
+  "keys": [
+    "hotel_offer",
+    "hotel_offer.page",
+    "hotel_offer.total_pages",
+    "items",
+    "items[]",
+    "items[].description",
+    "items[].title",
+    "rows_empty"
+  ],
+  "required": [
+    "hotel_offer",
+    "items",
+    "rows_empty"
+  ],
   "urlParams": {},
   "notes": []
 }

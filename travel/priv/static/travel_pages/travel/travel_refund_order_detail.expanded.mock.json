@@ -1,9 +1,9 @@
 {
-  "travel_refund_order": {
+  "record": {
     "refund_reason": "",
+    "status": "",
     "refund_fee": "",
     "refund_amount": "",
-    "status": "",
     "approval_mode": ""
   },
   "editing": false

@@ -55,11 +55,9 @@ defmodule UniboExPoc.Travel.TravelHotel do
       default :active
       public? true
     end
-  end
-
-  relationships do
-    belongs_to :city, UniboExPoc.Ecommerce.TravelCity do
+    attribute :city_id, :string do
       public? true
+      description "城市引用（跨域引用 Ecommerce.TravelCity）"
     end
   end
 

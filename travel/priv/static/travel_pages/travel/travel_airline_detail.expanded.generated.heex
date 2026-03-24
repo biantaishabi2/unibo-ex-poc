@@ -9,7 +9,7 @@
       <.breadcrumb_separator id="travel_airline_bc_sep" />
       <.breadcrumb_item id="travel_airline_bc_current_item">
         <.breadcrumb_page id="travel_airline_bc_current">
-          <%= @record.airline_code %>
+          <%= get_in(@record, [:airline_code]) || "详情" %>
         </.breadcrumb_page>
       </.breadcrumb_item>
     </.breadcrumb_list>
@@ -17,10 +17,10 @@
   <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_airline_detail_header">
     <.flex gap={3} align="center" direction="row" id="travel_airline_title_group">
       <.text variant="title" id="travel_airline_detail_title">
-        <%= @record.airline_code %>
+        <%= get_in(@record, [:airline_code]) || "" %>
       </.text>
       <.badge variant="default" size="sm" id="travel_airline_status_badge">
-        <%= @record.status %>
+        <%= get_in(@record, [:status]) || "" %>
       </.badge>
     </.flex>
     <.flex gap={2} direction="row" id="travel_airline_actions">
@@ -43,7 +43,7 @@
               航司规范编码
             </.text>
             <.text id="value_airline_code">
-              <%= @record.airline_code %>
+              <%= get_in(@record, [:airline_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_airline_name">
@@ -51,7 +51,7 @@
               航司名称
             </.text>
             <.text id="value_airline_name">
-              <%= @record.airline_name %>
+              <%= get_in(@record, [:airline_name]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_iata_code">
@@ -59,7 +59,7 @@
               IATA 二字码
             </.text>
             <.text id="value_iata_code">
-              <%= @record.iata_code %>
+              <%= get_in(@record, [:iata_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_icao_code">
@@ -67,7 +67,7 @@
               ICAO 三字码
             </.text>
             <.text id="value_icao_code">
-              <%= @record.icao_code %>
+              <%= get_in(@record, [:icao_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_status">
@@ -75,18 +75,18 @@
               status
             </.text>
             <.badge variant="default" size="sm" id="value_status">
-              <%= @record.status %>
+              <%= get_in(@record, [:status]) || "" %>
             </.badge>
           </.flex>
         </.grid>
       <% else %>
         <.form phx-submit="form_submit" phx-change="form_change" id="travel_airline_edit_form">
           <.grid columns={2} gap={4} id="travel_airline_form_grid">
-            <.input name="airline_code" label="航司规范编码" placeholder="请输入航司规范编码" required="true" size="md" id="form_airline_code" />
-            <.input name="airline_name" label="航司名称" placeholder="请输入航司名称" required="true" size="md" id="form_airline_name" />
-            <.input name="iata_code" label="IATA 二字码" placeholder="请输入IATA 二字码" size="md" id="form_iata_code" />
-            <.input name="icao_code" label="ICAO 三字码" placeholder="请输入ICAO 三字码" size="md" id="form_icao_code" />
-            <.select name="status" label="status" size="md" id="form_status">
+            <.input name="airline_code" label="航司规范编码" placeholder="请输入航司规范编码" required="true" size="md" id="form_airline_code" value={@record.airline_code} />
+            <.input name="airline_name" label="航司名称" placeholder="请输入航司名称" required="true" size="md" id="form_airline_name" value={@record.airline_name} />
+            <.input name="iata_code" label="IATA 二字码" placeholder="请输入IATA 二字码" size="md" id="form_iata_code" value={@record.iata_code} />
+            <.input name="icao_code" label="ICAO 三字码" placeholder="请输入ICAO 三字码" size="md" id="form_icao_code" value={@record.icao_code} />
+            <.select name="status" label="status" size="md" id="form_status" value={@record.status}>
 
             </.select>
           </.grid>

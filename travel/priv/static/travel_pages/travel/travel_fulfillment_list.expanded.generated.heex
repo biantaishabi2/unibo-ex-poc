@@ -69,53 +69,61 @@
         <.table_head id="th_used_at">
           实际使用时间
         </.table_head>
+        <.table_head id="travel_fulfillment_th_actions">
+          操作
+        </.table_head>
       </.table_row>
     </.table_header>
     <.table_body id="travel_fulfillment_table_body">
-      <%= for row <- @rows do %>
+      <%= for row <- (@rows || []) do %>
         <.table_row>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.fulfillment_type %>
+              <%= get_in(row, [:fulfillment_type]) || "" %>
             </.badge>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.status %>
+              <%= get_in(row, [:status]) || "" %>
             </.badge>
           </.table_cell>
           <.table_cell>
-            <%= row.supplier_booking_ref %>
+            <%= get_in(row, [:supplier_booking_ref]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.voucher_or_ticket_ref %>
+            <%= get_in(row, [:voucher_or_ticket_ref]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.ticket_refs %>
-          </.table_cell>
-          <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= row.waitlist_result %>
-            </.badge>
+            <%= get_in(row, [:ticket_refs]) || "" %>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.change_result %>
+              <%= get_in(row, [:waitlist_result]) || "" %>
             </.badge>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.boarding_status %>
+              <%= get_in(row, [:change_result]) || "" %>
             </.badge>
           </.table_cell>
           <.table_cell>
-            <%= row.confirmation_payload %>
+            <.badge variant="default" size="sm">
+              <%= get_in(row, [:boarding_status]) || "" %>
+            </.badge>
           </.table_cell>
           <.table_cell>
-            <%= row.failure_reason %>
+            <%= get_in(row, [:confirmation_payload]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.used_at %>
+            <%= get_in(row, [:failure_reason]) || "" %>
+          </.table_cell>
+          <.table_cell>
+            <%= get_in(row, [:used_at]) || "" %>
+          </.table_cell>
+          <.table_cell>
+            <.link patch={"/pages/travel/travel_fulfillment/#{get_in(row, [:id])}"} id="travel_fulfillment_view_btn" variant="link" size="sm">
+              查看
+            </.link>
           </.table_cell>
         </.table_row>
       <% end %>

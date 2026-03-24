@@ -11,9 +11,86 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): 
+  # status.keys preview (first ~40): rows, rows[], rows[].arrival_at, rows[].arrival_station_code, rows[].arrival_station_name, rows[].booking_rules_snapshot, rows[].change_rules_snapshot, rows[].currency, rows[].departure_at, rows[].departure_station_code, rows[].departure_station_name, rows[].inventory_status, rows[].is_no_seat, rows[].listed_price, rows[].refund_rules_snapshot, rows[].sale_status, rows[].seat_class, rows[].seat_code, rows[].settlement_price, rows[].supplier_code, rows[].train_no, rows[].travel_date, rows[].waitlist_supported, rows_empty, train_offer, train_offer.page, train_offer.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
-  @status_defaults_raw Jason.decode!("{}")
+  @status_defaults_raw Jason.decode!("{
+  \"train_offer\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
+  \"rows_empty\": true,
+  \"rows\": [
+    {
+      \"supplier_code\": \"\",
+      \"train_no\": \"\",
+      \"departure_station_code\": \"\",
+      \"departure_station_name\": \"\",
+      \"arrival_station_code\": \"\",
+      \"arrival_station_name\": \"\",
+      \"travel_date\": \"\",
+      \"departure_at\": \"\",
+      \"arrival_at\": \"\",
+      \"seat_class\": \"\",
+      \"seat_code\": \"\",
+      \"is_no_seat\": \"\",
+      \"inventory_status\": \"\",
+      \"waitlist_supported\": \"\",
+      \"listed_price\": \"\",
+      \"settlement_price\": \"\",
+      \"currency\": \"\",
+      \"booking_rules_snapshot\": \"\",
+      \"change_rules_snapshot\": \"\",
+      \"refund_rules_snapshot\": \"\",
+      \"sale_status\": \"\"
+    },
+    {
+      \"supplier_code\": \"\",
+      \"train_no\": \"\",
+      \"departure_station_code\": \"\",
+      \"departure_station_name\": \"\",
+      \"arrival_station_code\": \"\",
+      \"arrival_station_name\": \"\",
+      \"travel_date\": \"\",
+      \"departure_at\": \"\",
+      \"arrival_at\": \"\",
+      \"seat_class\": \"\",
+      \"seat_code\": \"\",
+      \"is_no_seat\": \"\",
+      \"inventory_status\": \"\",
+      \"waitlist_supported\": \"\",
+      \"listed_price\": \"\",
+      \"settlement_price\": \"\",
+      \"currency\": \"\",
+      \"booking_rules_snapshot\": \"\",
+      \"change_rules_snapshot\": \"\",
+      \"refund_rules_snapshot\": \"\",
+      \"sale_status\": \"\"
+    },
+    {
+      \"supplier_code\": \"\",
+      \"train_no\": \"\",
+      \"departure_station_code\": \"\",
+      \"departure_station_name\": \"\",
+      \"arrival_station_code\": \"\",
+      \"arrival_station_name\": \"\",
+      \"travel_date\": \"\",
+      \"departure_at\": \"\",
+      \"arrival_at\": \"\",
+      \"seat_class\": \"\",
+      \"seat_code\": \"\",
+      \"is_no_seat\": \"\",
+      \"inventory_status\": \"\",
+      \"waitlist_supported\": \"\",
+      \"listed_price\": \"\",
+      \"settlement_price\": \"\",
+      \"currency\": \"\",
+      \"booking_rules_snapshot\": \"\",
+      \"change_rules_snapshot\": \"\",
+      \"refund_rules_snapshot\": \"\",
+      \"sale_status\": \"\"
+    }
+  ]
+}")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
@@ -65,8 +142,30 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event(_event, _params, socket) do
-    # No events declared by events.schema
+  def handle_event("filter_submit", params, socket) do
+    # UI action event name: filter_submit
+    socket = dispatch_backend("filter_submit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_create", params, socket) do
+    # UI action event name: navigate_create
+    socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("train_offer_page_next", params, socket) do
+    # UI action event name: train_offer_page_next
+    socket = dispatch_backend("train_offer_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("train_offer_page_prev", params, socket) do
+    # UI action event name: train_offer_page_prev
+    socket = dispatch_backend("train_offer_page_prev", params, socket)
     {:noreply, socket}
   end
 

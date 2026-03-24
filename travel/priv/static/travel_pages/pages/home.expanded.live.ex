@@ -11,9 +11,45 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): 
+  # status.keys preview (first ~40): announcements, announcements[], announcements[].publish_at, announcements[].summary, announcements[].title, hero_action_label, hero_subtitle, hero_title, message_count, pending_count, schedule_count, shortcut_1_desc, shortcut_1_icon, shortcut_1_label, shortcut_2_desc, shortcut_2_icon, shortcut_2_label, shortcut_3_desc, shortcut_3_icon, shortcut_3_label, shortcut_4_desc, shortcut_4_icon, shortcut_4_label
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
-  @status_defaults_raw Jason.decode!("{}")
+  @status_defaults_raw Jason.decode!("{
+  \"hero_title\": \"欢迎使用\",
+  \"hero_subtitle\": \"便捷管理,高效协作\",
+  \"hero_action_label\": \"立即开始\",
+  \"shortcut_1_icon\": \"file\",
+  \"shortcut_1_label\": \"功能一\",
+  \"shortcut_1_desc\": \"\",
+  \"shortcut_2_icon\": \"settings\",
+  \"shortcut_2_label\": \"功能二\",
+  \"shortcut_2_desc\": \"\",
+  \"shortcut_3_icon\": \"bell\",
+  \"shortcut_3_label\": \"功能三\",
+  \"shortcut_3_desc\": \"\",
+  \"shortcut_4_icon\": \"user\",
+  \"shortcut_4_label\": \"功能四\",
+  \"shortcut_4_desc\": \"\",
+  \"pending_count\": 0,
+  \"message_count\": 0,
+  \"schedule_count\": 0,
+  \"announcements\": [
+    {
+      \"title\": \"\",
+      \"summary\": \"\",
+      \"publish_at\": \"\"
+    },
+    {
+      \"title\": \"\",
+      \"summary\": \"\",
+      \"publish_at\": \"\"
+    },
+    {
+      \"title\": \"\",
+      \"summary\": \"\",
+      \"publish_at\": \"\"
+    }
+  ]
+}")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
@@ -65,8 +101,16 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event(_event, _params, socket) do
-    # No events declared by events.schema
+  def handle_event("hero_action", params, socket) do
+    # UI action event name: hero_action
+    socket = dispatch_backend("hero_action", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_announcements", params, socket) do
+    # UI action event name: navigate_announcements
+    socket = dispatch_backend("navigate_announcements", params, socket)
     {:noreply, socket}
   end
 

@@ -9,7 +9,7 @@
       <.breadcrumb_separator id="travel_fulfillment_bc_sep" />
       <.breadcrumb_item id="travel_fulfillment_bc_current_item">
         <.breadcrumb_page id="travel_fulfillment_bc_current">
-          <%= @record.supplier_booking_ref %>
+          <%= get_in(@record, [:supplier_booking_ref]) || "详情" %>
         </.breadcrumb_page>
       </.breadcrumb_item>
     </.breadcrumb_list>
@@ -17,10 +17,10 @@
   <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_fulfillment_detail_header">
     <.flex gap={3} align="center" direction="row" id="travel_fulfillment_title_group">
       <.text variant="title" id="travel_fulfillment_detail_title">
-        <%= @record.supplier_booking_ref %>
+        <%= get_in(@record, [:supplier_booking_ref]) || "" %>
       </.text>
       <.badge variant="default" size="sm" id="travel_fulfillment_status_badge">
-        <%= @record.status %>
+        <%= get_in(@record, [:status]) || "" %>
       </.badge>
     </.flex>
     <.flex gap={2} direction="row" id="travel_fulfillment_actions">
@@ -64,7 +64,7 @@
               fulfillment_type
             </.text>
             <.badge variant="default" size="sm" id="value_fulfillment_type">
-              <%= @record.fulfillment_type %>
+              <%= get_in(@record, [:fulfillment_type]) || "" %>
             </.badge>
           </.flex>
           <.flex direction="row" id="field_status">
@@ -72,7 +72,7 @@
               status
             </.text>
             <.badge variant="default" size="sm" id="value_status">
-              <%= @record.status %>
+              <%= get_in(@record, [:status]) || "" %>
             </.badge>
           </.flex>
           <.flex direction="row" id="field_supplier_booking_ref">
@@ -80,7 +80,7 @@
               供应商预订号
             </.text>
             <.text id="value_supplier_booking_ref">
-              <%= @record.supplier_booking_ref %>
+              <%= get_in(@record, [:supplier_booking_ref]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_voucher_or_ticket_ref">
@@ -88,7 +88,7 @@
               凭证号或票号
             </.text>
             <.text id="value_voucher_or_ticket_ref">
-              <%= @record.voucher_or_ticket_ref %>
+              <%= get_in(@record, [:voucher_or_ticket_ref]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_ticket_refs">
@@ -96,7 +96,7 @@
               多张票号、座席和乘客映射结果
             </.text>
             <.text id="value_ticket_refs">
-              <%= @record.ticket_refs %>
+              <%= get_in(@record, [:ticket_refs]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_waitlist_result">
@@ -104,7 +104,7 @@
               train 候补兑现结果
             </.text>
             <.badge variant="default" size="sm" id="value_waitlist_result">
-              <%= @record.waitlist_result %>
+              <%= get_in(@record, [:waitlist_result]) || "" %>
             </.badge>
           </.flex>
           <.flex direction="row" id="field_change_result">
@@ -112,7 +112,7 @@
               train 改签结果
             </.text>
             <.badge variant="default" size="sm" id="value_change_result">
-              <%= @record.change_result %>
+              <%= get_in(@record, [:change_result]) || "" %>
             </.badge>
           </.flex>
           <.flex direction="row" id="field_boarding_status">
@@ -120,7 +120,7 @@
               train 乘车状态
             </.text>
             <.badge variant="default" size="sm" id="value_boarding_status">
-              <%= @record.boarding_status %>
+              <%= get_in(@record, [:boarding_status]) || "" %>
             </.badge>
           </.flex>
           <.flex direction="row" id="field_confirmation_payload">
@@ -128,7 +128,7 @@
               确认结果快照
             </.text>
             <.text id="value_confirmation_payload">
-              <%= @record.confirmation_payload %>
+              <%= get_in(@record, [:confirmation_payload]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_failure_reason">
@@ -136,7 +136,7 @@
               失败原因
             </.text>
             <.text id="value_failure_reason">
-              <%= @record.failure_reason %>
+              <%= get_in(@record, [:failure_reason]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_used_at">
@@ -144,35 +144,36 @@
               实际使用时间
             </.text>
             <.text id="value_used_at">
-              <%= @record.used_at %>
+              <%= get_in(@record, [:used_at]) || "" %>
             </.text>
           </.flex>
         </.grid>
       <% else %>
         <.form phx-submit="form_submit" phx-change="form_change" id="travel_fulfillment_edit_form">
           <.grid columns={2} gap={4} id="travel_fulfillment_form_grid">
-            <.input name="tenant_id" label="tenant_id" placeholder="请输入tenant_id" required="true" size="md" id="form_tenant_id" />
-            <.select name="fulfillment_type" label="fulfillment_type" size="md" id="form_fulfillment_type">
+            <.input name="tenant_id" label="tenant_id" placeholder="请输入tenant_id" required="true" size="md" id="form_tenant_id" value={@record.tenant_id} />
+            <.select name="fulfillment_type" label="fulfillment_type" size="md" id="form_fulfillment_type" value={@record.fulfillment_type}>
 
             </.select>
-            <.select name="status" label="status" size="md" id="form_status">
+            <.select name="status" label="status" size="md" id="form_status" value={@record.status}>
 
             </.select>
-            <.input name="supplier_booking_ref" label="供应商预订号" placeholder="请输入供应商预订号" size="md" id="form_supplier_booking_ref" />
-            <.input name="voucher_or_ticket_ref" label="凭证号或票号" placeholder="请输入凭证号或票号" size="md" id="form_voucher_or_ticket_ref" />
-            <.input name="ticket_refs" label="多张票号、座席和乘客映射结果" placeholder="请输入多张票号、座席和乘客映射结果" size="md" id="form_ticket_refs" />
-            <.select name="waitlist_result" label="train 候补兑现结果" size="md" id="form_waitlist_result">
+            <.input name="supplier_booking_ref" label="供应商预订号" placeholder="请输入供应商预订号" size="md" id="form_supplier_booking_ref" value={@record.supplier_booking_ref} />
+            <.input name="voucher_or_ticket_ref" label="凭证号或票号" placeholder="请输入凭证号或票号" size="md" id="form_voucher_or_ticket_ref" value={@record.voucher_or_ticket_ref} />
+            <.input name="ticket_refs" label="多张票号、座席和乘客映射结果" placeholder="请输入多张票号、座席和乘客映射结果" size="md" id="form_ticket_refs" value={@record.ticket_refs} />
+            <.select name="waitlist_result" label="train 候补兑现结果" size="md" id="form_waitlist_result" value={@record.waitlist_result}>
 
             </.select>
-            <.select name="change_result" label="train 改签结果" size="md" id="form_change_result">
+            <.select name="change_result" label="train 改签结果" size="md" id="form_change_result" value={@record.change_result}>
 
             </.select>
-            <.select name="boarding_status" label="train 乘车状态" size="md" id="form_boarding_status">
+            <.select name="boarding_status" label="train 乘车状态" size="md" id="form_boarding_status" value={@record.boarding_status}>
 
             </.select>
-            <.textarea name="confirmation_payload" label="确认结果快照" placeholder="请输入确认结果快照" id="form_confirmation_payload" />
-            <.textarea name="failure_reason" label="失败原因" placeholder="请输入失败原因" id="form_failure_reason" />
-            <.input name="used_at" label="实际使用时间" placeholder="请输入实际使用时间" size="md" id="form_used_at" />
+            <.textarea name="confirmation_payload" label="确认结果快照" placeholder="请输入确认结果快照" id="form_confirmation_payload" value={@record.confirmation_payload} />
+            <.textarea name="failure_reason" label="失败原因" placeholder="请输入失败原因" id="form_failure_reason" value={@record.failure_reason} />
+            <.input name="used_at" label="实际使用时间" placeholder="请输入实际使用时间" size="md" id="form_used_at" value={@record.used_at} />
+            <.input name="shipment_id" label="关联的物流发货单（跨域引用 Delivery.Shipment）" placeholder="请输入关联的物流发货单（跨域引用 Delivery.Shipment）" size="md" id="form_shipment_id" value={@record.shipment_id} />
           </.grid>
           <.flex justify="end" gap={2} direction="row" id="travel_fulfillment_form_actions">
             <.button variant="secondary" phx-click="cancel_edit" size="md" id="travel_fulfillment_cancel_btn">

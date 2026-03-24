@@ -1,19 +1,109 @@
 {
-  "total": 13,
-  "errors": 0,
-  "warnings": 13,
+  "total": 44,
+  "errors": 5,
+  "warnings": 39,
   "issues": [
     {
-      "domain": "TravelExt",
-      "entity": "TravelChangeOrder",
-      "action": "approve",
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "action": "activate",
       "rule_code": "event_consumer_missing_for_event",
-      "path": "entities.TravelChangeOrder.events[topic=travel.change_order.approved]",
+      "path": "entities.FlightOffer.events[topic=travel.catalog.flight_offer.activated]",
       "severity": "info",
-      "reason": "事件 topic `travel.change_order.approved` 没有任何实体声明 event_consumers 消费"
+      "reason": "事件 topic `travel.catalog.flight_offer.activated` 没有任何实体声明 event_consumers 消费"
     },
     {
-      "domain": "TravelExt",
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "action": "deactivate",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.FlightOffer.events[topic=travel.catalog.flight_offer.deactivated]",
+      "severity": "info",
+      "reason": "事件 topic `travel.catalog.flight_offer.deactivated` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "FlightOffer",
+      "action": "expire",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.FlightOffer.events[topic=travel.catalog.flight_offer.expired]",
+      "severity": "info",
+      "reason": "事件 topic `travel.catalog.flight_offer.expired` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "action": "activate",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.HotelOffer.events[topic=travel.catalog.hotel_offer.activated]",
+      "severity": "info",
+      "reason": "事件 topic `travel.catalog.hotel_offer.activated` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "action": "deactivate",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.HotelOffer.events[topic=travel.catalog.hotel_offer.deactivated]",
+      "severity": "info",
+      "reason": "事件 topic `travel.catalog.hotel_offer.deactivated` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "HotelOffer",
+      "action": "expire",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.HotelOffer.events[topic=travel.catalog.hotel_offer.expired]",
+      "severity": "info",
+      "reason": "事件 topic `travel.catalog.hotel_offer.expired` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "action": "activate",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TrainOffer.events[topic=travel.catalog.train_offer.activated]",
+      "severity": "info",
+      "reason": "事件 topic `travel.catalog.train_offer.activated` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "action": "deactivate",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TrainOffer.events[topic=travel.catalog.train_offer.deactivated]",
+      "severity": "info",
+      "reason": "事件 topic `travel.catalog.train_offer.deactivated` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TrainOffer",
+      "action": "expire",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TrainOffer.events[topic=travel.catalog.train_offer.expired]",
+      "severity": "info",
+      "reason": "事件 topic `travel.catalog.train_offer.expired` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelAirline",
+      "action": null,
+      "rule_code": "source_domain_not_found",
+      "path": "entities.TravelAirline.source.domain",
+      "severity": "error",
+      "reason": "source.domain=`ofbiz/party` 未在输入模型中解析到对应域（entity=TravelAirline，source=./models/travel/travel.ubo.yaml）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelCabinClass",
+      "action": null,
+      "rule_code": "source_domain_not_found",
+      "path": "entities.TravelCabinClass.source.domain",
+      "severity": "error",
+      "reason": "source.domain=`ofbiz/common` 未在输入模型中解析到对应域（entity=TravelCabinClass，source=./models/travel/travel.ubo.yaml）"
+    },
+    {
+      "domain": "Travel",
       "entity": "TravelChangeOrder",
       "action": "complete",
       "rule_code": "event_consumer_missing_for_event",
@@ -22,7 +112,7 @@
       "reason": "事件 topic `travel.change_order.completed` 没有任何实体声明 event_consumers 消费"
     },
     {
-      "domain": "TravelExt",
+      "domain": "Travel",
       "entity": "TravelChangeOrder",
       "action": "complete_direct",
       "rule_code": "event_consumer_missing_for_event",
@@ -31,25 +121,178 @@
       "reason": "事件 topic `travel.change_order.completed` 没有任何实体声明 event_consumers 消费"
     },
     {
-      "domain": "TravelExt",
+      "domain": "Travel",
       "entity": "TravelChangeOrder",
-      "action": "original_order",
-      "rule_code": "cross_domain_target_missing",
-      "path": "entities.TravelChangeOrder.relationships[0].target",
-      "severity": "warning",
-      "reason": "跨域目标实体不存在：Travel.TravelOrder（project known entities）"
+      "action": "confirm_change",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelChangeOrder.events[topic=travel.change_order.approved]",
+      "severity": "info",
+      "reason": "事件 topic `travel.change_order.approved` 没有任何实体声明 event_consumers 消费"
     },
     {
-      "domain": "TravelExt",
+      "domain": "Travel",
       "entity": "TravelChangeOrder",
-      "action": "reject",
+      "action": "reject_change",
       "rule_code": "event_consumer_missing_for_event",
       "path": "entities.TravelChangeOrder.events[topic=travel.change_order.rejected]",
       "severity": "info",
       "reason": "事件 topic `travel.change_order.rejected` 没有任何实体声明 event_consumers 消费"
     },
     {
-      "domain": "TravelExt",
+      "domain": "Travel",
+      "entity": "TravelChangeOrder",
+      "action": "submit",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelChangeOrder.events[topic=travel.change_order.submitted]",
+      "severity": "info",
+      "reason": "事件 topic `travel.change_order.submitted` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "action": "cancel_fulfillment",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelFulfillment.events[topic=travel.fulfillment.cancelled]",
+      "severity": "info",
+      "reason": "事件 topic `travel.fulfillment.cancelled` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "action": "complete_fulfillment",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelFulfillment.events[topic=travel.fulfillment.completed]",
+      "severity": "info",
+      "reason": "事件 topic `travel.fulfillment.completed` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "action": "confirm_booking",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelFulfillment.events[topic=travel.fulfillment.confirmed]",
+      "severity": "info",
+      "reason": "事件 topic `travel.fulfillment.confirmed` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "action": "fail_fulfillment",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelFulfillment.events[topic=travel.fulfillment.failed]",
+      "severity": "info",
+      "reason": "事件 topic `travel.fulfillment.failed` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelFulfillment",
+      "action": "issue_voucher_or_ticket",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelFulfillment.events[topic=travel.fulfillment.issued]",
+      "severity": "info",
+      "reason": "事件 topic `travel.fulfillment.issued` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelHotel",
+      "action": null,
+      "rule_code": "source_domain_not_found",
+      "path": "entities.TravelHotel.source.domain",
+      "severity": "error",
+      "reason": "source.domain=`ofbiz/product` 未在输入模型中解析到对应域（entity=TravelHotel，source=./models/travel/travel.ubo.yaml）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": "cancel_cancel_request",
+      "rule_code": "critical_action_missing_event",
+      "path": "entities.TravelOrder.state_machine.transitions[event=cancel_cancel_request]",
+      "severity": "warning",
+      "reason": "关键状态变更动作 `cancel_cancel_request` 未声明 events，状态变更后不会发布领域事件"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": "cancel_waitlist",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelOrder.events[topic=travel.order.waitlist_cancelled]",
+      "severity": "info",
+      "reason": "事件 topic `travel.order.waitlist_cancelled` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": "confirm_change",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelOrder.events[topic=travel.order.change_confirmed]",
+      "severity": "info",
+      "reason": "事件 topic `travel.order.change_confirmed` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": "execute_cancel",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelOrder.events[topic=travel.order.cancelled]",
+      "severity": "info",
+      "reason": "事件 topic `travel.order.cancelled` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": "fulfill_waitlist",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelOrder.events[topic=travel.order.waitlist_fulfilled]",
+      "severity": "info",
+      "reason": "事件 topic `travel.order.waitlist_fulfilled` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": "mark_order_failed",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelOrder.events[topic=travel.order.failed]",
+      "severity": "info",
+      "reason": "事件 topic `travel.order.failed` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": "mark_payment_succeeded",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelOrder.events[topic=travel.order.payment_confirmed]",
+      "severity": "info",
+      "reason": "事件 topic `travel.order.payment_confirmed` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": "request_cancel",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelOrder.events[topic=travel.order.cancel_requested]",
+      "severity": "info",
+      "reason": "事件 topic `travel.order.cancel_requested` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": "submit_order",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelOrder.events[topic=travel.order.submitted]",
+      "severity": "info",
+      "reason": "事件 topic `travel.order.submitted` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelOrder",
+      "action": "submit_waitlist",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelOrder.events[topic=travel.order.waitlist_submitted]",
+      "severity": "info",
+      "reason": "事件 topic `travel.order.waitlist_submitted` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
       "entity": "TravelPolicy",
       "action": "activate",
       "rule_code": "event_consumer_missing_for_event",
@@ -58,7 +301,7 @@
       "reason": "事件 topic `travel.policy.activated` 没有任何实体声明 event_consumers 消费"
     },
     {
-      "domain": "TravelExt",
+      "domain": "Travel",
       "entity": "TravelPolicy",
       "action": "deactivate",
       "rule_code": "event_consumer_missing_for_event",
@@ -67,34 +310,16 @@
       "reason": "事件 topic `travel.policy.deactivated` 没有任何实体声明 event_consumers 消费"
     },
     {
-      "domain": "TravelExt",
-      "entity": "TravelPolicyCheck",
-      "action": "order",
-      "rule_code": "cross_domain_target_missing",
-      "path": "entities.TravelPolicyCheck.relationships[0].target",
-      "severity": "warning",
-      "reason": "跨域目标实体不存在：Travel.TravelOrder（project known entities）"
-    },
-    {
-      "domain": "TravelExt",
+      "domain": "Travel",
       "entity": "TravelRefundOrder",
-      "action": "approve",
+      "action": "confirm_refund",
       "rule_code": "event_consumer_missing_for_event",
       "path": "entities.TravelRefundOrder.events[topic=travel.refund_order.approved]",
       "severity": "info",
       "reason": "事件 topic `travel.refund_order.approved` 没有任何实体声明 event_consumers 消费"
     },
     {
-      "domain": "TravelExt",
-      "entity": "TravelRefundOrder",
-      "action": "original_order",
-      "rule_code": "cross_domain_target_missing",
-      "path": "entities.TravelRefundOrder.relationships[0].target",
-      "severity": "warning",
-      "reason": "跨域目标实体不存在：Travel.TravelOrder（project known entities）"
-    },
-    {
-      "domain": "TravelExt",
+      "domain": "Travel",
       "entity": "TravelRefundOrder",
       "action": "refund",
       "rule_code": "event_consumer_missing_for_event",
@@ -103,7 +328,7 @@
       "reason": "事件 topic `travel.refund_order.refunded` 没有任何实体声明 event_consumers 消费"
     },
     {
-      "domain": "TravelExt",
+      "domain": "Travel",
       "entity": "TravelRefundOrder",
       "action": "refund_direct",
       "rule_code": "event_consumer_missing_for_event",
@@ -112,13 +337,67 @@
       "reason": "事件 topic `travel.refund_order.refunded` 没有任何实体声明 event_consumers 消费"
     },
     {
-      "domain": "TravelExt",
+      "domain": "Travel",
       "entity": "TravelRefundOrder",
-      "action": "reject",
+      "action": "reject_refund",
       "rule_code": "event_consumer_missing_for_event",
       "path": "entities.TravelRefundOrder.events[topic=travel.refund_order.rejected]",
       "severity": "info",
       "reason": "事件 topic `travel.refund_order.rejected` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelRefundOrder",
+      "action": "submit",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.TravelRefundOrder.events[topic=travel.refund_order.submitted]",
+      "severity": "info",
+      "reason": "事件 topic `travel.refund_order.submitted` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelRoomType",
+      "action": null,
+      "rule_code": "source_domain_not_found",
+      "path": "entities.TravelRoomType.source.domain",
+      "severity": "error",
+      "reason": "source.domain=`ofbiz/product` 未在输入模型中解析到对应域（entity=TravelRoomType，source=./models/travel/travel.ubo.yaml）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "TravelStaticCodeMapping",
+      "action": null,
+      "rule_code": "source_domain_not_found",
+      "path": "entities.TravelStaticCodeMapping.source.domain",
+      "severity": "error",
+      "reason": "source.domain=`ofbiz/common` 未在输入模型中解析到对应域（entity=TravelStaticCodeMapping，source=./models/travel/travel.ubo.yaml）"
+    },
+    {
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "action": "activate",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.VacationOffer.events[topic=travel.catalog.vacation_offer.activated]",
+      "severity": "info",
+      "reason": "事件 topic `travel.catalog.vacation_offer.activated` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "action": "deactivate",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.VacationOffer.events[topic=travel.catalog.vacation_offer.deactivated]",
+      "severity": "info",
+      "reason": "事件 topic `travel.catalog.vacation_offer.deactivated` 没有任何实体声明 event_consumers 消费"
+    },
+    {
+      "domain": "Travel",
+      "entity": "VacationOffer",
+      "action": "expire",
+      "rule_code": "event_consumer_missing_for_event",
+      "path": "entities.VacationOffer.events[topic=travel.catalog.vacation_offer.expired]",
+      "severity": "info",
+      "reason": "事件 topic `travel.catalog.vacation_offer.expired` 没有任何实体声明 event_consumers 消费"
     }
   ]
 }

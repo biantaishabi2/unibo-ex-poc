@@ -60,6 +60,7 @@ defmodule UniboExPoc.Travel.Integration.Runtime do
       "shop_caller_context_resolve" -> fn req -> dispatch_builtin_provider("shop_caller_context_resolve", req) end
       "shop_eligibility_quote" -> fn req -> dispatch_builtin_provider("shop_eligibility_quote", req) end
       "payment_capture" -> fn req -> dispatch_builtin_provider("payment_capture", req) end
+      "create_approval_instance" -> fn req -> dispatch_builtin_provider("create_approval_instance", req) end
       "supplier_confirm_booking" -> fn req -> dispatch_builtin_provider("supplier_confirm_booking", req) end
       "supplier_issue_document" -> fn req -> dispatch_builtin_provider("supplier_issue_document", req) end
       _ -> nil
@@ -86,9 +87,9 @@ defmodule UniboExPoc.Travel.Integration.Runtime do
     end
   end
 
-  defp builtin_mock_payload("shop_caller_context_resolve", "create_order", request_id, payload) do
+  defp builtin_mock_payload("shop_caller_context_resolve", "create", request_id, payload) do
     %{
-      "current_shop_id" => fetch(payload, :current_shop_id, fetch(payload, :shop_id, fetch(payload, :host_shop_id, mock_uuid(request_id, "shop_caller_context_resolve", "create_order", "current_shop_id")))),
+      "current_shop_id" => fetch(payload, :current_shop_id, fetch(payload, :shop_id, fetch(payload, :host_shop_id, mock_uuid(request_id, "shop_caller_context_resolve", "create", "current_shop_id")))),
       "member_id" => fetch(payload, :member_id, "mock_member_id"),
       "enterprise_id" => fetch(payload, :enterprise_id, fetch(payload, :tenant_id, "mock_enterprise_id"))
     }
@@ -139,6 +140,13 @@ defmodule UniboExPoc.Travel.Integration.Runtime do
     }
   end
 
+  defp builtin_mock_payload("create_approval_instance", "request_cancel", request_id, payload) do
+    %{
+      "instance_id" => mock_uuid(request_id, "create_approval_instance", "request_cancel", "instance_id"),
+      "status" => "mock_create_approval_instance_request_cancel_status"
+    }
+  end
+
   defp builtin_mock_payload("supplier_confirm_booking", "confirm_booking", request_id, payload) do
     %{
       "confirm_status" => "mock_supplier_confirm_booking_confirm_booking_confirm_status",
@@ -152,6 +160,13 @@ defmodule UniboExPoc.Travel.Integration.Runtime do
       "issue_status" => "mock_supplier_issue_document_issue_voucher_or_ticket_issue_status",
       "voucher_or_ticket_ref" => "mock_supplier_issue_document_issue_voucher_or_ticket_voucher_or_ticket_ref",
       "ticket_refs" => %{}
+    }
+  end
+
+  defp builtin_mock_payload("create_approval_instance", "submit", request_id, payload) do
+    %{
+      "instance_id" => mock_uuid(request_id, "create_approval_instance", "submit", "instance_id"),
+      "status" => "mock_create_approval_instance_submit_status"
     }
   end
 

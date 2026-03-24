@@ -1,1 +1,30 @@
-{}
+{
+  "travel_room_type": {
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
+  "rows": [
+    {
+      "room_type_code": "",
+      "room_type_name": "",
+      "hotel_code": "",
+      "bed_type": "",
+      "status": ""
+    },
+    {
+      "room_type_code": "",
+      "room_type_name": "",
+      "hotel_code": "",
+      "bed_type": "",
+      "status": ""
+    },
+    {
+      "room_type_code": "",
+      "room_type_name": "",
+      "hotel_code": "",
+      "bed_type": "",
+      "status": ""
+    }
+  ]
+}

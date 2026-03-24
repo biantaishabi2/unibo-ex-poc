@@ -141,13 +141,14 @@ defmodule UniboExPoc.Travel.HotelOffer do
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
+    attribute :city_ref_id, :string do
+      public? true
+      description "Core 旅行城市主数据引用（跨域引用 Ecommerce.TravelCity）"
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
-    belongs_to :city_ref, UniboExPoc.Ecommerce.TravelCity do
-      public? true
-    end
     belongs_to :hotel_ref, UniboExPoc.Travel.TravelHotel do
       public? true
     end

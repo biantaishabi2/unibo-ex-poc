@@ -11,9 +11,50 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): 
+  # status.keys preview (first ~40): rows, rows[], rows[].actual_amount, rows[].approval_mode, rows[].check_result, rows[].exceed_amount, rows[].exceed_ratio, rows[].exceed_reason, rows[].exceed_strategy, rows[].personal_pay_amount, rows[].policy_amount, rows_empty, travel_policy_check, travel_policy_check.page, travel_policy_check.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
-  @status_defaults_raw Jason.decode!("{}")
+  @status_defaults_raw Jason.decode!("{
+  \"travel_policy_check\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
+  \"rows_empty\": true,
+  \"rows\": [
+    {
+      \"check_result\": \"\",
+      \"policy_amount\": \"\",
+      \"actual_amount\": \"\",
+      \"exceed_amount\": \"\",
+      \"exceed_ratio\": \"\",
+      \"exceed_strategy\": \"\",
+      \"exceed_reason\": \"\",
+      \"personal_pay_amount\": \"\",
+      \"approval_mode\": \"\"
+    },
+    {
+      \"check_result\": \"\",
+      \"policy_amount\": \"\",
+      \"actual_amount\": \"\",
+      \"exceed_amount\": \"\",
+      \"exceed_ratio\": \"\",
+      \"exceed_strategy\": \"\",
+      \"exceed_reason\": \"\",
+      \"personal_pay_amount\": \"\",
+      \"approval_mode\": \"\"
+    },
+    {
+      \"check_result\": \"\",
+      \"policy_amount\": \"\",
+      \"actual_amount\": \"\",
+      \"exceed_amount\": \"\",
+      \"exceed_ratio\": \"\",
+      \"exceed_strategy\": \"\",
+      \"exceed_reason\": \"\",
+      \"personal_pay_amount\": \"\",
+      \"approval_mode\": \"\"
+    }
+  ]
+}")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
@@ -65,8 +106,30 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event(_event, _params, socket) do
-    # No events declared by events.schema
+  def handle_event("filter_submit", params, socket) do
+    # UI action event name: filter_submit
+    socket = dispatch_backend("filter_submit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_create", params, socket) do
+    # UI action event name: navigate_create
+    socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_policy_check_page_next", params, socket) do
+    # UI action event name: travel_policy_check_page_next
+    socket = dispatch_backend("travel_policy_check_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_policy_check_page_prev", params, socket) do
+    # UI action event name: travel_policy_check_page_prev
+    socket = dispatch_backend("travel_policy_check_page_prev", params, socket)
     {:noreply, socket}
   end
 

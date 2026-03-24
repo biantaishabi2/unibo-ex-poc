@@ -1,1 +1,1 @@
-{"entity":"TravelOrder","domain":"Pages","page_type":"list"}
+{"entity":"TravelOrder","domain":"Travel","page_type":"list","extends_template":"base_list_report"}

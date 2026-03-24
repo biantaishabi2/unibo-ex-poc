@@ -1,0 +1,58 @@
+<.page title="详情" id="personal_center">
+  <.section layout="none" id="breadcrumb_section">
+    <.breadcrumb id="page_breadcrumb">
+      <.breadcrumb_list id="bc_list">
+        <.breadcrumb_item id="bc_list_item">
+          <.breadcrumb_link id="bc_link">
+            列表
+          </.breadcrumb_link>
+        </.breadcrumb_item>
+        <.breadcrumb_separator id="bc_sep" />
+        <.breadcrumb_item id="bc_current_item">
+          <.breadcrumb_page id="bc_current">
+            详情
+          </.breadcrumb_page>
+        </.breadcrumb_item>
+      </.breadcrumb_list>
+    </.breadcrumb>
+  </.section>
+  <.section layout="none" id="detail_header" />
+  <.flex gap={3} align="center" direction="row" id="profile_header">
+    <.text variant="h2" weight="bold" id="profile_title">
+      <%= @page_title %>
+    </.text>
+    <.text variant="caption" color="muted" id="profile_desc">
+      <%= @profile_description %>
+    </.text>
+  </.flex>
+  <.section layout="none" id="info_section" />
+  <.grid columns={3} gap={3} id="stats_grid">
+    <.text id="stat_placeholder">
+      统计区域
+    </.text>
+  </.grid>
+  <.tabs default_value="placeholder" id="record_tabs">
+    <.tabs_list id="record_tab_list">
+      <.tabs_trigger value="placeholder" active_value="placeholder" id="trigger_placeholder">
+        记录
+      </.tabs_trigger>
+    </.tabs_list>
+  </.tabs>
+  <.stack gap={2} padding={3} direction="column" id="records_list">
+    <.text id="records_placeholder">
+      记录列表区域
+    </.text>
+  </.stack>
+  <.card variant="default" id="recent_card">
+    <.card_header id="recent_header">
+      <.card_title id="recent_title">
+        最近动态
+      </.card_title>
+    </.card_header>
+    <.card_content id="recent_content">
+      <.text id="recent_placeholder">
+        最近动态区域
+      </.text>
+    </.card_content>
+  </.card>
+</.page>

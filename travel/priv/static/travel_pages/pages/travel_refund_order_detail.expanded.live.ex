@@ -11,9 +11,18 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): 
+  # status.keys preview (first ~40): editing, travel_refund_order, travel_refund_order.approval_mode, travel_refund_order.refund_amount, travel_refund_order.refund_fee, travel_refund_order.refund_reason, travel_refund_order.status
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
-  @status_defaults_raw Jason.decode!("{}")
+  @status_defaults_raw Jason.decode!("{
+  \"travel_refund_order\": {
+    \"refund_reason\": \"\",
+    \"refund_fee\": \"\",
+    \"refund_amount\": \"\",
+    \"status\": \"\",
+    \"approval_mode\": \"\"
+  },
+  \"editing\": false
+}")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
@@ -65,8 +74,37 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event(_event, _params, socket) do
-    # No events declared by events.schema
+  def handle_event("action_destroy", params, socket) do
+    # UI action event name: action_destroy
+    socket = dispatch_backend("action_destroy", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("cancel_edit", params, socket) do
+    # UI action event name: cancel_edit
+    socket = dispatch_backend("cancel_edit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("form_change", params, socket) do
+    # UI action event name: form_change
+    socket = dispatch_backend("form_change", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("form_submit", params, socket) do
+    # UI action event name: form_submit
+    socket = dispatch_backend("form_submit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("toggle_edit", params, socket) do
+    # UI action event name: toggle_edit
+    socket = dispatch_backend("toggle_edit", params, socket)
     {:noreply, socket}
   end
 

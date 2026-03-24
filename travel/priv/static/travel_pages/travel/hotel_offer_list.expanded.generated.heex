@@ -71,57 +71,65 @@
         <.table_head id="th_sale_status">
           可售状态
         </.table_head>
+        <.table_head id="hotel_offer_th_actions">
+          操作
+        </.table_head>
       </.table_row>
     </.table_header>
     <.table_body id="hotel_offer_table_body">
-      <%= for row <- @rows do %>
+      <%= for row <- (@rows || []) do %>
         <.table_row>
           <.table_cell>
-            <%= row.supplier_code %>
+            <%= get_in(row, [:supplier_code]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.hotel_code %>
+            <%= get_in(row, [:hotel_code]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.hotel_name %>
+            <%= get_in(row, [:hotel_name]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.city_code %>
+            <%= get_in(row, [:city_code]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.room_type_code %>
+            <%= get_in(row, [:room_type_code]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.rate_plan_code %>
+            <%= get_in(row, [:rate_plan_code]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.checkin_date %>
+            <%= get_in(row, [:checkin_date]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.checkout_date %>
+            <%= get_in(row, [:checkout_date]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.listed_price %>
+            <%= get_in(row, [:listed_price]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.settlement_price %>
+            <%= get_in(row, [:settlement_price]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.currency %>
+            <%= get_in(row, [:currency]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.inventory_count %>
+            <%= get_in(row, [:inventory_count]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.cancellation_policy %>
+            <%= get_in(row, [:cancellation_policy]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.guarantee_policy %>
+            <%= get_in(row, [:guarantee_policy]) || "" %>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.sale_status %>
+              <%= get_in(row, [:sale_status]) || "" %>
             </.badge>
+          </.table_cell>
+          <.table_cell>
+            <.link patch={"/pages/travel/hotel_offer/#{get_in(row, [:id])}"} id="hotel_offer_view_btn" variant="link" size="sm">
+              查看
+            </.link>
           </.table_cell>
         </.table_row>
       <% end %>

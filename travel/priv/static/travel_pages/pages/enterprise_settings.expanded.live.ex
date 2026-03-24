@@ -65,8 +65,51 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event(_event, _params, socket) do
-    # No events declared by events.schema
+  def handle_event("action_destroy", params, socket) do
+    # UI action event name: action_destroy
+    socket = dispatch_backend("action_destroy", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_advanced", params, socket) do
+    # UI action event name: navigate_advanced
+    socket = dispatch_backend("navigate_advanced", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_display", params, socket) do
+    # UI action event name: navigate_display
+    socket = dispatch_backend("navigate_display", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_general", params, socket) do
+    # UI action event name: navigate_general
+    socket = dispatch_backend("navigate_general", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_notification", params, socket) do
+    # UI action event name: navigate_notification
+    socket = dispatch_backend("navigate_notification", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_security", params, socket) do
+    # UI action event name: navigate_security
+    socket = dispatch_backend("navigate_security", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("toggle_edit", params, socket) do
+    # UI action event name: toggle_edit
+    socket = dispatch_backend("toggle_edit", params, socket)
     {:noreply, socket}
   end
 

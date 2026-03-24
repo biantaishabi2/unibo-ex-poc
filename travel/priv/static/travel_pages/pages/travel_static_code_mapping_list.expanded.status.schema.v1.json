@@ -1,8 +1,57 @@
 {
   "version": 1,
-  "defaults": {},
-  "keys": [],
-  "required": [],
+  "defaults": {
+    "travel_static_code_mapping": {
+      "page": "",
+      "total_pages": ""
+    },
+    "rows_empty": true,
+    "rows": [
+      {
+        "supplier_code": "",
+        "object_type": "",
+        "canonical_entity": "",
+        "external_code": "",
+        "external_name": "",
+        "status": ""
+      },
+      {
+        "supplier_code": "",
+        "object_type": "",
+        "canonical_entity": "",
+        "external_code": "",
+        "external_name": "",
+        "status": ""
+      },
+      {
+        "supplier_code": "",
+        "object_type": "",
+        "canonical_entity": "",
+        "external_code": "",
+        "external_name": "",
+        "status": ""
+      }
+    ]
+  },
+  "keys": [
+    "rows",
+    "rows[]",
+    "rows[].canonical_entity",
+    "rows[].external_code",
+    "rows[].external_name",
+    "rows[].object_type",
+    "rows[].status",
+    "rows[].supplier_code",
+    "rows_empty",
+    "travel_static_code_mapping",
+    "travel_static_code_mapping.page",
+    "travel_static_code_mapping.total_pages"
+  ],
+  "required": [
+    "rows",
+    "rows_empty",
+    "travel_static_code_mapping"
+  ],
   "urlParams": {},
   "notes": []
 }

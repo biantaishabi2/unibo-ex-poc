@@ -1,0 +1,2879 @@
+# UniBO 预置模型：Travel vertical（电商域 overlay）
+# 范围：hotel / flight / vacation / train offer + unified travel order + unified travel fulfillment
+# 跨域引用：Sales::Customer, Payment::Payment, Delivery::Shipment
+# 分层约定（#766）：*_id/*_code/*_ref 等字段用于静态资源引用（CoreGeo/TravelStatic），*_snapshot/*_payload 与“快照”语义字段用于业务事实冻结（Vertical）
+# 分层约定（#766）：Travel 层可组合引用与快照，但不回写 OFBiz/Core 主数据结构
+version: "1.0"
+domain:
+  name: Travel
+  subdomain: travel
+  description: Travel vertical canonical model，作为电商域 overlay，通过 target_domain 引用 Sales/Payment/Delivery 域实体
+entities:
+  - name: TravelHotel
+    description: 酒店主数据（Travel 层，来源 OFBiz Product）
+    source:
+      base: Product
+      domain: ofbiz/product
+      filter: {product_type_id: TRAVEL_HOTEL}
+    aggregate_root: true
+    attributes:
+    - name: id
+      type: uuid
+      primary_key: true
+      generated: true
+    - name: hotel_code
+      type: string
+      required: true
+      description: 酒店规范编码
+    - name: hotel_name
+      type: string
+      required: true
+      description: 酒店名称
+    - name: city_code
+      type: string
+      description: 城市编码冗余（便于兼容检索）
+    - name: hotel_star
+      type: string
+      description: 酒店星级
+    - name: status
+      type: enum
+      constraints:
+        values: [active, inactive]
+      default: active
+    - name: city_id
+      type: string
+      description: 城市引用（跨域引用 Ecommerce.TravelCity）
+    identities:
+    - name: unique_hotel_code
+      keys: [hotel_code]
+    actions:
+    - name: create
+      type: create
+      primary: true
+      accept: [hotel_code, hotel_name, city_id, city_code, hotel_star, status]
+    - name: read
+      type: read
+      primary: true
+    - name: update
+      type: update
+      primary: true
+      accept: [hotel_name, city_id, city_code, hotel_star, status]
+    changes:
+    - effect: set_attribute
+      field: id
+      expr:
+        op: ref
+        args:
+        - id
+      on:
+      - create
+      - update
+      description: AUTO_WRITE_ANCHOR
+
+  - name: TravelRoomType
+    description: 酒店房型主数据（Travel 层，来源 OFBiz ProductFeature）
+    source:
+      base: ProductFeature
+      domain: ofbiz/product
+      filter: {product_feature_type_id: ROOM_TYPE}
+    aggregate_root: true
+    attributes:
+    - name: id
+      type: uuid
+      primary_key: true
+      generated: true
+    - name: room_type_code
+      type: string
+      required: true
+      description: 房型规范编码
+    - name: room_type_name
+      type: string
+      required: true
+      description: 房型名称
+    - name: hotel_code
+      type: string
+      description: 酒店编码冗余（便于兼容检索）
+    - name: bed_type
+      type: string
+      description: 床型
+    - name: status
+      type: enum
+      constraints:
+        values: [active, inactive]
+      default: active
+    relationships:
+    - name: hotel
+      type: belongs_to
+      target: TravelHotel
+      foreign_key: hotel_id
+    identities:
+    - name: unique_room_type_code
+      keys: [room_type_code]
+    actions:
+    - name: create
+      type: create
+      primary: true
+      accept: [room_type_code, room_type_name, hotel_id, hotel_code, bed_type, status]
+    - name: read
+      type: read
+      primary: true
+    - name: update
+      type: update
+      primary: true
+      accept: [room_type_name, hotel_id, hotel_code, bed_type, status]
+    changes:
+    - effect: set_attribute
+      field: id
+      expr:
+        op: ref
+        args:
+        - id
+      on:
+      - create
+      - update
+      description: AUTO_WRITE_ANCHOR
+
+  - name: TravelAirline
+    description: 航司主数据（Travel 层，来源 OFBiz PartyGroup）
+    source:
+      base: PartyGroup
+      domain: ofbiz/party
+      filter: {industry: AIRLINE}
+    aggregate_root: true
+    attributes:
+    - name: id
+      type: uuid
+      primary_key: true
+      generated: true
+    - name: airline_code
+      type: string
+      required: true
+      description: 航司规范编码
+    - name: airline_name
+      type: string
+      required: true
+      description: 航司名称
+    - name: iata_code
+      type: string
+      description: IATA 二字码
+    - name: icao_code
+      type: string
+      description: ICAO 三字码
+    - name: status
+      type: enum
+      constraints:
+        values: [active, inactive]
+      default: active
+    identities:
+    - name: unique_airline_code
+      keys: [airline_code]
+    actions:
+    - name: create
+      type: create
+      primary: true
+      accept: [airline_code, airline_name, iata_code, icao_code, status]
+    - name: read
+      type: read
+      primary: true
+    - name: update
+      type: update
+      primary: true
+      accept: [airline_name, iata_code, icao_code, status]
+    changes:
+    - effect: set_attribute
+      field: id
+      expr:
+        op: ref
+        args:
+        - id
+      on:
+      - create
+      - update
+      description: AUTO_WRITE_ANCHOR
+
+  - name: TravelCabinClass
+    description: 舱位主数据（Travel 层，来源 OFBiz Enumeration）
+    source:
+      base: Enumeration
+      domain: ofbiz/common
+      filter: {enum_type_id: CABIN_CLASS}
+    aggregate_root: true
+    attributes:
+    - name: id
+      type: uuid
+      primary_key: true
+      generated: true
+    - name: cabin_class_code
+      type: string
+      required: true
+      description: 舱位规范编码
+    - name: cabin_class_name
+      type: string
+      required: true
+      description: 舱位名称
+    - name: cabin_rank
+      type: integer
+      description: 舱位等级序
+    - name: status
+      type: enum
+      constraints:
+        values: [active, inactive]
+      default: active
+    identities:
+    - name: unique_cabin_class_code
+      keys: [cabin_class_code]
+    actions:
+    - name: create
+      type: create
+      primary: true
+      accept: [cabin_class_code, cabin_class_name, cabin_rank, status]
+    - name: read
+      type: read
+      primary: true
+    - name: update
+      type: update
+      primary: true
+      accept: [cabin_class_name, cabin_rank, status]
+    changes:
+    - effect: set_attribute
+      field: id
+      expr:
+        op: ref
+        args:
+        - id
+      on:
+      - create
+      - update
+      description: AUTO_WRITE_ANCHOR
+
+  - name: TravelStaticCodeMapping
+    description: 供应商静态码到 Travel 主数据的映射（Travel 层统一适配）
+    source:
+      base: DataSource
+      domain: ofbiz/common
+    aggregate_root: true
+    attributes:
+    - name: id
+      type: uuid
+      primary_key: true
+      generated: true
+    - name: supplier_code
+      type: string
+      required: true
+      description: 供应商编码
+    - name: object_type
+      type: enum
+      required: true
+      constraints:
+        values: [city, airport, station, hotel, room_type, airline, cabin_class]
+      description: 主数据对象类型
+    - name: canonical_entity
+      type: string
+      required: true
+      description: Travel 实体名
+    - name: canonical_id
+      type: uuid
+      required: true
+      description: Travel 实体 ID
+    - name: external_code
+      type: string
+      required: true
+      description: 供应商侧编码
+    - name: external_name
+      type: string
+      description: 供应商侧名称
+    - name: status
+      type: enum
+      constraints:
+        values: [active, inactive]
+      default: active
+    identities:
+    - name: unique_supplier_static_code
+      keys: [supplier_code, object_type, external_code]
+    actions:
+    - name: create
+      type: create
+      primary: true
+      accept: [supplier_code, object_type, canonical_entity, canonical_id, external_code, external_name, status]
+    - name: read
+      type: read
+      primary: true
+    - name: update
+      type: update
+      primary: true
+      accept: [canonical_entity, canonical_id, external_name, status]
+    changes:
+    - effect: set_attribute
+      field: id
+      expr:
+        op: ref
+        args:
+        - id
+      on:
+      - create
+      - update
+      description: AUTO_WRITE_ANCHOR
+  - name: HotelOffer
+    description: 酒店可售 offer，承载房型、价计划、价态和可售规则快照
+    aggregate_root: true
+    tenancy:
+      strategy: attribute
+      attribute: tenant_id
+    attributes:
+      - name: id
+        type: uuid
+        primary_key: true
+        generated: true
+      - name: tenant_id
+        type: uuid
+        required: true
+        description: 租户 ID
+      - name: host_shop_id
+        type: uuid
+        description: 宿主商城 ID，仅用于宿主侧隔离和桥接上下文
+      # 静态资源引用字段：仅保留可追溯标识，不复制上游主数据详情
+      - name: supplier_code
+        type: string
+        required: true
+        description: 供应商编码
+      - name: hotel_code
+        type: string
+        required: true
+        description: 酒店编码
+      - name: hotel_name
+        type: string
+        required: true
+        description: 酒店名称
+      - name: city_code
+        type: string
+        required: true
+        description: 城市编码
+      - name: room_type_code
+        type: string
+        required: true
+        description: 房型编码
+      - name: rate_plan_code
+        type: string
+        required: true
+        description: 价计划编码
+      - name: checkin_date
+        type: date
+        required: true
+        description: 入住日期
+      - name: checkout_date
+        type: date
+        required: true
+        description: 离店日期
+      # Vertical 可售快照字段：冻结交易时态事实，用于后续下单和审计追溯
+      - name: listed_price
+        type: decimal
+        required: true
+        description: 对客展示价快照
+      - name: settlement_price
+        type: decimal
+        description: 结算价快照
+      - name: currency
+        type: string
+        default: CNY
+        description: 币种
+      - name: inventory_count
+        type: integer
+        default: 0
+        description: 可售库存快照
+      - name: cancellation_policy
+        type: text
+        description: 取消规则快照
+      - name: guarantee_policy
+        type: text
+        description: 担保规则快照
+      - name: sale_status
+        type: enum
+        constraints:
+          values: ["draft", "active", "inactive", "expired"]
+        default: "draft"
+        description: 可售状态
+      - name: inserted_at
+        type: datetime
+        generated: true
+      - name: updated_at
+        type: datetime
+        generated: true
+      - name: city_ref_id
+        type: string
+        description: Core 旅行城市主数据引用（跨域引用 Ecommerce.TravelCity）
+    relationships:
+      - name: hotel_ref
+        type: belongs_to
+        target: TravelHotel
+        foreign_key: hotel_ref_id
+        description: Travel 酒店主数据引用
+      - name: room_type_ref
+        type: belongs_to
+        target: TravelRoomType
+        foreign_key: room_type_ref_id
+        description: Travel 房型主数据引用
+      - name: orders
+        type: has_many
+        target: TravelOrder
+        foreign_key: hotel_offer_id
+        description: 基于当前 hotel offer 创建的订单
+    identities:
+      - name: unique_hotel_offer_snapshot
+        keys: [tenant_id, supplier_code, hotel_code, room_type_code, rate_plan_code, checkin_date, checkout_date]
+    actions:
+      - name: create
+        type: create
+        primary: true
+        accept: [tenant_id, host_shop_id, supplier_code, hotel_code, hotel_ref_id, hotel_name, city_code, city_ref_id, room_type_code, room_type_ref_id, rate_plan_code, checkin_date, checkout_date, listed_price, settlement_price, currency, inventory_count, cancellation_policy, guarantee_policy, sale_status]
+      - name: read
+        type: read
+        primary: true
+      - name: update
+        type: update
+        primary: true
+        accept: [hotel_name, city_code, city_ref_id, hotel_ref_id, room_type_ref_id, listed_price, settlement_price, currency, inventory_count, cancellation_policy, guarantee_policy]
+      - name: activate
+        type: update
+        accept: []
+      - name: deactivate
+        type: update
+        accept: []
+      - name: expire
+        type: update
+        accept: []
+      - name: destroy
+        type: destroy
+        primary: true
+    validations:
+      - rule: present
+        field: tenant_id
+        on: [create]
+      - rule: present
+        field: supplier_code
+        on: [create]
+      - rule: present
+        field: hotel_code
+        on: [create]
+      - rule: present
+        field: room_type_code
+        on: [create]
+      - rule: present
+        field: rate_plan_code
+        on: [create]
+      - rule: compare
+        field: listed_price
+        params: {greater_than_or_equal_to: 0}
+        message: listed_price 不能为负数
+      - rule: compare
+        field: settlement_price
+        params: {greater_than_or_equal_to: 0}
+        message: settlement_price 不能为负数
+      - rule: compare
+        field: inventory_count
+        params: {greater_than_or_equal_to: 0}
+        message: inventory_count 不能为负数
+      - rule: one_of
+        field: sale_status
+        params: {values: ["draft", "inactive"]}
+        on: [activate]
+        message: 只有草稿或停用中的 offer 可以 activate
+      - rule: one_of
+        field: sale_status
+        params: {values: ["active"]}
+        on: [deactivate, expire]
+        message: 只有 active 状态的 offer 可以 deactivate 或 expire
+    changes:
+      - effect: set_attribute
+        field: sale_status
+        value: "active"
+        on: [activate]
+      - effect: set_attribute
+        field: sale_status
+        value: "inactive"
+        on: [deactivate]
+      - effect: set_attribute
+        field: sale_status
+        value: "expired"
+        on: [expire]
+      - effect: set_attribute
+        field: id
+        expr:
+          op: ref
+          args:
+            - id
+        on: [create, update, activate, deactivate, expire, destroy]
+        description: AUTO_WRITE_ANCHOR
+    events:
+      - on: activate
+        topic: travel.catalog.hotel_offer.activated
+      - on: deactivate
+        topic: travel.catalog.hotel_offer.deactivated
+      - on: expire
+        topic: travel.catalog.hotel_offer.expired
+    scenarios:
+      - "create 创建 hotel offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架"
+      - "create 创建 hotel offer -> activate 上架 -> expire 过期"
+      - "create 创建 hotel offer -> destroy 删除草稿"
+    workflows:
+      - name: hotel_offer_lifecycle
+        description: 酒店 offer 生命周期
+        steps:
+          - action: create
+            next: [update, activate, destroy]
+          - action: update
+            next: [activate, destroy]
+          - action: activate
+            trigger_event: travel.catalog.hotel_offer.activated
+            next: [deactivate, expire]
+          - action: deactivate
+            trigger_event: travel.catalog.hotel_offer.deactivated
+            next: [activate]
+          - action: expire
+            trigger_event: travel.catalog.hotel_offer.expired
+          - action: destroy
+    business_rules:
+      - id: TRAVEL-HOTEL-OFFER-01
+        description: HotelOffer 仅承载可售快照，不直接承载供应商原始协议结构
+      - id: TRAVEL-HOTEL-OFFER-02
+        description: sale_status=active 且 inventory_count>0 的 offer 才可用于创建订单
+      - id: TRAVEL-HOTEL-OFFER-03
+        description: hotel_ref_id/room_type_ref_id 为 Travel 主引用，city_ref_id 为 Core::Ecommerce.TravelCity 引用；hotel_code/city_code/room_type_code 保留兼容检索；listed_price/settlement_price/inventory_count/cancellation_policy/guarantee_policy 为 Vertical 快照字段
+
+  - name: FlightOffer
+    description: 机票可售 offer，承载航班、舱位、票规和库存快照
+    aggregate_root: true
+    tenancy:
+      strategy: attribute
+      attribute: tenant_id
+    attributes:
+      - name: id
+        type: uuid
+        primary_key: true
+        generated: true
+      - name: tenant_id
+        type: uuid
+        required: true
+      - name: host_shop_id
+        type: uuid
+        description: 宿主商城 ID，仅用于宿主侧隔离和桥接上下文
+      # 静态资源引用字段：仅保留可追溯标识，不复制上游主数据详情
+      - name: supplier_code
+        type: string
+        required: true
+        description: 供应商编码
+      - name: itinerary_code
+        type: string
+        required: true
+        description: 行程编码
+      - name: flight_no
+        type: string
+        required: true
+        description: 航班号
+      - name: departure_airport_code
+        type: string
+        required: true
+        description: 出发机场编码
+      - name: arrival_airport_code
+        type: string
+        required: true
+        description: 到达机场编码
+      - name: departure_at
+        type: datetime
+        required: true
+        description: 起飞时间
+      - name: arrival_at
+        type: datetime
+        required: true
+        description: 到达时间
+      - name: cabin_class
+        type: string
+        required: true
+        description: 舱等
+      - name: fare_family
+        type: string
+        description: 运价族
+      # Vertical 可售快照字段：冻结交易时态事实，用于后续下单和审计追溯
+      - name: listed_price
+        type: decimal
+        required: true
+        description: 对客展示价快照
+      - name: settlement_price
+        type: decimal
+        description: 结算价快照
+      - name: currency
+        type: string
+        default: CNY
+      - name: seats_available
+        type: integer
+        default: 0
+        description: 可售座位快照
+      - name: baggage_policy
+        type: text
+        description: 行李规则快照
+      - name: refund_change_policy
+        type: text
+        description: 退改规则快照
+      - name: sale_status
+        type: enum
+        constraints:
+          values: ["draft", "active", "inactive", "expired"]
+        default: "draft"
+      - name: inserted_at
+        type: datetime
+        generated: true
+      - name: updated_at
+        type: datetime
+        generated: true
+      - name: departure_airport_ref_id
+        type: string
+        description: Travel 出发机场主数据引用（跨域引用 Ecommerce.TravelAirport）
+      - name: arrival_airport_ref_id
+        type: string
+        description: Travel 到达机场主数据引用（跨域引用 Ecommerce.TravelAirport）
+    relationships:
+      - name: airline_ref
+        type: belongs_to
+        target: TravelAirline
+        foreign_key: airline_ref_id
+        description: Travel 航司主数据引用
+      - name: cabin_class_ref
+        type: belongs_to
+        target: TravelCabinClass
+        foreign_key: cabin_class_ref_id
+        description: Travel 舱位主数据引用
+      - name: orders
+        type: has_many
+        target: TravelOrder
+        foreign_key: flight_offer_id
+        description: 基于当前 flight offer 创建的订单
+    identities:
+      - name: unique_flight_offer_snapshot
+        keys: [tenant_id, supplier_code, itinerary_code, flight_no, departure_at, cabin_class]
+    actions:
+      - name: create
+        type: create
+        primary: true
+        accept: [tenant_id, host_shop_id, supplier_code, itinerary_code, flight_no, airline_ref_id, departure_airport_code, departure_airport_ref_id, arrival_airport_code, arrival_airport_ref_id, departure_at, arrival_at, cabin_class, cabin_class_ref_id, fare_family, listed_price, settlement_price, currency, seats_available, baggage_policy, refund_change_policy, sale_status]
+      - name: read
+        type: read
+        primary: true
+      - name: update
+        type: update
+        primary: true
+        accept: [airline_ref_id, departure_airport_ref_id, arrival_airport_ref_id, cabin_class_ref_id, listed_price, settlement_price, currency, seats_available, baggage_policy, refund_change_policy, fare_family]
+      - name: activate
+        type: update
+        accept: []
+      - name: deactivate
+        type: update
+        accept: []
+      - name: expire
+        type: update
+        accept: []
+      - name: destroy
+        type: destroy
+        primary: true
+    validations:
+      - rule: present
+        field: tenant_id
+        on: [create]
+      - rule: present
+        field: supplier_code
+        on: [create]
+      - rule: present
+        field: itinerary_code
+        on: [create]
+      - rule: present
+        field: flight_no
+        on: [create]
+      - rule: present
+        field: departure_airport_code
+        on: [create]
+      - rule: present
+        field: arrival_airport_code
+        on: [create]
+      - rule: present
+        field: cabin_class
+        on: [create]
+      - rule: compare
+        field: listed_price
+        params: {greater_than_or_equal_to: 0}
+        message: listed_price 不能为负数
+      - rule: compare
+        field: settlement_price
+        params: {greater_than_or_equal_to: 0}
+        message: settlement_price 不能为负数
+      - rule: compare
+        field: seats_available
+        params: {greater_than_or_equal_to: 0}
+        message: seats_available 不能为负数
+      - rule: one_of
+        field: sale_status
+        params: {values: ["draft", "inactive"]}
+        on: [activate]
+        message: 只有草稿或停用中的 offer 可以 activate
+      - rule: one_of
+        field: sale_status
+        params: {values: ["active"]}
+        on: [deactivate, expire]
+        message: 只有 active 状态的 offer 可以 deactivate 或 expire
+    changes:
+      - effect: set_attribute
+        field: sale_status
+        value: "active"
+        on: [activate]
+      - effect: set_attribute
+        field: sale_status
+        value: "inactive"
+        on: [deactivate]
+      - effect: set_attribute
+        field: sale_status
+        value: "expired"
+        on: [expire]
+      - effect: set_attribute
+        field: id
+        expr:
+          op: ref
+          args:
+            - id
+        on: [create, update, activate, deactivate, expire, destroy]
+        description: AUTO_WRITE_ANCHOR
+    events:
+      - on: activate
+        topic: travel.catalog.flight_offer.activated
+      - on: deactivate
+        topic: travel.catalog.flight_offer.deactivated
+      - on: expire
+        topic: travel.catalog.flight_offer.expired
+    scenarios:
+      - "create 创建 flight offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架"
+      - "create 创建 flight offer -> activate 上架 -> expire 过期"
+      - "create 创建 flight offer -> destroy 删除草稿"
+    workflows:
+      - name: flight_offer_lifecycle
+        description: 机票 offer 生命周期
+        steps:
+          - action: create
+            next: [update, activate, destroy]
+          - action: update
+            next: [activate, destroy]
+          - action: activate
+            trigger_event: travel.catalog.flight_offer.activated
+            next: [deactivate, expire]
+          - action: deactivate
+            trigger_event: travel.catalog.flight_offer.deactivated
+            next: [activate]
+          - action: expire
+            trigger_event: travel.catalog.flight_offer.expired
+          - action: destroy
+    business_rules:
+      - id: TRAVEL-FLIGHT-OFFER-01
+        description: FlightOffer 仅承载机票可售快照，不直接承载供应商原始票务协议
+      - id: TRAVEL-FLIGHT-OFFER-02
+        description: sale_status=active 且 seats_available>0 的 offer 才可用于创建订单
+      - id: TRAVEL-FLIGHT-OFFER-03
+        description: departure_airport_ref_id/arrival_airport_ref_id/airline_ref_id/cabin_class_ref_id 为 Travel 主引用；departure_airport_code/arrival_airport_code/cabin_class 保留兼容检索；listed_price/settlement_price/seats_available/baggage_policy/refund_change_policy 为 Vertical 快照字段
+
+  - name: VacationOffer
+    description: 度假可售 offer，承载套餐、出发日期和预订规则快照
+    aggregate_root: true
+    tenancy:
+      strategy: attribute
+      attribute: tenant_id
+    attributes:
+      - name: id
+        type: uuid
+        primary_key: true
+        generated: true
+      - name: tenant_id
+        type: uuid
+        required: true
+      - name: host_shop_id
+        type: uuid
+        description: 宿主商城 ID，仅用于宿主侧隔离和桥接上下文
+      # 静态资源引用字段：仅保留可追溯标识，不复制上游主数据详情
+      - name: supplier_code
+        type: string
+        required: true
+        description: 供应商编码
+      - name: package_code
+        type: string
+        required: true
+        description: 套餐编码
+      - name: package_name
+        type: string
+        required: true
+        description: 套餐名称
+      - name: package_type
+        type: enum
+        constraints:
+          values: ["group_tour", "free_travel", "ticket_hotel", "custom"]
+        default: "group_tour"
+        description: 套餐类型
+      - name: departure_city_code
+        type: string
+        required: true
+        description: 出发城市编码
+      - name: destination_code
+        type: string
+        required: true
+        description: 目的地编码
+      - name: start_date
+        type: date
+        required: true
+        description: 出行开始日期
+      - name: end_date
+        type: date
+        required: true
+        description: 出行结束日期
+      # Vertical 可售快照字段：冻结交易时态事实，用于后续下单和审计追溯
+      - name: listed_price
+        type: decimal
+        required: true
+        description: 对客展示价快照
+      - name: settlement_price
+        type: decimal
+        description: 结算价快照
+      - name: currency
+        type: string
+        default: CNY
+      - name: inventory_count
+        type: integer
+        default: 0
+        description: 可售库存快照
+      - name: booking_rules
+        type: text
+        description: 预订规则快照
+      - name: cancellation_policy
+        type: text
+        description: 取消规则快照
+      - name: sale_status
+        type: enum
+        constraints:
+          values: ["draft", "active", "inactive", "expired"]
+        default: "draft"
+      - name: inserted_at
+        type: datetime
+        generated: true
+      - name: updated_at
+        type: datetime
+        generated: true
+      - name: departure_city_ref_id
+        type: string
+        description: Core 出发城市主数据引用（跨域引用 Ecommerce.TravelCity）
+      - name: destination_ref_id
+        type: string
+        description: Core 目的地主数据引用（跨域引用 Ecommerce.TravelCity）
+    relationships:
+      - name: orders
+        type: has_many
+        target: TravelOrder
+        foreign_key: vacation_offer_id
+        description: 基于当前 vacation offer 创建的订单
+    identities:
+      - name: unique_vacation_offer_snapshot
+        keys: [tenant_id, supplier_code, package_code, start_date, end_date]
+    actions:
+      - name: create
+        type: create
+        primary: true
+        accept: [tenant_id, host_shop_id, supplier_code, package_code, package_name, package_type, departure_city_code, departure_city_ref_id, destination_code, destination_ref_id, start_date, end_date, listed_price, settlement_price, currency, inventory_count, booking_rules, cancellation_policy, sale_status]
+      - name: read
+        type: read
+        primary: true
+      - name: update
+        type: update
+        primary: true
+        accept: [package_name, package_type, departure_city_ref_id, destination_ref_id, listed_price, settlement_price, currency, inventory_count, booking_rules, cancellation_policy]
+      - name: activate
+        type: update
+        accept: []
+      - name: deactivate
+        type: update
+        accept: []
+      - name: expire
+        type: update
+        accept: []
+      - name: destroy
+        type: destroy
+        primary: true
+    validations:
+      - rule: present
+        field: tenant_id
+        on: [create]
+      - rule: present
+        field: supplier_code
+        on: [create]
+      - rule: present
+        field: package_code
+        on: [create]
+      - rule: present
+        field: package_name
+        on: [create]
+      - rule: present
+        field: departure_city_code
+        on: [create]
+      - rule: present
+        field: destination_code
+        on: [create]
+      - rule: compare
+        field: listed_price
+        params: {greater_than_or_equal_to: 0}
+        message: listed_price 不能为负数
+      - rule: compare
+        field: settlement_price
+        params: {greater_than_or_equal_to: 0}
+        message: settlement_price 不能为负数
+      - rule: compare
+        field: inventory_count
+        params: {greater_than_or_equal_to: 0}
+        message: inventory_count 不能为负数
+      - rule: one_of
+        field: sale_status
+        params: {values: ["draft", "inactive"]}
+        on: [activate]
+        message: 只有草稿或停用中的 offer 可以 activate
+      - rule: one_of
+        field: sale_status
+        params: {values: ["active"]}
+        on: [deactivate, expire]
+        message: 只有 active 状态的 offer 可以 deactivate 或 expire
+    changes:
+      - effect: set_attribute
+        field: sale_status
+        value: "active"
+        on: [activate]
+      - effect: set_attribute
+        field: sale_status
+        value: "inactive"
+        on: [deactivate]
+      - effect: set_attribute
+        field: sale_status
+        value: "expired"
+        on: [expire]
+      - effect: set_attribute
+        field: id
+        expr:
+          op: ref
+          args:
+            - id
+        on: [create, update, activate, deactivate, expire, destroy]
+        description: AUTO_WRITE_ANCHOR
+    events:
+      - on: activate
+        topic: travel.catalog.vacation_offer.activated
+      - on: deactivate
+        topic: travel.catalog.vacation_offer.deactivated
+      - on: expire
+        topic: travel.catalog.vacation_offer.expired
+    scenarios:
+      - "create 创建 vacation offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架"
+      - "create 创建 vacation offer -> activate 上架 -> expire 过期"
+      - "create 创建 vacation offer -> destroy 删除草稿"
+    workflows:
+      - name: vacation_offer_lifecycle
+        description: 度假 offer 生命周期
+        steps:
+          - action: create
+            next: [update, activate, destroy]
+          - action: update
+            next: [activate, destroy]
+          - action: activate
+            trigger_event: travel.catalog.vacation_offer.activated
+            next: [deactivate, expire]
+          - action: deactivate
+            trigger_event: travel.catalog.vacation_offer.deactivated
+            next: [activate]
+          - action: expire
+            trigger_event: travel.catalog.vacation_offer.expired
+          - action: destroy
+    business_rules:
+      - id: TRAVEL-VACATION-OFFER-01
+        description: VacationOffer 仅承载度假套餐可售快照，不直接承载供应商原始套餐协议
+      - id: TRAVEL-VACATION-OFFER-02
+        description: sale_status=active 且 inventory_count>0 的 offer 才可用于创建订单
+      - id: TRAVEL-VACATION-OFFER-03
+        description: departure_city_ref_id/destination_ref_id 为 Core 主引用；departure_city_code/destination_code 保留兼容检索；listed_price/settlement_price/inventory_count/booking_rules/cancellation_policy 为 Vertical 快照字段
+
+  - name: TrainOffer
+    description: 火车票可售 offer，承载车次、席别、候补和退改规则快照
+    aggregate_root: true
+    tenancy:
+      strategy: attribute
+      attribute: tenant_id
+    attributes:
+      - name: id
+        type: uuid
+        primary_key: true
+        generated: true
+      - name: tenant_id
+        type: uuid
+        required: true
+      - name: host_shop_id
+        type: uuid
+        description: 宿主商城 ID，仅用于宿主侧隔离和桥接上下文
+      # 静态资源引用字段：仅保留可追溯标识，不复制上游主数据详情
+      - name: supplier_code
+        type: string
+        required: true
+        description: 供应商编码
+      - name: train_no
+        type: string
+        required: true
+        description: 车次号
+      - name: departure_station_code
+        type: string
+        required: true
+        description: 出发站编码
+      - name: departure_station_name
+        type: string
+        required: true
+        description: 出发站名称
+      - name: arrival_station_code
+        type: string
+        required: true
+        description: 到达站编码
+      - name: arrival_station_name
+        type: string
+        required: true
+        description: 到达站名称
+      - name: travel_date
+        type: date
+        required: true
+        description: 乘车日期
+      - name: departure_at
+        type: datetime
+        required: true
+        description: 发车时间
+      - name: arrival_at
+        type: datetime
+        required: true
+        description: 到达时间
+      - name: seat_class
+        type: string
+        required: true
+        description: 席别名称
+      - name: seat_code
+        type: string
+        required: true
+        description: 席别编码
+      - name: is_no_seat
+        type: boolean
+        default: false
+        description: 是否无座票
+      - name: inventory_status
+        type: enum
+        constraints:
+          values: ["available", "waitlist_only", "sold_out", "unavailable"]
+        default: "unavailable"
+        description: 余票或候补可用状态
+      - name: waitlist_supported
+        type: boolean
+        default: false
+        description: 是否支持候补
+      # Vertical 可售快照字段：冻结交易时态事实，用于后续下单和审计追溯
+      - name: listed_price
+        type: decimal
+        required: true
+        description: 对客展示价快照
+      - name: settlement_price
+        type: decimal
+        description: 结算价快照
+      - name: currency
+        type: string
+        default: CNY
+      - name: booking_rules_snapshot
+        type: text
+        description: 预订规则快照
+      - name: change_rules_snapshot
+        type: text
+        description: 改签规则快照
+      - name: refund_rules_snapshot
+        type: text
+        description: 退票规则快照
+      - name: sale_status
+        type: enum
+        constraints:
+          values: ["draft", "active", "inactive", "expired"]
+        default: "draft"
+        description: 可售状态
+      - name: inserted_at
+        type: datetime
+        generated: true
+      - name: updated_at
+        type: datetime
+        generated: true
+      - name: departure_station_ref_id
+        type: string
+        description: Travel 出发站主数据引用（跨域引用 Ecommerce.TravelStation）
+      - name: arrival_station_ref_id
+        type: string
+        description: Travel 到达站主数据引用（跨域引用 Ecommerce.TravelStation）
+    relationships:
+      - name: orders
+        type: has_many
+        target: TravelOrder
+        foreign_key: train_offer_id
+        description: 基于当前 train offer 创建的订单
+    identities:
+      - name: unique_train_offer_snapshot
+        keys: [tenant_id, supplier_code, train_no, departure_station_code, arrival_station_code, travel_date, seat_code, is_no_seat]
+    actions:
+      - name: create
+        type: create
+        primary: true
+        accept: [tenant_id, host_shop_id, supplier_code, train_no, departure_station_code, departure_station_ref_id, departure_station_name, arrival_station_code, arrival_station_ref_id, arrival_station_name, travel_date, departure_at, arrival_at, seat_class, seat_code, is_no_seat, inventory_status, waitlist_supported, listed_price, settlement_price, currency, booking_rules_snapshot, change_rules_snapshot, refund_rules_snapshot, sale_status]
+      - name: read
+        type: read
+        primary: true
+      - name: update
+        type: update
+        primary: true
+        accept: [departure_station_ref_id, arrival_station_ref_id, departure_station_name, arrival_station_name, departure_at, arrival_at, seat_class, is_no_seat, inventory_status, waitlist_supported, listed_price, settlement_price, currency, booking_rules_snapshot, change_rules_snapshot, refund_rules_snapshot]
+      - name: activate
+        type: update
+        accept: []
+      - name: deactivate
+        type: update
+        accept: []
+      - name: expire
+        type: update
+        accept: []
+      - name: destroy
+        type: destroy
+        primary: true
+    validations:
+      - rule: present
+        field: tenant_id
+        on: [create]
+      - rule: present
+        field: supplier_code
+        on: [create]
+      - rule: present
+        field: train_no
+        on: [create]
+      - rule: present
+        field: departure_station_code
+        on: [create]
+      - rule: present
+        field: arrival_station_code
+        on: [create]
+      - rule: present
+        field: seat_class
+        on: [create]
+      - rule: present
+        field: seat_code
+        on: [create]
+      - rule: compare
+        field: listed_price
+        params: {greater_than_or_equal_to: 0}
+        message: listed_price 不能为负数
+      - rule: compare
+        field: settlement_price
+        params: {greater_than_or_equal_to: 0}
+        message: settlement_price 不能为负数
+      - rule: one_of
+        field: sale_status
+        params: {values: ["draft", "inactive"]}
+        on: [activate]
+        message: 只有草稿或停用中的 offer 可以 activate
+      - rule: one_of
+        field: sale_status
+        params: {values: ["active"]}
+        on: [deactivate, expire]
+        message: 只有 active 状态的 offer 可以 deactivate 或 expire
+    changes:
+      - effect: set_attribute
+        field: sale_status
+        value: "active"
+        on: [activate]
+      - effect: set_attribute
+        field: sale_status
+        value: "inactive"
+        on: [deactivate]
+      - effect: set_attribute
+        field: sale_status
+        value: "expired"
+        on: [expire]
+      - effect: set_attribute
+        field: id
+        expr:
+          op: ref
+          args:
+            - id
+        on: [create, update, activate, deactivate, expire, destroy]
+        description: AUTO_WRITE_ANCHOR
+    events:
+      - on: activate
+        topic: travel.catalog.train_offer.activated
+      - on: deactivate
+        topic: travel.catalog.train_offer.deactivated
+      - on: expire
+        topic: travel.catalog.train_offer.expired
+    scenarios:
+      - "create 创建 train offer -> update 更新票价规则和候补能力 -> activate 上架 -> deactivate 下架"
+      - "create 创建 train offer -> activate 上架 -> expire 过期"
+      - "create 创建 train offer -> destroy 删除草稿"
+    workflows:
+      - name: train_offer_lifecycle
+        description: 火车票 offer 生命周期
+        steps:
+          - action: create
+            next: [update, activate, destroy]
+          - action: update
+            next: [activate, destroy]
+          - action: activate
+            trigger_event: travel.catalog.train_offer.activated
+            next: [deactivate, expire]
+          - action: deactivate
+            trigger_event: travel.catalog.train_offer.deactivated
+            next: [activate]
+          - action: expire
+            trigger_event: travel.catalog.train_offer.expired
+          - action: destroy
+    business_rules:
+      - id: TRAVEL-TRAIN-OFFER-01
+        description: TrainOffer 承载铁路票务 canonical 快照，不直接复用 flight 的语义字段命名
+      - id: TRAVEL-TRAIN-OFFER-02
+        description: sale_status=active 且 inventory_status in [available, waitlist_only] 的 offer 才可用于创建 train 订单
+      - id: TRAVEL-TRAIN-OFFER-03
+        description: departure_station_ref_id/arrival_station_ref_id 为 Travel 主引用；departure_station_code/arrival_station_code 保留兼容检索；listed_price/settlement_price/inventory_status/waitlist_supported/booking_rules_snapshot/change_rules_snapshot/refund_rules_snapshot 为 Vertical 快照字段
+
+  - name: TravelOrder
+    description: 统一酒旅订单，承接 hotel、flight、vacation、train 四类商品的下单和状态流转；通过跨域引用关联 Sales::Customer 和 Payment::Payment
+    aggregate_root: true
+    state_machine:
+      initial_state: draft
+      state_attribute: status
+      states: [draft, quoted, submitted, booking_pending, booked, cancel_pending, cancelled, completed, failed]
+      transitions:
+        - from: draft
+          to: quoted
+          event: confirm_quote
+        - from: quoted
+          to: submitted
+          event: submit_order
+        - from: quoted
+          to: submitted
+          event: submit_waitlist
+        - from: submitted
+          to: booking_pending
+          event: mark_payment_succeeded
+        - from: submitted
+          to: failed
+          event: mark_order_failed
+        - from: booking_pending
+          to: booked
+          event: mark_booked
+        - from: booking_pending
+          to: booked
+          event: fulfill_waitlist
+        - from: booking_pending
+          to: cancelled
+          event: cancel_waitlist
+        - from: booked
+          to: completed
+          event: mark_completed
+        - from: booked
+          to: cancel_pending
+          event: request_cancel
+        - from: cancel_pending
+          to: cancelled
+          event: execute_cancel
+        - from: cancel_pending
+          to: booked
+          event: cancel_cancel_request
+    tenancy:
+      strategy: attribute
+      attribute: tenant_id
+    attributes:
+      - name: id
+        type: uuid
+        primary_key: true
+        generated: true
+      - name: tenant_id
+        type: uuid
+        required: true
+      - name: host_shop_id
+        type: uuid
+        description: 宿主商城 ID，用于 sidecar 对接上下文
+      - name: host_member_id
+        type: string
+        description: 宿主会员标识，来自 shop caller context
+      - name: host_enterprise_id
+        type: string
+        description: 宿主企业标识，来自 shop caller context
+      - name: order_no
+        type: string
+        required: true
+        description: 订单号
+      - name: product_type
+        type: enum
+        constraints:
+          values: ["hotel", "flight", "vacation", "train"]
+        default: "hotel"
+        description: 商品类型
+      - name: booking_mode
+        type: enum
+        constraints:
+          values: ["standard", "waitlist"]
+        default: "standard"
+        description: train 订单预订模式
+      - name: contact_name
+        type: string
+        required: true
+      - name: contact_phone
+        type: string
+        required: true
+      - name: traveler_count
+        type: integer
+        default: 1
+        description: 出行人数量
+      - name: total_amount
+        type: decimal
+        required: true
+        description: 订单总金额
+      - name: points_to_use
+        type: integer
+        default: 0
+        description: 计划使用的积分数量
+      - name: points_deduction_amount
+        type: decimal
+        default: 0
+        description: 积分抵现金额
+      - name: recommended_payment_method
+        type: string
+        description: 宿主 quote 返回的推荐支付方式
+      - name: currency
+        type: string
+        default: CNY
+      - name: status
+        type: enum
+        constraints:
+          values: ["draft", "quoted", "submitted", "booking_pending", "booked", "cancel_pending", "cancelled", "completed", "failed"]
+        default: "draft"
+      - name: change_status
+        type: enum
+        constraints:
+          values: ["none", "pending", "changed", "failed"]
+        default: "none"
+      - name: waitlist_status
+        type: enum
+        constraints:
+          values: ["none", "pending", "fulfilled", "cancelled", "failed"]
+        default: "none"
+      - name: original_order_ref
+        type: string
+        description: 改签链路引用的原订单号或原票号
+      # Vertical 下单快照字段：冻结订单发起时的业务输入，用于履约与审计
+      - name: ticket_passenger_infos
+        type: map
+        description: 乘车人信息快照
+      - name: seat_selection_snapshot
+        type: map
+        description: 选座与席别偏好快照
+      - name: supplier_order_ref
+        type: string
+        description: 供应商订单号
+      - name: payment_external_ref
+        type: string
+        description: 宿主支付侧外部支付流水号
+      - name: inserted_at
+        type: datetime
+        generated: true
+      - name: updated_at
+        type: datetime
+        generated: true
+      - name: customer_id
+        type: string
+        description: 买家（跨域引用 Sales.Customer）
+      - name: payment_id
+        type: string
+        description: 关联的支付事务（跨域引用 Payment.Payment）
+    relationships:
+      - name: hotel_offer
+        type: belongs_to
+        target: HotelOffer
+        foreign_key: hotel_offer_id
+        description: 当前订单使用的 hotel offer
+      - name: flight_offer
+        type: belongs_to
+        target: FlightOffer
+        foreign_key: flight_offer_id
+        description: 当前订单使用的 flight offer
+      - name: vacation_offer
+        type: belongs_to
+        target: VacationOffer
+        foreign_key: vacation_offer_id
+        description: 当前订单使用的 vacation offer
+      - name: train_offer
+        type: belongs_to
+        target: TrainOffer
+        foreign_key: train_offer_id
+        description: 当前订单使用的 train offer
+      - name: fulfillments
+        type: has_many
+        target: TravelFulfillment
+        foreign_key: travel_order_id
+        description: 订单履约记录
+    identities:
+      - name: unique_order_no
+        keys: [order_no]
+    actions:
+      - name: create
+        type: create
+        primary: true
+        accept: [tenant_id, host_shop_id, hotel_offer_id, flight_offer_id, vacation_offer_id, train_offer_id, order_no, product_type, customer_id, contact_name, contact_phone, traveler_count, total_amount, points_to_use, points_deduction_amount, currency, ticket_passenger_infos, seat_selection_snapshot]
+        description: 创建订单（别名 create_order）
+      - name: read
+        type: read
+        primary: true
+      - name: update
+        type: update
+        primary: true
+        accept: [contact_name, contact_phone, traveler_count, ticket_passenger_infos, seat_selection_snapshot]
+      - name: confirm_quote
+        type: update
+        accept: []
+      - name: submit_order
+        type: update
+        accept: []
+      - name: submit_waitlist
+        type: update
+        accept: []
+      - name: mark_payment_succeeded
+        type: update
+        accept: []
+      - name: mark_booked
+        type: update
+        accept: []
+      - name: fulfill_waitlist
+        type: update
+        accept: []
+      - name: mark_completed
+        type: update
+        accept: []
+      - name: request_cancel
+        type: update
+        accept: []
+      - name: cancel_waitlist
+        type: update
+        accept: []
+      - name: execute_cancel
+        type: update
+        accept: []
+      - name: cancel_cancel_request
+        type: update
+        accept: []
+      - name: request_change
+        type: update
+        accept: [original_order_ref]
+      - name: confirm_change
+        type: update
+        accept: []
+      - name: mark_order_failed
+        type: update
+        accept: []
+      - name: destroy
+        type: destroy
+        primary: true
+    validations:
+      - rule: present
+        field: tenant_id
+        on: [create]
+      - rule: present
+        field: order_no
+        on: [create]
+      - rule: present
+        field: customer_id
+        on: [create]
+      - rule: present
+        field: contact_name
+        on: [create]
+      - rule: present
+        field: contact_phone
+        on: [create]
+      - rule: exactly_one_of
+        params:
+          fields: [hotel_offer_id, flight_offer_id, vacation_offer_id, train_offer_id]
+        on: [create]
+        message: hotel_offer_id、flight_offer_id、vacation_offer_id、train_offer_id 必须四选一
+      - rule: present
+        field: hotel_offer_id
+        where:
+          op: eq
+          args: [{op: ref, args: [product_type]}, hotel]
+        on: [create]
+        message: hotel 订单必须绑定 hotel_offer_id
+      - rule: present
+        field: flight_offer_id
+        where:
+          op: eq
+          args: [{op: ref, args: [product_type]}, flight]
+        on: [create]
+        message: flight 订单必须绑定 flight_offer_id
+      - rule: present
+        field: vacation_offer_id
+        where:
+          op: eq
+          args: [{op: ref, args: [product_type]}, vacation]
+        on: [create]
+        message: vacation 订单必须绑定 vacation_offer_id
+      - rule: present
+        field: train_offer_id
+        where:
+          op: eq
+          args: [{op: ref, args: [product_type]}, train]
+        on: [create]
+        message: train 订单必须绑定 train_offer_id
+      - rule: compare
+        field: traveler_count
+        params: {greater_than_or_equal_to: 1}
+        message: traveler_count 至少为 1
+      - rule: compare
+        field: total_amount
+        params: {greater_than_or_equal_to: 0}
+        message: total_amount 不能为负数
+      - rule: compare
+        field: points_to_use
+        params: {greater_than_or_equal_to: 0}
+        message: points_to_use 不能为负数
+      - rule: compare
+        field: points_deduction_amount
+        params: {greater_than_or_equal_to: 0}
+        message: points_deduction_amount 不能为负数
+      - rule: one_of
+        field: status
+        params: {values: ["draft"]}
+        on: [confirm_quote]
+        message: 只有 draft 订单可以 confirm_quote
+      - rule: one_of
+        field: status
+        params: {values: ["quoted"]}
+        on: [submit_order, submit_waitlist]
+        message: 只有 quoted 订单可以提交普通购票或候补
+      - rule: one_of
+        field: status
+        params: {values: ["submitted"]}
+        on: [mark_payment_succeeded, mark_order_failed]
+        message: 只有 submitted 订单可以进入支付成功或失败结果
+      - rule: one_of
+        field: status
+        params: {values: ["booking_pending"]}
+        on: [mark_booked, fulfill_waitlist, cancel_waitlist]
+        message: 只有 booking_pending 订单可以完成出票、兑现候补或取消候补
+      - rule: one_of
+        field: status
+        params: {values: ["booked"]}
+        on: [mark_completed, request_cancel, request_change]
+        message: 只有 booked 订单可以完成、取消或改签
+      - rule: one_of
+        field: status
+        params: {values: ["cancel_pending"]}
+        on: [execute_cancel, cancel_cancel_request]
+        message: 只有 cancel_pending 订单可以 execute_cancel 或 cancel_cancel_request
+      - rule: one_of
+        field: waitlist_status
+        params: {values: ["pending"]}
+        on: [fulfill_waitlist, cancel_waitlist]
+        message: 只有 waitlist_pending 的订单可以兑现或取消候补
+      - rule: one_of
+        field: change_status
+        params: {values: ["pending"]}
+        on: [confirm_change]
+        message: 只有 change_pending 的订单可以 confirm_change
+      - rule: present
+        field: original_order_ref
+        on: [request_change, confirm_change]
+    changes:
+      - effect: set_attribute
+        field: status
+        value: "quoted"
+        on: [confirm_quote]
+      - effect: set_attribute
+        field: status
+        value: "submitted"
+        on: [submit_order, submit_waitlist]
+      - effect: set_attribute
+        field: booking_mode
+        value: "waitlist"
+        on: [submit_waitlist]
+      - effect: set_attribute
+        field: waitlist_status
+        value: "pending"
+        on: [submit_waitlist]
+      - effect: set_attribute
+        field: status
+        value: "booking_pending"
+        on: [mark_payment_succeeded]
+      - effect: set_attribute
+        field: status
+        value: "booked"
+        on: [mark_booked, fulfill_waitlist]
+      - effect: set_attribute
+        field: waitlist_status
+        value: "fulfilled"
+        on: [fulfill_waitlist]
+      - effect: set_attribute
+        field: status
+        value: "completed"
+        on: [mark_completed]
+      - effect: set_attribute
+        field: status
+        value: "cancel_pending"
+        on: [request_cancel]
+      - effect: set_attribute
+        field: status
+        value: "cancelled"
+        on: [cancel_waitlist, execute_cancel]
+      - effect: set_attribute
+        field: waitlist_status
+        value: "cancelled"
+        on: [cancel_waitlist]
+      - effect: set_attribute
+        field: status
+        value: "booked"
+        on: [cancel_cancel_request]
+      - effect: set_attribute
+        field: change_status
+        value: "pending"
+        on: [request_change]
+      - effect: set_attribute
+        field: change_status
+        value: "changed"
+        on: [confirm_change]
+      - effect: set_attribute
+        field: status
+        value: "failed"
+        on: [mark_order_failed]
+      - effect: set_attribute
+        field: id
+        expr:
+          op: ref
+          args:
+            - id
+        on: [create, update, confirm_quote, submit_order, submit_waitlist, mark_payment_succeeded, mark_booked, fulfill_waitlist, mark_completed, request_cancel, cancel_waitlist, execute_cancel, cancel_cancel_request, request_change, confirm_change, mark_order_failed, destroy]
+        description: AUTO_WRITE_ANCHOR
+    calculations:
+      - name: payable_amount
+        type: decimal
+        description: 实际待支付金额（total_amount - points_deduction_amount）
+        expr:
+          op: sub
+          args:
+            - {op: ref, args: [total_amount]}
+            - {op: ref, args: [points_deduction_amount]}
+    events:
+      - on: submit_order
+        topic: travel.order.submitted
+      - on: submit_waitlist
+        topic: travel.order.waitlist_submitted
+      - on: mark_payment_succeeded
+        topic: travel.order.payment_confirmed
+      - on: fulfill_waitlist
+        topic: travel.order.waitlist_fulfilled
+      - on: cancel_waitlist
+        topic: travel.order.waitlist_cancelled
+      - on: request_cancel
+        topic: travel.order.cancel_requested
+      - on: execute_cancel
+        topic: travel.order.cancelled
+      - on: confirm_change
+        topic: travel.order.change_confirmed
+      - on: mark_order_failed
+        topic: travel.order.failed
+    integrations:
+      - name: shop_caller_context_resolve
+        on: [create]
+        mode: sync
+        request:
+          member_id: string
+          enterprise_id: string
+          current_shop_id: uuid
+        response:
+          current_shop_id: uuid
+          member_id: string
+          enterprise_id: string
+        bindings:
+          request:
+            - from: context.member_id
+              to: member_id
+            - from: context.enterprise_id
+              to: enterprise_id
+            - from: context.current_shop_id
+              to: current_shop_id
+          response:
+            - from: payload.current_shop_id
+              to: attribute.host_shop_id
+            - from: payload.member_id
+              to: attribute.host_member_id
+            - from: payload.enterprise_id
+              to: attribute.host_enterprise_id
+        errors:
+          - code: shop_context_not_found
+            retryable: false
+          - code: shop_context_timeout
+            retryable: true
+        description: 创建订单时调用宿主 shop caller context 契约，校验并回填当前商城/会员上下文
+      - name: shop_eligibility_quote
+        on: [confirm_quote]
+        mode: sync
+        request:
+          member_id: string
+          shop_id: uuid
+          amount: decimal
+          points_requested: integer
+          product_type: string
+        response:
+          allowed: boolean
+          reason: string
+          product_type: string
+          travel_enabled: boolean
+          points_enabled: boolean
+          mixed_payment_allowed: boolean
+          cash_payment_enabled: boolean
+          available_points: integer
+          points_requested: integer
+          points_sufficient: boolean
+          points_deduction_amount: decimal
+          payable_amount: decimal
+          recommended_payment_method: string
+          member_id: string
+          shop_id: uuid
+          amount: decimal
+        bindings:
+          request:
+            - from: attr.host_member_id
+              to: member_id
+            - from: attr.host_shop_id
+              to: shop_id
+            - from: attr.product_type
+              to: product_type
+            - from: attr.total_amount
+              to: amount
+            - from: attr.points_to_use
+              to: points_requested
+          response:
+            - from: payload.points_deduction_amount
+              to: attribute.points_deduction_amount
+            - from: payload.recommended_payment_method
+              to: attribute.recommended_payment_method
+        errors:
+          - code: shop_quote_rejected
+            retryable: false
+          - code: shop_quote_timeout
+            retryable: true
+        description: 报价确认阶段调用宿主 shop eligibility/quote 契约，返回可支付性与积分策略语义
+      - name: payment_capture
+        on: [submit_order, submit_waitlist]
+        mode: sync
+        request:
+          order_id: string
+          payment_method: string
+          payment_environment: string
+          payment_instrument_id: string
+          client_ip: string
+          openid: string
+        response:
+          status: string
+          method: string
+          external_ref: string
+          points_used: integer
+          points_deduction_amount: decimal
+          cash_amount: decimal
+          reason: string
+        bindings:
+          request:
+            - from: attr.order_no
+              to: order_id
+            - from: attr.recommended_payment_method
+              to: payment_method
+            - from: context.payment_environment
+              to: payment_environment
+            - from: context.payment_instrument_id
+              to: payment_instrument_id
+            - from: context.client_ip
+              to: client_ip
+            - from: context.openid
+              to: openid
+          response:
+            - from: payload.external_ref
+              to: attribute.payment_external_ref
+        errors:
+          - code: payment_declined
+            retryable: false
+          - code: payment_timeout
+            retryable: true
+          - code: payment_risk_rejected
+            retryable: false
+        description: 提交订单后调用宿主 shop payment execution 契约，失败时按声明错误码驱动补偿路径
+      - name: supplier_booking_submit
+        on: [mark_payment_succeeded]
+        mode: async
+        request:
+          order_no: string
+          product_type: string
+          traveler_count: integer
+          supplier_order_ref: string
+        async:
+          queue: travel_supplier_booking
+          timeout_ms: 120000
+          idempotency_key: arg.order_no
+        errors:
+          - code: supplier_timeout
+            retryable: true
+          - code: supplier_inventory_unavailable
+            retryable: false
+        description: 支付成功后异步提交供应商预订，失败时回滚 booking_pending 并转失败处理
+      - name: create_approval_instance
+        on: [request_cancel]
+        mode: sync
+        request:
+          subject_type: string
+          subject_id: uuid
+        response:
+          instance_id: uuid
+          status: string
+        description: 发起取消时创建审批实例，由 Approvals 域驱动 execute_cancel 或 cancel_cancel_request
+    scenarios:
+      - "create_order 创建订单 -> integration shop_caller_context_resolve 校验宿主上下文 -> confirm_quote 调用 integration shop_eligibility_quote 返回可支付策略 -> submit_order 调用 integration payment_capture 成功 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功"
+      - "create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 触发 integration payment_capture 成功 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功"
+      - "create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 触发 integration payment_capture 返回 payment_declined -> mark_order_failed 标记失败并触发库存补偿"
+      - "create_order 创建 hotel/flight/vacation/train 标准订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功 -> mark_completed 完成订单"
+      - "create_order 创建 train 订单 -> confirm_quote 确认报价 -> submit_waitlist 提交候补 -> mark_payment_succeeded 支付成功 -> fulfill_waitlist 候补兑现"
+      - "create_order 创建 train 订单 -> confirm_quote 确认报价 -> submit_waitlist 提交候补 -> mark_payment_succeeded 支付成功 -> cancel_waitlist 取消候补"
+      - "create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 预订成功 -> request_cancel 发起取消 -> execute_cancel 审批通过后执行取消"
+      - "create_order 创建 train 订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_payment_succeeded 支付成功 -> mark_booked 已出票 -> request_change 发起改签 -> confirm_change 改签成功"
+      - "create_order 创建订单 -> confirm_quote 确认报价 -> submit_order 提交订单 -> mark_order_failed 标记失败"
+      - "create_order 创建订单 -> update 更新联系人和出行人数量 -> destroy 删除草稿"
+      # 退款由 Payment 域管理，Travel 订阅 payment.refund.completed 事件
+    workflows:
+      - name: travel_order_lifecycle
+        description: 统一酒旅订单生命周期，覆盖 train 候补与改签分支；退款由 Payment 域处理
+        steps:
+          - action: create
+            next: [update, confirm_quote, destroy]
+          - action: update
+            next: [confirm_quote, destroy]
+          - action: confirm_quote
+            next: [submit_order, submit_waitlist]
+          - action: submit_order
+            trigger_event: travel.order.submitted
+            next: [mark_payment_succeeded, mark_order_failed]
+          - action: submit_waitlist
+            trigger_event: travel.order.waitlist_submitted
+            next: [mark_payment_succeeded, mark_order_failed]
+          - action: mark_payment_succeeded
+            trigger_event: travel.order.payment_confirmed
+            next: [mark_booked, fulfill_waitlist, cancel_waitlist]
+          - action: mark_booked
+            next: [mark_completed, request_cancel, request_change]
+          - action: fulfill_waitlist
+            trigger_event: travel.order.waitlist_fulfilled
+            next: [mark_completed, request_cancel, request_change]
+          - action: cancel_waitlist
+            trigger_event: travel.order.waitlist_cancelled
+          - action: request_cancel
+            trigger_event: travel.order.cancel_requested
+            next: [execute_cancel, cancel_cancel_request]
+          - action: execute_cancel
+            trigger_event: travel.order.cancelled
+          - action: cancel_cancel_request
+            next: [mark_completed, request_cancel]
+          - action: request_change
+            next: [confirm_change]
+          - action: confirm_change
+            trigger_event: travel.order.change_confirmed
+            next: [mark_completed]
+          - action: mark_completed
+          - action: mark_order_failed
+            trigger_event: travel.order.failed
+          - action: destroy
+    business_rules:
+      - id: TRAVEL-ORDER-01
+        description: TravelOrder 是统一订单聚合，不按 hotel/flight/vacation/train 各自拆单独订单聚合
+      - id: TRAVEL-ORDER-02
+        description: create_order 时必须且只能绑定一种 offer，具体由 product_type 决定
+      - id: TRAVEL-ORDER-03
+        description: 支付结果通过订阅 Payment 域事件（payment.captured）驱动 mark_payment_succeeded，不直接内嵌支付状态
+      - id: TRAVEL-ORDER-04
+        description: 已 cancelled、failed 的订单不得再次进入提交流程
+      - id: TRAVEL-ORDER-05
+        description: train 订单通过 booking_mode、waitlist_status、change_status 承接候补和改签复杂度，不另起独立 TrainOrder
+      - id: TRAVEL-ORDER-06
+        description: 退款通过 Payment 域的 PaymentRefund 管理，Travel 订阅 payment.refund.completed 事件
+      - id: TRAVEL-ORDER-07
+        description: hotel_offer_id/flight_offer_id/vacation_offer_id/train_offer_id/customer_id/payment_id/original_order_ref/supplier_order_ref 为静态引用字段，ticket_passenger_infos/seat_selection_snapshot 为 Vertical 快照字段
+      - id: TRAVEL-ORDER-08
+        description: 宿主 shop 业务契约（shop_caller_context_resolve/shop_eligibility_quote/payment_capture）定义在 TravelOrder；供应商履约契约定义在 TravelFulfillment，保持支付与履约边界解耦
+    event_consumers:
+      # 审批通过后执行取消
+      - topic: approvals.instance.approved
+        action: execute_cancel
+        source_entity: ApprovalInstance
+      # 审批拒绝后撤回取消请求
+      - topic: approvals.instance.rejected
+        action: cancel_cancel_request
+        source_entity: ApprovalInstance
+
+  - name: TravelFulfillment
+    description: 统一酒旅履约聚合，承接预订确认、发券出票、候补兑现、乘车使用和失败结果；可选关联 Delivery::Shipment
+    aggregate_root: true
+    tenancy:
+      strategy: attribute
+      attribute: tenant_id
+    attributes:
+      - name: id
+        type: uuid
+        primary_key: true
+        generated: true
+      - name: tenant_id
+        type: uuid
+        required: true
+      - name: fulfillment_type
+        type: enum
+        constraints:
+          values: ["reserve_room", "issue_ticket", "issue_voucher", "issue_train_ticket"]
+        default: "reserve_room"
+      - name: status
+        type: enum
+        constraints:
+          values: ["pending", "confirmed", "issued", "in_use", "completed", "cancelled", "failed"]
+        default: "pending"
+      - name: supplier_booking_ref
+        type: string
+        description: 供应商预订号
+      - name: voucher_or_ticket_ref
+        type: string
+        description: 凭证号或票号
+      - name: ticket_refs
+        type: map
+        description: 多张票号、座席和乘客映射结果
+      - name: waitlist_result
+        type: enum
+        constraints:
+          values: ["none", "pending", "fulfilled", "cancelled", "failed"]
+        default: "none"
+        description: train 候补兑现结果
+      - name: change_result
+        type: enum
+        constraints:
+          values: ["none", "pending", "changed", "failed"]
+        default: "none"
+        description: train 改签结果
+      - name: boarding_status
+        type: enum
+        constraints:
+          values: ["not_started", "boarded", "completed"]
+        default: "not_started"
+        description: train 乘车状态
+      # Vertical 履约快照字段：记录履约过程事实，不回写上游主数据
+      - name: confirmation_payload
+        type: text
+        description: 确认结果快照
+      - name: failure_reason
+        type: text
+        description: 失败原因
+      - name: used_at
+        type: datetime
+        description: 实际使用时间
+      - name: inserted_at
+        type: datetime
+        generated: true
+      - name: updated_at
+        type: datetime
+        generated: true
+      - name: shipment_id
+        type: string
+        description: 关联的物流发货单（跨域引用 Delivery.Shipment）
+    relationships:
+      - name: order
+        type: belongs_to
+        target: TravelOrder
+        foreign_key: travel_order_id
+        required: true
+        description: 对应订单
+    actions:
+      - name: create_fulfillment
+        type: create
+        primary: true
+        accept: [tenant_id, travel_order_id, fulfillment_type, supplier_booking_ref]
+      - name: read
+        type: read
+        primary: true
+      - name: update
+        type: update
+        primary: true
+        accept: [supplier_booking_ref, voucher_or_ticket_ref, ticket_refs, confirmation_payload, failure_reason]
+      - name: confirm_booking
+        type: update
+        accept: []
+      - name: issue_voucher_or_ticket
+        type: update
+        accept: []
+      - name: mark_in_use
+        type: update
+        accept: [used_at]
+      - name: complete_fulfillment
+        type: update
+        accept: []
+      - name: cancel_fulfillment
+        type: update
+        accept: []
+      - name: fail_fulfillment
+        type: update
+        accept: [failure_reason]
+      - name: destroy
+        type: destroy
+        primary: true
+    validations:
+      - rule: present
+        field: tenant_id
+        on: [create_fulfillment]
+      - rule: one_of
+        field: status
+        params: {values: ["pending"]}
+        on: [confirm_booking, fail_fulfillment, cancel_fulfillment]
+        message: 只有 pending 履约可以确认、失败或取消
+      - rule: one_of
+        field: status
+        params: {values: ["confirmed"]}
+        on: [issue_voucher_or_ticket]
+        message: 只有 confirmed 履约可以 issue_voucher_or_ticket
+      - rule: one_of
+        field: status
+        params: {values: ["issued"]}
+        on: [mark_in_use]
+        message: 只有 issued 履约可以 mark_in_use
+      - rule: one_of
+        field: status
+        params: {values: ["issued", "in_use"]}
+        on: [complete_fulfillment]
+        message: 只有 issued 或 in_use 履约可以 complete_fulfillment
+    changes:
+      - effect: set_attribute
+        field: status
+        value: "confirmed"
+        on: [confirm_booking]
+      - effect: set_attribute
+        field: status
+        value: "issued"
+        on: [issue_voucher_or_ticket]
+      - effect: set_attribute
+        field: status
+        value: "in_use"
+        on: [mark_in_use]
+      - effect: set_attribute
+        field: status
+        value: "completed"
+        on: [complete_fulfillment]
+      - effect: set_attribute
+        field: status
+        value: "cancelled"
+        on: [cancel_fulfillment]
+      - effect: set_attribute
+        field: status
+        value: "failed"
+        on: [fail_fulfillment]
+      - effect: set_attribute
+        field: id
+        expr:
+          op: ref
+          args:
+            - id
+        on: [create_fulfillment, update, confirm_booking, issue_voucher_or_ticket, mark_in_use, complete_fulfillment, cancel_fulfillment, fail_fulfillment, destroy]
+        description: AUTO_WRITE_ANCHOR
+    events:
+      - on: confirm_booking
+        topic: travel.fulfillment.confirmed
+      - on: issue_voucher_or_ticket
+        topic: travel.fulfillment.issued
+      - on: complete_fulfillment
+        topic: travel.fulfillment.completed
+      - on: cancel_fulfillment
+        topic: travel.fulfillment.cancelled
+      - on: fail_fulfillment
+        topic: travel.fulfillment.failed
+    integrations:
+      - name: supplier_confirm_booking
+        on: [confirm_booking]
+        mode: sync
+        request:
+          travel_order_id: uuid
+          fulfillment_type: string
+          supplier_booking_ref: string
+        response:
+          confirm_status: string
+          supplier_booking_ref: string
+          confirmation_payload: string
+        errors:
+          - code: supplier_booking_rejected
+            retryable: false
+          - code: supplier_timeout
+            retryable: true
+        description: 预订确认同步契约，前置依赖 TravelOrder 已完成 shop_caller_context_resolve、shop_eligibility_quote、payment_capture；失败时需保留 pending 并可重试或转 fail_fulfillment
+      - name: supplier_issue_document
+        on: [issue_voucher_or_ticket]
+        mode: sync
+        request:
+          travel_order_id: uuid
+          fulfillment_type: string
+          ticket_passenger_infos: map
+        response:
+          issue_status: string
+          voucher_or_ticket_ref: string
+          ticket_refs: map
+        errors:
+          - code: issue_failed
+            retryable: false
+          - code: issue_timeout
+            retryable: true
+        description: 发券出票同步契约，失败时走 fail_fulfillment 并记录 failure_reason
+      - name: supplier_cancel_booking
+        on: [cancel_fulfillment]
+        mode: async
+        request:
+          travel_order_id: uuid
+          supplier_booking_ref: string
+        async:
+          queue: travel_supplier_cancel
+          timeout_ms: 60000
+          idempotency_key: arg.order_no
+        errors:
+          - code: cancel_timeout
+            retryable: true
+          - code: cancel_rejected
+            retryable: false
+        description: 取消履约异步契约，失败时通过补偿任务做二次撤销
+    scenarios:
+      - "create_fulfillment 创建履约单 -> confirm_booking 触发 integration supplier_confirm_booking 成功 -> issue_voucher_or_ticket 触发 integration supplier_issue_document 成功 -> complete_fulfillment 完成履约"
+      - "create_fulfillment 创建履约单 -> confirm_booking 触发 integration supplier_confirm_booking 返回 supplier_booking_rejected -> fail_fulfillment 履约失败并记录补偿原因"
+      - "create_fulfillment 创建履约单 -> confirm_booking 预订确认 -> issue_voucher_or_ticket 发券出票 -> mark_in_use 标记使用中 -> complete_fulfillment 完成履约"
+      - "create_fulfillment 创建履约单 -> confirm_booking 预订确认 -> issue_voucher_or_ticket 发券出票 -> complete_fulfillment 完成履约"
+      - "create_fulfillment 创建 train 履约单 -> confirm_booking 候补确认中 -> issue_voucher_or_ticket 出票或兑现 -> complete_fulfillment 完成履约"
+      - "create_fulfillment 创建履约单 -> cancel_fulfillment 取消履约"
+      - "create_fulfillment 创建履约单 -> fail_fulfillment 履约失败"
+      - "create_fulfillment 创建履约单 -> update 更新供应商号和确认快照 -> destroy 删除草稿"
+    workflows:
+      - name: travel_fulfillment_lifecycle
+        description: 统一酒旅履约生命周期
+        steps:
+          - action: create_fulfillment
+            next: [update, confirm_booking, fail_fulfillment, cancel_fulfillment, destroy]
+          - action: update
+            next: [confirm_booking, fail_fulfillment, cancel_fulfillment, destroy]
+          - action: confirm_booking
+            trigger_event: travel.fulfillment.confirmed
+            next: [issue_voucher_or_ticket]
+          - action: issue_voucher_or_ticket
+            trigger_event: travel.fulfillment.issued
+            next: [mark_in_use, complete_fulfillment]
+          - action: mark_in_use
+            next: [complete_fulfillment]
+          - action: complete_fulfillment
+            trigger_event: travel.fulfillment.completed
+          - action: cancel_fulfillment
+            trigger_event: travel.fulfillment.cancelled
+          - action: fail_fulfillment
+            trigger_event: travel.fulfillment.failed
+          - action: destroy
+    business_rules:
+      - id: TRAVEL-FULFILLMENT-01
+        description: TravelFulfillment 只记录 travel 履约事实，不直接承载宿主支付事实
+      - id: TRAVEL-FULFILLMENT-02
+        description: 同一订单可有多条履约记录，但同一时刻只允许一条主履约处于活跃流转中
+      - id: TRAVEL-FULFILLMENT-03
+        description: train 履约通过 issue_train_ticket、ticket_refs、waitlist_result、change_result、boarding_status 承接铁路票务分支结果
+      - id: TRAVEL-FULFILLMENT-04
+        description: 可选关联 Delivery::Shipment，用于实物票务或旅行包裹的物流追踪
+      - id: TRAVEL-FULFILLMENT-05
+        description: travel_order_id/shipment_id/supplier_booking_ref/voucher_or_ticket_ref 为静态引用字段，ticket_refs/confirmation_payload/failure_reason 为 Vertical 履约快照字段
+      - id: TRAVEL-FULFILLMENT-06
+        description: TravelFulfillment 仅建模供应商履约契约（确认/出票/取消）；宿主 shop 上下文解析、可支付性预检、支付执行契约位于 TravelOrder.integrations
+
+  - name: TravelChangeOrder
+    description: 改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态；审批通过 overlay on Approvals 域
+    aggregate_root: true
+    state_machine:
+      initial_state: pending
+      state_attribute: status
+      states: [pending, approved, completed, rejected]
+      transitions:
+        - from: pending
+          to: approved
+          event: confirm_change
+        - from: pending
+          to: rejected
+          event: reject_change
+        - from: approved
+          to: completed
+          event: complete
+        - from: pending
+          to: completed
+          event: complete_direct
+    attributes:
+      - name: id
+        type: uuid
+        primary_key: true
+        generated: true
+      - name: change_reason
+        type: string
+        description: 改签原因
+      - name: price_difference
+        type: string
+        description: 差价
+      - name: change_fee
+        type: string
+        description: 改签手续费
+      - name: new_offer_id
+        type: string
+        description: 新报价ID（可能是 FlightOffer/TrainOffer/HotelOffer，不做外键）
+      - name: status
+        type: enum
+        constraints:
+          values: ["pending", "approved", "completed", "rejected"]
+        default: "pending"
+      - name: approval_mode
+        type: enum
+        constraints:
+          values: ["none", "self", "oa"]
+        default: "self"
+        description: 审批模式快照；none 表示跳过审批，self/oa 表示进入审批流
+      - name: inserted_at
+        type: datetime
+        generated: true
+      - name: updated_at
+        type: datetime
+        generated: true
+    relationships:
+      - name: original_order
+        type: belongs_to
+        target: TravelOrder
+        foreign_key: original_order_id
+        required: true
+        description: 被改签的原始订单
+    identities:
+      - name: unique_order_status
+        keys: [original_order_id, status]
+    actions:
+      - name: create
+        type: create
+        primary: true
+        accept: [original_order_id, change_reason, price_difference, change_fee, new_offer_id, approval_mode]
+      - name: read
+        type: read
+        primary: true
+      - name: update
+        type: update
+        primary: true
+        accept: [change_reason, price_difference, change_fee, new_offer_id]
+      - name: submit
+        type: update
+        accept: []
+        description: 提交改签申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance
+      - name: confirm_change
+        type: update
+        accept: []
+      - name: reject_change
+        type: update
+        accept: []
+      - name: complete
+        type: update
+        accept: []
+      - name: complete_direct
+        type: update
+        accept: []
+    validations:
+      - rule: present
+        field: original_order_id
+        on: [create]
+      - rule: one_of
+        field: status
+        params: {values: ["pending"]}
+        on: [submit, confirm_change, reject_change]
+        message: 只有 pending 改签单可以提交或由审批触发
+      - rule: one_of
+        field: status
+        params: {values: ["approved"]}
+        on: [complete]
+        message: 只有 approved 改签单可以完成
+      - rule: one_of
+        field: approval_mode
+        params: {values: ["none"]}
+        on: [complete_direct]
+        message: 只有关闭审批的改签单可以直接完成
+      - rule: one_of
+        field: status
+        params: {values: ["pending"]}
+        on: [complete_direct]
+        message: 关闭审批时，pending 改签单可直接完成
+    changes:
+      - effect: set_attribute
+        field: status
+        value: "approved"
+        on: [confirm_change]
+      - effect: set_attribute
+        field: status
+        value: "rejected"
+        on: [reject_change]
+      - effect: set_attribute
+        field: status
+        value: "completed"
+        on: [complete]
+      - effect: set_attribute
+        field: status
+        value: "completed"
+        on: [complete_direct]
+      - effect: set_attribute
+        field: id
+        expr:
+          op: ref
+          args:
+            - id
+        on: [create, submit, confirm_change, reject_change, complete, complete_direct]
+        description: AUTO_WRITE_ANCHOR
+    events:
+      - on: submit
+        topic: travel.change_order.submitted
+      - on: confirm_change
+        topic: travel.change_order.approved
+      - on: reject_change
+        topic: travel.change_order.rejected
+      - on: complete
+        topic: travel.change_order.completed
+      - on: complete_direct
+        topic: travel.change_order.completed
+    event_consumers:
+      # 审批通过后执行改签确认
+      - topic: approvals.instance.approved
+        action: confirm_change
+        source_entity: ApprovalInstance
+      # 审批拒绝后拒绝改签
+      - topic: approvals.instance.rejected
+        action: reject_change
+        source_entity: ApprovalInstance
+    integrations:
+      - name: create_approval_instance
+        on: [submit]
+        mode: sync
+        request:
+          subject_type: string
+          subject_id: uuid
+        response:
+          instance_id: uuid
+          status: string
+        description: 当 approval_mode=oa 时创建审批实例
+    scenarios:
+      - "create 创建改签单 -> submit 提交审批 -> confirm_change 审批通过 -> complete 改签完成"
+      - "create 创建改签单 -> submit 提交审批 -> reject_change 审批拒绝"
+      - "create 创建改签单（approval_mode=none）-> complete_direct 直接完成"
+    workflows:
+      - name: change_order_lifecycle
+        description: 改签单生命周期：审批开启时 pending → approved → completed / rejected；审批关闭时 pending → completed
+        steps:
+          - action: create
+            next: [submit, complete_direct]
+          - action: submit
+            trigger_event: travel.change_order.submitted
+            next: [confirm_change, reject_change]
+          - action: confirm_change
+            trigger_event: travel.change_order.approved
+            next: [complete]
+          - action: reject_change
+            trigger_event: travel.change_order.rejected
+          - action: complete
+            trigger_event: travel.change_order.completed
+          - action: complete_direct
+            trigger_event: travel.change_order.completed
+    business_rules:
+      - id: TRAVEL-CHANGE-ORDER-01
+        description: TravelChangeOrder 通过 original_order_id 关联原订单，new_offer_id 为字符串引用，不做跨实体外键
+      - id: TRAVEL-CHANGE-ORDER-02
+        description: 同一原订单在同一 status 下唯一，防止重复改签请求
+      - id: TRAVEL-CHANGE-ORDER-03
+        description: approval_mode=none 时跳过审批，允许改签单从 pending 直接完成
+      - id: TRAVEL-CHANGE-ORDER-04
+        description: 审批通过 overlay on Approvals 域实现，不嵌入 approve/reject action
+
+  - name: TravelRefundOrder
+    description: 退票/退订单，记录针对已有 TravelOrder 的退票请求、手续费与退款状态；审批通过 overlay on Approvals 域
+    aggregate_root: true
+    state_machine:
+      initial_state: pending
+      state_attribute: status
+      states: [pending, approved, refunded, rejected]
+      transitions:
+        - from: pending
+          to: approved
+          event: confirm_refund
+        - from: pending
+          to: rejected
+          event: reject_refund
+        - from: approved
+          to: refunded
+          event: refund
+        - from: pending
+          to: refunded
+          event: refund_direct
+    attributes:
+      - name: id
+        type: uuid
+        primary_key: true
+        generated: true
+      - name: refund_reason
+        type: string
+        description: 退票原因
+      - name: refund_fee
+        type: string
+        description: 退票手续费
+      - name: refund_amount
+        type: string
+        description: 实退金额
+      - name: status
+        type: enum
+        constraints:
+          values: ["pending", "approved", "refunded", "rejected"]
+        default: "pending"
+      - name: approval_mode
+        type: enum
+        constraints:
+          values: ["none", "self", "oa"]
+        default: "self"
+        description: 审批模式快照；none 表示跳过审批，self/oa 表示进入审批流
+      - name: inserted_at
+        type: datetime
+        generated: true
+      - name: updated_at
+        type: datetime
+        generated: true
+    relationships:
+      - name: original_order
+        type: belongs_to
+        target: TravelOrder
+        foreign_key: original_order_id
+        required: true
+        description: 被退票的原始订单
+    identities:
+      - name: unique_order_status
+        keys: [original_order_id, status]
+    actions:
+      - name: create
+        type: create
+        primary: true
+        accept: [original_order_id, refund_reason, refund_fee, refund_amount, approval_mode]
+      - name: read
+        type: read
+        primary: true
+      - name: update
+        type: update
+        primary: true
+        accept: [refund_reason, refund_fee, refund_amount]
+      - name: submit
+        type: update
+        accept: []
+        description: 提交退票申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance
+      - name: confirm_refund
+        type: update
+        accept: []
+      - name: reject_refund
+        type: update
+        accept: []
+      - name: refund
+        type: update
+        accept: []
+      - name: refund_direct
+        type: update
+        accept: []
+    validations:
+      - rule: present
+        field: original_order_id
+        on: [create]
+      - rule: one_of
+        field: status
+        params: {values: ["pending"]}
+        on: [submit, confirm_refund, reject_refund]
+        message: 只有 pending 退票单可以提交或由审批触发
+      - rule: one_of
+        field: status
+        params: {values: ["approved"]}
+        on: [refund]
+        message: 只有 approved 退票单可以执行退款
+      - rule: one_of
+        field: approval_mode
+        params: {values: ["none"]}
+        on: [refund_direct]
+        message: 只有关闭审批的退票单可以直接退款
+      - rule: one_of
+        field: status
+        params: {values: ["pending"]}
+        on: [refund_direct]
+        message: 关闭审批时，pending 退票单可直接退款
+    changes:
+      - effect: set_attribute
+        field: status
+        value: "approved"
+        on: [confirm_refund]
+      - effect: set_attribute
+        field: status
+        value: "rejected"
+        on: [reject_refund]
+      - effect: set_attribute
+        field: status
+        value: "refunded"
+        on: [refund]
+      - effect: set_attribute
+        field: status
+        value: "refunded"
+        on: [refund_direct]
+      - effect: set_attribute
+        field: id
+        expr:
+          op: ref
+          args:
+            - id
+        on: [create, submit, confirm_refund, reject_refund, refund, refund_direct]
+        description: AUTO_WRITE_ANCHOR
+    events:
+      - on: submit
+        topic: travel.refund_order.submitted
+      - on: confirm_refund
+        topic: travel.refund_order.approved
+      - on: reject_refund
+        topic: travel.refund_order.rejected
+      - on: refund
+        topic: travel.refund_order.refunded
+      - on: refund_direct
+        topic: travel.refund_order.refunded
+    event_consumers:
+      # 审批通过后确认退票
+      - topic: approvals.instance.approved
+        action: confirm_refund
+        source_entity: ApprovalInstance
+      # 审批拒绝后拒绝退票
+      - topic: approvals.instance.rejected
+        action: reject_refund
+        source_entity: ApprovalInstance
+    integrations:
+      - name: create_approval_instance
+        on: [submit]
+        mode: sync
+        request:
+          subject_type: string
+          subject_id: uuid
+        response:
+          instance_id: uuid
+          status: string
+        description: 当 approval_mode=oa 时创建审批实例
+    scenarios:
+      - "create 创建退票单 -> submit 提交审批 -> confirm_refund 审批通过 -> refund 退款完成"
+      - "create 创建退票单 -> submit 提交审批 -> reject_refund 审批拒绝"
+      - "create 创建退票单（approval_mode=none）-> refund_direct 直接退款"
+    workflows:
+      - name: refund_order_lifecycle
+        description: 退票单生命周期：审批开启时 pending → approved → refunded / rejected；审批关闭时 pending → refunded
+        steps:
+          - action: create
+            next: [submit, refund_direct]
+          - action: submit
+            trigger_event: travel.refund_order.submitted
+            next: [confirm_refund, reject_refund]
+          - action: confirm_refund
+            trigger_event: travel.refund_order.approved
+            next: [refund]
+          - action: reject_refund
+            trigger_event: travel.refund_order.rejected
+          - action: refund
+            trigger_event: travel.refund_order.refunded
+          - action: refund_direct
+            trigger_event: travel.refund_order.refunded
+    business_rules:
+      - id: TRAVEL-REFUND-ORDER-01
+        description: TravelRefundOrder 通过 original_order_id 关联原订单，实际退款动作可由 Payment 域处理
+      - id: TRAVEL-REFUND-ORDER-02
+        description: 同一原订单在同一 status 下唯一，防止重复退票请求
+      - id: TRAVEL-REFUND-ORDER-03
+        description: approval_mode=none 时跳过审批，允许退票单从 pending 直接退款
+      - id: TRAVEL-REFUND-ORDER-04
+        description: 审批通过 overlay on Approvals 域实现，不嵌入 approve/reject action
+
+  - name: TravelPolicy
+    description: 差旅标准政策，定义不同企业、职级、城市等级下的差旅费用上限与超标策略
+    aggregate_root: true
+    attributes:
+      - name: id
+        type: uuid
+        primary_key: true
+        generated: true
+      - name: policy_name
+        type: string
+        required: true
+        description: 政策名称，如"总部差旅标准"
+      - name: product_type
+        type: enum
+        constraints:
+          values: ["flight", "hotel", "train", "car"]
+        required: true
+        description: 适用商品类型
+      - name: employee_level
+        type: string
+        description: 职级标识
+      - name: city_tier
+        type: string
+        description: 城市等级（tier_1/tier_2/tier_3）
+      - name: season
+        type: string
+        description: 淡旺季标识（可选）
+      - name: max_amount
+        type: integer
+        description: 金额上限（单位分）
+      - name: cabin_class_limit
+        type: string
+        description: 舱位限制
+      - name: hotel_star_limit
+        type: string
+        description: 酒店星级限制
+      - name: exceed_strategy
+        type: enum
+        constraints:
+          values: ["block", "require_reason", "require_approval", "personal_pay"]
+        required: true
+        description: 超标处理策略
+      - name: approval_mode
+        type: enum
+        constraints:
+          values: ["none", "self", "oa"]
+        default: "self"
+        description: 审批模式；none 表示关闭审批，self/oa 表示进入对应审批流
+      - name: personal_pay_ratio
+        type: integer
+        description: 个人支付比例 0-100
+      - name: is_active
+        type: boolean
+        default: true
+        description: 是否启用
+      - name: enterprise_id
+        type: string
+        description: 企业标识（不做跨域外键）
+      - name: inserted_at
+        type: datetime
+        generated: true
+      - name: updated_at
+        type: datetime
+        generated: true
+    identities:
+      - name: unique_policy_scope
+        keys: [policy_name, product_type, employee_level, city_tier]
+    actions:
+      - name: create
+        type: create
+        primary: true
+        accept: [policy_name, product_type, employee_level, city_tier, season, max_amount, cabin_class_limit, hotel_star_limit, exceed_strategy, approval_mode, personal_pay_ratio, enterprise_id]
+      - name: read
+        type: read
+        primary: true
+      - name: update
+        type: update
+        primary: true
+        accept: [policy_name, season, max_amount, cabin_class_limit, hotel_star_limit, exceed_strategy, approval_mode, personal_pay_ratio]
+      - name: match_policy
+        type: read
+        arguments:
+          - name: product_type
+            type: string
+            required: true
+          - name: employee_level
+            type: string
+          - name: city_tier
+            type: string
+        filter:
+          - field: is_active
+            op: eq
+            value: true
+          - field: product_type
+            op: eq
+            value: { arg: product_type }
+        sort: [employee_level, city_tier]
+        limit: 1
+      - name: activate
+        type: update
+        accept: []
+      - name: deactivate
+        type: update
+        accept: []
+    validations:
+      - rule: present
+        field: policy_name
+        on: [create]
+      - rule: present
+        field: product_type
+        on: [create]
+      - rule: present
+        field: exceed_strategy
+        on: [create]
+      - rule: one_of
+        field: is_active
+        params: {values: [false]}
+        on: [activate]
+        message: 只有未启用的政策可以激活
+      - rule: one_of
+        field: is_active
+        params: {values: [true]}
+        on: [deactivate]
+        message: 只有已启用的政策可以停用
+      - rule: compare
+        field: personal_pay_ratio
+        params: {greater_than_or_equal_to: 0, less_than_or_equal_to: 100}
+        message: personal_pay_ratio 必须在 0-100 之间
+    changes:
+      - effect: set_attribute
+        field: is_active
+        value: true
+        on: [activate]
+      - effect: set_attribute
+        field: is_active
+        value: false
+        on: [deactivate]
+      - effect: set_attribute
+        field: id
+        expr:
+          op: ref
+          args:
+            - id
+        on: [create, update, activate, deactivate]
+        description: AUTO_WRITE_ANCHOR
+    events:
+      - on: activate
+        topic: travel.policy.activated
+      - on: deactivate
+        topic: travel.policy.deactivated
+    scenarios:
+      - "create 创建差旅政策 -> update 修改政策参数"
+      - "create 创建差旅政策 -> deactivate 停用政策 -> activate 重新激活"
+    workflows:
+      - name: policy_lifecycle
+        description: 差旅政策生命周期：active / inactive
+        steps:
+          - action: create
+            next: [update, deactivate]
+          - action: update
+            next: [deactivate]
+          - action: deactivate
+            trigger_event: travel.policy.deactivated
+            next: [activate]
+          - action: activate
+            trigger_event: travel.policy.activated
+            next: [update, deactivate]
+    business_rules:
+      - id: TRAVEL-POLICY-01
+        description: TravelPolicy 按 policy_name + product_type + employee_level + city_tier 唯一，同一维度组合不允许重复
+      - id: TRAVEL-POLICY-02
+        description: exceed_strategy 为四值枚举（block/require_reason/require_approval/personal_pay），决定超标时的处理方式
+      - id: TRAVEL-POLICY-03
+        description: enterprise_id 为字符串标识，不做跨域外键，由调用方传入
+      - id: TRAVEL-POLICY-04
+        description: approval_mode 控制 require_approval 是否真正进入审批；approval_mode=none 时不创建审批请求
+
+  - name: TravelPolicyCheck
+    description: 差标校验记录，记录订单下单时针对差旅政策的校验结果、超标金额与处理策略
+    aggregate_root: true
+    attributes:
+      - name: id
+        type: uuid
+        primary_key: true
+        generated: true
+      - name: check_result
+        type: enum
+        constraints:
+          values: ["compliant", "exceeded", "blocked"]
+        required: true
+        description: 校验结果
+      - name: policy_amount
+        type: integer
+        description: 差标金额（单位分）
+      - name: actual_amount
+        type: integer
+        description: 实际金额（单位分）
+      - name: exceed_amount
+        type: integer
+        description: 超标金额
+      - name: exceed_ratio
+        type: string
+        description: 超标比例（如"15%"）
+      - name: exceed_strategy
+        type: string
+        description: 命中的超标策略
+      - name: exceed_reason
+        type: string
+        description: 超标原因（员工填写）
+      - name: personal_pay_amount
+        type: integer
+        description: 个人支付部分
+      - name: approval_request_id
+        type: string
+        description: 审批请求ID（不做跨域外键）
+      - name: approval_mode
+        type: enum
+        constraints:
+          values: ["none", "self", "oa"]
+        default: "self"
+        description: 命中政策时的审批模式快照
+      - name: inserted_at
+        type: datetime
+        generated: true
+      - name: updated_at
+        type: datetime
+        generated: true
+    relationships:
+      - name: order
+        type: belongs_to
+        target: TravelOrder
+        foreign_key: order_id
+        required: true
+        description: 关联的出行订单
+      - name: policy
+        type: belongs_to
+        target: TravelPolicy
+        foreign_key: policy_id
+        required: true
+        description: 命中的差旅政策
+    identities:
+      - name: unique_order
+        keys: [order_id]
+    actions:
+      - name: create
+        type: create
+        primary: true
+        accept: [order_id, policy_id, check_result, policy_amount, actual_amount, exceed_amount, exceed_ratio, exceed_strategy, exceed_reason, personal_pay_amount, approval_request_id, approval_mode]
+      - name: read
+        type: read
+        primary: true
+      - name: update
+        type: update
+        primary: true
+        accept: [check_result, exceed_reason, exceed_strategy, personal_pay_amount]
+    validations:
+      - rule: present
+        field: order_id
+        on: [create]
+      - rule: present
+        field: policy_id
+        on: [create]
+      - rule: present
+        field: check_result
+        on: [create]
+    changes:
+      - effect: set_attribute
+        field: id
+        expr:
+          op: ref
+          args:
+            - id
+        on: [create]
+        description: AUTO_WRITE_ANCHOR
+    business_rules:
+      - id: TRAVEL-POLICY-CHECK-01
+        description: 每个 TravelOrder 最多关联一条 TravelPolicyCheck 记录
+      - id: TRAVEL-POLICY-CHECK-02
+        description: approval_request_id 为字符串标识，不做跨域外键，由审批系统回填
+      - id: TRAVEL-POLICY-CHECK-03
+        description: approval_mode 记录命中政策时的审批模式；approval_mode=none 时即使 require_approval 也不进入审批流

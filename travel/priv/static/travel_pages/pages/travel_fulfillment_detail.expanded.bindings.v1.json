@@ -1,5 +1,184 @@
 {
   "version": 1,
-  "vars": {},
-  "events": {}
+  "vars": {
+    "travel_fulfillment.fulfillment_type": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_fulfillment_type_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.fulfillment_type|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.status": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_status_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.status|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.supplier_booking_ref": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_supplier_booking_ref_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.supplier_booking_ref|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.voucher_or_ticket_ref": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_voucher_or_ticket_ref_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.voucher_or_ticket_ref|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.ticket_refs": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_ticket_refs_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.ticket_refs|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.waitlist_result": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_waitlist_result_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.waitlist_result|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.change_result": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_change_result_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.change_result|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.boarding_status": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_boarding_status_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.boarding_status|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.confirmation_payload": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_confirmation_payload_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.confirmation_payload|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.failure_reason": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_failure_reason_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.failure_reason|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.used_at": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_used_at_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.used_at|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
 }

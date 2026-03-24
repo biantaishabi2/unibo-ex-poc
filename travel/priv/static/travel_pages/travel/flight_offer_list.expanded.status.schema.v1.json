@@ -20,7 +20,8 @@
         "seats_available": "",
         "baggage_policy": "",
         "refund_change_policy": "",
-        "sale_status": ""
+        "sale_status": "",
+        "id": "row_01"
       },
       {
         "supplier_code": "",
@@ -38,7 +39,8 @@
         "seats_available": "",
         "baggage_policy": "",
         "refund_change_policy": "",
-        "sale_status": ""
+        "sale_status": "",
+        "id": "row_02"
       },
       {
         "supplier_code": "",
@@ -56,7 +58,8 @@
         "seats_available": "",
         "baggage_policy": "",
         "refund_change_policy": "",
-        "sale_status": ""
+        "sale_status": "",
+        "id": "row_03"
       }
     ]
   },
@@ -73,6 +76,7 @@
     "rows[].departure_at",
     "rows[].fare_family",
     "rows[].flight_no",
+    "rows[].id",
     "rows[].itinerary_code",
     "rows[].listed_price",
     "rows[].refund_change_policy",
@@ -93,6 +97,22 @@
     "backend": {
       "api_map": {
         "list": "Travel.FlightOffer.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "arrival_airport_code: arrivalAirportCode arrival_airport_ref_id: arrivalAirportRefId arrival_at: arrivalAt baggage_policy: baggagePolicy cabin_class: cabinClass currency departure_airport_code: departureAirportCode departure_airport_ref_id: departureAirportRefId departure_at: departureAt fare_family: fareFamily flight_no: flightNo host_shop_id: hostShopId id itinerary_code: itineraryCode listed_price: listedPrice refund_change_policy: refundChangePolicy sale_status: saleStatus seats_available: seatsAvailable settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
+      },
+      "params": {
+        "accept": [
+          "departure_at",
+          "arrival_at",
+          "sale_status"
+        ]
       }
     },
     "domain": "Travel",

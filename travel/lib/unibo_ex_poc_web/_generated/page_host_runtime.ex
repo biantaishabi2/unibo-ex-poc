@@ -91,8 +91,8 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
 
   def merge_backend_payload(page_data, dto, status) do
     page_data
-    |> deep_merge(deep_generated_atomize_keys(normalize_map(dto)))
-    |> deep_merge(deep_generated_atomize_keys(normalize_map(status)))
+    |> deep_merge(deep_existing_atomize_keys(normalize_map(dto)))
+    |> deep_merge(deep_existing_atomize_keys(normalize_map(status)))
   end
 
   def maybe_put_flash_from_effects(page_data, effects) do
@@ -713,10 +713,20 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     record = map_get(defaults, "record")
     form = map_get(defaults, "form")
 
+    # 检测 defaults 中任意 list 类型的值（如 records），作为 rows 的 fallback
+    any_list =
+      Enum.find_value(defaults, nil, fn
+        {_key, value} when is_list(value) and value != [] -> value
+        _ -> nil
+      end)
+
     sample =
       cond do
         is_list(rows) and match?([first | _] when is_map(first), rows) ->
           List.first(rows)
+
+        is_list(any_list) and match?([first | _] when is_map(first), any_list) ->
+          List.first(any_list)
 
         is_map(record) and map_size(record) > 0 ->
           record

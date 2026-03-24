@@ -1,7 +1,121 @@
 {
   "version": 1,
-  "requiredPaths": [],
-  "requiredRoots": [],
-  "schema": {},
+  "requiredPaths": [
+    "page_title",
+    "selected_task.title",
+    "tasks",
+    "tasks_empty",
+    "travel_policy_check.actual_amount",
+    "travel_policy_check.approval_mode",
+    "travel_policy_check.check_result",
+    "travel_policy_check.exceed_amount",
+    "travel_policy_check.exceed_ratio",
+    "travel_policy_check.exceed_reason",
+    "travel_policy_check.exceed_strategy",
+    "travel_policy_check.personal_pay_amount",
+    "travel_policy_check.policy_amount"
+  ],
+  "requiredRoots": [
+    "page_title",
+    "selected_task",
+    "tasks",
+    "tasks_empty",
+    "travel_policy_check"
+  ],
+  "schema": {
+    "page_title": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "tasks": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "tas_01"
+          },
+          "name": {
+            "type": "string",
+            "required": false,
+            "example": "task_1"
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "travel_policy_check": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "check_result": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "policy_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "actual_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "exceed_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "exceed_ratio": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "exceed_strategy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "exceed_reason": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "personal_pay_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "approval_mode": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "tasks_empty": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "selected_task": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "title": {
+          "type": "string",
+          "required": false,
+          "example": "请选择任务"
+        }
+      }
+    }
+  },
   "notes": []
 }

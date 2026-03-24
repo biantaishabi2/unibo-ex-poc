@@ -1,1 +1,1 @@
-{"entity":"EnterpriseSettings","domain":"Pages","page_type":"custom"}
+{"entity":"TravelPolicy","domain":"Travel","page_type":"custom","extends_template":"base_object_page"}

@@ -11,6 +11,7 @@
     "row.departure_at",
     "row.departure_station_code",
     "row.departure_station_name",
+    "row.id",
     "row.inventory_status",
     "row.is_no_seat",
     "row.listed_price",
@@ -149,6 +150,11 @@
             "type": "string",
             "required": false,
             "example": ""
+          },
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "row_01"
           }
         }
       },
@@ -239,6 +245,10 @@
           "required": true
         },
         "sale_status": {
+          "type": "unknown",
+          "required": true
+        },
+        "id": {
           "type": "unknown",
           "required": true
         }

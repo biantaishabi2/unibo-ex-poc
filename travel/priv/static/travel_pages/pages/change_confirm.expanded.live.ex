@@ -11,9 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): 
+  # status.keys preview (first ~40): step_1_label, step_2_label, step_3_label
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
-  @status_defaults_raw Jason.decode!("{}")
+  @status_defaults_raw Jason.decode!("{
+  \"step_1_label\": \"基本信息\",
+  \"step_2_label\": \"详细配置\",
+  \"step_3_label\": \"确认提交\"
+}")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
@@ -65,8 +69,30 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event(_event, _params, socket) do
-    # No events declared by events.schema
+  def handle_event("wizard_cancel", params, socket) do
+    # UI action event name: wizard_cancel
+    socket = dispatch_backend("wizard_cancel", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("wizard_next", params, socket) do
+    # UI action event name: wizard_next
+    socket = dispatch_backend("wizard_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("wizard_prev", params, socket) do
+    # UI action event name: wizard_prev
+    socket = dispatch_backend("wizard_prev", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("wizard_submit", params, socket) do
+    # UI action event name: wizard_submit
+    socket = dispatch_backend("wizard_submit", params, socket)
     {:noreply, socket}
   end
 

@@ -1,1 +1,10 @@
-{}
+{
+  "travel_airline": {
+    "airline_code": "",
+    "airline_name": "",
+    "iata_code": "",
+    "icao_code": "",
+    "status": ""
+  },
+  "editing": false
+}

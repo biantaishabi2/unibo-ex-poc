@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "defaults": {
+    "page_title": "TravelChangeOrder 列表",
+    "rows_empty": true,
+    "rows": [
+      {
+        "change_reason": "",
+        "price_difference": "",
+        "change_fee": "",
+        "status": "",
+        "approval_mode": "",
+        "id": "row_01"
+      },
+      {
+        "change_reason": "",
+        "price_difference": "",
+        "change_fee": "",
+        "status": "",
+        "approval_mode": "",
+        "id": "row_02"
+      },
+      {
+        "change_reason": "",
+        "price_difference": "",
+        "change_fee": "",
+        "status": "",
+        "approval_mode": "",
+        "id": "row_03"
+      }
+    ]
+  },
+  "keys": [
+    "page_title",
+    "rows",
+    "rows[]",
+    "rows[].approval_mode",
+    "rows[].change_fee",
+    "rows[].change_reason",
+    "rows[].id",
+    "rows[].price_difference",
+    "rows[].status",
+    "rows_empty"
+  ],
+  "required": [
+    "page_title",
+    "rows",
+    "rows_empty"
+  ],
+  "urlParams": {},
+  "notes": [],
+  "layer2": {
+    "backend": {
+      "api_map": {
+        "list": "Travel.TravelChangeOrder.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "approval_mode: approvalMode change_fee: changeFee change_reason: changeReason id new_offer_id: newOfferId price_difference: priceDifference status"
+      },
+      "params": {
+        "accept": [
+          "status",
+          "approval_mode"
+        ]
+      }
+    },
+    "domain": "Travel",
+    "e2e": {
+      "playwright": {
+        "auto": true,
+        "base_path": "/travel/travel_change_order",
+        "cases": [
+          {
+            "covers": [],
+            "name": "页面加载 + 结构可见",
+            "steps": [
+              {
+                "action": "expect_visible",
+                "selector": "[data-page='travel_change_order_list']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "navigate_create"
+            ],
+            "name": "新建导航",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "#travel_change_order_create_btn, [data-action='navigate_create']"
+              },
+              {
+                "action": "expect_url_contains",
+                "value": "/travel/travel_change_order/new"
+              }
+            ]
+          },
+          {
+            "covers": [],
+            "name": "表格行存在",
+            "steps": [
+              {
+                "action": "expect_visible",
+                "selector": "#travel_change_order_table, [data-table='travel_change_order']"
+              }
+            ]
+          }
+        ],
+        "dto_smoke": []
+      }
+    },
+    "entity": "TravelChangeOrder",
+    "page_id": "travel_change_order_list",
+    "page_type": "list_report",
+    "runtime_monitoring": null,
+    "schema_version": "1.0",
+    "state_transitions": [
+      {
+        "description": "筛选条件变更",
+        "from": "*",
+        "name": "filter_change",
+        "to": "*",
+        "trigger": "user_input"
+      },
+      {
+        "description": "提交筛选查询",
+        "from": "*",
+        "name": "filter_submit",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "点击行跳转详情",
+        "from": "*",
+        "name": "row_click",
+        "navigate_to": "/travel/travel_change_order/{id}",
+        "to": "*",
+        "trigger": "user_action"
+      },
+      {
+        "description": "跳转新建页",
+        "from": "*",
+        "name": "navigate_create",
+        "navigate_to": "/travel/travel_change_order/new",
+        "to": "*",
+        "trigger": "user_action"
+      }
+    ],
+    "status_keys": [
+      "rows",
+      "rows_empty",
+      "filter",
+      "loading"
+    ],
+    "ui": {
+      "sections": [],
+      "template": {
+        "list": "list_report"
+      }
+    },
+    "version": 1
+  }
+}

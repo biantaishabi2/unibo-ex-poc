@@ -5,6 +5,7 @@
     "row.canonical_entity",
     "row.external_code",
     "row.external_name",
+    "row.id",
     "row.object_type",
     "row.status",
     "row.supplier_code",
@@ -59,6 +60,11 @@
             "type": "string",
             "required": false,
             "example": ""
+          },
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "row_01"
           }
         }
       },
@@ -89,6 +95,10 @@
           "required": true
         },
         "status": {
+          "type": "unknown",
+          "required": true
+        },
+        "id": {
           "type": "unknown",
           "required": true
         }

@@ -169,16 +169,18 @@ defmodule UniboExPoc.Travel.TrainOffer do
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
+    attribute :departure_station_ref_id, :string do
+      public? true
+      description "Travel 出发站主数据引用（跨域引用 Ecommerce.TravelStation）"
+    end
+    attribute :arrival_station_ref_id, :string do
+      public? true
+      description "Travel 到达站主数据引用（跨域引用 Ecommerce.TravelStation）"
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
-    belongs_to :departure_station_ref, UniboExPoc.Ecommerce.TravelStation do
-      public? true
-    end
-    belongs_to :arrival_station_ref, UniboExPoc.Ecommerce.TravelStation do
-      public? true
-    end
     has_many :orders, UniboExPoc.Travel.TravelOrder do
       public? true
       destination_attribute :train_offer_id

@@ -1,7 +1,96 @@
 {
   "version": 1,
-  "requiredPaths": [],
-  "requiredRoots": [],
-  "schema": {},
+  "requiredPaths": [
+    "row.cabin_class_code",
+    "row.cabin_class_name",
+    "row.cabin_rank",
+    "row.status",
+    "rows",
+    "rows_empty",
+    "travel_cabin_class.page",
+    "travel_cabin_class.total_pages"
+  ],
+  "requiredRoots": [
+    "row",
+    "rows",
+    "rows_empty",
+    "travel_cabin_class"
+  ],
+  "schema": {
+    "rows": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "cabin_class_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "cabin_class_name": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "cabin_rank": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "status": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "row": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "cabin_class_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "cabin_class_name": {
+          "type": "unknown",
+          "required": true
+        },
+        "cabin_rank": {
+          "type": "unknown",
+          "required": true
+        },
+        "status": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "rows_empty": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_cabin_class": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    }
+  },
   "notes": []
 }

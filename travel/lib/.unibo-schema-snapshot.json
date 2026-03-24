@@ -2,14 +2,4243 @@
   {
     "version": "1.0",
     "domain": {
-      "name": "TravelExt",
-      "description": "Travel POC 扩展域，包含改签单、退票单、差旅政策、差标校验等试验实体与跨实体流程",
-      "subdomain": "travel_ext"
+      "name": "Travel",
+      "description": "Travel vertical canonical model，作为电商域 overlay，通过 target_domain 引用 Sales/Payment/Delivery 域实体",
+      "subdomain": "travel"
     },
     "entities": [
       {
+        "name": "TravelHotel",
+        "description": "酒店主数据（Travel 层，来源 OFBiz Product）",
+        "source": {
+          "base": "Product",
+          "filter": {
+            "product_type_id": "TRAVEL_HOTEL"
+          },
+          "domain": "ofbiz/product"
+        },
+        "aggregate_root": true,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "hotel_code",
+            "type": "string",
+            "required": true,
+            "description": "酒店规范编码"
+          },
+          {
+            "name": "hotel_name",
+            "type": "string",
+            "required": true,
+            "description": "酒店名称"
+          },
+          {
+            "name": "city_code",
+            "type": "string",
+            "description": "城市编码冗余（便于兼容检索）"
+          },
+          {
+            "name": "hotel_star",
+            "type": "string",
+            "description": "酒店星级"
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "default": "active",
+            "constraints": {
+              "values": [
+                "active",
+                "inactive"
+              ]
+            }
+          },
+          {
+            "name": "city_id",
+            "type": "string",
+            "description": "城市引用（跨域引用 Ecommerce.TravelCity）"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "hotel_code",
+              "hotel_name",
+              "city_id",
+              "city_code",
+              "hotel_star",
+              "status"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "hotel_name",
+              "city_id",
+              "city_code",
+              "hotel_star",
+              "status"
+            ],
+            "primary": true
+          }
+        ],
+        "changes": [
+          {
+            "description": "AUTO_WRITE_ANCHOR",
+            "effect": "set_attribute",
+            "field": "id",
+            "expr": {
+              "op": "ref",
+              "args": [
+                "id"
+              ]
+            },
+            "on": [
+              "create",
+              "update"
+            ]
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_hotel_code",
+            "keys": [
+              "hotel_code"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "TravelRoomType",
+        "description": "酒店房型主数据（Travel 层，来源 OFBiz ProductFeature）",
+        "source": {
+          "base": "ProductFeature",
+          "filter": {
+            "product_feature_type_id": "ROOM_TYPE"
+          },
+          "domain": "ofbiz/product"
+        },
+        "aggregate_root": true,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "room_type_code",
+            "type": "string",
+            "required": true,
+            "description": "房型规范编码"
+          },
+          {
+            "name": "room_type_name",
+            "type": "string",
+            "required": true,
+            "description": "房型名称"
+          },
+          {
+            "name": "hotel_code",
+            "type": "string",
+            "description": "酒店编码冗余（便于兼容检索）"
+          },
+          {
+            "name": "bed_type",
+            "type": "string",
+            "description": "床型"
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "default": "active",
+            "constraints": {
+              "values": [
+                "active",
+                "inactive"
+              ]
+            }
+          }
+        ],
+        "relationships": [
+          {
+            "name": "hotel",
+            "type": "belongs_to",
+            "target": "TravelHotel",
+            "foreign_key": "hotel_id"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "room_type_code",
+              "room_type_name",
+              "hotel_id",
+              "hotel_code",
+              "bed_type",
+              "status"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "room_type_name",
+              "hotel_id",
+              "hotel_code",
+              "bed_type",
+              "status"
+            ],
+            "primary": true
+          }
+        ],
+        "changes": [
+          {
+            "description": "AUTO_WRITE_ANCHOR",
+            "effect": "set_attribute",
+            "field": "id",
+            "expr": {
+              "op": "ref",
+              "args": [
+                "id"
+              ]
+            },
+            "on": [
+              "create",
+              "update"
+            ]
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_room_type_code",
+            "keys": [
+              "room_type_code"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "TravelAirline",
+        "description": "航司主数据（Travel 层，来源 OFBiz PartyGroup）",
+        "source": {
+          "base": "PartyGroup",
+          "filter": {
+            "industry": "AIRLINE"
+          },
+          "domain": "ofbiz/party"
+        },
+        "aggregate_root": true,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "airline_code",
+            "type": "string",
+            "required": true,
+            "description": "航司规范编码"
+          },
+          {
+            "name": "airline_name",
+            "type": "string",
+            "required": true,
+            "description": "航司名称"
+          },
+          {
+            "name": "iata_code",
+            "type": "string",
+            "description": "IATA 二字码"
+          },
+          {
+            "name": "icao_code",
+            "type": "string",
+            "description": "ICAO 三字码"
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "default": "active",
+            "constraints": {
+              "values": [
+                "active",
+                "inactive"
+              ]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "airline_code",
+              "airline_name",
+              "iata_code",
+              "icao_code",
+              "status"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "airline_name",
+              "iata_code",
+              "icao_code",
+              "status"
+            ],
+            "primary": true
+          }
+        ],
+        "changes": [
+          {
+            "description": "AUTO_WRITE_ANCHOR",
+            "effect": "set_attribute",
+            "field": "id",
+            "expr": {
+              "op": "ref",
+              "args": [
+                "id"
+              ]
+            },
+            "on": [
+              "create",
+              "update"
+            ]
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_airline_code",
+            "keys": [
+              "airline_code"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "TravelCabinClass",
+        "description": "舱位主数据（Travel 层，来源 OFBiz Enumeration）",
+        "source": {
+          "base": "Enumeration",
+          "filter": {
+            "enum_type_id": "CABIN_CLASS"
+          },
+          "domain": "ofbiz/common"
+        },
+        "aggregate_root": true,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "cabin_class_code",
+            "type": "string",
+            "required": true,
+            "description": "舱位规范编码"
+          },
+          {
+            "name": "cabin_class_name",
+            "type": "string",
+            "required": true,
+            "description": "舱位名称"
+          },
+          {
+            "name": "cabin_rank",
+            "type": "integer",
+            "description": "舱位等级序"
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "default": "active",
+            "constraints": {
+              "values": [
+                "active",
+                "inactive"
+              ]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "cabin_class_code",
+              "cabin_class_name",
+              "cabin_rank",
+              "status"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "cabin_class_name",
+              "cabin_rank",
+              "status"
+            ],
+            "primary": true
+          }
+        ],
+        "changes": [
+          {
+            "description": "AUTO_WRITE_ANCHOR",
+            "effect": "set_attribute",
+            "field": "id",
+            "expr": {
+              "op": "ref",
+              "args": [
+                "id"
+              ]
+            },
+            "on": [
+              "create",
+              "update"
+            ]
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_cabin_class_code",
+            "keys": [
+              "cabin_class_code"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "TravelStaticCodeMapping",
+        "description": "供应商静态码到 Travel 主数据的映射（Travel 层统一适配）",
+        "source": {
+          "base": "DataSource",
+          "domain": "ofbiz/common"
+        },
+        "aggregate_root": true,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "supplier_code",
+            "type": "string",
+            "required": true,
+            "description": "供应商编码"
+          },
+          {
+            "name": "object_type",
+            "type": "enum",
+            "required": true,
+            "constraints": {
+              "values": [
+                "city",
+                "airport",
+                "station",
+                "hotel",
+                "room_type",
+                "airline",
+                "cabin_class"
+              ]
+            },
+            "description": "主数据对象类型"
+          },
+          {
+            "name": "canonical_entity",
+            "type": "string",
+            "required": true,
+            "description": "Travel 实体名"
+          },
+          {
+            "name": "canonical_id",
+            "type": "uuid",
+            "required": true,
+            "description": "Travel 实体 ID"
+          },
+          {
+            "name": "external_code",
+            "type": "string",
+            "required": true,
+            "description": "供应商侧编码"
+          },
+          {
+            "name": "external_name",
+            "type": "string",
+            "description": "供应商侧名称"
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "default": "active",
+            "constraints": {
+              "values": [
+                "active",
+                "inactive"
+              ]
+            }
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "supplier_code",
+              "object_type",
+              "canonical_entity",
+              "canonical_id",
+              "external_code",
+              "external_name",
+              "status"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "canonical_entity",
+              "canonical_id",
+              "external_name",
+              "status"
+            ],
+            "primary": true
+          }
+        ],
+        "changes": [
+          {
+            "description": "AUTO_WRITE_ANCHOR",
+            "effect": "set_attribute",
+            "field": "id",
+            "expr": {
+              "op": "ref",
+              "args": [
+                "id"
+              ]
+            },
+            "on": [
+              "create",
+              "update"
+            ]
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_supplier_static_code",
+            "keys": [
+              "supplier_code",
+              "object_type",
+              "external_code"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "HotelOffer",
+        "description": "酒店可售 offer，承载房型、价计划、价态和可售规则快照",
+        "aggregate_root": true,
+        "tenancy": {},
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "tenant_id",
+            "type": "uuid",
+            "required": true,
+            "description": "租户 ID"
+          },
+          {
+            "name": "host_shop_id",
+            "type": "uuid",
+            "description": "宿主商城 ID，仅用于宿主侧隔离和桥接上下文"
+          },
+          {
+            "name": "supplier_code",
+            "type": "string",
+            "required": true,
+            "description": "供应商编码"
+          },
+          {
+            "name": "hotel_code",
+            "type": "string",
+            "required": true,
+            "description": "酒店编码"
+          },
+          {
+            "name": "hotel_name",
+            "type": "string",
+            "required": true,
+            "description": "酒店名称"
+          },
+          {
+            "name": "city_code",
+            "type": "string",
+            "required": true,
+            "description": "城市编码"
+          },
+          {
+            "name": "room_type_code",
+            "type": "string",
+            "required": true,
+            "description": "房型编码"
+          },
+          {
+            "name": "rate_plan_code",
+            "type": "string",
+            "required": true,
+            "description": "价计划编码"
+          },
+          {
+            "name": "checkin_date",
+            "type": "date",
+            "required": true,
+            "description": "入住日期"
+          },
+          {
+            "name": "checkout_date",
+            "type": "date",
+            "required": true,
+            "description": "离店日期"
+          },
+          {
+            "name": "listed_price",
+            "type": "decimal",
+            "required": true,
+            "description": "对客展示价快照"
+          },
+          {
+            "name": "settlement_price",
+            "type": "decimal",
+            "description": "结算价快照"
+          },
+          {
+            "name": "currency",
+            "type": "string",
+            "default": "CNY",
+            "description": "币种"
+          },
+          {
+            "name": "inventory_count",
+            "type": "integer",
+            "default": 0,
+            "description": "可售库存快照"
+          },
+          {
+            "name": "cancellation_policy",
+            "type": "text",
+            "description": "取消规则快照"
+          },
+          {
+            "name": "guarantee_policy",
+            "type": "text",
+            "description": "担保规则快照"
+          },
+          {
+            "name": "sale_status",
+            "type": "enum",
+            "default": "draft",
+            "constraints": {
+              "values": [
+                "draft",
+                "active",
+                "inactive",
+                "expired"
+              ]
+            },
+            "description": "可售状态"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "city_ref_id",
+            "type": "string",
+            "description": "Core 旅行城市主数据引用（跨域引用 Ecommerce.TravelCity）"
+          }
+        ],
+        "relationships": [
+          {
+            "name": "hotel_ref",
+            "type": "belongs_to",
+            "target": "TravelHotel",
+            "foreign_key": "hotel_ref_id"
+          },
+          {
+            "name": "room_type_ref",
+            "type": "belongs_to",
+            "target": "TravelRoomType",
+            "foreign_key": "room_type_ref_id"
+          },
+          {
+            "name": "orders",
+            "type": "has_many",
+            "target": "TravelOrder",
+            "foreign_key": "hotel_offer_id"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "tenant_id",
+              "host_shop_id",
+              "supplier_code",
+              "hotel_code",
+              "hotel_ref_id",
+              "hotel_name",
+              "city_code",
+              "city_ref_id",
+              "room_type_code",
+              "room_type_ref_id",
+              "rate_plan_code",
+              "checkin_date",
+              "checkout_date",
+              "listed_price",
+              "settlement_price",
+              "currency",
+              "inventory_count",
+              "cancellation_policy",
+              "guarantee_policy",
+              "sale_status"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "hotel_name",
+              "city_code",
+              "city_ref_id",
+              "hotel_ref_id",
+              "room_type_ref_id",
+              "listed_price",
+              "settlement_price",
+              "currency",
+              "inventory_count",
+              "cancellation_policy",
+              "guarantee_policy"
+            ],
+            "primary": true
+          },
+          {
+            "name": "activate",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "deactivate",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "expire",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "destroy",
+            "type": "destroy",
+            "primary": true
+          }
+        ],
+        "validations": [
+          {
+            "rule": "present",
+            "field": "tenant_id",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "supplier_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "hotel_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "room_type_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "rate_plan_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "compare",
+            "field": "listed_price",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "listed_price 不能为负数"
+          },
+          {
+            "rule": "compare",
+            "field": "settlement_price",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "settlement_price 不能为负数"
+          },
+          {
+            "rule": "compare",
+            "field": "inventory_count",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "inventory_count 不能为负数"
+          },
+          {
+            "rule": "one_of",
+            "field": "sale_status",
+            "params": {
+              "values": [
+                "draft",
+                "inactive"
+              ]
+            },
+            "on": [
+              "activate"
+            ],
+            "message": "只有草稿或停用中的 offer 可以 activate"
+          },
+          {
+            "rule": "one_of",
+            "field": "sale_status",
+            "params": {
+              "values": [
+                "active"
+              ]
+            },
+            "on": [
+              "deactivate",
+              "expire"
+            ],
+            "message": "只有 active 状态的 offer 可以 deactivate 或 expire"
+          }
+        ],
+        "changes": [
+          {
+            "effect": "set_attribute",
+            "field": "sale_status",
+            "value": "active",
+            "on": [
+              "activate"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "sale_status",
+            "value": "inactive",
+            "on": [
+              "deactivate"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "sale_status",
+            "value": "expired",
+            "on": [
+              "expire"
+            ]
+          },
+          {
+            "description": "AUTO_WRITE_ANCHOR",
+            "effect": "set_attribute",
+            "field": "id",
+            "expr": {
+              "op": "ref",
+              "args": [
+                "id"
+              ]
+            },
+            "on": [
+              "create",
+              "update",
+              "activate",
+              "deactivate",
+              "expire",
+              "destroy"
+            ]
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_hotel_offer_snapshot",
+            "keys": [
+              "tenant_id",
+              "supplier_code",
+              "hotel_code",
+              "room_type_code",
+              "rate_plan_code",
+              "checkin_date",
+              "checkout_date"
+            ]
+          }
+        ],
+        "events": [
+          {
+            "on": "activate",
+            "topic": "travel.catalog.hotel_offer.activated"
+          },
+          {
+            "on": "deactivate",
+            "topic": "travel.catalog.hotel_offer.deactivated"
+          },
+          {
+            "on": "expire",
+            "topic": "travel.catalog.hotel_offer.expired"
+          }
+        ],
+        "workflows": [
+          {
+            "name": "hotel_offer_lifecycle",
+            "description": "酒店 offer 生命周期",
+            "steps": [
+              {
+                "action": "create",
+                "next": [
+                  "update",
+                  "activate",
+                  "destroy"
+                ]
+              },
+              {
+                "action": "update",
+                "next": [
+                  "activate",
+                  "destroy"
+                ]
+              },
+              {
+                "action": "activate",
+                "next": [
+                  "deactivate",
+                  "expire"
+                ],
+                "trigger_event": "travel.catalog.hotel_offer.activated"
+              },
+              {
+                "action": "deactivate",
+                "next": [
+                  "activate"
+                ],
+                "trigger_event": "travel.catalog.hotel_offer.deactivated"
+              },
+              {
+                "action": "expire",
+                "trigger_event": "travel.catalog.hotel_offer.expired"
+              },
+              {
+                "action": "destroy"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "FlightOffer",
+        "description": "机票可售 offer，承载航班、舱位、票规和库存快照",
+        "aggregate_root": true,
+        "tenancy": {},
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "tenant_id",
+            "type": "uuid",
+            "required": true
+          },
+          {
+            "name": "host_shop_id",
+            "type": "uuid",
+            "description": "宿主商城 ID，仅用于宿主侧隔离和桥接上下文"
+          },
+          {
+            "name": "supplier_code",
+            "type": "string",
+            "required": true,
+            "description": "供应商编码"
+          },
+          {
+            "name": "itinerary_code",
+            "type": "string",
+            "required": true,
+            "description": "行程编码"
+          },
+          {
+            "name": "flight_no",
+            "type": "string",
+            "required": true,
+            "description": "航班号"
+          },
+          {
+            "name": "departure_airport_code",
+            "type": "string",
+            "required": true,
+            "description": "出发机场编码"
+          },
+          {
+            "name": "arrival_airport_code",
+            "type": "string",
+            "required": true,
+            "description": "到达机场编码"
+          },
+          {
+            "name": "departure_at",
+            "type": "datetime",
+            "required": true,
+            "description": "起飞时间"
+          },
+          {
+            "name": "arrival_at",
+            "type": "datetime",
+            "required": true,
+            "description": "到达时间"
+          },
+          {
+            "name": "cabin_class",
+            "type": "string",
+            "required": true,
+            "description": "舱等"
+          },
+          {
+            "name": "fare_family",
+            "type": "string",
+            "description": "运价族"
+          },
+          {
+            "name": "listed_price",
+            "type": "decimal",
+            "required": true,
+            "description": "对客展示价快照"
+          },
+          {
+            "name": "settlement_price",
+            "type": "decimal",
+            "description": "结算价快照"
+          },
+          {
+            "name": "currency",
+            "type": "string",
+            "default": "CNY"
+          },
+          {
+            "name": "seats_available",
+            "type": "integer",
+            "default": 0,
+            "description": "可售座位快照"
+          },
+          {
+            "name": "baggage_policy",
+            "type": "text",
+            "description": "行李规则快照"
+          },
+          {
+            "name": "refund_change_policy",
+            "type": "text",
+            "description": "退改规则快照"
+          },
+          {
+            "name": "sale_status",
+            "type": "enum",
+            "default": "draft",
+            "constraints": {
+              "values": [
+                "draft",
+                "active",
+                "inactive",
+                "expired"
+              ]
+            }
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "departure_airport_ref_id",
+            "type": "string",
+            "description": "Travel 出发机场主数据引用（跨域引用 Ecommerce.TravelAirport）"
+          },
+          {
+            "name": "arrival_airport_ref_id",
+            "type": "string",
+            "description": "Travel 到达机场主数据引用（跨域引用 Ecommerce.TravelAirport）"
+          }
+        ],
+        "relationships": [
+          {
+            "name": "airline_ref",
+            "type": "belongs_to",
+            "target": "TravelAirline",
+            "foreign_key": "airline_ref_id"
+          },
+          {
+            "name": "cabin_class_ref",
+            "type": "belongs_to",
+            "target": "TravelCabinClass",
+            "foreign_key": "cabin_class_ref_id"
+          },
+          {
+            "name": "orders",
+            "type": "has_many",
+            "target": "TravelOrder",
+            "foreign_key": "flight_offer_id"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "tenant_id",
+              "host_shop_id",
+              "supplier_code",
+              "itinerary_code",
+              "flight_no",
+              "airline_ref_id",
+              "departure_airport_code",
+              "departure_airport_ref_id",
+              "arrival_airport_code",
+              "arrival_airport_ref_id",
+              "departure_at",
+              "arrival_at",
+              "cabin_class",
+              "cabin_class_ref_id",
+              "fare_family",
+              "listed_price",
+              "settlement_price",
+              "currency",
+              "seats_available",
+              "baggage_policy",
+              "refund_change_policy",
+              "sale_status"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "airline_ref_id",
+              "departure_airport_ref_id",
+              "arrival_airport_ref_id",
+              "cabin_class_ref_id",
+              "listed_price",
+              "settlement_price",
+              "currency",
+              "seats_available",
+              "baggage_policy",
+              "refund_change_policy",
+              "fare_family"
+            ],
+            "primary": true
+          },
+          {
+            "name": "activate",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "deactivate",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "expire",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "destroy",
+            "type": "destroy",
+            "primary": true
+          }
+        ],
+        "validations": [
+          {
+            "rule": "present",
+            "field": "tenant_id",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "supplier_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "itinerary_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "flight_no",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "departure_airport_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "arrival_airport_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "cabin_class",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "compare",
+            "field": "listed_price",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "listed_price 不能为负数"
+          },
+          {
+            "rule": "compare",
+            "field": "settlement_price",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "settlement_price 不能为负数"
+          },
+          {
+            "rule": "compare",
+            "field": "seats_available",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "seats_available 不能为负数"
+          },
+          {
+            "rule": "one_of",
+            "field": "sale_status",
+            "params": {
+              "values": [
+                "draft",
+                "inactive"
+              ]
+            },
+            "on": [
+              "activate"
+            ],
+            "message": "只有草稿或停用中的 offer 可以 activate"
+          },
+          {
+            "rule": "one_of",
+            "field": "sale_status",
+            "params": {
+              "values": [
+                "active"
+              ]
+            },
+            "on": [
+              "deactivate",
+              "expire"
+            ],
+            "message": "只有 active 状态的 offer 可以 deactivate 或 expire"
+          }
+        ],
+        "changes": [
+          {
+            "effect": "set_attribute",
+            "field": "sale_status",
+            "value": "active",
+            "on": [
+              "activate"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "sale_status",
+            "value": "inactive",
+            "on": [
+              "deactivate"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "sale_status",
+            "value": "expired",
+            "on": [
+              "expire"
+            ]
+          },
+          {
+            "description": "AUTO_WRITE_ANCHOR",
+            "effect": "set_attribute",
+            "field": "id",
+            "expr": {
+              "op": "ref",
+              "args": [
+                "id"
+              ]
+            },
+            "on": [
+              "create",
+              "update",
+              "activate",
+              "deactivate",
+              "expire",
+              "destroy"
+            ]
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_flight_offer_snapshot",
+            "keys": [
+              "tenant_id",
+              "supplier_code",
+              "itinerary_code",
+              "flight_no",
+              "departure_at",
+              "cabin_class"
+            ]
+          }
+        ],
+        "events": [
+          {
+            "on": "activate",
+            "topic": "travel.catalog.flight_offer.activated"
+          },
+          {
+            "on": "deactivate",
+            "topic": "travel.catalog.flight_offer.deactivated"
+          },
+          {
+            "on": "expire",
+            "topic": "travel.catalog.flight_offer.expired"
+          }
+        ],
+        "workflows": [
+          {
+            "name": "flight_offer_lifecycle",
+            "description": "机票 offer 生命周期",
+            "steps": [
+              {
+                "action": "create",
+                "next": [
+                  "update",
+                  "activate",
+                  "destroy"
+                ]
+              },
+              {
+                "action": "update",
+                "next": [
+                  "activate",
+                  "destroy"
+                ]
+              },
+              {
+                "action": "activate",
+                "next": [
+                  "deactivate",
+                  "expire"
+                ],
+                "trigger_event": "travel.catalog.flight_offer.activated"
+              },
+              {
+                "action": "deactivate",
+                "next": [
+                  "activate"
+                ],
+                "trigger_event": "travel.catalog.flight_offer.deactivated"
+              },
+              {
+                "action": "expire",
+                "trigger_event": "travel.catalog.flight_offer.expired"
+              },
+              {
+                "action": "destroy"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "VacationOffer",
+        "description": "度假可售 offer，承载套餐、出发日期和预订规则快照",
+        "aggregate_root": true,
+        "tenancy": {},
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "tenant_id",
+            "type": "uuid",
+            "required": true
+          },
+          {
+            "name": "host_shop_id",
+            "type": "uuid",
+            "description": "宿主商城 ID，仅用于宿主侧隔离和桥接上下文"
+          },
+          {
+            "name": "supplier_code",
+            "type": "string",
+            "required": true,
+            "description": "供应商编码"
+          },
+          {
+            "name": "package_code",
+            "type": "string",
+            "required": true,
+            "description": "套餐编码"
+          },
+          {
+            "name": "package_name",
+            "type": "string",
+            "required": true,
+            "description": "套餐名称"
+          },
+          {
+            "name": "package_type",
+            "type": "enum",
+            "default": "group_tour",
+            "constraints": {
+              "values": [
+                "group_tour",
+                "free_travel",
+                "ticket_hotel",
+                "custom"
+              ]
+            },
+            "description": "套餐类型"
+          },
+          {
+            "name": "departure_city_code",
+            "type": "string",
+            "required": true,
+            "description": "出发城市编码"
+          },
+          {
+            "name": "destination_code",
+            "type": "string",
+            "required": true,
+            "description": "目的地编码"
+          },
+          {
+            "name": "start_date",
+            "type": "date",
+            "required": true,
+            "description": "出行开始日期"
+          },
+          {
+            "name": "end_date",
+            "type": "date",
+            "required": true,
+            "description": "出行结束日期"
+          },
+          {
+            "name": "listed_price",
+            "type": "decimal",
+            "required": true,
+            "description": "对客展示价快照"
+          },
+          {
+            "name": "settlement_price",
+            "type": "decimal",
+            "description": "结算价快照"
+          },
+          {
+            "name": "currency",
+            "type": "string",
+            "default": "CNY"
+          },
+          {
+            "name": "inventory_count",
+            "type": "integer",
+            "default": 0,
+            "description": "可售库存快照"
+          },
+          {
+            "name": "booking_rules",
+            "type": "text",
+            "description": "预订规则快照"
+          },
+          {
+            "name": "cancellation_policy",
+            "type": "text",
+            "description": "取消规则快照"
+          },
+          {
+            "name": "sale_status",
+            "type": "enum",
+            "default": "draft",
+            "constraints": {
+              "values": [
+                "draft",
+                "active",
+                "inactive",
+                "expired"
+              ]
+            }
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "departure_city_ref_id",
+            "type": "string",
+            "description": "Core 出发城市主数据引用（跨域引用 Ecommerce.TravelCity）"
+          },
+          {
+            "name": "destination_ref_id",
+            "type": "string",
+            "description": "Core 目的地主数据引用（跨域引用 Ecommerce.TravelCity）"
+          }
+        ],
+        "relationships": [
+          {
+            "name": "orders",
+            "type": "has_many",
+            "target": "TravelOrder",
+            "foreign_key": "vacation_offer_id"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "tenant_id",
+              "host_shop_id",
+              "supplier_code",
+              "package_code",
+              "package_name",
+              "package_type",
+              "departure_city_code",
+              "departure_city_ref_id",
+              "destination_code",
+              "destination_ref_id",
+              "start_date",
+              "end_date",
+              "listed_price",
+              "settlement_price",
+              "currency",
+              "inventory_count",
+              "booking_rules",
+              "cancellation_policy",
+              "sale_status"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "package_name",
+              "package_type",
+              "departure_city_ref_id",
+              "destination_ref_id",
+              "listed_price",
+              "settlement_price",
+              "currency",
+              "inventory_count",
+              "booking_rules",
+              "cancellation_policy"
+            ],
+            "primary": true
+          },
+          {
+            "name": "activate",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "deactivate",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "expire",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "destroy",
+            "type": "destroy",
+            "primary": true
+          }
+        ],
+        "validations": [
+          {
+            "rule": "present",
+            "field": "tenant_id",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "supplier_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "package_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "package_name",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "departure_city_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "destination_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "compare",
+            "field": "listed_price",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "listed_price 不能为负数"
+          },
+          {
+            "rule": "compare",
+            "field": "settlement_price",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "settlement_price 不能为负数"
+          },
+          {
+            "rule": "compare",
+            "field": "inventory_count",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "inventory_count 不能为负数"
+          },
+          {
+            "rule": "one_of",
+            "field": "sale_status",
+            "params": {
+              "values": [
+                "draft",
+                "inactive"
+              ]
+            },
+            "on": [
+              "activate"
+            ],
+            "message": "只有草稿或停用中的 offer 可以 activate"
+          },
+          {
+            "rule": "one_of",
+            "field": "sale_status",
+            "params": {
+              "values": [
+                "active"
+              ]
+            },
+            "on": [
+              "deactivate",
+              "expire"
+            ],
+            "message": "只有 active 状态的 offer 可以 deactivate 或 expire"
+          }
+        ],
+        "changes": [
+          {
+            "effect": "set_attribute",
+            "field": "sale_status",
+            "value": "active",
+            "on": [
+              "activate"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "sale_status",
+            "value": "inactive",
+            "on": [
+              "deactivate"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "sale_status",
+            "value": "expired",
+            "on": [
+              "expire"
+            ]
+          },
+          {
+            "description": "AUTO_WRITE_ANCHOR",
+            "effect": "set_attribute",
+            "field": "id",
+            "expr": {
+              "op": "ref",
+              "args": [
+                "id"
+              ]
+            },
+            "on": [
+              "create",
+              "update",
+              "activate",
+              "deactivate",
+              "expire",
+              "destroy"
+            ]
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_vacation_offer_snapshot",
+            "keys": [
+              "tenant_id",
+              "supplier_code",
+              "package_code",
+              "start_date",
+              "end_date"
+            ]
+          }
+        ],
+        "events": [
+          {
+            "on": "activate",
+            "topic": "travel.catalog.vacation_offer.activated"
+          },
+          {
+            "on": "deactivate",
+            "topic": "travel.catalog.vacation_offer.deactivated"
+          },
+          {
+            "on": "expire",
+            "topic": "travel.catalog.vacation_offer.expired"
+          }
+        ],
+        "workflows": [
+          {
+            "name": "vacation_offer_lifecycle",
+            "description": "度假 offer 生命周期",
+            "steps": [
+              {
+                "action": "create",
+                "next": [
+                  "update",
+                  "activate",
+                  "destroy"
+                ]
+              },
+              {
+                "action": "update",
+                "next": [
+                  "activate",
+                  "destroy"
+                ]
+              },
+              {
+                "action": "activate",
+                "next": [
+                  "deactivate",
+                  "expire"
+                ],
+                "trigger_event": "travel.catalog.vacation_offer.activated"
+              },
+              {
+                "action": "deactivate",
+                "next": [
+                  "activate"
+                ],
+                "trigger_event": "travel.catalog.vacation_offer.deactivated"
+              },
+              {
+                "action": "expire",
+                "trigger_event": "travel.catalog.vacation_offer.expired"
+              },
+              {
+                "action": "destroy"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "TrainOffer",
+        "description": "火车票可售 offer，承载车次、席别、候补和退改规则快照",
+        "aggregate_root": true,
+        "tenancy": {},
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "tenant_id",
+            "type": "uuid",
+            "required": true
+          },
+          {
+            "name": "host_shop_id",
+            "type": "uuid",
+            "description": "宿主商城 ID，仅用于宿主侧隔离和桥接上下文"
+          },
+          {
+            "name": "supplier_code",
+            "type": "string",
+            "required": true,
+            "description": "供应商编码"
+          },
+          {
+            "name": "train_no",
+            "type": "string",
+            "required": true,
+            "description": "车次号"
+          },
+          {
+            "name": "departure_station_code",
+            "type": "string",
+            "required": true,
+            "description": "出发站编码"
+          },
+          {
+            "name": "departure_station_name",
+            "type": "string",
+            "required": true,
+            "description": "出发站名称"
+          },
+          {
+            "name": "arrival_station_code",
+            "type": "string",
+            "required": true,
+            "description": "到达站编码"
+          },
+          {
+            "name": "arrival_station_name",
+            "type": "string",
+            "required": true,
+            "description": "到达站名称"
+          },
+          {
+            "name": "travel_date",
+            "type": "date",
+            "required": true,
+            "description": "乘车日期"
+          },
+          {
+            "name": "departure_at",
+            "type": "datetime",
+            "required": true,
+            "description": "发车时间"
+          },
+          {
+            "name": "arrival_at",
+            "type": "datetime",
+            "required": true,
+            "description": "到达时间"
+          },
+          {
+            "name": "seat_class",
+            "type": "string",
+            "required": true,
+            "description": "席别名称"
+          },
+          {
+            "name": "seat_code",
+            "type": "string",
+            "required": true,
+            "description": "席别编码"
+          },
+          {
+            "name": "is_no_seat",
+            "type": "boolean",
+            "default": false,
+            "description": "是否无座票"
+          },
+          {
+            "name": "inventory_status",
+            "type": "enum",
+            "default": "unavailable",
+            "constraints": {
+              "values": [
+                "available",
+                "waitlist_only",
+                "sold_out",
+                "unavailable"
+              ]
+            },
+            "description": "余票或候补可用状态"
+          },
+          {
+            "name": "waitlist_supported",
+            "type": "boolean",
+            "default": false,
+            "description": "是否支持候补"
+          },
+          {
+            "name": "listed_price",
+            "type": "decimal",
+            "required": true,
+            "description": "对客展示价快照"
+          },
+          {
+            "name": "settlement_price",
+            "type": "decimal",
+            "description": "结算价快照"
+          },
+          {
+            "name": "currency",
+            "type": "string",
+            "default": "CNY"
+          },
+          {
+            "name": "booking_rules_snapshot",
+            "type": "text",
+            "description": "预订规则快照"
+          },
+          {
+            "name": "change_rules_snapshot",
+            "type": "text",
+            "description": "改签规则快照"
+          },
+          {
+            "name": "refund_rules_snapshot",
+            "type": "text",
+            "description": "退票规则快照"
+          },
+          {
+            "name": "sale_status",
+            "type": "enum",
+            "default": "draft",
+            "constraints": {
+              "values": [
+                "draft",
+                "active",
+                "inactive",
+                "expired"
+              ]
+            },
+            "description": "可售状态"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "departure_station_ref_id",
+            "type": "string",
+            "description": "Travel 出发站主数据引用（跨域引用 Ecommerce.TravelStation）"
+          },
+          {
+            "name": "arrival_station_ref_id",
+            "type": "string",
+            "description": "Travel 到达站主数据引用（跨域引用 Ecommerce.TravelStation）"
+          }
+        ],
+        "relationships": [
+          {
+            "name": "orders",
+            "type": "has_many",
+            "target": "TravelOrder",
+            "foreign_key": "train_offer_id"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "tenant_id",
+              "host_shop_id",
+              "supplier_code",
+              "train_no",
+              "departure_station_code",
+              "departure_station_ref_id",
+              "departure_station_name",
+              "arrival_station_code",
+              "arrival_station_ref_id",
+              "arrival_station_name",
+              "travel_date",
+              "departure_at",
+              "arrival_at",
+              "seat_class",
+              "seat_code",
+              "is_no_seat",
+              "inventory_status",
+              "waitlist_supported",
+              "listed_price",
+              "settlement_price",
+              "currency",
+              "booking_rules_snapshot",
+              "change_rules_snapshot",
+              "refund_rules_snapshot",
+              "sale_status"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "departure_station_ref_id",
+              "arrival_station_ref_id",
+              "departure_station_name",
+              "arrival_station_name",
+              "departure_at",
+              "arrival_at",
+              "seat_class",
+              "is_no_seat",
+              "inventory_status",
+              "waitlist_supported",
+              "listed_price",
+              "settlement_price",
+              "currency",
+              "booking_rules_snapshot",
+              "change_rules_snapshot",
+              "refund_rules_snapshot"
+            ],
+            "primary": true
+          },
+          {
+            "name": "activate",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "deactivate",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "expire",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "destroy",
+            "type": "destroy",
+            "primary": true
+          }
+        ],
+        "validations": [
+          {
+            "rule": "present",
+            "field": "tenant_id",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "supplier_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "train_no",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "departure_station_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "arrival_station_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "seat_class",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "seat_code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "compare",
+            "field": "listed_price",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "listed_price 不能为负数"
+          },
+          {
+            "rule": "compare",
+            "field": "settlement_price",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "settlement_price 不能为负数"
+          },
+          {
+            "rule": "one_of",
+            "field": "sale_status",
+            "params": {
+              "values": [
+                "draft",
+                "inactive"
+              ]
+            },
+            "on": [
+              "activate"
+            ],
+            "message": "只有草稿或停用中的 offer 可以 activate"
+          },
+          {
+            "rule": "one_of",
+            "field": "sale_status",
+            "params": {
+              "values": [
+                "active"
+              ]
+            },
+            "on": [
+              "deactivate",
+              "expire"
+            ],
+            "message": "只有 active 状态的 offer 可以 deactivate 或 expire"
+          }
+        ],
+        "changes": [
+          {
+            "effect": "set_attribute",
+            "field": "sale_status",
+            "value": "active",
+            "on": [
+              "activate"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "sale_status",
+            "value": "inactive",
+            "on": [
+              "deactivate"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "sale_status",
+            "value": "expired",
+            "on": [
+              "expire"
+            ]
+          },
+          {
+            "description": "AUTO_WRITE_ANCHOR",
+            "effect": "set_attribute",
+            "field": "id",
+            "expr": {
+              "op": "ref",
+              "args": [
+                "id"
+              ]
+            },
+            "on": [
+              "create",
+              "update",
+              "activate",
+              "deactivate",
+              "expire",
+              "destroy"
+            ]
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_train_offer_snapshot",
+            "keys": [
+              "tenant_id",
+              "supplier_code",
+              "train_no",
+              "departure_station_code",
+              "arrival_station_code",
+              "travel_date",
+              "seat_code",
+              "is_no_seat"
+            ]
+          }
+        ],
+        "events": [
+          {
+            "on": "activate",
+            "topic": "travel.catalog.train_offer.activated"
+          },
+          {
+            "on": "deactivate",
+            "topic": "travel.catalog.train_offer.deactivated"
+          },
+          {
+            "on": "expire",
+            "topic": "travel.catalog.train_offer.expired"
+          }
+        ],
+        "workflows": [
+          {
+            "name": "train_offer_lifecycle",
+            "description": "火车票 offer 生命周期",
+            "steps": [
+              {
+                "action": "create",
+                "next": [
+                  "update",
+                  "activate",
+                  "destroy"
+                ]
+              },
+              {
+                "action": "update",
+                "next": [
+                  "activate",
+                  "destroy"
+                ]
+              },
+              {
+                "action": "activate",
+                "next": [
+                  "deactivate",
+                  "expire"
+                ],
+                "trigger_event": "travel.catalog.train_offer.activated"
+              },
+              {
+                "action": "deactivate",
+                "next": [
+                  "activate"
+                ],
+                "trigger_event": "travel.catalog.train_offer.deactivated"
+              },
+              {
+                "action": "expire",
+                "trigger_event": "travel.catalog.train_offer.expired"
+              },
+              {
+                "action": "destroy"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "TravelOrder",
+        "description": "统一酒旅订单，承接 hotel、flight、vacation、train 四类商品的下单和状态流转；通过跨域引用关联 Sales::Customer 和 Payment::Payment",
+        "aggregate_root": true,
+        "tenancy": {},
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "tenant_id",
+            "type": "uuid",
+            "required": true
+          },
+          {
+            "name": "host_shop_id",
+            "type": "uuid",
+            "description": "宿主商城 ID，用于 sidecar 对接上下文"
+          },
+          {
+            "name": "host_member_id",
+            "type": "string",
+            "description": "宿主会员标识，来自 shop caller context"
+          },
+          {
+            "name": "host_enterprise_id",
+            "type": "string",
+            "description": "宿主企业标识，来自 shop caller context"
+          },
+          {
+            "name": "order_no",
+            "type": "string",
+            "required": true,
+            "description": "订单号"
+          },
+          {
+            "name": "product_type",
+            "type": "enum",
+            "default": "hotel",
+            "constraints": {
+              "values": [
+                "hotel",
+                "flight",
+                "vacation",
+                "train"
+              ]
+            },
+            "description": "商品类型"
+          },
+          {
+            "name": "booking_mode",
+            "type": "enum",
+            "default": "standard",
+            "constraints": {
+              "values": [
+                "standard",
+                "waitlist"
+              ]
+            },
+            "description": "train 订单预订模式"
+          },
+          {
+            "name": "contact_name",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "contact_phone",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "traveler_count",
+            "type": "integer",
+            "default": 1,
+            "description": "出行人数量"
+          },
+          {
+            "name": "total_amount",
+            "type": "decimal",
+            "required": true,
+            "description": "订单总金额"
+          },
+          {
+            "name": "points_to_use",
+            "type": "integer",
+            "default": 0,
+            "description": "计划使用的积分数量"
+          },
+          {
+            "name": "points_deduction_amount",
+            "type": "decimal",
+            "default": 0,
+            "description": "积分抵现金额"
+          },
+          {
+            "name": "recommended_payment_method",
+            "type": "string",
+            "description": "宿主 quote 返回的推荐支付方式"
+          },
+          {
+            "name": "currency",
+            "type": "string",
+            "default": "CNY"
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "default": "draft",
+            "constraints": {
+              "values": [
+                "draft",
+                "quoted",
+                "submitted",
+                "booking_pending",
+                "booked",
+                "cancel_pending",
+                "cancelled",
+                "completed",
+                "failed"
+              ]
+            }
+          },
+          {
+            "name": "change_status",
+            "type": "enum",
+            "default": "none",
+            "constraints": {
+              "values": [
+                "none",
+                "pending",
+                "changed",
+                "failed"
+              ]
+            }
+          },
+          {
+            "name": "waitlist_status",
+            "type": "enum",
+            "default": "none",
+            "constraints": {
+              "values": [
+                "none",
+                "pending",
+                "fulfilled",
+                "cancelled",
+                "failed"
+              ]
+            }
+          },
+          {
+            "name": "original_order_ref",
+            "type": "string",
+            "description": "改签链路引用的原订单号或原票号"
+          },
+          {
+            "name": "ticket_passenger_infos",
+            "type": "map",
+            "description": "乘车人信息快照"
+          },
+          {
+            "name": "seat_selection_snapshot",
+            "type": "map",
+            "description": "选座与席别偏好快照"
+          },
+          {
+            "name": "supplier_order_ref",
+            "type": "string",
+            "description": "供应商订单号"
+          },
+          {
+            "name": "payment_external_ref",
+            "type": "string",
+            "description": "宿主支付侧外部支付流水号"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "customer_id",
+            "type": "string",
+            "description": "买家（跨域引用 Sales.Customer）"
+          },
+          {
+            "name": "payment_id",
+            "type": "string",
+            "description": "关联的支付事务（跨域引用 Payment.Payment）"
+          }
+        ],
+        "relationships": [
+          {
+            "name": "hotel_offer",
+            "type": "belongs_to",
+            "target": "HotelOffer",
+            "foreign_key": "hotel_offer_id"
+          },
+          {
+            "name": "flight_offer",
+            "type": "belongs_to",
+            "target": "FlightOffer",
+            "foreign_key": "flight_offer_id"
+          },
+          {
+            "name": "vacation_offer",
+            "type": "belongs_to",
+            "target": "VacationOffer",
+            "foreign_key": "vacation_offer_id"
+          },
+          {
+            "name": "train_offer",
+            "type": "belongs_to",
+            "target": "TrainOffer",
+            "foreign_key": "train_offer_id"
+          },
+          {
+            "name": "fulfillments",
+            "type": "has_many",
+            "target": "TravelFulfillment",
+            "foreign_key": "travel_order_id"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "tenant_id",
+              "host_shop_id",
+              "hotel_offer_id",
+              "flight_offer_id",
+              "vacation_offer_id",
+              "train_offer_id",
+              "order_no",
+              "product_type",
+              "customer_id",
+              "contact_name",
+              "contact_phone",
+              "traveler_count",
+              "total_amount",
+              "points_to_use",
+              "points_deduction_amount",
+              "currency",
+              "ticket_passenger_infos",
+              "seat_selection_snapshot"
+            ],
+            "primary": true,
+            "description": "创建订单（别名 create_order）"
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "contact_name",
+              "contact_phone",
+              "traveler_count",
+              "ticket_passenger_infos",
+              "seat_selection_snapshot"
+            ],
+            "primary": true
+          },
+          {
+            "name": "confirm_quote",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "submit_order",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "submit_waitlist",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "mark_payment_succeeded",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "mark_booked",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "fulfill_waitlist",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "mark_completed",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "request_cancel",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "cancel_waitlist",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "execute_cancel",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "cancel_cancel_request",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "request_change",
+            "type": "update",
+            "accept": [
+              "original_order_ref"
+            ]
+          },
+          {
+            "name": "confirm_change",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "mark_order_failed",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "destroy",
+            "type": "destroy",
+            "primary": true
+          }
+        ],
+        "validations": [
+          {
+            "rule": "present",
+            "field": "tenant_id",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "order_no",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "customer_id",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "contact_name",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "contact_phone",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "exactly_one_of",
+            "params": {
+              "fields": [
+                "hotel_offer_id",
+                "flight_offer_id",
+                "vacation_offer_id",
+                "train_offer_id"
+              ]
+            },
+            "on": [
+              "create"
+            ],
+            "message": "hotel_offer_id、flight_offer_id、vacation_offer_id、train_offer_id 必须四选一"
+          },
+          {
+            "rule": "present",
+            "field": "hotel_offer_id",
+            "on": [
+              "create"
+            ],
+            "where": {
+              "op": "eq",
+              "args": [
+                {
+                  "op": "ref",
+                  "args": [
+                    "product_type"
+                  ]
+                },
+                "hotel"
+              ]
+            },
+            "message": "hotel 订单必须绑定 hotel_offer_id"
+          },
+          {
+            "rule": "present",
+            "field": "flight_offer_id",
+            "on": [
+              "create"
+            ],
+            "where": {
+              "op": "eq",
+              "args": [
+                {
+                  "op": "ref",
+                  "args": [
+                    "product_type"
+                  ]
+                },
+                "flight"
+              ]
+            },
+            "message": "flight 订单必须绑定 flight_offer_id"
+          },
+          {
+            "rule": "present",
+            "field": "vacation_offer_id",
+            "on": [
+              "create"
+            ],
+            "where": {
+              "op": "eq",
+              "args": [
+                {
+                  "op": "ref",
+                  "args": [
+                    "product_type"
+                  ]
+                },
+                "vacation"
+              ]
+            },
+            "message": "vacation 订单必须绑定 vacation_offer_id"
+          },
+          {
+            "rule": "present",
+            "field": "train_offer_id",
+            "on": [
+              "create"
+            ],
+            "where": {
+              "op": "eq",
+              "args": [
+                {
+                  "op": "ref",
+                  "args": [
+                    "product_type"
+                  ]
+                },
+                "train"
+              ]
+            },
+            "message": "train 订单必须绑定 train_offer_id"
+          },
+          {
+            "rule": "compare",
+            "field": "traveler_count",
+            "params": {
+              "greater_than_or_equal_to": 1
+            },
+            "message": "traveler_count 至少为 1"
+          },
+          {
+            "rule": "compare",
+            "field": "total_amount",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "total_amount 不能为负数"
+          },
+          {
+            "rule": "compare",
+            "field": "points_to_use",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "points_to_use 不能为负数"
+          },
+          {
+            "rule": "compare",
+            "field": "points_deduction_amount",
+            "params": {
+              "greater_than_or_equal_to": 0
+            },
+            "message": "points_deduction_amount 不能为负数"
+          },
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "draft"
+              ]
+            },
+            "on": [
+              "confirm_quote"
+            ],
+            "message": "只有 draft 订单可以 confirm_quote"
+          },
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "quoted"
+              ]
+            },
+            "on": [
+              "submit_order",
+              "submit_waitlist"
+            ],
+            "message": "只有 quoted 订单可以提交普通购票或候补"
+          },
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "submitted"
+              ]
+            },
+            "on": [
+              "mark_payment_succeeded",
+              "mark_order_failed"
+            ],
+            "message": "只有 submitted 订单可以进入支付成功或失败结果"
+          },
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "booking_pending"
+              ]
+            },
+            "on": [
+              "mark_booked",
+              "fulfill_waitlist",
+              "cancel_waitlist"
+            ],
+            "message": "只有 booking_pending 订单可以完成出票、兑现候补或取消候补"
+          },
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "booked"
+              ]
+            },
+            "on": [
+              "mark_completed",
+              "request_cancel",
+              "request_change"
+            ],
+            "message": "只有 booked 订单可以完成、取消或改签"
+          },
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "cancel_pending"
+              ]
+            },
+            "on": [
+              "execute_cancel",
+              "cancel_cancel_request"
+            ],
+            "message": "只有 cancel_pending 订单可以 execute_cancel 或 cancel_cancel_request"
+          },
+          {
+            "rule": "one_of",
+            "field": "waitlist_status",
+            "params": {
+              "values": [
+                "pending"
+              ]
+            },
+            "on": [
+              "fulfill_waitlist",
+              "cancel_waitlist"
+            ],
+            "message": "只有 waitlist_pending 的订单可以兑现或取消候补"
+          },
+          {
+            "rule": "one_of",
+            "field": "change_status",
+            "params": {
+              "values": [
+                "pending"
+              ]
+            },
+            "on": [
+              "confirm_change"
+            ],
+            "message": "只有 change_pending 的订单可以 confirm_change"
+          },
+          {
+            "rule": "present",
+            "field": "original_order_ref",
+            "on": [
+              "request_change",
+              "confirm_change"
+            ]
+          }
+        ],
+        "changes": [
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "quoted",
+            "on": [
+              "confirm_quote"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "submitted",
+            "on": [
+              "submit_order",
+              "submit_waitlist"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "booking_mode",
+            "value": "waitlist",
+            "on": [
+              "submit_waitlist"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "waitlist_status",
+            "value": "pending",
+            "on": [
+              "submit_waitlist"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "booking_pending",
+            "on": [
+              "mark_payment_succeeded"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "booked",
+            "on": [
+              "mark_booked",
+              "fulfill_waitlist"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "waitlist_status",
+            "value": "fulfilled",
+            "on": [
+              "fulfill_waitlist"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "completed",
+            "on": [
+              "mark_completed"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "cancel_pending",
+            "on": [
+              "request_cancel"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "cancelled",
+            "on": [
+              "cancel_waitlist",
+              "execute_cancel"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "waitlist_status",
+            "value": "cancelled",
+            "on": [
+              "cancel_waitlist"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "booked",
+            "on": [
+              "cancel_cancel_request"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "change_status",
+            "value": "pending",
+            "on": [
+              "request_change"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "change_status",
+            "value": "changed",
+            "on": [
+              "confirm_change"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "failed",
+            "on": [
+              "mark_order_failed"
+            ]
+          },
+          {
+            "description": "AUTO_WRITE_ANCHOR",
+            "effect": "set_attribute",
+            "field": "id",
+            "expr": {
+              "op": "ref",
+              "args": [
+                "id"
+              ]
+            },
+            "on": [
+              "create",
+              "update",
+              "confirm_quote",
+              "submit_order",
+              "submit_waitlist",
+              "mark_payment_succeeded",
+              "mark_booked",
+              "fulfill_waitlist",
+              "mark_completed",
+              "request_cancel",
+              "cancel_waitlist",
+              "execute_cancel",
+              "cancel_cancel_request",
+              "request_change",
+              "confirm_change",
+              "mark_order_failed",
+              "destroy"
+            ]
+          }
+        ],
+        "calculations": [
+          {
+            "name": "payable_amount",
+            "type": "decimal",
+            "expr": {
+              "op": "sub",
+              "args": [
+                {
+                  "op": "ref",
+                  "args": [
+                    "total_amount"
+                  ]
+                },
+                {
+                  "op": "ref",
+                  "args": [
+                    "points_deduction_amount"
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_order_no",
+            "keys": [
+              "order_no"
+            ]
+          }
+        ],
+        "events": [
+          {
+            "on": "submit_order",
+            "topic": "travel.order.submitted"
+          },
+          {
+            "on": "submit_waitlist",
+            "topic": "travel.order.waitlist_submitted"
+          },
+          {
+            "on": "mark_payment_succeeded",
+            "topic": "travel.order.payment_confirmed"
+          },
+          {
+            "on": "fulfill_waitlist",
+            "topic": "travel.order.waitlist_fulfilled"
+          },
+          {
+            "on": "cancel_waitlist",
+            "topic": "travel.order.waitlist_cancelled"
+          },
+          {
+            "on": "request_cancel",
+            "topic": "travel.order.cancel_requested"
+          },
+          {
+            "on": "execute_cancel",
+            "topic": "travel.order.cancelled"
+          },
+          {
+            "on": "confirm_change",
+            "topic": "travel.order.change_confirmed"
+          },
+          {
+            "on": "mark_order_failed",
+            "topic": "travel.order.failed"
+          }
+        ],
+        "workflows": [
+          {
+            "name": "travel_order_lifecycle",
+            "description": "统一酒旅订单生命周期，覆盖 train 候补与改签分支；退款由 Payment 域处理",
+            "steps": [
+              {
+                "action": "create",
+                "next": [
+                  "update",
+                  "confirm_quote",
+                  "destroy"
+                ]
+              },
+              {
+                "action": "update",
+                "next": [
+                  "confirm_quote",
+                  "destroy"
+                ]
+              },
+              {
+                "action": "confirm_quote",
+                "next": [
+                  "submit_order",
+                  "submit_waitlist"
+                ]
+              },
+              {
+                "action": "submit_order",
+                "next": [
+                  "mark_payment_succeeded",
+                  "mark_order_failed"
+                ],
+                "trigger_event": "travel.order.submitted"
+              },
+              {
+                "action": "submit_waitlist",
+                "next": [
+                  "mark_payment_succeeded",
+                  "mark_order_failed"
+                ],
+                "trigger_event": "travel.order.waitlist_submitted"
+              },
+              {
+                "action": "mark_payment_succeeded",
+                "next": [
+                  "mark_booked",
+                  "fulfill_waitlist",
+                  "cancel_waitlist"
+                ],
+                "trigger_event": "travel.order.payment_confirmed"
+              },
+              {
+                "action": "mark_booked",
+                "next": [
+                  "mark_completed",
+                  "request_cancel",
+                  "request_change"
+                ]
+              },
+              {
+                "action": "fulfill_waitlist",
+                "next": [
+                  "mark_completed",
+                  "request_cancel",
+                  "request_change"
+                ],
+                "trigger_event": "travel.order.waitlist_fulfilled"
+              },
+              {
+                "action": "cancel_waitlist",
+                "trigger_event": "travel.order.waitlist_cancelled"
+              },
+              {
+                "action": "request_cancel",
+                "next": [
+                  "execute_cancel",
+                  "cancel_cancel_request"
+                ],
+                "trigger_event": "travel.order.cancel_requested"
+              },
+              {
+                "action": "execute_cancel",
+                "trigger_event": "travel.order.cancelled"
+              },
+              {
+                "action": "cancel_cancel_request",
+                "next": [
+                  "mark_completed",
+                  "request_cancel"
+                ]
+              },
+              {
+                "action": "request_change",
+                "next": [
+                  "confirm_change"
+                ]
+              },
+              {
+                "action": "confirm_change",
+                "next": [
+                  "mark_completed"
+                ],
+                "trigger_event": "travel.order.change_confirmed"
+              },
+              {
+                "action": "mark_completed"
+              },
+              {
+                "action": "mark_order_failed",
+                "trigger_event": "travel.order.failed"
+              },
+              {
+                "action": "destroy"
+              }
+            ]
+          }
+        ],
+        "integrations": [
+          {
+            "name": "shop_caller_context_resolve",
+            "on": [
+              "create"
+            ],
+            "mode": "sync",
+            "request": {
+              "member_id": "string",
+              "enterprise_id": "string",
+              "current_shop_id": "uuid"
+            },
+            "response": {
+              "current_shop_id": "uuid",
+              "member_id": "string",
+              "enterprise_id": "string"
+            },
+            "bindings": {
+              "request": [
+                {
+                  "from": "context.member_id",
+                  "to": "member_id"
+                },
+                {
+                  "from": "context.enterprise_id",
+                  "to": "enterprise_id"
+                },
+                {
+                  "from": "context.current_shop_id",
+                  "to": "current_shop_id"
+                }
+              ],
+              "response": [
+                {
+                  "from": "payload.current_shop_id",
+                  "to": "attribute.host_shop_id"
+                },
+                {
+                  "from": "payload.member_id",
+                  "to": "attribute.host_member_id"
+                },
+                {
+                  "from": "payload.enterprise_id",
+                  "to": "attribute.host_enterprise_id"
+                }
+              ]
+            },
+            "errors": [
+              {
+                "code": "shop_context_not_found",
+                "retryable": false
+              },
+              {
+                "code": "shop_context_timeout",
+                "retryable": true
+              }
+            ],
+            "description": "创建订单时调用宿主 shop caller context 契约，校验并回填当前商城/会员上下文"
+          },
+          {
+            "name": "shop_eligibility_quote",
+            "on": [
+              "confirm_quote"
+            ],
+            "mode": "sync",
+            "request": {
+              "member_id": "string",
+              "shop_id": "uuid",
+              "amount": "decimal",
+              "points_requested": "integer",
+              "product_type": "string"
+            },
+            "response": {
+              "allowed": "boolean",
+              "reason": "string",
+              "product_type": "string",
+              "travel_enabled": "boolean",
+              "points_enabled": "boolean",
+              "mixed_payment_allowed": "boolean",
+              "cash_payment_enabled": "boolean",
+              "available_points": "integer",
+              "points_requested": "integer",
+              "points_sufficient": "boolean",
+              "points_deduction_amount": "decimal",
+              "payable_amount": "decimal",
+              "recommended_payment_method": "string",
+              "member_id": "string",
+              "shop_id": "uuid",
+              "amount": "decimal"
+            },
+            "bindings": {
+              "request": [
+                {
+                  "from": "attr.host_member_id",
+                  "to": "member_id"
+                },
+                {
+                  "from": "attr.host_shop_id",
+                  "to": "shop_id"
+                },
+                {
+                  "from": "attr.product_type",
+                  "to": "product_type"
+                },
+                {
+                  "from": "attr.total_amount",
+                  "to": "amount"
+                },
+                {
+                  "from": "attr.points_to_use",
+                  "to": "points_requested"
+                }
+              ],
+              "response": [
+                {
+                  "from": "payload.points_deduction_amount",
+                  "to": "attribute.points_deduction_amount"
+                },
+                {
+                  "from": "payload.recommended_payment_method",
+                  "to": "attribute.recommended_payment_method"
+                }
+              ]
+            },
+            "errors": [
+              {
+                "code": "shop_quote_rejected",
+                "retryable": false
+              },
+              {
+                "code": "shop_quote_timeout",
+                "retryable": true
+              }
+            ],
+            "description": "报价确认阶段调用宿主 shop eligibility/quote 契约，返回可支付性与积分策略语义"
+          },
+          {
+            "name": "payment_capture",
+            "on": [
+              "submit_order",
+              "submit_waitlist"
+            ],
+            "mode": "sync",
+            "request": {
+              "order_id": "string",
+              "payment_method": "string",
+              "payment_environment": "string",
+              "payment_instrument_id": "string",
+              "client_ip": "string",
+              "openid": "string"
+            },
+            "response": {
+              "status": "string",
+              "method": "string",
+              "external_ref": "string",
+              "points_used": "integer",
+              "points_deduction_amount": "decimal",
+              "cash_amount": "decimal",
+              "reason": "string"
+            },
+            "bindings": {
+              "request": [
+                {
+                  "from": "attr.order_no",
+                  "to": "order_id"
+                },
+                {
+                  "from": "attr.recommended_payment_method",
+                  "to": "payment_method"
+                },
+                {
+                  "from": "context.payment_environment",
+                  "to": "payment_environment"
+                },
+                {
+                  "from": "context.payment_instrument_id",
+                  "to": "payment_instrument_id"
+                },
+                {
+                  "from": "context.client_ip",
+                  "to": "client_ip"
+                },
+                {
+                  "from": "context.openid",
+                  "to": "openid"
+                }
+              ],
+              "response": [
+                {
+                  "from": "payload.external_ref",
+                  "to": "attribute.payment_external_ref"
+                }
+              ]
+            },
+            "errors": [
+              {
+                "code": "payment_declined",
+                "retryable": false
+              },
+              {
+                "code": "payment_timeout",
+                "retryable": true
+              },
+              {
+                "code": "payment_risk_rejected",
+                "retryable": false
+              }
+            ],
+            "description": "提交订单后调用宿主 shop payment execution 契约，失败时按声明错误码驱动补偿路径"
+          },
+          {
+            "name": "supplier_booking_submit",
+            "on": [
+              "mark_payment_succeeded"
+            ],
+            "mode": "async",
+            "request": {
+              "order_no": "string",
+              "product_type": "string",
+              "traveler_count": "integer",
+              "supplier_order_ref": "string"
+            },
+            "async": {
+              "queue": "travel_supplier_booking",
+              "timeout_ms": 120000,
+              "idempotency_key": "arg.order_no"
+            },
+            "errors": [
+              {
+                "code": "supplier_timeout",
+                "retryable": true
+              },
+              {
+                "code": "supplier_inventory_unavailable",
+                "retryable": false
+              }
+            ],
+            "description": "支付成功后异步提交供应商预订，失败时回滚 booking_pending 并转失败处理"
+          },
+          {
+            "name": "create_approval_instance",
+            "on": [
+              "request_cancel"
+            ],
+            "mode": "sync",
+            "request": {
+              "subject_type": "string",
+              "subject_id": "uuid"
+            },
+            "response": {
+              "instance_id": "uuid",
+              "status": "string"
+            },
+            "description": "发起取消时创建审批实例，由 Approvals 域驱动 execute_cancel 或 cancel_cancel_request"
+          }
+        ],
+        "state_machine": {
+          "initial_state": "draft",
+          "states": [
+            "draft",
+            "quoted",
+            "submitted",
+            "booking_pending",
+            "booked",
+            "cancel_pending",
+            "cancelled",
+            "completed",
+            "failed"
+          ],
+          "transitions": [
+            {
+              "from": "draft",
+              "to": "quoted",
+              "event": "confirm_quote"
+            },
+            {
+              "from": "quoted",
+              "to": "submitted",
+              "event": "submit_order"
+            },
+            {
+              "from": "quoted",
+              "to": "submitted",
+              "event": "submit_waitlist"
+            },
+            {
+              "from": "submitted",
+              "to": "booking_pending",
+              "event": "mark_payment_succeeded"
+            },
+            {
+              "from": "submitted",
+              "to": "failed",
+              "event": "mark_order_failed"
+            },
+            {
+              "from": "booking_pending",
+              "to": "booked",
+              "event": "mark_booked"
+            },
+            {
+              "from": "booking_pending",
+              "to": "booked",
+              "event": "fulfill_waitlist"
+            },
+            {
+              "from": "booking_pending",
+              "to": "cancelled",
+              "event": "cancel_waitlist"
+            },
+            {
+              "from": "booked",
+              "to": "completed",
+              "event": "mark_completed"
+            },
+            {
+              "from": "booked",
+              "to": "cancel_pending",
+              "event": "request_cancel"
+            },
+            {
+              "from": "cancel_pending",
+              "to": "cancelled",
+              "event": "execute_cancel"
+            },
+            {
+              "from": "cancel_pending",
+              "to": "booked",
+              "event": "cancel_cancel_request"
+            }
+          ],
+          "state_attribute": "status"
+        },
+        "event_consumers": [
+          {
+            "topic": "approvals.instance.approved",
+            "action": "execute_cancel",
+            "source_entity": "ApprovalInstance"
+          },
+          {
+            "topic": "approvals.instance.rejected",
+            "action": "cancel_cancel_request",
+            "source_entity": "ApprovalInstance"
+          }
+        ]
+      },
+      {
+        "name": "TravelFulfillment",
+        "description": "统一酒旅履约聚合，承接预订确认、发券出票、候补兑现、乘车使用和失败结果；可选关联 Delivery::Shipment",
+        "aggregate_root": true,
+        "tenancy": {},
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "tenant_id",
+            "type": "uuid",
+            "required": true
+          },
+          {
+            "name": "fulfillment_type",
+            "type": "enum",
+            "default": "reserve_room",
+            "constraints": {
+              "values": [
+                "reserve_room",
+                "issue_ticket",
+                "issue_voucher",
+                "issue_train_ticket"
+              ]
+            }
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "default": "pending",
+            "constraints": {
+              "values": [
+                "pending",
+                "confirmed",
+                "issued",
+                "in_use",
+                "completed",
+                "cancelled",
+                "failed"
+              ]
+            }
+          },
+          {
+            "name": "supplier_booking_ref",
+            "type": "string",
+            "description": "供应商预订号"
+          },
+          {
+            "name": "voucher_or_ticket_ref",
+            "type": "string",
+            "description": "凭证号或票号"
+          },
+          {
+            "name": "ticket_refs",
+            "type": "map",
+            "description": "多张票号、座席和乘客映射结果"
+          },
+          {
+            "name": "waitlist_result",
+            "type": "enum",
+            "default": "none",
+            "constraints": {
+              "values": [
+                "none",
+                "pending",
+                "fulfilled",
+                "cancelled",
+                "failed"
+              ]
+            },
+            "description": "train 候补兑现结果"
+          },
+          {
+            "name": "change_result",
+            "type": "enum",
+            "default": "none",
+            "constraints": {
+              "values": [
+                "none",
+                "pending",
+                "changed",
+                "failed"
+              ]
+            },
+            "description": "train 改签结果"
+          },
+          {
+            "name": "boarding_status",
+            "type": "enum",
+            "default": "not_started",
+            "constraints": {
+              "values": [
+                "not_started",
+                "boarded",
+                "completed"
+              ]
+            },
+            "description": "train 乘车状态"
+          },
+          {
+            "name": "confirmation_payload",
+            "type": "text",
+            "description": "确认结果快照"
+          },
+          {
+            "name": "failure_reason",
+            "type": "text",
+            "description": "失败原因"
+          },
+          {
+            "name": "used_at",
+            "type": "datetime",
+            "description": "实际使用时间"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "shipment_id",
+            "type": "string",
+            "description": "关联的物流发货单（跨域引用 Delivery.Shipment）"
+          }
+        ],
+        "relationships": [
+          {
+            "name": "order",
+            "type": "belongs_to",
+            "target": "TravelOrder",
+            "foreign_key": "travel_order_id",
+            "required": true
+          }
+        ],
+        "actions": [
+          {
+            "name": "create_fulfillment",
+            "type": "create",
+            "accept": [
+              "tenant_id",
+              "travel_order_id",
+              "fulfillment_type",
+              "supplier_booking_ref"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "supplier_booking_ref",
+              "voucher_or_ticket_ref",
+              "ticket_refs",
+              "confirmation_payload",
+              "failure_reason"
+            ],
+            "primary": true
+          },
+          {
+            "name": "confirm_booking",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "issue_voucher_or_ticket",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "mark_in_use",
+            "type": "update",
+            "accept": [
+              "used_at"
+            ]
+          },
+          {
+            "name": "complete_fulfillment",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "cancel_fulfillment",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "fail_fulfillment",
+            "type": "update",
+            "accept": [
+              "failure_reason"
+            ]
+          },
+          {
+            "name": "destroy",
+            "type": "destroy",
+            "primary": true
+          }
+        ],
+        "validations": [
+          {
+            "rule": "present",
+            "field": "tenant_id",
+            "on": [
+              "create_fulfillment"
+            ]
+          },
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "pending"
+              ]
+            },
+            "on": [
+              "confirm_booking",
+              "fail_fulfillment",
+              "cancel_fulfillment"
+            ],
+            "message": "只有 pending 履约可以确认、失败或取消"
+          },
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "confirmed"
+              ]
+            },
+            "on": [
+              "issue_voucher_or_ticket"
+            ],
+            "message": "只有 confirmed 履约可以 issue_voucher_or_ticket"
+          },
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "issued"
+              ]
+            },
+            "on": [
+              "mark_in_use"
+            ],
+            "message": "只有 issued 履约可以 mark_in_use"
+          },
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "issued",
+                "in_use"
+              ]
+            },
+            "on": [
+              "complete_fulfillment"
+            ],
+            "message": "只有 issued 或 in_use 履约可以 complete_fulfillment"
+          }
+        ],
+        "changes": [
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "confirmed",
+            "on": [
+              "confirm_booking"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "issued",
+            "on": [
+              "issue_voucher_or_ticket"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "in_use",
+            "on": [
+              "mark_in_use"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "completed",
+            "on": [
+              "complete_fulfillment"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "cancelled",
+            "on": [
+              "cancel_fulfillment"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "failed",
+            "on": [
+              "fail_fulfillment"
+            ]
+          },
+          {
+            "description": "AUTO_WRITE_ANCHOR",
+            "effect": "set_attribute",
+            "field": "id",
+            "expr": {
+              "op": "ref",
+              "args": [
+                "id"
+              ]
+            },
+            "on": [
+              "create_fulfillment",
+              "update",
+              "confirm_booking",
+              "issue_voucher_or_ticket",
+              "mark_in_use",
+              "complete_fulfillment",
+              "cancel_fulfillment",
+              "fail_fulfillment",
+              "destroy"
+            ]
+          }
+        ],
+        "events": [
+          {
+            "on": "confirm_booking",
+            "topic": "travel.fulfillment.confirmed"
+          },
+          {
+            "on": "issue_voucher_or_ticket",
+            "topic": "travel.fulfillment.issued"
+          },
+          {
+            "on": "complete_fulfillment",
+            "topic": "travel.fulfillment.completed"
+          },
+          {
+            "on": "cancel_fulfillment",
+            "topic": "travel.fulfillment.cancelled"
+          },
+          {
+            "on": "fail_fulfillment",
+            "topic": "travel.fulfillment.failed"
+          }
+        ],
+        "workflows": [
+          {
+            "name": "travel_fulfillment_lifecycle",
+            "description": "统一酒旅履约生命周期",
+            "steps": [
+              {
+                "action": "create_fulfillment",
+                "next": [
+                  "update",
+                  "confirm_booking",
+                  "fail_fulfillment",
+                  "cancel_fulfillment",
+                  "destroy"
+                ]
+              },
+              {
+                "action": "update",
+                "next": [
+                  "confirm_booking",
+                  "fail_fulfillment",
+                  "cancel_fulfillment",
+                  "destroy"
+                ]
+              },
+              {
+                "action": "confirm_booking",
+                "next": [
+                  "issue_voucher_or_ticket"
+                ],
+                "trigger_event": "travel.fulfillment.confirmed"
+              },
+              {
+                "action": "issue_voucher_or_ticket",
+                "next": [
+                  "mark_in_use",
+                  "complete_fulfillment"
+                ],
+                "trigger_event": "travel.fulfillment.issued"
+              },
+              {
+                "action": "mark_in_use",
+                "next": [
+                  "complete_fulfillment"
+                ]
+              },
+              {
+                "action": "complete_fulfillment",
+                "trigger_event": "travel.fulfillment.completed"
+              },
+              {
+                "action": "cancel_fulfillment",
+                "trigger_event": "travel.fulfillment.cancelled"
+              },
+              {
+                "action": "fail_fulfillment",
+                "trigger_event": "travel.fulfillment.failed"
+              },
+              {
+                "action": "destroy"
+              }
+            ]
+          }
+        ],
+        "integrations": [
+          {
+            "name": "supplier_confirm_booking",
+            "on": [
+              "confirm_booking"
+            ],
+            "mode": "sync",
+            "request": {
+              "travel_order_id": "uuid",
+              "fulfillment_type": "string",
+              "supplier_booking_ref": "string"
+            },
+            "response": {
+              "confirm_status": "string",
+              "supplier_booking_ref": "string",
+              "confirmation_payload": "string"
+            },
+            "errors": [
+              {
+                "code": "supplier_booking_rejected",
+                "retryable": false
+              },
+              {
+                "code": "supplier_timeout",
+                "retryable": true
+              }
+            ],
+            "description": "预订确认同步契约，前置依赖 TravelOrder 已完成 shop_caller_context_resolve、shop_eligibility_quote、payment_capture；失败时需保留 pending 并可重试或转 fail_fulfillment"
+          },
+          {
+            "name": "supplier_issue_document",
+            "on": [
+              "issue_voucher_or_ticket"
+            ],
+            "mode": "sync",
+            "request": {
+              "travel_order_id": "uuid",
+              "fulfillment_type": "string",
+              "ticket_passenger_infos": "map"
+            },
+            "response": {
+              "issue_status": "string",
+              "voucher_or_ticket_ref": "string",
+              "ticket_refs": "map"
+            },
+            "errors": [
+              {
+                "code": "issue_failed",
+                "retryable": false
+              },
+              {
+                "code": "issue_timeout",
+                "retryable": true
+              }
+            ],
+            "description": "发券出票同步契约，失败时走 fail_fulfillment 并记录 failure_reason"
+          },
+          {
+            "name": "supplier_cancel_booking",
+            "on": [
+              "cancel_fulfillment"
+            ],
+            "mode": "async",
+            "request": {
+              "travel_order_id": "uuid",
+              "supplier_booking_ref": "string"
+            },
+            "async": {
+              "queue": "travel_supplier_cancel",
+              "timeout_ms": 60000,
+              "idempotency_key": "arg.order_no"
+            },
+            "errors": [
+              {
+                "code": "cancel_timeout",
+                "retryable": true
+              },
+              {
+                "code": "cancel_rejected",
+                "retryable": false
+              }
+            ],
+            "description": "取消履约异步契约，失败时通过补偿任务做二次撤销"
+          }
+        ]
+      },
+      {
         "name": "TravelChangeOrder",
-        "description": "改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态",
+        "description": "改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态；审批通过 overlay on Approvals 域",
         "aggregate_root": true,
         "attributes": [
           {
@@ -81,8 +4310,7 @@
             "type": "belongs_to",
             "target": "TravelOrder",
             "foreign_key": "original_order_id",
-            "required": true,
-            "target_domain": "Travel"
+            "required": true
           }
         ],
         "actions": [
@@ -105,12 +4333,29 @@
             "primary": true
           },
           {
-            "name": "approve",
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "change_reason",
+              "price_difference",
+              "change_fee",
+              "new_offer_id"
+            ],
+            "primary": true
+          },
+          {
+            "name": "submit",
+            "type": "update",
+            "accept": [],
+            "description": "提交改签申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance"
+          },
+          {
+            "name": "confirm_change",
             "type": "update",
             "accept": []
           },
           {
-            "name": "reject",
+            "name": "reject_change",
             "type": "update",
             "accept": []
           },
@@ -142,10 +4387,11 @@
               ]
             },
             "on": [
-              "approve",
-              "reject"
+              "submit",
+              "confirm_change",
+              "reject_change"
             ],
-            "message": "只有 pending 改签单可以审批或拒绝"
+            "message": "只有 pending 改签单可以提交或由审批触发"
           },
           {
             "rule": "one_of",
@@ -193,7 +4439,7 @@
             "field": "status",
             "value": "approved",
             "on": [
-              "approve"
+              "confirm_change"
             ]
           },
           {
@@ -201,7 +4447,7 @@
             "field": "status",
             "value": "rejected",
             "on": [
-              "reject"
+              "reject_change"
             ]
           },
           {
@@ -232,8 +4478,9 @@
             },
             "on": [
               "create",
-              "approve",
-              "reject",
+              "submit",
+              "confirm_change",
+              "reject_change",
               "complete",
               "complete_direct"
             ]
@@ -250,11 +4497,15 @@
         ],
         "events": [
           {
-            "on": "approve",
+            "on": "submit",
+            "topic": "travel.change_order.submitted"
+          },
+          {
+            "on": "confirm_change",
             "topic": "travel.change_order.approved"
           },
           {
-            "on": "reject",
+            "on": "reject_change",
             "topic": "travel.change_order.rejected"
           },
           {
@@ -274,20 +4525,27 @@
               {
                 "action": "create",
                 "next": [
-                  "approve",
-                  "reject",
+                  "submit",
                   "complete_direct"
                 ]
               },
               {
-                "action": "approve",
+                "action": "submit",
+                "next": [
+                  "confirm_change",
+                  "reject_change"
+                ],
+                "trigger_event": "travel.change_order.submitted"
+              },
+              {
+                "action": "confirm_change",
                 "next": [
                   "complete"
                 ],
                 "trigger_event": "travel.change_order.approved"
               },
               {
-                "action": "reject",
+                "action": "reject_change",
                 "trigger_event": "travel.change_order.rejected"
               },
               {
@@ -299,46 +4557,24 @@
                 "trigger_event": "travel.change_order.completed"
               }
             ]
-          },
-          {
-            "name": "change_approval_to_order_confirm",
-            "description": "改签审批完成后，触发原订单执行 confirm_change；失败时回滚改签单为 rejected",
-            "steps": [
-              {
-                "action": "complete",
-                "entity": "TravelChangeOrder"
-              },
-              {
-                "action": "confirm_change",
-                "entity": "TravelOrder",
-                "depends_on": [
-                  "complete"
-                ],
-                "input": {
-                  "id": "{{complete.original_order_id}}"
-                }
-              }
-            ],
-            "compensation": [
-              {
-                "entity": "TravelChangeOrder",
-                "action": "reject"
-              }
-            ]
           }
         ],
-        "determine_actions": [
+        "integrations": [
           {
-            "name": "notify_order_change_approved",
-            "phase": "post_commit",
-            "scope": "cross_aggregate",
-            "mode": "async_write_back",
-            "read_set": [
-              "original_order.status"
+            "name": "create_approval_instance",
+            "on": [
+              "submit"
             ],
-            "write_set": [
-              "status"
-            ]
+            "mode": "sync",
+            "request": {
+              "subject_type": "string",
+              "subject_id": "uuid"
+            },
+            "response": {
+              "instance_id": "uuid",
+              "status": "string"
+            },
+            "description": "当 approval_mode=oa 时创建审批实例"
           }
         ],
         "state_machine": {
@@ -353,12 +4589,12 @@
             {
               "from": "pending",
               "to": "approved",
-              "event": "approve"
+              "event": "confirm_change"
             },
             {
               "from": "pending",
               "to": "rejected",
-              "event": "reject"
+              "event": "reject_change"
             },
             {
               "from": "approved",
@@ -372,11 +4608,23 @@
             }
           ],
           "state_attribute": "status"
-        }
+        },
+        "event_consumers": [
+          {
+            "topic": "approvals.instance.approved",
+            "action": "confirm_change",
+            "source_entity": "ApprovalInstance"
+          },
+          {
+            "topic": "approvals.instance.rejected",
+            "action": "reject_change",
+            "source_entity": "ApprovalInstance"
+          }
+        ]
       },
       {
         "name": "TravelRefundOrder",
-        "description": "退票/退订单，记录针对已有 TravelOrder 的退票请求、手续费与退款状态",
+        "description": "退票/退订单，记录针对已有 TravelOrder 的退票请求、手续费与退款状态；审批通过 overlay on Approvals 域",
         "aggregate_root": true,
         "attributes": [
           {
@@ -443,8 +4691,7 @@
             "type": "belongs_to",
             "target": "TravelOrder",
             "foreign_key": "original_order_id",
-            "required": true,
-            "target_domain": "Travel"
+            "required": true
           }
         ],
         "actions": [
@@ -466,12 +4713,28 @@
             "primary": true
           },
           {
-            "name": "approve",
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "refund_reason",
+              "refund_fee",
+              "refund_amount"
+            ],
+            "primary": true
+          },
+          {
+            "name": "submit",
+            "type": "update",
+            "accept": [],
+            "description": "提交退票申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance"
+          },
+          {
+            "name": "confirm_refund",
             "type": "update",
             "accept": []
           },
           {
-            "name": "reject",
+            "name": "reject_refund",
             "type": "update",
             "accept": []
           },
@@ -503,10 +4766,11 @@
               ]
             },
             "on": [
-              "approve",
-              "reject"
+              "submit",
+              "confirm_refund",
+              "reject_refund"
             ],
-            "message": "只有 pending 退票单可以审批或拒绝"
+            "message": "只有 pending 退票单可以提交或由审批触发"
           },
           {
             "rule": "one_of",
@@ -554,7 +4818,7 @@
             "field": "status",
             "value": "approved",
             "on": [
-              "approve"
+              "confirm_refund"
             ]
           },
           {
@@ -562,7 +4826,7 @@
             "field": "status",
             "value": "rejected",
             "on": [
-              "reject"
+              "reject_refund"
             ]
           },
           {
@@ -593,8 +4857,9 @@
             },
             "on": [
               "create",
-              "approve",
-              "reject",
+              "submit",
+              "confirm_refund",
+              "reject_refund",
               "refund",
               "refund_direct"
             ]
@@ -611,11 +4876,15 @@
         ],
         "events": [
           {
-            "on": "approve",
+            "on": "submit",
+            "topic": "travel.refund_order.submitted"
+          },
+          {
+            "on": "confirm_refund",
             "topic": "travel.refund_order.approved"
           },
           {
-            "on": "reject",
+            "on": "reject_refund",
             "topic": "travel.refund_order.rejected"
           },
           {
@@ -635,20 +4904,27 @@
               {
                 "action": "create",
                 "next": [
-                  "approve",
-                  "reject",
+                  "submit",
                   "refund_direct"
                 ]
               },
               {
-                "action": "approve",
+                "action": "submit",
+                "next": [
+                  "confirm_refund",
+                  "reject_refund"
+                ],
+                "trigger_event": "travel.refund_order.submitted"
+              },
+              {
+                "action": "confirm_refund",
                 "next": [
                   "refund"
                 ],
                 "trigger_event": "travel.refund_order.approved"
               },
               {
-                "action": "reject",
+                "action": "reject_refund",
                 "trigger_event": "travel.refund_order.rejected"
               },
               {
@@ -660,46 +4936,24 @@
                 "trigger_event": "travel.refund_order.refunded"
               }
             ]
-          },
-          {
-            "name": "refund_to_order_cancel",
-            "description": "退票单退款完成后，触发原订单执行 approve_cancel；失败时退票单状态仍保持 refunded（退款已完成，订单取消为最终补偿）",
-            "steps": [
-              {
-                "action": "refund",
-                "entity": "TravelRefundOrder"
-              },
-              {
-                "action": "approve_cancel",
-                "entity": "TravelOrder",
-                "depends_on": [
-                  "refund"
-                ],
-                "input": {
-                  "id": "{{refund.original_order_id}}"
-                }
-              }
-            ],
-            "compensation": [
-              {
-                "entity": "TravelRefundOrder",
-                "action": "reject"
-              }
-            ]
           }
         ],
-        "determine_actions": [
+        "integrations": [
           {
-            "name": "notify_order_refund_approved",
-            "phase": "post_commit",
-            "scope": "cross_aggregate",
-            "mode": "async_write_back",
-            "read_set": [
-              "original_order.status"
+            "name": "create_approval_instance",
+            "on": [
+              "submit"
             ],
-            "write_set": [
-              "status"
-            ]
+            "mode": "sync",
+            "request": {
+              "subject_type": "string",
+              "subject_id": "uuid"
+            },
+            "response": {
+              "instance_id": "uuid",
+              "status": "string"
+            },
+            "description": "当 approval_mode=oa 时创建审批实例"
           }
         ],
         "state_machine": {
@@ -714,12 +4968,12 @@
             {
               "from": "pending",
               "to": "approved",
-              "event": "approve"
+              "event": "confirm_refund"
             },
             {
               "from": "pending",
               "to": "rejected",
-              "event": "reject"
+              "event": "reject_refund"
             },
             {
               "from": "approved",
@@ -733,7 +4987,19 @@
             }
           ],
           "state_attribute": "status"
-        }
+        },
+        "event_consumers": [
+          {
+            "topic": "approvals.instance.approved",
+            "action": "confirm_refund",
+            "source_entity": "ApprovalInstance"
+          },
+          {
+            "topic": "approvals.instance.rejected",
+            "action": "reject_refund",
+            "source_entity": "ApprovalInstance"
+          }
+        ]
       },
       {
         "name": "TravelPolicy",
@@ -1056,7 +5322,7 @@
         "workflows": [
           {
             "name": "policy_lifecycle",
-            "description": "差旅政策生命周期：active ↔ inactive",
+            "description": "差旅政策生命周期：active / inactive",
             "steps": [
               {
                 "action": "create",
@@ -1184,8 +5450,7 @@
             "type": "belongs_to",
             "target": "TravelOrder",
             "foreign_key": "order_id",
-            "required": true,
-            "target_domain": "Travel"
+            "required": true
           },
           {
             "name": "policy",
@@ -1218,6 +5483,17 @@
           {
             "name": "read",
             "type": "read",
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "check_result",
+              "exceed_reason",
+              "exceed_strategy",
+              "personal_pay_amount"
+            ],
             "primary": true
           }
         ],

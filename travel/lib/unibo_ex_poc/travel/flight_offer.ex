@@ -142,16 +142,18 @@ defmodule UniboExPoc.Travel.FlightOffer do
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
+    attribute :departure_airport_ref_id, :string do
+      public? true
+      description "Travel 出发机场主数据引用（跨域引用 Ecommerce.TravelAirport）"
+    end
+    attribute :arrival_airport_ref_id, :string do
+      public? true
+      description "Travel 到达机场主数据引用（跨域引用 Ecommerce.TravelAirport）"
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
-    belongs_to :departure_airport_ref, UniboExPoc.Ecommerce.TravelAirport do
-      public? true
-    end
-    belongs_to :arrival_airport_ref, UniboExPoc.Ecommerce.TravelAirport do
-      public? true
-    end
     belongs_to :airline_ref, UniboExPoc.Travel.TravelAirline do
       public? true
     end

@@ -1,5 +1,55 @@
 {
   "version": 1,
-  "events": {},
+  "events": {
+    "toggle_edit": {
+      "name": "toggle_edit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_destroy": {
+      "name": "action_destroy",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_general": {
+      "name": "navigate_general",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_notification": {
+      "name": "navigate_notification",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_security": {
+      "name": "navigate_security",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_display": {
+      "name": "navigate_display",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_advanced": {
+      "name": "navigate_advanced",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
   "notes": []
 }

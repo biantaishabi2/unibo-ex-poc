@@ -11,9 +11,32 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): 
+  # status.keys preview (first ~40): editing, travel_order, travel_order.booking_mode, travel_order.change_status, travel_order.contact_name, travel_order.contact_phone, travel_order.currency, travel_order.order_no, travel_order.original_order_ref, travel_order.payment_external_ref, travel_order.points_deduction_amount, travel_order.points_to_use, travel_order.product_type, travel_order.recommended_payment_method, travel_order.seat_selection_snapshot, travel_order.status, travel_order.supplier_order_ref, travel_order.ticket_passenger_infos, travel_order.total_amount, travel_order.traveler_count, travel_order.waitlist_status
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
-  @status_defaults_raw Jason.decode!("{}")
+  @status_defaults_raw Jason.decode!("{
+  \"travel_order\": {
+    \"order_no\": \"\",
+    \"product_type\": \"\",
+    \"booking_mode\": \"\",
+    \"contact_name\": \"\",
+    \"contact_phone\": \"\",
+    \"traveler_count\": \"\",
+    \"total_amount\": \"\",
+    \"points_to_use\": \"\",
+    \"points_deduction_amount\": \"\",
+    \"recommended_payment_method\": \"\",
+    \"currency\": \"\",
+    \"status\": \"\",
+    \"change_status\": \"\",
+    \"waitlist_status\": \"\",
+    \"original_order_ref\": \"\",
+    \"ticket_passenger_infos\": \"\",
+    \"seat_selection_snapshot\": \"\",
+    \"supplier_order_ref\": \"\",
+    \"payment_external_ref\": \"\"
+  },
+  \"editing\": false
+}")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
@@ -65,8 +88,37 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event(_event, _params, socket) do
-    # No events declared by events.schema
+  def handle_event("action_destroy", params, socket) do
+    # UI action event name: action_destroy
+    socket = dispatch_backend("action_destroy", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("cancel_edit", params, socket) do
+    # UI action event name: cancel_edit
+    socket = dispatch_backend("cancel_edit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("form_change", params, socket) do
+    # UI action event name: form_change
+    socket = dispatch_backend("form_change", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("form_submit", params, socket) do
+    # UI action event name: form_submit
+    socket = dispatch_backend("form_submit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("toggle_edit", params, socket) do
+    # UI action event name: toggle_edit
+    socket = dispatch_backend("toggle_edit", params, socket)
     {:noreply, socket}
   end
 

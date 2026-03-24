@@ -1,0 +1,146 @@
+<.page title="列表" id="travel_fulfillment_list">
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.stack direction="column" id="page_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelFulfillment
+        </.text>
+        <.text variant="h1" id="page_title">
+          统一酒旅履约聚合,承接预订确认、发券出票、候补兑现、乘车使用和失败结果;可选关联 Delivery::Shipment
+        </.text>
+      </.stack>
+      <.button variant="primary" phx-click="navigate_create" size="md" id="create_btn">
+        新建
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="view_tabs">
+    <.tabs default_value="all" id="view_selector">
+      <.tabs_list id="view_tab_list">
+        <.tabs_trigger value="all" active_value="all" id="trigger_all">
+          全部
+        </.tabs_trigger>
+      </.tabs_list>
+    </.tabs>
+  </.section>
+  <.section layout="none" id="filter_section">
+    <.card variant="default" id="filter_card">
+      <.card_content id="filter_content">
+        <.flex gap={4} align="center" direction="row" id="filter_row">
+          <.stack direction="column" id="filter_fields" />
+          <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
+            查询
+          </.button>
+        </.flex>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="table_section">
+    <.table id="data_table">
+      <.table_header id="data_header">
+        <.table_row id="header_row">
+          <.table_head id="th_fulfillment_type">
+            fulfillment_type
+          </.table_head>
+          <.table_head id="th_status">
+            status
+          </.table_head>
+          <.table_head id="th_supplier_booking_ref">
+            供应商预订号
+          </.table_head>
+          <.table_head id="th_voucher_or_ticket_ref">
+            凭证号或票号
+          </.table_head>
+          <.table_head id="th_ticket_refs">
+            多张票号、座席和乘客映射结果
+          </.table_head>
+          <.table_head id="th_waitlist_result">
+            train 候补兑现结果
+          </.table_head>
+          <.table_head id="th_change_result">
+            train 改签结果
+          </.table_head>
+          <.table_head id="th_boarding_status">
+            train 乘车状态
+          </.table_head>
+          <.table_head id="th_confirmation_payload">
+            确认结果快照
+          </.table_head>
+          <.table_head id="th_failure_reason">
+            失败原因
+          </.table_head>
+          <.table_head id="th_used_at">
+            实际使用时间
+          </.table_head>
+        </.table_row>
+      </.table_header>
+      <.table_body id="data_body">
+        <%= for row <- (@rows || []) do %>
+          <.table_row>
+            <.table_cell>
+              <.badge variant="default" size="sm">
+                <%= get_in(row, [:fulfillment_type]) || "" %>
+              </.badge>
+            </.table_cell>
+            <.table_cell>
+              <.badge variant="default" size="sm">
+                <%= get_in(row, [:status]) || "" %>
+              </.badge>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:supplier_booking_ref]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:voucher_or_ticket_ref]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:ticket_refs]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <.badge variant="default" size="sm">
+                <%= get_in(row, [:waitlist_result]) || "" %>
+              </.badge>
+            </.table_cell>
+            <.table_cell>
+              <.badge variant="default" size="sm">
+                <%= get_in(row, [:change_result]) || "" %>
+              </.badge>
+            </.table_cell>
+            <.table_cell>
+              <.badge variant="default" size="sm">
+                <%= get_in(row, [:boarding_status]) || "" %>
+              </.badge>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:confirmation_payload]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:failure_reason]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:used_at]) || "" %>
+            </.table_cell>
+          </.table_row>
+        <% end %>
+      </.table_body>
+    </.table>
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if (@rows_empty && @rows_empty != []) do %>
+      <.empty_state description="暂无数据" id="no_data" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="footer">
+    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
+      <.button phx-click="travel_fulfillment_page_prev" variant="primary" size="md" id="page_prev">
+        上一页
+      </.button>
+      <.text id="page_info">
+        <%= get_in(@travel_fulfillment, [:page]) || "" %> / <%= get_in(@travel_fulfillment, [:total_pages]) || "" %>
+      </.text>
+      <.button phx-click="travel_fulfillment_page_next" variant="primary" size="md" id="page_next">
+        下一页
+      </.button>
+    </.flex>
+  </.section>
+</.page>

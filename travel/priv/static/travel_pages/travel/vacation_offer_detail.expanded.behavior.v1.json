@@ -2,11 +2,26 @@
   "backend": {
     "api_map": {
       "activate": "Travel.VacationOffer.activate",
+      "create": "Travel.VacationOffer.create",
       "deactivate": "Travel.VacationOffer.deactivate",
       "destroy": "Travel.VacationOffer.destroy",
       "expire": "Travel.VacationOffer.expire",
       "get": "Travel.VacationOffer.get",
       "update": "Travel.VacationOffer.update"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "booking_rules: bookingRules cancellation_policy: cancellationPolicy currency departure_city_code: departureCityCode departure_city_ref_id: departureCityRefId destination_code: destinationCode destination_ref_id: destinationRefId end_date: endDate host_shop_id: hostShopId id inventory_count: inventoryCount listed_price: listedPrice package_code: packageCode package_name: packageName package_type: packageType sale_status: saleStatus settlement_price: settlementPrice start_date: startDate supplier_code: supplierCode tenant_id: tenantId"
+    },
+    "params": {
+      "accept": [
+        "id"
+      ]
     }
   },
   "children": [],
@@ -56,6 +71,54 @@
               "action": "expect_text_contains",
               "selector": "#flash-group, [data-flash], [role='alert']",
               "value": "成功"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "action_activate"
+          ],
+          "name": "动作：activate",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "[data-action='action_activate']"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "[data-action='action_activate']"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "action_deactivate"
+          ],
+          "name": "动作：deactivate",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "[data-action='action_deactivate']"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "[data-action='action_deactivate']"
+            }
+          ]
+        },
+        {
+          "covers": [
+            "action_expire"
+          ],
+          "name": "动作：expire",
+          "steps": [
+            {
+              "action": "click",
+              "selector": "[data-action='action_expire']"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "[data-action='action_expire']"
             }
           ]
         }

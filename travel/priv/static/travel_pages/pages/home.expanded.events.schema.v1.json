@@ -1,5 +1,20 @@
 {
   "version": 1,
-  "events": {},
+  "events": {
+    "hero_action": {
+      "name": "hero_action",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_announcements": {
+      "name": "navigate_announcements",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
   "notes": []
 }

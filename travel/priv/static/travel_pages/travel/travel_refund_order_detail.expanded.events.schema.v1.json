@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "events": {
+    "toggle_edit": {
+      "name": "toggle_edit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_submit": {
+      "name": "action_submit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_confirm_refund": {
+      "name": "action_confirm_refund",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_reject_refund": {
+      "name": "action_reject_refund",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_refund": {
+      "name": "action_refund",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_refund_direct": {
+      "name": "action_refund_direct",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "form_submit": {
+      "name": "form_submit",
+      "triggers": [
+        "click",
+        "submit"
+      ],
+      "params": {}
+    },
+    "form_change": {
+      "name": "form_change",
+      "triggers": [
+        "change"
+      ],
+      "params": {}
+    },
+    "cancel_edit": {
+      "name": "cancel_edit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

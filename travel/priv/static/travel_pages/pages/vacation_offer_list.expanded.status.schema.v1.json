@@ -1,8 +1,93 @@
 {
   "version": 1,
-  "defaults": {},
-  "keys": [],
-  "required": [],
+  "defaults": {
+    "vacation_offer": {
+      "page": "",
+      "total_pages": ""
+    },
+    "rows_empty": true,
+    "rows": [
+      {
+        "supplier_code": "",
+        "package_code": "",
+        "package_name": "",
+        "package_type": "",
+        "departure_city_code": "",
+        "destination_code": "",
+        "start_date": "",
+        "end_date": "",
+        "listed_price": "",
+        "settlement_price": "",
+        "currency": "",
+        "inventory_count": "",
+        "booking_rules": "",
+        "cancellation_policy": "",
+        "sale_status": ""
+      },
+      {
+        "supplier_code": "",
+        "package_code": "",
+        "package_name": "",
+        "package_type": "",
+        "departure_city_code": "",
+        "destination_code": "",
+        "start_date": "",
+        "end_date": "",
+        "listed_price": "",
+        "settlement_price": "",
+        "currency": "",
+        "inventory_count": "",
+        "booking_rules": "",
+        "cancellation_policy": "",
+        "sale_status": ""
+      },
+      {
+        "supplier_code": "",
+        "package_code": "",
+        "package_name": "",
+        "package_type": "",
+        "departure_city_code": "",
+        "destination_code": "",
+        "start_date": "",
+        "end_date": "",
+        "listed_price": "",
+        "settlement_price": "",
+        "currency": "",
+        "inventory_count": "",
+        "booking_rules": "",
+        "cancellation_policy": "",
+        "sale_status": ""
+      }
+    ]
+  },
+  "keys": [
+    "rows",
+    "rows[]",
+    "rows[].booking_rules",
+    "rows[].cancellation_policy",
+    "rows[].currency",
+    "rows[].departure_city_code",
+    "rows[].destination_code",
+    "rows[].end_date",
+    "rows[].inventory_count",
+    "rows[].listed_price",
+    "rows[].package_code",
+    "rows[].package_name",
+    "rows[].package_type",
+    "rows[].sale_status",
+    "rows[].settlement_price",
+    "rows[].start_date",
+    "rows[].supplier_code",
+    "rows_empty",
+    "vacation_offer",
+    "vacation_offer.page",
+    "vacation_offer.total_pages"
+  ],
+  "required": [
+    "rows",
+    "rows_empty",
+    "vacation_offer"
+  ],
   "urlParams": {},
   "notes": []
 }

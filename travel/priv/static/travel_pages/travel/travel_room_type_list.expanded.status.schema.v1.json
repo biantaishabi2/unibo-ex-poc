@@ -9,21 +9,24 @@
         "room_type_name": "",
         "hotel_code": "",
         "bed_type": "",
-        "status": ""
+        "status": "",
+        "id": "row_01"
       },
       {
         "room_type_code": "",
         "room_type_name": "",
         "hotel_code": "",
         "bed_type": "",
-        "status": ""
+        "status": "",
+        "id": "row_02"
       },
       {
         "room_type_code": "",
         "room_type_name": "",
         "hotel_code": "",
         "bed_type": "",
-        "status": ""
+        "status": "",
+        "id": "row_03"
       }
     ]
   },
@@ -33,6 +36,7 @@
     "rows[]",
     "rows[].bed_type",
     "rows[].hotel_code",
+    "rows[].id",
     "rows[].room_type_code",
     "rows[].room_type_name",
     "rows[].status",
@@ -49,6 +53,20 @@
     "backend": {
       "api_map": {
         "list": "Travel.TravelRoomType.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "bed_type: bedType hotel_code: hotelCode id room_type_code: roomTypeCode room_type_name: roomTypeName status"
+      },
+      "params": {
+        "accept": [
+          "status"
+        ]
       }
     },
     "domain": "Travel",

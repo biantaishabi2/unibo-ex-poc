@@ -9,7 +9,7 @@
       <.breadcrumb_separator id="travel_hotel_bc_sep" />
       <.breadcrumb_item id="travel_hotel_bc_current_item">
         <.breadcrumb_page id="travel_hotel_bc_current">
-          <%= @record.hotel_code %>
+          <%= get_in(@record, [:hotel_code]) || "详情" %>
         </.breadcrumb_page>
       </.breadcrumb_item>
     </.breadcrumb_list>
@@ -17,10 +17,10 @@
   <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_hotel_detail_header">
     <.flex gap={3} align="center" direction="row" id="travel_hotel_title_group">
       <.text variant="title" id="travel_hotel_detail_title">
-        <%= @record.hotel_code %>
+        <%= get_in(@record, [:hotel_code]) || "" %>
       </.text>
       <.badge variant="default" size="sm" id="travel_hotel_status_badge">
-        <%= @record.status %>
+        <%= get_in(@record, [:status]) || "" %>
       </.badge>
     </.flex>
     <.flex gap={2} direction="row" id="travel_hotel_actions">
@@ -43,7 +43,7 @@
               酒店规范编码
             </.text>
             <.text id="value_hotel_code">
-              <%= @record.hotel_code %>
+              <%= get_in(@record, [:hotel_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_hotel_name">
@@ -51,7 +51,7 @@
               酒店名称
             </.text>
             <.text id="value_hotel_name">
-              <%= @record.hotel_name %>
+              <%= get_in(@record, [:hotel_name]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_city_code">
@@ -59,7 +59,7 @@
               城市编码冗余（便于兼容检索）
             </.text>
             <.text id="value_city_code">
-              <%= @record.city_code %>
+              <%= get_in(@record, [:city_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_hotel_star">
@@ -67,7 +67,7 @@
               酒店星级
             </.text>
             <.text id="value_hotel_star">
-              <%= @record.hotel_star %>
+              <%= get_in(@record, [:hotel_star]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_status">
@@ -75,20 +75,21 @@
               status
             </.text>
             <.badge variant="default" size="sm" id="value_status">
-              <%= @record.status %>
+              <%= get_in(@record, [:status]) || "" %>
             </.badge>
           </.flex>
         </.grid>
       <% else %>
         <.form phx-submit="form_submit" phx-change="form_change" id="travel_hotel_edit_form">
           <.grid columns={2} gap={4} id="travel_hotel_form_grid">
-            <.input name="hotel_code" label="酒店规范编码" placeholder="请输入酒店规范编码" required="true" size="md" id="form_hotel_code" />
-            <.input name="hotel_name" label="酒店名称" placeholder="请输入酒店名称" required="true" size="md" id="form_hotel_name" />
-            <.input name="city_code" label="城市编码冗余（便于兼容检索）" placeholder="请输入城市编码冗余（便于兼容检索）" size="md" id="form_city_code" />
-            <.input name="hotel_star" label="酒店星级" placeholder="请输入酒店星级" size="md" id="form_hotel_star" />
-            <.select name="status" label="status" size="md" id="form_status">
+            <.input name="hotel_code" label="酒店规范编码" placeholder="请输入酒店规范编码" required="true" size="md" id="form_hotel_code" value={@record.hotel_code} />
+            <.input name="hotel_name" label="酒店名称" placeholder="请输入酒店名称" required="true" size="md" id="form_hotel_name" value={@record.hotel_name} />
+            <.input name="city_code" label="城市编码冗余（便于兼容检索）" placeholder="请输入城市编码冗余（便于兼容检索）" size="md" id="form_city_code" value={@record.city_code} />
+            <.input name="hotel_star" label="酒店星级" placeholder="请输入酒店星级" size="md" id="form_hotel_star" value={@record.hotel_star} />
+            <.select name="status" label="status" size="md" id="form_status" value={@record.status}>
 
             </.select>
+            <.input name="city_id" label="城市引用（跨域引用 Ecommerce.TravelCity）" placeholder="请输入城市引用（跨域引用 Ecommerce.TravelCity）" size="md" id="form_city_id" value={@record.city_id} />
           </.grid>
           <.flex justify="end" gap={2} direction="row" id="travel_hotel_form_actions">
             <.button variant="secondary" phx-click="cancel_edit" size="md" id="travel_hotel_cancel_btn">

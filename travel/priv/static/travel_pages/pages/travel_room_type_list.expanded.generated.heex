@@ -1,0 +1,102 @@
+<.page title="列表" id="travel_room_type_list">
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.stack direction="column" id="page_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelRoomType
+        </.text>
+        <.text variant="h1" id="page_title">
+          酒店房型主数据（Travel 层,来源 OFBiz ProductFeature）
+        </.text>
+      </.stack>
+      <.button variant="primary" phx-click="navigate_create" size="md" id="create_btn">
+        新建
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="view_tabs">
+    <.tabs default_value="all" id="view_selector">
+      <.tabs_list id="view_tab_list">
+        <.tabs_trigger value="all" active_value="all" id="trigger_all">
+          全部
+        </.tabs_trigger>
+      </.tabs_list>
+    </.tabs>
+  </.section>
+  <.section layout="none" id="filter_section">
+    <.card variant="default" id="filter_card">
+      <.card_content id="filter_content">
+        <.flex gap={4} align="center" direction="row" id="filter_row">
+          <.stack direction="column" id="filter_fields" />
+          <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
+            查询
+          </.button>
+        </.flex>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="table_section">
+    <.table id="data_table">
+      <.table_header id="data_header">
+        <.table_row id="header_row">
+          <.table_head id="th_room_type_code">
+            房型规范编码
+          </.table_head>
+          <.table_head id="th_room_type_name">
+            房型名称
+          </.table_head>
+          <.table_head id="th_hotel_code">
+            酒店编码冗余（便于兼容检索）
+          </.table_head>
+          <.table_head id="th_bed_type">
+            床型
+          </.table_head>
+          <.table_head id="th_status">
+            status
+          </.table_head>
+        </.table_row>
+      </.table_header>
+      <.table_body id="data_body">
+        <%= for row <- (@rows || []) do %>
+          <.table_row>
+            <.table_cell>
+              <%= get_in(row, [:room_type_code]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:room_type_name]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:hotel_code]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:bed_type]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <.badge variant="default" size="sm">
+                <%= get_in(row, [:status]) || "" %>
+              </.badge>
+            </.table_cell>
+          </.table_row>
+        <% end %>
+      </.table_body>
+    </.table>
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if (@rows_empty && @rows_empty != []) do %>
+      <.empty_state description="暂无数据" id="no_data" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="footer">
+    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
+      <.button phx-click="travel_room_type_page_prev" variant="primary" size="md" id="page_prev">
+        上一页
+      </.button>
+      <.text id="page_info">
+        <%= get_in(@travel_room_type, [:page]) || "" %> / <%= get_in(@travel_room_type, [:total_pages]) || "" %>
+      </.text>
+      <.button phx-click="travel_room_type_page_next" variant="primary" size="md" id="page_next">
+        下一页
+      </.button>
+    </.flex>
+  </.section>
+</.page>

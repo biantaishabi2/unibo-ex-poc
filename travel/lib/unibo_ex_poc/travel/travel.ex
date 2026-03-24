@@ -36,5 +36,6 @@ defmodule UniboExPoc.Travel do
     resource UniboExPoc.Travel.TravelPolicy
     resource UniboExPoc.Travel.TravelPolicy.Version
     resource UniboExPoc.Travel.TravelPolicyCheck
+    resource UniboExPoc.Travel.TravelPolicyCheck.Version
   end
 end

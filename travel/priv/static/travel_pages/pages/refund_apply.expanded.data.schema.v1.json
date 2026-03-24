@@ -1,7 +1,17 @@
 {
   "version": 1,
-  "requiredPaths": [],
-  "requiredRoots": [],
-  "schema": {},
+  "requiredPaths": [
+    "section_1_title"
+  ],
+  "requiredRoots": [
+    "section_1_title"
+  ],
+  "schema": {
+    "section_1_title": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
   "notes": []
 }

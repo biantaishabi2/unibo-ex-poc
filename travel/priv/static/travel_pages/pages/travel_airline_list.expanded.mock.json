@@ -1,1 +1,30 @@
-{}
+{
+  "travel_airline": {
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
+  "rows": [
+    {
+      "airline_code": "",
+      "airline_name": "",
+      "iata_code": "",
+      "icao_code": "",
+      "status": ""
+    },
+    {
+      "airline_code": "",
+      "airline_name": "",
+      "iata_code": "",
+      "icao_code": "",
+      "status": ""
+    },
+    {
+      "airline_code": "",
+      "airline_name": "",
+      "iata_code": "",
+      "icao_code": "",
+      "status": ""
+    }
+  ]
+}

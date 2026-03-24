@@ -139,16 +139,18 @@ defmodule UniboExPoc.Travel.VacationOffer do
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
+    attribute :departure_city_ref_id, :string do
+      public? true
+      description "Core 出发城市主数据引用（跨域引用 Ecommerce.TravelCity）"
+    end
+    attribute :destination_ref_id, :string do
+      public? true
+      description "Core 目的地主数据引用（跨域引用 Ecommerce.TravelCity）"
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
   relationships do
-    belongs_to :departure_city_ref, UniboExPoc.Ecommerce.TravelCity do
-      public? true
-    end
-    belongs_to :destination_ref, UniboExPoc.Ecommerce.TravelCity do
-      public? true
-    end
     has_many :orders, UniboExPoc.Travel.TravelOrder do
       public? true
       destination_attribute :vacation_offer_id

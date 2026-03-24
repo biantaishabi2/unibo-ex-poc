@@ -1,1 +1,10 @@
-{}
+{
+  "travel_room_type": {
+    "room_type_code": "",
+    "room_type_name": "",
+    "hotel_code": "",
+    "bed_type": "",
+    "status": ""
+  },
+  "editing": false
+}

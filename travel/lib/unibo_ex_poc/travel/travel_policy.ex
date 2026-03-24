@@ -1,4 +1,4 @@
-# Workflow: policy_lifecycle — 差旅政策生命周期：active ↔ inactive
+# Workflow: policy_lifecycle — 差旅政策生命周期：active / inactive
 # ```mermaid
 # stateDiagram-v2
 #   [*] --> create

@@ -1,7 +1,76 @@
 {
   "version": 1,
-  "requiredPaths": [],
-  "requiredRoots": [],
-  "schema": {},
+  "requiredPaths": [
+    "hotel_offer.page",
+    "hotel_offer.total_pages",
+    "item.description",
+    "item.title",
+    "items",
+    "rows_empty"
+  ],
+  "requiredRoots": [
+    "hotel_offer",
+    "item",
+    "items",
+    "rows_empty"
+  ],
+  "schema": {
+    "items": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "title": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "description": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "item": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "title": {
+          "type": "unknown",
+          "required": true
+        },
+        "description": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "rows_empty": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "hotel_offer": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    }
+  },
   "notes": []
 }

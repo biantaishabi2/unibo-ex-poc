@@ -1,0 +1,146 @@
+<.page title="概览面板" id="home">
+  <.section layout="none" id="kpi_cards">
+    <.card background="primary" padding={6} variant="default" id="hero_card">
+      <.card_content id="hero_content">
+        <.stack align="center" gap={3} direction="column" id="hero_info">
+          <.text variant="h1" weight="bold" color="white" id="hero_title">
+            <%= @hero_title %>
+          </.text>
+          <.text variant="body" color="white" id="hero_subtitle">
+            <%= @hero_subtitle %>
+          </.text>
+          <.button variant="secondary" phx-click="hero_action" size="md" id="hero_action">
+            <%= @hero_action_label %>
+          </.button>
+        </.stack>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="grid" columns={2} id="charts">
+    <.grid columns={4} gap={4} id="shortcuts">
+      <.card variant="default" id="shortcut_1">
+        <.card_content id="shortcut_1_content">
+          <.stack align="center" gap={2} direction="column" id="shortcut_1_info">
+            <.icon name={@shortcut_1_icon} size="lg" id="shortcut_1_icon" />
+            <.text weight="bold" id="shortcut_1_label">
+              <%= @shortcut_1_label %>
+            </.text>
+            <.text variant="muted" id="shortcut_1_desc">
+              <%= @shortcut_1_desc %>
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="shortcut_2">
+        <.card_content id="shortcut_2_content">
+          <.stack align="center" gap={2} direction="column" id="shortcut_2_info">
+            <.icon name={@shortcut_2_icon} size="lg" id="shortcut_2_icon" />
+            <.text weight="bold" id="shortcut_2_label">
+              <%= @shortcut_2_label %>
+            </.text>
+            <.text variant="muted" id="shortcut_2_desc">
+              <%= @shortcut_2_desc %>
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="shortcut_3">
+        <.card_content id="shortcut_3_content">
+          <.stack align="center" gap={2} direction="column" id="shortcut_3_info">
+            <.icon name={@shortcut_3_icon} size="lg" id="shortcut_3_icon" />
+            <.text weight="bold" id="shortcut_3_label">
+              <%= @shortcut_3_label %>
+            </.text>
+            <.text variant="muted" id="shortcut_3_desc">
+              <%= @shortcut_3_desc %>
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="shortcut_4">
+        <.card_content id="shortcut_4_content">
+          <.stack align="center" gap={2} direction="column" id="shortcut_4_info">
+            <.icon name={@shortcut_4_icon} size="lg" id="shortcut_4_icon" />
+            <.text weight="bold" id="shortcut_4_label">
+              <%= @shortcut_4_label %>
+            </.text>
+            <.text variant="muted" id="shortcut_4_desc">
+              <%= @shortcut_4_desc %>
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+    </.grid>
+    <.card variant="default" id="announcement_card">
+      <.card_header id="announcement_header">
+        <.flex justify="between" align="center" direction="row" id="announcement_title_bar">
+          <.card_title id="announcement_title">
+            通知公告
+          </.card_title>
+          <.button variant="link" phx-click="navigate_announcements" size="md" id="announcement_more">
+            查看更多
+          </.button>
+        </.flex>
+      </.card_header>
+      <.card_content id="announcement_content">
+        <.stack gap={3} direction="column" id="announcement_list">
+          <%= for ann <- (@announcements || []) do %>
+            <.flex justify="between" align="center" direction="row">
+              <.stack gap={0} direction="column">
+                <.text weight="bold">
+                  <%= get_in(ann, [:title]) || "" %>
+                </.text>
+                <.text variant="muted">
+                  <%= get_in(ann, [:summary]) || "" %>
+                </.text>
+              </.stack>
+              <.text variant="caption">
+                <%= get_in(ann, [:publish_at]) || "" %>
+              </.text>
+            </.flex>
+          <% end %>
+        </.stack>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="activity_feed">
+    <.grid columns={3} gap={4} id="summary_grid">
+      <.card variant="default" id="pending_card">
+        <.card_content id="pending_content">
+          <.stack align="center" gap={1} direction="column" id="pending_info">
+            <.text variant="h2" weight="bold" id="pending_value">
+              <%= @pending_count %>
+            </.text>
+            <.text variant="muted" id="pending_label">
+              待办事项
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="message_card">
+        <.card_content id="message_content">
+          <.stack align="center" gap={1} direction="column" id="message_info">
+            <.text variant="h2" weight="bold" id="message_value">
+              <%= @message_count %>
+            </.text>
+            <.text variant="muted" id="message_label">
+              未读消息
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="schedule_card">
+        <.card_content id="schedule_content">
+          <.stack align="center" gap={1} direction="column" id="schedule_info">
+            <.text variant="h2" weight="bold" id="schedule_value">
+              <%= @schedule_count %>
+            </.text>
+            <.text variant="muted" id="schedule_label">
+              今日日程
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+    </.grid>
+  </.section>
+</.page>

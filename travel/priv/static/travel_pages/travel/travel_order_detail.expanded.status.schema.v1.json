@@ -21,9 +21,14 @@
       "ticket_passenger_infos": "",
       "seat_selection_snapshot": "",
       "supplier_order_ref": "",
-      "payment_external_ref": ""
+      "payment_external_ref": "",
+      "tenant_id": "",
+      "host_shop_id": "",
+      "host_enterprise_id": "",
+      "customer_id": "",
+      "payment_id": ""
     },
-    "editing": true
+    "editing": false
   },
   "keys": [
     "editing",
@@ -33,10 +38,14 @@
     "record.contact_name",
     "record.contact_phone",
     "record.currency",
+    "record.customer_id",
+    "record.host_enterprise_id",
     "record.host_member_id",
+    "record.host_shop_id",
     "record.order_no",
     "record.original_order_ref",
     "record.payment_external_ref",
+    "record.payment_id",
     "record.points_deduction_amount",
     "record.points_to_use",
     "record.product_type",
@@ -44,6 +53,7 @@
     "record.seat_selection_snapshot",
     "record.status",
     "record.supplier_order_ref",
+    "record.tenant_id",
     "record.ticket_passenger_infos",
     "record.total_amount",
     "record.traveler_count",
@@ -58,11 +68,13 @@
   "layer2": {
     "backend": {
       "api_map": {
-        "approve_cancel": "Travel.TravelOrder.approve_cancel",
+        "cancel_cancel_request": "Travel.TravelOrder.cancel_cancel_request",
         "cancel_waitlist": "Travel.TravelOrder.cancel_waitlist",
         "confirm_change": "Travel.TravelOrder.confirm_change",
         "confirm_quote": "Travel.TravelOrder.confirm_quote",
+        "create": "Travel.TravelOrder.create",
         "destroy": "Travel.TravelOrder.destroy",
+        "execute_cancel": "Travel.TravelOrder.execute_cancel",
         "fulfill_waitlist": "Travel.TravelOrder.fulfill_waitlist",
         "get": "Travel.TravelOrder.get",
         "mark_booked": "Travel.TravelOrder.mark_booked",
@@ -74,6 +86,20 @@
         "submit_order": "Travel.TravelOrder.submit_order",
         "submit_waitlist": "Travel.TravelOrder.submit_waitlist",
         "update": "Travel.TravelOrder.update"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "booking_mode: bookingMode change_status: changeStatus contact_name: contactName contact_phone: contactPhone currency customer_id: customerId host_enterprise_id: hostEnterpriseId host_member_id: hostMemberId host_shop_id: hostShopId id order_no: orderNo original_order_ref: originalOrderRef payment_external_ref: paymentExternalRef payment_id: paymentId points_deduction_amount: pointsDeductionAmount points_to_use: pointsToUse product_type: productType recommended_payment_method: recommendedPaymentMethod seat_selection_snapshot: seatSelectionSnapshot status supplier_order_ref: supplierOrderRef tenant_id: tenantId ticket_passenger_infos: ticketPassengerInfos total_amount: totalAmount traveler_count: travelerCount waitlist_status: waitlistStatus"
+      },
+      "params": {
+        "accept": [
+          "id"
+        ]
       }
     },
     "children": [],
@@ -123,6 +149,230 @@
                 "action": "expect_text_contains",
                 "selector": "#flash-group, [data-flash], [role='alert']",
                 "value": "成功"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_confirm_quote"
+            ],
+            "name": "动作：confirm_quote",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_confirm_quote']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_confirm_quote']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_submit_order"
+            ],
+            "name": "动作：submit_order",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_submit_order']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_submit_order']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_submit_waitlist"
+            ],
+            "name": "动作：submit_waitlist",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_submit_waitlist']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_submit_waitlist']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_mark_payment_succeeded"
+            ],
+            "name": "动作：mark_payment_succeeded",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_mark_payment_succeeded']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_mark_payment_succeeded']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_mark_booked"
+            ],
+            "name": "动作：mark_booked",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_mark_booked']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_mark_booked']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_fulfill_waitlist"
+            ],
+            "name": "动作：fulfill_waitlist",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_fulfill_waitlist']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_fulfill_waitlist']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_mark_completed"
+            ],
+            "name": "动作：mark_completed",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_mark_completed']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_mark_completed']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_request_cancel"
+            ],
+            "name": "动作：request_cancel",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_request_cancel']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_request_cancel']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_cancel_waitlist"
+            ],
+            "name": "动作：cancel_waitlist",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_cancel_waitlist']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_cancel_waitlist']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_execute_cancel"
+            ],
+            "name": "动作：execute_cancel",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_execute_cancel']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_execute_cancel']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_cancel_cancel_request"
+            ],
+            "name": "动作：cancel_cancel_request",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_cancel_cancel_request']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_cancel_cancel_request']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_request_change"
+            ],
+            "name": "动作：request_change",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_request_change']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_request_change']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_confirm_change"
+            ],
+            "name": "动作：confirm_change",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_confirm_change']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_confirm_change']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_mark_order_failed"
+            ],
+            "name": "动作：mark_order_failed",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_mark_order_failed']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_mark_order_failed']"
               }
             ]
           }
@@ -228,9 +478,16 @@
         "trigger": "user_action"
       },
       {
-        "description": "approve_cancel",
+        "description": "execute_cancel",
         "from": "*",
-        "name": "action_approve_cancel",
+        "name": "action_execute_cancel",
+        "to": "loading",
+        "trigger": "user_action"
+      },
+      {
+        "description": "cancel_cancel_request",
+        "from": "*",
+        "name": "action_cancel_cancel_request",
         "to": "loading",
         "trigger": "user_action"
       },

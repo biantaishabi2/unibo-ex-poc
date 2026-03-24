@@ -1,7 +1,31 @@
 {
   "version": 1,
-  "requiredPaths": [],
-  "requiredRoots": [],
-  "schema": {},
+  "requiredPaths": [
+    "step_1_label",
+    "step_2_label",
+    "step_3_label"
+  ],
+  "requiredRoots": [
+    "step_1_label",
+    "step_2_label",
+    "step_3_label"
+  ],
+  "schema": {
+    "step_1_label": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "step_2_label": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "step_3_label": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
   "notes": []
 }

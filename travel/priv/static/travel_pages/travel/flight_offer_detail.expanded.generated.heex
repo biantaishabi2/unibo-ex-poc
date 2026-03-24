@@ -9,7 +9,7 @@
       <.breadcrumb_separator id="flight_offer_bc_sep" />
       <.breadcrumb_item id="flight_offer_bc_current_item">
         <.breadcrumb_page id="flight_offer_bc_current">
-          <%= @record.supplier_code %>
+          <%= get_in(@record, [:supplier_code]) || "详情" %>
         </.breadcrumb_page>
       </.breadcrumb_item>
     </.breadcrumb_list>
@@ -17,10 +17,10 @@
   <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="flight_offer_detail_header">
     <.flex gap={3} align="center" direction="row" id="flight_offer_title_group">
       <.text variant="title" id="flight_offer_detail_title">
-        <%= @record.supplier_code %>
+        <%= get_in(@record, [:supplier_code]) || "" %>
       </.text>
       <.badge variant="default" size="sm" id="flight_offer_status_badge">
-        <%= @record.sale_status %>
+        <%= get_in(@record, [:sale_status]) || "" %>
       </.badge>
     </.flex>
     <.flex gap={2} direction="row" id="flight_offer_actions">
@@ -55,7 +55,7 @@
               供应商编码
             </.text>
             <.text id="value_supplier_code">
-              <%= @record.supplier_code %>
+              <%= get_in(@record, [:supplier_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_itinerary_code">
@@ -63,7 +63,7 @@
               行程编码
             </.text>
             <.text id="value_itinerary_code">
-              <%= @record.itinerary_code %>
+              <%= get_in(@record, [:itinerary_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_flight_no">
@@ -71,7 +71,7 @@
               航班号
             </.text>
             <.text id="value_flight_no">
-              <%= @record.flight_no %>
+              <%= get_in(@record, [:flight_no]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_departure_airport_code">
@@ -79,7 +79,7 @@
               出发机场编码
             </.text>
             <.text id="value_departure_airport_code">
-              <%= @record.departure_airport_code %>
+              <%= get_in(@record, [:departure_airport_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_arrival_airport_code">
@@ -87,7 +87,7 @@
               到达机场编码
             </.text>
             <.text id="value_arrival_airport_code">
-              <%= @record.arrival_airport_code %>
+              <%= get_in(@record, [:arrival_airport_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_departure_at">
@@ -95,7 +95,7 @@
               起飞时间
             </.text>
             <.text id="value_departure_at">
-              <%= @record.departure_at %>
+              <%= get_in(@record, [:departure_at]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_arrival_at">
@@ -103,7 +103,7 @@
               到达时间
             </.text>
             <.text id="value_arrival_at">
-              <%= @record.arrival_at %>
+              <%= get_in(@record, [:arrival_at]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_cabin_class">
@@ -111,7 +111,7 @@
               舱等
             </.text>
             <.text id="value_cabin_class">
-              <%= @record.cabin_class %>
+              <%= get_in(@record, [:cabin_class]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_fare_family">
@@ -119,7 +119,7 @@
               运价族
             </.text>
             <.text id="value_fare_family">
-              <%= @record.fare_family %>
+              <%= get_in(@record, [:fare_family]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_listed_price">
@@ -127,7 +127,7 @@
               对客展示价快照
             </.text>
             <.text id="value_listed_price">
-              <%= @record.listed_price %>
+              <%= get_in(@record, [:listed_price]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_settlement_price">
@@ -135,7 +135,7 @@
               结算价快照
             </.text>
             <.text id="value_settlement_price">
-              <%= @record.settlement_price %>
+              <%= get_in(@record, [:settlement_price]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_currency">
@@ -143,7 +143,7 @@
               currency
             </.text>
             <.text id="value_currency">
-              <%= @record.currency %>
+              <%= get_in(@record, [:currency]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_seats_available">
@@ -151,7 +151,7 @@
               可售座位快照
             </.text>
             <.text id="value_seats_available">
-              <%= @record.seats_available %>
+              <%= get_in(@record, [:seats_available]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_baggage_policy">
@@ -159,7 +159,7 @@
               行李规则快照
             </.text>
             <.text id="value_baggage_policy">
-              <%= @record.baggage_policy %>
+              <%= get_in(@record, [:baggage_policy]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_refund_change_policy">
@@ -167,7 +167,7 @@
               退改规则快照
             </.text>
             <.text id="value_refund_change_policy">
-              <%= @record.refund_change_policy %>
+              <%= get_in(@record, [:refund_change_policy]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_sale_status">
@@ -175,33 +175,35 @@
               sale_status
             </.text>
             <.badge variant="default" size="sm" id="value_sale_status">
-              <%= @record.sale_status %>
+              <%= get_in(@record, [:sale_status]) || "" %>
             </.badge>
           </.flex>
         </.grid>
       <% else %>
         <.form phx-submit="form_submit" phx-change="form_change" id="flight_offer_edit_form">
           <.grid columns={2} gap={4} id="flight_offer_form_grid">
-            <.input name="tenant_id" label="tenant_id" placeholder="请输入tenant_id" required="true" size="md" id="form_tenant_id" />
-            <.input name="host_shop_id" label="宿主商城 ID,仅用于宿主侧隔离和桥接上下文" placeholder="请输入宿主商城 ID,仅用于宿主侧隔离和桥接上下文" size="md" id="form_host_shop_id" />
-            <.input name="supplier_code" label="供应商编码" placeholder="请输入供应商编码" required="true" size="md" id="form_supplier_code" />
-            <.input name="itinerary_code" label="行程编码" placeholder="请输入行程编码" required="true" size="md" id="form_itinerary_code" />
-            <.input name="flight_no" label="航班号" placeholder="请输入航班号" required="true" size="md" id="form_flight_no" />
-            <.input name="departure_airport_code" label="出发机场编码" placeholder="请输入出发机场编码" required="true" size="md" id="form_departure_airport_code" />
-            <.input name="arrival_airport_code" label="到达机场编码" placeholder="请输入到达机场编码" required="true" size="md" id="form_arrival_airport_code" />
-            <.input name="departure_at" label="起飞时间" placeholder="请输入起飞时间" required="true" size="md" id="form_departure_at" />
-            <.input name="arrival_at" label="到达时间" placeholder="请输入到达时间" required="true" size="md" id="form_arrival_at" />
-            <.input name="cabin_class" label="舱等" placeholder="请输入舱等" required="true" size="md" id="form_cabin_class" />
-            <.input name="fare_family" label="运价族" placeholder="请输入运价族" size="md" id="form_fare_family" />
-            <.input name="listed_price" label="对客展示价快照" placeholder="请输入对客展示价快照" required="true" size="md" id="form_listed_price" />
-            <.input name="settlement_price" label="结算价快照" placeholder="请输入结算价快照" size="md" id="form_settlement_price" />
-            <.input name="currency" label="currency" placeholder="请输入currency" size="md" id="form_currency" />
-            <.input name="seats_available" label="可售座位快照" placeholder="请输入可售座位快照" size="md" id="form_seats_available" />
-            <.textarea name="baggage_policy" label="行李规则快照" placeholder="请输入行李规则快照" id="form_baggage_policy" />
-            <.textarea name="refund_change_policy" label="退改规则快照" placeholder="请输入退改规则快照" id="form_refund_change_policy" />
-            <.select name="sale_status" label="sale_status" size="md" id="form_sale_status">
+            <.input name="tenant_id" label="tenant_id" placeholder="请输入tenant_id" required="true" size="md" id="form_tenant_id" value={@record.tenant_id} />
+            <.input name="host_shop_id" label="宿主商城 ID,仅用于宿主侧隔离和桥接上下文" placeholder="请输入宿主商城 ID,仅用于宿主侧隔离和桥接上下文" size="md" id="form_host_shop_id" value={@record.host_shop_id} />
+            <.input name="supplier_code" label="供应商编码" placeholder="请输入供应商编码" required="true" size="md" id="form_supplier_code" value={@record.supplier_code} />
+            <.input name="itinerary_code" label="行程编码" placeholder="请输入行程编码" required="true" size="md" id="form_itinerary_code" value={@record.itinerary_code} />
+            <.input name="flight_no" label="航班号" placeholder="请输入航班号" required="true" size="md" id="form_flight_no" value={@record.flight_no} />
+            <.input name="departure_airport_code" label="出发机场编码" placeholder="请输入出发机场编码" required="true" size="md" id="form_departure_airport_code" value={@record.departure_airport_code} />
+            <.input name="arrival_airport_code" label="到达机场编码" placeholder="请输入到达机场编码" required="true" size="md" id="form_arrival_airport_code" value={@record.arrival_airport_code} />
+            <.input name="departure_at" label="起飞时间" placeholder="请输入起飞时间" required="true" size="md" id="form_departure_at" value={@record.departure_at} />
+            <.input name="arrival_at" label="到达时间" placeholder="请输入到达时间" required="true" size="md" id="form_arrival_at" value={@record.arrival_at} />
+            <.input name="cabin_class" label="舱等" placeholder="请输入舱等" required="true" size="md" id="form_cabin_class" value={@record.cabin_class} />
+            <.input name="fare_family" label="运价族" placeholder="请输入运价族" size="md" id="form_fare_family" value={@record.fare_family} />
+            <.input name="listed_price" label="对客展示价快照" placeholder="请输入对客展示价快照" required="true" size="md" id="form_listed_price" value={@record.listed_price} />
+            <.input name="settlement_price" label="结算价快照" placeholder="请输入结算价快照" size="md" id="form_settlement_price" value={@record.settlement_price} />
+            <.input name="currency" label="currency" placeholder="请输入currency" size="md" id="form_currency" value={@record.currency} />
+            <.input name="seats_available" label="可售座位快照" placeholder="请输入可售座位快照" size="md" id="form_seats_available" value={@record.seats_available} />
+            <.textarea name="baggage_policy" label="行李规则快照" placeholder="请输入行李规则快照" id="form_baggage_policy" value={@record.baggage_policy} />
+            <.textarea name="refund_change_policy" label="退改规则快照" placeholder="请输入退改规则快照" id="form_refund_change_policy" value={@record.refund_change_policy} />
+            <.select name="sale_status" label="sale_status" size="md" id="form_sale_status" value={@record.sale_status}>
 
             </.select>
+            <.input name="departure_airport_ref_id" label="Travel 出发机场主数据引用（跨域引用 Ecommerce.TravelAirport）" placeholder="请输入Travel 出发机场主数据引用（跨域引用 Ecommerce.TravelAirport）" size="md" id="form_departure_airport_ref_id" value={@record.departure_airport_ref_id} />
+            <.input name="arrival_airport_ref_id" label="Travel 到达机场主数据引用（跨域引用 Ecommerce.TravelAirport）" placeholder="请输入Travel 到达机场主数据引用（跨域引用 Ecommerce.TravelAirport）" size="md" id="form_arrival_airport_ref_id" value={@record.arrival_airport_ref_id} />
           </.grid>
           <.flex justify="end" gap={2} direction="row" id="flight_offer_form_actions">
             <.button variant="secondary" phx-click="cancel_edit" size="md" id="flight_offer_cancel_btn">

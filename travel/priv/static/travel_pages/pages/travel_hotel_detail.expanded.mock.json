@@ -1,1 +1,10 @@
-{}
+{
+  "travel_hotel": {
+    "hotel_code": "",
+    "hotel_name": "",
+    "city_code": "",
+    "hotel_star": "",
+    "status": ""
+  },
+  "editing": false
+}

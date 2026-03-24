@@ -9,7 +9,7 @@
       <.breadcrumb_separator id="vacation_offer_bc_sep" />
       <.breadcrumb_item id="vacation_offer_bc_current_item">
         <.breadcrumb_page id="vacation_offer_bc_current">
-          <%= @record.supplier_code %>
+          <%= get_in(@record, [:supplier_code]) || "详情" %>
         </.breadcrumb_page>
       </.breadcrumb_item>
     </.breadcrumb_list>
@@ -17,10 +17,10 @@
   <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="vacation_offer_detail_header">
     <.flex gap={3} align="center" direction="row" id="vacation_offer_title_group">
       <.text variant="title" id="vacation_offer_detail_title">
-        <%= @record.supplier_code %>
+        <%= get_in(@record, [:supplier_code]) || "" %>
       </.text>
       <.badge variant="default" size="sm" id="vacation_offer_status_badge">
-        <%= @record.sale_status %>
+        <%= get_in(@record, [:sale_status]) || "" %>
       </.badge>
     </.flex>
     <.flex gap={2} direction="row" id="vacation_offer_actions">
@@ -55,7 +55,7 @@
               供应商编码
             </.text>
             <.text id="value_supplier_code">
-              <%= @record.supplier_code %>
+              <%= get_in(@record, [:supplier_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_package_code">
@@ -63,7 +63,7 @@
               套餐编码
             </.text>
             <.text id="value_package_code">
-              <%= @record.package_code %>
+              <%= get_in(@record, [:package_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_package_name">
@@ -71,7 +71,7 @@
               套餐名称
             </.text>
             <.text id="value_package_name">
-              <%= @record.package_name %>
+              <%= get_in(@record, [:package_name]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_package_type">
@@ -79,7 +79,7 @@
               套餐类型
             </.text>
             <.badge variant="default" size="sm" id="value_package_type">
-              <%= @record.package_type %>
+              <%= get_in(@record, [:package_type]) || "" %>
             </.badge>
           </.flex>
           <.flex direction="row" id="field_departure_city_code">
@@ -87,7 +87,7 @@
               出发城市编码
             </.text>
             <.text id="value_departure_city_code">
-              <%= @record.departure_city_code %>
+              <%= get_in(@record, [:departure_city_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_destination_code">
@@ -95,7 +95,7 @@
               目的地编码
             </.text>
             <.text id="value_destination_code">
-              <%= @record.destination_code %>
+              <%= get_in(@record, [:destination_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_start_date">
@@ -103,7 +103,7 @@
               出行开始日期
             </.text>
             <.text id="value_start_date">
-              <%= @record.start_date %>
+              <%= get_in(@record, [:start_date]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_end_date">
@@ -111,7 +111,7 @@
               出行结束日期
             </.text>
             <.text id="value_end_date">
-              <%= @record.end_date %>
+              <%= get_in(@record, [:end_date]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_listed_price">
@@ -119,7 +119,7 @@
               对客展示价快照
             </.text>
             <.text id="value_listed_price">
-              <%= @record.listed_price %>
+              <%= get_in(@record, [:listed_price]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_settlement_price">
@@ -127,7 +127,7 @@
               结算价快照
             </.text>
             <.text id="value_settlement_price">
-              <%= @record.settlement_price %>
+              <%= get_in(@record, [:settlement_price]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_currency">
@@ -135,7 +135,7 @@
               currency
             </.text>
             <.text id="value_currency">
-              <%= @record.currency %>
+              <%= get_in(@record, [:currency]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_inventory_count">
@@ -143,7 +143,7 @@
               可售库存快照
             </.text>
             <.text id="value_inventory_count">
-              <%= @record.inventory_count %>
+              <%= get_in(@record, [:inventory_count]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_booking_rules">
@@ -151,7 +151,7 @@
               预订规则快照
             </.text>
             <.text id="value_booking_rules">
-              <%= @record.booking_rules %>
+              <%= get_in(@record, [:booking_rules]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_cancellation_policy">
@@ -159,7 +159,7 @@
               取消规则快照
             </.text>
             <.text id="value_cancellation_policy">
-              <%= @record.cancellation_policy %>
+              <%= get_in(@record, [:cancellation_policy]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_sale_status">
@@ -167,34 +167,36 @@
               sale_status
             </.text>
             <.badge variant="default" size="sm" id="value_sale_status">
-              <%= @record.sale_status %>
+              <%= get_in(@record, [:sale_status]) || "" %>
             </.badge>
           </.flex>
         </.grid>
       <% else %>
         <.form phx-submit="form_submit" phx-change="form_change" id="vacation_offer_edit_form">
           <.grid columns={2} gap={4} id="vacation_offer_form_grid">
-            <.input name="tenant_id" label="tenant_id" placeholder="请输入tenant_id" required="true" size="md" id="form_tenant_id" />
-            <.input name="host_shop_id" label="宿主商城 ID,仅用于宿主侧隔离和桥接上下文" placeholder="请输入宿主商城 ID,仅用于宿主侧隔离和桥接上下文" size="md" id="form_host_shop_id" />
-            <.input name="supplier_code" label="供应商编码" placeholder="请输入供应商编码" required="true" size="md" id="form_supplier_code" />
-            <.input name="package_code" label="套餐编码" placeholder="请输入套餐编码" required="true" size="md" id="form_package_code" />
-            <.input name="package_name" label="套餐名称" placeholder="请输入套餐名称" required="true" size="md" id="form_package_name" />
-            <.select name="package_type" label="套餐类型" size="md" id="form_package_type">
+            <.input name="tenant_id" label="tenant_id" placeholder="请输入tenant_id" required="true" size="md" id="form_tenant_id" value={@record.tenant_id} />
+            <.input name="host_shop_id" label="宿主商城 ID,仅用于宿主侧隔离和桥接上下文" placeholder="请输入宿主商城 ID,仅用于宿主侧隔离和桥接上下文" size="md" id="form_host_shop_id" value={@record.host_shop_id} />
+            <.input name="supplier_code" label="供应商编码" placeholder="请输入供应商编码" required="true" size="md" id="form_supplier_code" value={@record.supplier_code} />
+            <.input name="package_code" label="套餐编码" placeholder="请输入套餐编码" required="true" size="md" id="form_package_code" value={@record.package_code} />
+            <.input name="package_name" label="套餐名称" placeholder="请输入套餐名称" required="true" size="md" id="form_package_name" value={@record.package_name} />
+            <.select name="package_type" label="套餐类型" size="md" id="form_package_type" value={@record.package_type}>
 
             </.select>
-            <.input name="departure_city_code" label="出发城市编码" placeholder="请输入出发城市编码" required="true" size="md" id="form_departure_city_code" />
-            <.input name="destination_code" label="目的地编码" placeholder="请输入目的地编码" required="true" size="md" id="form_destination_code" />
-            <.input name="start_date" label="出行开始日期" placeholder="请输入出行开始日期" required="true" size="md" id="form_start_date" />
-            <.input name="end_date" label="出行结束日期" placeholder="请输入出行结束日期" required="true" size="md" id="form_end_date" />
-            <.input name="listed_price" label="对客展示价快照" placeholder="请输入对客展示价快照" required="true" size="md" id="form_listed_price" />
-            <.input name="settlement_price" label="结算价快照" placeholder="请输入结算价快照" size="md" id="form_settlement_price" />
-            <.input name="currency" label="currency" placeholder="请输入currency" size="md" id="form_currency" />
-            <.input name="inventory_count" label="可售库存快照" placeholder="请输入可售库存快照" size="md" id="form_inventory_count" />
-            <.textarea name="booking_rules" label="预订规则快照" placeholder="请输入预订规则快照" id="form_booking_rules" />
-            <.textarea name="cancellation_policy" label="取消规则快照" placeholder="请输入取消规则快照" id="form_cancellation_policy" />
-            <.select name="sale_status" label="sale_status" size="md" id="form_sale_status">
+            <.input name="departure_city_code" label="出发城市编码" placeholder="请输入出发城市编码" required="true" size="md" id="form_departure_city_code" value={@record.departure_city_code} />
+            <.input name="destination_code" label="目的地编码" placeholder="请输入目的地编码" required="true" size="md" id="form_destination_code" value={@record.destination_code} />
+            <.input name="start_date" label="出行开始日期" placeholder="请输入出行开始日期" required="true" size="md" id="form_start_date" value={@record.start_date} />
+            <.input name="end_date" label="出行结束日期" placeholder="请输入出行结束日期" required="true" size="md" id="form_end_date" value={@record.end_date} />
+            <.input name="listed_price" label="对客展示价快照" placeholder="请输入对客展示价快照" required="true" size="md" id="form_listed_price" value={@record.listed_price} />
+            <.input name="settlement_price" label="结算价快照" placeholder="请输入结算价快照" size="md" id="form_settlement_price" value={@record.settlement_price} />
+            <.input name="currency" label="currency" placeholder="请输入currency" size="md" id="form_currency" value={@record.currency} />
+            <.input name="inventory_count" label="可售库存快照" placeholder="请输入可售库存快照" size="md" id="form_inventory_count" value={@record.inventory_count} />
+            <.textarea name="booking_rules" label="预订规则快照" placeholder="请输入预订规则快照" id="form_booking_rules" value={@record.booking_rules} />
+            <.textarea name="cancellation_policy" label="取消规则快照" placeholder="请输入取消规则快照" id="form_cancellation_policy" value={@record.cancellation_policy} />
+            <.select name="sale_status" label="sale_status" size="md" id="form_sale_status" value={@record.sale_status}>
 
             </.select>
+            <.input name="departure_city_ref_id" label="Core 出发城市主数据引用（跨域引用 Ecommerce.TravelCity）" placeholder="请输入Core 出发城市主数据引用（跨域引用 Ecommerce.TravelCity）" size="md" id="form_departure_city_ref_id" value={@record.departure_city_ref_id} />
+            <.input name="destination_ref_id" label="Core 目的地主数据引用（跨域引用 Ecommerce.TravelCity）" placeholder="请输入Core 目的地主数据引用（跨域引用 Ecommerce.TravelCity）" size="md" id="form_destination_ref_id" value={@record.destination_ref_id} />
           </.grid>
           <.flex justify="end" gap={2} direction="row" id="vacation_offer_form_actions">
             <.button variant="secondary" phx-click="cancel_edit" size="md" id="vacation_offer_cancel_btn">

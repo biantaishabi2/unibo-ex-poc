@@ -9,21 +9,24 @@
         "airline_name": "",
         "iata_code": "",
         "icao_code": "",
-        "status": ""
+        "status": "",
+        "id": "row_01"
       },
       {
         "airline_code": "",
         "airline_name": "",
         "iata_code": "",
         "icao_code": "",
-        "status": ""
+        "status": "",
+        "id": "row_02"
       },
       {
         "airline_code": "",
         "airline_name": "",
         "iata_code": "",
         "icao_code": "",
-        "status": ""
+        "status": "",
+        "id": "row_03"
       }
     ]
   },
@@ -35,6 +38,7 @@
     "rows[].airline_name",
     "rows[].iata_code",
     "rows[].icao_code",
+    "rows[].id",
     "rows[].status",
     "rows_empty"
   ],
@@ -49,6 +53,20 @@
     "backend": {
       "api_map": {
         "list": "Travel.TravelAirline.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "airline_code: airlineCode airline_name: airlineName iata_code: iataCode icao_code: icaoCode id status"
+      },
+      "params": {
+        "accept": [
+          "status"
+        ]
       }
     },
     "domain": "Travel",

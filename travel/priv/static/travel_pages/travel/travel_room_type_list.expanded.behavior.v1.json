@@ -2,6 +2,20 @@
   "backend": {
     "api_map": {
       "list": "Travel.TravelRoomType.list"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "bed_type: bedType hotel_code: hotelCode id room_type_code: roomTypeCode room_type_name: roomTypeName status"
+    },
+    "params": {
+      "accept": [
+        "status"
+      ]
     }
   },
   "domain": "Travel",

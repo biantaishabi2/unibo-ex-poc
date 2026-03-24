@@ -1,5 +1,113 @@
 {
   "version": 1,
-  "vars": {},
-  "events": {}
+  "vars": {
+    "step_1_label": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "wz_step_1_label",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{step_1_label|基本信息}}"
+        },
+        {
+          "node_type": "CardTitle",
+          "node_id": "wz_step_1_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{step_1_label|基本信息}}"
+        }
+      ]
+    },
+    "step_2_label": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "wz_step_2_label",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{step_2_label|详细配置}}"
+        },
+        {
+          "node_type": "CardTitle",
+          "node_id": "wz_step_2_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{step_2_label|详细配置}}"
+        }
+      ]
+    },
+    "step_3_label": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "wz_step_3_label",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{step_3_label|确认提交}}"
+        },
+        {
+          "node_type": "CardTitle",
+          "node_id": "wz_step_3_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{step_3_label|确认提交}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "wizard_cancel": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "wz_cancel_btn",
+          "prop": "click",
+          "raw": "wizard_cancel"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "wz_hdr_cancel_btn",
+          "prop": "click",
+          "raw": "wizard_cancel"
+        }
+      ]
+    },
+    "wizard_submit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "wz_hdr_submit_btn",
+          "prop": "click",
+          "raw": "wizard_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "wz_submit_btn",
+          "prop": "click",
+          "raw": "wizard_submit"
+        }
+      ]
+    },
+    "wizard_prev": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "wz_prev_btn",
+          "prop": "click",
+          "raw": "wizard_prev"
+        }
+      ]
+    },
+    "wizard_next": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "wz_next_btn",
+          "prop": "click",
+          "raw": "wizard_next"
+        }
+      ]
+    }
+  }
 }

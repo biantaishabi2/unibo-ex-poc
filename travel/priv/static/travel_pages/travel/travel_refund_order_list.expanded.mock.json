@@ -1,12 +1,30 @@
 {
-  "travel_refund_order": {
-    "refund_reason": "",
-    "refund_fee": "",
-    "refund_amount": "",
-    "status": "",
-    "approval_mode": "",
-    "page": "",
-    "total_pages": ""
-  },
-  "rows_empty": true
+  "page_title": "TravelRefundOrder 列表",
+  "rows_empty": true,
+  "rows": [
+    {
+      "refund_reason": "",
+      "refund_fee": "",
+      "refund_amount": "",
+      "status": "",
+      "approval_mode": "",
+      "id": "row_01"
+    },
+    {
+      "refund_reason": "",
+      "refund_fee": "",
+      "refund_amount": "",
+      "status": "",
+      "approval_mode": "",
+      "id": "row_02"
+    },
+    {
+      "refund_reason": "",
+      "refund_fee": "",
+      "refund_amount": "",
+      "status": "",
+      "approval_mode": "",
+      "id": "row_03"
+    }
+  ]
 }

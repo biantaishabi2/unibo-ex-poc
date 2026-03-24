@@ -1,0 +1,38 @@
+{
+  "offer": {
+    "train_no": "",
+    "train_type_label": "",
+    "selected_seat_class_name": "",
+    "departure_time": "",
+    "departure_station_name": "",
+    "date_label": "",
+    "arrival_time": "",
+    "arrival_station_name": "",
+    "currency": "",
+    "selected_seat_price": "",
+    "is_policy_exceeded": true,
+    "total_price": ""
+  },
+  "travelers": {
+    "items": [
+      {
+        "avatar": "",
+        "name_initial": "",
+        "name": "traveler_1",
+        "id_type_label": ""
+      },
+      {
+        "avatar": "",
+        "name_initial": "",
+        "name": "traveler_2",
+        "id_type_label": ""
+      },
+      {
+        "avatar": "",
+        "name_initial": "",
+        "name": "traveler_3",
+        "id_type_label": ""
+      }
+    ]
+  }
+}

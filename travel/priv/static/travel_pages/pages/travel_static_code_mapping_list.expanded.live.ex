@@ -11,9 +11,41 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): 
+  # status.keys preview (first ~40): rows, rows[], rows[].canonical_entity, rows[].external_code, rows[].external_name, rows[].object_type, rows[].status, rows[].supplier_code, rows_empty, travel_static_code_mapping, travel_static_code_mapping.page, travel_static_code_mapping.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
-  @status_defaults_raw Jason.decode!("{}")
+  @status_defaults_raw Jason.decode!("{
+  \"travel_static_code_mapping\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
+  \"rows_empty\": true,
+  \"rows\": [
+    {
+      \"supplier_code\": \"\",
+      \"object_type\": \"\",
+      \"canonical_entity\": \"\",
+      \"external_code\": \"\",
+      \"external_name\": \"\",
+      \"status\": \"\"
+    },
+    {
+      \"supplier_code\": \"\",
+      \"object_type\": \"\",
+      \"canonical_entity\": \"\",
+      \"external_code\": \"\",
+      \"external_name\": \"\",
+      \"status\": \"\"
+    },
+    {
+      \"supplier_code\": \"\",
+      \"object_type\": \"\",
+      \"canonical_entity\": \"\",
+      \"external_code\": \"\",
+      \"external_name\": \"\",
+      \"status\": \"\"
+    }
+  ]
+}")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
@@ -65,8 +97,30 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event(_event, _params, socket) do
-    # No events declared by events.schema
+  def handle_event("filter_submit", params, socket) do
+    # UI action event name: filter_submit
+    socket = dispatch_backend("filter_submit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_create", params, socket) do
+    # UI action event name: navigate_create
+    socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_static_code_mapping_page_next", params, socket) do
+    # UI action event name: travel_static_code_mapping_page_next
+    socket = dispatch_backend("travel_static_code_mapping_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_static_code_mapping_page_prev", params, socket) do
+    # UI action event name: travel_static_code_mapping_page_prev
+    socket = dispatch_backend("travel_static_code_mapping_page_prev", params, socket)
     {:noreply, socket}
   end
 

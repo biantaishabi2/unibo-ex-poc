@@ -1,1 +1,1 @@
-{"entity":"TravelCabinClass","domain":"Pages","page_type":"detail"}
+{"entity":"TravelCabinClass","domain":"Travel","page_type":"detail","extends_template":"base_object_page"}

@@ -1,7 +1,138 @@
 {
   "version": 1,
-  "requiredPaths": [],
-  "requiredRoots": [],
-  "schema": {},
+  "requiredPaths": [
+    "editing",
+    "travel_order.booking_mode",
+    "travel_order.change_status",
+    "travel_order.contact_name",
+    "travel_order.contact_phone",
+    "travel_order.currency",
+    "travel_order.order_no",
+    "travel_order.original_order_ref",
+    "travel_order.payment_external_ref",
+    "travel_order.points_deduction_amount",
+    "travel_order.points_to_use",
+    "travel_order.product_type",
+    "travel_order.recommended_payment_method",
+    "travel_order.seat_selection_snapshot",
+    "travel_order.status",
+    "travel_order.supplier_order_ref",
+    "travel_order.ticket_passenger_infos",
+    "travel_order.total_amount",
+    "travel_order.traveler_count",
+    "travel_order.waitlist_status"
+  ],
+  "requiredRoots": [
+    "editing",
+    "travel_order"
+  ],
+  "schema": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_order": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "order_no": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "product_type": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "booking_mode": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "contact_name": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "contact_phone": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "traveler_count": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "points_to_use": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "points_deduction_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "recommended_payment_method": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "currency": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "change_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "waitlist_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "original_order_ref": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "ticket_passenger_infos": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "seat_selection_snapshot": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "supplier_order_ref": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "payment_external_ref": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    }
+  },
   "notes": []
 }

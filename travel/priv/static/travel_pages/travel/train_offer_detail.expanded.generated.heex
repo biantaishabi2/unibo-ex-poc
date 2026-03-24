@@ -9,7 +9,7 @@
       <.breadcrumb_separator id="train_offer_bc_sep" />
       <.breadcrumb_item id="train_offer_bc_current_item">
         <.breadcrumb_page id="train_offer_bc_current">
-          <%= @record.supplier_code %>
+          <%= get_in(@record, [:supplier_code]) || "详情" %>
         </.breadcrumb_page>
       </.breadcrumb_item>
     </.breadcrumb_list>
@@ -17,10 +17,10 @@
   <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="train_offer_detail_header">
     <.flex gap={3} align="center" direction="row" id="train_offer_title_group">
       <.text variant="title" id="train_offer_detail_title">
-        <%= @record.supplier_code %>
+        <%= get_in(@record, [:supplier_code]) || "" %>
       </.text>
       <.badge variant="default" size="sm" id="train_offer_status_badge">
-        <%= @record.inventory_status %>
+        <%= get_in(@record, [:inventory_status]) || "" %>
       </.badge>
     </.flex>
     <.flex gap={2} direction="row" id="train_offer_actions">
@@ -55,7 +55,7 @@
               供应商编码
             </.text>
             <.text id="value_supplier_code">
-              <%= @record.supplier_code %>
+              <%= get_in(@record, [:supplier_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_train_no">
@@ -63,7 +63,7 @@
               车次号
             </.text>
             <.text id="value_train_no">
-              <%= @record.train_no %>
+              <%= get_in(@record, [:train_no]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_departure_station_code">
@@ -71,7 +71,7 @@
               出发站编码
             </.text>
             <.text id="value_departure_station_code">
-              <%= @record.departure_station_code %>
+              <%= get_in(@record, [:departure_station_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_departure_station_name">
@@ -79,7 +79,7 @@
               出发站名称
             </.text>
             <.text id="value_departure_station_name">
-              <%= @record.departure_station_name %>
+              <%= get_in(@record, [:departure_station_name]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_arrival_station_code">
@@ -87,7 +87,7 @@
               到达站编码
             </.text>
             <.text id="value_arrival_station_code">
-              <%= @record.arrival_station_code %>
+              <%= get_in(@record, [:arrival_station_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_arrival_station_name">
@@ -95,7 +95,7 @@
               到达站名称
             </.text>
             <.text id="value_arrival_station_name">
-              <%= @record.arrival_station_name %>
+              <%= get_in(@record, [:arrival_station_name]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_travel_date">
@@ -103,7 +103,7 @@
               乘车日期
             </.text>
             <.text id="value_travel_date">
-              <%= @record.travel_date %>
+              <%= get_in(@record, [:travel_date]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_departure_at">
@@ -111,7 +111,7 @@
               发车时间
             </.text>
             <.text id="value_departure_at">
-              <%= @record.departure_at %>
+              <%= get_in(@record, [:departure_at]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_arrival_at">
@@ -119,7 +119,7 @@
               到达时间
             </.text>
             <.text id="value_arrival_at">
-              <%= @record.arrival_at %>
+              <%= get_in(@record, [:arrival_at]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_seat_class">
@@ -127,7 +127,7 @@
               席别名称
             </.text>
             <.text id="value_seat_class">
-              <%= @record.seat_class %>
+              <%= get_in(@record, [:seat_class]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_seat_code">
@@ -135,7 +135,7 @@
               席别编码
             </.text>
             <.text id="value_seat_code">
-              <%= @record.seat_code %>
+              <%= get_in(@record, [:seat_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_is_no_seat">
@@ -143,7 +143,7 @@
               是否无座票
             </.text>
             <.badge variant="default" size="sm" id="value_is_no_seat">
-              <%= @record.is_no_seat %>
+              <%= get_in(@record, [:is_no_seat]) || "" %>
             </.badge>
           </.flex>
           <.flex direction="row" id="field_inventory_status">
@@ -151,7 +151,7 @@
               余票或候补可用状态
             </.text>
             <.badge variant="default" size="sm" id="value_inventory_status">
-              <%= @record.inventory_status %>
+              <%= get_in(@record, [:inventory_status]) || "" %>
             </.badge>
           </.flex>
           <.flex direction="row" id="field_waitlist_supported">
@@ -159,7 +159,7 @@
               是否支持候补
             </.text>
             <.badge variant="default" size="sm" id="value_waitlist_supported">
-              <%= @record.waitlist_supported %>
+              <%= get_in(@record, [:waitlist_supported]) || "" %>
             </.badge>
           </.flex>
           <.flex direction="row" id="field_listed_price">
@@ -167,7 +167,7 @@
               对客展示价快照
             </.text>
             <.text id="value_listed_price">
-              <%= @record.listed_price %>
+              <%= get_in(@record, [:listed_price]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_settlement_price">
@@ -175,7 +175,7 @@
               结算价快照
             </.text>
             <.text id="value_settlement_price">
-              <%= @record.settlement_price %>
+              <%= get_in(@record, [:settlement_price]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_currency">
@@ -183,7 +183,7 @@
               currency
             </.text>
             <.text id="value_currency">
-              <%= @record.currency %>
+              <%= get_in(@record, [:currency]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_booking_rules_snapshot">
@@ -191,7 +191,7 @@
               预订规则快照
             </.text>
             <.text id="value_booking_rules_snapshot">
-              <%= @record.booking_rules_snapshot %>
+              <%= get_in(@record, [:booking_rules_snapshot]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_change_rules_snapshot">
@@ -199,7 +199,7 @@
               改签规则快照
             </.text>
             <.text id="value_change_rules_snapshot">
-              <%= @record.change_rules_snapshot %>
+              <%= get_in(@record, [:change_rules_snapshot]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_refund_rules_snapshot">
@@ -207,7 +207,7 @@
               退票规则快照
             </.text>
             <.text id="value_refund_rules_snapshot">
-              <%= @record.refund_rules_snapshot %>
+              <%= get_in(@record, [:refund_rules_snapshot]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_sale_status">
@@ -215,40 +215,42 @@
               可售状态
             </.text>
             <.badge variant="default" size="sm" id="value_sale_status">
-              <%= @record.sale_status %>
+              <%= get_in(@record, [:sale_status]) || "" %>
             </.badge>
           </.flex>
         </.grid>
       <% else %>
         <.form phx-submit="form_submit" phx-change="form_change" id="train_offer_edit_form">
           <.grid columns={2} gap={4} id="train_offer_form_grid">
-            <.input name="tenant_id" label="tenant_id" placeholder="请输入tenant_id" required="true" size="md" id="form_tenant_id" />
-            <.input name="host_shop_id" label="宿主商城 ID,仅用于宿主侧隔离和桥接上下文" placeholder="请输入宿主商城 ID,仅用于宿主侧隔离和桥接上下文" size="md" id="form_host_shop_id" />
-            <.input name="supplier_code" label="供应商编码" placeholder="请输入供应商编码" required="true" size="md" id="form_supplier_code" />
-            <.input name="train_no" label="车次号" placeholder="请输入车次号" required="true" size="md" id="form_train_no" />
-            <.input name="departure_station_code" label="出发站编码" placeholder="请输入出发站编码" required="true" size="md" id="form_departure_station_code" />
-            <.input name="departure_station_name" label="出发站名称" placeholder="请输入出发站名称" required="true" size="md" id="form_departure_station_name" />
-            <.input name="arrival_station_code" label="到达站编码" placeholder="请输入到达站编码" required="true" size="md" id="form_arrival_station_code" />
-            <.input name="arrival_station_name" label="到达站名称" placeholder="请输入到达站名称" required="true" size="md" id="form_arrival_station_name" />
-            <.input name="travel_date" label="乘车日期" placeholder="请输入乘车日期" required="true" size="md" id="form_travel_date" />
-            <.input name="departure_at" label="发车时间" placeholder="请输入发车时间" required="true" size="md" id="form_departure_at" />
-            <.input name="arrival_at" label="到达时间" placeholder="请输入到达时间" required="true" size="md" id="form_arrival_at" />
-            <.input name="seat_class" label="席别名称" placeholder="请输入席别名称" required="true" size="md" id="form_seat_class" />
-            <.input name="seat_code" label="席别编码" placeholder="请输入席别编码" required="true" size="md" id="form_seat_code" />
-            <.switch name="is_no_seat" label="是否无座票" size="md" id="form_is_no_seat" />
-            <.select name="inventory_status" label="余票或候补可用状态" size="md" id="form_inventory_status">
+            <.input name="tenant_id" label="tenant_id" placeholder="请输入tenant_id" required="true" size="md" id="form_tenant_id" value={@record.tenant_id} />
+            <.input name="host_shop_id" label="宿主商城 ID,仅用于宿主侧隔离和桥接上下文" placeholder="请输入宿主商城 ID,仅用于宿主侧隔离和桥接上下文" size="md" id="form_host_shop_id" value={@record.host_shop_id} />
+            <.input name="supplier_code" label="供应商编码" placeholder="请输入供应商编码" required="true" size="md" id="form_supplier_code" value={@record.supplier_code} />
+            <.input name="train_no" label="车次号" placeholder="请输入车次号" required="true" size="md" id="form_train_no" value={@record.train_no} />
+            <.input name="departure_station_code" label="出发站编码" placeholder="请输入出发站编码" required="true" size="md" id="form_departure_station_code" value={@record.departure_station_code} />
+            <.input name="departure_station_name" label="出发站名称" placeholder="请输入出发站名称" required="true" size="md" id="form_departure_station_name" value={@record.departure_station_name} />
+            <.input name="arrival_station_code" label="到达站编码" placeholder="请输入到达站编码" required="true" size="md" id="form_arrival_station_code" value={@record.arrival_station_code} />
+            <.input name="arrival_station_name" label="到达站名称" placeholder="请输入到达站名称" required="true" size="md" id="form_arrival_station_name" value={@record.arrival_station_name} />
+            <.input name="travel_date" label="乘车日期" placeholder="请输入乘车日期" required="true" size="md" id="form_travel_date" value={@record.travel_date} />
+            <.input name="departure_at" label="发车时间" placeholder="请输入发车时间" required="true" size="md" id="form_departure_at" value={@record.departure_at} />
+            <.input name="arrival_at" label="到达时间" placeholder="请输入到达时间" required="true" size="md" id="form_arrival_at" value={@record.arrival_at} />
+            <.input name="seat_class" label="席别名称" placeholder="请输入席别名称" required="true" size="md" id="form_seat_class" value={@record.seat_class} />
+            <.input name="seat_code" label="席别编码" placeholder="请输入席别编码" required="true" size="md" id="form_seat_code" value={@record.seat_code} />
+            <.switch name="is_no_seat" label="是否无座票" size="md" id="form_is_no_seat" value={@record.is_no_seat} />
+            <.select name="inventory_status" label="余票或候补可用状态" size="md" id="form_inventory_status" value={@record.inventory_status}>
 
             </.select>
-            <.switch name="waitlist_supported" label="是否支持候补" size="md" id="form_waitlist_supported" />
-            <.input name="listed_price" label="对客展示价快照" placeholder="请输入对客展示价快照" required="true" size="md" id="form_listed_price" />
-            <.input name="settlement_price" label="结算价快照" placeholder="请输入结算价快照" size="md" id="form_settlement_price" />
-            <.input name="currency" label="currency" placeholder="请输入currency" size="md" id="form_currency" />
-            <.textarea name="booking_rules_snapshot" label="预订规则快照" placeholder="请输入预订规则快照" id="form_booking_rules_snapshot" />
-            <.textarea name="change_rules_snapshot" label="改签规则快照" placeholder="请输入改签规则快照" id="form_change_rules_snapshot" />
-            <.textarea name="refund_rules_snapshot" label="退票规则快照" placeholder="请输入退票规则快照" id="form_refund_rules_snapshot" />
-            <.select name="sale_status" label="可售状态" size="md" id="form_sale_status">
+            <.switch name="waitlist_supported" label="是否支持候补" size="md" id="form_waitlist_supported" value={@record.waitlist_supported} />
+            <.input name="listed_price" label="对客展示价快照" placeholder="请输入对客展示价快照" required="true" size="md" id="form_listed_price" value={@record.listed_price} />
+            <.input name="settlement_price" label="结算价快照" placeholder="请输入结算价快照" size="md" id="form_settlement_price" value={@record.settlement_price} />
+            <.input name="currency" label="currency" placeholder="请输入currency" size="md" id="form_currency" value={@record.currency} />
+            <.textarea name="booking_rules_snapshot" label="预订规则快照" placeholder="请输入预订规则快照" id="form_booking_rules_snapshot" value={@record.booking_rules_snapshot} />
+            <.textarea name="change_rules_snapshot" label="改签规则快照" placeholder="请输入改签规则快照" id="form_change_rules_snapshot" value={@record.change_rules_snapshot} />
+            <.textarea name="refund_rules_snapshot" label="退票规则快照" placeholder="请输入退票规则快照" id="form_refund_rules_snapshot" value={@record.refund_rules_snapshot} />
+            <.select name="sale_status" label="可售状态" size="md" id="form_sale_status" value={@record.sale_status}>
 
             </.select>
+            <.input name="departure_station_ref_id" label="Travel 出发站主数据引用（跨域引用 Ecommerce.TravelStation）" placeholder="请输入Travel 出发站主数据引用（跨域引用 Ecommerce.TravelStation）" size="md" id="form_departure_station_ref_id" value={@record.departure_station_ref_id} />
+            <.input name="arrival_station_ref_id" label="Travel 到达站主数据引用（跨域引用 Ecommerce.TravelStation）" placeholder="请输入Travel 到达站主数据引用（跨域引用 Ecommerce.TravelStation）" size="md" id="form_arrival_station_ref_id" value={@record.arrival_station_ref_id} />
           </.grid>
           <.flex justify="end" gap={2} direction="row" id="train_offer_form_actions">
             <.button variant="secondary" phx-click="cancel_edit" size="md" id="train_offer_cancel_btn">

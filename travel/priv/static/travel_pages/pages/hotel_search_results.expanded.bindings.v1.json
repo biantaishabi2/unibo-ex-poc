@@ -1,5 +1,99 @@
 {
   "version": 1,
-  "vars": {},
-  "events": {}
+  "vars": {
+    "hotel_offer.page": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{hotel_offer.page|}} / {{hotel_offer.total_pages|}}"
+        }
+      ]
+    },
+    "hotel_offer.total_pages": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{hotel_offer.page|}} / {{hotel_offer.total_pages|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "navigate:/home": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "tab_home",
+          "prop": "click",
+          "raw": "navigate:/home"
+        }
+      ]
+    },
+    "navigate:/services": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "tab_services",
+          "prop": "click",
+          "raw": "navigate:/services"
+        }
+      ]
+    },
+    "navigate:/me": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "tab_me",
+          "prop": "click",
+          "raw": "navigate:/me"
+        }
+      ]
+    },
+    "filter_submit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "filter_submit",
+          "prop": "click",
+          "raw": "filter_submit"
+        }
+      ]
+    },
+    "navigate": {
+      "triggers": [
+        {
+          "node_type": "Card",
+          "node_id": "item_card",
+          "prop": "click",
+          "raw": "navigate"
+        }
+      ]
+    },
+    "hotel_offer_page_prev": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_prev",
+          "prop": "click",
+          "raw": "hotel_offer_page_prev"
+        }
+      ]
+    },
+    "hotel_offer_page_next": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_next",
+          "prop": "click",
+          "raw": "hotel_offer_page_next"
+        }
+      ]
+    }
+  }
 }

@@ -9,7 +9,7 @@
       <.breadcrumb_separator id="travel_static_code_mapping_bc_sep" />
       <.breadcrumb_item id="travel_static_code_mapping_bc_current_item">
         <.breadcrumb_page id="travel_static_code_mapping_bc_current">
-          <%= @record.supplier_code %>
+          <%= get_in(@record, [:supplier_code]) || "详情" %>
         </.breadcrumb_page>
       </.breadcrumb_item>
     </.breadcrumb_list>
@@ -17,10 +17,10 @@
   <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_static_code_mapping_detail_header">
     <.flex gap={3} align="center" direction="row" id="travel_static_code_mapping_title_group">
       <.text variant="title" id="travel_static_code_mapping_detail_title">
-        <%= @record.supplier_code %>
+        <%= get_in(@record, [:supplier_code]) || "" %>
       </.text>
       <.badge variant="default" size="sm" id="travel_static_code_mapping_status_badge">
-        <%= @record.status %>
+        <%= get_in(@record, [:status]) || "" %>
       </.badge>
     </.flex>
     <.flex gap={2} direction="row" id="travel_static_code_mapping_actions">
@@ -43,7 +43,7 @@
               供应商编码
             </.text>
             <.text id="value_supplier_code">
-              <%= @record.supplier_code %>
+              <%= get_in(@record, [:supplier_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_object_type">
@@ -51,7 +51,7 @@
               主数据对象类型
             </.text>
             <.badge variant="default" size="sm" id="value_object_type">
-              <%= @record.object_type %>
+              <%= get_in(@record, [:object_type]) || "" %>
             </.badge>
           </.flex>
           <.flex direction="row" id="field_canonical_entity">
@@ -59,7 +59,7 @@
               Travel 实体名
             </.text>
             <.text id="value_canonical_entity">
-              <%= @record.canonical_entity %>
+              <%= get_in(@record, [:canonical_entity]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_external_code">
@@ -67,7 +67,7 @@
               供应商侧编码
             </.text>
             <.text id="value_external_code">
-              <%= @record.external_code %>
+              <%= get_in(@record, [:external_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_external_name">
@@ -75,7 +75,7 @@
               供应商侧名称
             </.text>
             <.text id="value_external_name">
-              <%= @record.external_name %>
+              <%= get_in(@record, [:external_name]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_status">
@@ -83,22 +83,22 @@
               status
             </.text>
             <.badge variant="default" size="sm" id="value_status">
-              <%= @record.status %>
+              <%= get_in(@record, [:status]) || "" %>
             </.badge>
           </.flex>
         </.grid>
       <% else %>
         <.form phx-submit="form_submit" phx-change="form_change" id="travel_static_code_mapping_edit_form">
           <.grid columns={2} gap={4} id="travel_static_code_mapping_form_grid">
-            <.input name="supplier_code" label="供应商编码" placeholder="请输入供应商编码" required="true" size="md" id="form_supplier_code" />
-            <.select name="object_type" label="主数据对象类型" required="true" size="md" id="form_object_type">
+            <.input name="supplier_code" label="供应商编码" placeholder="请输入供应商编码" required="true" size="md" id="form_supplier_code" value={@record.supplier_code} />
+            <.select name="object_type" label="主数据对象类型" required="true" size="md" id="form_object_type" value={@record.object_type}>
 
             </.select>
-            <.input name="canonical_entity" label="Travel 实体名" placeholder="请输入Travel 实体名" required="true" size="md" id="form_canonical_entity" />
-            <.input name="canonical_id" label="Travel 实体 ID" placeholder="请输入Travel 实体 ID" required="true" size="md" id="form_canonical_id" />
-            <.input name="external_code" label="供应商侧编码" placeholder="请输入供应商侧编码" required="true" size="md" id="form_external_code" />
-            <.input name="external_name" label="供应商侧名称" placeholder="请输入供应商侧名称" size="md" id="form_external_name" />
-            <.select name="status" label="status" size="md" id="form_status">
+            <.input name="canonical_entity" label="Travel 实体名" placeholder="请输入Travel 实体名" required="true" size="md" id="form_canonical_entity" value={@record.canonical_entity} />
+            <.input name="canonical_id" label="Travel 实体 ID" placeholder="请输入Travel 实体 ID" required="true" size="md" id="form_canonical_id" value={@record.canonical_id} />
+            <.input name="external_code" label="供应商侧编码" placeholder="请输入供应商侧编码" required="true" size="md" id="form_external_code" value={@record.external_code} />
+            <.input name="external_name" label="供应商侧名称" placeholder="请输入供应商侧名称" size="md" id="form_external_name" value={@record.external_name} />
+            <.select name="status" label="status" size="md" id="form_status" value={@record.status}>
 
             </.select>
           </.grid>

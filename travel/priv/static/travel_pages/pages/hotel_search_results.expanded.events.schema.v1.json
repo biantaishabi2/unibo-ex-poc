@@ -1,5 +1,55 @@
 {
   "version": 1,
-  "events": {},
+  "events": {
+    "navigate:/home": {
+      "name": "navigate:/home",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate:/services": {
+      "name": "navigate:/services",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate:/me": {
+      "name": "navigate:/me",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "filter_submit": {
+      "name": "filter_submit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate": {
+      "name": "navigate",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "hotel_offer_page_prev": {
+      "name": "hotel_offer_page_prev",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "hotel_offer_page_next": {
+      "name": "hotel_offer_page_next",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
   "notes": []
 }

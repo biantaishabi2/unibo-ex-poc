@@ -9,7 +9,7 @@
       <.breadcrumb_separator id="travel_cabin_class_bc_sep" />
       <.breadcrumb_item id="travel_cabin_class_bc_current_item">
         <.breadcrumb_page id="travel_cabin_class_bc_current">
-          <%= @record.cabin_class_code %>
+          <%= get_in(@record, [:cabin_class_code]) || "详情" %>
         </.breadcrumb_page>
       </.breadcrumb_item>
     </.breadcrumb_list>
@@ -17,10 +17,10 @@
   <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_cabin_class_detail_header">
     <.flex gap={3} align="center" direction="row" id="travel_cabin_class_title_group">
       <.text variant="title" id="travel_cabin_class_detail_title">
-        <%= @record.cabin_class_code %>
+        <%= get_in(@record, [:cabin_class_code]) || "" %>
       </.text>
       <.badge variant="default" size="sm" id="travel_cabin_class_status_badge">
-        <%= @record.status %>
+        <%= get_in(@record, [:status]) || "" %>
       </.badge>
     </.flex>
     <.flex gap={2} direction="row" id="travel_cabin_class_actions">
@@ -43,7 +43,7 @@
               舱位规范编码
             </.text>
             <.text id="value_cabin_class_code">
-              <%= @record.cabin_class_code %>
+              <%= get_in(@record, [:cabin_class_code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_cabin_class_name">
@@ -51,7 +51,7 @@
               舱位名称
             </.text>
             <.text id="value_cabin_class_name">
-              <%= @record.cabin_class_name %>
+              <%= get_in(@record, [:cabin_class_name]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_cabin_rank">
@@ -59,7 +59,7 @@
               舱位等级序
             </.text>
             <.text id="value_cabin_rank">
-              <%= @record.cabin_rank %>
+              <%= get_in(@record, [:cabin_rank]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_status">
@@ -67,17 +67,17 @@
               status
             </.text>
             <.badge variant="default" size="sm" id="value_status">
-              <%= @record.status %>
+              <%= get_in(@record, [:status]) || "" %>
             </.badge>
           </.flex>
         </.grid>
       <% else %>
         <.form phx-submit="form_submit" phx-change="form_change" id="travel_cabin_class_edit_form">
           <.grid columns={2} gap={4} id="travel_cabin_class_form_grid">
-            <.input name="cabin_class_code" label="舱位规范编码" placeholder="请输入舱位规范编码" required="true" size="md" id="form_cabin_class_code" />
-            <.input name="cabin_class_name" label="舱位名称" placeholder="请输入舱位名称" required="true" size="md" id="form_cabin_class_name" />
-            <.input name="cabin_rank" label="舱位等级序" placeholder="请输入舱位等级序" size="md" id="form_cabin_rank" />
-            <.select name="status" label="status" size="md" id="form_status">
+            <.input name="cabin_class_code" label="舱位规范编码" placeholder="请输入舱位规范编码" required="true" size="md" id="form_cabin_class_code" value={@record.cabin_class_code} />
+            <.input name="cabin_class_name" label="舱位名称" placeholder="请输入舱位名称" required="true" size="md" id="form_cabin_class_name" value={@record.cabin_class_name} />
+            <.input name="cabin_rank" label="舱位等级序" placeholder="请输入舱位等级序" size="md" id="form_cabin_rank" value={@record.cabin_rank} />
+            <.select name="status" label="status" size="md" id="form_status" value={@record.status}>
 
             </.select>
           </.grid>

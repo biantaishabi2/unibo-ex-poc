@@ -1,1 +1,1 @@
-{"entity":"PolicyCheck","domain":"Pages","page_type":"detail"}
+{"entity":"TravelPolicyCheck","domain":"Travel","page_type":"detail","extends_template":"base_object_page"}

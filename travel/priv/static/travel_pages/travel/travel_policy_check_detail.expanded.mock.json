@@ -1,14 +1,15 @@
 {
-  "travel_policy_check": {
-    "check_result": "",
-    "policy_amount": "",
+  "editing": false,
+  "record": {
     "actual_amount": "",
+    "approval_mode": "",
+    "approval_request_id": "",
+    "check_result": "",
     "exceed_amount": "",
     "exceed_ratio": "",
-    "exceed_strategy": "",
     "exceed_reason": "",
+    "exceed_strategy": "",
     "personal_pay_amount": "",
-    "approval_mode": ""
-  },
-  "editing": false
+    "policy_amount": ""
+  }
 }

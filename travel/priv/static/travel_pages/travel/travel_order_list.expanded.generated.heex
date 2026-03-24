@@ -91,77 +91,85 @@
         <.table_head id="th_payment_external_ref">
           宿主支付侧外部支付流水号
         </.table_head>
+        <.table_head id="travel_order_th_actions">
+          操作
+        </.table_head>
       </.table_row>
     </.table_header>
     <.table_body id="travel_order_table_body">
-      <%= for row <- @rows do %>
+      <%= for row <- (@rows || []) do %>
         <.table_row>
           <.table_cell>
-            <%= row.order_no %>
+            <%= get_in(row, [:order_no]) || "" %>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.product_type %>
+              <%= get_in(row, [:product_type]) || "" %>
             </.badge>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.booking_mode %>
+              <%= get_in(row, [:booking_mode]) || "" %>
             </.badge>
           </.table_cell>
           <.table_cell>
-            <%= row.contact_name %>
+            <%= get_in(row, [:contact_name]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.contact_phone %>
+            <%= get_in(row, [:contact_phone]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.traveler_count %>
+            <%= get_in(row, [:traveler_count]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.total_amount %>
+            <%= get_in(row, [:total_amount]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.points_to_use %>
+            <%= get_in(row, [:points_to_use]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.points_deduction_amount %>
+            <%= get_in(row, [:points_deduction_amount]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.recommended_payment_method %>
+            <%= get_in(row, [:recommended_payment_method]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.currency %>
-          </.table_cell>
-          <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= row.status %>
-            </.badge>
+            <%= get_in(row, [:currency]) || "" %>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.change_status %>
+              <%= get_in(row, [:status]) || "" %>
             </.badge>
           </.table_cell>
           <.table_cell>
             <.badge variant="default" size="sm">
-              <%= row.waitlist_status %>
+              <%= get_in(row, [:change_status]) || "" %>
             </.badge>
           </.table_cell>
           <.table_cell>
-            <%= row.original_order_ref %>
+            <.badge variant="default" size="sm">
+              <%= get_in(row, [:waitlist_status]) || "" %>
+            </.badge>
           </.table_cell>
           <.table_cell>
-            <%= row.ticket_passenger_infos %>
+            <%= get_in(row, [:original_order_ref]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.seat_selection_snapshot %>
+            <%= get_in(row, [:ticket_passenger_infos]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.supplier_order_ref %>
+            <%= get_in(row, [:seat_selection_snapshot]) || "" %>
           </.table_cell>
           <.table_cell>
-            <%= row.payment_external_ref %>
+            <%= get_in(row, [:supplier_order_ref]) || "" %>
+          </.table_cell>
+          <.table_cell>
+            <%= get_in(row, [:payment_external_ref]) || "" %>
+          </.table_cell>
+          <.table_cell>
+            <.link patch={"/pages/travel/travel_order/#{get_in(row, [:id])}"} id="travel_order_view_btn" variant="link" size="sm">
+              查看
+            </.link>
           </.table_cell>
         </.table_row>
       <% end %>

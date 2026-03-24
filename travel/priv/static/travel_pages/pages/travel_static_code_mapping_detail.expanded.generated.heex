@@ -1,0 +1,145 @@
+<.page title="详情" id="travel_static_code_mapping_detail">
+  <.section layout="none" id="breadcrumb_section">
+    <.breadcrumb id="page_breadcrumb">
+      <.breadcrumb_list id="bc_list">
+        <.breadcrumb_item id="bc_list_item">
+          <.breadcrumb_link id="bc_link">
+            列表
+          </.breadcrumb_link>
+        </.breadcrumb_item>
+        <.breadcrumb_separator id="bc_sep" />
+        <.breadcrumb_item id="bc_current_item">
+          <.breadcrumb_page id="bc_current">
+            详情
+          </.breadcrumb_page>
+        </.breadcrumb_item>
+      </.breadcrumb_list>
+    </.breadcrumb>
+  </.section>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="detail_header">
+    <.flex gap={3} align="center" direction="row" id="title_group">
+      <.stack direction="column" id="title_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelStaticCodeMapping
+        </.text>
+        <.text variant="h1" id="page_title">
+          供应商静态码到 Travel 主数据的映射（Travel 层统一适配）
+        </.text>
+      </.stack>
+      <%= case get_in(@travel_static_code_mapping, [:status]) do %>
+        <% "active" -> %>
+          <.badge color="green">active</.badge>
+        <% "inactive" -> %>
+          <.badge color="red">inactive</.badge>
+        <% _ -> %>
+          <.badge />
+      <% end %>
+    </.flex>
+    <.flex gap={2} direction="row" id="actions_group">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
+        编辑
+      </.button>
+      <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
+        删除
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="info_section">
+    <.card variant="default" id="info_card">
+      <.card_header id="info_header">
+        <.card_title id="info_title">
+          基本信息
+        </.card_title>
+      </.card_header>
+      <.card_content id="info_content">
+        <%= if !(@editing && @editing != []) do %>
+          <.grid columns={2} gap={4} id="info_grid">
+            <.grid columns={2} gap={3} id="detail_fields">
+              <.stack gap={0} direction="column" id="detail_fields_supplier_code">
+                <.text variant="caption" color="muted" id="detail_fields_supplier_code_label">
+                  供应商编码
+                </.text>
+                <.text id="detail_fields_supplier_code_value">
+                  <%= get_in(@travel_static_code_mapping, [:supplier_code]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_object_type">
+                <.text variant="caption" color="muted" id="detail_fields_object_type_label">
+                  主数据对象类型
+                </.text>
+                <.text id="detail_fields_object_type_value">
+                  <%= get_in(@travel_static_code_mapping, [:object_type]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_canonical_entity">
+                <.text variant="caption" color="muted" id="detail_fields_canonical_entity_label">
+                  Travel 实体名
+                </.text>
+                <.text id="detail_fields_canonical_entity_value">
+                  <%= get_in(@travel_static_code_mapping, [:canonical_entity]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_external_code">
+                <.text variant="caption" color="muted" id="detail_fields_external_code_label">
+                  供应商侧编码
+                </.text>
+                <.text id="detail_fields_external_code_value">
+                  <%= get_in(@travel_static_code_mapping, [:external_code]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_external_name">
+                <.text variant="caption" color="muted" id="detail_fields_external_name_label">
+                  供应商侧名称
+                </.text>
+                <.text id="detail_fields_external_name_value">
+                  <%= get_in(@travel_static_code_mapping, [:external_name]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_status">
+                <.text variant="caption" color="muted" id="detail_fields_status_label">
+                  status
+                </.text>
+                <.text id="detail_fields_status_value">
+                  <%= get_in(@travel_static_code_mapping, [:status]) || "" %>
+                </.text>
+              </.stack>
+            </.grid>
+          </.grid>
+        <% else %>
+          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+            <.grid columns={2} gap={4} id="form_grid">
+              <.stack direction="column" id="form_fields">
+                <.input bind="travel_static_code_mapping.supplier_code" size="md" id="update_supplier_code" />
+                <.select bind="travel_static_code_mapping.object_type" size="md" id="update_object_type">
+                  <option value="city">city</option>
+                  <option value="airport">airport</option>
+                  <option value="station">station</option>
+                  <option value="hotel">hotel</option>
+                  <option value="room_type">room_type</option>
+                  <option value="airline">airline</option>
+                  <option value="cabin_class">cabin_class</option>
+                </.select>
+                <.input bind="travel_static_code_mapping.canonical_entity" size="md" id="update_canonical_entity" />
+                <.input bind="travel_static_code_mapping.canonical_id" size="md" id="update_canonical_id" />
+                <.input bind="travel_static_code_mapping.external_code" size="md" id="update_external_code" />
+                <.input bind="travel_static_code_mapping.external_name" size="md" id="update_external_name" />
+                <.select bind="travel_static_code_mapping.status" size="md" id="update_status">
+                  <option value="active">active</option>
+                  <option value="inactive">inactive</option>
+                </.select>
+              </.stack>
+            </.grid>
+            <.flex justify="end" gap={2} direction="row" id="form_actions">
+              <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
+                取消
+              </.button>
+              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+                保存
+              </.button>
+            </.flex>
+          </.form>
+        <% end %>
+      </.card_content>
+    </.card>
+  </.section>
+</.page>

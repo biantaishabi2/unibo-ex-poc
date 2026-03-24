@@ -11,9 +11,38 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): 
+  # status.keys preview (first ~40): rows, rows[], rows[].approval_mode, rows[].change_fee, rows[].change_reason, rows[].price_difference, rows[].status, rows_empty, travel_change_order, travel_change_order.page, travel_change_order.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
-  @status_defaults_raw Jason.decode!("{}")
+  @status_defaults_raw Jason.decode!("{
+  \"travel_change_order\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
+  \"rows_empty\": true,
+  \"rows\": [
+    {
+      \"change_reason\": \"\",
+      \"price_difference\": \"\",
+      \"change_fee\": \"\",
+      \"status\": \"\",
+      \"approval_mode\": \"\"
+    },
+    {
+      \"change_reason\": \"\",
+      \"price_difference\": \"\",
+      \"change_fee\": \"\",
+      \"status\": \"\",
+      \"approval_mode\": \"\"
+    },
+    {
+      \"change_reason\": \"\",
+      \"price_difference\": \"\",
+      \"change_fee\": \"\",
+      \"status\": \"\",
+      \"approval_mode\": \"\"
+    }
+  ]
+}")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
@@ -65,8 +94,30 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event(_event, _params, socket) do
-    # No events declared by events.schema
+  def handle_event("filter_submit", params, socket) do
+    # UI action event name: filter_submit
+    socket = dispatch_backend("filter_submit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_create", params, socket) do
+    # UI action event name: navigate_create
+    socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_change_order_page_next", params, socket) do
+    # UI action event name: travel_change_order_page_next
+    socket = dispatch_backend("travel_change_order_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_change_order_page_prev", params, socket) do
+    # UI action event name: travel_change_order_page_prev
+    socket = dispatch_backend("travel_change_order_page_prev", params, socket)
     {:noreply, socket}
   end
 

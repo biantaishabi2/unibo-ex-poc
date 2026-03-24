@@ -337,13 +337,23 @@
         }
       ]
     },
-    "action_approve_cancel": {
+    "action_execute_cancel": {
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_order_action_approve_cancel",
+          "node_id": "travel_order_action_execute_cancel",
           "prop": "click",
-          "raw": "action_approve_cancel"
+          "raw": "action_execute_cancel"
+        }
+      ]
+    },
+    "action_cancel_cancel_request": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_order_action_cancel_cancel_request",
+          "prop": "click",
+          "raw": "action_cancel_cancel_request"
         }
       ]
     },

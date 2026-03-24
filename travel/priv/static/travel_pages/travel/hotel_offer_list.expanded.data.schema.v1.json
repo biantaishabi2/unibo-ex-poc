@@ -10,6 +10,7 @@
     "row.guarantee_policy",
     "row.hotel_code",
     "row.hotel_name",
+    "row.id",
     "row.inventory_count",
     "row.listed_price",
     "row.rate_plan_code",
@@ -113,6 +114,11 @@
             "type": "string",
             "required": false,
             "example": ""
+          },
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "row_01"
           }
         }
       },
@@ -179,6 +185,10 @@
           "required": true
         },
         "sale_status": {
+          "type": "unknown",
+          "required": true
+        },
+        "id": {
           "type": "unknown",
           "required": true
         }

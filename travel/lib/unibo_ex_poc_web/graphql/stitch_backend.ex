@@ -336,13 +336,16 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
         Map.put_new(acc, key, nil)
       end)
 
-    case normalize_string(map_get(page, "page_kind")) do
+    # 按 api_key 而非 page_kind 判断返回格式（#1681）
+    case normalize_string(map_get(operation, "api_key")) do
       "list" ->
         rows = extract_rows(value)
+        # 检查 defaults 中是否有集合变量名（如 records），用它替代硬编码 rows
+        list_var = detect_list_variable(defaults)
 
         state
-        |> Map.put("rows", rows)
-        |> Map.put("rows_empty", rows == [])
+        |> Map.put(list_var, rows)
+        |> Map.put(list_var <> "_empty", rows == [])
         |> Map.put("loading", false)
 
       _ ->
@@ -355,10 +358,20 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
     end
   end
 
-  defp adapt_dto(page, _operation, value) do
-    case normalize_string(map_get(page, "page_kind")) do
+  # 按 api_key 而非 page_kind 判断返回格式（#1681）
+  defp adapt_dto(page, operation, value) do
+    defaults =
+      page
+      |> map_get("state_schema")
+      |> map_get("defaults")
+      |> normalize_map()
+
+    case normalize_string(map_get(operation, "api_key")) do
       "list" ->
-        %{"rows" => extract_rows(value), "raw" => value}
+        rows = extract_rows(value)
+        # 检查 defaults 中是否有集合变量名（如 records），用它替代硬编码 rows
+        list_var = detect_list_variable(defaults)
+        %{list_var => rows, "raw" => value}
 
       _ ->
         record = extract_record(value)
@@ -390,14 +403,27 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
   defp extract_record(value) when is_list(value), do: Enum.find(value, &is_map/1) || %{}
   defp extract_record(_value), do: %{}
 
+  # 从 state_schema defaults 中检测集合变量名（值为 list 的第一个 key）
+  # 如 defaults 有 "records" => [...]，返回 "records"；没有则 fallback 到 "rows"
+  defp detect_list_variable(defaults) when is_map(defaults) do
+    Enum.find_value(defaults, "rows", fn
+      {key, value} when is_list(value) and is_binary(key) -> key
+      _ -> nil
+    end)
+  end
+
+  defp detect_list_variable(_defaults), do: "rows"
+
   defp selection_set(page, _operation, state) do
-    state
-    |> map_get("selection")
-    |> normalize_string()
-    |> case do
+    # 同时检查 string key 和 atom key，修复 PageHostRuntime 传入 :selection 的兼容问题（#1681）
+    sel = map_get(state, "selection") || Map.get(state, :selection)
+    resolved = sel |> normalize_string() |> case do
       "" -> build_selection_from_page(page)
       value -> value
     end
+    require Logger
+    Logger.debug("[selection_set] sel=#{inspect(sel)} resolved=#{resolved}")
+    resolved
   end
 
   defp build_selection_from_page(page) do
@@ -413,10 +439,20 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
     record = map_get(defaults, "record")
     form = map_get(defaults, "form")
 
+    # 检测 defaults 中任意 list 类型的值（如 records），作为 rows 的 fallback
+    any_list =
+      Enum.find_value(defaults, nil, fn
+        {_key, value} when is_list(value) and value != [] -> value
+        _ -> nil
+      end)
+
     sample =
       cond do
         is_list(rows) and match?([first | _] when is_map(first), rows) ->
           List.first(rows)
+
+        is_list(any_list) and match?([first | _] when is_map(first), any_list) ->
+          List.first(any_list)
 
         is_map(record) and map_size(record) > 0 ->
           record

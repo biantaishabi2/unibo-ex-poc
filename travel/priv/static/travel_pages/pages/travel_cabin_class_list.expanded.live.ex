@@ -11,9 +11,35 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): 
+  # status.keys preview (first ~40): rows, rows[], rows[].cabin_class_code, rows[].cabin_class_name, rows[].cabin_rank, rows[].status, rows_empty, travel_cabin_class, travel_cabin_class.page, travel_cabin_class.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
-  @status_defaults_raw Jason.decode!("{}")
+  @status_defaults_raw Jason.decode!("{
+  \"travel_cabin_class\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
+  \"rows_empty\": true,
+  \"rows\": [
+    {
+      \"cabin_class_code\": \"\",
+      \"cabin_class_name\": \"\",
+      \"cabin_rank\": \"\",
+      \"status\": \"\"
+    },
+    {
+      \"cabin_class_code\": \"\",
+      \"cabin_class_name\": \"\",
+      \"cabin_rank\": \"\",
+      \"status\": \"\"
+    },
+    {
+      \"cabin_class_code\": \"\",
+      \"cabin_class_name\": \"\",
+      \"cabin_rank\": \"\",
+      \"status\": \"\"
+    }
+  ]
+}")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
   # Backend dispatch contract (Layer-2 behavior): mode + API placeholders.
@@ -65,8 +91,30 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event(_event, _params, socket) do
-    # No events declared by events.schema
+  def handle_event("filter_submit", params, socket) do
+    # UI action event name: filter_submit
+    socket = dispatch_backend("filter_submit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_create", params, socket) do
+    # UI action event name: navigate_create
+    socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_cabin_class_page_next", params, socket) do
+    # UI action event name: travel_cabin_class_page_next
+    socket = dispatch_backend("travel_cabin_class_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_cabin_class_page_prev", params, socket) do
+    # UI action event name: travel_cabin_class_page_prev
+    socket = dispatch_backend("travel_cabin_class_page_prev", params, socket)
     {:noreply, socket}
   end
 

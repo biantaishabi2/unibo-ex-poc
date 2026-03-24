@@ -124,6 +124,10 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
     end
     create_timestamp :inserted_at
     update_timestamp :updated_at
+    attribute :shipment_id, :string do
+      public? true
+      description "关联的物流发货单（跨域引用 Delivery.Shipment）"
+    end
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -132,9 +136,6 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       public? true
       allow_nil? false
       source_attribute :travel_order_id
-    end
-    belongs_to :shipment, UniboExPoc.Delivery.Shipment do
-      public? true
     end
   end
 

@@ -7,14 +7,16 @@
       "object_type": "",
       "canonical_entity": "",
       "external_code": "",
-      "external_name": ""
+      "external_name": "",
+      "canonical_id": ""
     },
-    "editing": true
+    "editing": false
   },
   "keys": [
     "editing",
     "record",
     "record.canonical_entity",
+    "record.canonical_id",
     "record.external_code",
     "record.external_name",
     "record.object_type",
@@ -30,8 +32,23 @@
   "layer2": {
     "backend": {
       "api_map": {
+        "create": "Travel.TravelStaticCodeMapping.create",
         "get": "Travel.TravelStaticCodeMapping.get",
         "update": "Travel.TravelStaticCodeMapping.update"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "canonical_entity: canonicalEntity canonical_id: canonicalId external_code: externalCode external_name: externalName id object_type: objectType status supplier_code: supplierCode"
+      },
+      "params": {
+        "accept": [
+          "id"
+        ]
       }
     },
     "children": [],

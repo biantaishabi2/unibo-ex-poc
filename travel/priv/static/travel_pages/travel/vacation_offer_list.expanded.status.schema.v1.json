@@ -19,7 +19,8 @@
         "inventory_count": "",
         "booking_rules": "",
         "cancellation_policy": "",
-        "sale_status": ""
+        "sale_status": "",
+        "id": "row_01"
       },
       {
         "supplier_code": "",
@@ -36,7 +37,8 @@
         "inventory_count": "",
         "booking_rules": "",
         "cancellation_policy": "",
-        "sale_status": ""
+        "sale_status": "",
+        "id": "row_02"
       },
       {
         "supplier_code": "",
@@ -53,7 +55,8 @@
         "inventory_count": "",
         "booking_rules": "",
         "cancellation_policy": "",
-        "sale_status": ""
+        "sale_status": "",
+        "id": "row_03"
       }
     ]
   },
@@ -67,6 +70,7 @@
     "rows[].departure_city_code",
     "rows[].destination_code",
     "rows[].end_date",
+    "rows[].id",
     "rows[].inventory_count",
     "rows[].listed_price",
     "rows[].package_code",
@@ -89,6 +93,23 @@
     "backend": {
       "api_map": {
         "list": "Travel.VacationOffer.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "booking_rules: bookingRules cancellation_policy: cancellationPolicy currency departure_city_code: departureCityCode departure_city_ref_id: departureCityRefId destination_code: destinationCode destination_ref_id: destinationRefId end_date: endDate host_shop_id: hostShopId id inventory_count: inventoryCount listed_price: listedPrice package_code: packageCode package_name: packageName package_type: packageType sale_status: saleStatus settlement_price: settlementPrice start_date: startDate supplier_code: supplierCode tenant_id: tenantId"
+      },
+      "params": {
+        "accept": [
+          "package_type",
+          "start_date",
+          "end_date",
+          "sale_status"
+        ]
       }
     },
     "domain": "Travel",

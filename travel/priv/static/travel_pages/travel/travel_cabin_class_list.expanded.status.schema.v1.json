@@ -8,19 +8,22 @@
         "cabin_class_code": "",
         "cabin_class_name": "",
         "cabin_rank": "",
-        "status": ""
+        "status": "",
+        "id": "row_01"
       },
       {
         "cabin_class_code": "",
         "cabin_class_name": "",
         "cabin_rank": "",
-        "status": ""
+        "status": "",
+        "id": "row_02"
       },
       {
         "cabin_class_code": "",
         "cabin_class_name": "",
         "cabin_rank": "",
-        "status": ""
+        "status": "",
+        "id": "row_03"
       }
     ]
   },
@@ -31,6 +34,7 @@
     "rows[].cabin_class_code",
     "rows[].cabin_class_name",
     "rows[].cabin_rank",
+    "rows[].id",
     "rows[].status",
     "rows_empty"
   ],
@@ -45,6 +49,20 @@
     "backend": {
       "api_map": {
         "list": "Travel.TravelCabinClass.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "cabin_class_code: cabinClassCode cabin_class_name: cabinClassName cabin_rank: cabinRank id status"
+      },
+      "params": {
+        "accept": [
+          "status"
+        ]
       }
     },
     "domain": "Travel",

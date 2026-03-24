@@ -1,8 +1,40 @@
 {
   "version": 1,
-  "defaults": {},
-  "keys": [],
-  "required": [],
+  "defaults": {
+    "travel_fulfillment": {
+      "fulfillment_type": "",
+      "status": "",
+      "supplier_booking_ref": "",
+      "voucher_or_ticket_ref": "",
+      "ticket_refs": "",
+      "waitlist_result": "",
+      "change_result": "",
+      "boarding_status": "",
+      "confirmation_payload": "",
+      "failure_reason": "",
+      "used_at": ""
+    },
+    "editing": false
+  },
+  "keys": [
+    "editing",
+    "travel_fulfillment",
+    "travel_fulfillment.boarding_status",
+    "travel_fulfillment.change_result",
+    "travel_fulfillment.confirmation_payload",
+    "travel_fulfillment.failure_reason",
+    "travel_fulfillment.fulfillment_type",
+    "travel_fulfillment.status",
+    "travel_fulfillment.supplier_booking_ref",
+    "travel_fulfillment.ticket_refs",
+    "travel_fulfillment.used_at",
+    "travel_fulfillment.voucher_or_ticket_ref",
+    "travel_fulfillment.waitlist_result"
+  ],
+  "required": [
+    "editing",
+    "travel_fulfillment"
+  ],
   "urlParams": {},
   "notes": []
 }

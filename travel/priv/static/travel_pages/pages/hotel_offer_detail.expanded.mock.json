@@ -1,1 +1,20 @@
-{}
+{
+  "hotel_offer": {
+    "supplier_code": "",
+    "hotel_code": "",
+    "hotel_name": "",
+    "city_code": "",
+    "room_type_code": "",
+    "rate_plan_code": "",
+    "checkin_date": "",
+    "checkout_date": "",
+    "listed_price": "",
+    "settlement_price": "",
+    "currency": "",
+    "inventory_count": "",
+    "cancellation_policy": "",
+    "guarantee_policy": "",
+    "sale_status": ""
+  },
+  "editing": false
+}

@@ -1,12 +1,30 @@
 {
-  "travel_change_order": {
-    "change_reason": "",
-    "price_difference": "",
-    "change_fee": "",
-    "status": "",
-    "approval_mode": "",
-    "page": "",
-    "total_pages": ""
-  },
-  "rows_empty": true
+  "page_title": "TravelChangeOrder 列表",
+  "rows_empty": true,
+  "rows": [
+    {
+      "change_reason": "",
+      "price_difference": "",
+      "change_fee": "",
+      "status": "",
+      "approval_mode": "",
+      "id": "row_01"
+    },
+    {
+      "change_reason": "",
+      "price_difference": "",
+      "change_fee": "",
+      "status": "",
+      "approval_mode": "",
+      "id": "row_02"
+    },
+    {
+      "change_reason": "",
+      "price_difference": "",
+      "change_fee": "",
+      "status": "",
+      "approval_mode": "",
+      "id": "row_03"
+    }
+  ]
 }

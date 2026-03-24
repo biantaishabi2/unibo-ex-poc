@@ -6,6 +6,7 @@
     "row.airline_name",
     "row.iata_code",
     "row.icao_code",
+    "row.id",
     "row.status",
     "rows",
     "rows_empty"
@@ -53,6 +54,11 @@
             "type": "string",
             "required": false,
             "example": ""
+          },
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "row_01"
           }
         }
       },
@@ -79,6 +85,10 @@
           "required": true
         },
         "status": {
+          "type": "unknown",
+          "required": true
+        },
+        "id": {
           "type": "unknown",
           "required": true
         }

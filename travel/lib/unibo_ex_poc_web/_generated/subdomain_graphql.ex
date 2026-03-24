@@ -4,7 +4,7 @@ defmodule UniboExPocWeb.Generated.SubdomainGraphql do
   @doc "返回子域名 → Schema 模块的映射"
   def subdomains do
     %{
-      travel_ext: UniboExPocWeb.Generated.Schema.TravelExt,
+      travel: UniboExPocWeb.Generated.Schema.Travel,
     }
   end
 end

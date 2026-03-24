@@ -1,7 +1,54 @@
 {
   "version": 1,
-  "requiredPaths": [],
-  "requiredRoots": [],
-  "schema": {},
+  "requiredPaths": [
+    "editing",
+    "travel_hotel.city_code",
+    "travel_hotel.hotel_code",
+    "travel_hotel.hotel_name",
+    "travel_hotel.hotel_star",
+    "travel_hotel.status"
+  ],
+  "requiredRoots": [
+    "editing",
+    "travel_hotel"
+  ],
+  "schema": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_hotel": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "hotel_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "hotel_name": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "city_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "hotel_star": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    }
+  },
   "notes": []
 }

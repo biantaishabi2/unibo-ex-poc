@@ -1,7 +1,90 @@
 {
   "version": 1,
-  "requiredPaths": [],
-  "requiredRoots": [],
-  "schema": {},
+  "requiredPaths": [
+    "editing",
+    "travel_fulfillment.boarding_status",
+    "travel_fulfillment.change_result",
+    "travel_fulfillment.confirmation_payload",
+    "travel_fulfillment.failure_reason",
+    "travel_fulfillment.fulfillment_type",
+    "travel_fulfillment.status",
+    "travel_fulfillment.supplier_booking_ref",
+    "travel_fulfillment.ticket_refs",
+    "travel_fulfillment.used_at",
+    "travel_fulfillment.voucher_or_ticket_ref",
+    "travel_fulfillment.waitlist_result"
+  ],
+  "requiredRoots": [
+    "editing",
+    "travel_fulfillment"
+  ],
+  "schema": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_fulfillment": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "fulfillment_type": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "supplier_booking_ref": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "voucher_or_ticket_ref": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "ticket_refs": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "waitlist_result": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "change_result": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "boarding_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "confirmation_payload": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "failure_reason": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "used_at": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    }
+  },
   "notes": []
 }

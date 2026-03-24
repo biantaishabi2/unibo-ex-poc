@@ -1,0 +1,130 @@
+<.page title="TravelRefundOrder 详情" id="travel_refund_order_detail">
+  <.breadcrumb id="travel_refund_order_breadcrumb">
+    <.breadcrumb_list id="travel_refund_order_bc_list">
+      <.breadcrumb_item id="travel_refund_order_bc_list_item">
+        <.breadcrumb_link id="travel_refund_order_bc_link">
+          TravelRefundOrder 列表
+        </.breadcrumb_link>
+      </.breadcrumb_item>
+      <.breadcrumb_separator id="travel_refund_order_bc_sep" />
+      <.breadcrumb_item id="travel_refund_order_bc_current_item">
+        <.breadcrumb_page id="travel_refund_order_bc_current">
+          <%= get_in(@record, [:refund_reason]) || "详情" %>
+        </.breadcrumb_page>
+      </.breadcrumb_item>
+    </.breadcrumb_list>
+  </.breadcrumb>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_refund_order_detail_header">
+    <.flex gap={3} align="center" direction="row" id="travel_refund_order_title_group">
+      <.text variant="title" id="travel_refund_order_detail_title">
+        <%= get_in(@record, [:refund_reason]) || "" %>
+      </.text>
+      <.badge variant="default" size="sm" id="travel_refund_order_status_badge">
+        <%= get_in(@record, [:status]) || "" %>
+      </.badge>
+    </.flex>
+    <.flex gap={2} direction="row" id="travel_refund_order_actions">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="travel_refund_order_edit_btn">
+        编辑
+      </.button>
+      <.button variant="secondary" phx-click="action_submit" size="md" id="travel_refund_order_action_submit">
+        提交退票申请,如 approval_mode=oa 则通过 integration 创建 ApprovalInstance
+      </.button>
+      <%= if @record.status == "pending" do %>
+        <.button variant="secondary" phx-click="action_confirm_refund" size="md" id="travel_refund_order_action_confirm_refund">
+          confirm_refund
+        </.button>
+      <% end %>
+      <%= if @record.status == "pending" do %>
+        <.button variant="secondary" phx-click="action_reject_refund" size="md" id="travel_refund_order_action_reject_refund">
+          reject_refund
+        </.button>
+      <% end %>
+      <%= if @record.status == "approved" do %>
+        <.button variant="secondary" phx-click="action_refund" size="md" id="travel_refund_order_action_refund">
+          refund
+        </.button>
+      <% end %>
+      <%= if @record.status == "pending" do %>
+        <.button variant="secondary" phx-click="action_refund_direct" size="md" id="travel_refund_order_action_refund_direct">
+          refund_direct
+        </.button>
+      <% end %>
+    </.flex>
+  </.section>
+  <.card variant="default" id="travel_refund_order_info_card">
+    <.card_header id="travel_refund_order_info_header">
+      <.card_title id="travel_refund_order_info_title">
+        基本信息
+      </.card_title>
+    </.card_header>
+    <.card_content id="travel_refund_order_info_content">
+      <%= if !(@editing && @editing != []) do %>
+        <.grid columns={2} gap={4} id="travel_refund_order_info_grid">
+          <.flex direction="row" id="field_refund_reason">
+            <.text variant="muted" id="label_refund_reason">
+              退票原因
+            </.text>
+            <.text id="value_refund_reason">
+              <%= get_in(@record, [:refund_reason]) || "" %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_refund_fee">
+            <.text variant="muted" id="label_refund_fee">
+              退票手续费
+            </.text>
+            <.text id="value_refund_fee">
+              <%= get_in(@record, [:refund_fee]) || "" %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_refund_amount">
+            <.text variant="muted" id="label_refund_amount">
+              实退金额
+            </.text>
+            <.text id="value_refund_amount">
+              <%= get_in(@record, [:refund_amount]) || "" %>
+            </.text>
+          </.flex>
+          <.flex direction="row" id="field_status">
+            <.text variant="muted" id="label_status">
+              status
+            </.text>
+            <.badge variant="default" size="sm" id="value_status">
+              <%= get_in(@record, [:status]) || "" %>
+            </.badge>
+          </.flex>
+          <.flex direction="row" id="field_approval_mode">
+            <.text variant="muted" id="label_approval_mode">
+              审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
+            </.text>
+            <.badge variant="default" size="sm" id="value_approval_mode">
+              <%= get_in(@record, [:approval_mode]) || "" %>
+            </.badge>
+          </.flex>
+        </.grid>
+      <% else %>
+        <.form phx-submit="form_submit" phx-change="form_change" id="travel_refund_order_edit_form">
+          <.grid columns={2} gap={4} id="travel_refund_order_form_grid">
+            <.input name="refund_reason" label="退票原因" placeholder="请输入退票原因" size="md" id="form_refund_reason" value={@record.refund_reason} />
+            <.input name="refund_fee" label="退票手续费" placeholder="请输入退票手续费" size="md" id="form_refund_fee" value={@record.refund_fee} />
+            <.input name="refund_amount" label="实退金额" placeholder="请输入实退金额" size="md" id="form_refund_amount" value={@record.refund_amount} />
+            <.select name="status" label="status" size="md" id="form_status" value={@record.status}>
+
+            </.select>
+            <.select name="approval_mode" label="审批模式快照;none 表示跳过审批,self/oa 表示进入审批流" size="md" id="form_approval_mode" value={@record.approval_mode}>
+
+            </.select>
+          </.grid>
+          <.flex justify="end" gap={2} direction="row" id="travel_refund_order_form_actions">
+            <.button variant="secondary" phx-click="cancel_edit" size="md" id="travel_refund_order_cancel_btn">
+              取消
+            </.button>
+            <.button variant="primary" phx-click="form_submit" size="md" id="travel_refund_order_save_btn">
+              保存
+            </.button>
+          </.flex>
+        </.form>
+      <% end %>
+    </.card_content>
+  </.card>
+</.page>

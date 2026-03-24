@@ -15,7 +15,8 @@
         "boarding_status": "",
         "confirmation_payload": "",
         "failure_reason": "",
-        "used_at": ""
+        "used_at": "",
+        "id": "row_01"
       },
       {
         "fulfillment_type": "",
@@ -28,7 +29,8 @@
         "boarding_status": "",
         "confirmation_payload": "",
         "failure_reason": "",
-        "used_at": ""
+        "used_at": "",
+        "id": "row_02"
       },
       {
         "fulfillment_type": "",
@@ -41,7 +43,8 @@
         "boarding_status": "",
         "confirmation_payload": "",
         "failure_reason": "",
-        "used_at": ""
+        "used_at": "",
+        "id": "row_03"
       }
     ]
   },
@@ -54,6 +57,7 @@
     "rows[].confirmation_payload",
     "rows[].failure_reason",
     "rows[].fulfillment_type",
+    "rows[].id",
     "rows[].status",
     "rows[].supplier_booking_ref",
     "rows[].ticket_refs",
@@ -73,6 +77,25 @@
     "backend": {
       "api_map": {
         "list": "Travel.TravelFulfillment.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "boarding_status: boardingStatus change_result: changeResult confirmation_payload: confirmationPayload failure_reason: failureReason fulfillment_type: fulfillmentType id shipment_id: shipmentId status supplier_booking_ref: supplierBookingRef tenant_id: tenantId ticket_refs: ticketRefs used_at: usedAt voucher_or_ticket_ref: voucherOrTicketRef waitlist_result: waitlistResult"
+      },
+      "params": {
+        "accept": [
+          "fulfillment_type",
+          "status",
+          "waitlist_result",
+          "change_result",
+          "boarding_status",
+          "used_at"
+        ]
       }
     },
     "domain": "Travel",

@@ -1,1 +1,21 @@
-{}
+{
+  "hotel_offer": {
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
+  "items": [
+    {
+      "title": "",
+      "description": ""
+    },
+    {
+      "title": "",
+      "description": ""
+    },
+    {
+      "title": "",
+      "description": ""
+    }
+  ]
+}

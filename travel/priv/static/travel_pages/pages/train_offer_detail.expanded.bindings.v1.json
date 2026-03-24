@@ -1,5 +1,294 @@
 {
   "version": 1,
-  "vars": {},
-  "events": {}
+  "vars": {
+    "train_offer.supplier_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_supplier_code_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.supplier_code|}}"
+        }
+      ]
+    },
+    "train_offer.train_no": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_train_no_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.train_no|}}"
+        }
+      ]
+    },
+    "train_offer.departure_station_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_departure_station_code_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.departure_station_code|}}"
+        }
+      ]
+    },
+    "train_offer.departure_station_name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_departure_station_name_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.departure_station_name|}}"
+        }
+      ]
+    },
+    "train_offer.arrival_station_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_arrival_station_code_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.arrival_station_code|}}"
+        }
+      ]
+    },
+    "train_offer.arrival_station_name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_arrival_station_name_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.arrival_station_name|}}"
+        }
+      ]
+    },
+    "train_offer.travel_date": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_travel_date_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.travel_date|}}"
+        }
+      ]
+    },
+    "train_offer.departure_at": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_departure_at_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.departure_at|}}"
+        }
+      ]
+    },
+    "train_offer.arrival_at": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_arrival_at_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.arrival_at|}}"
+        }
+      ]
+    },
+    "train_offer.seat_class": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_seat_class_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.seat_class|}}"
+        }
+      ]
+    },
+    "train_offer.seat_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_seat_code_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.seat_code|}}"
+        }
+      ]
+    },
+    "train_offer.is_no_seat": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_is_no_seat_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.is_no_seat|}}"
+        }
+      ]
+    },
+    "train_offer.inventory_status": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_inventory_status_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.inventory_status|}}"
+        }
+      ]
+    },
+    "train_offer.waitlist_supported": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_waitlist_supported_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.waitlist_supported|}}"
+        }
+      ]
+    },
+    "train_offer.listed_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_listed_price_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.listed_price|}}"
+        }
+      ]
+    },
+    "train_offer.settlement_price": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_settlement_price_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.settlement_price|}}"
+        }
+      ]
+    },
+    "train_offer.currency": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_currency_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.currency|}}"
+        }
+      ]
+    },
+    "train_offer.booking_rules_snapshot": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_booking_rules_snapshot_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.booking_rules_snapshot|}}"
+        }
+      ]
+    },
+    "train_offer.change_rules_snapshot": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_change_rules_snapshot_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.change_rules_snapshot|}}"
+        }
+      ]
+    },
+    "train_offer.refund_rules_snapshot": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_refund_rules_snapshot_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.refund_rules_snapshot|}}"
+        }
+      ]
+    },
+    "train_offer.sale_status": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_sale_status_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{train_offer.sale_status|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
 }

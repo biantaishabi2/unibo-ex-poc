@@ -2,6 +2,7 @@
   "version": 1,
   "requiredPaths": [
     "editing",
+    "record",
     "record.booking_mode",
     "record.change_status",
     "record.contact_name",

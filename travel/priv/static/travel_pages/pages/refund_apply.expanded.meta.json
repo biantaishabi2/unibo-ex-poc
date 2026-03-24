@@ -1,1 +1,1 @@
-{"entity":"RefundApply","domain":"Pages","page_type":"custom"}
+{"entity":"TravelRefundOrder","domain":"Travel","page_type":"custom","extends_template":"base_form"}

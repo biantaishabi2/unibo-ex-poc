@@ -1,8 +1,53 @@
 {
   "version": 1,
-  "defaults": {},
-  "keys": [],
-  "required": [],
+  "defaults": {
+    "travel_change_order": {
+      "page": "",
+      "total_pages": ""
+    },
+    "rows_empty": true,
+    "rows": [
+      {
+        "change_reason": "",
+        "price_difference": "",
+        "change_fee": "",
+        "status": "",
+        "approval_mode": ""
+      },
+      {
+        "change_reason": "",
+        "price_difference": "",
+        "change_fee": "",
+        "status": "",
+        "approval_mode": ""
+      },
+      {
+        "change_reason": "",
+        "price_difference": "",
+        "change_fee": "",
+        "status": "",
+        "approval_mode": ""
+      }
+    ]
+  },
+  "keys": [
+    "rows",
+    "rows[]",
+    "rows[].approval_mode",
+    "rows[].change_fee",
+    "rows[].change_reason",
+    "rows[].price_difference",
+    "rows[].status",
+    "rows_empty",
+    "travel_change_order",
+    "travel_change_order.page",
+    "travel_change_order.total_pages"
+  ],
+  "required": [
+    "rows",
+    "rows_empty",
+    "travel_change_order"
+  ],
   "urlParams": {},
   "notes": []
 }

@@ -7,7 +7,7 @@
       "cabin_class_name": "",
       "cabin_rank": ""
     },
-    "editing": true
+    "editing": false
   },
   "keys": [
     "editing",
@@ -26,8 +26,23 @@
   "layer2": {
     "backend": {
       "api_map": {
+        "create": "Travel.TravelCabinClass.create",
         "get": "Travel.TravelCabinClass.get",
         "update": "Travel.TravelCabinClass.update"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "cabin_class_code: cabinClassCode cabin_class_name: cabinClassName cabin_rank: cabinRank id status"
+      },
+      "params": {
+        "accept": [
+          "id"
+        ]
       }
     },
     "children": [],

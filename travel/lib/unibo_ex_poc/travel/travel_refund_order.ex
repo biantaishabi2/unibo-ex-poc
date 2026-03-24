@@ -2,20 +2,14 @@
 # ```mermaid
 # stateDiagram-v2
 #   [*] --> create
-#   create --> approve
-#   create --> reject
+#   create --> submit
 #   create --> refund_direct
-#   approve --> refund
-#   reject --> [*] : rejected
+#   submit --> confirm_refund
+#   submit --> reject_refund
+#   confirm_refund --> refund
+#   reject_refund --> [*] : rejected
 #   refund --> [*] : refunded
 #   refund_direct --> [*] : refunded
-# ```
-# Workflow: refund_to_order_cancel — 退票单退款完成后，触发原订单执行 approve_cancel；失败时退票单状态仍保持 refunded（退款已完成，订单取消为最终补偿）
-# ```mermaid
-# stateDiagram-v2
-#   [*] --> refund
-#   refund --> [*]
-#   approve_cancel --> [*]
 # ```
 defmodule UniboExPoc.Travel.TravelRefundOrder do
   use Ash.Resource,
@@ -26,7 +20,7 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
-    description "退票/退订单，记录针对已有 TravelOrder 的退票请求、手续费与退款状态"
+    description "退票/退订单，记录针对已有 TravelOrder 的退票请求、手续费与退款状态；审批通过 overlay on Approvals 域"
   end
 
   postgres do
@@ -45,8 +39,10 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
 
     mutations do
       create :create_travel_travel_refund_order, :create
-      update :approve_travel_travel_refund_order, :approve
-      update :reject_travel_travel_refund_order, :reject
+      update :update_travel_travel_refund_order, :update
+      update :submit_travel_travel_refund_order, :submit
+      update :confirm_refund_travel_travel_refund_order, :confirm_refund
+      update :reject_refund_travel_travel_refund_order, :reject_refund
       update :refund_travel_travel_refund_order, :refund
       update :refund_direct_travel_travel_refund_order, :refund_direct
     end
@@ -100,25 +96,16 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
       change manage_relationship(:original_order_id, :original_order, type: :append, on_lookup: :relate)
       validate present(:original_order_id)
     end
-    update :approve do
-      description "Update Travel Refund Order via Approve. doc_url: graphql://contract/travel/approve_travel_travel_refund_order"
+    update :update do
+      description "Update Travel Refund Order via Update. doc_url: graphql://contract/travel/update_travel_travel_refund_order"
       primary? true
-      accept []
-      change fn changeset, _ctx ->
-        current = Ash.Changeset.get_attribute(changeset, :status)
-        if current == :pending do
-          changeset
-        else
-          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :pending}))
-        end
-      end
-      # message: "只有 pending 退票单可以审批或拒绝"
-      change set_attribute(:status, :approved)
-      change transition_state(:approved)
+      accept [:refund_reason, :refund_fee, :refund_amount]
       require_atomic? false
     end
-    update :reject do
-      description "Update Travel Refund Order via Reject. doc_url: graphql://contract/travel/reject_travel_travel_refund_order"
+    update :submit do
+      description "提交退票申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance
+
+提交退票申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance. doc_url: graphql://contract/travel/submit_travel_travel_refund_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -128,9 +115,40 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
           Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :pending}))
         end
       end
-      # message: "只有 pending 退票单可以审批或拒绝"
+      # message: "只有 pending 退票单可以提交或由审批触发"
+      change UniboExPoc.Travel.Integrations.TravelRefundOrder.SubmitCreateApprovalInstanceBridge
+      require_atomic? false
+    end
+    update :confirm_refund do
+      description "Update Travel Refund Order via Confirm Refund. doc_url: graphql://contract/travel/confirm_refund_travel_travel_refund_order"
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :pending do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :pending}))
+        end
+      end
+      # message: "只有 pending 退票单可以提交或由审批触发"
+      change set_attribute(:status, :approved)
+      change AshStateMachine.BuiltinChanges.transition_state(:approved)
+      require_atomic? false
+    end
+    update :reject_refund do
+      description "Update Travel Refund Order via Reject Refund. doc_url: graphql://contract/travel/reject_refund_travel_travel_refund_order"
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :pending do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :pending}))
+        end
+      end
+      # message: "只有 pending 退票单可以提交或由审批触发"
       change set_attribute(:status, :rejected)
-      change transition_state(:rejected)
+      change AshStateMachine.BuiltinChanges.transition_state(:rejected)
       require_atomic? false
     end
     update :refund do
@@ -146,7 +164,7 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
       end
       # message: "只有 approved 退票单可以执行退款"
       change set_attribute(:status, :refunded)
-      change transition_state(:refunded)
+      change AshStateMachine.BuiltinChanges.transition_state(:refunded)
       require_atomic? false
     end
     update :refund_direct do
@@ -171,35 +189,7 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
       end
       # message: "关闭审批时，pending 退票单可直接退款"
       change set_attribute(:status, :refunded)
-      change transition_state(:refunded)
-      require_atomic? false
-    end
-
-    update :notify_order_refund_approved do
-      accept []
-      # determination semantics: phase=post_commit, scope=cross_aggregate, mode=async_write_back
-      # 异步写回：通过 AsyncRuntime.Queue 进入 outbox 风格队列
-      change fn changeset, _ctx ->
-        queue_module = UniboExPoc.AsyncRuntime.Queue
-        record_id = changeset.data && changeset.data.id
-        dedup_key = "determination:travel_refund_order:notify_order_refund_approved:#{inspect(record_id)}"
-        payload = %{
-          "entity" => "travel_refund_order",
-          "determination" => "notify_order_refund_approved",
-          "scope" => "cross_aggregate",
-          "mode" => "async_write_back",
-          "record_id" => record_id
-        }
-        if Code.ensure_loaded?(queue_module) and function_exported?(queue_module, :enqueue, 1) do
-          case queue_module.enqueue(%{kind: "determination_async_write_back", dedup_key: dedup_key, payload: payload}) do
-            {:ok, _task} -> changeset
-            {:ok, :duplicate} -> changeset
-            {:error, reason} -> Ash.Changeset.add_error(changeset, "async determination enqueue failed: #{inspect(reason)}")
-          end
-        else
-          Ash.Changeset.add_error(changeset, "async runtime queue unavailable")
-        end
-      end
+      change AshStateMachine.BuiltinChanges.transition_state(:refunded)
       require_atomic? false
     end
   end
@@ -218,10 +208,11 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
   state_machine do
     initial_states [:pending]
     default_initial_state :pending
+    extra_states [:pending, :approved, :refunded, :rejected]
     state_attribute :status
     transitions do
-      transition :approve, from: :pending, to: :approved
-      transition :reject, from: :pending, to: :rejected
+      transition :confirm_refund, from: :pending, to: :approved
+      transition :reject_refund, from: :pending, to: :rejected
       transition :refund, from: :approved, to: :refunded
       transition :refund_direct, from: :pending, to: :refunded
     end
@@ -231,8 +222,9 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
     module UniboExPoc.PubSub
     prefix "travel_refund_order"
 
-    publish :approve, ["travel.refund_order.approved"]
-    publish :reject, ["travel.refund_order.rejected"]
+    publish :submit, ["travel.refund_order.submitted"]
+    publish :confirm_refund, ["travel.refund_order.approved"]
+    publish :reject_refund, ["travel.refund_order.rejected"]
     publish :refund, ["travel.refund_order.refunded"]
     publish :refund_direct, ["travel.refund_order.refunded"]
   end

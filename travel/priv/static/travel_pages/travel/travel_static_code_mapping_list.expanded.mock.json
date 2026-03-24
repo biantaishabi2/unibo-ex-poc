@@ -1,40 +1,33 @@
 {
-  "travel_static_code_mapping": {
-    "supplier_code": "",
-    "object_type": "",
-    "canonical_entity": "",
-    "external_code": "",
-    "external_name": "",
-    "status": "",
-    "page": "",
-    "total_pages": ""
-  },
-  "rows_empty": true,
   "page_title": "TravelStaticCodeMapping 列表",
+  "rows_empty": true,
   "rows": [
     {
-      "supplier_code": "SUP_CTRIP",
-      "object_type": "airport",
-      "canonical_entity": "Travel.Airport",
-      "external_code": "PEK",
-      "external_name": "北京首都国际机场",
-      "status": "active"
+      "supplier_code": "",
+      "object_type": "",
+      "canonical_entity": "",
+      "external_code": "",
+      "external_name": "",
+      "status": "",
+      "id": "row_01"
     },
     {
-      "supplier_code": "SUP_CTRIP",
-      "object_type": "airline",
-      "canonical_entity": "Travel.Airline",
-      "external_code": "CA",
-      "external_name": "中国国际航空",
-      "status": "active"
+      "supplier_code": "",
+      "object_type": "",
+      "canonical_entity": "",
+      "external_code": "",
+      "external_name": "",
+      "status": "",
+      "id": "row_02"
     },
     {
-      "supplier_code": "SUP_12306",
-      "object_type": "station",
-      "canonical_entity": "Travel.Station",
-      "external_code": "BJP",
-      "external_name": "北京南站",
-      "status": "active"
+      "supplier_code": "",
+      "object_type": "",
+      "canonical_entity": "",
+      "external_code": "",
+      "external_name": "",
+      "status": "",
+      "id": "row_03"
     }
   ]
 }

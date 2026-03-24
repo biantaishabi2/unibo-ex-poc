@@ -1,0 +1,218 @@
+<.page title="详情" id="travel_fulfillment_detail">
+  <.section layout="none" id="breadcrumb_section">
+    <.breadcrumb id="page_breadcrumb">
+      <.breadcrumb_list id="bc_list">
+        <.breadcrumb_item id="bc_list_item">
+          <.breadcrumb_link id="bc_link">
+            列表
+          </.breadcrumb_link>
+        </.breadcrumb_item>
+        <.breadcrumb_separator id="bc_sep" />
+        <.breadcrumb_item id="bc_current_item">
+          <.breadcrumb_page id="bc_current">
+            详情
+          </.breadcrumb_page>
+        </.breadcrumb_item>
+      </.breadcrumb_list>
+    </.breadcrumb>
+  </.section>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="detail_header">
+    <.flex gap={3} align="center" direction="row" id="title_group">
+      <.stack direction="column" id="title_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelFulfillment
+        </.text>
+        <.text variant="h1" id="page_title">
+          统一酒旅履约聚合,承接预订确认、发券出票、候补兑现、乘车使用和失败结果;可选关联 Delivery::Shipment
+        </.text>
+      </.stack>
+      <%= case get_in(@travel_fulfillment, [:status]) do %>
+        <% "pending" -> %>
+          <.badge color="yellow">pending</.badge>
+        <% "confirmed" -> %>
+          <.badge color="green">confirmed</.badge>
+        <% "issued" -> %>
+          <.badge color="blue">issued</.badge>
+        <% "in_use" -> %>
+          <.badge color="blue">in_use</.badge>
+        <% "completed" -> %>
+          <.badge color="green">completed</.badge>
+        <% "cancelled" -> %>
+          <.badge color="red">cancelled</.badge>
+        <% "failed" -> %>
+          <.badge color="blue">failed</.badge>
+        <% _ -> %>
+          <.badge />
+      <% end %>
+    </.flex>
+    <.flex gap={2} direction="row" id="actions_group">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
+        编辑
+      </.button>
+      <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
+        删除
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="info_section">
+    <.card variant="default" id="info_card">
+      <.card_header id="info_header">
+        <.card_title id="info_title">
+          基本信息
+        </.card_title>
+      </.card_header>
+      <.card_content id="info_content">
+        <%= if !(@editing && @editing != []) do %>
+          <.grid columns={2} gap={4} id="info_grid">
+            <.grid columns={2} gap={3} id="detail_fields">
+              <.stack gap={0} direction="column" id="detail_fields_fulfillment_type">
+                <.text variant="caption" color="muted" id="detail_fields_fulfillment_type_label">
+                  fulfillment_type
+                </.text>
+                <.text id="detail_fields_fulfillment_type_value">
+                  <%= get_in(@travel_fulfillment, [:fulfillment_type]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_status">
+                <.text variant="caption" color="muted" id="detail_fields_status_label">
+                  status
+                </.text>
+                <.text id="detail_fields_status_value">
+                  <%= get_in(@travel_fulfillment, [:status]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_supplier_booking_ref">
+                <.text variant="caption" color="muted" id="detail_fields_supplier_booking_ref_label">
+                  供应商预订号
+                </.text>
+                <.text id="detail_fields_supplier_booking_ref_value">
+                  <%= get_in(@travel_fulfillment, [:supplier_booking_ref]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_voucher_or_ticket_ref">
+                <.text variant="caption" color="muted" id="detail_fields_voucher_or_ticket_ref_label">
+                  凭证号或票号
+                </.text>
+                <.text id="detail_fields_voucher_or_ticket_ref_value">
+                  <%= get_in(@travel_fulfillment, [:voucher_or_ticket_ref]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_ticket_refs">
+                <.text variant="caption" color="muted" id="detail_fields_ticket_refs_label">
+                  多张票号、座席和乘客映射结果
+                </.text>
+                <.text id="detail_fields_ticket_refs_value">
+                  <%= get_in(@travel_fulfillment, [:ticket_refs]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_waitlist_result">
+                <.text variant="caption" color="muted" id="detail_fields_waitlist_result_label">
+                  train 候补兑现结果
+                </.text>
+                <.text id="detail_fields_waitlist_result_value">
+                  <%= get_in(@travel_fulfillment, [:waitlist_result]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_change_result">
+                <.text variant="caption" color="muted" id="detail_fields_change_result_label">
+                  train 改签结果
+                </.text>
+                <.text id="detail_fields_change_result_value">
+                  <%= get_in(@travel_fulfillment, [:change_result]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_boarding_status">
+                <.text variant="caption" color="muted" id="detail_fields_boarding_status_label">
+                  train 乘车状态
+                </.text>
+                <.text id="detail_fields_boarding_status_value">
+                  <%= get_in(@travel_fulfillment, [:boarding_status]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_confirmation_payload">
+                <.text variant="caption" color="muted" id="detail_fields_confirmation_payload_label">
+                  确认结果快照
+                </.text>
+                <.text id="detail_fields_confirmation_payload_value">
+                  <%= get_in(@travel_fulfillment, [:confirmation_payload]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_failure_reason">
+                <.text variant="caption" color="muted" id="detail_fields_failure_reason_label">
+                  失败原因
+                </.text>
+                <.text id="detail_fields_failure_reason_value">
+                  <%= get_in(@travel_fulfillment, [:failure_reason]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_used_at">
+                <.text variant="caption" color="muted" id="detail_fields_used_at_label">
+                  实际使用时间
+                </.text>
+                <.text id="detail_fields_used_at_value">
+                  <%= get_in(@travel_fulfillment, [:used_at]) || "" %>
+                </.text>
+              </.stack>
+            </.grid>
+          </.grid>
+        <% else %>
+          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+            <.grid columns={2} gap={4} id="form_grid">
+              <.stack direction="column" id="form_fields">
+                <.input bind="travel_fulfillment.tenant_id" size="md" id="update_tenant_id" />
+                <.select bind="travel_fulfillment.fulfillment_type" size="md" id="update_fulfillment_type">
+                  <option value="reserve_room">reserve_room</option>
+                  <option value="issue_ticket">issue_ticket</option>
+                  <option value="issue_voucher">issue_voucher</option>
+                  <option value="issue_train_ticket">issue_train_ticket</option>
+                </.select>
+                <.select bind="travel_fulfillment.status" size="md" id="update_status">
+                  <option value="pending">pending</option>
+                  <option value="confirmed">confirmed</option>
+                  <option value="issued">issued</option>
+                  <option value="in_use">in_use</option>
+                  <option value="completed">completed</option>
+                  <option value="cancelled">cancelled</option>
+                  <option value="failed">failed</option>
+                </.select>
+                <.input bind="travel_fulfillment.supplier_booking_ref" size="md" id="update_supplier_booking_ref" />
+                <.input bind="travel_fulfillment.voucher_or_ticket_ref" size="md" id="update_voucher_or_ticket_ref" />
+                <.input bind="travel_fulfillment.ticket_refs" size="md" id="update_ticket_refs" />
+                <.select bind="travel_fulfillment.waitlist_result" size="md" id="update_waitlist_result">
+                  <option value="none">none</option>
+                  <option value="pending">pending</option>
+                  <option value="fulfilled">fulfilled</option>
+                  <option value="cancelled">cancelled</option>
+                  <option value="failed">failed</option>
+                </.select>
+                <.select bind="travel_fulfillment.change_result" size="md" id="update_change_result">
+                  <option value="none">none</option>
+                  <option value="pending">pending</option>
+                  <option value="changed">changed</option>
+                  <option value="failed">failed</option>
+                </.select>
+                <.select bind="travel_fulfillment.boarding_status" size="md" id="update_boarding_status">
+                  <option value="not_started">not_started</option>
+                  <option value="boarded">boarded</option>
+                  <option value="completed">completed</option>
+                </.select>
+                <.textarea bind="travel_fulfillment.confirmation_payload" id="update_confirmation_payload" />
+                <.textarea bind="travel_fulfillment.failure_reason" id="update_failure_reason" />
+                <.input bind="travel_fulfillment.used_at" size="md" id="update_used_at" />
+                <.input bind="travel_fulfillment.shipment_id" size="md" id="update_shipment_id" />
+              </.stack>
+            </.grid>
+            <.flex justify="end" gap={2} direction="row" id="form_actions">
+              <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
+                取消
+              </.button>
+              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+                保存
+              </.button>
+            </.flex>
+          </.form>
+        <% end %>
+      </.card_content>
+    </.card>
+  </.section>
+</.page>

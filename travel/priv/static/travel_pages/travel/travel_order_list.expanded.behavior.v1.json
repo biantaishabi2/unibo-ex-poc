@@ -2,6 +2,24 @@
   "backend": {
     "api_map": {
       "list": "Travel.TravelOrder.list"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "booking_mode: bookingMode change_status: changeStatus contact_name: contactName contact_phone: contactPhone currency customer_id: customerId host_enterprise_id: hostEnterpriseId host_member_id: hostMemberId host_shop_id: hostShopId id order_no: orderNo original_order_ref: originalOrderRef payment_external_ref: paymentExternalRef payment_id: paymentId points_deduction_amount: pointsDeductionAmount points_to_use: pointsToUse product_type: productType recommended_payment_method: recommendedPaymentMethod seat_selection_snapshot: seatSelectionSnapshot status supplier_order_ref: supplierOrderRef tenant_id: tenantId ticket_passenger_infos: ticketPassengerInfos total_amount: totalAmount traveler_count: travelerCount waitlist_status: waitlistStatus"
+    },
+    "params": {
+      "accept": [
+        "product_type",
+        "booking_mode",
+        "status",
+        "change_status",
+        "waitlist_status"
+      ]
     }
   },
   "domain": "Travel",

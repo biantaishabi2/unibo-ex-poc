@@ -8,7 +8,7 @@
       "iata_code": "",
       "icao_code": ""
     },
-    "editing": true
+    "editing": false
   },
   "keys": [
     "editing",
@@ -28,8 +28,23 @@
   "layer2": {
     "backend": {
       "api_map": {
+        "create": "Travel.TravelAirline.create",
         "get": "Travel.TravelAirline.get",
         "update": "Travel.TravelAirline.update"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "airline_code: airlineCode airline_name: airlineName iata_code: iataCode icao_code: icaoCode id status"
+      },
+      "params": {
+        "accept": [
+          "id"
+        ]
       }
     },
     "children": [],
