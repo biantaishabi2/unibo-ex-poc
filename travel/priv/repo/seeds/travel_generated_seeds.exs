@@ -417,8 +417,8 @@ flight_offer_001 =
     sale_status: :"draft",
     departure_airport_ref_id: "departure_airport_ref_id_001",
     arrival_airport_ref_id: "arrival_airport_ref_id_001",
-    airline_ref_id: nil,
-    cabin_class_ref_id: nil
+    cabin_class_ref_id: nil,
+    airline_ref_id: nil
   }
   |> UniboExPoc.Repo.insert!()
 
@@ -445,8 +445,8 @@ flight_offer_002 =
     sale_status: :"active",
     departure_airport_ref_id: "departure_airport_ref_id_002",
     arrival_airport_ref_id: "arrival_airport_ref_id_002",
-    airline_ref_id: nil,
-    cabin_class_ref_id: nil
+    cabin_class_ref_id: nil,
+    airline_ref_id: nil
   }
   |> UniboExPoc.Repo.insert!()
 
@@ -473,8 +473,8 @@ flight_offer_003 =
     sale_status: :"inactive",
     departure_airport_ref_id: "departure_airport_ref_id_003",
     arrival_airport_ref_id: "arrival_airport_ref_id_003",
-    cabin_class_ref_id: nil,
-    airline_ref_id: nil
+    airline_ref_id: nil,
+    cabin_class_ref_id: nil
   }
   |> UniboExPoc.Repo.insert!()
 
@@ -561,8 +561,8 @@ hotel_offer_002 =
     guarantee_policy: "Lorem ipsum guarantee_policy",
     sale_status: :"active",
     city_ref_id: "city_ref_id_002",
-    room_type_ref_id: nil,
-    hotel_ref_id: nil
+    hotel_ref_id: nil,
+    room_type_ref_id: nil
   }
   |> UniboExPoc.Repo.insert!()
 
@@ -587,8 +587,8 @@ hotel_offer_003 =
     guarantee_policy: "Lorem ipsum guarantee_policy",
     sale_status: :"inactive",
     city_ref_id: "city_ref_id_003",
-    hotel_ref_id: nil,
-    room_type_ref_id: nil
+    room_type_ref_id: nil,
+    hotel_ref_id: nil
   }
   |> UniboExPoc.Repo.insert!()
 
@@ -620,10 +620,10 @@ travel_order_001 =
     payment_external_ref: "payment_external_ref_001",
     customer_id: "customer_id_001",
     payment_id: "payment_id_001",
+    flight_offer_id: nil,
     hotel_offer_id: nil,
-    vacation_offer_id: nil,
     train_offer_id: nil,
-    flight_offer_id: nil
+    vacation_offer_id: nil
   }
   |> UniboExPoc.Repo.insert!()
 
@@ -690,9 +690,9 @@ travel_order_003 =
     payment_external_ref: "payment_external_ref_003",
     customer_id: "customer_id_003",
     payment_id: "payment_id_003",
+    vacation_offer_id: nil,
     hotel_offer_id: nil,
     train_offer_id: nil,
-    vacation_offer_id: nil,
     flight_offer_id: nil
   }
   |> UniboExPoc.Repo.insert!()
@@ -794,8 +794,7 @@ travel_fulfillment_003 =
   |> UniboExPoc.Repo.insert!()
 
 travel_policy_check_001 =
-  UniboExPoc.Travel.TravelPolicyCheck
-  |> Ash.Changeset.for_create(:create, %{
+  %UniboExPoc.Travel.TravelPolicyCheck{
     check_result: :"compliant",
     policy_amount: 1,
     actual_amount: 1,
@@ -808,12 +807,11 @@ travel_policy_check_001 =
     approval_mode: :"none",
     policy_id: travel_policy_001.id,
     order_id: travel_order_001.id
-  })
-  |> Ash.create!()
+  }
+  |> UniboExPoc.Repo.insert!()
 
 travel_policy_check_002 =
-  UniboExPoc.Travel.TravelPolicyCheck
-  |> Ash.Changeset.for_create(:create, %{
+  %UniboExPoc.Travel.TravelPolicyCheck{
     check_result: :"exceeded",
     policy_amount: 2,
     actual_amount: 2,
@@ -826,12 +824,11 @@ travel_policy_check_002 =
     approval_mode: :"self",
     order_id: travel_order_002.id,
     policy_id: travel_policy_002.id
-  })
-  |> Ash.create!()
+  }
+  |> UniboExPoc.Repo.insert!()
 
 travel_policy_check_003 =
-  UniboExPoc.Travel.TravelPolicyCheck
-  |> Ash.Changeset.for_create(:create, %{
+  %UniboExPoc.Travel.TravelPolicyCheck{
     check_result: :"blocked",
     policy_amount: 3,
     actual_amount: 3,
@@ -842,10 +839,10 @@ travel_policy_check_003 =
     personal_pay_amount: 3,
     approval_request_id: "approval_request_id_003",
     approval_mode: :"oa",
-    policy_id: travel_policy_003.id,
-    order_id: travel_order_003.id
-  })
-  |> Ash.create!()
+    order_id: travel_order_003.id,
+    policy_id: travel_policy_003.id
+  }
+  |> UniboExPoc.Repo.insert!()
 
 travel_refund_order_001 =
   %UniboExPoc.Travel.TravelRefundOrder{
