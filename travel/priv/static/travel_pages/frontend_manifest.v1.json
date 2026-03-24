@@ -3995,32 +3995,6 @@
     },
     {
       "api_map": {
-        "list": "Travel.TravelPolicyCheck.list"
-      },
-      "backend": {},
-      "behavior_file": "",
-      "domain": "Travel",
-      "domain_snake": "travel",
-      "dsl_file": "travel/my_approvals.dsl",
-      "entity": "TravelPolicyCheck",
-      "entity_snake": "travel_policy_check",
-      "page_id": "my_approvals",
-      "page_kind": "custom",
-      "page_type": "custom",
-      "state_schema": {
-        "defaults": {},
-        "status_keys": []
-      },
-      "status_keys": [],
-      "template_meta": {},
-      "template_spec": {
-        "page_kind": "custom",
-        "schema_version": "1.0"
-      },
-      "transitions": []
-    },
-    {
-      "api_map": {
         "list": "Pages.FlightOfferTree.expanded.list"
       },
       "backend": {},
@@ -4766,11 +4740,6 @@
     {
       "page_id": "home",
       "path": "/travel/home",
-      "route_kind": "custom"
-    },
-    {
-      "page_id": "my_approvals",
-      "path": "/travel/my_approvals",
       "route_kind": "custom"
     },
     {
