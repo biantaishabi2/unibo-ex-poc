@@ -35,6 +35,10 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
     Keyword.get(config(), :schema, UniboExPocWeb.Schema)
   end
 
+  def default_tenant_id do
+    Keyword.get(config(), :default_tenant_id)
+  end
+
   def runtime_consistency_error do
     invalid_domains =
       schema_module()

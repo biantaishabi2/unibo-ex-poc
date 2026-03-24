@@ -514,6 +514,7 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
       |> maybe_put_page_title(page_id, status_defaults)
       |> Map.put(:selection, selection)
       |> Map.put(:_page_contract, page_contract)
+      |> maybe_inject_default_tenant()
 
     case dispatch(backend, page_id, @load_event, params, seed) do
       {:ok, %{dto: dto, status: status, effects: effects}} ->
@@ -546,6 +547,13 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
       page_data
     else
       Map.put(page_data, :page_title, page_id)
+    end
+  end
+
+  defp maybe_inject_default_tenant(seed) do
+    case RuntimeConfig.default_tenant_id() do
+      nil -> seed
+      tenant_id -> Map.put_new(seed, "tenant_id", tenant_id)
     end
   end
 

@@ -37,3 +37,7 @@ config :phoenix, :plug_init_mode, :runtime
 config :phoenix_live_view,
   debug_heex_annotations: true,
   enable_expensive_runtime_checks: true
+
+# 开发环境默认 tenant（multitenancy 实体页面验证用）
+config :travel, UniboExPocWeb.Graphql.RuntimeConfig,
+  default_tenant_id: "00000000-0000-0000-0000-000000000001"
