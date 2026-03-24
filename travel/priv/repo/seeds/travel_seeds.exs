@@ -4,6 +4,7 @@
 
 alias UniboExPoc.Ecommerce.{TravelCity, TravelAirport, TravelStation}
 alias UniboExPoc.Travel.{TravelAirline, TravelCabinClass, TravelHotel, TravelRoomType, TravelStaticCodeMapping}
+alias UniboExPoc.Travel.{FlightOffer, HotelOffer, TrainOffer}
 
 require Ash.Query
 
@@ -165,6 +166,165 @@ static_mappings = [
 for attrs <- static_mappings do
   record = TravelSeeds.upsert!(TravelStaticCodeMapping, UniboExPoc.Travel, attrs, :unique_supplier_static_code)
   if record, do: IO.puts("  ✓ 映射: #{attrs.supplier_code}/#{attrs.object_type}/#{attrs.external_code}")
+end
+
+# ── 9. 航班报价（FlightOffer）─────────────────────────────────
+
+IO.puts("\n=== 创建航班报价数据 ===")
+
+# 种子用固定租户 ID
+seed_tenant_id = "00000000-0000-0000-0000-000000000001"
+
+flight_offers = [
+  %{
+    tenant_id: seed_tenant_id,
+    supplier_code: "SUP_CTRIP",
+    itinerary_code: "ITN_BJ_SH_001",
+    flight_no: "CA1234",
+    departure_airport_code: "PEK",
+    arrival_airport_code: "SHA",
+    departure_at: ~U[2026-04-10 08:00:00Z],
+    arrival_at: ~U[2026-04-10 10:15:00Z],
+    cabin_class: "经济舱",
+    listed_price: Decimal.new("1200.00"),
+    settlement_price: Decimal.new("980.00"),
+    currency: "CNY",
+    seats_available: 120,
+    baggage_policy: "免费托运行李20kg",
+    refund_change_policy: "起飞前2小时免费退改",
+    sale_status: :active
+  },
+  %{
+    tenant_id: seed_tenant_id,
+    supplier_code: "SUP_CTRIP",
+    itinerary_code: "ITN_SH_GZ_001",
+    flight_no: "MU5678",
+    departure_airport_code: "SHA",
+    arrival_airport_code: "CAN",
+    departure_at: ~U[2026-04-12 14:30:00Z],
+    arrival_at: ~U[2026-04-12 17:00:00Z],
+    cabin_class: "公务舱",
+    listed_price: Decimal.new("3500.00"),
+    settlement_price: Decimal.new("2800.00"),
+    currency: "CNY",
+    seats_available: 24,
+    baggage_policy: "免费托运行李40kg",
+    refund_change_policy: "起飞前24小时免费退改",
+    sale_status: :active
+  }
+]
+
+for attrs <- flight_offers do
+  record = TravelSeeds.upsert!(FlightOffer, UniboExPoc.Travel, attrs, :unique_flight_offer_snapshot)
+  if record, do: IO.puts("  ✓ 航班报价: #{attrs.flight_no} #{attrs.departure_airport_code}→#{attrs.arrival_airport_code} #{attrs.cabin_class} ¥#{attrs.listed_price}")
+end
+
+# ── 10. 酒店报价（HotelOffer）────────────────────────────────
+
+IO.puts("\n=== 创建酒店报价数据 ===")
+
+hotel_offers = [
+  %{
+    tenant_id: seed_tenant_id,
+    supplier_code: "SUP_CTRIP",
+    hotel_code: "HTL_BJ_001",
+    hotel_name: "北京国贸大酒店",
+    city_code: "BJS",
+    room_type_code: "RT_KING_DLX",
+    rate_plan_code: "RP_STD_001",
+    checkin_date: ~D[2026-04-10],
+    checkout_date: ~D[2026-04-12],
+    listed_price: Decimal.new("800.00"),
+    settlement_price: Decimal.new("650.00"),
+    currency: "CNY",
+    inventory_count: 15,
+    cancellation_policy: "入住前24小时免费取消",
+    guarantee_policy: "信用卡担保",
+    sale_status: :active
+  },
+  %{
+    tenant_id: seed_tenant_id,
+    supplier_code: "SUP_CTRIP",
+    hotel_code: "HTL_SH_002",
+    hotel_name: "上海外滩华尔道夫酒店",
+    city_code: "SHA",
+    room_type_code: "RT_SUITE_EXE",
+    rate_plan_code: "RP_EXE_001",
+    checkin_date: ~D[2026-04-12],
+    checkout_date: ~D[2026-04-14],
+    listed_price: Decimal.new("2500.00"),
+    settlement_price: Decimal.new("2000.00"),
+    currency: "CNY",
+    inventory_count: 5,
+    cancellation_policy: "不可取消",
+    guarantee_policy: "全额预付",
+    sale_status: :active
+  }
+]
+
+for attrs <- hotel_offers do
+  record = TravelSeeds.upsert!(HotelOffer, UniboExPoc.Travel, attrs, :unique_hotel_offer_snapshot)
+  if record, do: IO.puts("  ✓ 酒店报价: #{attrs.hotel_name} #{attrs.room_type_code} ¥#{attrs.listed_price}/晚")
+end
+
+# ── 11. 火车票报价（TrainOffer）───────────────────────────────
+
+IO.puts("\n=== 创建火车票报价数据 ===")
+
+train_offers = [
+  %{
+    tenant_id: seed_tenant_id,
+    supplier_code: "SUP_12306",
+    train_no: "G1",
+    departure_station_code: "BJP",
+    departure_station_name: "北京南站",
+    arrival_station_code: "SHH",
+    arrival_station_name: "上海虹桥站",
+    travel_date: ~D[2026-04-10],
+    departure_at: ~U[2026-04-10 09:00:00Z],
+    arrival_at: ~U[2026-04-10 13:28:00Z],
+    seat_class: "二等座",
+    seat_code: "SC_2ND",
+    is_no_seat: false,
+    inventory_status: :available,
+    waitlist_supported: true,
+    listed_price: Decimal.new("553.00"),
+    settlement_price: Decimal.new("553.00"),
+    currency: "CNY",
+    booking_rules_snapshot: "提前30天预售",
+    change_rules_snapshot: "开车前48小时免费改签一次",
+    refund_rules_snapshot: "开车前15天以上免费退票",
+    sale_status: :active
+  },
+  %{
+    tenant_id: seed_tenant_id,
+    supplier_code: "SUP_12306",
+    train_no: "G7382",
+    departure_station_code: "HZD",
+    departure_station_name: "杭州东站",
+    arrival_station_code: "NJN",
+    arrival_station_name: "南京南站",
+    travel_date: ~D[2026-04-11],
+    departure_at: ~U[2026-04-11 10:30:00Z],
+    arrival_at: ~U[2026-04-11 11:48:00Z],
+    seat_class: "一等座",
+    seat_code: "SC_1ST",
+    is_no_seat: false,
+    inventory_status: :available,
+    waitlist_supported: false,
+    listed_price: Decimal.new("284.00"),
+    settlement_price: Decimal.new("284.00"),
+    currency: "CNY",
+    booking_rules_snapshot: "提前30天预售",
+    change_rules_snapshot: "开车前48小时免费改签一次",
+    refund_rules_snapshot: "开车前15天以上免费退票",
+    sale_status: :active
+  }
+]
+
+for attrs <- train_offers do
+  record = TravelSeeds.upsert!(TrainOffer, UniboExPoc.Travel, attrs, :unique_train_offer_snapshot)
+  if record, do: IO.puts("  ✓ 火车票报价: #{attrs.train_no} #{attrs.departure_station_name}→#{attrs.arrival_station_name} #{attrs.seat_class} ¥#{attrs.listed_price}")
 end
 
 IO.puts("\n=== Travel 种子数据创建完成 ===")
