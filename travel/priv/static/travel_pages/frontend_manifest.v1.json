@@ -1,7 +1,6 @@
 {
   "capability_contracts": [],
   "domains": [
-    "pages",
     "travel"
   ],
   "pages": [
@@ -3995,32 +3994,6 @@
     },
     {
       "api_map": {
-        "list": "Pages.FlightOfferTree.expanded.list"
-      },
-      "backend": {},
-      "behavior_file": "",
-      "domain": "Pages",
-      "domain_snake": "pages",
-      "dsl_file": "pages/flight_offer_tree.expanded.dsl",
-      "entity": "FlightOfferTree.expanded",
-      "entity_snake": "flight_offer_tree.expanded",
-      "page_id": "flight_offer_tree.expanded",
-      "page_kind": "custom",
-      "page_type": "custom",
-      "state_schema": {
-        "defaults": {},
-        "status_keys": []
-      },
-      "status_keys": [],
-      "template_meta": {},
-      "template_spec": {
-        "page_kind": "custom",
-        "schema_version": "1.0"
-      },
-      "transitions": []
-    },
-    {
-      "api_map": {
         "get": "Travel.TravelOrder.get"
       },
       "backend": {},
@@ -4740,11 +4713,6 @@
     {
       "page_id": "home",
       "path": "/travel/home",
-      "route_kind": "custom"
-    },
-    {
-      "page_id": "flight_offer_tree.expanded",
-      "path": "/pages/flight_offer_tree.expanded",
       "route_kind": "custom"
     },
     {
