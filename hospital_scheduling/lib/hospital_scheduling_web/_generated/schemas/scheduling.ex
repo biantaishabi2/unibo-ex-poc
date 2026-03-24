@@ -3,7 +3,6 @@ defmodule HospitalSchedulingWeb.Generated.Schema.Scheduling do
   use Absinthe.Schema
 
   import_types Absinthe.Plug.Types
-  import_types HospitalSchedulingWeb.Generated.AshGraphqlTypes
 
   object :graphql_contract do
     field :field, :string
