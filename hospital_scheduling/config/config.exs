@@ -16,7 +16,7 @@ config :hospital_scheduling,
   ]
 
 config :hospital_scheduling, HospitalSchedulingWeb.Graphql.RuntimeConfig,
-  schema: HospitalSchedulingWeb.Schema
+  schema: HospitalSchedulingWeb.Generated.Schema.Scheduling
 
 # Configures the endpoint
 config :hospital_scheduling, HospitalSchedulingWeb.Endpoint,

@@ -11,7 +11,7 @@ graphql = true
 emit_graphql_schemas = true
 runtime_profile = "strict"
 relation_mode = "warn"
-autowire_ash_deps = false
+autowire_ash_deps = true
 
 [frontend]
 models = ["./models"]
