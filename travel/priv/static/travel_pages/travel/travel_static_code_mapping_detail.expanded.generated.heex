@@ -19,9 +19,11 @@
       <.text variant="title" id="travel_static_code_mapping_detail_title">
         <%= get_in(@record, [:supplier_code]) || "" %>
       </.text>
-      <.badge variant="default" size="sm" id="travel_static_code_mapping_status_badge">
-        <%= get_in(@record, [:status]) || "" %>
-      </.badge>
+      <%= if (val = get_in(@record, [:status])) && to_string(val) != "" do %>
+        <.badge variant="default" size="sm" id="travel_static_code_mapping_status_badge">
+          <%= to_string(val) %>
+        </.badge>
+      <% end %>
     </.flex>
     <.flex gap={2} direction="row" id="travel_static_code_mapping_actions">
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="travel_static_code_mapping_edit_btn">
@@ -50,9 +52,11 @@
             <.text variant="muted" id="label_object_type">
               主数据对象类型
             </.text>
-            <.badge variant="default" size="sm" id="value_object_type">
-              <%= get_in(@record, [:object_type]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:object_type])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_object_type">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_canonical_entity">
             <.text variant="muted" id="label_canonical_entity">
@@ -82,9 +86,11 @@
             <.text variant="muted" id="label_status">
               status
             </.text>
-            <.badge variant="default" size="sm" id="value_status">
-              <%= get_in(@record, [:status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_status">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
         </.grid>
       <% else %>

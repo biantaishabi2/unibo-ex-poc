@@ -58,9 +58,11 @@
             <%= get_in(row, [:hotel_star]) || "" %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
             <.link patch={"/pages/travel/travel_hotel/#{get_in(row, [:id])}"} id="travel_hotel_view_btn" variant="link" size="sm">

@@ -33,18 +33,22 @@
           <.separator id="table_sep" />
           <%= for item <- (@pricing_rules || []) do %>
             <.flex justify="between" align="center" direction="row">
-              <.badge variant="secondary" size="sm">
-                <%= get_in(item, [:product_type]) || "" %>
-              </.badge>
+              <%= if (val = get_in(item, [:product_type])) && to_string(val) != "" do %>
+                <.badge variant="secondary" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
               <.text>
                 <%= get_in(item, [:supplier_code]) || "" %>
               </.text>
               <.text>
                 <%= get_in(item, [:markup_rate]) || "" %>
               </.text>
-              <.badge variant="outline" size="sm">
-                <%= get_in(item, [:status]) || "" %>
-              </.badge>
+              <%= if (val = get_in(item, [:status])) && to_string(val) != "" do %>
+                <.badge variant="outline" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
               <.flex gap={1} direction="row">
                 <.button variant="outline" size="sm" phx-click="update">
                   保存

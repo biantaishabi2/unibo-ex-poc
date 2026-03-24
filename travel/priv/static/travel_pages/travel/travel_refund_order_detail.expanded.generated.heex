@@ -19,9 +19,11 @@
       <.text variant="title" id="travel_refund_order_detail_title">
         <%= get_in(@record, [:refund_reason]) || "" %>
       </.text>
-      <.badge variant="default" size="sm" id="travel_refund_order_status_badge">
-        <%= get_in(@record, [:status]) || "" %>
-      </.badge>
+      <%= if (val = get_in(@record, [:status])) && to_string(val) != "" do %>
+        <.badge variant="default" size="sm" id="travel_refund_order_status_badge">
+          <%= to_string(val) %>
+        </.badge>
+      <% end %>
     </.flex>
     <.flex gap={2} direction="row" id="travel_refund_order_actions">
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="travel_refund_order_edit_btn">
@@ -89,17 +91,21 @@
             <.text variant="muted" id="label_status">
               status
             </.text>
-            <.badge variant="default" size="sm" id="value_status">
-              <%= get_in(@record, [:status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_status">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_approval_mode">
             <.text variant="muted" id="label_approval_mode">
               审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
             </.text>
-            <.badge variant="default" size="sm" id="value_approval_mode">
-              <%= get_in(@record, [:approval_mode]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:approval_mode])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_approval_mode">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
         </.grid>
       <% else %>

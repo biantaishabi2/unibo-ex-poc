@@ -78,14 +78,18 @@
       <%= for row <- (@rows || []) do %>
         <.table_row>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:fulfillment_type]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:fulfillment_type])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
             <%= get_in(row, [:supplier_booking_ref]) || "" %>
@@ -97,19 +101,25 @@
             <%= get_in(row, [:ticket_refs]) || "" %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:waitlist_result]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:waitlist_result])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:change_result]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:change_result])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:boarding_status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:boarding_status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
             <%= get_in(row, [:confirmation_payload]) || "" %>

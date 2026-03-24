@@ -14,9 +14,11 @@
   <.section layout="none" id="date_slider_section">
     <.flex gap={2} paddingx={3} paddingy={2} overflowx="scroll" background="surface" direction="row" id="date_slider">
       <%= for date_item <- (get_in(@search, [:date_range]) || []) do %>
-        <.badge variant={get_in(date_item, [:is_selected])} phx-click="select_date" size="sm">
-          <%= get_in(date_item, [:date_label]) || "" %>
-        </.badge>
+        <%= if (val = get_in(date_item, [:date_label])) && to_string(val) != "" do %>
+          <.badge variant={get_in(date_item, [:is_selected])} phx-click="select_date" size="sm">
+            <%= to_string(val) %>
+          </.badge>
+        <% end %>
       <% end %>
     </.flex>
   </.section>

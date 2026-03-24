@@ -92,9 +92,11 @@
             <%= get_in(row, [:package_name]) || "" %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:package_type]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:package_type])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
             <%= get_in(row, [:departure_city_code]) || "" %>
@@ -127,9 +129,11 @@
             <%= get_in(row, [:cancellation_policy]) || "" %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:sale_status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:sale_status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
             <.link patch={"/pages/travel/vacation_offer/#{get_in(row, [:id])}"} id="vacation_offer_view_btn" variant="link" size="sm">

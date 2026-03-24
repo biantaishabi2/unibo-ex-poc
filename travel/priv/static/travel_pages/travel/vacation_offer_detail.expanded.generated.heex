@@ -19,9 +19,11 @@
       <.text variant="title" id="vacation_offer_detail_title">
         <%= get_in(@record, [:supplier_code]) || "" %>
       </.text>
-      <.badge variant="default" size="sm" id="vacation_offer_status_badge">
-        <%= get_in(@record, [:sale_status]) || "" %>
-      </.badge>
+      <%= if (val = get_in(@record, [:sale_status])) && to_string(val) != "" do %>
+        <.badge variant="default" size="sm" id="vacation_offer_status_badge">
+          <%= to_string(val) %>
+        </.badge>
+      <% end %>
     </.flex>
     <.flex gap={2} direction="row" id="vacation_offer_actions">
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="vacation_offer_edit_btn">
@@ -78,9 +80,11 @@
             <.text variant="muted" id="label_package_type">
               套餐类型
             </.text>
-            <.badge variant="default" size="sm" id="value_package_type">
-              <%= get_in(@record, [:package_type]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:package_type])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_package_type">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_departure_city_code">
             <.text variant="muted" id="label_departure_city_code">
@@ -166,9 +170,11 @@
             <.text variant="muted" id="label_sale_status">
               sale_status
             </.text>
-            <.badge variant="default" size="sm" id="value_sale_status">
-              <%= get_in(@record, [:sale_status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:sale_status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_sale_status">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
         </.grid>
       <% else %>

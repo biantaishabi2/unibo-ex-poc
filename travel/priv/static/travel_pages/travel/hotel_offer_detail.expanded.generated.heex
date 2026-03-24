@@ -19,9 +19,11 @@
       <.text variant="title" id="hotel_offer_detail_title">
         <%= get_in(@record, [:supplier_code]) || "" %>
       </.text>
-      <.badge variant="default" size="sm" id="hotel_offer_status_badge">
-        <%= get_in(@record, [:sale_status]) || "" %>
-      </.badge>
+      <%= if (val = get_in(@record, [:sale_status])) && to_string(val) != "" do %>
+        <.badge variant="default" size="sm" id="hotel_offer_status_badge">
+          <%= to_string(val) %>
+        </.badge>
+      <% end %>
     </.flex>
     <.flex gap={2} direction="row" id="hotel_offer_actions">
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="hotel_offer_edit_btn">
@@ -166,9 +168,11 @@
             <.text variant="muted" id="label_sale_status">
               可售状态
             </.text>
-            <.badge variant="default" size="sm" id="value_sale_status">
-              <%= get_in(@record, [:sale_status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:sale_status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_sale_status">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
         </.grid>
       <% else %>

@@ -18,12 +18,16 @@
           <.text variant="body" weight="bold" id="train_no_text">
             <%= get_in(@offer, [:train_no]) || "" %>
           </.text>
-          <.badge variant="outline" size="sm" id="train_type_badge">
-            <%= get_in(@offer, [:train_type_label]) || "" %>
-          </.badge>
-          <.badge variant="secondary" size="sm" id="seat_class_badge">
-            <%= get_in(@offer, [:selected_seat_class_name]) || "" %>
-          </.badge>
+          <%= if (val = get_in(@offer, [:train_type_label])) && to_string(val) != "" do %>
+            <.badge variant="outline" size="sm" id="train_type_badge">
+              <%= to_string(val) %>
+            </.badge>
+          <% end %>
+          <%= if (val = get_in(@offer, [:selected_seat_class_name])) && to_string(val) != "" do %>
+            <.badge variant="secondary" size="sm" id="seat_class_badge">
+              <%= to_string(val) %>
+            </.badge>
+          <% end %>
         </.flex>
       </.card_header>
       <.card_content id="train_summary_cc">

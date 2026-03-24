@@ -24,24 +24,32 @@
             <%= get_in(@offer, [:hotel_name]) || "" %>
           </.text>
           <.flex gap={2} align="center" direction="row" id="room_badges_flex">
-            <.badge variant="secondary" size="sm" id="room_type_badge">
-              <%= get_in(@offer, [:room_type_ref, :room_type_name]) || "" %>
-            </.badge>
-            <.badge variant="outline" size="sm" id="bed_type_badge">
-              <%= get_in(@offer, [:room_type_ref, :bed_type]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@offer, [:room_type_ref, :room_type_name])) && to_string(val) != "" do %>
+              <.badge variant="secondary" size="sm" id="room_type_badge">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
+            <%= if (val = get_in(@offer, [:room_type_ref, :bed_type])) && to_string(val) != "" do %>
+              <.badge variant="outline" size="sm" id="bed_type_badge">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex gap={2} direction="row" id="date_stats_flex">
             <.statistic title="入住" value={get_in(@offer, [:checkin_date])} size="md" id="checkin_stat" />
             <.statistic title="退房" value={get_in(@offer, [:checkout_date])} size="md" id="checkout_stat" />
           </.flex>
           <.flex gap={1} wrap="true" direction="row" id="hotel_policy_badges_flex">
-            <.badge variant="outline" size="sm" id="cancellation_badge">
-              <%= get_in(@offer, [:cancellation_policy]) || "" %>
-            </.badge>
-            <.badge variant="outline" size="sm" id="guarantee_badge">
-              <%= get_in(@offer, [:guarantee_policy]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@offer, [:cancellation_policy])) && to_string(val) != "" do %>
+              <.badge variant="outline" size="sm" id="cancellation_badge">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
+            <%= if (val = get_in(@offer, [:guarantee_policy])) && to_string(val) != "" do %>
+              <.badge variant="outline" size="sm" id="guarantee_badge">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
         </.stack>
       </.card_content>

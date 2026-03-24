@@ -19,9 +19,11 @@
       <.text variant="title" id="travel_airline_detail_title">
         <%= get_in(@record, [:airline_code]) || "" %>
       </.text>
-      <.badge variant="default" size="sm" id="travel_airline_status_badge">
-        <%= get_in(@record, [:status]) || "" %>
-      </.badge>
+      <%= if (val = get_in(@record, [:status])) && to_string(val) != "" do %>
+        <.badge variant="default" size="sm" id="travel_airline_status_badge">
+          <%= to_string(val) %>
+        </.badge>
+      <% end %>
     </.flex>
     <.flex gap={2} direction="row" id="travel_airline_actions">
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="travel_airline_edit_btn">
@@ -74,9 +76,11 @@
             <.text variant="muted" id="label_status">
               status
             </.text>
-            <.badge variant="default" size="sm" id="value_status">
-              <%= get_in(@record, [:status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_status">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
         </.grid>
       <% else %>

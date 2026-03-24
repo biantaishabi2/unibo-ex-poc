@@ -21,9 +21,11 @@
           <.text variant="body" weight="bold" id="flight_no_text">
             <%= get_in(@offer, [:flight_no]) || "" %>
           </.text>
-          <.badge variant="secondary" size="sm" id="cabin_class_badge">
-            <%= get_in(@offer, [:cabin_class_ref, :name]) || "" %>
-          </.badge>
+          <%= if (val = get_in(@offer, [:cabin_class_ref, :name])) && to_string(val) != "" do %>
+            <.badge variant="secondary" size="sm" id="cabin_class_badge">
+              <%= to_string(val) %>
+            </.badge>
+          <% end %>
         </.flex>
       </.card_header>
       <.card_content id="flight_summary_cc">
@@ -78,12 +80,16 @@
             <.statistic title="改签" value={get_in(@offer, [:refund_change_policy, :change_label])} size="md" id="change_stat" />
           </.flex>
           <.flex gap={1} wrap="true" direction="row" id="fare_badges_flex">
-            <.badge variant="outline" size="sm" id="baggage_badge">
-              <%= get_in(@offer, [:baggage_policy]) || "" %>
-            </.badge>
-            <.badge variant="outline" size="sm" id="fare_family_badge">
-              <%= get_in(@offer, [:fare_family]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@offer, [:baggage_policy])) && to_string(val) != "" do %>
+              <.badge variant="outline" size="sm" id="baggage_badge">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
+            <%= if (val = get_in(@offer, [:fare_family])) && to_string(val) != "" do %>
+              <.badge variant="outline" size="sm" id="fare_family_badge">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
         </.stack>
       </.card_content>

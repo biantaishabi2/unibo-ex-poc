@@ -58,14 +58,18 @@
             <%= get_in(row, [:refund_amount]) || "" %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:approval_mode]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:approval_mode])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
             <.link patch={"/pages/travel/travel_refund_order/#{get_in(row, [:id])}"} id="travel_refund_order_view_btn" variant="link" size="sm">

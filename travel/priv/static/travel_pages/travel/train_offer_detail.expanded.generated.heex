@@ -19,9 +19,11 @@
       <.text variant="title" id="train_offer_detail_title">
         <%= get_in(@record, [:supplier_code]) || "" %>
       </.text>
-      <.badge variant="default" size="sm" id="train_offer_status_badge">
-        <%= get_in(@record, [:inventory_status]) || "" %>
-      </.badge>
+      <%= if (val = get_in(@record, [:inventory_status])) && to_string(val) != "" do %>
+        <.badge variant="default" size="sm" id="train_offer_status_badge">
+          <%= to_string(val) %>
+        </.badge>
+      <% end %>
     </.flex>
     <.flex gap={2} direction="row" id="train_offer_actions">
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="train_offer_edit_btn">
@@ -142,25 +144,31 @@
             <.text variant="muted" id="label_is_no_seat">
               是否无座票
             </.text>
-            <.badge variant="default" size="sm" id="value_is_no_seat">
-              <%= get_in(@record, [:is_no_seat]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:is_no_seat])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_is_no_seat">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_inventory_status">
             <.text variant="muted" id="label_inventory_status">
               余票或候补可用状态
             </.text>
-            <.badge variant="default" size="sm" id="value_inventory_status">
-              <%= get_in(@record, [:inventory_status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:inventory_status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_inventory_status">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_waitlist_supported">
             <.text variant="muted" id="label_waitlist_supported">
               是否支持候补
             </.text>
-            <.badge variant="default" size="sm" id="value_waitlist_supported">
-              <%= get_in(@record, [:waitlist_supported]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:waitlist_supported])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_waitlist_supported">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_listed_price">
             <.text variant="muted" id="label_listed_price">
@@ -214,9 +222,11 @@
             <.text variant="muted" id="label_sale_status">
               可售状态
             </.text>
-            <.badge variant="default" size="sm" id="value_sale_status">
-              <%= get_in(@record, [:sale_status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:sale_status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_sale_status">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
         </.grid>
       <% else %>

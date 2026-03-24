@@ -19,9 +19,11 @@
       <.text variant="title" id="travel_order_detail_title">
         <%= get_in(@record, [:host_member_id]) || "" %>
       </.text>
-      <.badge variant="default" size="sm" id="travel_order_status_badge">
-        <%= get_in(@record, [:status]) || "" %>
-      </.badge>
+      <%= if (val = get_in(@record, [:status])) && to_string(val) != "" do %>
+        <.badge variant="default" size="sm" id="travel_order_status_badge">
+          <%= to_string(val) %>
+        </.badge>
+      <% end %>
     </.flex>
     <.flex gap={2} direction="row" id="travel_order_actions">
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="travel_order_edit_btn">
@@ -119,17 +121,21 @@
             <.text variant="muted" id="label_product_type">
               商品类型
             </.text>
-            <.badge variant="default" size="sm" id="value_product_type">
-              <%= get_in(@record, [:product_type]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:product_type])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_product_type">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_booking_mode">
             <.text variant="muted" id="label_booking_mode">
               train 订单预订模式
             </.text>
-            <.badge variant="default" size="sm" id="value_booking_mode">
-              <%= get_in(@record, [:booking_mode]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:booking_mode])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_booking_mode">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_contact_name">
             <.text variant="muted" id="label_contact_name">
@@ -199,25 +205,31 @@
             <.text variant="muted" id="label_status">
               status
             </.text>
-            <.badge variant="default" size="sm" id="value_status">
-              <%= get_in(@record, [:status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_status">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_change_status">
             <.text variant="muted" id="label_change_status">
               change_status
             </.text>
-            <.badge variant="default" size="sm" id="value_change_status">
-              <%= get_in(@record, [:change_status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:change_status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_change_status">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_waitlist_status">
             <.text variant="muted" id="label_waitlist_status">
               waitlist_status
             </.text>
-            <.badge variant="default" size="sm" id="value_waitlist_status">
-              <%= get_in(@record, [:waitlist_status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:waitlist_status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_waitlist_status">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_original_order_ref">
             <.text variant="muted" id="label_original_order_ref">

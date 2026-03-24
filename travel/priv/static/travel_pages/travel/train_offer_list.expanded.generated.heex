@@ -136,19 +136,25 @@
             <%= get_in(row, [:seat_code]) || "" %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:is_no_seat]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:is_no_seat])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:inventory_status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:inventory_status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:waitlist_supported]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:waitlist_supported])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
             <%= get_in(row, [:listed_price]) || "" %>
@@ -169,9 +175,11 @@
             <%= get_in(row, [:refund_rules_snapshot]) || "" %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:sale_status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:sale_status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
             <.link patch={"/pages/travel/train_offer/#{get_in(row, [:id])}"} id="train_offer_view_btn" variant="link" size="sm">

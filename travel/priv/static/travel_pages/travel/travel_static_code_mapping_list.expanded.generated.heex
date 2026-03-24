@@ -55,9 +55,11 @@
             <%= get_in(row, [:supplier_code]) || "" %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:object_type]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:object_type])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
             <%= get_in(row, [:canonical_entity]) || "" %>
@@ -69,9 +71,11 @@
             <%= get_in(row, [:external_name]) || "" %>
           </.table_cell>
           <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(row, [:status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.table_cell>
           <.table_cell>
             <.link patch={"/pages/travel/travel_static_code_mapping/#{get_in(row, [:id])}"} id="travel_static_code_mapping_view_btn" variant="link" size="sm">

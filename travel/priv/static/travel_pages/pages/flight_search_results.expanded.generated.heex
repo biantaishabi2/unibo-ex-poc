@@ -139,9 +139,11 @@
               <%= get_in(row, [:refund_change_policy]) || "" %>
             </.table_cell>
             <.table_cell>
-              <.badge variant="default" size="sm">
-                <%= get_in(row, [:sale_status]) || "" %>
-              </.badge>
+              <%= if (val = get_in(row, [:sale_status])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
             </.table_cell>
           </.table_row>
         <% end %>

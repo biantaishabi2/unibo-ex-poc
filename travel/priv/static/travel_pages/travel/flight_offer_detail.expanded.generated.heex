@@ -19,9 +19,11 @@
       <.text variant="title" id="flight_offer_detail_title">
         <%= get_in(@record, [:supplier_code]) || "" %>
       </.text>
-      <.badge variant="default" size="sm" id="flight_offer_status_badge">
-        <%= get_in(@record, [:sale_status]) || "" %>
-      </.badge>
+      <%= if (val = get_in(@record, [:sale_status])) && to_string(val) != "" do %>
+        <.badge variant="default" size="sm" id="flight_offer_status_badge">
+          <%= to_string(val) %>
+        </.badge>
+      <% end %>
     </.flex>
     <.flex gap={2} direction="row" id="flight_offer_actions">
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="flight_offer_edit_btn">
@@ -174,9 +176,11 @@
             <.text variant="muted" id="label_sale_status">
               sale_status
             </.text>
-            <.badge variant="default" size="sm" id="value_sale_status">
-              <%= get_in(@record, [:sale_status]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:sale_status])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_sale_status">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
         </.grid>
       <% else %>
