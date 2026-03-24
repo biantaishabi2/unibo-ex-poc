@@ -40,6 +40,10 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
          {:ok, result} <- call_graphql(query, variables, state),
          {:ok, backend_result} <- normalize_backend_result(page, operation, result) do
       {:ok, backend_result}
+    else
+      {:error, :stitch_backend_load_skip} ->
+        {:ok, %{dto: %{}, status: %{}, effects: []}}
+      error -> error
     end
   end
 
@@ -63,23 +67,28 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
 
   defp resolve_operation(page, event, params) do
     api_map = normalize_map(map_get(page, "api_map"))
-    api_key = resolve_api_key(api_map, normalize_string(event), normalize_string(map_get(page, "page_kind")), params)
+    normalized_event = normalize_string(event)
+    api_key = resolve_api_key(api_map, normalized_event, normalize_string(map_get(page, "page_kind")), params)
 
-    with false <- api_key == "",
-         api_ref when is_binary(api_ref) and api_ref != "" <- map_get(api_map, api_key),
-         {:ok, parsed} <- parse_api_ref(api_ref),
-         {:ok, field, field_meta} <- resolve_graphql_field(parsed, api_key) do
-      {:ok,
-       parsed
-       |> Map.put("api_key", api_key)
-       |> Map.put("field", field)
-       |> Map.put("input_type", map_get(field_meta, "input_type"))
-       |> Map.put("field_mode", map_get(field_meta, "mode"))
-       |> Map.put("field_action", map_get(field_meta, "action"))
-       |> Map.put("page_kind", normalize_string(map_get(page, "page_kind")))}
+    if api_key == "" and normalized_event == @load_event do
+      {:error, :stitch_backend_load_skip}
     else
-      true -> {:error, :stitch_backend_api_missing}
-      _ -> {:error, :stitch_backend_graphql_contract_missing}
+      with false <- api_key == "",
+           api_ref when is_binary(api_ref) and api_ref != "" <- map_get(api_map, api_key),
+           {:ok, parsed} <- parse_api_ref(api_ref),
+           {:ok, field, field_meta} <- resolve_graphql_field(parsed, api_key) do
+        {:ok,
+         parsed
+         |> Map.put("api_key", api_key)
+         |> Map.put("field", field)
+         |> Map.put("input_type", map_get(field_meta, "input_type"))
+         |> Map.put("field_mode", map_get(field_meta, "mode"))
+         |> Map.put("field_action", map_get(field_meta, "action"))
+         |> Map.put("page_kind", normalize_string(map_get(page, "page_kind")))}
+      else
+        true -> {:error, :stitch_backend_api_missing}
+        _ -> {:error, :stitch_backend_graphql_contract_missing}
+      end
     end
   end
 
@@ -97,6 +106,9 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
       normalized == @load_event and map_has_key?(api_map, "list") ->
         "list"
 
+      normalized == @load_event and not map_has_key?(api_map, "get") and not map_has_key?(api_map, "list") ->
+        ""
+
       normalized == @load_event ->
         "get"
 
@@ -108,6 +120,9 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
 
       page_kind == "list" and normalized in ["filter_submit", "search_submit", "reload", "refresh", "form_submit"] and map_has_key?(api_map, "list") ->
         "list"
+
+      page_kind == "detail" and normalized == "form_submit" and normalize_string(map_get(params, "id")) == "" and map_has_key?(api_map, "create") ->
+        "create"
 
       page_kind == "detail" and normalized == "form_submit" and map_has_key?(api_map, "update") ->
         "update"

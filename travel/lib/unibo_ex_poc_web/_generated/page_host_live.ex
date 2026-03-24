@@ -68,8 +68,15 @@ defmodule UniboExPocWeb.Generated.PageHostLive do
   def handle_event(event, params, socket) do
     socket =
       case socket.assigns.runtime_mode do
-        :graphql -> dispatch_backend(event, params, socket)
-        _ -> socket
+        :graphql ->
+          if PageHostRuntime.page_has_backend?(socket.assigns.page) do
+            dispatch_backend(event, params, socket)
+          else
+            socket
+          end
+
+        _ ->
+          socket
       end
 
     {:noreply, socket}
@@ -125,7 +132,7 @@ defmodule UniboExPocWeb.Generated.PageHostLive do
 
       module_code = """
       defmodule #{module_name} do
-        use Phoenix.Component
+        use Phoenix.Component, global_prefixes: ~w(phx-)
 
         import StitchUI.Components.Basic, except: [link: 1]
         import StitchUI.Components.Card
@@ -201,10 +208,14 @@ defmodule UniboExPocWeb.Generated.PageHostLive do
   end
 
   defp comparison_like_angle_bracket?(graphemes, idx) do
-    prev = neighboring_grapheme(graphemes, idx - 1)
     next = neighboring_grapheme(graphemes, idx + 1)
-
-    previous_suggests_text?(prev) or next_suggests_comparison?(next)
+    # 组件调用 <.xxx> 或闭合标签 </xxx> 是合法标签，不转义
+    if next in [".", "/"] do
+      false
+    else
+      prev = neighboring_grapheme(graphemes, idx - 1)
+      previous_suggests_text?(prev) or next_suggests_comparison?(next)
+    end
   end
 
   defp neighboring_grapheme(_graphemes, idx) when idx < 0, do: nil

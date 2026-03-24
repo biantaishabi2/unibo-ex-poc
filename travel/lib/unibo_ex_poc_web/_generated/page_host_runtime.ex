@@ -91,8 +91,8 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
 
   def merge_backend_payload(page_data, dto, status) do
     page_data
-    |> deep_merge(deep_existing_atomize_keys(normalize_map(dto)))
-    |> deep_merge(deep_existing_atomize_keys(normalize_map(status)))
+    |> deep_merge(deep_generated_atomize_keys(normalize_map(dto)))
+    |> deep_merge(deep_generated_atomize_keys(normalize_map(status)))
   end
 
   def maybe_put_flash_from_effects(page_data, effects) do
@@ -142,6 +142,16 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
   end
 
   def page_contract(_page_id), do: %{}
+
+  @doc "页面是否有非空 api_map（即是否需要走 backend dispatch）"
+  def page_has_backend?(page_id) when is_binary(page_id) do
+    case RuntimeConfig.frontend_page(page_id) do
+      {:ok, page} -> normalize_map(map_get(page, "api_map")) != %{}
+      _ -> false
+    end
+  end
+
+  def page_has_backend?(_page_id), do: false
 
   def host_path_for_page(page) when is_map(page) do
     page
@@ -482,7 +492,18 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     end, :desc)
   end
 
+  # custom 页面没有 api_map 时，跳过 GraphQL dispatch，用静态数据加载
   defp load_page_data(path, page_id, page, params, :graphql, backend) do
+    api_map = normalize_map(map_get(page, "api_map"))
+
+    if api_map == %{} do
+      load_page_data(path, page_id, page, params, :static, backend)
+    else
+      load_page_data_graphql(path, page_id, page, params, backend)
+    end
+  end
+
+  defp load_page_data_graphql(path, page_id, _page, params, backend) do
     status_defaults = load_status_defaults(path)
     page_contract = load_behavior_contract(path)
     selection = page_selection(path, status_defaults)
@@ -943,6 +964,10 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
       deep_merge(left_value, right_value)
     end)
   end
+
+  # #1646: 后端返回 nil 时保留 status_defaults 中的默认结构，
+  # 避免嵌套关联（如 last_solver_run）被 nil 覆盖后 dot-access 崩溃
+  defp deep_merge(left, nil) when is_map(left), do: left
 
   defp deep_merge(_left, right), do: right
 end

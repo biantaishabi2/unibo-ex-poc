@@ -1,9 +1,4 @@
 defmodule UniboExPoc.PubSub do
-  @moduledoc """
-  PubSub 封装模块，供 Ash.Notifier.PubSub 使用。
-  """
-
-  def broadcast(topic, event, notification) do
-    Phoenix.PubSub.broadcast(__MODULE__, topic, {event, notification})
-  end
+  # PubSub 由 Phoenix.PubSub 在 Application 中启动
+  # 此模块仅作为命名空间引用
 end

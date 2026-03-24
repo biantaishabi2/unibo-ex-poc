@@ -4,14 +4,14 @@ repo = "HospitalScheduling.Repo"
 otp_app = "hospital_scheduling"
 
 [backend]
-input_dirs = ["./models", "../../unibo/models"]
+input_dirs = ["./models"]
 output = "./lib"
 target = "ash"
 graphql = true
 emit_graphql_schemas = true
 runtime_profile = "strict"
 relation_mode = "warn"
-autowire_ash_deps = true
+autowire_ash_deps = false
 
 [frontend]
 models = ["./models"]

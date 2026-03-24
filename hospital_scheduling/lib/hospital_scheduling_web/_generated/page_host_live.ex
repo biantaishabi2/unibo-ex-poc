@@ -209,8 +209,8 @@ defmodule HospitalSchedulingWeb.Generated.PageHostLive do
 
   defp comparison_like_angle_bracket?(graphemes, idx) do
     next = neighboring_grapheme(graphemes, idx + 1)
-    # 组件调用 <.xxx> 或闭合标签 </xxx> 是合法标签，不转义
-    if next in [".", "/"] do
+    # 组件调用 <.xxx>、闭合标签 </xxx>、EEx 标签 <%= 是合法标签，不转义
+    if next in [".", "/", "%"] do
       false
     else
       prev = neighboring_grapheme(graphemes, idx - 1)

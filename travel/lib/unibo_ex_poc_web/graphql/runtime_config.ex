@@ -872,10 +872,12 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
   defp frontend_backend_page_issues(report, page_id) do
     page_id = normalize_string(page_id)
 
-    report.errors ++
-      Enum.filter(report.warnings, fn issue ->
-        normalize_string(map_get(issue, "page_id")) == page_id
-      end)
+    # 仅全局 errors 阻断页面加载，warnings 不阻断（可通过 manifest report 查看）
+    Enum.filter(report.errors, fn issue ->
+      # 全局 error（无 page_id）或匹配当前 page_id 的 error
+      issue_pid = normalize_string(map_get(issue, "page_id"))
+      issue_pid == "" or issue_pid == page_id
+    end)
   end
 
   defp maybe_add_frontend_manifest_missing_pages(errors, frontend_data) do

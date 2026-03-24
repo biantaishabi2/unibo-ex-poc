@@ -1,109 +1,47 @@
-## This is a PO Template file.
-##
-## `msgid`s here are often extracted from source code.
-## Add new translations manually only if they're dynamic
-## translations that can't be statically extracted.
-##
-## Run `mix gettext.extract` to bring this file up to
-## date. Leave `msgstr`s empty as changing them here has no
-## effect: edit them in PO (`.po`) files instead.
-## From Ecto.Changeset.cast/4
-msgid "can't be blank"
+# 从 YAML 模型自动生成 — 验证消息翻译模板
+# UniBO Compiler — Gettext Errors POT
+
+#. domain: TravelExt, entity: TravelChangeOrder, validation: one_of, on: approve, reject
+msgid "只有 pending 改签单可以审批或拒绝"
 msgstr ""
 
-## From Ecto.Changeset.unique_constraint/3
-msgid "has already been taken"
+#. domain: TravelExt, entity: TravelChangeOrder, validation: one_of, on: complete
+msgid "只有 approved 改签单可以完成"
 msgstr ""
 
-## From Ecto.Changeset.put_change/3
-msgid "is invalid"
+#. domain: TravelExt, entity: TravelChangeOrder, validation: one_of, on: complete_direct
+msgid "只有关闭审批的改签单可以直接完成"
 msgstr ""
 
-## From Ecto.Changeset.validate_acceptance/3
-msgid "must be accepted"
+#. domain: TravelExt, entity: TravelChangeOrder, validation: one_of, on: complete_direct
+msgid "关闭审批时，pending 改签单可直接完成"
 msgstr ""
 
-## From Ecto.Changeset.validate_format/3
-msgid "has invalid format"
+#. domain: TravelExt, entity: TravelRefundOrder, validation: one_of, on: approve, reject
+msgid "只有 pending 退票单可以审批或拒绝"
 msgstr ""
 
-## From Ecto.Changeset.validate_subset/3
-msgid "has an invalid entry"
+#. domain: TravelExt, entity: TravelRefundOrder, validation: one_of, on: refund
+msgid "只有 approved 退票单可以执行退款"
 msgstr ""
 
-## From Ecto.Changeset.validate_exclusion/3
-msgid "is reserved"
+#. domain: TravelExt, entity: TravelRefundOrder, validation: one_of, on: refund_direct
+msgid "只有关闭审批的退票单可以直接退款"
 msgstr ""
 
-## From Ecto.Changeset.validate_confirmation/3
-msgid "does not match confirmation"
+#. domain: TravelExt, entity: TravelRefundOrder, validation: one_of, on: refund_direct
+msgid "关闭审批时，pending 退票单可直接退款"
 msgstr ""
 
-## From Ecto.Changeset.no_assoc_constraint/3
-msgid "is still associated with this entry"
+#. domain: TravelExt, entity: TravelPolicy, validation: one_of, on: activate
+msgid "只有未启用的政策可以激活"
 msgstr ""
 
-msgid "are still associated with this entry"
+#. domain: TravelExt, entity: TravelPolicy, validation: one_of, on: deactivate
+msgid "只有已启用的政策可以停用"
 msgstr ""
 
-## From Ecto.Changeset.validate_length/3
-msgid "should have %{count} item(s)"
-msgid_plural "should have %{count} item(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should be %{count} character(s)"
-msgid_plural "should be %{count} character(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should be %{count} byte(s)"
-msgid_plural "should be %{count} byte(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should have at least %{count} item(s)"
-msgid_plural "should have at least %{count} item(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should be at least %{count} character(s)"
-msgid_plural "should be at least %{count} character(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should be at least %{count} byte(s)"
-msgid_plural "should be at least %{count} byte(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should have at most %{count} item(s)"
-msgid_plural "should have at most %{count} item(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should be at most %{count} character(s)"
-msgid_plural "should be at most %{count} character(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should be at most %{count} byte(s)"
-msgid_plural "should be at most %{count} byte(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-## From Ecto.Changeset.validate_number/3
-msgid "must be less than %{number}"
+#. domain: TravelExt, entity: TravelPolicy, validation: compare
+msgid "personal_pay_ratio 必须在 0-100 之间"
 msgstr ""
 
-msgid "must be greater than %{number}"
-msgstr ""
-
-msgid "must be less than or equal to %{number}"
-msgstr ""
-
-msgid "must be greater than or equal to %{number}"
-msgstr ""
-
-msgid "must be equal to %{number}"
-msgstr ""

@@ -1,0 +1,147 @@
+# 从 YAML 模型自动生成，请勿手动编辑
+# UniBO Compiler — Gettext POT
+
+#. domain: TravelExt
+msgid "Travel POC 扩展域，包含改签单、退票单、差旅政策、差标校验等试验实体与跨实体流程"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelChangeOrder
+msgid "改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelChangeOrder, attribute: change_reason
+msgid "改签原因"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelChangeOrder, attribute: price_difference
+msgid "差价"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelChangeOrder, attribute: change_fee
+msgid "改签手续费"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelChangeOrder, attribute: new_offer_id
+msgid "新报价ID（可能是 FlightOffer/TrainOffer/HotelOffer，不做外键）"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelChangeOrder, attribute: approval_mode
+msgid "审批模式快照；none 表示跳过审批，self/oa 表示进入审批流"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelRefundOrder
+msgid "退票/退订单，记录针对已有 TravelOrder 的退票请求、手续费与退款状态"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelRefundOrder, attribute: refund_reason
+msgid "退票原因"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelRefundOrder, attribute: refund_fee
+msgid "退票手续费"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelRefundOrder, attribute: refund_amount
+msgid "实退金额"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy
+msgid "差旅标准政策，定义不同企业、职级、城市等级下的差旅费用上限与超标策略"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy, attribute: policy_name
+msgid "政策名称，如\"总部差旅标准\""
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy, attribute: product_type
+msgid "适用商品类型"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy, attribute: employee_level
+msgid "职级标识"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy, attribute: city_tier
+msgid "城市等级（tier_1/tier_2/tier_3）"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy, attribute: season
+msgid "淡旺季标识（可选）"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy, attribute: max_amount
+msgid "金额上限（单位分）"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy, attribute: cabin_class_limit
+msgid "舱位限制"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy, attribute: hotel_star_limit
+msgid "酒店星级限制"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy, attribute: exceed_strategy
+msgid "超标处理策略"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy, attribute: approval_mode
+msgid "审批模式；none 表示关闭审批，self/oa 表示进入对应审批流"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy, attribute: personal_pay_ratio
+msgid "个人支付比例 0-100"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy, attribute: is_active
+msgid "是否启用"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicy, attribute: enterprise_id
+msgid "企业标识（不做跨域外键）"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicyCheck
+msgid "差标校验记录，记录订单下单时针对差旅政策的校验结果、超标金额与处理策略"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicyCheck, attribute: check_result
+msgid "校验结果"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicyCheck, attribute: policy_amount
+msgid "差标金额（单位分）"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicyCheck, attribute: actual_amount
+msgid "实际金额（单位分）"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicyCheck, attribute: exceed_amount
+msgid "超标金额"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicyCheck, attribute: exceed_ratio
+msgid "超标比例（如\"15%\"）"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicyCheck, attribute: exceed_strategy
+msgid "命中的超标策略"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicyCheck, attribute: exceed_reason
+msgid "超标原因（员工填写）"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicyCheck, attribute: personal_pay_amount
+msgid "个人支付部分"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicyCheck, attribute: approval_request_id
+msgid "审批请求ID（不做跨域外键）"
+msgstr ""
+
+#. domain: TravelExt, entity: TravelPolicyCheck, attribute: approval_mode
+msgid "命中政策时的审批模式快照"
+msgstr ""
+
