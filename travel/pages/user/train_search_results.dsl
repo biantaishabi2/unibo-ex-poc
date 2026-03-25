@@ -1,10 +1,8 @@
-# 火车票搜索结果页
-# 按条件搜索车次列表，支持日期横滑、筛选、排序
+EXTENDS: base_search_results
+META: Entity("TrainOffer"), Domain("Travel")
 
 [PAGE: train_search_results]
   ATTR: Title("火车票搜索")
-  META: Entity("TrainOffer"), Domain("Travel")
-  EXTENDS: base_search_results
 
   # 覆写顶部导航
   OVERRIDE: header_section
