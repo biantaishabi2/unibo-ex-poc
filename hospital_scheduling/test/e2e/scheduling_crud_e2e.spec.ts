@@ -6,12 +6,11 @@
  * - SchedulingConstraint（排班约束）— GraphQL CRUD + 列表页 UI 验证 + 刷新持久化
  * - SchedulingPeriod（排班周期）— 详情页/列表页 UI 验证 + 状态流转
  *
- * 已知限制：
- * - shift_type_list/detail 页面因 manifest duplicate_page_id 无法渲染，ShiftType 仅走 API 层验证
- * - scheduling_constraint_detail 页面同上，Constraint 走列表页 + API 验证
- * - SchedulingPeriod 创建 API 有内部错误，使用已有 seed 数据测试
+ * 每个 UI 步骤自动截图保存到 test-results/screenshots/
  */
 import { test, expect, Page, APIRequestContext } from '@playwright/test';
+import * as path from 'path';
+import * as fs from 'fs';
 
 const BASE = 'http://localhost:4200';
 const PAGES = `${BASE}/pages`;
@@ -19,6 +18,16 @@ const GQL = `${BASE}/api/graphql`;
 
 const DEPT_ID = '1c80ee9b-f644-4b9d-b894-b0f572476349'; // ICU
 const ts = Date.now().toString().slice(-6);
+
+// 截图输出目录
+const SCREENSHOT_DIR = path.join(__dirname, 'test-results', 'screenshots');
+fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
+
+// 截图辅助：统一命名、保存到固定目录
+async function screenshot(page: Page, name: string) {
+  const filePath = path.join(SCREENSHOT_DIR, `${name}.png`);
+  await page.screenshot({ path: filePath, fullPage: true });
+}
 
 // ========== GraphQL 辅助 ==========
 
@@ -53,7 +62,7 @@ test.describe.serial('ShiftType CRUD + 数据持久化', () => {
   const NAME_UPD = `E2E白班改_${ts}`;
   let recordId: string;
 
-  test('1. 创建 → 查询验证持久化', async ({ request }) => {
+  test('1. 创建 → 查询验证持久化', async ({ page, request }) => {
     // 增
     const data = await gql(request, `
       mutation($input: CreateSchedulingShiftTypeInput!) {
@@ -85,9 +94,14 @@ test.describe.serial('ShiftType CRUD + 数据持久化', () => {
     expect(get.getSchedulingShiftType.name).toBe(NAME);
     expect(get.getSchedulingShiftType.code).toBe(CODE);
     expect(get.getSchedulingShiftType.startTime).toBe('08:00:00');
+
+    // 截图：shift_type 列表页验证创建结果
+    await page.goto(`${PAGES}/scheduling/shift_type`);
+    await waitLV(page);
+    await screenshot(page, '01_shift_type_list_after_create');
   });
 
-  test('2. 更新 → 查询验证持久化', async ({ request }) => {
+  test('2. 更新 → 查询验证持久化', async ({ page, request }) => {
     // 改
     const data = await gql(request, `
       mutation($id: ID!, $input: UpdateSchedulingShiftTypeInput!) {
@@ -105,9 +119,14 @@ test.describe.serial('ShiftType CRUD + 数据持久化', () => {
     `, { id: recordId });
     expect(get.getSchedulingShiftType.name).toBe(NAME_UPD);
     expect(get.getSchedulingShiftType.code).toBe(CODE); // code 没变
+
+    // 截图：列表页验证更新结果
+    await page.goto(`${PAGES}/scheduling/shift_type`);
+    await waitLV(page);
+    await screenshot(page, '02_shift_type_list_after_update');
   });
 
-  test('3. 删除 → 查询验证已删除', async ({ request }) => {
+  test('3. 删除 → 查询验证已删除', async ({ page, request }) => {
     // 删
     await gql(request, `
       mutation($id: ID!) {
@@ -125,6 +144,11 @@ test.describe.serial('ShiftType CRUD + 数据持久化', () => {
       // 不存在的记录查询可能抛错，这是正确行为
       expect((e as Error).message).toMatch(/not_found|NOT_FOUND|null/i);
     }
+
+    // 截图：列表页验证删除结果
+    await page.goto(`${PAGES}/scheduling/shift_type`);
+    await waitLV(page);
+    await screenshot(page, '03_shift_type_list_after_delete');
   });
 });
 
@@ -164,11 +188,13 @@ test.describe.serial('SchedulingConstraint CRUD + 数据持久化', () => {
     await page.goto(`${PAGES}/scheduling/scheduling_constraint`);
     await waitLV(page);
     await expect(page.locator('body')).toContainText(NAME, { timeout: 15000 });
+    await screenshot(page, '04_constraint_list_after_create');
 
     // 刷新验证持久化
     await page.reload();
     await waitLV(page);
     await expect(page.locator('body')).toContainText(NAME, { timeout: 15000 });
+    await screenshot(page, '05_constraint_list_after_refresh');
   });
 
   test('2. 更新 → 列表页 UI 验证 → 刷新验证持久化', async ({ page, request }) => {
@@ -187,6 +213,7 @@ test.describe.serial('SchedulingConstraint CRUD + 数据持久化', () => {
     await page.goto(`${PAGES}/scheduling/scheduling_constraint`);
     await waitLV(page);
     await expect(page.locator('body')).toContainText(NAME_UPD, { timeout: 15000 });
+    await screenshot(page, '06_constraint_list_after_update');
 
     // 刷新验证持久化
     await page.reload();
@@ -218,6 +245,8 @@ test.describe.serial('SchedulingConstraint CRUD + 数据持久化', () => {
     await expect(page.locator('button:has-text("切换")').first()).toBeVisible({ timeout: 15000 });
     await expect(page.locator('button:has-text("删除")').first()).toBeVisible({ timeout: 15000 });
     await expect(page.locator('#create_btn')).toBeVisible({ timeout: 15000 });
+
+    await screenshot(page, '07_constraint_list_ui_structure');
   });
 
   test('4. 删除 → 列表页 UI 验证已删除 → 刷新验证持久化', async ({ page, request }) => {
@@ -233,6 +262,7 @@ test.describe.serial('SchedulingConstraint CRUD + 数据持久化', () => {
     await waitLV(page);
     const body1 = await page.locator('body').textContent({ timeout: 15000 });
     expect(body1).not.toContain(NAME_UPD);
+    await screenshot(page, '08_constraint_list_after_delete');
 
     // 刷新验证持久化
     await page.reload();
@@ -277,6 +307,8 @@ test.describe.serial('SchedulingPeriod UI + 状态流转', () => {
     await expect(page.locator('button:has-text("详情")').first()).toBeVisible({ timeout: 15000 });
     await expect(page.locator('#create_btn')).toBeVisible({ timeout: 15000 });
 
+    await screenshot(page, '09_period_list');
+
     // 刷新验证持久化
     await page.reload();
     await waitLV(page);
@@ -313,6 +345,8 @@ test.describe.serial('SchedulingPeriod UI + 状态流转', () => {
     // 版本历史和求解记录表格
     await expect(page.locator('#versions_table')).toBeVisible({ timeout: 15000 });
     await expect(page.locator('#runs_table')).toBeVisible({ timeout: 15000 });
+
+    await screenshot(page, '10_period_detail');
   });
 
   test('3. 详情页刷新持久化验证', async ({ page }) => {
@@ -332,6 +366,8 @@ test.describe.serial('SchedulingPeriod UI + 状态流转', () => {
     const date2 = await page.locator('#date_value').textContent({ timeout: 15000 });
     expect(title2).toBe(title1);
     expect(date2).toBe(date1);
+
+    await screenshot(page, '11_period_detail_after_refresh');
   });
 
   test('4. 状态流转: draft → generating（UI 按钮点击）', async ({ page, request }) => {
@@ -340,6 +376,7 @@ test.describe.serial('SchedulingPeriod UI + 状态流转', () => {
 
     const stateBadge = page.locator('#state_badge');
     const stateText = await stateBadge.textContent({ timeout: 15000 });
+    await screenshot(page, '12_period_before_generating');
 
     // 只有 draft 状态才能测试 generating 流转
     if (stateText?.trim() === 'draft') {
@@ -353,6 +390,7 @@ test.describe.serial('SchedulingPeriod UI + 状态流转', () => {
       await page.reload();
       await waitLV(page);
       const newState = await page.locator('#state_badge').textContent({ timeout: 15000 });
+      await screenshot(page, '13_period_after_generating');
 
       if (newState?.trim() === 'draft') {
         // UI 按钮可能因 SchedulingBridge 未配置而失败，尝试 GraphQL 直推
@@ -370,10 +408,9 @@ test.describe.serial('SchedulingPeriod UI + 状态流转', () => {
           await waitLV(page);
           const apiState = await page.locator('#state_badge').textContent({ timeout: 15000 });
           console.log(`GraphQL 推进结果: draft → ${apiState?.trim()}`);
-          // 如果 API 也失败（solver bridge），接受 draft 状态
+          await screenshot(page, '14_period_after_gql_generating');
         } catch (e) {
           console.log(`GraphQL start_generating 也失败（solver bridge 问题）: ${(e as Error).message.slice(0, 200)}`);
-          // 这是已知限制：SchedulingBridge.trigger_solver_run 未实现
         }
       } else {
         console.log(`状态流转: draft → ${newState?.trim()}`);
@@ -424,6 +461,7 @@ test.describe.serial('SchedulingPeriod UI + 状态流转', () => {
       await waitLV(page);
       const finalState = await page.locator('#state_badge').textContent({ timeout: 15000 });
       console.log(`UI 发布: ${currentState} → ${finalState?.trim()}`);
+      await screenshot(page, '15_period_after_publish');
       if (finalState?.trim() === 'published') {
         // 刷新再次验证持久化
         await page.reload();
@@ -432,6 +470,7 @@ test.describe.serial('SchedulingPeriod UI + 状态流转', () => {
       }
     } else {
       console.log(`当前状态 ${currentState}，无法直接发布`);
+      await screenshot(page, '15_period_state_' + currentState);
     }
 
     // 不管最终什么状态，验证 badge 有值即可
