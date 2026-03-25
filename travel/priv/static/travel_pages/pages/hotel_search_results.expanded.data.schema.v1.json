@@ -1,73 +1,79 @@
 {
   "version": 1,
   "requiredPaths": [
-    "hotel_offer.page",
-    "hotel_offer.total_pages",
-    "item.description",
-    "item.title",
-    "items",
-    "rows_empty"
+    "date_item.date_label",
+    "date_item.is_selected",
+    "policy",
+    "results",
+    "search.date_range"
   ],
   "requiredRoots": [
-    "hotel_offer",
-    "item",
-    "items",
-    "rows_empty"
+    "date_item",
+    "policy",
+    "results",
+    "search"
   ],
   "schema": {
-    "items": {
-      "type": "array",
-      "required": true,
-      "items": {
-        "type": "object",
-        "required": false,
-        "properties": {
-          "title": {
-            "type": "string",
-            "required": false,
-            "example": ""
-          },
-          "description": {
-            "type": "string",
-            "required": false,
-            "example": ""
-          }
-        }
-      },
-      "exampleCount": 3
-    },
-    "item": {
+    "search": {
       "type": "object",
       "required": true,
       "properties": {
-        "title": {
+        "date_range": {
+          "type": "array",
+          "required": false,
+          "items": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "is_selected": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "date_label": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              }
+            }
+          },
+          "exampleCount": 3
+        }
+      }
+    },
+    "date_item": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "is_selected": {
           "type": "unknown",
           "required": true
         },
-        "description": {
+        "date_label": {
           "type": "unknown",
           "required": true
         }
       }
     },
-    "rows_empty": {
-      "type": "object",
-      "required": true,
-      "properties": {}
-    },
-    "hotel_offer": {
+    "policy": {
       "type": "object",
       "required": true,
       "properties": {
-        "page": {
-          "type": "string",
+        "exceeded": {
+          "type": "boolean",
           "required": false,
-          "example": ""
-        },
-        "total_pages": {
-          "type": "string",
+          "example": true
+        }
+      }
+    },
+    "results": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "total_count": {
+          "type": "boolean",
           "required": false,
-          "example": ""
+          "example": true
         }
       }
     }

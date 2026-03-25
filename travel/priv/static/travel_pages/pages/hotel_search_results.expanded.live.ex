@@ -11,28 +11,31 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): hotel_offer, hotel_offer.page, hotel_offer.total_pages, items, items[], items[].description, items[].title, rows_empty
+  # status.keys preview (first ~40): policy, policy.exceeded, results, results.total_count, search, search.date_range, search.date_range[], search.date_range[].date_label, search.date_range[].is_selected
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"hotel_offer\": {
-    \"page\": \"\",
-    \"total_pages\": \"\"
+  \"policy\": {
+    \"exceeded\": true
   },
-  \"rows_empty\": true,
-  \"items\": [
-    {
-      \"title\": \"\",
-      \"description\": \"\"
-    },
-    {
-      \"title\": \"\",
-      \"description\": \"\"
-    },
-    {
-      \"title\": \"\",
-      \"description\": \"\"
-    }
-  ]
+  \"results\": {
+    \"total_count\": true
+  },
+  \"search\": {
+    \"date_range\": [
+      {
+        \"is_selected\": \"\",
+        \"date_label\": \"\"
+      },
+      {
+        \"is_selected\": \"\",
+        \"date_label\": \"\"
+      },
+      {
+        \"is_selected\": \"\",
+        \"date_label\": \"\"
+      }
+    ]
+  }
 }")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
@@ -85,51 +88,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("filter_submit", params, socket) do
-    # UI action event name: filter_submit
-    socket = dispatch_backend("filter_submit", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("hotel_offer_page_next", params, socket) do
-    # UI action event name: hotel_offer_page_next
-    socket = dispatch_backend("hotel_offer_page_next", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("hotel_offer_page_prev", params, socket) do
-    # UI action event name: hotel_offer_page_prev
-    socket = dispatch_backend("hotel_offer_page_prev", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("navigate", params, socket) do
-    # UI action event name: navigate
-    socket = dispatch_backend("navigate", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("navigate:/home", params, socket) do
-    # UI action event name: navigate:/home
-    socket = dispatch_backend("navigate:/home", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("navigate:/me", params, socket) do
-    # UI action event name: navigate:/me
-    socket = dispatch_backend("navigate:/me", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("navigate:/services", params, socket) do
-    # UI action event name: navigate:/services
-    socket = dispatch_backend("navigate:/services", params, socket)
+  def handle_event("select_date", params, socket) do
+    # UI action event name: select_date
+    socket = dispatch_backend("select_date", params, socket)
     {:noreply, socket}
   end
 

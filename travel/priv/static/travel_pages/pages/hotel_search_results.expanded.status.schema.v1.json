@@ -1,40 +1,44 @@
 {
   "version": 1,
   "defaults": {
-    "hotel_offer": {
-      "page": "",
-      "total_pages": ""
+    "policy": {
+      "exceeded": true
     },
-    "rows_empty": true,
-    "items": [
-      {
-        "title": "",
-        "description": ""
-      },
-      {
-        "title": "",
-        "description": ""
-      },
-      {
-        "title": "",
-        "description": ""
-      }
-    ]
+    "results": {
+      "total_count": true
+    },
+    "search": {
+      "date_range": [
+        {
+          "is_selected": "",
+          "date_label": ""
+        },
+        {
+          "is_selected": "",
+          "date_label": ""
+        },
+        {
+          "is_selected": "",
+          "date_label": ""
+        }
+      ]
+    }
   },
   "keys": [
-    "hotel_offer",
-    "hotel_offer.page",
-    "hotel_offer.total_pages",
-    "items",
-    "items[]",
-    "items[].description",
-    "items[].title",
-    "rows_empty"
+    "policy",
+    "policy.exceeded",
+    "results",
+    "results.total_count",
+    "search",
+    "search.date_range",
+    "search.date_range[]",
+    "search.date_range[].date_label",
+    "search.date_range[].is_selected"
   ],
   "required": [
-    "hotel_offer",
-    "items",
-    "rows_empty"
+    "policy",
+    "results",
+    "search"
   ],
   "urlParams": {},
   "notes": []

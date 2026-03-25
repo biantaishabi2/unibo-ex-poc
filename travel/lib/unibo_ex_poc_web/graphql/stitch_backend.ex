@@ -97,6 +97,9 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
     stripped = String.replace_prefix(normalized, "action_", "")
 
     cond do
+      normalized == @load_event and page_kind == "search" ->
+        ""
+
       normalized == @load_event and page_kind == "list" ->
         "list"
 

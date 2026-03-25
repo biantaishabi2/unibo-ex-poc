@@ -1,6 +1,7 @@
 {
   "capability_contracts": [],
   "domains": [
+    "",
     "travel"
   ],
   "pages": [
@@ -3608,7 +3609,7 @@
     },
     {
       "api_map": {
-        "list": "Travel.HotelOffer.list"
+        "search": "Travel.HotelOffer.list"
       },
       "backend": {},
       "behavior_file": "",
@@ -3618,7 +3619,7 @@
       "entity": "HotelOffer",
       "entity_snake": "hotel_offer",
       "page_id": "hotel_search_results",
-      "page_kind": "custom",
+      "page_kind": "search",
       "page_type": "custom",
       "state_schema": {
         "defaults": {},
@@ -3627,7 +3628,7 @@
       "status_keys": [],
       "template_meta": {},
       "template_spec": {
-        "page_kind": "custom",
+        "page_kind": "search",
         "schema_version": "1.0"
       },
       "transitions": []
@@ -3788,7 +3789,6 @@
     },
     {
       "api_map": {
-        "list": "Travel.TrainOffer.list",
         "search": "Travel.TrainOffer.list"
       },
       "backend": {},
@@ -3799,7 +3799,7 @@
       "entity": "TrainOffer",
       "entity_snake": "train_offer",
       "page_id": "train_search_results",
-      "page_kind": "list",
+      "page_kind": "search",
       "page_type": "custom",
       "state_schema": {
         "defaults": {},
@@ -3808,7 +3808,7 @@
       "status_keys": [],
       "template_meta": {},
       "template_spec": {
-        "page_kind": "list",
+        "page_kind": "search",
         "schema_version": "1.0"
       },
       "transitions": []
@@ -4125,7 +4125,6 @@
     },
     {
       "api_map": {
-        "list": "Travel.FlightOffer.list",
         "search": "Travel.FlightOffer.list"
       },
       "backend": {},
@@ -4136,7 +4135,7 @@
       "entity": "FlightOffer",
       "entity_snake": "flight_offer",
       "page_id": "flight_search_results",
-      "page_kind": "list",
+      "page_kind": "search",
       "page_type": "custom",
       "state_schema": {
         "defaults": {},
@@ -4145,7 +4144,7 @@
       "status_keys": [],
       "template_meta": {},
       "template_spec": {
-        "page_kind": "list",
+        "page_kind": "search",
         "schema_version": "1.0"
       },
       "transitions": []
@@ -4204,7 +4203,6 @@
     },
     {
       "api_map": {
-        "list": "Travel.FlightOffer.list",
         "search": "Travel.FlightOffer.list"
       },
       "backend": {},
@@ -4215,7 +4213,7 @@
       "entity": "FlightOffer",
       "entity_snake": "flight_offer",
       "page_id": "change_flight_search",
-      "page_kind": "list",
+      "page_kind": "search",
       "page_type": "custom",
       "state_schema": {
         "defaults": {},
@@ -4224,7 +4222,7 @@
       "status_keys": [],
       "template_meta": {},
       "template_spec": {
-        "page_kind": "list",
+        "page_kind": "search",
         "schema_version": "1.0"
       },
       "transitions": []
@@ -4381,6 +4379,726 @@
       "template_meta": {},
       "template_spec": {
         "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/train_offer_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "train_offer_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/vacation_offer_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "vacation_offer_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_policy_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_policy_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/train_offer_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "train_offer_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_refund_order_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_refund_order_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_room_type_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_room_type_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_room_type_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_room_type_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/hotel_offer_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "hotel_offer_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_hotel_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_hotel_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_cabin_class_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_cabin_class_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/vacation_offer_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "vacation_offer_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_airline_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_airline_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_cabin_class_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_cabin_class_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_hotel_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_hotel_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_refund_order_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_refund_order_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_policy_check_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_policy_check_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/flight_offer_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "flight_offer_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_airline_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_airline_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_order_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_order_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_fulfillment_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_fulfillment_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_policy_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_policy_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_fulfillment_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_fulfillment_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_static_code_mapping_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_static_code_mapping_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_static_code_mapping_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_static_code_mapping_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_change_order_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_change_order_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_change_order_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_change_order_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_policy_check_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_policy_check_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/flight_offer_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "flight_offer_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/travel_order_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "travel_order_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/hotel_offer_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "hotel_offer_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
         "schema_version": "1.0"
       },
       "transitions": []
@@ -4650,7 +5368,7 @@
     {
       "page_id": "hotel_search_results",
       "path": "/travel/hotel_search_results",
-      "route_kind": "custom"
+      "route_kind": "search"
     },
     {
       "page_id": "approval_detail",
@@ -4685,7 +5403,7 @@
     {
       "page_id": "train_search_results",
       "path": "/travel/train_search_results",
-      "route_kind": "list"
+      "route_kind": "search"
     },
     {
       "page_id": "job_position_list",
@@ -4750,7 +5468,7 @@
     {
       "page_id": "flight_search_results",
       "path": "/travel/flight_search_results",
-      "route_kind": "list"
+      "route_kind": "search"
     },
     {
       "page_id": "refund_result",
@@ -4765,7 +5483,7 @@
     {
       "page_id": "change_flight_search",
       "path": "/travel/change_flight_search",
-      "route_kind": "list"
+      "route_kind": "search"
     },
     {
       "page_id": "personal_center",
@@ -4796,6 +5514,156 @@
       "page_id": "refund_apply",
       "path": "/travel/refund_apply",
       "route_kind": "detail"
+    },
+    {
+      "page_id": "train_offer_list",
+      "path": "//train_offer_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "vacation_offer_detail",
+      "path": "//vacation_offer_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "travel_policy_list",
+      "path": "//travel_policy_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "train_offer_detail",
+      "path": "//train_offer_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "travel_refund_order_detail",
+      "path": "//travel_refund_order_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "travel_room_type_list",
+      "path": "//travel_room_type_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "travel_room_type_detail",
+      "path": "//travel_room_type_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "hotel_offer_detail",
+      "path": "//hotel_offer_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "travel_hotel_detail",
+      "path": "//travel_hotel_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "travel_cabin_class_detail",
+      "path": "//travel_cabin_class_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "vacation_offer_list",
+      "path": "//vacation_offer_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "travel_airline_list",
+      "path": "//travel_airline_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "travel_cabin_class_list",
+      "path": "//travel_cabin_class_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "travel_hotel_list",
+      "path": "//travel_hotel_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "travel_refund_order_list",
+      "path": "//travel_refund_order_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "travel_policy_check_list",
+      "path": "//travel_policy_check_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "flight_offer_detail",
+      "path": "//flight_offer_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "travel_airline_detail",
+      "path": "//travel_airline_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "travel_order_detail",
+      "path": "//travel_order_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "travel_fulfillment_detail",
+      "path": "//travel_fulfillment_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "travel_policy_detail",
+      "path": "//travel_policy_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "travel_fulfillment_list",
+      "path": "//travel_fulfillment_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "travel_static_code_mapping_detail",
+      "path": "//travel_static_code_mapping_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "travel_static_code_mapping_list",
+      "path": "//travel_static_code_mapping_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "travel_change_order_list",
+      "path": "//travel_change_order_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "travel_change_order_detail",
+      "path": "//travel_change_order_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "travel_policy_check_detail",
+      "path": "//travel_policy_check_detail",
+      "route_kind": "detail"
+    },
+    {
+      "page_id": "flight_offer_list",
+      "path": "//flight_offer_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "travel_order_list",
+      "path": "//travel_order_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "hotel_offer_list",
+      "path": "//hotel_offer_list",
+      "route_kind": "list"
     }
   ],
   "schema_version": "1.0",

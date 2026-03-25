@@ -1,21 +1,24 @@
 {
-  "hotel_offer": {
-    "page": "",
-    "total_pages": ""
+  "policy": {
+    "exceeded": true
   },
-  "rows_empty": true,
-  "items": [
-    {
-      "title": "",
-      "description": ""
-    },
-    {
-      "title": "",
-      "description": ""
-    },
-    {
-      "title": "",
-      "description": ""
-    }
-  ]
+  "results": {
+    "total_count": true
+  },
+  "search": {
+    "date_range": [
+      {
+        "is_selected": "",
+        "date_label": ""
+      },
+      {
+        "is_selected": "",
+        "date_label": ""
+      },
+      {
+        "is_selected": "",
+        "date_label": ""
+      }
+    ]
+  }
 }

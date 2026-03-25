@@ -1,73 +1,49 @@
-<.page title="列表" id="hotel_search_results">
-  <.section layout="grid" columns={2} id="header">
-    <.flex justify="around" direction="row" id="shell_nav">
-      <.button variant="ghost" icon="house" phx-click="navigate:/home" size="md" id="tab_home">
-        首页
-      </.button>
-      <.button variant="ghost" icon="grid-2x2" phx-click="navigate:/services" size="md" id="tab_services">
-        服务
-      </.button>
-      <.button variant="ghost" icon="user-round" phx-click="navigate:/me" size="md" id="tab_me">
-        我的
-      </.button>
-    </.flex>
-    <.flex gap={2} paddingx={3} paddingy={2} wrap={true} direction="row" id="filter_bar">
-      <.input name="keyword" placeholder="搜索" size="md" id="search_input" />
+<.page title="搜索结果" id="hotel_search_results">
+  <.section layout="none" id="header_section">
+    <.flex justify="between" align="center" gap={3} class="px-4 py-3 border-b bg-background" id="page_header">
+      <.flex align="center" gap={3} class="flex-1 min-w-0">
+        <.button variant="ghost" size="sm" phx-click="go_back">
+          返回
+        </.button>
+        <.text as="h4" class="flex-1 min-w-0 text-lg font-semibold">
+          搜索
+        </.text>
+      </.flex>
     </.flex>
   </.section>
-  <.section layout="none" id="view_tabs">
-    <.tabs default_value="all" id="view_selector">
-      <.tabs_list id="view_tab_list">
-        <.tabs_trigger value="all" active_value="all" id="trigger_all">
-          全部
-        </.tabs_trigger>
-      </.tabs_list>
-    </.tabs>
+  <.section layout="none" id="date_slider_section">
+    <.flex gap={2} paddingx={3} paddingy={2} overflowx="scroll" background="surface" direction="row" id="date_slider">
+      <%= for date_item <- (get_in(@search, [:date_range]) || []) do %>
+        <%= if (val = get_in(date_item, [:date_label])) && to_string(val) != "" do %>
+          <.badge variant={get_in(date_item, [:is_selected])} phx-click="select_date" size="sm">
+            <%= to_string(val) %>
+          </.badge>
+        <% end %>
+      <% end %>
+    </.flex>
   </.section>
   <.section layout="none" id="filter_section">
-    <.card variant="default" id="filter_card">
-      <.card_content id="filter_content">
-        <.flex gap={4} align="center" direction="row" id="filter_row">
-          <.stack direction="column" id="filter_fields" />
-          <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
-            查询
-          </.button>
-        </.flex>
-      </.card_content>
-    </.card>
+    <.flex gap={2} paddingx={3} paddingy={2} wrap={true} direction="row" id="filter_bar" />
   </.section>
-  <.section layout="none" id="table_section">
-    <.grid columns={2} gap={3} padding={3} id="result_grid">
-      <%= for item <- (@items || []) do %>
-        <.card phx-click="navigate" variant="default">
-          <.card_content>
-            <.text variant="h4" weight="bold">
-              <%= get_in(item, [:title]) || "" %>
-            </.text>
-            <.text variant="caption" color="muted">
-              <%= get_in(item, [:description]) || "" %>
-            </.text>
-          </.card_content>
-        </.card>
-      <% end %>
-    </.grid>
-  </.section>
-  <.section layout="none" id="empty_section">
-    <%= if (@rows_empty && @rows_empty != []) do %>
-      <.empty_state description="暂无数据" id="no_data" />
+  <.section layout="none" id="alert_section">
+    <%= if @policy.exceeded == true do %>
+      <.alert variant="warning" title="超标提示" id="policy_alert">
+        标记超标的项目超出差旅标准,预订需审批
+      </.alert>
     <% end %>
   </.section>
-  <.section layout="none" id="footer">
-    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
-      <.button phx-click="hotel_offer_page_prev" variant="primary" size="md" id="page_prev">
-        上一页
-      </.button>
-      <.text id="page_info">
-        <%= get_in(@hotel_offer, [:page]) || "" %> / <%= get_in(@hotel_offer, [:total_pages]) || "" %>
-      </.text>
-      <.button phx-click="hotel_offer_page_next" variant="primary" size="md" id="page_next">
-        下一页
-      </.button>
-    </.flex>
+  <.section layout="none" id="results_section">
+    <.stack gap={3} padding={3} direction="column" id="results_list" />
   </.section>
+  <.section layout="none" id="empty_section">
+    <%= if @results.total_count == 0 do %>
+      <.empty_state title="未找到结果" description="请调整搜索条件后重试" id="no_results" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="sort_bar_section">
+    <.control_bar position="sticky_bottom" id="bottom_sort_bar">
+      <.flex gap={3} justify="spacearound" width="full" direction="row" id="sort_buttons" />
+    </.control_bar>
+  </.section>
+  <.separator id="sep_after_date" />
 </.page>
