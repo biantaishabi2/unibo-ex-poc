@@ -11,72 +11,31 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): flight_offer, flight_offer.page, flight_offer.total_pages, page_title, result_summary, rows, rows[], rows[].arrival_airport_code, rows[].arrival_at, rows[].baggage_policy, rows[].cabin_class, rows[].currency, rows[].departure_airport_code, rows[].departure_at, rows[].fare_family, rows[].flight_no, rows[].itinerary_code, rows[].listed_price, rows[].refund_change_policy, rows[].sale_status, rows[].seats_available, rows[].settlement_price, rows[].supplier_code, rows_empty
+  # status.keys preview (first ~40): policy, policy.exceeded, results, results.total_count, search, search.date_range, search.date_range[], search.date_range[].date_label, search.date_range[].is_selected
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"搜索\",
-  \"result_summary\": \"共 0 条结果\",
-  \"flight_offer\": {
-    \"page\": \"\",
-    \"total_pages\": \"\"
+  \"policy\": {
+    \"exceeded\": true
   },
-  \"rows_empty\": true,
-  \"rows\": [
-    {
-      \"supplier_code\": \"\",
-      \"itinerary_code\": \"\",
-      \"flight_no\": \"\",
-      \"departure_airport_code\": \"\",
-      \"arrival_airport_code\": \"\",
-      \"departure_at\": \"\",
-      \"arrival_at\": \"\",
-      \"cabin_class\": \"\",
-      \"fare_family\": \"\",
-      \"listed_price\": \"\",
-      \"settlement_price\": \"\",
-      \"currency\": \"\",
-      \"seats_available\": \"\",
-      \"baggage_policy\": \"\",
-      \"refund_change_policy\": \"\",
-      \"sale_status\": \"\"
-    },
-    {
-      \"supplier_code\": \"\",
-      \"itinerary_code\": \"\",
-      \"flight_no\": \"\",
-      \"departure_airport_code\": \"\",
-      \"arrival_airport_code\": \"\",
-      \"departure_at\": \"\",
-      \"arrival_at\": \"\",
-      \"cabin_class\": \"\",
-      \"fare_family\": \"\",
-      \"listed_price\": \"\",
-      \"settlement_price\": \"\",
-      \"currency\": \"\",
-      \"seats_available\": \"\",
-      \"baggage_policy\": \"\",
-      \"refund_change_policy\": \"\",
-      \"sale_status\": \"\"
-    },
-    {
-      \"supplier_code\": \"\",
-      \"itinerary_code\": \"\",
-      \"flight_no\": \"\",
-      \"departure_airport_code\": \"\",
-      \"arrival_airport_code\": \"\",
-      \"departure_at\": \"\",
-      \"arrival_at\": \"\",
-      \"cabin_class\": \"\",
-      \"fare_family\": \"\",
-      \"listed_price\": \"\",
-      \"settlement_price\": \"\",
-      \"currency\": \"\",
-      \"seats_available\": \"\",
-      \"baggage_policy\": \"\",
-      \"refund_change_policy\": \"\",
-      \"sale_status\": \"\"
-    }
-  ]
+  \"results\": {
+    \"total_count\": true
+  },
+  \"search\": {
+    \"date_range\": [
+      {
+        \"is_selected\": \"\",
+        \"date_label\": \"\"
+      },
+      {
+        \"is_selected\": \"\",
+        \"date_label\": \"\"
+      },
+      {
+        \"is_selected\": \"\",
+        \"date_label\": \"\"
+      }
+    ]
+  }
 }")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
@@ -129,23 +88,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("flight_offer_page_next", params, socket) do
-    # UI action event name: flight_offer_page_next
-    socket = dispatch_backend("flight_offer_page_next", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("flight_offer_page_prev", params, socket) do
-    # UI action event name: flight_offer_page_prev
-    socket = dispatch_backend("flight_offer_page_prev", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("search_execute", params, socket) do
-    # UI action event name: search_execute
-    socket = dispatch_backend("search_execute", params, socket)
+  def handle_event("select_date", params, socket) do
+    # UI action event name: select_date
+    socket = dispatch_backend("select_date", params, socket)
     {:noreply, socket}
   end
 

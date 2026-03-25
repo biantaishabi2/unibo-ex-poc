@@ -1,65 +1,24 @@
 {
-  "page_title": "搜索",
-  "result_summary": "共 0 条结果",
-  "flight_offer": {
-    "page": "",
-    "total_pages": ""
+  "policy": {
+    "exceeded": true
   },
-  "rows_empty": true,
-  "rows": [
-    {
-      "supplier_code": "",
-      "itinerary_code": "",
-      "flight_no": "",
-      "departure_airport_code": "",
-      "arrival_airport_code": "",
-      "departure_at": "",
-      "arrival_at": "",
-      "cabin_class": "",
-      "fare_family": "",
-      "listed_price": "",
-      "settlement_price": "",
-      "currency": "",
-      "seats_available": "",
-      "baggage_policy": "",
-      "refund_change_policy": "",
-      "sale_status": ""
-    },
-    {
-      "supplier_code": "",
-      "itinerary_code": "",
-      "flight_no": "",
-      "departure_airport_code": "",
-      "arrival_airport_code": "",
-      "departure_at": "",
-      "arrival_at": "",
-      "cabin_class": "",
-      "fare_family": "",
-      "listed_price": "",
-      "settlement_price": "",
-      "currency": "",
-      "seats_available": "",
-      "baggage_policy": "",
-      "refund_change_policy": "",
-      "sale_status": ""
-    },
-    {
-      "supplier_code": "",
-      "itinerary_code": "",
-      "flight_no": "",
-      "departure_airport_code": "",
-      "arrival_airport_code": "",
-      "departure_at": "",
-      "arrival_at": "",
-      "cabin_class": "",
-      "fare_family": "",
-      "listed_price": "",
-      "settlement_price": "",
-      "currency": "",
-      "seats_available": "",
-      "baggage_policy": "",
-      "refund_change_policy": "",
-      "sale_status": ""
-    }
-  ]
+  "results": {
+    "total_count": true
+  },
+  "search": {
+    "date_range": [
+      {
+        "is_selected": "",
+        "date_label": ""
+      },
+      {
+        "is_selected": "",
+        "date_label": ""
+      },
+      {
+        "is_selected": "",
+        "date_label": ""
+      }
+    ]
+  }
 }

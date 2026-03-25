@@ -1,22 +1,8 @@
 {
   "version": 1,
   "events": {
-    "search_execute": {
-      "name": "search_execute",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
-    },
-    "flight_offer_page_prev": {
-      "name": "flight_offer_page_prev",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
-    },
-    "flight_offer_page_next": {
-      "name": "flight_offer_page_next",
+    "select_date": {
+      "name": "select_date",
       "triggers": [
         "click"
       ],

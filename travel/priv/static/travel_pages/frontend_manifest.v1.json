@@ -4125,7 +4125,8 @@
     },
     {
       "api_map": {
-        "list": "Travel.FlightOffer.list"
+        "list": "Travel.FlightOffer.list",
+        "search": "Travel.FlightOffer.list"
       },
       "backend": {},
       "behavior_file": "",
@@ -4135,7 +4136,7 @@
       "entity": "FlightOffer",
       "entity_snake": "flight_offer",
       "page_id": "flight_search_results",
-      "page_kind": "custom",
+      "page_kind": "list",
       "page_type": "custom",
       "state_schema": {
         "defaults": {},
@@ -4144,7 +4145,7 @@
       "status_keys": [],
       "template_meta": {},
       "template_spec": {
-        "page_kind": "custom",
+        "page_kind": "list",
         "schema_version": "1.0"
       },
       "transitions": []
@@ -4749,7 +4750,7 @@
     {
       "page_id": "flight_search_results",
       "path": "/travel/flight_search_results",
-      "route_kind": "custom"
+      "route_kind": "list"
     },
     {
       "page_id": "refund_result",

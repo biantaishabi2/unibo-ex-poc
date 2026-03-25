@@ -1,1 +1,1 @@
-{"entity":"FlightOffer","domain":"Travel","page_type":"custom","extends_template":"base_list_report"}
+{"entity":"FlightOffer","domain":"Travel","page_type":"custom","extends_template":"base_search_results"}

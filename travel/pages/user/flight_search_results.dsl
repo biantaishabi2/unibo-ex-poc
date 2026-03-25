@@ -1,4 +1,4 @@
-EXTENDS: base_list_report
+EXTENDS: base_search_results
 META: Entity("FlightOffer"), Domain("Travel"), FilterMode("search_only")
 
 [PAGE: flight_search_results]

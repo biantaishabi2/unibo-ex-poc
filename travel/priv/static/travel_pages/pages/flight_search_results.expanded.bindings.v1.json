@@ -1,79 +1,14 @@
 {
   "version": 1,
-  "vars": {
-    "page_title": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "page_title",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{page_title|搜索}}"
-        }
-      ]
-    },
-    "result_summary": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "result_count",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{result_summary|共 0 条结果}}"
-        }
-      ]
-    },
-    "flight_offer.page": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "page_info",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{flight_offer.page|}} / {{flight_offer.total_pages|}}"
-        }
-      ]
-    },
-    "flight_offer.total_pages": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "page_info",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{flight_offer.page|}} / {{flight_offer.total_pages|}}"
-        }
-      ]
-    }
-  },
+  "vars": {},
   "events": {
-    "search_execute": {
+    "select_date": {
       "triggers": [
         {
-          "node_type": "Button",
-          "node_id": "search_btn",
+          "node_type": "Badge",
+          "node_id": "date_badge",
           "prop": "click",
-          "raw": "search_execute"
-        }
-      ]
-    },
-    "flight_offer_page_prev": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "page_prev",
-          "prop": "click",
-          "raw": "flight_offer_page_prev"
-        }
-      ]
-    },
-    "flight_offer_page_next": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "page_next",
-          "prop": "click",
-          "raw": "flight_offer_page_next"
+          "raw": "select_date"
         }
       ]
     }

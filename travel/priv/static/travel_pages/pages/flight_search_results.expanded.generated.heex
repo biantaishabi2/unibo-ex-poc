@@ -1,171 +1,49 @@
-<.page title="列表" id="flight_search_results">
-  <.section layout="none" id="header">
-    <.stack gap={3} direction="column" id="search_header">
-      <.text variant="title" id="page_title">
-        <%= @page_title %>
-      </.text>
-      <.flex gap={2} align="center" direction="row" id="search_bar">
-        <.input name="keyword" placeholder="请输入搜索关键词..." required="true" size="md" id="search_input" />
-        <.select name="scope" label="搜索范围" size="md" id="search_scope" options={[%{label: "编码", value: "code"}]}>
-
-        </.select>
-        <.button variant="primary" phx-click="search_execute" size="md" id="search_btn">
-          搜索
+<.page title="搜索结果" id="flight_search_results">
+  <.section layout="none" id="header_section">
+    <.flex justify="between" align="center" gap={3} class="px-4 py-3 border-b bg-background" id="page_header">
+      <.flex align="center" gap={3} class="flex-1 min-w-0">
+        <.button variant="ghost" size="sm" phx-click="go_back">
+          返回
         </.button>
+        <.text as="h4" class="flex-1 min-w-0 text-lg font-semibold">
+          搜索
+        </.text>
       </.flex>
-    </.stack>
+    </.flex>
   </.section>
-  <.section layout="none" id="view_tabs">
-    <.tabs default_value="all" id="view_selector">
-      <.tabs_list id="view_tab_list">
-        <.tabs_trigger value="all" active_value="all" id="trigger_all">
-          全部
-        </.tabs_trigger>
-      </.tabs_list>
-    </.tabs>
+  <.section layout="none" id="date_slider_section">
+    <.flex gap={2} paddingx={3} paddingy={2} overflowx="scroll" background="surface" direction="row" id="date_slider">
+      <%= for date_item <- (get_in(@search, [:date_range]) || []) do %>
+        <%= if (val = get_in(date_item, [:date_label])) && to_string(val) != "" do %>
+          <.badge variant={get_in(date_item, [:is_selected])} phx-click="select_date" size="sm">
+            <%= to_string(val) %>
+          </.badge>
+        <% end %>
+      <% end %>
+    </.flex>
   </.section>
   <.section layout="none" id="filter_section">
-    <.flex justify="between" align="center" direction="row" id="result_summary">
-      <.text variant="body" color="muted" id="result_count">
-        <%= @result_summary %>
-      </.text>
-      <.flex gap={2} direction="row" id="sort_options">
-        <.select name="sort_by" label="排序" size="md" id="sort_by" options={[%{label: "最早", value: "oldest"}]}>
-
-        </.select>
-      </.flex>
-    </.flex>
+    <.flex gap={2} paddingx={3} paddingy={2} wrap={true} direction="row" id="filter_bar" />
   </.section>
-  <.section layout="none" id="table_section">
-    <.table id="data_table">
-      <.table_header id="data_header">
-        <.table_row id="header_row">
-          <.table_head id="th_supplier_code">
-            供应商编码
-          </.table_head>
-          <.table_head id="th_itinerary_code">
-            行程编码
-          </.table_head>
-          <.table_head id="th_flight_no">
-            航班号
-          </.table_head>
-          <.table_head id="th_departure_airport_code">
-            出发机场编码
-          </.table_head>
-          <.table_head id="th_arrival_airport_code">
-            到达机场编码
-          </.table_head>
-          <.table_head id="th_departure_at">
-            起飞时间
-          </.table_head>
-          <.table_head id="th_arrival_at">
-            到达时间
-          </.table_head>
-          <.table_head id="th_cabin_class">
-            舱等
-          </.table_head>
-          <.table_head id="th_fare_family">
-            运价族
-          </.table_head>
-          <.table_head id="th_listed_price">
-            对客展示价快照
-          </.table_head>
-          <.table_head id="th_settlement_price">
-            结算价快照
-          </.table_head>
-          <.table_head id="th_currency">
-            currency
-          </.table_head>
-          <.table_head id="th_seats_available">
-            可售座位快照
-          </.table_head>
-          <.table_head id="th_baggage_policy">
-            行李规则快照
-          </.table_head>
-          <.table_head id="th_refund_change_policy">
-            退改规则快照
-          </.table_head>
-          <.table_head id="th_sale_status">
-            sale_status
-          </.table_head>
-        </.table_row>
-      </.table_header>
-      <.table_body id="data_body">
-        <%= for row <- (@rows || []) do %>
-          <.table_row>
-            <.table_cell>
-              <%= get_in(row, [:supplier_code]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:itinerary_code]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:flight_no]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:departure_airport_code]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:arrival_airport_code]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:departure_at]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:arrival_at]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:cabin_class]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:fare_family]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:listed_price]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:settlement_price]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:currency]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:seats_available]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:baggage_policy]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:refund_change_policy]) || "" %>
-            </.table_cell>
-            <.table_cell>
-              <%= if (val = get_in(row, [:sale_status])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
-                  <%= to_string(val) %>
-                </.badge>
-              <% end %>
-            </.table_cell>
-          </.table_row>
-        <% end %>
-      </.table_body>
-    </.table>
-  </.section>
-  <.section layout="none" id="empty_section">
-    <%= if (@rows_empty && @rows_empty != []) do %>
-      <.empty_state description="暂无数据" id="no_data" />
+  <.section layout="none" id="alert_section">
+    <%= if @policy.exceeded == true do %>
+      <.alert variant="warning" title="超标提示" id="policy_alert">
+        标记超标的项目超出差旅标准,预订需审批
+      </.alert>
     <% end %>
   </.section>
-  <.section layout="none" id="footer">
-    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
-      <.button phx-click="flight_offer_page_prev" variant="primary" size="md" id="page_prev">
-        上一页
-      </.button>
-      <.text id="page_info">
-        <%= get_in(@flight_offer, [:page]) || "" %> / <%= get_in(@flight_offer, [:total_pages]) || "" %>
-      </.text>
-      <.button phx-click="flight_offer_page_next" variant="primary" size="md" id="page_next">
-        下一页
-      </.button>
-    </.flex>
+  <.section layout="none" id="results_section">
+    <.stack gap={3} padding={3} direction="column" id="results_list" />
   </.section>
+  <.section layout="none" id="empty_section">
+    <%= if @results.total_count == 0 do %>
+      <.empty_state title="未找到结果" description="请调整搜索条件后重试" id="no_results" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="sort_bar_section">
+    <.control_bar position="sticky_bottom" id="bottom_sort_bar">
+      <.flex gap={3} justify="spacearound" width="full" direction="row" id="sort_buttons" />
+    </.control_bar>
+  </.section>
+  <.separator id="sep_after_date" />
 </.page>
