@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "TrainOffer 列表",
+    "train_offer": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -25,8 +28,7 @@
         "booking_rules_snapshot": "",
         "change_rules_snapshot": "",
         "refund_rules_snapshot": "",
-        "sale_status": "",
-        "id": "row_01"
+        "sale_status": ""
       },
       {
         "supplier_code": "",
@@ -49,8 +51,7 @@
         "booking_rules_snapshot": "",
         "change_rules_snapshot": "",
         "refund_rules_snapshot": "",
-        "sale_status": "",
-        "id": "row_02"
+        "sale_status": ""
       },
       {
         "supplier_code": "",
@@ -73,13 +74,11 @@
         "booking_rules_snapshot": "",
         "change_rules_snapshot": "",
         "refund_rules_snapshot": "",
-        "sale_status": "",
-        "id": "row_03"
+        "sale_status": ""
       }
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].arrival_at",
@@ -91,7 +90,6 @@
     "rows[].departure_at",
     "rows[].departure_station_code",
     "rows[].departure_station_name",
-    "rows[].id",
     "rows[].inventory_status",
     "rows[].is_no_seat",
     "rows[].listed_price",
@@ -104,12 +102,15 @@
     "rows[].train_no",
     "rows[].travel_date",
     "rows[].waitlist_supported",
-    "rows_empty"
+    "rows_empty",
+    "train_offer",
+    "train_offer.page",
+    "train_offer.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "train_offer"
   ],
   "urlParams": {},
   "notes": [],

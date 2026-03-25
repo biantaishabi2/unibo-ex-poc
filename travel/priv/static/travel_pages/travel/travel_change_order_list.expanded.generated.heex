@@ -1,86 +1,108 @@
-<.page title="TravelChangeOrder 列表" id="travel_change_order_list">
-  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_change_order_header">
-    <.text variant="title" id="travel_change_order_title">
-      <%= @page_title %>
-    </.text>
-    <.button variant="primary" phx-click="navigate_create" size="md" id="travel_change_order_create_btn">
-      新建
-    </.button>
+<.page title="列表" id="travel_change_order_list">
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.stack direction="column" id="page_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelChangeOrder
+        </.text>
+        <.text variant="h1" id="page_title">
+          改签单,记录针对已有 TravelOrder 的改签请求、差价与审批状态;审批通过 overlay on Approvals 域
+        </.text>
+      </.stack>
+      <.button variant="primary" phx-click="navigate_create" size="md" id="create_btn">
+        新建
+      </.button>
+    </.flex>
   </.section>
-  <.card variant="default" id="travel_change_order_filter_card">
-    <.card_content id="travel_change_order_filter_content">
-      <.flex gap={4} align="center" direction="row" id="travel_change_order_filter_row">
-        <.select name="status" label="status" size="md" id="filter_status">
-
-        </.select>
-        <.select name="approval_mode" label="审批模式快照;none 表示跳过审批,self/oa 表示进入审批流" size="md" id="filter_approval_mode">
-
-        </.select>
-        <.button variant="secondary" phx-click="filter_submit" size="md" id="travel_change_order_filter_submit">
-          查询
-        </.button>
-      </.flex>
-    </.card_content>
-  </.card>
-  <.table id="travel_change_order_table">
-    <.table_header id="travel_change_order_table_header">
-      <.table_row id="travel_change_order_header_row">
-        <.table_head id="th_change_reason">
-          改签原因
-        </.table_head>
-        <.table_head id="th_price_difference">
-          差价
-        </.table_head>
-        <.table_head id="th_change_fee">
-          改签手续费
-        </.table_head>
-        <.table_head id="th_status">
-          status
-        </.table_head>
-        <.table_head id="th_approval_mode">
-          审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
-        </.table_head>
-        <.table_head id="travel_change_order_th_actions">
-          操作
-        </.table_head>
-      </.table_row>
-    </.table_header>
-    <.table_body id="travel_change_order_table_body">
-      <%= for row <- (@rows || []) do %>
-        <.table_row>
-          <.table_cell>
-            <%= get_in(row, [:change_reason]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:price_difference]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:change_fee]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= if (val = get_in(row, [:status])) && to_string(val) != "" do %>
-              <.badge variant="default" size="sm">
-                <%= to_string(val) %>
-              </.badge>
-            <% end %>
-          </.table_cell>
-          <.table_cell>
-            <%= if (val = get_in(row, [:approval_mode])) && to_string(val) != "" do %>
-              <.badge variant="default" size="sm">
-                <%= to_string(val) %>
-              </.badge>
-            <% end %>
-          </.table_cell>
-          <.table_cell>
-            <.link patch={"/pages/travel/travel_change_order/#{get_in(row, [:id])}"} id="travel_change_order_view_btn" variant="link" size="sm">
-              查看
-            </.link>
-          </.table_cell>
+  <.section layout="none" id="view_tabs">
+    <.tabs default_value="all" id="view_selector">
+      <.tabs_list id="view_tab_list">
+        <.tabs_trigger value="all" active_value="all" id="trigger_all">
+          全部
+        </.tabs_trigger>
+      </.tabs_list>
+    </.tabs>
+  </.section>
+  <.section layout="none" id="filter_section">
+    <.card variant="default" id="filter_card">
+      <.card_content id="filter_content">
+        <.flex gap={4} align="center" direction="row" id="filter_row">
+          <.stack direction="column" id="filter_fields" />
+          <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
+            查询
+          </.button>
+        </.flex>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="table_section">
+    <.table id="data_table">
+      <.table_header id="data_header">
+        <.table_row id="header_row">
+          <.table_head id="th_change_reason">
+            改签原因
+          </.table_head>
+          <.table_head id="th_price_difference">
+            差价
+          </.table_head>
+          <.table_head id="th_change_fee">
+            改签手续费
+          </.table_head>
+          <.table_head id="th_status">
+            status
+          </.table_head>
+          <.table_head id="th_approval_mode">
+            审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
+          </.table_head>
         </.table_row>
-      <% end %>
-    </.table_body>
-  </.table>
-  <%= if (@rows_empty && @rows_empty != []) do %>
-    <.empty_state description="暂无改签单,记录针对已有 TravelOrder 的改签请求、差价与审批状态;审批通过 overlay on Approvals 域数据" id="travel_change_order_no_data" />
-  <% end %>
+      </.table_header>
+      <.table_body id="data_body">
+        <%= for row <- (@rows || []) do %>
+          <.table_row>
+            <.table_cell>
+              <%= get_in(row, [:change_reason]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:price_difference]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:change_fee]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:status])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:approval_mode])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+          </.table_row>
+        <% end %>
+      </.table_body>
+    </.table>
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if (@rows_empty && @rows_empty != []) do %>
+      <.empty_state description="暂无数据" id="no_data" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="footer">
+    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
+      <.button phx-click="travel_change_order_page_prev" variant="primary" size="md" id="page_prev">
+        上一页
+      </.button>
+      <.text id="page_info">
+        <%= get_in(@travel_change_order, [:page]) || "" %> / <%= get_in(@travel_change_order, [:total_pages]) || "" %>
+      </.text>
+      <.button phx-click="travel_change_order_page_next" variant="primary" size="md" id="page_next">
+        下一页
+      </.button>
+    </.flex>
+  </.section>
 </.page>

@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "TravelRefundOrder 列表",
+    "travel_refund_order": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -9,43 +12,41 @@
         "refund_fee": "",
         "refund_amount": "",
         "status": "",
-        "approval_mode": "",
-        "id": "row_01"
+        "approval_mode": ""
       },
       {
         "refund_reason": "",
         "refund_fee": "",
         "refund_amount": "",
         "status": "",
-        "approval_mode": "",
-        "id": "row_02"
+        "approval_mode": ""
       },
       {
         "refund_reason": "",
         "refund_fee": "",
         "refund_amount": "",
         "status": "",
-        "approval_mode": "",
-        "id": "row_03"
+        "approval_mode": ""
       }
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].approval_mode",
-    "rows[].id",
     "rows[].refund_amount",
     "rows[].refund_fee",
     "rows[].refund_reason",
     "rows[].status",
-    "rows_empty"
+    "rows_empty",
+    "travel_refund_order",
+    "travel_refund_order.page",
+    "travel_refund_order.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_refund_order"
   ],
   "urlParams": {},
   "notes": [],

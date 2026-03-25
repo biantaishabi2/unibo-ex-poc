@@ -1,18 +1,17 @@
 {
-  "editing": false,
-  "record": {
-    "approval_mode": "",
-    "cabin_class_limit": "",
-    "city_tier": "",
-    "employee_level": "",
-    "enterprise_id": "",
-    "exceed_strategy": "",
-    "hotel_star_limit": "",
-    "is_active": "",
-    "max_amount": "",
-    "personal_pay_ratio": "",
+  "travel_policy": {
     "policy_name": "",
     "product_type": "",
-    "season": ""
-  }
+    "employee_level": "",
+    "city_tier": "",
+    "season": "",
+    "max_amount": "",
+    "cabin_class_limit": "",
+    "hotel_star_limit": "",
+    "exceed_strategy": "",
+    "approval_mode": "",
+    "personal_pay_ratio": "",
+    "is_active": ""
+  },
+  "editing": false
 }

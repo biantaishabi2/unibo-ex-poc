@@ -11,10 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_order_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].booking_mode, rows[].change_status, rows[].contact_name, rows[].contact_phone, rows[].currency, rows[].id, rows[].order_no, rows[].original_order_ref, rows[].payment_external_ref, rows[].points_deduction_amount, rows[].points_to_use, rows[].product_type, rows[].recommended_payment_method, rows[].seat_selection_snapshot, rows[].status, rows[].supplier_order_ref, rows[].ticket_passenger_infos, rows[].total_amount, rows[].traveler_count, rows[].waitlist_status, rows_empty
+  # status.keys preview (first ~40): rows, rows[], rows[].booking_mode, rows[].change_status, rows[].contact_name, rows[].contact_phone, rows[].currency, rows[].order_no, rows[].original_order_ref, rows[].payment_external_ref, rows[].points_deduction_amount, rows[].points_to_use, rows[].product_type, rows[].recommended_payment_method, rows[].seat_selection_snapshot, rows[].status, rows[].supplier_order_ref, rows[].ticket_passenger_infos, rows[].total_amount, rows[].traveler_count, rows[].waitlist_status, rows_empty, travel_order, travel_order.page, travel_order.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"TravelOrder 列表\",
+  \"travel_order\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
   \"rows_empty\": true,
   \"rows\": [
     {
@@ -36,8 +39,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"ticket_passenger_infos\": \"\",
       \"seat_selection_snapshot\": \"\",
       \"supplier_order_ref\": \"\",
-      \"payment_external_ref\": \"\",
-      \"id\": \"row_01\"
+      \"payment_external_ref\": \"\"
     },
     {
       \"order_no\": \"\",
@@ -58,8 +60,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"ticket_passenger_infos\": \"\",
       \"seat_selection_snapshot\": \"\",
       \"supplier_order_ref\": \"\",
-      \"payment_external_ref\": \"\",
-      \"id\": \"row_02\"
+      \"payment_external_ref\": \"\"
     },
     {
       \"order_no\": \"\",
@@ -80,8 +81,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"ticket_passenger_infos\": \"\",
       \"seat_selection_snapshot\": \"\",
       \"supplier_order_ref\": \"\",
-      \"payment_external_ref\": \"\",
-      \"id\": \"row_03\"
+      \"payment_external_ref\": \"\"
     }
   ]
 }")
@@ -148,6 +148,20 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   def handle_event("navigate_create", params, socket) do
     # UI action event name: navigate_create
     socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_order_page_next", params, socket) do
+    # UI action event name: travel_order_page_next
+    socket = dispatch_backend("travel_order_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_order_page_prev", params, socket) do
+    # UI action event name: travel_order_page_prev
+    socket = dispatch_backend("travel_order_page_prev", params, socket)
     {:noreply, socket}
   end
 

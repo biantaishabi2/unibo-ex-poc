@@ -1,10 +1,10 @@
 {
-  "record": {
+  "travel_airline": {
     "airline_code": "",
-    "status": "",
     "airline_name": "",
     "iata_code": "",
-    "icao_code": ""
+    "icao_code": "",
+    "status": ""
   },
   "editing": false
 }

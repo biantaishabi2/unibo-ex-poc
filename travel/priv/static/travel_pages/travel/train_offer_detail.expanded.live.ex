@@ -11,12 +11,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "train_offer_detail"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): editing, record, record.arrival_at, record.arrival_station_code, record.arrival_station_name, record.arrival_station_ref_id, record.booking_rules_snapshot, record.change_rules_snapshot, record.currency, record.departure_at, record.departure_station_code, record.departure_station_name, record.departure_station_ref_id, record.host_shop_id, record.inventory_status, record.is_no_seat, record.listed_price, record.refund_rules_snapshot, record.sale_status, record.seat_class, record.seat_code, record.settlement_price, record.supplier_code, record.tenant_id, record.train_no, record.travel_date, record.waitlist_supported
+  # status.keys preview (first ~40): editing, train_offer, train_offer.arrival_at, train_offer.arrival_station_code, train_offer.arrival_station_name, train_offer.booking_rules_snapshot, train_offer.change_rules_snapshot, train_offer.currency, train_offer.departure_at, train_offer.departure_station_code, train_offer.departure_station_name, train_offer.inventory_status, train_offer.is_no_seat, train_offer.listed_price, train_offer.refund_rules_snapshot, train_offer.sale_status, train_offer.seat_class, train_offer.seat_code, train_offer.settlement_price, train_offer.supplier_code, train_offer.train_no, train_offer.travel_date, train_offer.waitlist_supported
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"record\": {
+  \"train_offer\": {
     \"supplier_code\": \"\",
-    \"inventory_status\": \"\",
     \"train_no\": \"\",
     \"departure_station_code\": \"\",
     \"departure_station_name\": \"\",
@@ -28,6 +27,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     \"seat_class\": \"\",
     \"seat_code\": \"\",
     \"is_no_seat\": \"\",
+    \"inventory_status\": \"\",
     \"waitlist_supported\": \"\",
     \"listed_price\": \"\",
     \"settlement_price\": \"\",
@@ -35,11 +35,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     \"booking_rules_snapshot\": \"\",
     \"change_rules_snapshot\": \"\",
     \"refund_rules_snapshot\": \"\",
-    \"sale_status\": \"\",
-    \"tenant_id\": \"\",
-    \"host_shop_id\": \"\",
-    \"departure_station_ref_id\": \"\",
-    \"arrival_station_ref_id\": \"\"
+    \"sale_status\": \"\"
   },
   \"editing\": false
 }")
@@ -102,30 +98,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("action_activate", params, socket) do
-    # UI action event name: action_activate
-    socket = dispatch_backend("action_activate", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_deactivate", params, socket) do
-    # UI action event name: action_deactivate
-    socket = dispatch_backend("action_deactivate", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
   def handle_event("action_destroy", params, socket) do
     # UI action event name: action_destroy
     socket = dispatch_backend("action_destroy", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_expire", params, socket) do
-    # UI action event name: action_expire
-    socket = dispatch_backend("action_expire", params, socket)
     {:noreply, socket}
   end
 

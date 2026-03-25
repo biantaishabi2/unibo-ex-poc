@@ -1,12 +1,11 @@
 {
-  "editing": false,
-  "record": {
+  "travel_static_code_mapping": {
+    "supplier_code": "",
+    "object_type": "",
     "canonical_entity": "",
-    "canonical_id": "",
     "external_code": "",
     "external_name": "",
-    "object_type": "",
-    "status": "",
-    "supplier_code": ""
-  }
+    "status": ""
+  },
+  "editing": false
 }

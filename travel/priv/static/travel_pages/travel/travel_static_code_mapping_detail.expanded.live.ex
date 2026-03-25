@@ -11,17 +11,16 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_static_code_mapping_detail"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): editing, record, record.canonical_entity, record.canonical_id, record.external_code, record.external_name, record.object_type, record.status, record.supplier_code
+  # status.keys preview (first ~40): editing, travel_static_code_mapping, travel_static_code_mapping.canonical_entity, travel_static_code_mapping.external_code, travel_static_code_mapping.external_name, travel_static_code_mapping.object_type, travel_static_code_mapping.status, travel_static_code_mapping.supplier_code
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"record\": {
+  \"travel_static_code_mapping\": {
     \"supplier_code\": \"\",
-    \"status\": \"\",
     \"object_type\": \"\",
     \"canonical_entity\": \"\",
     \"external_code\": \"\",
     \"external_name\": \"\",
-    \"canonical_id\": \"\"
+    \"status\": \"\"
   },
   \"editing\": false
 }")
@@ -76,6 +75,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       else
         socket
       end
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_destroy", params, socket) do
+    # UI action event name: action_destroy
+    socket = dispatch_backend("action_destroy", params, socket)
     {:noreply, socket}
   end
 

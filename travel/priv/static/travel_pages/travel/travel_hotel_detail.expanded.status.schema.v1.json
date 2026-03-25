@@ -1,29 +1,27 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
+    "travel_hotel": {
       "hotel_code": "",
-      "status": "",
       "hotel_name": "",
       "city_code": "",
       "hotel_star": "",
-      "city_id": ""
+      "status": ""
     },
     "editing": false
   },
   "keys": [
     "editing",
-    "record",
-    "record.city_code",
-    "record.city_id",
-    "record.hotel_code",
-    "record.hotel_name",
-    "record.hotel_star",
-    "record.status"
+    "travel_hotel",
+    "travel_hotel.city_code",
+    "travel_hotel.hotel_code",
+    "travel_hotel.hotel_name",
+    "travel_hotel.hotel_star",
+    "travel_hotel.status"
   ],
   "required": [
     "editing",
-    "record"
+    "travel_hotel"
   ],
   "urlParams": {},
   "notes": [],

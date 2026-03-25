@@ -1,14 +1,25 @@
 {
   "version": 1,
   "vars": {
-    "page_title": {
+    "travel_static_code_mapping.page": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "travel_static_code_mapping_title",
+          "node_id": "page_info",
           "location": "prop",
           "prop": "content",
-          "template": "{{page_title|TravelStaticCodeMapping 列表}}"
+          "template": "{{travel_static_code_mapping.page|}} / {{travel_static_code_mapping.total_pages|}}"
+        }
+      ]
+    },
+    "travel_static_code_mapping.total_pages": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_static_code_mapping.page|}} / {{travel_static_code_mapping.total_pages|}}"
         }
       ]
     }
@@ -18,7 +29,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_static_code_mapping_create_btn",
+          "node_id": "create_btn",
           "prop": "click",
           "raw": "navigate_create"
         }
@@ -28,9 +39,29 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_static_code_mapping_filter_submit",
+          "node_id": "filter_submit",
           "prop": "click",
           "raw": "filter_submit"
+        }
+      ]
+    },
+    "travel_static_code_mapping_page_prev": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_prev",
+          "prop": "click",
+          "raw": "travel_static_code_mapping_page_prev"
+        }
+      ]
+    },
+    "travel_static_code_mapping_page_next": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_next",
+          "prop": "click",
+          "raw": "travel_static_code_mapping_page_next"
         }
       ]
     }

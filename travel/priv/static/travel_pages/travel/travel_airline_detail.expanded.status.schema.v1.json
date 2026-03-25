@@ -1,27 +1,27 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
+    "travel_airline": {
       "airline_code": "",
-      "status": "",
       "airline_name": "",
       "iata_code": "",
-      "icao_code": ""
+      "icao_code": "",
+      "status": ""
     },
     "editing": false
   },
   "keys": [
     "editing",
-    "record",
-    "record.airline_code",
-    "record.airline_name",
-    "record.iata_code",
-    "record.icao_code",
-    "record.status"
+    "travel_airline",
+    "travel_airline.airline_code",
+    "travel_airline.airline_name",
+    "travel_airline.iata_code",
+    "travel_airline.icao_code",
+    "travel_airline.status"
   ],
   "required": [
     "editing",
-    "record"
+    "travel_airline"
   ],
   "urlParams": {},
   "notes": [],

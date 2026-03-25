@@ -11,10 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_fulfillment_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].boarding_status, rows[].change_result, rows[].confirmation_payload, rows[].failure_reason, rows[].fulfillment_type, rows[].id, rows[].status, rows[].supplier_booking_ref, rows[].ticket_refs, rows[].used_at, rows[].voucher_or_ticket_ref, rows[].waitlist_result, rows_empty
+  # status.keys preview (first ~40): rows, rows[], rows[].boarding_status, rows[].change_result, rows[].confirmation_payload, rows[].failure_reason, rows[].fulfillment_type, rows[].status, rows[].supplier_booking_ref, rows[].ticket_refs, rows[].used_at, rows[].voucher_or_ticket_ref, rows[].waitlist_result, rows_empty, travel_fulfillment, travel_fulfillment.page, travel_fulfillment.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"TravelFulfillment 列表\",
+  \"travel_fulfillment\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
   \"rows_empty\": true,
   \"rows\": [
     {
@@ -28,8 +31,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"boarding_status\": \"\",
       \"confirmation_payload\": \"\",
       \"failure_reason\": \"\",
-      \"used_at\": \"\",
-      \"id\": \"row_01\"
+      \"used_at\": \"\"
     },
     {
       \"fulfillment_type\": \"\",
@@ -42,8 +44,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"boarding_status\": \"\",
       \"confirmation_payload\": \"\",
       \"failure_reason\": \"\",
-      \"used_at\": \"\",
-      \"id\": \"row_02\"
+      \"used_at\": \"\"
     },
     {
       \"fulfillment_type\": \"\",
@@ -56,8 +57,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"boarding_status\": \"\",
       \"confirmation_payload\": \"\",
       \"failure_reason\": \"\",
-      \"used_at\": \"\",
-      \"id\": \"row_03\"
+      \"used_at\": \"\"
     }
   ]
 }")
@@ -124,6 +124,20 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   def handle_event("navigate_create", params, socket) do
     # UI action event name: navigate_create
     socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_fulfillment_page_next", params, socket) do
+    # UI action event name: travel_fulfillment_page_next
+    socket = dispatch_backend("travel_fulfillment_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_fulfillment_page_prev", params, socket) do
+    # UI action event name: travel_fulfillment_page_prev
+    socket = dispatch_backend("travel_fulfillment_page_prev", params, socket)
     {:noreply, socket}
   end
 

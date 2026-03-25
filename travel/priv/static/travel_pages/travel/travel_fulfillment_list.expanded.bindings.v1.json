@@ -1,14 +1,25 @@
 {
   "version": 1,
   "vars": {
-    "page_title": {
+    "travel_fulfillment.page": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "travel_fulfillment_title",
+          "node_id": "page_info",
           "location": "prop",
           "prop": "content",
-          "template": "{{page_title|TravelFulfillment 列表}}"
+          "template": "{{travel_fulfillment.page|}} / {{travel_fulfillment.total_pages|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.total_pages": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.page|}} / {{travel_fulfillment.total_pages|}}"
         }
       ]
     }
@@ -18,7 +29,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_fulfillment_create_btn",
+          "node_id": "create_btn",
           "prop": "click",
           "raw": "navigate_create"
         }
@@ -28,9 +39,29 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_fulfillment_filter_submit",
+          "node_id": "filter_submit",
           "prop": "click",
           "raw": "filter_submit"
+        }
+      ]
+    },
+    "travel_fulfillment_page_prev": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_prev",
+          "prop": "click",
+          "raw": "travel_fulfillment_page_prev"
+        }
+      ]
+    },
+    "travel_fulfillment_page_next": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_next",
+          "prop": "click",
+          "raw": "travel_fulfillment_page_next"
         }
       ]
     }

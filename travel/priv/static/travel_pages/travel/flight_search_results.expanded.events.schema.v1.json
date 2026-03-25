@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "events": {
+    "select_date": {
+      "name": "select_date",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate": {
+      "name": "navigate",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "sort": {
+      "name": "sort",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

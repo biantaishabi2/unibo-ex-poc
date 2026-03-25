@@ -1,79 +1,58 @@
 {
   "version": 1,
   "vars": {
-    "record.change_reason": {
-      "uses": [
-        {
-          "node_type": "BreadcrumbPage",
-          "node_id": "travel_change_order_bc_current",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.change_reason|详情}}"
-        },
-        {
-          "node_type": "Text",
-          "node_id": "travel_change_order_detail_title",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.change_reason|}}"
-        },
-        {
-          "node_type": "Text",
-          "node_id": "value_change_reason",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.change_reason|}}"
-        }
-      ]
-    },
-    "record.status": {
-      "uses": [
-        {
-          "node_type": "Badge",
-          "node_id": "travel_change_order_status_badge",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.status|}}"
-        },
-        {
-          "node_type": "Badge",
-          "node_id": "value_status",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.status|}}"
-        }
-      ]
-    },
-    "record.price_difference": {
+    "travel_change_order.change_reason": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_price_difference",
+          "node_id": "detail_fields_change_reason_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.price_difference|}}"
+          "template": "{{travel_change_order.change_reason|}}"
         }
       ]
     },
-    "record.change_fee": {
+    "travel_change_order.price_difference": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_change_fee",
+          "node_id": "detail_fields_price_difference_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.change_fee|}}"
+          "template": "{{travel_change_order.price_difference|}}"
         }
       ]
     },
-    "record.approval_mode": {
+    "travel_change_order.change_fee": {
       "uses": [
         {
-          "node_type": "Badge",
-          "node_id": "value_approval_mode",
+          "node_type": "Text",
+          "node_id": "detail_fields_change_fee_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.approval_mode|}}"
+          "template": "{{travel_change_order.change_fee|}}"
+        }
+      ]
+    },
+    "travel_change_order.status": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_status_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_change_order.status|}}"
+        }
+      ]
+    },
+    "travel_change_order.approval_mode": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_approval_mode_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_change_order.approval_mode|}}"
         }
       ]
     }
@@ -83,59 +62,19 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_change_order_edit_btn",
+          "node_id": "edit_btn",
           "prop": "click",
           "raw": "toggle_edit"
         }
       ]
     },
-    "action_submit": {
+    "action_destroy": {
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_change_order_action_submit",
+          "node_id": "delete_btn",
           "prop": "click",
-          "raw": "action_submit"
-        }
-      ]
-    },
-    "action_confirm_change": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_change_order_action_confirm_change",
-          "prop": "click",
-          "raw": "action_confirm_change"
-        }
-      ]
-    },
-    "action_reject_change": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_change_order_action_reject_change",
-          "prop": "click",
-          "raw": "action_reject_change"
-        }
-      ]
-    },
-    "action_complete": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_change_order_action_complete",
-          "prop": "click",
-          "raw": "action_complete"
-        }
-      ]
-    },
-    "action_complete_direct": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_change_order_action_complete_direct",
-          "prop": "click",
-          "raw": "action_complete_direct"
+          "raw": "action_destroy"
         }
       ]
     },
@@ -143,13 +82,13 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "travel_change_order_edit_form",
+          "node_id": "edit_form",
           "prop": "submit",
           "raw": "form_submit"
         },
         {
           "node_type": "Button",
-          "node_id": "travel_change_order_save_btn",
+          "node_id": "save_btn",
           "prop": "click",
           "raw": "form_submit"
         }
@@ -159,7 +98,7 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "travel_change_order_edit_form",
+          "node_id": "edit_form",
           "prop": "change",
           "raw": "form_change"
         }
@@ -169,7 +108,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_change_order_cancel_btn",
+          "node_id": "cancel_btn",
           "prop": "click",
           "raw": "cancel_edit"
         }

@@ -2,155 +2,66 @@
   "record": {
     "title": "",
     "state": "",
+    "generation_mode": "",
+    "department": {
+      "name": ""
+    },
     "start_date": "",
     "end_date": "",
-    "generation_mode": "",
-    "notes": "",
-    "coverage_requirements": [
-      {
-        "requirement_date": "",
-        "role_code": "",
-        "role_name": "",
-        "required_skill_tags": "",
-        "min_headcount": "",
-        "target_headcount": "",
-        "required_lead_count": "",
-        "priority": "",
-        "notes": ""
-      },
-      {
-        "requirement_date": "",
-        "role_code": "",
-        "role_name": "",
-        "required_skill_tags": "",
-        "min_headcount": "",
-        "target_headcount": "",
-        "required_lead_count": "",
-        "priority": "",
-        "notes": ""
-      },
-      {
-        "requirement_date": "",
-        "role_code": "",
-        "role_name": "",
-        "required_skill_tags": "",
-        "min_headcount": "",
-        "target_headcount": "",
-        "required_lead_count": "",
-        "priority": "",
-        "notes": ""
-      }
-    ],
+    "current_version": {
+      "version_no": ""
+    },
+    "last_solver_run": {
+      "status": ""
+    },
     "schedule_versions": [
       {
         "version_no": "",
         "status": "",
         "origin_type": "",
-        "created_by": "",
-        "change_summary": ""
+        "change_summary": "",
+        "inserted_at": ""
       },
       {
         "version_no": "",
         "status": "",
         "origin_type": "",
-        "created_by": "",
-        "change_summary": ""
+        "change_summary": "",
+        "inserted_at": ""
       },
       {
         "version_no": "",
         "status": "",
         "origin_type": "",
-        "created_by": "",
-        "change_summary": ""
+        "change_summary": "",
+        "inserted_at": ""
       }
     ],
     "solver_runs": [
       {
-        "status": "",
         "engine_type": "",
-        "seed": "",
-        "timeout_ms": "",
-        "started_at": "",
-        "completed_at": "",
+        "status": "",
         "score": "",
         "hard_violation_count": "",
-        "warning_count": "",
-        "input_snapshot": "",
-        "output_snapshot": "",
-        "error_message": ""
+        "started_at": "",
+        "completed_at": ""
       },
       {
-        "status": "",
         "engine_type": "",
-        "seed": "",
-        "timeout_ms": "",
-        "started_at": "",
-        "completed_at": "",
+        "status": "",
         "score": "",
         "hard_violation_count": "",
-        "warning_count": "",
-        "input_snapshot": "",
-        "output_snapshot": "",
-        "error_message": ""
+        "started_at": "",
+        "completed_at": ""
       },
       {
-        "status": "",
         "engine_type": "",
-        "seed": "",
-        "timeout_ms": "",
-        "started_at": "",
-        "completed_at": "",
+        "status": "",
         "score": "",
         "hard_violation_count": "",
-        "warning_count": "",
-        "input_snapshot": "",
-        "output_snapshot": "",
-        "error_message": ""
-      }
-    ],
-    "shift_assignments": [
-      {
-        "starts_at": "",
-        "ends_at": "",
-        "source": "",
-        "is_locked": "",
-        "notes": ""
-      },
-      {
-        "starts_at": "",
-        "ends_at": "",
-        "source": "",
-        "is_locked": "",
-        "notes": ""
-      },
-      {
-        "starts_at": "",
-        "ends_at": "",
-        "source": "",
-        "is_locked": "",
-        "notes": ""
-      }
-    ],
-    "constraint_violations": [
-      {
-        "rule_code": "",
-        "severity": "",
-        "message": "",
-        "details_json": ""
-      },
-      {
-        "rule_code": "",
-        "severity": "",
-        "message": "",
-        "details_json": ""
-      },
-      {
-        "rule_code": "",
-        "severity": "",
-        "message": "",
-        "details_json": ""
+        "started_at": "",
+        "completed_at": ""
       }
     ]
-  },
-  "editing": false
+  }
 }

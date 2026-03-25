@@ -1,7 +1,8 @@
 {
   "version": 1,
   "requiredPaths": [
-    "page_title",
+    "hotel_offer.page",
+    "hotel_offer.total_pages",
     "row.cancellation_policy",
     "row.checkin_date",
     "row.checkout_date",
@@ -10,7 +11,6 @@
     "row.guarantee_policy",
     "row.hotel_code",
     "row.hotel_name",
-    "row.id",
     "row.inventory_count",
     "row.listed_price",
     "row.rate_plan_code",
@@ -22,17 +22,12 @@
     "rows_empty"
   ],
   "requiredRoots": [
-    "page_title",
+    "hotel_offer",
     "row",
     "rows",
     "rows_empty"
   ],
   "schema": {
-    "page_title": {
-      "type": "object",
-      "required": true,
-      "properties": {}
-    },
     "rows": {
       "type": "array",
       "required": true,
@@ -114,11 +109,6 @@
             "type": "string",
             "required": false,
             "example": ""
-          },
-          "id": {
-            "type": "string",
-            "required": false,
-            "example": "row_01"
           }
         }
       },
@@ -187,10 +177,6 @@
         "sale_status": {
           "type": "unknown",
           "required": true
-        },
-        "id": {
-          "type": "unknown",
-          "required": true
         }
       }
     },
@@ -198,6 +184,22 @@
       "type": "object",
       "required": true,
       "properties": {}
+    },
+    "hotel_offer": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
     }
   },
   "notes": []

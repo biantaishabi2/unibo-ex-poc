@@ -1,79 +1,58 @@
 {
   "version": 1,
   "vars": {
-    "record.refund_reason": {
-      "uses": [
-        {
-          "node_type": "BreadcrumbPage",
-          "node_id": "travel_refund_order_bc_current",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.refund_reason|详情}}"
-        },
-        {
-          "node_type": "Text",
-          "node_id": "travel_refund_order_detail_title",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.refund_reason|}}"
-        },
-        {
-          "node_type": "Text",
-          "node_id": "value_refund_reason",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.refund_reason|}}"
-        }
-      ]
-    },
-    "record.status": {
-      "uses": [
-        {
-          "node_type": "Badge",
-          "node_id": "travel_refund_order_status_badge",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.status|}}"
-        },
-        {
-          "node_type": "Badge",
-          "node_id": "value_status",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.status|}}"
-        }
-      ]
-    },
-    "record.refund_fee": {
+    "travel_refund_order.refund_reason": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_refund_fee",
+          "node_id": "detail_fields_refund_reason_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.refund_fee|}}"
+          "template": "{{travel_refund_order.refund_reason|}}"
         }
       ]
     },
-    "record.refund_amount": {
+    "travel_refund_order.refund_fee": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_refund_amount",
+          "node_id": "detail_fields_refund_fee_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.refund_amount|}}"
+          "template": "{{travel_refund_order.refund_fee|}}"
         }
       ]
     },
-    "record.approval_mode": {
+    "travel_refund_order.refund_amount": {
       "uses": [
         {
-          "node_type": "Badge",
-          "node_id": "value_approval_mode",
+          "node_type": "Text",
+          "node_id": "detail_fields_refund_amount_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.approval_mode|}}"
+          "template": "{{travel_refund_order.refund_amount|}}"
+        }
+      ]
+    },
+    "travel_refund_order.status": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_status_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_refund_order.status|}}"
+        }
+      ]
+    },
+    "travel_refund_order.approval_mode": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_approval_mode_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_refund_order.approval_mode|}}"
         }
       ]
     }
@@ -83,59 +62,19 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_refund_order_edit_btn",
+          "node_id": "edit_btn",
           "prop": "click",
           "raw": "toggle_edit"
         }
       ]
     },
-    "action_submit": {
+    "action_destroy": {
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_refund_order_action_submit",
+          "node_id": "delete_btn",
           "prop": "click",
-          "raw": "action_submit"
-        }
-      ]
-    },
-    "action_confirm_refund": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_refund_order_action_confirm_refund",
-          "prop": "click",
-          "raw": "action_confirm_refund"
-        }
-      ]
-    },
-    "action_reject_refund": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_refund_order_action_reject_refund",
-          "prop": "click",
-          "raw": "action_reject_refund"
-        }
-      ]
-    },
-    "action_refund": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_refund_order_action_refund",
-          "prop": "click",
-          "raw": "action_refund"
-        }
-      ]
-    },
-    "action_refund_direct": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_refund_order_action_refund_direct",
-          "prop": "click",
-          "raw": "action_refund_direct"
+          "raw": "action_destroy"
         }
       ]
     },
@@ -143,13 +82,13 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "travel_refund_order_edit_form",
+          "node_id": "edit_form",
           "prop": "submit",
           "raw": "form_submit"
         },
         {
           "node_type": "Button",
-          "node_id": "travel_refund_order_save_btn",
+          "node_id": "save_btn",
           "prop": "click",
           "raw": "form_submit"
         }
@@ -159,7 +98,7 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "travel_refund_order_edit_form",
+          "node_id": "edit_form",
           "prop": "change",
           "raw": "form_change"
         }
@@ -169,7 +108,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_refund_order_cancel_btn",
+          "node_id": "cancel_btn",
           "prop": "click",
           "raw": "cancel_edit"
         }

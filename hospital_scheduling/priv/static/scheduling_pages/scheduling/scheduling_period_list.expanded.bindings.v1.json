@@ -5,10 +5,32 @@
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "scheduling_period_title",
+          "node_id": "page_title",
           "location": "prop",
           "prop": "content",
-          "template": "{{page_title|SchedulingPeriod 列表}}"
+          "template": "{{page_title|排班周期管理}}"
+        }
+      ]
+    },
+    "scheduling_period.page": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{scheduling_period.page|}} / {{scheduling_period.total_pages|}}"
+        }
+      ]
+    },
+    "scheduling_period.total_pages": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{scheduling_period.page|}} / {{scheduling_period.total_pages|}}"
         }
       ]
     }
@@ -18,7 +40,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "scheduling_period_create_btn",
+          "node_id": "create_btn",
           "prop": "click",
           "raw": "navigate_create"
         }
@@ -28,9 +50,49 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "scheduling_period_filter_submit",
+          "node_id": "filter_submit",
           "prop": "click",
           "raw": "filter_submit"
+        }
+      ]
+    },
+    "navigate_detail": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "detail_btn",
+          "prop": "click",
+          "raw": "navigate_detail"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    },
+    "scheduling_period_page_prev": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_prev",
+          "prop": "click",
+          "raw": "scheduling_period_page_prev"
+        }
+      ]
+    },
+    "scheduling_period_page_next": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_next",
+          "prop": "click",
+          "raw": "scheduling_period_page_next"
         }
       ]
     }

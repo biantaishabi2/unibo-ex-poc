@@ -1,1 +1,1 @@
-{"entity":"SchedulingPeriod","domain":"Scheduling","page_type":"detail"}
+{"entity":"SchedulingPeriod","domain":"Scheduling","page_type":"detail","extends_template":"base_object_page"}

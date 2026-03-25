@@ -5,21 +5,14 @@
       "uses": [
         {
           "node_type": "BreadcrumbPage",
-          "node_id": "scheduling_period_bc_current",
+          "node_id": "bc_current",
           "location": "prop",
           "prop": "content",
           "template": "{{record.title|详情}}"
         },
         {
           "node_type": "Text",
-          "node_id": "scheduling_period_detail_title",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.title|}}"
-        },
-        {
-          "node_type": "Text",
-          "node_id": "value_title",
+          "node_id": "detail_title",
           "location": "prop",
           "prop": "content",
           "template": "{{record.title|}}"
@@ -30,39 +23,10 @@
       "uses": [
         {
           "node_type": "Badge",
-          "node_id": "scheduling_period_status_badge",
+          "node_id": "state_badge",
           "location": "prop",
           "prop": "content",
           "template": "{{record.state|}}"
-        },
-        {
-          "node_type": "Badge",
-          "node_id": "value_state",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.state|}}"
-        }
-      ]
-    },
-    "record.start_date": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "value_start_date",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.start_date|}}"
-        }
-      ]
-    },
-    "record.end_date": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "value_end_date",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.end_date|}}"
         }
       ]
     },
@@ -70,21 +34,65 @@
       "uses": [
         {
           "node_type": "Badge",
-          "node_id": "value_generation_mode",
+          "node_id": "mode_badge",
           "location": "prop",
           "prop": "content",
           "template": "{{record.generation_mode|}}"
         }
       ]
     },
-    "record.notes": {
+    "record.department.name": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_notes",
+          "node_id": "dept_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.notes|}}"
+          "template": "{{record.department.name|}}"
+        }
+      ]
+    },
+    "record.start_date": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "date_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.start_date|}} ~ {{record.end_date|}}"
+        }
+      ]
+    },
+    "record.end_date": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "date_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.start_date|}} ~ {{record.end_date|}}"
+        }
+      ]
+    },
+    "record.current_version.version_no": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "version_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "v{{record.current_version.version_no|}}"
+        }
+      ]
+    },
+    "record.last_solver_run.status": {
+      "uses": [
+        {
+          "node_type": "Badge",
+          "node_id": "run_status_badge",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{record.last_solver_run.status|}}"
         }
       ]
     }
@@ -94,7 +102,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "scheduling_period_edit_btn",
+          "node_id": "edit_btn",
           "prop": "click",
           "raw": "toggle_edit"
         }
@@ -104,19 +112,9 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "scheduling_period_action_start_generating",
+          "node_id": "generate_btn",
           "prop": "click",
           "raw": "action_start_generating"
-        }
-      ]
-    },
-    "action_mark_generated": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "scheduling_period_action_mark_generated",
-          "prop": "click",
-          "raw": "action_mark_generated"
         }
       ]
     },
@@ -124,55 +122,39 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "scheduling_period_action_publish",
+          "node_id": "publish_btn",
           "prop": "click",
           "raw": "action_publish"
         }
       ]
     },
-    "action_destroy": {
+    "navigate_requirements": {
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "scheduling_period_delete_btn",
+          "node_id": "req_nav_btn",
           "prop": "click",
-          "raw": "action_destroy"
+          "raw": "navigate_requirements"
         }
       ]
     },
-    "form_submit": {
-      "triggers": [
-        {
-          "node_type": "Form",
-          "node_id": "scheduling_period_edit_form",
-          "prop": "submit",
-          "raw": "form_submit"
-        },
-        {
-          "node_type": "Button",
-          "node_id": "scheduling_period_save_btn",
-          "prop": "click",
-          "raw": "form_submit"
-        }
-      ]
-    },
-    "form_change": {
-      "triggers": [
-        {
-          "node_type": "Form",
-          "node_id": "scheduling_period_edit_form",
-          "prop": "change",
-          "raw": "form_change"
-        }
-      ]
-    },
-    "cancel_edit": {
+    "navigate_constraints": {
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "scheduling_period_cancel_btn",
+          "node_id": "constraint_nav_btn",
           "prop": "click",
-          "raw": "cancel_edit"
+          "raw": "navigate_constraints"
+        }
+      ]
+    },
+    "navigate_calendar": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "calendar_nav_btn",
+          "prop": "click",
+          "raw": "navigate_calendar"
         }
       ]
     }

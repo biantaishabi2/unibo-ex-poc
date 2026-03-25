@@ -1,29 +1,24 @@
 {
   "version": 1,
   "requiredPaths": [
-    "page_title",
     "row.canonical_entity",
     "row.external_code",
     "row.external_name",
-    "row.id",
     "row.object_type",
     "row.status",
     "row.supplier_code",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_static_code_mapping.page",
+    "travel_static_code_mapping.total_pages"
   ],
   "requiredRoots": [
-    "page_title",
     "row",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_static_code_mapping"
   ],
   "schema": {
-    "page_title": {
-      "type": "object",
-      "required": true,
-      "properties": {}
-    },
     "rows": {
       "type": "array",
       "required": true,
@@ -60,11 +55,6 @@
             "type": "string",
             "required": false,
             "example": ""
-          },
-          "id": {
-            "type": "string",
-            "required": false,
-            "example": "row_01"
           }
         }
       },
@@ -97,10 +87,6 @@
         "status": {
           "type": "unknown",
           "required": true
-        },
-        "id": {
-          "type": "unknown",
-          "required": true
         }
       }
     },
@@ -108,6 +94,22 @@
       "type": "object",
       "required": true,
       "properties": {}
+    },
+    "travel_static_code_mapping": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
     }
   },
   "notes": []

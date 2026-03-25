@@ -1,116 +1,102 @@
 {
   "version": 1,
   "vars": {
-    "record.exceed_ratio": {
-      "uses": [
-        {
-          "node_type": "BreadcrumbPage",
-          "node_id": "travel_policy_check_bc_current",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.exceed_ratio|详情}}"
-        },
-        {
-          "node_type": "Text",
-          "node_id": "travel_policy_check_detail_title",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.exceed_ratio|}}"
-        },
-        {
-          "node_type": "Text",
-          "node_id": "value_exceed_ratio",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.exceed_ratio|}}"
-        }
-      ]
-    },
-    "record.check_result": {
-      "uses": [
-        {
-          "node_type": "Badge",
-          "node_id": "value_check_result",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.check_result|}}"
-        }
-      ]
-    },
-    "record.policy_amount": {
+    "travel_policy_check.check_result": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_policy_amount",
+          "node_id": "detail_fields_check_result_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.policy_amount|}}"
+          "template": "{{travel_policy_check.check_result|}}"
         }
       ]
     },
-    "record.actual_amount": {
+    "travel_policy_check.policy_amount": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_actual_amount",
+          "node_id": "detail_fields_policy_amount_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.actual_amount|}}"
+          "template": "{{travel_policy_check.policy_amount|}}"
         }
       ]
     },
-    "record.exceed_amount": {
+    "travel_policy_check.actual_amount": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_exceed_amount",
+          "node_id": "detail_fields_actual_amount_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.exceed_amount|}}"
+          "template": "{{travel_policy_check.actual_amount|}}"
         }
       ]
     },
-    "record.exceed_strategy": {
+    "travel_policy_check.exceed_amount": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_exceed_strategy",
+          "node_id": "detail_fields_exceed_amount_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.exceed_strategy|}}"
+          "template": "{{travel_policy_check.exceed_amount|}}"
         }
       ]
     },
-    "record.exceed_reason": {
+    "travel_policy_check.exceed_ratio": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_exceed_reason",
+          "node_id": "detail_fields_exceed_ratio_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.exceed_reason|}}"
+          "template": "{{travel_policy_check.exceed_ratio|}}"
         }
       ]
     },
-    "record.personal_pay_amount": {
+    "travel_policy_check.exceed_strategy": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_personal_pay_amount",
+          "node_id": "detail_fields_exceed_strategy_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.personal_pay_amount|}}"
+          "template": "{{travel_policy_check.exceed_strategy|}}"
         }
       ]
     },
-    "record.approval_mode": {
+    "travel_policy_check.exceed_reason": {
       "uses": [
         {
-          "node_type": "Badge",
-          "node_id": "value_approval_mode",
+          "node_type": "Text",
+          "node_id": "detail_fields_exceed_reason_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.approval_mode|}}"
+          "template": "{{travel_policy_check.exceed_reason|}}"
+        }
+      ]
+    },
+    "travel_policy_check.personal_pay_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_personal_pay_amount_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy_check.personal_pay_amount|}}"
+        }
+      ]
+    },
+    "travel_policy_check.approval_mode": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_approval_mode_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy_check.approval_mode|}}"
         }
       ]
     }
@@ -120,9 +106,19 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_policy_check_edit_btn",
+          "node_id": "edit_btn",
           "prop": "click",
           "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
         }
       ]
     },
@@ -130,13 +126,13 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "travel_policy_check_edit_form",
+          "node_id": "edit_form",
           "prop": "submit",
           "raw": "form_submit"
         },
         {
           "node_type": "Button",
-          "node_id": "travel_policy_check_save_btn",
+          "node_id": "save_btn",
           "prop": "click",
           "raw": "form_submit"
         }
@@ -146,7 +142,7 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "travel_policy_check_edit_form",
+          "node_id": "edit_form",
           "prop": "change",
           "raw": "form_change"
         }
@@ -156,7 +152,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_policy_check_cancel_btn",
+          "node_id": "cancel_btn",
           "prop": "click",
           "raw": "cancel_edit"
         }

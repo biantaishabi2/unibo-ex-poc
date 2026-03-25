@@ -1,1 +1,1 @@
-{"entity":"","domain":"","page_type":"detail"}
+{"entity":"TravelRoomType","domain":"Travel","page_type":"detail","extends_template":"base_object_page"}

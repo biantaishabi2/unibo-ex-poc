@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "TravelPolicyCheck 列表",
+    "travel_policy_check": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -13,8 +16,7 @@
         "exceed_strategy": "",
         "exceed_reason": "",
         "personal_pay_amount": "",
-        "approval_mode": "",
-        "id": "row_01"
+        "approval_mode": ""
       },
       {
         "check_result": "",
@@ -25,8 +27,7 @@
         "exceed_strategy": "",
         "exceed_reason": "",
         "personal_pay_amount": "",
-        "approval_mode": "",
-        "id": "row_02"
+        "approval_mode": ""
       },
       {
         "check_result": "",
@@ -37,13 +38,11 @@
         "exceed_strategy": "",
         "exceed_reason": "",
         "personal_pay_amount": "",
-        "approval_mode": "",
-        "id": "row_03"
+        "approval_mode": ""
       }
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].actual_amount",
@@ -53,15 +52,17 @@
     "rows[].exceed_ratio",
     "rows[].exceed_reason",
     "rows[].exceed_strategy",
-    "rows[].id",
     "rows[].personal_pay_amount",
     "rows[].policy_amount",
-    "rows_empty"
+    "rows_empty",
+    "travel_policy_check",
+    "travel_policy_check.page",
+    "travel_policy_check.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_policy_check"
   ],
   "urlParams": {},
   "notes": [],

@@ -1,14 +1,12 @@
 {
   "version": 1,
   "requiredPaths": [
-    "page_title",
     "row.booking_rules",
     "row.cancellation_policy",
     "row.currency",
     "row.departure_city_code",
     "row.destination_code",
     "row.end_date",
-    "row.id",
     "row.inventory_count",
     "row.listed_price",
     "row.package_code",
@@ -19,20 +17,17 @@
     "row.start_date",
     "row.supplier_code",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "vacation_offer.page",
+    "vacation_offer.total_pages"
   ],
   "requiredRoots": [
-    "page_title",
     "row",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "vacation_offer"
   ],
   "schema": {
-    "page_title": {
-      "type": "object",
-      "required": true,
-      "properties": {}
-    },
     "rows": {
       "type": "array",
       "required": true,
@@ -114,11 +109,6 @@
             "type": "string",
             "required": false,
             "example": ""
-          },
-          "id": {
-            "type": "string",
-            "required": false,
-            "example": "row_01"
           }
         }
       },
@@ -187,10 +177,6 @@
         "sale_status": {
           "type": "unknown",
           "required": true
-        },
-        "id": {
-          "type": "unknown",
-          "required": true
         }
       }
     },
@@ -198,6 +184,22 @@
       "type": "object",
       "required": true,
       "properties": {}
+    },
+    "vacation_offer": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
     }
   },
   "notes": []

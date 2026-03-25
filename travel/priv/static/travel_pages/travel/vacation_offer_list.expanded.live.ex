@@ -11,10 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "vacation_offer_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].booking_rules, rows[].cancellation_policy, rows[].currency, rows[].departure_city_code, rows[].destination_code, rows[].end_date, rows[].id, rows[].inventory_count, rows[].listed_price, rows[].package_code, rows[].package_name, rows[].package_type, rows[].sale_status, rows[].settlement_price, rows[].start_date, rows[].supplier_code, rows_empty
+  # status.keys preview (first ~40): rows, rows[], rows[].booking_rules, rows[].cancellation_policy, rows[].currency, rows[].departure_city_code, rows[].destination_code, rows[].end_date, rows[].inventory_count, rows[].listed_price, rows[].package_code, rows[].package_name, rows[].package_type, rows[].sale_status, rows[].settlement_price, rows[].start_date, rows[].supplier_code, rows_empty, vacation_offer, vacation_offer.page, vacation_offer.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"VacationOffer 列表\",
+  \"vacation_offer\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
   \"rows_empty\": true,
   \"rows\": [
     {
@@ -32,8 +35,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"inventory_count\": \"\",
       \"booking_rules\": \"\",
       \"cancellation_policy\": \"\",
-      \"sale_status\": \"\",
-      \"id\": \"row_01\"
+      \"sale_status\": \"\"
     },
     {
       \"supplier_code\": \"\",
@@ -50,8 +52,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"inventory_count\": \"\",
       \"booking_rules\": \"\",
       \"cancellation_policy\": \"\",
-      \"sale_status\": \"\",
-      \"id\": \"row_02\"
+      \"sale_status\": \"\"
     },
     {
       \"supplier_code\": \"\",
@@ -68,8 +69,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"inventory_count\": \"\",
       \"booking_rules\": \"\",
       \"cancellation_policy\": \"\",
-      \"sale_status\": \"\",
-      \"id\": \"row_03\"
+      \"sale_status\": \"\"
     }
   ]
 }")
@@ -136,6 +136,20 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   def handle_event("navigate_create", params, socket) do
     # UI action event name: navigate_create
     socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("vacation_offer_page_next", params, socket) do
+    # UI action event name: vacation_offer_page_next
+    socket = dispatch_backend("vacation_offer_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("vacation_offer_page_prev", params, socket) do
+    # UI action event name: vacation_offer_page_prev
+    socket = dispatch_backend("vacation_offer_page_prev", params, socket)
     {:noreply, socket}
   end
 

@@ -1,96 +1,142 @@
-<.page title="SchedulingConstraint 列表" id="scheduling_constraint_list">
-  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="scheduling_constraint_header">
-    <.text variant="title" id="scheduling_constraint_title">
-      <%= @page_title %>
-    </.text>
-    <.button variant="primary" phx-click="navigate_create" size="md" id="scheduling_constraint_create_btn">
-      新建
-    </.button>
-  </.section>
-  <.card variant="default" id="scheduling_constraint_filter_card">
-    <.card_content id="scheduling_constraint_filter_content">
-      <.flex gap={4} align="center" direction="row" id="scheduling_constraint_filter_row">
-        <.select name="constraint_type" label="硬约束或软约束" size="md" id="filter_constraint_type">
-
-        </.select>
-        <.select name="category" label="规则类别" size="md" id="filter_category">
-
-        </.select>
-        <.button variant="secondary" phx-click="filter_submit" size="md" id="scheduling_constraint_filter_submit">
-          查询
+<.page title="列表" id="scheduling_constraint_list">
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.text variant="title" id="page_title">
+        <%= @page_title %>
+      </.text>
+      <.flex gap={2} direction="row" id="toolbar_actions">
+        <.button variant="primary" phx-click="navigate_create" size="md" id="create_btn">
+          新建约束
+        </.button>
+        <.button variant="secondary" phx-click="navigate_back" size="md" id="back_btn">
+          返回周期详情
         </.button>
       </.flex>
-    </.card_content>
-  </.card>
-  <.table id="scheduling_constraint_table">
-    <.table_header id="scheduling_constraint_table_header">
-      <.table_row id="scheduling_constraint_header_row">
-        <.table_head id="th_name">
-          规则名称
-        </.table_head>
-        <.table_head id="th_constraint_type">
-          硬约束或软约束
-        </.table_head>
-        <.table_head id="th_category">
-          规则类别
-        </.table_head>
-        <.table_head id="th_params">
-          规则参数（shape 按 category 不同）
-        </.table_head>
-        <.table_head id="th_weight">
-          软约束权重（硬约束忽略）
-        </.table_head>
-        <.table_head id="th_enabled">
-          是否启用
-        </.table_head>
-        <.table_head id="th_notes">
-          备注
-        </.table_head>
-        <.table_head id="scheduling_constraint_th_actions">
-          操作
-        </.table_head>
-      </.table_row>
-    </.table_header>
-    <.table_body id="scheduling_constraint_table_body">
-      <%= for row <- (@rows || []) do %>
-        <.table_row>
-          <.table_cell>
-            <%= get_in(row, [:name]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:constraint_type]) || "" %>
-            </.badge>
-          </.table_cell>
-          <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:category]) || "" %>
-            </.badge>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:params]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:weight]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= get_in(row, [:enabled]) || "" %>
-            </.badge>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:notes]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <.link patch={"/pages/scheduling/scheduling_constraint/#{get_in(row, [:id])}"} id="scheduling_constraint_view_btn" variant="link" size="sm">
-              查看
-            </.link>
-          </.table_cell>
+    </.flex>
+  </.section>
+  <.section layout="none" id="view_tabs">
+    <.tabs default_value="all" id="view_selector">
+      <.tabs_list id="view_tab_list">
+        <.tabs_trigger value="all" active_value="all" id="trigger_all">
+          全部
+        </.tabs_trigger>
+      </.tabs_list>
+    </.tabs>
+  </.section>
+  <.section layout="none" id="filter_section">
+    <.card variant="default" id="filter_card">
+      <.card_content id="filter_content">
+        <.flex gap={4} align="center" direction="row" id="filter_row">
+          <.select bind="scheduling_constraint.constraint_type" size="md" id="filter_constraint_type" options={[%{label: "hard", value: "hard"}, %{label: "soft", value: ""}]}>
+
+          </.select>
+          <.select bind="scheduling_constraint.category" size="md" id="filter_category" options={[%{label: "rest_after_night", value: "rest_after_night"}, %{label: "max_consecutive_days", value: "max_consecutive_days"}, %{label: "respect_leave", value: "respect_leave"}, %{label: "skill_requirement", value: "skill_requirement"}, %{label: "max_monthly_hours", value: "max_monthly_hours"}, %{label: "lead_coverage", value: "lead_coverage"}, %{label: "fair_night_distribution", value: "fair_night_distribution"}, %{label: "fair_weekend_distribution", value: "fair_weekend_distribution"}, %{label: "respect_preference", value: "respect_preference"}, %{label: "limit_consecutive_nights", value: "limit_consecutive_nights"}, %{label: "shift_continuity", value: ""}]}>
+
+          </.select>
+          <.select name="enabled" label="状态" size="md" id="filter_enabled" options={[%{label: "全部", value: ""}, %{label: "启用", value: "true"}, %{label: "禁用", value: "false"}]}>
+
+          </.select>
+          <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
+            查询
+          </.button>
+        </.flex>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="table_section">
+    <.table id="constraint_table">
+      <.table_header id="constraint_header">
+        <.table_row id="header_row">
+          <.table_head id="th_name">
+            规则名称
+          </.table_head>
+          <.table_head id="th_type">
+            约束类型
+          </.table_head>
+          <.table_head id="th_category">
+            规则类别
+          </.table_head>
+          <.table_head id="th_weight">
+            权重
+          </.table_head>
+          <.table_head id="th_enabled">
+            启用
+          </.table_head>
+          <.table_head id="th_notes">
+            备注
+          </.table_head>
+          <.table_head id="th_actions">
+            操作
+          </.table_head>
         </.table_row>
-      <% end %>
-    </.table_body>
-  </.table>
-  <%= if (@rows_empty && @rows_empty != []) do %>
-    <.empty_state description="暂无合法性约束和评分规则定义,不承载需求人数数据" id="scheduling_constraint_no_data" />
-  <% end %>
+      </.table_header>
+      <.table_body id="constraint_body">
+        <%= for row <- (@rows || []) do %>
+          <.table_row>
+            <.table_cell>
+              <%= get_in(row, [:name]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:constraint_type])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:category])) && to_string(val) != "" do %>
+                <.badge variant="secondary" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:weight]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:enabled])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:notes]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <.flex gap={1} direction="row">
+                <.button variant="outline" size="sm" phx-click="navigate_edit">
+                  编辑
+                </.button>
+                <.button variant="outline" size="sm" phx-click="toggle_enabled">
+                  切换
+                </.button>
+                <.button variant="destructive" size="sm" phx-click="action_destroy">
+                  删除
+                </.button>
+              </.flex>
+            </.table_cell>
+          </.table_row>
+        <% end %>
+      </.table_body>
+    </.table>
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if (@rows_empty && @rows_empty != []) do %>
+      <.empty_state description="暂无数据" id="no_data" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="footer">
+    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
+      <.button phx-click="scheduling_constraint_page_prev" variant="primary" size="md" id="page_prev">
+        上一页
+      </.button>
+      <.text id="page_info">
+        <%= get_in(@scheduling_constraint, [:page]) || "" %> / <%= get_in(@scheduling_constraint, [:total_pages]) || "" %>
+      </.text>
+      <.button phx-click="scheduling_constraint_page_next" variant="primary" size="md" id="page_next">
+        下一页
+      </.button>
+    </.flex>
+  </.section>
 </.page>

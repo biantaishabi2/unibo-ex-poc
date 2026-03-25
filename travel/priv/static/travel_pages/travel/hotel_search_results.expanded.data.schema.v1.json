@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "hotels",
+    "hotels.items",
+    "item",
+    "item.address",
+    "item.breakfast_label",
+    "item.cancel_label",
+    "item.district",
+    "item.hotel_name",
+    "item.hotel_star",
+    "item.id",
+    "item.listed_price",
+    "item.rating_label",
+    "item.room_type_name",
+    "policy",
+    "search.checkin_date",
+    "search.checkout_date",
+    "search.city_label",
+    "search.night_count_label"
+  ],
+  "requiredRoots": [
+    "hotels",
+    "item",
+    "policy",
+    "search"
+  ],
+  "schema": {
+    "search": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "city_label": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "checkin_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "night_count_label": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "checkout_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    },
+    "policy": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "exceeded": {
+          "type": "boolean",
+          "required": false,
+          "example": true
+        }
+      }
+    },
+    "hotels": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "total_count": {
+          "type": "boolean",
+          "required": false,
+          "example": true
+        },
+        "items": {
+          "type": "array",
+          "required": false,
+          "items": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "required": false,
+                "example": "hot_01"
+              },
+              "hotel_name": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "hotel_star": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "is_policy_compliant": {
+                "type": "boolean",
+                "required": false,
+                "example": true
+              },
+              "address": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "district": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "room_type_name": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "breakfast_label": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "cancel_label": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "rating_label": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "listed_price": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              }
+            }
+          },
+          "exampleCount": 3
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "id": {
+          "type": "unknown",
+          "required": true
+        },
+        "hotel_name": {
+          "type": "unknown",
+          "required": true
+        },
+        "hotel_star": {
+          "type": "unknown",
+          "required": true
+        },
+        "address": {
+          "type": "unknown",
+          "required": true
+        },
+        "district": {
+          "type": "unknown",
+          "required": true
+        },
+        "room_type_name": {
+          "type": "unknown",
+          "required": true
+        },
+        "breakfast_label": {
+          "type": "unknown",
+          "required": true
+        },
+        "cancel_label": {
+          "type": "unknown",
+          "required": true
+        },
+        "rating_label": {
+          "type": "unknown",
+          "required": true
+        },
+        "listed_price": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    }
+  },
+  "notes": []
+}

@@ -1,13 +1,11 @@
 {
   "version": 1,
   "requiredPaths": [
-    "page_title",
     "row.booking_mode",
     "row.change_status",
     "row.contact_name",
     "row.contact_phone",
     "row.currency",
-    "row.id",
     "row.order_no",
     "row.original_order_ref",
     "row.payment_external_ref",
@@ -23,20 +21,17 @@
     "row.traveler_count",
     "row.waitlist_status",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_order.page",
+    "travel_order.total_pages"
   ],
   "requiredRoots": [
-    "page_title",
     "row",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_order"
   ],
   "schema": {
-    "page_title": {
-      "type": "object",
-      "required": true,
-      "properties": {}
-    },
     "rows": {
       "type": "array",
       "required": true,
@@ -138,11 +133,6 @@
             "type": "string",
             "required": false,
             "example": ""
-          },
-          "id": {
-            "type": "string",
-            "required": false,
-            "example": "row_01"
           }
         }
       },
@@ -227,10 +217,6 @@
         "payment_external_ref": {
           "type": "unknown",
           "required": true
-        },
-        "id": {
-          "type": "unknown",
-          "required": true
         }
       }
     },
@@ -238,6 +224,22 @@
       "type": "object",
       "required": true,
       "properties": {}
+    },
+    "travel_order": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
     }
   },
   "notes": []

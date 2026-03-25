@@ -1,145 +1,124 @@
 {
   "version": 1,
   "vars": {
-    "record.supplier_booking_ref": {
-      "uses": [
-        {
-          "node_type": "BreadcrumbPage",
-          "node_id": "travel_fulfillment_bc_current",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.supplier_booking_ref|详情}}"
-        },
-        {
-          "node_type": "Text",
-          "node_id": "travel_fulfillment_detail_title",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.supplier_booking_ref|}}"
-        },
-        {
-          "node_type": "Text",
-          "node_id": "value_supplier_booking_ref",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.supplier_booking_ref|}}"
-        }
-      ]
-    },
-    "record.status": {
-      "uses": [
-        {
-          "node_type": "Badge",
-          "node_id": "travel_fulfillment_status_badge",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.status|}}"
-        },
-        {
-          "node_type": "Badge",
-          "node_id": "value_status",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.status|}}"
-        }
-      ]
-    },
-    "record.fulfillment_type": {
-      "uses": [
-        {
-          "node_type": "Badge",
-          "node_id": "value_fulfillment_type",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.fulfillment_type|}}"
-        }
-      ]
-    },
-    "record.voucher_or_ticket_ref": {
+    "travel_fulfillment.fulfillment_type": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_voucher_or_ticket_ref",
+          "node_id": "detail_fields_fulfillment_type_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.voucher_or_ticket_ref|}}"
+          "template": "{{travel_fulfillment.fulfillment_type|}}"
         }
       ]
     },
-    "record.ticket_refs": {
+    "travel_fulfillment.status": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_ticket_refs",
+          "node_id": "detail_fields_status_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.ticket_refs|}}"
+          "template": "{{travel_fulfillment.status|}}"
         }
       ]
     },
-    "record.waitlist_result": {
-      "uses": [
-        {
-          "node_type": "Badge",
-          "node_id": "value_waitlist_result",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.waitlist_result|}}"
-        }
-      ]
-    },
-    "record.change_result": {
-      "uses": [
-        {
-          "node_type": "Badge",
-          "node_id": "value_change_result",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.change_result|}}"
-        }
-      ]
-    },
-    "record.boarding_status": {
-      "uses": [
-        {
-          "node_type": "Badge",
-          "node_id": "value_boarding_status",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.boarding_status|}}"
-        }
-      ]
-    },
-    "record.confirmation_payload": {
+    "travel_fulfillment.supplier_booking_ref": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_confirmation_payload",
+          "node_id": "detail_fields_supplier_booking_ref_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.confirmation_payload|}}"
+          "template": "{{travel_fulfillment.supplier_booking_ref|}}"
         }
       ]
     },
-    "record.failure_reason": {
+    "travel_fulfillment.voucher_or_ticket_ref": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_failure_reason",
+          "node_id": "detail_fields_voucher_or_ticket_ref_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.failure_reason|}}"
+          "template": "{{travel_fulfillment.voucher_or_ticket_ref|}}"
         }
       ]
     },
-    "record.used_at": {
+    "travel_fulfillment.ticket_refs": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_used_at",
+          "node_id": "detail_fields_ticket_refs_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.used_at|}}"
+          "template": "{{travel_fulfillment.ticket_refs|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.waitlist_result": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_waitlist_result_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.waitlist_result|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.change_result": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_change_result_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.change_result|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.boarding_status": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_boarding_status_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.boarding_status|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.confirmation_payload": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_confirmation_payload_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.confirmation_payload|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.failure_reason": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_failure_reason_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.failure_reason|}}"
+        }
+      ]
+    },
+    "travel_fulfillment.used_at": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_used_at_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_fulfillment.used_at|}}"
         }
       ]
     }
@@ -149,69 +128,9 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_fulfillment_edit_btn",
+          "node_id": "edit_btn",
           "prop": "click",
           "raw": "toggle_edit"
-        }
-      ]
-    },
-    "action_confirm_booking": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_fulfillment_action_confirm_booking",
-          "prop": "click",
-          "raw": "action_confirm_booking"
-        }
-      ]
-    },
-    "action_issue_voucher_or_ticket": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_fulfillment_action_issue_voucher_or_ticket",
-          "prop": "click",
-          "raw": "action_issue_voucher_or_ticket"
-        }
-      ]
-    },
-    "action_mark_in_use": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_fulfillment_action_mark_in_use",
-          "prop": "click",
-          "raw": "action_mark_in_use"
-        }
-      ]
-    },
-    "action_complete_fulfillment": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_fulfillment_action_complete_fulfillment",
-          "prop": "click",
-          "raw": "action_complete_fulfillment"
-        }
-      ]
-    },
-    "action_cancel_fulfillment": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_fulfillment_action_cancel_fulfillment",
-          "prop": "click",
-          "raw": "action_cancel_fulfillment"
-        }
-      ]
-    },
-    "action_fail_fulfillment": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "travel_fulfillment_action_fail_fulfillment",
-          "prop": "click",
-          "raw": "action_fail_fulfillment"
         }
       ]
     },
@@ -219,7 +138,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_fulfillment_delete_btn",
+          "node_id": "delete_btn",
           "prop": "click",
           "raw": "action_destroy"
         }
@@ -229,13 +148,13 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "travel_fulfillment_edit_form",
+          "node_id": "edit_form",
           "prop": "submit",
           "raw": "form_submit"
         },
         {
           "node_type": "Button",
-          "node_id": "travel_fulfillment_save_btn",
+          "node_id": "save_btn",
           "prop": "click",
           "raw": "form_submit"
         }
@@ -245,7 +164,7 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "travel_fulfillment_edit_form",
+          "node_id": "edit_form",
           "prop": "change",
           "raw": "form_change"
         }
@@ -255,7 +174,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_fulfillment_cancel_btn",
+          "node_id": "cancel_btn",
           "prop": "click",
           "raw": "cancel_edit"
         }

@@ -11,12 +11,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "hotel_offer_detail"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): editing, record, record.cancellation_policy, record.checkin_date, record.checkout_date, record.city_code, record.city_ref_id, record.currency, record.guarantee_policy, record.host_shop_id, record.hotel_code, record.hotel_name, record.inventory_count, record.listed_price, record.rate_plan_code, record.room_type_code, record.sale_status, record.settlement_price, record.supplier_code, record.tenant_id
+  # status.keys preview (first ~40): editing, hotel_offer, hotel_offer.cancellation_policy, hotel_offer.checkin_date, hotel_offer.checkout_date, hotel_offer.city_code, hotel_offer.currency, hotel_offer.guarantee_policy, hotel_offer.hotel_code, hotel_offer.hotel_name, hotel_offer.inventory_count, hotel_offer.listed_price, hotel_offer.rate_plan_code, hotel_offer.room_type_code, hotel_offer.sale_status, hotel_offer.settlement_price, hotel_offer.supplier_code
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"record\": {
+  \"hotel_offer\": {
     \"supplier_code\": \"\",
-    \"sale_status\": \"\",
     \"hotel_code\": \"\",
     \"hotel_name\": \"\",
     \"city_code\": \"\",
@@ -30,9 +29,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     \"inventory_count\": \"\",
     \"cancellation_policy\": \"\",
     \"guarantee_policy\": \"\",
-    \"tenant_id\": \"\",
-    \"host_shop_id\": \"\",
-    \"city_ref_id\": \"\"
+    \"sale_status\": \"\"
   },
   \"editing\": false
 }")
@@ -95,30 +92,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("action_activate", params, socket) do
-    # UI action event name: action_activate
-    socket = dispatch_backend("action_activate", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_deactivate", params, socket) do
-    # UI action event name: action_deactivate
-    socket = dispatch_backend("action_deactivate", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
   def handle_event("action_destroy", params, socket) do
     # UI action event name: action_destroy
     socket = dispatch_backend("action_destroy", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_expire", params, socket) do
-    # UI action event name: action_expire
-    socket = dispatch_backend("action_expire", params, socket)
     {:noreply, socket}
   end
 

@@ -11,10 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "hotel_offer_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].cancellation_policy, rows[].checkin_date, rows[].checkout_date, rows[].city_code, rows[].currency, rows[].guarantee_policy, rows[].hotel_code, rows[].hotel_name, rows[].id, rows[].inventory_count, rows[].listed_price, rows[].rate_plan_code, rows[].room_type_code, rows[].sale_status, rows[].settlement_price, rows[].supplier_code, rows_empty
+  # status.keys preview (first ~40): hotel_offer, hotel_offer.page, hotel_offer.total_pages, rows, rows[], rows[].cancellation_policy, rows[].checkin_date, rows[].checkout_date, rows[].city_code, rows[].currency, rows[].guarantee_policy, rows[].hotel_code, rows[].hotel_name, rows[].inventory_count, rows[].listed_price, rows[].rate_plan_code, rows[].room_type_code, rows[].sale_status, rows[].settlement_price, rows[].supplier_code, rows_empty
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"HotelOffer 列表\",
+  \"hotel_offer\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
   \"rows_empty\": true,
   \"rows\": [
     {
@@ -32,8 +35,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"inventory_count\": \"\",
       \"cancellation_policy\": \"\",
       \"guarantee_policy\": \"\",
-      \"sale_status\": \"\",
-      \"id\": \"row_01\"
+      \"sale_status\": \"\"
     },
     {
       \"supplier_code\": \"\",
@@ -50,8 +52,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"inventory_count\": \"\",
       \"cancellation_policy\": \"\",
       \"guarantee_policy\": \"\",
-      \"sale_status\": \"\",
-      \"id\": \"row_02\"
+      \"sale_status\": \"\"
     },
     {
       \"supplier_code\": \"\",
@@ -68,8 +69,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"inventory_count\": \"\",
       \"cancellation_policy\": \"\",
       \"guarantee_policy\": \"\",
-      \"sale_status\": \"\",
-      \"id\": \"row_03\"
+      \"sale_status\": \"\"
     }
   ]
 }")
@@ -129,6 +129,20 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   def handle_event("filter_submit", params, socket) do
     # UI action event name: filter_submit
     socket = dispatch_backend("filter_submit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("hotel_offer_page_next", params, socket) do
+    # UI action event name: hotel_offer_page_next
+    socket = dispatch_backend("hotel_offer_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("hotel_offer_page_prev", params, socket) do
+    # UI action event name: hotel_offer_page_prev
+    socket = dispatch_backend("hotel_offer_page_prev", params, socket)
     {:noreply, socket}
   end
 

@@ -1,10 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
-      "supplier_booking_ref": "",
-      "status": "",
+    "travel_fulfillment": {
       "fulfillment_type": "",
+      "status": "",
+      "supplier_booking_ref": "",
       "voucher_or_ticket_ref": "",
       "ticket_refs": "",
       "waitlist_result": "",
@@ -12,32 +12,28 @@
       "boarding_status": "",
       "confirmation_payload": "",
       "failure_reason": "",
-      "used_at": "",
-      "tenant_id": "",
-      "shipment_id": ""
+      "used_at": ""
     },
     "editing": false
   },
   "keys": [
     "editing",
-    "record",
-    "record.boarding_status",
-    "record.change_result",
-    "record.confirmation_payload",
-    "record.failure_reason",
-    "record.fulfillment_type",
-    "record.shipment_id",
-    "record.status",
-    "record.supplier_booking_ref",
-    "record.tenant_id",
-    "record.ticket_refs",
-    "record.used_at",
-    "record.voucher_or_ticket_ref",
-    "record.waitlist_result"
+    "travel_fulfillment",
+    "travel_fulfillment.boarding_status",
+    "travel_fulfillment.change_result",
+    "travel_fulfillment.confirmation_payload",
+    "travel_fulfillment.failure_reason",
+    "travel_fulfillment.fulfillment_type",
+    "travel_fulfillment.status",
+    "travel_fulfillment.supplier_booking_ref",
+    "travel_fulfillment.ticket_refs",
+    "travel_fulfillment.used_at",
+    "travel_fulfillment.voucher_or_ticket_ref",
+    "travel_fulfillment.waitlist_result"
   ],
   "required": [
     "editing",
-    "record"
+    "travel_fulfillment"
   ],
   "urlParams": {},
   "notes": [],

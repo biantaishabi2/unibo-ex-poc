@@ -11,10 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_airline_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].airline_code, rows[].airline_name, rows[].iata_code, rows[].icao_code, rows[].id, rows[].status, rows_empty
+  # status.keys preview (first ~40): rows, rows[], rows[].airline_code, rows[].airline_name, rows[].iata_code, rows[].icao_code, rows[].status, rows_empty, travel_airline, travel_airline.page, travel_airline.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"TravelAirline 列表\",
+  \"travel_airline\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
   \"rows_empty\": true,
   \"rows\": [
     {
@@ -22,24 +25,21 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"airline_name\": \"\",
       \"iata_code\": \"\",
       \"icao_code\": \"\",
-      \"status\": \"\",
-      \"id\": \"row_01\"
+      \"status\": \"\"
     },
     {
       \"airline_code\": \"\",
       \"airline_name\": \"\",
       \"iata_code\": \"\",
       \"icao_code\": \"\",
-      \"status\": \"\",
-      \"id\": \"row_02\"
+      \"status\": \"\"
     },
     {
       \"airline_code\": \"\",
       \"airline_name\": \"\",
       \"iata_code\": \"\",
       \"icao_code\": \"\",
-      \"status\": \"\",
-      \"id\": \"row_03\"
+      \"status\": \"\"
     }
   ]
 }")
@@ -106,6 +106,20 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   def handle_event("navigate_create", params, socket) do
     # UI action event name: navigate_create
     socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_airline_page_next", params, socket) do
+    # UI action event name: travel_airline_page_next
+    socket = dispatch_backend("travel_airline_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_airline_page_prev", params, socket) do
+    # UI action event name: travel_airline_page_prev
+    socket = dispatch_backend("travel_airline_page_prev", params, socket)
     {:noreply, socket}
   end
 

@@ -1,30 +1,24 @@
 {
-  "editing": false,
-  "record": {
+  "travel_order": {
+    "order_no": "",
+    "product_type": "",
     "booking_mode": "",
-    "change_status": "",
     "contact_name": "",
     "contact_phone": "",
-    "currency": "",
-    "customer_id": "",
-    "host_enterprise_id": "",
-    "host_member_id": "",
-    "host_shop_id": "",
-    "order_no": "",
-    "original_order_ref": "",
-    "payment_external_ref": "",
-    "payment_id": "",
-    "points_deduction_amount": "",
-    "points_to_use": "",
-    "product_type": "",
-    "recommended_payment_method": "",
-    "seat_selection_snapshot": "",
-    "status": "",
-    "supplier_order_ref": "",
-    "tenant_id": "",
-    "ticket_passenger_infos": "",
-    "total_amount": "",
     "traveler_count": "",
-    "waitlist_status": ""
-  }
+    "total_amount": "",
+    "points_to_use": "",
+    "points_deduction_amount": "",
+    "recommended_payment_method": "",
+    "currency": "",
+    "status": "",
+    "change_status": "",
+    "waitlist_status": "",
+    "original_order_ref": "",
+    "ticket_passenger_infos": "",
+    "seat_selection_snapshot": "",
+    "supplier_order_ref": "",
+    "payment_external_ref": ""
+  },
+  "editing": false
 }

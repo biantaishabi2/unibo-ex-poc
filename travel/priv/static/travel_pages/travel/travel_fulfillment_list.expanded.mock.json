@@ -1,5 +1,8 @@
 {
-  "page_title": "TravelFulfillment 列表",
+  "travel_fulfillment": {
+    "page": "",
+    "total_pages": ""
+  },
   "rows_empty": true,
   "rows": [
     {
@@ -13,8 +16,7 @@
       "boarding_status": "",
       "confirmation_payload": "",
       "failure_reason": "",
-      "used_at": "",
-      "id": "row_01"
+      "used_at": ""
     },
     {
       "fulfillment_type": "",
@@ -27,8 +29,7 @@
       "boarding_status": "",
       "confirmation_payload": "",
       "failure_reason": "",
-      "used_at": "",
-      "id": "row_02"
+      "used_at": ""
     },
     {
       "fulfillment_type": "",
@@ -41,8 +42,7 @@
       "boarding_status": "",
       "confirmation_payload": "",
       "failure_reason": "",
-      "used_at": "",
-      "id": "row_03"
+      "used_at": ""
     }
   ]
 }

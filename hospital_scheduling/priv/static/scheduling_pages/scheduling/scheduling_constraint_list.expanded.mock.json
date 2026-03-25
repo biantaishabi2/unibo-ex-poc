@@ -1,36 +1,34 @@
 {
-  "page_title": "SchedulingConstraint 列表",
+  "page_title": "排班约束配置",
+  "scheduling_constraint": {
+    "page": "",
+    "total_pages": ""
+  },
   "rows_empty": true,
   "rows": [
     {
       "name": "row_1",
       "constraint_type": "",
       "category": "",
-      "params": "",
       "weight": "",
       "enabled": "",
-      "notes": "",
-      "id": "row_01"
+      "notes": ""
     },
     {
       "name": "row_2",
       "constraint_type": "",
       "category": "",
-      "params": "",
       "weight": "",
       "enabled": "",
-      "notes": "",
-      "id": "row_02"
+      "notes": ""
     },
     {
       "name": "row_3",
       "constraint_type": "",
       "category": "",
-      "params": "",
       "weight": "",
       "enabled": "",
-      "notes": "",
-      "id": "row_03"
+      "notes": ""
     }
   ]
 }

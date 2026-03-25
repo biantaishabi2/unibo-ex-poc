@@ -1,7 +1,6 @@
 {
   "version": 1,
   "requiredPaths": [
-    "page_title",
     "row.arrival_at",
     "row.arrival_station_code",
     "row.arrival_station_name",
@@ -11,7 +10,6 @@
     "row.departure_at",
     "row.departure_station_code",
     "row.departure_station_name",
-    "row.id",
     "row.inventory_status",
     "row.is_no_seat",
     "row.listed_price",
@@ -25,20 +23,17 @@
     "row.travel_date",
     "row.waitlist_supported",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "train_offer.page",
+    "train_offer.total_pages"
   ],
   "requiredRoots": [
-    "page_title",
     "row",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "train_offer"
   ],
   "schema": {
-    "page_title": {
-      "type": "object",
-      "required": true,
-      "properties": {}
-    },
     "rows": {
       "type": "array",
       "required": true,
@@ -150,11 +145,6 @@
             "type": "string",
             "required": false,
             "example": ""
-          },
-          "id": {
-            "type": "string",
-            "required": false,
-            "example": "row_01"
           }
         }
       },
@@ -247,10 +237,6 @@
         "sale_status": {
           "type": "unknown",
           "required": true
-        },
-        "id": {
-          "type": "unknown",
-          "required": true
         }
       }
     },
@@ -258,6 +244,22 @@
       "type": "object",
       "required": true,
       "properties": {}
+    },
+    "train_offer": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
     }
   },
   "notes": []

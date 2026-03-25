@@ -11,10 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_refund_order_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].approval_mode, rows[].id, rows[].refund_amount, rows[].refund_fee, rows[].refund_reason, rows[].status, rows_empty
+  # status.keys preview (first ~40): rows, rows[], rows[].approval_mode, rows[].refund_amount, rows[].refund_fee, rows[].refund_reason, rows[].status, rows_empty, travel_refund_order, travel_refund_order.page, travel_refund_order.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"TravelRefundOrder 列表\",
+  \"travel_refund_order\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
   \"rows_empty\": true,
   \"rows\": [
     {
@@ -22,24 +25,21 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"refund_fee\": \"\",
       \"refund_amount\": \"\",
       \"status\": \"\",
-      \"approval_mode\": \"\",
-      \"id\": \"row_01\"
+      \"approval_mode\": \"\"
     },
     {
       \"refund_reason\": \"\",
       \"refund_fee\": \"\",
       \"refund_amount\": \"\",
       \"status\": \"\",
-      \"approval_mode\": \"\",
-      \"id\": \"row_02\"
+      \"approval_mode\": \"\"
     },
     {
       \"refund_reason\": \"\",
       \"refund_fee\": \"\",
       \"refund_amount\": \"\",
       \"status\": \"\",
-      \"approval_mode\": \"\",
-      \"id\": \"row_03\"
+      \"approval_mode\": \"\"
     }
   ]
 }")
@@ -106,6 +106,20 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   def handle_event("navigate_create", params, socket) do
     # UI action event name: navigate_create
     socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_refund_order_page_next", params, socket) do
+    # UI action event name: travel_refund_order_page_next
+    socket = dispatch_backend("travel_refund_order_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_refund_order_page_prev", params, socket) do
+    # UI action event name: travel_refund_order_page_prev
+    socket = dispatch_backend("travel_refund_order_page_prev", params, socket)
     {:noreply, socket}
   end
 

@@ -1,0 +1,136 @@
+<.page title="排期" id="calendar_adjustment">
+  <.section layout="none" id="date_nav_section">
+    <.flex justify="between" align="center" direction="row" id="date_navigator">
+      <.flex gap={2} align="center" direction="row" id="nav_left">
+        <.button variant="outline" size="sm" phx-click="navigate_prev_week" id="prev_week_btn">
+          上一周
+        </.button>
+        <.text variant="h4" weight="bold" id="current_week">
+          <%= @current_week_label %>
+        </.text>
+        <.button variant="outline" size="sm" phx-click="navigate_next_week" id="next_week_btn">
+          下一周
+        </.button>
+      </.flex>
+      <.flex gap={2} direction="row" id="nav_right">
+        <%= if (val = get_in(@period, [:title])) && to_string(val) != "" do %>
+          <.badge variant="default" size="sm" id="period_badge">
+            <%= to_string(val) %>
+          </.badge>
+        <% end %>
+        <.button variant="secondary" phx-click="navigate_back" size="md" id="back_btn">
+          返回周期详情
+        </.button>
+      </.flex>
+    </.flex>
+  </.section>
+  <.section layout="none" id="resource_section">
+    <.flex gap={4} align="center" wrap={true} direction="row" id="resource_filter">
+      <.select name="role_code" label="岗位筛选" size="md" id="filter_role" value={@record.role_code}>
+
+      </.select>
+      <.select name="shift_type_id" label="班次类型" size="md" id="filter_shift_type" value={@record.shift_type_id}>
+
+      </.select>
+      <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
+        筛选
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="matrix_section">
+    <.card variant="default" id="calendar_card">
+      <.card_content id="calendar_content">
+        <.table id="calendar_table">
+          <.table_header id="cal_header">
+            <.table_row id="cal_header_row">
+              <.table_head id="th_employee">
+                员工
+              </.table_head>
+              <.table_head id="th_days">
+                日期列（由当前周日期动态生成）
+              </.table_head>
+            </.table_row>
+          </.table_header>
+          <.table_body id="cal_body">
+            <%= for emp <- (@employees || []) do %>
+              <.table_row>
+                <.table_cell>
+                  <.stack gap={0} direction="column">
+                    <.text weight="bold">
+                      <%= get_in(emp, [:name]) || "" %>
+                    </.text>
+                    <.text variant="caption" color="muted">
+                      <%= get_in(emp, [:role_code]) || "" %>
+                    </.text>
+                  </.stack>
+                </.table_cell>
+                <.table_cell>
+                  <%= for day <- (get_in(emp, [:daily_assignments]) || []) do %>
+                    <%= if (val = get_in(day, [:shift_type, :name])) && to_string(val) != "" do %>
+                      <.badge variant="default" size="sm">
+                        <%= to_string(val) %>
+                      </.badge>
+                    <% end %>
+                  <% end %>
+                </.table_cell>
+              </.table_row>
+            <% end %>
+          </.table_body>
+        </.table>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="summary_section">
+    <.grid columns={2} gap={3} id="summary_grid">
+      <.card variant="default" id="stats_card">
+        <.card_header id="stats_header">
+          <.card_title id="stats_title">
+            调班统计
+          </.card_title>
+        </.card_header>
+        <.card_content id="stats_content">
+          <.stack gap={2} direction="column" id="stats_list">
+            <.flex justify="between" direction="row" id="stat_manual_changes">
+              <.text id="manual_label">
+                手动调整次数
+              </.text>
+              <.text weight="bold" id="manual_value">
+                <%= @manual_change_count %>
+              </.text>
+            </.flex>
+            <.flex justify="between" direction="row" id="stat_coverage">
+              <.text id="coverage_label">
+                需求覆盖率
+              </.text>
+              <.text weight="bold" id="coverage_value">
+                <%= @coverage_rate %>%
+              </.text>
+            </.flex>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="violations_card">
+        <.card_header id="violations_header">
+          <.card_title id="violations_title">
+            实时约束检查
+          </.card_title>
+        </.card_header>
+        <.card_content id="violations_content">
+          <%= for vio <- (@live_violations || []) do %>
+            <.flex gap={2} align="center" direction="row">
+              <.select bind="shift_assignment.severity" size="md" options={[%{label: "error", value: "error"}, %{label: "{{vio.severity|}}", value: "warning"}]}>
+
+              </.select>
+              <.text variant="caption">
+                <%= get_in(vio, [:message]) || "" %>
+              </.text>
+            </.flex>
+          <% end %>
+          <%= if (@no_violations && @no_violations != []) do %>
+            <.empty_state description="无约束违反" id="no_vio_state" />
+          <% end %>
+        </.card_content>
+      </.card>
+    </.grid>
+  </.section>
+</.page>

@@ -1,9 +1,9 @@
 {
-  "record": {
+  "travel_cabin_class": {
     "cabin_class_code": "",
-    "status": "",
     "cabin_class_name": "",
-    "cabin_rank": ""
+    "cabin_rank": "",
+    "status": ""
   },
   "editing": false
 }

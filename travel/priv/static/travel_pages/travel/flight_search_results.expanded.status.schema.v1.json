@@ -1,0 +1,165 @@
+{
+  "version": 1,
+  "defaults": {
+    "search": {
+      "route_label": "",
+      "date_range": [
+        {
+          "is_selected": "",
+          "date_label": "",
+          "price_label": ""
+        },
+        {
+          "is_selected": "",
+          "date_label": "",
+          "price_label": ""
+        },
+        {
+          "is_selected": "",
+          "date_label": "",
+          "price_label": ""
+        }
+      ]
+    },
+    "policy": {
+      "exceeded": true
+    },
+    "flights": {
+      "total_count": true,
+      "items": [
+        {
+          "id": "fli_01",
+          "airline_ref": {
+            "logo": "",
+            "code": "",
+            "name": "airline_ref_1"
+          },
+          "flight_no": "",
+          "is_policy_compliant": true,
+          "departure_time": "",
+          "departure_airport_ref": {
+            "city_name": ""
+          },
+          "departure_airport_code": "",
+          "duration_label": "",
+          "stop_label": "",
+          "arrival_time": "",
+          "arrival_airport_ref": {
+            "city_name": ""
+          },
+          "arrival_airport_code": "",
+          "cabin_class_ref": {
+            "name": "cabin_class_ref_1"
+          },
+          "aircraft_type": "",
+          "discount_label": "",
+          "currency": "",
+          "listed_price": ""
+        },
+        {
+          "id": "fli_02",
+          "airline_ref": {
+            "logo": "",
+            "code": "",
+            "name": "airline_ref_2"
+          },
+          "flight_no": "",
+          "is_policy_compliant": true,
+          "departure_time": "",
+          "departure_airport_ref": {
+            "city_name": ""
+          },
+          "departure_airport_code": "",
+          "duration_label": "",
+          "stop_label": "",
+          "arrival_time": "",
+          "arrival_airport_ref": {
+            "city_name": ""
+          },
+          "arrival_airport_code": "",
+          "cabin_class_ref": {
+            "name": "cabin_class_ref_2"
+          },
+          "aircraft_type": "",
+          "discount_label": "",
+          "currency": "",
+          "listed_price": ""
+        },
+        {
+          "id": "fli_03",
+          "airline_ref": {
+            "logo": "",
+            "code": "",
+            "name": "airline_ref_3"
+          },
+          "flight_no": "",
+          "is_policy_compliant": true,
+          "departure_time": "",
+          "departure_airport_ref": {
+            "city_name": ""
+          },
+          "departure_airport_code": "",
+          "duration_label": "",
+          "stop_label": "",
+          "arrival_time": "",
+          "arrival_airport_ref": {
+            "city_name": ""
+          },
+          "arrival_airport_code": "",
+          "cabin_class_ref": {
+            "name": "cabin_class_ref_3"
+          },
+          "aircraft_type": "",
+          "discount_label": "",
+          "currency": "",
+          "listed_price": ""
+        }
+      ]
+    }
+  },
+  "keys": [
+    "flights",
+    "flights.items",
+    "flights.items[]",
+    "flights.items[].aircraft_type",
+    "flights.items[].airline_ref",
+    "flights.items[].airline_ref.code",
+    "flights.items[].airline_ref.logo",
+    "flights.items[].airline_ref.name",
+    "flights.items[].arrival_airport_code",
+    "flights.items[].arrival_airport_ref",
+    "flights.items[].arrival_airport_ref.city_name",
+    "flights.items[].arrival_time",
+    "flights.items[].cabin_class_ref",
+    "flights.items[].cabin_class_ref.name",
+    "flights.items[].currency",
+    "flights.items[].departure_airport_code",
+    "flights.items[].departure_airport_ref",
+    "flights.items[].departure_airport_ref.city_name",
+    "flights.items[].departure_time",
+    "flights.items[].discount_label",
+    "flights.items[].duration_label",
+    "flights.items[].flight_no",
+    "flights.items[].id",
+    "flights.items[].is_policy_compliant",
+    "flights.items[].listed_price",
+    "flights.items[].stop_label",
+    "flights.total_count",
+    "policy",
+    "policy.exceeded",
+    "search",
+    "search.date_range",
+    "search.date_range[]",
+    "search.date_range[].date_label",
+    "search.date_range[].is_selected",
+    "search.date_range[].price_label",
+    "search.route_label"
+  ],
+  "required": [
+    "flights",
+    "policy",
+    "search"
+  ],
+  "urlParams": {},
+  "notes": []
+}

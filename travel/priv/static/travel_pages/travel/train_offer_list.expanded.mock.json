@@ -1,5 +1,8 @@
 {
-  "page_title": "TrainOffer 列表",
+  "train_offer": {
+    "page": "",
+    "total_pages": ""
+  },
   "rows_empty": true,
   "rows": [
     {
@@ -23,8 +26,7 @@
       "booking_rules_snapshot": "",
       "change_rules_snapshot": "",
       "refund_rules_snapshot": "",
-      "sale_status": "",
-      "id": "row_01"
+      "sale_status": ""
     },
     {
       "supplier_code": "",
@@ -47,8 +49,7 @@
       "booking_rules_snapshot": "",
       "change_rules_snapshot": "",
       "refund_rules_snapshot": "",
-      "sale_status": "",
-      "id": "row_02"
+      "sale_status": ""
     },
     {
       "supplier_code": "",
@@ -71,8 +72,7 @@
       "booking_rules_snapshot": "",
       "change_rules_snapshot": "",
       "refund_rules_snapshot": "",
-      "sale_status": "",
-      "id": "row_03"
+      "sale_status": ""
     }
   ]
 }

@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "TravelHotel 列表",
+    "travel_hotel": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -9,43 +12,41 @@
         "hotel_name": "",
         "city_code": "",
         "hotel_star": "",
-        "status": "",
-        "id": "row_01"
+        "status": ""
       },
       {
         "hotel_code": "",
         "hotel_name": "",
         "city_code": "",
         "hotel_star": "",
-        "status": "",
-        "id": "row_02"
+        "status": ""
       },
       {
         "hotel_code": "",
         "hotel_name": "",
         "city_code": "",
         "hotel_star": "",
-        "status": "",
-        "id": "row_03"
+        "status": ""
       }
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].city_code",
     "rows[].hotel_code",
     "rows[].hotel_name",
     "rows[].hotel_star",
-    "rows[].id",
     "rows[].status",
-    "rows_empty"
+    "rows_empty",
+    "travel_hotel",
+    "travel_hotel.page",
+    "travel_hotel.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_hotel"
   ],
   "urlParams": {},
   "notes": [],

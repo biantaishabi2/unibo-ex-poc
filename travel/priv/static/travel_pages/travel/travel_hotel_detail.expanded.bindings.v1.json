@@ -1,79 +1,58 @@
 {
   "version": 1,
   "vars": {
-    "record.hotel_code": {
+    "travel_hotel.hotel_code": {
       "uses": [
         {
-          "node_type": "BreadcrumbPage",
-          "node_id": "travel_hotel_bc_current",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.hotel_code|详情}}"
-        },
-        {
           "node_type": "Text",
-          "node_id": "travel_hotel_detail_title",
+          "node_id": "detail_fields_hotel_code_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.hotel_code|}}"
-        },
-        {
-          "node_type": "Text",
-          "node_id": "value_hotel_code",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.hotel_code|}}"
+          "template": "{{travel_hotel.hotel_code|}}"
         }
       ]
     },
-    "record.status": {
-      "uses": [
-        {
-          "node_type": "Badge",
-          "node_id": "travel_hotel_status_badge",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.status|}}"
-        },
-        {
-          "node_type": "Badge",
-          "node_id": "value_status",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.status|}}"
-        }
-      ]
-    },
-    "record.hotel_name": {
+    "travel_hotel.hotel_name": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_hotel_name",
+          "node_id": "detail_fields_hotel_name_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.hotel_name|}}"
+          "template": "{{travel_hotel.hotel_name|}}"
         }
       ]
     },
-    "record.city_code": {
+    "travel_hotel.city_code": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_city_code",
+          "node_id": "detail_fields_city_code_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.city_code|}}"
+          "template": "{{travel_hotel.city_code|}}"
         }
       ]
     },
-    "record.hotel_star": {
+    "travel_hotel.hotel_star": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_hotel_star",
+          "node_id": "detail_fields_hotel_star_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.hotel_star|}}"
+          "template": "{{travel_hotel.hotel_star|}}"
+        }
+      ]
+    },
+    "travel_hotel.status": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_status_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_hotel.status|}}"
         }
       ]
     }
@@ -83,9 +62,19 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_hotel_edit_btn",
+          "node_id": "edit_btn",
           "prop": "click",
           "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
         }
       ]
     },
@@ -93,13 +82,13 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "travel_hotel_edit_form",
+          "node_id": "edit_form",
           "prop": "submit",
           "raw": "form_submit"
         },
         {
           "node_type": "Button",
-          "node_id": "travel_hotel_save_btn",
+          "node_id": "save_btn",
           "prop": "click",
           "raw": "form_submit"
         }
@@ -109,7 +98,7 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "travel_hotel_edit_form",
+          "node_id": "edit_form",
           "prop": "change",
           "raw": "form_change"
         }
@@ -119,7 +108,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_hotel_cancel_btn",
+          "node_id": "cancel_btn",
           "prop": "click",
           "raw": "cancel_edit"
         }

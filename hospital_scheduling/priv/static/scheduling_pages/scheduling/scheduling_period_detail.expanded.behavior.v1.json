@@ -4,6 +4,7 @@
       "create": "Scheduling.SchedulingPeriod.create",
       "destroy": "Scheduling.SchedulingPeriod.destroy",
       "get": "Scheduling.SchedulingPeriod.get",
+      "mark_adjusted": "Scheduling.SchedulingPeriod.mark_adjusted",
       "mark_generated": "Scheduling.SchedulingPeriod.mark_generated",
       "publish": "Scheduling.SchedulingPeriod.publish",
       "start_generating": "Scheduling.SchedulingPeriod.start_generating",
@@ -16,7 +17,7 @@
     },
     "load": {
       "assigns": {},
-      "selection": "constraint_violations { details_json: detailsJson id message rule_code: ruleCode severity } coverage_requirements { id min_headcount: minHeadcount notes priority required_lead_count: requiredLeadCount required_skill_tags: requiredSkillTags requirement_date: requirementDate role_code: roleCode role_name: roleName target_headcount: targetHeadcount } end_date: endDate generation_mode: generationMode id notes schedule_versions { change_summary: changeSummary created_by: createdBy id origin_type: originType status version_no: versionNo } shift_assignments { ends_at: endsAt id is_locked: isLocked notes source starts_at: startsAt } solver_runs { completed_at: completedAt engine_type: engineType error_message: errorMessage hard_violation_count: hardViolationCount id input_snapshot: inputSnapshot output_snapshot: outputSnapshot score seed started_at: startedAt status timeout_ms: timeoutMs warning_count: warningCount } start_date: startDate state title"
+      "selection": "id title state generation_mode: generationMode department { name } start_date: startDate end_date: endDate current_version: currentVersion { id version_no: versionNo } last_solver_run: lastSolverRun { id status } schedule_versions: scheduleVersions { id version_no: versionNo status origin_type: originType change_summary: changeSummary } solver_runs: solverRuns { id engine_type: engineType status score hard_violation_count: hardViolationCount started_at: startedAt completed_at: completedAt }"
     },
     "params": {
       "accept": [
@@ -24,119 +25,16 @@
       ]
     }
   },
-  "children": [
-    "coverage_requirement",
-    "schedule_version",
-    "solver_run",
-    "shift_assignment",
-    "constraint_violation"
-  ],
-  "domain": "Scheduling",
   "e2e": {
     "playwright": {
       "auto": true,
-      "base_path": "/scheduling/scheduling_period/:id",
-      "cases": [
-        {
-          "covers": [],
-          "name": "页面加载 + 结构可见",
-          "steps": [
-            {
-              "action": "expect_visible",
-              "selector": "[data-page='scheduling_period_detail']"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "toggle_edit"
-          ],
-          "name": "编辑模式切换",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='toggle_edit']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "form, [data-mode='edit']"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "form_submit"
-          ],
-          "name": "表单提交",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='form_submit'], button[type='submit']"
-            },
-            {
-              "action": "expect_text_contains",
-              "selector": "#flash-group, [data-flash], [role='alert']",
-              "value": "成功"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "action_start_generating"
-          ],
-          "name": "动作：开始自动生成排班",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='action_start_generating']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_start_generating']"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "action_mark_generated"
-          ],
-          "name": "动作：求解完成，标记为已生成",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='action_mark_generated']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_mark_generated']"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "action_publish"
-          ],
-          "name": "动作：发布排班（需无 error 级违反）",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='action_publish']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_publish']"
-            }
-          ]
-        }
-      ],
+      "base_path": "/scheduling/scheduling_period_detail?id=:id",
+      "cases": [],
       "dto_smoke": []
     }
   },
-  "entity": "SchedulingPeriod",
+  "layer": 2,
   "page_id": "scheduling_period_detail",
-  "page_type": "object_page",
-  "runtime_monitoring": null,
-  "schema_version": "1.0",
   "state_transitions": [
     {
       "description": "切换编辑模式",
@@ -181,6 +79,13 @@
       "trigger": "user_action"
     },
     {
+      "description": "人工调班后标记",
+      "from": "*",
+      "name": "action_mark_adjusted",
+      "to": "loading",
+      "trigger": "user_action"
+    },
+    {
       "description": "发布排班（需无 error 级违反）",
       "from": "*",
       "name": "action_publish",
@@ -191,22 +96,9 @@
       "description": "删除记录",
       "from": "*",
       "name": "action_destroy",
-      "navigate_to": "/scheduling/scheduling_period",
       "to": "loading",
       "trigger": "user_action"
     }
   ],
-  "status_keys": [
-    "record",
-    "editing",
-    "form",
-    "loading"
-  ],
-  "ui": {
-    "sections": [],
-    "template": {
-      "detail": "object_page"
-    }
-  },
   "version": 1
 }

@@ -1,7 +1,8 @@
 {
   "version": 1,
   "requiredPaths": [
-    "page_title",
+    "flight_offer.page",
+    "flight_offer.total_pages",
     "row.arrival_airport_code",
     "row.arrival_at",
     "row.baggage_policy",
@@ -11,7 +12,6 @@
     "row.departure_at",
     "row.fare_family",
     "row.flight_no",
-    "row.id",
     "row.itinerary_code",
     "row.listed_price",
     "row.refund_change_policy",
@@ -23,17 +23,12 @@
     "rows_empty"
   ],
   "requiredRoots": [
-    "page_title",
+    "flight_offer",
     "row",
     "rows",
     "rows_empty"
   ],
   "schema": {
-    "page_title": {
-      "type": "object",
-      "required": true,
-      "properties": {}
-    },
     "rows": {
       "type": "array",
       "required": true,
@@ -120,11 +115,6 @@
             "type": "string",
             "required": false,
             "example": ""
-          },
-          "id": {
-            "type": "string",
-            "required": false,
-            "example": "row_01"
           }
         }
       },
@@ -197,10 +187,6 @@
         "sale_status": {
           "type": "unknown",
           "required": true
-        },
-        "id": {
-          "type": "unknown",
-          "required": true
         }
       }
     },
@@ -208,6 +194,22 @@
       "type": "object",
       "required": true,
       "properties": {}
+    },
+    "flight_offer": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
     }
   },
   "notes": []

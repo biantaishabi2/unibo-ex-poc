@@ -11,13 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_fulfillment_detail"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): editing, record, record.boarding_status, record.change_result, record.confirmation_payload, record.failure_reason, record.fulfillment_type, record.shipment_id, record.status, record.supplier_booking_ref, record.tenant_id, record.ticket_refs, record.used_at, record.voucher_or_ticket_ref, record.waitlist_result
+  # status.keys preview (first ~40): editing, travel_fulfillment, travel_fulfillment.boarding_status, travel_fulfillment.change_result, travel_fulfillment.confirmation_payload, travel_fulfillment.failure_reason, travel_fulfillment.fulfillment_type, travel_fulfillment.status, travel_fulfillment.supplier_booking_ref, travel_fulfillment.ticket_refs, travel_fulfillment.used_at, travel_fulfillment.voucher_or_ticket_ref, travel_fulfillment.waitlist_result
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"record\": {
-    \"supplier_booking_ref\": \"\",
-    \"status\": \"\",
+  \"travel_fulfillment\": {
     \"fulfillment_type\": \"\",
+    \"status\": \"\",
+    \"supplier_booking_ref\": \"\",
     \"voucher_or_ticket_ref\": \"\",
     \"ticket_refs\": \"\",
     \"waitlist_result\": \"\",
@@ -25,9 +25,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     \"boarding_status\": \"\",
     \"confirmation_payload\": \"\",
     \"failure_reason\": \"\",
-    \"used_at\": \"\",
-    \"tenant_id\": \"\",
-    \"shipment_id\": \"\"
+    \"used_at\": \"\"
   },
   \"editing\": false
 }")
@@ -93,51 +91,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("action_cancel_fulfillment", params, socket) do
-    # UI action event name: action_cancel_fulfillment
-    socket = dispatch_backend("action_cancel_fulfillment", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_complete_fulfillment", params, socket) do
-    # UI action event name: action_complete_fulfillment
-    socket = dispatch_backend("action_complete_fulfillment", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_confirm_booking", params, socket) do
-    # UI action event name: action_confirm_booking
-    socket = dispatch_backend("action_confirm_booking", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
   def handle_event("action_destroy", params, socket) do
     # UI action event name: action_destroy
     socket = dispatch_backend("action_destroy", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_fail_fulfillment", params, socket) do
-    # UI action event name: action_fail_fulfillment
-    socket = dispatch_backend("action_fail_fulfillment", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_issue_voucher_or_ticket", params, socket) do
-    # UI action event name: action_issue_voucher_or_ticket
-    socket = dispatch_backend("action_issue_voucher_or_ticket", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_mark_in_use", params, socket) do
-    # UI action event name: action_mark_in_use
-    socket = dispatch_backend("action_mark_in_use", params, socket)
     {:noreply, socket}
   end
 

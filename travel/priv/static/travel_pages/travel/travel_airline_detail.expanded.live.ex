@@ -11,15 +11,15 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_airline_detail"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): editing, record, record.airline_code, record.airline_name, record.iata_code, record.icao_code, record.status
+  # status.keys preview (first ~40): editing, travel_airline, travel_airline.airline_code, travel_airline.airline_name, travel_airline.iata_code, travel_airline.icao_code, travel_airline.status
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"record\": {
+  \"travel_airline\": {
     \"airline_code\": \"\",
-    \"status\": \"\",
     \"airline_name\": \"\",
     \"iata_code\": \"\",
-    \"icao_code\": \"\"
+    \"icao_code\": \"\",
+    \"status\": \"\"
   },
   \"editing\": false
 }")
@@ -74,6 +74,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       else
         socket
       end
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_destroy", params, socket) do
+    # UI action event name: action_destroy
+    socket = dispatch_backend("action_destroy", params, socket)
     {:noreply, socket}
   end
 

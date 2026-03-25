@@ -1,5 +1,8 @@
 {
-  "page_title": "TravelStaticCodeMapping 列表",
+  "travel_static_code_mapping": {
+    "page": "",
+    "total_pages": ""
+  },
   "rows_empty": true,
   "rows": [
     {
@@ -8,8 +11,7 @@
       "canonical_entity": "",
       "external_code": "",
       "external_name": "",
-      "status": "",
-      "id": "row_01"
+      "status": ""
     },
     {
       "supplier_code": "",
@@ -17,8 +19,7 @@
       "canonical_entity": "",
       "external_code": "",
       "external_name": "",
-      "status": "",
-      "id": "row_02"
+      "status": ""
     },
     {
       "supplier_code": "",
@@ -26,8 +27,7 @@
       "canonical_entity": "",
       "external_code": "",
       "external_name": "",
-      "status": "",
-      "id": "row_03"
+      "status": ""
     }
   ]
 }

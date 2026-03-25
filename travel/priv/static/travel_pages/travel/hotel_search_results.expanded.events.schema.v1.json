@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "events": {
+    "navigate": {
+      "name": "navigate",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "sort": {
+      "name": "sort",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

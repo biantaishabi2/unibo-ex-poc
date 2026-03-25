@@ -11,20 +11,19 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_policy_check_detail"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): editing, record, record.actual_amount, record.approval_mode, record.approval_request_id, record.check_result, record.exceed_amount, record.exceed_ratio, record.exceed_reason, record.exceed_strategy, record.personal_pay_amount, record.policy_amount
+  # status.keys preview (first ~40): editing, travel_policy_check, travel_policy_check.actual_amount, travel_policy_check.approval_mode, travel_policy_check.check_result, travel_policy_check.exceed_amount, travel_policy_check.exceed_ratio, travel_policy_check.exceed_reason, travel_policy_check.exceed_strategy, travel_policy_check.personal_pay_amount, travel_policy_check.policy_amount
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"record\": {
-    \"exceed_ratio\": \"\",
+  \"travel_policy_check\": {
     \"check_result\": \"\",
     \"policy_amount\": \"\",
     \"actual_amount\": \"\",
     \"exceed_amount\": \"\",
+    \"exceed_ratio\": \"\",
     \"exceed_strategy\": \"\",
     \"exceed_reason\": \"\",
     \"personal_pay_amount\": \"\",
-    \"approval_mode\": \"\",
-    \"approval_request_id\": \"\"
+    \"approval_mode\": \"\"
   },
   \"editing\": false
 }")
@@ -79,6 +78,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       else
         socket
       end
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("action_destroy", params, socket) do
+    # UI action event name: action_destroy
+    socket = dispatch_backend("action_destroy", params, socket)
     {:noreply, socket}
   end
 

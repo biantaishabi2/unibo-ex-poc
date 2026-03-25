@@ -1,5 +1,8 @@
 {
-  "page_title": "TravelOrder 列表",
+  "travel_order": {
+    "page": "",
+    "total_pages": ""
+  },
   "rows_empty": true,
   "rows": [
     {
@@ -21,8 +24,7 @@
       "ticket_passenger_infos": "",
       "seat_selection_snapshot": "",
       "supplier_order_ref": "",
-      "payment_external_ref": "",
-      "id": "row_01"
+      "payment_external_ref": ""
     },
     {
       "order_no": "",
@@ -43,8 +45,7 @@
       "ticket_passenger_infos": "",
       "seat_selection_snapshot": "",
       "supplier_order_ref": "",
-      "payment_external_ref": "",
-      "id": "row_02"
+      "payment_external_ref": ""
     },
     {
       "order_no": "",
@@ -65,8 +66,7 @@
       "ticket_passenger_infos": "",
       "seat_selection_snapshot": "",
       "supplier_order_ref": "",
-      "payment_external_ref": "",
-      "id": "row_03"
+      "payment_external_ref": ""
     }
   ]
 }

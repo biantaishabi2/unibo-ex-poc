@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "TravelStaticCodeMapping 列表",
+    "travel_static_code_mapping": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -10,8 +13,7 @@
         "canonical_entity": "",
         "external_code": "",
         "external_name": "",
-        "status": "",
-        "id": "row_01"
+        "status": ""
       },
       {
         "supplier_code": "",
@@ -19,8 +21,7 @@
         "canonical_entity": "",
         "external_code": "",
         "external_name": "",
-        "status": "",
-        "id": "row_02"
+        "status": ""
       },
       {
         "supplier_code": "",
@@ -28,28 +29,28 @@
         "canonical_entity": "",
         "external_code": "",
         "external_name": "",
-        "status": "",
-        "id": "row_03"
+        "status": ""
       }
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].canonical_entity",
     "rows[].external_code",
     "rows[].external_name",
-    "rows[].id",
     "rows[].object_type",
     "rows[].status",
     "rows[].supplier_code",
-    "rows_empty"
+    "rows_empty",
+    "travel_static_code_mapping",
+    "travel_static_code_mapping.page",
+    "travel_static_code_mapping.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_static_code_mapping"
   ],
   "urlParams": {},
   "notes": [],

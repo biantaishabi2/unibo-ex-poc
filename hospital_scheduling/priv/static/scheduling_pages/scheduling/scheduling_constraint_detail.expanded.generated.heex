@@ -50,17 +50,21 @@
             <.text variant="muted" id="label_constraint_type">
               硬约束或软约束
             </.text>
-            <.badge variant="default" size="sm" id="value_constraint_type">
-              <%= get_in(@record, [:constraint_type]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:constraint_type])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_constraint_type">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_category">
             <.text variant="muted" id="label_category">
               规则类别
             </.text>
-            <.badge variant="default" size="sm" id="value_category">
-              <%= get_in(@record, [:category]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:category])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_category">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_params">
             <.text variant="muted" id="label_params">
@@ -82,9 +86,11 @@
             <.text variant="muted" id="label_enabled">
               是否启用
             </.text>
-            <.badge variant="default" size="sm" id="value_enabled">
-              <%= get_in(@record, [:enabled]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:enabled])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_enabled">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_notes">
             <.text variant="muted" id="label_notes">

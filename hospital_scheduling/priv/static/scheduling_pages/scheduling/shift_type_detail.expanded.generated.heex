@@ -82,9 +82,11 @@
             <.text variant="muted" id="label_is_night">
               是否算夜班（影响夜班公平性约束）
             </.text>
-            <.badge variant="default" size="sm" id="value_is_night">
-              <%= get_in(@record, [:is_night]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:is_night])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_is_night">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_color">
             <.text variant="muted" id="label_color">
@@ -106,9 +108,11 @@
             <.text variant="muted" id="label_enabled">
               是否启用
             </.text>
-            <.badge variant="default" size="sm" id="value_enabled">
-              <%= get_in(@record, [:enabled]) || "" %>
-            </.badge>
+            <%= if (val = get_in(@record, [:enabled])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_enabled">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
         </.grid>
       <% else %>

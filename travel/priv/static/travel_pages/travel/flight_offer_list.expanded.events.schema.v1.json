@@ -14,6 +14,20 @@
         "click"
       ],
       "params": {}
+    },
+    "flight_offer_page_prev": {
+      "name": "flight_offer_page_prev",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "flight_offer_page_next": {
+      "name": "flight_offer_page_next",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
     }
   },
   "notes": []

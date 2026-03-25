@@ -1,25 +1,25 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
+    "travel_cabin_class": {
       "cabin_class_code": "",
-      "status": "",
       "cabin_class_name": "",
-      "cabin_rank": ""
+      "cabin_rank": "",
+      "status": ""
     },
     "editing": false
   },
   "keys": [
     "editing",
-    "record",
-    "record.cabin_class_code",
-    "record.cabin_class_name",
-    "record.cabin_rank",
-    "record.status"
+    "travel_cabin_class",
+    "travel_cabin_class.cabin_class_code",
+    "travel_cabin_class.cabin_class_name",
+    "travel_cabin_class.cabin_rank",
+    "travel_cabin_class.status"
   ],
   "required": [
     "editing",
-    "record"
+    "travel_cabin_class"
   ],
   "urlParams": {},
   "notes": [],

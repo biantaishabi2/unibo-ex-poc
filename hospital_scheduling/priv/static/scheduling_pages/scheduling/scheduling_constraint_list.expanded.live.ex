@@ -11,41 +11,39 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "scheduling_constraint_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].category, rows[].constraint_type, rows[].enabled, rows[].id, rows[].name, rows[].notes, rows[].params, rows[].weight, rows_empty
+  # status.keys preview (first ~40): page_title, rows, rows[], rows[].category, rows[].constraint_type, rows[].enabled, rows[].name, rows[].notes, rows[].weight, rows_empty, scheduling_constraint, scheduling_constraint.page, scheduling_constraint.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"SchedulingConstraint 列表\",
+  \"page_title\": \"排班约束配置\",
+  \"scheduling_constraint\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
   \"rows_empty\": true,
   \"rows\": [
     {
       \"name\": \"row_1\",
       \"constraint_type\": \"\",
       \"category\": \"\",
-      \"params\": \"\",
       \"weight\": \"\",
       \"enabled\": \"\",
-      \"notes\": \"\",
-      \"id\": \"row_01\"
+      \"notes\": \"\"
     },
     {
       \"name\": \"row_2\",
       \"constraint_type\": \"\",
       \"category\": \"\",
-      \"params\": \"\",
       \"weight\": \"\",
       \"enabled\": \"\",
-      \"notes\": \"\",
-      \"id\": \"row_02\"
+      \"notes\": \"\"
     },
     {
       \"name\": \"row_3\",
       \"constraint_type\": \"\",
       \"category\": \"\",
-      \"params\": \"\",
       \"weight\": \"\",
       \"enabled\": \"\",
-      \"notes\": \"\",
-      \"id\": \"row_03\"
+      \"notes\": \"\"
     }
   ]
 }")
@@ -56,14 +54,14 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event "list"
-  @backend_load_selection "category constraint_type: constraintType enabled id name notes params weight"
+  @backend_load_selection "id name constraint_type: constraintType category weight enabled notes"
   @backend_load_assigns %{}
-  @backend_params_accept ["constraint_type", "category"]
+  @backend_params_accept ["constraint_type", "category", "enabled"]
   @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
     "list" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingConstraint.list"}
   }
-  @status_key_roots [:rows, :rows_empty, :filter, :loading]
+  @status_key_roots []
   @auth_mode "optional"
   @user_context_assigns []
 
@@ -102,6 +100,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
+  def handle_event("action_destroy", params, socket) do
+    # UI action event name: action_destroy
+    socket = dispatch_backend("action_destroy", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
   def handle_event("filter_submit", params, socket) do
     # UI action event name: filter_submit
     socket = dispatch_backend("filter_submit", params, socket)
@@ -109,9 +114,44 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
+  def handle_event("navigate_back", params, socket) do
+    # UI action event name: navigate_back
+    socket = dispatch_backend("navigate_back", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
   def handle_event("navigate_create", params, socket) do
     # UI action event name: navigate_create
     socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_edit", params, socket) do
+    # UI action event name: navigate_edit
+    socket = dispatch_backend("navigate_edit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("scheduling_constraint_page_next", params, socket) do
+    # UI action event name: scheduling_constraint_page_next
+    socket = dispatch_backend("scheduling_constraint_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("scheduling_constraint_page_prev", params, socket) do
+    # UI action event name: scheduling_constraint_page_prev
+    socket = dispatch_backend("scheduling_constraint_page_prev", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("toggle_enabled", params, socket) do
+    # UI action event name: toggle_enabled
+    socket = dispatch_backend("toggle_enabled", params, socket)
     {:noreply, socket}
   end
 

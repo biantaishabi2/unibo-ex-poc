@@ -1,13 +1,11 @@
 {
   "version": 1,
   "requiredPaths": [
-    "page_title",
     "row.boarding_status",
     "row.change_result",
     "row.confirmation_payload",
     "row.failure_reason",
     "row.fulfillment_type",
-    "row.id",
     "row.status",
     "row.supplier_booking_ref",
     "row.ticket_refs",
@@ -15,20 +13,17 @@
     "row.voucher_or_ticket_ref",
     "row.waitlist_result",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_fulfillment.page",
+    "travel_fulfillment.total_pages"
   ],
   "requiredRoots": [
-    "page_title",
     "row",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_fulfillment"
   ],
   "schema": {
-    "page_title": {
-      "type": "object",
-      "required": true,
-      "properties": {}
-    },
     "rows": {
       "type": "array",
       "required": true,
@@ -90,11 +85,6 @@
             "type": "string",
             "required": false,
             "example": ""
-          },
-          "id": {
-            "type": "string",
-            "required": false,
-            "example": "row_01"
           }
         }
       },
@@ -147,10 +137,6 @@
         "used_at": {
           "type": "unknown",
           "required": true
-        },
-        "id": {
-          "type": "unknown",
-          "required": true
         }
       }
     },
@@ -158,6 +144,22 @@
       "type": "object",
       "required": true,
       "properties": {}
+    },
+    "travel_fulfillment": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
     }
   },
   "notes": []

@@ -1,33 +1,40 @@
 {
-  "page_title": "SchedulingPeriod 列表",
+  "page_title": "排班周期管理",
+  "scheduling_period": {
+    "page": "",
+    "total_pages": ""
+  },
   "rows_empty": true,
   "rows": [
     {
+      "title": "",
+      "department": {
+        "name": "department_1"
+      },
       "start_date": "",
       "end_date": "",
       "state": "",
-      "title": "",
-      "generation_mode": "",
-      "notes": "",
-      "id": "row_01"
+      "generation_mode": ""
     },
     {
+      "title": "",
+      "department": {
+        "name": "department_2"
+      },
       "start_date": "",
       "end_date": "",
       "state": "",
-      "title": "",
-      "generation_mode": "",
-      "notes": "",
-      "id": "row_02"
+      "generation_mode": ""
     },
     {
+      "title": "",
+      "department": {
+        "name": "department_3"
+      },
       "start_date": "",
       "end_date": "",
       "state": "",
-      "title": "",
-      "generation_mode": "",
-      "notes": "",
-      "id": "row_03"
+      "generation_mode": ""
     }
   ]
 }

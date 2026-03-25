@@ -214,6 +214,7 @@
     },
     {
       "api_map": {
+        "create": "Scheduling.SchedulingPeriod.create",
         "destroy": "Scheduling.SchedulingPeriod.destroy",
         "get": "Scheduling.SchedulingPeriod.get",
         "mark_adjusted": "Scheduling.SchedulingPeriod.mark_adjusted",
@@ -224,6 +225,7 @@
       },
       "backend": {
         "api_map": {
+          "create": "Scheduling.SchedulingPeriod.create",
           "destroy": "Scheduling.SchedulingPeriod.destroy",
           "get": "Scheduling.SchedulingPeriod.get",
           "mark_adjusted": "Scheduling.SchedulingPeriod.mark_adjusted",
@@ -652,6 +654,30 @@
       "ui_sections": []
     },
     {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/shift_type_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "shift_type_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
       "api_map": {
         "list": "Scheduling.SolverRun.list"
       },
@@ -754,6 +780,54 @@
         "schema_version": "1.0"
       },
       "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/shift_type_list.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "shift_type_list",
+      "page_kind": "list",
+      "page_type": "list",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {},
+      "behavior_file": "",
+      "domain": "",
+      "domain_snake": "",
+      "dsl_file": "/scheduling_constraint_detail.dsl",
+      "entity": "",
+      "entity_snake": "",
+      "page_id": "scheduling_constraint_detail",
+      "page_kind": "detail",
+      "page_type": "detail",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": []
     }
   ],
   "route_map": [
@@ -803,6 +877,11 @@
       "route_kind": "new"
     },
     {
+      "page_id": "shift_type_detail",
+      "path": "//shift_type_detail",
+      "route_kind": "detail"
+    },
+    {
       "page_id": "solver_result",
       "path": "/scheduling/solver_result",
       "route_kind": "custom"
@@ -821,6 +900,16 @@
       "page_id": "calendar_adjustment",
       "path": "/scheduling/calendar_adjustment",
       "route_kind": "custom"
+    },
+    {
+      "page_id": "shift_type_list",
+      "path": "//shift_type_list",
+      "route_kind": "list"
+    },
+    {
+      "page_id": "scheduling_constraint_detail",
+      "path": "//scheduling_constraint_detail",
+      "route_kind": "detail"
     }
   ],
   "schema_version": "1.0",

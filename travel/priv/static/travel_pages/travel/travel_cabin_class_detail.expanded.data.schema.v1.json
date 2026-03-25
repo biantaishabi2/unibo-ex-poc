@@ -2,26 +2,26 @@
   "version": 1,
   "requiredPaths": [
     "editing",
-    "record.cabin_class_code",
-    "record.cabin_class_name",
-    "record.cabin_rank",
-    "record.status"
+    "travel_cabin_class.cabin_class_code",
+    "travel_cabin_class.cabin_class_name",
+    "travel_cabin_class.cabin_rank",
+    "travel_cabin_class.status"
   ],
   "requiredRoots": [
     "editing",
-    "record"
+    "travel_cabin_class"
   ],
   "schema": {
-    "record": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_cabin_class": {
       "type": "object",
       "required": true,
       "properties": {
         "cabin_class_code": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
-        "status": {
           "type": "string",
           "required": false,
           "example": ""
@@ -35,13 +35,13 @@
           "type": "string",
           "required": false,
           "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
         }
       }
-    },
-    "editing": {
-      "type": "object",
-      "required": true,
-      "properties": {}
     }
   },
   "notes": []

@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "FlightOffer 列表",
+    "flight_offer": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -20,8 +23,7 @@
         "seats_available": "",
         "baggage_policy": "",
         "refund_change_policy": "",
-        "sale_status": "",
-        "id": "row_01"
+        "sale_status": ""
       },
       {
         "supplier_code": "",
@@ -39,8 +41,7 @@
         "seats_available": "",
         "baggage_policy": "",
         "refund_change_policy": "",
-        "sale_status": "",
-        "id": "row_02"
+        "sale_status": ""
       },
       {
         "supplier_code": "",
@@ -58,13 +59,14 @@
         "seats_available": "",
         "baggage_policy": "",
         "refund_change_policy": "",
-        "sale_status": "",
-        "id": "row_03"
+        "sale_status": ""
       }
     ]
   },
   "keys": [
-    "page_title",
+    "flight_offer",
+    "flight_offer.page",
+    "flight_offer.total_pages",
     "rows",
     "rows[]",
     "rows[].arrival_airport_code",
@@ -76,7 +78,6 @@
     "rows[].departure_at",
     "rows[].fare_family",
     "rows[].flight_no",
-    "rows[].id",
     "rows[].itinerary_code",
     "rows[].listed_price",
     "rows[].refund_change_policy",
@@ -87,7 +88,7 @@
     "rows_empty"
   ],
   "required": [
-    "page_title",
+    "flight_offer",
     "rows",
     "rows_empty"
   ],

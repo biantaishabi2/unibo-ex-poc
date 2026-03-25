@@ -15,13 +15,6 @@
       ],
       "params": {}
     },
-    "action_mark_generated": {
-      "name": "action_mark_generated",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
-    },
     "action_publish": {
       "name": "action_publish",
       "triggers": [
@@ -29,30 +22,22 @@
       ],
       "params": {}
     },
-    "action_destroy": {
-      "name": "action_destroy",
+    "navigate_requirements": {
+      "name": "navigate_requirements",
       "triggers": [
         "click"
       ],
       "params": {}
     },
-    "form_submit": {
-      "name": "form_submit",
+    "navigate_constraints": {
+      "name": "navigate_constraints",
       "triggers": [
-        "click",
-        "submit"
+        "click"
       ],
       "params": {}
     },
-    "form_change": {
-      "name": "form_change",
-      "triggers": [
-        "change"
-      ],
-      "params": {}
-    },
-    "cancel_edit": {
-      "name": "cancel_edit",
+    "navigate_calendar": {
+      "name": "navigate_calendar",
       "triggers": [
         "click"
       ],

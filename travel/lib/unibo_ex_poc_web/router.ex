@@ -20,8 +20,7 @@ defmodule UniboExPocWeb.Router do
 
     get "/", PageController, :home
 
-    live "/travel", TravelLive
-    live "/travel/:page", TravelLive
+
   end
 
   # UniBO page host 页面路由

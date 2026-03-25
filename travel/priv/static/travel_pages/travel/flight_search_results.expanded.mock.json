@@ -1,0 +1,117 @@
+{
+  "search": {
+    "route_label": "",
+    "date_range": [
+      {
+        "is_selected": "",
+        "date_label": "",
+        "price_label": ""
+      },
+      {
+        "is_selected": "",
+        "date_label": "",
+        "price_label": ""
+      },
+      {
+        "is_selected": "",
+        "date_label": "",
+        "price_label": ""
+      }
+    ]
+  },
+  "policy": {
+    "exceeded": true
+  },
+  "flights": {
+    "total_count": true,
+    "items": [
+      {
+        "id": "fli_01",
+        "airline_ref": {
+          "logo": "",
+          "code": "",
+          "name": "airline_ref_1"
+        },
+        "flight_no": "",
+        "is_policy_compliant": true,
+        "departure_time": "",
+        "departure_airport_ref": {
+          "city_name": ""
+        },
+        "departure_airport_code": "",
+        "duration_label": "",
+        "stop_label": "",
+        "arrival_time": "",
+        "arrival_airport_ref": {
+          "city_name": ""
+        },
+        "arrival_airport_code": "",
+        "cabin_class_ref": {
+          "name": "cabin_class_ref_1"
+        },
+        "aircraft_type": "",
+        "discount_label": "",
+        "currency": "",
+        "listed_price": ""
+      },
+      {
+        "id": "fli_02",
+        "airline_ref": {
+          "logo": "",
+          "code": "",
+          "name": "airline_ref_2"
+        },
+        "flight_no": "",
+        "is_policy_compliant": true,
+        "departure_time": "",
+        "departure_airport_ref": {
+          "city_name": ""
+        },
+        "departure_airport_code": "",
+        "duration_label": "",
+        "stop_label": "",
+        "arrival_time": "",
+        "arrival_airport_ref": {
+          "city_name": ""
+        },
+        "arrival_airport_code": "",
+        "cabin_class_ref": {
+          "name": "cabin_class_ref_2"
+        },
+        "aircraft_type": "",
+        "discount_label": "",
+        "currency": "",
+        "listed_price": ""
+      },
+      {
+        "id": "fli_03",
+        "airline_ref": {
+          "logo": "",
+          "code": "",
+          "name": "airline_ref_3"
+        },
+        "flight_no": "",
+        "is_policy_compliant": true,
+        "departure_time": "",
+        "departure_airport_ref": {
+          "city_name": ""
+        },
+        "departure_airport_code": "",
+        "duration_label": "",
+        "stop_label": "",
+        "arrival_time": "",
+        "arrival_airport_ref": {
+          "city_name": ""
+        },
+        "arrival_airport_code": "",
+        "cabin_class_ref": {
+          "name": "cabin_class_ref_3"
+        },
+        "aircraft_type": "",
+        "discount_label": "",
+        "currency": "",
+        "listed_price": ""
+      }
+    ]
+  }
+}

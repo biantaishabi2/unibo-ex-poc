@@ -1,5 +1,8 @@
 {
-  "page_title": "TravelPolicyCheck 列表",
+  "travel_policy_check": {
+    "page": "",
+    "total_pages": ""
+  },
   "rows_empty": true,
   "rows": [
     {
@@ -11,8 +14,7 @@
       "exceed_strategy": "",
       "exceed_reason": "",
       "personal_pay_amount": "",
-      "approval_mode": "",
-      "id": "row_01"
+      "approval_mode": ""
     },
     {
       "check_result": "",
@@ -23,8 +25,7 @@
       "exceed_strategy": "",
       "exceed_reason": "",
       "personal_pay_amount": "",
-      "approval_mode": "",
-      "id": "row_02"
+      "approval_mode": ""
     },
     {
       "check_result": "",
@@ -35,8 +36,7 @@
       "exceed_strategy": "",
       "exceed_reason": "",
       "personal_pay_amount": "",
-      "approval_mode": "",
-      "id": "row_03"
+      "approval_mode": ""
     }
   ]
 }

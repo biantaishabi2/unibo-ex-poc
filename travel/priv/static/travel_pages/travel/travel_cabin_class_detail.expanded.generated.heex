@@ -1,100 +1,117 @@
-<.page title="TravelCabinClass 详情" id="travel_cabin_class_detail">
-  <.breadcrumb id="travel_cabin_class_breadcrumb">
-    <.breadcrumb_list id="travel_cabin_class_bc_list">
-      <.breadcrumb_item id="travel_cabin_class_bc_list_item">
-        <.breadcrumb_link id="travel_cabin_class_bc_link">
-          TravelCabinClass 列表
-        </.breadcrumb_link>
-      </.breadcrumb_item>
-      <.breadcrumb_separator id="travel_cabin_class_bc_sep" />
-      <.breadcrumb_item id="travel_cabin_class_bc_current_item">
-        <.breadcrumb_page id="travel_cabin_class_bc_current">
-          <%= get_in(@record, [:cabin_class_code]) || "详情" %>
-        </.breadcrumb_page>
-      </.breadcrumb_item>
-    </.breadcrumb_list>
-  </.breadcrumb>
-  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="travel_cabin_class_detail_header">
-    <.flex gap={3} align="center" direction="row" id="travel_cabin_class_title_group">
-      <.text variant="title" id="travel_cabin_class_detail_title">
-        <%= get_in(@record, [:cabin_class_code]) || "" %>
-      </.text>
-      <%= if (val = get_in(@record, [:status])) && to_string(val) != "" do %>
-        <.badge variant="default" size="sm" id="travel_cabin_class_status_badge">
-          <%= to_string(val) %>
-        </.badge>
+<.page title="详情" id="travel_cabin_class_detail">
+  <.section layout="none" id="breadcrumb_section">
+    <.breadcrumb id="page_breadcrumb">
+      <.breadcrumb_list id="bc_list">
+        <.breadcrumb_item id="bc_list_item">
+          <.breadcrumb_link id="bc_link">
+            列表
+          </.breadcrumb_link>
+        </.breadcrumb_item>
+        <.breadcrumb_separator id="bc_sep" />
+        <.breadcrumb_item id="bc_current_item">
+          <.breadcrumb_page id="bc_current">
+            详情
+          </.breadcrumb_page>
+        </.breadcrumb_item>
+      </.breadcrumb_list>
+    </.breadcrumb>
+  </.section>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="detail_header">
+    <.flex gap={3} align="center" direction="row" id="title_group">
+      <.stack direction="column" id="title_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelCabinClass
+        </.text>
+        <.text variant="h1" id="page_title">
+          舱位主数据（Travel 层,来源 OFBiz Enumeration）
+        </.text>
+      </.stack>
+      <%= case get_in(@travel_cabin_class, [:status]) do %>
+        <% "active" -> %>
+          <.badge color="green">active</.badge>
+        <% "inactive" -> %>
+          <.badge color="red">inactive</.badge>
+        <% _ -> %>
+          <.badge />
       <% end %>
     </.flex>
-    <.flex gap={2} direction="row" id="travel_cabin_class_actions">
-      <.button variant="secondary" phx-click="toggle_edit" size="md" id="travel_cabin_class_edit_btn">
+    <.flex gap={2} direction="row" id="actions_group">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
         编辑
+      </.button>
+      <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
+        删除
       </.button>
     </.flex>
   </.section>
-  <.card variant="default" id="travel_cabin_class_info_card">
-    <.card_header id="travel_cabin_class_info_header">
-      <.card_title id="travel_cabin_class_info_title">
-        基本信息
-      </.card_title>
-    </.card_header>
-    <.card_content id="travel_cabin_class_info_content">
-      <%= if !(@editing && @editing != []) do %>
-        <.grid columns={2} gap={4} id="travel_cabin_class_info_grid">
-          <.flex direction="row" id="field_cabin_class_code">
-            <.text variant="muted" id="label_cabin_class_code">
-              舱位规范编码
-            </.text>
-            <.text id="value_cabin_class_code">
-              <%= get_in(@record, [:cabin_class_code]) || "" %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_cabin_class_name">
-            <.text variant="muted" id="label_cabin_class_name">
-              舱位名称
-            </.text>
-            <.text id="value_cabin_class_name">
-              <%= get_in(@record, [:cabin_class_name]) || "" %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_cabin_rank">
-            <.text variant="muted" id="label_cabin_rank">
-              舱位等级序
-            </.text>
-            <.text id="value_cabin_rank">
-              <%= get_in(@record, [:cabin_rank]) || "" %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_status">
-            <.text variant="muted" id="label_status">
-              status
-            </.text>
-            <%= if (val = get_in(@record, [:status])) && to_string(val) != "" do %>
-              <.badge variant="default" size="sm" id="value_status">
-                <%= to_string(val) %>
-              </.badge>
-            <% end %>
-          </.flex>
-        </.grid>
-      <% else %>
-        <.form phx-submit="form_submit" phx-change="form_change" id="travel_cabin_class_edit_form">
-          <.grid columns={2} gap={4} id="travel_cabin_class_form_grid">
-            <.input name="cabin_class_code" label="舱位规范编码" placeholder="请输入舱位规范编码" required="true" size="md" id="form_cabin_class_code" value={@record.cabin_class_code} />
-            <.input name="cabin_class_name" label="舱位名称" placeholder="请输入舱位名称" required="true" size="md" id="form_cabin_class_name" value={@record.cabin_class_name} />
-            <.input name="cabin_rank" label="舱位等级序" placeholder="请输入舱位等级序" size="md" id="form_cabin_rank" value={@record.cabin_rank} />
-            <.select name="status" label="status" size="md" id="form_status" value={@record.status}>
-
-            </.select>
+  <.section layout="none" id="info_section">
+    <.card variant="default" id="info_card">
+      <.card_header id="info_header">
+        <.card_title id="info_title">
+          基本信息
+        </.card_title>
+      </.card_header>
+      <.card_content id="info_content">
+        <%= if !(@editing && @editing != []) do %>
+          <.grid columns={2} gap={4} id="info_grid">
+            <.grid columns={2} gap={3} id="detail_fields">
+              <.stack gap={0} direction="column" id="detail_fields_cabin_class_code">
+                <.text variant="caption" color="muted" id="detail_fields_cabin_class_code_label">
+                  舱位规范编码
+                </.text>
+                <.text id="detail_fields_cabin_class_code_value">
+                  <%= get_in(@travel_cabin_class, [:cabin_class_code]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_cabin_class_name">
+                <.text variant="caption" color="muted" id="detail_fields_cabin_class_name_label">
+                  舱位名称
+                </.text>
+                <.text id="detail_fields_cabin_class_name_value">
+                  <%= get_in(@travel_cabin_class, [:cabin_class_name]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_cabin_rank">
+                <.text variant="caption" color="muted" id="detail_fields_cabin_rank_label">
+                  舱位等级序
+                </.text>
+                <.text id="detail_fields_cabin_rank_value">
+                  <%= get_in(@travel_cabin_class, [:cabin_rank]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_status">
+                <.text variant="caption" color="muted" id="detail_fields_status_label">
+                  status
+                </.text>
+                <.text id="detail_fields_status_value">
+                  <%= get_in(@travel_cabin_class, [:status]) || "" %>
+                </.text>
+              </.stack>
+            </.grid>
           </.grid>
-          <.flex justify="end" gap={2} direction="row" id="travel_cabin_class_form_actions">
-            <.button variant="secondary" phx-click="cancel_edit" size="md" id="travel_cabin_class_cancel_btn">
-              取消
-            </.button>
-            <.button variant="primary" phx-click="form_submit" size="md" id="travel_cabin_class_save_btn">
-              保存
-            </.button>
-          </.flex>
-        </.form>
-      <% end %>
-    </.card_content>
-  </.card>
+        <% else %>
+          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+            <.grid columns={2} gap={4} id="form_grid">
+              <.stack direction="column" id="form_fields">
+                <.input bind="travel_cabin_class.cabin_class_code" size="md" id="update_cabin_class_code" />
+                <.input bind="travel_cabin_class.cabin_class_name" size="md" id="update_cabin_class_name" />
+                <.input bind="travel_cabin_class.cabin_rank" size="md" id="update_cabin_rank" />
+                <.select bind="travel_cabin_class.status" size="md" id="update_status" options={[%{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}]}>
+
+                </.select>
+              </.stack>
+            </.grid>
+            <.flex justify="end" gap={2} direction="row" id="form_actions">
+              <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
+                取消
+              </.button>
+              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+                保存
+              </.button>
+            </.flex>
+          </.form>
+        <% end %>
+      </.card_content>
+    </.card>
+  </.section>
 </.page>

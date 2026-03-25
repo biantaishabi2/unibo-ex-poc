@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "HotelOffer 列表",
+    "hotel_offer": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -19,8 +22,7 @@
         "inventory_count": "",
         "cancellation_policy": "",
         "guarantee_policy": "",
-        "sale_status": "",
-        "id": "row_01"
+        "sale_status": ""
       },
       {
         "supplier_code": "",
@@ -37,8 +39,7 @@
         "inventory_count": "",
         "cancellation_policy": "",
         "guarantee_policy": "",
-        "sale_status": "",
-        "id": "row_02"
+        "sale_status": ""
       },
       {
         "supplier_code": "",
@@ -55,13 +56,14 @@
         "inventory_count": "",
         "cancellation_policy": "",
         "guarantee_policy": "",
-        "sale_status": "",
-        "id": "row_03"
+        "sale_status": ""
       }
     ]
   },
   "keys": [
-    "page_title",
+    "hotel_offer",
+    "hotel_offer.page",
+    "hotel_offer.total_pages",
     "rows",
     "rows[]",
     "rows[].cancellation_policy",
@@ -72,7 +74,6 @@
     "rows[].guarantee_policy",
     "rows[].hotel_code",
     "rows[].hotel_name",
-    "rows[].id",
     "rows[].inventory_count",
     "rows[].listed_price",
     "rows[].rate_plan_code",
@@ -83,7 +84,7 @@
     "rows_empty"
   ],
   "required": [
-    "page_title",
+    "hotel_offer",
     "rows",
     "rows_empty"
   ],

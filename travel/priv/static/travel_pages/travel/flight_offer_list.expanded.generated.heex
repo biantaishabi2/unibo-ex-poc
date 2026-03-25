@@ -1,149 +1,170 @@
-<.page title="FlightOffer 列表" id="flight_offer_list">
-  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="flight_offer_header">
-    <.text variant="title" id="flight_offer_title">
-      <%= @page_title %>
-    </.text>
-    <.button variant="primary" phx-click="navigate_create" size="md" id="flight_offer_create_btn">
-      新建
-    </.button>
+<.page title="列表" id="flight_offer_list">
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.stack direction="column" id="page_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          FlightOffer
+        </.text>
+        <.text variant="h1" id="page_title">
+          机票可售 offer,承载航班、舱位、票规和库存快照
+        </.text>
+      </.stack>
+      <.button variant="primary" phx-click="navigate_create" size="md" id="create_btn">
+        新建
+      </.button>
+    </.flex>
   </.section>
-  <.card variant="default" id="flight_offer_filter_card">
-    <.card_content id="flight_offer_filter_content">
-      <.flex gap={4} align="center" direction="row" id="flight_offer_filter_row">
-        <.input name="departure_at_from" label="起飞时间 起" size="md" id="filter_departure_at_from" />
-        <.input name="departure_at_to" label="起飞时间 止" size="md" id="filter_departure_at_to" />
-        <.input name="arrival_at_from" label="到达时间 起" size="md" id="filter_arrival_at_from" />
-        <.input name="arrival_at_to" label="到达时间 止" size="md" id="filter_arrival_at_to" />
-        <.select name="sale_status" label="sale_status" size="md" id="filter_sale_status">
-
-        </.select>
-        <.button variant="secondary" phx-click="filter_submit" size="md" id="flight_offer_filter_submit">
-          查询
-        </.button>
-      </.flex>
-    </.card_content>
-  </.card>
-  <.table id="flight_offer_table">
-    <.table_header id="flight_offer_table_header">
-      <.table_row id="flight_offer_header_row">
-        <.table_head id="th_supplier_code">
-          供应商编码
-        </.table_head>
-        <.table_head id="th_itinerary_code">
-          行程编码
-        </.table_head>
-        <.table_head id="th_flight_no">
-          航班号
-        </.table_head>
-        <.table_head id="th_departure_airport_code">
-          出发机场编码
-        </.table_head>
-        <.table_head id="th_arrival_airport_code">
-          到达机场编码
-        </.table_head>
-        <.table_head id="th_departure_at">
-          起飞时间
-        </.table_head>
-        <.table_head id="th_arrival_at">
-          到达时间
-        </.table_head>
-        <.table_head id="th_cabin_class">
-          舱等
-        </.table_head>
-        <.table_head id="th_fare_family">
-          运价族
-        </.table_head>
-        <.table_head id="th_listed_price">
-          对客展示价快照
-        </.table_head>
-        <.table_head id="th_settlement_price">
-          结算价快照
-        </.table_head>
-        <.table_head id="th_currency">
-          currency
-        </.table_head>
-        <.table_head id="th_seats_available">
-          可售座位快照
-        </.table_head>
-        <.table_head id="th_baggage_policy">
-          行李规则快照
-        </.table_head>
-        <.table_head id="th_refund_change_policy">
-          退改规则快照
-        </.table_head>
-        <.table_head id="th_sale_status">
-          sale_status
-        </.table_head>
-        <.table_head id="flight_offer_th_actions">
-          操作
-        </.table_head>
-      </.table_row>
-    </.table_header>
-    <.table_body id="flight_offer_table_body">
-      <%= for row <- (@rows || []) do %>
-        <.table_row>
-          <.table_cell>
-            <%= get_in(row, [:supplier_code]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:itinerary_code]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:flight_no]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:departure_airport_code]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:arrival_airport_code]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:departure_at]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:arrival_at]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:cabin_class]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:fare_family]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:listed_price]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:settlement_price]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:currency]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:seats_available]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:baggage_policy]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= get_in(row, [:refund_change_policy]) || "" %>
-          </.table_cell>
-          <.table_cell>
-            <%= if (val = get_in(row, [:sale_status])) && to_string(val) != "" do %>
-              <.badge variant="default" size="sm">
-                <%= to_string(val) %>
-              </.badge>
-            <% end %>
-          </.table_cell>
-          <.table_cell>
-            <.link patch={"/pages/travel/flight_offer/#{get_in(row, [:id])}"} id="flight_offer_view_btn" variant="link" size="sm">
-              查看
-            </.link>
-          </.table_cell>
+  <.section layout="none" id="view_tabs">
+    <.tabs default_value="all" id="view_selector">
+      <.tabs_list id="view_tab_list">
+        <.tabs_trigger value="all" active_value="all" id="trigger_all">
+          全部
+        </.tabs_trigger>
+      </.tabs_list>
+    </.tabs>
+  </.section>
+  <.section layout="none" id="filter_section">
+    <.card variant="default" id="filter_card">
+      <.card_content id="filter_content">
+        <.flex gap={4} align="center" direction="row" id="filter_row">
+          <.stack direction="column" id="filter_fields" />
+          <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
+            查询
+          </.button>
+        </.flex>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="table_section">
+    <.table id="data_table">
+      <.table_header id="data_header">
+        <.table_row id="header_row">
+          <.table_head id="th_supplier_code">
+            供应商编码
+          </.table_head>
+          <.table_head id="th_itinerary_code">
+            行程编码
+          </.table_head>
+          <.table_head id="th_flight_no">
+            航班号
+          </.table_head>
+          <.table_head id="th_departure_airport_code">
+            出发机场编码
+          </.table_head>
+          <.table_head id="th_arrival_airport_code">
+            到达机场编码
+          </.table_head>
+          <.table_head id="th_departure_at">
+            起飞时间
+          </.table_head>
+          <.table_head id="th_arrival_at">
+            到达时间
+          </.table_head>
+          <.table_head id="th_cabin_class">
+            舱等
+          </.table_head>
+          <.table_head id="th_fare_family">
+            运价族
+          </.table_head>
+          <.table_head id="th_listed_price">
+            对客展示价快照
+          </.table_head>
+          <.table_head id="th_settlement_price">
+            结算价快照
+          </.table_head>
+          <.table_head id="th_currency">
+            currency
+          </.table_head>
+          <.table_head id="th_seats_available">
+            可售座位快照
+          </.table_head>
+          <.table_head id="th_baggage_policy">
+            行李规则快照
+          </.table_head>
+          <.table_head id="th_refund_change_policy">
+            退改规则快照
+          </.table_head>
+          <.table_head id="th_sale_status">
+            sale_status
+          </.table_head>
         </.table_row>
-      <% end %>
-    </.table_body>
-  </.table>
-  <%= if (@rows_empty && @rows_empty != []) do %>
-    <.empty_state description="暂无机票可售 offer,承载航班、舱位、票规和库存快照数据" id="flight_offer_no_data" />
-  <% end %>
+      </.table_header>
+      <.table_body id="data_body">
+        <%= for row <- (@rows || []) do %>
+          <.table_row>
+            <.table_cell>
+              <%= get_in(row, [:supplier_code]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:itinerary_code]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:flight_no]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:departure_airport_code]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:arrival_airport_code]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:departure_at]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:arrival_at]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:cabin_class]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:fare_family]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:listed_price]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:settlement_price]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:currency]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:seats_available]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:baggage_policy]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:refund_change_policy]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:sale_status])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+          </.table_row>
+        <% end %>
+      </.table_body>
+    </.table>
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if (@rows_empty && @rows_empty != []) do %>
+      <.empty_state description="暂无数据" id="no_data" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="footer">
+    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
+      <.button phx-click="flight_offer_page_prev" variant="primary" size="md" id="page_prev">
+        上一页
+      </.button>
+      <.text id="page_info">
+        <%= get_in(@flight_offer, [:page]) || "" %> / <%= get_in(@flight_offer, [:total_pages]) || "" %>
+      </.text>
+      <.button phx-click="flight_offer_page_next" variant="primary" size="md" id="page_next">
+        下一页
+      </.button>
+    </.flex>
+  </.section>
 </.page>

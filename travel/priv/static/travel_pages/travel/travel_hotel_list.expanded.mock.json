@@ -1,5 +1,8 @@
 {
-  "page_title": "TravelHotel 列表",
+  "travel_hotel": {
+    "page": "",
+    "total_pages": ""
+  },
   "rows_empty": true,
   "rows": [
     {
@@ -7,24 +10,21 @@
       "hotel_name": "",
       "city_code": "",
       "hotel_star": "",
-      "status": "",
-      "id": "row_01"
+      "status": ""
     },
     {
       "hotel_code": "",
       "hotel_name": "",
       "city_code": "",
       "hotel_star": "",
-      "status": "",
-      "id": "row_02"
+      "status": ""
     },
     {
       "hotel_code": "",
       "hotel_name": "",
       "city_code": "",
       "hotel_star": "",
-      "status": "",
-      "id": "row_03"
+      "status": ""
     }
   ]
 }

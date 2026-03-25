@@ -1,57 +1,32 @@
 {
   "version": 1,
   "requiredPaths": [
-    "editing",
-    "item.change_summary",
-    "item.completed_at",
-    "item.created_by",
-    "item.details_json",
-    "item.ends_at",
-    "item.engine_type",
-    "item.error_message",
-    "item.hard_violation_count",
-    "item.input_snapshot",
-    "item.is_locked",
-    "item.message",
-    "item.min_headcount",
-    "item.notes",
-    "item.origin_type",
-    "item.output_snapshot",
-    "item.priority",
-    "item.required_lead_count",
-    "item.required_skill_tags",
-    "item.requirement_date",
-    "item.role_code",
-    "item.role_name",
-    "item.rule_code",
-    "item.score",
-    "item.seed",
-    "item.severity",
-    "item.source",
-    "item.started_at",
-    "item.starts_at",
-    "item.status",
-    "item.target_headcount",
-    "item.timeout_ms",
-    "item.version_no",
-    "item.warning_count",
-    "record",
-    "record.constraint_violations",
-    "record.coverage_requirements",
+    "record.current_version.version_no",
+    "record.department.name",
     "record.end_date",
     "record.generation_mode",
-    "record.notes",
+    "record.last_solver_run.status",
     "record.schedule_versions",
-    "record.shift_assignments",
     "record.solver_runs",
     "record.start_date",
     "record.state",
-    "record.title"
+    "record.title",
+    "run.completed_at",
+    "run.engine_type",
+    "run.hard_violation_count",
+    "run.score",
+    "run.started_at",
+    "run.status",
+    "ver.change_summary",
+    "ver.inserted_at",
+    "ver.origin_type",
+    "ver.status",
+    "ver.version_no"
   ],
   "requiredRoots": [
-    "editing",
-    "item",
-    "record"
+    "record",
+    "run",
+    "ver"
   ],
   "schema": {
     "record": {
@@ -68,6 +43,22 @@
           "required": false,
           "example": ""
         },
+        "generation_mode": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "department": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "name": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            }
+          }
+        },
         "start_date": {
           "type": "string",
           "required": false,
@@ -78,71 +69,27 @@
           "required": false,
           "example": ""
         },
-        "generation_mode": {
-          "type": "string",
+        "current_version": {
+          "type": "object",
           "required": false,
-          "example": ""
-        },
-        "notes": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
-        "coverage_requirements": {
-          "type": "array",
-          "required": false,
-          "items": {
-            "type": "object",
-            "required": false,
-            "properties": {
-              "requirement_date": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "role_code": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "role_name": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "required_skill_tags": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "min_headcount": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "target_headcount": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "required_lead_count": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "priority": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "notes": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              }
+          "properties": {
+            "version_no": {
+              "type": "string",
+              "required": false,
+              "example": ""
             }
-          },
-          "exampleCount": 3
+          }
+        },
+        "last_solver_run": {
+          "type": "object",
+          "required": false,
+          "properties": {
+            "status": {
+              "type": "string",
+              "required": false,
+              "example": ""
+            }
+          }
         },
         "schedule_versions": {
           "type": "array",
@@ -166,12 +113,12 @@
                 "required": false,
                 "example": ""
               },
-              "created_by": {
+              "change_summary": {
                 "type": "string",
                 "required": false,
                 "example": ""
               },
-              "change_summary": {
+              "inserted_at": {
                 "type": "string",
                 "required": false,
                 "example": ""
@@ -187,32 +134,12 @@
             "type": "object",
             "required": false,
             "properties": {
-              "status": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
               "engine_type": {
                 "type": "string",
                 "required": false,
                 "example": ""
               },
-              "seed": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "timeout_ms": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "started_at": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "completed_at": {
+              "status": {
                 "type": "string",
                 "required": false,
                 "example": ""
@@ -227,89 +154,12 @@
                 "required": false,
                 "example": ""
               },
-              "warning_count": {
+              "started_at": {
                 "type": "string",
                 "required": false,
                 "example": ""
               },
-              "input_snapshot": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "output_snapshot": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "error_message": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              }
-            }
-          },
-          "exampleCount": 3
-        },
-        "shift_assignments": {
-          "type": "array",
-          "required": false,
-          "items": {
-            "type": "object",
-            "required": false,
-            "properties": {
-              "starts_at": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "ends_at": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "source": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "is_locked": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "notes": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              }
-            }
-          },
-          "exampleCount": 3
-        },
-        "constraint_violations": {
-          "type": "array",
-          "required": false,
-          "items": {
-            "type": "object",
-            "required": false,
-            "properties": {
-              "rule_code": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "severity": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "message": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "details_json": {
+              "completed_at": {
                 "type": "string",
                 "required": false,
                 "example": ""
@@ -320,51 +170,10 @@
         }
       }
     },
-    "editing": {
-      "type": "object",
-      "required": true,
-      "properties": {}
-    },
-    "item": {
+    "ver": {
       "type": "object",
       "required": true,
       "properties": {
-        "requirement_date": {
-          "type": "unknown",
-          "required": true
-        },
-        "role_code": {
-          "type": "unknown",
-          "required": true
-        },
-        "role_name": {
-          "type": "unknown",
-          "required": true
-        },
-        "required_skill_tags": {
-          "type": "unknown",
-          "required": true
-        },
-        "min_headcount": {
-          "type": "unknown",
-          "required": true
-        },
-        "target_headcount": {
-          "type": "unknown",
-          "required": true
-        },
-        "required_lead_count": {
-          "type": "unknown",
-          "required": true
-        },
-        "priority": {
-          "type": "unknown",
-          "required": true
-        },
-        "notes": {
-          "type": "unknown",
-          "required": true
-        },
         "version_no": {
           "type": "unknown",
           "required": true
@@ -377,31 +186,25 @@
           "type": "unknown",
           "required": true
         },
-        "created_by": {
-          "type": "unknown",
-          "required": true
-        },
         "change_summary": {
           "type": "unknown",
           "required": true
         },
+        "inserted_at": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "run": {
+      "type": "object",
+      "required": true,
+      "properties": {
         "engine_type": {
           "type": "unknown",
           "required": true
         },
-        "seed": {
-          "type": "unknown",
-          "required": true
-        },
-        "timeout_ms": {
-          "type": "unknown",
-          "required": true
-        },
-        "started_at": {
-          "type": "unknown",
-          "required": true
-        },
-        "completed_at": {
+        "status": {
           "type": "unknown",
           "required": true
         },
@@ -413,51 +216,11 @@
           "type": "unknown",
           "required": true
         },
-        "warning_count": {
+        "started_at": {
           "type": "unknown",
           "required": true
         },
-        "input_snapshot": {
-          "type": "unknown",
-          "required": true
-        },
-        "output_snapshot": {
-          "type": "unknown",
-          "required": true
-        },
-        "error_message": {
-          "type": "unknown",
-          "required": true
-        },
-        "starts_at": {
-          "type": "unknown",
-          "required": true
-        },
-        "ends_at": {
-          "type": "unknown",
-          "required": true
-        },
-        "source": {
-          "type": "unknown",
-          "required": true
-        },
-        "is_locked": {
-          "type": "unknown",
-          "required": true
-        },
-        "rule_code": {
-          "type": "unknown",
-          "required": true
-        },
-        "severity": {
-          "type": "unknown",
-          "required": true
-        },
-        "message": {
-          "type": "unknown",
-          "required": true
-        },
-        "details_json": {
+        "completed_at": {
           "type": "unknown",
           "required": true
         }

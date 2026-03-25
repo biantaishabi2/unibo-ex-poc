@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "TravelRoomType 列表",
+    "travel_room_type": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -9,43 +12,41 @@
         "room_type_name": "",
         "hotel_code": "",
         "bed_type": "",
-        "status": "",
-        "id": "row_01"
+        "status": ""
       },
       {
         "room_type_code": "",
         "room_type_name": "",
         "hotel_code": "",
         "bed_type": "",
-        "status": "",
-        "id": "row_02"
+        "status": ""
       },
       {
         "room_type_code": "",
         "room_type_name": "",
         "hotel_code": "",
         "bed_type": "",
-        "status": "",
-        "id": "row_03"
+        "status": ""
       }
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].bed_type",
     "rows[].hotel_code",
-    "rows[].id",
     "rows[].room_type_code",
     "rows[].room_type_name",
     "rows[].status",
-    "rows_empty"
+    "rows_empty",
+    "travel_room_type",
+    "travel_room_type.page",
+    "travel_room_type.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_room_type"
   ],
   "urlParams": {},
   "notes": [],

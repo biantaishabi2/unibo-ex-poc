@@ -8,8 +8,50 @@
       ],
       "params": {}
     },
+    "navigate_back": {
+      "name": "navigate_back",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
     "filter_submit": {
       "name": "filter_submit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "navigate_edit": {
+      "name": "navigate_edit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "toggle_enabled": {
+      "name": "toggle_enabled",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_destroy": {
+      "name": "action_destroy",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "scheduling_constraint_page_prev": {
+      "name": "scheduling_constraint_page_prev",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "scheduling_constraint_page_next": {
+      "name": "scheduling_constraint_page_next",
       "triggers": [
         "click"
       ],

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
+    "travel_policy": {
       "policy_name": "",
       "product_type": "",
       "employee_level": "",
@@ -13,31 +13,29 @@
       "exceed_strategy": "",
       "approval_mode": "",
       "personal_pay_ratio": "",
-      "is_active": "",
-      "enterprise_id": ""
+      "is_active": ""
     },
     "editing": false
   },
   "keys": [
     "editing",
-    "record",
-    "record.approval_mode",
-    "record.cabin_class_limit",
-    "record.city_tier",
-    "record.employee_level",
-    "record.enterprise_id",
-    "record.exceed_strategy",
-    "record.hotel_star_limit",
-    "record.is_active",
-    "record.max_amount",
-    "record.personal_pay_ratio",
-    "record.policy_name",
-    "record.product_type",
-    "record.season"
+    "travel_policy",
+    "travel_policy.approval_mode",
+    "travel_policy.cabin_class_limit",
+    "travel_policy.city_tier",
+    "travel_policy.employee_level",
+    "travel_policy.exceed_strategy",
+    "travel_policy.hotel_star_limit",
+    "travel_policy.is_active",
+    "travel_policy.max_amount",
+    "travel_policy.personal_pay_ratio",
+    "travel_policy.policy_name",
+    "travel_policy.product_type",
+    "travel_policy.season"
   ],
   "required": [
     "editing",
-    "record"
+    "travel_policy"
   ],
   "urlParams": {},
   "notes": [],

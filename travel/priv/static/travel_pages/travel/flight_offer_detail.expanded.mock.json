@@ -1,25 +1,21 @@
 {
-  "editing": false,
-  "record": {
-    "arrival_airport_code": "",
-    "arrival_airport_ref_id": "",
-    "arrival_at": "",
-    "baggage_policy": "",
-    "cabin_class": "",
-    "currency": "",
-    "departure_airport_code": "",
-    "departure_airport_ref_id": "",
-    "departure_at": "",
-    "fare_family": "",
-    "flight_no": "",
-    "host_shop_id": "",
-    "itinerary_code": "",
-    "listed_price": "",
-    "refund_change_policy": "",
-    "sale_status": "",
-    "seats_available": "",
-    "settlement_price": "",
+  "flight_offer": {
     "supplier_code": "",
-    "tenant_id": ""
-  }
+    "itinerary_code": "",
+    "flight_no": "",
+    "departure_airport_code": "",
+    "arrival_airport_code": "",
+    "departure_at": "",
+    "arrival_at": "",
+    "cabin_class": "",
+    "fare_family": "",
+    "listed_price": "",
+    "settlement_price": "",
+    "currency": "",
+    "seats_available": "",
+    "baggage_policy": "",
+    "refund_change_policy": "",
+    "sale_status": ""
+  },
+  "editing": false
 }

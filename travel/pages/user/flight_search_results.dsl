@@ -5,12 +5,12 @@ META: Entity("FlightOffer"), Domain("Travel"), FilterMode("search_only")
   ATTR: Title("机票搜索")
 
   # 覆写顶部导航
-  OVERRIDE: header_section
+  OVERRIDE: section("header_section")
     [HEADER: flight_header]
       ATTR: Back(true), Title("机票搜索"), Subtitle("{{search.route_label|}}")
 
   # 覆写日期横滑条 - 显示日期+价格
-  OVERRIDE: date_slider_section
+  OVERRIDE: section("date_slider_section")
     [FLEX: flight_date_slider]
       { Gap: 2, PaddingX: 3, PaddingY: 2, OverflowX: "scroll", Background: "surface" }
       [FOR: date_item in search.date_range]
@@ -23,7 +23,7 @@ META: Entity("FlightOffer"), Domain("Travel"), FilterMode("search_only")
       [/FOR]
 
   # 覆写筛选栏
-  OVERRIDE: filter_section
+  OVERRIDE: section("filter_section")
     [FLEX: flight_filter_bar]
       { Gap: 2, PaddingX: 3, PaddingY: 2, Wrap: true }
       [SELECT: filter_departure_airport]
@@ -38,7 +38,7 @@ META: Entity("FlightOffer"), Domain("Travel"), FilterMode("search_only")
         ATTR: Label("舱位"), Name("filter.cabin_class")
 
   # 覆写超标提示
-  OVERRIDE: alert_section
+  OVERRIDE: section("alert_section")
     [IF: policy.exceeded == true]
       [ALERT: flight_policy_alert]
         ATTR: Variant("warning"), Title("超标提示")
@@ -46,7 +46,7 @@ META: Entity("FlightOffer"), Domain("Travel"), FilterMode("search_only")
     [/IF]
 
   # 覆写卡片列表
-  OVERRIDE: results_section
+  OVERRIDE: section("results_section")
     [STACK: flight_results_list]
       { Gap: 3, Padding: 3 }
       [FOR: item in flights.items]
@@ -132,14 +132,14 @@ META: Entity("FlightOffer"), Domain("Travel"), FilterMode("search_only")
       [/FOR]
 
   # 覆写空状态
-  OVERRIDE: empty_section
+  OVERRIDE: section("empty_section")
     [IF: flights.total_count == 0]
       [EMPTY_STATE: no_flights]
         ATTR: Title("未找到航班"), Description("请调整搜索条件后重试"), Icon("plane")
     [/IF]
 
   # 覆写底部排序栏
-  OVERRIDE: sort_bar_section
+  OVERRIDE: section("sort_bar_section")
     [CONTROL_BAR: flight_sort_bar]
       ATTR: Position("sticky_bottom")
       [FLEX: flight_sort_buttons]

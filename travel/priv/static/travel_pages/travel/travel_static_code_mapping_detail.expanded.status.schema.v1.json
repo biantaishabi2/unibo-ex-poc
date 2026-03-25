@@ -1,31 +1,29 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
+    "travel_static_code_mapping": {
       "supplier_code": "",
-      "status": "",
       "object_type": "",
       "canonical_entity": "",
       "external_code": "",
       "external_name": "",
-      "canonical_id": ""
+      "status": ""
     },
     "editing": false
   },
   "keys": [
     "editing",
-    "record",
-    "record.canonical_entity",
-    "record.canonical_id",
-    "record.external_code",
-    "record.external_name",
-    "record.object_type",
-    "record.status",
-    "record.supplier_code"
+    "travel_static_code_mapping",
+    "travel_static_code_mapping.canonical_entity",
+    "travel_static_code_mapping.external_code",
+    "travel_static_code_mapping.external_name",
+    "travel_static_code_mapping.object_type",
+    "travel_static_code_mapping.status",
+    "travel_static_code_mapping.supplier_code"
   ],
   "required": [
     "editing",
-    "record"
+    "travel_static_code_mapping"
   ],
   "urlParams": {},
   "notes": [],

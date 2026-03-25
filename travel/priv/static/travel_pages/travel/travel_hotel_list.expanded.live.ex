@@ -11,10 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_hotel_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].city_code, rows[].hotel_code, rows[].hotel_name, rows[].hotel_star, rows[].id, rows[].status, rows_empty
+  # status.keys preview (first ~40): rows, rows[], rows[].city_code, rows[].hotel_code, rows[].hotel_name, rows[].hotel_star, rows[].status, rows_empty, travel_hotel, travel_hotel.page, travel_hotel.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"TravelHotel 列表\",
+  \"travel_hotel\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
   \"rows_empty\": true,
   \"rows\": [
     {
@@ -22,24 +25,21 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"hotel_name\": \"\",
       \"city_code\": \"\",
       \"hotel_star\": \"\",
-      \"status\": \"\",
-      \"id\": \"row_01\"
+      \"status\": \"\"
     },
     {
       \"hotel_code\": \"\",
       \"hotel_name\": \"\",
       \"city_code\": \"\",
       \"hotel_star\": \"\",
-      \"status\": \"\",
-      \"id\": \"row_02\"
+      \"status\": \"\"
     },
     {
       \"hotel_code\": \"\",
       \"hotel_name\": \"\",
       \"city_code\": \"\",
       \"hotel_star\": \"\",
-      \"status\": \"\",
-      \"id\": \"row_03\"
+      \"status\": \"\"
     }
   ]
 }")
@@ -106,6 +106,20 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   def handle_event("navigate_create", params, socket) do
     # UI action event name: navigate_create
     socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_hotel_page_next", params, socket) do
+    # UI action event name: travel_hotel_page_next
+    socket = dispatch_backend("travel_hotel_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_hotel_page_prev", params, socket) do
+    # UI action event name: travel_hotel_page_prev
+    socket = dispatch_backend("travel_hotel_page_prev", params, socket)
     {:noreply, socket}
   end
 

@@ -13,9 +13,10 @@ require Ash.Query
 defmodule TravelSeeds do
   @moduledoc false
 
-  def upsert!(resource, domain, attrs, identity) do
+  def upsert!(resource, domain, attrs, identity, opts \\ []) do
     changeset = Ash.Changeset.for_create(resource, :create, attrs)
-    case Ash.create(changeset, domain: domain, upsert?: true, upsert_identity: identity) do
+    create_opts = [domain: domain, upsert?: true, upsert_identity: identity] ++ opts
+    case Ash.create(changeset, create_opts) do
       {:ok, record} -> record
       {:error, error} ->
         IO.puts("  ⚠ 创建 #{inspect(resource)} 失败: #{inspect(error)}")
@@ -23,6 +24,9 @@ defmodule TravelSeeds do
     end
   end
 end
+
+# 默认租户
+default_tenant = "default"
 
 # ── 1. 航司（TravelAirline）──────────────────────────────────
 
@@ -215,7 +219,7 @@ flight_offers = [
 ]
 
 for attrs <- flight_offers do
-  record = TravelSeeds.upsert!(FlightOffer, UniboExPoc.Travel, attrs, :unique_flight_offer_snapshot)
+  record = TravelSeeds.upsert!(FlightOffer, UniboExPoc.Travel, attrs, :unique_flight_offer_snapshot, tenant: seed_tenant_id)
   if record, do: IO.puts("  ✓ 航班报价: #{attrs.flight_no} #{attrs.departure_airport_code}→#{attrs.arrival_airport_code} #{attrs.cabin_class} ¥#{attrs.listed_price}")
 end
 
@@ -263,7 +267,7 @@ hotel_offers = [
 ]
 
 for attrs <- hotel_offers do
-  record = TravelSeeds.upsert!(HotelOffer, UniboExPoc.Travel, attrs, :unique_hotel_offer_snapshot)
+  record = TravelSeeds.upsert!(HotelOffer, UniboExPoc.Travel, attrs, :unique_hotel_offer_snapshot, tenant: seed_tenant_id)
   if record, do: IO.puts("  ✓ 酒店报价: #{attrs.hotel_name} #{attrs.room_type_code} ¥#{attrs.listed_price}/晚")
 end
 
@@ -323,7 +327,7 @@ train_offers = [
 ]
 
 for attrs <- train_offers do
-  record = TravelSeeds.upsert!(TrainOffer, UniboExPoc.Travel, attrs, :unique_train_offer_snapshot)
+  record = TravelSeeds.upsert!(TrainOffer, UniboExPoc.Travel, attrs, :unique_train_offer_snapshot, tenant: seed_tenant_id)
   if record, do: IO.puts("  ✓ 火车票报价: #{attrs.train_no} #{attrs.departure_station_name}→#{attrs.arrival_station_name} #{attrs.seat_class} ¥#{attrs.listed_price}")
 end
 

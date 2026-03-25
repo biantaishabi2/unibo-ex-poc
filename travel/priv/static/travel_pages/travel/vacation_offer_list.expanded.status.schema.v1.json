@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "VacationOffer 列表",
+    "vacation_offer": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -19,8 +22,7 @@
         "inventory_count": "",
         "booking_rules": "",
         "cancellation_policy": "",
-        "sale_status": "",
-        "id": "row_01"
+        "sale_status": ""
       },
       {
         "supplier_code": "",
@@ -37,8 +39,7 @@
         "inventory_count": "",
         "booking_rules": "",
         "cancellation_policy": "",
-        "sale_status": "",
-        "id": "row_02"
+        "sale_status": ""
       },
       {
         "supplier_code": "",
@@ -55,13 +56,11 @@
         "inventory_count": "",
         "booking_rules": "",
         "cancellation_policy": "",
-        "sale_status": "",
-        "id": "row_03"
+        "sale_status": ""
       }
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].booking_rules",
@@ -70,7 +69,6 @@
     "rows[].departure_city_code",
     "rows[].destination_code",
     "rows[].end_date",
-    "rows[].id",
     "rows[].inventory_count",
     "rows[].listed_price",
     "rows[].package_code",
@@ -80,12 +78,15 @@
     "rows[].settlement_price",
     "rows[].start_date",
     "rows[].supplier_code",
-    "rows_empty"
+    "rows_empty",
+    "vacation_offer",
+    "vacation_offer.page",
+    "vacation_offer.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "vacation_offer"
   ],
   "urlParams": {},
   "notes": [],

@@ -1,10 +1,10 @@
 {
-  "record": {
+  "travel_room_type": {
     "room_type_code": "",
-    "status": "",
     "room_type_name": "",
     "hotel_code": "",
-    "bed_type": ""
+    "bed_type": "",
+    "status": ""
   },
   "editing": false
 }

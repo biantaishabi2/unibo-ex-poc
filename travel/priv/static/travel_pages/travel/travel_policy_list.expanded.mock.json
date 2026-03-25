@@ -1,5 +1,8 @@
 {
-  "page_title": "TravelPolicy 列表",
+  "travel_policy": {
+    "page": "",
+    "total_pages": ""
+  },
   "rows_empty": true,
   "rows": [
     {
@@ -14,8 +17,7 @@
       "exceed_strategy": "",
       "approval_mode": "",
       "personal_pay_ratio": "",
-      "is_active": "",
-      "id": "row_01"
+      "is_active": ""
     },
     {
       "policy_name": "",
@@ -29,8 +31,7 @@
       "exceed_strategy": "",
       "approval_mode": "",
       "personal_pay_ratio": "",
-      "is_active": "",
-      "id": "row_02"
+      "is_active": ""
     },
     {
       "policy_name": "",
@@ -44,8 +45,7 @@
       "exceed_strategy": "",
       "approval_mode": "",
       "personal_pay_ratio": "",
-      "is_active": "",
-      "id": "row_03"
+      "is_active": ""
     }
   ]
 }

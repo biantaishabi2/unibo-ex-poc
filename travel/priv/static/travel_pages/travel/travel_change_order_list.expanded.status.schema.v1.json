@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "TravelChangeOrder 列表",
+    "travel_change_order": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -9,43 +12,41 @@
         "price_difference": "",
         "change_fee": "",
         "status": "",
-        "approval_mode": "",
-        "id": "row_01"
+        "approval_mode": ""
       },
       {
         "change_reason": "",
         "price_difference": "",
         "change_fee": "",
         "status": "",
-        "approval_mode": "",
-        "id": "row_02"
+        "approval_mode": ""
       },
       {
         "change_reason": "",
         "price_difference": "",
         "change_fee": "",
         "status": "",
-        "approval_mode": "",
-        "id": "row_03"
+        "approval_mode": ""
       }
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].approval_mode",
     "rows[].change_fee",
     "rows[].change_reason",
-    "rows[].id",
     "rows[].price_difference",
     "rows[].status",
-    "rows_empty"
+    "rows_empty",
+    "travel_change_order",
+    "travel_change_order.page",
+    "travel_change_order.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_change_order"
   ],
   "urlParams": {},
   "notes": [],

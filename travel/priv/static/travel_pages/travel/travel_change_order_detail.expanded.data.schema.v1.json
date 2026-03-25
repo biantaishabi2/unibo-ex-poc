@@ -2,28 +2,27 @@
   "version": 1,
   "requiredPaths": [
     "editing",
-    "record",
-    "record.approval_mode",
-    "record.change_fee",
-    "record.change_reason",
-    "record.price_difference",
-    "record.status"
+    "travel_change_order.approval_mode",
+    "travel_change_order.change_fee",
+    "travel_change_order.change_reason",
+    "travel_change_order.price_difference",
+    "travel_change_order.status"
   ],
   "requiredRoots": [
     "editing",
-    "record"
+    "travel_change_order"
   ],
   "schema": {
-    "record": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_change_order": {
       "type": "object",
       "required": true,
       "properties": {
         "change_reason": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
-        "status": {
           "type": "string",
           "required": false,
           "example": ""
@@ -38,17 +37,17 @@
           "required": false,
           "example": ""
         },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
         "approval_mode": {
           "type": "string",
           "required": false,
           "example": ""
         }
       }
-    },
-    "editing": {
-      "type": "object",
-      "required": true,
-      "properties": {}
     }
   },
   "notes": []

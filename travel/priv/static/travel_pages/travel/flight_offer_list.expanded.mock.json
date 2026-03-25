@@ -1,5 +1,8 @@
 {
-  "page_title": "FlightOffer 列表",
+  "flight_offer": {
+    "page": "",
+    "total_pages": ""
+  },
   "rows_empty": true,
   "rows": [
     {
@@ -18,8 +21,7 @@
       "seats_available": "",
       "baggage_policy": "",
       "refund_change_policy": "",
-      "sale_status": "",
-      "id": "row_01"
+      "sale_status": ""
     },
     {
       "supplier_code": "",
@@ -37,8 +39,7 @@
       "seats_available": "",
       "baggage_policy": "",
       "refund_change_policy": "",
-      "sale_status": "",
-      "id": "row_02"
+      "sale_status": ""
     },
     {
       "supplier_code": "",
@@ -56,8 +57,7 @@
       "seats_available": "",
       "baggage_policy": "",
       "refund_change_policy": "",
-      "sale_status": "",
-      "id": "row_03"
+      "sale_status": ""
     }
   ]
 }

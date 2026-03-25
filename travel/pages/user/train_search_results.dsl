@@ -5,12 +5,12 @@ META: Entity("TrainOffer"), Domain("Travel")
   ATTR: Title("火车票搜索")
 
   # 覆写顶部导航
-  OVERRIDE: header_section
+  OVERRIDE: section("header_section")
     [HEADER: train_header]
       ATTR: Back(true), Title("火车票搜索"), Subtitle("{{search.route_label|}}")
 
   # 覆写日期横滑条 - 显示日期+星期
-  OVERRIDE: date_slider_section
+  OVERRIDE: section("date_slider_section")
     [FLEX: train_date_slider]
       { Gap: 2, PaddingX: 3, PaddingY: 2, OverflowX: "scroll", Background: "surface" }
       [FOR: date_item in search.date_range]
@@ -23,7 +23,7 @@ META: Entity("TrainOffer"), Domain("Travel")
       [/FOR]
 
   # 覆写筛选栏
-  OVERRIDE: filter_section
+  OVERRIDE: section("filter_section")
     [FLEX: train_filter_bar]
       { Gap: 2, PaddingX: 3, PaddingY: 2, Wrap: true }
       [SELECT: filter_departure_station]
@@ -36,7 +36,7 @@ META: Entity("TrainOffer"), Domain("Travel")
         ATTR: Label("差标"), Name("filter.policy_compliant")
 
   # 覆写超标提示
-  OVERRIDE: alert_section
+  OVERRIDE: section("alert_section")
     [IF: policy.exceeded == true]
       [ALERT: train_policy_alert]
         ATTR: Variant("warning"), Title("超标提示")
@@ -44,7 +44,7 @@ META: Entity("TrainOffer"), Domain("Travel")
     [/IF]
 
   # 覆写卡片列表
-  OVERRIDE: results_section
+  OVERRIDE: section("results_section")
     [STACK: train_results_list]
       { Gap: 3, Padding: 3 }
       [FOR: item in trains.items]
@@ -117,14 +117,14 @@ META: Entity("TrainOffer"), Domain("Travel")
       [/FOR]
 
   # 覆写空状态
-  OVERRIDE: empty_section
+  OVERRIDE: section("empty_section")
     [IF: trains.total_count == 0]
       [EMPTY_STATE: no_trains]
         ATTR: Title("未找到车次"), Description("请调整搜索条件后重试"), Icon("train")
     [/IF]
 
   # 覆写底部排序栏
-  OVERRIDE: sort_bar_section
+  OVERRIDE: section("sort_bar_section")
     [CONTROL_BAR: train_sort_bar]
       ATTR: Position("sticky_bottom")
       [FLEX: train_sort_buttons]

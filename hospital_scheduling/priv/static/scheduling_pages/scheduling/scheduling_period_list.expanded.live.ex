@@ -11,38 +11,45 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "scheduling_period_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].end_date, rows[].generation_mode, rows[].id, rows[].notes, rows[].start_date, rows[].state, rows[].title, rows_empty
+  # status.keys preview (first ~40): page_title, rows, rows[], rows[].department, rows[].department.name, rows[].end_date, rows[].generation_mode, rows[].start_date, rows[].state, rows[].title, rows_empty, scheduling_period, scheduling_period.page, scheduling_period.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"SchedulingPeriod 列表\",
+  \"page_title\": \"排班周期管理\",
+  \"scheduling_period\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
   \"rows_empty\": true,
   \"rows\": [
     {
+      \"title\": \"\",
+      \"department\": {
+        \"name\": \"department_1\"
+      },
       \"start_date\": \"\",
       \"end_date\": \"\",
       \"state\": \"\",
-      \"title\": \"\",
-      \"generation_mode\": \"\",
-      \"notes\": \"\",
-      \"id\": \"row_01\"
+      \"generation_mode\": \"\"
     },
     {
+      \"title\": \"\",
+      \"department\": {
+        \"name\": \"department_2\"
+      },
       \"start_date\": \"\",
       \"end_date\": \"\",
       \"state\": \"\",
-      \"title\": \"\",
-      \"generation_mode\": \"\",
-      \"notes\": \"\",
-      \"id\": \"row_02\"
+      \"generation_mode\": \"\"
     },
     {
+      \"title\": \"\",
+      \"department\": {
+        \"name\": \"department_3\"
+      },
       \"start_date\": \"\",
       \"end_date\": \"\",
       \"state\": \"\",
-      \"title\": \"\",
-      \"generation_mode\": \"\",
-      \"notes\": \"\",
-      \"id\": \"row_03\"
+      \"generation_mode\": \"\"
     }
   ]
 }")
@@ -53,14 +60,14 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event "list"
-  @backend_load_selection "end_date: endDate generation_mode: generationMode id notes start_date: startDate state title"
+  @backend_load_selection "id title department { name } start_date: startDate end_date: endDate state generation_mode: generationMode"
   @backend_load_assigns %{}
-  @backend_params_accept ["start_date", "end_date", "state", "generation_mode"]
+  @backend_params_accept ["department_id", "state", "start_date_from"]
   @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
     "list" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.list"}
   }
-  @status_key_roots [:rows, :rows_empty, :filter, :loading]
+  @status_key_roots []
   @auth_mode "optional"
   @user_context_assigns []
 
@@ -99,6 +106,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
+  def handle_event("action_destroy", params, socket) do
+    # UI action event name: action_destroy
+    socket = dispatch_backend("action_destroy", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
   def handle_event("filter_submit", params, socket) do
     # UI action event name: filter_submit
     socket = dispatch_backend("filter_submit", params, socket)
@@ -109,6 +123,27 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   def handle_event("navigate_create", params, socket) do
     # UI action event name: navigate_create
     socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate_detail", params, socket) do
+    # UI action event name: navigate_detail
+    socket = dispatch_backend("navigate_detail", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("scheduling_period_page_next", params, socket) do
+    # UI action event name: scheduling_period_page_next
+    socket = dispatch_backend("scheduling_period_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("scheduling_period_page_prev", params, socket) do
+    # UI action event name: scheduling_period_page_prev
+    socket = dispatch_backend("scheduling_period_page_prev", params, socket)
     {:noreply, socket}
   end
 

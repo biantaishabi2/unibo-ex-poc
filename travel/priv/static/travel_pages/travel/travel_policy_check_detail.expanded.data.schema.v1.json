@@ -2,30 +2,30 @@
   "version": 1,
   "requiredPaths": [
     "editing",
-    "record.actual_amount",
-    "record.approval_mode",
-    "record.check_result",
-    "record.exceed_amount",
-    "record.exceed_ratio",
-    "record.exceed_reason",
-    "record.exceed_strategy",
-    "record.personal_pay_amount",
-    "record.policy_amount"
+    "travel_policy_check.actual_amount",
+    "travel_policy_check.approval_mode",
+    "travel_policy_check.check_result",
+    "travel_policy_check.exceed_amount",
+    "travel_policy_check.exceed_ratio",
+    "travel_policy_check.exceed_reason",
+    "travel_policy_check.exceed_strategy",
+    "travel_policy_check.personal_pay_amount",
+    "travel_policy_check.policy_amount"
   ],
   "requiredRoots": [
     "editing",
-    "record"
+    "travel_policy_check"
   ],
   "schema": {
-    "record": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_policy_check": {
       "type": "object",
       "required": true,
       "properties": {
-        "exceed_ratio": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
         "check_result": {
           "type": "string",
           "required": false,
@@ -42,6 +42,11 @@
           "example": ""
         },
         "exceed_amount": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "exceed_ratio": {
           "type": "string",
           "required": false,
           "example": ""
@@ -67,11 +72,6 @@
           "example": ""
         }
       }
-    },
-    "editing": {
-      "type": "object",
-      "required": true,
-      "properties": {}
     }
   },
   "notes": []

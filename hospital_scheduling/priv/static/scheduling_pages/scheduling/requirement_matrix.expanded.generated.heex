@@ -1,0 +1,90 @@
+<.page title="排期" id="requirement_matrix">
+  <.section layout="none" id="date_nav_section">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.stack gap={1} direction="column" id="title_group">
+        <.text variant="title" id="page_title">
+          <%= get_in(@period, [:title]) || "需求矩阵" %>
+        </.text>
+        <.flex gap={2} direction="row" id="subtitle_row">
+          <.select bind="coverage_requirement.state" size="md" id="state_badge" options={[%{label: "draft", value: "draft"}, %{label: "generating", value: "generating"}, %{label: "generated", value: "generated"}, %{label: "adjusted", value: "adjusted"}, %{label: "{{period.state|}}", value: "published"}]}>
+
+          </.select>
+          <.text variant="muted" id="date_range">
+            <%= get_in(@period, [:start_date]) || "" %> ~ <%= get_in(@period, [:end_date]) || "" %>
+          </.text>
+        </.flex>
+      </.stack>
+      <.button variant="secondary" phx-click="navigate_back" size="md" id="back_btn">
+        返回周期详情
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="resource_section">
+    <.flex justify="between" align="center" direction="row" id="matrix_toolbar">
+      <.text variant="h4" weight="bold" id="matrix_title">
+        覆盖需求矩阵
+      </.text>
+      <.flex gap={2} direction="row" id="matrix_actions">
+        <.select name="role_code" label="岗位筛选" size="md" id="filter_role" value={@record.role_code}>
+
+        </.select>
+        <.button variant="secondary" phx-click="batch_fill_requirements" size="md" id="batch_fill_btn">
+          批量填充
+        </.button>
+      </.flex>
+    </.flex>
+  </.section>
+  <.section layout="none" id="matrix_section">
+    <.card variant="default" id="matrix_card">
+      <.card_content id="matrix_content">
+        <.table id="req_matrix_table">
+          <.table_header id="req_matrix_header">
+            <.table_row id="matrix_header_row">
+              <.table_head id="th_shift">
+                班次 / 日期
+              </.table_head>
+              <.table_head id="th_dates">
+                日期列（由周期日期范围动态生成）
+              </.table_head>
+            </.table_row>
+          </.table_header>
+          <.table_body id="req_matrix_body">
+            <%= for shift <- (@shift_types || []) do %>
+              <.table_row>
+                <.table_cell>
+                  <%= if (val = get_in(shift, [:name])) && to_string(val) != "" do %>
+                    <.badge variant="default" size="sm">
+                      <%= to_string(val) %>
+                    </.badge>
+                  <% end %>
+                </.table_cell>
+                <.table_cell>
+                  <%= for req <- (get_in(shift, [:requirements]) || []) do %>
+                    <.stack gap={0} direction="column">
+                      <.text variant="caption">
+                        最低 <%= get_in(req, [:min_headcount]) || "" %>
+                      </.text>
+                      <.text variant="caption" color="muted">
+                        目标 <%= get_in(req, [:target_headcount]) || "" %>
+                      </.text>
+                    </.stack>
+                  <% end %>
+                </.table_cell>
+              </.table_row>
+            <% end %>
+          </.table_body>
+        </.table>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="summary_section">
+    <.flex justify="end" gap={2} direction="row" id="bottom_actions">
+      <.button variant="primary" phx-click="save_requirements" size="md" id="save_btn">
+        保存修改
+      </.button>
+      <.button variant="primary" phx-click="action_start_generating" size="md" id="start_btn">
+        开始自动排班
+      </.button>
+    </.flex>
+  </.section>
+</.page>

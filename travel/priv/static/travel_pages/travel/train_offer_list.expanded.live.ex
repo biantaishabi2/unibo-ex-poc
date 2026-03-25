@@ -11,10 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "train_offer_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].arrival_at, rows[].arrival_station_code, rows[].arrival_station_name, rows[].booking_rules_snapshot, rows[].change_rules_snapshot, rows[].currency, rows[].departure_at, rows[].departure_station_code, rows[].departure_station_name, rows[].id, rows[].inventory_status, rows[].is_no_seat, rows[].listed_price, rows[].refund_rules_snapshot, rows[].sale_status, rows[].seat_class, rows[].seat_code, rows[].settlement_price, rows[].supplier_code, rows[].train_no, rows[].travel_date, rows[].waitlist_supported, rows_empty
+  # status.keys preview (first ~40): rows, rows[], rows[].arrival_at, rows[].arrival_station_code, rows[].arrival_station_name, rows[].booking_rules_snapshot, rows[].change_rules_snapshot, rows[].currency, rows[].departure_at, rows[].departure_station_code, rows[].departure_station_name, rows[].inventory_status, rows[].is_no_seat, rows[].listed_price, rows[].refund_rules_snapshot, rows[].sale_status, rows[].seat_class, rows[].seat_code, rows[].settlement_price, rows[].supplier_code, rows[].train_no, rows[].travel_date, rows[].waitlist_supported, rows_empty, train_offer, train_offer.page, train_offer.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"TrainOffer 列表\",
+  \"train_offer\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
   \"rows_empty\": true,
   \"rows\": [
     {
@@ -38,8 +41,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"booking_rules_snapshot\": \"\",
       \"change_rules_snapshot\": \"\",
       \"refund_rules_snapshot\": \"\",
-      \"sale_status\": \"\",
-      \"id\": \"row_01\"
+      \"sale_status\": \"\"
     },
     {
       \"supplier_code\": \"\",
@@ -62,8 +64,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"booking_rules_snapshot\": \"\",
       \"change_rules_snapshot\": \"\",
       \"refund_rules_snapshot\": \"\",
-      \"sale_status\": \"\",
-      \"id\": \"row_02\"
+      \"sale_status\": \"\"
     },
     {
       \"supplier_code\": \"\",
@@ -86,8 +87,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"booking_rules_snapshot\": \"\",
       \"change_rules_snapshot\": \"\",
       \"refund_rules_snapshot\": \"\",
-      \"sale_status\": \"\",
-      \"id\": \"row_03\"
+      \"sale_status\": \"\"
     }
   ]
 }")
@@ -154,6 +154,20 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   def handle_event("navigate_create", params, socket) do
     # UI action event name: navigate_create
     socket = dispatch_backend("navigate_create", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("train_offer_page_next", params, socket) do
+    # UI action event name: train_offer_page_next
+    socket = dispatch_backend("train_offer_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("train_offer_page_prev", params, socket) do
+    # UI action event name: train_offer_page_prev
+    socket = dispatch_backend("train_offer_page_prev", params, socket)
     {:noreply, socket}
   end
 

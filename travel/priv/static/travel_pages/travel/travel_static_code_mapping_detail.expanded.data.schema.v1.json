@@ -2,28 +2,28 @@
   "version": 1,
   "requiredPaths": [
     "editing",
-    "record.canonical_entity",
-    "record.external_code",
-    "record.external_name",
-    "record.object_type",
-    "record.status",
-    "record.supplier_code"
+    "travel_static_code_mapping.canonical_entity",
+    "travel_static_code_mapping.external_code",
+    "travel_static_code_mapping.external_name",
+    "travel_static_code_mapping.object_type",
+    "travel_static_code_mapping.status",
+    "travel_static_code_mapping.supplier_code"
   ],
   "requiredRoots": [
     "editing",
-    "record"
+    "travel_static_code_mapping"
   ],
   "schema": {
-    "record": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_static_code_mapping": {
       "type": "object",
       "required": true,
       "properties": {
         "supplier_code": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
-        "status": {
           "type": "string",
           "required": false,
           "example": ""
@@ -47,13 +47,13 @@
           "type": "string",
           "required": false,
           "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
         }
       }
-    },
-    "editing": {
-      "type": "object",
-      "required": true,
-      "properties": {}
     }
   },
   "notes": []

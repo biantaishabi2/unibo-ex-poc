@@ -1,27 +1,27 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
+    "travel_room_type": {
       "room_type_code": "",
-      "status": "",
       "room_type_name": "",
       "hotel_code": "",
-      "bed_type": ""
+      "bed_type": "",
+      "status": ""
     },
     "editing": false
   },
   "keys": [
     "editing",
-    "record",
-    "record.bed_type",
-    "record.hotel_code",
-    "record.room_type_code",
-    "record.room_type_name",
-    "record.status"
+    "travel_room_type",
+    "travel_room_type.bed_type",
+    "travel_room_type.hotel_code",
+    "travel_room_type.room_type_code",
+    "travel_room_type.room_type_name",
+    "travel_room_type.status"
   ],
   "required": [
     "editing",
-    "record"
+    "travel_room_type"
   ],
   "urlParams": {},
   "notes": [],

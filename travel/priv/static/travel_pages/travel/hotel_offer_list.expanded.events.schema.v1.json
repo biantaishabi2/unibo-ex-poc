@@ -14,6 +14,20 @@
         "click"
       ],
       "params": {}
+    },
+    "hotel_offer_page_prev": {
+      "name": "hotel_offer_page_prev",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "hotel_offer_page_next": {
+      "name": "hotel_offer_page_next",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
     }
   },
   "notes": []

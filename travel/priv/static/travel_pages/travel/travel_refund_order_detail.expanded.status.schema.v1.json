@@ -1,27 +1,27 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
+    "travel_refund_order": {
       "refund_reason": "",
-      "status": "",
       "refund_fee": "",
       "refund_amount": "",
+      "status": "",
       "approval_mode": ""
     },
     "editing": false
   },
   "keys": [
     "editing",
-    "record",
-    "record.approval_mode",
-    "record.refund_amount",
-    "record.refund_fee",
-    "record.refund_reason",
-    "record.status"
+    "travel_refund_order",
+    "travel_refund_order.approval_mode",
+    "travel_refund_order.refund_amount",
+    "travel_refund_order.refund_fee",
+    "travel_refund_order.refund_reason",
+    "travel_refund_order.status"
   ],
   "required": [
     "editing",
-    "record"
+    "travel_refund_order"
   ],
   "urlParams": {},
   "notes": [],

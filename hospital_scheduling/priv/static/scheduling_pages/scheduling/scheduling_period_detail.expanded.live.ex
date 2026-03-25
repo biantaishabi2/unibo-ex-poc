@@ -11,163 +11,74 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "scheduling_period_detail"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): editing, record, record.constraint_violations, record.constraint_violations[], record.constraint_violations[].details_json, record.constraint_violations[].message, record.constraint_violations[].rule_code, record.constraint_violations[].severity, record.coverage_requirements, record.coverage_requirements[], record.coverage_requirements[].min_headcount, record.coverage_requirements[].notes, record.coverage_requirements[].priority, record.coverage_requirements[].required_lead_count, record.coverage_requirements[].required_skill_tags, record.coverage_requirements[].requirement_date, record.coverage_requirements[].role_code, record.coverage_requirements[].role_name, record.coverage_requirements[].target_headcount, record.end_date, record.generation_mode, record.notes, record.schedule_versions, record.schedule_versions[], record.schedule_versions[].change_summary, record.schedule_versions[].created_by, record.schedule_versions[].origin_type, record.schedule_versions[].status, record.schedule_versions[].version_no, record.shift_assignments, record.shift_assignments[], record.shift_assignments[].ends_at, record.shift_assignments[].is_locked, record.shift_assignments[].notes, record.shift_assignments[].source, record.shift_assignments[].starts_at, record.solver_runs, record.solver_runs[], record.solver_runs[].completed_at, record.solver_runs[].engine_type, ...
+  # status.keys preview (first ~40): record, record.current_version, record.current_version.version_no, record.department, record.department.name, record.end_date, record.generation_mode, record.last_solver_run, record.last_solver_run.status, record.schedule_versions, record.schedule_versions[], record.schedule_versions[].change_summary, record.schedule_versions[].inserted_at, record.schedule_versions[].origin_type, record.schedule_versions[].status, record.schedule_versions[].version_no, record.solver_runs, record.solver_runs[], record.solver_runs[].completed_at, record.solver_runs[].engine_type, record.solver_runs[].hard_violation_count, record.solver_runs[].score, record.solver_runs[].started_at, record.solver_runs[].status, record.start_date, record.state, record.title
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
   \"record\": {
     \"title\": \"\",
     \"state\": \"\",
+    \"generation_mode\": \"\",
+    \"department\": {
+      \"name\": \"\"
+    },
     \"start_date\": \"\",
     \"end_date\": \"\",
-    \"generation_mode\": \"\",
-    \"notes\": \"\",
-    \"coverage_requirements\": [
-      {
-        \"requirement_date\": \"\",
-        \"role_code\": \"\",
-        \"role_name\": \"\",
-        \"required_skill_tags\": \"\",
-        \"min_headcount\": \"\",
-        \"target_headcount\": \"\",
-        \"required_lead_count\": \"\",
-        \"priority\": \"\",
-        \"notes\": \"\"
-      },
-      {
-        \"requirement_date\": \"\",
-        \"role_code\": \"\",
-        \"role_name\": \"\",
-        \"required_skill_tags\": \"\",
-        \"min_headcount\": \"\",
-        \"target_headcount\": \"\",
-        \"required_lead_count\": \"\",
-        \"priority\": \"\",
-        \"notes\": \"\"
-      },
-      {
-        \"requirement_date\": \"\",
-        \"role_code\": \"\",
-        \"role_name\": \"\",
-        \"required_skill_tags\": \"\",
-        \"min_headcount\": \"\",
-        \"target_headcount\": \"\",
-        \"required_lead_count\": \"\",
-        \"priority\": \"\",
-        \"notes\": \"\"
-      }
-    ],
+    \"current_version\": {
+      \"version_no\": \"\"
+    },
+    \"last_solver_run\": {
+      \"status\": \"\"
+    },
     \"schedule_versions\": [
       {
         \"version_no\": \"\",
         \"status\": \"\",
         \"origin_type\": \"\",
-        \"created_by\": \"\",
-        \"change_summary\": \"\"
+        \"change_summary\": \"\",
+        \"inserted_at\": \"\"
       },
       {
         \"version_no\": \"\",
         \"status\": \"\",
         \"origin_type\": \"\",
-        \"created_by\": \"\",
-        \"change_summary\": \"\"
+        \"change_summary\": \"\",
+        \"inserted_at\": \"\"
       },
       {
         \"version_no\": \"\",
         \"status\": \"\",
         \"origin_type\": \"\",
-        \"created_by\": \"\",
-        \"change_summary\": \"\"
+        \"change_summary\": \"\",
+        \"inserted_at\": \"\"
       }
     ],
     \"solver_runs\": [
       {
-        \"status\": \"\",
         \"engine_type\": \"\",
-        \"seed\": \"\",
-        \"timeout_ms\": \"\",
-        \"started_at\": \"\",
-        \"completed_at\": \"\",
+        \"status\": \"\",
         \"score\": \"\",
         \"hard_violation_count\": \"\",
-        \"warning_count\": \"\",
-        \"input_snapshot\": \"\",
-        \"output_snapshot\": \"\",
-        \"error_message\": \"\"
+        \"started_at\": \"\",
+        \"completed_at\": \"\"
       },
       {
-        \"status\": \"\",
         \"engine_type\": \"\",
-        \"seed\": \"\",
-        \"timeout_ms\": \"\",
-        \"started_at\": \"\",
-        \"completed_at\": \"\",
+        \"status\": \"\",
         \"score\": \"\",
         \"hard_violation_count\": \"\",
-        \"warning_count\": \"\",
-        \"input_snapshot\": \"\",
-        \"output_snapshot\": \"\",
-        \"error_message\": \"\"
+        \"started_at\": \"\",
+        \"completed_at\": \"\"
       },
       {
-        \"status\": \"\",
         \"engine_type\": \"\",
-        \"seed\": \"\",
-        \"timeout_ms\": \"\",
-        \"started_at\": \"\",
-        \"completed_at\": \"\",
+        \"status\": \"\",
         \"score\": \"\",
         \"hard_violation_count\": \"\",
-        \"warning_count\": \"\",
-        \"input_snapshot\": \"\",
-        \"output_snapshot\": \"\",
-        \"error_message\": \"\"
-      }
-    ],
-    \"shift_assignments\": [
-      {
-        \"starts_at\": \"\",
-        \"ends_at\": \"\",
-        \"source\": \"\",
-        \"is_locked\": \"\",
-        \"notes\": \"\"
-      },
-      {
-        \"starts_at\": \"\",
-        \"ends_at\": \"\",
-        \"source\": \"\",
-        \"is_locked\": \"\",
-        \"notes\": \"\"
-      },
-      {
-        \"starts_at\": \"\",
-        \"ends_at\": \"\",
-        \"source\": \"\",
-        \"is_locked\": \"\",
-        \"notes\": \"\"
-      }
-    ],
-    \"constraint_violations\": [
-      {
-        \"rule_code\": \"\",
-        \"severity\": \"\",
-        \"message\": \"\",
-        \"details_json\": \"\"
-      },
-      {
-        \"rule_code\": \"\",
-        \"severity\": \"\",
-        \"message\": \"\",
-        \"details_json\": \"\"
-      },
-      {
-        \"rule_code\": \"\",
-        \"severity\": \"\",
-        \"message\": \"\",
-        \"details_json\": \"\"
+        \"started_at\": \"\",
+        \"completed_at\": \"\"
       }
     ]
-  },
-  \"editing\": false
+  }
 }")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
@@ -176,7 +87,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event "get"
-  @backend_load_selection "constraint_violations { details_json: detailsJson id message rule_code: ruleCode severity } coverage_requirements { id min_headcount: minHeadcount notes priority required_lead_count: requiredLeadCount required_skill_tags: requiredSkillTags requirement_date: requirementDate role_code: roleCode role_name: roleName target_headcount: targetHeadcount } end_date: endDate generation_mode: generationMode id notes schedule_versions { change_summary: changeSummary created_by: createdBy id origin_type: originType status version_no: versionNo } shift_assignments { ends_at: endsAt id is_locked: isLocked notes source starts_at: startsAt } solver_runs { completed_at: completedAt engine_type: engineType error_message: errorMessage hard_violation_count: hardViolationCount id input_snapshot: inputSnapshot output_snapshot: outputSnapshot score seed started_at: startedAt status timeout_ms: timeoutMs warning_count: warningCount } start_date: startDate state title"
+  @backend_load_selection "id title state generation_mode: generationMode department { name } start_date: startDate end_date: endDate current_version: currentVersion { id version_no: versionNo } last_solver_run: lastSolverRun { id status } schedule_versions: scheduleVersions { id version_no: versionNo status origin_type: originType change_summary: changeSummary } solver_runs: solverRuns { id engine_type: engineType status score hard_violation_count: hardViolationCount started_at: startedAt completed_at: completedAt }"
   @backend_load_assigns %{}
   @backend_params_accept ["id"]
   @backend_info_reload_messages ["page_host_reload"]
@@ -184,12 +95,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     "create" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.create"},
     "destroy" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.destroy"},
     "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.get"},
+    "mark_adjusted" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.mark_adjusted"},
     "mark_generated" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.mark_generated"},
     "publish" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.publish"},
     "start_generating" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.start_generating"},
     "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingPeriod.update"}
   }
-  @status_key_roots [:record, :editing, :form, :loading]
+  @status_key_roots []
   @auth_mode "optional"
   @user_context_assigns []
 
@@ -228,20 +140,6 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("action_destroy", params, socket) do
-    # UI action event name: action_destroy
-    socket = dispatch_backend("action_destroy", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_mark_generated", params, socket) do
-    # UI action event name: action_mark_generated
-    socket = dispatch_backend("action_mark_generated", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
   def handle_event("action_publish", params, socket) do
     # UI action event name: action_publish
     socket = dispatch_backend("action_publish", params, socket)
@@ -256,23 +154,23 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("cancel_edit", params, socket) do
-    # UI action event name: cancel_edit
-    socket = dispatch_backend("cancel_edit", params, socket)
+  def handle_event("navigate_calendar", params, socket) do
+    # UI action event name: navigate_calendar
+    socket = dispatch_backend("navigate_calendar", params, socket)
     {:noreply, socket}
   end
 
   @impl true
-  def handle_event("form_change", params, socket) do
-    # UI action event name: form_change
-    socket = dispatch_backend("form_change", params, socket)
+  def handle_event("navigate_constraints", params, socket) do
+    # UI action event name: navigate_constraints
+    socket = dispatch_backend("navigate_constraints", params, socket)
     {:noreply, socket}
   end
 
   @impl true
-  def handle_event("form_submit", params, socket) do
-    # UI action event name: form_submit
-    socket = dispatch_backend("form_submit", params, socket)
+  def handle_event("navigate_requirements", params, socket) do
+    # UI action event name: navigate_requirements
+    socket = dispatch_backend("navigate_requirements", params, socket)
     {:noreply, socket}
   end
 

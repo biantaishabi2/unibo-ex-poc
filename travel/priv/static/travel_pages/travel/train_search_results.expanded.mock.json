@@ -1,0 +1,102 @@
+{
+  "search": {
+    "route_label": "",
+    "date_range": [
+      {
+        "is_selected": "",
+        "date_label": "",
+        "weekday": ""
+      },
+      {
+        "is_selected": "",
+        "date_label": "",
+        "weekday": ""
+      },
+      {
+        "is_selected": "",
+        "date_label": "",
+        "weekday": ""
+      }
+    ]
+  },
+  "policy": {
+    "exceeded": true
+  },
+  "trains": {
+    "total_count": true,
+    "items": [
+      {
+        "id": "tra_01",
+        "train_no": "",
+        "train_type_label": "",
+        "is_policy_compliant": true,
+        "departure_time": "",
+        "departure_station_name": "",
+        "duration_label": "",
+        "stop_count_label": "",
+        "arrival_time": "",
+        "arrival_station_name": "",
+        "seat_options": [
+          {
+            "seat_class_name": "",
+            "price": "",
+            "tickets_label": ""
+          },
+          {
+            "seat_class_name": "",
+            "price": "",
+            "tickets_label": ""
+          }
+        ]
+      },
+      {
+        "id": "tra_02",
+        "train_no": "",
+        "train_type_label": "",
+        "is_policy_compliant": true,
+        "departure_time": "",
+        "departure_station_name": "",
+        "duration_label": "",
+        "stop_count_label": "",
+        "arrival_time": "",
+        "arrival_station_name": "",
+        "seat_options": [
+          {
+            "seat_class_name": "",
+            "price": "",
+            "tickets_label": ""
+          },
+          {
+            "seat_class_name": "",
+            "price": "",
+            "tickets_label": ""
+          }
+        ]
+      },
+      {
+        "id": "tra_03",
+        "train_no": "",
+        "train_type_label": "",
+        "is_policy_compliant": true,
+        "departure_time": "",
+        "departure_station_name": "",
+        "duration_label": "",
+        "stop_count_label": "",
+        "arrival_time": "",
+        "arrival_station_name": "",
+        "seat_options": [
+          {
+            "seat_class_name": "",
+            "price": "",
+            "tickets_label": ""
+          },
+          {
+            "seat_class_name": "",
+            "price": "",
+            "tickets_label": ""
+          }
+        ]
+      }
+    ]
+  }
+}

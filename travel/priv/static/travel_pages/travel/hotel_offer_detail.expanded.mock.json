@@ -1,23 +1,20 @@
 {
-  "editing": false,
-  "record": {
-    "cancellation_policy": "",
-    "checkin_date": "",
-    "checkout_date": "",
-    "city_code": "",
-    "city_ref_id": "",
-    "currency": "",
-    "guarantee_policy": "",
-    "host_shop_id": "",
+  "hotel_offer": {
+    "supplier_code": "",
     "hotel_code": "",
     "hotel_name": "",
-    "inventory_count": "",
-    "listed_price": "",
-    "rate_plan_code": "",
+    "city_code": "",
     "room_type_code": "",
-    "sale_status": "",
+    "rate_plan_code": "",
+    "checkin_date": "",
+    "checkout_date": "",
+    "listed_price": "",
     "settlement_price": "",
-    "supplier_code": "",
-    "tenant_id": ""
-  }
+    "currency": "",
+    "inventory_count": "",
+    "cancellation_policy": "",
+    "guarantee_policy": "",
+    "sale_status": ""
+  },
+  "editing": false
 }

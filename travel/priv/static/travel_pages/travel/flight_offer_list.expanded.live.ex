@@ -11,10 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "flight_offer_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].arrival_airport_code, rows[].arrival_at, rows[].baggage_policy, rows[].cabin_class, rows[].currency, rows[].departure_airport_code, rows[].departure_at, rows[].fare_family, rows[].flight_no, rows[].id, rows[].itinerary_code, rows[].listed_price, rows[].refund_change_policy, rows[].sale_status, rows[].seats_available, rows[].settlement_price, rows[].supplier_code, rows_empty
+  # status.keys preview (first ~40): flight_offer, flight_offer.page, flight_offer.total_pages, rows, rows[], rows[].arrival_airport_code, rows[].arrival_at, rows[].baggage_policy, rows[].cabin_class, rows[].currency, rows[].departure_airport_code, rows[].departure_at, rows[].fare_family, rows[].flight_no, rows[].itinerary_code, rows[].listed_price, rows[].refund_change_policy, rows[].sale_status, rows[].seats_available, rows[].settlement_price, rows[].supplier_code, rows_empty
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"FlightOffer 列表\",
+  \"flight_offer\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
   \"rows_empty\": true,
   \"rows\": [
     {
@@ -33,8 +36,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"seats_available\": \"\",
       \"baggage_policy\": \"\",
       \"refund_change_policy\": \"\",
-      \"sale_status\": \"\",
-      \"id\": \"row_01\"
+      \"sale_status\": \"\"
     },
     {
       \"supplier_code\": \"\",
@@ -52,8 +54,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"seats_available\": \"\",
       \"baggage_policy\": \"\",
       \"refund_change_policy\": \"\",
-      \"sale_status\": \"\",
-      \"id\": \"row_02\"
+      \"sale_status\": \"\"
     },
     {
       \"supplier_code\": \"\",
@@ -71,8 +72,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
       \"seats_available\": \"\",
       \"baggage_policy\": \"\",
       \"refund_change_policy\": \"\",
-      \"sale_status\": \"\",
-      \"id\": \"row_03\"
+      \"sale_status\": \"\"
     }
   ]
 }")
@@ -132,6 +132,20 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   def handle_event("filter_submit", params, socket) do
     # UI action event name: filter_submit
     socket = dispatch_backend("filter_submit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("flight_offer_page_next", params, socket) do
+    # UI action event name: flight_offer_page_next
+    socket = dispatch_backend("flight_offer_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("flight_offer_page_prev", params, socket) do
+    # UI action event name: flight_offer_page_prev
+    socket = dispatch_backend("flight_offer_page_prev", params, socket)
     {:noreply, socket}
   end
 

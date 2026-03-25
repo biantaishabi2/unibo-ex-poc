@@ -1,14 +1,12 @@
 {
   "version": 1,
   "requiredPaths": [
-    "page_title",
     "row.approval_mode",
     "row.cabin_class_limit",
     "row.city_tier",
     "row.employee_level",
     "row.exceed_strategy",
     "row.hotel_star_limit",
-    "row.id",
     "row.is_active",
     "row.max_amount",
     "row.personal_pay_ratio",
@@ -16,20 +14,17 @@
     "row.product_type",
     "row.season",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_policy.page",
+    "travel_policy.total_pages"
   ],
   "requiredRoots": [
-    "page_title",
     "row",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_policy"
   ],
   "schema": {
-    "page_title": {
-      "type": "object",
-      "required": true,
-      "properties": {}
-    },
     "rows": {
       "type": "array",
       "required": true,
@@ -96,11 +91,6 @@
             "type": "string",
             "required": false,
             "example": ""
-          },
-          "id": {
-            "type": "string",
-            "required": false,
-            "example": "row_01"
           }
         }
       },
@@ -157,10 +147,6 @@
         "is_active": {
           "type": "unknown",
           "required": true
-        },
-        "id": {
-          "type": "unknown",
-          "required": true
         }
       }
     },
@@ -168,6 +154,22 @@
       "type": "object",
       "required": true,
       "properties": {}
+    },
+    "travel_policy": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
     }
   },
   "notes": []

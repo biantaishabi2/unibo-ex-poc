@@ -1,14 +1,25 @@
 {
   "version": 1,
   "vars": {
-    "page_title": {
+    "travel_policy_check.page": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "travel_policy_check_title",
+          "node_id": "page_info",
           "location": "prop",
           "prop": "content",
-          "template": "{{page_title|TravelPolicyCheck 列表}}"
+          "template": "{{travel_policy_check.page|}} / {{travel_policy_check.total_pages|}}"
+        }
+      ]
+    },
+    "travel_policy_check.total_pages": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy_check.page|}} / {{travel_policy_check.total_pages|}}"
         }
       ]
     }
@@ -18,7 +29,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_policy_check_create_btn",
+          "node_id": "create_btn",
           "prop": "click",
           "raw": "navigate_create"
         }
@@ -28,9 +39,29 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_policy_check_filter_submit",
+          "node_id": "filter_submit",
           "prop": "click",
           "raw": "filter_submit"
+        }
+      ]
+    },
+    "travel_policy_check_page_prev": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_prev",
+          "prop": "click",
+          "raw": "travel_policy_check_page_prev"
+        }
+      ]
+    },
+    "travel_policy_check_page_next": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_next",
+          "prop": "click",
+          "raw": "travel_policy_check_page_next"
         }
       ]
     }

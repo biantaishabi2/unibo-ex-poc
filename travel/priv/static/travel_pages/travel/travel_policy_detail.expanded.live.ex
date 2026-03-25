@@ -11,10 +11,10 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_policy_detail"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): editing, record, record.approval_mode, record.cabin_class_limit, record.city_tier, record.employee_level, record.enterprise_id, record.exceed_strategy, record.hotel_star_limit, record.is_active, record.max_amount, record.personal_pay_ratio, record.policy_name, record.product_type, record.season
+  # status.keys preview (first ~40): editing, travel_policy, travel_policy.approval_mode, travel_policy.cabin_class_limit, travel_policy.city_tier, travel_policy.employee_level, travel_policy.exceed_strategy, travel_policy.hotel_star_limit, travel_policy.is_active, travel_policy.max_amount, travel_policy.personal_pay_ratio, travel_policy.policy_name, travel_policy.product_type, travel_policy.season
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"record\": {
+  \"travel_policy\": {
     \"policy_name\": \"\",
     \"product_type\": \"\",
     \"employee_level\": \"\",
@@ -26,8 +26,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     \"exceed_strategy\": \"\",
     \"approval_mode\": \"\",
     \"personal_pay_ratio\": \"\",
-    \"is_active\": \"\",
-    \"enterprise_id\": \"\"
+    \"is_active\": \"\"
   },
   \"editing\": false
 }")
@@ -88,16 +87,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("action_activate", params, socket) do
-    # UI action event name: action_activate
-    socket = dispatch_backend("action_activate", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_deactivate", params, socket) do
-    # UI action event name: action_deactivate
-    socket = dispatch_backend("action_deactivate", params, socket)
+  def handle_event("action_destroy", params, socket) do
+    # UI action event name: action_destroy
+    socket = dispatch_backend("action_destroy", params, socket)
     {:noreply, socket}
   end
 

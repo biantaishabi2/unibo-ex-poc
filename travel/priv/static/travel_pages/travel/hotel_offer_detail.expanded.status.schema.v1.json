@@ -1,9 +1,8 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
+    "hotel_offer": {
       "supplier_code": "",
-      "sale_status": "",
       "hotel_code": "",
       "hotel_name": "",
       "city_code": "",
@@ -17,37 +16,32 @@
       "inventory_count": "",
       "cancellation_policy": "",
       "guarantee_policy": "",
-      "tenant_id": "",
-      "host_shop_id": "",
-      "city_ref_id": ""
+      "sale_status": ""
     },
     "editing": false
   },
   "keys": [
     "editing",
-    "record",
-    "record.cancellation_policy",
-    "record.checkin_date",
-    "record.checkout_date",
-    "record.city_code",
-    "record.city_ref_id",
-    "record.currency",
-    "record.guarantee_policy",
-    "record.host_shop_id",
-    "record.hotel_code",
-    "record.hotel_name",
-    "record.inventory_count",
-    "record.listed_price",
-    "record.rate_plan_code",
-    "record.room_type_code",
-    "record.sale_status",
-    "record.settlement_price",
-    "record.supplier_code",
-    "record.tenant_id"
+    "hotel_offer",
+    "hotel_offer.cancellation_policy",
+    "hotel_offer.checkin_date",
+    "hotel_offer.checkout_date",
+    "hotel_offer.city_code",
+    "hotel_offer.currency",
+    "hotel_offer.guarantee_policy",
+    "hotel_offer.hotel_code",
+    "hotel_offer.hotel_name",
+    "hotel_offer.inventory_count",
+    "hotel_offer.listed_price",
+    "hotel_offer.rate_plan_code",
+    "hotel_offer.room_type_code",
+    "hotel_offer.sale_status",
+    "hotel_offer.settlement_price",
+    "hotel_offer.supplier_code"
   ],
   "required": [
     "editing",
-    "record"
+    "hotel_offer"
   ],
   "urlParams": {},
   "notes": [],

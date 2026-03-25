@@ -2,47 +2,40 @@
   "version": 1,
   "requiredPaths": [
     "editing",
-    "record",
-    "record.booking_mode",
-    "record.change_status",
-    "record.contact_name",
-    "record.contact_phone",
-    "record.currency",
-    "record.host_member_id",
-    "record.order_no",
-    "record.original_order_ref",
-    "record.payment_external_ref",
-    "record.points_deduction_amount",
-    "record.points_to_use",
-    "record.product_type",
-    "record.recommended_payment_method",
-    "record.seat_selection_snapshot",
-    "record.status",
-    "record.supplier_order_ref",
-    "record.ticket_passenger_infos",
-    "record.total_amount",
-    "record.traveler_count",
-    "record.waitlist_status"
+    "travel_order.booking_mode",
+    "travel_order.change_status",
+    "travel_order.contact_name",
+    "travel_order.contact_phone",
+    "travel_order.currency",
+    "travel_order.order_no",
+    "travel_order.original_order_ref",
+    "travel_order.payment_external_ref",
+    "travel_order.points_deduction_amount",
+    "travel_order.points_to_use",
+    "travel_order.product_type",
+    "travel_order.recommended_payment_method",
+    "travel_order.seat_selection_snapshot",
+    "travel_order.status",
+    "travel_order.supplier_order_ref",
+    "travel_order.ticket_passenger_infos",
+    "travel_order.total_amount",
+    "travel_order.traveler_count",
+    "travel_order.waitlist_status"
   ],
   "requiredRoots": [
     "editing",
-    "record"
+    "travel_order"
   ],
   "schema": {
-    "record": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_order": {
       "type": "object",
       "required": true,
       "properties": {
-        "host_member_id": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
-        "status": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
         "order_no": {
           "type": "string",
           "required": false,
@@ -98,6 +91,11 @@
           "required": false,
           "example": ""
         },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
         "change_status": {
           "type": "string",
           "required": false,
@@ -134,11 +132,6 @@
           "example": ""
         }
       }
-    },
-    "editing": {
-      "type": "object",
-      "required": true,
-      "properties": {}
     }
   },
   "notes": []

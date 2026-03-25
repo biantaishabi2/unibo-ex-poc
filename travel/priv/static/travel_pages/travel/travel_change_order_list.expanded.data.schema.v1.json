@@ -1,28 +1,23 @@
 {
   "version": 1,
   "requiredPaths": [
-    "page_title",
     "row.approval_mode",
     "row.change_fee",
     "row.change_reason",
-    "row.id",
     "row.price_difference",
     "row.status",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_change_order.page",
+    "travel_change_order.total_pages"
   ],
   "requiredRoots": [
-    "page_title",
     "row",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_change_order"
   ],
   "schema": {
-    "page_title": {
-      "type": "object",
-      "required": true,
-      "properties": {}
-    },
     "rows": {
       "type": "array",
       "required": true,
@@ -54,11 +49,6 @@
             "type": "string",
             "required": false,
             "example": ""
-          },
-          "id": {
-            "type": "string",
-            "required": false,
-            "example": "row_01"
           }
         }
       },
@@ -87,10 +77,6 @@
         "approval_mode": {
           "type": "unknown",
           "required": true
-        },
-        "id": {
-          "type": "unknown",
-          "required": true
         }
       }
     },
@@ -98,6 +84,22 @@
       "type": "object",
       "required": true,
       "properties": {}
+    },
+    "travel_change_order": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
     }
   },
   "notes": []

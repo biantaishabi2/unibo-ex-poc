@@ -11,16 +11,15 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_change_order_detail"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): editing, record, record.approval_mode, record.change_fee, record.change_reason, record.new_offer_id, record.price_difference, record.status
+  # status.keys preview (first ~40): editing, travel_change_order, travel_change_order.approval_mode, travel_change_order.change_fee, travel_change_order.change_reason, travel_change_order.price_difference, travel_change_order.status
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"record\": {
+  \"travel_change_order\": {
     \"change_reason\": \"\",
-    \"status\": \"\",
     \"price_difference\": \"\",
     \"change_fee\": \"\",
-    \"approval_mode\": \"\",
-    \"new_offer_id\": \"\"
+    \"status\": \"\",
+    \"approval_mode\": \"\"
   },
   \"editing\": false
 }")
@@ -84,37 +83,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("action_complete", params, socket) do
-    # UI action event name: action_complete
-    socket = dispatch_backend("action_complete", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_complete_direct", params, socket) do
-    # UI action event name: action_complete_direct
-    socket = dispatch_backend("action_complete_direct", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_confirm_change", params, socket) do
-    # UI action event name: action_confirm_change
-    socket = dispatch_backend("action_confirm_change", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_reject_change", params, socket) do
-    # UI action event name: action_reject_change
-    socket = dispatch_backend("action_reject_change", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_submit", params, socket) do
-    # UI action event name: action_submit
-    socket = dispatch_backend("action_submit", params, socket)
+  def handle_event("action_destroy", params, socket) do
+    # UI action event name: action_destroy
+    socket = dispatch_backend("action_destroy", params, socket)
     {:noreply, socket}
   end
 

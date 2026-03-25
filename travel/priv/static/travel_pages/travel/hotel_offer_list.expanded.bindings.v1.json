@@ -1,14 +1,25 @@
 {
   "version": 1,
   "vars": {
-    "page_title": {
+    "hotel_offer.page": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "hotel_offer_title",
+          "node_id": "page_info",
           "location": "prop",
           "prop": "content",
-          "template": "{{page_title|HotelOffer 列表}}"
+          "template": "{{hotel_offer.page|}} / {{hotel_offer.total_pages|}}"
+        }
+      ]
+    },
+    "hotel_offer.total_pages": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{hotel_offer.page|}} / {{hotel_offer.total_pages|}}"
         }
       ]
     }
@@ -18,7 +29,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "hotel_offer_create_btn",
+          "node_id": "create_btn",
           "prop": "click",
           "raw": "navigate_create"
         }
@@ -28,9 +39,29 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "hotel_offer_filter_submit",
+          "node_id": "filter_submit",
           "prop": "click",
           "raw": "filter_submit"
+        }
+      ]
+    },
+    "hotel_offer_page_prev": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_prev",
+          "prop": "click",
+          "raw": "hotel_offer_page_prev"
+        }
+      ]
+    },
+    "hotel_offer_page_next": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_next",
+          "prop": "click",
+          "raw": "hotel_offer_page_next"
         }
       ]
     }

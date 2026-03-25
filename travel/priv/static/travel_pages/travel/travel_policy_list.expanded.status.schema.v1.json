@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "TravelPolicy 列表",
+    "travel_policy": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -16,8 +19,7 @@
         "exceed_strategy": "",
         "approval_mode": "",
         "personal_pay_ratio": "",
-        "is_active": "",
-        "id": "row_01"
+        "is_active": ""
       },
       {
         "policy_name": "",
@@ -31,8 +33,7 @@
         "exceed_strategy": "",
         "approval_mode": "",
         "personal_pay_ratio": "",
-        "is_active": "",
-        "id": "row_02"
+        "is_active": ""
       },
       {
         "policy_name": "",
@@ -46,13 +47,11 @@
         "exceed_strategy": "",
         "approval_mode": "",
         "personal_pay_ratio": "",
-        "is_active": "",
-        "id": "row_03"
+        "is_active": ""
       }
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].approval_mode",
@@ -61,19 +60,21 @@
     "rows[].employee_level",
     "rows[].exceed_strategy",
     "rows[].hotel_star_limit",
-    "rows[].id",
     "rows[].is_active",
     "rows[].max_amount",
     "rows[].personal_pay_ratio",
     "rows[].policy_name",
     "rows[].product_type",
     "rows[].season",
-    "rows_empty"
+    "rows_empty",
+    "travel_policy",
+    "travel_policy.page",
+    "travel_policy.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_policy"
   ],
   "urlParams": {},
   "notes": [],

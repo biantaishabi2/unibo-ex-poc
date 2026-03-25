@@ -11,12 +11,10 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_order_detail"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): editing, record, record.booking_mode, record.change_status, record.contact_name, record.contact_phone, record.currency, record.customer_id, record.host_enterprise_id, record.host_member_id, record.host_shop_id, record.order_no, record.original_order_ref, record.payment_external_ref, record.payment_id, record.points_deduction_amount, record.points_to_use, record.product_type, record.recommended_payment_method, record.seat_selection_snapshot, record.status, record.supplier_order_ref, record.tenant_id, record.ticket_passenger_infos, record.total_amount, record.traveler_count, record.waitlist_status
+  # status.keys preview (first ~40): editing, travel_order, travel_order.booking_mode, travel_order.change_status, travel_order.contact_name, travel_order.contact_phone, travel_order.currency, travel_order.order_no, travel_order.original_order_ref, travel_order.payment_external_ref, travel_order.points_deduction_amount, travel_order.points_to_use, travel_order.product_type, travel_order.recommended_payment_method, travel_order.seat_selection_snapshot, travel_order.status, travel_order.supplier_order_ref, travel_order.ticket_passenger_infos, travel_order.total_amount, travel_order.traveler_count, travel_order.waitlist_status
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"record\": {
-    \"host_member_id\": \"\",
-    \"status\": \"\",
+  \"travel_order\": {
     \"order_no\": \"\",
     \"product_type\": \"\",
     \"booking_mode\": \"\",
@@ -28,18 +26,14 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     \"points_deduction_amount\": \"\",
     \"recommended_payment_method\": \"\",
     \"currency\": \"\",
+    \"status\": \"\",
     \"change_status\": \"\",
     \"waitlist_status\": \"\",
     \"original_order_ref\": \"\",
     \"ticket_passenger_infos\": \"\",
     \"seat_selection_snapshot\": \"\",
     \"supplier_order_ref\": \"\",
-    \"payment_external_ref\": \"\",
-    \"tenant_id\": \"\",
-    \"host_shop_id\": \"\",
-    \"host_enterprise_id\": \"\",
-    \"customer_id\": \"\",
-    \"payment_id\": \"\"
+    \"payment_external_ref\": \"\"
   },
   \"editing\": false
 }")
@@ -113,107 +107,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("action_cancel_cancel_request", params, socket) do
-    # UI action event name: action_cancel_cancel_request
-    socket = dispatch_backend("action_cancel_cancel_request", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_cancel_waitlist", params, socket) do
-    # UI action event name: action_cancel_waitlist
-    socket = dispatch_backend("action_cancel_waitlist", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_confirm_change", params, socket) do
-    # UI action event name: action_confirm_change
-    socket = dispatch_backend("action_confirm_change", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_confirm_quote", params, socket) do
-    # UI action event name: action_confirm_quote
-    socket = dispatch_backend("action_confirm_quote", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
   def handle_event("action_destroy", params, socket) do
     # UI action event name: action_destroy
     socket = dispatch_backend("action_destroy", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_execute_cancel", params, socket) do
-    # UI action event name: action_execute_cancel
-    socket = dispatch_backend("action_execute_cancel", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_fulfill_waitlist", params, socket) do
-    # UI action event name: action_fulfill_waitlist
-    socket = dispatch_backend("action_fulfill_waitlist", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_mark_booked", params, socket) do
-    # UI action event name: action_mark_booked
-    socket = dispatch_backend("action_mark_booked", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_mark_completed", params, socket) do
-    # UI action event name: action_mark_completed
-    socket = dispatch_backend("action_mark_completed", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_mark_order_failed", params, socket) do
-    # UI action event name: action_mark_order_failed
-    socket = dispatch_backend("action_mark_order_failed", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_mark_payment_succeeded", params, socket) do
-    # UI action event name: action_mark_payment_succeeded
-    socket = dispatch_backend("action_mark_payment_succeeded", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_request_cancel", params, socket) do
-    # UI action event name: action_request_cancel
-    socket = dispatch_backend("action_request_cancel", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_request_change", params, socket) do
-    # UI action event name: action_request_change
-    socket = dispatch_backend("action_request_change", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_submit_order", params, socket) do
-    # UI action event name: action_submit_order
-    socket = dispatch_backend("action_submit_order", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_submit_waitlist", params, socket) do
-    # UI action event name: action_submit_waitlist
-    socket = dispatch_backend("action_submit_waitlist", params, socket)
     {:noreply, socket}
   end
 

@@ -1,28 +1,23 @@
 {
   "version": 1,
   "requiredPaths": [
-    "page_title",
     "row.bed_type",
     "row.hotel_code",
-    "row.id",
     "row.room_type_code",
     "row.room_type_name",
     "row.status",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_room_type.page",
+    "travel_room_type.total_pages"
   ],
   "requiredRoots": [
-    "page_title",
     "row",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_room_type"
   ],
   "schema": {
-    "page_title": {
-      "type": "object",
-      "required": true,
-      "properties": {}
-    },
     "rows": {
       "type": "array",
       "required": true,
@@ -54,11 +49,6 @@
             "type": "string",
             "required": false,
             "example": ""
-          },
-          "id": {
-            "type": "string",
-            "required": false,
-            "example": "row_01"
           }
         }
       },
@@ -87,10 +77,6 @@
         "status": {
           "type": "unknown",
           "required": true
-        },
-        "id": {
-          "type": "unknown",
-          "required": true
         }
       }
     },
@@ -98,6 +84,22 @@
       "type": "object",
       "required": true,
       "properties": {}
+    },
+    "travel_room_type": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
     }
   },
   "notes": []

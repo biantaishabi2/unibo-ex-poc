@@ -1,11 +1,10 @@
 {
-  "editing": false,
-  "record": {
-    "approval_mode": "",
-    "change_fee": "",
+  "travel_change_order": {
     "change_reason": "",
-    "new_offer_id": "",
     "price_difference": "",
-    "status": ""
-  }
+    "change_fee": "",
+    "status": "",
+    "approval_mode": ""
+  },
+  "editing": false
 }

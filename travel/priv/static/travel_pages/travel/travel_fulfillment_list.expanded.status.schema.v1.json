@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "TravelFulfillment 列表",
+    "travel_fulfillment": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -15,8 +18,7 @@
         "boarding_status": "",
         "confirmation_payload": "",
         "failure_reason": "",
-        "used_at": "",
-        "id": "row_01"
+        "used_at": ""
       },
       {
         "fulfillment_type": "",
@@ -29,8 +31,7 @@
         "boarding_status": "",
         "confirmation_payload": "",
         "failure_reason": "",
-        "used_at": "",
-        "id": "row_02"
+        "used_at": ""
       },
       {
         "fulfillment_type": "",
@@ -43,13 +44,11 @@
         "boarding_status": "",
         "confirmation_payload": "",
         "failure_reason": "",
-        "used_at": "",
-        "id": "row_03"
+        "used_at": ""
       }
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].boarding_status",
@@ -57,19 +56,21 @@
     "rows[].confirmation_payload",
     "rows[].failure_reason",
     "rows[].fulfillment_type",
-    "rows[].id",
     "rows[].status",
     "rows[].supplier_booking_ref",
     "rows[].ticket_refs",
     "rows[].used_at",
     "rows[].voucher_or_ticket_ref",
     "rows[].waitlist_result",
-    "rows_empty"
+    "rows_empty",
+    "travel_fulfillment",
+    "travel_fulfillment.page",
+    "travel_fulfillment.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_fulfillment"
   ],
   "urlParams": {},
   "notes": [],

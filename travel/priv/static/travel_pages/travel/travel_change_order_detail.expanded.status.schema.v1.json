@@ -1,29 +1,27 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
+    "travel_change_order": {
       "change_reason": "",
-      "status": "",
       "price_difference": "",
       "change_fee": "",
-      "approval_mode": "",
-      "new_offer_id": ""
+      "status": "",
+      "approval_mode": ""
     },
     "editing": false
   },
   "keys": [
     "editing",
-    "record",
-    "record.approval_mode",
-    "record.change_fee",
-    "record.change_reason",
-    "record.new_offer_id",
-    "record.price_difference",
-    "record.status"
+    "travel_change_order",
+    "travel_change_order.approval_mode",
+    "travel_change_order.change_fee",
+    "travel_change_order.change_reason",
+    "travel_change_order.price_difference",
+    "travel_change_order.status"
   ],
   "required": [
     "editing",
-    "record"
+    "travel_change_order"
   ],
   "urlParams": {},
   "notes": [],

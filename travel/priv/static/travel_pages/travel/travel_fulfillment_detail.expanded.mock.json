@@ -1,18 +1,16 @@
 {
-  "editing": false,
-  "record": {
-    "boarding_status": "",
-    "change_result": "",
-    "confirmation_payload": "",
-    "failure_reason": "",
+  "travel_fulfillment": {
     "fulfillment_type": "",
-    "shipment_id": "",
     "status": "",
     "supplier_booking_ref": "",
-    "tenant_id": "",
-    "ticket_refs": "",
-    "used_at": "",
     "voucher_or_ticket_ref": "",
-    "waitlist_result": ""
-  }
+    "ticket_refs": "",
+    "waitlist_result": "",
+    "change_result": "",
+    "boarding_status": "",
+    "confirmation_payload": "",
+    "failure_reason": "",
+    "used_at": ""
+  },
+  "editing": false
 }
