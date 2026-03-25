@@ -840,9 +840,16 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
   end
 
   defp load_status_defaults(heex_path) do
-    status_path = String.replace_suffix(heex_path, ".generated.heex", ".status.schema.v1.json")
+    # #1748: expanded 模板也要查找对应的 status.schema.v1.json
+    status_candidates = [
+      String.replace_suffix(heex_path, ".expanded.generated.heex", ".expanded.status.schema.v1.json"),
+      String.replace_suffix(heex_path, ".generated.heex", ".status.schema.v1.json"),
+      String.replace_suffix(heex_path, ".heex", ".status.schema.v1.json")
+    ]
 
-    if File.exists?(status_path) do
+    status_path = Enum.find(status_candidates, &File.exists?/1)
+
+    if status_path do
       case File.read(status_path) do
         {:ok, json} ->
           case Jason.decode(json) do
