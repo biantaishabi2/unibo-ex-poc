@@ -3787,7 +3787,10 @@
       "transitions": []
     },
     {
-      "api_map": {},
+      "api_map": {
+        "list": "Travel.TrainOffer.list",
+        "search": "Travel.TrainOffer.list"
+      },
       "backend": {},
       "behavior_file": "",
       "domain": "Travel",
@@ -3796,7 +3799,7 @@
       "entity": "TrainOffer",
       "entity_snake": "train_offer",
       "page_id": "train_search_results",
-      "page_kind": "custom",
+      "page_kind": "list",
       "page_type": "custom",
       "state_schema": {
         "defaults": {},
@@ -3805,7 +3808,7 @@
       "status_keys": [],
       "template_meta": {},
       "template_spec": {
-        "page_kind": "custom",
+        "page_kind": "list",
         "schema_version": "1.0"
       },
       "transitions": []
@@ -4199,7 +4202,10 @@
       "transitions": []
     },
     {
-      "api_map": {},
+      "api_map": {
+        "list": "Travel.FlightOffer.list",
+        "search": "Travel.FlightOffer.list"
+      },
       "backend": {},
       "behavior_file": "",
       "domain": "Travel",
@@ -4208,7 +4214,7 @@
       "entity": "FlightOffer",
       "entity_snake": "flight_offer",
       "page_id": "change_flight_search",
-      "page_kind": "custom",
+      "page_kind": "list",
       "page_type": "custom",
       "state_schema": {
         "defaults": {},
@@ -4217,7 +4223,7 @@
       "status_keys": [],
       "template_meta": {},
       "template_spec": {
-        "page_kind": "custom",
+        "page_kind": "list",
         "schema_version": "1.0"
       },
       "transitions": []
@@ -4678,7 +4684,7 @@
     {
       "page_id": "train_search_results",
       "path": "/travel/train_search_results",
-      "route_kind": "custom"
+      "route_kind": "list"
     },
     {
       "page_id": "job_position_list",
@@ -4758,7 +4764,7 @@
     {
       "page_id": "change_flight_search",
       "path": "/travel/change_flight_search",
-      "route_kind": "custom"
+      "route_kind": "list"
     },
     {
       "page_id": "personal_center",
