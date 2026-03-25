@@ -3,6 +3,8 @@ defmodule UniboExPocWeb.Live.TravelPageHostRuntime do
   Travel 页面宿主运行时适配层。
   """
 
+  alias UniboExPocWeb.Graphql.RuntimeConfig
+
   @default_pages_dir Path.join(
                        :code.priv_dir(:travel),
                        "static/travel_pages/travel"
@@ -63,9 +65,9 @@ defmodule UniboExPocWeb.Live.TravelPageHostRuntime do
 
   def default_assigns, do: @default_assigns
 
-  def runtime_mode, do: :mock
+  def runtime_mode, do: RuntimeConfig.page_host_runtime()
 
-  def page_backend, do: nil
+  def page_backend, do: RuntimeConfig.page_host_backend()
 
   def pages_dir do
     Application.get_env(:travel, :travel_pages_dir, @default_pages_dir)
