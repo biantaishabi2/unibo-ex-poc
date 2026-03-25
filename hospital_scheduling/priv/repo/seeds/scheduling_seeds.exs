@@ -177,6 +177,58 @@ Logger.info("  排班周期: #{period_er.title}")
 }, authorize?: false)
 Logger.info("  排班周期: #{period_icu.title}")
 
+# ── 6b. ICU 班次类型 + 覆盖需求 ──────────────────────────────
+# ICU 也需要完整的班次和需求数据，否则 Solver 跑不了
+
+icu_dept = Enum.at(departments, 3)
+
+icu_shift_types = Enum.map(shift_specs, fn {code, name, start_t, end_t, hours, is_night, color, sort} ->
+  {:ok, st} = Ash.create(Scheduling.ShiftType, %{
+    department_id: icu_dept.id,
+    code: code,
+    name: name,
+    start_time: start_t,
+    end_time: end_t,
+    duration_hours: Decimal.new(hours),
+    is_night: is_night,
+    color: color,
+    sort_order: sort
+  }, authorize?: false)
+  st
+end)
+
+Logger.info("  ICU 班次: #{length(icu_shift_types)} 种")
+
+# ICU 覆盖需求（7天 × 3班次，ICU 人力需求比心内科高）
+icu_requirements = for day_offset <- 0..6, st <- icu_shift_types do
+  date = Date.add(~D[2026-03-23], day_offset)
+  is_weekend = Date.day_of_week(date) in [6, 7]
+
+  {min_hc, target_hc} = cond do
+    st.code == "day" and not is_weekend -> {3, 4}
+    st.code == "day" and is_weekend -> {2, 3}
+    st.code == "evening" and not is_weekend -> {2, 3}
+    st.code == "evening" and is_weekend -> {2, 2}
+    st.code == "night" and not is_weekend -> {2, 3}
+    st.code == "night" and is_weekend -> {2, 2}
+  end
+
+  {:ok, req} = Ash.create(Scheduling.CoverageRequirement, %{
+    period_id: period_icu.id,
+    shift_type_id: st.id,
+    requirement_date: date,
+    role_code: "nurse",
+    role_name: "护士",
+    min_headcount: min_hc,
+    target_headcount: target_hc,
+    required_lead_count: 1,
+    priority: 100
+  }, authorize?: false)
+  req
+end
+
+Logger.info("  ICU 需求: #{length(icu_requirements)} 条（7天 × 3班次）")
+
 # ── 7. 覆盖需求（心内科，7天 × 3班次）────────────────────────
 
 # 工作日：白班3人(目标4)/小夜2人(目标3)/大夜2人
