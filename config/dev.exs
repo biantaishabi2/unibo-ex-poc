@@ -65,17 +65,6 @@ config :unibo_ex_poc, UniboExPocWeb.Endpoint,
 # Enable dev routes for dashboard and mailbox
 config :unibo_ex_poc, dev_routes: true
 
-# Travel 域外部 API stub — 开发/测试环境无真实外部服务，返回成功空响应
-config :unibo_ex_poc, :integration_providers, %{
-  "payment_capture" => fn _req -> {:ok, %{payload: %{}, code: "stub_ok"}} end,
-  "shop_caller_context_resolve" => fn _req -> {:ok, %{payload: %{}, code: "stub_ok"}} end,
-  "shop_eligibility_quote" => fn _req -> {:ok, %{payload: %{eligible: true}, code: "stub_ok"}} end,
-  "supplier_booking_submit" => fn _req -> {:ok, %{payload: %{booking_ref: "STUB-#{System.unique_integer([:positive])}"}, code: "stub_ok"}} end,
-  "supplier_cancel_booking" => fn _req -> {:ok, %{payload: %{}, code: "stub_ok"}} end,
-  "supplier_confirm_booking" => fn _req -> {:ok, %{payload: %{confirmation_code: "STUB-CONF-#{System.unique_integer([:positive])}"}, code: "stub_ok"}} end,
-  "supplier_issue_document" => fn _req -> {:ok, %{payload: %{document_number: "STUB-DOC-#{System.unique_integer([:positive])}"}, code: "stub_ok"}} end
-}
-
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
 

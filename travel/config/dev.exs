@@ -41,3 +41,14 @@ config :phoenix_live_view,
 # 开发环境默认 tenant（multitenancy 实体页面验证用）
 config :travel, UniboExPocWeb.Graphql.RuntimeConfig,
   default_tenant_id: "00000000-0000-0000-0000-000000000001"
+
+# Travel 域外部 API stub — 开发环境无真实外部服务，返回成功空响应
+config :travel, :integration_providers, %{
+  "payment_capture" => fn _req -> {:ok, %{payload: %{}, code: "stub_ok"}} end,
+  "shop_caller_context_resolve" => fn _req -> {:ok, %{payload: %{}, code: "stub_ok"}} end,
+  "shop_eligibility_quote" => fn _req -> {:ok, %{payload: %{eligible: true}, code: "stub_ok"}} end,
+  "supplier_booking_submit" => fn _req -> {:ok, %{payload: %{booking_ref: "STUB-#{System.unique_integer([:positive])}"}, code: "stub_ok"}} end,
+  "supplier_cancel_booking" => fn _req -> {:ok, %{payload: %{}, code: "stub_ok"}} end,
+  "supplier_confirm_booking" => fn _req -> {:ok, %{payload: %{confirmation_code: "STUB-CONF-#{System.unique_integer([:positive])}"}, code: "stub_ok"}} end,
+  "supplier_issue_document" => fn _req -> {:ok, %{payload: %{document_number: "STUB-DOC-#{System.unique_integer([:positive])}"}, code: "stub_ok"}} end
+}
