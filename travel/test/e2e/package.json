@@ -1,0 +1,12 @@
+{
+  "name": "travel-e2e",
+  "version": "1.0.0",
+  "description": "Travel 域 E2E 测试",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2"
+  }
+}
