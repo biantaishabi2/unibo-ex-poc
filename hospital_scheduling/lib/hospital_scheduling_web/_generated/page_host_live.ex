@@ -68,15 +68,8 @@ defmodule HospitalSchedulingWeb.Generated.PageHostLive do
   def handle_event(event, params, socket) do
     socket =
       case socket.assigns.runtime_mode do
-        :graphql ->
-          if PageHostRuntime.page_has_backend?(socket.assigns.page) do
-            dispatch_backend(event, params, socket)
-          else
-            socket
-          end
-
-        _ ->
-          socket
+        :graphql -> dispatch_backend(event, params, socket)
+        _ -> socket
       end
 
     {:noreply, socket}
@@ -132,7 +125,7 @@ defmodule HospitalSchedulingWeb.Generated.PageHostLive do
 
       module_code = """
       defmodule #{module_name} do
-        use Phoenix.Component, global_prefixes: ~w(phx-)
+        use Phoenix.Component
 
         import StitchUI.Components.Basic, except: [link: 1]
         import StitchUI.Components.Card
@@ -209,8 +202,8 @@ defmodule HospitalSchedulingWeb.Generated.PageHostLive do
 
   defp comparison_like_angle_bracket?(graphemes, idx) do
     next = neighboring_grapheme(graphemes, idx + 1)
-    # 组件调用 <.xxx>、闭合标签 </xxx>、EEx 标签 <%= 是合法标签，不转义
-    if next in [".", "/", "%"] do
+    # 组件调用 <.xxx> 或闭合标签 </xxx> 是合法标签，不转义
+    if next in [".", "/"] do
       false
     else
       prev = neighboring_grapheme(graphemes, idx - 1)

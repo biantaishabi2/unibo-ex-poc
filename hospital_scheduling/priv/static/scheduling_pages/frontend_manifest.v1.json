@@ -1,20 +1,17 @@
 {
   "capability_contracts": [],
   "domains": [
-    "",
     "scheduling"
   ],
   "pages": [
     {
       "api_map": {
-        "create": "Scheduling.SchedulingConstraint.create",
         "destroy": "Scheduling.SchedulingConstraint.destroy",
         "get": "Scheduling.SchedulingConstraint.get",
         "update": "Scheduling.SchedulingConstraint.update"
       },
       "backend": {
         "api_map": {
-          "create": "Scheduling.SchedulingConstraint.create",
           "destroy": "Scheduling.SchedulingConstraint.destroy",
           "get": "Scheduling.SchedulingConstraint.get",
           "update": "Scheduling.SchedulingConstraint.update"
@@ -215,7 +212,6 @@
     },
     {
       "api_map": {
-        "create": "Scheduling.SchedulingPeriod.create",
         "destroy": "Scheduling.SchedulingPeriod.destroy",
         "get": "Scheduling.SchedulingPeriod.get",
         "mark_adjusted": "Scheduling.SchedulingPeriod.mark_adjusted",
@@ -226,7 +222,6 @@
       },
       "backend": {
         "api_map": {
-          "create": "Scheduling.SchedulingPeriod.create",
           "destroy": "Scheduling.SchedulingPeriod.destroy",
           "get": "Scheduling.SchedulingPeriod.get",
           "mark_adjusted": "Scheduling.SchedulingPeriod.mark_adjusted",
@@ -452,14 +447,12 @@
     },
     {
       "api_map": {
-        "create": "Scheduling.ShiftType.create",
         "destroy": "Scheduling.ShiftType.destroy",
         "get": "Scheduling.ShiftType.get",
         "update": "Scheduling.ShiftType.update"
       },
       "backend": {
         "api_map": {
-          "create": "Scheduling.ShiftType.create",
           "destroy": "Scheduling.ShiftType.destroy",
           "get": "Scheduling.ShiftType.get",
           "update": "Scheduling.ShiftType.update"
@@ -655,17 +648,19 @@
       "ui_sections": []
     },
     {
-      "api_map": {},
+      "api_map": {
+        "create": "Scheduling.ShiftPreference.create"
+      },
       "backend": {},
       "behavior_file": "",
-      "domain": "",
-      "domain_snake": "",
-      "dsl_file": "/shift_type_detail.dsl",
-      "entity": "",
-      "entity_snake": "",
-      "page_id": "shift_type_detail",
-      "page_kind": "detail",
-      "page_type": "detail",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/shift_swap_request.dsl",
+      "entity": "ShiftPreference",
+      "entity_snake": "shift_preference",
+      "page_id": "shift_swap_request",
+      "page_kind": "custom",
+      "page_type": "custom",
       "state_schema": {
         "defaults": {},
         "status_keys": []
@@ -673,7 +668,33 @@
       "status_keys": [],
       "template_meta": {},
       "template_spec": {
-        "page_kind": "detail",
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "create": "Scheduling.ShiftAssignment.create"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/leave_request.dsl",
+      "entity": "ShiftAssignment",
+      "entity_snake": "shift_assignment",
+      "page_id": "leave_request",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
         "schema_version": "1.0"
       },
       "transitions": []
@@ -706,6 +727,32 @@
     },
     {
       "api_map": {
+        "list": "Scheduling.ShiftAssignment.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/my_schedule.dsl",
+      "entity": "ShiftAssignment",
+      "entity_snake": "shift_assignment",
+      "page_id": "my_schedule",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
         "list": "Scheduling.ScheduleVersion.list"
       },
       "backend": {},
@@ -716,6 +763,32 @@
       "entity": "ScheduleVersion",
       "entity_snake": "schedule_version",
       "page_id": "publish_preview",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "create": "Scheduling.ShiftPreference.create"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/shift_preference_form.dsl",
+      "entity": "ShiftPreference",
+      "entity_snake": "shift_preference",
+      "page_id": "shift_preference_form",
       "page_kind": "custom",
       "page_type": "custom",
       "state_schema": {
@@ -783,15 +856,17 @@
       "transitions": []
     },
     {
-      "api_map": {},
+      "api_map": {
+        "list": "Scheduling.ShiftPreference.list"
+      },
       "backend": {},
       "behavior_file": "",
-      "domain": "",
-      "domain_snake": "",
-      "dsl_file": "/shift_type_list.dsl",
-      "entity": "",
-      "entity_snake": "",
-      "page_id": "shift_type_list",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/shift_swap_list.dsl",
+      "entity": "ShiftPreference",
+      "entity_snake": "shift_preference",
+      "page_id": "shift_swap_list",
       "page_kind": "list",
       "page_type": "list",
       "state_schema": {
@@ -807,17 +882,19 @@
       "transitions": []
     },
     {
-      "api_map": {},
+      "api_map": {
+        "list": "Scheduling.SchedulingPeriod.list"
+      },
       "backend": {},
       "behavior_file": "",
-      "domain": "",
-      "domain_snake": "",
-      "dsl_file": "/scheduling_constraint_detail.dsl",
-      "entity": "",
-      "entity_snake": "",
-      "page_id": "scheduling_constraint_detail",
-      "page_kind": "detail",
-      "page_type": "detail",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/schedule_notification.dsl",
+      "entity": "SchedulingPeriod",
+      "entity_snake": "scheduling_period",
+      "page_id": "schedule_notification",
+      "page_kind": "custom",
+      "page_type": "custom",
       "state_schema": {
         "defaults": {},
         "status_keys": []
@@ -825,7 +902,59 @@
       "status_keys": [],
       "template_meta": {},
       "template_spec": {
-        "page_kind": "detail",
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.SchedulingPeriod.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/schedule_overview.dsl",
+      "entity": "SchedulingPeriod",
+      "entity_snake": "scheduling_period",
+      "page_id": "schedule_overview",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Scheduling.ShiftAssignment.list"
+      },
+      "backend": {},
+      "behavior_file": "",
+      "domain": "Scheduling",
+      "domain_snake": "scheduling",
+      "dsl_file": "scheduling/team_schedule.dsl",
+      "entity": "ShiftAssignment",
+      "entity_snake": "shift_assignment",
+      "page_id": "team_schedule",
+      "page_kind": "custom",
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {},
+        "status_keys": []
+      },
+      "status_keys": [],
+      "template_meta": {},
+      "template_spec": {
+        "page_kind": "custom",
         "schema_version": "1.0"
       },
       "transitions": []
@@ -878,9 +1007,14 @@
       "route_kind": "new"
     },
     {
-      "page_id": "shift_type_detail",
-      "path": "//shift_type_detail",
-      "route_kind": "detail"
+      "page_id": "shift_swap_request",
+      "path": "/scheduling/shift_swap_request",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "leave_request",
+      "path": "/scheduling/leave_request",
+      "route_kind": "custom"
     },
     {
       "page_id": "solver_result",
@@ -888,8 +1022,18 @@
       "route_kind": "custom"
     },
     {
+      "page_id": "my_schedule",
+      "path": "/scheduling/my_schedule",
+      "route_kind": "custom"
+    },
+    {
       "page_id": "publish_preview",
       "path": "/scheduling/publish_preview",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "shift_preference_form",
+      "path": "/scheduling/shift_preference_form",
       "route_kind": "custom"
     },
     {
@@ -903,14 +1047,24 @@
       "route_kind": "custom"
     },
     {
-      "page_id": "shift_type_list",
-      "path": "//shift_type_list",
+      "page_id": "shift_swap_list",
+      "path": "/scheduling/shift_swap_list",
       "route_kind": "list"
     },
     {
-      "page_id": "scheduling_constraint_detail",
-      "path": "//scheduling_constraint_detail",
-      "route_kind": "detail"
+      "page_id": "schedule_notification",
+      "path": "/scheduling/schedule_notification",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "schedule_overview",
+      "path": "/scheduling/schedule_overview",
+      "route_kind": "custom"
+    },
+    {
+      "page_id": "team_schedule",
+      "path": "/scheduling/team_schedule",
+      "route_kind": "custom"
     }
   ],
   "schema_version": "1.0",

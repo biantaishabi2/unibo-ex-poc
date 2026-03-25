@@ -3,14 +3,16 @@
     <.flex justify="between" align="center" direction="row" id="header_bar">
       <.stack gap={1} direction="column" id="title_group">
         <.text variant="title" id="page_title">
-          发布预览 — <%= get_in(@period, [:title]) || "" %>
+          发布预览 — <%= @period.title %>
         </.text>
         <.flex gap={2} direction="row" id="subtitle_row">
           <.badge variant="default" size="sm" id="version_badge">
-            v<%= get_in(@version, [:version_no]) || "" %>
+            v<%= @version.version_no %>
           </.badge>
-          <.select bind="schedule_version.origin_type" size="md" id="origin_badge" options={[%{label: "manual", value: "manual"}, %{label: "solver", value: "solver"}, %{label: "{{version.origin_type|}}", value: ""}]}>
-
+          <.select bind="schedule_version.origin_type" size="md" id="origin_badge">
+            <option value="manual">manual</option>
+            <option value="solver">solver</option>
+            <option><%= @version.origin_type %></option>
           </.select>
         </.flex>
       </.stack>
@@ -66,30 +68,26 @@
             </.table_row>
           </.table_header>
           <.table_body id="diff_table_body">
-            <%= for change <- (@changes || []) do %>
+            <%= for change <- @changes do %>
               <.table_row>
                 <.table_cell>
-                  <%= get_in(change, [:employee, :name]) || "" %>
+                  <%= (change[:employee] || %{})[:name] %>
                 </.table_cell>
                 <.table_cell>
-                  <%= get_in(change, [:date]) || "" %>
+                  <%= change.date %>
                 </.table_cell>
                 <.table_cell>
-                  <%= if (val = get_in(change, [:old_shift_type])) && to_string(val) != "" do %>
-                    <.badge variant="secondary" size="sm">
-                      <%= to_string(val) %>
-                    </.badge>
-                  <% end %>
+                  <.badge variant="secondary" size="sm">
+                    <%= change.old_shift_type %>
+                  </.badge>
                 </.table_cell>
                 <.table_cell>
-                  <%= if (val = get_in(change, [:new_shift_type])) && to_string(val) != "" do %>
-                    <.badge variant="default" size="sm">
-                      <%= to_string(val) %>
-                    </.badge>
-                  <% end %>
+                  <.badge variant="default" size="sm">
+                    <%= change.new_shift_type %>
+                  </.badge>
                 </.table_cell>
                 <.table_cell>
-                  <%= get_in(change, [:reason]) || "" %>
+                  <%= change.reason %>
                 </.table_cell>
               </.table_row>
             <% end %>

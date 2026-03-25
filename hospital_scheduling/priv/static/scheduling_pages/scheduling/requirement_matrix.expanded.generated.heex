@@ -3,14 +3,18 @@
     <.flex justify="between" align="center" direction="row" id="header_bar">
       <.stack gap={1} direction="column" id="title_group">
         <.text variant="title" id="page_title">
-          <%= get_in(@period, [:title]) || "需求矩阵" %>
+          <%= @period.title %>
         </.text>
         <.flex gap={2} direction="row" id="subtitle_row">
-          <.select bind="coverage_requirement.state" size="md" id="state_badge" options={[%{label: "draft", value: "draft"}, %{label: "generating", value: "generating"}, %{label: "generated", value: "generated"}, %{label: "adjusted", value: "adjusted"}, %{label: "{{period.state|}}", value: "published"}]}>
-
+          <.select bind="coverage_requirement.state" size="md" id="state_badge">
+            <option value="draft">draft</option>
+            <option value="generating">generating</option>
+            <option value="generated">generated</option>
+            <option value="adjusted">adjusted</option>
+            <option value="published"><%= @period.state %></option>
           </.select>
           <.text variant="muted" id="date_range">
-            <%= get_in(@period, [:start_date]) || "" %> ~ <%= get_in(@period, [:end_date]) || "" %>
+            <%= @period.start_date %> ~ <%= @period.end_date %>
           </.text>
         </.flex>
       </.stack>
@@ -49,23 +53,21 @@
             </.table_row>
           </.table_header>
           <.table_body id="req_matrix_body">
-            <%= for shift <- (@shift_types || []) do %>
+            <%= for shift <- @shift_types do %>
               <.table_row>
                 <.table_cell>
-                  <%= if (val = get_in(shift, [:name])) && to_string(val) != "" do %>
-                    <.badge variant="default" size="sm">
-                      <%= to_string(val) %>
-                    </.badge>
-                  <% end %>
+                  <.badge variant="default" size="sm">
+                    <%= shift.name %>
+                  </.badge>
                 </.table_cell>
                 <.table_cell>
-                  <%= for req <- (get_in(shift, [:requirements]) || []) do %>
+                  <%= for req <- shift.requirements do %>
                     <.stack gap={0} direction="column">
                       <.text variant="caption">
-                        最低 <%= get_in(req, [:min_headcount]) || "" %>
+                        最低 <%= req.min_headcount %>
                       </.text>
                       <.text variant="caption" color="muted">
-                        目标 <%= get_in(req, [:target_headcount]) || "" %>
+                        目标 <%= req.target_headcount %>
                       </.text>
                     </.stack>
                   <% end %>

@@ -13,11 +13,9 @@
         </.button>
       </.flex>
       <.flex gap={2} direction="row" id="nav_right">
-        <%= if (val = get_in(@period, [:title])) && to_string(val) != "" do %>
-          <.badge variant="default" size="sm" id="period_badge">
-            <%= to_string(val) %>
-          </.badge>
-        <% end %>
+        <.badge variant="default" size="sm" id="period_badge">
+          <%= @period.title %>
+        </.badge>
         <.button variant="secondary" phx-click="navigate_back" size="md" id="back_btn">
           返回周期详情
         </.button>
@@ -52,25 +50,23 @@
             </.table_row>
           </.table_header>
           <.table_body id="cal_body">
-            <%= for emp <- (@employees || []) do %>
+            <%= for emp <- @employees do %>
               <.table_row>
                 <.table_cell>
                   <.stack gap={0} direction="column">
                     <.text weight="bold">
-                      <%= get_in(emp, [:name]) || "" %>
+                      <%= emp.name %>
                     </.text>
                     <.text variant="caption" color="muted">
-                      <%= get_in(emp, [:role_code]) || "" %>
+                      <%= emp.role_code %>
                     </.text>
                   </.stack>
                 </.table_cell>
                 <.table_cell>
-                  <%= for day <- (get_in(emp, [:daily_assignments]) || []) do %>
-                    <%= if (val = get_in(day, [:shift_type, :name])) && to_string(val) != "" do %>
-                      <.badge variant="default" size="sm">
-                        <%= to_string(val) %>
-                      </.badge>
-                    <% end %>
+                  <%= for day <- emp.daily_assignments do %>
+                    <.badge variant="default" size="sm">
+                      <%= (day[:shift_type] || %{})[:name] %>
+                    </.badge>
                   <% end %>
                 </.table_cell>
               </.table_row>
@@ -116,13 +112,14 @@
           </.card_title>
         </.card_header>
         <.card_content id="violations_content">
-          <%= for vio <- (@live_violations || []) do %>
+          <%= for vio <- @live_violations do %>
             <.flex gap={2} align="center" direction="row">
-              <.select bind="shift_assignment.severity" size="md" options={[%{label: "error", value: "error"}, %{label: "{{vio.severity|}}", value: "warning"}]}>
-
+              <.select bind="shift_assignment.severity" size="md">
+                <option value="error">error</option>
+                <option value="warning"><%= vio.severity %></option>
               </.select>
               <.text variant="caption">
-                <%= get_in(vio, [:message]) || "" %>
+                <%= vio.message %>
               </.text>
             </.flex>
           <% end %>

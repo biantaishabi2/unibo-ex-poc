@@ -1,0 +1,99 @@
+<.page title="概览面板" id="schedule_overview">
+  <.section layout="none" id="kpi_cards">
+    <.grid columns="1" id="kpi_grid">
+      <.text columns={4} gap={4} variant="caption" color="muted" id="no_calculations">
+        无计算字段
+      </.text>
+    </.grid>
+  </.section>
+  <.section layout="none" id="charts">
+    <.grid columns={2} gap={4} id="chart_grid">
+      <.card variant="default" id="chart_card_1">
+        <.card_header id="chart_1_header">
+          <.card_title id="chart_1_title">
+            <%= @chart_1_title %>
+          </.card_title>
+        </.card_header>
+        <.card_content id="chart_1_content">
+          <.text id="chart_1_placeholder">
+            图表区域
+          </.text>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="chart_card_2">
+        <.card_header id="chart_2_header">
+          <.card_title id="chart_2_title">
+            <%= @chart_2_title %>
+          </.card_title>
+        </.card_header>
+        <.card_content id="chart_2_content">
+          <.text id="chart_2_placeholder">
+            图表区域
+          </.text>
+        </.card_content>
+      </.card>
+    </.grid>
+  </.section>
+  <.section layout="none" id="activity_feed">
+    <.grid columns={2} gap={4} id="bottom_grid">
+      <.card variant="default" id="feed_card">
+        <.card_header id="feed_header">
+          <.card_title id="feed_title">
+            最新动态
+          </.card_title>
+        </.card_header>
+        <.card_content id="feed_content">
+          <.stack gap={2} direction="column" id="feed_list">
+            <.stack gap={0} direction="column" id="event_scheduling_period_created">
+              <.text variant="caption" color="muted" id="event_scheduling_period_created_trigger">
+                触发: create
+              </.text>
+              <.text id="event_scheduling_period_created_topic">
+                scheduling.period.created
+              </.text>
+            </.stack>
+            <.stack gap={0} direction="column" id="event_scheduling_period_generated">
+              <.text variant="caption" color="muted" id="event_scheduling_period_generated_trigger">
+                触发: mark_generated
+              </.text>
+              <.text id="event_scheduling_period_generated_topic">
+                scheduling.period.generated
+              </.text>
+            </.stack>
+            <.stack gap={0} direction="column" id="event_scheduling_period_adjusted">
+              <.text variant="caption" color="muted" id="event_scheduling_period_adjusted_trigger">
+                触发: mark_adjusted
+              </.text>
+              <.text gap={2} id="event_scheduling_period_adjusted_topic">
+                scheduling.period.adjusted
+              </.text>
+            </.stack>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="quick_actions_card">
+        <.card_header id="quick_actions_header">
+          <.card_title id="quick_actions_title">
+            快捷操作
+          </.card_title>
+        </.card_header>
+        <.card_content id="quick_actions_content">
+          <.grid columns={2} gap={2} id="action_grid">
+            <.button variant="secondary" phx-click="quick_action_1" size="md" id="quick_action_1">
+              <%= @action_1_label %>
+            </.button>
+            <.button variant="secondary" phx-click="quick_action_2" size="md" id="quick_action_2">
+              <%= @action_2_label %>
+            </.button>
+            <.button variant="secondary" phx-click="quick_action_3" size="md" id="quick_action_3">
+              <%= @action_3_label %>
+            </.button>
+            <.button variant="secondary" phx-click="quick_action_4" size="md" id="quick_action_4">
+              <%= @action_4_label %>
+            </.button>
+          </.grid>
+        </.card_content>
+      </.card>
+    </.grid>
+  </.section>
+</.page>

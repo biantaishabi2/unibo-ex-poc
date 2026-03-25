@@ -37,7 +37,6 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_params_accept ["id"]
   @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
-    "create" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingConstraint.create"},
     "destroy" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingConstraint.destroy"},
     "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingConstraint.get"},
     "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.SchedulingConstraint.update"}

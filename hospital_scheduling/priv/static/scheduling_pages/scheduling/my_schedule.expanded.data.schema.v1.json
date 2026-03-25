@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "shift_assignment.ends_at",
+    "shift_assignment.is_locked",
+    "shift_assignment.notes",
+    "shift_assignment.source",
+    "shift_assignment.starts_at"
+  ],
+  "requiredRoots": [
+    "shift_assignment"
+  ],
+  "schema": {
+    "shift_assignment": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "starts_at": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "ends_at": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "source": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "is_locked": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "notes": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    }
+  },
+  "notes": []
+}

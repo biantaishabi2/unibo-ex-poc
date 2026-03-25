@@ -91,8 +91,8 @@ defmodule HospitalSchedulingWeb.Generated.PageHostRuntime do
 
   def merge_backend_payload(page_data, dto, status) do
     page_data
-    |> deep_merge(deep_existing_atomize_keys(normalize_map(dto)))
-    |> deep_merge(deep_existing_atomize_keys(normalize_map(status)))
+    |> deep_merge(deep_generated_atomize_keys(normalize_map(dto)))
+    |> deep_merge(deep_generated_atomize_keys(normalize_map(status)))
   end
 
   def maybe_put_flash_from_effects(page_data, effects) do

@@ -22,8 +22,12 @@
     <.card variant="default" id="filter_card">
       <.card_content id="filter_content">
         <.flex gap={4} align="center" direction="row" id="filter_row">
-          <.select bind="scheduling_period.state" size="md" id="filter_state" options={[%{label: "draft", value: "draft"}, %{label: "generating", value: "generating"}, %{label: "generated", value: "generated"}, %{label: "adjusted", value: "adjusted"}, %{label: "published", value: ""}]}>
-
+          <.select bind="scheduling_period.state" size="md" id="filter_state">
+            <option value="draft">draft</option>
+            <option value="generating">generating</option>
+            <option value="generated">generated</option>
+            <option value="adjusted">adjusted</option>
+            <option>published</option>
           </.select>
           <.select name="department_id" label="科室" size="md" id="filter_department">
 
@@ -64,33 +68,29 @@
         </.table_row>
       </.table_header>
       <.table_body id="period_body">
-        <%= for row <- (@rows || []) do %>
+        <%= for row <- @rows do %>
           <.table_row>
             <.table_cell>
-              <%= get_in(row, [:title]) || "" %>
+              <%= row.title %>
             </.table_cell>
             <.table_cell>
-              <%= get_in(row, [:department, :name]) || "" %>
+              <%= (row[:department] || %{})[:name] %>
             </.table_cell>
             <.table_cell>
-              <%= get_in(row, [:start_date]) || "" %>
+              <%= row.start_date %>
             </.table_cell>
             <.table_cell>
-              <%= get_in(row, [:end_date]) || "" %>
+              <%= row.end_date %>
             </.table_cell>
             <.table_cell>
-              <%= if (val = get_in(row, [:state])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
-                  <%= to_string(val) %>
-                </.badge>
-              <% end %>
+              <.badge variant="default" size="sm">
+                <%= row.state %>
+              </.badge>
             </.table_cell>
             <.table_cell>
-              <%= if (val = get_in(row, [:generation_mode])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
-                  <%= to_string(val) %>
-                </.badge>
-              <% end %>
+              <.badge variant="default" size="sm">
+                <%= row.generation_mode %>
+              </.badge>
             </.table_cell>
             <.table_cell>
               <.flex gap={1} direction="row">
@@ -118,7 +118,7 @@
         上一页
       </.button>
       <.text id="page_info">
-        <%= get_in(@scheduling_period, [:page]) || "" %> / <%= get_in(@scheduling_period, [:total_pages]) || "" %>
+        <%= @scheduling_period.page %> / <%= @scheduling_period.total_pages %>
       </.text>
       <.button phx-click="scheduling_period_page_next" variant="primary" size="md" id="page_next">
         下一页

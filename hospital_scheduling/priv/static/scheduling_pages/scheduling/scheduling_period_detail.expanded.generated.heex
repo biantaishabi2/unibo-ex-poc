@@ -10,7 +10,7 @@
         <.breadcrumb_separator id="bc_sep" />
         <.breadcrumb_item id="bc_current_item">
           <.breadcrumb_page id="bc_current">
-            <%= get_in(@record, [:title]) || "详情" %>
+            <%= @record.title %>
           </.breadcrumb_page>
         </.breadcrumb_item>
       </.breadcrumb_list>
@@ -20,18 +20,14 @@
     <.flex justify="between" align="center" direction="row" id="header_bar">
       <.flex gap={3} align="center" direction="row" id="title_group">
         <.text variant="title" id="detail_title">
-          <%= get_in(@record, [:title]) || "" %>
+          <%= @record.title %>
         </.text>
-        <%= if (val = get_in(@record, [:state])) && to_string(val) != "" do %>
-          <.badge variant="default" size="sm" id="state_badge">
-            <%= to_string(val) %>
-          </.badge>
-        <% end %>
-        <%= if (val = get_in(@record, [:generation_mode])) && to_string(val) != "" do %>
-          <.badge variant="secondary" size="sm" id="mode_badge">
-            <%= to_string(val) %>
-          </.badge>
-        <% end %>
+        <.badge variant="default" size="sm" id="state_badge">
+          <%= @record.state %>
+        </.badge>
+        <.badge variant="secondary" size="sm" id="mode_badge">
+          <%= @record.generation_mode %>
+        </.badge>
       </.flex>
       <.flex gap={2} direction="row" id="actions_group">
         <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
@@ -55,7 +51,7 @@
               科室
             </.text>
             <.text variant="h4" weight="bold" id="dept_value">
-              <%= get_in(@record, [:department, :name]) || "" %>
+              <%= (@record[:department] || %{})[:name] %>
             </.text>
           </.stack>
         </.card_content>
@@ -67,7 +63,7 @@
               日期范围
             </.text>
             <.text variant="h4" weight="bold" id="date_value">
-              <%= get_in(@record, [:start_date]) || "" %> ~ <%= get_in(@record, [:end_date]) || "" %>
+              <%= @record.start_date %> ~ <%= @record.end_date %>
             </.text>
           </.stack>
         </.card_content>
@@ -79,7 +75,7 @@
               当前版本
             </.text>
             <.text variant="h4" weight="bold" id="version_value">
-              v<%= get_in(@record, [:current_version, :version_no]) || "" %>
+              v<%= (@record[:current_version] || %{})[:version_no] %>
             </.text>
           </.stack>
         </.card_content>
@@ -90,11 +86,9 @@
             <.text variant="caption" color="muted" id="run_label">
               最近求解
             </.text>
-            <%= if (val = get_in(@record, [:last_solver_run, :status])) && to_string(val) != "" do %>
-              <.badge variant="default" size="sm" id="run_status_badge">
-                <%= to_string(val) %>
-              </.badge>
-            <% end %>
+            <.badge variant="default" size="sm" id="run_status_badge">
+              <%= (@record[:last_solver_run] || %{})[:status] %>
+            </.badge>
           </.stack>
         </.card_content>
       </.card>
@@ -174,30 +168,26 @@
             </.table_row>
           </.table_header>
           <.table_body id="ver_body">
-            <%= for ver <- (get_in(@record, [:schedule_versions]) || []) do %>
+            <%= for ver <- @record.schedule_versions do %>
               <.table_row>
                 <.table_cell>
-                  v<%= get_in(ver, [:version_no]) || "" %>
+                  v<%= ver.version_no %>
                 </.table_cell>
                 <.table_cell>
-                  <%= if (val = get_in(ver, [:status])) && to_string(val) != "" do %>
-                    <.badge variant="default" size="sm">
-                      <%= to_string(val) %>
-                    </.badge>
-                  <% end %>
+                  <.badge variant="default" size="sm">
+                    <%= ver.status %>
+                  </.badge>
                 </.table_cell>
                 <.table_cell>
-                  <%= if (val = get_in(ver, [:origin_type])) && to_string(val) != "" do %>
-                    <.badge variant="secondary" size="sm">
-                      <%= to_string(val) %>
-                    </.badge>
-                  <% end %>
+                  <.badge variant="secondary" size="sm">
+                    <%= ver.origin_type %>
+                  </.badge>
                 </.table_cell>
                 <.table_cell>
-                  <%= get_in(ver, [:change_summary]) || "" %>
+                  <%= ver.change_summary %>
                 </.table_cell>
                 <.table_cell>
-                  <%= get_in(ver, [:inserted_at]) || "" %>
+                  <%= ver.inserted_at %>
                 </.table_cell>
               </.table_row>
             <% end %>
@@ -233,26 +223,24 @@
             </.table_row>
           </.table_header>
           <.table_body id="run_body">
-            <%= for run <- (get_in(@record, [:solver_runs]) || []) do %>
+            <%= for run <- @record.solver_runs do %>
               <.table_row>
                 <.table_cell>
-                  <%= get_in(run, [:engine_type]) || "" %>
+                  <%= run.engine_type %>
                 </.table_cell>
                 <.table_cell>
-                  <%= if (val = get_in(run, [:status])) && to_string(val) != "" do %>
-                    <.badge variant="default" size="sm">
-                      <%= to_string(val) %>
-                    </.badge>
-                  <% end %>
+                  <.badge variant="default" size="sm">
+                    <%= run.status %>
+                  </.badge>
                 </.table_cell>
                 <.table_cell>
-                  <%= get_in(run, [:score]) || "" %>
+                  <%= run.score %>
                 </.table_cell>
                 <.table_cell>
-                  <%= get_in(run, [:hard_violation_count]) || "" %>
+                  <%= run.hard_violation_count %>
                 </.table_cell>
                 <.table_cell>
-                  <%= get_in(run, [:started_at]) || "" %> ~ <%= get_in(run, [:completed_at]) || "" %>
+                  <%= run.started_at %> ~ <%= run.completed_at %>
                 </.table_cell>
               </.table_row>
             <% end %>

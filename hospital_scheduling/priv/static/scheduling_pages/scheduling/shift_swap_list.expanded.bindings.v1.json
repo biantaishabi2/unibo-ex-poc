@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "vars": {
+    "shift_preference.page": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shift_preference.page|}} / {{shift_preference.total_pages|}}"
+        }
+      ]
+    },
+    "shift_preference.total_pages": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shift_preference.page|}} / {{shift_preference.total_pages|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "navigate_create": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "create_btn",
+          "prop": "click",
+          "raw": "navigate_create"
+        }
+      ]
+    },
+    "filter_submit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "filter_submit",
+          "prop": "click",
+          "raw": "filter_submit"
+        }
+      ]
+    },
+    "shift_preference_page_prev": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_prev",
+          "prop": "click",
+          "raw": "shift_preference_page_prev"
+        }
+      ]
+    },
+    "shift_preference_page_next": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_next",
+          "prop": "click",
+          "raw": "shift_preference_page_next"
+        }
+      ]
+    }
+  }
+}

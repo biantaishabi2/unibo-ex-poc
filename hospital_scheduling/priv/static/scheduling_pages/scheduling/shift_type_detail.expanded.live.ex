@@ -74,7 +74,6 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_params_accept ["id"]
   @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
-    "create" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.ShiftType.create"},
     "destroy" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.ShiftType.destroy"},
     "get" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.ShiftType.get"},
     "update" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Scheduling.ShiftType.update"}

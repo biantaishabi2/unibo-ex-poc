@@ -1,4 +1,13 @@
 defmodule HospitalScheduling.PubSub do
-  # PubSub 由 Phoenix.PubSub 在 Application 中启动
-  # 此模块仅作为命名空间引用
+  @moduledoc """
+  Ash PubSub 通知模块，将 Ash 资源事件广播到 Phoenix.PubSub。
+  """
+
+  def broadcast(topic, event, notification) do
+    Phoenix.PubSub.broadcast(
+      HospitalScheduling.InternalPubSub,
+      topic,
+      {event, notification}
+    )
+  end
 end

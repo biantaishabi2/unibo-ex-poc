@@ -3,16 +3,14 @@
     <.flex justify="between" align="center" direction="row" id="header_bar">
       <.stack gap={1} direction="column" id="title_group">
         <.text variant="title" id="page_title">
-          排班结果 — <%= get_in(@period, [:title]) || "" %>
+          排班结果 — <%= @period.title %>
         </.text>
         <.flex gap={2} direction="row" id="subtitle_row">
-          <%= if (val = get_in(@run, [:status])) && to_string(val) != "" do %>
-            <.badge variant="default" size="sm" id="run_status_badge">
-              <%= to_string(val) %>
-            </.badge>
-          <% end %>
+          <.badge variant="default" size="sm" id="run_status_badge">
+            <%= @run.status %>
+          </.badge>
           <.text variant="muted" id="engine_info">
-            算法: <%= get_in(@run, [:engine_type]) || "" %>
+            算法: <%= @run.engine_type %>
           </.text>
         </.flex>
       </.stack>
@@ -28,7 +26,7 @@
               总分配数
             </.text>
             <.text variant="h3" weight="bold" id="kpi_assignments_value">
-              <%= get_in(@run, [:output_snapshot, :summary, :assignment_count]) || "" %>
+              <%= ((@run[:output_snapshot] || %{})[:summary] || %{})[:assignment_count] %>
             </.text>
           </.stack>
         </.card_content>
@@ -40,7 +38,7 @@
               覆盖需求数
             </.text>
             <.text variant="h3" weight="bold" id="kpi_covered_value">
-              <%= get_in(@run, [:output_snapshot, :summary, :covered_requirement_count]) || "" %>
+              <%= ((@run[:output_snapshot] || %{})[:summary] || %{})[:covered_requirement_count] %>
             </.text>
           </.stack>
         </.card_content>
@@ -52,7 +50,7 @@
               硬约束违反
             </.text>
             <.text variant="h3" weight="bold" color="destructive" id="kpi_errors_value">
-              <%= get_in(@run, [:hard_violation_count]) || "" %>
+              <%= @run.hard_violation_count %>
             </.text>
           </.stack>
         </.card_content>
@@ -64,7 +62,7 @@
               警告数
             </.text>
             <.text variant="h3" weight="bold" id="kpi_warnings_value">
-              <%= get_in(@run, [:warning_count]) || "" %>
+              <%= @run.warning_count %>
             </.text>
           </.stack>
         </.card_content>
@@ -73,7 +71,7 @@
   </.section>
   <.section layout="grid" columns={2} id="charts">
     <%= if (@has_hard_violations && @has_hard_violations != []) do %>
-      <.alert variant="destructive" title="存在硬约束违反" description={"有 #{get_in(@run, [:hard_violation_count])} 个硬约束违反需要处理,建议进入日历调班页手动调整."} id="error_alert" />
+      <.alert variant="destructive" title="存在硬约束违反" description={"有 #{@run.hard_violation_count} 个硬约束违反需要处理,建议进入日历调班页手动调整."} id="error_alert" />
     <% end %>
     <.card variant="default" id="violations_card">
       <.card_header id="violations_header">
@@ -97,20 +95,18 @@
             </.table_row>
           </.table_header>
           <.table_body id="vio_body">
-            <%= for vio <- (@violations || []) do %>
+            <%= for vio <- @violations do %>
               <.table_row>
                 <.table_cell>
-                  <%= if (val = get_in(vio, [:severity])) && to_string(val) != "" do %>
-                    <.badge variant="default" size="sm">
-                      <%= to_string(val) %>
-                    </.badge>
-                  <% end %>
+                  <.badge variant="default" size="sm">
+                    <%= vio.severity %>
+                  </.badge>
                 </.table_cell>
                 <.table_cell>
-                  <%= get_in(vio, [:rule_code]) || "" %>
+                  <%= vio.rule_code %>
                 </.table_cell>
                 <.table_cell>
-                  <%= get_in(vio, [:message]) || "" %>
+                  <%= vio.message %>
                 </.table_cell>
               </.table_row>
             <% end %>

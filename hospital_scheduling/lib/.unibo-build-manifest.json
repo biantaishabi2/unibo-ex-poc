@@ -4,7 +4,7 @@
   "domains": {
     "Scheduling": {
       "input_hashes": {
-        "./models/scheduling/scheduling.ubo.yaml": "sha256:b54a5da8a9779646b037598e9bea8b418ef1c31dd7d19138429d56cdbfeb9cd9"
+        "/home/wangbo/document/unibo_ex_poc-deploy-scheduling/hospital_scheduling/models/scheduling/scheduling.ubo.yaml": "sha256:b54a5da8a9779646b037598e9bea8b418ef1c31dd7d19138429d56cdbfeb9cd9"
       },
       "output_files": [
         "hospital_scheduling/scheduling/changes/schedule_version/publish_version_call_1.ex",

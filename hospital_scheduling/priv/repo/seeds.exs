@@ -78,7 +78,7 @@ profiles = Enum.with_index(employees, 1) |> Enum.map(fn {emp, i} ->
     department_id: dept.id,
     maturity_score: Decimal.new("#{30 + i * 7}"),
     can_lead_shift: i in [1, 2],
-    work_restrictions: if(i == 9, do: "pregnant", else: nil),
+    work_restrictions: if(i == 9, do: ["pregnant"], else: nil),
     overtime_willing: i in [3, 5, 7]
   }, authorize?: false)
   p
@@ -145,7 +145,7 @@ Logger.info("  需求: #{length(requirements)} 条（7 天 × 3 班 × 每班 2 
 {:ok, _} = Ash.create(Scheduling.ShiftPreference, %{
   employee_id: Enum.at(employees, 0).id,
   period_id: period.id,
-  preferred_shift_tags: ~s(["day"]),
+  preferred_shift_tags: ["day"],
   max_night_shifts: 2
 }, authorize?: false)
 
@@ -153,14 +153,14 @@ Logger.info("  需求: #{length(requirements)} 条（7 天 × 3 班 × 每班 2 
 {:ok, _} = Ash.create(Scheduling.ShiftPreference, %{
   employee_id: Enum.at(employees, 5).id,
   period_id: period.id,
-  unavailable_dates: ~s(["2026-04-03", "2026-04-05"])
+  unavailable_dates: ["2026-04-03", "2026-04-05"]
 }, authorize?: false)
 
 # 护士 9（孕期）偏好白班
 {:ok, _} = Ash.create(Scheduling.ShiftPreference, %{
   employee_id: Enum.at(employees, 8).id,
   period_id: period.id,
-  preferred_shift_tags: ~s(["day"]),
+  preferred_shift_tags: ["day"],
   max_night_shifts: 0
 }, authorize?: false)
 

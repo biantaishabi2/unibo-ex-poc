@@ -1,0 +1,33 @@
+{
+  "scheduling_period": {
+    "page": "",
+    "total_pages": ""
+  },
+  "rows_empty": true,
+  "rows": [
+    {
+      "start_date": "",
+      "end_date": "",
+      "state": "",
+      "title": "",
+      "generation_mode": "",
+      "notes": ""
+    },
+    {
+      "start_date": "",
+      "end_date": "",
+      "state": "",
+      "title": "",
+      "generation_mode": "",
+      "notes": ""
+    },
+    {
+      "start_date": "",
+      "end_date": "",
+      "state": "",
+      "title": "",
+      "generation_mode": "",
+      "notes": ""
+    }
+  ]
+}

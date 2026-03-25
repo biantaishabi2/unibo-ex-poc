@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "events": {
+    "quick_action_1": {
+      "name": "quick_action_1",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "quick_action_2": {
+      "name": "quick_action_2",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "quick_action_3": {
+      "name": "quick_action_3",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "quick_action_4": {
+      "name": "quick_action_4",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}
