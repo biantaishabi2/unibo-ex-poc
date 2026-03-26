@@ -13,7 +13,7 @@ entities:
     description: 酒店主数据（Travel 层，来源 OFBiz Product）
     source:
       base: Product
-      domain: ofbiz/product
+      domain: travel
       filter: {product_type_id: TRAVEL_HOTEL}
     aggregate_root: true
     attributes:
@@ -74,7 +74,7 @@ entities:
     description: 酒店房型主数据（Travel 层，来源 OFBiz ProductFeature）
     source:
       base: ProductFeature
-      domain: ofbiz/product
+      domain: travel
       filter: {product_feature_type_id: ROOM_TYPE}
     aggregate_root: true
     attributes:
@@ -137,7 +137,7 @@ entities:
     description: 航司主数据（Travel 层，来源 OFBiz PartyGroup）
     source:
       base: PartyGroup
-      domain: ofbiz/party
+      domain: travel
       filter: {industry: AIRLINE}
     aggregate_root: true
     attributes:
@@ -195,7 +195,7 @@ entities:
     description: 舱位主数据（Travel 层，来源 OFBiz Enumeration）
     source:
       base: Enumeration
-      domain: ofbiz/common
+      domain: travel
       filter: {enum_type_id: CABIN_CLASS}
     aggregate_root: true
     attributes:
@@ -250,7 +250,7 @@ entities:
     description: 供应商静态码到 Travel 主数据的映射（Travel 层统一适配）
     source:
       base: DataSource
-      domain: ofbiz/common
+      domain: travel
     aggregate_root: true
     attributes:
     - name: id
