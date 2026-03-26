@@ -818,11 +818,12 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
     |> map_get("pages")
     |> normalize_list()
     |> Enum.map(fn page ->
+      raw_state_schema = map_get(page, "state_schema")
       page = normalize_map(page)
       page_id = normalize_string(map_get(page, "page_id"))
       page_type = normalize_string(map_get(page, "page_type"))
       backend = normalize_map(map_get(page, "backend"))
-      state_schema = normalize_map(map_get(page, "state_schema"))
+      state_schema = raw_state_schema || %{}
 
       page
       |> Map.put("page_id", page_id)

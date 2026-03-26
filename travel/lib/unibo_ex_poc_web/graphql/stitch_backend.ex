@@ -353,9 +353,10 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
 
       _ ->
         record = extract_record(value)
+        record_var = detect_record_variable(defaults)
 
         state
-        |> Map.put("record", record)
+        |> Map.put(record_var, record)
         |> Map.put("form", state["form"] || record)
         |> Map.put("loading", false)
     end
@@ -378,7 +379,8 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
 
       _ ->
         record = extract_record(value)
-        %{"record" => record, "raw" => value}
+        record_var = detect_record_variable(defaults)
+        %{record_var => record, "raw" => value}
     end
   end
 
@@ -416,6 +418,19 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
   end
 
   defp detect_list_variable(_defaults), do: "rows"
+
+  # 从 state_schema defaults 中检测单条记录变量名（值为 map 的第一个 key）
+  # 如 defaults 有 "course" => %{}，返回 "course"；没有则 fallback 到 "record"
+  defp detect_record_variable(defaults) when is_map(defaults) do
+    skip_keys = MapSet.new(["editing", "loading", "filter", "form", "rows", "rows_empty"])
+    Enum.find_value(defaults, "record", fn
+      {key, value} when is_map(value) and is_binary(key) ->
+        if MapSet.member?(skip_keys, key), do: nil, else: key
+      _ -> nil
+    end)
+  end
+
+  defp detect_record_variable(_defaults), do: "record"
 
   defp selection_set(page, _operation, state) do
     # 同时检查 string key 和 atom key，修复 PageHostRuntime 传入 :selection 的兼容问题（#1681）
