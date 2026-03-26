@@ -773,7 +773,7 @@ test.describe.serial('TravelChangeOrder CRUD + 审批流转', () => {
 
   test('1. 创建改签单 → 查询验证持久化', async ({ page, request }) => {
     // 增
-    const data = await gql(request, `
+    const data = await gqlTenant(request, `
       mutation($input: CreateTravelTravelChangeOrderInput!) {
         createTravelTravelChangeOrder(input: $input) {
           result {
@@ -784,6 +784,7 @@ test.describe.serial('TravelChangeOrder CRUD + 审批流转', () => {
       }
     `, {
       input: {
+        tenantId: TENANT_ID,
         originalOrderId: originalOrderId,
         changeReason: REASON,
         priceDifference: '200.00',
@@ -799,7 +800,7 @@ test.describe.serial('TravelChangeOrder CRUD + 审批流转', () => {
     changeOrderId = result.id;
 
     // 查（验证持久化）
-    const get = await gql(request, `
+    const get = await gqlTenant(request, `
       query($id: ID!) {
         getTravelTravelChangeOrder(id: $id) {
           id changeReason priceDifference changeFee status approvalMode
@@ -817,7 +818,7 @@ test.describe.serial('TravelChangeOrder CRUD + 审批流转', () => {
 
   test('2. 更新 → 查询验证持久化', async ({ request }) => {
     // 改
-    const data = await gql(request, `
+    const data = await gqlTenant(request, `
       mutation($id: ID!, $input: UpdateTravelTravelChangeOrderInput!) {
         updateTravelTravelChangeOrder(id: $id, input: $input) {
           result { id changeReason changeFee }
@@ -828,7 +829,7 @@ test.describe.serial('TravelChangeOrder CRUD + 审批流转', () => {
     expect(data.updateTravelTravelChangeOrder.result.changeReason).toBe(REASON_UPD);
 
     // 查（验证持久化）
-    const get = await gql(request, `
+    const get = await gqlTenant(request, `
       query($id: ID!) {
         getTravelTravelChangeOrder(id: $id) { id changeReason changeFee }
       }
@@ -839,7 +840,7 @@ test.describe.serial('TravelChangeOrder CRUD + 审批流转', () => {
 
   test('3. 审批流转: pending → approved → completed', async ({ request }) => {
     // confirm_change: pending → approved
-    const data1 = await gql(request, `
+    const data1 = await gqlTenant(request, `
       mutation($id: ID!) {
         confirmChangeTravelTravelChangeOrder(id: $id) {
           result { id status }
@@ -850,7 +851,7 @@ test.describe.serial('TravelChangeOrder CRUD + 审批流转', () => {
     expect(data1.confirmChangeTravelTravelChangeOrder.result.status).toBe('approved');
 
     // 查（验证持久化）
-    const get1 = await gql(request, `
+    const get1 = await gqlTenant(request, `
       query($id: ID!) {
         getTravelTravelChangeOrder(id: $id) { id status }
       }
@@ -858,7 +859,7 @@ test.describe.serial('TravelChangeOrder CRUD + 审批流转', () => {
     expect(get1.getTravelTravelChangeOrder.status).toBe('approved');
 
     // complete: approved → completed
-    const data2 = await gql(request, `
+    const data2 = await gqlTenant(request, `
       mutation($id: ID!) {
         completeTravelTravelChangeOrder(id: $id) {
           result { id status }
@@ -869,7 +870,7 @@ test.describe.serial('TravelChangeOrder CRUD + 审批流转', () => {
     expect(data2.completeTravelTravelChangeOrder.result.status).toBe('completed');
 
     // 查（验证持久化）
-    const get2 = await gql(request, `
+    const get2 = await gqlTenant(request, `
       query($id: ID!) {
         getTravelTravelChangeOrder(id: $id) { id status }
       }
@@ -933,7 +934,7 @@ test.describe.serial('TravelChangeOrder reject 分支', () => {
     await gqlTenant(request, `mutation($id: ID!) { markBookedTravelTravelOrder(id: $id) { result { id } errors { message fields } } }`, { id: originalOrderId });
 
     // 创建改签单
-    const coData = await gql(request, `
+    const coData = await gqlTenant(request, `
       mutation($input: CreateTravelTravelChangeOrderInput!) {
         createTravelTravelChangeOrder(input: $input) {
           result { id status } errors { message fields }
@@ -941,6 +942,7 @@ test.describe.serial('TravelChangeOrder reject 分支', () => {
       }
     `, {
       input: {
+        tenantId: TENANT_ID,
         originalOrderId: originalOrderId,
         changeReason: 'E2E拒绝测试',
         priceDifference: '100.00',
@@ -951,7 +953,7 @@ test.describe.serial('TravelChangeOrder reject 分支', () => {
   });
 
   test('1. reject_change: pending → rejected', async ({ request }) => {
-    const data = await gql(request, `
+    const data = await gqlTenant(request, `
       mutation($id: ID!) {
         rejectChangeTravelTravelChangeOrder(id: $id) {
           result { id status }
@@ -962,7 +964,7 @@ test.describe.serial('TravelChangeOrder reject 分支', () => {
     expect(data.rejectChangeTravelTravelChangeOrder.result.status).toBe('rejected');
 
     // 查（验证持久化）
-    const get = await gql(request, `
+    const get = await gqlTenant(request, `
       query($id: ID!) {
         getTravelTravelChangeOrder(id: $id) { id status }
       }
@@ -1010,7 +1012,7 @@ test.describe.serial('TravelChangeOrder complete_direct 分支', () => {
     await gqlTenant(request, `mutation($id: ID!) { markBookedTravelTravelOrder(id: $id) { result { id } errors { message fields } } }`, { id: originalOrderId });
 
     // 创建改签单，approval_mode=none
-    const coData = await gql(request, `
+    const coData = await gqlTenant(request, `
       mutation($input: CreateTravelTravelChangeOrderInput!) {
         createTravelTravelChangeOrder(input: $input) {
           result { id status approvalMode } errors { message fields }
@@ -1018,6 +1020,7 @@ test.describe.serial('TravelChangeOrder complete_direct 分支', () => {
       }
     `, {
       input: {
+        tenantId: TENANT_ID,
         originalOrderId: originalOrderId,
         changeReason: 'E2E直接完成测试',
         approvalMode: 'none',
@@ -1028,7 +1031,7 @@ test.describe.serial('TravelChangeOrder complete_direct 分支', () => {
   });
 
   test('1. complete_direct: pending → completed (跳过审批)', async ({ request }) => {
-    const data = await gql(request, `
+    const data = await gqlTenant(request, `
       mutation($id: ID!) {
         completeDirectTravelTravelChangeOrder(id: $id) {
           result { id status }
@@ -1039,7 +1042,7 @@ test.describe.serial('TravelChangeOrder complete_direct 分支', () => {
     expect(data.completeDirectTravelTravelChangeOrder.result.status).toBe('completed');
 
     // 查（验证持久化）
-    const get = await gql(request, `
+    const get = await gqlTenant(request, `
       query($id: ID!) {
         getTravelTravelChangeOrder(id: $id) { id status approvalMode }
       }
