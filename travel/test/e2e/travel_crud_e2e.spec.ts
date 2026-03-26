@@ -630,7 +630,7 @@ test.describe.serial('TravelOrder waitlist 分支流转', () => {
         travelerCount: 1,
         totalAmount: '1200.00',
         flightOfferId: flightOfferId,
-        bookingMode: 'waitlist', // TODO: 确认 booking_mode 是否在 create accept 列表中
+        // bookingMode 不在 create accept 列表中，由后续 submit_waitlist 处理
       }
     });
     orderId = data.createTravelTravelOrder.result.id;
