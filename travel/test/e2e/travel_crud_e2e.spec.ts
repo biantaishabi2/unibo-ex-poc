@@ -15,7 +15,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 
 const BASE = 'http://localhost:4100';
-const PAGES = `${BASE}/pages/travel`;
+const PAGES = `${BASE}/pages`;
 const GQL = `${BASE}/api/graphql`;
 
 // 种子数据中的默认租户
