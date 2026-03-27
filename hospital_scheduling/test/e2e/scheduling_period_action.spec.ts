@@ -157,26 +157,19 @@ test.describe('SchedulingPeriod 状态机 action 测试', () => {
     // 通过 GraphQL 验证状态变化（持久化检查，不依赖 UI 渲染）
     const newState = await getPeriodState(page, draftPeriodId!);
 
-    if (newState === 'generating') {
-      // 成功：action 通过 UI 按钮触发，状态已变化并持久化
-      expect(newState).toBe('generating');
-      console.log('SUCCESS: action_start_generating 通过 UI 按钮成功触发，状态已持久化为 generating');
+    // solver 同步执行完成后状态可能是 generating（异步）或 generated（同步完成）
+    // 两者都表示 action_start_generating 成功触发
+    if (newState === 'generating' || newState === 'generated') {
+      expect(['generating', 'generated']).toContain(newState);
+      console.log(`SUCCESS: action_start_generating 通过 UI 按钮成功触发，状态已持久化为 ${newState}`);
     } else if (newState === 'draft') {
-      // action 未执行 — 可能是编译器 bug（action 按钮事件未正确分发到 StitchBackend）
-      console.log('WARNING: action_start_generating 按钮点击后状态未变化（仍为 draft）');
-      console.log('可能原因: StitchBackend.resolve_api_key 未匹配 action_start_generating 事件');
-      console.log('或 action 执行失败（Ash 层错误被静默吞掉）');
-
-      // 刷新页面确认 UI 也未变化
-      await page.reload();
-      await waitForLiveView(page);
-      await waitForPage(page);
-      const uiState = await page.locator('#state_badge').textContent();
-      expect(uiState?.trim()).toBe('draft');
+      // action 未执行 — 可能是编译器 bug 或 action 执行失败
+      console.log('FAIL: action_start_generating 按钮点击后状态未变化（仍为 draft）');
+      expect(newState).not.toBe('draft');
     } else {
       // 意外状态
       console.log(`意外状态: ${newState}`);
-      expect(newState).toBe('generating');
+      expect(['generating', 'generated']).toContain(newState);
     }
   });
 
