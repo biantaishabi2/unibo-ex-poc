@@ -9,7 +9,7 @@
       <.breadcrumb_separator id="shift_type_bc_sep" />
       <.breadcrumb_item id="shift_type_bc_current_item">
         <.breadcrumb_page id="shift_type_bc_current">
-          <%= @record.name %>
+          <%= get_in(@record, [:name]) || "详情" %>
         </.breadcrumb_page>
       </.breadcrumb_item>
     </.breadcrumb_list>
@@ -17,7 +17,7 @@
   <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="shift_type_detail_header">
     <.flex gap={3} align="center" direction="row" id="shift_type_title_group">
       <.text variant="title" id="shift_type_detail_title">
-        <%= @record.name %>
+        <%= get_in(@record, [:name]) || "" %>
       </.text>
     </.flex>
     <.flex gap={2} direction="row" id="shift_type_actions">
@@ -43,7 +43,7 @@
               班次编码,如 day, evening, night
             </.text>
             <.text id="value_code">
-              <%= @record.code %>
+              <%= get_in(@record, [:code]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_name">
@@ -51,7 +51,7 @@
               班次名称,如'白班'、'小夜'、'大夜'
             </.text>
             <.text id="value_name">
-              <%= @record.name %>
+              <%= get_in(@record, [:name]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_start_time">
@@ -59,7 +59,7 @@
               班次开始时间,如 08:00
             </.text>
             <.text id="value_start_time">
-              <%= @record.start_time %>
+              <%= get_in(@record, [:start_time]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_end_time">
@@ -67,7 +67,7 @@
               班次结束时间,如 16:00
             </.text>
             <.text id="value_end_time">
-              <%= @record.end_time %>
+              <%= get_in(@record, [:end_time]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_duration_hours">
@@ -75,23 +75,25 @@
               时长（小时）,跨午夜时 end &lt; start
             </.text>
             <.text id="value_duration_hours">
-              <%= @record.duration_hours %>
+              <%= get_in(@record, [:duration_hours]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_is_night">
             <.text variant="muted" id="label_is_night">
               是否算夜班（影响夜班公平性约束）
             </.text>
-            <.badge variant="default" size="sm" id="value_is_night">
-              <%= @record.is_night %>
-            </.badge>
+            <%= if (val = get_in(@record, [:is_night])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_is_night">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_color">
             <.text variant="muted" id="label_color">
               前端显示色,如
             </.text>
             <.text id="value_color">
-              <%= @record.color %>
+              <%= get_in(@record, [:color]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_sort_order">
@@ -99,16 +101,18 @@
               排序权重
             </.text>
             <.text id="value_sort_order">
-              <%= @record.sort_order %>
+              <%= get_in(@record, [:sort_order]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_enabled">
             <.text variant="muted" id="label_enabled">
               是否启用
             </.text>
-            <.badge variant="default" size="sm" id="value_enabled">
-              <%= @record.enabled %>
-            </.badge>
+            <%= if (val = get_in(@record, [:enabled])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_enabled">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
         </.grid>
       <% else %>
@@ -128,7 +132,7 @@
             <.button variant="secondary" phx-click="cancel_edit" size="md" id="shift_type_cancel_btn">
               取消
             </.button>
-            <.button variant="primary" phx-click="form_submit" size="md" id="shift_type_save_btn">
+            <.button variant="primary" type="submit" size="md" id="shift_type_save_btn">
               保存
             </.button>
           </.flex>
@@ -176,34 +180,34 @@
           </.table_row>
         </.table_header>
         <.table_body id="coverage_requirement_table_body">
-          <%= for item <- @record.coverage_requirements do %>
+          <%= for item <- (get_in(@record, [:coverage_requirements]) || []) do %>
             <.table_row>
               <.table_cell>
-                <%= item.requirement_date %>
+                <%= get_in(item, [:requirement_date]) || "" %>
               </.table_cell>
               <.table_cell>
-                <%= item.role_code %>
+                <%= get_in(item, [:role_code]) || "" %>
               </.table_cell>
               <.table_cell>
-                <%= item.role_name %>
+                <%= get_in(item, [:role_name]) || "" %>
               </.table_cell>
               <.table_cell>
-                <%= item.required_skill_tags %>
+                <%= get_in(item, [:required_skill_tags]) || "" %>
               </.table_cell>
               <.table_cell>
-                <%= item.min_headcount %>
+                <%= get_in(item, [:min_headcount]) || "" %>
               </.table_cell>
               <.table_cell>
-                <%= item.target_headcount %>
+                <%= get_in(item, [:target_headcount]) || "" %>
               </.table_cell>
               <.table_cell>
-                <%= item.required_lead_count %>
+                <%= get_in(item, [:required_lead_count]) || "" %>
               </.table_cell>
               <.table_cell>
-                <%= item.priority %>
+                <%= get_in(item, [:priority]) || "" %>
               </.table_cell>
               <.table_cell>
-                <%= item.notes %>
+                <%= get_in(item, [:notes]) || "" %>
               </.table_cell>
             </.table_row>
           <% end %>

@@ -9,7 +9,7 @@
       <.breadcrumb_separator id="scheduling_constraint_bc_sep" />
       <.breadcrumb_item id="scheduling_constraint_bc_current_item">
         <.breadcrumb_page id="scheduling_constraint_bc_current">
-          <%= @record.name %>
+          <%= get_in(@record, [:name]) || "详情" %>
         </.breadcrumb_page>
       </.breadcrumb_item>
     </.breadcrumb_list>
@@ -17,7 +17,7 @@
   <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="scheduling_constraint_detail_header">
     <.flex gap={3} align="center" direction="row" id="scheduling_constraint_title_group">
       <.text variant="title" id="scheduling_constraint_detail_title">
-        <%= @record.name %>
+        <%= get_in(@record, [:name]) || "" %>
       </.text>
     </.flex>
     <.flex gap={2} direction="row" id="scheduling_constraint_actions">
@@ -43,31 +43,35 @@
               规则名称
             </.text>
             <.text id="value_name">
-              <%= @record.name %>
+              <%= get_in(@record, [:name]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_constraint_type">
             <.text variant="muted" id="label_constraint_type">
               硬约束或软约束
             </.text>
-            <.badge variant="default" size="sm" id="value_constraint_type">
-              <%= @record.constraint_type %>
-            </.badge>
+            <%= if (val = get_in(@record, [:constraint_type])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_constraint_type">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_category">
             <.text variant="muted" id="label_category">
               规则类别
             </.text>
-            <.badge variant="default" size="sm" id="value_category">
-              <%= @record.category %>
-            </.badge>
+            <%= if (val = get_in(@record, [:category])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_category">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_params">
             <.text variant="muted" id="label_params">
               规则参数（shape 按 category 不同）
             </.text>
             <.text id="value_params">
-              <%= @record.params %>
+              <%= get_in(@record, [:params]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_weight">
@@ -75,23 +79,25 @@
               软约束权重（硬约束忽略）
             </.text>
             <.text id="value_weight">
-              <%= @record.weight %>
+              <%= get_in(@record, [:weight]) || "" %>
             </.text>
           </.flex>
           <.flex direction="row" id="field_enabled">
             <.text variant="muted" id="label_enabled">
               是否启用
             </.text>
-            <.badge variant="default" size="sm" id="value_enabled">
-              <%= @record.enabled %>
-            </.badge>
+            <%= if (val = get_in(@record, [:enabled])) && to_string(val) != "" do %>
+              <.badge variant="default" size="sm" id="value_enabled">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex direction="row" id="field_notes">
             <.text variant="muted" id="label_notes">
               备注
             </.text>
             <.text id="value_notes">
-              <%= @record.notes %>
+              <%= get_in(@record, [:notes]) || "" %>
             </.text>
           </.flex>
         </.grid>
@@ -114,7 +120,7 @@
             <.button variant="secondary" phx-click="cancel_edit" size="md" id="scheduling_constraint_cancel_btn">
               取消
             </.button>
-            <.button variant="primary" phx-click="form_submit" size="md" id="scheduling_constraint_save_btn">
+            <.button variant="primary" type="submit" size="md" id="scheduling_constraint_save_btn">
               保存
             </.button>
           </.flex>

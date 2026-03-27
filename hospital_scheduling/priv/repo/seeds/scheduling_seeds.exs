@@ -177,6 +177,227 @@ Logger.info("  排班周期: #{period_er.title}")
 }, authorize?: false)
 Logger.info("  排班周期: #{period_icu.title}")
 
+# ── 6b. ICU 班次类型 + 覆盖需求 ──────────────────────────────
+# ICU 也需要完整的班次和需求数据，否则 Solver 跑不了
+
+icu_dept = Enum.at(departments, 3)
+
+icu_shift_types = Enum.map(shift_specs, fn {code, name, start_t, end_t, hours, is_night, color, sort} ->
+  {:ok, st} = Ash.create(Scheduling.ShiftType, %{
+    department_id: icu_dept.id,
+    code: code,
+    name: name,
+    start_time: start_t,
+    end_time: end_t,
+    duration_hours: Decimal.new(hours),
+    is_night: is_night,
+    color: color,
+    sort_order: sort
+  }, authorize?: false)
+  st
+end)
+
+Logger.info("  ICU 班次: #{length(icu_shift_types)} 种")
+
+# ICU 覆盖需求（7天 × 3班次，ICU 人力需求比心内科高）
+icu_requirements = for day_offset <- 0..6, st <- icu_shift_types do
+  date = Date.add(~D[2026-03-23], day_offset)
+  is_weekend = Date.day_of_week(date) in [6, 7]
+
+  {min_hc, target_hc} = cond do
+    st.code == "day" and not is_weekend -> {3, 4}
+    st.code == "day" and is_weekend -> {2, 3}
+    st.code == "evening" and not is_weekend -> {2, 3}
+    st.code == "evening" and is_weekend -> {2, 2}
+    st.code == "night" and not is_weekend -> {2, 3}
+    st.code == "night" and is_weekend -> {2, 2}
+  end
+
+  {:ok, req} = Ash.create(Scheduling.CoverageRequirement, %{
+    period_id: period_icu.id,
+    shift_type_id: st.id,
+    requirement_date: date,
+    role_code: "nurse",
+    role_name: "护士",
+    min_headcount: min_hc,
+    target_headcount: target_hc,
+    required_lead_count: 1,
+    priority: 100
+  }, authorize?: false)
+  req
+end
+
+Logger.info("  ICU 需求: #{length(icu_requirements)} 条（7天 × 3班次）")
+
+# ── 6c. 骨科班次类型 + 覆盖需求 + 约束 + 能力档案 ──────────────
+# 骨科也需要完整数据，否则 Solver 报 "snapshot has no requirements"
+ortho_dept = Enum.at(departments, 1)
+
+ortho_shift_types = Enum.map(shift_specs, fn {code, name, start_t, end_t, hours, is_night, color, sort} ->
+  {:ok, st} = Ash.create(Scheduling.ShiftType, %{
+    department_id: ortho_dept.id,
+    code: code,
+    name: name,
+    start_time: start_t,
+    end_time: end_t,
+    duration_hours: Decimal.new(hours),
+    is_night: is_night,
+    color: color,
+    sort_order: sort
+  }, authorize?: false)
+  st
+end)
+
+Logger.info("  骨科班次: #{length(ortho_shift_types)} 种")
+
+# 骨科覆盖需求（7天 × 3班次）
+ortho_requirements = for day_offset <- 0..6, st <- ortho_shift_types do
+  date = Date.add(~D[2026-03-23], day_offset)
+  is_weekend = Date.day_of_week(date) in [6, 7]
+
+  {min_hc, target_hc} = cond do
+    st.code == "day" and not is_weekend -> {2, 3}
+    st.code == "day" and is_weekend -> {1, 2}
+    st.code == "evening" and not is_weekend -> {2, 2}
+    st.code == "evening" and is_weekend -> {1, 2}
+    st.code == "night" and not is_weekend -> {1, 2}
+    st.code == "night" and is_weekend -> {1, 1}
+  end
+
+  {:ok, req} = Ash.create(Scheduling.CoverageRequirement, %{
+    period_id: period_ortho.id,
+    shift_type_id: st.id,
+    requirement_date: date,
+    role_code: "nurse",
+    role_name: "护士",
+    min_headcount: min_hc,
+    target_headcount: target_hc,
+    required_lead_count: 1,
+    priority: 100
+  }, authorize?: false)
+  req
+end
+
+Logger.info("  骨科需求: #{length(ortho_requirements)} 条（7天 × 3班次）")
+
+# 骨科能力档案（复用现有护士）
+Enum.each([{zhang, 70, true}, {li, 65, false}], fn {emp, score, can_lead} ->
+  {:ok, _} = Ash.create(Scheduling.MedicalStaffProfile, %{
+    employee_id: emp.id,
+    department_id: ortho_dept.id,
+    maturity_score: Decimal.new("#{score}"),
+    can_lead_shift: can_lead,
+    work_restrictions: [],
+    overtime_willing: false
+  }, authorize?: false)
+end)
+
+Logger.info("  骨科能力档案: 2人")
+
+# 骨科约束规则
+Enum.each([
+  {:rest_after_night, :hard, "夜班后必须休息", ~s({"min_rest_hours": 12}), 0, "骨科夜班后休息"},
+  {:max_consecutive_days, :hard, "每周最多5班", ~s({"max_shifts_per_week": 5}), 0, "骨科每人每周限5班"},
+  {:lead_coverage, :hard, "每班至少1名带班护士", ~s({"min_leads": 1}), 0, "骨科带班覆盖"}
+], fn {cat, type, name, params, weight, notes} ->
+  {:ok, _} = Ash.create(Scheduling.SchedulingConstraint, %{
+    department_id: ortho_dept.id,
+    name: name,
+    category: cat,
+    constraint_type: type,
+    params: params,
+    weight: weight,
+    enabled: true,
+    notes: notes
+  }, authorize?: false)
+end)
+
+Logger.info("  骨科约束: 3条")
+
+# ── 6d. 急诊科班次类型 + 覆盖需求 + 约束 + 能力档案 ────────────
+er_dept = Enum.at(departments, 2)
+
+er_shift_types = Enum.map(shift_specs, fn {code, name, start_t, end_t, hours, is_night, color, sort} ->
+  {:ok, st} = Ash.create(Scheduling.ShiftType, %{
+    department_id: er_dept.id,
+    code: code,
+    name: name,
+    start_time: start_t,
+    end_time: end_t,
+    duration_hours: Decimal.new(hours),
+    is_night: is_night,
+    color: color,
+    sort_order: sort
+  }, authorize?: false)
+  st
+end)
+
+Logger.info("  急诊科班次: #{length(er_shift_types)} 种")
+
+# 急诊科覆盖需求（7天 × 3班次，急诊人力需求较高）
+er_requirements = for day_offset <- 0..6, st <- er_shift_types do
+  date = Date.add(~D[2026-03-23], day_offset)
+  is_weekend = Date.day_of_week(date) in [6, 7]
+
+  {min_hc, target_hc} = cond do
+    st.code == "day" and not is_weekend -> {3, 4}
+    st.code == "day" and is_weekend -> {2, 3}
+    st.code == "evening" and not is_weekend -> {2, 3}
+    st.code == "evening" and is_weekend -> {2, 2}
+    st.code == "night" and not is_weekend -> {2, 2}
+    st.code == "night" and is_weekend -> {1, 2}
+  end
+
+  {:ok, req} = Ash.create(Scheduling.CoverageRequirement, %{
+    period_id: period_er.id,
+    shift_type_id: st.id,
+    requirement_date: date,
+    role_code: "nurse",
+    role_name: "护士",
+    min_headcount: min_hc,
+    target_headcount: target_hc,
+    required_lead_count: 1,
+    priority: 100
+  }, authorize?: false)
+  req
+end
+
+Logger.info("  急诊科需求: #{length(er_requirements)} 条（7天 × 3班次）")
+
+# 急诊科能力档案（复用现有护士）
+Enum.each([{wang, 60, false}, {zhao, 55, false}], fn {emp, score, can_lead} ->
+  {:ok, _} = Ash.create(Scheduling.MedicalStaffProfile, %{
+    employee_id: emp.id,
+    department_id: er_dept.id,
+    maturity_score: Decimal.new("#{score}"),
+    can_lead_shift: can_lead,
+    work_restrictions: [],
+    overtime_willing: true
+  }, authorize?: false)
+end)
+
+Logger.info("  急诊科能力档案: 2人")
+
+# 急诊科约束规则
+Enum.each([
+  {:rest_after_night, :hard, "夜班后必须休息", ~s({"min_rest_hours": 12}), 0, "急诊夜班后休息"},
+  {:max_consecutive_days, :hard, "每周最多5班", ~s({"max_shifts_per_week": 5}), 0, "急诊每人每周限5班"},
+  {:lead_coverage, :hard, "每班至少1名带班护士", ~s({"min_leads": 1}), 0, "急诊带班覆盖"}
+], fn {cat, type, name, params, weight, notes} ->
+  {:ok, _} = Ash.create(Scheduling.SchedulingConstraint, %{
+    department_id: er_dept.id,
+    name: name,
+    category: cat,
+    constraint_type: type,
+    params: params,
+    weight: weight,
+    enabled: true,
+    notes: notes
+  }, authorize?: false)
+end)
+
+Logger.info("  急诊科约束: 3条")
+
 # ── 7. 覆盖需求（心内科，7天 × 3班次）────────────────────────
 
 # 工作日：白班3人(目标4)/小夜2人(目标3)/大夜2人
@@ -216,7 +437,7 @@ Logger.info("  需求: #{length(requirements)} 条（7天 × 3班次）")
 {:ok, _} = Ash.create(Scheduling.ShiftPreference, %{
   employee_id: zhang.id,
   period_id: period_cardiology.id,
-  preferred_shift_tags: ~s(["day"]),
+  preferred_shift_tags: ["day"],
   max_night_shifts: 1,
   notes: "家中有幼儿，希望尽量安排白班"
 }, authorize?: false)
@@ -225,7 +446,7 @@ Logger.info("  需求: #{length(requirements)} 条（7天 × 3班次）")
 {:ok, _} = Ash.create(Scheduling.ShiftPreference, %{
   employee_id: zhao.id,
   period_id: period_cardiology.id,
-  unavailable_dates: ~s(["2026-03-26"]),
+  unavailable_dates: ["2026-03-26"],
   notes: "周四有进修培训"
 }, authorize?: false)
 
