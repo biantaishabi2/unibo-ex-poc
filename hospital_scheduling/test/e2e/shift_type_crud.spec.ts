@@ -116,39 +116,27 @@ test.describe('ShiftType CRUD 持久化验证', () => {
     await nameInput.clear();
     await nameInput.fill(updatedName);
 
-    // 尝试多种方式提交表单
-    // 方式1：Enter 键触发 phx-submit
-    await nameInput.press('Enter');
+    // 点击 save 按钮（type="submit"，触发 phx-submit="form_submit" 携带表单数据）
+    const saveBtn = page.locator('#shift_type_save_btn');
+    await saveBtn.waitFor({ state: 'visible', timeout: 15000 });
+    await saveBtn.click();
     await waitForPage(page);
     await page.waitForTimeout(2000);
 
-    // 刷新验证
+    // 刷新验证持久化
     await page.reload();
     await waitForLiveView(page);
     await waitForPage(page);
 
     const savedName = await page.locator('#form_name').inputValue();
+    expect(savedName).toBe(updatedName);
+    console.log('SUCCESS: form_submit 通过 save 按钮(type=submit) 触发成功，数据已持久化');
 
-    if (savedName === updatedName) {
-      // 成功：表单提交通过 UI 保存
-      expect(savedName).toBe(updatedName);
-      console.log('SUCCESS: form_submit 通过 Enter 键触发成功');
-      // 恢复原始名称
-      await page.locator('#form_name').clear();
-      await page.locator('#form_name').fill(originalName);
-      await page.locator('#form_name').press('Enter');
-      await waitForPage(page);
-    } else {
-      // form_submit 未持久化修改 — 已知限制：
-      // save 按钮是 type="button" + phx-click="form_submit"，phx-click 不携带表单数据。
-      // 虽然 form 有 phx-submit="form_submit"，但 Enter 提交可能被 LiveView 拦截后
-      // StitchBackend 未正确收到表单字段值。
-      // 这是编译器生成代码的问题，不是测试问题。
-      console.log('KNOWN ISSUE: 表单保存未持久化 — save 按钮 type="button" 不触发 phx-submit');
-      console.log('编译器应将 save 按钮改为 type="submit" 以携带表单数据');
-      // 降级验证：确认表单回显未被破坏
-      expect(savedName).toBe(originalName);
-    }
+    // 恢复原始名称
+    await page.locator('#form_name').clear();
+    await page.locator('#form_name').fill(originalName);
+    await saveBtn.click();
+    await waitForPage(page);
   });
 
   test('4. 删除记录(action_destroy) → 验证列表行数减少 → 刷新验证持久化', async ({ page }) => {

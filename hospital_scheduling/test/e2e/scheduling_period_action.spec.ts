@@ -197,44 +197,48 @@ test.describe('SchedulingPeriod 状态机 action 测试', () => {
     expect(reloadRowCount).toBe(rowCount);
   });
 
-  test('5. action_publish 状态校验（非法状态应被拒绝）', async ({ page }) => {
+  test('5. action_publish → 状态从 generated 变为 published', async ({ page }) => {
     expect(draftPeriodId).toBeTruthy();
+
+    // 先通过 GraphQL 确认当前状态（test 3 应已将其推进到 generated）
+    const preState = await getPeriodState(page, draftPeriodId!);
+    console.log(`publish 测试前状态: ${preState}`);
+
+    if (preState !== 'generated' && preState !== 'adjusted') {
+      console.log(`当前状态为 ${preState}，不在可 publish 的状态(generated/adjusted)，跳过`);
+      test.skip();
+      return;
+    }
 
     // 进入详情页
     await page.goto(`${BASE}${DETAIL_URL}?id=${draftPeriodId}`);
     await waitForLiveView(page);
     await waitForPage(page);
 
-    // 获取当前状态
+    // 验证 UI 上状态 badge 与 GraphQL 一致
     const stateBadge = page.locator('#state_badge');
     await expect(stateBadge).toBeVisible({ timeout: 15000 });
-    const stateText = await stateBadge.textContent();
-    const currentState = stateText?.trim();
+    const badgeText = await stateBadge.textContent();
+    expect(badgeText?.trim()).toBe(preState);
 
-    // publish 只能在 generated 或 adjusted 状态执行
-    if (currentState !== 'generated' && currentState !== 'adjusted') {
-      // 在不合法的状态下点击 publish
-      const publishBtn = page.locator('#publish_btn');
-      if (await publishBtn.isVisible()) {
-        await publishBtn.click();
-        await waitForPage(page);
-        await page.waitForTimeout(2000);
+    // 点击 publish 按钮
+    const publishBtn = page.locator('#publish_btn');
+    await publishBtn.waitFor({ state: 'visible', timeout: 15000 });
+    await publishBtn.scrollIntoViewIfNeeded();
+    await publishBtn.click();
+    await waitForPage(page);
+    await page.waitForTimeout(3000);
 
-        // 通过 GraphQL 验证状态未变为 published
-        const afterState = await getPeriodState(page, draftPeriodId!);
-        expect(afterState).not.toBe('published');
-        console.log(`验证: 在 ${currentState} 状态下 publish 被正确拒绝, 当前状态: ${afterState}`);
-      }
-    } else {
-      // 如果恰好在可 publish 的状态，测试 publish 功能
-      const publishBtn = page.locator('#publish_btn');
-      await publishBtn.waitFor({ state: 'visible', timeout: 15000 });
-      await publishBtn.click();
-      await waitForPage(page);
+    // 通过 GraphQL 验证状态变为 published（持久化检查）
+    const afterState = await getPeriodState(page, draftPeriodId!);
+    expect(afterState).toBe('published');
+    console.log(`SUCCESS: action_publish 执行成功，状态从 ${preState} 变为 ${afterState}`);
 
-      const afterState = await getPeriodState(page, draftPeriodId!);
-      expect(afterState).toBe('published');
-      console.log('SUCCESS: publish 执行成功');
-    }
+    // 刷新 UI 验证 badge 也更新
+    await page.reload();
+    await waitForLiveView(page);
+    await waitForPage(page);
+    const reloadBadge = await page.locator('#state_badge').textContent();
+    expect(reloadBadge?.trim()).toBe('published');
   });
 });
