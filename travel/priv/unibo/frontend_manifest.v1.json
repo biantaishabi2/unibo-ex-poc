@@ -7311,893 +7311,6 @@
     },
     {
       "api_map": {
-        "activate": "Travel.FlightOffer.activate",
-        "create": "Travel.FlightOffer.create",
-        "deactivate": "Travel.FlightOffer.deactivate",
-        "destroy": "Travel.FlightOffer.destroy",
-        "expire": "Travel.FlightOffer.expire",
-        "get": "Travel.FlightOffer.get",
-        "update": "Travel.FlightOffer.update"
-      },
-      "backend": {
-        "api_map": {
-          "activate": "Travel.FlightOffer.activate",
-          "create": "Travel.FlightOffer.create",
-          "deactivate": "Travel.FlightOffer.deactivate",
-          "destroy": "Travel.FlightOffer.destroy",
-          "expire": "Travel.FlightOffer.expire",
-          "get": "Travel.FlightOffer.get",
-          "update": "Travel.FlightOffer.update"
-        },
-        "info": {
-          "reload_messages": [
-            "page_host_reload"
-          ]
-        },
-        "load": {
-          "assigns": {},
-          "selection": "arrival_airport_code: arrivalAirportCode arrival_at: arrivalAt baggage_policy: baggagePolicy cabin_class: cabinClass currency departure_airport_code: departureAirportCode departure_at: departureAt fare_family: fareFamily flight_no: flightNo host_shop_id: hostShopId id itinerary_code: itineraryCode listed_price: listedPrice refund_change_policy: refundChangePolicy sale_status: saleStatus seats_available: seatsAvailable settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
-        },
-        "params": {
-          "accept": [
-            "id",
-            "settlement_price",
-            "refund_change_policy",
-            "arrival_airport_ref_id",
-            "supplier_code",
-            "arrival_at",
-            "sale_status",
-            "currency",
-            "seats_available",
-            "host_shop_id",
-            "fare_family",
-            "arrival_airport_code",
-            "departure_airport_code",
-            "departure_airport_ref_id",
-            "cabin_class",
-            "departure_at",
-            "baggage_policy",
-            "listed_price",
-            "itinerary_code",
-            "flight_no"
-          ]
-        }
-      },
-      "behavior_file": "travel/flight_offer_detail.expanded.behavior.v1.json",
-      "domain": "Travel",
-      "domain_snake": "travel",
-      "dsl_file": "travel/flight_offer_detail.dsl",
-      "entity": "FlightOffer",
-      "entity_snake": "flight_offer",
-      "page_id": "flight_offer_detail",
-      "page_kind": "detail",
-      "page_spec": {
-        "dom": {
-          "form": "#flight_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
-          "root": "#flight_offer_detail",
-          "submit": "#flight_offer_save_btn, form[phx-submit=\"form_submit\"] button[type=\"submit\"]",
-          "toggle_edit": "#flight_offer_edit_btn"
-        },
-        "page_kind": "detail",
-        "route_role": "record",
-        "strategy": "object_detail_flow",
-        "supports_custom_surface": false,
-        "supports_runtime_record_identity": true,
-        "surface_kind": "standard",
-        "template_kind": "object_page"
-      },
-      "page_type": "object_page",
-      "state_schema": {
-        "defaults": {
-          "editing": false,
-          "flight_offer": {
-            "arrival_airport_code": "",
-            "arrival_at": "",
-            "baggage_policy": "",
-            "cabin_class": "",
-            "currency": "",
-            "departure_airport_code": "",
-            "departure_at": "",
-            "fare_family": "",
-            "flight_no": "",
-            "itinerary_code": "",
-            "listed_price": "",
-            "refund_change_policy": "",
-            "sale_status": "",
-            "seats_available": "",
-            "settlement_price": "",
-            "supplier_code": ""
-          },
-          "record": {
-            "sale_status": true
-          }
-        },
-        "status_keys": [
-          "editing",
-          "flight_offer",
-          "flight_offer.arrival_airport_code",
-          "flight_offer.arrival_at",
-          "flight_offer.baggage_policy",
-          "flight_offer.cabin_class",
-          "flight_offer.currency",
-          "flight_offer.departure_airport_code",
-          "flight_offer.departure_at",
-          "flight_offer.fare_family",
-          "flight_offer.flight_no",
-          "flight_offer.itinerary_code",
-          "flight_offer.listed_price",
-          "flight_offer.refund_change_policy",
-          "flight_offer.sale_status",
-          "flight_offer.seats_available",
-          "flight_offer.settlement_price",
-          "flight_offer.supplier_code",
-          "record",
-          "record.sale_status"
-        ]
-      },
-      "status_keys": [
-        "editing",
-        "flight_offer",
-        "flight_offer.arrival_airport_code",
-        "flight_offer.arrival_at",
-        "flight_offer.baggage_policy",
-        "flight_offer.cabin_class",
-        "flight_offer.currency",
-        "flight_offer.departure_airport_code",
-        "flight_offer.departure_at",
-        "flight_offer.fare_family",
-        "flight_offer.flight_no",
-        "flight_offer.itinerary_code",
-        "flight_offer.listed_price",
-        "flight_offer.refund_change_policy",
-        "flight_offer.sale_status",
-        "flight_offer.seats_available",
-        "flight_offer.settlement_price",
-        "flight_offer.supplier_code",
-        "record",
-        "record.sale_status"
-      ],
-      "studio_page_type": "studio_object_page",
-      "template_meta": {
-        "detail": "object_page"
-      },
-      "template_spec": {
-        "canonical_page_type": "object_page",
-        "family": "studio",
-        "legacy_page_type": "studio_object_page",
-        "page_kind": "detail",
-        "schema_version": "1.0"
-      },
-      "transitions": [
-        {
-          "description": "切换编辑模式",
-          "from": "*",
-          "name": "toggle_edit",
-          "to": "*",
-          "trigger": "user_action"
-        },
-        {
-          "description": "取消编辑",
-          "from": "*",
-          "name": "cancel_edit",
-          "to": "*",
-          "trigger": "user_action"
-        },
-        {
-          "description": "表单字段变更",
-          "from": "*",
-          "name": "form_change",
-          "to": "*",
-          "trigger": "user_input"
-        },
-        {
-          "description": "提交表单",
-          "from": "editing",
-          "name": "form_submit",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "activate",
-          "from": "*",
-          "name": "action_activate",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "deactivate",
-          "from": "*",
-          "name": "action_deactivate",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "expire",
-          "from": "*",
-          "name": "action_expire",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "删除记录",
-          "from": "*",
-          "name": "action_destroy",
-          "to": "loading",
-          "trigger": "user_action"
-        }
-      ],
-      "ui_sections": []
-    },
-    {
-      "api_map": {
-        "activate": "Travel.HotelOffer.activate",
-        "create": "Travel.HotelOffer.create",
-        "deactivate": "Travel.HotelOffer.deactivate",
-        "destroy": "Travel.HotelOffer.destroy",
-        "expire": "Travel.HotelOffer.expire",
-        "get": "Travel.HotelOffer.get",
-        "update": "Travel.HotelOffer.update"
-      },
-      "backend": {
-        "api_map": {
-          "activate": "Travel.HotelOffer.activate",
-          "create": "Travel.HotelOffer.create",
-          "deactivate": "Travel.HotelOffer.deactivate",
-          "destroy": "Travel.HotelOffer.destroy",
-          "expire": "Travel.HotelOffer.expire",
-          "get": "Travel.HotelOffer.get",
-          "update": "Travel.HotelOffer.update"
-        },
-        "info": {
-          "reload_messages": [
-            "page_host_reload"
-          ]
-        },
-        "load": {
-          "assigns": {},
-          "selection": "cancellation_policy: cancellationPolicy checkin_date: checkinDate checkout_date: checkoutDate city_code: cityCode currency guarantee_policy: guaranteePolicy host_shop_id: hostShopId hotel_code: hotelCode hotel_name: hotelName id inventory_count: inventoryCount listed_price: listedPrice rate_plan_code: ratePlanCode room_type_code: roomTypeCode sale_status: saleStatus settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
-        },
-        "params": {
-          "accept": [
-            "id",
-            "room_type_code",
-            "city_ref_id",
-            "sale_status",
-            "settlement_price",
-            "guarantee_policy",
-            "city_code",
-            "cancellation_policy",
-            "checkin_date",
-            "checkout_date",
-            "currency",
-            "listed_price",
-            "hotel_name",
-            "inventory_count",
-            "supplier_code",
-            "hotel_code",
-            "host_shop_id",
-            "rate_plan_code"
-          ]
-        }
-      },
-      "behavior_file": "travel/hotel_offer_detail.expanded.behavior.v1.json",
-      "domain": "Travel",
-      "domain_snake": "travel",
-      "dsl_file": "travel/hotel_offer_detail.dsl",
-      "entity": "HotelOffer",
-      "entity_snake": "hotel_offer",
-      "page_id": "hotel_offer_detail",
-      "page_kind": "detail",
-      "page_spec": {
-        "dom": {
-          "form": "#hotel_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
-          "root": "#hotel_offer_detail",
-          "submit": "#hotel_offer_save_btn, form[phx-submit=\"form_submit\"] button[type=\"submit\"]",
-          "toggle_edit": "#hotel_offer_edit_btn"
-        },
-        "page_kind": "detail",
-        "route_role": "record",
-        "strategy": "object_detail_flow",
-        "supports_custom_surface": false,
-        "supports_runtime_record_identity": true,
-        "surface_kind": "standard",
-        "template_kind": "object_page"
-      },
-      "page_type": "object_page",
-      "state_schema": {
-        "defaults": {
-          "editing": false,
-          "hotel_offer": {
-            "cancellation_policy": "",
-            "checkin_date": "",
-            "checkout_date": "",
-            "city_code": "",
-            "currency": "",
-            "guarantee_policy": "",
-            "hotel_code": "",
-            "hotel_name": "",
-            "inventory_count": "",
-            "listed_price": "",
-            "rate_plan_code": "",
-            "room_type_code": "",
-            "sale_status": "",
-            "settlement_price": "",
-            "supplier_code": ""
-          },
-          "record": {
-            "sale_status": true
-          }
-        },
-        "status_keys": [
-          "editing",
-          "hotel_offer",
-          "hotel_offer.cancellation_policy",
-          "hotel_offer.checkin_date",
-          "hotel_offer.checkout_date",
-          "hotel_offer.city_code",
-          "hotel_offer.currency",
-          "hotel_offer.guarantee_policy",
-          "hotel_offer.hotel_code",
-          "hotel_offer.hotel_name",
-          "hotel_offer.inventory_count",
-          "hotel_offer.listed_price",
-          "hotel_offer.rate_plan_code",
-          "hotel_offer.room_type_code",
-          "hotel_offer.sale_status",
-          "hotel_offer.settlement_price",
-          "hotel_offer.supplier_code",
-          "record",
-          "record.sale_status"
-        ]
-      },
-      "status_keys": [
-        "editing",
-        "hotel_offer",
-        "hotel_offer.cancellation_policy",
-        "hotel_offer.checkin_date",
-        "hotel_offer.checkout_date",
-        "hotel_offer.city_code",
-        "hotel_offer.currency",
-        "hotel_offer.guarantee_policy",
-        "hotel_offer.hotel_code",
-        "hotel_offer.hotel_name",
-        "hotel_offer.inventory_count",
-        "hotel_offer.listed_price",
-        "hotel_offer.rate_plan_code",
-        "hotel_offer.room_type_code",
-        "hotel_offer.sale_status",
-        "hotel_offer.settlement_price",
-        "hotel_offer.supplier_code",
-        "record",
-        "record.sale_status"
-      ],
-      "studio_page_type": "studio_object_page",
-      "template_meta": {
-        "detail": "object_page"
-      },
-      "template_spec": {
-        "canonical_page_type": "object_page",
-        "family": "studio",
-        "legacy_page_type": "studio_object_page",
-        "page_kind": "detail",
-        "schema_version": "1.0"
-      },
-      "transitions": [
-        {
-          "description": "切换编辑模式",
-          "from": "*",
-          "name": "toggle_edit",
-          "to": "*",
-          "trigger": "user_action"
-        },
-        {
-          "description": "取消编辑",
-          "from": "*",
-          "name": "cancel_edit",
-          "to": "*",
-          "trigger": "user_action"
-        },
-        {
-          "description": "表单字段变更",
-          "from": "*",
-          "name": "form_change",
-          "to": "*",
-          "trigger": "user_input"
-        },
-        {
-          "description": "提交表单",
-          "from": "editing",
-          "name": "form_submit",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "activate",
-          "from": "*",
-          "name": "action_activate",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "deactivate",
-          "from": "*",
-          "name": "action_deactivate",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "expire",
-          "from": "*",
-          "name": "action_expire",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "删除记录",
-          "from": "*",
-          "name": "action_destroy",
-          "to": "loading",
-          "trigger": "user_action"
-        }
-      ],
-      "ui_sections": []
-    },
-    {
-      "api_map": {
-        "activate": "Travel.TrainOffer.activate",
-        "create": "Travel.TrainOffer.create",
-        "deactivate": "Travel.TrainOffer.deactivate",
-        "destroy": "Travel.TrainOffer.destroy",
-        "expire": "Travel.TrainOffer.expire",
-        "get": "Travel.TrainOffer.get",
-        "update": "Travel.TrainOffer.update"
-      },
-      "backend": {
-        "api_map": {
-          "activate": "Travel.TrainOffer.activate",
-          "create": "Travel.TrainOffer.create",
-          "deactivate": "Travel.TrainOffer.deactivate",
-          "destroy": "Travel.TrainOffer.destroy",
-          "expire": "Travel.TrainOffer.expire",
-          "get": "Travel.TrainOffer.get",
-          "update": "Travel.TrainOffer.update"
-        },
-        "info": {
-          "reload_messages": [
-            "page_host_reload"
-          ]
-        },
-        "load": {
-          "assigns": {},
-          "selection": "arrival_at: arrivalAt arrival_station_code: arrivalStationCode arrival_station_name: arrivalStationName booking_rules_snapshot: bookingRulesSnapshot change_rules_snapshot: changeRulesSnapshot currency departure_at: departureAt departure_station_code: departureStationCode departure_station_name: departureStationName host_shop_id: hostShopId id inventory_status: inventoryStatus is_no_seat: isNoSeat listed_price: listedPrice refund_rules_snapshot: refundRulesSnapshot sale_status: saleStatus seat_class: seatClass seat_code: seatCode settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId train_no: trainNo travel_date: travelDate waitlist_supported: waitlistSupported"
-        },
-        "params": {
-          "accept": [
-            "id",
-            "sale_status",
-            "departure_at",
-            "listed_price",
-            "departure_station_code",
-            "booking_rules_snapshot",
-            "arrival_station_name",
-            "is_no_seat",
-            "train_no",
-            "refund_rules_snapshot",
-            "supplier_code",
-            "travel_date",
-            "change_rules_snapshot",
-            "host_shop_id",
-            "departure_station_ref_id",
-            "arrival_station_ref_id",
-            "seat_code",
-            "settlement_price",
-            "currency",
-            "arrival_station_code",
-            "departure_station_name",
-            "inventory_status",
-            "arrival_at",
-            "seat_class",
-            "waitlist_supported"
-          ]
-        }
-      },
-      "behavior_file": "travel/train_offer_detail.expanded.behavior.v1.json",
-      "domain": "Travel",
-      "domain_snake": "travel",
-      "dsl_file": "travel/train_offer_detail.dsl",
-      "entity": "TrainOffer",
-      "entity_snake": "train_offer",
-      "page_id": "train_offer_detail",
-      "page_kind": "detail",
-      "page_spec": {
-        "dom": {
-          "form": "#train_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
-          "root": "#train_offer_detail",
-          "submit": "#train_offer_save_btn, form[phx-submit=\"form_submit\"] button[type=\"submit\"]",
-          "toggle_edit": "#train_offer_edit_btn"
-        },
-        "page_kind": "detail",
-        "route_role": "record",
-        "strategy": "object_detail_flow",
-        "supports_custom_surface": false,
-        "supports_runtime_record_identity": true,
-        "surface_kind": "standard",
-        "template_kind": "object_page"
-      },
-      "page_type": "object_page",
-      "state_schema": {
-        "defaults": {
-          "editing": false,
-          "record": {
-            "sale_status": true
-          },
-          "train_offer": {
-            "arrival_at": "",
-            "arrival_station_code": "",
-            "arrival_station_name": "",
-            "booking_rules_snapshot": "",
-            "change_rules_snapshot": "",
-            "currency": "",
-            "departure_at": "",
-            "departure_station_code": "",
-            "departure_station_name": "",
-            "inventory_status": "",
-            "is_no_seat": "",
-            "listed_price": "",
-            "refund_rules_snapshot": "",
-            "sale_status": "",
-            "seat_class": "",
-            "seat_code": "",
-            "settlement_price": "",
-            "supplier_code": "",
-            "train_no": "",
-            "travel_date": "",
-            "waitlist_supported": ""
-          }
-        },
-        "status_keys": [
-          "editing",
-          "record",
-          "record.sale_status",
-          "train_offer",
-          "train_offer.arrival_at",
-          "train_offer.arrival_station_code",
-          "train_offer.arrival_station_name",
-          "train_offer.booking_rules_snapshot",
-          "train_offer.change_rules_snapshot",
-          "train_offer.currency",
-          "train_offer.departure_at",
-          "train_offer.departure_station_code",
-          "train_offer.departure_station_name",
-          "train_offer.inventory_status",
-          "train_offer.is_no_seat",
-          "train_offer.listed_price",
-          "train_offer.refund_rules_snapshot",
-          "train_offer.sale_status",
-          "train_offer.seat_class",
-          "train_offer.seat_code",
-          "train_offer.settlement_price",
-          "train_offer.supplier_code",
-          "train_offer.train_no",
-          "train_offer.travel_date",
-          "train_offer.waitlist_supported"
-        ]
-      },
-      "status_keys": [
-        "editing",
-        "record",
-        "record.sale_status",
-        "train_offer",
-        "train_offer.arrival_at",
-        "train_offer.arrival_station_code",
-        "train_offer.arrival_station_name",
-        "train_offer.booking_rules_snapshot",
-        "train_offer.change_rules_snapshot",
-        "train_offer.currency",
-        "train_offer.departure_at",
-        "train_offer.departure_station_code",
-        "train_offer.departure_station_name",
-        "train_offer.inventory_status",
-        "train_offer.is_no_seat",
-        "train_offer.listed_price",
-        "train_offer.refund_rules_snapshot",
-        "train_offer.sale_status",
-        "train_offer.seat_class",
-        "train_offer.seat_code",
-        "train_offer.settlement_price",
-        "train_offer.supplier_code",
-        "train_offer.train_no",
-        "train_offer.travel_date",
-        "train_offer.waitlist_supported"
-      ],
-      "studio_page_type": "studio_object_page",
-      "template_meta": {
-        "detail": "object_page"
-      },
-      "template_spec": {
-        "canonical_page_type": "object_page",
-        "family": "studio",
-        "legacy_page_type": "studio_object_page",
-        "page_kind": "detail",
-        "schema_version": "1.0"
-      },
-      "transitions": [
-        {
-          "description": "切换编辑模式",
-          "from": "*",
-          "name": "toggle_edit",
-          "to": "*",
-          "trigger": "user_action"
-        },
-        {
-          "description": "取消编辑",
-          "from": "*",
-          "name": "cancel_edit",
-          "to": "*",
-          "trigger": "user_action"
-        },
-        {
-          "description": "表单字段变更",
-          "from": "*",
-          "name": "form_change",
-          "to": "*",
-          "trigger": "user_input"
-        },
-        {
-          "description": "提交表单",
-          "from": "editing",
-          "name": "form_submit",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "activate",
-          "from": "*",
-          "name": "action_activate",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "deactivate",
-          "from": "*",
-          "name": "action_deactivate",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "expire",
-          "from": "*",
-          "name": "action_expire",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "删除记录",
-          "from": "*",
-          "name": "action_destroy",
-          "to": "loading",
-          "trigger": "user_action"
-        }
-      ],
-      "ui_sections": []
-    },
-    {
-      "api_map": {
-        "activate": "Travel.VacationOffer.activate",
-        "create": "Travel.VacationOffer.create",
-        "deactivate": "Travel.VacationOffer.deactivate",
-        "destroy": "Travel.VacationOffer.destroy",
-        "expire": "Travel.VacationOffer.expire",
-        "get": "Travel.VacationOffer.get",
-        "update": "Travel.VacationOffer.update"
-      },
-      "backend": {
-        "api_map": {
-          "activate": "Travel.VacationOffer.activate",
-          "create": "Travel.VacationOffer.create",
-          "deactivate": "Travel.VacationOffer.deactivate",
-          "destroy": "Travel.VacationOffer.destroy",
-          "expire": "Travel.VacationOffer.expire",
-          "get": "Travel.VacationOffer.get",
-          "update": "Travel.VacationOffer.update"
-        },
-        "info": {
-          "reload_messages": [
-            "page_host_reload"
-          ]
-        },
-        "load": {
-          "assigns": {},
-          "selection": "booking_rules: bookingRules cancellation_policy: cancellationPolicy currency departure_city_code: departureCityCode destination_code: destinationCode end_date: endDate host_shop_id: hostShopId id inventory_count: inventoryCount listed_price: listedPrice package_code: packageCode package_name: packageName package_type: packageType sale_status: saleStatus settlement_price: settlementPrice start_date: startDate supplier_code: supplierCode tenant_id: tenantId"
-        },
-        "params": {
-          "accept": [
-            "id",
-            "sale_status",
-            "host_shop_id",
-            "destination_code",
-            "listed_price",
-            "currency",
-            "supplier_code",
-            "destination_ref_id",
-            "end_date",
-            "start_date",
-            "cancellation_policy",
-            "booking_rules",
-            "departure_city_ref_id",
-            "package_code",
-            "inventory_count",
-            "package_type",
-            "package_name",
-            "settlement_price",
-            "departure_city_code"
-          ]
-        }
-      },
-      "behavior_file": "travel/vacation_offer_detail.expanded.behavior.v1.json",
-      "domain": "Travel",
-      "domain_snake": "travel",
-      "dsl_file": "travel/vacation_offer_detail.dsl",
-      "entity": "VacationOffer",
-      "entity_snake": "vacation_offer",
-      "page_id": "vacation_offer_detail",
-      "page_kind": "detail",
-      "page_spec": {
-        "dom": {
-          "form": "#vacation_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
-          "root": "#vacation_offer_detail",
-          "submit": "#vacation_offer_save_btn, form[phx-submit=\"form_submit\"] button[type=\"submit\"]",
-          "toggle_edit": "#vacation_offer_edit_btn"
-        },
-        "page_kind": "detail",
-        "route_role": "record",
-        "strategy": "object_detail_flow",
-        "supports_custom_surface": false,
-        "supports_runtime_record_identity": true,
-        "surface_kind": "standard",
-        "template_kind": "object_page"
-      },
-      "page_type": "object_page",
-      "state_schema": {
-        "defaults": {
-          "editing": false,
-          "record": {
-            "sale_status": true
-          },
-          "vacation_offer": {
-            "booking_rules": "",
-            "cancellation_policy": "",
-            "currency": "",
-            "departure_city_code": "",
-            "destination_code": "",
-            "end_date": "",
-            "inventory_count": "",
-            "listed_price": "",
-            "package_code": "",
-            "package_name": "",
-            "package_type": "",
-            "sale_status": "",
-            "settlement_price": "",
-            "start_date": "",
-            "supplier_code": ""
-          }
-        },
-        "status_keys": [
-          "editing",
-          "record",
-          "record.sale_status",
-          "vacation_offer",
-          "vacation_offer.booking_rules",
-          "vacation_offer.cancellation_policy",
-          "vacation_offer.currency",
-          "vacation_offer.departure_city_code",
-          "vacation_offer.destination_code",
-          "vacation_offer.end_date",
-          "vacation_offer.inventory_count",
-          "vacation_offer.listed_price",
-          "vacation_offer.package_code",
-          "vacation_offer.package_name",
-          "vacation_offer.package_type",
-          "vacation_offer.sale_status",
-          "vacation_offer.settlement_price",
-          "vacation_offer.start_date",
-          "vacation_offer.supplier_code"
-        ]
-      },
-      "status_keys": [
-        "editing",
-        "record",
-        "record.sale_status",
-        "vacation_offer",
-        "vacation_offer.booking_rules",
-        "vacation_offer.cancellation_policy",
-        "vacation_offer.currency",
-        "vacation_offer.departure_city_code",
-        "vacation_offer.destination_code",
-        "vacation_offer.end_date",
-        "vacation_offer.inventory_count",
-        "vacation_offer.listed_price",
-        "vacation_offer.package_code",
-        "vacation_offer.package_name",
-        "vacation_offer.package_type",
-        "vacation_offer.sale_status",
-        "vacation_offer.settlement_price",
-        "vacation_offer.start_date",
-        "vacation_offer.supplier_code"
-      ],
-      "studio_page_type": "studio_object_page",
-      "template_meta": {
-        "detail": "object_page"
-      },
-      "template_spec": {
-        "canonical_page_type": "object_page",
-        "family": "studio",
-        "legacy_page_type": "studio_object_page",
-        "page_kind": "detail",
-        "schema_version": "1.0"
-      },
-      "transitions": [
-        {
-          "description": "切换编辑模式",
-          "from": "*",
-          "name": "toggle_edit",
-          "to": "*",
-          "trigger": "user_action"
-        },
-        {
-          "description": "取消编辑",
-          "from": "*",
-          "name": "cancel_edit",
-          "to": "*",
-          "trigger": "user_action"
-        },
-        {
-          "description": "表单字段变更",
-          "from": "*",
-          "name": "form_change",
-          "to": "*",
-          "trigger": "user_input"
-        },
-        {
-          "description": "提交表单",
-          "from": "editing",
-          "name": "form_submit",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "activate",
-          "from": "*",
-          "name": "action_activate",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "deactivate",
-          "from": "*",
-          "name": "action_deactivate",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "expire",
-          "from": "*",
-          "name": "action_expire",
-          "to": "loading",
-          "trigger": "user_action"
-        },
-        {
-          "description": "删除记录",
-          "from": "*",
-          "name": "action_destroy",
-          "to": "loading",
-          "trigger": "user_action"
-        }
-      ],
-      "ui_sections": []
-    },
-    {
-      "api_map": {
         "get": "Travel.TravelOrder.get",
         "list": "Travel.TravelOrder.list"
       },
@@ -9970,6 +9083,893 @@
         "template_kind": "object_page"
       },
       "transitions": []
+    },
+    {
+      "api_map": {
+        "activate": "Travel.FlightOffer.activate",
+        "create": "Travel.FlightOffer.create",
+        "deactivate": "Travel.FlightOffer.deactivate",
+        "destroy": "Travel.FlightOffer.destroy",
+        "expire": "Travel.FlightOffer.expire",
+        "get": "Travel.FlightOffer.get",
+        "update": "Travel.FlightOffer.update"
+      },
+      "backend": {
+        "api_map": {
+          "activate": "Travel.FlightOffer.activate",
+          "create": "Travel.FlightOffer.create",
+          "deactivate": "Travel.FlightOffer.deactivate",
+          "destroy": "Travel.FlightOffer.destroy",
+          "expire": "Travel.FlightOffer.expire",
+          "get": "Travel.FlightOffer.get",
+          "update": "Travel.FlightOffer.update"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "arrival_airport_code: arrivalAirportCode arrival_at: arrivalAt baggage_policy: baggagePolicy cabin_class: cabinClass currency departure_airport_code: departureAirportCode departure_at: departureAt fare_family: fareFamily flight_no: flightNo host_shop_id: hostShopId id itinerary_code: itineraryCode listed_price: listedPrice refund_change_policy: refundChangePolicy sale_status: saleStatus seats_available: seatsAvailable settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
+        },
+        "params": {
+          "accept": [
+            "id",
+            "host_shop_id",
+            "flight_no",
+            "cabin_class",
+            "arrival_airport_ref_id",
+            "currency",
+            "sale_status",
+            "baggage_policy",
+            "seats_available",
+            "departure_airport_ref_id",
+            "arrival_at",
+            "arrival_airport_code",
+            "departure_airport_code",
+            "supplier_code",
+            "departure_at",
+            "fare_family",
+            "settlement_price",
+            "refund_change_policy",
+            "itinerary_code",
+            "listed_price"
+          ]
+        }
+      },
+      "behavior_file": "travel/flight_offer_detail.expanded.behavior.v1.json",
+      "domain": "Travel",
+      "domain_snake": "travel",
+      "dsl_file": "travel/flight_offer_detail.dsl",
+      "entity": "FlightOffer",
+      "entity_snake": "flight_offer",
+      "page_id": "flight_offer_detail",
+      "page_kind": "detail",
+      "page_spec": {
+        "dom": {
+          "form": "#flight_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+          "root": "#flight_offer_detail",
+          "submit": "#flight_offer_save_btn, form[phx-submit=\"form_submit\"] button[type=\"submit\"]",
+          "toggle_edit": "#flight_offer_edit_btn"
+        },
+        "page_kind": "detail",
+        "route_role": "record",
+        "strategy": "object_detail_flow",
+        "supports_custom_surface": false,
+        "supports_runtime_record_identity": true,
+        "surface_kind": "standard",
+        "template_kind": "object_page"
+      },
+      "page_type": "object_page",
+      "state_schema": {
+        "defaults": {
+          "editing": false,
+          "flight_offer": {
+            "arrival_airport_code": "",
+            "arrival_at": "",
+            "baggage_policy": "",
+            "cabin_class": "",
+            "currency": "",
+            "departure_airport_code": "",
+            "departure_at": "",
+            "fare_family": "",
+            "flight_no": "",
+            "itinerary_code": "",
+            "listed_price": "",
+            "refund_change_policy": "",
+            "sale_status": "",
+            "seats_available": "",
+            "settlement_price": "",
+            "supplier_code": ""
+          },
+          "record": {
+            "sale_status": true
+          }
+        },
+        "status_keys": [
+          "editing",
+          "flight_offer",
+          "flight_offer.arrival_airport_code",
+          "flight_offer.arrival_at",
+          "flight_offer.baggage_policy",
+          "flight_offer.cabin_class",
+          "flight_offer.currency",
+          "flight_offer.departure_airport_code",
+          "flight_offer.departure_at",
+          "flight_offer.fare_family",
+          "flight_offer.flight_no",
+          "flight_offer.itinerary_code",
+          "flight_offer.listed_price",
+          "flight_offer.refund_change_policy",
+          "flight_offer.sale_status",
+          "flight_offer.seats_available",
+          "flight_offer.settlement_price",
+          "flight_offer.supplier_code",
+          "record",
+          "record.sale_status"
+        ]
+      },
+      "status_keys": [
+        "editing",
+        "flight_offer",
+        "flight_offer.arrival_airport_code",
+        "flight_offer.arrival_at",
+        "flight_offer.baggage_policy",
+        "flight_offer.cabin_class",
+        "flight_offer.currency",
+        "flight_offer.departure_airport_code",
+        "flight_offer.departure_at",
+        "flight_offer.fare_family",
+        "flight_offer.flight_no",
+        "flight_offer.itinerary_code",
+        "flight_offer.listed_price",
+        "flight_offer.refund_change_policy",
+        "flight_offer.sale_status",
+        "flight_offer.seats_available",
+        "flight_offer.settlement_price",
+        "flight_offer.supplier_code",
+        "record",
+        "record.sale_status"
+      ],
+      "studio_page_type": "studio_object_page",
+      "template_meta": {
+        "detail": "object_page"
+      },
+      "template_spec": {
+        "canonical_page_type": "object_page",
+        "family": "studio",
+        "legacy_page_type": "studio_object_page",
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": [
+        {
+          "description": "切换编辑模式",
+          "from": "*",
+          "name": "toggle_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "取消编辑",
+          "from": "*",
+          "name": "cancel_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "表单字段变更",
+          "from": "*",
+          "name": "form_change",
+          "to": "*",
+          "trigger": "user_input"
+        },
+        {
+          "description": "提交表单",
+          "from": "editing",
+          "name": "form_submit",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "activate",
+          "from": "*",
+          "name": "action_activate",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "deactivate",
+          "from": "*",
+          "name": "action_deactivate",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "expire",
+          "from": "*",
+          "name": "action_expire",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "删除记录",
+          "from": "*",
+          "name": "action_destroy",
+          "to": "loading",
+          "trigger": "user_action"
+        }
+      ],
+      "ui_sections": []
+    },
+    {
+      "api_map": {
+        "activate": "Travel.HotelOffer.activate",
+        "create": "Travel.HotelOffer.create",
+        "deactivate": "Travel.HotelOffer.deactivate",
+        "destroy": "Travel.HotelOffer.destroy",
+        "expire": "Travel.HotelOffer.expire",
+        "get": "Travel.HotelOffer.get",
+        "update": "Travel.HotelOffer.update"
+      },
+      "backend": {
+        "api_map": {
+          "activate": "Travel.HotelOffer.activate",
+          "create": "Travel.HotelOffer.create",
+          "deactivate": "Travel.HotelOffer.deactivate",
+          "destroy": "Travel.HotelOffer.destroy",
+          "expire": "Travel.HotelOffer.expire",
+          "get": "Travel.HotelOffer.get",
+          "update": "Travel.HotelOffer.update"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "cancellation_policy: cancellationPolicy checkin_date: checkinDate checkout_date: checkoutDate city_code: cityCode currency guarantee_policy: guaranteePolicy host_shop_id: hostShopId hotel_code: hotelCode hotel_name: hotelName id inventory_count: inventoryCount listed_price: listedPrice rate_plan_code: ratePlanCode room_type_code: roomTypeCode sale_status: saleStatus settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
+        },
+        "params": {
+          "accept": [
+            "id",
+            "city_code",
+            "cancellation_policy",
+            "sale_status",
+            "currency",
+            "room_type_code",
+            "checkin_date",
+            "supplier_code",
+            "hotel_name",
+            "city_ref_id",
+            "rate_plan_code",
+            "guarantee_policy",
+            "settlement_price",
+            "host_shop_id",
+            "hotel_code",
+            "checkout_date",
+            "listed_price",
+            "inventory_count"
+          ]
+        }
+      },
+      "behavior_file": "travel/hotel_offer_detail.expanded.behavior.v1.json",
+      "domain": "Travel",
+      "domain_snake": "travel",
+      "dsl_file": "travel/hotel_offer_detail.dsl",
+      "entity": "HotelOffer",
+      "entity_snake": "hotel_offer",
+      "page_id": "hotel_offer_detail",
+      "page_kind": "detail",
+      "page_spec": {
+        "dom": {
+          "form": "#hotel_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+          "root": "#hotel_offer_detail",
+          "submit": "#hotel_offer_save_btn, form[phx-submit=\"form_submit\"] button[type=\"submit\"]",
+          "toggle_edit": "#hotel_offer_edit_btn"
+        },
+        "page_kind": "detail",
+        "route_role": "record",
+        "strategy": "object_detail_flow",
+        "supports_custom_surface": false,
+        "supports_runtime_record_identity": true,
+        "surface_kind": "standard",
+        "template_kind": "object_page"
+      },
+      "page_type": "object_page",
+      "state_schema": {
+        "defaults": {
+          "editing": false,
+          "hotel_offer": {
+            "cancellation_policy": "",
+            "checkin_date": "",
+            "checkout_date": "",
+            "city_code": "",
+            "currency": "",
+            "guarantee_policy": "",
+            "hotel_code": "",
+            "hotel_name": "",
+            "inventory_count": "",
+            "listed_price": "",
+            "rate_plan_code": "",
+            "room_type_code": "",
+            "sale_status": "",
+            "settlement_price": "",
+            "supplier_code": ""
+          },
+          "record": {
+            "sale_status": true
+          }
+        },
+        "status_keys": [
+          "editing",
+          "hotel_offer",
+          "hotel_offer.cancellation_policy",
+          "hotel_offer.checkin_date",
+          "hotel_offer.checkout_date",
+          "hotel_offer.city_code",
+          "hotel_offer.currency",
+          "hotel_offer.guarantee_policy",
+          "hotel_offer.hotel_code",
+          "hotel_offer.hotel_name",
+          "hotel_offer.inventory_count",
+          "hotel_offer.listed_price",
+          "hotel_offer.rate_plan_code",
+          "hotel_offer.room_type_code",
+          "hotel_offer.sale_status",
+          "hotel_offer.settlement_price",
+          "hotel_offer.supplier_code",
+          "record",
+          "record.sale_status"
+        ]
+      },
+      "status_keys": [
+        "editing",
+        "hotel_offer",
+        "hotel_offer.cancellation_policy",
+        "hotel_offer.checkin_date",
+        "hotel_offer.checkout_date",
+        "hotel_offer.city_code",
+        "hotel_offer.currency",
+        "hotel_offer.guarantee_policy",
+        "hotel_offer.hotel_code",
+        "hotel_offer.hotel_name",
+        "hotel_offer.inventory_count",
+        "hotel_offer.listed_price",
+        "hotel_offer.rate_plan_code",
+        "hotel_offer.room_type_code",
+        "hotel_offer.sale_status",
+        "hotel_offer.settlement_price",
+        "hotel_offer.supplier_code",
+        "record",
+        "record.sale_status"
+      ],
+      "studio_page_type": "studio_object_page",
+      "template_meta": {
+        "detail": "object_page"
+      },
+      "template_spec": {
+        "canonical_page_type": "object_page",
+        "family": "studio",
+        "legacy_page_type": "studio_object_page",
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": [
+        {
+          "description": "切换编辑模式",
+          "from": "*",
+          "name": "toggle_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "取消编辑",
+          "from": "*",
+          "name": "cancel_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "表单字段变更",
+          "from": "*",
+          "name": "form_change",
+          "to": "*",
+          "trigger": "user_input"
+        },
+        {
+          "description": "提交表单",
+          "from": "editing",
+          "name": "form_submit",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "activate",
+          "from": "*",
+          "name": "action_activate",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "deactivate",
+          "from": "*",
+          "name": "action_deactivate",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "expire",
+          "from": "*",
+          "name": "action_expire",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "删除记录",
+          "from": "*",
+          "name": "action_destroy",
+          "to": "loading",
+          "trigger": "user_action"
+        }
+      ],
+      "ui_sections": []
+    },
+    {
+      "api_map": {
+        "activate": "Travel.TrainOffer.activate",
+        "create": "Travel.TrainOffer.create",
+        "deactivate": "Travel.TrainOffer.deactivate",
+        "destroy": "Travel.TrainOffer.destroy",
+        "expire": "Travel.TrainOffer.expire",
+        "get": "Travel.TrainOffer.get",
+        "update": "Travel.TrainOffer.update"
+      },
+      "backend": {
+        "api_map": {
+          "activate": "Travel.TrainOffer.activate",
+          "create": "Travel.TrainOffer.create",
+          "deactivate": "Travel.TrainOffer.deactivate",
+          "destroy": "Travel.TrainOffer.destroy",
+          "expire": "Travel.TrainOffer.expire",
+          "get": "Travel.TrainOffer.get",
+          "update": "Travel.TrainOffer.update"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "arrival_at: arrivalAt arrival_station_code: arrivalStationCode arrival_station_name: arrivalStationName booking_rules_snapshot: bookingRulesSnapshot change_rules_snapshot: changeRulesSnapshot currency departure_at: departureAt departure_station_code: departureStationCode departure_station_name: departureStationName host_shop_id: hostShopId id inventory_status: inventoryStatus is_no_seat: isNoSeat listed_price: listedPrice refund_rules_snapshot: refundRulesSnapshot sale_status: saleStatus seat_class: seatClass seat_code: seatCode settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId train_no: trainNo travel_date: travelDate waitlist_supported: waitlistSupported"
+        },
+        "params": {
+          "accept": [
+            "id",
+            "arrival_at",
+            "booking_rules_snapshot",
+            "currency",
+            "arrival_station_name",
+            "sale_status",
+            "seat_class",
+            "is_no_seat",
+            "arrival_station_ref_id",
+            "travel_date",
+            "waitlist_supported",
+            "train_no",
+            "change_rules_snapshot",
+            "supplier_code",
+            "departure_at",
+            "refund_rules_snapshot",
+            "departure_station_name",
+            "seat_code",
+            "listed_price",
+            "settlement_price",
+            "departure_station_code",
+            "host_shop_id",
+            "departure_station_ref_id",
+            "inventory_status",
+            "arrival_station_code"
+          ]
+        }
+      },
+      "behavior_file": "travel/train_offer_detail.expanded.behavior.v1.json",
+      "domain": "Travel",
+      "domain_snake": "travel",
+      "dsl_file": "travel/train_offer_detail.dsl",
+      "entity": "TrainOffer",
+      "entity_snake": "train_offer",
+      "page_id": "train_offer_detail",
+      "page_kind": "detail",
+      "page_spec": {
+        "dom": {
+          "form": "#train_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+          "root": "#train_offer_detail",
+          "submit": "#train_offer_save_btn, form[phx-submit=\"form_submit\"] button[type=\"submit\"]",
+          "toggle_edit": "#train_offer_edit_btn"
+        },
+        "page_kind": "detail",
+        "route_role": "record",
+        "strategy": "object_detail_flow",
+        "supports_custom_surface": false,
+        "supports_runtime_record_identity": true,
+        "surface_kind": "standard",
+        "template_kind": "object_page"
+      },
+      "page_type": "object_page",
+      "state_schema": {
+        "defaults": {
+          "editing": false,
+          "record": {
+            "sale_status": true
+          },
+          "train_offer": {
+            "arrival_at": "",
+            "arrival_station_code": "",
+            "arrival_station_name": "",
+            "booking_rules_snapshot": "",
+            "change_rules_snapshot": "",
+            "currency": "",
+            "departure_at": "",
+            "departure_station_code": "",
+            "departure_station_name": "",
+            "inventory_status": "",
+            "is_no_seat": "",
+            "listed_price": "",
+            "refund_rules_snapshot": "",
+            "sale_status": "",
+            "seat_class": "",
+            "seat_code": "",
+            "settlement_price": "",
+            "supplier_code": "",
+            "train_no": "",
+            "travel_date": "",
+            "waitlist_supported": ""
+          }
+        },
+        "status_keys": [
+          "editing",
+          "record",
+          "record.sale_status",
+          "train_offer",
+          "train_offer.arrival_at",
+          "train_offer.arrival_station_code",
+          "train_offer.arrival_station_name",
+          "train_offer.booking_rules_snapshot",
+          "train_offer.change_rules_snapshot",
+          "train_offer.currency",
+          "train_offer.departure_at",
+          "train_offer.departure_station_code",
+          "train_offer.departure_station_name",
+          "train_offer.inventory_status",
+          "train_offer.is_no_seat",
+          "train_offer.listed_price",
+          "train_offer.refund_rules_snapshot",
+          "train_offer.sale_status",
+          "train_offer.seat_class",
+          "train_offer.seat_code",
+          "train_offer.settlement_price",
+          "train_offer.supplier_code",
+          "train_offer.train_no",
+          "train_offer.travel_date",
+          "train_offer.waitlist_supported"
+        ]
+      },
+      "status_keys": [
+        "editing",
+        "record",
+        "record.sale_status",
+        "train_offer",
+        "train_offer.arrival_at",
+        "train_offer.arrival_station_code",
+        "train_offer.arrival_station_name",
+        "train_offer.booking_rules_snapshot",
+        "train_offer.change_rules_snapshot",
+        "train_offer.currency",
+        "train_offer.departure_at",
+        "train_offer.departure_station_code",
+        "train_offer.departure_station_name",
+        "train_offer.inventory_status",
+        "train_offer.is_no_seat",
+        "train_offer.listed_price",
+        "train_offer.refund_rules_snapshot",
+        "train_offer.sale_status",
+        "train_offer.seat_class",
+        "train_offer.seat_code",
+        "train_offer.settlement_price",
+        "train_offer.supplier_code",
+        "train_offer.train_no",
+        "train_offer.travel_date",
+        "train_offer.waitlist_supported"
+      ],
+      "studio_page_type": "studio_object_page",
+      "template_meta": {
+        "detail": "object_page"
+      },
+      "template_spec": {
+        "canonical_page_type": "object_page",
+        "family": "studio",
+        "legacy_page_type": "studio_object_page",
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": [
+        {
+          "description": "切换编辑模式",
+          "from": "*",
+          "name": "toggle_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "取消编辑",
+          "from": "*",
+          "name": "cancel_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "表单字段变更",
+          "from": "*",
+          "name": "form_change",
+          "to": "*",
+          "trigger": "user_input"
+        },
+        {
+          "description": "提交表单",
+          "from": "editing",
+          "name": "form_submit",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "activate",
+          "from": "*",
+          "name": "action_activate",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "deactivate",
+          "from": "*",
+          "name": "action_deactivate",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "expire",
+          "from": "*",
+          "name": "action_expire",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "删除记录",
+          "from": "*",
+          "name": "action_destroy",
+          "to": "loading",
+          "trigger": "user_action"
+        }
+      ],
+      "ui_sections": []
+    },
+    {
+      "api_map": {
+        "activate": "Travel.VacationOffer.activate",
+        "create": "Travel.VacationOffer.create",
+        "deactivate": "Travel.VacationOffer.deactivate",
+        "destroy": "Travel.VacationOffer.destroy",
+        "expire": "Travel.VacationOffer.expire",
+        "get": "Travel.VacationOffer.get",
+        "update": "Travel.VacationOffer.update"
+      },
+      "backend": {
+        "api_map": {
+          "activate": "Travel.VacationOffer.activate",
+          "create": "Travel.VacationOffer.create",
+          "deactivate": "Travel.VacationOffer.deactivate",
+          "destroy": "Travel.VacationOffer.destroy",
+          "expire": "Travel.VacationOffer.expire",
+          "get": "Travel.VacationOffer.get",
+          "update": "Travel.VacationOffer.update"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "booking_rules: bookingRules cancellation_policy: cancellationPolicy currency departure_city_code: departureCityCode destination_code: destinationCode end_date: endDate host_shop_id: hostShopId id inventory_count: inventoryCount listed_price: listedPrice package_code: packageCode package_name: packageName package_type: packageType sale_status: saleStatus settlement_price: settlementPrice start_date: startDate supplier_code: supplierCode tenant_id: tenantId"
+        },
+        "params": {
+          "accept": [
+            "id",
+            "cancellation_policy",
+            "listed_price",
+            "package_code",
+            "departure_city_ref_id",
+            "sale_status",
+            "settlement_price",
+            "departure_city_code",
+            "supplier_code",
+            "currency",
+            "end_date",
+            "package_type",
+            "host_shop_id",
+            "package_name",
+            "destination_code",
+            "inventory_count",
+            "booking_rules",
+            "start_date",
+            "destination_ref_id"
+          ]
+        }
+      },
+      "behavior_file": "travel/vacation_offer_detail.expanded.behavior.v1.json",
+      "domain": "Travel",
+      "domain_snake": "travel",
+      "dsl_file": "travel/vacation_offer_detail.dsl",
+      "entity": "VacationOffer",
+      "entity_snake": "vacation_offer",
+      "page_id": "vacation_offer_detail",
+      "page_kind": "detail",
+      "page_spec": {
+        "dom": {
+          "form": "#vacation_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+          "root": "#vacation_offer_detail",
+          "submit": "#vacation_offer_save_btn, form[phx-submit=\"form_submit\"] button[type=\"submit\"]",
+          "toggle_edit": "#vacation_offer_edit_btn"
+        },
+        "page_kind": "detail",
+        "route_role": "record",
+        "strategy": "object_detail_flow",
+        "supports_custom_surface": false,
+        "supports_runtime_record_identity": true,
+        "surface_kind": "standard",
+        "template_kind": "object_page"
+      },
+      "page_type": "object_page",
+      "state_schema": {
+        "defaults": {
+          "editing": false,
+          "record": {
+            "sale_status": true
+          },
+          "vacation_offer": {
+            "booking_rules": "",
+            "cancellation_policy": "",
+            "currency": "",
+            "departure_city_code": "",
+            "destination_code": "",
+            "end_date": "",
+            "inventory_count": "",
+            "listed_price": "",
+            "package_code": "",
+            "package_name": "",
+            "package_type": "",
+            "sale_status": "",
+            "settlement_price": "",
+            "start_date": "",
+            "supplier_code": ""
+          }
+        },
+        "status_keys": [
+          "editing",
+          "record",
+          "record.sale_status",
+          "vacation_offer",
+          "vacation_offer.booking_rules",
+          "vacation_offer.cancellation_policy",
+          "vacation_offer.currency",
+          "vacation_offer.departure_city_code",
+          "vacation_offer.destination_code",
+          "vacation_offer.end_date",
+          "vacation_offer.inventory_count",
+          "vacation_offer.listed_price",
+          "vacation_offer.package_code",
+          "vacation_offer.package_name",
+          "vacation_offer.package_type",
+          "vacation_offer.sale_status",
+          "vacation_offer.settlement_price",
+          "vacation_offer.start_date",
+          "vacation_offer.supplier_code"
+        ]
+      },
+      "status_keys": [
+        "editing",
+        "record",
+        "record.sale_status",
+        "vacation_offer",
+        "vacation_offer.booking_rules",
+        "vacation_offer.cancellation_policy",
+        "vacation_offer.currency",
+        "vacation_offer.departure_city_code",
+        "vacation_offer.destination_code",
+        "vacation_offer.end_date",
+        "vacation_offer.inventory_count",
+        "vacation_offer.listed_price",
+        "vacation_offer.package_code",
+        "vacation_offer.package_name",
+        "vacation_offer.package_type",
+        "vacation_offer.sale_status",
+        "vacation_offer.settlement_price",
+        "vacation_offer.start_date",
+        "vacation_offer.supplier_code"
+      ],
+      "studio_page_type": "studio_object_page",
+      "template_meta": {
+        "detail": "object_page"
+      },
+      "template_spec": {
+        "canonical_page_type": "object_page",
+        "family": "studio",
+        "legacy_page_type": "studio_object_page",
+        "page_kind": "detail",
+        "schema_version": "1.0"
+      },
+      "transitions": [
+        {
+          "description": "切换编辑模式",
+          "from": "*",
+          "name": "toggle_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "取消编辑",
+          "from": "*",
+          "name": "cancel_edit",
+          "to": "*",
+          "trigger": "user_action"
+        },
+        {
+          "description": "表单字段变更",
+          "from": "*",
+          "name": "form_change",
+          "to": "*",
+          "trigger": "user_input"
+        },
+        {
+          "description": "提交表单",
+          "from": "editing",
+          "name": "form_submit",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "activate",
+          "from": "*",
+          "name": "action_activate",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "deactivate",
+          "from": "*",
+          "name": "action_deactivate",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "expire",
+          "from": "*",
+          "name": "action_expire",
+          "to": "loading",
+          "trigger": "user_action"
+        },
+        {
+          "description": "删除记录",
+          "from": "*",
+          "name": "action_destroy",
+          "to": "loading",
+          "trigger": "user_action"
+        }
+      ],
+      "ui_sections": []
     }
   ],
   "route_map": [
@@ -10401,62 +10401,6 @@
       "route_kind": "custom"
     },
     {
-      "full_path": "/pages/travel/flight_offer/:id",
-      "page_id": "flight_offer_detail",
-      "path": "/travel/flight_offer/:id",
-      "query": "",
-      "route_kind": "detail"
-    },
-    {
-      "full_path": "/pages/travel/flight_offer/new",
-      "page_id": "flight_offer_detail",
-      "path": "/travel/flight_offer/new",
-      "query": "",
-      "route_kind": "new"
-    },
-    {
-      "full_path": "/pages/travel/hotel_offer/:id",
-      "page_id": "hotel_offer_detail",
-      "path": "/travel/hotel_offer/:id",
-      "query": "",
-      "route_kind": "detail"
-    },
-    {
-      "full_path": "/pages/travel/hotel_offer/new",
-      "page_id": "hotel_offer_detail",
-      "path": "/travel/hotel_offer/new",
-      "query": "",
-      "route_kind": "new"
-    },
-    {
-      "full_path": "/pages/travel/train_offer/:id",
-      "page_id": "train_offer_detail",
-      "path": "/travel/train_offer/:id",
-      "query": "",
-      "route_kind": "detail"
-    },
-    {
-      "full_path": "/pages/travel/train_offer/new",
-      "page_id": "train_offer_detail",
-      "path": "/travel/train_offer/new",
-      "query": "",
-      "route_kind": "new"
-    },
-    {
-      "full_path": "/pages/travel/vacation_offer/:id",
-      "page_id": "vacation_offer_detail",
-      "path": "/travel/vacation_offer/:id",
-      "query": "",
-      "route_kind": "detail"
-    },
-    {
-      "full_path": "/pages/travel/vacation_offer/new",
-      "page_id": "vacation_offer_detail",
-      "path": "/travel/vacation_offer/new",
-      "query": "",
-      "route_kind": "new"
-    },
-    {
       "full_path": "/pages/travel/job_position_detail",
       "page_id": "job_position_detail",
       "path": "/travel/job_position_detail",
@@ -10546,6 +10490,62 @@
       "path": "/travel/approval_category_config",
       "query": "",
       "route_kind": "detail"
+    },
+    {
+      "full_path": "/pages/travel/flight_offer/:id",
+      "page_id": "flight_offer_detail",
+      "path": "/travel/flight_offer/:id",
+      "query": "",
+      "route_kind": "detail"
+    },
+    {
+      "full_path": "/pages/travel/flight_offer/new",
+      "page_id": "flight_offer_detail",
+      "path": "/travel/flight_offer/new",
+      "query": "",
+      "route_kind": "new"
+    },
+    {
+      "full_path": "/pages/travel/hotel_offer/:id",
+      "page_id": "hotel_offer_detail",
+      "path": "/travel/hotel_offer/:id",
+      "query": "",
+      "route_kind": "detail"
+    },
+    {
+      "full_path": "/pages/travel/hotel_offer/new",
+      "page_id": "hotel_offer_detail",
+      "path": "/travel/hotel_offer/new",
+      "query": "",
+      "route_kind": "new"
+    },
+    {
+      "full_path": "/pages/travel/train_offer/:id",
+      "page_id": "train_offer_detail",
+      "path": "/travel/train_offer/:id",
+      "query": "",
+      "route_kind": "detail"
+    },
+    {
+      "full_path": "/pages/travel/train_offer/new",
+      "page_id": "train_offer_detail",
+      "path": "/travel/train_offer/new",
+      "query": "",
+      "route_kind": "new"
+    },
+    {
+      "full_path": "/pages/travel/vacation_offer/:id",
+      "page_id": "vacation_offer_detail",
+      "path": "/travel/vacation_offer/:id",
+      "query": "",
+      "route_kind": "detail"
+    },
+    {
+      "full_path": "/pages/travel/vacation_offer/new",
+      "page_id": "vacation_offer_detail",
+      "path": "/travel/vacation_offer/new",
+      "query": "",
+      "route_kind": "new"
     }
   ],
   "schema_version": "1.0",

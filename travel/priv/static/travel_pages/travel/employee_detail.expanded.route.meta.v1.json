@@ -1,0 +1,12 @@
+{
+  "page_id": "employee_detail",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.EmployeeDetailLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/employee_detail",
+    "kind": "detail",
+    "params": []
+  }
+}

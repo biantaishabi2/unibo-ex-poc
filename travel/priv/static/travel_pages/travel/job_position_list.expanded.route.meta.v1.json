@@ -1,0 +1,12 @@
+{
+  "page_id": "job_position_list",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.JobPositionListLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/job_position_list",
+    "kind": "list",
+    "params": []
+  }
+}

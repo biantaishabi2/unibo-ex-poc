@@ -1,0 +1,12 @@
+{
+  "page_id": "approval_category_config",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.ApprovalCategoryConfigLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/approval_category_config",
+    "kind": "detail",
+    "params": []
+  }
+}

@@ -18,10 +18,18 @@ defmodule UniboExPocWeb.Generated.CompiledPageRouter do
         live "/pages/travel/travel_refund_order/new", UniboExPocWeb.Pages.Travel.TravelRefundOrderDetailLive, :new
         live "/pages/travel/travel_room_type/new", UniboExPocWeb.Pages.Travel.TravelRoomTypeDetailLive, :new
         live "/pages/travel/travel_static_code_mapping/new", UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive, :new
+        live "/pages/travel/approval_category_config", UniboExPocWeb.Pages.Travel.ApprovalCategoryConfigLive, :show
         live "/pages/travel/approval_detail", UniboExPocWeb.Pages.Travel.ApprovalDetailLive, :show
+        live "/pages/travel/auth_role_detail", UniboExPocWeb.Pages.Travel.AuthRoleDetailLive, :show
+        live "/pages/travel/auth_role_list", UniboExPocWeb.Pages.Travel.AuthRoleListLive, :index
         live "/pages/travel/booking_confirmation", UniboExPocWeb.Pages.Travel.BookingConfirmationLive, :show
         live "/pages/travel/change_confirm", UniboExPocWeb.Pages.Travel.ChangeConfirmLive, :show
         live "/pages/travel/change_flight_search", UniboExPocWeb.Pages.Travel.ChangeFlightSearchLive, :index
+        live "/pages/travel/department_detail", UniboExPocWeb.Pages.Travel.DepartmentDetailLive, :show
+        live "/pages/travel/department_list", UniboExPocWeb.Pages.Travel.DepartmentListLive, :index
+        live "/pages/travel/employee_detail", UniboExPocWeb.Pages.Travel.EmployeeDetailLive, :show
+        live "/pages/travel/employee_list", UniboExPocWeb.Pages.Travel.EmployeeListLive, :index
+        live "/pages/travel/enterprise_settings", UniboExPocWeb.Pages.Travel.EnterpriseSettingsLive, :show
         live "/pages/travel/flight_booking", UniboExPocWeb.Pages.Travel.FlightBookingLive, :show
         live "/pages/travel/flight_detail", UniboExPocWeb.Pages.Travel.FlightDetailLive, :show
         live "/pages/travel/flight_offer", UniboExPocWeb.Pages.Travel.FlightOfferListLive, :index
@@ -32,6 +40,10 @@ defmodule UniboExPocWeb.Generated.CompiledPageRouter do
         live "/pages/travel/hotel_detail", UniboExPocWeb.Pages.Travel.HotelDetailLive, :show
         live "/pages/travel/hotel_offer", UniboExPocWeb.Pages.Travel.HotelOfferListLive, :index
         live "/pages/travel/hotel_search_results", UniboExPocWeb.Pages.Travel.HotelSearchResultsLive, :index
+        live "/pages/travel/job_position_detail", UniboExPocWeb.Pages.Travel.JobPositionDetailLive, :show
+        live "/pages/travel/job_position_list", UniboExPocWeb.Pages.Travel.JobPositionListLive, :index
+        live "/pages/travel/oa_integration_config", UniboExPocWeb.Pages.Travel.OaIntegrationConfigLive, :show
+        live "/pages/travel/oa_sync_log_list", UniboExPocWeb.Pages.Travel.OaSyncLogListLive, :index
         live "/pages/travel/order_detail", UniboExPocWeb.Pages.Travel.OrderDetailLive, :show
         live "/pages/travel/order_list", UniboExPocWeb.Pages.Travel.OrderListLive, :index
         live "/pages/travel/payment_confirmation", UniboExPocWeb.Pages.Travel.PaymentConfirmationLive, :show
@@ -68,6 +80,7 @@ defmodule UniboExPocWeb.Generated.CompiledPageRouter do
         live "/pages/travel/travel_room_type/:id", UniboExPocWeb.Pages.Travel.TravelRoomTypeDetailLive, :show
         live "/pages/travel/travel_static_code_mapping", UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingListLive, :index
         live "/pages/travel/travel_static_code_mapping/:id", UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive, :show
+        live "/pages/travel/traveler_management", UniboExPocWeb.Pages.Travel.TravelerManagementLive, :index
         live "/pages/travel/vacation_offer", UniboExPocWeb.Pages.Travel.VacationOfferListLive, :index
       end
     end

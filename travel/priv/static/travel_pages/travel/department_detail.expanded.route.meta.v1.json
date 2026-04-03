@@ -1,0 +1,12 @@
+{
+  "page_id": "department_detail",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.DepartmentDetailLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/department_detail",
+    "kind": "detail",
+    "params": []
+  }
+}

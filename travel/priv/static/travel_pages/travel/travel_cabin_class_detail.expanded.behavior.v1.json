@@ -18,9 +18,9 @@
       "accept": [
         "id",
         "cabin_rank",
+        "cabin_class_name",
         "status",
-        "cabin_class_code",
-        "cabin_class_name"
+        "cabin_class_code"
       ]
     }
   },
@@ -105,9 +105,9 @@
               "selector": "#travel_cabin_class_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             },
             {
-              "action": "select_option",
-              "field": "status",
-              "value": "inactive"
+              "action": "type",
+              "field": "cabin_class_name",
+              "value": "UPDATED_{{__run_id}}_cabin_class_name"
             },
             {
               "action": "type",
@@ -115,9 +115,9 @@
               "value": "2"
             },
             {
-              "action": "type",
-              "field": "cabin_class_name",
-              "value": "UPDATED_{{__run_id}}_cabin_class_name"
+              "action": "select_option",
+              "field": "status",
+              "value": "inactive"
             },
             {
               "action": "click",
@@ -318,11 +318,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.status",
+            "equals": "$form.cabin_rank",
             "excludes_source": null,
             "graphql_field": "getTravelTravelCabinClass",
             "op": "equals",
-            "path": "status",
+            "path": "cabin_rank",
             "source": "active_record_id"
           },
           "ui": [

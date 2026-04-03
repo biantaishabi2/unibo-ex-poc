@@ -66,7 +66,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_load_event "get"
   @backend_load_selection "cancellation_policy: cancellationPolicy checkin_date: checkinDate checkout_date: checkoutDate city_code: cityCode currency guarantee_policy: guaranteePolicy host_shop_id: hostShopId hotel_code: hotelCode hotel_name: hotelName id inventory_count: inventoryCount listed_price: listedPrice rate_plan_code: ratePlanCode room_type_code: roomTypeCode sale_status: saleStatus settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
   @backend_load_assigns %{hotel_offer: %{}}
-  @backend_params_accept ["id", "room_type_code", "city_ref_id", "sale_status", "settlement_price", "guarantee_policy", "city_code", "cancellation_policy", "checkin_date", "checkout_date", "currency", "listed_price", "hotel_name", "inventory_count", "supplier_code", "hotel_code", "host_shop_id", "rate_plan_code"]
+  @backend_params_accept ["id", "city_code", "cancellation_policy", "sale_status", "currency", "room_type_code", "checkin_date", "supplier_code", "hotel_name", "city_ref_id", "rate_plan_code", "guarantee_policy", "settlement_price", "host_shop_id", "hotel_code", "checkout_date", "listed_price", "inventory_count"]
   @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
     "activate" => %{module: MyAppWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.HotelOffer.activate"},
