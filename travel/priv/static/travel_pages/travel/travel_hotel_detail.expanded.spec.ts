@@ -226,11 +226,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.status",
+      "equals": "$form.hotel_name",
       "excludes_source": null,
       "graphql_field": "getTravelTravelHotel",
       "op": "equals",
-      "path": "status",
+      "path": "hotel_name",
       "source": "active_record_id"
     },
     "ui": [
@@ -508,7 +508,6 @@ async function runSetupItem(page, ctx, item) {
   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
     const savedTenantId = ctx.tenant_id;
     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
-    rememberTenantContext(ctx, inputValue);
     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
     const wherePath = typeof item.where_path === 'string' ? item.where_path.trim() : '';
@@ -516,6 +515,7 @@ async function runSetupItem(page, ctx, item) {
     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
+    rememberTenantContext(ctx, inputValue);
     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
     const matched = whereField
       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
@@ -961,32 +961,11 @@ test.describe("travel_hotel_detail", () => {
       }
       await expect(page.locator(`#travel_hotel_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
-        const loc = page.locator(`#travel_hotel_form_hotel_star, [name='hotel_star']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_star");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["hotel_star"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_hotel_form_city_code, [name='city_code']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_city_code");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["city_code"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const loc = page.locator(`#travel_hotel_form_hotel_name, [name='hotel_name']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_name");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["hotel_name"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_hotel_form_city_id, [name='city_id']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_city_id");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["city_id"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const root = page.locator(`#travel_hotel_form_status`).first();
@@ -1003,6 +982,27 @@ test.describe("travel_hotel_detail", () => {
         __ctx.form["status"] = resolvedValue; refreshDataBindings(__ctx);
         await waitForLiveViewReady(page, 15000);
         await syncRouteContext(page, __ctx);
+      }
+      {
+        const loc = page.locator(`#travel_hotel_form_city_id, [name='city_id']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_city_id");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["city_id"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_hotel_form_city_code, [name='city_code']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_city_code");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["city_code"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_hotel_form_hotel_star, [name='hotel_star']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_star");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["hotel_star"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_hotel_edit_form button[type="submit"], #travel_hotel_edit_form [phx-click="form_submit"]`).first();

@@ -12,315 +12,212 @@
 # Error details
 
 ```
-TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
-Call log:
-  - waiting for locator('#travel_order_action_confirm_quote').first() to be visible
-
-```
-
-# Page snapshot
-
-```yaml
-- generic [ref=e2]:
-  - banner [ref=e3]:
-    - generic [ref=e4]:
-      - generic [ref=e5]:
-        - link [ref=e6] [cursor=pointer]:
-          - /url: /
-          - img [ref=e7]
-        - paragraph [ref=e8]: v1.7.21
-      - generic [ref=e9]:
-        - link "@elixirphoenix" [ref=e10] [cursor=pointer]:
-          - /url: https://twitter.com/elixirphoenix
-        - link "GitHub" [ref=e11] [cursor=pointer]:
-          - /url: https://github.com/phoenixframework/phoenix
-        - link "Get Started" [ref=e12] [cursor=pointer]:
-          - /url: https://hexdocs.pm/phoenix/overview.html
-          - text: Get Started →
-  - main [ref=e13]:
-    - generic "详情" [ref=e15]:
-      - navigation "breadcrumb" [ref=e17]:
-        - list [ref=e18]:
-          - listitem [ref=e19]:
-            - generic [ref=e20]: 列表
-          - listitem [ref=e21]:
-            - img [ref=e22]
-          - listitem [ref=e24]:
-            - link "详情" [disabled] [ref=e25]
-      - generic [ref=e27]:
-        - generic [ref=e29]:
-          - paragraph [ref=e30]: TravelOrder
-          - paragraph [ref=e31]: 统一酒旅订单,承接 hotel、flight、vacation、train 四类商品的下单和状态流转;通过跨域引用关联 Sales::Customer 和 Payment::Payment
-        - generic [ref=e33]:
-          - button "编辑" [ref=e34] [cursor=pointer]
-          - button "request_change" [ref=e35] [cursor=pointer]
-          - button "confirm_change" [ref=e36] [cursor=pointer]
-          - button "删除" [ref=e37] [cursor=pointer]
-      - generic [ref=e39]:
-        - heading "基本信息" [level=3] [ref=e41]
-        - generic [ref=e44]:
-          - generic [ref=e45]:
-            - paragraph [ref=e46]: 订单号
-            - paragraph
-          - generic [ref=e47]:
-            - paragraph [ref=e48]: 商品类型
-            - paragraph
-          - generic [ref=e49]:
-            - paragraph [ref=e50]: train 订单预订模式
-            - paragraph
-          - generic [ref=e51]:
-            - paragraph [ref=e52]: contact_name
-            - paragraph
-          - generic [ref=e53]:
-            - paragraph [ref=e54]: contact_phone
-            - paragraph
-          - generic [ref=e55]:
-            - paragraph [ref=e56]: 出行人数量
-            - paragraph
-          - generic [ref=e57]:
-            - paragraph [ref=e58]: 订单总金额
-            - paragraph
-          - generic [ref=e59]:
-            - paragraph [ref=e60]: 计划使用的积分数量
-            - paragraph
-          - generic [ref=e61]:
-            - paragraph [ref=e62]: 积分抵现金额
-            - paragraph
-          - generic [ref=e63]:
-            - paragraph [ref=e64]: 宿主 quote 返回的推荐支付方式
-            - paragraph
-          - generic [ref=e65]:
-            - paragraph [ref=e66]: currency
-            - paragraph
-          - generic [ref=e67]:
-            - paragraph [ref=e68]: status
-            - paragraph
-          - generic [ref=e69]:
-            - paragraph [ref=e70]: change_status
-            - paragraph
-          - generic [ref=e71]:
-            - paragraph [ref=e72]: waitlist_status
-            - paragraph
-          - generic [ref=e73]:
-            - paragraph [ref=e74]: 改签链路引用的原订单号或原票号
-            - paragraph
-          - generic [ref=e75]:
-            - paragraph [ref=e76]: 乘车人信息快照
-            - paragraph
-          - generic [ref=e77]:
-            - paragraph [ref=e78]: 选座与席别偏好快照
-            - paragraph
-          - generic [ref=e79]:
-            - paragraph [ref=e80]: 供应商订单号
-            - paragraph
-          - generic [ref=e81]:
-            - paragraph [ref=e82]: 宿主支付侧外部支付流水号
-            - paragraph
+Error: setup action failed for confirm_quote
 ```
 
 # Test source
 
 ```ts
-  2297 |         await page.goto(resolveContractUrl(__ctx));
-  2298 |         await syncRouteContext(page, __ctx);
-  2299 |         await waitForLiveViewReady(page, 15000);
-  2300 |       {
-  2301 |         const loc = page.locator(`#edit_btn`).first();
-  2302 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  2303 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  2304 |         const confirmText = await loc.getAttribute('data-confirm');
-  2305 |         await loc.scrollIntoViewIfNeeded();
-  2306 |         if (confirmText) {
-  2307 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  2308 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  2309 |             .catch(() => null);
-  2310 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  2311 |           await dialogPromise;
-  2312 |         } else {
-  2313 |           await loc.click({ timeout: 15000 });
-  2314 |         }
-  2315 |         if (clickedId) {
-  2316 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  2317 |           refreshDataBindings(__ctx);
-  2318 |         }
-  2319 |         await waitForLiveViewReady(page, 15000);
-  2320 |         await syncRouteContext(page, __ctx);
-  2321 |       }
-  2322 |       await expect(page.locator(`#travel_order_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
-  2323 |       {
-  2324 |         const loc = page.locator(`#travel_order_form_contact_name, [name='contact_name']`).first();
-  2325 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  2326 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_contact_name");
-  2327 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  2328 |         __ctx.form["contact_name"] = resolvedValue; refreshDataBindings(__ctx);
-  2329 |       }
-  2330 |       {
-  2331 |         const loc = page.locator(`#travel_order_form_traveler_count, [name='traveler_count']`).first();
-  2332 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  2333 |         const resolvedValue = resolveTemplateString(__ctx, "2");
-  2334 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  2335 |         __ctx.form["traveler_count"] = resolvedValue; refreshDataBindings(__ctx);
-  2336 |       }
-  2337 |       {
-  2338 |         const loc = page.locator(`#travel_order_form_contact_phone, [name='contact_phone']`).first();
-  2339 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  2340 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_contact_phone");
-  2341 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  2342 |         __ctx.form["contact_phone"] = resolvedValue; refreshDataBindings(__ctx);
-  2343 |       }
-  2344 |       {
-  2345 |         const loc = page.locator(`#travel_order_form_seat_selection_snapshot, [name='seat_selection_snapshot']`).first();
-  2346 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  2347 |         const resolvedValue = resolveTemplateString(__ctx, "{\"updated\":true}");
-  2348 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  2349 |         __ctx.form["seat_selection_snapshot"] = resolvedValue; refreshDataBindings(__ctx);
-  2350 |       }
-  2351 |       {
-  2352 |         const loc = page.locator(`#travel_order_form_ticket_passenger_infos, [name='ticket_passenger_infos']`).first();
-  2353 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  2354 |         const resolvedValue = resolveTemplateString(__ctx, "{\"updated\":true}");
-  2355 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  2356 |         __ctx.form["ticket_passenger_infos"] = resolvedValue; refreshDataBindings(__ctx);
-  2357 |       }
-  2358 |       {
-  2359 |         const loc = page.locator(`#travel_order_edit_form button[type="submit"], #travel_order_edit_form [phx-click="form_submit"]`).first();
-  2360 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  2361 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  2362 |         const confirmText = await loc.getAttribute('data-confirm');
-  2363 |         await loc.scrollIntoViewIfNeeded();
-  2364 |         if (confirmText) {
-  2365 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  2366 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  2367 |             .catch(() => null);
-  2368 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  2369 |           await dialogPromise;
-  2370 |         } else {
-  2371 |           await loc.click({ timeout: 15000 });
-  2372 |         }
-  2373 |         if (clickedId) {
-  2374 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  2375 |           refreshDataBindings(__ctx);
-  2376 |         }
-  2377 |         await waitForLiveViewReady(page, 15000);
-  2378 |         await syncRouteContext(page, __ctx);
-  2379 |       }
-  2380 |         await runCaseWait(page, __ctx, "form_submit", ["toggle_edit","form_change","form_submit"]);
-  2381 |         await captureCreatedRecordId(__ctx, "crud", ["toggle_edit","form_change","form_submit"]);
-  2382 |         await runCaseVerification(page, __ctx, "update", "crud", ["toggle_edit","form_change","form_submit"]);
-  2383 |       });
-  2384 |       await test.step("状态转换：draft → quoted（confirm_quote）", async () => {
-  2385 |       {
-  2386 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_order/{{state_action_record_id_confirm_quote}}");
-  2387 |         const target = /^https?:\/\//.test(targetValue)
-  2388 |           ? targetValue
-  2389 |           : new URL(targetValue, "http://localhost:4100/").toString();
-  2390 |         await page.goto(target);
-  2391 |       }
-  2392 |       await waitForLiveViewReady(page, 15000);
-  2393 |       await syncRouteContext(page, __ctx);
-  2394 |       await expect(page.locator(`#travel_order_detail`)).toBeVisible({ timeout: 15000 });
-  2395 |       {
-  2396 |         const loc = page.locator(`#travel_order_action_confirm_quote`).first();
-> 2397 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-       |                   ^ TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
-  2398 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  2399 |         const confirmText = await loc.getAttribute('data-confirm');
-  2400 |         await loc.scrollIntoViewIfNeeded();
-  2401 |         if (confirmText) {
-  2402 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  2403 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  2404 |             .catch(() => null);
-  2405 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  2406 |           await dialogPromise;
-  2407 |         } else {
-  2408 |           await loc.click({ timeout: 15000 });
-  2409 |         }
-  2410 |         if (clickedId) {
-  2411 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  2412 |           __ctx["state_action_record_id_confirm_quote"] = clickedId;
-  2413 |           refreshDataBindings(__ctx);
-  2414 |         }
-  2415 |         if (!clickedId) {
-  2416 |           __ctx["state_action_record_id_confirm_quote"] = defaultRecordId(__ctx);
-  2417 |         }
-  2418 |         await waitForLiveViewReady(page, 15000);
-  2419 |         await syncRouteContext(page, __ctx);
-  2420 |       }
-  2421 |         await runCaseWait(page, __ctx, "action_confirm_quote", ["action_confirm_quote"]);
-  2422 |         await captureCreatedRecordId(__ctx, "state", ["action_confirm_quote"]);
-  2423 |         await runCaseVerification(page, __ctx, "action_confirm_quote", "state", ["action_confirm_quote"]);
-  2424 |       });
-  2425 |       await test.step("状态转换：quoted → submitted（submit_order）", async () => {
-  2426 |       {
-  2427 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_order/{{state_action_record_id_submit_order}}");
-  2428 |         const target = /^https?:\/\//.test(targetValue)
-  2429 |           ? targetValue
-  2430 |           : new URL(targetValue, "http://localhost:4100/").toString();
-  2431 |         await page.goto(target);
-  2432 |       }
-  2433 |       await waitForLiveViewReady(page, 15000);
-  2434 |       await syncRouteContext(page, __ctx);
-  2435 |       await expect(page.locator(`#travel_order_detail`)).toBeVisible({ timeout: 15000 });
-  2436 |       {
-  2437 |         const loc = page.locator(`#travel_order_action_submit_order`).first();
-  2438 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  2439 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  2440 |         const confirmText = await loc.getAttribute('data-confirm');
-  2441 |         await loc.scrollIntoViewIfNeeded();
-  2442 |         if (confirmText) {
-  2443 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  2444 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  2445 |             .catch(() => null);
-  2446 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  2447 |           await dialogPromise;
-  2448 |         } else {
-  2449 |           await loc.click({ timeout: 15000 });
-  2450 |         }
-  2451 |         if (clickedId) {
-  2452 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  2453 |           __ctx["state_action_record_id_submit_order"] = clickedId;
-  2454 |           refreshDataBindings(__ctx);
-  2455 |         }
-  2456 |         if (!clickedId) {
-  2457 |           __ctx["state_action_record_id_submit_order"] = defaultRecordId(__ctx);
-  2458 |         }
-  2459 |         await waitForLiveViewReady(page, 15000);
-  2460 |         await syncRouteContext(page, __ctx);
-  2461 |       }
-  2462 |         await runCaseWait(page, __ctx, "action_submit_order", ["action_submit_order"]);
-  2463 |         await captureCreatedRecordId(__ctx, "state", ["action_submit_order"]);
-  2464 |         await runCaseVerification(page, __ctx, "action_submit_order", "state", ["action_submit_order"]);
-  2465 |       });
-  2466 |       await test.step("状态转换：quoted → submitted（submit_waitlist）", async () => {
-  2467 |       {
-  2468 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_order/{{state_action_record_id_submit_waitlist}}");
-  2469 |         const target = /^https?:\/\//.test(targetValue)
-  2470 |           ? targetValue
-  2471 |           : new URL(targetValue, "http://localhost:4100/").toString();
-  2472 |         await page.goto(target);
-  2473 |       }
-  2474 |       await waitForLiveViewReady(page, 15000);
-  2475 |       await syncRouteContext(page, __ctx);
-  2476 |       await expect(page.locator(`#travel_order_detail`)).toBeVisible({ timeout: 15000 });
-  2477 |       {
-  2478 |         const loc = page.locator(`#travel_order_action_submit_waitlist`).first();
-  2479 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  2480 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  2481 |         const confirmText = await loc.getAttribute('data-confirm');
-  2482 |         await loc.scrollIntoViewIfNeeded();
-  2483 |         if (confirmText) {
-  2484 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  2485 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  2486 |             .catch(() => null);
-  2487 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  2488 |           await dialogPromise;
-  2489 |         } else {
-  2490 |           await loc.click({ timeout: 15000 });
-  2491 |         }
-  2492 |         if (clickedId) {
-  2493 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  2494 |           __ctx["state_action_record_id_submit_waitlist"] = clickedId;
-  2495 |           refreshDataBindings(__ctx);
-  2496 |         }
-  2497 |         if (!clickedId) {
+  1761 |   const mutationFields = (payload?.data?.__schema?.mutationType?.fields || []).map((field) => field.name);
+  1762 |   if (queryFields.length === 0 && mutationFields.length === 0) {
+  1763 |     throw new Error('GraphQL introspection at ' + __GRAPHQL_URL + ' returned no fields. Is the server running? Response: ' + JSON.stringify(payload).slice(0, 300));
+  1764 |   }
+  1765 |   ctx.__graphqlSchema = { query: queryFields, mutation: mutationFields };
+  1766 |   return ctx.__graphqlSchema;
+  1767 | }
+  1768 | 
+  1769 | async function resolveContractGraphqlField(ctx, mode, explicitField, domain, entity, actionName) {
+  1770 |   const schema = await loadGraphqlSchemaCache(ctx);
+  1771 |   const fields = mode === 'query' ? schema.query : schema.mutation;
+  1772 |   const explicit = String(explicitField || '').trim();
+  1773 |   if (explicit && fields.includes(explicit)) return explicit;
+  1774 |   if (explicit) {
+  1775 |     const camel = pascalize(explicit).replace(/^./, (ch) => ch.toLowerCase());
+  1776 |     if (camel !== explicit && fields.includes(camel)) return camel;
+  1777 |   }
+  1778 |   return await resolveGraphqlField(ctx, mode, domain, entity, actionName);
+  1779 | }
+  1780 | 
+  1781 | async function resolveGraphqlField(ctx, mode, domain, entity, actionName) {
+  1782 |   const schema = await loadGraphqlSchemaCache(ctx);
+  1783 |   const fields = mode === 'query' ? schema.query : schema.mutation;
+  1784 |   const domainName = pascalize(domain);
+  1785 |   const entityName = pascalize(entity);
+  1786 |   const domainSnake = snakeize(domain);
+  1787 |   const entitySnake = snakeize(entity);
+  1788 |   const candidates = [];
+  1789 |   let normalizedPrefix = (domainName + entityName).replace(/^./, (ch) => ch.toLowerCase());
+  1790 |   if (mode === 'query') {
+  1791 |     if (actionName === 'list') {
+  1792 |       normalizedPrefix = 'list' + domainName + entityName;
+  1793 |       candidates.push('list_' + domainSnake + '_' + pluralize(entitySnake));
+  1794 |     } else if (actionName === 'get') {
+  1795 |       normalizedPrefix = 'get' + domainName + entityName;
+  1796 |       candidates.push('get_' + domainSnake + '_' + entitySnake);
+  1797 |     }
+  1798 |   } else if (actionName === 'destroy') {
+  1799 |     normalizedPrefix = 'delete' + domainName + entityName;
+  1800 |     candidates.push('delete_' + domainSnake + '_' + entitySnake);
+  1801 |   } else if (actionName) {
+  1802 |     const actionPrefix = pascalize(actionName);
+  1803 |     normalizedPrefix = actionPrefix.charAt(0).toLowerCase() + actionPrefix.slice(1) + domainName + entityName;
+  1804 |     candidates.push(snakeize(actionName) + '_' + domainSnake + '_' + entitySnake);
+  1805 |   }
+  1806 |   candidates.push(normalizedPrefix);
+  1807 |   return candidates.find((candidate) => fields.includes(candidate)) || fields.find((field) => candidates.some((candidate) => field === candidate || (field.startsWith(candidate) && /^(s|es|_|$)/.test(field.slice(candidate.length))))) || null;
+  1808 | }
+  1809 | 
+  1810 | function applyBindings(ctx, binds, resultValue) {
+  1811 |   for (const bind of Array.isArray(binds) ? binds : []) {
+  1812 |     const source = typeof bind?.source === 'string' ? bind.source : 'result';
+  1813 |     const base = source === 'result' || source === 'backend_result'
+  1814 |       ? resultValue
+  1815 |       : readContextValue(ctx, source);
+  1816 |     const value = readValueAtPath(base, bind?.path || null);
+  1817 |     assignContextValue(ctx, bind?.name, value);
+  1818 |   }
+  1819 | }
+  1820 | 
+  1821 | function refreshDataBindings(ctx) {
+  1822 |   applyBindings(ctx, __DATA_CONTRACT.binds, null);
+  1823 | }
+  1824 | 
+  1825 | function resolveTemplateDeep(ctx, value) {
+  1826 |   if (typeof value === 'string') return resolveTemplateString(ctx, value);
+  1827 |   if (Array.isArray(value)) return value.map((item) => resolveTemplateDeep(ctx, item));
+  1828 |   if (value && typeof value === 'object') {
+  1829 |     return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, resolveTemplateDeep(ctx, item)]));
+  1830 |   }
+  1831 |   return value;
+  1832 | }
+  1833 | 
+  1834 | function toGraphqlLiteral(value) {
+  1835 |   if (value == null) return 'null';
+  1836 |   if (Array.isArray(value)) return '[' + value.map((item) => toGraphqlLiteral(item)).join(', ') + ']';
+  1837 |   if (typeof value === 'object') {
+  1838 |     return '{ ' + Object.entries(value).map(([key, item]) => `${key}: ${toGraphqlLiteral(item)}`).join(', ') + ' }';
+  1839 |   }
+  1840 |   if (typeof value === 'string') return JSON.stringify(value);
+  1841 |   if (typeof value === 'number' || typeof value === 'boolean') return String(value);
+  1842 |   return JSON.stringify(String(value));
+  1843 | }
+  1844 | 
+  1845 | function defaultRecordId(ctx) {
+  1846 |   return ctx.active_record_id || ctx.route_record_id || ctx.seed_record_id || ctx.created_record_id || ctx.route?.id || '';
+  1847 | }
+  1848 | 
+  1849 | function resolveBackendAssertionId(ctx, assertion) {
+  1850 |   const idArg = (Array.isArray(assertion?.args) ? assertion.args : []).find((arg) => arg?.name === 'id');
+  1851 |   const explicit = resolveTemplateString(ctx, idArg?.source ? '{{' + idArg.source + '}}' : '{{route.id}}');
+  1852 |   return explicit || defaultRecordId(ctx);
+  1853 | }
+  1854 | 
+  1855 | async function runSetupAction(ctx, item, recordId, actionName) {
+  1856 |   const field = await resolveContractGraphqlField(ctx, 'mutation', null, item.domain, item.entity, actionName);
+  1857 |   if (!field) throw new Error('missing GraphQL action field for setup ' + JSON.stringify({ item, actionName }));
+  1858 |   const payload = await graphqlRequest(ctx, `mutation ContractSetupAction($id: ID!) { ${field}(id: $id) { result { id } errors { message } } }`, { id: recordId });
+  1859 |   const errors = payload?.errors || payload?.data?.[field]?.errors || [];
+  1860 |   if (Array.isArray(errors) && errors.length > 0) {
+> 1861 |     throw new Error('setup action failed for ' + String(actionName));
+       |           ^ Error: setup action failed for confirm_quote
+  1862 |   }
+  1863 |   return payload?.data?.[field]?.result || null;
+  1864 | }
+  1865 | 
+  1866 | async function runSetupItem(page, ctx, item) {
+  1867 |   if (!item) return;
+  1868 |   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
+  1869 |     const savedTenantId = ctx.tenant_id;
+  1870 |     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
+  1871 |     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
+  1872 |     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
+  1873 |     const wherePath = typeof item.where_path === 'string' ? item.where_path.trim() : '';
+  1874 |     const whereField = /^[A-Za-z_][A-Za-z0-9_]*$/.test(wherePath) ? wherePath : '';
+  1875 |     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
+  1876 |     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
+  1877 |     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
+  1878 |     rememberTenantContext(ctx, inputValue);
+  1879 |     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
+  1880 |     const matched = whereField
+  1881 |       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
+  1882 |       : rows;
+  1883 |     const rawIndex = Number.isInteger(item.index) ? Number(item.index) : Number(item.index || 0);
+  1884 |     const index = Number.isFinite(rawIndex) && rawIndex >= 0 ? rawIndex : 0;
+  1885 |     let result = matched[index] || matched[0];
+  1886 |     const prepareActions = Array.isArray(item.prepare_actions) ? item.prepare_actions : [];
+  1887 |     if (!result && (item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create')) {
+  1888 |       const createField = await resolveContractGraphqlField(ctx, 'mutation', item.create_graphql_field, item.domain, item.entity, 'create');
+  1889 |       if (!createField) throw new Error('missing GraphQL create field for setup ' + JSON.stringify(item));
+  1890 |       const createPayload = await graphqlRequest(ctx, `mutation ContractSetupCreate { ${createField}(input: ${toGraphqlLiteral(inputValue)}) { result { id } errors { message } } }`, {});
+  1891 |       const errors = createPayload?.errors || createPayload?.data?.[createField]?.errors || [];
+  1892 |       if (Array.isArray(errors) && errors.length > 0) {
+  1893 |         throw new Error('setup create failed for ' + String(item.name || createField) + ': ' + JSON.stringify(errors));
+  1894 |       }
+  1895 |       result = createPayload?.data?.[createField]?.result || null;
+  1896 |       if (result?.id) {
+  1897 |         ctx.__cleanup_queue = ctx.__cleanup_queue || [];
+  1898 |         ctx.__cleanup_queue.push({ id: result.id, domain: item.domain, entity: item.entity });
+  1899 |       }
+  1900 |     }
+  1901 |     if (item.cleanup_policy === 'never') { for (const row of rows) { if (row?.id) ctx.__seed_ids.add(row.id); } }
+  1902 |     if (!result) throw new Error('setup returned no rows for ' + String(item.name || field));
+  1903 |     for (const actionName of prepareActions) {
+  1904 |       if (!result?.id) break;
+  1905 |       result = await runSetupAction(ctx, item, result.id, String(actionName || '').trim()) || result;
+  1906 |     }
+  1907 |     applyBindings(ctx, item.binds, result);
+  1908 |     refreshDataBindings(ctx);
+  1909 |     ctx.tenant_id = savedTenantId;
+  1910 |   }
+  1911 | }
+  1912 | 
+  1913 | async function ensureContractSetup(page, ctx) {
+  1914 |   if (ctx.__setupDone) return;
+  1915 |   for (const item of Array.isArray(__DATA_CONTRACT.setup) ? __DATA_CONTRACT.setup : []) {
+  1916 |     await runSetupItem(page, ctx, item);
+  1917 |   }
+  1918 |   ctx.__setupDone = true;
+  1919 | }
+  1920 | 
+  1921 | function parseApiRef(apiRef) {
+  1922 |   const parts = String(apiRef || '').split('.');
+  1923 |   if (parts.length < 3) return null;
+  1924 |   return { domain: parts[0], entity: parts[1], action: parts[2] };
+  1925 | }
+  1926 | 
+  1927 | function collectVerificationEntries(verificationKey, caseKind, covers) {
+  1928 |   const entries = [];
+  1929 |   const pushEntry = (entry) => {
+  1930 |     if (!entry) return;
+  1931 |     if (!entries.includes(entry)) entries.push(entry);
+  1932 |   };
+  1933 |   if (verificationKey && verificationKey !== '__AUTO__') {
+  1934 |     pushEntry(__VERIFICATION_CONTRACT[verificationKey]);
+  1935 |   } else {
+  1936 |     if (caseKind === 'load') pushEntry(__VERIFICATION_CONTRACT.load);
+  1937 |     for (const cover of Array.isArray(covers) ? covers : []) {
+  1938 |       pushEntry(__VERIFICATION_CONTRACT[cover]);
+  1939 |     }
+  1940 |   }
+  1941 |   for (const cover of Array.isArray(covers) ? covers : []) {
+  1942 |     if (!String(cover).startsWith('action_')) continue;
+  1943 |     const event = String(cover).slice('action_'.length);
+  1944 |     const matches = Array.isArray(__VERIFICATION_CONTRACT.state_transitions) ? __VERIFICATION_CONTRACT.state_transitions.filter((item) => item?.event === event) : [];
+  1945 |     for (const match of matches) pushEntry(match);
+  1946 |   }
+  1947 |   return entries;
+  1948 | }
+  1949 | 
+  1950 | async function runWaitEntry(page, ctx, entry) {
+  1951 |   if (!entry) return;
+  1952 |   const timeout = Number(entry?.timeout) > 0 ? Number(entry.timeout) : 15000;
+  1953 |   await waitForLiveViewReady(page, timeout);
+  1954 |   const until = entry?.until || {};
+  1955 |   const kind = String(until?.kind || entry?.mode || '').trim();
+  1956 |   const selector = typeof until?.selector === 'string' ? until.selector : (Array.isArray(entry?.selectors) ? entry.selectors[0] : null);
+  1957 |   const urlContains = typeof until?.url_contains === 'string' ? until.url_contains : entry?.url_contains;
+  1958 |   if ((kind === 'visible' || kind === 'dom_visible' || kind === 'state_key') && selector) {
+  1959 |     await expect(locatorFor(page, selector)).toBeVisible({ timeout });
+  1960 |   }
+  1961 |   if ((kind === 'hidden' || kind === 'dom_hidden') && selector) {
 ```

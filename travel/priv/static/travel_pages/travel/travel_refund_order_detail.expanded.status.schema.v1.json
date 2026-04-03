@@ -56,8 +56,8 @@
         "accept": [
           "id",
           "original_order_id",
-          "refund_reason",
           "refund_fee",
+          "refund_reason",
           "refund_amount",
           "approval_mode"
         ]

@@ -44,11 +44,11 @@
       "params": {
         "accept": [
           "id",
-          "hotel_name",
-          "city_id",
           "hotel_code",
-          "hotel_star",
           "city_code",
+          "city_id",
+          "hotel_star",
+          "hotel_name",
           "status"
         ]
       }
@@ -135,8 +135,18 @@
               },
               {
                 "action": "type",
-                "field": "hotel_star",
-                "value": "UPDATED_{{__run_id}}_hotel_star"
+                "field": "hotel_name",
+                "value": "UPDATED_{{__run_id}}_hotel_name"
+              },
+              {
+                "action": "select_option",
+                "field": "status",
+                "value": "inactive"
+              },
+              {
+                "action": "type",
+                "field": "city_id",
+                "value": "UPDATED_{{__run_id}}_city_id"
               },
               {
                 "action": "type",
@@ -145,18 +155,8 @@
               },
               {
                 "action": "type",
-                "field": "hotel_name",
-                "value": "UPDATED_{{__run_id}}_hotel_name"
-              },
-              {
-                "action": "type",
-                "field": "city_id",
-                "value": "UPDATED_{{__run_id}}_city_id"
-              },
-              {
-                "action": "select_option",
-                "field": "status",
-                "value": "inactive"
+                "field": "hotel_star",
+                "value": "UPDATED_{{__run_id}}_hotel_star"
               },
               {
                 "action": "click",
@@ -357,11 +357,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.status",
+              "equals": "$form.hotel_name",
               "excludes_source": null,
               "graphql_field": "getTravelTravelHotel",
               "op": "equals",
-              "path": "status",
+              "path": "hotel_name",
               "source": "active_record_id"
             },
             "ui": [

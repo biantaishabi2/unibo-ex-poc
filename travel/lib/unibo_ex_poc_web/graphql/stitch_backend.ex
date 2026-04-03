@@ -713,7 +713,7 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
   # 根据 Absinthe schema introspection 过滤 input 字段，只保留 input type 声明的字段
   defp filter_input_by_schema(input, input_type_name) when is_binary(input_type_name) and input_type_name != "" do
     # input_type_name 是 PascalCase（如 UpdateTravelTravelAirlineInput），转为 atom 查找
-    type_id = input_type_name |> Macro.underscore() |> String.to_atom()
+    type_id = input_type_name |> Macro.underscore() |> String.to_existing_atom()
 
     case Absinthe.Schema.lookup_type(RuntimeConfig.schema_module(), type_id) do
       %{fields: fields} when is_map(fields) ->
@@ -739,12 +739,12 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
 
   # 根据 Absinthe schema introspection 将 HTML form 字符串值转换为 GraphQL 强类型
   defp coerce_input_for_type(input, type_name) when is_map(input) and is_binary(type_name) and type_name != "" do
-    type_id = type_name |> Macro.underscore() |> String.to_atom()
+    type_id = type_name |> Macro.underscore() |> String.to_existing_atom()
 
     case Absinthe.Schema.lookup_type(RuntimeConfig.schema_module(), type_id) do
       %{fields: fields} when is_map(fields) ->
         Map.new(input, fn {k, v} ->
-          field_def = fields[String.to_atom(k)] || fields[k |> Macro.camelize() |> String.to_atom()]
+          field_def = fields[String.to_existing_atom(k)] || fields[k |> Macro.camelize() |> String.to_existing_atom()]
           field_type = if field_def, do: unwrap_type(field_def.type), else: nil
           {k, coerce_value(v, field_type)}
         end)

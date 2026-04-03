@@ -697,7 +697,6 @@ async function runSetupItem(page, ctx, item) {
   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
     const savedTenantId = ctx.tenant_id;
     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
-    rememberTenantContext(ctx, inputValue);
     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
     const wherePath = typeof item.where_path === 'string' ? item.where_path.trim() : '';
@@ -705,6 +704,7 @@ async function runSetupItem(page, ctx, item) {
     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
+    rememberTenantContext(ctx, inputValue);
     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
     const matched = whereField
       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
@@ -1150,13 +1150,6 @@ test.describe("travel_fulfillment_detail", () => {
       }
       await expect(page.locator(`#travel_fulfillment_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
-        const loc = page.locator(`#travel_fulfillment_form_ticket_refs, [name='ticket_refs']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "{\"updated\":true}");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["ticket_refs"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const loc = page.locator(`#travel_fulfillment_form_confirmation_payload, [name='confirmation_payload']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_confirmation_payload");
@@ -1183,6 +1176,13 @@ test.describe("travel_fulfillment_detail", () => {
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_failure_reason");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["failure_reason"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_fulfillment_form_ticket_refs, [name='ticket_refs']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "{\"updated\":true}");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["ticket_refs"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_fulfillment_edit_form button[type="submit"], #travel_fulfillment_edit_form [phx-click="form_submit"]`).first();

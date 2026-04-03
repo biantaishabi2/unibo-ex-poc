@@ -12,307 +12,212 @@
 # Error details
 
 ```
-TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
-Call log:
-  - waiting for locator('#flight_offer_action_activate').first() to be visible
-
-```
-
-# Page snapshot
-
-```yaml
-- generic [ref=e2]:
-  - banner [ref=e3]:
-    - generic [ref=e4]:
-      - generic [ref=e5]:
-        - link [ref=e6] [cursor=pointer]:
-          - /url: /
-          - img [ref=e7]
-        - paragraph [ref=e8]: v1.7.21
-      - generic [ref=e9]:
-        - link "@elixirphoenix" [ref=e10] [cursor=pointer]:
-          - /url: https://twitter.com/elixirphoenix
-        - link "GitHub" [ref=e11] [cursor=pointer]:
-          - /url: https://github.com/phoenixframework/phoenix
-        - link "Get Started" [ref=e12] [cursor=pointer]:
-          - /url: https://hexdocs.pm/phoenix/overview.html
-          - text: Get Started →
-  - main [ref=e13]:
-    - generic [ref=e15]:
-      - link "← 列表" [ref=e17] [cursor=pointer]:
-        - /url: /pages
-      - generic "详情" [ref=e18]:
-        - navigation "breadcrumb" [ref=e20]:
-          - list [ref=e21]:
-            - listitem [ref=e22]:
-              - generic [ref=e23]: 列表
-            - listitem [ref=e24]:
-              - img [ref=e25]
-            - listitem [ref=e27]:
-              - link "详情" [disabled] [ref=e28]
-        - generic [ref=e30]:
-          - generic [ref=e32]:
-            - paragraph [ref=e33]: FlightOffer
-            - paragraph [ref=e34]: 机票可售 offer,承载航班、舱位、票规和库存快照
-          - generic [ref=e36]:
-            - button "编辑" [ref=e37] [cursor=pointer]
-            - button "删除" [ref=e38] [cursor=pointer]
-        - generic [ref=e40]:
-          - heading "基本信息" [level=3] [ref=e42]
-          - generic [ref=e45]:
-            - generic [ref=e46]:
-              - paragraph [ref=e47]: 供应商编码
-              - paragraph
-            - generic [ref=e48]:
-              - paragraph [ref=e49]: 行程编码
-              - paragraph
-            - generic [ref=e50]:
-              - paragraph [ref=e51]: 航班号
-              - paragraph
-            - generic [ref=e52]:
-              - paragraph [ref=e53]: 出发机场编码
-              - paragraph
-            - generic [ref=e54]:
-              - paragraph [ref=e55]: 到达机场编码
-              - paragraph
-            - generic [ref=e56]:
-              - paragraph [ref=e57]: 起飞时间
-              - paragraph
-            - generic [ref=e58]:
-              - paragraph [ref=e59]: 到达时间
-              - paragraph
-            - generic [ref=e60]:
-              - paragraph [ref=e61]: 舱等
-              - paragraph
-            - generic [ref=e62]:
-              - paragraph [ref=e63]: 运价族
-              - paragraph
-            - generic [ref=e64]:
-              - paragraph [ref=e65]: 对客展示价快照
-              - paragraph
-            - generic [ref=e66]:
-              - paragraph [ref=e67]: 结算价快照
-              - paragraph
-            - generic [ref=e68]:
-              - paragraph [ref=e69]: currency
-              - paragraph
-            - generic [ref=e70]:
-              - paragraph [ref=e71]: 可售座位快照
-              - paragraph
-            - generic [ref=e72]:
-              - paragraph [ref=e73]: 行李规则快照
-              - paragraph
-            - generic [ref=e74]:
-              - paragraph [ref=e75]: 退改规则快照
-              - paragraph
-            - generic [ref=e76]:
-              - paragraph [ref=e77]: sale_status
-              - paragraph
+Error: setup action failed for activate
 ```
 
 # Test source
 
 ```ts
-  1322 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1323 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_currency");
-  1324 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1325 |         __ctx.form["currency"] = resolvedValue; refreshDataBindings(__ctx);
-  1326 |       }
-  1327 |       {
-  1328 |         const loc = page.locator(`#flight_offer_form_departure_airport_ref_id, [name='departure_airport_ref_id']`).first();
-  1329 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1330 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_departure_airport_ref_id");
-  1331 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1332 |         __ctx.form["departure_airport_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
-  1333 |       }
-  1334 |       {
-  1335 |         const loc = page.locator(`#flight_offer_form_settlement_price, [name='settlement_price']`).first();
-  1336 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1337 |         const resolvedValue = resolveTemplateString(__ctx, "200.00");
-  1338 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1339 |         __ctx.form["settlement_price"] = resolvedValue; refreshDataBindings(__ctx);
-  1340 |       }
-  1341 |       {
-  1342 |         const loc = page.locator(`#flight_offer_form_baggage_policy, [name='baggage_policy']`).first();
-  1343 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1344 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_baggage_policy");
-  1345 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1346 |         __ctx.form["baggage_policy"] = resolvedValue; refreshDataBindings(__ctx);
-  1347 |       }
-  1348 |       {
-  1349 |         const loc = page.locator(`#flight_offer_form_refund_change_policy, [name='refund_change_policy']`).first();
-  1350 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1351 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_change_policy");
-  1352 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1353 |         __ctx.form["refund_change_policy"] = resolvedValue; refreshDataBindings(__ctx);
-  1354 |       }
-  1355 |       {
-  1356 |         const loc = page.locator(`#flight_offer_form_seats_available, [name='seats_available']`).first();
-  1357 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1358 |         const resolvedValue = resolveTemplateString(__ctx, "2");
-  1359 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1360 |         __ctx.form["seats_available"] = resolvedValue; refreshDataBindings(__ctx);
-  1361 |       }
-  1362 |       {
-  1363 |         const loc = page.locator(`#flight_offer_form_arrival_airport_ref_id, [name='arrival_airport_ref_id']`).first();
-  1364 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1365 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_arrival_airport_ref_id");
-  1366 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1367 |         __ctx.form["arrival_airport_ref_id"] = resolvedValue; refreshDataBindings(__ctx);
-  1368 |       }
-  1369 |       {
-  1370 |         const loc = page.locator(`#flight_offer_form_fare_family, [name='fare_family']`).first();
-  1371 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1372 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_fare_family");
-  1373 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1374 |         __ctx.form["fare_family"] = resolvedValue; refreshDataBindings(__ctx);
-  1375 |       }
-  1376 |       {
-  1377 |         const loc = page.locator(`#flight_offer_form_listed_price, [name='listed_price']`).first();
-  1378 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1379 |         const resolvedValue = resolveTemplateString(__ctx, "200.00");
-  1380 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1381 |         __ctx.form["listed_price"] = resolvedValue; refreshDataBindings(__ctx);
-  1382 |       }
-  1383 |       {
-  1384 |         const loc = page.locator(`#flight_offer_edit_form button[type="submit"], #flight_offer_edit_form [phx-click="form_submit"]`).first();
-  1385 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1386 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1387 |         const confirmText = await loc.getAttribute('data-confirm');
-  1388 |         await loc.scrollIntoViewIfNeeded();
-  1389 |         if (confirmText) {
-  1390 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1391 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1392 |             .catch(() => null);
-  1393 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1394 |           await dialogPromise;
-  1395 |         } else {
-  1396 |           await loc.click({ timeout: 15000 });
-  1397 |         }
-  1398 |         if (clickedId) {
-  1399 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1400 |           refreshDataBindings(__ctx);
-  1401 |         }
-  1402 |         await waitForLiveViewReady(page, 15000);
-  1403 |         await syncRouteContext(page, __ctx);
-  1404 |       }
-  1405 |         await runCaseWait(page, __ctx, "form_submit", ["toggle_edit","form_change","form_submit"]);
-  1406 |         await captureCreatedRecordId(__ctx, "crud", ["toggle_edit","form_change","form_submit"]);
-  1407 |         await runCaseVerification(page, __ctx, "update", "crud", ["toggle_edit","form_change","form_submit"]);
-  1408 |       });
-  1409 |       await test.step("状态转换：draft → active（activate）", async () => {
-  1410 |       {
-  1411 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/flight_offer/{{state_action_record_id_activate}}");
-  1412 |         const target = /^https?:\/\//.test(targetValue)
-  1413 |           ? targetValue
-  1414 |           : new URL(targetValue, "http://localhost:4100/").toString();
-  1415 |         await page.goto(target);
-  1416 |       }
-  1417 |       await waitForLiveViewReady(page, 15000);
-  1418 |       await syncRouteContext(page, __ctx);
-  1419 |       await expect(page.locator(`#flight_offer_detail`)).toBeVisible({ timeout: 15000 });
-  1420 |       {
-  1421 |         const loc = page.locator(`#flight_offer_action_activate`).first();
-> 1422 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-       |                   ^ TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
-  1423 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1424 |         const confirmText = await loc.getAttribute('data-confirm');
-  1425 |         await loc.scrollIntoViewIfNeeded();
-  1426 |         if (confirmText) {
-  1427 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1428 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1429 |             .catch(() => null);
-  1430 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1431 |           await dialogPromise;
-  1432 |         } else {
-  1433 |           await loc.click({ timeout: 15000 });
-  1434 |         }
-  1435 |         if (clickedId) {
-  1436 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1437 |           __ctx["state_action_record_id_activate"] = clickedId;
-  1438 |           refreshDataBindings(__ctx);
-  1439 |         }
-  1440 |         if (!clickedId) {
-  1441 |           __ctx["state_action_record_id_activate"] = defaultRecordId(__ctx);
-  1442 |         }
-  1443 |         await waitForLiveViewReady(page, 15000);
-  1444 |         await syncRouteContext(page, __ctx);
-  1445 |       }
-  1446 |         await runCaseWait(page, __ctx, "action_activate", ["action_activate"]);
-  1447 |         await captureCreatedRecordId(__ctx, "state", ["action_activate"]);
-  1448 |         await runCaseVerification(page, __ctx, "action_activate", "state", ["action_activate"]);
-  1449 |       });
-  1450 |       await test.step("状态转换：active → inactive（deactivate）", async () => {
-  1451 |       {
-  1452 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/flight_offer/{{state_action_record_id_deactivate}}");
-  1453 |         const target = /^https?:\/\//.test(targetValue)
-  1454 |           ? targetValue
-  1455 |           : new URL(targetValue, "http://localhost:4100/").toString();
-  1456 |         await page.goto(target);
-  1457 |       }
-  1458 |       await waitForLiveViewReady(page, 15000);
-  1459 |       await syncRouteContext(page, __ctx);
-  1460 |       await expect(page.locator(`#flight_offer_detail`)).toBeVisible({ timeout: 15000 });
-  1461 |       {
-  1462 |         const loc = page.locator(`#flight_offer_action_deactivate`).first();
-  1463 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1464 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1465 |         const confirmText = await loc.getAttribute('data-confirm');
-  1466 |         await loc.scrollIntoViewIfNeeded();
-  1467 |         if (confirmText) {
-  1468 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1469 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1470 |             .catch(() => null);
-  1471 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1472 |           await dialogPromise;
-  1473 |         } else {
-  1474 |           await loc.click({ timeout: 15000 });
-  1475 |         }
-  1476 |         if (clickedId) {
-  1477 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1478 |           __ctx["state_action_record_id_deactivate"] = clickedId;
-  1479 |           refreshDataBindings(__ctx);
-  1480 |         }
-  1481 |         if (!clickedId) {
-  1482 |           __ctx["state_action_record_id_deactivate"] = defaultRecordId(__ctx);
-  1483 |         }
-  1484 |         await waitForLiveViewReady(page, 15000);
-  1485 |         await syncRouteContext(page, __ctx);
-  1486 |       }
-  1487 |         await runCaseWait(page, __ctx, "action_deactivate", ["action_deactivate"]);
-  1488 |         await captureCreatedRecordId(__ctx, "state", ["action_deactivate"]);
-  1489 |         await runCaseVerification(page, __ctx, "action_deactivate", "state", ["action_deactivate"]);
-  1490 |       });
-  1491 |       await test.step("状态转换：active → expired（expire）", async () => {
-  1492 |       {
-  1493 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/flight_offer/{{state_action_record_id_expire}}");
-  1494 |         const target = /^https?:\/\//.test(targetValue)
-  1495 |           ? targetValue
-  1496 |           : new URL(targetValue, "http://localhost:4100/").toString();
-  1497 |         await page.goto(target);
-  1498 |       }
-  1499 |       await waitForLiveViewReady(page, 15000);
-  1500 |       await syncRouteContext(page, __ctx);
-  1501 |       await expect(page.locator(`#flight_offer_detail`)).toBeVisible({ timeout: 15000 });
-  1502 |       {
-  1503 |         const loc = page.locator(`#flight_offer_action_expire`).first();
-  1504 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1505 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1506 |         const confirmText = await loc.getAttribute('data-confirm');
-  1507 |         await loc.scrollIntoViewIfNeeded();
-  1508 |         if (confirmText) {
-  1509 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1510 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1511 |             .catch(() => null);
-  1512 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1513 |           await dialogPromise;
-  1514 |         } else {
-  1515 |           await loc.click({ timeout: 15000 });
-  1516 |         }
-  1517 |         if (clickedId) {
-  1518 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1519 |           __ctx["state_action_record_id_expire"] = clickedId;
-  1520 |           refreshDataBindings(__ctx);
-  1521 |         }
-  1522 |         if (!clickedId) {
+  758 |   const mutationFields = (payload?.data?.__schema?.mutationType?.fields || []).map((field) => field.name);
+  759 |   if (queryFields.length === 0 && mutationFields.length === 0) {
+  760 |     throw new Error('GraphQL introspection at ' + __GRAPHQL_URL + ' returned no fields. Is the server running? Response: ' + JSON.stringify(payload).slice(0, 300));
+  761 |   }
+  762 |   ctx.__graphqlSchema = { query: queryFields, mutation: mutationFields };
+  763 |   return ctx.__graphqlSchema;
+  764 | }
+  765 | 
+  766 | async function resolveContractGraphqlField(ctx, mode, explicitField, domain, entity, actionName) {
+  767 |   const schema = await loadGraphqlSchemaCache(ctx);
+  768 |   const fields = mode === 'query' ? schema.query : schema.mutation;
+  769 |   const explicit = String(explicitField || '').trim();
+  770 |   if (explicit && fields.includes(explicit)) return explicit;
+  771 |   if (explicit) {
+  772 |     const camel = pascalize(explicit).replace(/^./, (ch) => ch.toLowerCase());
+  773 |     if (camel !== explicit && fields.includes(camel)) return camel;
+  774 |   }
+  775 |   return await resolveGraphqlField(ctx, mode, domain, entity, actionName);
+  776 | }
+  777 | 
+  778 | async function resolveGraphqlField(ctx, mode, domain, entity, actionName) {
+  779 |   const schema = await loadGraphqlSchemaCache(ctx);
+  780 |   const fields = mode === 'query' ? schema.query : schema.mutation;
+  781 |   const domainName = pascalize(domain);
+  782 |   const entityName = pascalize(entity);
+  783 |   const domainSnake = snakeize(domain);
+  784 |   const entitySnake = snakeize(entity);
+  785 |   const candidates = [];
+  786 |   let normalizedPrefix = (domainName + entityName).replace(/^./, (ch) => ch.toLowerCase());
+  787 |   if (mode === 'query') {
+  788 |     if (actionName === 'list') {
+  789 |       normalizedPrefix = 'list' + domainName + entityName;
+  790 |       candidates.push('list_' + domainSnake + '_' + pluralize(entitySnake));
+  791 |     } else if (actionName === 'get') {
+  792 |       normalizedPrefix = 'get' + domainName + entityName;
+  793 |       candidates.push('get_' + domainSnake + '_' + entitySnake);
+  794 |     }
+  795 |   } else if (actionName === 'destroy') {
+  796 |     normalizedPrefix = 'delete' + domainName + entityName;
+  797 |     candidates.push('delete_' + domainSnake + '_' + entitySnake);
+  798 |   } else if (actionName) {
+  799 |     const actionPrefix = pascalize(actionName);
+  800 |     normalizedPrefix = actionPrefix.charAt(0).toLowerCase() + actionPrefix.slice(1) + domainName + entityName;
+  801 |     candidates.push(snakeize(actionName) + '_' + domainSnake + '_' + entitySnake);
+  802 |   }
+  803 |   candidates.push(normalizedPrefix);
+  804 |   return candidates.find((candidate) => fields.includes(candidate)) || fields.find((field) => candidates.some((candidate) => field === candidate || (field.startsWith(candidate) && /^(s|es|_|$)/.test(field.slice(candidate.length))))) || null;
+  805 | }
+  806 | 
+  807 | function applyBindings(ctx, binds, resultValue) {
+  808 |   for (const bind of Array.isArray(binds) ? binds : []) {
+  809 |     const source = typeof bind?.source === 'string' ? bind.source : 'result';
+  810 |     const base = source === 'result' || source === 'backend_result'
+  811 |       ? resultValue
+  812 |       : readContextValue(ctx, source);
+  813 |     const value = readValueAtPath(base, bind?.path || null);
+  814 |     assignContextValue(ctx, bind?.name, value);
+  815 |   }
+  816 | }
+  817 | 
+  818 | function refreshDataBindings(ctx) {
+  819 |   applyBindings(ctx, __DATA_CONTRACT.binds, null);
+  820 | }
+  821 | 
+  822 | function resolveTemplateDeep(ctx, value) {
+  823 |   if (typeof value === 'string') return resolveTemplateString(ctx, value);
+  824 |   if (Array.isArray(value)) return value.map((item) => resolveTemplateDeep(ctx, item));
+  825 |   if (value && typeof value === 'object') {
+  826 |     return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, resolveTemplateDeep(ctx, item)]));
+  827 |   }
+  828 |   return value;
+  829 | }
+  830 | 
+  831 | function toGraphqlLiteral(value) {
+  832 |   if (value == null) return 'null';
+  833 |   if (Array.isArray(value)) return '[' + value.map((item) => toGraphqlLiteral(item)).join(', ') + ']';
+  834 |   if (typeof value === 'object') {
+  835 |     return '{ ' + Object.entries(value).map(([key, item]) => `${key}: ${toGraphqlLiteral(item)}`).join(', ') + ' }';
+  836 |   }
+  837 |   if (typeof value === 'string') return JSON.stringify(value);
+  838 |   if (typeof value === 'number' || typeof value === 'boolean') return String(value);
+  839 |   return JSON.stringify(String(value));
+  840 | }
+  841 | 
+  842 | function defaultRecordId(ctx) {
+  843 |   return ctx.active_record_id || ctx.route_record_id || ctx.seed_record_id || ctx.created_record_id || ctx.route?.id || '';
+  844 | }
+  845 | 
+  846 | function resolveBackendAssertionId(ctx, assertion) {
+  847 |   const idArg = (Array.isArray(assertion?.args) ? assertion.args : []).find((arg) => arg?.name === 'id');
+  848 |   const explicit = resolveTemplateString(ctx, idArg?.source ? '{{' + idArg.source + '}}' : '{{route.id}}');
+  849 |   return explicit || defaultRecordId(ctx);
+  850 | }
+  851 | 
+  852 | async function runSetupAction(ctx, item, recordId, actionName) {
+  853 |   const field = await resolveContractGraphqlField(ctx, 'mutation', null, item.domain, item.entity, actionName);
+  854 |   if (!field) throw new Error('missing GraphQL action field for setup ' + JSON.stringify({ item, actionName }));
+  855 |   const payload = await graphqlRequest(ctx, `mutation ContractSetupAction($id: ID!) { ${field}(id: $id) { result { id } errors { message } } }`, { id: recordId });
+  856 |   const errors = payload?.errors || payload?.data?.[field]?.errors || [];
+  857 |   if (Array.isArray(errors) && errors.length > 0) {
+> 858 |     throw new Error('setup action failed for ' + String(actionName));
+      |           ^ Error: setup action failed for activate
+  859 |   }
+  860 |   return payload?.data?.[field]?.result || null;
+  861 | }
+  862 | 
+  863 | async function runSetupItem(page, ctx, item) {
+  864 |   if (!item) return;
+  865 |   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
+  866 |     const savedTenantId = ctx.tenant_id;
+  867 |     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
+  868 |     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
+  869 |     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
+  870 |     const wherePath = typeof item.where_path === 'string' ? item.where_path.trim() : '';
+  871 |     const whereField = /^[A-Za-z_][A-Za-z0-9_]*$/.test(wherePath) ? wherePath : '';
+  872 |     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
+  873 |     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
+  874 |     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
+  875 |     rememberTenantContext(ctx, inputValue);
+  876 |     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
+  877 |     const matched = whereField
+  878 |       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
+  879 |       : rows;
+  880 |     const rawIndex = Number.isInteger(item.index) ? Number(item.index) : Number(item.index || 0);
+  881 |     const index = Number.isFinite(rawIndex) && rawIndex >= 0 ? rawIndex : 0;
+  882 |     let result = matched[index] || matched[0];
+  883 |     const prepareActions = Array.isArray(item.prepare_actions) ? item.prepare_actions : [];
+  884 |     if (!result && (item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create')) {
+  885 |       const createField = await resolveContractGraphqlField(ctx, 'mutation', item.create_graphql_field, item.domain, item.entity, 'create');
+  886 |       if (!createField) throw new Error('missing GraphQL create field for setup ' + JSON.stringify(item));
+  887 |       const createPayload = await graphqlRequest(ctx, `mutation ContractSetupCreate { ${createField}(input: ${toGraphqlLiteral(inputValue)}) { result { id } errors { message } } }`, {});
+  888 |       const errors = createPayload?.errors || createPayload?.data?.[createField]?.errors || [];
+  889 |       if (Array.isArray(errors) && errors.length > 0) {
+  890 |         throw new Error('setup create failed for ' + String(item.name || createField) + ': ' + JSON.stringify(errors));
+  891 |       }
+  892 |       result = createPayload?.data?.[createField]?.result || null;
+  893 |       if (result?.id) {
+  894 |         ctx.__cleanup_queue = ctx.__cleanup_queue || [];
+  895 |         ctx.__cleanup_queue.push({ id: result.id, domain: item.domain, entity: item.entity });
+  896 |       }
+  897 |     }
+  898 |     if (item.cleanup_policy === 'never') { for (const row of rows) { if (row?.id) ctx.__seed_ids.add(row.id); } }
+  899 |     if (!result) throw new Error('setup returned no rows for ' + String(item.name || field));
+  900 |     for (const actionName of prepareActions) {
+  901 |       if (!result?.id) break;
+  902 |       result = await runSetupAction(ctx, item, result.id, String(actionName || '').trim()) || result;
+  903 |     }
+  904 |     applyBindings(ctx, item.binds, result);
+  905 |     refreshDataBindings(ctx);
+  906 |     ctx.tenant_id = savedTenantId;
+  907 |   }
+  908 | }
+  909 | 
+  910 | async function ensureContractSetup(page, ctx) {
+  911 |   if (ctx.__setupDone) return;
+  912 |   for (const item of Array.isArray(__DATA_CONTRACT.setup) ? __DATA_CONTRACT.setup : []) {
+  913 |     await runSetupItem(page, ctx, item);
+  914 |   }
+  915 |   ctx.__setupDone = true;
+  916 | }
+  917 | 
+  918 | function parseApiRef(apiRef) {
+  919 |   const parts = String(apiRef || '').split('.');
+  920 |   if (parts.length < 3) return null;
+  921 |   return { domain: parts[0], entity: parts[1], action: parts[2] };
+  922 | }
+  923 | 
+  924 | function collectVerificationEntries(verificationKey, caseKind, covers) {
+  925 |   const entries = [];
+  926 |   const pushEntry = (entry) => {
+  927 |     if (!entry) return;
+  928 |     if (!entries.includes(entry)) entries.push(entry);
+  929 |   };
+  930 |   if (verificationKey && verificationKey !== '__AUTO__') {
+  931 |     pushEntry(__VERIFICATION_CONTRACT[verificationKey]);
+  932 |   } else {
+  933 |     if (caseKind === 'load') pushEntry(__VERIFICATION_CONTRACT.load);
+  934 |     for (const cover of Array.isArray(covers) ? covers : []) {
+  935 |       pushEntry(__VERIFICATION_CONTRACT[cover]);
+  936 |     }
+  937 |   }
+  938 |   for (const cover of Array.isArray(covers) ? covers : []) {
+  939 |     if (!String(cover).startsWith('action_')) continue;
+  940 |     const event = String(cover).slice('action_'.length);
+  941 |     const matches = Array.isArray(__VERIFICATION_CONTRACT.state_transitions) ? __VERIFICATION_CONTRACT.state_transitions.filter((item) => item?.event === event) : [];
+  942 |     for (const match of matches) pushEntry(match);
+  943 |   }
+  944 |   return entries;
+  945 | }
+  946 | 
+  947 | async function runWaitEntry(page, ctx, entry) {
+  948 |   if (!entry) return;
+  949 |   const timeout = Number(entry?.timeout) > 0 ? Number(entry.timeout) : 15000;
+  950 |   await waitForLiveViewReady(page, timeout);
+  951 |   const until = entry?.until || {};
+  952 |   const kind = String(until?.kind || entry?.mode || '').trim();
+  953 |   const selector = typeof until?.selector === 'string' ? until.selector : (Array.isArray(entry?.selectors) ? entry.selectors[0] : null);
+  954 |   const urlContains = typeof until?.url_contains === 'string' ? until.url_contains : entry?.url_contains;
+  955 |   if ((kind === 'visible' || kind === 'dom_visible' || kind === 'state_key') && selector) {
+  956 |     await expect(locatorFor(page, selector)).toBeVisible({ timeout });
+  957 |   }
+  958 |   if ((kind === 'hidden' || kind === 'dom_hidden') && selector) {
 ```

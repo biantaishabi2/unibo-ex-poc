@@ -19,18 +19,18 @@
     "params": {
       "accept": [
         "id",
-        "enterprise_id",
-        "exceed_strategy",
-        "personal_pay_ratio",
-        "hotel_star_limit",
-        "approval_mode",
         "cabin_class_limit",
-        "policy_name",
-        "city_tier",
-        "product_type",
-        "employee_level",
         "season",
-        "max_amount"
+        "city_tier",
+        "policy_name",
+        "employee_level",
+        "max_amount",
+        "product_type",
+        "hotel_star_limit",
+        "exceed_strategy",
+        "approval_mode",
+        "personal_pay_ratio",
+        "enterprise_id"
       ]
     }
   },
@@ -116,23 +116,8 @@
             },
             {
               "action": "type",
-              "field": "max_amount",
-              "value": "2"
-            },
-            {
-              "action": "type",
-              "field": "policy_name",
-              "value": "UPDATED_{{__run_id}}_policy_name"
-            },
-            {
-              "action": "type",
               "field": "season",
               "value": "UPDATED_{{__run_id}}_season"
-            },
-            {
-              "action": "type",
-              "field": "cabin_class_limit",
-              "value": "UPDATED_{{__run_id}}_cabin_class_limit"
             },
             {
               "action": "type",
@@ -141,18 +126,33 @@
             },
             {
               "action": "select_option",
-              "field": "exceed_strategy",
-              "value": "require_reason"
+              "field": "approval_mode",
+              "value": "self"
             },
             {
               "action": "select_option",
-              "field": "approval_mode",
-              "value": "self"
+              "field": "exceed_strategy",
+              "value": "require_reason"
             },
             {
               "action": "type",
               "field": "personal_pay_ratio",
               "value": "2"
+            },
+            {
+              "action": "type",
+              "field": "max_amount",
+              "value": "2"
+            },
+            {
+              "action": "type",
+              "field": "cabin_class_limit",
+              "value": "UPDATED_{{__run_id}}_cabin_class_limit"
+            },
+            {
+              "action": "type",
+              "field": "policy_name",
+              "value": "UPDATED_{{__run_id}}_policy_name"
             },
             {
               "action": "click",

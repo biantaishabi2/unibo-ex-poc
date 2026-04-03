@@ -54,7 +54,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive do
   @backend_load_event "get"
   @backend_load_selection "canonical_entity: canonicalEntity canonical_id: canonicalId external_code: externalCode external_name: externalName id object_type: objectType status supplier_code: supplierCode"
   @backend_load_assigns %{travel_static_code_mapping: %{}}
-  @backend_params_accept ["id", "external_name", "status", "canonical_entity", "external_code", "supplier_code", "object_type", "canonical_id"]
+  @backend_params_accept ["id", "supplier_code", "canonical_id", "external_code", "external_name", "object_type", "status", "canonical_entity"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "create" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelStaticCodeMapping.create"},

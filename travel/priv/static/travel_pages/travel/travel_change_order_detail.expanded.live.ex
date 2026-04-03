@@ -56,7 +56,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelChangeOrderDetailLive do
   @backend_load_event "get"
   @backend_load_selection "approval_mode: approvalMode change_fee: changeFee change_reason: changeReason id new_offer_id: newOfferId price_difference: priceDifference status tenant_id: tenantId"
   @backend_load_assigns %{travel_change_order: %{}}
-  @backend_params_accept ["id", "original_order_id", "new_offer_id", "price_difference", "change_reason", "change_fee", "approval_mode"]
+  @backend_params_accept ["id", "original_order_id", "change_reason", "change_fee", "price_difference", "approval_mode", "new_offer_id"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "complete" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelChangeOrder.complete"},

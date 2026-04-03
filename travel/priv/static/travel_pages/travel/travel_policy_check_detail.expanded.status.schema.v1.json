@@ -54,13 +54,13 @@
           "id",
           "order_id",
           "policy_id",
-          "exceed_amount",
-          "actual_amount",
           "approval_request_id",
           "approval_mode",
-          "exceed_ratio",
-          "exceed_reason",
+          "exceed_amount",
           "personal_pay_amount",
+          "exceed_reason",
+          "exceed_ratio",
+          "actual_amount",
           "policy_amount",
           "check_result",
           "exceed_strategy"
@@ -154,6 +154,11 @@
               },
               {
                 "action": "type",
+                "field": "personal_pay_amount",
+                "value": "2"
+              },
+              {
+                "action": "type",
                 "field": "exceed_strategy",
                 "value": "UPDATED_{{__run_id}}_exceed_strategy"
               },
@@ -161,11 +166,6 @@
                 "action": "type",
                 "field": "exceed_reason",
                 "value": "UPDATED_{{__run_id}}_exceed_reason"
-              },
-              {
-                "action": "type",
-                "field": "personal_pay_amount",
-                "value": "2"
               },
               {
                 "action": "click",
@@ -434,11 +434,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.check_result",
+              "equals": "$form.personal_pay_amount",
               "excludes_source": null,
               "graphql_field": "getTravelTravelPolicyCheck",
               "op": "equals",
-              "path": "check_result",
+              "path": "personal_pay_amount",
               "source": "active_record_id"
             },
             "ui": [

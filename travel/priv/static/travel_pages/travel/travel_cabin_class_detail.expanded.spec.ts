@@ -226,11 +226,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.cabin_class_name",
+      "equals": "$form.status",
       "excludes_source": null,
       "graphql_field": "getTravelTravelCabinClass",
       "op": "equals",
-      "path": "cabin_class_name",
+      "path": "status",
       "source": "active_record_id"
     },
     "ui": [
@@ -508,7 +508,6 @@ async function runSetupItem(page, ctx, item) {
   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
     const savedTenantId = ctx.tenant_id;
     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
-    rememberTenantContext(ctx, inputValue);
     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
     const wherePath = typeof item.where_path === 'string' ? item.where_path.trim() : '';
@@ -516,6 +515,7 @@ async function runSetupItem(page, ctx, item) {
     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
+    rememberTenantContext(ctx, inputValue);
     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
     const matched = whereField
       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
@@ -968,13 +968,6 @@ test.describe("travel_cabin_class_detail", () => {
         __ctx.form["cabin_class_name"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#travel_cabin_class_form_cabin_rank, [name='cabin_rank']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "2");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["cabin_rank"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const root = page.locator(`#travel_cabin_class_form_status`).first();
         await root.waitFor({ state: 'visible', timeout: 15000 });
         const trigger = root.locator('button').first();
@@ -989,6 +982,13 @@ test.describe("travel_cabin_class_detail", () => {
         __ctx.form["status"] = resolvedValue; refreshDataBindings(__ctx);
         await waitForLiveViewReady(page, 15000);
         await syncRouteContext(page, __ctx);
+      }
+      {
+        const loc = page.locator(`#travel_cabin_class_form_cabin_rank, [name='cabin_rank']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "2");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["cabin_rank"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_cabin_class_edit_form button[type="submit"], #travel_cabin_class_edit_form [phx-click="form_submit"]`).first();

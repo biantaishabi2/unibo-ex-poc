@@ -579,11 +579,11 @@ const __VERIFICATION_CONTRACT = {
         }
       ],
       "binds": [],
-      "equals": "$form.hotel_name",
+      "equals": "$form.listed_price",
       "excludes_source": null,
       "graphql_field": "getTravelHotelOffer",
       "op": "equals",
-      "path": "hotel_name",
+      "path": "listed_price",
       "source": "active_record_id"
     },
     "ui": [
@@ -862,7 +862,6 @@ async function runSetupItem(page, ctx, item) {
   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
     const savedTenantId = ctx.tenant_id;
     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
-    rememberTenantContext(ctx, inputValue);
     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
     const wherePath = typeof item.where_path === 'string' ? item.where_path.trim() : '';
@@ -870,6 +869,7 @@ async function runSetupItem(page, ctx, item) {
     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
+    rememberTenantContext(ctx, inputValue);
     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
     const matched = whereField
       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
@@ -1315,18 +1315,11 @@ test.describe("hotel_offer_detail", () => {
       }
       await expect(page.locator(`#hotel_offer_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
-        const loc = page.locator(`#hotel_offer_form_listed_price, [name='listed_price']`).first();
+        const loc = page.locator(`#hotel_offer_form_hotel_name, [name='hotel_name']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "200.00");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_name");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["listed_price"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#hotel_offer_form_currency, [name='currency']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_currency");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["currency"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["hotel_name"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#hotel_offer_form_city_code, [name='city_code']`).first();
@@ -1336,6 +1329,20 @@ test.describe("hotel_offer_detail", () => {
         __ctx.form["city_code"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
+        const loc = page.locator(`#hotel_offer_form_currency, [name='currency']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_currency");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["currency"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#hotel_offer_form_cancellation_policy, [name='cancellation_policy']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_cancellation_policy");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["cancellation_policy"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
         const loc = page.locator(`#hotel_offer_form_guarantee_policy, [name='guarantee_policy']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_guarantee_policy");
@@ -1343,11 +1350,11 @@ test.describe("hotel_offer_detail", () => {
         __ctx.form["guarantee_policy"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#hotel_offer_form_hotel_name, [name='hotel_name']`).first();
+        const loc = page.locator(`#hotel_offer_form_listed_price, [name='listed_price']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_name");
+        const resolvedValue = resolveTemplateString(__ctx, "200.00");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["hotel_name"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["listed_price"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#hotel_offer_form_city_ref_id, [name='city_ref_id']`).first();
@@ -1369,13 +1376,6 @@ test.describe("hotel_offer_detail", () => {
         const resolvedValue = resolveTemplateString(__ctx, "2");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["inventory_count"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#hotel_offer_form_cancellation_policy, [name='cancellation_policy']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_cancellation_policy");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["cancellation_policy"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#hotel_offer_edit_form button[type="submit"], #hotel_offer_edit_form [phx-click="form_submit"]`).first();

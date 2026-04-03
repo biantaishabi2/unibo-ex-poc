@@ -53,7 +53,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelRoomTypeDetailLive do
   @backend_load_event "get"
   @backend_load_selection "bed_type: bedType hotel_code: hotelCode id room_type_code: roomTypeCode room_type_name: roomTypeName status"
   @backend_load_assigns %{travel_room_type: %{}}
-  @backend_params_accept ["id", "room_type_name", "bed_type", "hotel_code", "room_type_code", "status"]
+  @backend_params_accept ["id", "room_type_name", "hotel_code", "status", "bed_type", "room_type_code"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "create" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelRoomType.create"},

@@ -44,11 +44,11 @@
       "params": {
         "accept": [
           "id",
-          "iata_code",
-          "airline_code",
+          "status",
           "airline_name",
-          "icao_code",
-          "status"
+          "airline_code",
+          "iata_code",
+          "icao_code"
         ]
       }
     },
@@ -133,24 +133,24 @@
                 "selector": "#travel_airline_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
               },
               {
-                "action": "type",
-                "field": "airline_name",
-                "value": "UPDATED_{{__run_id}}_airline_name"
-              },
-              {
                 "action": "select_option",
                 "field": "status",
                 "value": "inactive"
               },
               {
                 "action": "type",
-                "field": "icao_code",
-                "value": "UPDATED_{{__run_id}}_icao_code"
+                "field": "airline_name",
+                "value": "UPDATED_{{__run_id}}_airline_name"
               },
               {
                 "action": "type",
                 "field": "iata_code",
                 "value": "UPDATED_{{__run_id}}_iata_code"
+              },
+              {
+                "action": "type",
+                "field": "icao_code",
+                "value": "UPDATED_{{__run_id}}_icao_code"
               },
               {
                 "action": "click",
@@ -351,11 +351,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.status",
+              "equals": "$form.icao_code",
               "excludes_source": null,
               "graphql_field": "getTravelTravelAirline",
               "op": "equals",
-              "path": "status",
+              "path": "icao_code",
               "source": "active_record_id"
             },
             "ui": [

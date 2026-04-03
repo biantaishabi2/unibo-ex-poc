@@ -63,19 +63,19 @@ Call log:
         - generic [ref=e44]:
           - generic [ref=e45]:
             - paragraph [ref=e46]: 退票原因
-            - paragraph [ref=e47]: UPDATED_1775225369824_eyocbt_refund_reason
+            - paragraph [ref=e47]: UPDATED_1775228368334_34q72c_refund_reason
           - generic [ref=e48]:
             - paragraph [ref=e49]: 退票手续费
-            - paragraph [ref=e50]: UPDATED_1775225369824_eyocbt_refund_fee
+            - paragraph [ref=e50]: UPDATED_1775228368334_34q72c_refund_fee
           - generic [ref=e51]:
             - paragraph [ref=e52]: 实退金额
-            - paragraph [ref=e53]: UPDATED_1775225369824_eyocbt_refund_amount
+            - paragraph [ref=e53]: UPDATED_1775228368334_34q72c_refund_amount
           - generic [ref=e54]:
             - paragraph [ref=e55]: status
             - paragraph [ref=e56]: approved
           - generic [ref=e57]:
             - paragraph [ref=e58]: 审批模式快照;none 表示跳过审批,self/oa 表示进入审批流
-            - paragraph [ref=e59]: none
+            - paragraph [ref=e59]: self
 ```
 
 # Test source
