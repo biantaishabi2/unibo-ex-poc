@@ -18,11 +18,11 @@
       "accept": [
         "id",
         "hotel_name",
-        "hotel_code",
         "city_id",
+        "hotel_code",
         "hotel_star",
-        "status",
-        "city_code"
+        "city_code",
+        "status"
       ]
     }
   },
@@ -107,19 +107,9 @@
               "selector": "#travel_hotel_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             },
             {
-              "action": "select_option",
-              "field": "status",
-              "value": "inactive"
-            },
-            {
               "action": "type",
               "field": "hotel_star",
               "value": "UPDATED_{{__run_id}}_hotel_star"
-            },
-            {
-              "action": "type",
-              "field": "hotel_name",
-              "value": "UPDATED_{{__run_id}}_hotel_name"
             },
             {
               "action": "type",
@@ -128,8 +118,18 @@
             },
             {
               "action": "type",
+              "field": "hotel_name",
+              "value": "UPDATED_{{__run_id}}_hotel_name"
+            },
+            {
+              "action": "type",
               "field": "city_id",
               "value": "UPDATED_{{__run_id}}_city_id"
+            },
+            {
+              "action": "select_option",
+              "field": "status",
+              "value": "inactive"
             },
             {
               "action": "click",
@@ -330,11 +330,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.hotel_star",
+            "equals": "$form.status",
             "excludes_source": null,
             "graphql_field": "getTravelTravelHotel",
             "op": "equals",
-            "path": "hotel_star",
+            "path": "status",
             "source": "active_record_id"
           },
           "ui": [

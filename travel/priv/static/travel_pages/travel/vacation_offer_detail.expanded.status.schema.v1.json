@@ -75,23 +75,23 @@
         "accept": [
           "id",
           "destination_ref_id",
-          "start_date",
-          "booking_rules",
-          "host_shop_id",
-          "cancellation_policy",
-          "inventory_count",
-          "settlement_price",
           "departure_city_code",
-          "package_name",
-          "departure_city_ref_id",
-          "destination_code",
-          "sale_status",
-          "end_date",
+          "currency",
           "supplier_code",
           "listed_price",
-          "currency",
+          "inventory_count",
+          "settlement_price",
+          "package_name",
+          "booking_rules",
+          "host_shop_id",
           "package_type",
-          "package_code"
+          "start_date",
+          "sale_status",
+          "package_code",
+          "end_date",
+          "departure_city_ref_id",
+          "cancellation_policy",
+          "destination_code"
         ]
       }
     },
@@ -175,19 +175,19 @@
                 "selector": "#vacation_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
               },
               {
-                "action": "type",
-                "field": "booking_rules",
-                "value": "UPDATED_{{__run_id}}_booking_rules"
-              },
-              {
-                "action": "type",
-                "field": "listed_price",
-                "value": "200.00"
-              },
-              {
                 "action": "select_option",
                 "field": "package_type",
                 "value": "free_travel"
+              },
+              {
+                "action": "type",
+                "field": "destination_ref_id",
+                "value": "UPDATED_{{__run_id}}_destination_ref_id"
+              },
+              {
+                "action": "type",
+                "field": "departure_city_ref_id",
+                "value": "UPDATED_{{__run_id}}_departure_city_ref_id"
               },
               {
                 "action": "type",
@@ -206,13 +206,8 @@
               },
               {
                 "action": "type",
-                "field": "destination_ref_id",
-                "value": "UPDATED_{{__run_id}}_destination_ref_id"
-              },
-              {
-                "action": "type",
-                "field": "departure_city_ref_id",
-                "value": "UPDATED_{{__run_id}}_departure_city_ref_id"
+                "field": "package_name",
+                "value": "UPDATED_{{__run_id}}_package_name"
               },
               {
                 "action": "type",
@@ -221,8 +216,13 @@
               },
               {
                 "action": "type",
-                "field": "package_name",
-                "value": "UPDATED_{{__run_id}}_package_name"
+                "field": "booking_rules",
+                "value": "UPDATED_{{__run_id}}_booking_rules"
+              },
+              {
+                "action": "type",
+                "field": "listed_price",
+                "value": "200.00"
               },
               {
                 "action": "click",

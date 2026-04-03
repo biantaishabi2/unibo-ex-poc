@@ -21,23 +21,23 @@
     "params": {
       "accept": [
         "id",
-        "cancellation_policy",
-        "inventory_count",
-        "settlement_price",
-        "hotel_code",
-        "listed_price",
-        "city_ref_id",
-        "guarantee_policy",
-        "room_type_code",
-        "sale_status",
         "hotel_name",
-        "checkin_date",
-        "checkout_date",
+        "inventory_count",
+        "city_ref_id",
         "supplier_code",
-        "host_shop_id",
+        "room_type_code",
+        "hotel_code",
         "currency",
         "rate_plan_code",
-        "city_code"
+        "guarantee_policy",
+        "sale_status",
+        "host_shop_id",
+        "checkin_date",
+        "checkout_date",
+        "settlement_price",
+        "city_code",
+        "listed_price",
+        "cancellation_policy"
       ]
     }
   },
@@ -122,13 +122,18 @@
             },
             {
               "action": "type",
-              "field": "inventory_count",
-              "value": "2"
+              "field": "listed_price",
+              "value": "200.00"
             },
             {
               "action": "type",
-              "field": "cancellation_policy",
-              "value": "UPDATED_{{__run_id}}_cancellation_policy"
+              "field": "currency",
+              "value": "UPDATED_{{__run_id}}_currency"
+            },
+            {
+              "action": "type",
+              "field": "city_code",
+              "value": "UPDATED_{{__run_id}}_city_code"
             },
             {
               "action": "type",
@@ -137,13 +142,8 @@
             },
             {
               "action": "type",
-              "field": "listed_price",
-              "value": "200.00"
-            },
-            {
-              "action": "type",
-              "field": "city_code",
-              "value": "UPDATED_{{__run_id}}_city_code"
+              "field": "hotel_name",
+              "value": "UPDATED_{{__run_id}}_hotel_name"
             },
             {
               "action": "type",
@@ -157,13 +157,13 @@
             },
             {
               "action": "type",
-              "field": "currency",
-              "value": "UPDATED_{{__run_id}}_currency"
+              "field": "inventory_count",
+              "value": "2"
             },
             {
               "action": "type",
-              "field": "hotel_name",
-              "value": "UPDATED_{{__run_id}}_hotel_name"
+              "field": "cancellation_policy",
+              "value": "UPDATED_{{__run_id}}_cancellation_policy"
             },
             {
               "action": "click",
@@ -701,11 +701,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.city_ref_id",
+            "equals": "$form.hotel_name",
             "excludes_source": null,
             "graphql_field": "getTravelHotelOffer",
             "op": "equals",
-            "path": "city_ref_id",
+            "path": "hotel_name",
             "source": "active_record_id"
           },
           "ui": [

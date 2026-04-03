@@ -1,12 +1,11 @@
 {
   "record": {
-    "is_active": true,
-    "site_name": "",
     "logo": "",
-    "site_description": "",
-    "notify_method": "",
     "notify_frequency": "",
+    "notify_method": "",
+    "password_policy": "",
     "session_timeout": "",
-    "password_policy": ""
+    "site_description": "",
+    "site_name": ""
   }
 }

@@ -3118,9 +3118,6 @@
       "state_schema": {
         "defaults": {
           "editing": false,
-          "record": {
-            "is_active": true
-          },
           "travel_policy": {
             "approval_mode": "",
             "cabin_class_limit": "",
@@ -3138,8 +3135,6 @@
         },
         "status_keys": [
           "editing",
-          "record",
-          "record.is_active",
           "travel_policy",
           "travel_policy.approval_mode",
           "travel_policy.cabin_class_limit",
@@ -3157,8 +3152,6 @@
       },
       "status_keys": [
         "editing",
-        "record",
-        "record.is_active",
         "travel_policy",
         "travel_policy.approval_mode",
         "travel_policy.cabin_class_limit",
@@ -7479,7 +7472,6 @@
       "state_schema": {
         "defaults": {
           "record": {
-            "is_active": true,
             "logo": "",
             "notify_frequency": "",
             "notify_method": "",
@@ -7491,7 +7483,6 @@
         },
         "status_keys": [
           "record",
-          "record.is_active",
           "record.logo",
           "record.notify_frequency",
           "record.notify_method",
@@ -7503,7 +7494,6 @@
       },
       "status_keys": [
         "record",
-        "record.is_active",
         "record.logo",
         "record.notify_frequency",
         "record.notify_method",
@@ -8065,9 +8055,6 @@
       "state_schema": {
         "defaults": {
           "editing": false,
-          "record": {
-            "is_active": true
-          },
           "travel_policy": {
             "approval_mode": "",
             "cabin_class_limit": "",
@@ -8085,8 +8072,6 @@
         },
         "status_keys": [
           "editing",
-          "record",
-          "record.is_active",
           "travel_policy",
           "travel_policy.approval_mode",
           "travel_policy.cabin_class_limit",
@@ -8104,8 +8089,6 @@
       },
       "status_keys": [
         "editing",
-        "record",
-        "record.is_active",
         "travel_policy",
         "travel_policy.approval_mode",
         "travel_policy.cabin_class_limit",
@@ -9118,25 +9101,25 @@
         "params": {
           "accept": [
             "id",
-            "itinerary_code",
+            "supplier_code",
+            "fare_family",
+            "listed_price",
+            "settlement_price",
+            "flight_no",
+            "departure_airport_code",
+            "arrival_airport_ref_id",
+            "currency",
+            "sale_status",
+            "departure_airport_ref_id",
+            "arrival_at",
             "host_shop_id",
             "arrival_airport_code",
-            "cabin_class",
-            "seats_available",
-            "arrival_airport_ref_id",
             "departure_at",
-            "listed_price",
-            "arrival_at",
-            "baggage_policy",
-            "fare_family",
-            "settlement_price",
-            "departure_airport_code",
-            "departure_airport_ref_id",
-            "sale_status",
-            "flight_no",
-            "currency",
+            "cabin_class",
             "refund_change_policy",
-            "supplier_code"
+            "baggage_policy",
+            "itinerary_code",
+            "seats_available"
           ]
         }
       },
@@ -9337,23 +9320,23 @@
         "params": {
           "accept": [
             "id",
-            "cancellation_policy",
-            "inventory_count",
-            "settlement_price",
-            "hotel_code",
-            "listed_price",
-            "city_ref_id",
-            "guarantee_policy",
-            "room_type_code",
-            "sale_status",
             "hotel_name",
-            "checkin_date",
-            "checkout_date",
+            "inventory_count",
+            "city_ref_id",
             "supplier_code",
-            "host_shop_id",
+            "room_type_code",
+            "hotel_code",
             "currency",
             "rate_plan_code",
-            "city_code"
+            "guarantee_policy",
+            "sale_status",
+            "host_shop_id",
+            "checkin_date",
+            "checkout_date",
+            "settlement_price",
+            "city_code",
+            "listed_price",
+            "cancellation_policy"
           ]
         }
       },
@@ -9552,29 +9535,29 @@
           "accept": [
             "id",
             "arrival_station_ref_id",
-            "departure_station_code",
-            "arrival_station_code",
-            "departure_station_ref_id",
-            "arrival_station_name",
-            "settlement_price",
             "currency",
-            "listed_price",
-            "booking_rules_snapshot",
-            "seat_class",
-            "departure_station_name",
-            "inventory_status",
-            "change_rules_snapshot",
-            "train_no",
-            "seat_code",
-            "departure_at",
-            "arrival_at",
-            "refund_rules_snapshot",
-            "waitlist_supported",
-            "is_no_seat",
             "sale_status",
-            "supplier_code",
+            "waitlist_supported",
             "travel_date",
-            "host_shop_id"
+            "departure_station_name",
+            "is_no_seat",
+            "booking_rules_snapshot",
+            "change_rules_snapshot",
+            "refund_rules_snapshot",
+            "supplier_code",
+            "host_shop_id",
+            "departure_station_ref_id",
+            "train_no",
+            "arrival_station_name",
+            "arrival_station_code",
+            "departure_station_code",
+            "arrival_at",
+            "departure_at",
+            "seat_class",
+            "seat_code",
+            "inventory_status",
+            "listed_price",
+            "settlement_price"
           ]
         }
       },
@@ -9791,23 +9774,23 @@
           "accept": [
             "id",
             "destination_ref_id",
-            "start_date",
-            "booking_rules",
-            "host_shop_id",
-            "cancellation_policy",
-            "inventory_count",
-            "settlement_price",
             "departure_city_code",
-            "package_name",
-            "departure_city_ref_id",
-            "destination_code",
-            "sale_status",
-            "end_date",
+            "currency",
             "supplier_code",
             "listed_price",
-            "currency",
+            "inventory_count",
+            "settlement_price",
+            "package_name",
+            "booking_rules",
+            "host_shop_id",
             "package_type",
-            "package_code"
+            "start_date",
+            "sale_status",
+            "package_code",
+            "end_date",
+            "departure_city_ref_id",
+            "cancellation_policy",
+            "destination_code"
           ]
         }
       },

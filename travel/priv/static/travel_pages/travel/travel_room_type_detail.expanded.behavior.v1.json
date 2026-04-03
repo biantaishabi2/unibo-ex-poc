@@ -17,11 +17,11 @@
     "params": {
       "accept": [
         "id",
-        "hotel_code",
-        "status",
-        "room_type_code",
         "room_type_name",
-        "bed_type"
+        "bed_type",
+        "hotel_code",
+        "room_type_code",
+        "status"
       ]
     }
   },
@@ -111,9 +111,9 @@
               "value": "UPDATED_{{__run_id}}_bed_type"
             },
             {
-              "action": "select_option",
-              "field": "status",
-              "value": "inactive"
+              "action": "type",
+              "field": "room_type_name",
+              "value": "UPDATED_{{__run_id}}_room_type_name"
             },
             {
               "action": "type",
@@ -121,9 +121,9 @@
               "value": "UPDATED_{{__run_id}}_hotel_code"
             },
             {
-              "action": "type",
-              "field": "room_type_name",
-              "value": "UPDATED_{{__run_id}}_room_type_name"
+              "action": "select_option",
+              "field": "status",
+              "value": "inactive"
             },
             {
               "action": "click",
@@ -324,11 +324,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.bed_type",
+            "equals": "$form.status",
             "excludes_source": null,
             "graphql_field": "getTravelTravelRoomType",
             "op": "equals",
-            "path": "bed_type",
+            "path": "status",
             "source": "active_record_id"
           },
           "ui": [

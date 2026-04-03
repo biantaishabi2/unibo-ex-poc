@@ -32,16 +32,12 @@
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
         编辑
       </.button>
-      <%= if get_in(@record, [:is_active]) == "false" do %>
-        <.button variant="secondary" phx-click="action_activate" size="md" id="travel_policy_action_activate">
-          activate
-        </.button>
-      <% end %>
-      <%= if get_in(@record, [:is_active]) == "true" do %>
-        <.button variant="secondary" phx-click="action_deactivate" size="md" id="travel_policy_action_deactivate">
-          deactivate
-        </.button>
-      <% end %>
+      <.button variant="secondary" phx-click="action_activate" size="md" id="travel_policy_action_activate">
+        activate
+      </.button>
+      <.button variant="secondary" phx-click="action_deactivate" size="md" id="travel_policy_action_deactivate">
+        deactivate
+      </.button>
       <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
         删除
       </.button>

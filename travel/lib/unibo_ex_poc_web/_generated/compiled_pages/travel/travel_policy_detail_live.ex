@@ -31,12 +31,9 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyDetailLive do
   @page_id "travel_policy_detail"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): editing, record, record.is_active, travel_policy, travel_policy.approval_mode, travel_policy.cabin_class_limit, travel_policy.city_tier, travel_policy.employee_level, travel_policy.exceed_strategy, travel_policy.hotel_star_limit, travel_policy.is_active, travel_policy.max_amount, travel_policy.personal_pay_ratio, travel_policy.policy_name, travel_policy.product_type, travel_policy.season
+  # status.keys preview (first ~40): editing, travel_policy, travel_policy.approval_mode, travel_policy.cabin_class_limit, travel_policy.city_tier, travel_policy.employee_level, travel_policy.exceed_strategy, travel_policy.hotel_star_limit, travel_policy.is_active, travel_policy.max_amount, travel_policy.personal_pay_ratio, travel_policy.policy_name, travel_policy.product_type, travel_policy.season
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"record\": {
-    \"is_active\": true
-  },
   \"travel_policy\": {
     \"policy_name\": \"\",
     \"product_type\": \"\",
@@ -63,7 +60,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyDetailLive do
   @backend_load_event "get"
   @backend_load_selection "approval_mode: approvalMode cabin_class_limit: cabinClassLimit city_tier: cityTier employee_level: employeeLevel enterprise_id: enterpriseId exceed_strategy: exceedStrategy hotel_star_limit: hotelStarLimit id is_active: isActive max_amount: maxAmount personal_pay_ratio: personalPayRatio policy_name: policyName product_type: productType season"
   @backend_load_assigns %{travel_policy: %{}}
-  @backend_params_accept ["id", "approval_mode", "exceed_strategy", "season", "max_amount", "hotel_star_limit", "product_type", "city_tier", "cabin_class_limit", "personal_pay_ratio", "employee_level", "enterprise_id", "policy_name"]
+  @backend_params_accept ["id", "enterprise_id", "exceed_strategy", "personal_pay_ratio", "hotel_star_limit", "approval_mode", "cabin_class_limit", "policy_name", "city_tier", "product_type", "employee_level", "season", "max_amount"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "activate" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelPolicy.activate"},
@@ -72,7 +69,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyDetailLive do
     "get" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelPolicy.get"},
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelPolicy.update"}
   }
-  @backend_embedded_page %{page_id: "travel_policy_detail", page_kind: "detail", api_map: %{activate: "Travel.TravelPolicy.activate", create: "Travel.TravelPolicy.create", deactivate: "Travel.TravelPolicy.deactivate", get: "Travel.TravelPolicy.get", update: "Travel.TravelPolicy.update"}, backend: %{load: %{selection: "approval_mode: approvalMode cabin_class_limit: cabinClassLimit city_tier: cityTier employee_level: employeeLevel enterprise_id: enterpriseId exceed_strategy: exceedStrategy hotel_star_limit: hotelStarLimit id is_active: isActive max_amount: maxAmount personal_pay_ratio: personalPayRatio policy_name: policyName product_type: productType season"}}, route: %{path: "/pages/travel/travel_policy/:id", query: "", kind: "detail"}, state_schema: %{defaults: %{record: %{is_active: true}, travel_policy: %{policy_name: "", product_type: "", employee_level: "", city_tier: "", season: "", max_amount: "", cabin_class_limit: "", hotel_star_limit: "", exceed_strategy: "", approval_mode: "", personal_pay_ratio: "", is_active: ""}, editing: false}}, status_keys: ["record", "editing", "form", "loading"]}
+  @backend_embedded_page %{page_id: "travel_policy_detail", page_kind: "detail", api_map: %{activate: "Travel.TravelPolicy.activate", create: "Travel.TravelPolicy.create", deactivate: "Travel.TravelPolicy.deactivate", get: "Travel.TravelPolicy.get", update: "Travel.TravelPolicy.update"}, backend: %{load: %{selection: "approval_mode: approvalMode cabin_class_limit: cabinClassLimit city_tier: cityTier employee_level: employeeLevel enterprise_id: enterpriseId exceed_strategy: exceedStrategy hotel_star_limit: hotelStarLimit id is_active: isActive max_amount: maxAmount personal_pay_ratio: personalPayRatio policy_name: policyName product_type: productType season"}}, route: %{path: "/pages/travel/travel_policy/:id", query: "", kind: "detail"}, state_schema: %{defaults: %{travel_policy: %{policy_name: "", product_type: "", employee_level: "", city_tier: "", season: "", max_amount: "", cabin_class_limit: "", hotel_star_limit: "", exceed_strategy: "", approval_mode: "", personal_pay_ratio: "", is_active: ""}, editing: false}}, status_keys: ["record", "editing", "form", "loading"]}
   @entity_assign_fields ["policy_name", "product_type", "employee_level", "city_tier", "season", "max_amount", "cabin_class_limit", "hotel_star_limit", "exceed_strategy", "approval_mode", "personal_pay_ratio", "is_active"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"
@@ -295,18 +292,30 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyDetailLive do
           state0 = __take_status(socket.assigns)
           state0 = __inject_backend_tenant(state0, socket)
           state0 = if is_map(@backend_embedded_page) and map_size(@backend_embedded_page) > 0, do: Map.put(state0, "__compiled_backend_page", @backend_embedded_page), else: state0
+          # 先获取本地 transition 定义的 effects（如 destroy 后的 navigate）
+          %{effects: local_effects} = __apply_transitions(event, params, state0)
           backend_api = __resolve_backend_api(event, socket)
           case backend_api do
             nil ->
-              # 纯 UI 事件不应硬塞给后端；compiled 页面这里直接走本地 transition。
+              # 纯 UI 事件，直接走本地 transition
               %{assigns: assigns2, effects: effects} = __apply_transitions(event, params, state0)
               {dto, st} = __split_dto_status(assigns2)
               {:ok, %{dto: dto, status: st, effects: effects, errors: [], meta: %{mode: "api_local_transition"}}}
             _mapping ->
-              apply(@backend_mod, @backend_fun, [event, params, state0])
+              backend_result = apply(@backend_mod, @backend_fun, [event, params, state0])
+              # 合并本地 transition effects（如 destroy 后 navigate）到后端返回结果
+              case {backend_result, local_effects} do
+                {{:ok, %{} = data}, [_ | _]} ->
+                  existing = Map.get(data, :effects, [])
+                  {:ok, Map.put(data, :effects, existing ++ local_effects)}
+                _ ->
+                  backend_result
+              end
           end
       end
 
+    # destroy 成功后自动跳转到 list 页（从 self_path 推导，去掉最后一段 /:id）
+    result = __maybe_inject_destroy_redirect(event, result, socket)
     apply_backend_result(socket, result)
   end
 
@@ -345,6 +354,34 @@ defmodule UniboExPocWeb.Pages.Travel.TravelPolicyDetailLive do
     end
   end
   defp __inject_backend_id(params, _socket), do: params
+
+  defp __maybe_inject_destroy_redirect(event, {:ok, %{} = data} = result, socket) do
+    normalized = to_string(event)
+    is_destroy = normalized == "action_destroy" or String.ends_with?(normalized, "_destroy")
+    existing_effects = Map.get(data, :effects, [])
+    has_navigate = Enum.any?(existing_effects, fn
+      %{type: "navigate"} -> true
+      %{"type" => "navigate"} -> true
+      _ -> false
+    end)
+    if is_destroy and not has_navigate do
+      list_path = case Map.get(socket.assigns, :self_path) do
+        p when is_binary(p) and p != "" ->
+          # 去掉最后一段 path segment（/:id 的实际值）得到 list 页路径
+          String.replace(p, ~r"/[^/]+$", "")
+        _ -> nil
+      end
+      if is_binary(list_path) and list_path != "" do
+        effects = existing_effects ++ [%{type: "navigate", to: list_path}]
+        {:ok, Map.put(data, :effects, effects)}
+      else
+        result
+      end
+    else
+      result
+    end
+  end
+  defp __maybe_inject_destroy_redirect(_event, result, _socket), do: result
 
   defp __split_dto_status(assigns) when is_map(assigns) do
     # Split is a hint only. Both dto/status are still assigned as flat keys.
@@ -538,6 +575,14 @@ end
   %{assigns: assigns, effects: Enum.reverse(effects)}
 end
 
+  defp __apply_transitions("action_destroy", params, assigns) do
+  assigns = assigns
+  effects = []
+  effects = [%{type: "navigate", to: "/pages/travel/travel_policy"} | effects]
+  effects = __interpolate_effects(effects, params)
+  %{assigns: assigns, effects: Enum.reverse(effects)}
+end
+
   defp __apply_transitions("cancel_edit", params, assigns) do
   assigns = assigns
   effects = []
@@ -610,16 +655,12 @@ end
           <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
             编辑
           </.button>
-          <%= if get_in(@record, [:is_active]) == "false" do %>
-            <.button variant="secondary" phx-click="action_activate" size="md" id="travel_policy_action_activate">
-              activate
-            </.button>
-          <% end %>
-          <%= if get_in(@record, [:is_active]) == "true" do %>
-            <.button variant="secondary" phx-click="action_deactivate" size="md" id="travel_policy_action_deactivate">
-              deactivate
-            </.button>
-          <% end %>
+          <.button variant="secondary" phx-click="action_activate" size="md" id="travel_policy_action_activate">
+            activate
+          </.button>
+          <.button variant="secondary" phx-click="action_deactivate" size="md" id="travel_policy_action_deactivate">
+            deactivate
+          </.button>
           <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
             删除
           </.button>

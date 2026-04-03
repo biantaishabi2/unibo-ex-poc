@@ -52,7 +52,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelCabinClassDetailLive do
   @backend_load_event "get"
   @backend_load_selection "cabin_class_code: cabinClassCode cabin_class_name: cabinClassName cabin_rank: cabinRank id status"
   @backend_load_assigns %{travel_cabin_class: %{}}
-  @backend_params_accept ["id", "cabin_class_name", "cabin_class_code", "cabin_rank", "status"]
+  @backend_params_accept ["id", "status", "cabin_class_name", "cabin_class_code", "cabin_rank"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "create" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelCabinClass.create"},
@@ -268,18 +268,30 @@ defmodule UniboExPocWeb.Pages.Travel.TravelCabinClassDetailLive do
           state0 = __take_status(socket.assigns)
           state0 = __inject_backend_tenant(state0, socket)
           state0 = if is_map(@backend_embedded_page) and map_size(@backend_embedded_page) > 0, do: Map.put(state0, "__compiled_backend_page", @backend_embedded_page), else: state0
+          # 先获取本地 transition 定义的 effects（如 destroy 后的 navigate）
+          %{effects: local_effects} = __apply_transitions(event, params, state0)
           backend_api = __resolve_backend_api(event, socket)
           case backend_api do
             nil ->
-              # 纯 UI 事件不应硬塞给后端；compiled 页面这里直接走本地 transition。
+              # 纯 UI 事件，直接走本地 transition
               %{assigns: assigns2, effects: effects} = __apply_transitions(event, params, state0)
               {dto, st} = __split_dto_status(assigns2)
               {:ok, %{dto: dto, status: st, effects: effects, errors: [], meta: %{mode: "api_local_transition"}}}
             _mapping ->
-              apply(@backend_mod, @backend_fun, [event, params, state0])
+              backend_result = apply(@backend_mod, @backend_fun, [event, params, state0])
+              # 合并本地 transition effects（如 destroy 后 navigate）到后端返回结果
+              case {backend_result, local_effects} do
+                {{:ok, %{} = data}, [_ | _]} ->
+                  existing = Map.get(data, :effects, [])
+                  {:ok, Map.put(data, :effects, existing ++ local_effects)}
+                _ ->
+                  backend_result
+              end
           end
       end
 
+    # destroy 成功后自动跳转到 list 页（从 self_path 推导，去掉最后一段 /:id）
+    result = __maybe_inject_destroy_redirect(event, result, socket)
     apply_backend_result(socket, result)
   end
 
@@ -318,6 +330,34 @@ defmodule UniboExPocWeb.Pages.Travel.TravelCabinClassDetailLive do
     end
   end
   defp __inject_backend_id(params, _socket), do: params
+
+  defp __maybe_inject_destroy_redirect(event, {:ok, %{} = data} = result, socket) do
+    normalized = to_string(event)
+    is_destroy = normalized == "action_destroy" or String.ends_with?(normalized, "_destroy")
+    existing_effects = Map.get(data, :effects, [])
+    has_navigate = Enum.any?(existing_effects, fn
+      %{type: "navigate"} -> true
+      %{"type" => "navigate"} -> true
+      _ -> false
+    end)
+    if is_destroy and not has_navigate do
+      list_path = case Map.get(socket.assigns, :self_path) do
+        p when is_binary(p) and p != "" ->
+          # 去掉最后一段 path segment（/:id 的实际值）得到 list 页路径
+          String.replace(p, ~r"/[^/]+$", "")
+        _ -> nil
+      end
+      if is_binary(list_path) and list_path != "" do
+        effects = existing_effects ++ [%{type: "navigate", to: list_path}]
+        {:ok, Map.put(data, :effects, effects)}
+      else
+        result
+      end
+    else
+      result
+    end
+  end
+  defp __maybe_inject_destroy_redirect(_event, result, _socket), do: result
 
   defp __split_dto_status(assigns) when is_map(assigns) do
     # Split is a hint only. Both dto/status are still assigned as flat keys.
@@ -496,6 +536,14 @@ defmodule UniboExPocWeb.Pages.Travel.TravelCabinClassDetailLive do
   defp __interpolate_to(to, _params), do: to
 
   def __dispatch_transitions(event, params, assigns), do: __apply_transitions(event, params, assigns)
+
+  defp __apply_transitions("action_destroy", params, assigns) do
+  assigns = assigns
+  effects = []
+  effects = [%{type: "navigate", to: "/pages/travel/travel_cabin_class"} | effects]
+  effects = __interpolate_effects(effects, params)
+  %{assigns: assigns, effects: Enum.reverse(effects)}
+end
 
   defp __apply_transitions("cancel_edit", params, assigns) do
   assigns = assigns

@@ -1,9 +1,6 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
-      "is_active": true
-    },
     "travel_policy": {
       "policy_name": "",
       "product_type": "",
@@ -22,8 +19,6 @@
   },
   "keys": [
     "editing",
-    "record",
-    "record.is_active",
     "travel_policy",
     "travel_policy.approval_mode",
     "travel_policy.cabin_class_limit",
@@ -40,7 +35,6 @@
   ],
   "required": [
     "editing",
-    "record",
     "travel_policy"
   ],
   "urlParams": {},

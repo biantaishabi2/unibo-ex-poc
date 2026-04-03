@@ -42,10 +42,10 @@
       "params": {
         "accept": [
           "id",
+          "status",
           "cabin_class_name",
           "cabin_class_code",
-          "cabin_rank",
-          "status"
+          "cabin_rank"
         ]
       }
     },
@@ -135,14 +135,14 @@
                 "value": "UPDATED_{{__run_id}}_cabin_class_name"
               },
               {
-                "action": "select_option",
-                "field": "status",
-                "value": "inactive"
-              },
-              {
                 "action": "type",
                 "field": "cabin_rank",
                 "value": "2"
+              },
+              {
+                "action": "select_option",
+                "field": "status",
+                "value": "inactive"
               },
               {
                 "action": "click",
