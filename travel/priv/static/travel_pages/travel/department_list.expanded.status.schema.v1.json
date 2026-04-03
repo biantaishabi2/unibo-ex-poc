@@ -128,7 +128,7 @@
         "accept": []
       }
     },
-    "delivery_mode": "runtime",
+    "delivery_mode": "compiled",
     "domain": "Travel",
     "e2e": {
       "playwright": {

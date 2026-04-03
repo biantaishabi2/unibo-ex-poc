@@ -74,24 +74,24 @@
       "params": {
         "accept": [
           "id",
-          "sale_status",
-          "host_shop_id",
-          "destination_code",
-          "listed_price",
-          "currency",
-          "supplier_code",
-          "destination_ref_id",
-          "end_date",
-          "start_date",
           "cancellation_policy",
-          "booking_rules",
-          "departure_city_ref_id",
+          "listed_price",
           "package_code",
-          "inventory_count",
-          "package_type",
-          "package_name",
+          "departure_city_ref_id",
+          "sale_status",
           "settlement_price",
-          "departure_city_code"
+          "departure_city_code",
+          "supplier_code",
+          "currency",
+          "end_date",
+          "package_type",
+          "host_shop_id",
+          "package_name",
+          "destination_code",
+          "inventory_count",
+          "booking_rules",
+          "start_date",
+          "destination_ref_id"
         ]
       }
     },
@@ -175,14 +175,29 @@
                 "selector": "#vacation_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
               },
               {
-                "action": "type",
-                "field": "booking_rules",
-                "value": "UPDATED_{{__run_id}}_booking_rules"
+                "action": "select_option",
+                "field": "package_type",
+                "value": "free_travel"
               },
               {
                 "action": "type",
-                "field": "cancellation_policy",
-                "value": "UPDATED_{{__run_id}}_cancellation_policy"
+                "field": "package_name",
+                "value": "UPDATED_{{__run_id}}_package_name"
+              },
+              {
+                "action": "type",
+                "field": "destination_ref_id",
+                "value": "UPDATED_{{__run_id}}_destination_ref_id"
+              },
+              {
+                "action": "type",
+                "field": "currency",
+                "value": "UPDATED_{{__run_id}}_currency"
+              },
+              {
+                "action": "type",
+                "field": "settlement_price",
+                "value": "200.00"
               },
               {
                 "action": "type",
@@ -191,8 +206,8 @@
               },
               {
                 "action": "type",
-                "field": "package_name",
-                "value": "UPDATED_{{__run_id}}_package_name"
+                "field": "booking_rules",
+                "value": "UPDATED_{{__run_id}}_booking_rules"
               },
               {
                 "action": "type",
@@ -205,24 +220,9 @@
                 "value": "200.00"
               },
               {
-                "action": "select_option",
-                "field": "package_type",
-                "value": "free_travel"
-              },
-              {
                 "action": "type",
-                "field": "settlement_price",
-                "value": "200.00"
-              },
-              {
-                "action": "type",
-                "field": "destination_ref_id",
-                "value": "UPDATED_{{__run_id}}_destination_ref_id"
-              },
-              {
-                "action": "type",
-                "field": "currency",
-                "value": "UPDATED_{{__run_id}}_currency"
+                "field": "cancellation_policy",
+                "value": "UPDATED_{{__run_id}}_cancellation_policy"
               },
               {
                 "action": "click",
@@ -813,11 +813,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.settlement_price",
+              "equals": "$form.inventory_count",
               "excludes_source": null,
               "graphql_field": "getTravelVacationOffer",
               "op": "equals",
-              "path": "settlement_price",
+              "path": "inventory_count",
               "source": "active_record_id"
             },
             "ui": [

@@ -44,11 +44,11 @@
       "params": {
         "accept": [
           "id",
-          "room_type_code",
-          "room_type_name",
           "bed_type",
           "status",
-          "hotel_code"
+          "hotel_code",
+          "room_type_code",
+          "room_type_name"
         ]
       }
     },
@@ -134,8 +134,8 @@
               },
               {
                 "action": "type",
-                "field": "room_type_name",
-                "value": "UPDATED_{{__run_id}}_room_type_name"
+                "field": "bed_type",
+                "value": "UPDATED_{{__run_id}}_bed_type"
               },
               {
                 "action": "select_option",
@@ -149,8 +149,8 @@
               },
               {
                 "action": "type",
-                "field": "bed_type",
-                "value": "UPDATED_{{__run_id}}_bed_type"
+                "field": "room_type_name",
+                "value": "UPDATED_{{__run_id}}_room_type_name"
               },
               {
                 "action": "click",

@@ -66,18 +66,18 @@
       "params": {
         "accept": [
           "id",
+          "season",
+          "product_type",
+          "employee_level",
           "policy_name",
-          "hotel_star_limit",
-          "personal_pay_ratio",
           "city_tier",
           "exceed_strategy",
+          "personal_pay_ratio",
+          "hotel_star_limit",
           "approval_mode",
+          "max_amount",
           "cabin_class_limit",
-          "enterprise_id",
-          "employee_level",
-          "product_type",
-          "season",
-          "max_amount"
+          "enterprise_id"
         ]
       }
     },
@@ -163,17 +163,12 @@
               },
               {
                 "action": "type",
-                "field": "personal_pay_ratio",
-                "value": "2"
-              },
-              {
-                "action": "type",
                 "field": "hotel_star_limit",
                 "value": "UPDATED_{{__run_id}}_hotel_star_limit"
               },
               {
                 "action": "type",
-                "field": "max_amount",
+                "field": "personal_pay_ratio",
                 "value": "2"
               },
               {
@@ -200,6 +195,11 @@
                 "action": "select_option",
                 "field": "approval_mode",
                 "value": "self"
+              },
+              {
+                "action": "type",
+                "field": "max_amount",
+                "value": "2"
               },
               {
                 "action": "click",

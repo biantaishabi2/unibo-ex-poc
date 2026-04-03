@@ -1,0 +1,12 @@
+{
+  "page_id": "oa_sync_log_list",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.OaSyncLogListLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/oa_sync_log_list",
+    "kind": "list",
+    "params": []
+  }
+}

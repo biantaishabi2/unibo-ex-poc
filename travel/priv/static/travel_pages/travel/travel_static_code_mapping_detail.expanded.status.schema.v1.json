@@ -46,12 +46,12 @@
       "params": {
         "accept": [
           "id",
-          "supplier_code",
           "object_type",
-          "external_code",
+          "supplier_code",
           "canonical_entity",
-          "external_name",
           "canonical_id",
+          "external_name",
+          "external_code",
           "status"
         ]
       }
@@ -138,16 +138,6 @@
               },
               {
                 "action": "type",
-                "field": "canonical_entity",
-                "value": "UPDATED_{{__run_id}}_canonical_entity"
-              },
-              {
-                "action": "select_option",
-                "field": "status",
-                "value": "inactive"
-              },
-              {
-                "action": "type",
                 "field": "external_name",
                 "value": "UPDATED_{{__run_id}}_external_name"
               },
@@ -155,6 +145,16 @@
                 "action": "type",
                 "field": "canonical_id",
                 "value": "d4d9c861-7465-4f63-a16e-6f6e6963616c"
+              },
+              {
+                "action": "type",
+                "field": "canonical_entity",
+                "value": "UPDATED_{{__run_id}}_canonical_entity"
+              },
+              {
+                "action": "select_option",
+                "field": "status",
+                "value": "inactive"
               },
               {
                 "action": "click",

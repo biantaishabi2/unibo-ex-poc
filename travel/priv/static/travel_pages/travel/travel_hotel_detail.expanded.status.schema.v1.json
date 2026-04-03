@@ -44,12 +44,12 @@
       "params": {
         "accept": [
           "id",
-          "hotel_code",
           "city_id",
-          "status",
+          "hotel_code",
           "city_code",
           "hotel_star",
-          "hotel_name"
+          "hotel_name",
+          "status"
         ]
       }
     },
@@ -134,9 +134,14 @@
                 "selector": "#travel_hotel_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
               },
               {
+                "action": "select_option",
+                "field": "status",
+                "value": "inactive"
+              },
+              {
                 "action": "type",
-                "field": "hotel_name",
-                "value": "UPDATED_{{__run_id}}_hotel_name"
+                "field": "city_code",
+                "value": "UPDATED_{{__run_id}}_city_code"
               },
               {
                 "action": "type",
@@ -149,14 +154,9 @@
                 "value": "UPDATED_{{__run_id}}_hotel_star"
               },
               {
-                "action": "select_option",
-                "field": "status",
-                "value": "inactive"
-              },
-              {
                 "action": "type",
-                "field": "city_code",
-                "value": "UPDATED_{{__run_id}}_city_code"
+                "field": "hotel_name",
+                "value": "UPDATED_{{__run_id}}_hotel_name"
               },
               {
                 "action": "click",

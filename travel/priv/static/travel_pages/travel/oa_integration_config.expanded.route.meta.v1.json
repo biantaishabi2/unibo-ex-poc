@@ -1,0 +1,12 @@
+{
+  "page_id": "oa_integration_config",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.OaIntegrationConfigLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/oa_integration_config",
+    "kind": "detail",
+    "params": []
+  }
+}
