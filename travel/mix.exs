@@ -60,6 +60,10 @@ defmodule Travel.MixProject do
       {:ash_state_machine, "~> 0.2"},
       {:unibo_bdd_runtime, path: "../../unibo/targets/elixir/unibo_bdd_runtime"},
       {:stitch_ui, path: "../../document/stitch/packages/liveview"},
+      {:nimble_csv, "~> 1.2"},
+      {:elixlsx, "~> 0.6"},
+      {:xlsxir, "~> 1.6"},
+      {:unibo_import_export, path: "../../unibo/targets/elixir/unibo_import_export"},
     ]
   end
 

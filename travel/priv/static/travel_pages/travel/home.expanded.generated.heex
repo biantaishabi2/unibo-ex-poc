@@ -85,17 +85,17 @@
       <.card_content id="announcement_content">
         <.stack gap={3} direction="column" id="announcement_list">
           <%= for ann <- (@announcements || []) do %>
-            <.flex justify="between" align="center" direction="row">
-              <.stack gap={0} direction="column">
-                <.text weight="bold">
-                  <%= get_in(ann, [:title]) || "" %>
+            <.flex justify="between" align="center" direction="row" id="announcement_item">
+              <.stack gap={0} direction="column" id="ann_info">
+                <.text weight="bold" id="ann_title">
+                  <%= get_in(ann, [:title]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
-                <.text variant="muted">
-                  <%= get_in(ann, [:summary]) || "" %>
+                <.text variant="muted" id="ann_summary">
+                  <%= get_in(ann, [:summary]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
-              <.text variant="caption">
-                <%= get_in(ann, [:publish_at]) || "" %>
+              <.text variant="caption" id="ann_date">
+                <%= get_in(ann, [:publish_at]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
               </.text>
             </.flex>
           <% end %>

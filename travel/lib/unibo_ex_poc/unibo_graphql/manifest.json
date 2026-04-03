@@ -1289,11 +1289,9 @@
       "resource": "UniboExPoc.Travel.TravelChangeOrder",
       "action": "read",
       "action_type": "read",
-      "summary": "Read Travel Change Order via Read. Headers: x-tenant-id",
+      "summary": "Read Travel Change Order via Read",
       "doc_url": "graphql://contract/travel/get_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
+      "required_headers": [],
       "conditional_requirements": [],
       "arguments": []
     },
@@ -1305,11 +1303,9 @@
       "resource": "UniboExPoc.Travel.TravelChangeOrder",
       "action": "read",
       "action_type": "read",
-      "summary": "Read Travel Change Order via Read. Headers: x-tenant-id",
+      "summary": "Read Travel Change Order via Read",
       "doc_url": "graphql://contract/travel/list_travel_travel_change_orders",
-      "required_headers": [
-        "x-tenant-id"
-      ],
+      "required_headers": [],
       "conditional_requirements": [],
       "arguments": []
     },
@@ -1321,11 +1317,9 @@
       "resource": "UniboExPoc.Travel.TravelChangeOrder",
       "action": "create",
       "action_type": "create",
-      "summary": "Create Travel Change Order via Create. Headers: x-tenant-id",
+      "summary": "Create Travel Change Order via Create",
       "doc_url": "graphql://contract/travel/create_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
+      "required_headers": [],
       "conditional_requirements": [],
       "arguments": []
     },
@@ -1337,11 +1331,9 @@
       "resource": "UniboExPoc.Travel.TravelChangeOrder",
       "action": "update",
       "action_type": "update",
-      "summary": "Update Travel Change Order via Update. Headers: x-tenant-id",
+      "summary": "Update Travel Change Order via Update",
       "doc_url": "graphql://contract/travel/update_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
+      "required_headers": [],
       "conditional_requirements": [],
       "arguments": []
     },
@@ -1353,11 +1345,9 @@
       "resource": "UniboExPoc.Travel.TravelChangeOrder",
       "action": "submit",
       "action_type": "update",
-      "summary": "提交改签申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance. Headers: x-tenant-id",
+      "summary": "提交改签申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance",
       "doc_url": "graphql://contract/travel/submit_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
+      "required_headers": [],
       "conditional_requirements": [],
       "arguments": []
     },
@@ -1369,11 +1359,9 @@
       "resource": "UniboExPoc.Travel.TravelChangeOrder",
       "action": "confirm_change",
       "action_type": "update",
-      "summary": "Update Travel Change Order via Confirm Change. Headers: x-tenant-id",
+      "summary": "Update Travel Change Order via Confirm Change",
       "doc_url": "graphql://contract/travel/confirm_change_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
+      "required_headers": [],
       "conditional_requirements": [],
       "arguments": []
     },
@@ -1385,11 +1373,9 @@
       "resource": "UniboExPoc.Travel.TravelChangeOrder",
       "action": "reject_change",
       "action_type": "update",
-      "summary": "Update Travel Change Order via Reject Change. Headers: x-tenant-id",
+      "summary": "Update Travel Change Order via Reject Change",
       "doc_url": "graphql://contract/travel/reject_change_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
+      "required_headers": [],
       "conditional_requirements": [],
       "arguments": []
     },
@@ -1401,11 +1387,9 @@
       "resource": "UniboExPoc.Travel.TravelChangeOrder",
       "action": "complete",
       "action_type": "update",
-      "summary": "Update Travel Change Order via Complete. Headers: x-tenant-id",
+      "summary": "Update Travel Change Order via Complete",
       "doc_url": "graphql://contract/travel/complete_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
+      "required_headers": [],
       "conditional_requirements": [],
       "arguments": []
     },
@@ -1417,11 +1401,9 @@
       "resource": "UniboExPoc.Travel.TravelChangeOrder",
       "action": "complete_direct",
       "action_type": "update",
-      "summary": "Update Travel Change Order via Complete Direct. Headers: x-tenant-id",
+      "summary": "Update Travel Change Order via Complete Direct",
       "doc_url": "graphql://contract/travel/complete_direct_travel_travel_change_order",
-      "required_headers": [
-        "x-tenant-id"
-      ],
+      "required_headers": [],
       "conditional_requirements": [],
       "arguments": []
     },
@@ -1578,36 +1560,6 @@
       "required_headers": [],
       "conditional_requirements": [],
       "arguments": []
-    },
-    {
-      "kind": "query",
-      "mode": "get",
-      "field": "get_match_policy_travel_travel_policy",
-      "entity": "TravelPolicy",
-      "resource": "UniboExPoc.Travel.TravelPolicy",
-      "action": "match_policy",
-      "action_type": "read",
-      "summary": "Read Travel Policy via Match Policy",
-      "doc_url": "graphql://contract/travel/get_match_policy_travel_travel_policy",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [
-        {
-          "name": "product_type",
-          "type": "string",
-          "required": true
-        },
-        {
-          "name": "employee_level",
-          "type": "string",
-          "required": false
-        },
-        {
-          "name": "city_tier",
-          "type": "string",
-          "required": false
-        }
-      ]
     },
     {
       "kind": "query",

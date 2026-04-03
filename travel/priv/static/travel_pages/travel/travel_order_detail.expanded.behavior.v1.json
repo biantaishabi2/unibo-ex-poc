@@ -27,295 +27,1967 @@
     },
     "load": {
       "assigns": {},
-      "selection": "booking_mode: bookingMode change_status: changeStatus contact_name: contactName contact_phone: contactPhone currency customer_id: customerId host_enterprise_id: hostEnterpriseId host_member_id: hostMemberId host_shop_id: hostShopId id order_no: orderNo original_order_ref: originalOrderRef payment_external_ref: paymentExternalRef payment_id: paymentId points_deduction_amount: pointsDeductionAmount points_to_use: pointsToUse product_type: productType recommended_payment_method: recommendedPaymentMethod seat_selection_snapshot: seatSelectionSnapshot status supplier_order_ref: supplierOrderRef tenant_id: tenantId ticket_passenger_infos: ticketPassengerInfos total_amount: totalAmount traveler_count: travelerCount waitlist_status: waitlistStatus"
+      "selection": "booking_mode: bookingMode change_status: changeStatus contact_name: contactName contact_phone: contactPhone currency host_enterprise_id: hostEnterpriseId host_member_id: hostMemberId host_shop_id: hostShopId id order_no: orderNo original_order_ref: originalOrderRef payment_external_ref: paymentExternalRef points_deduction_amount: pointsDeductionAmount points_to_use: pointsToUse product_type: productType recommended_payment_method: recommendedPaymentMethod seat_selection_snapshot: seatSelectionSnapshot status supplier_order_ref: supplierOrderRef tenant_id: tenantId ticket_passenger_infos: ticketPassengerInfos total_amount: totalAmount traveler_count: travelerCount waitlist_status: waitlistStatus"
     },
     "params": {
       "accept": [
-        "id"
+        "id",
+        "hotel_offer_id",
+        "customer_id",
+        "traveler_count",
+        "points_to_use",
+        "currency",
+        "order_no",
+        "product_type",
+        "total_amount",
+        "points_deduction_amount",
+        "ticket_passenger_infos",
+        "host_shop_id",
+        "seat_selection_snapshot",
+        "contact_phone",
+        "contact_name"
       ]
     }
   },
   "children": [],
+  "delivery_mode": "compiled",
   "domain": "Travel",
   "e2e": {
     "playwright": {
-      "auto": true,
-      "base_path": "/travel/travel_order/:id",
+      "auto": false,
+      "base_path": "/pages/travel/travel_order/:id?hotel_offer_id={{hotel_offer_id}}",
+      "capabilities": {
+        "supports_backend_verification": true,
+        "supports_children": true,
+        "supports_custom_actions": true,
+        "supports_custom_page": false,
+        "supports_data_lifecycle": true,
+        "supports_destroy": true,
+        "supports_edit_form": true,
+        "supports_embedded_form": false,
+        "supports_fcl": false,
+        "supports_state_machine": true,
+        "supports_wait_contract": true,
+        "supports_wizard": false
+      },
       "cases": [
         {
           "covers": [],
+          "kind": "load",
           "name": "页面加载 + 结构可见",
           "steps": [
             {
               "action": "expect_visible",
-              "selector": "[data-page='travel_order_detail']"
+              "selector": "#travel_order_detail"
             }
-          ]
+          ],
+          "verification_key": "load",
+          "wait_key": "load"
         },
         {
           "covers": [
-            "toggle_edit"
+            "toggle_edit",
+            "cancel_edit"
           ],
+          "kind": "flow",
           "name": "编辑模式切换",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='toggle_edit']"
+              "event": "toggle_edit"
             },
             {
               "action": "expect_visible",
-              "selector": "form, [data-mode='edit']"
+              "selector": "#travel_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+            },
+            {
+              "action": "click",
+              "event": "cancel_edit"
+            },
+            {
+              "action": "expect_not_visible",
+              "selector": "#travel_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             }
-          ]
+          ],
+          "verification_key": "toggle_edit",
+          "wait_key": null
         },
         {
           "covers": [
+            "toggle_edit",
+            "form_change",
             "form_submit"
           ],
-          "name": "表单提交",
+          "kind": "crud",
+          "name": "CRUD：编辑记录",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='form_submit'], button[type='submit']"
+              "event": "toggle_edit"
             },
             {
-              "action": "expect_text_contains",
-              "selector": "#flash-group, [data-flash], [role='alert']",
-              "value": "成功"
+              "action": "expect_visible",
+              "selector": "#travel_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+            },
+            {
+              "action": "type",
+              "field": "contact_phone",
+              "value": "UPDATED_{{__run_id}}_contact_phone"
+            },
+            {
+              "action": "type",
+              "field": "traveler_count",
+              "value": "2"
+            },
+            {
+              "action": "type",
+              "field": "seat_selection_snapshot",
+              "value": "{\"updated\":true}"
+            },
+            {
+              "action": "type",
+              "field": "ticket_passenger_infos",
+              "value": "{\"updated\":true}"
+            },
+            {
+              "action": "type",
+              "field": "contact_name",
+              "value": "UPDATED_{{__run_id}}_contact_name"
+            },
+            {
+              "action": "click",
+              "event": "form_submit"
             }
-          ]
+          ],
+          "verification_key": "update",
+          "wait_key": "form_submit"
         },
         {
           "covers": [
             "action_confirm_quote"
           ],
-          "name": "动作：confirm_quote",
+          "kind": "state",
+          "name": "状态转换：draft → quoted（confirm_quote）",
           "steps": [
             {
-              "action": "click",
-              "selector": "[data-action='action_confirm_quote']"
+              "action": "goto",
+              "url": "/pages/travel/travel_order/{{state_action_record_id_confirm_quote}}",
+              "value": "/pages/travel/travel_order/{{state_action_record_id_confirm_quote}}"
             },
             {
               "action": "expect_visible",
-              "selector": "[data-action='action_confirm_quote']"
+              "selector": "#travel_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_confirm_quote",
+              "selector": "#travel_order_action_confirm_quote"
             }
-          ]
+          ],
+          "verification_key": "action_confirm_quote",
+          "wait_key": "action_confirm_quote"
         },
         {
           "covers": [
             "action_submit_order"
           ],
-          "name": "动作：submit_order",
+          "kind": "state",
+          "name": "状态转换：quoted → submitted（submit_order）",
           "steps": [
             {
-              "action": "click",
-              "selector": "[data-action='action_submit_order']"
+              "action": "goto",
+              "url": "/pages/travel/travel_order/{{state_action_record_id_submit_order}}",
+              "value": "/pages/travel/travel_order/{{state_action_record_id_submit_order}}"
             },
             {
               "action": "expect_visible",
-              "selector": "[data-action='action_submit_order']"
+              "selector": "#travel_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_submit_order",
+              "selector": "#travel_order_action_submit_order"
             }
-          ]
+          ],
+          "verification_key": "action_submit_order",
+          "wait_key": "action_submit_order"
         },
         {
           "covers": [
             "action_submit_waitlist"
           ],
-          "name": "动作：submit_waitlist",
+          "kind": "state",
+          "name": "状态转换：quoted → submitted（submit_waitlist）",
           "steps": [
             {
-              "action": "click",
-              "selector": "[data-action='action_submit_waitlist']"
+              "action": "goto",
+              "url": "/pages/travel/travel_order/{{state_action_record_id_submit_waitlist}}",
+              "value": "/pages/travel/travel_order/{{state_action_record_id_submit_waitlist}}"
             },
             {
               "action": "expect_visible",
-              "selector": "[data-action='action_submit_waitlist']"
+              "selector": "#travel_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_submit_waitlist",
+              "selector": "#travel_order_action_submit_waitlist"
             }
-          ]
+          ],
+          "verification_key": "action_submit_waitlist",
+          "wait_key": "action_submit_waitlist"
         },
         {
           "covers": [
             "action_mark_payment_succeeded"
           ],
-          "name": "动作：mark_payment_succeeded",
+          "kind": "state",
+          "name": "状态转换：submitted → booking_pending（mark_payment_succeeded）",
           "steps": [
             {
-              "action": "click",
-              "selector": "[data-action='action_mark_payment_succeeded']"
+              "action": "goto",
+              "url": "/pages/travel/travel_order/{{state_action_record_id_mark_payment_succeeded}}",
+              "value": "/pages/travel/travel_order/{{state_action_record_id_mark_payment_succeeded}}"
             },
             {
               "action": "expect_visible",
-              "selector": "[data-action='action_mark_payment_succeeded']"
+              "selector": "#travel_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_mark_payment_succeeded",
+              "selector": "#travel_order_action_mark_payment_succeeded"
             }
-          ]
-        },
-        {
-          "covers": [
-            "action_mark_booked"
           ],
-          "name": "动作：mark_booked",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='action_mark_booked']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_mark_booked']"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "action_fulfill_waitlist"
-          ],
-          "name": "动作：fulfill_waitlist",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='action_fulfill_waitlist']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_fulfill_waitlist']"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "action_mark_completed"
-          ],
-          "name": "动作：mark_completed",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='action_mark_completed']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_mark_completed']"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "action_request_cancel"
-          ],
-          "name": "动作：request_cancel",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='action_request_cancel']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_request_cancel']"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "action_cancel_waitlist"
-          ],
-          "name": "动作：cancel_waitlist",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='action_cancel_waitlist']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_cancel_waitlist']"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "action_execute_cancel"
-          ],
-          "name": "动作：execute_cancel",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='action_execute_cancel']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_execute_cancel']"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "action_cancel_cancel_request"
-          ],
-          "name": "动作：cancel_cancel_request",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='action_cancel_cancel_request']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_cancel_cancel_request']"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "action_request_change"
-          ],
-          "name": "动作：request_change",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='action_request_change']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_request_change']"
-            }
-          ]
-        },
-        {
-          "covers": [
-            "action_confirm_change"
-          ],
-          "name": "动作：confirm_change",
-          "steps": [
-            {
-              "action": "click",
-              "selector": "[data-action='action_confirm_change']"
-            },
-            {
-              "action": "expect_visible",
-              "selector": "[data-action='action_confirm_change']"
-            }
-          ]
+          "verification_key": "action_mark_payment_succeeded",
+          "wait_key": "action_mark_payment_succeeded"
         },
         {
           "covers": [
             "action_mark_order_failed"
           ],
-          "name": "动作：mark_order_failed",
+          "kind": "state",
+          "name": "状态转换：submitted → failed（mark_order_failed）",
           "steps": [
             {
-              "action": "click",
-              "selector": "[data-action='action_mark_order_failed']"
+              "action": "goto",
+              "url": "/pages/travel/travel_order/{{state_action_record_id_mark_order_failed}}",
+              "value": "/pages/travel/travel_order/{{state_action_record_id_mark_order_failed}}"
             },
             {
               "action": "expect_visible",
-              "selector": "[data-action='action_mark_order_failed']"
+              "selector": "#travel_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_mark_order_failed",
+              "selector": "#travel_order_action_mark_order_failed"
+            }
+          ],
+          "verification_key": "action_mark_order_failed",
+          "wait_key": "action_mark_order_failed"
+        },
+        {
+          "covers": [
+            "action_mark_booked"
+          ],
+          "kind": "state",
+          "name": "状态转换：booking_pending → booked（mark_booked）",
+          "steps": [
+            {
+              "action": "goto",
+              "url": "/pages/travel/travel_order/{{state_action_record_id_mark_booked}}",
+              "value": "/pages/travel/travel_order/{{state_action_record_id_mark_booked}}"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#travel_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_mark_booked",
+              "selector": "#travel_order_action_mark_booked"
+            }
+          ],
+          "verification_key": "action_mark_booked",
+          "wait_key": "action_mark_booked"
+        },
+        {
+          "covers": [
+            "action_fulfill_waitlist"
+          ],
+          "kind": "state",
+          "name": "状态转换：booking_pending → booked（fulfill_waitlist）",
+          "steps": [
+            {
+              "action": "goto",
+              "url": "/pages/travel/travel_order/{{state_action_record_id_fulfill_waitlist}}",
+              "value": "/pages/travel/travel_order/{{state_action_record_id_fulfill_waitlist}}"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#travel_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_fulfill_waitlist",
+              "selector": "#travel_order_action_fulfill_waitlist"
+            }
+          ],
+          "verification_key": "action_fulfill_waitlist",
+          "wait_key": "action_fulfill_waitlist"
+        },
+        {
+          "covers": [
+            "action_cancel_waitlist"
+          ],
+          "kind": "state",
+          "name": "状态转换：booking_pending → cancelled（cancel_waitlist）",
+          "steps": [
+            {
+              "action": "goto",
+              "url": "/pages/travel/travel_order/{{state_action_record_id_cancel_waitlist}}",
+              "value": "/pages/travel/travel_order/{{state_action_record_id_cancel_waitlist}}"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#travel_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_cancel_waitlist",
+              "selector": "#travel_order_action_cancel_waitlist"
+            }
+          ],
+          "verification_key": "action_cancel_waitlist",
+          "wait_key": "action_cancel_waitlist"
+        },
+        {
+          "covers": [
+            "action_mark_completed"
+          ],
+          "kind": "state",
+          "name": "状态转换：booked → completed（mark_completed）",
+          "steps": [
+            {
+              "action": "goto",
+              "url": "/pages/travel/travel_order/{{state_action_record_id_mark_completed}}",
+              "value": "/pages/travel/travel_order/{{state_action_record_id_mark_completed}}"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#travel_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_mark_completed",
+              "selector": "#travel_order_action_mark_completed"
+            }
+          ],
+          "verification_key": "action_mark_completed",
+          "wait_key": "action_mark_completed"
+        },
+        {
+          "covers": [
+            "action_request_cancel"
+          ],
+          "kind": "state",
+          "name": "状态转换：booked → cancel_pending（request_cancel）",
+          "steps": [
+            {
+              "action": "goto",
+              "url": "/pages/travel/travel_order/{{state_action_record_id_request_cancel}}",
+              "value": "/pages/travel/travel_order/{{state_action_record_id_request_cancel}}"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#travel_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_request_cancel",
+              "selector": "#travel_order_action_request_cancel"
+            }
+          ],
+          "verification_key": "action_request_cancel",
+          "wait_key": "action_request_cancel"
+        },
+        {
+          "covers": [
+            "action_execute_cancel"
+          ],
+          "kind": "state",
+          "name": "状态转换：cancel_pending → cancelled（execute_cancel）",
+          "steps": [
+            {
+              "action": "goto",
+              "url": "/pages/travel/travel_order/{{state_action_record_id_execute_cancel}}",
+              "value": "/pages/travel/travel_order/{{state_action_record_id_execute_cancel}}"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#travel_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_execute_cancel",
+              "selector": "#travel_order_action_execute_cancel"
+            }
+          ],
+          "verification_key": "action_execute_cancel",
+          "wait_key": "action_execute_cancel"
+        },
+        {
+          "covers": [
+            "action_cancel_cancel_request"
+          ],
+          "kind": "state",
+          "name": "状态转换：cancel_pending → booked（cancel_cancel_request）",
+          "steps": [
+            {
+              "action": "goto",
+              "url": "/pages/travel/travel_order/{{state_action_record_id_cancel_cancel_request}}",
+              "value": "/pages/travel/travel_order/{{state_action_record_id_cancel_cancel_request}}"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#travel_order_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_cancel_cancel_request",
+              "selector": "#travel_order_action_cancel_cancel_request"
+            }
+          ],
+          "verification_key": "action_cancel_cancel_request",
+          "wait_key": "action_cancel_cancel_request"
+        },
+        {
+          "covers": [
+            "action_request_change"
+          ],
+          "kind": "custom",
+          "name": "动作：request_change",
+          "steps": [
+            {
+              "action": "click",
+              "event": "action_request_change",
+              "selector": "#travel_order_action_request_change"
+            }
+          ],
+          "verification_key": null,
+          "wait_key": "action_request_change"
+        },
+        {
+          "covers": [
+            "action_confirm_change"
+          ],
+          "kind": "custom",
+          "name": "动作：confirm_change",
+          "steps": [
+            {
+              "action": "click",
+              "event": "action_confirm_change",
+              "selector": "#travel_order_action_confirm_change"
+            }
+          ],
+          "verification_key": null,
+          "wait_key": "action_confirm_change"
+        },
+        {
+          "covers": [
+            "action_destroy"
+          ],
+          "kind": "crud",
+          "name": "动作：删除",
+          "steps": [
+            {
+              "action": "click",
+              "event": "action_destroy",
+              "selector": "#delete_btn"
+            }
+          ],
+          "verification_key": "destroy",
+          "wait_key": "destroy"
+        }
+      ],
+      "data_contract": {
+        "binds": [
+          {
+            "name": "route_record_id",
+            "path": "id",
+            "source": "route"
+          },
+          {
+            "name": "created_display_value",
+            "path": "host_member_id",
+            "source": "form"
+          }
+        ],
+        "cleanup": [
+          {
+            "api": "destroy",
+            "ignore_missing": true,
+            "path": "id",
+            "source": "created_record_id"
+          }
+        ],
+        "inputs": [
+          "route",
+          "form",
+          "generated_form_values"
+        ],
+        "setup": [
+          {
+            "binds": [
+              {
+                "name": "hotel_offer_id",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "never",
+            "create_blockers": [
+              "actor_required"
+            ],
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "HotelOffer",
+            "freshness": "match_only",
+            "graphql_field": "listTravelHotelOffers",
+            "kind": "related_list_first",
+            "name": "resolve_hotel_offer_id",
+            "owner": "dependent"
+          },
+          {
+            "binds": [
+              {
+                "name": "seed_record_id",
+                "path": "id",
+                "source": "result"
+              },
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "never",
+            "create_blockers": [
+              "actor_required"
+            ],
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "match_only",
+            "graphql_field": "listTravelTravelOrders",
+            "index": 0,
+            "kind": "entity_list_first",
+            "name": "resolve_current_record",
+            "owner": "root",
+            "where_equals": "draft",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_confirm_quote",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelOrder",
+            "create_input": {
+              "contact_name": "E2E_{{__run_id}}_contact_name_state_confirm_quote_0",
+              "contact_phone": "E2E_{{__run_id}}_contact_phone_state_confirm_quote_0",
+              "currency": "E2E_{{__run_id}}_currency_state_confirm_quote_0",
+              "customer_id": "2b473943-5c2b-42f8-94d6-e3ddd3cee4cc",
+              "host_shop_id": "2f3a3a35-564d-453b-84d2-d7cee1ced8e2",
+              "hotel_offer_id": "{{hotel_offer_id}}",
+              "order_no": "E2E_{{__run_id}}_order_no_state_confirm_quote_0",
+              "points_deduction_amount": 1.0,
+              "points_to_use": 1,
+              "product_type": "hotel",
+              "seat_selection_snapshot": "{\"variant\":\"state_confirm_quote_0\"}",
+              "tenant_id": "37544d27-47fa-4ed7-94dc-c7d7e6ccc8d5",
+              "ticket_passenger_infos": "{\"variant\":\"state_confirm_quote_0\"}",
+              "total_amount": 1.0,
+              "traveler_count": 1
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelOrders",
+            "index": 0,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_state_action_record_confirm_quote",
+            "owner": "root",
+            "prepare_actions": [],
+            "where_equals": "draft",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_submit_order",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelOrder",
+            "create_input": {
+              "contact_name": "E2E_{{__run_id}}_contact_name_state_submit_order_0",
+              "contact_phone": "E2E_{{__run_id}}_contact_phone_state_submit_order_0",
+              "currency": "E2E_{{__run_id}}_currency_state_submit_order_0",
+              "customer_id": "3b482839-5a25-43c8-94e6-e9d1dacee6be",
+              "host_shop_id": "214a3b24-4c4b-4f0c-94d2-e7d4d5d5d8e4",
+              "hotel_offer_id": "{{hotel_offer_id}}",
+              "order_no": "E2E_{{__run_id}}_order_no_state_submit_order_0",
+              "points_deduction_amount": 1.0,
+              "points_to_use": 1,
+              "product_type": "hotel",
+              "seat_selection_snapshot": "{\"variant\":\"state_submit_order_0\"}",
+              "tenant_id": "264a4b21-18ca-4ee7-9ad0-ced7e8bed8d6",
+              "ticket_passenger_infos": "{\"variant\":\"state_submit_order_0\"}",
+              "total_amount": 1.0,
+              "traveler_count": 1
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelOrders",
+            "index": 0,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_state_action_record_submit_order",
+            "owner": "root",
+            "prepare_actions": [
+              "confirm_quote"
+            ],
+            "where_equals": "draft",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_submit_waitlist",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelOrder",
+            "create_input": {
+              "contact_name": "E2E_{{__run_id}}_contact_name_state_submit_waitlist_1",
+              "contact_phone": "E2E_{{__run_id}}_contact_phone_state_submit_waitlist_1",
+              "currency": "E2E_{{__run_id}}_currency_state_submit_waitlist_1",
+              "customer_id": "43372d48-542f-463c-b317-e9d1dacee6be",
+              "host_shop_id": "21522a29-5b45-494f-8831-18d4d5d5d8e4",
+              "hotel_offer_id": "{{hotel_offer_id}}",
+              "order_no": "E2E_{{__run_id}}_order_no_state_submit_waitlist_1",
+              "points_deduction_amount": 1.0,
+              "points_to_use": 1,
+              "product_type": "hotel",
+              "seat_selection_snapshot": "{\"variant\":\"state_submit_waitlist_1\"}",
+              "tenant_id": "2b59452b-5b3e-4d18-9ad0-ced7e8bee0c5",
+              "ticket_passenger_infos": "{\"variant\":\"state_submit_waitlist_1\"}",
+              "total_amount": 1.0,
+              "traveler_count": 1
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelOrders",
+            "index": 1,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_state_action_record_submit_waitlist",
+            "owner": "root",
+            "prepare_actions": [
+              "confirm_quote"
+            ],
+            "where_equals": "draft",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_mark_payment_succeeded",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelOrder",
+            "create_input": {
+              "contact_name": "E2E_{{__run_id}}_contact_name_state_mark_payment_succeeded_0",
+              "contact_phone": "E2E_{{__run_id}}_contact_phone_state_mark_payment_succeeded_0",
+              "currency": "E2E_{{__run_id}}_currency_state_mark_payment_succeeded_0",
+              "customer_id": "75432942-5c25-463d-b743-3a463c29461f",
+              "host_shop_id": "82843625-554d-4f4f-8935-44254a373344",
+              "hotel_offer_id": "{{hotel_offer_id}}",
+              "order_no": "E2E_{{__run_id}}_order_no_state_mark_payment_succeeded_0",
+              "points_deduction_amount": 1.0,
+              "points_to_use": 1,
+              "product_type": "hotel",
+              "seat_selection_snapshot": "{\"variant\":\"state_mark_payment_succeeded_0\"}",
+              "tenant_id": "27534d21-5b3f-4144-ab45-3032481f12d1",
+              "ticket_passenger_infos": "{\"variant\":\"state_mark_payment_succeeded_0\"}",
+              "total_amount": 1.0,
+              "traveler_count": 1
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelOrders",
+            "index": 0,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_state_action_record_mark_payment_succeeded",
+            "owner": "root",
+            "prepare_actions": [
+              "confirm_quote",
+              "submit_order"
+            ],
+            "where_equals": "draft",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_mark_order_failed",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelOrder",
+            "create_input": {
+              "contact_name": "E2E_{{__run_id}}_contact_name_state_mark_order_failed_1",
+              "contact_phone": "E2E_{{__run_id}}_contact_phone_state_mark_order_failed_1",
+              "currency": "E2E_{{__run_id}}_currency_state_mark_order_failed_1",
+              "customer_id": "303b3633-4e27-4c34-b944-3412d8c4e1d1",
+              "host_shop_id": "343f2e32-463f-4145-8037-451f16d3cedf",
+              "hotel_offer_id": "{{hotel_offer_id}}",
+              "order_no": "E2E_{{__run_id}}_order_no_state_mark_order_failed_1",
+              "points_deduction_amount": 1.0,
+              "points_to_use": 1,
+              "product_type": "hotel",
+              "seat_selection_snapshot": "{\"variant\":\"state_mark_order_failed_1\"}",
+              "tenant_id": "34443f23-5136-4345-a511-cccde3d1cdc9",
+              "ticket_passenger_infos": "{\"variant\":\"state_mark_order_failed_1\"}",
+              "total_amount": 1.0,
+              "traveler_count": 1
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelOrders",
+            "index": 1,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_state_action_record_mark_order_failed",
+            "owner": "root",
+            "prepare_actions": [
+              "confirm_quote",
+              "submit_order"
+            ],
+            "where_equals": "draft",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_mark_booked",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelOrder",
+            "create_input": {
+              "contact_name": "E2E_{{__run_id}}_contact_name_state_mark_booked_0",
+              "contact_phone": "E2E_{{__run_id}}_contact_phone_state_mark_booked_0",
+              "currency": "E2E_{{__run_id}}_currency_state_mark_booked_0",
+              "customer_id": "3b412938-47f6-43c8-94e0-d5e1d8c4d4ce",
+              "host_shop_id": "314a3425-4b38-40dc-94d2-e1c0e5d3ced2",
+              "hotel_offer_id": "{{hotel_offer_id}}",
+              "order_no": "E2E_{{__run_id}}_order_no_state_mark_booked_0",
+              "points_deduction_amount": 1.0,
+              "points_to_use": 1,
+              "product_type": "hotel",
+              "seat_selection_snapshot": "{\"variant\":\"state_mark_booked_0\"}",
+              "tenant_id": "274938f2-e8ca-4ee1-86e0-cccdd6ced8cf",
+              "ticket_passenger_infos": "{\"variant\":\"state_mark_booked_0\"}",
+              "total_amount": 1.0,
+              "traveler_count": 1
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelOrders",
+            "index": 0,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_state_action_record_mark_booked",
+            "owner": "root",
+            "prepare_actions": [
+              "confirm_quote",
+              "submit_order",
+              "mark_payment_succeeded"
+            ],
+            "where_equals": "draft",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_fulfill_waitlist",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelOrder",
+            "create_input": {
+              "contact_name": "E2E_{{__run_id}}_contact_name_state_fulfill_waitlist_1",
+              "contact_phone": "E2E_{{__run_id}}_contact_phone_state_fulfill_waitlist_1",
+              "currency": "E2E_{{__run_id}}_currency_state_fulfill_waitlist_1",
+              "customer_id": "2b4d253d-5c32-4c3b-8838-1adbd3cedecb",
+              "host_shop_id": "2e3a4021-504d-4c45-8746-3905dfced8dc",
+              "hotel_offer_id": "{{hotel_offer_id}}",
+              "order_no": "E2E_{{__run_id}}_order_no_state_fulfill_waitlist_1",
+              "points_deduction_amount": 1.0,
+              "points_to_use": 1,
+              "product_type": "hotel",
+              "seat_selection_snapshot": "{\"variant\":\"state_fulfill_waitlist_1\"}",
+              "tenant_id": "234e4d2e-513d-4239-8bda-c7d7e0cbc8db",
+              "ticket_passenger_infos": "{\"variant\":\"state_fulfill_waitlist_1\"}",
+              "total_amount": 1.0,
+              "traveler_count": 1
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelOrders",
+            "index": 1,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_state_action_record_fulfill_waitlist",
+            "owner": "root",
+            "prepare_actions": [
+              "confirm_quote",
+              "submit_order",
+              "mark_payment_succeeded"
+            ],
+            "where_equals": "draft",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_cancel_waitlist",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelOrder",
+            "create_input": {
+              "contact_name": "E2E_{{__run_id}}_contact_name_state_cancel_waitlist_2",
+              "contact_phone": "E2E_{{__run_id}}_contact_phone_state_cancel_waitlist_2",
+              "currency": "E2E_{{__run_id}}_currency_state_cancel_waitlist_2",
+              "customer_id": "43372d48-542f-463c-b308-d5ddd0cadebe",
+              "host_shop_id": "21522a29-5b45-494f-8831-09c0e1cbd4dc",
+              "hotel_offer_id": "{{hotel_offer_id}}",
+              "order_no": "E2E_{{__run_id}}_order_no_state_cancel_waitlist_2",
+              "points_deduction_amount": 1.0,
+              "points_to_use": 1,
+              "product_type": "hotel",
+              "seat_selection_snapshot": "{\"variant\":\"state_cancel_waitlist_2\"}",
+              "tenant_id": "2b59452b-5b3e-4d09-86dc-c4d3e0bee0c5",
+              "ticket_passenger_infos": "{\"variant\":\"state_cancel_waitlist_2\"}",
+              "total_amount": 1.0,
+              "traveler_count": 1
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelOrders",
+            "index": 2,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_state_action_record_cancel_waitlist",
+            "owner": "root",
+            "prepare_actions": [
+              "confirm_quote",
+              "submit_order",
+              "mark_payment_succeeded"
+            ],
+            "where_equals": "draft",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_mark_completed",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelOrder",
+            "create_input": {
+              "contact_name": "E2E_{{__run_id}}_contact_name_state_mark_completed_0",
+              "contact_phone": "E2E_{{__run_id}}_contact_phone_state_mark_completed_0",
+              "currency": "E2E_{{__run_id}}_currency_state_mark_completed_0",
+              "customer_id": "39463039-5c2b-4727-84e0-d5e1d8c4d5ce",
+              "host_shop_id": "3148392c-4c4d-4540-b302-e1c0e5d3ced3",
+              "hotel_offer_id": "{{hotel_offer_id}}",
+              "order_no": "E2E_{{__run_id}}_order_no_state_mark_completed_0",
+              "points_deduction_amount": 1.0,
+              "points_to_use": 1,
+              "product_type": "hotel",
+              "seat_selection_snapshot": "{\"variant\":\"state_mark_completed_0\"}",
+              "tenant_id": "2e4a4d27-4c29-4ee1-86e0-cccdd7ced6d4",
+              "ticket_passenger_infos": "{\"variant\":\"state_mark_completed_0\"}",
+              "total_amount": 1.0,
+              "traveler_count": 1
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelOrders",
+            "index": 0,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_state_action_record_mark_completed",
+            "owner": "root",
+            "prepare_actions": [
+              "confirm_quote",
+              "submit_order",
+              "mark_payment_succeeded",
+              "mark_booked"
+            ],
+            "where_equals": "draft",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_request_cancel",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelOrder",
+            "create_input": {
+              "contact_name": "E2E_{{__run_id}}_contact_name_state_request_cancel_1",
+              "contact_phone": "E2E_{{__run_id}}_contact_phone_state_request_cancel_1",
+              "currency": "E2E_{{__run_id}}_currency_state_request_cancel_1",
+              "customer_id": "2b392542-4b2b-4f27-85e5-d9e0e2cae5d3",
+              "host_shop_id": "363a2c21-553c-4548-b303-e6c4e4ddd4e3",
+              "hotel_offer_id": "{{hotel_offer_id}}",
+              "order_no": "E2E_{{__run_id}}_order_no_state_request_cancel_1",
+              "points_deduction_amount": 1.0,
+              "points_to_use": 1,
+              "product_type": "hotel",
+              "seat_selection_snapshot": "{\"variant\":\"state_request_cancel_1\"}",
+              "tenant_id": "23533c27-5429-4fe6-8adf-d6d3e7d3c8c7",
+              "ticket_passenger_infos": "{\"variant\":\"state_request_cancel_1\"}",
+              "total_amount": 1.0,
+              "traveler_count": 1
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelOrders",
+            "index": 1,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_state_action_record_request_cancel",
+            "owner": "root",
+            "prepare_actions": [
+              "confirm_quote",
+              "submit_order",
+              "mark_payment_succeeded",
+              "mark_booked"
+            ],
+            "where_equals": "draft",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_execute_cancel",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelOrder",
+            "create_input": {
+              "contact_name": "E2E_{{__run_id}}_contact_name_state_execute_cancel_0",
+              "contact_phone": "E2E_{{__run_id}}_contact_phone_state_execute_cancel_0",
+              "currency": "E2E_{{__run_id}}_currency_state_execute_cancel_0",
+              "customer_id": "2b392542-4b2b-4f27-84d8-ecd4d0dae6c4",
+              "host_shop_id": "273a2c21-553c-4548-b302-d9d7d8cbe4e4",
+              "hotel_offer_id": "{{hotel_offer_id}}",
+              "order_no": "E2E_{{__run_id}}_order_no_state_execute_cancel_0",
+              "points_deduction_amount": 1.0,
+              "points_to_use": 1,
+              "product_type": "hotel",
+              "seat_selection_snapshot": "{\"variant\":\"state_execute_cancel_0\"}",
+              "tenant_id": "23533c27-5429-4ed9-9dd3-c4e3e8c4c8c7",
+              "ticket_passenger_infos": "{\"variant\":\"state_execute_cancel_0\"}",
+              "total_amount": 1.0,
+              "traveler_count": 1
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelOrders",
+            "index": 0,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_state_action_record_execute_cancel",
+            "owner": "root",
+            "prepare_actions": [
+              "confirm_quote",
+              "submit_order",
+              "mark_payment_succeeded",
+              "mark_booked",
+              "request_cancel"
+            ],
+            "where_equals": "draft",
+            "where_path": "status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_cancel_cancel_request",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelTravelOrder",
+            "create_input": {
+              "contact_name": "E2E_{{__run_id}}_contact_name_state_cancel_cancel_request_1",
+              "contact_phone": "E2E_{{__run_id}}_contact_phone_state_cancel_cancel_request_1",
+              "currency": "E2E_{{__run_id}}_currency_state_cancel_cancel_request_1",
+              "customer_id": "2f373237-4d32-423a-b947-4a42433e3def",
+              "host_shop_id": "523e2a2e-4a3e-4c3b-8637-4835463e483b",
+              "hotel_offer_id": "{{hotel_offer_id}}",
+              "order_no": "E2E_{{__run_id}}_order_no_state_cancel_cancel_request_1",
+              "points_deduction_amount": 1.0,
+              "points_to_use": 1,
+              "product_type": "hotel",
+              "seat_selection_snapshot": "{\"variant\":\"state_cancel_cancel_request_1\"}",
+              "tenant_id": "30483e2e-473c-4348-bb41-37473fefccc5",
+              "ticket_passenger_infos": "{\"variant\":\"state_cancel_cancel_request_1\"}",
+              "total_amount": 1.0,
+              "traveler_count": 1
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelOrder",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelTravelOrders",
+            "index": 1,
+            "kind": "entity_list_match_or_create",
+            "match_keys": [
+              {
+                "equals": "{{hotel_offer_id}}",
+                "path": "hotel_offer_id"
+              }
+            ],
+            "name": "resolve_state_action_record_cancel_cancel_request",
+            "owner": "root",
+            "prepare_actions": [
+              "confirm_quote",
+              "submit_order",
+              "mark_payment_succeeded",
+              "mark_booked",
+              "request_cancel"
+            ],
+            "where_equals": "draft",
+            "where_path": "status"
+          }
+        ]
+      },
+      "dto_smoke": [],
+      "graphql_path": "/api/graphql",
+      "page_kind": "detail",
+      "page_spec": {
+        "dom": {
+          "form": "#travel_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+          "root": "#travel_order_detail",
+          "submit": "#travel_order_save_btn, form[phx-submit=\"form_submit\"] button[type=\"submit\"]",
+          "toggle_edit": "#edit_btn"
+        },
+        "page_kind": "detail",
+        "route_role": "record",
+        "strategy": "object_detail_flow",
+        "supports_custom_surface": false,
+        "supports_runtime_record_identity": true,
+        "surface_kind": "standard",
+        "template_kind": "object_page"
+      },
+      "protocol": {
+        "case_fields": [
+          "name",
+          "kind",
+          "covers",
+          "wait_key",
+          "verification_key",
+          "steps"
+        ],
+        "contract_fields": [
+          "strategy",
+          "capabilities",
+          "wait_contract",
+          "verification_contract",
+          "data_contract"
+        ],
+        "step_fields": [
+          "action",
+          "selector",
+          "value",
+          "url",
+          "timeout"
+        ],
+        "transition_fields": [
+          "name",
+          "from",
+          "to",
+          "trigger",
+          "description",
+          "navigate_to"
+        ],
+        "version": 4
+      },
+      "strategy": "object_detail_flow",
+      "template_kind": "object_page",
+      "verification_contract": {
+        "action_cancel_cancel_request": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "booked",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "cancel_cancel_request",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_order_status_badge, #travel_order_fcl_status_badge, #state_badge",
+              "value": "booked"
+            }
+          ]
+        },
+        "action_cancel_waitlist": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "cancelled",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "cancel_waitlist",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_order_status_badge, #travel_order_fcl_status_badge, #state_badge",
+              "value": "cancelled"
+            }
+          ]
+        },
+        "action_confirm_quote": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "quoted",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "confirm_quote",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_order_status_badge, #travel_order_fcl_status_badge, #state_badge",
+              "value": "quoted"
+            }
+          ]
+        },
+        "action_execute_cancel": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "cancelled",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "execute_cancel",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_order_status_badge, #travel_order_fcl_status_badge, #state_badge",
+              "value": "cancelled"
+            }
+          ]
+        },
+        "action_fulfill_waitlist": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "booked",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "fulfill_waitlist",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_order_status_badge, #travel_order_fcl_status_badge, #state_badge",
+              "value": "booked"
+            }
+          ]
+        },
+        "action_mark_booked": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "booked",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "mark_booked",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_order_status_badge, #travel_order_fcl_status_badge, #state_badge",
+              "value": "booked"
+            }
+          ]
+        },
+        "action_mark_completed": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "completed",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "mark_completed",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_order_status_badge, #travel_order_fcl_status_badge, #state_badge",
+              "value": "completed"
+            }
+          ]
+        },
+        "action_mark_order_failed": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "failed",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "mark_order_failed",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_order_status_badge, #travel_order_fcl_status_badge, #state_badge",
+              "value": "failed"
+            }
+          ]
+        },
+        "action_mark_payment_succeeded": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "booking_pending",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "mark_payment_succeeded",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_order_status_badge, #travel_order_fcl_status_badge, #state_badge",
+              "value": "booking_pending"
+            }
+          ]
+        },
+        "action_request_cancel": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "cancel_pending",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "request_cancel",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_order_status_badge, #travel_order_fcl_status_badge, #state_badge",
+              "value": "cancel_pending"
+            }
+          ]
+        },
+        "action_submit_order": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "submitted",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "submit_order",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_order_status_badge, #travel_order_fcl_status_badge, #state_badge",
+              "value": "submitted"
+            }
+          ]
+        },
+        "action_submit_waitlist": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "submitted",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "equals",
+            "path": "status",
+            "source": "active_record_id"
+          },
+          "event": "submit_waitlist",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#travel_order_status_badge, #travel_order_fcl_status_badge, #state_badge",
+              "value": "submitted"
+            }
+          ]
+        },
+        "create": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "created_record_id"
+              }
+            ],
+            "binds": [
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "backend_result"
+              },
+              {
+                "name": "created_record_id",
+                "path": "id",
+                "source": "backend_result"
+              }
+            ],
+            "equals": "$form.seat_selection_snapshot",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "field_equals",
+            "path": "seat_selection_snapshot",
+            "source": "created_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_order_detail",
+              "value": null
+            }
+          ]
+        },
+        "destroy": {
+          "backend": {
+            "api": "list",
+            "args": [],
+            "binds": [],
+            "equals": null,
+            "excludes_source": "active_record_id",
+            "graphql_field": "listTravelTravelOrders",
+            "op": "not_contains",
+            "path": "results[].id",
+            "source": "active_record_id"
+          },
+          "ui": [
+            {
+              "assert": "url_contains",
+              "selector": null,
+              "value": "/travel/travel_order"
+            },
+            {
+              "assert": "visible",
+              "selector": "#travel_order_list",
+              "value": null
+            }
+          ]
+        },
+        "load": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "backend_result"
+              }
+            ],
+            "equals": null,
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "exists",
+            "path": "id",
+            "source": "active_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_order_detail",
+              "value": null
+            }
+          ]
+        },
+        "state_transitions": [],
+        "toggle_edit": {
+          "backend": null,
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_order_detail",
+              "value": null
+            }
+          ]
+        },
+        "update": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "$form.ticket_passenger_infos",
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelOrder",
+            "op": "equals",
+            "path": "ticket_passenger_infos",
+            "source": "active_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#travel_order_detail",
+              "value": null
             }
           ]
         }
-      ],
-      "dto_smoke": []
+      },
+      "wait_contract": {
+        "action_cancel_cancel_request": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_cancel_waitlist": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_confirm_change": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_confirm_quote": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_execute_cancel": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_fulfill_waitlist": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_mark_booked": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_mark_completed": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_mark_order_failed": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_mark_payment_succeeded": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_request_cancel": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_request_change": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_submit_order": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_submit_waitlist": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "form_submit": {
+          "mode": "form_settled",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "#travel_order_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "form_settled",
+            "selector": "#travel_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "toggle_edit": {
+          "mode": "dom_visible",
+          "reload_messages": [],
+          "selectors": [
+            "#travel_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+          ],
+          "state_keys": [],
+          "timeout": 3000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_order_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        }
+      }
     }
   },
   "entity": "TravelOrder",
   "page_id": "travel_order_detail",
   "page_type": "object_page",
+  "resource_type": "transaction",
   "runtime_monitoring": null,
   "schema_version": "1.0",
   "state_transitions": [
@@ -449,7 +2121,6 @@
       "description": "删除记录",
       "from": "*",
       "name": "action_destroy",
-      "navigate_to": "/travel/travel_order",
       "to": "loading",
       "trigger": "user_action"
     }
@@ -460,11 +2131,57 @@
     "form",
     "loading"
   ],
+  "transitions": {
+    "action_cancel_cancel_request": [],
+    "action_cancel_waitlist": [],
+    "action_confirm_change": [],
+    "action_confirm_quote": [],
+    "action_destroy": [
+      {
+        "effect": {
+          "to": "/travel/travel_order",
+          "type": "navigate"
+        },
+        "op": "effect"
+      }
+    ],
+    "action_execute_cancel": [],
+    "action_fulfill_waitlist": [],
+    "action_mark_booked": [],
+    "action_mark_completed": [],
+    "action_mark_order_failed": [],
+    "action_mark_payment_succeeded": [],
+    "action_request_cancel": [],
+    "action_request_change": [],
+    "action_submit_order": [],
+    "action_submit_waitlist": [],
+    "cancel_edit": [
+      {
+        "op": "const",
+        "path": "editing",
+        "value": false
+      }
+    ],
+    "form_change": [],
+    "form_submit": [
+      {
+        "op": "const",
+        "path": "editing",
+        "value": false
+      }
+    ],
+    "toggle_edit": [
+      {
+        "op": "toggle",
+        "path": "editing"
+      }
+    ]
+  },
   "ui": {
     "sections": [],
     "template": {
       "detail": "object_page"
     }
   },
-  "version": 1
+  "version": 2
 }

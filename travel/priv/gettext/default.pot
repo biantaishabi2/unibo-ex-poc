@@ -25,10 +25,6 @@ msgstr ""
 msgid "酒店星级"
 msgstr ""
 
-#. domain: Travel, entity: TravelHotel, attribute: city_id
-msgid "城市引用（跨域引用 Ecommerce.TravelCity）"
-msgstr ""
-
 #. domain: Travel, entity: TravelRoomType
 msgid "酒店房型主数据（Travel 层，来源 OFBiz ProductFeature）"
 msgstr ""
@@ -177,10 +173,6 @@ msgstr ""
 msgid "可售状态"
 msgstr ""
 
-#. domain: Travel, entity: HotelOffer, attribute: city_ref_id
-msgid "Core 旅行城市主数据引用（跨域引用 Ecommerce.TravelCity）"
-msgstr ""
-
 #. domain: Travel, entity: FlightOffer
 msgid "机票可售 offer，承载航班、舱位、票规和库存快照"
 msgstr ""
@@ -229,14 +221,6 @@ msgstr ""
 msgid "退改规则快照"
 msgstr ""
 
-#. domain: Travel, entity: FlightOffer, attribute: departure_airport_ref_id
-msgid "Travel 出发机场主数据引用（跨域引用 Ecommerce.TravelAirport）"
-msgstr ""
-
-#. domain: Travel, entity: FlightOffer, attribute: arrival_airport_ref_id
-msgid "Travel 到达机场主数据引用（跨域引用 Ecommerce.TravelAirport）"
-msgstr ""
-
 #. domain: Travel, entity: VacationOffer
 msgid "度假可售 offer，承载套餐、出发日期和预订规则快照"
 msgstr ""
@@ -271,14 +255,6 @@ msgstr ""
 
 #. domain: Travel, entity: VacationOffer, attribute: booking_rules
 msgid "预订规则快照"
-msgstr ""
-
-#. domain: Travel, entity: VacationOffer, attribute: departure_city_ref_id
-msgid "Core 出发城市主数据引用（跨域引用 Ecommerce.TravelCity）"
-msgstr ""
-
-#. domain: Travel, entity: VacationOffer, attribute: destination_ref_id
-msgid "Core 目的地主数据引用（跨域引用 Ecommerce.TravelCity）"
 msgstr ""
 
 #. domain: Travel, entity: TrainOffer
@@ -339,14 +315,6 @@ msgstr ""
 
 #. domain: Travel, entity: TrainOffer, attribute: refund_rules_snapshot
 msgid "退票规则快照"
-msgstr ""
-
-#. domain: Travel, entity: TrainOffer, attribute: departure_station_ref_id
-msgid "Travel 出发站主数据引用（跨域引用 Ecommerce.TravelStation）"
-msgstr ""
-
-#. domain: Travel, entity: TrainOffer, attribute: arrival_station_ref_id
-msgid "Travel 到达站主数据引用（跨域引用 Ecommerce.TravelStation）"
 msgstr ""
 
 #. domain: Travel, entity: TravelOrder
@@ -417,14 +385,6 @@ msgstr ""
 msgid "宿主支付侧外部支付流水号"
 msgstr ""
 
-#. domain: Travel, entity: TravelOrder, attribute: customer_id
-msgid "买家（跨域引用 Sales.Customer）"
-msgstr ""
-
-#. domain: Travel, entity: TravelOrder, attribute: payment_id
-msgid "关联的支付事务（跨域引用 Payment.Payment）"
-msgstr ""
-
 #. domain: Travel, entity: TravelOrder, action: create
 msgid "创建订单（别名 create_order）"
 msgstr ""
@@ -467,10 +427,6 @@ msgstr ""
 
 #. domain: Travel, entity: TravelFulfillment, attribute: used_at
 msgid "实际使用时间"
-msgstr ""
-
-#. domain: Travel, entity: TravelFulfillment, attribute: shipment_id
-msgid "关联的物流发货单（跨域引用 Delivery.Shipment）"
 msgstr ""
 
 #. domain: Travel, entity: TravelChangeOrder

@@ -4,7 +4,7 @@ config :travel, UniboExPoc.Repo,
   username: "postgres",
   password: "postgres",
   hostname: "localhost",
-  database: "travel_dev",
+  database: System.get_env("TRAVEL_DEV_DB") || "travel_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10

@@ -11,13 +11,14 @@
         "name": "TravelHotel",
         "description": "酒店主数据（Travel 层，来源 OFBiz Product）",
         "source": {
-          "base": "Product",
+          "base": "TravelHotel",
           "filter": {
             "product_type_id": "TRAVEL_HOTEL"
           },
-          "domain": "ofbiz/product"
+          "domain": "travel"
         },
         "aggregate_root": true,
+        "resource_type": "master_data",
         "attributes": [
           {
             "name": "id",
@@ -57,11 +58,15 @@
                 "inactive"
               ]
             }
-          },
+          }
+        ],
+        "relationships": [
           {
-            "name": "city_id",
-            "type": "string",
-            "description": "城市引用（跨域引用 Ecommerce.TravelCity）"
+            "name": "city",
+            "type": "belongs_to",
+            "target": "TravelCity",
+            "foreign_key": "city_id",
+            "target_domain": "Ecommerce"
           }
         ],
         "actions": [
@@ -126,13 +131,14 @@
         "name": "TravelRoomType",
         "description": "酒店房型主数据（Travel 层，来源 OFBiz ProductFeature）",
         "source": {
-          "base": "ProductFeature",
+          "base": "TravelRoomType",
           "filter": {
             "product_feature_type_id": "ROOM_TYPE"
           },
-          "domain": "ofbiz/product"
+          "domain": "travel"
         },
         "aggregate_root": true,
+        "resource_type": "master_data",
         "attributes": [
           {
             "name": "id",
@@ -244,13 +250,14 @@
         "name": "TravelAirline",
         "description": "航司主数据（Travel 层，来源 OFBiz PartyGroup）",
         "source": {
-          "base": "PartyGroup",
+          "base": "TravelAirline",
           "filter": {
             "industry": "AIRLINE"
           },
-          "domain": "ofbiz/party"
+          "domain": "travel"
         },
         "aggregate_root": true,
+        "resource_type": "master_data",
         "attributes": [
           {
             "name": "id",
@@ -352,13 +359,14 @@
         "name": "TravelCabinClass",
         "description": "舱位主数据（Travel 层，来源 OFBiz Enumeration）",
         "source": {
-          "base": "Enumeration",
+          "base": "TravelCabinClass",
           "filter": {
             "enum_type_id": "CABIN_CLASS"
           },
-          "domain": "ofbiz/common"
+          "domain": "travel"
         },
         "aggregate_root": true,
+        "resource_type": "config",
         "attributes": [
           {
             "name": "id",
@@ -453,10 +461,11 @@
         "name": "TravelStaticCodeMapping",
         "description": "供应商静态码到 Travel 主数据的映射（Travel 层统一适配）",
         "source": {
-          "base": "DataSource",
-          "domain": "ofbiz/common"
+          "base": "TravelStaticCodeMapping",
+          "domain": "travel"
         },
         "aggregate_root": true,
+        "resource_type": "config",
         "attributes": [
           {
             "name": "id",
@@ -709,14 +718,16 @@
             "name": "updated_at",
             "type": "datetime",
             "generated": true
-          },
-          {
-            "name": "city_ref_id",
-            "type": "string",
-            "description": "Core 旅行城市主数据引用（跨域引用 Ecommerce.TravelCity）"
           }
         ],
         "relationships": [
+          {
+            "name": "city_ref",
+            "type": "belongs_to",
+            "target": "TravelCity",
+            "foreign_key": "city_ref_id",
+            "target_domain": "Ecommerce"
+          },
           {
             "name": "hotel_ref",
             "type": "belongs_to",
@@ -1014,7 +1025,39 @@
               }
             ]
           }
-        ]
+        ],
+        "state_machine": {
+          "initial_state": "draft",
+          "states": [
+            "active",
+            "draft",
+            "expired",
+            "inactive"
+          ],
+          "transitions": [
+            {
+              "from": "draft",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "inactive",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "active",
+              "to": "inactive",
+              "event": "deactivate"
+            },
+            {
+              "from": "active",
+              "to": "expired",
+              "event": "expire"
+            }
+          ],
+          "state_attribute": "sale_status"
+        }
       },
       {
         "name": "FlightOffer",
@@ -1145,19 +1188,23 @@
             "name": "updated_at",
             "type": "datetime",
             "generated": true
-          },
-          {
-            "name": "departure_airport_ref_id",
-            "type": "string",
-            "description": "Travel 出发机场主数据引用（跨域引用 Ecommerce.TravelAirport）"
-          },
-          {
-            "name": "arrival_airport_ref_id",
-            "type": "string",
-            "description": "Travel 到达机场主数据引用（跨域引用 Ecommerce.TravelAirport）"
           }
         ],
         "relationships": [
+          {
+            "name": "departure_airport_ref",
+            "type": "belongs_to",
+            "target": "TravelAirport",
+            "foreign_key": "departure_airport_ref_id",
+            "target_domain": "Ecommerce"
+          },
+          {
+            "name": "arrival_airport_ref",
+            "type": "belongs_to",
+            "target": "TravelAirport",
+            "foreign_key": "arrival_airport_ref_id",
+            "target_domain": "Ecommerce"
+          },
           {
             "name": "airline_ref",
             "type": "belongs_to",
@@ -1470,7 +1517,39 @@
               }
             ]
           }
-        ]
+        ],
+        "state_machine": {
+          "initial_state": "draft",
+          "states": [
+            "active",
+            "draft",
+            "expired",
+            "inactive"
+          ],
+          "transitions": [
+            {
+              "from": "draft",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "inactive",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "active",
+              "to": "inactive",
+              "event": "deactivate"
+            },
+            {
+              "from": "active",
+              "to": "expired",
+              "event": "expire"
+            }
+          ],
+          "state_attribute": "sale_status"
+        }
       },
       {
         "name": "VacationOffer",
@@ -1604,19 +1683,23 @@
             "name": "updated_at",
             "type": "datetime",
             "generated": true
-          },
-          {
-            "name": "departure_city_ref_id",
-            "type": "string",
-            "description": "Core 出发城市主数据引用（跨域引用 Ecommerce.TravelCity）"
-          },
-          {
-            "name": "destination_ref_id",
-            "type": "string",
-            "description": "Core 目的地主数据引用（跨域引用 Ecommerce.TravelCity）"
           }
         ],
         "relationships": [
+          {
+            "name": "departure_city_ref",
+            "type": "belongs_to",
+            "target": "TravelCity",
+            "foreign_key": "departure_city_ref_id",
+            "target_domain": "Ecommerce"
+          },
+          {
+            "name": "destination_ref",
+            "type": "belongs_to",
+            "target": "TravelCity",
+            "foreign_key": "destination_ref_id",
+            "target_domain": "Ecommerce"
+          },
           {
             "name": "orders",
             "type": "has_many",
@@ -1905,7 +1988,39 @@
               }
             ]
           }
-        ]
+        ],
+        "state_machine": {
+          "initial_state": "draft",
+          "states": [
+            "active",
+            "draft",
+            "expired",
+            "inactive"
+          ],
+          "transitions": [
+            {
+              "from": "draft",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "inactive",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "active",
+              "to": "inactive",
+              "event": "deactivate"
+            },
+            {
+              "from": "active",
+              "to": "expired",
+              "event": "expire"
+            }
+          ],
+          "state_attribute": "sale_status"
+        }
       },
       {
         "name": "TrainOffer",
@@ -2075,19 +2190,23 @@
             "name": "updated_at",
             "type": "datetime",
             "generated": true
-          },
-          {
-            "name": "departure_station_ref_id",
-            "type": "string",
-            "description": "Travel 出发站主数据引用（跨域引用 Ecommerce.TravelStation）"
-          },
-          {
-            "name": "arrival_station_ref_id",
-            "type": "string",
-            "description": "Travel 到达站主数据引用（跨域引用 Ecommerce.TravelStation）"
           }
         ],
         "relationships": [
+          {
+            "name": "departure_station_ref",
+            "type": "belongs_to",
+            "target": "TravelStation",
+            "foreign_key": "departure_station_ref_id",
+            "target_domain": "Ecommerce"
+          },
+          {
+            "name": "arrival_station_ref",
+            "type": "belongs_to",
+            "target": "TravelStation",
+            "foreign_key": "arrival_station_ref_id",
+            "target_domain": "Ecommerce"
+          },
           {
             "name": "orders",
             "type": "has_many",
@@ -2390,7 +2509,39 @@
               }
             ]
           }
-        ]
+        ],
+        "state_machine": {
+          "initial_state": "draft",
+          "states": [
+            "active",
+            "draft",
+            "expired",
+            "inactive"
+          ],
+          "transitions": [
+            {
+              "from": "draft",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "inactive",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "active",
+              "to": "inactive",
+              "event": "deactivate"
+            },
+            {
+              "from": "active",
+              "to": "expired",
+              "event": "expire"
+            }
+          ],
+          "state_attribute": "sale_status"
+        }
       },
       {
         "name": "TravelOrder",
@@ -2579,16 +2730,6 @@
             "name": "updated_at",
             "type": "datetime",
             "generated": true
-          },
-          {
-            "name": "customer_id",
-            "type": "string",
-            "description": "买家（跨域引用 Sales.Customer）"
-          },
-          {
-            "name": "payment_id",
-            "type": "string",
-            "description": "关联的支付事务（跨域引用 Payment.Payment）"
           }
         ],
         "relationships": [
@@ -2621,6 +2762,20 @@
             "type": "has_many",
             "target": "TravelFulfillment",
             "foreign_key": "travel_order_id"
+          },
+          {
+            "name": "customer",
+            "type": "belongs_to",
+            "target": "Customer",
+            "foreign_key": "customer_id",
+            "target_domain": "Sales"
+          },
+          {
+            "name": "payment",
+            "type": "belongs_to",
+            "target": "Payment",
+            "foreign_key": "payment_id",
+            "target_domain": "Payment"
           }
         ],
         "actions": [
@@ -3399,7 +3554,7 @@
                   "to": "enterprise_id"
                 },
                 {
-                  "from": "context.current_shop_id",
+                  "from": "attr.host_shop_id",
                   "to": "current_shop_id"
                 }
               ],
@@ -3844,11 +3999,6 @@
             "name": "updated_at",
             "type": "datetime",
             "generated": true
-          },
-          {
-            "name": "shipment_id",
-            "type": "string",
-            "description": "关联的物流发货单（跨域引用 Delivery.Shipment）"
           }
         ],
         "relationships": [
@@ -3858,6 +4008,13 @@
             "target": "TravelOrder",
             "foreign_key": "travel_order_id",
             "required": true
+          },
+          {
+            "name": "shipment",
+            "type": "belongs_to",
+            "target": "Shipment",
+            "foreign_key": "shipment_id",
+            "target_domain": "Delivery"
           }
         ],
         "actions": [
@@ -4240,19 +4397,12 @@
         "name": "TravelChangeOrder",
         "description": "改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态；审批通过 overlay on Approvals 域",
         "aggregate_root": true,
-        "tenancy": {},
         "attributes": [
           {
             "name": "id",
             "type": "uuid",
             "primary_key": true,
             "generated": true
-          },
-          {
-            "name": "tenant_id",
-            "type": "uuid",
-            "required": true,
-            "description": "租户 ID"
           },
           {
             "name": "change_reason",
@@ -4325,7 +4475,6 @@
             "name": "create",
             "type": "create",
             "accept": [
-              "tenant_id",
               "original_order_id",
               "change_reason",
               "price_difference",
@@ -4498,7 +4647,6 @@
           {
             "name": "unique_order_status",
             "keys": [
-              "tenant_id",
               "original_order_id",
               "status"
             ]
@@ -5014,6 +5162,7 @@
         "name": "TravelPolicy",
         "description": "差旅标准政策，定义不同企业、职级、城市等级下的差旅费用上限与超标策略",
         "aggregate_root": true,
+        "resource_type": "config",
         "attributes": [
           {
             "name": "id",
@@ -5363,7 +5512,27 @@
               }
             ]
           }
-        ]
+        ],
+        "state_machine": {
+          "initial_state": "false",
+          "states": [
+            "false",
+            "true"
+          ],
+          "transitions": [
+            {
+              "from": "false",
+              "to": "true",
+              "event": "activate"
+            },
+            {
+              "from": "true",
+              "to": "false",
+              "event": "deactivate"
+            }
+          ],
+          "state_attribute": "is_active"
+        }
       },
       {
         "name": "TravelPolicyCheck",

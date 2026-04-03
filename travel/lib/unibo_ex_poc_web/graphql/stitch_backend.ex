@@ -15,7 +15,7 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
   @default_selection "id"
 
   def contract(page_id) when is_binary(page_id) do
-    with {:ok, page} <- page(page_id) do
+    with {:ok, page} <- page(page_id, %{}) do
       {:ok,
        %{}
        |> Map.put("page_id", page_id)
@@ -34,11 +34,11 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
     state = normalize_map(state)
 
     with {:ok, page_id} <- resolve_page_id(params, state),
-         {:ok, page} <- page(page_id),
-         {:ok, operation} <- resolve_operation(page, event, params),
+         {:ok, page} <- page(page_id, state),
+         {:ok, operation} <- resolve_operation(page, event, params, state),
          {:ok, query, variables} <- build_graphql_request(page, operation, params, state),
          {:ok, result} <- call_graphql(query, variables, state),
-         {:ok, backend_result} <- normalize_backend_result(page, operation, result) do
+         {:ok, backend_result} <- normalize_backend_result(page, operation, event, params, result) do
       {:ok, backend_result}
     else
       {:error, :stitch_backend_load_skip} ->
@@ -59,16 +59,32 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
     end
   end
 
-  defp page(page_id) when is_binary(page_id) do
-    RuntimeConfig.frontend_backend_page(page_id)
+  defp page(page_id, state) when is_binary(page_id) do
+    embedded_page =
+      state
+      |> map_get("__compiled_backend_page")
+      |> normalize_map()
+
+    if normalize_string(map_get(embedded_page, "page_id")) == page_id do
+      {:ok, embedded_page}
+    else
+      RuntimeConfig.frontend_backend_page(page_id)
+    end
   end
 
-  defp page(_page_id), do: {:error, :stitch_backend_page_not_found}
+  defp page(_page_id, _state), do: {:error, :stitch_backend_page_not_found}
 
-  defp resolve_operation(page, event, params) do
+  defp resolve_operation(page, event, params, state) do
     api_map = normalize_map(map_get(page, "api_map"))
     normalized_event = normalize_string(event)
-    api_key = resolve_api_key(api_map, normalized_event, normalize_string(map_get(page, "page_kind")), params)
+    api_key =
+      resolve_api_key(
+        api_map,
+        normalized_event,
+        normalize_string(map_get(page, "page_kind")),
+        params,
+        state
+      )
 
     if api_key == "" and normalized_event == @load_event do
       {:error, :stitch_backend_load_skip}
@@ -92,9 +108,13 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
     end
   end
 
-  defp resolve_api_key(api_map, event, page_kind, params) do
+  defp resolve_api_key(api_map, event, page_kind, params, state) do
     normalized = normalize_string(event)
     stripped = String.replace_prefix(normalized, "action_", "")
+    current_record_id =
+      normalize_string(map_get(params, "id")) ||
+        normalize_string(map_get(state, "id")) ||
+        normalize_string(map_get(map_get(state, "record") || %{}, "id"))
 
     cond do
       normalized == @load_event and page_kind == "search" ->
@@ -124,13 +144,13 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
       page_kind == "list" and normalized in ["filter_submit", "search_submit", "reload", "refresh", "form_submit"] and map_has_key?(api_map, "list") ->
         "list"
 
-      page_kind == "detail" and normalized == "form_submit" and normalize_string(map_get(params, "id")) == "" and map_has_key?(api_map, "create") ->
+      page_kind == "detail" and normalized == "form_submit" and current_record_id == "" and map_has_key?(api_map, "create") ->
         "create"
 
       page_kind == "detail" and normalized == "form_submit" and map_has_key?(api_map, "update") ->
         "update"
 
-      page_kind == "detail" and normalize_string(map_get(params, "id")) != "" and map_has_key?(api_map, "get") ->
+      page_kind == "detail" and current_record_id != "" and normalized == @load_event and map_has_key?(api_map, "get") ->
         "get"
 
       true ->
@@ -207,8 +227,9 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
          %{"id" => id}}
 
       "create" ->
-        input = sanitize_input_params(params)
-        {decl, arg} = input_type_decl(input_type)
+        resolved_type = resolve_input_type_name(input_type, field)
+        input = sanitize_input_params(params) |> extract_entity_input() |> filter_input_by_schema(resolved_type) |> coerce_input_for_type(resolved_type)
+        {decl, arg} = input_type_decl(input_type, field)
 
         {:ok,
          "mutation StitchCreate(#{decl}) { #{field}(#{arg}) { result { #{selection} } errors { message code } } }",
@@ -216,8 +237,9 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
 
       "update" ->
         id = resolve_id(params, state)
-        input = sanitize_input_params(params) |> Map.delete("id")
-        {decl, arg} = input_type_decl(input_type)
+        resolved_type = resolve_input_type_name(input_type, field, "update")
+        input = sanitize_input_params(params) |> Map.delete("id") |> extract_entity_input() |> filter_input_by_schema(resolved_type) |> coerce_input_for_type(resolved_type)
+        {decl, arg} = input_type_decl(input_type, field)
 
         {:ok,
          "mutation StitchUpdate($id: ID!, #{decl}) { #{field}(id: $id, #{arg}) { result { #{selection} } errors { message code } } }",
@@ -240,8 +262,8 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
 
     cond do
       input_type != "" ->
-        input = sanitize_input_params(params) |> Map.delete("id")
-        {decl, arg} = input_type_decl(input_type)
+        input = sanitize_input_params(params) |> Map.delete("id") |> filter_input_by_schema(input_type) |> coerce_input_for_type(input_type)
+        {decl, arg} = input_type_decl(input_type, field)
 
         {:ok,
          "mutation StitchAction($id: ID!, #{decl}) { #{field}(id: $id, #{arg}) { result { #{selection} } errors { message code } } }",
@@ -265,13 +287,35 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
       normalize_string(map_get(map_get(state, "record") || %{}, "id"))
   end
 
-  defp input_type_decl(input_type) when input_type != "" do
+  defp input_type_decl(input_type, _field) when input_type != "" do
     {"$input: #{input_type}!", "input: $input"}
   end
 
-  defp input_type_decl(_input_type) do
+  defp input_type_decl(_input_type, field) when is_binary(field) and field != "" do
+    # fallback: 从 field 名推导 input type（如 create_travel_travel_airline → CreateTravelTravelAirlineInput）
+    inferred =
+      field
+      |> String.split("_")
+      |> Enum.map(&String.capitalize/1)
+      |> Enum.join()
+      |> Kernel.<>("Input")
+
+    {"$input: #{inferred}!", "input: $input"}
+  end
+
+  defp input_type_decl(_input_type, _field) do
     {"$input: JSON", "input: $input"}
   end
+
+  # 解析 input type 名称（用于 filter_input_by_schema）
+  defp resolve_input_type_name(input_type, _field) when is_binary(input_type) and input_type != "", do: input_type
+  defp resolve_input_type_name(_input_type, field) when is_binary(field) and field != "" do
+    field |> String.split("_") |> Enum.map(&String.capitalize/1) |> Enum.join() |> Kernel.<>("Input")
+  end
+  defp resolve_input_type_name(_, _), do: ""
+
+  # update 变体：field 是 "update_xxx"，直接用
+  defp resolve_input_type_name(input_type, field, _mode), do: resolve_input_type_name(input_type, field)
 
   defp call_graphql(query, variables, state) do
     conn = synthetic_conn(state)
@@ -303,24 +347,121 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
     struct(Plug.Conn, %{req_headers: normalize_headers(map_get(state, "headers")), assigns: assigns})
   end
 
-  defp normalize_backend_result(page, operation, result) when is_map(result) do
+  defp normalize_backend_result(page, operation, event, params, result) when is_map(result) do
     field = normalize_string(map_get(operation, "field"))
     data = map_get(result, :data) || map_get(result, "data") || %{}
-    errors = normalize_errors(map_get(result, :errors) || map_get(result, "errors") || [])
-    value = map_get(data, field)
+    top_level_errors = normalize_errors(map_get(result, :errors) || map_get(result, "errors") || [])
+    raw_value = map_get(data, field)
+    payload_errors = extract_payload_errors(raw_value)
+    errors = top_level_errors ++ payload_errors
+    value = extract_payload_result(raw_value)
     status = adapt_status(page, operation, value)
     dto = adapt_dto(page, operation, value)
+    page_id = normalize_string(map_get(page, "page_id"))
+    api_key = normalize_string(map_get(operation, "api_key"))
+    page_kind = normalize_string(map_get(page, "page_kind"))
+    explicit_effects =
+      case UniboExPocWeb.Generated.PageHostRuntime.event_navigate_to(
+             page_id,
+             normalize_string(event),
+             params
+           ) do
+        {:ok, to} when is_binary(to) and to != "" ->
+          [%{type: "navigate", to: to}]
+
+        _ ->
+          []
+      end
+
+    effects =
+      case explicit_effects do
+        [] -> implicit_backend_effects(page, page_id, page_kind, api_key, params, value)
+        value -> value
+      end
 
     {:ok,
      %{}
      |> Map.put(:dto, dto)
      |> Map.put(:status, status)
-     |> Map.put(:effects, [])
-     |> Map.put(:errors, errors)
-     |> Map.put(:meta, %{"page_id" => map_get(page, "page_id"), "field" => field, "api_key" => map_get(operation, "api_key")})}
+     |> Map.put(:effects, effects)
+      |> Map.put(:errors, errors)
+     |> Map.put(:meta, %{"page_id" => page_id, "field" => field, "api_key" => api_key})}
   end
 
-  defp normalize_backend_result(_page, _operation, _result), do: {:error, :stitch_backend_invalid_result}
+  defp normalize_backend_result(_page, _operation, _event, _params, _result), do: {:error, :stitch_backend_invalid_result}
+
+  defp implicit_backend_effects(page, page_id, "detail", "create", params, value) do
+    record_id = value |> extract_record() |> map_get("id") |> normalize_string()
+
+    case record_id do
+      "" ->
+        []
+
+      id ->
+        route_params = params |> normalize_map() |> Map.put("id", id)
+        target =
+          case compiled_host_route_for_page(page, route_params) do
+            "" -> UniboExPocWeb.Generated.PageHostRuntime.host_route_for_page(page_id, route_params)
+            value -> value
+          end
+
+        [%{type: "navigate", to: target}]
+    end
+  end
+
+  defp implicit_backend_effects(_page, _page_id, _page_kind, _api_key, _params, _value), do: []
+
+  defp compiled_host_route_for_page(page, params) when is_map(page) and is_map(params) do
+    route = page |> map_get("route") |> normalize_map()
+    route_path = route |> map_get("path") |> normalize_string()
+    route_query = route |> map_get("query") |> normalize_string()
+    page_id = page |> map_get("page_id") |> normalize_string()
+
+    case route_path do
+      "" ->
+        ""
+
+      path ->
+        rendered_path = interpolate_route_path(path, params)
+        rendered_query = interpolate_route_query(route_query, params)
+        target = if rendered_query == "", do: rendered_path, else: rendered_path <> "?" <> rendered_query
+        UniboExPocWeb.Generated.PageHostRuntime.normalize_host_target(target, page_id)
+    end
+  end
+
+  defp compiled_host_route_for_page(_page, _params), do: ""
+
+  defp interpolate_route_path(path, params) when is_binary(path) and is_map(params) do
+    Regex.replace(~r/:([a-zA-Z0-9_]+)/, path, fn _full, key ->
+      normalize_string(Map.get(params, key, Map.get(params, String.to_atom(key), "")))
+    end)
+  end
+
+  defp interpolate_route_path(path, _params), do: normalize_string(path)
+
+  defp interpolate_route_query(query, params) when is_binary(query) and is_map(params) do
+    Regex.replace(~r/\{\{\s*([^}]+?)\s*\}\}/, query, fn _full, key ->
+      normalize_string(Map.get(params, String.trim(key), Map.get(params, String.to_atom(String.trim(key)), "")))
+    end)
+  end
+
+  defp interpolate_route_query(query, _params), do: normalize_string(query)
+
+  defp extract_payload_result(value) when is_map(value) do
+    cond do
+      map_has_key?(value, "result") -> map_get(value, "result")
+      map_has_key?(value, :result) -> map_get(value, :result)
+      true -> value
+    end
+  end
+
+  defp extract_payload_result(value), do: value
+
+  defp extract_payload_errors(value) when is_map(value) do
+    normalize_errors(map_get(value, "errors") || map_get(value, :errors) || [])
+  end
+
+  defp extract_payload_errors(_value), do: []
 
   defp adapt_status(page, operation, value) do
     defaults =
@@ -445,11 +586,26 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
   end
 
   defp build_selection_from_page(page) do
-    page
-    |> map_get("state_schema")
-    |> map_get("defaults")
-    |> normalize_map()
-    |> build_selection_from_defaults()
+    # 优先使用 backend.load.selection（完整的 GraphQL 字段映射）(#1812)
+    backend_selection =
+      page
+      |> map_get("backend")
+      |> normalize_map()
+      |> map_get("load")
+      |> normalize_map()
+      |> map_get("selection")
+      |> normalize_string()
+
+    if backend_selection != "" do
+      backend_selection
+    else
+      # fallback: 从 defaults 推导
+      page
+      |> map_get("state_schema")
+      |> map_get("defaults")
+      |> normalize_map()
+      |> build_selection_from_defaults()
+    end
   end
 
   defp build_selection_from_defaults(defaults) do
@@ -527,6 +683,104 @@ defmodule UniboExPocWeb.Graphql.StitchBackend do
     |> normalize_map()
     |> Map.drop(["__page_id", "_target", "_csrf_token"])
   end
+
+  # 从嵌套 entity key 提取扁平参数。
+  # 单个嵌套 map + 顶层标量参数时，将两者合并，保证表单字段与路由/上下文参数一起进入 input。
+  defp extract_entity_input(params) when is_map(params) do
+    nested_entries =
+      Enum.filter(Map.to_list(params), fn
+        {key, value} when is_binary(key) and is_map(value) -> true
+        _ -> false
+      end)
+
+    case nested_entries do
+      [{nested_key, nested_value}] ->
+        scalar_params =
+          params
+          |> Map.delete(nested_key)
+          |> Enum.reject(fn {_key, value} -> is_map(value) end)
+          |> Map.new()
+
+        Map.merge(nested_value, scalar_params)
+
+      _ ->
+        params
+    end
+  end
+
+  defp extract_entity_input(params), do: params
+
+  # 根据 Absinthe schema introspection 过滤 input 字段，只保留 input type 声明的字段
+  defp filter_input_by_schema(input, input_type_name) when is_binary(input_type_name) and input_type_name != "" do
+    # input_type_name 是 PascalCase（如 UpdateTravelTravelAirlineInput），转为 atom 查找
+    type_id = input_type_name |> Macro.underscore() |> String.to_existing_atom()
+
+    case Absinthe.Schema.lookup_type(RuntimeConfig.schema_module(), type_id) do
+      %{fields: fields} when is_map(fields) ->
+        accepted =
+          fields
+          |> Map.keys()
+          |> Enum.flat_map(fn k ->
+            s = to_string(k)
+            # 同时接受 snake_case 原始 key 和 camelCase 变体
+            [s, Macro.underscore(s)]
+          end)
+          |> MapSet.new()
+
+        Map.filter(input, fn {k, _v} -> MapSet.member?(accepted, to_string(k)) end)
+
+      _ -> input
+    end
+  rescue
+    ArgumentError -> input
+  end
+
+  defp filter_input_by_schema(input, _), do: input
+
+  # 根据 Absinthe schema introspection 将 HTML form 字符串值转换为 GraphQL 强类型
+  defp coerce_input_for_type(input, type_name) when is_map(input) and is_binary(type_name) and type_name != "" do
+    type_id = type_name |> Macro.underscore() |> String.to_existing_atom()
+
+    case Absinthe.Schema.lookup_type(RuntimeConfig.schema_module(), type_id) do
+      %{fields: fields} when is_map(fields) ->
+        Map.new(input, fn {k, v} ->
+          field_def = fields[String.to_existing_atom(k)] || fields[k |> Macro.camelize() |> String.to_existing_atom()]
+          field_type = if field_def, do: unwrap_type(field_def.type), else: nil
+          {k, coerce_value(v, field_type)}
+        end)
+
+      _ -> input
+    end
+  rescue
+    ArgumentError -> input
+  end
+
+  defp coerce_input_for_type(input, _), do: input
+
+  # 解包 Absinthe 嵌套 type（如 {:non_null, :integer} → :integer）
+  defp unwrap_type({:non_null, inner}), do: unwrap_type(inner)
+  defp unwrap_type({:list, inner}), do: unwrap_type(inner)
+  defp unwrap_type(%Absinthe.Type.NonNull{of_type: inner}), do: unwrap_type(inner)
+  defp unwrap_type(type), do: type
+
+  defp coerce_value(v, :integer) when is_binary(v) and v != "" do
+    case Integer.parse(v) do
+      {int, _} -> int
+      :error -> v
+    end
+  end
+
+  defp coerce_value(v, :float) when is_binary(v) and v != "" do
+    case Float.parse(v) do
+      {float, _} -> float
+      :error -> v
+    end
+  end
+
+  defp coerce_value(v, :decimal) when is_binary(v), do: v
+  defp coerce_value("true", :boolean), do: true
+  defp coerce_value("false", :boolean), do: false
+  defp coerce_value(v, _), do: v
 
   defp normalize_errors(errors) when is_list(errors) do
     Enum.map(errors, fn

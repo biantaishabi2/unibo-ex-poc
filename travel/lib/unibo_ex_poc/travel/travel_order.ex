@@ -39,7 +39,7 @@ defmodule UniboExPoc.Travel.TravelOrder do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource, AshStateMachine],
+    extensions: [AshGraphql.Resource, AshArchival.Resource, AshStateMachine],
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
@@ -194,16 +194,21 @@ defmodule UniboExPoc.Travel.TravelOrder do
       public? true
       description "宿主支付侧外部支付流水号"
     end
-    create_timestamp :inserted_at
-    update_timestamp :updated_at
-    attribute :customer_id, :string do
+    attribute :inserted_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
       public? true
-      description "买家（跨域引用 Sales.Customer）"
     end
-    attribute :payment_id, :string do
+    attribute :updated_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      update_default &DateTime.utc_now/0
       public? true
-      description "关联的支付事务（跨域引用 Payment.Payment）"
     end
+    attribute :customer_id, :string, public?: true
+    attribute :payment_id, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -523,13 +528,6 @@ defmodule UniboExPoc.Travel.TravelOrder do
 
   identities do
     identity :unique_order_no, [:order_no]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    attributes_as_attributes [:tenant_id]
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

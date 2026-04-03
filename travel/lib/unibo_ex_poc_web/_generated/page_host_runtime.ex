@@ -29,7 +29,10 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
   def load_page(_page_id, _params, _runtime_mode, _backend),
     do: {:error, :page_host_page_not_found}
 
-  def resolve_host_route(route_segments) when is_list(route_segments) do
+  def resolve_host_route(route_segments), do: resolve_host_route(route_segments, %{})
+
+  def resolve_host_route(route_segments, query_params)
+      when is_list(route_segments) and is_map(query_params) do
     route_segments =
       route_segments
       |> Enum.map(&normalize_string/1)
@@ -46,25 +49,28 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
         {:error, :page_host_page_not_found}
 
       true ->
-        resolve_host_route_path(path)
+        resolve_host_route_path(path, query_params)
     end
   end
 
-  def resolve_host_route(route_path) when is_binary(route_path) do
+  def resolve_host_route(route_path), do: resolve_host_route(route_path, %{})
+
+  def resolve_host_route(route_path, query_params)
+      when is_binary(route_path) and is_map(query_params) do
     route_path
     |> normalize_string()
     |> case do
       "" -> {:error, :page_host_page_not_found}
       path ->
         if String.starts_with?(path, "/") do
-          resolve_host_route_path(path)
+          resolve_host_route_path(path, query_params)
         else
-          resolve_host_route_path("/" <> path)
+          resolve_host_route_path("/" <> path, query_params)
         end
     end
   end
 
-  def resolve_host_route(_route_segments), do: {:error, :page_host_page_not_found}
+  def resolve_host_route(_route_segments, _query_params), do: {:error, :page_host_page_not_found}
 
   def dispatch(backend, page_id, event, params, state)
       when is_atom(backend) and is_binary(page_id) and is_binary(event) and is_map(params) and
@@ -120,6 +126,7 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
   def pages_dir, do: RuntimeConfig.page_host_pages_dir()
   def host_prefix, do: RuntimeConfig.page_host_prefix()
   def host_index_path, do: host_prefix()
+  def default_tenant_id, do: RuntimeConfig.default_tenant_id()
 
   def list_pages do
     case manifest_pages() do
@@ -143,6 +150,57 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
 
   def page_contract(_page_id), do: %{}
 
+  @doc "从 manifest transitions 查找事件的 navigate_to 目标"
+  def event_navigate_to(page_id, event_name, params \\ %{}) when is_binary(page_id) and is_binary(event_name) do
+    with {:ok, page} <- RuntimeConfig.frontend_page(page_id) do
+      transitions = map_get(page, "transitions") |> normalize_list()
+      case Enum.find(transitions, fn t -> normalize_string(map_get(t, "name")) == event_name end) do
+        %{} = transition ->
+          case normalize_string(map_get(transition, "navigate_to")) do
+            "" -> :none
+            target ->
+              resolved = Regex.replace(~r/\{(\w+)\}/, target, fn _full, key ->
+                normalize_string(Map.get(params, key, Map.get(params, String.to_atom(key), "")))
+              end)
+              {:ok, resolved}
+          end
+        nil -> :none
+      end
+    else
+      _ -> :none
+    end
+  end
+
+  @doc "按 page_id + params 反向生成 host 路由"
+  def host_route_for_page(page_id, params \\ %{}) when is_binary(page_id) and is_map(params) do
+    route_map = RuntimeConfig.frontend_route_map()
+
+    case Enum.find(route_map, fn route ->
+           normalize_string(route |> map_get("page_id")) == page_id
+         end) do
+      nil ->
+        normalize_host_target(page_id, page_id)
+
+      route ->
+        route_path = route |> map_get("path") |> normalize_string()
+        full_path = route |> map_get("full_path") |> normalize_string()
+        route_query = route |> map_get("query") |> normalize_string()
+        primary_path = primary_route_path(route_path, full_path)
+
+        path =
+          primary_path
+          |> interpolate_route_path(params)
+          |> case do
+            "" -> "/" <> page_id
+            value -> value
+          end
+
+        query = interpolate_route_query(route_query, params)
+        target = if query == "", do: path, else: path <> "?" <> query
+        normalize_host_target(target, page_id)
+    end
+  end
+
   @doc "页面是否有非空 api_map（即是否需要走 backend dispatch）"
   def page_has_backend?(page_id) when is_binary(page_id) do
     case RuntimeConfig.frontend_page(page_id) do
@@ -155,7 +213,11 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
 
   def host_path_for_page(page) when is_map(page) do
     page
-    |> map_get("route")
+    |> map_get("host_route")
+    |> case do
+      nil -> page |> map_get("route")
+      value -> value
+    end
     |> normalize_host_target(page |> map_get("page_id") |> normalize_string())
   end
 
@@ -187,6 +249,22 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
   end
 
   def normalize_host_target(_target, fallback), do: normalize_host_target("", fallback)
+
+  defp interpolate_route_path(path, params) when is_binary(path) and is_map(params) do
+    Regex.replace(~r/:([a-zA-Z0-9_]+)/, path, fn _full, key ->
+      normalize_string(Map.get(params, key, Map.get(params, String.to_atom(key), "")))
+    end)
+  end
+
+  defp interpolate_route_path(path, _params), do: normalize_string(path)
+
+  defp interpolate_route_query(query, params) when is_binary(query) and is_map(params) do
+    Regex.replace(~r/\{\{\s*([^}]+?)\s*\}\}/, query, fn _full, key ->
+      normalize_string(Map.get(params, key, Map.get(params, String.to_atom(key), "")))
+    end)
+  end
+
+  defp interpolate_route_query(query, _params), do: normalize_string(query)
 
   def normalize_map(map) when is_map(map) do
     Enum.into(map, %{}, fn
@@ -298,24 +376,33 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
 
   defp maybe_restore_original_params(normalized, _original), do: normalized
 
-  defp resolve_host_route_path(path) do
+  defp resolve_host_route_path(path, query_params) do
+    normalized_path = normalize_route_lookup_path(path)
     route_map = RuntimeConfig.frontend_route_map()
 
-    case Enum.find_value(route_map, fn route ->
-           match_route(route, path)
-         end) do
+    exact_match =
+      Enum.find_value(route_map, fn route ->
+        match_route(route, path, normalized_path, query_params, :exact)
+      end)
+
+    pattern_match =
+      Enum.find_value(route_map, fn route ->
+        match_route(route, path, normalized_path, query_params, :pattern)
+      end)
+
+    case exact_match || pattern_match do
       %{} = resolved ->
         {:ok, resolved}
 
       _ ->
         page_id =
-          path
+          normalized_path
           |> String.trim_leading("/")
           |> normalize_string()
 
         case RuntimeConfig.frontend_page(page_id) do
           {:ok, _page} ->
-            {:ok, %{page_id: page_id, page_params: %{}, route_path: path}}
+            {:ok, %{page_id: page_id, page_params: %{}, route_path: normalized_path}}
 
           _ ->
             {:error, :page_host_page_not_found}
@@ -323,42 +410,135 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     end
   end
 
-  defp match_route(route, current_path) do
+  defp match_route(route, current_path, normalized_path, query_params, mode) do
     route_path = route |> map_get("path") |> normalize_string()
+    full_path = route |> map_get("full_path") |> normalize_string()
+    route_query = route |> map_get("query") |> normalize_string()
     page_id = route |> map_get("page_id") |> normalize_string()
+    primary_path = primary_route_path(route_path, full_path)
+    candidates = [route_path, full_path] |> Enum.filter(&(&1 != "")) |> Enum.uniq()
 
     cond do
-      route_path == "" or page_id == "" ->
+      primary_path == "" or page_id == "" ->
         nil
 
-      route_path == current_path ->
-        %{page_id: page_id, page_params: %{}, route_path: route_path}
+      not route_query_matches?(route_query, query_params) ->
+        nil
+
+      mode == :exact and (current_path in candidates or normalized_path in candidates) ->
+        %{page_id: page_id, page_params: exact_route_page_params(primary_path), route_path: primary_path}
+
+      mode == :pattern ->
+        Enum.find_value(candidates, fn candidate ->
+          match_route_pattern(candidate, current_path, normalized_path, page_id, primary_path)
+        end)
 
       true ->
-        pattern_segments = split_route_segments(route_path)
-        current_segments = split_route_segments(current_path)
-
-        if length(pattern_segments) != length(current_segments) do
-          nil
-        else
-          Enum.zip(pattern_segments, current_segments)
-          |> Enum.reduce_while(%{}, fn
-            {pattern, current}, acc when pattern == current ->
-              {:cont, acc}
-
-            {":" <> param, current}, acc when param != "" and current != "" ->
-              {:cont, Map.put(acc, param, current)}
-
-            _, _acc ->
-              {:halt, nil}
-          end)
-          |> case do
-            %{} = page_params -> %{page_id: page_id, page_params: page_params, route_path: route_path}
-            _ -> nil
-          end
-        end
+        nil
     end
   end
+
+  def primary_route_path("", full_path), do: normalize_route_lookup_path(full_path)
+  def primary_route_path(route_path, full_path) do
+    case normalize_route_lookup_path(route_path) do
+      "" -> normalize_route_lookup_path(full_path)
+      normalized -> normalized
+    end
+  end
+
+  defp exact_route_page_params(path) do
+    normalized = normalize_route_lookup_path(path)
+
+    cond do
+      normalized == "" ->
+        %{}
+
+      String.ends_with?(normalized, "/new") ->
+        %{"id" => "new"}
+
+      true ->
+        %{}
+    end
+  end
+
+  defp match_route_pattern(pattern, current_path, normalized_path, page_id, primary_path) do
+    Enum.find_value([current_path, normalized_path], fn candidate_path ->
+      pattern_segments = split_route_segments(pattern)
+      current_segments = split_route_segments(candidate_path)
+
+      if length(pattern_segments) != length(current_segments) do
+        nil
+      else
+        Enum.zip(pattern_segments, current_segments)
+        |> Enum.reduce_while(%{}, fn
+          {pattern_segment, current_segment}, acc when pattern_segment == current_segment ->
+            {:cont, acc}
+
+          {":" <> param, current_segment}, acc when param != "" and current_segment != "" ->
+            {:cont, Map.put(acc, param, current_segment)}
+
+          _, _acc ->
+            {:halt, nil}
+        end)
+        |> case do
+          %{} = page_params -> %{page_id: page_id, page_params: page_params, route_path: primary_path}
+          _ -> nil
+        end
+      end
+    end)
+  end
+
+  defp normalize_route_lookup_path(path) when is_binary(path) do
+    normalized = normalize_string(path)
+    prefix = host_prefix()
+    normalized = normalized |> String.split("?", parts: 2) |> hd()
+
+    cond do
+      normalized == "" ->
+        ""
+
+      prefix != "" and String.starts_with?(normalized, prefix <> "/") ->
+        String.trim_leading(normalized, prefix)
+
+      normalized == prefix ->
+        "/"
+
+      String.starts_with?(normalized, "/") ->
+        normalized
+
+      true ->
+        "/" <> normalized
+    end
+  end
+
+  defp normalize_route_lookup_path(_path), do: ""
+
+  defp route_query_matches?("", _query_params), do: true
+
+  defp route_query_matches?(route_query, query_params) when is_map(query_params) do
+    expected = split_query_string(route_query)
+
+    Enum.all?(expected, fn {key, value} ->
+      normalize_string(map_get(query_params, key)) == value
+    end)
+  end
+
+  defp route_query_matches?(_route_query, _query_params), do: false
+
+  defp split_query_string(query) when is_binary(query) do
+    query
+    |> normalize_string()
+    |> String.trim_leading("?")
+    |> String.split("&", trim: true)
+    |> Enum.reduce(%{}, fn part, acc ->
+      case String.split(part, "=", parts: 2) do
+        [key, value] -> Map.put(acc, normalize_string(key), normalize_string(value))
+        [key] -> Map.put(acc, normalize_string(key), "")
+      end
+    end)
+  end
+
+  defp split_query_string(_query), do: %{}
 
   defp split_route_segments(path) when is_binary(path) do
     path
@@ -391,13 +571,14 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     route_path = page |> map_get("route_path") |> normalize_string()
     normalized_page_id = normalize_string(page_id)
 
+    # dsl_file 最后调用 → [new | existing] 排在列表最前面 → 最高优先级 (#1987)
     relative_candidates =
       []
-      |> maybe_add_dsl_candidates(dsl_file)
-      |> maybe_add_behavior_candidates(behavior_file)
-      |> maybe_add_entity_candidates(domain_snake, entity_snake, page_kind)
-      |> maybe_add_route_candidates(route_path)
       |> maybe_add_page_id_candidates(normalized_page_id)
+      |> maybe_add_route_candidates(route_path)
+      |> maybe_add_entity_candidates(domain_snake, entity_snake, page_kind)
+      |> maybe_add_behavior_candidates(behavior_file)
+      |> maybe_add_dsl_candidates(dsl_file)
 
     absolute_candidates =
       Enum.map(relative_candidates, &Path.join(pages_dir(), &1))
@@ -503,7 +684,7 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     end
   end
 
-  defp load_page_data_graphql(path, page_id, _page, params, backend) do
+  defp load_page_data_graphql(path, page_id, page, params, backend) do
     status_defaults = load_status_defaults(path)
     page_contract = load_behavior_contract(path)
     selection = page_selection(path, status_defaults)
@@ -515,20 +696,43 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
       |> Map.put(:selection, selection)
       |> Map.put(:_page_contract, page_contract)
       |> maybe_inject_default_tenant()
+      |> maybe_inject_param_tenant(params)
 
-    case dispatch(backend, page_id, @load_event, params, seed) do
-      {:ok, %{dto: dto, status: status, effects: effects}} ->
-        {:ok,
-         seed
-         |> merge_backend_payload(dto, status)
-         |> apply_load_assigns()
-         |> maybe_put_flash_from_effects(effects)}
+    # new 模式（创建新记录）：跳过 backend load，初始化空 entity assign + editing 状态
+    if Map.get(params, "id") == "new" do
+      entity_snake = page |> map_get("entity_snake") |> normalize_string()
+      new_seed = seed
+        |> Map.put(:editing, true)
+        |> Map.put(:create_mode, true)
+      new_seed = if entity_snake != "" do
+        Map.put_new(new_seed, String.to_atom(entity_snake), %{})
+      else
+        new_seed
+      end
+      {:ok, new_seed |> apply_load_assigns()}
+    else
+      entity_snake = page |> map_get("entity_snake") |> normalize_string()
+      case dispatch(backend, page_id, @load_event, params, seed) do
+        {:ok, %{dto: dto, status: status, effects: effects}} ->
+          result = seed
+           |> merge_backend_payload(dto, status)
+           |> apply_load_assigns()
+           |> maybe_put_flash_from_effects(effects)
+          # entity assign 别名：HEEx 的 contract pipeline 用 entity_snake 做 assign key
+          result = if entity_snake != "" do
+            record = Map.get(result, :record, %{})
+            Map.put_new(result, String.to_atom(entity_snake), record)
+          else
+            result
+          end
+          {:ok, result}
 
-      {:error, reason} ->
-        {:error, {:page_host_load_failed, reason}}
+        {:error, reason} ->
+          {:error, {:page_host_load_failed, reason}}
 
-      other ->
-        {:error, {:page_host_load_failed, other}}
+        other ->
+          {:error, {:page_host_load_failed, other}}
+      end
     end
   end
 
@@ -554,6 +758,14 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     case RuntimeConfig.default_tenant_id() do
       nil -> seed
       tenant_id -> Map.put_new(seed, "tenant_id", tenant_id)
+    end
+  end
+
+  # URL params 中的 tenant_id 优先级高于配置默认值
+  defp maybe_inject_param_tenant(seed, params) do
+    case normalize_string(map_get(normalize_map(params), "tenant_id")) do
+      "" -> seed
+      tenant_id -> Map.put(seed, "tenant_id", tenant_id)
     end
   end
 
@@ -877,12 +1089,17 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
       |> normalize_list()
       |> Enum.reduce(%{}, fn route, acc ->
         page_id = route |> map_get("page_id") |> normalize_string()
-        route_path = route |> map_get("path") |> normalize_string()
+        route_query = route |> map_get("query") |> normalize_string()
+        route_path =
+          primary_route_path(
+            route |> map_get("path") |> normalize_string(),
+            route |> map_get("full_path") |> normalize_string()
+          )
 
         cond do
           page_id == "" or route_path == "" -> acc
           Map.has_key?(acc, page_id) -> acc
-          true -> Map.put(acc, page_id, route_path)
+          true -> Map.put(acc, page_id, %{"path" => route_path, "query" => route_query})
         end
       end)
 
@@ -890,7 +1107,9 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
     |> normalize_list()
     |> Enum.map(fn page ->
       page_id = page |> map_get("page_id") |> normalize_string()
-      route_path = Map.get(routes_by_page, page_id, "/" <> page_id)
+      route_info = Map.get(routes_by_page, page_id, %{"path" => "/" <> page_id, "query" => ""})
+      route_path = route_info |> map_get("path") |> normalize_string()
+      route_query = route_info |> map_get("query") |> normalize_string()
       display_name =
         page
         |> map_get("display_name")
@@ -900,7 +1119,13 @@ defmodule UniboExPocWeb.Generated.PageHostRuntime do
           value -> value
         end
 
-      %{name: display_name, file: page |> map_get("page_type") |> normalize_string(), route: route_path, host_route: normalize_host_target(route_path, page_id)}
+      route_target =
+        case route_query do
+          "" -> route_path
+          value -> route_path <> "?" <> value
+        end
+
+      %{name: display_name, file: page |> map_get("page_type") |> normalize_string(), route: route_path, query: route_query, host_route: normalize_host_target(route_target, page_id)}
     end)
     |> Enum.reject(&(&1.name == ""))
     |> Enum.sort_by(& &1.name)

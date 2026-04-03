@@ -4,7 +4,7 @@
   "domains": {
     "Travel": {
       "input_hashes": {
-        "./models/travel/travel.ubo.yaml": "sha256:56ae32c6a05810dae3518b4b4530702e40dd4550536458315b0ae6421c9bb9f6"
+        "/home/wangbo/document/unibo_ex_poc-feat-2043-validate/travel/./models/travel/travel.ubo.yaml": "sha256:7f84bab1e0f845e9b27a3264299924ef5f0ccca65f1fa06726473622028459ee"
       },
       "output_files": [
         "unibo_ex_poc/travel/flight_offer.ex",
@@ -50,7 +50,13 @@
       "has_policy_entities": false,
       "has_scheduled_tasks": false,
       "has_collaboration_entities": false,
-      "subdomain": "travel"
+      "subdomain": "travel",
+      "cross_domain_refs": [
+        "Delivery",
+        "Ecommerce",
+        "Payment",
+        "Sales"
+      ]
     }
   }
 }

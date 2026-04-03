@@ -16,7 +16,7 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshStateMachine],
+    extensions: [AshGraphql.Resource, AshStateMachine],
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
@@ -75,8 +75,19 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
       public? true
       description "审批模式快照；none 表示跳过审批，self/oa 表示进入审批流"
     end
-    create_timestamp :inserted_at
-    update_timestamp :updated_at
+    attribute :inserted_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      public? true
+    end
+    attribute :updated_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      update_default &DateTime.utc_now/0
+      public? true
+    end
   end
 
   relationships do
@@ -100,7 +111,6 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
       description "Update Travel Refund Order via Update. doc_url: graphql://contract/travel/update_travel_travel_refund_order"
       primary? true
       accept [:refund_reason, :refund_fee, :refund_amount]
-      require_atomic? false
     end
     update :submit do
       description "提交退票申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance
@@ -196,12 +206,6 @@ defmodule UniboExPoc.Travel.TravelRefundOrder do
 
   identities do
     identity :unique_order_status, [:original_order_id, :status]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
 

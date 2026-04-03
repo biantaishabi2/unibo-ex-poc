@@ -4,7 +4,7 @@ defmodule UniboExPoc.Travel.Integrations.TravelOrder.CreateShopCallerContextReso
   @provider "shop_caller_context_resolve"
   @action "create"
   @declared_errors ["shop_context_not_found", "shop_context_timeout"]
-  @request_bindings [{"context.member_id", "member_id"}, {"context.enterprise_id", "enterprise_id"}, {"context.current_shop_id", "current_shop_id"}]
+  @request_bindings [{"context.member_id", "member_id"}, {"context.enterprise_id", "enterprise_id"}, {"attr.host_shop_id", "current_shop_id"}]
   @response_bindings [{"current_shop_id", :host_shop_id}, {"member_id", :host_member_id}, {"enterprise_id", :host_enterprise_id}]
 
   @impl true

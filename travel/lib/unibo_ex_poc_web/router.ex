@@ -1,5 +1,6 @@
 defmodule UniboExPocWeb.Router do
   use UniboExPocWeb, :router
+  import UniboExPocWeb.Generated.CompiledPageRouter
   import UniboExPocWeb.Generated.PageHostRouter
 
   pipeline :browser do
@@ -24,6 +25,7 @@ defmodule UniboExPocWeb.Router do
   end
 
   # UniBO page host 页面路由
+  compiled_page_routes()
   page_host_routes()
 
 

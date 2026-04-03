@@ -162,13 +162,15 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
 
   defp default_page_host_pages_dir do
     static_dir = Path.join(:code.priv_dir(@app), "static")
+    app_pages = Atom.to_string(@app) <> "_pages"
 
     candidates =
       if File.dir?(static_dir) do
         static_dir
         |> File.ls!()
         |> Enum.filter(fn entry ->
-          String.ends_with?(entry, "_pages") and File.dir?(Path.join(static_dir, entry))
+          File.dir?(Path.join(static_dir, entry)) and
+            (String.ends_with?(entry, "_pages") or entry == "pages")
         end)
         |> Enum.sort()
       else
@@ -176,14 +178,17 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
       end
 
     cond do
-      "365_pages" in candidates ->
-        Path.join(static_dir, "365_pages")
+      app_pages in candidates ->
+        Path.join(static_dir, app_pages)
+
+      "pages" in candidates ->
+        Path.join(static_dir, "pages")
 
       length(candidates) == 1 ->
         Path.join(static_dir, hd(candidates))
 
       true ->
-        Path.join(static_dir, "365_pages")
+        Path.join(static_dir, app_pages)
     end
   end
 
@@ -675,12 +680,18 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
           if nested == %{}, do: acc, else: Map.put(acc, normalized_key, nested)
 
         is_list(value) ->
-          normalized_list =
-            value
-            |> Enum.map(&normalize_string/1)
-            |> Enum.reject(&(&1 == ""))
+          cond do
+            Enum.all?(value, &is_map/1) ->
+              normalized = Enum.map(value, &normalize_map/1) |> Enum.reject(&(&1 == %{}))
+              if normalized == [], do: acc, else: Map.put(acc, normalized_key, normalized)
+            true ->
+              normalized_list =
+                value
+                |> Enum.map(&normalize_string/1)
+                |> Enum.reject(&(&1 == ""))
 
-          if normalized_list == [], do: acc, else: Map.put(acc, normalized_key, normalized_list)
+              if normalized_list == [], do: acc, else: Map.put(acc, normalized_key, normalized_list)
+          end
 
         true ->
           normalized_value = normalize_string(value)
@@ -1302,7 +1313,11 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
     conn = Map.get(context, :conn) || Map.get(context, "conn")
 
     case extract_tenant_candidate_from_conn(conn) do
-      nil -> {:ok, nil}
+      nil ->
+        case default_tenant_id() do
+          tid when is_binary(tid) and tid != "" -> {:ok, tid}
+          _ -> {:ok, nil}
+        end
       candidate -> normalize_tenant_candidate(context, candidate)
     end
   end

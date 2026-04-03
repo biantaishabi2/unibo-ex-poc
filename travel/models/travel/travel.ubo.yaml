@@ -12,10 +12,11 @@ entities:
   - name: TravelHotel
     description: 酒店主数据（Travel 层，来源 OFBiz Product）
     source:
-      base: Product
+      base: TravelHotel
       domain: travel
       filter: {product_type_id: TRAVEL_HOTEL}
     aggregate_root: true
+    resource_type: master_data
     attributes:
     - name: id
       type: uuid
@@ -40,9 +41,12 @@ entities:
       constraints:
         values: [active, inactive]
       default: active
-    - name: city_id
-      type: string
-      description: 城市引用（跨域引用 Ecommerce.TravelCity）
+    relationships:
+    - name: city
+      type: belongs_to
+      target: TravelCity
+      target_domain: Ecommerce
+      foreign_key: city_id
     identities:
     - name: unique_hotel_code
       keys: [hotel_code]
@@ -65,7 +69,7 @@ entities:
         op: ref
         args:
         - id
-      on:
+      "on":
       - create
       - update
       description: AUTO_WRITE_ANCHOR
@@ -73,10 +77,11 @@ entities:
   - name: TravelRoomType
     description: 酒店房型主数据（Travel 层，来源 OFBiz ProductFeature）
     source:
-      base: ProductFeature
+      base: TravelRoomType
       domain: travel
       filter: {product_feature_type_id: ROOM_TYPE}
     aggregate_root: true
+    resource_type: master_data
     attributes:
     - name: id
       type: uuid
@@ -128,7 +133,7 @@ entities:
         op: ref
         args:
         - id
-      on:
+      "on":
       - create
       - update
       description: AUTO_WRITE_ANCHOR
@@ -136,10 +141,11 @@ entities:
   - name: TravelAirline
     description: 航司主数据（Travel 层，来源 OFBiz PartyGroup）
     source:
-      base: PartyGroup
+      base: TravelAirline
       domain: travel
       filter: {industry: AIRLINE}
     aggregate_root: true
+    resource_type: master_data
     attributes:
     - name: id
       type: uuid
@@ -186,7 +192,7 @@ entities:
         op: ref
         args:
         - id
-      on:
+      "on":
       - create
       - update
       description: AUTO_WRITE_ANCHOR
@@ -194,10 +200,11 @@ entities:
   - name: TravelCabinClass
     description: 舱位主数据（Travel 层，来源 OFBiz Enumeration）
     source:
-      base: Enumeration
+      base: TravelCabinClass
       domain: travel
       filter: {enum_type_id: CABIN_CLASS}
     aggregate_root: true
+    resource_type: config
     attributes:
     - name: id
       type: uuid
@@ -241,7 +248,7 @@ entities:
         op: ref
         args:
         - id
-      on:
+      "on":
       - create
       - update
       description: AUTO_WRITE_ANCHOR
@@ -249,9 +256,10 @@ entities:
   - name: TravelStaticCodeMapping
     description: 供应商静态码到 Travel 主数据的映射（Travel 层统一适配）
     source:
-      base: DataSource
+      base: TravelStaticCodeMapping
       domain: travel
     aggregate_root: true
+    resource_type: config
     attributes:
     - name: id
       type: uuid
@@ -309,13 +317,28 @@ entities:
         op: ref
         args:
         - id
-      on:
+      "on":
       - create
       - update
       description: AUTO_WRITE_ANCHOR
   - name: HotelOffer
     description: 酒店可售 offer，承载房型、价计划、价态和可售规则快照
     aggregate_root: true
+    state_machine:
+      field: sale_status
+      transitions:
+        - from: draft
+          to: active
+          event: activate
+        - from: inactive
+          to: active
+          event: activate
+        - from: active
+          to: inactive
+          event: deactivate
+        - from: active
+          to: expired
+          event: expire
     tenancy:
       strategy: attribute
       attribute: tenant_id
@@ -398,10 +421,13 @@ entities:
       - name: updated_at
         type: datetime
         generated: true
-      - name: city_ref_id
-        type: string
-        description: Core 旅行城市主数据引用（跨域引用 Ecommerce.TravelCity）
     relationships:
+      - name: city_ref
+        type: belongs_to
+        target: TravelCity
+        target_domain: Ecommerce
+        foreign_key: city_ref_id
+        description: Core 旅行城市主数据引用
       - name: hotel_ref
         type: belongs_to
         target: TravelHotel
@@ -447,19 +473,19 @@ entities:
     validations:
       - rule: present
         field: tenant_id
-        on: [create]
+        "on": [create]
       - rule: present
         field: supplier_code
-        on: [create]
+        "on": [create]
       - rule: present
         field: hotel_code
-        on: [create]
+        "on": [create]
       - rule: present
         field: room_type_code
-        on: [create]
+        "on": [create]
       - rule: present
         field: rate_plan_code
-        on: [create]
+        "on": [create]
       - rule: compare
         field: listed_price
         params: {greater_than_or_equal_to: 0}
@@ -475,40 +501,40 @@ entities:
       - rule: one_of
         field: sale_status
         params: {values: ["draft", "inactive"]}
-        on: [activate]
+        "on": [activate]
         message: 只有草稿或停用中的 offer 可以 activate
       - rule: one_of
         field: sale_status
         params: {values: ["active"]}
-        on: [deactivate, expire]
+        "on": [deactivate, expire]
         message: 只有 active 状态的 offer 可以 deactivate 或 expire
     changes:
       - effect: set_attribute
         field: sale_status
         value: "active"
-        on: [activate]
+        "on": [activate]
       - effect: set_attribute
         field: sale_status
         value: "inactive"
-        on: [deactivate]
+        "on": [deactivate]
       - effect: set_attribute
         field: sale_status
         value: "expired"
-        on: [expire]
+        "on": [expire]
       - effect: set_attribute
         field: id
         expr:
           op: ref
           args:
             - id
-        on: [create, update, activate, deactivate, expire, destroy]
+        "on": [create, update, activate, deactivate, expire, destroy]
         description: AUTO_WRITE_ANCHOR
     events:
-      - on: activate
+      - "on": activate
         topic: travel.catalog.hotel_offer.activated
-      - on: deactivate
+      - "on": deactivate
         topic: travel.catalog.hotel_offer.deactivated
-      - on: expire
+      - "on": expire
         topic: travel.catalog.hotel_offer.expired
     scenarios:
       - "create 创建 hotel offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架"
@@ -542,6 +568,21 @@ entities:
   - name: FlightOffer
     description: 机票可售 offer，承载航班、舱位、票规和库存快照
     aggregate_root: true
+    state_machine:
+      field: sale_status
+      transitions:
+        - from: draft
+          to: active
+          event: activate
+        - from: inactive
+          to: active
+          event: activate
+        - from: active
+          to: inactive
+          event: deactivate
+        - from: active
+          to: expired
+          event: expire
     tenancy:
       strategy: attribute
       attribute: tenant_id
@@ -624,13 +665,19 @@ entities:
       - name: updated_at
         type: datetime
         generated: true
-      - name: departure_airport_ref_id
-        type: string
-        description: Travel 出发机场主数据引用（跨域引用 Ecommerce.TravelAirport）
-      - name: arrival_airport_ref_id
-        type: string
-        description: Travel 到达机场主数据引用（跨域引用 Ecommerce.TravelAirport）
     relationships:
+      - name: departure_airport_ref
+        type: belongs_to
+        target: TravelAirport
+        target_domain: Ecommerce
+        foreign_key: departure_airport_ref_id
+        description: Travel 出发机场主数据引用
+      - name: arrival_airport_ref
+        type: belongs_to
+        target: TravelAirport
+        target_domain: Ecommerce
+        foreign_key: arrival_airport_ref_id
+        description: Travel 到达机场主数据引用
       - name: airline_ref
         type: belongs_to
         target: TravelAirline
@@ -676,25 +723,25 @@ entities:
     validations:
       - rule: present
         field: tenant_id
-        on: [create]
+        "on": [create]
       - rule: present
         field: supplier_code
-        on: [create]
+        "on": [create]
       - rule: present
         field: itinerary_code
-        on: [create]
+        "on": [create]
       - rule: present
         field: flight_no
-        on: [create]
+        "on": [create]
       - rule: present
         field: departure_airport_code
-        on: [create]
+        "on": [create]
       - rule: present
         field: arrival_airport_code
-        on: [create]
+        "on": [create]
       - rule: present
         field: cabin_class
-        on: [create]
+        "on": [create]
       - rule: compare
         field: listed_price
         params: {greater_than_or_equal_to: 0}
@@ -710,40 +757,40 @@ entities:
       - rule: one_of
         field: sale_status
         params: {values: ["draft", "inactive"]}
-        on: [activate]
+        "on": [activate]
         message: 只有草稿或停用中的 offer 可以 activate
       - rule: one_of
         field: sale_status
         params: {values: ["active"]}
-        on: [deactivate, expire]
+        "on": [deactivate, expire]
         message: 只有 active 状态的 offer 可以 deactivate 或 expire
     changes:
       - effect: set_attribute
         field: sale_status
         value: "active"
-        on: [activate]
+        "on": [activate]
       - effect: set_attribute
         field: sale_status
         value: "inactive"
-        on: [deactivate]
+        "on": [deactivate]
       - effect: set_attribute
         field: sale_status
         value: "expired"
-        on: [expire]
+        "on": [expire]
       - effect: set_attribute
         field: id
         expr:
           op: ref
           args:
             - id
-        on: [create, update, activate, deactivate, expire, destroy]
+        "on": [create, update, activate, deactivate, expire, destroy]
         description: AUTO_WRITE_ANCHOR
     events:
-      - on: activate
+      - "on": activate
         topic: travel.catalog.flight_offer.activated
-      - on: deactivate
+      - "on": deactivate
         topic: travel.catalog.flight_offer.deactivated
-      - on: expire
+      - "on": expire
         topic: travel.catalog.flight_offer.expired
     scenarios:
       - "create 创建 flight offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架"
@@ -777,6 +824,21 @@ entities:
   - name: VacationOffer
     description: 度假可售 offer，承载套餐、出发日期和预订规则快照
     aggregate_root: true
+    state_machine:
+      field: sale_status
+      transitions:
+        - from: draft
+          to: active
+          event: activate
+        - from: inactive
+          to: active
+          event: activate
+        - from: active
+          to: inactive
+          event: deactivate
+        - from: active
+          to: expired
+          event: expire
     tenancy:
       strategy: attribute
       attribute: tenant_id
@@ -858,13 +920,19 @@ entities:
       - name: updated_at
         type: datetime
         generated: true
-      - name: departure_city_ref_id
-        type: string
-        description: Core 出发城市主数据引用（跨域引用 Ecommerce.TravelCity）
-      - name: destination_ref_id
-        type: string
-        description: Core 目的地主数据引用（跨域引用 Ecommerce.TravelCity）
     relationships:
+      - name: departure_city_ref
+        type: belongs_to
+        target: TravelCity
+        target_domain: Ecommerce
+        foreign_key: departure_city_ref_id
+        description: Core 出发城市主数据引用
+      - name: destination_ref
+        type: belongs_to
+        target: TravelCity
+        target_domain: Ecommerce
+        foreign_key: destination_ref_id
+        description: Core 目的地主数据引用
       - name: orders
         type: has_many
         target: TravelOrder
@@ -900,22 +968,22 @@ entities:
     validations:
       - rule: present
         field: tenant_id
-        on: [create]
+        "on": [create]
       - rule: present
         field: supplier_code
-        on: [create]
+        "on": [create]
       - rule: present
         field: package_code
-        on: [create]
+        "on": [create]
       - rule: present
         field: package_name
-        on: [create]
+        "on": [create]
       - rule: present
         field: departure_city_code
-        on: [create]
+        "on": [create]
       - rule: present
         field: destination_code
-        on: [create]
+        "on": [create]
       - rule: compare
         field: listed_price
         params: {greater_than_or_equal_to: 0}
@@ -931,40 +999,40 @@ entities:
       - rule: one_of
         field: sale_status
         params: {values: ["draft", "inactive"]}
-        on: [activate]
+        "on": [activate]
         message: 只有草稿或停用中的 offer 可以 activate
       - rule: one_of
         field: sale_status
         params: {values: ["active"]}
-        on: [deactivate, expire]
+        "on": [deactivate, expire]
         message: 只有 active 状态的 offer 可以 deactivate 或 expire
     changes:
       - effect: set_attribute
         field: sale_status
         value: "active"
-        on: [activate]
+        "on": [activate]
       - effect: set_attribute
         field: sale_status
         value: "inactive"
-        on: [deactivate]
+        "on": [deactivate]
       - effect: set_attribute
         field: sale_status
         value: "expired"
-        on: [expire]
+        "on": [expire]
       - effect: set_attribute
         field: id
         expr:
           op: ref
           args:
             - id
-        on: [create, update, activate, deactivate, expire, destroy]
+        "on": [create, update, activate, deactivate, expire, destroy]
         description: AUTO_WRITE_ANCHOR
     events:
-      - on: activate
+      - "on": activate
         topic: travel.catalog.vacation_offer.activated
-      - on: deactivate
+      - "on": deactivate
         topic: travel.catalog.vacation_offer.deactivated
-      - on: expire
+      - "on": expire
         topic: travel.catalog.vacation_offer.expired
     scenarios:
       - "create 创建 vacation offer -> update 更新价格库存 -> activate 上架 -> deactivate 下架"
@@ -998,6 +1066,21 @@ entities:
   - name: TrainOffer
     description: 火车票可售 offer，承载车次、席别、候补和退改规则快照
     aggregate_root: true
+    state_machine:
+      field: sale_status
+      transitions:
+        - from: draft
+          to: active
+          event: activate
+        - from: inactive
+          to: active
+          event: activate
+        - from: active
+          to: inactive
+          event: deactivate
+        - from: active
+          to: expired
+          event: expire
     tenancy:
       strategy: attribute
       attribute: tenant_id
@@ -1103,13 +1186,19 @@ entities:
       - name: updated_at
         type: datetime
         generated: true
-      - name: departure_station_ref_id
-        type: string
-        description: Travel 出发站主数据引用（跨域引用 Ecommerce.TravelStation）
-      - name: arrival_station_ref_id
-        type: string
-        description: Travel 到达站主数据引用（跨域引用 Ecommerce.TravelStation）
     relationships:
+      - name: departure_station_ref
+        type: belongs_to
+        target: TravelStation
+        target_domain: Ecommerce
+        foreign_key: departure_station_ref_id
+        description: Travel 出发站主数据引用
+      - name: arrival_station_ref
+        type: belongs_to
+        target: TravelStation
+        target_domain: Ecommerce
+        foreign_key: arrival_station_ref_id
+        description: Travel 到达站主数据引用
       - name: orders
         type: has_many
         target: TravelOrder
@@ -1145,25 +1234,25 @@ entities:
     validations:
       - rule: present
         field: tenant_id
-        on: [create]
+        "on": [create]
       - rule: present
         field: supplier_code
-        on: [create]
+        "on": [create]
       - rule: present
         field: train_no
-        on: [create]
+        "on": [create]
       - rule: present
         field: departure_station_code
-        on: [create]
+        "on": [create]
       - rule: present
         field: arrival_station_code
-        on: [create]
+        "on": [create]
       - rule: present
         field: seat_class
-        on: [create]
+        "on": [create]
       - rule: present
         field: seat_code
-        on: [create]
+        "on": [create]
       - rule: compare
         field: listed_price
         params: {greater_than_or_equal_to: 0}
@@ -1175,40 +1264,40 @@ entities:
       - rule: one_of
         field: sale_status
         params: {values: ["draft", "inactive"]}
-        on: [activate]
+        "on": [activate]
         message: 只有草稿或停用中的 offer 可以 activate
       - rule: one_of
         field: sale_status
         params: {values: ["active"]}
-        on: [deactivate, expire]
+        "on": [deactivate, expire]
         message: 只有 active 状态的 offer 可以 deactivate 或 expire
     changes:
       - effect: set_attribute
         field: sale_status
         value: "active"
-        on: [activate]
+        "on": [activate]
       - effect: set_attribute
         field: sale_status
         value: "inactive"
-        on: [deactivate]
+        "on": [deactivate]
       - effect: set_attribute
         field: sale_status
         value: "expired"
-        on: [expire]
+        "on": [expire]
       - effect: set_attribute
         field: id
         expr:
           op: ref
           args:
             - id
-        on: [create, update, activate, deactivate, expire, destroy]
+        "on": [create, update, activate, deactivate, expire, destroy]
         description: AUTO_WRITE_ANCHOR
     events:
-      - on: activate
+      - "on": activate
         topic: travel.catalog.train_offer.activated
-      - on: deactivate
+      - "on": deactivate
         topic: travel.catalog.train_offer.deactivated
-      - on: expire
+      - "on": expire
         topic: travel.catalog.train_offer.expired
     scenarios:
       - "create 创建 train offer -> update 更新票价规则和候补能力 -> activate 上架 -> deactivate 下架"
@@ -1384,12 +1473,6 @@ entities:
       - name: updated_at
         type: datetime
         generated: true
-      - name: customer_id
-        type: string
-        description: 买家（跨域引用 Sales.Customer）
-      - name: payment_id
-        type: string
-        description: 关联的支付事务（跨域引用 Payment.Payment）
     relationships:
       - name: hotel_offer
         type: belongs_to
@@ -1416,6 +1499,18 @@ entities:
         target: TravelFulfillment
         foreign_key: travel_order_id
         description: 订单履约记录
+      - name: customer
+        type: belongs_to
+        target: Customer
+        target_domain: Sales
+        foreign_key: customer_id
+        description: 买家（来自 Sales 域）
+      - name: payment
+        type: belongs_to
+        target: Payment
+        target_domain: Payment
+        foreign_key: payment_id
+        description: 关联的支付事务（来自 Payment 域）
     identities:
       - name: unique_order_no
         keys: [order_no]
@@ -1480,51 +1575,51 @@ entities:
     validations:
       - rule: present
         field: tenant_id
-        on: [create]
+        "on": [create]
       - rule: present
         field: order_no
-        on: [create]
+        "on": [create]
       - rule: present
         field: customer_id
-        on: [create]
+        "on": [create]
       - rule: present
         field: contact_name
-        on: [create]
+        "on": [create]
       - rule: present
         field: contact_phone
-        on: [create]
+        "on": [create]
       - rule: exactly_one_of
         params:
           fields: [hotel_offer_id, flight_offer_id, vacation_offer_id, train_offer_id]
-        on: [create]
+        "on": [create]
         message: hotel_offer_id、flight_offer_id、vacation_offer_id、train_offer_id 必须四选一
       - rule: present
         field: hotel_offer_id
         where:
           op: eq
           args: [{op: ref, args: [product_type]}, hotel]
-        on: [create]
+        "on": [create]
         message: hotel 订单必须绑定 hotel_offer_id
       - rule: present
         field: flight_offer_id
         where:
           op: eq
           args: [{op: ref, args: [product_type]}, flight]
-        on: [create]
+        "on": [create]
         message: flight 订单必须绑定 flight_offer_id
       - rule: present
         field: vacation_offer_id
         where:
           op: eq
           args: [{op: ref, args: [product_type]}, vacation]
-        on: [create]
+        "on": [create]
         message: vacation 订单必须绑定 vacation_offer_id
       - rule: present
         field: train_offer_id
         where:
           op: eq
           args: [{op: ref, args: [product_type]}, train]
-        on: [create]
+        "on": [create]
         message: train 订单必须绑定 train_offer_id
       - rule: compare
         field: traveler_count
@@ -1545,114 +1640,114 @@ entities:
       - rule: one_of
         field: status
         params: {values: ["draft"]}
-        on: [confirm_quote]
+        "on": [confirm_quote]
         message: 只有 draft 订单可以 confirm_quote
       - rule: one_of
         field: status
         params: {values: ["quoted"]}
-        on: [submit_order, submit_waitlist]
+        "on": [submit_order, submit_waitlist]
         message: 只有 quoted 订单可以提交普通购票或候补
       - rule: one_of
         field: status
         params: {values: ["submitted"]}
-        on: [mark_payment_succeeded, mark_order_failed]
+        "on": [mark_payment_succeeded, mark_order_failed]
         message: 只有 submitted 订单可以进入支付成功或失败结果
       - rule: one_of
         field: status
         params: {values: ["booking_pending"]}
-        on: [mark_booked, fulfill_waitlist, cancel_waitlist]
+        "on": [mark_booked, fulfill_waitlist, cancel_waitlist]
         message: 只有 booking_pending 订单可以完成出票、兑现候补或取消候补
       - rule: one_of
         field: status
         params: {values: ["booked"]}
-        on: [mark_completed, request_cancel, request_change]
+        "on": [mark_completed, request_cancel, request_change]
         message: 只有 booked 订单可以完成、取消或改签
       - rule: one_of
         field: status
         params: {values: ["cancel_pending"]}
-        on: [execute_cancel, cancel_cancel_request]
+        "on": [execute_cancel, cancel_cancel_request]
         message: 只有 cancel_pending 订单可以 execute_cancel 或 cancel_cancel_request
       - rule: one_of
         field: waitlist_status
         params: {values: ["pending"]}
-        on: [fulfill_waitlist, cancel_waitlist]
+        "on": [fulfill_waitlist, cancel_waitlist]
         message: 只有 waitlist_pending 的订单可以兑现或取消候补
       - rule: one_of
         field: change_status
         params: {values: ["pending"]}
-        on: [confirm_change]
+        "on": [confirm_change]
         message: 只有 change_pending 的订单可以 confirm_change
       - rule: present
         field: original_order_ref
-        on: [request_change, confirm_change]
+        "on": [request_change, confirm_change]
     changes:
       - effect: set_attribute
         field: status
         value: "quoted"
-        on: [confirm_quote]
+        "on": [confirm_quote]
       - effect: set_attribute
         field: status
         value: "submitted"
-        on: [submit_order, submit_waitlist]
+        "on": [submit_order, submit_waitlist]
       - effect: set_attribute
         field: booking_mode
         value: "waitlist"
-        on: [submit_waitlist]
+        "on": [submit_waitlist]
       - effect: set_attribute
         field: waitlist_status
         value: "pending"
-        on: [submit_waitlist]
+        "on": [submit_waitlist]
       - effect: set_attribute
         field: status
         value: "booking_pending"
-        on: [mark_payment_succeeded]
+        "on": [mark_payment_succeeded]
       - effect: set_attribute
         field: status
         value: "booked"
-        on: [mark_booked, fulfill_waitlist]
+        "on": [mark_booked, fulfill_waitlist]
       - effect: set_attribute
         field: waitlist_status
         value: "fulfilled"
-        on: [fulfill_waitlist]
+        "on": [fulfill_waitlist]
       - effect: set_attribute
         field: status
         value: "completed"
-        on: [mark_completed]
+        "on": [mark_completed]
       - effect: set_attribute
         field: status
         value: "cancel_pending"
-        on: [request_cancel]
+        "on": [request_cancel]
       - effect: set_attribute
         field: status
         value: "cancelled"
-        on: [cancel_waitlist, execute_cancel]
+        "on": [cancel_waitlist, execute_cancel]
       - effect: set_attribute
         field: waitlist_status
         value: "cancelled"
-        on: [cancel_waitlist]
+        "on": [cancel_waitlist]
       - effect: set_attribute
         field: status
         value: "booked"
-        on: [cancel_cancel_request]
+        "on": [cancel_cancel_request]
       - effect: set_attribute
         field: change_status
         value: "pending"
-        on: [request_change]
+        "on": [request_change]
       - effect: set_attribute
         field: change_status
         value: "changed"
-        on: [confirm_change]
+        "on": [confirm_change]
       - effect: set_attribute
         field: status
         value: "failed"
-        on: [mark_order_failed]
+        "on": [mark_order_failed]
       - effect: set_attribute
         field: id
         expr:
           op: ref
           args:
             - id
-        on: [create, update, confirm_quote, submit_order, submit_waitlist, mark_payment_succeeded, mark_booked, fulfill_waitlist, mark_completed, request_cancel, cancel_waitlist, execute_cancel, cancel_cancel_request, request_change, confirm_change, mark_order_failed, destroy]
+        "on": [create, update, confirm_quote, submit_order, submit_waitlist, mark_payment_succeeded, mark_booked, fulfill_waitlist, mark_completed, request_cancel, cancel_waitlist, execute_cancel, cancel_cancel_request, request_change, confirm_change, mark_order_failed, destroy]
         description: AUTO_WRITE_ANCHOR
     calculations:
       - name: payable_amount
@@ -1664,27 +1759,27 @@ entities:
             - {op: ref, args: [total_amount]}
             - {op: ref, args: [points_deduction_amount]}
     events:
-      - on: submit_order
+      - "on": submit_order
         topic: travel.order.submitted
-      - on: submit_waitlist
+      - "on": submit_waitlist
         topic: travel.order.waitlist_submitted
-      - on: mark_payment_succeeded
+      - "on": mark_payment_succeeded
         topic: travel.order.payment_confirmed
-      - on: fulfill_waitlist
+      - "on": fulfill_waitlist
         topic: travel.order.waitlist_fulfilled
-      - on: cancel_waitlist
+      - "on": cancel_waitlist
         topic: travel.order.waitlist_cancelled
-      - on: request_cancel
+      - "on": request_cancel
         topic: travel.order.cancel_requested
-      - on: execute_cancel
+      - "on": execute_cancel
         topic: travel.order.cancelled
-      - on: confirm_change
+      - "on": confirm_change
         topic: travel.order.change_confirmed
-      - on: mark_order_failed
+      - "on": mark_order_failed
         topic: travel.order.failed
     integrations:
       - name: shop_caller_context_resolve
-        on: [create]
+        "on": [create]
         mode: sync
         request:
           member_id: string
@@ -1700,7 +1795,7 @@ entities:
               to: member_id
             - from: context.enterprise_id
               to: enterprise_id
-            - from: context.current_shop_id
+            - from: attr.host_shop_id
               to: current_shop_id
           response:
             - from: payload.current_shop_id
@@ -1716,7 +1811,7 @@ entities:
             retryable: true
         description: 创建订单时调用宿主 shop caller context 契约，校验并回填当前商城/会员上下文
       - name: shop_eligibility_quote
-        on: [confirm_quote]
+        "on": [confirm_quote]
         mode: sync
         request:
           member_id: string
@@ -1765,7 +1860,7 @@ entities:
             retryable: true
         description: 报价确认阶段调用宿主 shop eligibility/quote 契约，返回可支付性与积分策略语义
       - name: payment_capture
-        on: [submit_order, submit_waitlist]
+        "on": [submit_order, submit_waitlist]
         mode: sync
         request:
           order_id: string
@@ -1808,7 +1903,7 @@ entities:
             retryable: false
         description: 提交订单后调用宿主 shop payment execution 契约，失败时按声明错误码驱动补偿路径
       - name: supplier_booking_submit
-        on: [mark_payment_succeeded]
+        "on": [mark_payment_succeeded]
         mode: async
         request:
           order_no: string
@@ -1826,7 +1921,7 @@ entities:
             retryable: false
         description: 支付成功后异步提交供应商预订，失败时回滚 booking_pending 并转失败处理
       - name: create_approval_instance
-        on: [request_cancel]
+        "on": [request_cancel]
         mode: sync
         request:
           subject_type: string
@@ -1983,9 +2078,6 @@ entities:
       - name: updated_at
         type: datetime
         generated: true
-      - name: shipment_id
-        type: string
-        description: 关联的物流发货单（跨域引用 Delivery.Shipment）
     relationships:
       - name: order
         type: belongs_to
@@ -1993,6 +2085,12 @@ entities:
         foreign_key: travel_order_id
         required: true
         description: 对应订单
+      - name: shipment
+        type: belongs_to
+        target: Shipment
+        target_domain: Delivery
+        foreign_key: shipment_id
+        description: 关联的物流发货单（可选，来自 Delivery 域）
     actions:
       - name: create_fulfillment
         type: create
@@ -2029,74 +2127,74 @@ entities:
     validations:
       - rule: present
         field: tenant_id
-        on: [create_fulfillment]
+        "on": [create_fulfillment]
       - rule: one_of
         field: status
         params: {values: ["pending"]}
-        on: [confirm_booking, fail_fulfillment, cancel_fulfillment]
+        "on": [confirm_booking, fail_fulfillment, cancel_fulfillment]
         message: 只有 pending 履约可以确认、失败或取消
       - rule: one_of
         field: status
         params: {values: ["confirmed"]}
-        on: [issue_voucher_or_ticket]
+        "on": [issue_voucher_or_ticket]
         message: 只有 confirmed 履约可以 issue_voucher_or_ticket
       - rule: one_of
         field: status
         params: {values: ["issued"]}
-        on: [mark_in_use]
+        "on": [mark_in_use]
         message: 只有 issued 履约可以 mark_in_use
       - rule: one_of
         field: status
         params: {values: ["issued", "in_use"]}
-        on: [complete_fulfillment]
+        "on": [complete_fulfillment]
         message: 只有 issued 或 in_use 履约可以 complete_fulfillment
     changes:
       - effect: set_attribute
         field: status
         value: "confirmed"
-        on: [confirm_booking]
+        "on": [confirm_booking]
       - effect: set_attribute
         field: status
         value: "issued"
-        on: [issue_voucher_or_ticket]
+        "on": [issue_voucher_or_ticket]
       - effect: set_attribute
         field: status
         value: "in_use"
-        on: [mark_in_use]
+        "on": [mark_in_use]
       - effect: set_attribute
         field: status
         value: "completed"
-        on: [complete_fulfillment]
+        "on": [complete_fulfillment]
       - effect: set_attribute
         field: status
         value: "cancelled"
-        on: [cancel_fulfillment]
+        "on": [cancel_fulfillment]
       - effect: set_attribute
         field: status
         value: "failed"
-        on: [fail_fulfillment]
+        "on": [fail_fulfillment]
       - effect: set_attribute
         field: id
         expr:
           op: ref
           args:
             - id
-        on: [create_fulfillment, update, confirm_booking, issue_voucher_or_ticket, mark_in_use, complete_fulfillment, cancel_fulfillment, fail_fulfillment, destroy]
+        "on": [create_fulfillment, update, confirm_booking, issue_voucher_or_ticket, mark_in_use, complete_fulfillment, cancel_fulfillment, fail_fulfillment, destroy]
         description: AUTO_WRITE_ANCHOR
     events:
-      - on: confirm_booking
+      - "on": confirm_booking
         topic: travel.fulfillment.confirmed
-      - on: issue_voucher_or_ticket
+      - "on": issue_voucher_or_ticket
         topic: travel.fulfillment.issued
-      - on: complete_fulfillment
+      - "on": complete_fulfillment
         topic: travel.fulfillment.completed
-      - on: cancel_fulfillment
+      - "on": cancel_fulfillment
         topic: travel.fulfillment.cancelled
-      - on: fail_fulfillment
+      - "on": fail_fulfillment
         topic: travel.fulfillment.failed
     integrations:
       - name: supplier_confirm_booking
-        on: [confirm_booking]
+        "on": [confirm_booking]
         mode: sync
         request:
           travel_order_id: uuid
@@ -2113,7 +2211,7 @@ entities:
             retryable: true
         description: 预订确认同步契约，前置依赖 TravelOrder 已完成 shop_caller_context_resolve、shop_eligibility_quote、payment_capture；失败时需保留 pending 并可重试或转 fail_fulfillment
       - name: supplier_issue_document
-        on: [issue_voucher_or_ticket]
+        "on": [issue_voucher_or_ticket]
         mode: sync
         request:
           travel_order_id: uuid
@@ -2130,7 +2228,7 @@ entities:
             retryable: true
         description: 发券出票同步契约，失败时走 fail_fulfillment 并记录 failure_reason
       - name: supplier_cancel_booking
-        on: [cancel_fulfillment]
+        "on": [cancel_fulfillment]
         mode: async
         request:
           travel_order_id: uuid
@@ -2194,9 +2292,6 @@ entities:
   - name: TravelChangeOrder
     description: 改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态；审批通过 overlay on Approvals 域
     aggregate_root: true
-    tenancy:
-      strategy: attribute
-      attribute: tenant_id
     state_machine:
       initial_state: pending
       state_attribute: status
@@ -2219,10 +2314,6 @@ entities:
         type: uuid
         primary_key: true
         generated: true
-      - name: tenant_id
-        type: uuid
-        required: true
-        description: 租户 ID
       - name: change_reason
         type: string
         description: 改签原因
@@ -2261,12 +2352,12 @@ entities:
         description: 被改签的原始订单
     identities:
       - name: unique_order_status
-        keys: [tenant_id, original_order_id, status]
+        keys: [original_order_id, status]
     actions:
       - name: create
         type: create
         primary: true
-        accept: [tenant_id, original_order_id, change_reason, price_difference, change_fee, new_offer_id, approval_mode]
+        accept: [original_order_id, change_reason, price_difference, change_fee, new_offer_id, approval_mode]
       - name: read
         type: read
         primary: true
@@ -2293,62 +2384,62 @@ entities:
     validations:
       - rule: present
         field: original_order_id
-        on: [create]
+        "on": [create]
       - rule: one_of
         field: status
         params: {values: ["pending"]}
-        on: [submit, confirm_change, reject_change]
+        "on": [submit, confirm_change, reject_change]
         message: 只有 pending 改签单可以提交或由审批触发
       - rule: one_of
         field: status
         params: {values: ["approved"]}
-        on: [complete]
+        "on": [complete]
         message: 只有 approved 改签单可以完成
       - rule: one_of
         field: approval_mode
         params: {values: ["none"]}
-        on: [complete_direct]
+        "on": [complete_direct]
         message: 只有关闭审批的改签单可以直接完成
       - rule: one_of
         field: status
         params: {values: ["pending"]}
-        on: [complete_direct]
+        "on": [complete_direct]
         message: 关闭审批时，pending 改签单可直接完成
     changes:
       - effect: set_attribute
         field: status
         value: "approved"
-        on: [confirm_change]
+        "on": [confirm_change]
       - effect: set_attribute
         field: status
         value: "rejected"
-        on: [reject_change]
+        "on": [reject_change]
       - effect: set_attribute
         field: status
         value: "completed"
-        on: [complete]
+        "on": [complete]
       - effect: set_attribute
         field: status
         value: "completed"
-        on: [complete_direct]
+        "on": [complete_direct]
       - effect: set_attribute
         field: id
         expr:
           op: ref
           args:
             - id
-        on: [create, submit, confirm_change, reject_change, complete, complete_direct]
+        "on": [create, submit, confirm_change, reject_change, complete, complete_direct]
         description: AUTO_WRITE_ANCHOR
     events:
-      - on: submit
+      - "on": submit
         topic: travel.change_order.submitted
-      - on: confirm_change
+      - "on": confirm_change
         topic: travel.change_order.approved
-      - on: reject_change
+      - "on": reject_change
         topic: travel.change_order.rejected
-      - on: complete
+      - "on": complete
         topic: travel.change_order.completed
-      - on: complete_direct
+      - "on": complete_direct
         topic: travel.change_order.completed
     event_consumers:
       # 审批通过后执行改签确认
@@ -2361,7 +2452,7 @@ entities:
         source_entity: ApprovalInstance
     integrations:
       - name: create_approval_instance
-        on: [submit]
+        "on": [submit]
         mode: sync
         request:
           subject_type: string
@@ -2494,62 +2585,62 @@ entities:
     validations:
       - rule: present
         field: original_order_id
-        on: [create]
+        "on": [create]
       - rule: one_of
         field: status
         params: {values: ["pending"]}
-        on: [submit, confirm_refund, reject_refund]
+        "on": [submit, confirm_refund, reject_refund]
         message: 只有 pending 退票单可以提交或由审批触发
       - rule: one_of
         field: status
         params: {values: ["approved"]}
-        on: [refund]
+        "on": [refund]
         message: 只有 approved 退票单可以执行退款
       - rule: one_of
         field: approval_mode
         params: {values: ["none"]}
-        on: [refund_direct]
+        "on": [refund_direct]
         message: 只有关闭审批的退票单可以直接退款
       - rule: one_of
         field: status
         params: {values: ["pending"]}
-        on: [refund_direct]
+        "on": [refund_direct]
         message: 关闭审批时，pending 退票单可直接退款
     changes:
       - effect: set_attribute
         field: status
         value: "approved"
-        on: [confirm_refund]
+        "on": [confirm_refund]
       - effect: set_attribute
         field: status
         value: "rejected"
-        on: [reject_refund]
+        "on": [reject_refund]
       - effect: set_attribute
         field: status
         value: "refunded"
-        on: [refund]
+        "on": [refund]
       - effect: set_attribute
         field: status
         value: "refunded"
-        on: [refund_direct]
+        "on": [refund_direct]
       - effect: set_attribute
         field: id
         expr:
           op: ref
           args:
             - id
-        on: [create, submit, confirm_refund, reject_refund, refund, refund_direct]
+        "on": [create, submit, confirm_refund, reject_refund, refund, refund_direct]
         description: AUTO_WRITE_ANCHOR
     events:
-      - on: submit
+      - "on": submit
         topic: travel.refund_order.submitted
-      - on: confirm_refund
+      - "on": confirm_refund
         topic: travel.refund_order.approved
-      - on: reject_refund
+      - "on": reject_refund
         topic: travel.refund_order.rejected
-      - on: refund
+      - "on": refund
         topic: travel.refund_order.refunded
-      - on: refund_direct
+      - "on": refund_direct
         topic: travel.refund_order.refunded
     event_consumers:
       # 审批通过后确认退票
@@ -2562,7 +2653,7 @@ entities:
         source_entity: ApprovalInstance
     integrations:
       - name: create_approval_instance
-        on: [submit]
+        "on": [submit]
         mode: sync
         request:
           subject_type: string
@@ -2606,6 +2697,16 @@ entities:
   - name: TravelPolicy
     description: 差旅标准政策，定义不同企业、职级、城市等级下的差旅费用上限与超标策略
     aggregate_root: true
+    resource_type: config
+    state_machine:
+      field: is_active
+      transitions:
+        - from: "false"
+          to: "true"
+          event: activate
+        - from: "true"
+          to: "false"
+          event: deactivate
     attributes:
       - name: id
         type: uuid
@@ -2710,22 +2811,22 @@ entities:
     validations:
       - rule: present
         field: policy_name
-        on: [create]
+        "on": [create]
       - rule: present
         field: product_type
-        on: [create]
+        "on": [create]
       - rule: present
         field: exceed_strategy
-        on: [create]
+        "on": [create]
       - rule: one_of
         field: is_active
         params: {values: [false]}
-        on: [activate]
+        "on": [activate]
         message: 只有未启用的政策可以激活
       - rule: one_of
         field: is_active
         params: {values: [true]}
-        on: [deactivate]
+        "on": [deactivate]
         message: 只有已启用的政策可以停用
       - rule: compare
         field: personal_pay_ratio
@@ -2735,23 +2836,23 @@ entities:
       - effect: set_attribute
         field: is_active
         value: true
-        on: [activate]
+        "on": [activate]
       - effect: set_attribute
         field: is_active
         value: false
-        on: [deactivate]
+        "on": [deactivate]
       - effect: set_attribute
         field: id
         expr:
           op: ref
           args:
             - id
-        on: [create, update, activate, deactivate]
+        "on": [create, update, activate, deactivate]
         description: AUTO_WRITE_ANCHOR
     events:
-      - on: activate
+      - "on": activate
         topic: travel.policy.activated
-      - on: deactivate
+      - "on": deactivate
         topic: travel.policy.deactivated
     scenarios:
       - "create 创建差旅政策 -> update 修改政策参数"
@@ -2861,13 +2962,13 @@ entities:
     validations:
       - rule: present
         field: order_id
-        on: [create]
+        "on": [create]
       - rule: present
         field: policy_id
-        on: [create]
+        "on": [create]
       - rule: present
         field: check_result
-        on: [create]
+        "on": [create]
     changes:
       - effect: set_attribute
         field: id
@@ -2875,7 +2976,7 @@ entities:
           op: ref
           args:
             - id
-        on: [create]
+        "on": [create]
         description: AUTO_WRITE_ANCHOR
     business_rules:
       - id: TRAVEL-POLICY-CHECK-01

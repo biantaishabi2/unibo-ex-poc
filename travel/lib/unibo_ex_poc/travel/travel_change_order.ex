@@ -16,7 +16,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshStateMachine],
+    extensions: [AshGraphql.Resource, AshStateMachine],
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
@@ -27,11 +27,6 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
     table "travel_change_orders"
     repo UniboExPoc.Repo
     identity_index_names unique_order_status: "idx_travel_change_orders_unique_order_status"
-  end
-
-  multitenancy do
-    strategy :attribute
-    attribute :tenant_id
   end
 
   graphql do
@@ -56,11 +51,6 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
 
   attributes do
     uuid_primary_key :id
-    attribute :tenant_id, :uuid do
-      allow_nil? false
-      public? true
-      description "租户 ID"
-    end
     attribute :change_reason, :string do
       public? true
       description "改签原因"
@@ -89,8 +79,19 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       public? true
       description "审批模式快照；none 表示跳过审批，self/oa 表示进入审批流"
     end
-    create_timestamp :inserted_at
-    update_timestamp :updated_at
+    attribute :inserted_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      public? true
+    end
+    attribute :updated_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      update_default &DateTime.utc_now/0
+      public? true
+    end
   end
 
   relationships do
@@ -103,23 +104,22 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
   actions do
     defaults [:read]
     create :create do
-      description "Create Travel Change Order via Create. Headers: x-tenant-id. doc_url: graphql://contract/travel/create_travel_travel_change_order"
+      description "Create Travel Change Order via Create. doc_url: graphql://contract/travel/create_travel_travel_change_order"
       primary? true
-      accept [:tenant_id, :original_order_id, :change_reason, :price_difference, :change_fee, :new_offer_id, :approval_mode]
+      accept [:original_order_id, :change_reason, :price_difference, :change_fee, :new_offer_id, :approval_mode]
       argument :original_order_id, :uuid, allow_nil?: false
       change manage_relationship(:original_order_id, :original_order, type: :append, on_lookup: :relate)
       validate present(:original_order_id)
     end
     update :update do
-      description "Update Travel Change Order via Update. Headers: x-tenant-id. doc_url: graphql://contract/travel/update_travel_travel_change_order"
+      description "Update Travel Change Order via Update. doc_url: graphql://contract/travel/update_travel_travel_change_order"
       primary? true
       accept [:change_reason, :price_difference, :change_fee, :new_offer_id]
-      require_atomic? false
     end
     update :submit do
       description "提交改签申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance
 
-提交改签申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance. Headers: x-tenant-id. doc_url: graphql://contract/travel/submit_travel_travel_change_order"
+提交改签申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance. doc_url: graphql://contract/travel/submit_travel_travel_change_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -134,7 +134,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       require_atomic? false
     end
     update :confirm_change do
-      description "Update Travel Change Order via Confirm Change. Headers: x-tenant-id. doc_url: graphql://contract/travel/confirm_change_travel_travel_change_order"
+      description "Update Travel Change Order via Confirm Change. doc_url: graphql://contract/travel/confirm_change_travel_travel_change_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -150,7 +150,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       require_atomic? false
     end
     update :reject_change do
-      description "Update Travel Change Order via Reject Change. Headers: x-tenant-id. doc_url: graphql://contract/travel/reject_change_travel_travel_change_order"
+      description "Update Travel Change Order via Reject Change. doc_url: graphql://contract/travel/reject_change_travel_travel_change_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -166,7 +166,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       require_atomic? false
     end
     update :complete do
-      description "Update Travel Change Order via Complete. Headers: x-tenant-id. doc_url: graphql://contract/travel/complete_travel_travel_change_order"
+      description "Update Travel Change Order via Complete. doc_url: graphql://contract/travel/complete_travel_travel_change_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -182,7 +182,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       require_atomic? false
     end
     update :complete_direct do
-      description "Update Travel Change Order via Complete Direct. Headers: x-tenant-id. doc_url: graphql://contract/travel/complete_direct_travel_travel_change_order"
+      description "Update Travel Change Order via Complete Direct. doc_url: graphql://contract/travel/complete_direct_travel_travel_change_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :approval_mode)
@@ -209,14 +209,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
   end
 
   identities do
-    identity :unique_order_status, [:tenant_id, :original_order_id, :status]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    attributes_as_attributes [:tenant_id]
-    ignore_attributes [:inserted_at, :updated_at]
+    identity :unique_order_status, [:original_order_id, :status]
   end
 
 

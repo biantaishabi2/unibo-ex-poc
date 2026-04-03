@@ -18,7 +18,7 @@ defmodule UniboExPoc.Travel.FlightOffer do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
+    extensions: [AshGraphql.Resource, AshArchival.Resource, AshStateMachine],
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
@@ -136,20 +136,26 @@ defmodule UniboExPoc.Travel.FlightOffer do
       description "退改规则快照"
     end
     attribute :sale_status, :atom do
-      constraints one_of: [:draft, :active, :inactive, :expired]
+      allow_nil? false
+      constraints one_of: [:active, :draft, :expired, :inactive]
       default :draft
       public? true
     end
-    create_timestamp :inserted_at
-    update_timestamp :updated_at
-    attribute :departure_airport_ref_id, :string do
+    attribute :inserted_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
       public? true
-      description "Travel 出发机场主数据引用（跨域引用 Ecommerce.TravelAirport）"
     end
-    attribute :arrival_airport_ref_id, :string do
+    attribute :updated_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      update_default &DateTime.utc_now/0
       public? true
-      description "Travel 到达机场主数据引用（跨域引用 Ecommerce.TravelAirport）"
     end
+    attribute :departure_airport_ref_id, :string, public?: true
+    attribute :arrival_airport_ref_id, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -199,6 +205,7 @@ defmodule UniboExPoc.Travel.FlightOffer do
       end
       # message: "只有草稿或停用中的 offer 可以 activate"
       change set_attribute(:sale_status, :active)
+      change AshStateMachine.BuiltinChanges.transition_state(:active)
       require_atomic? false
     end
     update :deactivate do
@@ -214,6 +221,7 @@ defmodule UniboExPoc.Travel.FlightOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :inactive)
+      change AshStateMachine.BuiltinChanges.transition_state(:inactive)
       require_atomic? false
     end
     update :expire do
@@ -229,6 +237,7 @@ defmodule UniboExPoc.Travel.FlightOffer do
       end
       # message: "只有 active 状态的 offer 可以 deactivate 或 expire"
       change set_attribute(:sale_status, :expired)
+      change AshStateMachine.BuiltinChanges.transition_state(:expired)
       require_atomic? false
     end
   end
@@ -243,17 +252,23 @@ defmodule UniboExPoc.Travel.FlightOffer do
     identity :unique_flight_offer_snapshot, [:tenant_id, :supplier_code, :itinerary_code, :flight_no, :departure_at, :cabin_class]
   end
 
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    attributes_as_attributes [:tenant_id]
-    ignore_attributes [:inserted_at, :updated_at]
-  end
-
   archive do
     archive_related [:orders]
   end
 
+
+  state_machine do
+    initial_states [:draft]
+    default_initial_state :draft
+    extra_states [:active, :draft, :expired, :inactive]
+    state_attribute :sale_status
+    transitions do
+      transition :activate, from: :draft, to: :active
+      transition :activate, from: :inactive, to: :active
+      transition :deactivate, from: :active, to: :inactive
+      transition :expire, from: :active, to: :expired
+    end
+  end
 
   pub_sub do
     module UniboExPoc.PubSub

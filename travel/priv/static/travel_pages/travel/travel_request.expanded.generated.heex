@@ -63,41 +63,30 @@
       </.card_header>
       <.card_content id="wz_step_1_content">
         <.stack direction="column" id="wz_step_1_grid">
-          <.input bind="travel_order.tenant_id" size="md" id="create_tenant_id" />
-          <.input bind="travel_order.host_shop_id" size="md" id="create_host_shop_id" />
-          <.input bind="travel_order.host_member_id" size="md" id="create_host_member_id" />
-          <.input bind="travel_order.host_enterprise_id" size="md" id="create_host_enterprise_id" />
-          <.input bind="travel_order.order_no" size="md" id="create_order_no" />
-          <.select bind="travel_order.product_type" size="md" id="create_product_type" options={[%{label: "hotel", value: "hotel"}, %{label: "flight", value: "flight"}, %{label: "vacation", value: "vacation"}, %{label: "train", value: "train"}]}>
-
+          <.input size="md" name="travel_order[tenant_id]" id="form_tenant_id" />
+          <.input size="md" name="travel_order[host_shop_id]" id="form_host_shop_id" />
+          <.input size="md" name="travel_order[order_no]" id="form_order_no" />
+          <.select size="md" name="travel_order[product_type]" id="form_product_type" :let={builder}>
+            <.select_trigger builder={builder} />
+            <.select_content builder={builder}>
+              <.select_group>
+                <.select_item builder={builder} value="hotel" label="hotel">hotel</.select_item>
+                <.select_item builder={builder} value="flight" label="flight">flight</.select_item>
+                <.select_item builder={builder} value="vacation" label="vacation">vacation</.select_item>
+                <.select_item builder={builder} value="train" label="train">train</.select_item>
+              </.select_group>
+            </.select_content>
           </.select>
-          <.select bind="travel_order.booking_mode" size="md" id="create_booking_mode" options={[%{label: "standard", value: "standard"}, %{label: "waitlist", value: "waitlist"}]}>
-
-          </.select>
-          <.input bind="travel_order.contact_name" size="md" id="create_contact_name" />
-          <.input bind="travel_order.contact_phone" size="md" id="create_contact_phone" />
-          <.input bind="travel_order.traveler_count" size="md" id="create_traveler_count" />
-          <.input bind="travel_order.total_amount" size="md" id="create_total_amount" />
-          <.input bind="travel_order.points_to_use" size="md" id="create_points_to_use" />
-          <.input bind="travel_order.points_deduction_amount" size="md" id="create_points_deduction_amount" />
-          <.input bind="travel_order.recommended_payment_method" size="md" id="create_recommended_payment_method" />
-          <.input bind="travel_order.currency" size="md" id="create_currency" />
-          <.select bind="travel_order.status" size="md" id="create_status" options={[%{label: "draft", value: "draft"}, %{label: "quoted", value: "quoted"}, %{label: "submitted", value: "submitted"}, %{label: "booking_pending", value: "booking_pending"}, %{label: "booked", value: "booked"}, %{label: "cancel_pending", value: "cancel_pending"}, %{label: "cancelled", value: "cancelled"}, %{label: "completed", value: "completed"}, %{label: "failed", value: "failed"}]}>
-
-          </.select>
-          <.select bind="travel_order.change_status" size="md" id="create_change_status" options={[%{label: "none", value: "none"}, %{label: "pending", value: "pending"}, %{label: "changed", value: "changed"}, %{label: "failed", value: "failed"}]}>
-
-          </.select>
-          <.select bind="travel_order.waitlist_status" size="md" id="create_waitlist_status" options={[%{label: "none", value: "none"}, %{label: "pending", value: "pending"}, %{label: "fulfilled", value: "fulfilled"}, %{label: "cancelled", value: "cancelled"}, %{label: "failed", value: "failed"}]}>
-
-          </.select>
-          <.input bind="travel_order.original_order_ref" size="md" id="create_original_order_ref" />
-          <.input bind="travel_order.ticket_passenger_infos" size="md" id="create_ticket_passenger_infos" />
-          <.input bind="travel_order.seat_selection_snapshot" size="md" id="create_seat_selection_snapshot" />
-          <.input bind="travel_order.supplier_order_ref" size="md" id="create_supplier_order_ref" />
-          <.input bind="travel_order.payment_external_ref" size="md" id="create_payment_external_ref" />
-          <.input bind="travel_order.customer_id" size="md" id="create_customer_id" />
-          <.input columns={2} gap={4} bind="travel_order.payment_id" size="md" id="create_payment_id" />
+          <.input size="md" name="travel_order[customer_id]" id="form_customer_id" />
+          <.input size="md" name="travel_order[contact_name]" id="form_contact_name" />
+          <.input size="md" name="travel_order[contact_phone]" id="form_contact_phone" />
+          <.input size="md" name="travel_order[traveler_count]" id="form_traveler_count" />
+          <.input size="md" name="travel_order[total_amount]" id="form_total_amount" />
+          <.input size="md" name="travel_order[points_to_use]" id="form_points_to_use" />
+          <.input size="md" name="travel_order[points_deduction_amount]" id="form_points_deduction_amount" />
+          <.input size="md" name="travel_order[currency]" id="form_currency" />
+          <.input size="md" name="travel_order[ticket_passenger_infos]" id="form_ticket_passenger_infos" />
+          <.input columns={2} gap={4} size="md" name="travel_order[seat_selection_snapshot]" id="form_seat_selection_snapshot" />
         </.stack>
       </.card_content>
     </.card>

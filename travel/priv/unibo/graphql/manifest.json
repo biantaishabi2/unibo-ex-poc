@@ -1563,36 +1563,6 @@
     },
     {
       "kind": "query",
-      "mode": "get",
-      "field": "get_match_policy_travel_travel_policy",
-      "entity": "TravelPolicy",
-      "resource": "UniboExPoc.Travel.TravelPolicy",
-      "action": "match_policy",
-      "action_type": "read",
-      "summary": "Read Travel Policy via Match Policy",
-      "doc_url": "graphql://contract/travel/get_match_policy_travel_travel_policy",
-      "required_headers": [],
-      "conditional_requirements": [],
-      "arguments": [
-        {
-          "name": "product_type",
-          "type": "string",
-          "required": true
-        },
-        {
-          "name": "employee_level",
-          "type": "string",
-          "required": false
-        },
-        {
-          "name": "city_tier",
-          "type": "string",
-          "required": false
-        }
-      ]
-    },
-    {
-      "kind": "query",
       "mode": "list",
       "field": "list_match_policy_travel_travel_policys",
       "entity": "TravelPolicy",

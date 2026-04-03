@@ -3,7 +3,7 @@ defmodule UniboExPoc.Travel.TravelHotel do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
+    extensions: [AshGraphql.Resource]
 
   resource do
     description "酒店主数据（Travel 层，来源 OFBiz Product）"
@@ -55,10 +55,7 @@ defmodule UniboExPoc.Travel.TravelHotel do
       default :active
       public? true
     end
-    attribute :city_id, :string do
-      public? true
-      description "城市引用（跨域引用 Ecommerce.TravelCity）"
-    end
+    attribute :city_id, :string, public?: true
   end
 
   actions do
@@ -78,12 +75,6 @@ defmodule UniboExPoc.Travel.TravelHotel do
 
   identities do
     identity :unique_hotel_code, [:hotel_code]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
 end

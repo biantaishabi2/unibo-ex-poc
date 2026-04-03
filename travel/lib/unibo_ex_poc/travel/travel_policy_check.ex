@@ -3,7 +3,7 @@ defmodule UniboExPoc.Travel.TravelPolicyCheck do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
+    extensions: [AshGraphql.Resource]
 
   resource do
     description "差标校验记录，记录订单下单时针对差旅政策的校验结果、超标金额与处理策略"
@@ -76,8 +76,19 @@ defmodule UniboExPoc.Travel.TravelPolicyCheck do
       public? true
       description "命中政策时的审批模式快照"
     end
-    create_timestamp :inserted_at
-    update_timestamp :updated_at
+    attribute :inserted_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      public? true
+    end
+    attribute :updated_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      update_default &DateTime.utc_now/0
+      public? true
+    end
   end
 
   relationships do
@@ -109,18 +120,11 @@ defmodule UniboExPoc.Travel.TravelPolicyCheck do
       description "Update Travel Policy Check via Update. doc_url: graphql://contract/travel/update_travel_travel_policy_check"
       primary? true
       accept [:check_result, :exceed_reason, :exceed_strategy, :personal_pay_amount]
-      require_atomic? false
     end
   end
 
   identities do
     identity :unique_order, [:order_id]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
 end

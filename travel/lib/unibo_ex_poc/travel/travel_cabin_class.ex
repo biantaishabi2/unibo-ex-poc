@@ -3,7 +3,7 @@ defmodule UniboExPoc.Travel.TravelCabinClass do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
+    extensions: [AshGraphql.Resource]
 
   resource do
     description "舱位主数据（Travel 层，来源 OFBiz Enumeration）"
@@ -70,12 +70,6 @@ defmodule UniboExPoc.Travel.TravelCabinClass do
 
   identities do
     identity :unique_cabin_class_code, [:cabin_class_code]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
 end

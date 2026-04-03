@@ -1,0 +1,12 @@
+{
+  "page_id": "travel_request",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.TravelRequestLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/travel_request",
+    "kind": "detail",
+    "params": []
+  }
+}

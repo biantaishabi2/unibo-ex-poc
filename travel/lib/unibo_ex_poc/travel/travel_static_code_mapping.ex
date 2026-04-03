@@ -3,7 +3,7 @@ defmodule UniboExPoc.Travel.TravelStaticCodeMapping do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
+    extensions: [AshGraphql.Resource]
 
   resource do
     description "供应商静态码到 Travel 主数据的映射（Travel 层统一适配）"
@@ -86,12 +86,6 @@ defmodule UniboExPoc.Travel.TravelStaticCodeMapping do
 
   identities do
     identity :unique_supplier_static_code, [:supplier_code, :object_type, :external_code]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
 end
