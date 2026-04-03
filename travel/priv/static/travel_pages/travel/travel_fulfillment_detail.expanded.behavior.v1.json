@@ -28,9 +28,9 @@
         "supplier_booking_ref",
         "fulfillment_type",
         "confirmation_payload",
-        "failure_reason",
         "voucher_or_ticket_ref",
-        "ticket_refs"
+        "ticket_refs",
+        "failure_reason"
       ]
     }
   },
@@ -116,16 +116,6 @@
             },
             {
               "action": "type",
-              "field": "confirmation_payload",
-              "value": "UPDATED_{{__run_id}}_confirmation_payload"
-            },
-            {
-              "action": "type",
-              "field": "ticket_refs",
-              "value": "{\"updated\":true}"
-            },
-            {
-              "action": "type",
               "field": "failure_reason",
               "value": "UPDATED_{{__run_id}}_failure_reason"
             },
@@ -138,6 +128,16 @@
               "action": "type",
               "field": "voucher_or_ticket_ref",
               "value": "UPDATED_{{__run_id}}_voucher_or_ticket_ref"
+            },
+            {
+              "action": "type",
+              "field": "confirmation_payload",
+              "value": "UPDATED_{{__run_id}}_confirmation_payload"
+            },
+            {
+              "action": "type",
+              "field": "ticket_refs",
+              "value": "{\"updated\":true}"
             },
             {
               "action": "click",

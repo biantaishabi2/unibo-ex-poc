@@ -45,11 +45,11 @@
         "accept": [
           "id",
           "hotel_name",
-          "hotel_code",
-          "hotel_star",
+          "city_code",
           "city_id",
+          "hotel_star",
           "status",
-          "city_code"
+          "hotel_code"
         ]
       }
     },
@@ -357,11 +357,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.status",
+              "equals": "$form.city_code",
               "excludes_source": null,
               "graphql_field": "getTravelTravelHotel",
               "op": "equals",
-              "path": "status",
+              "path": "city_code",
               "source": "active_record_id"
             },
             "ui": [

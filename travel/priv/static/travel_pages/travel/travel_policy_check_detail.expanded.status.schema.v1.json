@@ -54,16 +54,16 @@
           "id",
           "order_id",
           "policy_id",
-          "personal_pay_amount",
-          "approval_request_id",
-          "policy_amount",
-          "exceed_strategy",
-          "exceed_reason",
-          "check_result",
-          "exceed_ratio",
-          "actual_amount",
+          "exceed_amount",
           "approval_mode",
-          "exceed_amount"
+          "personal_pay_amount",
+          "exceed_ratio",
+          "policy_amount",
+          "actual_amount",
+          "check_result",
+          "exceed_strategy",
+          "approval_request_id",
+          "exceed_reason"
         ]
       }
     },
@@ -148,24 +148,24 @@
                 "selector": "#travel_policy_check_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
               },
               {
+                "action": "type",
+                "field": "exceed_reason",
+                "value": "UPDATED_{{__run_id}}_exceed_reason"
+              },
+              {
                 "action": "select_option",
                 "field": "check_result",
                 "value": "exceeded"
               },
               {
                 "action": "type",
-                "field": "exceed_reason",
-                "value": "UPDATED_{{__run_id}}_exceed_reason"
+                "field": "exceed_strategy",
+                "value": "UPDATED_{{__run_id}}_exceed_strategy"
               },
               {
                 "action": "type",
                 "field": "personal_pay_amount",
                 "value": "2"
-              },
-              {
-                "action": "type",
-                "field": "exceed_strategy",
-                "value": "UPDATED_{{__run_id}}_exceed_strategy"
               },
               {
                 "action": "click",
@@ -434,11 +434,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.exceed_reason",
+              "equals": "$form.exceed_strategy",
               "excludes_source": null,
               "graphql_field": "getTravelTravelPolicyCheck",
               "op": "equals",
-              "path": "exceed_reason",
+              "path": "exceed_strategy",
               "source": "active_record_id"
             },
             "ui": [

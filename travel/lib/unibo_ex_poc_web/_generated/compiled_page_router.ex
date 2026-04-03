@@ -20,18 +20,25 @@ defmodule UniboExPocWeb.Generated.CompiledPageRouter do
         live "/pages/travel/travel_static_code_mapping/new", UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive, :new
         live "/pages/travel/approval_detail", UniboExPocWeb.Pages.Travel.ApprovalDetailLive, :show
         live "/pages/travel/booking_confirmation", UniboExPocWeb.Pages.Travel.BookingConfirmationLive, :show
+        live "/pages/travel/change_confirm", UniboExPocWeb.Pages.Travel.ChangeConfirmLive, :show
         live "/pages/travel/change_flight_search", UniboExPocWeb.Pages.Travel.ChangeFlightSearchLive, :index
+        live "/pages/travel/flight_booking", UniboExPocWeb.Pages.Travel.FlightBookingLive, :show
         live "/pages/travel/flight_detail", UniboExPocWeb.Pages.Travel.FlightDetailLive, :show
         live "/pages/travel/flight_offer", UniboExPocWeb.Pages.Travel.FlightOfferListLive, :index
         live "/pages/travel/flight_offer_tree", UniboExPocWeb.Pages.Travel.FlightOfferTreeLive, :index
         live "/pages/travel/flight_search_results", UniboExPocWeb.Pages.Travel.FlightSearchResultsLive, :index
         live "/pages/travel/home", UniboExPocWeb.Pages.Travel.HomeLive, :index
+        live "/pages/travel/hotel_booking", UniboExPocWeb.Pages.Travel.HotelBookingLive, :show
         live "/pages/travel/hotel_detail", UniboExPocWeb.Pages.Travel.HotelDetailLive, :show
         live "/pages/travel/hotel_offer", UniboExPocWeb.Pages.Travel.HotelOfferListLive, :index
         live "/pages/travel/hotel_search_results", UniboExPocWeb.Pages.Travel.HotelSearchResultsLive, :index
         live "/pages/travel/order_detail", UniboExPocWeb.Pages.Travel.OrderDetailLive, :show
         live "/pages/travel/order_list", UniboExPocWeb.Pages.Travel.OrderListLive, :index
         live "/pages/travel/payment_confirmation", UniboExPocWeb.Pages.Travel.PaymentConfirmationLive, :show
+        live "/pages/travel/policy_check_detail", UniboExPocWeb.Pages.Travel.PolicyCheckDetailLive, :show
+        live "/pages/travel/refund_apply", UniboExPocWeb.Pages.Travel.RefundApplyLive, :show
+        live "/pages/travel/refund_result", UniboExPocWeb.Pages.Travel.RefundResultLive, :show
+        live "/pages/travel/train_booking", UniboExPocWeb.Pages.Travel.TrainBookingLive, :show
         live "/pages/travel/train_detail", UniboExPocWeb.Pages.Travel.TrainDetailLive, :show
         live "/pages/travel/train_offer", UniboExPocWeb.Pages.Travel.TrainOfferListLive, :index
         live "/pages/travel/train_search_results", UniboExPocWeb.Pages.Travel.TrainSearchResultsLive, :index

@@ -94,19 +94,19 @@
         "accept": [
           "id",
           "hotel_offer_id",
-          "customer_id",
+          "ticket_passenger_infos",
           "traveler_count",
-          "contact_phone",
           "total_amount",
+          "seat_selection_snapshot",
+          "customer_id",
           "points_deduction_amount",
           "currency",
-          "host_shop_id",
-          "order_no",
-          "seat_selection_snapshot",
-          "product_type",
-          "ticket_passenger_infos",
+          "contact_name",
           "points_to_use",
-          "contact_name"
+          "host_shop_id",
+          "contact_phone",
+          "product_type",
+          "order_no"
         ]
       }
     },
@@ -192,16 +192,6 @@
               },
               {
                 "action": "type",
-                "field": "seat_selection_snapshot",
-                "value": "{\"updated\":true}"
-              },
-              {
-                "action": "type",
-                "field": "traveler_count",
-                "value": "2"
-              },
-              {
-                "action": "type",
                 "field": "contact_name",
                 "value": "UPDATED_{{__run_id}}_contact_name"
               },
@@ -214,6 +204,16 @@
                 "action": "type",
                 "field": "ticket_passenger_infos",
                 "value": "{\"updated\":true}"
+              },
+              {
+                "action": "type",
+                "field": "seat_selection_snapshot",
+                "value": "{\"updated\":true}"
+              },
+              {
+                "action": "type",
+                "field": "traveler_count",
+                "value": "2"
               },
               {
                 "action": "click",
@@ -1646,11 +1646,11 @@
                   "source": "backend_result"
                 }
               ],
-              "equals": "$form.ticket_passenger_infos",
+              "equals": "$form.product_type",
               "excludes_source": null,
               "graphql_field": "getTravelTravelOrder",
               "op": "field_equals",
-              "path": "ticket_passenger_infos",
+              "path": "product_type",
               "source": "created_record_id"
             },
             "ui": [
@@ -1869,11 +1869,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.traveler_count",
+              "equals": "$form.contact_name",
               "excludes_source": null,
               "graphql_field": "getTravelTravelOrder",
               "op": "equals",
-              "path": "traveler_count",
+              "path": "contact_name",
               "source": "active_record_id"
             },
             "ui": [

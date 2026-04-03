@@ -21,23 +21,23 @@
     "params": {
       "accept": [
         "id",
-        "checkin_date",
-        "room_type_code",
-        "guarantee_policy",
-        "settlement_price",
-        "inventory_count",
-        "sale_status",
-        "hotel_name",
-        "supplier_code",
-        "hotel_code",
         "city_code",
-        "listed_price",
-        "host_shop_id",
-        "city_ref_id",
-        "currency",
-        "checkout_date",
+        "supplier_code",
+        "room_type_code",
+        "settlement_price",
+        "guarantee_policy",
         "cancellation_policy",
-        "rate_plan_code"
+        "host_shop_id",
+        "inventory_count",
+        "checkout_date",
+        "hotel_code",
+        "rate_plan_code",
+        "sale_status",
+        "city_ref_id",
+        "hotel_name",
+        "listed_price",
+        "checkin_date",
+        "currency"
       ]
     }
   },
@@ -127,7 +127,7 @@
             },
             {
               "action": "type",
-              "field": "settlement_price",
+              "field": "listed_price",
               "value": "200.00"
             },
             {
@@ -137,13 +137,13 @@
             },
             {
               "action": "type",
-              "field": "hotel_name",
-              "value": "UPDATED_{{__run_id}}_hotel_name"
+              "field": "settlement_price",
+              "value": "200.00"
             },
             {
               "action": "type",
-              "field": "inventory_count",
-              "value": "2"
+              "field": "hotel_name",
+              "value": "UPDATED_{{__run_id}}_hotel_name"
             },
             {
               "action": "type",
@@ -152,13 +152,13 @@
             },
             {
               "action": "type",
-              "field": "cancellation_policy",
-              "value": "UPDATED_{{__run_id}}_cancellation_policy"
+              "field": "inventory_count",
+              "value": "2"
             },
             {
               "action": "type",
-              "field": "listed_price",
-              "value": "200.00"
+              "field": "cancellation_policy",
+              "value": "UPDATED_{{__run_id}}_cancellation_policy"
             },
             {
               "action": "type",
@@ -701,11 +701,11 @@
               }
             ],
             "binds": [],
-            "equals": "$form.hotel_name",
+            "equals": "$form.cancellation_policy",
             "excludes_source": null,
             "graphql_field": "getTravelHotelOffer",
             "op": "equals",
-            "path": "hotel_name",
+            "path": "cancellation_policy",
             "source": "active_record_id"
           },
           "ui": [

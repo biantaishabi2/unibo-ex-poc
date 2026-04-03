@@ -1,0 +1,12 @@
+{
+  "page_id": "refund_apply",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.RefundApplyLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/refund_apply",
+    "kind": "detail",
+    "params": []
+  }
+}

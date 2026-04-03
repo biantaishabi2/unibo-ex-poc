@@ -19,18 +19,18 @@
     "params": {
       "accept": [
         "id",
-        "policy_name",
+        "approval_mode",
+        "max_amount",
         "personal_pay_ratio",
         "hotel_star_limit",
-        "max_amount",
-        "exceed_strategy",
-        "season",
+        "product_type",
         "cabin_class_limit",
         "enterprise_id",
+        "policy_name",
         "employee_level",
-        "approval_mode",
-        "product_type",
-        "city_tier"
+        "city_tier",
+        "season",
+        "exceed_strategy"
       ]
     }
   },
@@ -115,9 +115,9 @@
               "selector": "#travel_policy_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             },
             {
-              "action": "select_option",
-              "field": "approval_mode",
-              "value": "self"
+              "action": "type",
+              "field": "max_amount",
+              "value": "2"
             },
             {
               "action": "type",
@@ -126,18 +126,23 @@
             },
             {
               "action": "type",
-              "field": "policy_name",
-              "value": "UPDATED_{{__run_id}}_policy_name"
-            },
-            {
-              "action": "type",
               "field": "season",
               "value": "UPDATED_{{__run_id}}_season"
             },
             {
+              "action": "select_option",
+              "field": "approval_mode",
+              "value": "self"
+            },
+            {
+              "action": "select_option",
+              "field": "exceed_strategy",
+              "value": "require_reason"
+            },
+            {
               "action": "type",
-              "field": "max_amount",
-              "value": "2"
+              "field": "policy_name",
+              "value": "UPDATED_{{__run_id}}_policy_name"
             },
             {
               "action": "type",
@@ -148,11 +153,6 @@
               "action": "type",
               "field": "hotel_star_limit",
               "value": "UPDATED_{{__run_id}}_hotel_star_limit"
-            },
-            {
-              "action": "select_option",
-              "field": "exceed_strategy",
-              "value": "require_reason"
             },
             {
               "action": "click",

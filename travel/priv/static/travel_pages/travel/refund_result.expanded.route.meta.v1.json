@@ -1,0 +1,12 @@
+{
+  "page_id": "refund_result",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.RefundResultLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/refund_result",
+    "kind": "detail",
+    "params": []
+  }
+}
