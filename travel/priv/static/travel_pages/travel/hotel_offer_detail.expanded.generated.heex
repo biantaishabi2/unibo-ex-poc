@@ -32,6 +32,21 @@
       <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
         编辑
       </.button>
+      <%= if get_in(@record, [:sale_status]) == "draft" || get_in(@record, [:sale_status]) == "inactive" do %>
+        <.button variant="secondary" phx-click="action_activate" size="md" id="hotel_offer_action_activate">
+          activate
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:sale_status]) == "active" do %>
+        <.button variant="secondary" phx-click="action_deactivate" size="md" id="hotel_offer_action_deactivate">
+          deactivate
+        </.button>
+      <% end %>
+      <%= if get_in(@record, [:sale_status]) == "active" do %>
+        <.button variant="secondary" phx-click="action_expire" size="md" id="hotel_offer_action_expire">
+          expire
+        </.button>
+      <% end %>
       <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
         删除
       </.button>
@@ -53,7 +68,7 @@
                   供应商编码
                 </.text>
                 <.text id="detail_fields_supplier_code_value">
-                  <%= get_in(@hotel_offer, [:supplier_code]) || "" %>
+                  <%= get_in(@hotel_offer, [:supplier_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_hotel_code">
@@ -61,7 +76,7 @@
                   酒店编码
                 </.text>
                 <.text id="detail_fields_hotel_code_value">
-                  <%= get_in(@hotel_offer, [:hotel_code]) || "" %>
+                  <%= get_in(@hotel_offer, [:hotel_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_hotel_name">
@@ -69,7 +84,7 @@
                   酒店名称
                 </.text>
                 <.text id="detail_fields_hotel_name_value">
-                  <%= get_in(@hotel_offer, [:hotel_name]) || "" %>
+                  <%= get_in(@hotel_offer, [:hotel_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_city_code">
@@ -77,7 +92,7 @@
                   城市编码
                 </.text>
                 <.text id="detail_fields_city_code_value">
-                  <%= get_in(@hotel_offer, [:city_code]) || "" %>
+                  <%= get_in(@hotel_offer, [:city_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_room_type_code">
@@ -85,7 +100,7 @@
                   房型编码
                 </.text>
                 <.text id="detail_fields_room_type_code_value">
-                  <%= get_in(@hotel_offer, [:room_type_code]) || "" %>
+                  <%= get_in(@hotel_offer, [:room_type_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_rate_plan_code">
@@ -93,7 +108,7 @@
                   价计划编码
                 </.text>
                 <.text id="detail_fields_rate_plan_code_value">
-                  <%= get_in(@hotel_offer, [:rate_plan_code]) || "" %>
+                  <%= get_in(@hotel_offer, [:rate_plan_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_checkin_date">
@@ -101,7 +116,7 @@
                   入住日期
                 </.text>
                 <.text id="detail_fields_checkin_date_value">
-                  <%= get_in(@hotel_offer, [:checkin_date]) || "" %>
+                  <%= get_in(@hotel_offer, [:checkin_date]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_checkout_date">
@@ -109,7 +124,7 @@
                   离店日期
                 </.text>
                 <.text id="detail_fields_checkout_date_value">
-                  <%= get_in(@hotel_offer, [:checkout_date]) || "" %>
+                  <%= get_in(@hotel_offer, [:checkout_date]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_listed_price">
@@ -117,7 +132,7 @@
                   对客展示价快照
                 </.text>
                 <.text id="detail_fields_listed_price_value">
-                  <%= get_in(@hotel_offer, [:listed_price]) || "" %>
+                  <%= get_in(@hotel_offer, [:listed_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_settlement_price">
@@ -125,7 +140,7 @@
                   结算价快照
                 </.text>
                 <.text id="detail_fields_settlement_price_value">
-                  <%= get_in(@hotel_offer, [:settlement_price]) || "" %>
+                  <%= get_in(@hotel_offer, [:settlement_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_currency">
@@ -133,7 +148,7 @@
                   币种
                 </.text>
                 <.text id="detail_fields_currency_value">
-                  <%= get_in(@hotel_offer, [:currency]) || "" %>
+                  <%= get_in(@hotel_offer, [:currency]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_inventory_count">
@@ -141,7 +156,7 @@
                   可售库存快照
                 </.text>
                 <.text id="detail_fields_inventory_count_value">
-                  <%= get_in(@hotel_offer, [:inventory_count]) || "" %>
+                  <%= get_in(@hotel_offer, [:inventory_count]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_cancellation_policy">
@@ -149,7 +164,7 @@
                   取消规则快照
                 </.text>
                 <.text id="detail_fields_cancellation_policy_value">
-                  <%= get_in(@hotel_offer, [:cancellation_policy]) || "" %>
+                  <%= get_in(@hotel_offer, [:cancellation_policy]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_guarantee_policy">
@@ -157,7 +172,7 @@
                   担保规则快照
                 </.text>
                 <.text id="detail_fields_guarantee_policy_value">
-                  <%= get_in(@hotel_offer, [:guarantee_policy]) || "" %>
+                  <%= get_in(@hotel_offer, [:guarantee_policy]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_sale_status">
@@ -165,42 +180,50 @@
                   可售状态
                 </.text>
                 <.text id="detail_fields_sale_status_value">
-                  <%= get_in(@hotel_offer, [:sale_status]) || "" %>
+                  <%= get_in(@hotel_offer, [:sale_status]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
             </.grid>
           </.grid>
         <% else %>
-          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+          <.form for={%{}} phx-submit="form_submit" phx-change="form_change" id="hotel_offer_edit_form">
             <.grid columns={2} gap={4} id="form_grid">
               <.stack direction="column" id="form_fields">
-                <.input bind="hotel_offer.tenant_id" size="md" id="update_tenant_id" />
-                <.input bind="hotel_offer.host_shop_id" size="md" id="update_host_shop_id" />
-                <.input bind="hotel_offer.supplier_code" size="md" id="update_supplier_code" />
-                <.input bind="hotel_offer.hotel_code" size="md" id="update_hotel_code" />
-                <.input bind="hotel_offer.hotel_name" size="md" id="update_hotel_name" />
-                <.input bind="hotel_offer.city_code" size="md" id="update_city_code" />
-                <.input bind="hotel_offer.room_type_code" size="md" id="update_room_type_code" />
-                <.input bind="hotel_offer.rate_plan_code" size="md" id="update_rate_plan_code" />
-                <.input bind="hotel_offer.checkin_date" size="md" id="update_checkin_date" />
-                <.input bind="hotel_offer.checkout_date" size="md" id="update_checkout_date" />
-                <.input bind="hotel_offer.listed_price" size="md" id="update_listed_price" />
-                <.input bind="hotel_offer.settlement_price" size="md" id="update_settlement_price" />
-                <.input bind="hotel_offer.currency" size="md" id="update_currency" />
-                <.input bind="hotel_offer.inventory_count" size="md" id="update_inventory_count" />
-                <.textarea bind="hotel_offer.cancellation_policy" id="update_cancellation_policy" />
-                <.textarea bind="hotel_offer.guarantee_policy" id="update_guarantee_policy" />
-                <.select bind="hotel_offer.sale_status" size="md" id="update_sale_status" options={[%{label: "draft", value: "draft"}, %{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}, %{label: "expired", value: "expired"}]}>
-
+                <.input size="md" name="hotel_offer[tenant_id]" id="hotel_offer_form_tenant_id" value={get_in(@hotel_offer, [:tenant_id]) || ""} />
+                <.input size="md" name="hotel_offer[host_shop_id]" id="hotel_offer_form_host_shop_id" value={get_in(@hotel_offer, [:host_shop_id]) || ""} />
+                <.input size="md" name="hotel_offer[supplier_code]" id="hotel_offer_form_supplier_code" value={get_in(@hotel_offer, [:supplier_code]) || ""} />
+                <.input size="md" name="hotel_offer[hotel_code]" id="hotel_offer_form_hotel_code" value={get_in(@hotel_offer, [:hotel_code]) || ""} />
+                <.input size="md" name="hotel_offer[hotel_name]" id="hotel_offer_form_hotel_name" value={get_in(@hotel_offer, [:hotel_name]) || ""} />
+                <.input size="md" name="hotel_offer[city_code]" id="hotel_offer_form_city_code" value={get_in(@hotel_offer, [:city_code]) || ""} />
+                <.input size="md" name="hotel_offer[city_ref_id]" id="hotel_offer_form_city_ref_id" value={get_in(@hotel_offer, [:city_ref_id]) || ""} />
+                <.input size="md" name="hotel_offer[room_type_code]" id="hotel_offer_form_room_type_code" value={get_in(@hotel_offer, [:room_type_code]) || ""} />
+                <.input size="md" name="hotel_offer[rate_plan_code]" id="hotel_offer_form_rate_plan_code" value={get_in(@hotel_offer, [:rate_plan_code]) || ""} />
+                <.input size="md" name="hotel_offer[checkin_date]" id="hotel_offer_form_checkin_date" value={get_in(@hotel_offer, [:checkin_date]) || ""} />
+                <.input size="md" name="hotel_offer[checkout_date]" id="hotel_offer_form_checkout_date" value={get_in(@hotel_offer, [:checkout_date]) || ""} />
+                <.input size="md" name="hotel_offer[listed_price]" id="hotel_offer_form_listed_price" value={get_in(@hotel_offer, [:listed_price]) || ""} />
+                <.input size="md" name="hotel_offer[settlement_price]" id="hotel_offer_form_settlement_price" value={get_in(@hotel_offer, [:settlement_price]) || ""} />
+                <.input size="md" name="hotel_offer[currency]" id="hotel_offer_form_currency" value={get_in(@hotel_offer, [:currency]) || ""} />
+                <.input size="md" name="hotel_offer[inventory_count]" id="hotel_offer_form_inventory_count" value={get_in(@hotel_offer, [:inventory_count]) || ""} />
+                <.textarea name="hotel_offer[cancellation_policy]" id="hotel_offer_form_cancellation_policy" value={get_in(@hotel_offer, [:cancellation_policy]) || ""} />
+                <.textarea name="hotel_offer[guarantee_policy]" id="hotel_offer_form_guarantee_policy" value={get_in(@hotel_offer, [:guarantee_policy]) || ""} />
+                <.select size="md" name="hotel_offer[sale_status]" id="hotel_offer_form_sale_status" :let={builder} value={get_in(@hotel_offer, [:sale_status]) || ""}>
+                  <.select_trigger builder={builder} />
+                  <.select_content builder={builder}>
+                    <.select_group>
+                      <.select_item builder={builder} value="draft" label="draft">draft</.select_item>
+                      <.select_item builder={builder} value="active" label="active">active</.select_item>
+                      <.select_item builder={builder} value="inactive" label="inactive">inactive</.select_item>
+                      <.select_item builder={builder} value="expired" label="expired">expired</.select_item>
+                    </.select_group>
+                  </.select_content>
                 </.select>
-                <.input bind="hotel_offer.city_ref_id" size="md" id="update_city_ref_id" />
               </.stack>
             </.grid>
             <.flex justify="end" gap={2} direction="row" id="form_actions">
               <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
                 取消
               </.button>
-              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+              <.button variant="primary" size="md" type="submit" id="save_btn">
                 保存
               </.button>
             </.flex>

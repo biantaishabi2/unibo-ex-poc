@@ -6,6 +6,7 @@
   "rows_empty": true,
   "rows": [
     {
+      "id": "row_01",
       "fulfillment_type": "",
       "status": "",
       "supplier_booking_ref": "",
@@ -19,6 +20,7 @@
       "used_at": ""
     },
     {
+      "id": "row_02",
       "fulfillment_type": "",
       "status": "",
       "supplier_booking_ref": "",
@@ -32,6 +34,7 @@
       "used_at": ""
     },
     {
+      "id": "row_03",
       "fulfillment_type": "",
       "status": "",
       "supplier_booking_ref": "",

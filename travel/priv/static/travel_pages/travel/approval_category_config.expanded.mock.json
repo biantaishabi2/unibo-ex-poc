@@ -1,1 +1,11 @@
-{}
+{
+  "record": {
+    "logo": "",
+    "notify_frequency": "",
+    "notify_method": "",
+    "password_policy": "",
+    "session_timeout": "",
+    "site_description": "",
+    "site_name": ""
+  }
+}

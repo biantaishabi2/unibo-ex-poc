@@ -6,6 +6,7 @@
     "row.confirmation_payload",
     "row.failure_reason",
     "row.fulfillment_type",
+    "row.id",
     "row.status",
     "row.supplier_booking_ref",
     "row.ticket_refs",
@@ -31,6 +32,11 @@
         "type": "object",
         "required": false,
         "properties": {
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "row_01"
+          },
           "fulfillment_type": {
             "type": "string",
             "required": false,
@@ -94,6 +100,10 @@
       "type": "object",
       "required": true,
       "properties": {
+        "id": {
+          "type": "unknown",
+          "required": true
+        },
         "fulfillment_type": {
           "type": "unknown",
           "required": true

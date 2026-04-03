@@ -60,7 +60,7 @@
                   舱位规范编码
                 </.text>
                 <.text id="detail_fields_cabin_class_code_value">
-                  <%= get_in(@travel_cabin_class, [:cabin_class_code]) || "" %>
+                  <%= get_in(@travel_cabin_class, [:cabin_class_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_cabin_class_name">
@@ -68,7 +68,7 @@
                   舱位名称
                 </.text>
                 <.text id="detail_fields_cabin_class_name_value">
-                  <%= get_in(@travel_cabin_class, [:cabin_class_name]) || "" %>
+                  <%= get_in(@travel_cabin_class, [:cabin_class_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_cabin_rank">
@@ -76,7 +76,7 @@
                   舱位等级序
                 </.text>
                 <.text id="detail_fields_cabin_rank_value">
-                  <%= get_in(@travel_cabin_class, [:cabin_rank]) || "" %>
+                  <%= get_in(@travel_cabin_class, [:cabin_rank]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_status">
@@ -84,20 +84,26 @@
                   status
                 </.text>
                 <.text id="detail_fields_status_value">
-                  <%= get_in(@travel_cabin_class, [:status]) || "" %>
+                  <%= get_in(@travel_cabin_class, [:status]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
             </.grid>
           </.grid>
         <% else %>
-          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+          <.form for={%{}} phx-submit="form_submit" phx-change="form_change" id="travel_cabin_class_edit_form">
             <.grid columns={2} gap={4} id="form_grid">
               <.stack direction="column" id="form_fields">
-                <.input bind="travel_cabin_class.cabin_class_code" size="md" id="update_cabin_class_code" />
-                <.input bind="travel_cabin_class.cabin_class_name" size="md" id="update_cabin_class_name" />
-                <.input bind="travel_cabin_class.cabin_rank" size="md" id="update_cabin_rank" />
-                <.select bind="travel_cabin_class.status" size="md" id="update_status" options={[%{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}]}>
-
+                <.input size="md" name="travel_cabin_class[cabin_class_code]" id="travel_cabin_class_form_cabin_class_code" value={get_in(@travel_cabin_class, [:cabin_class_code]) || ""} />
+                <.input size="md" name="travel_cabin_class[cabin_class_name]" id="travel_cabin_class_form_cabin_class_name" value={get_in(@travel_cabin_class, [:cabin_class_name]) || ""} />
+                <.input size="md" name="travel_cabin_class[cabin_rank]" id="travel_cabin_class_form_cabin_rank" value={get_in(@travel_cabin_class, [:cabin_rank]) || ""} />
+                <.select size="md" name="travel_cabin_class[status]" id="travel_cabin_class_form_status" :let={builder} value={get_in(@travel_cabin_class, [:status]) || ""}>
+                  <.select_trigger builder={builder} />
+                  <.select_content builder={builder}>
+                    <.select_group>
+                      <.select_item builder={builder} value="active" label="active">active</.select_item>
+                      <.select_item builder={builder} value="inactive" label="inactive">inactive</.select_item>
+                    </.select_group>
+                  </.select_content>
                 </.select>
               </.stack>
             </.grid>
@@ -105,7 +111,7 @@
               <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
                 取消
               </.button>
-              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+              <.button variant="primary" size="md" type="submit" id="save_btn">
                 保存
               </.button>
             </.flex>

@@ -6,6 +6,7 @@
   "rows_empty": true,
   "rows": [
     {
+      "id": "row_01",
       "check_result": "",
       "policy_amount": "",
       "actual_amount": "",
@@ -17,6 +18,7 @@
       "approval_mode": ""
     },
     {
+      "id": "row_02",
       "check_result": "",
       "policy_amount": "",
       "actual_amount": "",
@@ -28,6 +30,7 @@
       "approval_mode": ""
     },
     {
+      "id": "row_03",
       "check_result": "",
       "policy_amount": "",
       "actual_amount": "",

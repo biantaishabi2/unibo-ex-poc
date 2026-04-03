@@ -63,15 +63,19 @@
       </.card_header>
       <.card_content id="wz_step_1_content">
         <.stack direction="column" id="wz_step_1_grid">
-          <.input bind="travel_change_order.change_reason" size="md" id="create_change_reason" />
-          <.input bind="travel_change_order.price_difference" size="md" id="create_price_difference" />
-          <.input bind="travel_change_order.change_fee" size="md" id="create_change_fee" />
-          <.input bind="travel_change_order.new_offer_id" size="md" id="create_new_offer_id" />
-          <.select bind="travel_change_order.status" size="md" id="create_status" options={[%{label: "pending", value: "pending"}, %{label: "approved", value: "approved"}, %{label: "completed", value: "completed"}, %{label: "rejected", value: "rejected"}]}>
-
-          </.select>
-          <.select bind="travel_change_order.approval_mode" size="md" id="create_approval_mode" options={[%{label: "none", value: "none"}, %{label: "self", value: "self"}, %{label: "oa", value: "oa"}]}>
-
+          <.input size="md" name="travel_change_order[change_reason]" id="form_change_reason" />
+          <.input size="md" name="travel_change_order[price_difference]" id="form_price_difference" />
+          <.input size="md" name="travel_change_order[change_fee]" id="form_change_fee" />
+          <.input size="md" name="travel_change_order[new_offer_id]" id="form_new_offer_id" />
+          <.select size="md" name="travel_change_order[approval_mode]" id="form_approval_mode" :let={builder}>
+            <.select_trigger builder={builder} />
+            <.select_content builder={builder}>
+              <.select_group>
+                <.select_item builder={builder} value="none" label="none">none</.select_item>
+                <.select_item builder={builder} value="self" label="self">self</.select_item>
+                <.select_item builder={builder} value="oa" label="oa">oa</.select_item>
+              </.select_group>
+            </.select_content>
           </.select>
         </.stack>
       </.card_content>

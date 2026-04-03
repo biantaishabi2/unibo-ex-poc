@@ -1,6 +1,9 @@
 {
   "version": 1,
   "defaults": {
+    "record": {
+      "status": true
+    },
     "travel_order": {
       "order_no": "",
       "product_type": "",
@@ -26,6 +29,8 @@
   },
   "keys": [
     "editing",
+    "record",
+    "record.status",
     "travel_order",
     "travel_order.booking_mode",
     "travel_order.change_status",
@@ -49,8 +54,59 @@
   ],
   "required": [
     "editing",
+    "record",
     "travel_order"
   ],
   "urlParams": {},
-  "notes": []
+  "notes": [],
+  "layer2": {
+    "backend": {
+      "api_map": {
+        "get": "Travel.TravelOrder.get",
+        "list": "Travel.TravelOrder.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "id"
+      },
+      "params": {
+        "accept": []
+      }
+    },
+    "delivery_mode": "runtime",
+    "domain": "Travel",
+    "e2e": {
+      "playwright": {
+        "auto": true,
+        "base_path": "/pages/travel/payment_confirmation",
+        "cases": [],
+        "page_kind": "detail",
+        "page_spec": {
+          "page_kind": "detail",
+          "route_role": "detail",
+          "supports_runtime_record_identity": false,
+          "template_kind": "object_page"
+        }
+      }
+    },
+    "entity": "TravelOrder",
+    "extends": "base_object_page",
+    "page_id": "payment_confirmation",
+    "page_type": "object_page",
+    "state_transitions": [],
+    "status_keys": [],
+    "transitions": {},
+    "ui": {
+      "sections": [],
+      "template": {
+        "detail": "object_page"
+      }
+    },
+    "version": 2
+  }
 }

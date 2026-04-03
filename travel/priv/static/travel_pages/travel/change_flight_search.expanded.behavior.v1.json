@@ -1,0 +1,49 @@
+{
+  "backend": {
+    "api_map": {
+      "search": "Travel.FlightOffer.list"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "id"
+    },
+    "params": {
+      "accept": []
+    }
+  },
+  "delivery_mode": "runtime",
+  "domain": "Travel",
+  "e2e": {
+    "playwright": {
+      "auto": true,
+      "base_path": "/pages/travel/change_flight_search",
+      "cases": [],
+      "page_kind": "search",
+      "page_spec": {
+        "page_kind": "search",
+        "route_role": "search",
+        "supports_runtime_record_identity": false,
+        "template_kind": "search_results"
+      }
+    }
+  },
+  "entity": "FlightOffer",
+  "extends": "base_search_results",
+  "page_id": "change_flight_search",
+  "page_type": "search_results",
+  "state_transitions": [],
+  "status_keys": [],
+  "transitions": {},
+  "ui": {
+    "sections": [],
+    "template": {
+      "search": "search_results"
+    }
+  },
+  "version": 2
+}

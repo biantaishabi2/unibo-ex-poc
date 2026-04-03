@@ -6,6 +6,7 @@
   "rows_empty": true,
   "rows": [
     {
+      "id": "row_01",
       "order_no": "",
       "product_type": "",
       "booking_mode": "",
@@ -27,6 +28,7 @@
       "payment_external_ref": ""
     },
     {
+      "id": "row_02",
       "order_no": "",
       "product_type": "",
       "booking_mode": "",
@@ -48,6 +50,7 @@
       "payment_external_ref": ""
     },
     {
+      "id": "row_03",
       "order_no": "",
       "product_type": "",
       "booking_mode": "",

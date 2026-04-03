@@ -15,7 +15,7 @@
     <.flex gap={2} paddingx={3} paddingy={2} overflowx="scroll" background="surface" direction="row" id="date_slider">
       <%= for date_item <- (get_in(@search, [:date_range]) || []) do %>
         <%= if (val = get_in(date_item, [:date_label])) && to_string(val) != "" do %>
-          <.badge variant={get_in(date_item, [:is_selected])} phx-click="select_date" size="sm">
+          <.badge variant={get_in(date_item, [:is_selected])} phx-click="select_date" size="sm" id="date_badge">
             <%= to_string(val) %>
           </.badge>
         <% end %>
@@ -26,7 +26,7 @@
     <.flex gap={2} paddingx={3} paddingy={2} wrap={true} direction="row" id="filter_bar" />
   </.section>
   <.section layout="none" id="alert_section">
-    <%= if @policy.exceeded == true do %>
+    <%= if get_in(@policy, [:exceeded]) == true do %>
       <.alert variant="warning" title="超标提示" id="policy_alert">
         标记超标的项目超出差旅标准,预订需审批
       </.alert>
@@ -36,7 +36,7 @@
     <.stack gap={3} padding={3} direction="column" id="results_list" />
   </.section>
   <.section layout="none" id="empty_section">
-    <%= if @results.total_count == 0 do %>
+    <%= if get_in(@results, [:total_count]) == 0 do %>
       <.empty_state title="未找到结果" description="请调整搜索条件后重试" id="no_results" />
     <% end %>
   </.section>

@@ -18,18 +18,18 @@
           入住
         </.text>
         <.text variant="body" weight="bold" id="checkin_date">
-          <%= get_in(@search, [:checkin_date]) || "" %>
+          <%= get_in(@search, [:checkin_date]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
         </.text>
       </.stack>
       <.text variant="caption" color="muted" id="night_count">
-        <%= get_in(@search, [:night_count_label]) || "" %>
+        <%= get_in(@search, [:night_count_label]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
       </.text>
       <.stack gap={0} align="center" direction="column" id="checkout_info">
         <.text variant="caption" color="muted" id="checkout_label">
           离店
         </.text>
         <.text variant="body" weight="bold" id="checkout_date">
-          <%= get_in(@search, [:checkout_date]) || "" %>
+          <%= get_in(@search, [:checkout_date]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
         </.text>
       </.stack>
     </.flex>
@@ -51,7 +51,7 @@
     </.flex>
   </.section>
   <.section layout="none" id="alert_section">
-    <%= if @policy.exceeded == true do %>
+    <%= if get_in(@policy, [:exceeded]) == true do %>
       <.alert variant="warning" title="超标提示" id="hotel_policy_alert">
         标记超标的酒店超出差旅标准,预订需审批
       </.alert>
@@ -60,64 +60,64 @@
   <.section layout="none" id="results_section">
     <.stack gap={3} padding={3} direction="column" id="hotel_results_list">
       <%= for item <- (get_in(@hotels, [:items]) || []) do %>
-        <.card phx-click="navigate" params={"/travel/hotel/#{get_in(item, [:id])}"} variant="default">
-          <.card_header>
-            <.flex gap={2} align="center" direction="row">
-              <.text variant="body" weight="bold">
-                <%= get_in(item, [:hotel_name]) || "" %>
+        <.card phx-click="navigate" params={"/travel/hotel/#{get_in(item, [:id])}"} variant="default" id="hotel_card">
+          <.card_header id="hotel_card_header">
+            <.flex gap={2} align="center" direction="row" id="hotel_name_row">
+              <.text variant="body" weight="bold" id="hotel_name">
+                <%= get_in(item, [:hotel_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
               </.text>
               <%= if (val = get_in(item, [:hotel_star])) && to_string(val) != "" do %>
-                <.badge variant="outline" size="sm">
+                <.badge variant="outline" size="sm" id="hotel_star_badge">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
-              <%= if item.is_policy_compliant == false do %>
-                <.badge variant="destructive" size="sm">
+              <%= if get_in(item, [:is_policy_compliant]) == false do %>
+                <.badge variant="destructive" size="sm" id="hotel_exceed_badge">
                   超标
                 </.badge>
               <% end %>
             </.flex>
           </.card_header>
-          <.card_content>
-            <.stack gap={1} direction="column">
-              <.text variant="caption" color="muted">
-                <%= get_in(item, [:address]) || "" %>
+          <.card_content id="hotel_card_content">
+            <.stack gap={1} direction="column" id="hotel_detail_stack">
+              <.text variant="caption" color="muted" id="hotel_address">
+                <%= get_in(item, [:address]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
               </.text>
-              <.text variant="caption" color="muted">
-                <%= get_in(item, [:district]) || "" %>
+              <.text variant="caption" color="muted" id="hotel_district">
+                <%= get_in(item, [:district]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
               </.text>
-              <.flex gap={1} wrap={true} direction="row">
+              <.flex gap={1} wrap={true} direction="row" id="hotel_tags_row">
                 <%= if (val = get_in(item, [:room_type_name])) && to_string(val) != "" do %>
-                  <.badge variant="outline" size="sm">
+                  <.badge variant="outline" size="sm" id="hotel_room_type">
                     <%= to_string(val) %>
                   </.badge>
                 <% end %>
                 <%= if (val = get_in(item, [:breakfast_label])) && to_string(val) != "" do %>
-                  <.badge variant="outline" size="sm">
+                  <.badge variant="outline" size="sm" id="hotel_breakfast">
                     <%= to_string(val) %>
                   </.badge>
                 <% end %>
                 <%= if (val = get_in(item, [:cancel_label])) && to_string(val) != "" do %>
-                  <.badge variant="outline" size="sm">
+                  <.badge variant="outline" size="sm" id="hotel_cancel_policy">
                     <%= to_string(val) %>
                   </.badge>
                 <% end %>
               </.flex>
             </.stack>
           </.card_content>
-          <.card_footer>
-            <.flex justify="between" align="baseline" direction="row">
-              <.text variant="caption" color="muted">
-                <%= get_in(item, [:rating_label]) || "" %>
+          <.card_footer id="hotel_card_footer">
+            <.flex justify="between" align="baseline" direction="row" id="hotel_price_row">
+              <.text variant="caption" color="muted" id="hotel_rating">
+                <%= get_in(item, [:rating_label]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
               </.text>
-              <.flex gap={1} align="baseline" direction="row">
-                <.text variant="caption">
-                  ?
+              <.flex gap={1} align="baseline" direction="row" id="hotel_price">
+                <.text variant="caption" id="hotel_currency">
+                  ¥
                 </.text>
-                <.text variant="h3" color="primary">
-                  <%= get_in(item, [:listed_price]) || "" %>
+                <.text variant="h3" color="primary" id="hotel_listed_price">
+                  <%= get_in(item, [:listed_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
-                <.text variant="caption" color="muted">
+                <.text variant="caption" color="muted" id="hotel_price_unit">
                   /晚
                 </.text>
               </.flex>
@@ -128,7 +128,7 @@
     </.stack>
   </.section>
   <.section layout="none" id="empty_section">
-    <%= if @hotels.total_count == 0 do %>
+    <%= if get_in(@hotels, [:total_count]) == 0 do %>
       <.empty_state title="未找到酒店" description="请调整搜索条件后重试" id="no_hotels" />
     <% end %>
   </.section>

@@ -1,4 +1,7 @@
 {
+  "record": {
+    "sale_status": true
+  },
   "vacation_offer": {
     "supplier_code": "",
     "package_code": "",

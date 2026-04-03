@@ -1,6 +1,9 @@
 {
   "version": 1,
   "defaults": {
+    "record": {
+      "sale_status": true
+    },
     "hotel_offer": {
       "supplier_code": "",
       "hotel_code": "",
@@ -37,12 +40,65 @@
     "hotel_offer.room_type_code",
     "hotel_offer.sale_status",
     "hotel_offer.settlement_price",
-    "hotel_offer.supplier_code"
+    "hotel_offer.supplier_code",
+    "record",
+    "record.sale_status"
   ],
   "required": [
     "editing",
-    "hotel_offer"
+    "hotel_offer",
+    "record"
   ],
   "urlParams": {},
-  "notes": []
+  "notes": [],
+  "layer2": {
+    "backend": {
+      "api_map": {
+        "get": "Travel.HotelOffer.get",
+        "list": "Travel.HotelOffer.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "id"
+      },
+      "params": {
+        "accept": []
+      }
+    },
+    "delivery_mode": "runtime",
+    "domain": "Travel",
+    "e2e": {
+      "playwright": {
+        "auto": true,
+        "base_path": "/pages/travel/hotel_detail",
+        "cases": [],
+        "page_kind": "detail",
+        "page_spec": {
+          "page_kind": "detail",
+          "route_role": "detail",
+          "supports_runtime_record_identity": false,
+          "template_kind": "object_page"
+        }
+      }
+    },
+    "entity": "HotelOffer",
+    "extends": "base_object_page",
+    "page_id": "hotel_detail",
+    "page_type": "object_page",
+    "state_transitions": [],
+    "status_keys": [],
+    "transitions": {},
+    "ui": {
+      "sections": [],
+      "template": {
+        "detail": "object_page"
+      }
+    },
+    "version": 2
+  }
 }

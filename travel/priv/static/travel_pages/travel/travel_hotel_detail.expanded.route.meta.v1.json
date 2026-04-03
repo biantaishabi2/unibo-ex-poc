@@ -1,0 +1,14 @@
+{
+  "page_id": "travel_hotel_detail",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.TravelHotelDetailLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/travel_hotel/:id",
+    "kind": "detail",
+    "params": [
+      "id"
+    ]
+  }
+}

@@ -6,6 +6,7 @@
   "rows_empty": true,
   "rows": [
     {
+      "id": "row_01",
       "policy_name": "",
       "product_type": "",
       "employee_level": "",
@@ -20,6 +21,7 @@
       "is_active": ""
     },
     {
+      "id": "row_02",
       "policy_name": "",
       "product_type": "",
       "employee_level": "",
@@ -34,6 +36,7 @@
       "is_active": ""
     },
     {
+      "id": "row_03",
       "policy_name": "",
       "product_type": "",
       "employee_level": "",

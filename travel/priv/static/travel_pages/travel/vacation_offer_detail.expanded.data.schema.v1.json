@@ -2,6 +2,7 @@
   "version": 1,
   "requiredPaths": [
     "editing",
+    "record",
     "vacation_offer.booking_rules",
     "vacation_offer.cancellation_policy",
     "vacation_offer.currency",
@@ -20,9 +21,21 @@
   ],
   "requiredRoots": [
     "editing",
+    "record",
     "vacation_offer"
   ],
   "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "sale_status": {
+          "type": "boolean",
+          "required": false,
+          "example": true
+        }
+      }
+    },
     "editing": {
       "type": "object",
       "required": true,

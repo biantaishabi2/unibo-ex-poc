@@ -18,65 +18,341 @@
       ]
     }
   },
+  "delivery_mode": "compiled",
   "domain": "Travel",
   "e2e": {
     "playwright": {
       "auto": true,
-      "base_path": "/travel/travel_cabin_class",
+      "base_path": "/pages/travel/travel_cabin_class",
+      "capabilities": {
+        "supports_backend_verification": true,
+        "supports_chart_interaction": false,
+        "supports_create_navigation": true,
+        "supports_custom_page": false,
+        "supports_data_lifecycle": true,
+        "supports_report_mode": false,
+        "supports_row_navigation": true,
+        "supports_studio_sections": false,
+        "supports_table": true,
+        "supports_wait_contract": true
+      },
       "cases": [
         {
           "covers": [],
+          "kind": "load",
           "name": "页面加载 + 结构可见",
           "steps": [
             {
               "action": "expect_visible",
-              "selector": "[data-page='travel_cabin_class_list']"
+              "selector": "#travel_cabin_class_list"
+            }
+          ],
+          "verification_key": "load",
+          "wait_key": "load"
+        },
+        {
+          "covers": [],
+          "kind": "structure",
+          "name": "表格区域可见",
+          "steps": [
+            {
+              "action": "expect_visible",
+              "selector": "#travel_cabin_class_table, #table_section, table"
             }
           ]
         },
         {
           "covers": [
+            "filter_submit"
+          ],
+          "kind": "flow",
+          "name": "筛选提交",
+          "steps": [
+            {
+              "action": "click",
+              "event": "filter_submit",
+              "selector": "#filter_submit"
+            },
+            {
+              "action": "expect_visible",
+              "selector": "#travel_cabin_class_table, #table_section, table"
+            }
+          ],
+          "verification_key": "filter_submit",
+          "wait_key": "filter_submit"
+        },
+        {
+          "covers": [
             "navigate_create"
           ],
+          "kind": "crud",
           "name": "新建导航",
           "steps": [
             {
               "action": "click",
-              "selector": "#travel_cabin_class_create_btn, [data-action='navigate_create']"
-            },
+              "selector": "#create_btn"
+            }
+          ],
+          "verification_key": "navigate_create",
+          "wait_key": "navigate_create"
+        }
+      ],
+      "data_contract": {
+        "binds": [
+          {
+            "name": "active_record_id",
+            "path": "id",
+            "source": "clicked_row"
+          },
+          {
+            "name": "filter_state",
+            "path": null,
+            "source": "query_params"
+          }
+        ],
+        "cleanup": [],
+        "inputs": [
+          "query_params",
+          "clicked_row",
+          "generated_form_values"
+        ],
+        "report_inputs": [],
+        "setup": [
+          {
+            "binds": [
+              {
+                "name": "seed_record_id",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "never",
+            "create_blockers": [
+              "actor_required"
+            ],
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "TravelCabinClass",
+            "freshness": "match_only",
+            "graphql_field": "listTravelTravelCabinClasses",
+            "kind": "entity_list_first",
+            "name": "resolve_list_seed_record",
+            "owner": "root"
+          }
+        ]
+      },
+      "dto_smoke": [],
+      "graphql_path": "/api/graphql",
+      "page_kind": "list",
+      "page_spec": {
+        "dom": {
+          "primary_create": "#create_btn",
+          "root": "#travel_cabin_class_list",
+          "row": "#travel_cabin_class_row",
+          "table": "#travel_cabin_class_table, #table_section, table"
+        },
+        "page_kind": "list",
+        "route_role": "list",
+        "strategy": "report_list_flow",
+        "supports_custom_surface": false,
+        "supports_runtime_record_identity": false,
+        "surface_kind": "report",
+        "template_kind": "list_report"
+      },
+      "protocol": {
+        "case_fields": [
+          "name",
+          "kind",
+          "covers",
+          "wait_key",
+          "verification_key",
+          "steps"
+        ],
+        "contract_fields": [
+          "strategy",
+          "capabilities",
+          "wait_contract",
+          "verification_contract",
+          "data_contract"
+        ],
+        "step_fields": [
+          "action",
+          "selector",
+          "value",
+          "url",
+          "timeout"
+        ],
+        "transition_fields": [
+          "name",
+          "from",
+          "to",
+          "trigger",
+          "description",
+          "navigate_to"
+        ],
+        "version": 4
+      },
+      "strategy": "report_list_flow",
+      "template_kind": "list_report",
+      "verification_contract": {
+        "filter_submit": {
+          "backend": {
+            "api": "list",
+            "args": [
+              {
+                "name": "filters",
+                "source": "query_params"
+              }
+            ],
+            "binds": [],
+            "equals": null,
+            "excludes_source": null,
+            "graphql_field": "listTravelTravelCabinClasses",
+            "op": "exists",
+            "path": "results",
+            "source": "query_params"
+          },
+          "ui": [
             {
-              "action": "expect_url_contains",
-              "value": "/travel/travel_cabin_class/new"
+              "assert": "visible",
+              "selector": "#travel_cabin_class_list",
+              "value": null
             }
           ]
         },
-        {
-          "covers": [],
-          "name": "表格行存在",
-          "steps": [
+        "load": {
+          "backend": {
+            "api": "list",
+            "args": [],
+            "binds": [],
+            "equals": null,
+            "excludes_source": null,
+            "graphql_field": "listTravelTravelCabinClasses",
+            "op": "exists",
+            "path": "results",
+            "source": null
+          },
+          "ui": [
             {
-              "action": "expect_visible",
-              "selector": "#travel_cabin_class_table, [data-table='travel_cabin_class']"
+              "assert": "visible",
+              "selector": "#travel_cabin_class_list",
+              "value": null
+            }
+          ]
+        },
+        "navigate_create": {
+          "backend": null,
+          "ui": [
+            {
+              "assert": "url_contains",
+              "selector": null,
+              "value": "/pages/travel/travel_cabin_class/new"
+            },
+            {
+              "assert": "visible",
+              "selector": "#travel_cabin_class_detail",
+              "value": null
+            },
+            {
+              "assert": "visible",
+              "selector": "#travel_cabin_class_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+              "value": null
+            }
+          ]
+        },
+        "row_click": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "clicked_row.id"
+              }
+            ],
+            "binds": [],
+            "equals": null,
+            "excludes_source": null,
+            "graphql_field": "getTravelTravelCabinClass",
+            "op": "exists",
+            "path": "id",
+            "source": "clicked_row.id"
+          },
+          "ui": [
+            {
+              "assert": "url_contains",
+              "selector": null,
+              "value": "/pages/travel/travel_cabin_class/"
+            },
+            {
+              "assert": "visible",
+              "selector": "#travel_cabin_class_detail",
+              "value": null
             }
           ]
         }
-      ],
-      "dto_smoke": []
+      },
+      "wait_contract": {
+        "filter_submit": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#travel_cabin_class_list"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#travel_cabin_class_list",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "navigate_create": {
+          "mode": "url_and_root",
+          "reload_messages": [],
+          "selectors": [
+            "#travel_cabin_class_detail",
+            "#travel_cabin_class_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "url_contains",
+            "selector": "#travel_cabin_class_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "state_key": null,
+            "url_contains": "/pages/travel/travel_cabin_class/new"
+          },
+          "url_contains": "/pages/travel/travel_cabin_class/new"
+        },
+        "row_click": {
+          "mode": "url_and_root",
+          "reload_messages": [],
+          "selectors": [
+            "#travel_cabin_class_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "url_contains",
+            "selector": "#travel_cabin_class_detail",
+            "state_key": null,
+            "url_contains": "/pages/travel/travel_cabin_class/"
+          },
+          "url_contains": "/pages/travel/travel_cabin_class/"
+        }
+      }
     }
   },
   "entity": "TravelCabinClass",
   "page_id": "travel_cabin_class_list",
   "page_type": "list_report",
+  "resource_type": "config",
   "runtime_monitoring": null,
   "schema_version": "1.0",
   "state_transitions": [
-    {
-      "description": "筛选条件变更",
-      "from": "*",
-      "name": "filter_change",
-      "to": "*",
-      "trigger": "user_input"
-    },
     {
       "description": "提交筛选查询",
       "from": "*",
@@ -85,18 +361,10 @@
       "trigger": "user_action"
     },
     {
-      "description": "点击行跳转详情",
-      "from": "*",
-      "name": "row_click",
-      "navigate_to": "/travel/travel_cabin_class/{id}",
-      "to": "*",
-      "trigger": "user_action"
-    },
-    {
       "description": "跳转新建页",
       "from": "*",
       "name": "navigate_create",
-      "navigate_to": "/travel/travel_cabin_class/new",
+      "navigate_to": "/pages/travel/travel_cabin_class/new",
       "to": "*",
       "trigger": "user_action"
     }
@@ -107,11 +375,23 @@
     "filter",
     "loading"
   ],
+  "transitions": {
+    "filter_submit": [],
+    "navigate_create": [
+      {
+        "effect": {
+          "to": "/pages/travel/travel_cabin_class/new",
+          "type": "navigate"
+        },
+        "op": "effect"
+      }
+    ]
+  },
   "ui": {
     "sections": [],
     "template": {
       "list": "list_report"
     }
   },
-  "version": 1
+  "version": 2
 }

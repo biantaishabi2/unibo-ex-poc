@@ -1,0 +1,14 @@
+{
+  "page_id": "travel_airline_detail",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.TravelAirlineDetailLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/travel_airline/:id",
+    "kind": "detail",
+    "params": [
+      "id"
+    ]
+  }
+}

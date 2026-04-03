@@ -15,7 +15,7 @@
     <.flex gap={2} paddingx={3} paddingy={2} overflowx="scroll" background="surface" direction="row" id="flight_date_slider">
       <%= for date_item <- (get_in(@search, [:date_range]) || []) do %>
         <%= if (val = get_in(date_item, [:date_label])) && to_string(val) != "" do %>
-          <.badge variant={get_in(date_item, [:is_selected])} phx-click="select_date" size="sm">
+          <.badge variant={get_in(date_item, [:is_selected])} phx-click="select_date" size="sm" id="flight_date_badge">
             <%= to_string(val) %>
           </.badge>
         <% end %>
@@ -42,7 +42,7 @@
     </.flex>
   </.section>
   <.section layout="none" id="alert_section">
-    <%= if @policy.exceeded == true do %>
+    <%= if get_in(@policy, [:exceeded]) == true do %>
       <.alert variant="warning" title="超标提示" id="flight_policy_alert">
         标记超标的航班超出差旅标准,预订需审批
       </.alert>
@@ -51,87 +51,87 @@
   <.section layout="none" id="results_section">
     <.stack gap={3} padding={3} direction="column" id="flight_results_list">
       <%= for item <- (get_in(@flights, [:items]) || []) do %>
-        <.card phx-click="navigate" params={"/travel/flight/#{get_in(item, [:id])}"} variant="default">
-          <.card_header>
-            <.flex gap={2} align="center" direction="row">
-              <.avatar src={get_in(item, [:airline_ref, :logo])} fallback={get_in(item, [:airline_ref, :code])} size="sm">
+        <.card phx-click="navigate" params={"/travel/flight/#{get_in(item, [:id])}"} variant="default" id="flight_card">
+          <.card_header id="flight_card_header">
+            <.flex gap={2} align="center" direction="row" id="flight_header_row">
+              <.avatar src={get_in(item, [:airline_ref, :logo])} fallback={get_in(item, [:airline_ref, :code])} size="sm" id="airline_avatar">
 
               </.avatar>
-              <.text variant="caption" color="muted">
-                <%= get_in(item, [:airline_ref, :name]) || "" %>
+              <.text variant="caption" color="muted" id="airline_name">
+                <%= get_in(item, [:airline_ref, :name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
               </.text>
-              <.text variant="caption" color="muted">
-                <%= get_in(item, [:flight_no]) || "" %>
+              <.text variant="caption" color="muted" id="flight_no">
+                <%= get_in(item, [:flight_no]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
               </.text>
-              <%= if item.is_policy_compliant == false do %>
-                <.badge variant="destructive" size="sm">
+              <%= if get_in(item, [:is_policy_compliant]) == false do %>
+                <.badge variant="destructive" size="sm" id="flight_exceed_badge">
                   超标
                 </.badge>
               <% end %>
             </.flex>
           </.card_header>
-          <.card_content>
-            <.flex justify="between" align="center" direction="row">
-              <.stack gap={0} align="center" direction="column">
-                <.text variant="h2" weight="bold">
-                  <%= get_in(item, [:departure_time]) || "" %>
+          <.card_content id="flight_card_content">
+            <.flex justify="between" align="center" direction="row" id="flight_time_row">
+              <.stack gap={0} align="center" direction="column" id="departure_info">
+                <.text variant="h2" weight="bold" id="departure_time">
+                  <%= get_in(item, [:departure_time]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
-                <.text variant="caption" color="muted">
-                  <%= get_in(item, [:departure_airport_ref, :city_name]) || "" %>
+                <.text variant="caption" color="muted" id="departure_city">
+                  <%= get_in(item, [:departure_airport_ref, :city_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
-                <.text variant="caption" color="muted">
-                  <%= get_in(item, [:departure_airport_code]) || "" %>
-                </.text>
-              </.stack>
-              <.stack gap={0} align="center" direction="column">
-                <.text variant="caption" color="muted">
-                  <%= get_in(item, [:duration_label]) || "" %>
-                </.text>
-                <.separator />
-                <.text variant="caption" color="muted">
-                  <%= get_in(item, [:stop_label]) || "" %>
+                <.text variant="caption" color="muted" id="departure_code">
+                  <%= get_in(item, [:departure_airport_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
-              <.stack gap={0} align="center" direction="column">
-                <.text variant="h2" weight="bold">
-                  <%= get_in(item, [:arrival_time]) || "" %>
+              <.stack gap={0} align="center" direction="column" id="flight_duration_info">
+                <.text variant="caption" color="muted" id="flight_duration">
+                  <%= get_in(item, [:duration_label]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
-                <.text variant="caption" color="muted">
-                  <%= get_in(item, [:arrival_airport_ref, :city_name]) || "" %>
+                <.separator id="flight_sep" />
+                <.text variant="caption" color="muted" id="flight_stop">
+                  <%= get_in(item, [:stop_label]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
-                <.text variant="caption" color="muted">
-                  <%= get_in(item, [:arrival_airport_code]) || "" %>
+              </.stack>
+              <.stack gap={0} align="center" direction="column" id="arrival_info">
+                <.text variant="h2" weight="bold" id="arrival_time">
+                  <%= get_in(item, [:arrival_time]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
+                </.text>
+                <.text variant="caption" color="muted" id="arrival_city">
+                  <%= get_in(item, [:arrival_airport_ref, :city_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
+                </.text>
+                <.text variant="caption" color="muted" id="arrival_code">
+                  <%= get_in(item, [:arrival_airport_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
             </.flex>
           </.card_content>
-          <.card_footer>
-            <.flex justify="between" align="center" direction="row">
-              <.flex gap={1} wrap={true} direction="row">
+          <.card_footer id="flight_card_footer">
+            <.flex justify="between" align="center" direction="row" id="flight_footer_row">
+              <.flex gap={1} wrap={true} direction="row" id="flight_tags">
                 <%= if (val = get_in(item, [:cabin_class_ref, :name])) && to_string(val) != "" do %>
-                  <.badge variant="outline" size="sm">
+                  <.badge variant="outline" size="sm" id="cabin_class_badge">
                     <%= to_string(val) %>
                   </.badge>
                 <% end %>
                 <%= if (val = get_in(item, [:aircraft_type])) && to_string(val) != "" do %>
-                  <.badge variant="outline" size="sm">
+                  <.badge variant="outline" size="sm" id="aircraft_badge">
                     <%= to_string(val) %>
                   </.badge>
                 <% end %>
-                <%= if item.discount_label != nil do %>
+                <%= if get_in(item, [:discount_label]) != nil do %>
                   <%= if (val = get_in(item, [:discount_label])) && to_string(val) != "" do %>
-                    <.badge variant="success" size="sm">
+                    <.badge variant="success" size="sm" id="discount_badge">
                       <%= to_string(val) %>
                     </.badge>
                   <% end %>
                 <% end %>
               </.flex>
-              <.flex gap={1} align="baseline" direction="row">
-                <.text variant="caption">
-                  <%= get_in(item, [:currency]) || "" %>
+              <.flex gap={1} align="baseline" direction="row" id="flight_price">
+                <.text variant="caption" id="flight_currency">
+                  <%= get_in(item, [:currency]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
-                <.text variant="h3" color="primary">
-                  <%= get_in(item, [:listed_price]) || "" %>
+                <.text variant="h3" color="primary" id="flight_listed_price">
+                  <%= get_in(item, [:listed_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.flex>
             </.flex>
@@ -141,7 +141,7 @@
     </.stack>
   </.section>
   <.section layout="none" id="empty_section">
-    <%= if @flights.total_count == 0 do %>
+    <%= if get_in(@flights, [:total_count]) == 0 do %>
       <.empty_state title="未找到航班" description="请调整搜索条件后重试" id="no_flights" />
     <% end %>
   </.section>

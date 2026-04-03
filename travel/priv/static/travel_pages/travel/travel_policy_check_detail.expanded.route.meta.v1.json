@@ -1,0 +1,14 @@
+{
+  "page_id": "travel_policy_check_detail",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.TravelPolicyCheckDetailLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/travel_policy_check/:id?order_id={{order_id}}&policy_id={{policy_id}}",
+    "kind": "detail",
+    "params": [
+      "id"
+    ]
+  }
+}

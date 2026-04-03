@@ -69,39 +69,39 @@
         </.table_row>
       </.table_header>
       <.table_body id="data_body">
-        <%= for row <- (@rows || []) do %>
-          <.table_row>
-            <.table_cell>
+        <%= for {row, idx} <- Enum.with_index((@rows || [])) do %>
+          <.table_row phx-click="row_click" phx-value-id={row.id} id="travel_policy_check_row">
+            <.table_cell id="td_check_result">
               <%= if (val = get_in(row, [:check_result])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_check_result">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:policy_amount]) || "" %>
+            <.table_cell id="td_policy_amount">
+              <%= get_in(row, [:policy_amount]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:actual_amount]) || "" %>
+            <.table_cell id="td_actual_amount">
+              <%= get_in(row, [:actual_amount]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:exceed_amount]) || "" %>
+            <.table_cell id="td_exceed_amount">
+              <%= get_in(row, [:exceed_amount]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:exceed_ratio]) || "" %>
+            <.table_cell id="td_exceed_ratio">
+              <%= get_in(row, [:exceed_ratio]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:exceed_strategy]) || "" %>
+            <.table_cell id="td_exceed_strategy">
+              <%= get_in(row, [:exceed_strategy]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:exceed_reason]) || "" %>
+            <.table_cell id="td_exceed_reason">
+              <%= get_in(row, [:exceed_reason]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:personal_pay_amount]) || "" %>
+            <.table_cell id="td_personal_pay_amount">
+              <%= get_in(row, [:personal_pay_amount]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_approval_mode">
               <%= if (val = get_in(row, [:approval_mode])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_approval_mode">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
@@ -122,7 +122,7 @@
         上一页
       </.button>
       <.text id="page_info">
-        <%= get_in(@travel_policy_check, [:page]) || "" %> / <%= get_in(@travel_policy_check, [:total_pages]) || "" %>
+        <%= get_in(@travel_policy_check, [:page]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %> / <%= get_in(@travel_policy_check, [:total_pages]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
       </.text>
       <.button phx-click="travel_policy_check_page_next" variant="primary" size="md" id="page_next">
         下一页

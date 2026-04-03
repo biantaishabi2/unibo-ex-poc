@@ -1,4 +1,7 @@
 {
+  "record": {
+    "sale_status": true
+  },
   "train_offer": {
     "supplier_code": "",
     "train_no": "",

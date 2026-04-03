@@ -1,8 +1,81 @@
 {
   "version": 1,
-  "defaults": {},
-  "keys": [],
-  "required": [],
+  "defaults": {
+    "record": {
+      "status": true,
+      "site_name": "",
+      "logo": "",
+      "site_description": "",
+      "notify_method": "",
+      "notify_frequency": "",
+      "session_timeout": "",
+      "password_policy": ""
+    }
+  },
+  "keys": [
+    "record",
+    "record.logo",
+    "record.notify_frequency",
+    "record.notify_method",
+    "record.password_policy",
+    "record.session_timeout",
+    "record.site_description",
+    "record.site_name",
+    "record.status"
+  ],
+  "required": [
+    "record"
+  ],
   "urlParams": {},
-  "notes": []
+  "notes": [],
+  "layer2": {
+    "backend": {
+      "api_map": {
+        "get": "Travel.TravelOrder.get",
+        "list": "Travel.TravelOrder.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "id"
+      },
+      "params": {
+        "accept": []
+      }
+    },
+    "delivery_mode": "runtime",
+    "domain": "Travel",
+    "e2e": {
+      "playwright": {
+        "auto": true,
+        "base_path": "/pages/travel/oa_integration_config",
+        "cases": [],
+        "page_kind": "detail",
+        "page_spec": {
+          "page_kind": "detail",
+          "route_role": "detail",
+          "supports_runtime_record_identity": false,
+          "template_kind": "object_page"
+        }
+      }
+    },
+    "entity": "TravelOrder",
+    "extends": "base_object_page",
+    "page_id": "oa_integration_config",
+    "page_type": "object_page",
+    "state_transitions": [],
+    "status_keys": [],
+    "transitions": {},
+    "ui": {
+      "sections": [],
+      "template": {
+        "detail": "object_page"
+      }
+    },
+    "version": 2
+  }
 }

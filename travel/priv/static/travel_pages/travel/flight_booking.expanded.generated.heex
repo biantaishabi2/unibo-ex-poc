@@ -19,7 +19,7 @@
 
           </.avatar>
           <.text variant="body" weight="bold" id="flight_no_text">
-            <%= get_in(@offer, [:flight_no]) || "" %>
+            <%= get_in(@offer, [:flight_no]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
           </.text>
           <%= if (val = get_in(@offer, [:cabin_class_ref, :name])) && to_string(val) != "" do %>
             <.badge variant="secondary" size="sm" id="cabin_class_badge">
@@ -32,24 +32,24 @@
         <.flex justify="between" align="center" direction="row" id="flight_route_flex">
           <.stack gap={0} align="center" direction="column" id="departure_stack">
             <.text variant="h2" weight="bold" id="departure_time">
-              <%= get_in(@offer, [:departure_time]) || "" %>
+              <%= get_in(@offer, [:departure_time]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.text>
             <.text variant="caption" color="muted" id="departure_airport">
-              <%= get_in(@offer, [:departure_airport_code]) || "" %>
+              <%= get_in(@offer, [:departure_airport_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.text>
           </.stack>
           <.stack gap={0} align="center" direction="column" id="middle_stack">
             <.text variant="caption" color="muted" id="date_label">
-              <%= get_in(@offer, [:date_label]) || "" %>
+              <%= get_in(@offer, [:date_label]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.text>
             <.icon name="plane" size="sm" id="plane_icon" />
           </.stack>
           <.stack gap={0} align="center" direction="column" id="arrival_stack">
             <.text variant="h2" weight="bold" id="arrival_time">
-              <%= get_in(@offer, [:arrival_time]) || "" %>
+              <%= get_in(@offer, [:arrival_time]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.text>
             <.text variant="caption" color="muted" id="arrival_airport">
-              <%= get_in(@offer, [:arrival_airport_code]) || "" %>
+              <%= get_in(@offer, [:arrival_airport_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.text>
           </.stack>
         </.flex>
@@ -57,10 +57,10 @@
       <.card_footer id="flight_summary_cf">
         <.flex justify="end" align="baseline" direction="row" id="flight_price_flex">
           <.text variant="caption" id="flight_currency">
-            <%= get_in(@offer, [:currency]) || "" %>
+            <%= get_in(@offer, [:currency]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
           </.text>
           <.text variant="h2" color="primary" id="flight_listed_price">
-            <%= get_in(@offer, [:listed_price]) || "" %>
+            <%= get_in(@offer, [:listed_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
           </.text>
         </.flex>
       </.card_footer>
@@ -94,7 +94,7 @@
         </.stack>
       </.card_content>
     </.card>
-    <%= if @offer.is_policy_exceeded == true do %>
+    <%= if get_in(@offer, [:is_policy_exceeded]) == true do %>
       <.alert variant="warning" title="超出差旅标准" description="该舱位超出您的差旅标准,提交后需经审批" id="policy_exceeded_alert" />
     <% end %>
   </.section>
@@ -113,17 +113,17 @@
       <.card_content id="passenger_cc">
         <.stack gap={2} direction="column" id="passenger_list_stack">
           <%= for item <- (get_in(@travelers, [:items]) || []) do %>
-            <.flex gap={2} align="center" paddingy={2} direction="row">
-              <.checkbox bind="item.selected" size="md" />
-              <.avatar src={get_in(item, [:avatar])} fallback={get_in(item, [:name_initial])} size="sm">
+            <.flex gap={2} align="center" paddingy={2} direction="row" id="passenger_item_flex">
+              <.checkbox bind="item.selected" size="md" id="passenger_cb" />
+              <.avatar src={get_in(item, [:avatar])} fallback={get_in(item, [:name_initial])} size="sm" id="passenger_avatar">
 
               </.avatar>
-              <.stack gap={0} direction="column">
-                <.text variant="body">
-                  <%= get_in(item, [:name]) || "" %>
+              <.stack gap={0} direction="column" id="passenger_info_stack">
+                <.text variant="body" id="passenger_name">
+                  <%= get_in(item, [:name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
-                <.text variant="caption" color="muted">
-                  <%= get_in(item, [:id_type_label]) || "" %>
+                <.text variant="caption" color="muted" id="passenger_id_label">
+                  <%= get_in(item, [:id_type_label]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
             </.flex>
@@ -141,8 +141,8 @@
       </.card_header>
       <.card_content id="contact_cc">
         <.stack gap={3} direction="column" id="contact_stack">
-          <.input label="联系人姓名" placeholder="请输入联系人姓名" bind="form.contact_name" size="md" id="input_contact_name" />
-          <.input label="手机号" placeholder="请输入手机号" bind="form.contact_phone" size="md" id="input_contact_phone" />
+          <.input label="联系人姓名" placeholder="请输入联系人姓名" size="md" name="form[contact_name]" id="input_contact_name" />
+          <.input label="手机号" placeholder="请输入手机号" size="md" name="form[contact_phone]" id="input_contact_phone" />
         </.stack>
       </.card_content>
     </.card>
@@ -156,8 +156,14 @@
         </.text>
       </.card_header>
       <.card_content id="payment_cc">
-        <.select label="选择支付方式" bind="form.payment_method" size="md" id="select_payment_method" options={[%{label: "企业支付", value: "corporate"}, %{label: "个人支付", value: "personal"}]}>
-
+        <.select label="选择支付方式" size="md" name="form[payment_method]" id="select_payment_method" :let={builder}>
+          <.select_trigger builder={builder} />
+          <.select_content builder={builder}>
+            <.select_group>
+              <.select_item builder={builder} value="corporate" label="企业支付">企业支付</.select_item>
+              <.select_item builder={builder} value="personal" label="个人支付">个人支付</.select_item>
+            </.select_group>
+          </.select_content>
         </.select>
       </.card_content>
     </.card>
@@ -170,10 +176,10 @@
             合计
           </.text>
           <.text variant="caption" color="primary" id="total_currency">
-            <%= get_in(@offer, [:currency]) || "" %>
+            <%= get_in(@offer, [:currency]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
           </.text>
           <.text variant="h2" color="primary" id="total_price">
-            <%= get_in(@offer, [:total_price]) || "" %>
+            <%= get_in(@offer, [:total_price]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
           </.text>
         </.flex>
         <.button variant="primary" size="lg" phx-click="submit_booking" id="btn_submit">

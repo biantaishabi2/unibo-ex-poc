@@ -16,13 +16,26 @@
     "hotel_offer.room_type_code",
     "hotel_offer.sale_status",
     "hotel_offer.settlement_price",
-    "hotel_offer.supplier_code"
+    "hotel_offer.supplier_code",
+    "record"
   ],
   "requiredRoots": [
     "editing",
-    "hotel_offer"
+    "hotel_offer",
+    "record"
   ],
   "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "sale_status": {
+          "type": "boolean",
+          "required": false,
+          "example": true
+        }
+      }
+    },
     "editing": {
       "type": "object",
       "required": true,

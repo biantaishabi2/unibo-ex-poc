@@ -16,11 +16,28 @@
     },
     "load": {
       "assigns": {},
-      "selection": "cancellation_policy: cancellationPolicy checkin_date: checkinDate checkout_date: checkoutDate city_code: cityCode city_ref_id: cityRefId currency guarantee_policy: guaranteePolicy host_shop_id: hostShopId hotel_code: hotelCode hotel_name: hotelName id inventory_count: inventoryCount listed_price: listedPrice rate_plan_code: ratePlanCode room_type_code: roomTypeCode sale_status: saleStatus settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
+      "selection": "cancellation_policy: cancellationPolicy checkin_date: checkinDate checkout_date: checkoutDate city_code: cityCode currency guarantee_policy: guaranteePolicy host_shop_id: hostShopId hotel_code: hotelCode hotel_name: hotelName id inventory_count: inventoryCount listed_price: listedPrice rate_plan_code: ratePlanCode room_type_code: roomTypeCode sale_status: saleStatus settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
     },
     "params": {
       "accept": [
-        "id"
+        "id",
+        "room_type_code",
+        "guarantee_policy",
+        "checkin_date",
+        "rate_plan_code",
+        "settlement_price",
+        "sale_status",
+        "checkout_date",
+        "listed_price",
+        "host_shop_id",
+        "city_ref_id",
+        "supplier_code",
+        "currency",
+        "cancellation_policy",
+        "hotel_code",
+        "inventory_count",
+        "city_code",
+        "hotel_name"
       ]
     }
   },
@@ -28,107 +45,775 @@
   "domain": "Travel",
   "e2e": {
     "playwright": {
-      "auto": true,
-      "base_path": "/travel/hotel_offer/:id",
+      "auto": false,
+      "base_path": "/pages/travel/hotel_offer/:id",
+      "capabilities": {
+        "supports_backend_verification": true,
+        "supports_children": true,
+        "supports_custom_actions": true,
+        "supports_custom_page": false,
+        "supports_data_lifecycle": true,
+        "supports_destroy": true,
+        "supports_edit_form": true,
+        "supports_embedded_form": false,
+        "supports_fcl": false,
+        "supports_state_machine": true,
+        "supports_wait_contract": true,
+        "supports_wizard": false
+      },
       "cases": [
         {
           "covers": [],
+          "kind": "load",
           "name": "页面加载 + 结构可见",
           "steps": [
             {
               "action": "expect_visible",
-              "selector": "[data-page='hotel_offer_detail']"
+              "selector": "#hotel_offer_detail"
             }
-          ]
+          ],
+          "verification_key": "load",
+          "wait_key": "load"
         },
         {
           "covers": [
-            "toggle_edit"
+            "toggle_edit",
+            "cancel_edit"
           ],
+          "kind": "flow",
           "name": "编辑模式切换",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='toggle_edit']"
+              "event": "toggle_edit"
             },
             {
               "action": "expect_visible",
-              "selector": "form, [data-mode='edit']"
+              "selector": "#hotel_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+            },
+            {
+              "action": "click",
+              "event": "cancel_edit"
+            },
+            {
+              "action": "expect_not_visible",
+              "selector": "#hotel_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             }
-          ]
+          ],
+          "verification_key": "toggle_edit",
+          "wait_key": null
         },
         {
           "covers": [
+            "toggle_edit",
+            "form_change",
             "form_submit"
           ],
-          "name": "表单提交",
+          "kind": "crud",
+          "name": "CRUD：编辑记录",
           "steps": [
             {
               "action": "click",
-              "selector": "[data-action='form_submit'], button[type='submit']"
+              "event": "toggle_edit"
             },
             {
-              "action": "expect_text_contains",
-              "selector": "#flash-group, [data-flash], [role='alert']",
-              "value": "成功"
+              "action": "expect_visible",
+              "selector": "#hotel_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+            },
+            {
+              "action": "type",
+              "field": "hotel_name",
+              "value": "UPDATED_{{__run_id}}_hotel_name"
+            },
+            {
+              "action": "type",
+              "field": "guarantee_policy",
+              "value": "UPDATED_{{__run_id}}_guarantee_policy"
+            },
+            {
+              "action": "type",
+              "field": "city_ref_id",
+              "value": "UPDATED_{{__run_id}}_city_ref_id"
+            },
+            {
+              "action": "type",
+              "field": "listed_price",
+              "value": "200.00"
+            },
+            {
+              "action": "type",
+              "field": "cancellation_policy",
+              "value": "UPDATED_{{__run_id}}_cancellation_policy"
+            },
+            {
+              "action": "type",
+              "field": "currency",
+              "value": "UPDATED_{{__run_id}}_currency"
+            },
+            {
+              "action": "type",
+              "field": "settlement_price",
+              "value": "200.00"
+            },
+            {
+              "action": "type",
+              "field": "inventory_count",
+              "value": "2"
+            },
+            {
+              "action": "type",
+              "field": "city_code",
+              "value": "UPDATED_{{__run_id}}_city_code"
+            },
+            {
+              "action": "click",
+              "event": "form_submit"
             }
-          ]
+          ],
+          "verification_key": "update",
+          "wait_key": "form_submit"
         },
         {
           "covers": [
             "action_activate"
           ],
-          "name": "动作：activate",
+          "kind": "state",
+          "name": "状态转换：draft → active（activate）",
           "steps": [
             {
-              "action": "click",
-              "selector": "[data-action='action_activate']"
+              "action": "goto",
+              "url": "/pages/travel/hotel_offer/{{state_action_record_id_activate}}",
+              "value": "/pages/travel/hotel_offer/{{state_action_record_id_activate}}"
             },
             {
               "action": "expect_visible",
-              "selector": "[data-action='action_activate']"
+              "selector": "#hotel_offer_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_activate",
+              "selector": "#hotel_offer_action_activate"
             }
-          ]
+          ],
+          "verification_key": "action_activate",
+          "wait_key": "action_activate"
         },
         {
           "covers": [
             "action_deactivate"
           ],
-          "name": "动作：deactivate",
+          "kind": "state",
+          "name": "状态转换：active → inactive（deactivate）",
           "steps": [
             {
-              "action": "click",
-              "selector": "[data-action='action_deactivate']"
+              "action": "goto",
+              "url": "/pages/travel/hotel_offer/{{state_action_record_id_deactivate}}",
+              "value": "/pages/travel/hotel_offer/{{state_action_record_id_deactivate}}"
             },
             {
               "action": "expect_visible",
-              "selector": "[data-action='action_deactivate']"
+              "selector": "#hotel_offer_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_deactivate",
+              "selector": "#hotel_offer_action_deactivate"
             }
-          ]
+          ],
+          "verification_key": "action_deactivate",
+          "wait_key": "action_deactivate"
         },
         {
           "covers": [
             "action_expire"
           ],
-          "name": "动作：expire",
+          "kind": "state",
+          "name": "状态转换：active → expired（expire）",
           "steps": [
             {
-              "action": "click",
-              "selector": "[data-action='action_expire']"
+              "action": "goto",
+              "url": "/pages/travel/hotel_offer/{{state_action_record_id_expire}}",
+              "value": "/pages/travel/hotel_offer/{{state_action_record_id_expire}}"
             },
             {
               "action": "expect_visible",
-              "selector": "[data-action='action_expire']"
+              "selector": "#hotel_offer_detail"
+            },
+            {
+              "action": "click",
+              "event": "action_expire",
+              "selector": "#hotel_offer_action_expire"
+            }
+          ],
+          "verification_key": "action_expire",
+          "wait_key": "action_expire"
+        },
+        {
+          "covers": [
+            "action_destroy"
+          ],
+          "kind": "crud",
+          "name": "动作：删除",
+          "steps": [
+            {
+              "action": "click",
+              "event": "action_destroy",
+              "selector": "#delete_btn"
+            }
+          ],
+          "verification_key": "destroy",
+          "wait_key": "destroy"
+        }
+      ],
+      "data_contract": {
+        "binds": [
+          {
+            "name": "route_record_id",
+            "path": "id",
+            "source": "route"
+          },
+          {
+            "name": "created_display_value",
+            "path": "supplier_code",
+            "source": "form"
+          }
+        ],
+        "cleanup": [
+          {
+            "api": "destroy",
+            "ignore_missing": true,
+            "path": "id",
+            "source": "created_record_id"
+          }
+        ],
+        "inputs": [
+          "route",
+          "form",
+          "generated_form_values"
+        ],
+        "setup": [
+          {
+            "binds": [
+              {
+                "name": "seed_record_id",
+                "path": "id",
+                "source": "result"
+              },
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "never",
+            "create_blockers": [
+              "actor_required"
+            ],
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "HotelOffer",
+            "freshness": "match_only",
+            "graphql_field": "listTravelHotelOffers",
+            "index": 0,
+            "kind": "entity_list_first",
+            "name": "resolve_current_record",
+            "owner": "root",
+            "where_equals": "draft",
+            "where_path": "sale_status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_activate",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelHotelOffer",
+            "create_input": {
+              "cancellation_policy": "E2E_{{__run_id}}_cancellation_policy_state_activate_0",
+              "checkin_date": "2026-01-01",
+              "checkout_date": "2026-01-01",
+              "city_code": "E2E_{{__run_id}}_city_code_state_activate_0",
+              "currency": "E2E_{{__run_id}}_currency_state_activate_0",
+              "guarantee_policy": "E2E_{{__run_id}}_guarantee_policy_state_activate_0",
+              "host_shop_id": "364028f0-e7d9-40dc-94d2-d5c2e7d1e5d1",
+              "hotel_code": "E2E_{{__run_id}}_hotel_code_state_activate_0",
+              "hotel_name": "E2E_{{__run_id}}_hotel_name_state_activate_0",
+              "inventory_count": 1,
+              "listed_price": 1.0,
+              "rate_plan_code": "E2E_{{__run_id}}_rate_plan_code_state_activate_0",
+              "room_type_code": "E2E_{{__run_id}}_room_type_code_state_activate_0",
+              "sale_status": "draft",
+              "settlement_price": 1.0,
+              "supplier_code": "E2E_{{__run_id}}_supplier_code_state_activate_0",
+              "tenant_id": "f2e5d9c2-e8ca-4ed5-88e2-cae4d5d3cec3"
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "HotelOffer",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelHotelOffers",
+            "index": 0,
+            "kind": "entity_list_match_or_create",
+            "name": "resolve_state_action_record_activate",
+            "owner": "root",
+            "prepare_actions": [],
+            "where_equals": "draft",
+            "where_path": "sale_status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_deactivate",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelHotelOffer",
+            "create_input": {
+              "cancellation_policy": "E2E_{{__run_id}}_cancellation_policy_state_deactivate_0",
+              "checkin_date": "2026-01-01",
+              "checkout_date": "2026-01-01",
+              "city_code": "E2E_{{__run_id}}_city_code_state_deactivate_0",
+              "currency": "E2E_{{__run_id}}_currency_state_deactivate_0",
+              "guarantee_policy": "E2E_{{__run_id}}_guarantee_policy_state_deactivate_0",
+              "host_shop_id": "383c3d25-4609-40dc-94d2-d8c4d4cbe3d9",
+              "hotel_code": "E2E_{{__run_id}}_hotel_code_state_deactivate_0",
+              "hotel_name": "E2E_{{__run_id}}_hotel_name_state_deactivate_0",
+              "inventory_count": 1,
+              "listed_price": 1.0,
+              "rate_plan_code": "E2E_{{__run_id}}_rate_plan_code_state_deactivate_0",
+              "room_type_code": "E2E_{{__run_id}}_room_type_code_state_deactivate_0",
+              "sale_status": "draft",
+              "settlement_price": 1.0,
+              "supplier_code": "E2E_{{__run_id}}_supplier_code_state_deactivate_0",
+              "tenant_id": "274409c2-e8ca-4ed8-8acf-c4e2ddd5cad8"
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "HotelOffer",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelHotelOffers",
+            "index": 0,
+            "kind": "entity_list_match_or_create",
+            "name": "resolve_state_action_record_deactivate",
+            "owner": "root",
+            "prepare_actions": [
+              "activate"
+            ],
+            "where_equals": "draft",
+            "where_path": "sale_status"
+          },
+          {
+            "binds": [
+              {
+                "name": "state_action_record_id_expire",
+                "path": "id",
+                "source": "result"
+              }
+            ],
+            "cleanup_policy": "always",
+            "create_blockers": [],
+            "create_graphql_field": "createTravelHotelOffer",
+            "create_input": {
+              "cancellation_policy": "E2E_{{__run_id}}_cancellation_policy_state_expire_1",
+              "checkin_date": "2026-01-01",
+              "checkout_date": "2026-01-01",
+              "city_code": "E2E_{{__run_id}}_city_code_state_expire_1",
+              "currency": "E2E_{{__run_id}}_currency_state_expire_1",
+              "guarantee_policy": "E2E_{{__run_id}}_guarantee_policy_state_expire_1",
+              "host_shop_id": "210cc9c0-e7d9-40dc-94d2-d9d7e3d1e1d5",
+              "hotel_code": "E2E_{{__run_id}}_hotel_code_state_expire_1",
+              "hotel_name": "E2E_{{__run_id}}_hotel_name_state_expire_1",
+              "inventory_count": 1,
+              "listed_price": 1.0,
+              "rate_plan_code": "E2E_{{__run_id}}_rate_plan_code_state_expire_1",
+              "room_type_code": "E2E_{{__run_id}}_room_type_code_state_expire_1",
+              "sale_status": "draft",
+              "settlement_price": 1.0,
+              "supplier_code": "E2E_{{__run_id}}_supplier_code_state_expire_1",
+              "tenant_id": "c2e5d9c2-e8ca-4ed9-9dde-cae0d9be9a64"
+            },
+            "depends_on": [],
+            "domain": "Travel",
+            "entity": "HotelOffer",
+            "freshness": "prefer_create",
+            "graphql_field": "listTravelHotelOffers",
+            "index": 1,
+            "kind": "entity_list_match_or_create",
+            "name": "resolve_state_action_record_expire",
+            "owner": "root",
+            "prepare_actions": [
+              "activate"
+            ],
+            "where_equals": "draft",
+            "where_path": "sale_status"
+          }
+        ]
+      },
+      "dto_smoke": [],
+      "graphql_path": "/api/graphql",
+      "page_kind": "detail",
+      "page_spec": {
+        "dom": {
+          "form": "#hotel_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+          "root": "#hotel_offer_detail",
+          "submit": "#hotel_offer_save_btn, form[phx-submit=\"form_submit\"] button[type=\"submit\"]",
+          "toggle_edit": "#edit_btn"
+        },
+        "page_kind": "detail",
+        "route_role": "record",
+        "strategy": "object_detail_flow",
+        "supports_custom_surface": false,
+        "supports_runtime_record_identity": true,
+        "surface_kind": "standard",
+        "template_kind": "object_page"
+      },
+      "protocol": {
+        "case_fields": [
+          "name",
+          "kind",
+          "covers",
+          "wait_key",
+          "verification_key",
+          "steps"
+        ],
+        "contract_fields": [
+          "strategy",
+          "capabilities",
+          "wait_contract",
+          "verification_contract",
+          "data_contract"
+        ],
+        "step_fields": [
+          "action",
+          "selector",
+          "value",
+          "url",
+          "timeout"
+        ],
+        "transition_fields": [
+          "name",
+          "from",
+          "to",
+          "trigger",
+          "description",
+          "navigate_to"
+        ],
+        "version": 4
+      },
+      "strategy": "object_detail_flow",
+      "template_kind": "object_page",
+      "verification_contract": {
+        "action_activate": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "active",
+            "excludes_source": null,
+            "graphql_field": "getTravelHotelOffer",
+            "op": "equals",
+            "path": "sale_status",
+            "source": "active_record_id"
+          },
+          "event": "activate",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#hotel_offer_status_badge, #hotel_offer_fcl_status_badge, #state_badge",
+              "value": "active"
+            }
+          ]
+        },
+        "action_deactivate": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "inactive",
+            "excludes_source": null,
+            "graphql_field": "getTravelHotelOffer",
+            "op": "equals",
+            "path": "sale_status",
+            "source": "active_record_id"
+          },
+          "event": "deactivate",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#hotel_offer_status_badge, #hotel_offer_fcl_status_badge, #state_badge",
+              "value": "inactive"
+            }
+          ]
+        },
+        "action_expire": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "expired",
+            "excludes_source": null,
+            "graphql_field": "getTravelHotelOffer",
+            "op": "equals",
+            "path": "sale_status",
+            "source": "active_record_id"
+          },
+          "event": "expire",
+          "ui": [
+            {
+              "assert": "text_contains",
+              "selector": "#hotel_offer_status_badge, #hotel_offer_fcl_status_badge, #state_badge",
+              "value": "expired"
+            }
+          ]
+        },
+        "create": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "created_record_id"
+              }
+            ],
+            "binds": [
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "backend_result"
+              },
+              {
+                "name": "created_record_id",
+                "path": "id",
+                "source": "backend_result"
+              }
+            ],
+            "equals": "$form.supplier_code",
+            "excludes_source": null,
+            "graphql_field": "getTravelHotelOffer",
+            "op": "field_equals",
+            "path": "supplier_code",
+            "source": "created_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#hotel_offer_detail",
+              "value": null
+            }
+          ]
+        },
+        "destroy": {
+          "backend": {
+            "api": "list",
+            "args": [],
+            "binds": [],
+            "equals": null,
+            "excludes_source": "active_record_id",
+            "graphql_field": "listTravelHotelOffers",
+            "op": "not_contains",
+            "path": "results[].id",
+            "source": "active_record_id"
+          },
+          "ui": [
+            {
+              "assert": "url_contains",
+              "selector": null,
+              "value": "/pages/travel/hotel_offer"
+            },
+            {
+              "assert": "visible",
+              "selector": "#hotel_offer_list",
+              "value": null
+            }
+          ]
+        },
+        "load": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [
+              {
+                "name": "active_record_id",
+                "path": "id",
+                "source": "backend_result"
+              }
+            ],
+            "equals": null,
+            "excludes_source": null,
+            "graphql_field": "getTravelHotelOffer",
+            "op": "exists",
+            "path": "id",
+            "source": "active_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#hotel_offer_detail",
+              "value": null
+            }
+          ]
+        },
+        "state_transitions": [],
+        "toggle_edit": {
+          "backend": null,
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#hotel_offer_detail",
+              "value": null
+            }
+          ]
+        },
+        "update": {
+          "backend": {
+            "api": "get",
+            "args": [
+              {
+                "name": "id",
+                "source": "active_record_id"
+              }
+            ],
+            "binds": [],
+            "equals": "$form.listed_price",
+            "excludes_source": null,
+            "graphql_field": "getTravelHotelOffer",
+            "op": "equals",
+            "path": "listed_price",
+            "source": "active_record_id"
+          },
+          "ui": [
+            {
+              "assert": "visible",
+              "selector": "#hotel_offer_detail",
+              "value": null
             }
           ]
         }
-      ],
-      "dto_smoke": []
+      },
+      "wait_contract": {
+        "action_activate": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#hotel_offer_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#hotel_offer_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_deactivate": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#hotel_offer_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#hotel_offer_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "action_expire": {
+          "mode": "reload_message",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#hotel_offer_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "visible",
+            "selector": "#hotel_offer_detail",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "form_submit": {
+          "mode": "form_settled",
+          "reload_messages": [
+            "page_host_reload"
+          ],
+          "selectors": [
+            "#hotel_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "#hotel_offer_detail"
+          ],
+          "state_keys": [],
+          "timeout": 8000,
+          "until": {
+            "kind": "form_settled",
+            "selector": "#hotel_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        },
+        "toggle_edit": {
+          "mode": "dom_visible",
+          "reload_messages": [],
+          "selectors": [
+            "#hotel_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
+          ],
+          "state_keys": [],
+          "timeout": 3000,
+          "until": {
+            "kind": "visible",
+            "selector": "#hotel_offer_edit_form, #main_form, form[phx-submit=\"form_submit\"]",
+            "state_key": null,
+            "url_contains": null
+          },
+          "url_contains": null
+        }
+      }
     }
   },
   "entity": "HotelOffer",
   "page_id": "hotel_offer_detail",
   "page_type": "object_page",
+  "resource_type": "transaction",
   "runtime_monitoring": null,
   "schema_version": "1.0",
   "state_transitions": [
@@ -185,7 +870,6 @@
       "description": "删除记录",
       "from": "*",
       "name": "action_destroy",
-      "navigate_to": "/travel/hotel_offer",
       "to": "loading",
       "trigger": "user_action"
     }
@@ -196,6 +880,41 @@
     "form",
     "loading"
   ],
+  "transitions": {
+    "action_activate": [],
+    "action_deactivate": [],
+    "action_destroy": [
+      {
+        "effect": {
+          "to": "/pages/travel/hotel_offer",
+          "type": "navigate"
+        },
+        "op": "effect"
+      }
+    ],
+    "action_expire": [],
+    "cancel_edit": [
+      {
+        "op": "const",
+        "path": "editing",
+        "value": false
+      }
+    ],
+    "form_change": [],
+    "form_submit": [
+      {
+        "op": "const",
+        "path": "editing",
+        "value": false
+      }
+    ],
+    "toggle_edit": [
+      {
+        "op": "toggle",
+        "path": "editing"
+      }
+    ]
+  },
   "ui": {
     "sections": [],
     "template": {

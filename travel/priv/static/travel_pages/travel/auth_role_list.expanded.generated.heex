@@ -78,56 +78,56 @@
         </.table_row>
       </.table_header>
       <.table_body id="data_body">
-        <%= for row <- (@rows || []) do %>
-          <.table_row>
-            <.table_cell>
-              <%= get_in(row, [:policy_name]) || "" %>
+        <%= for {row, idx} <- Enum.with_index((@rows || [])) do %>
+          <.table_row phx-click="row_click" phx-value-id={row.id} id="travel_policy_row">
+            <.table_cell id="td_policy_name">
+              <%= get_in(row, [:policy_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_product_type">
               <%= if (val = get_in(row, [:product_type])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_product_type">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:employee_level]) || "" %>
+            <.table_cell id="td_employee_level">
+              <%= get_in(row, [:employee_level]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:city_tier]) || "" %>
+            <.table_cell id="td_city_tier">
+              <%= get_in(row, [:city_tier]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:season]) || "" %>
+            <.table_cell id="td_season">
+              <%= get_in(row, [:season]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:max_amount]) || "" %>
+            <.table_cell id="td_max_amount">
+              <%= get_in(row, [:max_amount]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:cabin_class_limit]) || "" %>
+            <.table_cell id="td_cabin_class_limit">
+              <%= get_in(row, [:cabin_class_limit]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:hotel_star_limit]) || "" %>
+            <.table_cell id="td_hotel_star_limit">
+              <%= get_in(row, [:hotel_star_limit]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_exceed_strategy">
               <%= if (val = get_in(row, [:exceed_strategy])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_exceed_strategy">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_approval_mode">
               <%= if (val = get_in(row, [:approval_mode])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_approval_mode">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
             </.table_cell>
-            <.table_cell>
-              <%= get_in(row, [:personal_pay_ratio]) || "" %>
+            <.table_cell id="td_personal_pay_ratio">
+              <%= get_in(row, [:personal_pay_ratio]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
             </.table_cell>
-            <.table_cell>
+            <.table_cell id="td_is_active">
               <%= if (val = get_in(row, [:is_active])) && to_string(val) != "" do %>
-                <.badge variant="default" size="sm">
+                <.badge variant="default" size="sm" id="badge_is_active">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
@@ -148,7 +148,7 @@
         上一页
       </.button>
       <.text id="page_info">
-        <%= get_in(@travel_policy, [:page]) || "" %> / <%= get_in(@travel_policy, [:total_pages]) || "" %>
+        <%= get_in(@travel_policy, [:page]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %> / <%= get_in(@travel_policy, [:total_pages]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
       </.text>
       <.button phx-click="travel_policy_page_next" variant="primary" size="md" id="page_next">
         下一页

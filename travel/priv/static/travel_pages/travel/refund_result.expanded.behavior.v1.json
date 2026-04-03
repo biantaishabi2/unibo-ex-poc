@@ -1,0 +1,50 @@
+{
+  "backend": {
+    "api_map": {
+      "get": "Travel.TravelRefundOrder.get",
+      "list": "Travel.TravelRefundOrder.list"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "id"
+    },
+    "params": {
+      "accept": []
+    }
+  },
+  "delivery_mode": "runtime",
+  "domain": "Travel",
+  "e2e": {
+    "playwright": {
+      "auto": true,
+      "base_path": "/pages/travel/refund_result",
+      "cases": [],
+      "page_kind": "detail",
+      "page_spec": {
+        "page_kind": "detail",
+        "route_role": "detail",
+        "supports_runtime_record_identity": false,
+        "template_kind": "object_page"
+      }
+    }
+  },
+  "entity": "TravelRefundOrder",
+  "extends": "base_object_page",
+  "page_id": "refund_result",
+  "page_type": "object_page",
+  "state_transitions": [],
+  "status_keys": [],
+  "transitions": {},
+  "ui": {
+    "sections": [],
+    "template": {
+      "detail": "object_page"
+    }
+  },
+  "version": 2
+}

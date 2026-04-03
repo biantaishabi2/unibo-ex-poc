@@ -1,1 +1,12 @@
-{}
+{
+  "record": {
+    "status": true,
+    "site_name": "",
+    "logo": "",
+    "site_description": "",
+    "notify_method": "",
+    "notify_frequency": "",
+    "session_timeout": "",
+    "password_policy": ""
+  }
+}

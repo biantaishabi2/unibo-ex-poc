@@ -69,9 +69,9 @@
         </.card_header>
         <.card_content id="general_content">
           <.stack gap={3} direction="column" id="general_fields">
-            <.input name="site_name" label="站点名称" placeholder="请输入站点名称" size="md" id="setting_name" />
-            <.input name="logo" label="Logo" type="file" size="md" id="setting_logo" />
-            <.textarea name="site_description" label="站点描述" placeholder="请输入站点描述" id="setting_description" />
+            <.input name="site_name" label="站点名称" placeholder="请输入站点名称" size="md" id="setting_name" value={@record.site_name} />
+            <.input name="logo" label="Logo" type="file" size="md" id="setting_logo" value={@record.logo} />
+            <.textarea name="site_description" label="站点描述" placeholder="请输入站点描述" id="setting_description" value={@record.site_description} />
           </.stack>
         </.card_content>
       </.card>
@@ -83,11 +83,21 @@
         </.card_header>
         <.card_content id="notification_content">
           <.stack gap={3} direction="column" id="notification_fields">
-            <.select name="notify_method" label="默认通知方式" size="md" id="notify_method" options={[%{label: "短信", value: "sms"}]}>
-
+            <.select name="notify_method" label="默认通知方式" size="md" id="notify_method" :let={builder} value={@record.notify_method}>
+              <.select_trigger builder={builder} />
+              <.select_content builder={builder}>
+                <.select_group>
+                  <.select_item builder={builder} value="sms" label="短信">短信</.select_item>
+                </.select_group>
+              </.select_content>
             </.select>
-            <.select name="notify_frequency" label="通知频率" size="md" id="notify_frequency" options={[%{label: "每周汇总", value: "weekly"}]}>
-
+            <.select name="notify_frequency" label="通知频率" size="md" id="notify_frequency" :let={builder} value={@record.notify_frequency}>
+              <.select_trigger builder={builder} />
+              <.select_content builder={builder}>
+                <.select_group>
+                  <.select_item builder={builder} value="weekly" label="每周汇总">每周汇总</.select_item>
+                </.select_group>
+              </.select_content>
             </.select>
           </.stack>
         </.card_content>
@@ -100,11 +110,21 @@
         </.card_header>
         <.card_content id="security_content">
           <.stack gap={3} direction="column" id="security_fields">
-            <.select name="session_timeout" label="会话超时时间" size="md" id="session_timeout" options={[%{label: "4小时", value: "240"}]}>
-
+            <.select name="session_timeout" label="会话超时时间" size="md" id="session_timeout" :let={builder} value={@record.session_timeout}>
+              <.select_trigger builder={builder} />
+              <.select_content builder={builder}>
+                <.select_group>
+                  <.select_item builder={builder} value="240" label="4小时">4小时</.select_item>
+                </.select_group>
+              </.select_content>
             </.select>
-            <.select name="password_policy" label="密码策略" size="md" id="password_policy" options={[%{label: "严格", value: "strict"}]}>
-
+            <.select name="password_policy" label="密码策略" size="md" id="password_policy" :let={builder} value={@record.password_policy}>
+              <.select_trigger builder={builder} />
+              <.select_content builder={builder}>
+                <.select_group>
+                  <.select_item builder={builder} value="strict" label="严格">严格</.select_item>
+                </.select_group>
+              </.select_content>
             </.select>
           </.stack>
         </.card_content>

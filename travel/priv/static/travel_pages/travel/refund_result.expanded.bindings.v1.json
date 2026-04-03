@@ -68,6 +68,56 @@
         }
       ]
     },
+    "action_submit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_refund_order_action_submit",
+          "prop": "click",
+          "raw": "action_submit"
+        }
+      ]
+    },
+    "action_confirm_refund": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_refund_order_action_confirm_refund",
+          "prop": "click",
+          "raw": "action_confirm_refund"
+        }
+      ]
+    },
+    "action_reject_refund": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_refund_order_action_reject_refund",
+          "prop": "click",
+          "raw": "action_reject_refund"
+        }
+      ]
+    },
+    "action_refund": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_refund_order_action_refund",
+          "prop": "click",
+          "raw": "action_refund"
+        }
+      ]
+    },
+    "action_refund_direct": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "travel_refund_order_action_refund_direct",
+          "prop": "click",
+          "raw": "action_refund_direct"
+        }
+      ]
+    },
     "action_destroy": {
       "triggers": [
         {
@@ -84,12 +134,6 @@
           "node_type": "Form",
           "node_id": "edit_form",
           "prop": "submit",
-          "raw": "form_submit"
-        },
-        {
-          "node_type": "Button",
-          "node_id": "save_btn",
-          "prop": "click",
           "raw": "form_submit"
         }
       ]

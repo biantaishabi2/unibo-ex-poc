@@ -32,28 +32,28 @@
           </.flex>
           <.separator id="table_sep" />
           <%= for item <- (@pricing_rules || []) do %>
-            <.flex justify="between" align="center" direction="row">
+            <.flex justify="between" align="center" direction="row" id="rule_row">
               <%= if (val = get_in(item, [:product_type])) && to_string(val) != "" do %>
-                <.badge variant="secondary" size="sm">
+                <.badge variant="secondary" size="sm" id="product_type_badge">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
-              <.text>
-                <%= get_in(item, [:supplier_code]) || "" %>
+              <.text id="supplier_code">
+                <%= get_in(item, [:supplier_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
               </.text>
-              <.text>
-                <%= get_in(item, [:markup_rate]) || "" %>
+              <.text id="markup_rate">
+                <%= get_in(item, [:markup_rate]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
               </.text>
               <%= if (val = get_in(item, [:status])) && to_string(val) != "" do %>
-                <.badge variant="outline" size="sm">
+                <.badge variant="outline" size="sm" id="status_badge">
                   <%= to_string(val) %>
                 </.badge>
               <% end %>
-              <.flex gap={1} direction="row">
-                <.button variant="outline" size="sm" phx-click="update">
+              <.flex gap={1} direction="row" id="row_actions">
+                <.button variant="outline" size="sm" phx-click="update" id="save_btn">
                   保存
                 </.button>
-                <.button variant="destructive" size="sm" phx-click="destroy">
+                <.button variant="destructive" size="sm" phx-click="destroy" id="delete_btn">
                   删除
                 </.button>
               </.flex>
@@ -66,13 +66,34 @@
   <.section layout="none" id="dialog_section">
     <.dialog title="新建规则" id="create_dialog">
       <.stack gap={3} direction="column" id="create_form">
-        <.select bind="travel_order.product_type" size="md" id="product_type_select" options={[%{label: "hotel", value: "hotel"}, %{label: "flight", value: "flight"}, %{label: "vacation", value: "vacation"}, %{label: "酒店:hotel,机票:flight,火车票:train", value: ""}]}>
-
+        <.select size="md" name="travel_order[product_type]" id="product_type_select" :let={builder}>
+          <.select_trigger builder={builder} />
+          <.select_content builder={builder}>
+            <.select_group>
+              <.select_item builder={builder} value="hotel" label="hotel">hotel</.select_item>
+              <.select_item builder={builder} value="flight" label="flight">flight</.select_item>
+              <.select_item builder={builder} value="vacation" label="vacation">vacation</.select_item>
+              <.select_item builder={builder} value="" label="酒店:hotel,机票:flight,火车票:train">酒店:hotel,机票:flight,火车票:train</.select_item>
+            </.select_group>
+          </.select_content>
         </.select>
-        <.input label="供应商编码" placeholder="请输入供应商编码" bind="form.supplier_code" required="true" size="md" id="supplier_code_input" />
-        <.input label="加价率" placeholder="例如 0.15 表示加价 15%" bind="form.markup_rate" type="number" required="true" size="md" id="markup_rate_input" />
-        <.select bind="travel_order.status" size="md" id="status_select" options={[%{label: "draft", value: "draft"}, %{label: "quoted", value: "quoted"}, %{label: "submitted", value: "submitted"}, %{label: "booking_pending", value: "booking_pending"}, %{label: "booked", value: "booked"}, %{label: "cancel_pending", value: "cancel_pending"}, %{label: "cancelled", value: "cancelled"}, %{label: "completed", value: "completed"}, %{label: "启用:active,停用:inactive", value: ""}]}>
-
+        <.input label="供应商编码" placeholder="请输入供应商编码" required="true" size="md" name="form[supplier_code]" id="supplier_code_input" />
+        <.input label="加价率" placeholder="例如 0.15 表示加价 15%" type="number" required="true" size="md" name="form[markup_rate]" id="markup_rate_input" />
+        <.select size="md" name="travel_order[status]" id="status_select" :let={builder}>
+          <.select_trigger builder={builder} />
+          <.select_content builder={builder}>
+            <.select_group>
+              <.select_item builder={builder} value="draft" label="draft">draft</.select_item>
+              <.select_item builder={builder} value="quoted" label="quoted">quoted</.select_item>
+              <.select_item builder={builder} value="submitted" label="submitted">submitted</.select_item>
+              <.select_item builder={builder} value="booking_pending" label="booking_pending">booking_pending</.select_item>
+              <.select_item builder={builder} value="booked" label="booked">booked</.select_item>
+              <.select_item builder={builder} value="cancel_pending" label="cancel_pending">cancel_pending</.select_item>
+              <.select_item builder={builder} value="cancelled" label="cancelled">cancelled</.select_item>
+              <.select_item builder={builder} value="completed" label="completed">completed</.select_item>
+              <.select_item builder={builder} value="" label="启用:active,停用:inactive">启用:active,停用:inactive</.select_item>
+            </.select_group>
+          </.select_content>
         </.select>
         <.button variant="primary" phx-click="create" size="md" id="submit_create_btn">
           创建

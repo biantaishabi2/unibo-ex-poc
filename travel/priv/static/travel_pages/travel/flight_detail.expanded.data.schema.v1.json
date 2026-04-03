@@ -17,13 +17,26 @@
     "flight_offer.sale_status",
     "flight_offer.seats_available",
     "flight_offer.settlement_price",
-    "flight_offer.supplier_code"
+    "flight_offer.supplier_code",
+    "record"
   ],
   "requiredRoots": [
     "editing",
-    "flight_offer"
+    "flight_offer",
+    "record"
   ],
   "schema": {
+    "record": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "sale_status": {
+          "type": "boolean",
+          "required": false,
+          "example": true
+        }
+      }
+    },
     "editing": {
       "type": "object",
       "required": true,

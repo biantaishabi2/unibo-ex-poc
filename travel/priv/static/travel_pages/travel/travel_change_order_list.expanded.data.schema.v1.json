@@ -4,6 +4,7 @@
     "row.approval_mode",
     "row.change_fee",
     "row.change_reason",
+    "row.id",
     "row.price_difference",
     "row.status",
     "rows",
@@ -25,6 +26,11 @@
         "type": "object",
         "required": false,
         "properties": {
+          "id": {
+            "type": "string",
+            "required": false,
+            "example": "row_01"
+          },
           "change_reason": {
             "type": "string",
             "required": false,
@@ -58,6 +64,10 @@
       "type": "object",
       "required": true,
       "properties": {
+        "id": {
+          "type": "unknown",
+          "required": true
+        },
         "change_reason": {
           "type": "unknown",
           "required": true

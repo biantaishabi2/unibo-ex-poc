@@ -1,0 +1,12 @@
+{
+  "page_id": "hotel_offer_list",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.HotelOfferListLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/hotel_offer",
+    "kind": "list",
+    "params": []
+  }
+}

@@ -60,7 +60,7 @@
                   酒店规范编码
                 </.text>
                 <.text id="detail_fields_hotel_code_value">
-                  <%= get_in(@travel_hotel, [:hotel_code]) || "" %>
+                  <%= get_in(@travel_hotel, [:hotel_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_hotel_name">
@@ -68,7 +68,7 @@
                   酒店名称
                 </.text>
                 <.text id="detail_fields_hotel_name_value">
-                  <%= get_in(@travel_hotel, [:hotel_name]) || "" %>
+                  <%= get_in(@travel_hotel, [:hotel_name]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_city_code">
@@ -76,7 +76,7 @@
                   城市编码冗余（便于兼容检索）
                 </.text>
                 <.text id="detail_fields_city_code_value">
-                  <%= get_in(@travel_hotel, [:city_code]) || "" %>
+                  <%= get_in(@travel_hotel, [:city_code]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_hotel_star">
@@ -84,7 +84,7 @@
                   酒店星级
                 </.text>
                 <.text id="detail_fields_hotel_star_value">
-                  <%= get_in(@travel_hotel, [:hotel_star]) || "" %>
+                  <%= get_in(@travel_hotel, [:hotel_star]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
               <.stack gap={0} direction="column" id="detail_fields_status">
@@ -92,30 +92,36 @@
                   status
                 </.text>
                 <.text id="detail_fields_status_value">
-                  <%= get_in(@travel_hotel, [:status]) || "" %>
+                  <%= get_in(@travel_hotel, [:status]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
                 </.text>
               </.stack>
             </.grid>
           </.grid>
         <% else %>
-          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+          <.form for={%{}} phx-submit="form_submit" phx-change="form_change" id="travel_hotel_edit_form">
             <.grid columns={2} gap={4} id="form_grid">
               <.stack direction="column" id="form_fields">
-                <.input bind="travel_hotel.hotel_code" size="md" id="update_hotel_code" />
-                <.input bind="travel_hotel.hotel_name" size="md" id="update_hotel_name" />
-                <.input bind="travel_hotel.city_code" size="md" id="update_city_code" />
-                <.input bind="travel_hotel.hotel_star" size="md" id="update_hotel_star" />
-                <.select bind="travel_hotel.status" size="md" id="update_status" options={[%{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}]}>
-
+                <.input size="md" name="travel_hotel[hotel_code]" id="travel_hotel_form_hotel_code" value={get_in(@travel_hotel, [:hotel_code]) || ""} />
+                <.input size="md" name="travel_hotel[hotel_name]" id="travel_hotel_form_hotel_name" value={get_in(@travel_hotel, [:hotel_name]) || ""} />
+                <.input size="md" name="travel_hotel[city_id]" id="travel_hotel_form_city_id" value={get_in(@travel_hotel, [:city_id]) || ""} />
+                <.input size="md" name="travel_hotel[city_code]" id="travel_hotel_form_city_code" value={get_in(@travel_hotel, [:city_code]) || ""} />
+                <.input size="md" name="travel_hotel[hotel_star]" id="travel_hotel_form_hotel_star" value={get_in(@travel_hotel, [:hotel_star]) || ""} />
+                <.select size="md" name="travel_hotel[status]" id="travel_hotel_form_status" :let={builder} value={get_in(@travel_hotel, [:status]) || ""}>
+                  <.select_trigger builder={builder} />
+                  <.select_content builder={builder}>
+                    <.select_group>
+                      <.select_item builder={builder} value="active" label="active">active</.select_item>
+                      <.select_item builder={builder} value="inactive" label="inactive">inactive</.select_item>
+                    </.select_group>
+                  </.select_content>
                 </.select>
-                <.input bind="travel_hotel.city_id" size="md" id="update_city_id" />
               </.stack>
             </.grid>
             <.flex justify="end" gap={2} direction="row" id="form_actions">
               <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
                 取消
               </.button>
-              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+              <.button variant="primary" size="md" type="submit" id="save_btn">
                 保存
               </.button>
             </.flex>

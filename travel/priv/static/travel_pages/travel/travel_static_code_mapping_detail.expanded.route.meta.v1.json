@@ -1,0 +1,14 @@
+{
+  "page_id": "travel_static_code_mapping_detail",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.TravelStaticCodeMappingDetailLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/travel_static_code_mapping/:id",
+    "kind": "detail",
+    "params": [
+      "id"
+    ]
+  }
+}

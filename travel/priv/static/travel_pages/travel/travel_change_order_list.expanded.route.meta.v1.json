@@ -1,0 +1,12 @@
+{
+  "page_id": "travel_change_order_list",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.TravelChangeOrderListLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/travel_change_order",
+    "kind": "list",
+    "params": []
+  }
+}
