@@ -35,7 +35,9 @@ defmodule UniboExPocWeb.Generated.CompiledPageRouter do
         live "/pages/travel/order_detail", UniboExPocWeb.Pages.Travel.OrderDetailLive, :show
         live "/pages/travel/order_list", UniboExPocWeb.Pages.Travel.OrderListLive, :index
         live "/pages/travel/payment_confirmation", UniboExPocWeb.Pages.Travel.PaymentConfirmationLive, :show
+        live "/pages/travel/personal_center", UniboExPocWeb.Pages.Travel.PersonalCenterLive, :show
         live "/pages/travel/policy_check_detail", UniboExPocWeb.Pages.Travel.PolicyCheckDetailLive, :show
+        live "/pages/travel/pricing_rule", UniboExPocWeb.Pages.Travel.PricingRuleLive, :show
         live "/pages/travel/refund_apply", UniboExPocWeb.Pages.Travel.RefundApplyLive, :show
         live "/pages/travel/refund_result", UniboExPocWeb.Pages.Travel.RefundResultLive, :show
         live "/pages/travel/train_booking", UniboExPocWeb.Pages.Travel.TrainBookingLive, :show
@@ -54,6 +56,7 @@ defmodule UniboExPocWeb.Generated.CompiledPageRouter do
         live "/pages/travel/travel_hotel/:id", UniboExPocWeb.Pages.Travel.TravelHotelDetailLive, :show
         live "/pages/travel/travel_order", UniboExPocWeb.Pages.Travel.TravelOrderListLive, :index
         live "/pages/travel/travel_order/:id", UniboExPocWeb.Pages.Travel.TravelOrderDetailLive, :show
+        live "/pages/travel/travel_order_kanban", UniboExPocWeb.Pages.Travel.TravelOrderKanbanLive, :show
         live "/pages/travel/travel_policy", UniboExPocWeb.Pages.Travel.TravelPolicyListLive, :index
         live "/pages/travel/travel_policy/:id", UniboExPocWeb.Pages.Travel.TravelPolicyDetailLive, :show
         live "/pages/travel/travel_policy_check", UniboExPocWeb.Pages.Travel.TravelPolicyCheckListLive, :index

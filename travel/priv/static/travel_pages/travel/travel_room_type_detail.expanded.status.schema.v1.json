@@ -44,11 +44,11 @@
       "params": {
         "accept": [
           "id",
-          "room_type_name",
           "room_type_code",
-          "hotel_code",
+          "room_type_name",
           "bed_type",
-          "status"
+          "status",
+          "hotel_code"
         ]
       }
     },
@@ -133,6 +133,11 @@
                 "selector": "#travel_room_type_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
               },
               {
+                "action": "type",
+                "field": "room_type_name",
+                "value": "UPDATED_{{__run_id}}_room_type_name"
+              },
+              {
                 "action": "select_option",
                 "field": "status",
                 "value": "inactive"
@@ -141,11 +146,6 @@
                 "action": "type",
                 "field": "hotel_code",
                 "value": "UPDATED_{{__run_id}}_hotel_code"
-              },
-              {
-                "action": "type",
-                "field": "room_type_name",
-                "value": "UPDATED_{{__run_id}}_room_type_name"
               },
               {
                 "action": "type",

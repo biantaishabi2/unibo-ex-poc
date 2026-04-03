@@ -17,9 +17,9 @@
     "params": {
       "accept": [
         "id",
-        "cabin_class_code",
-        "status",
         "cabin_rank",
+        "status",
+        "cabin_class_code",
         "cabin_class_name"
       ]
     }
@@ -105,11 +105,6 @@
               "selector": "#travel_cabin_class_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             },
             {
-              "action": "type",
-              "field": "cabin_class_name",
-              "value": "UPDATED_{{__run_id}}_cabin_class_name"
-            },
-            {
               "action": "select_option",
               "field": "status",
               "value": "inactive"
@@ -118,6 +113,11 @@
               "action": "type",
               "field": "cabin_rank",
               "value": "2"
+            },
+            {
+              "action": "type",
+              "field": "cabin_class_name",
+              "value": "UPDATED_{{__run_id}}_cabin_class_name"
             },
             {
               "action": "click",

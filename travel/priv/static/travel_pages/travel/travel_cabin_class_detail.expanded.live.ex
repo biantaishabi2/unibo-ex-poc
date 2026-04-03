@@ -52,7 +52,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelCabinClassDetailLive do
   @backend_load_event "get"
   @backend_load_selection "cabin_class_code: cabinClassCode cabin_class_name: cabinClassName cabin_rank: cabinRank id status"
   @backend_load_assigns %{travel_cabin_class: %{}}
-  @backend_params_accept ["id", "cabin_class_code", "status", "cabin_rank", "cabin_class_name"]
+  @backend_params_accept ["id", "cabin_rank", "status", "cabin_class_code", "cabin_class_name"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "create" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelCabinClass.create"},
