@@ -74,24 +74,24 @@
       "params": {
         "accept": [
           "id",
-          "departure_city_ref_id",
           "sale_status",
           "host_shop_id",
-          "supplier_code",
-          "package_code",
+          "destination_code",
+          "listed_price",
           "currency",
+          "supplier_code",
+          "destination_ref_id",
           "end_date",
-          "package_type",
-          "departure_city_code",
+          "start_date",
           "cancellation_policy",
           "booking_rules",
-          "destination_code",
+          "departure_city_ref_id",
+          "package_code",
           "inventory_count",
+          "package_type",
+          "package_name",
           "settlement_price",
-          "listed_price",
-          "start_date",
-          "destination_ref_id",
-          "package_name"
+          "departure_city_code"
         ]
       }
     },
@@ -176,6 +176,21 @@
               },
               {
                 "action": "type",
+                "field": "booking_rules",
+                "value": "UPDATED_{{__run_id}}_booking_rules"
+              },
+              {
+                "action": "type",
+                "field": "cancellation_policy",
+                "value": "UPDATED_{{__run_id}}_cancellation_policy"
+              },
+              {
+                "action": "type",
+                "field": "inventory_count",
+                "value": "2"
+              },
+              {
+                "action": "type",
                 "field": "package_name",
                 "value": "UPDATED_{{__run_id}}_package_name"
               },
@@ -186,28 +201,8 @@
               },
               {
                 "action": "type",
-                "field": "destination_ref_id",
-                "value": "UPDATED_{{__run_id}}_destination_ref_id"
-              },
-              {
-                "action": "type",
                 "field": "listed_price",
                 "value": "200.00"
-              },
-              {
-                "action": "type",
-                "field": "settlement_price",
-                "value": "200.00"
-              },
-              {
-                "action": "type",
-                "field": "cancellation_policy",
-                "value": "UPDATED_{{__run_id}}_cancellation_policy"
-              },
-              {
-                "action": "type",
-                "field": "currency",
-                "value": "UPDATED_{{__run_id}}_currency"
               },
               {
                 "action": "select_option",
@@ -216,13 +211,18 @@
               },
               {
                 "action": "type",
-                "field": "inventory_count",
-                "value": "2"
+                "field": "settlement_price",
+                "value": "200.00"
               },
               {
                 "action": "type",
-                "field": "booking_rules",
-                "value": "UPDATED_{{__run_id}}_booking_rules"
+                "field": "destination_ref_id",
+                "value": "UPDATED_{{__run_id}}_destination_ref_id"
+              },
+              {
+                "action": "type",
+                "field": "currency",
+                "value": "UPDATED_{{__run_id}}_currency"
               },
               {
                 "action": "click",

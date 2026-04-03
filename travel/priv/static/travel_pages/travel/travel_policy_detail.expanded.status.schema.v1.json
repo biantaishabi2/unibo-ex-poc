@@ -66,18 +66,18 @@
       "params": {
         "accept": [
           "id",
-          "approval_mode",
-          "max_amount",
-          "personal_pay_ratio",
+          "policy_name",
           "hotel_star_limit",
-          "product_type",
+          "personal_pay_ratio",
+          "city_tier",
+          "exceed_strategy",
+          "approval_mode",
           "cabin_class_limit",
           "enterprise_id",
-          "policy_name",
           "employee_level",
-          "city_tier",
+          "product_type",
           "season",
-          "exceed_strategy"
+          "max_amount"
         ]
       }
     },
@@ -163,23 +163,23 @@
               },
               {
                 "action": "type",
-                "field": "max_amount",
+                "field": "personal_pay_ratio",
                 "value": "2"
               },
               {
                 "action": "type",
-                "field": "personal_pay_ratio",
+                "field": "hotel_star_limit",
+                "value": "UPDATED_{{__run_id}}_hotel_star_limit"
+              },
+              {
+                "action": "type",
+                "field": "max_amount",
                 "value": "2"
               },
               {
                 "action": "type",
                 "field": "season",
                 "value": "UPDATED_{{__run_id}}_season"
-              },
-              {
-                "action": "select_option",
-                "field": "approval_mode",
-                "value": "self"
               },
               {
                 "action": "select_option",
@@ -197,9 +197,9 @@
                 "value": "UPDATED_{{__run_id}}_cabin_class_limit"
               },
               {
-                "action": "type",
-                "field": "hotel_star_limit",
-                "value": "UPDATED_{{__run_id}}_hotel_star_limit"
+                "action": "select_option",
+                "field": "approval_mode",
+                "value": "self"
               },
               {
                 "action": "click",

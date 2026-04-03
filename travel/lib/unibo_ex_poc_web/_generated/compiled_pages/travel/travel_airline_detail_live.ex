@@ -53,7 +53,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelAirlineDetailLive do
   @backend_load_event "get"
   @backend_load_selection "airline_code: airlineCode airline_name: airlineName iata_code: iataCode icao_code: icaoCode id status"
   @backend_load_assigns %{travel_airline: %{}}
-  @backend_params_accept ["id", "airline_code", "airline_name", "iata_code", "status", "icao_code"]
+  @backend_params_accept ["id", "airline_code", "iata_code", "icao_code", "airline_name", "status"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "create" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelAirline.create"},

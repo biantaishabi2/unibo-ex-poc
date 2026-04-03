@@ -7169,6 +7169,150 @@
     },
     {
       "api_map": {
+        "get": "Travel.TravelOrder.get",
+        "list": "Travel.TravelOrder.list"
+      },
+      "backend": {
+        "api_map": {
+          "get": "Travel.TravelOrder.get",
+          "list": "Travel.TravelOrder.list"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "id"
+        },
+        "params": {
+          "accept": []
+        }
+      },
+      "behavior_file": "travel/personal_center.behavior.v1.json",
+      "domain": "Travel",
+      "domain_snake": "travel",
+      "dsl_file": "travel/personal_center.dsl",
+      "entity": "TravelOrder",
+      "entity_snake": "travel_order",
+      "page_id": "personal_center",
+      "page_kind": "detail",
+      "page_spec": {
+        "page_kind": "detail",
+        "route_role": "detail",
+        "supports_runtime_record_identity": false,
+        "template_kind": "object_page"
+      },
+      "page_type": "object_page",
+      "state_schema": {
+        "defaults": {
+          "page_title": "个人中心",
+          "profile_description": ""
+        },
+        "status_keys": [
+          "page_title",
+          "profile_description"
+        ]
+      },
+      "status_keys": [
+        "page_title",
+        "profile_description"
+      ],
+      "template_meta": {
+        "detail": "object_page"
+      },
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0",
+        "template_kind": "object_page"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {},
+      "backend": {
+        "api_map": {},
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "id"
+        },
+        "params": {
+          "accept": []
+        }
+      },
+      "behavior_file": "travel/pricing_rule.behavior.v1.json",
+      "domain": "Travel",
+      "domain_snake": "travel",
+      "dsl_file": "travel/pricing_rule.dsl",
+      "entity": "TravelOrder",
+      "entity_snake": "travel_order",
+      "page_id": "pricing_rule",
+      "page_kind": "custom",
+      "page_spec": {
+        "page_kind": "custom",
+        "route_role": "custom",
+        "supports_runtime_record_identity": false,
+        "template_kind": "custom"
+      },
+      "page_type": "custom",
+      "state_schema": {
+        "defaults": {
+          "pricing_rules": [
+            {
+              "markup_rate": "",
+              "product_type": "",
+              "status": "",
+              "supplier_code": ""
+            },
+            {
+              "markup_rate": "",
+              "product_type": "",
+              "status": "",
+              "supplier_code": ""
+            },
+            {
+              "markup_rate": "",
+              "product_type": "",
+              "status": "",
+              "supplier_code": ""
+            }
+          ]
+        },
+        "status_keys": [
+          "pricing_rules",
+          "pricing_rules[]",
+          "pricing_rules[].markup_rate",
+          "pricing_rules[].product_type",
+          "pricing_rules[].status",
+          "pricing_rules[].supplier_code"
+        ]
+      },
+      "status_keys": [
+        "pricing_rules",
+        "pricing_rules[]",
+        "pricing_rules[].markup_rate",
+        "pricing_rules[].product_type",
+        "pricing_rules[].status",
+        "pricing_rules[].supplier_code"
+      ],
+      "template_meta": {
+        "custom": "custom"
+      },
+      "template_spec": {
+        "page_kind": "custom",
+        "schema_version": "1.0",
+        "template_kind": "custom"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
         "activate": "Travel.FlightOffer.activate",
         "create": "Travel.FlightOffer.create",
         "deactivate": "Travel.FlightOffer.deactivate",
@@ -7199,25 +7343,25 @@
         "params": {
           "accept": [
             "id",
-            "baggage_policy",
-            "fare_family",
-            "departure_airport_code",
-            "seats_available",
-            "listed_price",
-            "sale_status",
-            "departure_at",
-            "host_shop_id",
             "settlement_price",
             "refund_change_policy",
-            "currency",
-            "arrival_airport_code",
-            "flight_no",
-            "itinerary_code",
-            "supplier_code",
-            "departure_airport_ref_id",
             "arrival_airport_ref_id",
+            "supplier_code",
             "arrival_at",
-            "cabin_class"
+            "sale_status",
+            "currency",
+            "seats_available",
+            "host_shop_id",
+            "fare_family",
+            "arrival_airport_code",
+            "departure_airport_code",
+            "departure_airport_ref_id",
+            "cabin_class",
+            "departure_at",
+            "baggage_policy",
+            "listed_price",
+            "itinerary_code",
+            "flight_no"
           ]
         }
       },
@@ -7418,23 +7562,23 @@
         "params": {
           "accept": [
             "id",
-            "city_code",
-            "supplier_code",
             "room_type_code",
+            "city_ref_id",
+            "sale_status",
             "settlement_price",
             "guarantee_policy",
+            "city_code",
             "cancellation_policy",
-            "host_shop_id",
-            "inventory_count",
-            "checkout_date",
-            "hotel_code",
-            "rate_plan_code",
-            "sale_status",
-            "city_ref_id",
-            "hotel_name",
-            "listed_price",
             "checkin_date",
-            "currency"
+            "checkout_date",
+            "currency",
+            "listed_price",
+            "hotel_name",
+            "inventory_count",
+            "supplier_code",
+            "hotel_code",
+            "host_shop_id",
+            "rate_plan_code"
           ]
         }
       },
@@ -7632,30 +7776,30 @@
         "params": {
           "accept": [
             "id",
-            "arrival_station_name",
-            "seat_code",
-            "is_no_seat",
-            "listed_price",
-            "booking_rules_snapshot",
-            "change_rules_snapshot",
             "sale_status",
-            "departure_station_name",
-            "arrival_station_ref_id",
-            "inventory_status",
-            "supplier_code",
-            "waitlist_supported",
-            "settlement_price",
-            "travel_date",
             "departure_at",
-            "currency",
-            "refund_rules_snapshot",
-            "seat_class",
-            "arrival_at",
+            "listed_price",
             "departure_station_code",
-            "arrival_station_code",
-            "departure_station_ref_id",
+            "booking_rules_snapshot",
+            "arrival_station_name",
+            "is_no_seat",
+            "train_no",
+            "refund_rules_snapshot",
+            "supplier_code",
+            "travel_date",
+            "change_rules_snapshot",
             "host_shop_id",
-            "train_no"
+            "departure_station_ref_id",
+            "arrival_station_ref_id",
+            "seat_code",
+            "settlement_price",
+            "currency",
+            "arrival_station_code",
+            "departure_station_name",
+            "inventory_status",
+            "arrival_at",
+            "seat_class",
+            "waitlist_supported"
           ]
         }
       },
@@ -7871,24 +8015,24 @@
         "params": {
           "accept": [
             "id",
-            "departure_city_ref_id",
             "sale_status",
             "host_shop_id",
-            "supplier_code",
-            "package_code",
+            "destination_code",
+            "listed_price",
             "currency",
+            "supplier_code",
+            "destination_ref_id",
             "end_date",
-            "package_type",
-            "departure_city_code",
+            "start_date",
             "cancellation_policy",
             "booking_rules",
-            "destination_code",
+            "departure_city_ref_id",
+            "package_code",
             "inventory_count",
+            "package_type",
+            "package_name",
             "settlement_price",
-            "listed_price",
-            "start_date",
-            "destination_ref_id",
-            "package_name"
+            "departure_city_code"
           ]
         }
       },
@@ -8056,329 +8200,6 @@
     },
     {
       "api_map": {
-        "list": "Travel.TravelPolicy.list"
-      },
-      "backend": {
-        "api_map": {
-          "list": "Travel.TravelPolicy.list"
-        },
-        "info": {
-          "reload_messages": [
-            "page_host_reload"
-          ]
-        },
-        "load": {
-          "assigns": {},
-          "selection": "id"
-        },
-        "params": {
-          "accept": []
-        }
-      },
-      "behavior_file": "travel/auth_role_list.behavior.v1.json",
-      "domain": "Travel",
-      "domain_snake": "travel",
-      "dsl_file": "travel/auth_role_list.dsl",
-      "entity": "TravelPolicy",
-      "entity_snake": "travel_policy",
-      "page_id": "auth_role_list",
-      "page_kind": "list",
-      "page_spec": {
-        "page_kind": "list",
-        "route_role": "list",
-        "supports_runtime_record_identity": false,
-        "template_kind": "list_report"
-      },
-      "page_type": "list_report",
-      "state_schema": {
-        "defaults": {
-          "rows": [
-            {
-              "approval_mode": "",
-              "cabin_class_limit": "",
-              "city_tier": "",
-              "employee_level": "",
-              "exceed_strategy": "",
-              "hotel_star_limit": "",
-              "id": "row_01",
-              "is_active": "",
-              "max_amount": "",
-              "personal_pay_ratio": "",
-              "policy_name": "",
-              "product_type": "",
-              "season": ""
-            },
-            {
-              "approval_mode": "",
-              "cabin_class_limit": "",
-              "city_tier": "",
-              "employee_level": "",
-              "exceed_strategy": "",
-              "hotel_star_limit": "",
-              "id": "row_02",
-              "is_active": "",
-              "max_amount": "",
-              "personal_pay_ratio": "",
-              "policy_name": "",
-              "product_type": "",
-              "season": ""
-            },
-            {
-              "approval_mode": "",
-              "cabin_class_limit": "",
-              "city_tier": "",
-              "employee_level": "",
-              "exceed_strategy": "",
-              "hotel_star_limit": "",
-              "id": "row_03",
-              "is_active": "",
-              "max_amount": "",
-              "personal_pay_ratio": "",
-              "policy_name": "",
-              "product_type": "",
-              "season": ""
-            }
-          ],
-          "rows_empty": true,
-          "travel_policy": {
-            "page": "",
-            "total_pages": ""
-          }
-        },
-        "status_keys": [
-          "rows",
-          "rows[]",
-          "rows[].approval_mode",
-          "rows[].cabin_class_limit",
-          "rows[].city_tier",
-          "rows[].employee_level",
-          "rows[].exceed_strategy",
-          "rows[].hotel_star_limit",
-          "rows[].id",
-          "rows[].is_active",
-          "rows[].max_amount",
-          "rows[].personal_pay_ratio",
-          "rows[].policy_name",
-          "rows[].product_type",
-          "rows[].season",
-          "rows_empty",
-          "travel_policy",
-          "travel_policy.page",
-          "travel_policy.total_pages"
-        ]
-      },
-      "status_keys": [
-        "rows",
-        "rows[]",
-        "rows[].approval_mode",
-        "rows[].cabin_class_limit",
-        "rows[].city_tier",
-        "rows[].employee_level",
-        "rows[].exceed_strategy",
-        "rows[].hotel_star_limit",
-        "rows[].id",
-        "rows[].is_active",
-        "rows[].max_amount",
-        "rows[].personal_pay_ratio",
-        "rows[].policy_name",
-        "rows[].product_type",
-        "rows[].season",
-        "rows_empty",
-        "travel_policy",
-        "travel_policy.page",
-        "travel_policy.total_pages"
-      ],
-      "template_meta": {
-        "list": "list_report"
-      },
-      "template_spec": {
-        "page_kind": "list",
-        "schema_version": "1.0",
-        "template_kind": "list_report"
-      },
-      "transitions": []
-    },
-    {
-      "api_map": {
-        "list": "Travel.TravelOrder.list"
-      },
-      "backend": {
-        "api_map": {
-          "list": "Travel.TravelOrder.list"
-        },
-        "info": {
-          "reload_messages": [
-            "page_host_reload"
-          ]
-        },
-        "load": {
-          "assigns": {},
-          "selection": "id"
-        },
-        "params": {
-          "accept": []
-        }
-      },
-      "behavior_file": "travel/oa_sync_log_list.behavior.v1.json",
-      "domain": "Travel",
-      "domain_snake": "travel",
-      "dsl_file": "travel/oa_sync_log_list.dsl",
-      "entity": "TravelOrder",
-      "entity_snake": "travel_order",
-      "page_id": "oa_sync_log_list",
-      "page_kind": "list",
-      "page_spec": {
-        "page_kind": "list",
-        "route_role": "list",
-        "supports_runtime_record_identity": false,
-        "template_kind": "list_report"
-      },
-      "page_type": "list_report",
-      "state_schema": {
-        "defaults": {
-          "rows": [
-            {
-              "booking_mode": "",
-              "change_status": "",
-              "contact_name": "",
-              "contact_phone": "",
-              "currency": "",
-              "id": "row_01",
-              "order_no": "",
-              "original_order_ref": "",
-              "payment_external_ref": "",
-              "points_deduction_amount": "",
-              "points_to_use": "",
-              "product_type": "",
-              "recommended_payment_method": "",
-              "seat_selection_snapshot": "",
-              "status": "",
-              "supplier_order_ref": "",
-              "ticket_passenger_infos": "",
-              "total_amount": "",
-              "traveler_count": "",
-              "waitlist_status": ""
-            },
-            {
-              "booking_mode": "",
-              "change_status": "",
-              "contact_name": "",
-              "contact_phone": "",
-              "currency": "",
-              "id": "row_02",
-              "order_no": "",
-              "original_order_ref": "",
-              "payment_external_ref": "",
-              "points_deduction_amount": "",
-              "points_to_use": "",
-              "product_type": "",
-              "recommended_payment_method": "",
-              "seat_selection_snapshot": "",
-              "status": "",
-              "supplier_order_ref": "",
-              "ticket_passenger_infos": "",
-              "total_amount": "",
-              "traveler_count": "",
-              "waitlist_status": ""
-            },
-            {
-              "booking_mode": "",
-              "change_status": "",
-              "contact_name": "",
-              "contact_phone": "",
-              "currency": "",
-              "id": "row_03",
-              "order_no": "",
-              "original_order_ref": "",
-              "payment_external_ref": "",
-              "points_deduction_amount": "",
-              "points_to_use": "",
-              "product_type": "",
-              "recommended_payment_method": "",
-              "seat_selection_snapshot": "",
-              "status": "",
-              "supplier_order_ref": "",
-              "ticket_passenger_infos": "",
-              "total_amount": "",
-              "traveler_count": "",
-              "waitlist_status": ""
-            }
-          ],
-          "rows_empty": true,
-          "travel_order": {
-            "page": "",
-            "total_pages": ""
-          }
-        },
-        "status_keys": [
-          "rows",
-          "rows[]",
-          "rows[].booking_mode",
-          "rows[].change_status",
-          "rows[].contact_name",
-          "rows[].contact_phone",
-          "rows[].currency",
-          "rows[].id",
-          "rows[].order_no",
-          "rows[].original_order_ref",
-          "rows[].payment_external_ref",
-          "rows[].points_deduction_amount",
-          "rows[].points_to_use",
-          "rows[].product_type",
-          "rows[].recommended_payment_method",
-          "rows[].seat_selection_snapshot",
-          "rows[].status",
-          "rows[].supplier_order_ref",
-          "rows[].ticket_passenger_infos",
-          "rows[].total_amount",
-          "rows[].traveler_count",
-          "rows[].waitlist_status",
-          "rows_empty",
-          "travel_order",
-          "travel_order.page",
-          "travel_order.total_pages"
-        ]
-      },
-      "status_keys": [
-        "rows",
-        "rows[]",
-        "rows[].booking_mode",
-        "rows[].change_status",
-        "rows[].contact_name",
-        "rows[].contact_phone",
-        "rows[].currency",
-        "rows[].id",
-        "rows[].order_no",
-        "rows[].original_order_ref",
-        "rows[].payment_external_ref",
-        "rows[].points_deduction_amount",
-        "rows[].points_to_use",
-        "rows[].product_type",
-        "rows[].recommended_payment_method",
-        "rows[].seat_selection_snapshot",
-        "rows[].status",
-        "rows[].supplier_order_ref",
-        "rows[].ticket_passenger_infos",
-        "rows[].total_amount",
-        "rows[].traveler_count",
-        "rows[].waitlist_status",
-        "rows_empty",
-        "travel_order",
-        "travel_order.page",
-        "travel_order.total_pages"
-      ],
-      "template_meta": {
-        "list": "list_report"
-      },
-      "template_spec": {
-        "page_kind": "list",
-        "schema_version": "1.0",
-        "template_kind": "list_report"
-      },
-      "transitions": []
-    },
-    {
-      "api_map": {
         "get": "Travel.TravelOrder.get",
         "list": "Travel.TravelOrder.list"
       },
@@ -8400,13 +8221,13 @@
           "accept": []
         }
       },
-      "behavior_file": "travel/employee_detail.behavior.v1.json",
+      "behavior_file": "travel/job_position_detail.behavior.v1.json",
       "domain": "Travel",
       "domain_snake": "travel",
-      "dsl_file": "travel/employee_detail.dsl",
+      "dsl_file": "travel/job_position_detail.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
-      "page_id": "employee_detail",
+      "page_id": "job_position_detail",
       "page_kind": "detail",
       "page_spec": {
         "page_kind": "detail",
@@ -8493,6 +8314,90 @@
         "travel_order.total_amount",
         "travel_order.traveler_count",
         "travel_order.waitlist_status"
+      ],
+      "template_meta": {
+        "detail": "object_page"
+      },
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0",
+        "template_kind": "object_page"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "get": "Travel.TravelPolicy.get",
+        "list": "Travel.TravelPolicy.list"
+      },
+      "backend": {
+        "api_map": {
+          "get": "Travel.TravelPolicy.get",
+          "list": "Travel.TravelPolicy.list"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "id"
+        },
+        "params": {
+          "accept": []
+        }
+      },
+      "behavior_file": "travel/enterprise_settings.behavior.v1.json",
+      "domain": "Travel",
+      "domain_snake": "travel",
+      "dsl_file": "travel/enterprise_settings.dsl",
+      "entity": "TravelPolicy",
+      "entity_snake": "travel_policy",
+      "page_id": "enterprise_settings",
+      "page_kind": "detail",
+      "page_spec": {
+        "page_kind": "detail",
+        "route_role": "detail",
+        "supports_runtime_record_identity": false,
+        "template_kind": "object_page"
+      },
+      "page_type": "object_page",
+      "state_schema": {
+        "defaults": {
+          "record": {
+            "is_active": true,
+            "logo": "",
+            "notify_frequency": "",
+            "notify_method": "",
+            "password_policy": "",
+            "session_timeout": "",
+            "site_description": "",
+            "site_name": ""
+          }
+        },
+        "status_keys": [
+          "record",
+          "record.is_active",
+          "record.logo",
+          "record.notify_frequency",
+          "record.notify_method",
+          "record.password_policy",
+          "record.session_timeout",
+          "record.site_description",
+          "record.site_name"
+        ]
+      },
+      "status_keys": [
+        "record",
+        "record.is_active",
+        "record.logo",
+        "record.notify_frequency",
+        "record.notify_method",
+        "record.password_policy",
+        "record.session_timeout",
+        "record.site_description",
+        "record.site_name"
       ],
       "template_meta": {
         "detail": "object_page"
@@ -8685,152 +8590,6 @@
     },
     {
       "api_map": {
-        "get": "Travel.TravelOrder.get",
-        "list": "Travel.TravelOrder.list"
-      },
-      "backend": {
-        "api_map": {
-          "get": "Travel.TravelOrder.get",
-          "list": "Travel.TravelOrder.list"
-        },
-        "info": {
-          "reload_messages": [
-            "page_host_reload"
-          ]
-        },
-        "load": {
-          "assigns": {},
-          "selection": "id"
-        },
-        "params": {
-          "accept": []
-        }
-      },
-      "behavior_file": "travel/personal_center.behavior.v1.json",
-      "domain": "Travel",
-      "domain_snake": "travel",
-      "dsl_file": "travel/personal_center.dsl",
-      "entity": "TravelOrder",
-      "entity_snake": "travel_order",
-      "page_id": "personal_center",
-      "page_kind": "detail",
-      "page_spec": {
-        "page_kind": "detail",
-        "route_role": "detail",
-        "supports_runtime_record_identity": false,
-        "template_kind": "object_page"
-      },
-      "page_type": "object_page",
-      "state_schema": {
-        "defaults": {
-          "page_title": "个人中心",
-          "profile_description": ""
-        },
-        "status_keys": [
-          "page_title",
-          "profile_description"
-        ]
-      },
-      "status_keys": [
-        "page_title",
-        "profile_description"
-      ],
-      "template_meta": {
-        "detail": "object_page"
-      },
-      "template_spec": {
-        "page_kind": "detail",
-        "schema_version": "1.0",
-        "template_kind": "object_page"
-      },
-      "transitions": []
-    },
-    {
-      "api_map": {
-        "get": "Travel.TravelOrder.get",
-        "list": "Travel.TravelOrder.list"
-      },
-      "backend": {
-        "api_map": {
-          "get": "Travel.TravelOrder.get",
-          "list": "Travel.TravelOrder.list"
-        },
-        "info": {
-          "reload_messages": [
-            "page_host_reload"
-          ]
-        },
-        "load": {
-          "assigns": {},
-          "selection": "id"
-        },
-        "params": {
-          "accept": []
-        }
-      },
-      "behavior_file": "travel/oa_integration_config.behavior.v1.json",
-      "domain": "Travel",
-      "domain_snake": "travel",
-      "dsl_file": "travel/oa_integration_config.dsl",
-      "entity": "TravelOrder",
-      "entity_snake": "travel_order",
-      "page_id": "oa_integration_config",
-      "page_kind": "detail",
-      "page_spec": {
-        "page_kind": "detail",
-        "route_role": "detail",
-        "supports_runtime_record_identity": false,
-        "template_kind": "object_page"
-      },
-      "page_type": "object_page",
-      "state_schema": {
-        "defaults": {
-          "record": {
-            "logo": "",
-            "notify_frequency": "",
-            "notify_method": "",
-            "password_policy": "",
-            "session_timeout": "",
-            "site_description": "",
-            "site_name": "",
-            "status": true
-          }
-        },
-        "status_keys": [
-          "record",
-          "record.logo",
-          "record.notify_frequency",
-          "record.notify_method",
-          "record.password_policy",
-          "record.session_timeout",
-          "record.site_description",
-          "record.site_name",
-          "record.status"
-        ]
-      },
-      "status_keys": [
-        "record",
-        "record.logo",
-        "record.notify_frequency",
-        "record.notify_method",
-        "record.password_policy",
-        "record.session_timeout",
-        "record.site_description",
-        "record.site_name",
-        "record.status"
-      ],
-      "template_meta": {
-        "detail": "object_page"
-      },
-      "template_spec": {
-        "page_kind": "detail",
-        "schema_version": "1.0",
-        "template_kind": "object_page"
-      },
-      "transitions": []
-    },
-    {
-      "api_map": {
         "list": "Travel.TravelOrder.list"
       },
       "backend": {
@@ -8850,13 +8609,13 @@
           "accept": []
         }
       },
-      "behavior_file": "travel/job_position_list.behavior.v1.json",
+      "behavior_file": "travel/oa_sync_log_list.behavior.v1.json",
       "domain": "Travel",
       "domain_snake": "travel",
-      "dsl_file": "travel/job_position_list.dsl",
+      "dsl_file": "travel/oa_sync_log_list.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
-      "page_id": "job_position_list",
+      "page_id": "oa_sync_log_list",
       "page_kind": "list",
       "page_spec": {
         "page_kind": "list",
@@ -9009,9 +8768,13 @@
       "transitions": []
     },
     {
-      "api_map": {},
+      "api_map": {
+        "list": "Travel.TravelPolicy.list"
+      },
       "backend": {
-        "api_map": {},
+        "api_map": {
+          "list": "Travel.TravelPolicy.list"
+        },
         "info": {
           "reload_messages": [
             "page_host_reload"
@@ -9025,68 +8788,443 @@
           "accept": []
         }
       },
-      "behavior_file": "travel/pricing_rule.behavior.v1.json",
+      "behavior_file": "travel/auth_role_list.behavior.v1.json",
       "domain": "Travel",
       "domain_snake": "travel",
-      "dsl_file": "travel/pricing_rule.dsl",
-      "entity": "TravelOrder",
-      "entity_snake": "travel_order",
-      "page_id": "pricing_rule",
-      "page_kind": "custom",
+      "dsl_file": "travel/auth_role_list.dsl",
+      "entity": "TravelPolicy",
+      "entity_snake": "travel_policy",
+      "page_id": "auth_role_list",
+      "page_kind": "list",
       "page_spec": {
-        "page_kind": "custom",
-        "route_role": "custom",
+        "page_kind": "list",
+        "route_role": "list",
         "supports_runtime_record_identity": false,
-        "template_kind": "custom"
+        "template_kind": "list_report"
       },
-      "page_type": "custom",
+      "page_type": "list_report",
       "state_schema": {
         "defaults": {
-          "pricing_rules": [
+          "rows": [
             {
-              "markup_rate": "",
+              "approval_mode": "",
+              "cabin_class_limit": "",
+              "city_tier": "",
+              "employee_level": "",
+              "exceed_strategy": "",
+              "hotel_star_limit": "",
+              "id": "row_01",
+              "is_active": "",
+              "max_amount": "",
+              "personal_pay_ratio": "",
+              "policy_name": "",
               "product_type": "",
-              "status": "",
-              "supplier_code": ""
+              "season": ""
             },
             {
-              "markup_rate": "",
+              "approval_mode": "",
+              "cabin_class_limit": "",
+              "city_tier": "",
+              "employee_level": "",
+              "exceed_strategy": "",
+              "hotel_star_limit": "",
+              "id": "row_02",
+              "is_active": "",
+              "max_amount": "",
+              "personal_pay_ratio": "",
+              "policy_name": "",
               "product_type": "",
-              "status": "",
-              "supplier_code": ""
+              "season": ""
             },
             {
-              "markup_rate": "",
+              "approval_mode": "",
+              "cabin_class_limit": "",
+              "city_tier": "",
+              "employee_level": "",
+              "exceed_strategy": "",
+              "hotel_star_limit": "",
+              "id": "row_03",
+              "is_active": "",
+              "max_amount": "",
+              "personal_pay_ratio": "",
+              "policy_name": "",
               "product_type": "",
-              "status": "",
-              "supplier_code": ""
+              "season": ""
             }
-          ]
+          ],
+          "rows_empty": true,
+          "travel_policy": {
+            "page": "",
+            "total_pages": ""
+          }
         },
         "status_keys": [
-          "pricing_rules",
-          "pricing_rules[]",
-          "pricing_rules[].markup_rate",
-          "pricing_rules[].product_type",
-          "pricing_rules[].status",
-          "pricing_rules[].supplier_code"
+          "rows",
+          "rows[]",
+          "rows[].approval_mode",
+          "rows[].cabin_class_limit",
+          "rows[].city_tier",
+          "rows[].employee_level",
+          "rows[].exceed_strategy",
+          "rows[].hotel_star_limit",
+          "rows[].id",
+          "rows[].is_active",
+          "rows[].max_amount",
+          "rows[].personal_pay_ratio",
+          "rows[].policy_name",
+          "rows[].product_type",
+          "rows[].season",
+          "rows_empty",
+          "travel_policy",
+          "travel_policy.page",
+          "travel_policy.total_pages"
         ]
       },
       "status_keys": [
-        "pricing_rules",
-        "pricing_rules[]",
-        "pricing_rules[].markup_rate",
-        "pricing_rules[].product_type",
-        "pricing_rules[].status",
-        "pricing_rules[].supplier_code"
+        "rows",
+        "rows[]",
+        "rows[].approval_mode",
+        "rows[].cabin_class_limit",
+        "rows[].city_tier",
+        "rows[].employee_level",
+        "rows[].exceed_strategy",
+        "rows[].hotel_star_limit",
+        "rows[].id",
+        "rows[].is_active",
+        "rows[].max_amount",
+        "rows[].personal_pay_ratio",
+        "rows[].policy_name",
+        "rows[].product_type",
+        "rows[].season",
+        "rows_empty",
+        "travel_policy",
+        "travel_policy.page",
+        "travel_policy.total_pages"
       ],
       "template_meta": {
-        "custom": "custom"
+        "list": "list_report"
       },
       "template_spec": {
-        "page_kind": "custom",
+        "page_kind": "list",
         "schema_version": "1.0",
-        "template_kind": "custom"
+        "template_kind": "list_report"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "get": "Travel.TravelPolicy.get",
+        "list": "Travel.TravelPolicy.list"
+      },
+      "backend": {
+        "api_map": {
+          "get": "Travel.TravelPolicy.get",
+          "list": "Travel.TravelPolicy.list"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "id"
+        },
+        "params": {
+          "accept": []
+        }
+      },
+      "behavior_file": "travel/auth_role_detail.behavior.v1.json",
+      "domain": "Travel",
+      "domain_snake": "travel",
+      "dsl_file": "travel/auth_role_detail.dsl",
+      "entity": "TravelPolicy",
+      "entity_snake": "travel_policy",
+      "page_id": "auth_role_detail",
+      "page_kind": "detail",
+      "page_spec": {
+        "page_kind": "detail",
+        "route_role": "detail",
+        "supports_runtime_record_identity": false,
+        "template_kind": "object_page"
+      },
+      "page_type": "object_page",
+      "state_schema": {
+        "defaults": {
+          "editing": false,
+          "record": {
+            "is_active": true
+          },
+          "travel_policy": {
+            "approval_mode": "",
+            "cabin_class_limit": "",
+            "city_tier": "",
+            "employee_level": "",
+            "exceed_strategy": "",
+            "hotel_star_limit": "",
+            "is_active": "",
+            "max_amount": "",
+            "personal_pay_ratio": "",
+            "policy_name": "",
+            "product_type": "",
+            "season": ""
+          }
+        },
+        "status_keys": [
+          "editing",
+          "record",
+          "record.is_active",
+          "travel_policy",
+          "travel_policy.approval_mode",
+          "travel_policy.cabin_class_limit",
+          "travel_policy.city_tier",
+          "travel_policy.employee_level",
+          "travel_policy.exceed_strategy",
+          "travel_policy.hotel_star_limit",
+          "travel_policy.is_active",
+          "travel_policy.max_amount",
+          "travel_policy.personal_pay_ratio",
+          "travel_policy.policy_name",
+          "travel_policy.product_type",
+          "travel_policy.season"
+        ]
+      },
+      "status_keys": [
+        "editing",
+        "record",
+        "record.is_active",
+        "travel_policy",
+        "travel_policy.approval_mode",
+        "travel_policy.cabin_class_limit",
+        "travel_policy.city_tier",
+        "travel_policy.employee_level",
+        "travel_policy.exceed_strategy",
+        "travel_policy.hotel_star_limit",
+        "travel_policy.is_active",
+        "travel_policy.max_amount",
+        "travel_policy.personal_pay_ratio",
+        "travel_policy.policy_name",
+        "travel_policy.product_type",
+        "travel_policy.season"
+      ],
+      "template_meta": {
+        "detail": "object_page"
+      },
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0",
+        "template_kind": "object_page"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "get": "Travel.TravelOrder.get",
+        "list": "Travel.TravelOrder.list"
+      },
+      "backend": {
+        "api_map": {
+          "get": "Travel.TravelOrder.get",
+          "list": "Travel.TravelOrder.list"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "id"
+        },
+        "params": {
+          "accept": []
+        }
+      },
+      "behavior_file": "travel/employee_detail.behavior.v1.json",
+      "domain": "Travel",
+      "domain_snake": "travel",
+      "dsl_file": "travel/employee_detail.dsl",
+      "entity": "TravelOrder",
+      "entity_snake": "travel_order",
+      "page_id": "employee_detail",
+      "page_kind": "detail",
+      "page_spec": {
+        "page_kind": "detail",
+        "route_role": "detail",
+        "supports_runtime_record_identity": false,
+        "template_kind": "object_page"
+      },
+      "page_type": "object_page",
+      "state_schema": {
+        "defaults": {
+          "editing": false,
+          "record": {
+            "status": true
+          },
+          "travel_order": {
+            "booking_mode": "",
+            "change_status": "",
+            "contact_name": "",
+            "contact_phone": "",
+            "currency": "",
+            "order_no": "",
+            "original_order_ref": "",
+            "payment_external_ref": "",
+            "points_deduction_amount": "",
+            "points_to_use": "",
+            "product_type": "",
+            "recommended_payment_method": "",
+            "seat_selection_snapshot": "",
+            "status": "",
+            "supplier_order_ref": "",
+            "ticket_passenger_infos": "",
+            "total_amount": "",
+            "traveler_count": "",
+            "waitlist_status": ""
+          }
+        },
+        "status_keys": [
+          "editing",
+          "record",
+          "record.status",
+          "travel_order",
+          "travel_order.booking_mode",
+          "travel_order.change_status",
+          "travel_order.contact_name",
+          "travel_order.contact_phone",
+          "travel_order.currency",
+          "travel_order.order_no",
+          "travel_order.original_order_ref",
+          "travel_order.payment_external_ref",
+          "travel_order.points_deduction_amount",
+          "travel_order.points_to_use",
+          "travel_order.product_type",
+          "travel_order.recommended_payment_method",
+          "travel_order.seat_selection_snapshot",
+          "travel_order.status",
+          "travel_order.supplier_order_ref",
+          "travel_order.ticket_passenger_infos",
+          "travel_order.total_amount",
+          "travel_order.traveler_count",
+          "travel_order.waitlist_status"
+        ]
+      },
+      "status_keys": [
+        "editing",
+        "record",
+        "record.status",
+        "travel_order",
+        "travel_order.booking_mode",
+        "travel_order.change_status",
+        "travel_order.contact_name",
+        "travel_order.contact_phone",
+        "travel_order.currency",
+        "travel_order.order_no",
+        "travel_order.original_order_ref",
+        "travel_order.payment_external_ref",
+        "travel_order.points_deduction_amount",
+        "travel_order.points_to_use",
+        "travel_order.product_type",
+        "travel_order.recommended_payment_method",
+        "travel_order.seat_selection_snapshot",
+        "travel_order.status",
+        "travel_order.supplier_order_ref",
+        "travel_order.ticket_passenger_infos",
+        "travel_order.total_amount",
+        "travel_order.traveler_count",
+        "travel_order.waitlist_status"
+      ],
+      "template_meta": {
+        "detail": "object_page"
+      },
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0",
+        "template_kind": "object_page"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "get": "Travel.TravelOrder.get",
+        "list": "Travel.TravelOrder.list"
+      },
+      "backend": {
+        "api_map": {
+          "get": "Travel.TravelOrder.get",
+          "list": "Travel.TravelOrder.list"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "id"
+        },
+        "params": {
+          "accept": []
+        }
+      },
+      "behavior_file": "travel/oa_integration_config.behavior.v1.json",
+      "domain": "Travel",
+      "domain_snake": "travel",
+      "dsl_file": "travel/oa_integration_config.dsl",
+      "entity": "TravelOrder",
+      "entity_snake": "travel_order",
+      "page_id": "oa_integration_config",
+      "page_kind": "detail",
+      "page_spec": {
+        "page_kind": "detail",
+        "route_role": "detail",
+        "supports_runtime_record_identity": false,
+        "template_kind": "object_page"
+      },
+      "page_type": "object_page",
+      "state_schema": {
+        "defaults": {
+          "record": {
+            "logo": "",
+            "notify_frequency": "",
+            "notify_method": "",
+            "password_policy": "",
+            "session_timeout": "",
+            "site_description": "",
+            "site_name": "",
+            "status": true
+          }
+        },
+        "status_keys": [
+          "record",
+          "record.logo",
+          "record.notify_frequency",
+          "record.notify_method",
+          "record.password_policy",
+          "record.session_timeout",
+          "record.site_description",
+          "record.site_name",
+          "record.status"
+        ]
+      },
+      "status_keys": [
+        "record",
+        "record.logo",
+        "record.notify_frequency",
+        "record.notify_method",
+        "record.password_policy",
+        "record.session_timeout",
+        "record.site_description",
+        "record.site_name",
+        "record.status"
+      ],
+      "template_meta": {
+        "detail": "object_page"
+      },
+      "template_spec": {
+        "page_kind": "detail",
+        "schema_version": "1.0",
+        "template_kind": "object_page"
       },
       "transitions": []
     },
@@ -9111,13 +9249,13 @@
           "accept": []
         }
       },
-      "behavior_file": "travel/employee_list.behavior.v1.json",
+      "behavior_file": "travel/job_position_list.behavior.v1.json",
       "domain": "Travel",
       "domain_snake": "travel",
-      "dsl_file": "travel/employee_list.dsl",
+      "dsl_file": "travel/job_position_list.dsl",
       "entity": "TravelOrder",
       "entity_snake": "travel_order",
-      "page_id": "employee_list",
+      "page_id": "job_position_list",
       "page_kind": "list",
       "page_spec": {
         "page_kind": "list",
@@ -9417,6 +9555,185 @@
           "accept": []
         }
       },
+      "behavior_file": "travel/employee_list.behavior.v1.json",
+      "domain": "Travel",
+      "domain_snake": "travel",
+      "dsl_file": "travel/employee_list.dsl",
+      "entity": "TravelOrder",
+      "entity_snake": "travel_order",
+      "page_id": "employee_list",
+      "page_kind": "list",
+      "page_spec": {
+        "page_kind": "list",
+        "route_role": "list",
+        "supports_runtime_record_identity": false,
+        "template_kind": "list_report"
+      },
+      "page_type": "list_report",
+      "state_schema": {
+        "defaults": {
+          "rows": [
+            {
+              "booking_mode": "",
+              "change_status": "",
+              "contact_name": "",
+              "contact_phone": "",
+              "currency": "",
+              "id": "row_01",
+              "order_no": "",
+              "original_order_ref": "",
+              "payment_external_ref": "",
+              "points_deduction_amount": "",
+              "points_to_use": "",
+              "product_type": "",
+              "recommended_payment_method": "",
+              "seat_selection_snapshot": "",
+              "status": "",
+              "supplier_order_ref": "",
+              "ticket_passenger_infos": "",
+              "total_amount": "",
+              "traveler_count": "",
+              "waitlist_status": ""
+            },
+            {
+              "booking_mode": "",
+              "change_status": "",
+              "contact_name": "",
+              "contact_phone": "",
+              "currency": "",
+              "id": "row_02",
+              "order_no": "",
+              "original_order_ref": "",
+              "payment_external_ref": "",
+              "points_deduction_amount": "",
+              "points_to_use": "",
+              "product_type": "",
+              "recommended_payment_method": "",
+              "seat_selection_snapshot": "",
+              "status": "",
+              "supplier_order_ref": "",
+              "ticket_passenger_infos": "",
+              "total_amount": "",
+              "traveler_count": "",
+              "waitlist_status": ""
+            },
+            {
+              "booking_mode": "",
+              "change_status": "",
+              "contact_name": "",
+              "contact_phone": "",
+              "currency": "",
+              "id": "row_03",
+              "order_no": "",
+              "original_order_ref": "",
+              "payment_external_ref": "",
+              "points_deduction_amount": "",
+              "points_to_use": "",
+              "product_type": "",
+              "recommended_payment_method": "",
+              "seat_selection_snapshot": "",
+              "status": "",
+              "supplier_order_ref": "",
+              "ticket_passenger_infos": "",
+              "total_amount": "",
+              "traveler_count": "",
+              "waitlist_status": ""
+            }
+          ],
+          "rows_empty": true,
+          "travel_order": {
+            "page": "",
+            "total_pages": ""
+          }
+        },
+        "status_keys": [
+          "rows",
+          "rows[]",
+          "rows[].booking_mode",
+          "rows[].change_status",
+          "rows[].contact_name",
+          "rows[].contact_phone",
+          "rows[].currency",
+          "rows[].id",
+          "rows[].order_no",
+          "rows[].original_order_ref",
+          "rows[].payment_external_ref",
+          "rows[].points_deduction_amount",
+          "rows[].points_to_use",
+          "rows[].product_type",
+          "rows[].recommended_payment_method",
+          "rows[].seat_selection_snapshot",
+          "rows[].status",
+          "rows[].supplier_order_ref",
+          "rows[].ticket_passenger_infos",
+          "rows[].total_amount",
+          "rows[].traveler_count",
+          "rows[].waitlist_status",
+          "rows_empty",
+          "travel_order",
+          "travel_order.page",
+          "travel_order.total_pages"
+        ]
+      },
+      "status_keys": [
+        "rows",
+        "rows[]",
+        "rows[].booking_mode",
+        "rows[].change_status",
+        "rows[].contact_name",
+        "rows[].contact_phone",
+        "rows[].currency",
+        "rows[].id",
+        "rows[].order_no",
+        "rows[].original_order_ref",
+        "rows[].payment_external_ref",
+        "rows[].points_deduction_amount",
+        "rows[].points_to_use",
+        "rows[].product_type",
+        "rows[].recommended_payment_method",
+        "rows[].seat_selection_snapshot",
+        "rows[].status",
+        "rows[].supplier_order_ref",
+        "rows[].ticket_passenger_infos",
+        "rows[].total_amount",
+        "rows[].traveler_count",
+        "rows[].waitlist_status",
+        "rows_empty",
+        "travel_order",
+        "travel_order.page",
+        "travel_order.total_pages"
+      ],
+      "template_meta": {
+        "list": "list_report"
+      },
+      "template_spec": {
+        "page_kind": "list",
+        "schema_version": "1.0",
+        "template_kind": "list_report"
+      },
+      "transitions": []
+    },
+    {
+      "api_map": {
+        "list": "Travel.TravelOrder.list"
+      },
+      "backend": {
+        "api_map": {
+          "list": "Travel.TravelOrder.list"
+        },
+        "info": {
+          "reload_messages": [
+            "page_host_reload"
+          ]
+        },
+        "load": {
+          "assigns": {},
+          "selection": "id"
+        },
+        "params": {
+          "accept": []
+        }
+      },
       "behavior_file": "travel/traveler_management.behavior.v1.json",
       "domain": "Travel",
       "domain_snake": "travel",
@@ -9577,196 +9894,6 @@
     },
     {
       "api_map": {
-        "get": "Travel.TravelPolicy.get",
-        "list": "Travel.TravelPolicy.list"
-      },
-      "backend": {
-        "api_map": {
-          "get": "Travel.TravelPolicy.get",
-          "list": "Travel.TravelPolicy.list"
-        },
-        "info": {
-          "reload_messages": [
-            "page_host_reload"
-          ]
-        },
-        "load": {
-          "assigns": {},
-          "selection": "id"
-        },
-        "params": {
-          "accept": []
-        }
-      },
-      "behavior_file": "travel/enterprise_settings.behavior.v1.json",
-      "domain": "Travel",
-      "domain_snake": "travel",
-      "dsl_file": "travel/enterprise_settings.dsl",
-      "entity": "TravelPolicy",
-      "entity_snake": "travel_policy",
-      "page_id": "enterprise_settings",
-      "page_kind": "detail",
-      "page_spec": {
-        "page_kind": "detail",
-        "route_role": "detail",
-        "supports_runtime_record_identity": false,
-        "template_kind": "object_page"
-      },
-      "page_type": "object_page",
-      "state_schema": {
-        "defaults": {
-          "record": {
-            "is_active": true,
-            "logo": "",
-            "notify_frequency": "",
-            "notify_method": "",
-            "password_policy": "",
-            "session_timeout": "",
-            "site_description": "",
-            "site_name": ""
-          }
-        },
-        "status_keys": [
-          "record",
-          "record.is_active",
-          "record.logo",
-          "record.notify_frequency",
-          "record.notify_method",
-          "record.password_policy",
-          "record.session_timeout",
-          "record.site_description",
-          "record.site_name"
-        ]
-      },
-      "status_keys": [
-        "record",
-        "record.is_active",
-        "record.logo",
-        "record.notify_frequency",
-        "record.notify_method",
-        "record.password_policy",
-        "record.session_timeout",
-        "record.site_description",
-        "record.site_name"
-      ],
-      "template_meta": {
-        "detail": "object_page"
-      },
-      "template_spec": {
-        "page_kind": "detail",
-        "schema_version": "1.0",
-        "template_kind": "object_page"
-      },
-      "transitions": []
-    },
-    {
-      "api_map": {
-        "get": "Travel.TravelPolicy.get",
-        "list": "Travel.TravelPolicy.list"
-      },
-      "backend": {
-        "api_map": {
-          "get": "Travel.TravelPolicy.get",
-          "list": "Travel.TravelPolicy.list"
-        },
-        "info": {
-          "reload_messages": [
-            "page_host_reload"
-          ]
-        },
-        "load": {
-          "assigns": {},
-          "selection": "id"
-        },
-        "params": {
-          "accept": []
-        }
-      },
-      "behavior_file": "travel/auth_role_detail.behavior.v1.json",
-      "domain": "Travel",
-      "domain_snake": "travel",
-      "dsl_file": "travel/auth_role_detail.dsl",
-      "entity": "TravelPolicy",
-      "entity_snake": "travel_policy",
-      "page_id": "auth_role_detail",
-      "page_kind": "detail",
-      "page_spec": {
-        "page_kind": "detail",
-        "route_role": "detail",
-        "supports_runtime_record_identity": false,
-        "template_kind": "object_page"
-      },
-      "page_type": "object_page",
-      "state_schema": {
-        "defaults": {
-          "editing": false,
-          "record": {
-            "is_active": true
-          },
-          "travel_policy": {
-            "approval_mode": "",
-            "cabin_class_limit": "",
-            "city_tier": "",
-            "employee_level": "",
-            "exceed_strategy": "",
-            "hotel_star_limit": "",
-            "is_active": "",
-            "max_amount": "",
-            "personal_pay_ratio": "",
-            "policy_name": "",
-            "product_type": "",
-            "season": ""
-          }
-        },
-        "status_keys": [
-          "editing",
-          "record",
-          "record.is_active",
-          "travel_policy",
-          "travel_policy.approval_mode",
-          "travel_policy.cabin_class_limit",
-          "travel_policy.city_tier",
-          "travel_policy.employee_level",
-          "travel_policy.exceed_strategy",
-          "travel_policy.hotel_star_limit",
-          "travel_policy.is_active",
-          "travel_policy.max_amount",
-          "travel_policy.personal_pay_ratio",
-          "travel_policy.policy_name",
-          "travel_policy.product_type",
-          "travel_policy.season"
-        ]
-      },
-      "status_keys": [
-        "editing",
-        "record",
-        "record.is_active",
-        "travel_policy",
-        "travel_policy.approval_mode",
-        "travel_policy.cabin_class_limit",
-        "travel_policy.city_tier",
-        "travel_policy.employee_level",
-        "travel_policy.exceed_strategy",
-        "travel_policy.hotel_star_limit",
-        "travel_policy.is_active",
-        "travel_policy.max_amount",
-        "travel_policy.personal_pay_ratio",
-        "travel_policy.policy_name",
-        "travel_policy.product_type",
-        "travel_policy.season"
-      ],
-      "template_meta": {
-        "detail": "object_page"
-      },
-      "template_spec": {
-        "page_kind": "detail",
-        "schema_version": "1.0",
-        "template_kind": "object_page"
-      },
-      "transitions": []
-    },
-    {
-      "api_map": {
         "get": "Travel.TravelPolicyCheck.get",
         "list": "Travel.TravelPolicyCheck.list"
       },
@@ -9835,133 +9962,6 @@
         "record.session_timeout",
         "record.site_description",
         "record.site_name"
-      ],
-      "template_meta": {
-        "detail": "object_page"
-      },
-      "template_spec": {
-        "page_kind": "detail",
-        "schema_version": "1.0",
-        "template_kind": "object_page"
-      },
-      "transitions": []
-    },
-    {
-      "api_map": {
-        "get": "Travel.TravelOrder.get",
-        "list": "Travel.TravelOrder.list"
-      },
-      "backend": {
-        "api_map": {
-          "get": "Travel.TravelOrder.get",
-          "list": "Travel.TravelOrder.list"
-        },
-        "info": {
-          "reload_messages": [
-            "page_host_reload"
-          ]
-        },
-        "load": {
-          "assigns": {},
-          "selection": "id"
-        },
-        "params": {
-          "accept": []
-        }
-      },
-      "behavior_file": "travel/job_position_detail.behavior.v1.json",
-      "domain": "Travel",
-      "domain_snake": "travel",
-      "dsl_file": "travel/job_position_detail.dsl",
-      "entity": "TravelOrder",
-      "entity_snake": "travel_order",
-      "page_id": "job_position_detail",
-      "page_kind": "detail",
-      "page_spec": {
-        "page_kind": "detail",
-        "route_role": "detail",
-        "supports_runtime_record_identity": false,
-        "template_kind": "object_page"
-      },
-      "page_type": "object_page",
-      "state_schema": {
-        "defaults": {
-          "editing": false,
-          "record": {
-            "status": true
-          },
-          "travel_order": {
-            "booking_mode": "",
-            "change_status": "",
-            "contact_name": "",
-            "contact_phone": "",
-            "currency": "",
-            "order_no": "",
-            "original_order_ref": "",
-            "payment_external_ref": "",
-            "points_deduction_amount": "",
-            "points_to_use": "",
-            "product_type": "",
-            "recommended_payment_method": "",
-            "seat_selection_snapshot": "",
-            "status": "",
-            "supplier_order_ref": "",
-            "ticket_passenger_infos": "",
-            "total_amount": "",
-            "traveler_count": "",
-            "waitlist_status": ""
-          }
-        },
-        "status_keys": [
-          "editing",
-          "record",
-          "record.status",
-          "travel_order",
-          "travel_order.booking_mode",
-          "travel_order.change_status",
-          "travel_order.contact_name",
-          "travel_order.contact_phone",
-          "travel_order.currency",
-          "travel_order.order_no",
-          "travel_order.original_order_ref",
-          "travel_order.payment_external_ref",
-          "travel_order.points_deduction_amount",
-          "travel_order.points_to_use",
-          "travel_order.product_type",
-          "travel_order.recommended_payment_method",
-          "travel_order.seat_selection_snapshot",
-          "travel_order.status",
-          "travel_order.supplier_order_ref",
-          "travel_order.ticket_passenger_infos",
-          "travel_order.total_amount",
-          "travel_order.traveler_count",
-          "travel_order.waitlist_status"
-        ]
-      },
-      "status_keys": [
-        "editing",
-        "record",
-        "record.status",
-        "travel_order",
-        "travel_order.booking_mode",
-        "travel_order.change_status",
-        "travel_order.contact_name",
-        "travel_order.contact_phone",
-        "travel_order.currency",
-        "travel_order.order_no",
-        "travel_order.original_order_ref",
-        "travel_order.payment_external_ref",
-        "travel_order.points_deduction_amount",
-        "travel_order.points_to_use",
-        "travel_order.product_type",
-        "travel_order.recommended_payment_method",
-        "travel_order.seat_selection_snapshot",
-        "travel_order.status",
-        "travel_order.supplier_order_ref",
-        "travel_order.ticket_passenger_infos",
-        "travel_order.total_amount",
-        "travel_order.traveler_count",
-        "travel_order.waitlist_status"
       ],
       "template_meta": {
         "detail": "object_page"
@@ -10389,6 +10389,20 @@
       "route_kind": "detail"
     },
     {
+      "full_path": "/pages/travel/personal_center",
+      "page_id": "personal_center",
+      "path": "/travel/personal_center",
+      "query": "",
+      "route_kind": "detail"
+    },
+    {
+      "full_path": "/pages/travel/pricing_rule",
+      "page_id": "pricing_rule",
+      "path": "/travel/pricing_rule",
+      "query": "",
+      "route_kind": "custom"
+    },
+    {
       "full_path": "/pages/travel/flight_offer/:id",
       "page_id": "flight_offer_detail",
       "path": "/travel/flight_offer/:id",
@@ -10445,23 +10459,16 @@
       "route_kind": "new"
     },
     {
-      "full_path": "/pages/travel/auth_role_list",
-      "page_id": "auth_role_list",
-      "path": "/travel/auth_role_list",
+      "full_path": "/pages/travel/job_position_detail",
+      "page_id": "job_position_detail",
+      "path": "/travel/job_position_detail",
       "query": "",
-      "route_kind": "list"
+      "route_kind": "detail"
     },
     {
-      "full_path": "/pages/travel/oa_sync_log_list",
-      "page_id": "oa_sync_log_list",
-      "path": "/travel/oa_sync_log_list",
-      "query": "",
-      "route_kind": "list"
-    },
-    {
-      "full_path": "/pages/travel/employee_detail",
-      "page_id": "employee_detail",
-      "path": "/travel/employee_detail",
+      "full_path": "/pages/travel/enterprise_settings",
+      "page_id": "enterprise_settings",
+      "path": "/travel/enterprise_settings",
       "query": "",
       "route_kind": "detail"
     },
@@ -10473,9 +10480,30 @@
       "route_kind": "list"
     },
     {
-      "full_path": "/pages/travel/personal_center",
-      "page_id": "personal_center",
-      "path": "/travel/personal_center",
+      "full_path": "/pages/travel/oa_sync_log_list",
+      "page_id": "oa_sync_log_list",
+      "path": "/travel/oa_sync_log_list",
+      "query": "",
+      "route_kind": "list"
+    },
+    {
+      "full_path": "/pages/travel/auth_role_list",
+      "page_id": "auth_role_list",
+      "path": "/travel/auth_role_list",
+      "query": "",
+      "route_kind": "list"
+    },
+    {
+      "full_path": "/pages/travel/auth_role_detail",
+      "page_id": "auth_role_detail",
+      "path": "/travel/auth_role_detail",
+      "query": "",
+      "route_kind": "detail"
+    },
+    {
+      "full_path": "/pages/travel/employee_detail",
+      "page_id": "employee_detail",
+      "path": "/travel/employee_detail",
       "query": "",
       "route_kind": "detail"
     },
@@ -10494,11 +10522,11 @@
       "route_kind": "list"
     },
     {
-      "full_path": "/pages/travel/pricing_rule",
-      "page_id": "pricing_rule",
-      "path": "/travel/pricing_rule",
+      "full_path": "/pages/travel/department_detail",
+      "page_id": "department_detail",
+      "path": "/travel/department_detail",
       "query": "",
-      "route_kind": "custom"
+      "route_kind": "detail"
     },
     {
       "full_path": "/pages/travel/employee_list",
@@ -10508,13 +10536,6 @@
       "route_kind": "list"
     },
     {
-      "full_path": "/pages/travel/department_detail",
-      "page_id": "department_detail",
-      "path": "/travel/department_detail",
-      "query": "",
-      "route_kind": "detail"
-    },
-    {
       "full_path": "/pages/travel/traveler_management",
       "page_id": "traveler_management",
       "path": "/travel/traveler_management",
@@ -10522,30 +10543,9 @@
       "route_kind": "list"
     },
     {
-      "full_path": "/pages/travel/enterprise_settings",
-      "page_id": "enterprise_settings",
-      "path": "/travel/enterprise_settings",
-      "query": "",
-      "route_kind": "detail"
-    },
-    {
-      "full_path": "/pages/travel/auth_role_detail",
-      "page_id": "auth_role_detail",
-      "path": "/travel/auth_role_detail",
-      "query": "",
-      "route_kind": "detail"
-    },
-    {
       "full_path": "/pages/travel/approval_category_config",
       "page_id": "approval_category_config",
       "path": "/travel/approval_category_config",
-      "query": "",
-      "route_kind": "detail"
-    },
-    {
-      "full_path": "/pages/travel/job_position_detail",
-      "page_id": "job_position_detail",
-      "path": "/travel/job_position_detail",
       "query": "",
       "route_kind": "detail"
     }
