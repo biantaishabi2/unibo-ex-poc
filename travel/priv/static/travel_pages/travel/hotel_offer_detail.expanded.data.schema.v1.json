@@ -2,37 +2,37 @@
   "version": 1,
   "requiredPaths": [
     "editing",
-    "record.cancellation_policy",
-    "record.checkin_date",
-    "record.checkout_date",
-    "record.city_code",
-    "record.currency",
-    "record.guarantee_policy",
-    "record.hotel_code",
-    "record.hotel_name",
-    "record.inventory_count",
-    "record.listed_price",
-    "record.rate_plan_code",
-    "record.room_type_code",
-    "record.sale_status",
-    "record.settlement_price",
-    "record.supplier_code"
+    "hotel_offer.cancellation_policy",
+    "hotel_offer.checkin_date",
+    "hotel_offer.checkout_date",
+    "hotel_offer.city_code",
+    "hotel_offer.currency",
+    "hotel_offer.guarantee_policy",
+    "hotel_offer.hotel_code",
+    "hotel_offer.hotel_name",
+    "hotel_offer.inventory_count",
+    "hotel_offer.listed_price",
+    "hotel_offer.rate_plan_code",
+    "hotel_offer.room_type_code",
+    "hotel_offer.sale_status",
+    "hotel_offer.settlement_price",
+    "hotel_offer.supplier_code"
   ],
   "requiredRoots": [
     "editing",
-    "record"
+    "hotel_offer"
   ],
   "schema": {
-    "record": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "hotel_offer": {
       "type": "object",
       "required": true,
       "properties": {
         "supplier_code": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
-        "sale_status": {
           "type": "string",
           "required": false,
           "example": ""
@@ -101,13 +101,13 @@
           "type": "string",
           "required": false,
           "example": ""
+        },
+        "sale_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
         }
       }
-    },
-    "editing": {
-      "type": "object",
-      "required": true,
-      "properties": {}
     }
   },
   "notes": []

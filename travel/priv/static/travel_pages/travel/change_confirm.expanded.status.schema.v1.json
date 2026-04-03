@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "defaults": {
+    "step_1_label": "基本信息",
+    "step_2_label": "详细配置",
+    "step_3_label": "确认提交"
+  },
+  "keys": [
+    "step_1_label",
+    "step_2_label",
+    "step_3_label"
+  ],
+  "required": [
+    "step_1_label",
+    "step_2_label",
+    "step_3_label"
+  ],
+  "urlParams": {},
+  "notes": []
+}

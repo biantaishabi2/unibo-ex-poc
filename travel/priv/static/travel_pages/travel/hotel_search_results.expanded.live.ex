@@ -11,11 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): hotels, hotels.items, hotels.items[], hotels.items[].currency, hotels.items[].hotel_code, hotels.items[].hotel_name, hotels.items[].hotel_ref, hotels.items[].hotel_ref.address, hotels.items[].hotel_ref.cover_image, hotels.items[].hotel_ref.facilities, hotels.items[].hotel_ref.facilities[], hotels.items[].hotel_ref.facilities[].name, hotels.items[].hotel_ref.hotel_star, hotels.items[].hotel_ref.score, hotels.items[].is_agreement, hotels.items[].listed_price, hotels.total_count, policy, policy.exceeded, search, search.checkin_date, search.checkout_date
+  # status.keys preview (first ~40): hotels, hotels.items, hotels.items[], hotels.items[].address, hotels.items[].breakfast_label, hotels.items[].cancel_label, hotels.items[].district, hotels.items[].hotel_name, hotels.items[].hotel_star, hotels.items[].id, hotels.items[].is_policy_compliant, hotels.items[].listed_price, hotels.items[].rating_label, hotels.items[].room_type_name, hotels.total_count, policy, policy.exceeded, search, search.checkin_date, search.checkout_date, search.city_label, search.night_count_label
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
   \"search\": {
+    \"city_label\": \"\",
     \"checkin_date\": \"\",
+    \"night_count_label\": \"\",
     \"checkout_date\": \"\"
   },
   \"policy\": {
@@ -25,66 +27,42 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     \"total_count\": true,
     \"items\": [
       {
-        \"hotel_code\": \"\",
-        \"hotel_ref\": {
-          \"cover_image\": \"\",
-          \"hotel_star\": \"\",
-          \"score\": \"\",
-          \"address\": \"\",
-          \"facilities\": [
-            {
-              \"name\": \"facilitie_1\"
-            },
-            {
-              \"name\": \"facilitie_2\"
-            }
-          ]
-        },
+        \"id\": \"hot_01\",
         \"hotel_name\": \"\",
-        \"is_agreement\": true,
-        \"currency\": \"\",
+        \"hotel_star\": \"\",
+        \"is_policy_compliant\": true,
+        \"address\": \"\",
+        \"district\": \"\",
+        \"room_type_name\": \"\",
+        \"breakfast_label\": \"\",
+        \"cancel_label\": \"\",
+        \"rating_label\": \"\",
         \"listed_price\": \"\"
       },
       {
-        \"hotel_code\": \"\",
-        \"hotel_ref\": {
-          \"cover_image\": \"\",
-          \"hotel_star\": \"\",
-          \"score\": \"\",
-          \"address\": \"\",
-          \"facilities\": [
-            {
-              \"name\": \"facilitie_1\"
-            },
-            {
-              \"name\": \"facilitie_2\"
-            }
-          ]
-        },
+        \"id\": \"hot_02\",
         \"hotel_name\": \"\",
-        \"is_agreement\": true,
-        \"currency\": \"\",
+        \"hotel_star\": \"\",
+        \"is_policy_compliant\": true,
+        \"address\": \"\",
+        \"district\": \"\",
+        \"room_type_name\": \"\",
+        \"breakfast_label\": \"\",
+        \"cancel_label\": \"\",
+        \"rating_label\": \"\",
         \"listed_price\": \"\"
       },
       {
-        \"hotel_code\": \"\",
-        \"hotel_ref\": {
-          \"cover_image\": \"\",
-          \"hotel_star\": \"\",
-          \"score\": \"\",
-          \"address\": \"\",
-          \"facilities\": [
-            {
-              \"name\": \"facilitie_1\"
-            },
-            {
-              \"name\": \"facilitie_2\"
-            }
-          ]
-        },
+        \"id\": \"hot_03\",
         \"hotel_name\": \"\",
-        \"is_agreement\": true,
-        \"currency\": \"\",
+        \"hotel_star\": \"\",
+        \"is_policy_compliant\": true,
+        \"address\": \"\",
+        \"district\": \"\",
+        \"room_type_name\": \"\",
+        \"breakfast_label\": \"\",
+        \"cancel_label\": \"\",
+        \"rating_label\": \"\",
         \"listed_price\": \"\"
       }
     ]
@@ -97,6 +75,10 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event nil
+  @backend_load_selection nil
+  @backend_load_assigns %{}
+  @backend_params_accept []
+  @backend_info_reload_messages []
   @backend_api_map %{}
   @status_key_roots []
   @auth_mode "optional"
@@ -109,9 +91,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     defaults = atomize_keys(@status_defaults_raw)
     socket = assign(socket, defaults)
     socket = assign(socket, :__status_defaults, defaults)
+    socket = if is_map(@backend_load_assigns) and map_size(@backend_load_assigns) > 0, do: assign(socket, @backend_load_assigns), else: socket
     socket = apply_derived(socket)
     socket = apply_params(socket, params)
-    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(params, "__page_id", @page_id), socket), else: socket
+    backend_params = __filter_backend_params(params)
+    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
     {:ok, socket}
   end
 
@@ -123,9 +107,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: if backend exports handle_info/2, delegate and apply BackendResult v1.
+    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
     socket =
-      if function_exported?(@backend_mod, :handle_info, 2) do
+      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
         state0 = __take_status(socket.assigns)
         apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
       else
@@ -141,9 +125,31 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     {:noreply, socket}
   end
 
+  @impl true
+  def handle_event("sort", params, socket) do
+    # UI action event name: sort
+    socket = dispatch_backend("sort", params, socket)
+    {:noreply, socket}
+  end
+
   defp apply_params(socket, params) when is_map(params) do
     socket
   end
+
+  defp __filter_backend_params(params) when is_map(params) do
+    if @backend_params_accept == [] do
+      params
+    else
+      Map.take(params, @backend_params_accept ++ ["__page_id"])
+    end
+  end
+  defp __filter_backend_params(params), do: params
+
+  defp __accept_backend_info?({kind, value}) when is_atom(kind) and is_binary(value) do
+    kind == :page_host_reload and value in @backend_info_reload_messages
+  end
+  defp __accept_backend_info?(value) when is_binary(value), do: value in @backend_info_reload_messages
+  defp __accept_backend_info?(_), do: @backend_info_reload_messages == []
 
   defp ensure_user_context(socket) do
     # Thin user-context contract: keep it uniform so skeletons stay generated and diffable.

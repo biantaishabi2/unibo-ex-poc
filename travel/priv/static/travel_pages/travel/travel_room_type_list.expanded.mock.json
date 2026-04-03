@@ -1,36 +1,30 @@
 {
   "travel_room_type": {
-    "room_type_code": "",
-    "room_type_name": "",
-    "hotel_code": "",
-    "bed_type": "",
-    "status": "",
     "page": "",
     "total_pages": ""
   },
   "rows_empty": true,
-  "page_title": "TravelRoomType 列表",
   "rows": [
     {
-      "room_type_code": "RT_KING_DLX",
-      "room_type_name": "高级大床房",
-      "hotel_code": "HTL_BJ_001",
-      "bed_type": "大床 1.8m",
-      "status": "active"
+      "room_type_code": "",
+      "room_type_name": "",
+      "hotel_code": "",
+      "bed_type": "",
+      "status": ""
     },
     {
-      "room_type_code": "RT_TWIN_STD",
-      "room_type_name": "商务双床房",
-      "hotel_code": "HTL_BJ_001",
-      "bed_type": "双床 1.2m×2",
-      "status": "active"
+      "room_type_code": "",
+      "room_type_name": "",
+      "hotel_code": "",
+      "bed_type": "",
+      "status": ""
     },
     {
-      "room_type_code": "RT_SUITE_EXE",
-      "room_type_name": "行政套房",
-      "hotel_code": "HTL_SH_002",
-      "bed_type": "大床 2.0m",
-      "status": "active"
+      "room_type_code": "",
+      "room_type_name": "",
+      "hotel_code": "",
+      "bed_type": "",
+      "status": ""
     }
   ]
 }

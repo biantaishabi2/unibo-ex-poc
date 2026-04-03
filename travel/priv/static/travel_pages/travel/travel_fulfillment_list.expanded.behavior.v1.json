@@ -2,6 +2,25 @@
   "backend": {
     "api_map": {
       "list": "Travel.TravelFulfillment.list"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "boarding_status: boardingStatus change_result: changeResult confirmation_payload: confirmationPayload failure_reason: failureReason fulfillment_type: fulfillmentType id shipment_id: shipmentId status supplier_booking_ref: supplierBookingRef tenant_id: tenantId ticket_refs: ticketRefs used_at: usedAt voucher_or_ticket_ref: voucherOrTicketRef waitlist_result: waitlistResult"
+    },
+    "params": {
+      "accept": [
+        "fulfillment_type",
+        "status",
+        "waitlist_result",
+        "change_result",
+        "boarding_status",
+        "used_at"
+      ]
     }
   },
   "domain": "Travel",

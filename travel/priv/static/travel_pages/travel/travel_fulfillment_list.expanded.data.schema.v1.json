@@ -1,7 +1,6 @@
 {
   "version": 1,
   "requiredPaths": [
-    "page_title",
     "row.boarding_status",
     "row.change_result",
     "row.confirmation_payload",
@@ -14,20 +13,17 @@
     "row.voucher_or_ticket_ref",
     "row.waitlist_result",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_fulfillment.page",
+    "travel_fulfillment.total_pages"
   ],
   "requiredRoots": [
-    "page_title",
     "row",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_fulfillment"
   ],
   "schema": {
-    "page_title": {
-      "type": "object",
-      "required": true,
-      "properties": {}
-    },
     "rows": {
       "type": "array",
       "required": true,
@@ -148,6 +144,22 @@
       "type": "object",
       "required": true,
       "properties": {}
+    },
+    "travel_fulfillment": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "page": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "total_pages": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
     }
   },
   "notes": []

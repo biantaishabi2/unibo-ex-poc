@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "vars": {
+    "travel_change_order.page": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_change_order.page|}} / {{travel_change_order.total_pages|}}"
+        }
+      ]
+    },
+    "travel_change_order.total_pages": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_change_order.page|}} / {{travel_change_order.total_pages|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "navigate_create": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "create_btn",
+          "prop": "click",
+          "raw": "navigate_create"
+        }
+      ]
+    },
+    "filter_submit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "filter_submit",
+          "prop": "click",
+          "raw": "filter_submit"
+        }
+      ]
+    },
+    "travel_change_order_page_prev": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_prev",
+          "prop": "click",
+          "raw": "travel_change_order_page_prev"
+        }
+      ]
+    },
+    "travel_change_order_page_next": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "page_next",
+          "prop": "click",
+          "raw": "travel_change_order_page_next"
+        }
+      ]
+    }
+  }
+}

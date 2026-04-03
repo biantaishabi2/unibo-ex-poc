@@ -1,35 +1,50 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
+    "travel_room_type": {
       "room_type_code": "",
-      "status": "",
       "room_type_name": "",
       "hotel_code": "",
-      "bed_type": ""
+      "bed_type": "",
+      "status": ""
     },
-    "editing": true
+    "editing": false
   },
   "keys": [
     "editing",
-    "record",
-    "record.bed_type",
-    "record.hotel_code",
-    "record.room_type_code",
-    "record.room_type_name",
-    "record.status"
+    "travel_room_type",
+    "travel_room_type.bed_type",
+    "travel_room_type.hotel_code",
+    "travel_room_type.room_type_code",
+    "travel_room_type.room_type_name",
+    "travel_room_type.status"
   ],
   "required": [
     "editing",
-    "record"
+    "travel_room_type"
   ],
   "urlParams": {},
   "notes": [],
   "layer2": {
     "backend": {
       "api_map": {
+        "create": "Travel.TravelRoomType.create",
         "get": "Travel.TravelRoomType.get",
         "update": "Travel.TravelRoomType.update"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "bed_type: bedType hotel_code: hotelCode id room_type_code: roomTypeCode room_type_name: roomTypeName status"
+      },
+      "params": {
+        "accept": [
+          "id"
+        ]
       }
     },
     "children": [],

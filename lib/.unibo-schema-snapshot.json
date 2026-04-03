@@ -1,0 +1,1856 @@
+[
+  {
+    "version": "1.0",
+    "domain": {
+      "name": "Scheduling",
+      "description": "护士排班核心域 — 科室月排班工作空间、班次类型、覆盖需求、排班分配、约束管理、求解运行与版本管理",
+      "subdomain": "scheduling"
+    },
+    "entities": [
+      {
+        "name": "Employee",
+        "description": "跨域引用 HR.Employee（护士/医护人员）",
+        "aggregate_root": false,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "employee_code",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          }
+        ],
+        "actions": [
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          }
+        ]
+      },
+      {
+        "name": "Department",
+        "description": "跨域引用 HR.Department（科室）",
+        "aggregate_root": false,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "name",
+            "type": "string"
+          }
+        ],
+        "actions": [
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          }
+        ]
+      },
+      {
+        "name": "ShiftType",
+        "description": "班次类型定义（早班/中班/夜班等），是排班的基础维度",
+        "aggregate_root": true,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "code",
+            "type": "string",
+            "required": true,
+            "description": "班次编码，如 day, evening, night"
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "班次名称，如\"白班\"、\"小夜\"、\"大夜\""
+          },
+          {
+            "name": "start_time",
+            "type": "time",
+            "required": true,
+            "description": "班次开始时间，如 08:00"
+          },
+          {
+            "name": "end_time",
+            "type": "time",
+            "required": true,
+            "description": "班次结束时间，如 16:00"
+          },
+          {
+            "name": "duration_hours",
+            "type": "decimal",
+            "required": true,
+            "description": "时长（小时），跨午夜时 end < start"
+          },
+          {
+            "name": "is_night",
+            "type": "boolean",
+            "required": true,
+            "default": false,
+            "description": "是否算夜班（影响夜班公平性约束）"
+          },
+          {
+            "name": "color",
+            "type": "string",
+            "description": "前端显示色，如"
+          },
+          {
+            "name": "sort_order",
+            "type": "integer",
+            "required": true,
+            "default": 0,
+            "description": "排序权重"
+          },
+          {
+            "name": "enabled",
+            "type": "boolean",
+            "required": true,
+            "default": true,
+            "description": "是否启用"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          }
+        ],
+        "relationships": [
+          {
+            "name": "department",
+            "type": "belongs_to",
+            "target": "Department",
+            "foreign_key": "department_id",
+            "required": true
+          },
+          {
+            "name": "coverage_requirements",
+            "type": "has_many",
+            "target": "CoverageRequirement",
+            "foreign_key": "shift_type_id"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "code",
+              "name",
+              "start_time",
+              "end_time",
+              "duration_hours",
+              "is_night",
+              "color",
+              "sort_order",
+              "enabled"
+            ],
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "name",
+              "start_time",
+              "end_time",
+              "duration_hours",
+              "is_night",
+              "color",
+              "sort_order",
+              "enabled"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "destroy",
+            "type": "destroy",
+            "primary": true
+          }
+        ],
+        "validations": [
+          {
+            "rule": "present",
+            "field": "code",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "name",
+            "on": [
+              "create"
+            ]
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_dept_shift_code",
+            "keys": [
+              "department_id",
+              "code"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SchedulingPeriod",
+        "description": "一次科室月排班工作空间，承载需求、版本、求解运行",
+        "aggregate_root": true,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "start_date",
+            "type": "date",
+            "required": true,
+            "description": "周期开始日期（本地业务日）"
+          },
+          {
+            "name": "end_date",
+            "type": "date",
+            "required": true,
+            "description": "周期结束日期（本地业务日）"
+          },
+          {
+            "name": "state",
+            "type": "enum",
+            "required": true,
+            "default": "draft",
+            "constraints": {
+              "values": [
+                "draft",
+                "generating",
+                "generated",
+                "adjusted",
+                "published"
+              ]
+            },
+            "description": "排班周期状态"
+          },
+          {
+            "name": "title",
+            "type": "string",
+            "description": "例如\"ICU 2026-04 月排班\""
+          },
+          {
+            "name": "generation_mode",
+            "type": "enum",
+            "required": true,
+            "default": "blank",
+            "constraints": {
+              "values": [
+                "blank",
+                "cloned_from_previous",
+                "solver_seeded"
+              ]
+            },
+            "description": "排班生成方式"
+          },
+          {
+            "name": "notes",
+            "type": "text",
+            "description": "备注"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          }
+        ],
+        "relationships": [
+          {
+            "name": "department",
+            "type": "belongs_to",
+            "target": "Department",
+            "foreign_key": "department_id",
+            "required": true
+          },
+          {
+            "name": "source_period",
+            "type": "belongs_to",
+            "target": "SchedulingPeriod",
+            "foreign_key": "source_period_id"
+          },
+          {
+            "name": "source_version",
+            "type": "belongs_to",
+            "target": "ScheduleVersion",
+            "foreign_key": "source_version_id"
+          },
+          {
+            "name": "current_version",
+            "type": "belongs_to",
+            "target": "ScheduleVersion",
+            "foreign_key": "current_version_id"
+          },
+          {
+            "name": "published_version",
+            "type": "belongs_to",
+            "target": "ScheduleVersion",
+            "foreign_key": "published_version_id"
+          },
+          {
+            "name": "last_solver_run",
+            "type": "belongs_to",
+            "target": "SolverRun",
+            "foreign_key": "last_solver_run_id"
+          },
+          {
+            "name": "coverage_requirements",
+            "type": "has_many",
+            "target": "CoverageRequirement",
+            "foreign_key": "period_id"
+          },
+          {
+            "name": "schedule_versions",
+            "type": "has_many",
+            "target": "ScheduleVersion",
+            "foreign_key": "period_id"
+          },
+          {
+            "name": "solver_runs",
+            "type": "has_many",
+            "target": "SolverRun",
+            "foreign_key": "period_id"
+          },
+          {
+            "name": "shift_assignments",
+            "type": "has_many",
+            "target": "ShiftAssignment",
+            "foreign_key": "period_id"
+          },
+          {
+            "name": "constraint_violations",
+            "type": "has_many",
+            "target": "ConstraintViolation",
+            "foreign_key": "period_id"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "start_date",
+              "end_date",
+              "title",
+              "notes",
+              "generation_mode"
+            ],
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "title",
+              "notes"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "destroy",
+            "type": "destroy",
+            "primary": true
+          },
+          {
+            "name": "start_generating",
+            "type": "update",
+            "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "state",
+                "value": "generating"
+              }
+            ],
+            "description": "开始自动生成排班"
+          },
+          {
+            "name": "mark_generated",
+            "type": "update",
+            "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "state",
+                "value": "generated"
+              }
+            ],
+            "description": "求解完成，标记为已生成"
+          },
+          {
+            "name": "mark_adjusted",
+            "type": "update",
+            "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "state",
+                "value": "adjusted"
+              }
+            ],
+            "description": "人工调班后标记"
+          },
+          {
+            "name": "publish",
+            "type": "update",
+            "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "state",
+                "value": "published"
+              }
+            ],
+            "description": "发布排班（需无 error 级违反）"
+          }
+        ],
+        "validations": [
+          {
+            "rule": "compare",
+            "field": "end_date",
+            "params": {
+              "greater_than": "start_date"
+            },
+            "message": "结束日期必须晚于开始日期"
+          },
+          {
+            "rule": "one_of",
+            "field": "state",
+            "params": {
+              "values": [
+                "draft"
+              ]
+            },
+            "on": [
+              "start_generating"
+            ],
+            "message": "只有草稿状态可以开始生成"
+          },
+          {
+            "rule": "one_of",
+            "field": "state",
+            "params": {
+              "values": [
+                "generated",
+                "adjusted"
+              ]
+            },
+            "on": [
+              "publish"
+            ],
+            "message": "只有已生成或已调整状态可以发布"
+          }
+        ],
+        "workflows": [
+          {
+            "name": "scheduling_period_lifecycle",
+            "description": "排班周期生命周期",
+            "steps": [
+              {
+                "action": "create",
+                "next": [
+                  "start_generating",
+                  "update",
+                  "destroy"
+                ]
+              },
+              {
+                "action": "start_generating",
+                "next": [
+                  "mark_generated"
+                ]
+              },
+              {
+                "action": "mark_generated",
+                "next": [
+                  "mark_adjusted",
+                  "publish",
+                  "start_generating"
+                ]
+              },
+              {
+                "action": "mark_adjusted",
+                "next": [
+                  "publish",
+                  "start_generating"
+                ]
+              },
+              {
+                "action": "publish",
+                "next": [
+                  "start_generating"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CoverageRequirement",
+        "description": "定义某天某班次某岗位需要多少人",
+        "aggregate_root": false,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "requirement_date",
+            "type": "date",
+            "required": true,
+            "description": "需求日期（本地业务日）"
+          },
+          {
+            "name": "role_code",
+            "type": "string",
+            "required": true,
+            "description": "岗位编码，如 duty_nurse"
+          },
+          {
+            "name": "role_name",
+            "type": "string",
+            "description": "岗位名称"
+          },
+          {
+            "name": "required_skill_tags",
+            "type": "jsonb",
+            "default": [],
+            "description": "所需技能标签，如 [\"ICU\"]"
+          },
+          {
+            "name": "min_headcount",
+            "type": "integer",
+            "required": true,
+            "description": "最低人数"
+          },
+          {
+            "name": "target_headcount",
+            "type": "integer",
+            "description": "目标人数，不填时等于 min_headcount"
+          },
+          {
+            "name": "required_lead_count",
+            "type": "integer",
+            "required": true,
+            "default": 0,
+            "description": "需要带班人数"
+          },
+          {
+            "name": "priority",
+            "type": "integer",
+            "required": true,
+            "default": 100,
+            "description": "优先级，越小越高"
+          },
+          {
+            "name": "notes",
+            "type": "text",
+            "description": "备注"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          }
+        ],
+        "relationships": [
+          {
+            "name": "period",
+            "type": "belongs_to",
+            "target": "SchedulingPeriod",
+            "foreign_key": "period_id",
+            "required": true
+          },
+          {
+            "name": "shift_type",
+            "type": "belongs_to",
+            "target": "ShiftType",
+            "foreign_key": "shift_type_id",
+            "required": true
+          },
+          {
+            "name": "shift_assignments",
+            "type": "has_many",
+            "target": "ShiftAssignment",
+            "foreign_key": "requirement_id"
+          },
+          {
+            "name": "constraint_violations",
+            "type": "has_many",
+            "target": "ConstraintViolation",
+            "foreign_key": "requirement_id"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "requirement_date",
+              "role_code",
+              "role_name",
+              "required_skill_tags",
+              "min_headcount",
+              "target_headcount",
+              "required_lead_count",
+              "priority",
+              "notes"
+            ],
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "role_name",
+              "required_skill_tags",
+              "min_headcount",
+              "target_headcount",
+              "required_lead_count",
+              "priority",
+              "notes"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "destroy",
+            "type": "destroy",
+            "primary": true
+          }
+        ],
+        "validations": [
+          {
+            "rule": "present",
+            "field": "requirement_date",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "role_code",
+            "on": [
+              "create"
+            ]
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_period_date_shift_role",
+            "keys": [
+              "period_id",
+              "requirement_date",
+              "shift_type_id",
+              "role_code"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ScheduleVersion",
+        "description": "一个周期内的工作版本或已发布版本",
+        "aggregate_root": false,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "version_no",
+            "type": "integer",
+            "required": true,
+            "description": "版本号"
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "required": true,
+            "default": "working",
+            "constraints": {
+              "values": [
+                "working",
+                "published",
+                "archived"
+              ]
+            },
+            "description": "版本状态"
+          },
+          {
+            "name": "origin_type",
+            "type": "enum",
+            "required": true,
+            "default": "manual",
+            "constraints": {
+              "values": [
+                "manual",
+                "solver",
+                "cloned_from_previous"
+              ]
+            },
+            "description": "版本来源类型"
+          },
+          {
+            "name": "created_by",
+            "type": "uuid",
+            "description": "操作者"
+          },
+          {
+            "name": "change_summary",
+            "type": "text",
+            "description": "版本说明"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          }
+        ],
+        "relationships": [
+          {
+            "name": "period",
+            "type": "belongs_to",
+            "target": "SchedulingPeriod",
+            "foreign_key": "period_id",
+            "required": true
+          },
+          {
+            "name": "based_on_run",
+            "type": "belongs_to",
+            "target": "SolverRun",
+            "foreign_key": "based_on_run_id"
+          },
+          {
+            "name": "source_version",
+            "type": "belongs_to",
+            "target": "ScheduleVersion",
+            "foreign_key": "source_version_id"
+          },
+          {
+            "name": "shift_assignments",
+            "type": "has_many",
+            "target": "ShiftAssignment",
+            "foreign_key": "version_id"
+          },
+          {
+            "name": "constraint_violations",
+            "type": "has_many",
+            "target": "ConstraintViolation",
+            "foreign_key": "version_id"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "version_no",
+              "change_summary"
+            ],
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "change_summary"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "publish_version",
+            "type": "update",
+            "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "published"
+              }
+            ],
+            "description": "发布此版本"
+          },
+          {
+            "name": "archive_version",
+            "type": "update",
+            "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "archived"
+              }
+            ],
+            "description": "归档此版本"
+          }
+        ],
+        "validations": [
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "working"
+              ]
+            },
+            "on": [
+              "publish_version"
+            ],
+            "message": "只有工作中的版本可以发布"
+          },
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "working",
+                "published"
+              ]
+            },
+            "on": [
+              "archive_version"
+            ],
+            "message": "只有工作中或已发布的版本可以归档"
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_period_version_no",
+            "keys": [
+              "period_id",
+              "version_no"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ShiftAssignment",
+        "description": "把某个覆盖需求分配给具体护士和时段",
+        "aggregate_root": false,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "starts_at",
+            "type": "datetime",
+            "required": true,
+            "description": "开始时间（UTC）"
+          },
+          {
+            "name": "ends_at",
+            "type": "datetime",
+            "required": true,
+            "description": "结束时间（UTC）"
+          },
+          {
+            "name": "source",
+            "type": "enum",
+            "required": true,
+            "default": "auto",
+            "constraints": {
+              "values": [
+                "auto",
+                "manual",
+                "swapped",
+                "copied"
+              ]
+            },
+            "description": "分配来源（copied = 从上一期复制）"
+          },
+          {
+            "name": "is_locked",
+            "type": "boolean",
+            "required": true,
+            "default": false,
+            "description": "锁定后重排不动"
+          },
+          {
+            "name": "notes",
+            "type": "text",
+            "description": "人工调班说明"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          }
+        ],
+        "relationships": [
+          {
+            "name": "period",
+            "type": "belongs_to",
+            "target": "SchedulingPeriod",
+            "foreign_key": "period_id",
+            "required": true
+          },
+          {
+            "name": "requirement",
+            "type": "belongs_to",
+            "target": "CoverageRequirement",
+            "foreign_key": "requirement_id",
+            "required": true
+          },
+          {
+            "name": "version",
+            "type": "belongs_to",
+            "target": "ScheduleVersion",
+            "foreign_key": "version_id",
+            "required": true
+          },
+          {
+            "name": "employee",
+            "type": "belongs_to",
+            "target": "Employee",
+            "foreign_key": "employee_id",
+            "required": true
+          },
+          {
+            "name": "baseline_run",
+            "type": "belongs_to",
+            "target": "SolverRun",
+            "foreign_key": "baseline_run_id"
+          },
+          {
+            "name": "constraint_violations",
+            "type": "has_many",
+            "target": "ConstraintViolation",
+            "foreign_key": "assignment_id"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "starts_at",
+              "ends_at",
+              "source",
+              "is_locked",
+              "notes"
+            ],
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "starts_at",
+              "ends_at",
+              "source",
+              "is_locked",
+              "notes"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "destroy",
+            "type": "destroy",
+            "primary": true
+          },
+          {
+            "name": "lock",
+            "type": "update",
+            "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "is_locked",
+                "value": true
+              }
+            ],
+            "description": "锁定此排班，重排时不会变动"
+          },
+          {
+            "name": "unlock",
+            "type": "update",
+            "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "is_locked",
+                "value": false
+              }
+            ],
+            "description": "解锁此排班"
+          }
+        ],
+        "validations": [
+          {
+            "rule": "compare",
+            "field": "ends_at",
+            "params": {
+              "greater_than": "starts_at"
+            },
+            "message": "结束时间必须晚于开始时间"
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_period_employee_start",
+            "keys": [
+              "period_id",
+              "employee_id",
+              "starts_at"
+            ]
+          },
+          {
+            "name": "unique_version_req_employee_start",
+            "keys": [
+              "version_id",
+              "requirement_id",
+              "employee_id",
+              "starts_at"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SchedulingConstraint",
+        "description": "合法性约束和评分规则定义，不承载需求人数",
+        "aggregate_root": true,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "required": true,
+            "description": "规则名称"
+          },
+          {
+            "name": "constraint_type",
+            "type": "enum",
+            "required": true,
+            "constraints": {
+              "values": [
+                "hard",
+                "soft"
+              ]
+            },
+            "description": "硬约束或软约束"
+          },
+          {
+            "name": "category",
+            "type": "enum",
+            "required": true,
+            "constraints": {
+              "values": [
+                "rest_after_night",
+                "max_consecutive_days",
+                "respect_leave",
+                "skill_requirement",
+                "max_monthly_hours",
+                "lead_coverage",
+                "fair_night_distribution",
+                "fair_weekend_distribution",
+                "respect_preference",
+                "limit_consecutive_nights",
+                "shift_continuity"
+              ]
+            },
+            "description": "规则类别"
+          },
+          {
+            "name": "params",
+            "type": "jsonb",
+            "required": true,
+            "default": {},
+            "description": "规则参数（shape 按 category 不同）"
+          },
+          {
+            "name": "weight",
+            "type": "integer",
+            "default": 50,
+            "description": "软约束权重（硬约束忽略）"
+          },
+          {
+            "name": "enabled",
+            "type": "boolean",
+            "required": true,
+            "default": true,
+            "description": "是否启用"
+          },
+          {
+            "name": "notes",
+            "type": "text",
+            "description": "备注"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          }
+        ],
+        "relationships": [
+          {
+            "name": "department",
+            "type": "belongs_to",
+            "target": "Department",
+            "foreign_key": "department_id",
+            "required": true
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "name",
+              "constraint_type",
+              "category",
+              "params",
+              "weight",
+              "enabled",
+              "notes"
+            ],
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "name",
+              "params",
+              "weight",
+              "enabled",
+              "notes"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "destroy",
+            "type": "destroy",
+            "primary": true
+          }
+        ],
+        "validations": [
+          {
+            "rule": "present",
+            "field": "name",
+            "on": [
+              "create"
+            ]
+          },
+          {
+            "rule": "present",
+            "field": "category",
+            "on": [
+              "create"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ShiftPreference",
+        "description": "护士个人排班偏好",
+        "aggregate_root": false,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "preferred_shift_tags",
+            "type": "jsonb",
+            "default": [],
+            "description": "偏好班次标签"
+          },
+          {
+            "name": "unavailable_dates",
+            "type": "jsonb",
+            "default": [],
+            "description": "不可排日期列表（本地业务日）"
+          },
+          {
+            "name": "max_night_shifts",
+            "type": "integer",
+            "description": "期望夜班上限"
+          },
+          {
+            "name": "notes",
+            "type": "text",
+            "description": "补充说明"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          }
+        ],
+        "relationships": [
+          {
+            "name": "employee",
+            "type": "belongs_to",
+            "target": "Employee",
+            "foreign_key": "employee_id",
+            "required": true
+          },
+          {
+            "name": "period",
+            "type": "belongs_to",
+            "target": "SchedulingPeriod",
+            "foreign_key": "period_id"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "preferred_shift_tags",
+              "unavailable_dates",
+              "max_night_shifts",
+              "notes"
+            ],
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "preferred_shift_tags",
+              "unavailable_dates",
+              "max_night_shifts",
+              "notes"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "destroy",
+            "type": "destroy",
+            "primary": true
+          }
+        ]
+      },
+      {
+        "name": "MedicalStaffProfile",
+        "description": "排班域专属护士画像，不复制 HR 主数据",
+        "aggregate_root": false,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "maturity_score",
+            "type": "decimal",
+            "required": true,
+            "default": 0,
+            "description": "成熟度评分"
+          },
+          {
+            "name": "can_lead_shift",
+            "type": "boolean",
+            "required": true,
+            "default": false,
+            "description": "是否可带班"
+          },
+          {
+            "name": "work_restrictions",
+            "type": "jsonb",
+            "default": [],
+            "description": "工作限制，如 pregnant、breastfeeding"
+          },
+          {
+            "name": "overtime_willing",
+            "type": "boolean",
+            "required": true,
+            "default": false,
+            "description": "是否愿意加班"
+          },
+          {
+            "name": "notes",
+            "type": "text",
+            "description": "备注"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          }
+        ],
+        "relationships": [
+          {
+            "name": "employee",
+            "type": "belongs_to",
+            "target": "Employee",
+            "foreign_key": "employee_id",
+            "required": true
+          },
+          {
+            "name": "department",
+            "type": "belongs_to",
+            "target": "Department",
+            "foreign_key": "department_id",
+            "required": true
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "maturity_score",
+              "can_lead_shift",
+              "work_restrictions",
+              "overtime_willing",
+              "notes"
+            ],
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "maturity_score",
+              "can_lead_shift",
+              "work_restrictions",
+              "overtime_willing",
+              "notes"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          }
+        ],
+        "identities": [
+          {
+            "name": "unique_employee_department",
+            "keys": [
+              "employee_id",
+              "department_id"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SolverRun",
+        "description": "一次求解执行记录与输入/输出快照载体",
+        "aggregate_root": false,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "status",
+            "type": "enum",
+            "required": true,
+            "default": "pending",
+            "constraints": {
+              "values": [
+                "pending",
+                "running",
+                "feasible",
+                "infeasible",
+                "timeout",
+                "error",
+                "completed"
+              ]
+            },
+            "description": "求解状态"
+          },
+          {
+            "name": "engine_type",
+            "type": "string",
+            "required": true,
+            "default": "greedy_local_search",
+            "description": "算法标识"
+          },
+          {
+            "name": "seed",
+            "type": "integer",
+            "description": "随机种子，用于复现实验"
+          },
+          {
+            "name": "timeout_ms",
+            "type": "integer",
+            "required": true,
+            "default": 30000,
+            "description": "超时毫秒数"
+          },
+          {
+            "name": "started_at",
+            "type": "datetime",
+            "description": "求解开始时间"
+          },
+          {
+            "name": "completed_at",
+            "type": "datetime",
+            "description": "求解结束时间"
+          },
+          {
+            "name": "score",
+            "type": "decimal",
+            "description": "总评分"
+          },
+          {
+            "name": "hard_violation_count",
+            "type": "integer",
+            "required": true,
+            "default": 0,
+            "description": "硬约束违反数"
+          },
+          {
+            "name": "warning_count",
+            "type": "integer",
+            "required": true,
+            "default": 0,
+            "description": "警告数"
+          },
+          {
+            "name": "input_snapshot",
+            "type": "jsonb",
+            "required": true,
+            "default": {},
+            "description": "输入快照（跨域数据在 run 开始时一次性冻结）"
+          },
+          {
+            "name": "output_snapshot",
+            "type": "jsonb",
+            "description": "输出摘要（不重复整份 assignment 明细）"
+          },
+          {
+            "name": "error_message",
+            "type": "text",
+            "description": "错误信息"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          },
+          {
+            "name": "updated_at",
+            "type": "datetime",
+            "generated": true
+          }
+        ],
+        "relationships": [
+          {
+            "name": "period",
+            "type": "belongs_to",
+            "target": "SchedulingPeriod",
+            "foreign_key": "period_id",
+            "required": true
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "engine_type",
+              "seed",
+              "timeout_ms",
+              "input_snapshot"
+            ],
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "status",
+              "started_at",
+              "completed_at",
+              "score",
+              "hard_violation_count",
+              "warning_count",
+              "output_snapshot",
+              "error_message"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "start_run",
+            "type": "update",
+            "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "running"
+              }
+            ],
+            "description": "标记求解开始"
+          },
+          {
+            "name": "complete_feasible",
+            "type": "update",
+            "accept": [
+              "score",
+              "hard_violation_count",
+              "warning_count",
+              "output_snapshot"
+            ],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "feasible"
+              }
+            ],
+            "description": "求解完成（可行解）"
+          },
+          {
+            "name": "complete_infeasible",
+            "type": "update",
+            "accept": [
+              "score",
+              "hard_violation_count",
+              "warning_count",
+              "output_snapshot",
+              "error_message"
+            ],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "infeasible"
+              }
+            ],
+            "description": "求解完成（不可行）"
+          },
+          {
+            "name": "mark_timeout",
+            "type": "update",
+            "accept": [
+              "score",
+              "hard_violation_count",
+              "warning_count",
+              "output_snapshot"
+            ],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "timeout"
+              }
+            ],
+            "description": "求解超时"
+          },
+          {
+            "name": "mark_error",
+            "type": "update",
+            "accept": [
+              "error_message"
+            ],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "error"
+              }
+            ],
+            "description": "求解出错"
+          },
+          {
+            "name": "mark_completed",
+            "type": "update",
+            "accept": [],
+            "changes": [
+              {
+                "effect": "set_attribute",
+                "field": "status",
+                "value": "completed"
+              }
+            ],
+            "description": "最终完成（用户确认采用此结果）"
+          }
+        ],
+        "validations": [
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "pending"
+              ]
+            },
+            "on": [
+              "start_run"
+            ],
+            "message": "只有待执行状态可以开始"
+          },
+          {
+            "rule": "one_of",
+            "field": "status",
+            "params": {
+              "values": [
+                "running"
+              ]
+            },
+            "on": [
+              "complete_feasible",
+              "complete_infeasible",
+              "mark_timeout",
+              "mark_error"
+            ],
+            "message": "只有运行中状态可以完成"
+          }
+        ],
+        "workflows": [
+          {
+            "name": "solver_run_lifecycle",
+            "description": "求解运行生命周期",
+            "steps": [
+              {
+                "action": "create",
+                "next": [
+                  "start_run"
+                ]
+              },
+              {
+                "action": "start_run",
+                "next": [
+                  "complete_feasible",
+                  "complete_infeasible",
+                  "mark_timeout",
+                  "mark_error"
+                ]
+              },
+              {
+                "action": "complete_feasible",
+                "next": [
+                  "mark_completed"
+                ]
+              },
+              {
+                "action": "mark_timeout",
+                "next": [
+                  "mark_completed"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ConstraintViolation",
+        "description": "结构化记录约束违反（error 或 warning）",
+        "aggregate_root": false,
+        "attributes": [
+          {
+            "name": "id",
+            "type": "uuid",
+            "primary_key": true,
+            "generated": true
+          },
+          {
+            "name": "rule_code",
+            "type": "string",
+            "required": true,
+            "description": "规则编码，如 rest_after_night"
+          },
+          {
+            "name": "severity",
+            "type": "enum",
+            "required": true,
+            "constraints": {
+              "values": [
+                "error",
+                "warning"
+              ]
+            },
+            "description": "严重级别"
+          },
+          {
+            "name": "message",
+            "type": "string",
+            "required": true,
+            "description": "面向用户的说明"
+          },
+          {
+            "name": "details_json",
+            "type": "jsonb",
+            "required": true,
+            "default": {},
+            "description": "结构化细节"
+          },
+          {
+            "name": "inserted_at",
+            "type": "datetime",
+            "generated": true
+          }
+        ],
+        "relationships": [
+          {
+            "name": "period",
+            "type": "belongs_to",
+            "target": "SchedulingPeriod",
+            "foreign_key": "period_id",
+            "required": true
+          },
+          {
+            "name": "version",
+            "type": "belongs_to",
+            "target": "ScheduleVersion",
+            "foreign_key": "version_id",
+            "required": true
+          },
+          {
+            "name": "assignment",
+            "type": "belongs_to",
+            "target": "ShiftAssignment",
+            "foreign_key": "assignment_id"
+          },
+          {
+            "name": "requirement",
+            "type": "belongs_to",
+            "target": "CoverageRequirement",
+            "foreign_key": "requirement_id"
+          }
+        ],
+        "actions": [
+          {
+            "name": "create",
+            "type": "create",
+            "accept": [
+              "rule_code",
+              "severity",
+              "message",
+              "details_json"
+            ],
+            "primary": true
+          },
+          {
+            "name": "read",
+            "type": "read",
+            "primary": true
+          },
+          {
+            "name": "destroy",
+            "type": "destroy",
+            "primary": true
+          }
+        ]
+      }
+    ]
+  }
+]

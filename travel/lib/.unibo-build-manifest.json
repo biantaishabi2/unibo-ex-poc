@@ -4,20 +4,23 @@
   "domains": {
     "Travel": {
       "input_hashes": {
-        "/home/wangbo/unibo_ex_poc-travel-recompile/travel/models/travel.ubo.yaml": "sha256:0e0139e608a29f920decb0c7a8056b7eca4ff7012865bb7d55be83c76b1507d4"
+        "/home/wangbo/document/unibo_ex_poc-feat-2043-validate/travel/./models/travel/travel.ubo.yaml": "sha256:7f84bab1e0f845e9b27a3264299924ef5f0ccca65f1fa06726473622028459ee"
       },
       "output_files": [
         "unibo_ex_poc/travel/flight_offer.ex",
         "unibo_ex_poc/travel/hotel_offer.ex",
         "unibo_ex_poc/travel/integration/runtime.ex",
+        "unibo_ex_poc/travel/integrations/travel_change_order/submit_create_approval_instance_bridge.ex",
         "unibo_ex_poc/travel/integrations/travel_fulfillment/cancel_fulfillment_supplier_cancel_booking_bridge.ex",
         "unibo_ex_poc/travel/integrations/travel_fulfillment/confirm_booking_supplier_confirm_booking_bridge.ex",
         "unibo_ex_poc/travel/integrations/travel_fulfillment/issue_voucher_or_ticket_supplier_issue_document_bridge.ex",
         "unibo_ex_poc/travel/integrations/travel_order/confirm_quote_shop_eligibility_quote_bridge.ex",
-        "unibo_ex_poc/travel/integrations/travel_order/create_order_shop_caller_context_resolve_bridge.ex",
+        "unibo_ex_poc/travel/integrations/travel_order/create_shop_caller_context_resolve_bridge.ex",
         "unibo_ex_poc/travel/integrations/travel_order/mark_payment_succeeded_supplier_booking_submit_bridge.ex",
+        "unibo_ex_poc/travel/integrations/travel_order/request_cancel_create_approval_instance_bridge.ex",
         "unibo_ex_poc/travel/integrations/travel_order/submit_order_payment_capture_bridge.ex",
         "unibo_ex_poc/travel/integrations/travel_order/submit_waitlist_payment_capture_bridge.ex",
+        "unibo_ex_poc/travel/integrations/travel_refund_order/submit_create_approval_instance_bridge.ex",
         "unibo_ex_poc/travel/train_offer.ex",
         "unibo_ex_poc/travel/travel.ex",
         "unibo_ex_poc/travel/travel_airline.ex",
@@ -35,21 +38,18 @@
         "unibo_ex_poc/travel/workflows/flight_offer_flight_offer_lifecycle.ex",
         "unibo_ex_poc/travel/workflows/hotel_offer_hotel_offer_lifecycle.ex",
         "unibo_ex_poc/travel/workflows/train_offer_train_offer_lifecycle.ex",
-        "unibo_ex_poc/travel/workflows/travel_change_order_change_approval_to_order_confirm_reactor.ex",
         "unibo_ex_poc/travel/workflows/travel_change_order_change_order_lifecycle.ex",
         "unibo_ex_poc/travel/workflows/travel_fulfillment_travel_fulfillment_lifecycle.ex",
-        "unibo_ex_poc/travel/workflows/travel_order_order_submitted_policy_check_reactor.ex",
-        "unibo_ex_poc/travel/workflows/travel_order_payment_confirmed_to_fulfillment_reactor.ex",
         "unibo_ex_poc/travel/workflows/travel_order_travel_order_lifecycle.ex",
         "unibo_ex_poc/travel/workflows/travel_policy_policy_lifecycle.ex",
         "unibo_ex_poc/travel/workflows/travel_refund_order_refund_order_lifecycle.ex",
-        "unibo_ex_poc/travel/workflows/travel_refund_order_refund_to_order_cancel_reactor.ex",
         "unibo_ex_poc/travel/workflows/vacation_offer_vacation_offer_lifecycle.ex"
       ],
       "entity_count": 15,
       "notifier_count": 0,
       "has_policy_entities": false,
       "has_scheduled_tasks": false,
+      "has_collaboration_entities": false,
       "subdomain": "travel",
       "cross_domain_refs": [
         "Delivery",

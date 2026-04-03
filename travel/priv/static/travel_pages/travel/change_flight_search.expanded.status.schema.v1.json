@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "defaults": {
+    "policy": {
+      "exceeded": true
+    },
+    "results": {
+      "total_count": true
+    },
+    "search": {
+      "date_range": [
+        {
+          "is_selected": "",
+          "date_label": ""
+        },
+        {
+          "is_selected": "",
+          "date_label": ""
+        },
+        {
+          "is_selected": "",
+          "date_label": ""
+        }
+      ]
+    }
+  },
+  "keys": [
+    "policy",
+    "policy.exceeded",
+    "results",
+    "results.total_count",
+    "search",
+    "search.date_range",
+    "search.date_range[]",
+    "search.date_range[].date_label",
+    "search.date_range[].is_selected"
+  ],
+  "required": [
+    "policy",
+    "results",
+    "search"
+  ],
+  "urlParams": {},
+  "notes": []
+}

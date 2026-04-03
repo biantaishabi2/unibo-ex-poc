@@ -1,22 +1,44 @@
 {
   "version": 1,
   "vars": {
+    "search.city_label": {
+      "uses": [
+        {
+          "node_type": "Header",
+          "node_id": "hotel_header",
+          "location": "prop",
+          "prop": "subtitle",
+          "template": "{{search.city_label|}}"
+        }
+      ]
+    },
     "search.checkin_date": {
       "uses": [
         {
-          "node_type": "Badge",
-          "node_id": "checkin_date_badge",
+          "node_type": "Text",
+          "node_id": "checkin_date",
           "location": "prop",
           "prop": "content",
           "template": "{{search.checkin_date|}}"
         }
       ]
     },
+    "search.night_count_label": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "night_count",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{search.night_count_label|}}"
+        }
+      ]
+    },
     "search.checkout_date": {
       "uses": [
         {
-          "node_type": "Badge",
-          "node_id": "checkout_date_badge",
+          "node_type": "Text",
+          "node_id": "checkout_date",
           "location": "prop",
           "prop": "content",
           "template": "{{search.checkout_date|}}"
@@ -32,6 +54,34 @@
           "node_id": "hotel_card",
           "prop": "click",
           "raw": "navigate"
+        }
+      ]
+    },
+    "sort": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "sort_by_distance",
+          "prop": "click",
+          "raw": "sort"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "sort_by_hotel_price",
+          "prop": "click",
+          "raw": "sort"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "sort_by_hotel_recommended",
+          "prop": "click",
+          "raw": "sort"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "sort_by_rating",
+          "prop": "click",
+          "raw": "sort"
         }
       ]
     }

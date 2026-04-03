@@ -1,7 +1,186 @@
 {
   "version": 1,
-  "requiredPaths": [],
-  "requiredRoots": [],
-  "schema": {},
+  "requiredPaths": [
+    "ann.publish_at",
+    "ann.summary",
+    "ann.title",
+    "announcements",
+    "hero_action_label",
+    "hero_subtitle",
+    "hero_title",
+    "message_count",
+    "pending_count",
+    "schedule_count",
+    "shortcut_1_desc",
+    "shortcut_1_icon",
+    "shortcut_1_label",
+    "shortcut_2_desc",
+    "shortcut_2_icon",
+    "shortcut_2_label",
+    "shortcut_3_desc",
+    "shortcut_3_icon",
+    "shortcut_3_label",
+    "shortcut_4_desc",
+    "shortcut_4_icon",
+    "shortcut_4_label"
+  ],
+  "requiredRoots": [
+    "ann",
+    "announcements",
+    "hero_action_label",
+    "hero_subtitle",
+    "hero_title",
+    "message_count",
+    "pending_count",
+    "schedule_count",
+    "shortcut_1_desc",
+    "shortcut_1_icon",
+    "shortcut_1_label",
+    "shortcut_2_desc",
+    "shortcut_2_icon",
+    "shortcut_2_label",
+    "shortcut_3_desc",
+    "shortcut_3_icon",
+    "shortcut_3_label",
+    "shortcut_4_desc",
+    "shortcut_4_icon",
+    "shortcut_4_label"
+  ],
+  "schema": {
+    "hero_title": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "hero_subtitle": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "hero_action_label": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "shortcut_1_icon": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "shortcut_1_label": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "shortcut_1_desc": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "shortcut_2_icon": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "shortcut_2_label": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "shortcut_2_desc": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "shortcut_3_icon": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "shortcut_3_label": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "shortcut_3_desc": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "shortcut_4_icon": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "shortcut_4_label": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "shortcut_4_desc": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "announcements": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "title": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "summary": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "publish_at": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "ann": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "title": {
+          "type": "unknown",
+          "required": true
+        },
+        "summary": {
+          "type": "unknown",
+          "required": true
+        },
+        "publish_at": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "pending_count": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "message_count": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "schedule_count": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    }
+  },
   "notes": []
 }

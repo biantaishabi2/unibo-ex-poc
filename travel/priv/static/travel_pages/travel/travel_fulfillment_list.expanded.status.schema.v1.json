@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "TravelFulfillment 列表",
+    "travel_fulfillment": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -46,7 +49,6 @@
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].boarding_status",
@@ -60,12 +62,15 @@
     "rows[].used_at",
     "rows[].voucher_or_ticket_ref",
     "rows[].waitlist_result",
-    "rows_empty"
+    "rows_empty",
+    "travel_fulfillment",
+    "travel_fulfillment.page",
+    "travel_fulfillment.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_fulfillment"
   ],
   "urlParams": {},
   "notes": [],
@@ -73,6 +78,25 @@
     "backend": {
       "api_map": {
         "list": "Travel.TravelFulfillment.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "boarding_status: boardingStatus change_result: changeResult confirmation_payload: confirmationPayload failure_reason: failureReason fulfillment_type: fulfillmentType id shipment_id: shipmentId status supplier_booking_ref: supplierBookingRef tenant_id: tenantId ticket_refs: ticketRefs used_at: usedAt voucher_or_ticket_ref: voucherOrTicketRef waitlist_result: waitlistResult"
+      },
+      "params": {
+        "accept": [
+          "fulfillment_type",
+          "status",
+          "waitlist_result",
+          "change_result",
+          "boarding_status",
+          "used_at"
+        ]
       }
     },
     "domain": "Travel",

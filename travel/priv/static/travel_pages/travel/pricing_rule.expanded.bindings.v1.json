@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "vars": {},
+  "events": {
+    "open_dialog:create_dialog": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "create_btn",
+          "prop": "click",
+          "raw": "open_dialog:create_dialog"
+        }
+      ]
+    },
+    "update": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "save_btn",
+          "prop": "click",
+          "raw": "update"
+        }
+      ]
+    },
+    "destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "delete_btn",
+          "prop": "click",
+          "raw": "destroy"
+        }
+      ]
+    },
+    "create": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "submit_create_btn",
+          "prop": "click",
+          "raw": "create"
+        }
+      ]
+    }
+  }
+}

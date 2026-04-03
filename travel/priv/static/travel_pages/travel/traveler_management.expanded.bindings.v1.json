@@ -1,54 +1,67 @@
 {
   "version": 1,
-  "vars": {},
+  "vars": {
+    "travel_order.page": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_order.page|}} / {{travel_order.total_pages|}}"
+        }
+      ]
+    },
+    "travel_order.total_pages": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "page_info",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_order.page|}} / {{travel_order.total_pages|}}"
+        }
+      ]
+    }
+  },
   "events": {
-    "open_dialog:traveler_edit_dialog:create": {
+    "navigate_create": {
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "add_traveler_btn",
+          "node_id": "create_btn",
           "prop": "click",
-          "raw": "open_dialog:traveler_edit_dialog:create"
+          "raw": "navigate_create"
         }
       ]
     },
-    "open_dialog:traveler_edit_dialog:edit:{{item.id|}}": {
+    "filter_submit": {
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "edit_btn",
+          "node_id": "filter_submit",
           "prop": "click",
-          "raw": "open_dialog:traveler_edit_dialog:edit:{{item.id|}}"
+          "raw": "filter_submit"
         }
       ]
     },
-    "delete:Travel.TravelerProfile:{{item.id|}}": {
+    "travel_order_page_prev": {
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "delete_btn",
+          "node_id": "page_prev",
           "prop": "click",
-          "raw": "delete:Travel.TravelerProfile:{{item.id|}}"
+          "raw": "travel_order_page_prev"
         }
       ]
     },
-    "close_dialog:traveler_edit_dialog": {
+    "travel_order_page_next": {
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "cancel_btn",
+          "node_id": "page_next",
           "prop": "click",
-          "raw": "close_dialog:traveler_edit_dialog"
-        }
-      ]
-    },
-    "submit_form:Travel.TravelerProfile": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "save_btn",
-          "prop": "click",
-          "raw": "submit_form:Travel.TravelerProfile"
+          "raw": "travel_order_page_next"
         }
       ]
     }

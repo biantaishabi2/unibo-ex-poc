@@ -1,40 +1,43 @@
 {
   "version": 1,
   "requiredPaths": [
-    "hotel.address",
-    "hotel.cover_image",
-    "hotel.dining_image",
-    "hotel.exterior_image",
-    "hotel.hotel_name",
-    "hotel.hotel_star",
-    "hotel.room_image",
-    "hotel.score",
-    "hotel.score_label",
-    "item",
-    "item.area_label",
-    "item.bed_type",
-    "item.cancellation_policy",
-    "item.currency",
-    "item.floor_label",
-    "item.id",
-    "item.listed_price",
-    "item.rate_plan_code",
-    "item.room_type_name",
-    "offers",
-    "offers_empty"
+    "editing",
+    "hotel_offer.cancellation_policy",
+    "hotel_offer.checkin_date",
+    "hotel_offer.checkout_date",
+    "hotel_offer.city_code",
+    "hotel_offer.currency",
+    "hotel_offer.guarantee_policy",
+    "hotel_offer.hotel_code",
+    "hotel_offer.hotel_name",
+    "hotel_offer.inventory_count",
+    "hotel_offer.listed_price",
+    "hotel_offer.rate_plan_code",
+    "hotel_offer.room_type_code",
+    "hotel_offer.sale_status",
+    "hotel_offer.settlement_price",
+    "hotel_offer.supplier_code"
   ],
   "requiredRoots": [
-    "hotel",
-    "item",
-    "offers",
-    "offers_empty"
+    "editing",
+    "hotel_offer"
   ],
   "schema": {
-    "hotel": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "hotel_offer": {
       "type": "object",
       "required": true,
       "properties": {
-        "cover_image": {
+        "supplier_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "hotel_code": {
           "type": "string",
           "required": false,
           "example": ""
@@ -44,155 +47,67 @@
           "required": false,
           "example": ""
         },
-        "hotel_star": {
+        "city_code": {
           "type": "string",
           "required": false,
           "example": ""
         },
-        "exterior_image": {
+        "room_type_code": {
           "type": "string",
           "required": false,
           "example": ""
-        },
-        "dining_image": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
-        "room_image": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
-        "score": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
-        "score_label": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
-        "address": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        }
-      }
-    },
-    "offers": {
-      "type": "array",
-      "required": true,
-      "items": {
-        "type": "object",
-        "required": false,
-        "properties": {
-          "room_type_name": {
-            "type": "string",
-            "required": false,
-            "example": ""
-          },
-          "bed_type": {
-            "type": "string",
-            "required": false,
-            "example": ""
-          },
-          "area_label": {
-            "type": "string",
-            "required": false,
-            "example": ""
-          },
-          "floor_label": {
-            "type": "string",
-            "required": false,
-            "example": ""
-          },
-          "rate_plan_code": {
-            "type": "string",
-            "required": false,
-            "example": ""
-          },
-          "cancellation_policy": {
-            "type": "string",
-            "required": false,
-            "example": ""
-          },
-          "is_breakfast_included": {
-            "type": "boolean",
-            "required": false,
-            "example": true
-          },
-          "exceeds_policy": {
-            "type": "boolean",
-            "required": false,
-            "example": true
-          },
-          "currency": {
-            "type": "string",
-            "required": false,
-            "example": ""
-          },
-          "listed_price": {
-            "type": "string",
-            "required": false,
-            "example": ""
-          },
-          "id": {
-            "type": "string",
-            "required": false,
-            "example": "off_01"
-          }
-        }
-      },
-      "exampleCount": 3
-    },
-    "item": {
-      "type": "object",
-      "required": true,
-      "properties": {
-        "room_type_name": {
-          "type": "unknown",
-          "required": true
-        },
-        "bed_type": {
-          "type": "unknown",
-          "required": true
-        },
-        "area_label": {
-          "type": "unknown",
-          "required": true
-        },
-        "floor_label": {
-          "type": "unknown",
-          "required": true
         },
         "rate_plan_code": {
-          "type": "unknown",
-          "required": true
+          "type": "string",
+          "required": false,
+          "example": ""
         },
-        "cancellation_policy": {
-          "type": "unknown",
-          "required": true
+        "checkin_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
         },
-        "currency": {
-          "type": "unknown",
-          "required": true
+        "checkout_date": {
+          "type": "string",
+          "required": false,
+          "example": ""
         },
         "listed_price": {
-          "type": "unknown",
-          "required": true
+          "type": "string",
+          "required": false,
+          "example": ""
         },
-        "id": {
-          "type": "unknown",
-          "required": true
+        "settlement_price": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "currency": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "inventory_count": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "cancellation_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "guarantee_policy": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "sale_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
         }
       }
-    },
-    "offers_empty": {
-      "type": "object",
-      "required": true,
-      "properties": {}
     }
   },
   "notes": []

@@ -1,16 +1,42 @@
 {
   "travel_policy_check": {
-    "check_result": "",
-    "policy_amount": "",
-    "actual_amount": "",
-    "exceed_amount": "",
-    "exceed_ratio": "",
-    "exceed_strategy": "",
-    "exceed_reason": "",
-    "personal_pay_amount": "",
-    "approval_mode": "",
     "page": "",
     "total_pages": ""
   },
-  "rows_empty": true
+  "rows_empty": true,
+  "rows": [
+    {
+      "check_result": "",
+      "policy_amount": "",
+      "actual_amount": "",
+      "exceed_amount": "",
+      "exceed_ratio": "",
+      "exceed_strategy": "",
+      "exceed_reason": "",
+      "personal_pay_amount": "",
+      "approval_mode": ""
+    },
+    {
+      "check_result": "",
+      "policy_amount": "",
+      "actual_amount": "",
+      "exceed_amount": "",
+      "exceed_ratio": "",
+      "exceed_strategy": "",
+      "exceed_reason": "",
+      "personal_pay_amount": "",
+      "approval_mode": ""
+    },
+    {
+      "check_result": "",
+      "policy_amount": "",
+      "actual_amount": "",
+      "exceed_amount": "",
+      "exceed_ratio": "",
+      "exceed_strategy": "",
+      "exceed_reason": "",
+      "personal_pay_amount": "",
+      "approval_mode": ""
+    }
+  ]
 }

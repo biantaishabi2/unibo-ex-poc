@@ -2,28 +2,33 @@
   "version": 1,
   "requiredPaths": [
     "editing",
-    "record.boarding_status",
-    "record.change_result",
-    "record.confirmation_payload",
-    "record.failure_reason",
-    "record.fulfillment_type",
-    "record.status",
-    "record.supplier_booking_ref",
-    "record.ticket_refs",
-    "record.used_at",
-    "record.voucher_or_ticket_ref",
-    "record.waitlist_result"
+    "travel_fulfillment.boarding_status",
+    "travel_fulfillment.change_result",
+    "travel_fulfillment.confirmation_payload",
+    "travel_fulfillment.failure_reason",
+    "travel_fulfillment.fulfillment_type",
+    "travel_fulfillment.status",
+    "travel_fulfillment.supplier_booking_ref",
+    "travel_fulfillment.ticket_refs",
+    "travel_fulfillment.used_at",
+    "travel_fulfillment.voucher_or_ticket_ref",
+    "travel_fulfillment.waitlist_result"
   ],
   "requiredRoots": [
     "editing",
-    "record"
+    "travel_fulfillment"
   ],
   "schema": {
-    "record": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_fulfillment": {
       "type": "object",
       "required": true,
       "properties": {
-        "supplier_booking_ref": {
+        "fulfillment_type": {
           "type": "string",
           "required": false,
           "example": ""
@@ -33,7 +38,7 @@
           "required": false,
           "example": ""
         },
-        "fulfillment_type": {
+        "supplier_booking_ref": {
           "type": "string",
           "required": false,
           "example": ""
@@ -79,11 +84,6 @@
           "example": ""
         }
       }
-    },
-    "editing": {
-      "type": "object",
-      "required": true,
-      "properties": {}
     }
   },
   "notes": []

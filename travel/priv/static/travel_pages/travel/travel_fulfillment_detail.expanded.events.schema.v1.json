@@ -8,48 +8,6 @@
       ],
       "params": {}
     },
-    "action_confirm_booking": {
-      "name": "action_confirm_booking",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
-    },
-    "action_issue_voucher_or_ticket": {
-      "name": "action_issue_voucher_or_ticket",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
-    },
-    "action_mark_in_use": {
-      "name": "action_mark_in_use",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
-    },
-    "action_complete_fulfillment": {
-      "name": "action_complete_fulfillment",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
-    },
-    "action_cancel_fulfillment": {
-      "name": "action_cancel_fulfillment",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
-    },
-    "action_fail_fulfillment": {
-      "name": "action_fail_fulfillment",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
-    },
     "action_destroy": {
       "name": "action_destroy",
       "triggers": [

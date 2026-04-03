@@ -1,8 +1,137 @@
 {
   "version": 1,
-  "defaults": {},
-  "keys": [],
-  "required": [],
+  "defaults": {
+    "hero_title": "欢迎使用",
+    "hero_subtitle": "便捷管理,高效协作",
+    "hero_action_label": "立即开始",
+    "shortcut_1_icon": "file",
+    "shortcut_1_label": "功能一",
+    "shortcut_1_desc": "",
+    "shortcut_2_icon": "settings",
+    "shortcut_2_label": "功能二",
+    "shortcut_2_desc": "",
+    "shortcut_3_icon": "bell",
+    "shortcut_3_label": "功能三",
+    "shortcut_3_desc": "",
+    "shortcut_4_icon": "user",
+    "shortcut_4_label": "功能四",
+    "shortcut_4_desc": "",
+    "pending_count": 0,
+    "message_count": 0,
+    "schedule_count": 0,
+    "announcements": [
+      {
+        "title": "",
+        "summary": "",
+        "publish_at": ""
+      },
+      {
+        "title": "",
+        "summary": "",
+        "publish_at": ""
+      },
+      {
+        "title": "",
+        "summary": "",
+        "publish_at": ""
+      }
+    ]
+  },
+  "keys": [
+    "announcements",
+    "announcements[]",
+    "announcements[].publish_at",
+    "announcements[].summary",
+    "announcements[].title",
+    "hero_action_label",
+    "hero_subtitle",
+    "hero_title",
+    "message_count",
+    "pending_count",
+    "schedule_count",
+    "shortcut_1_desc",
+    "shortcut_1_icon",
+    "shortcut_1_label",
+    "shortcut_2_desc",
+    "shortcut_2_icon",
+    "shortcut_2_label",
+    "shortcut_3_desc",
+    "shortcut_3_icon",
+    "shortcut_3_label",
+    "shortcut_4_desc",
+    "shortcut_4_icon",
+    "shortcut_4_label"
+  ],
+  "required": [
+    "announcements",
+    "hero_action_label",
+    "hero_subtitle",
+    "hero_title",
+    "message_count",
+    "pending_count",
+    "schedule_count",
+    "shortcut_1_desc",
+    "shortcut_1_icon",
+    "shortcut_1_label",
+    "shortcut_2_desc",
+    "shortcut_2_icon",
+    "shortcut_2_label",
+    "shortcut_3_desc",
+    "shortcut_3_icon",
+    "shortcut_3_label",
+    "shortcut_4_desc",
+    "shortcut_4_icon",
+    "shortcut_4_label"
+  ],
   "urlParams": {},
-  "notes": []
+  "notes": [],
+  "layer2": {
+    "backend": {
+      "api_map": {
+        "list": "Travel.TravelOrder.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "id"
+      },
+      "params": {
+        "accept": []
+      }
+    },
+    "delivery_mode": "compiled",
+    "domain": "Travel",
+    "e2e": {
+      "playwright": {
+        "auto": true,
+        "base_path": "/pages/travel/home",
+        "cases": [],
+        "page_kind": "list",
+        "page_spec": {
+          "page_kind": "list",
+          "route_role": "list",
+          "supports_runtime_record_identity": false,
+          "template_kind": "overview_page"
+        }
+      }
+    },
+    "entity": "TravelOrder",
+    "extends": "base_overview",
+    "page_id": "home",
+    "page_type": "overview_page",
+    "state_transitions": [],
+    "status_keys": [],
+    "transitions": {},
+    "ui": {
+      "sections": [],
+      "template": {
+        "list": "overview_page"
+      }
+    },
+    "version": 2
+  }
 }

@@ -1,74 +1,223 @@
 {
   "version": 1,
-  "vars": {},
+  "vars": {
+    "hero_title": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "hero_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{hero_title|欢迎使用}}"
+        }
+      ]
+    },
+    "hero_subtitle": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "hero_subtitle",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{hero_subtitle|便捷管理,高效协作}}"
+        }
+      ]
+    },
+    "hero_action_label": {
+      "uses": [
+        {
+          "node_type": "Button",
+          "node_id": "hero_action",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{hero_action_label|立即开始}}"
+        }
+      ]
+    },
+    "shortcut_1_icon": {
+      "uses": [
+        {
+          "node_type": "Icon",
+          "node_id": "shortcut_1_icon",
+          "location": "prop",
+          "prop": "name",
+          "template": "{{shortcut_1_icon|file}}"
+        }
+      ]
+    },
+    "shortcut_1_label": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "shortcut_1_label",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shortcut_1_label|功能一}}"
+        }
+      ]
+    },
+    "shortcut_1_desc": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "shortcut_1_desc",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shortcut_1_desc|}}"
+        }
+      ]
+    },
+    "shortcut_2_icon": {
+      "uses": [
+        {
+          "node_type": "Icon",
+          "node_id": "shortcut_2_icon",
+          "location": "prop",
+          "prop": "name",
+          "template": "{{shortcut_2_icon|settings}}"
+        }
+      ]
+    },
+    "shortcut_2_label": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "shortcut_2_label",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shortcut_2_label|功能二}}"
+        }
+      ]
+    },
+    "shortcut_2_desc": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "shortcut_2_desc",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shortcut_2_desc|}}"
+        }
+      ]
+    },
+    "shortcut_3_icon": {
+      "uses": [
+        {
+          "node_type": "Icon",
+          "node_id": "shortcut_3_icon",
+          "location": "prop",
+          "prop": "name",
+          "template": "{{shortcut_3_icon|bell}}"
+        }
+      ]
+    },
+    "shortcut_3_label": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "shortcut_3_label",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shortcut_3_label|功能三}}"
+        }
+      ]
+    },
+    "shortcut_3_desc": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "shortcut_3_desc",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shortcut_3_desc|}}"
+        }
+      ]
+    },
+    "shortcut_4_icon": {
+      "uses": [
+        {
+          "node_type": "Icon",
+          "node_id": "shortcut_4_icon",
+          "location": "prop",
+          "prop": "name",
+          "template": "{{shortcut_4_icon|user}}"
+        }
+      ]
+    },
+    "shortcut_4_label": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "shortcut_4_label",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shortcut_4_label|功能四}}"
+        }
+      ]
+    },
+    "shortcut_4_desc": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "shortcut_4_desc",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{shortcut_4_desc|}}"
+        }
+      ]
+    },
+    "pending_count": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "pending_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{pending_count|0}}"
+        }
+      ]
+    },
+    "message_count": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "message_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{message_count|0}}"
+        }
+      ]
+    },
+    "schedule_count": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "schedule_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{schedule_count|0}}"
+        }
+      ]
+    }
+  },
   "events": {
-    "navigate:/travel/flight/search": {
+    "hero_action": {
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "search_flight_btn",
+          "node_id": "hero_action",
           "prop": "click",
-          "raw": "navigate:/travel/flight/search"
+          "raw": "hero_action"
         }
       ]
     },
-    "navigate:/travel/hotel/search": {
+    "navigate_announcements": {
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "search_hotel_btn",
+          "node_id": "announcement_more",
           "prop": "click",
-          "raw": "navigate:/travel/hotel/search"
-        }
-      ]
-    },
-    "navigate:/travel/train/search": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "search_train_btn",
-          "prop": "click",
-          "raw": "navigate:/travel/train/search"
-        }
-      ]
-    },
-    "navigate:/travel": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "nav_home",
-          "prop": "click",
-          "raw": "navigate:/travel"
-        }
-      ]
-    },
-    "navigate:/travel/trips": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "nav_trips",
-          "prop": "click",
-          "raw": "navigate:/travel/trips"
-        }
-      ]
-    },
-    "navigate:/travel/orders": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "nav_orders",
-          "prop": "click",
-          "raw": "navigate:/travel/orders"
-        }
-      ]
-    },
-    "navigate:/travel/profile": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "nav_profile",
-          "prop": "click",
-          "raw": "navigate:/travel/profile"
+          "raw": "navigate_announcements"
         }
       ]
     }

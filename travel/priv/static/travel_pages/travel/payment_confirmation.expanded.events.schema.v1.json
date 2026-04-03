@@ -1,15 +1,37 @@
 {
   "version": 1,
   "events": {
-    "navigate:/travel/orders/{{order.id|}}": {
-      "name": "navigate:/travel/orders/{{order.id|}}",
+    "toggle_edit": {
+      "name": "toggle_edit",
       "triggers": [
         "click"
       ],
       "params": {}
     },
-    "navigate:/travel": {
-      "name": "navigate:/travel",
+    "action_destroy": {
+      "name": "action_destroy",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "form_submit": {
+      "name": "form_submit",
+      "triggers": [
+        "click",
+        "submit"
+      ],
+      "params": {}
+    },
+    "form_change": {
+      "name": "form_change",
+      "triggers": [
+        "change"
+      ],
+      "params": {}
+    },
+    "cancel_edit": {
+      "name": "cancel_edit",
       "triggers": [
         "click"
       ],

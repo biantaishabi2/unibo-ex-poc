@@ -2,6 +2,20 @@
   "backend": {
     "api_map": {
       "list": "Travel.TravelHotel.list"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "city_code: cityCode city_id: cityId hotel_code: hotelCode hotel_name: hotelName hotel_star: hotelStar id status"
+    },
+    "params": {
+      "accept": [
+        "status"
+      ]
     }
   },
   "domain": "Travel",

@@ -8,6 +8,13 @@
       ],
       "params": {}
     },
+    "action_destroy": {
+      "name": "action_destroy",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
     "form_submit": {
       "name": "form_submit",
       "triggers": [

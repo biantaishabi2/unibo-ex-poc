@@ -1,6 +1,7 @@
 {
   "version": 1,
   "requiredPaths": [
+    "editing",
     "flight_offer.arrival_airport_code",
     "flight_offer.arrival_at",
     "flight_offer.baggage_policy",
@@ -10,28 +11,39 @@
     "flight_offer.departure_at",
     "flight_offer.fare_family",
     "flight_offer.flight_no",
-    "flight_offer.flight_offer_lifecycle",
+    "flight_offer.itinerary_code",
     "flight_offer.listed_price",
-    "flight_offer.orders",
     "flight_offer.refund_change_policy",
+    "flight_offer.sale_status",
     "flight_offer.seats_available",
     "flight_offer.settlement_price",
-    "travel_order.order_no",
-    "travel_order.product_type",
-    "travel_order.status",
-    "travel_order.total_amount",
-    "travel_order.traveler_count"
+    "flight_offer.supplier_code"
   ],
   "requiredRoots": [
-    "flight_offer",
-    "travel_order"
+    "editing",
+    "flight_offer"
   ],
   "schema": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
     "flight_offer": {
       "type": "object",
       "required": true,
       "properties": {
-        "departure_at": {
+        "supplier_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "itinerary_code": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "flight_no": {
           "type": "string",
           "required": false,
           "example": ""
@@ -41,17 +53,17 @@
           "required": false,
           "example": ""
         },
-        "arrival_at": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
         "arrival_airport_code": {
           "type": "string",
           "required": false,
           "example": ""
         },
-        "flight_no": {
+        "departure_at": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "arrival_at": {
           "type": "string",
           "required": false,
           "example": ""
@@ -96,72 +108,10 @@
           "required": false,
           "example": ""
         },
-        "flight_offer_lifecycle": {
+        "sale_status": {
           "type": "string",
           "required": false,
           "example": ""
-        },
-        "orders": {
-          "type": "array",
-          "required": false,
-          "items": {
-            "type": "object",
-            "required": false,
-            "properties": {
-              "order_no": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "product_type": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "status": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "total_amount": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              },
-              "traveler_count": {
-                "type": "string",
-                "required": false,
-                "example": ""
-              }
-            }
-          },
-          "exampleCount": 3
-        }
-      }
-    },
-    "travel_order": {
-      "type": "object",
-      "required": true,
-      "properties": {
-        "order_no": {
-          "type": "unknown",
-          "required": true
-        },
-        "product_type": {
-          "type": "unknown",
-          "required": true
-        },
-        "status": {
-          "type": "unknown",
-          "required": true
-        },
-        "total_amount": {
-          "type": "unknown",
-          "required": true
-        },
-        "traveler_count": {
-          "type": "unknown",
-          "required": true
         }
       }
     }

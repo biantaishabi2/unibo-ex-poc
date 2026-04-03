@@ -1,0 +1,158 @@
+<.page title="列表" id="travel_policy_list">
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.stack direction="column" id="page_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelPolicy
+        </.text>
+        <.text variant="h1" id="page_title">
+          差旅标准政策,定义不同企业、职级、城市等级下的差旅费用上限与超标策略
+        </.text>
+      </.stack>
+      <.button variant="primary" phx-click="navigate_create" size="md" id="create_btn">
+        新建
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="view_tabs">
+    <.tabs default_value="all" id="view_selector">
+      <.tabs_list id="view_tab_list">
+        <.tabs_trigger value="all" active_value="all" id="trigger_all">
+          全部
+        </.tabs_trigger>
+      </.tabs_list>
+    </.tabs>
+  </.section>
+  <.section layout="none" id="filter_section">
+    <.card variant="default" id="filter_card">
+      <.card_content id="filter_content">
+        <.flex gap={4} align="center" direction="row" id="filter_row">
+          <.stack direction="column" id="filter_fields" />
+          <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
+            查询
+          </.button>
+        </.flex>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="table_section">
+    <.table id="data_table">
+      <.table_header id="data_header">
+        <.table_row id="header_row">
+          <.table_head id="th_policy_name">
+            政策名称,如'总部差旅标准'
+          </.table_head>
+          <.table_head id="th_product_type">
+            适用商品类型
+          </.table_head>
+          <.table_head id="th_employee_level">
+            职级标识
+          </.table_head>
+          <.table_head id="th_city_tier">
+            城市等级（tier_1/tier_2/tier_3）
+          </.table_head>
+          <.table_head id="th_season">
+            淡旺季标识（可选）
+          </.table_head>
+          <.table_head id="th_max_amount">
+            金额上限（单位分）
+          </.table_head>
+          <.table_head id="th_cabin_class_limit">
+            舱位限制
+          </.table_head>
+          <.table_head id="th_hotel_star_limit">
+            酒店星级限制
+          </.table_head>
+          <.table_head id="th_exceed_strategy">
+            超标处理策略
+          </.table_head>
+          <.table_head id="th_approval_mode">
+            审批模式;none 表示关闭审批,self/oa 表示进入对应审批流
+          </.table_head>
+          <.table_head id="th_personal_pay_ratio">
+            个人支付比例 0-100
+          </.table_head>
+          <.table_head id="th_is_active">
+            是否启用
+          </.table_head>
+        </.table_row>
+      </.table_header>
+      <.table_body id="data_body">
+        <%= for row <- (@rows || []) do %>
+          <.table_row>
+            <.table_cell>
+              <%= get_in(row, [:policy_name]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:product_type])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:employee_level]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:city_tier]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:season]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:max_amount]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:cabin_class_limit]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:hotel_star_limit]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:exceed_strategy])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:approval_mode])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:personal_pay_ratio]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:is_active])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+          </.table_row>
+        <% end %>
+      </.table_body>
+    </.table>
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if (@rows_empty && @rows_empty != []) do %>
+      <.empty_state description="暂无数据" id="no_data" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="footer">
+    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
+      <.button phx-click="travel_policy_page_prev" variant="primary" size="md" id="page_prev">
+        上一页
+      </.button>
+      <.text id="page_info">
+        <%= get_in(@travel_policy, [:page]) || "" %> / <%= get_in(@travel_policy, [:total_pages]) || "" %>
+      </.text>
+      <.button phx-click="travel_policy_page_next" variant="primary" size="md" id="page_next">
+        下一页
+      </.button>
+    </.flex>
+  </.section>
+</.page>

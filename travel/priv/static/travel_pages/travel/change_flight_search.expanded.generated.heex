@@ -1,0 +1,49 @@
+<.page title="搜索结果" id="change_flight_search">
+  <.section layout="none" id="header_section">
+    <.flex justify="between" align="center" gap={3} class="px-4 py-3 border-b bg-background" id="page_header">
+      <.flex align="center" gap={3} class="flex-1 min-w-0">
+        <.button variant="ghost" size="sm" phx-click="go_back">
+          返回
+        </.button>
+        <.text as="h4" class="flex-1 min-w-0 text-lg font-semibold">
+          搜索
+        </.text>
+      </.flex>
+    </.flex>
+  </.section>
+  <.section layout="none" id="date_slider_section">
+    <.flex gap={2} paddingx={3} paddingy={2} overflowx="scroll" background="surface" direction="row" id="date_slider">
+      <%= for date_item <- (get_in(@search, [:date_range]) || []) do %>
+        <%= if (val = get_in(date_item, [:date_label])) && to_string(val) != "" do %>
+          <.badge variant={get_in(date_item, [:is_selected])} phx-click="select_date" size="sm">
+            <%= to_string(val) %>
+          </.badge>
+        <% end %>
+      <% end %>
+    </.flex>
+  </.section>
+  <.section layout="none" id="filter_section">
+    <.flex gap={2} paddingx={3} paddingy={2} wrap={true} direction="row" id="filter_bar" />
+  </.section>
+  <.section layout="none" id="alert_section">
+    <%= if @policy.exceeded == true do %>
+      <.alert variant="warning" title="超标提示" id="policy_alert">
+        标记超标的项目超出差旅标准,预订需审批
+      </.alert>
+    <% end %>
+  </.section>
+  <.section layout="none" id="results_section">
+    <.stack gap={3} padding={3} direction="column" id="results_list" />
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if @results.total_count == 0 do %>
+      <.empty_state title="未找到结果" description="请调整搜索条件后重试" id="no_results" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="sort_bar_section">
+    <.control_bar position="sticky_bottom" id="bottom_sort_bar">
+      <.flex gap={3} justify="spacearound" width="full" direction="row" id="sort_buttons" />
+    </.control_bar>
+  </.section>
+  <.separator id="sep_after_date" />
+</.page>

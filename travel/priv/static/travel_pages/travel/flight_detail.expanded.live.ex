@@ -11,15 +11,17 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): flight_offer, flight_offer.arrival_airport_code, flight_offer.arrival_at, flight_offer.baggage_policy, flight_offer.cabin_class, flight_offer.currency, flight_offer.departure_airport_code, flight_offer.departure_at, flight_offer.fare_family, flight_offer.flight_no, flight_offer.flight_offer_lifecycle, flight_offer.listed_price, flight_offer.orders, flight_offer.orders[], flight_offer.orders[].order_no, flight_offer.orders[].product_type, flight_offer.orders[].status, flight_offer.orders[].total_amount, flight_offer.orders[].traveler_count, flight_offer.refund_change_policy, flight_offer.seats_available, flight_offer.settlement_price
+  # status.keys preview (first ~40): editing, flight_offer, flight_offer.arrival_airport_code, flight_offer.arrival_at, flight_offer.baggage_policy, flight_offer.cabin_class, flight_offer.currency, flight_offer.departure_airport_code, flight_offer.departure_at, flight_offer.fare_family, flight_offer.flight_no, flight_offer.itinerary_code, flight_offer.listed_price, flight_offer.refund_change_policy, flight_offer.sale_status, flight_offer.seats_available, flight_offer.settlement_price, flight_offer.supplier_code
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
   \"flight_offer\": {
-    \"departure_at\": \"\",
-    \"departure_airport_code\": \"\",
-    \"arrival_at\": \"\",
-    \"arrival_airport_code\": \"\",
+    \"supplier_code\": \"\",
+    \"itinerary_code\": \"\",
     \"flight_no\": \"\",
+    \"departure_airport_code\": \"\",
+    \"arrival_airport_code\": \"\",
+    \"departure_at\": \"\",
+    \"arrival_at\": \"\",
     \"cabin_class\": \"\",
     \"fare_family\": \"\",
     \"listed_price\": \"\",
@@ -28,31 +30,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     \"seats_available\": \"\",
     \"baggage_policy\": \"\",
     \"refund_change_policy\": \"\",
-    \"flight_offer_lifecycle\": \"\",
-    \"orders\": [
-      {
-        \"order_no\": \"\",
-        \"product_type\": \"\",
-        \"status\": \"\",
-        \"total_amount\": \"\",
-        \"traveler_count\": \"\"
-      },
-      {
-        \"order_no\": \"\",
-        \"product_type\": \"\",
-        \"status\": \"\",
-        \"total_amount\": \"\",
-        \"traveler_count\": \"\"
-      },
-      {
-        \"order_no\": \"\",
-        \"product_type\": \"\",
-        \"status\": \"\",
-        \"total_amount\": \"\",
-        \"traveler_count\": \"\"
-      }
-    ]
-  }
+    \"sale_status\": \"\"
+  },
+  \"editing\": false
 }")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
@@ -61,6 +41,10 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event nil
+  @backend_load_selection nil
+  @backend_load_assigns %{}
+  @backend_params_accept []
+  @backend_info_reload_messages []
   @backend_api_map %{}
   @status_key_roots []
   @auth_mode "optional"
@@ -73,9 +57,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     defaults = atomize_keys(@status_defaults_raw)
     socket = assign(socket, defaults)
     socket = assign(socket, :__status_defaults, defaults)
+    socket = if is_map(@backend_load_assigns) and map_size(@backend_load_assigns) > 0, do: assign(socket, @backend_load_assigns), else: socket
     socket = apply_derived(socket)
     socket = apply_params(socket, params)
-    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(params, "__page_id", @page_id), socket), else: socket
+    backend_params = __filter_backend_params(params)
+    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
     {:ok, socket}
   end
 
@@ -87,9 +73,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: if backend exports handle_info/2, delegate and apply BackendResult v1.
+    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
     socket =
-      if function_exported?(@backend_mod, :handle_info, 2) do
+      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
         state0 = __take_status(socket.assigns)
         apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
       else
@@ -99,50 +85,58 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("flight_offer_activate", params, socket) do
-    # UI action event name: flight_offer_activate
-    socket = dispatch_backend("flight_offer_activate", params, socket)
+  def handle_event("action_destroy", params, socket) do
+    # UI action event name: action_destroy
+    socket = dispatch_backend("action_destroy", params, socket)
     {:noreply, socket}
   end
 
   @impl true
-  def handle_event("flight_offer_create", params, socket) do
-    # UI action event name: flight_offer_create
-    socket = dispatch_backend("flight_offer_create", params, socket)
+  def handle_event("cancel_edit", params, socket) do
+    # UI action event name: cancel_edit
+    socket = dispatch_backend("cancel_edit", params, socket)
     {:noreply, socket}
   end
 
   @impl true
-  def handle_event("flight_offer_deactivate", params, socket) do
-    # UI action event name: flight_offer_deactivate
-    socket = dispatch_backend("flight_offer_deactivate", params, socket)
+  def handle_event("form_change", params, socket) do
+    # UI action event name: form_change
+    socket = dispatch_backend("form_change", params, socket)
     {:noreply, socket}
   end
 
   @impl true
-  def handle_event("flight_offer_destroy", params, socket) do
-    # UI action event name: flight_offer_destroy
-    socket = dispatch_backend("flight_offer_destroy", params, socket)
+  def handle_event("form_submit", params, socket) do
+    # UI action event name: form_submit
+    socket = dispatch_backend("form_submit", params, socket)
     {:noreply, socket}
   end
 
   @impl true
-  def handle_event("flight_offer_expire", params, socket) do
-    # UI action event name: flight_offer_expire
-    socket = dispatch_backend("flight_offer_expire", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("flight_offer_update", params, socket) do
-    # UI action event name: flight_offer_update
-    socket = dispatch_backend("flight_offer_update", params, socket)
+  def handle_event("toggle_edit", params, socket) do
+    # UI action event name: toggle_edit
+    socket = dispatch_backend("toggle_edit", params, socket)
     {:noreply, socket}
   end
 
   defp apply_params(socket, params) when is_map(params) do
     socket
   end
+
+  defp __filter_backend_params(params) when is_map(params) do
+    if @backend_params_accept == [] do
+      params
+    else
+      Map.take(params, @backend_params_accept ++ ["__page_id"])
+    end
+  end
+  defp __filter_backend_params(params), do: params
+
+  defp __accept_backend_info?({kind, value}) when is_atom(kind) and is_binary(value) do
+    kind == :page_host_reload and value in @backend_info_reload_messages
+  end
+  defp __accept_backend_info?(value) when is_binary(value), do: value in @backend_info_reload_messages
+  defp __accept_backend_info?(_), do: @backend_info_reload_messages == []
 
   defp ensure_user_context(socket) do
     # Thin user-context contract: keep it uniform so skeletons stay generated and diffable.

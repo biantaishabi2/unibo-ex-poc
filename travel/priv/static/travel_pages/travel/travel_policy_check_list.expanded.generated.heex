@@ -1,0 +1,132 @@
+<.page title="列表" id="travel_policy_check_list">
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.stack direction="column" id="page_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelPolicyCheck
+        </.text>
+        <.text variant="h1" id="page_title">
+          差标校验记录,记录订单下单时针对差旅政策的校验结果、超标金额与处理策略
+        </.text>
+      </.stack>
+      <.button variant="primary" phx-click="navigate_create" size="md" id="create_btn">
+        新建
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="view_tabs">
+    <.tabs default_value="all" id="view_selector">
+      <.tabs_list id="view_tab_list">
+        <.tabs_trigger value="all" active_value="all" id="trigger_all">
+          全部
+        </.tabs_trigger>
+      </.tabs_list>
+    </.tabs>
+  </.section>
+  <.section layout="none" id="filter_section">
+    <.card variant="default" id="filter_card">
+      <.card_content id="filter_content">
+        <.flex gap={4} align="center" direction="row" id="filter_row">
+          <.stack direction="column" id="filter_fields" />
+          <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
+            查询
+          </.button>
+        </.flex>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="table_section">
+    <.table id="data_table">
+      <.table_header id="data_header">
+        <.table_row id="header_row">
+          <.table_head id="th_check_result">
+            校验结果
+          </.table_head>
+          <.table_head id="th_policy_amount">
+            差标金额（单位分）
+          </.table_head>
+          <.table_head id="th_actual_amount">
+            实际金额（单位分）
+          </.table_head>
+          <.table_head id="th_exceed_amount">
+            超标金额
+          </.table_head>
+          <.table_head id="th_exceed_ratio">
+            超标比例（如'15%'）
+          </.table_head>
+          <.table_head id="th_exceed_strategy">
+            命中的超标策略
+          </.table_head>
+          <.table_head id="th_exceed_reason">
+            超标原因（员工填写）
+          </.table_head>
+          <.table_head id="th_personal_pay_amount">
+            个人支付部分
+          </.table_head>
+          <.table_head id="th_approval_mode">
+            命中政策时的审批模式快照
+          </.table_head>
+        </.table_row>
+      </.table_header>
+      <.table_body id="data_body">
+        <%= for row <- (@rows || []) do %>
+          <.table_row>
+            <.table_cell>
+              <%= if (val = get_in(row, [:check_result])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:policy_amount]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:actual_amount]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:exceed_amount]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:exceed_ratio]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:exceed_strategy]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:exceed_reason]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:personal_pay_amount]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:approval_mode])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+          </.table_row>
+        <% end %>
+      </.table_body>
+    </.table>
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if (@rows_empty && @rows_empty != []) do %>
+      <.empty_state description="暂无数据" id="no_data" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="footer">
+    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
+      <.button phx-click="travel_policy_check_page_prev" variant="primary" size="md" id="page_prev">
+        上一页
+      </.button>
+      <.text id="page_info">
+        <%= get_in(@travel_policy_check, [:page]) || "" %> / <%= get_in(@travel_policy_check, [:total_pages]) || "" %>
+      </.text>
+      <.button phx-click="travel_policy_check_page_next" variant="primary" size="md" id="page_next">
+        下一页
+      </.button>
+    </.flex>
+  </.section>
+</.page>

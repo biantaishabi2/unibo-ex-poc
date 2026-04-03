@@ -25,7 +25,7 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshArchival.Resource],
+    extensions: [AshGraphql.Resource, AshArchival.Resource],
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
@@ -122,8 +122,20 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       public? true
       description "实际使用时间"
     end
-    create_timestamp :inserted_at
-    update_timestamp :updated_at
+    attribute :inserted_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      public? true
+    end
+    attribute :updated_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      update_default &DateTime.utc_now/0
+      public? true
+    end
+    attribute :shipment_id, :string, public?: true
     attribute :archived_at, :utc_datetime_usec, allow_nil?: true, public?: false
   end
 
@@ -132,9 +144,6 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       public? true
       allow_nil? false
       source_attribute :travel_order_id
-    end
-    belongs_to :shipment, UniboExPoc.Delivery.Shipment do
-      public? true
     end
   end
 
@@ -247,13 +256,6 @@ defmodule UniboExPoc.Travel.TravelFulfillment do
       change set_attribute(:status, :failed)
       require_atomic? false
     end
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    attributes_as_attributes [:tenant_id]
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
   archive do

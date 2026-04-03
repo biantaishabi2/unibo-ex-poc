@@ -1,0 +1,158 @@
+<.page title="详情" id="approval_detail">
+  <.section layout="none" id="breadcrumb_section">
+    <.breadcrumb id="page_breadcrumb">
+      <.breadcrumb_list id="bc_list">
+        <.breadcrumb_item id="bc_list_item">
+          <.breadcrumb_link id="bc_link">
+            列表
+          </.breadcrumb_link>
+        </.breadcrumb_item>
+        <.breadcrumb_separator id="bc_sep" />
+        <.breadcrumb_item id="bc_current_item">
+          <.breadcrumb_page id="bc_current">
+            详情
+          </.breadcrumb_page>
+        </.breadcrumb_item>
+      </.breadcrumb_list>
+    </.breadcrumb>
+  </.section>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="detail_header">
+    <.flex gap={3} align="center" direction="row" id="title_group">
+      <.stack direction="column" id="title_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelPolicyCheck
+        </.text>
+        <.text variant="h1" id="page_title">
+          差标校验记录,记录订单下单时针对差旅政策的校验结果、超标金额与处理策略
+        </.text>
+      </.stack>
+      <.badge bind="travel_policy_check.status" variant="default" size="sm" id="status_badge" />
+    </.flex>
+    <.flex gap={2} direction="row" id="actions_group">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
+        编辑
+      </.button>
+      <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
+        删除
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="info_section">
+    <.card variant="default" id="info_card">
+      <.card_header id="info_header">
+        <.card_title id="info_title">
+          基本信息
+        </.card_title>
+      </.card_header>
+      <.card_content id="info_content">
+        <%= if !(@editing && @editing != []) do %>
+          <.grid columns={2} gap={4} id="info_grid">
+            <.grid columns={2} gap={3} id="detail_fields">
+              <.stack gap={0} direction="column" id="detail_fields_check_result">
+                <.text variant="caption" color="muted" id="detail_fields_check_result_label">
+                  校验结果
+                </.text>
+                <.text id="detail_fields_check_result_value">
+                  <%= get_in(@travel_policy_check, [:check_result]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_policy_amount">
+                <.text variant="caption" color="muted" id="detail_fields_policy_amount_label">
+                  差标金额（单位分）
+                </.text>
+                <.text id="detail_fields_policy_amount_value">
+                  <%= get_in(@travel_policy_check, [:policy_amount]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_actual_amount">
+                <.text variant="caption" color="muted" id="detail_fields_actual_amount_label">
+                  实际金额（单位分）
+                </.text>
+                <.text id="detail_fields_actual_amount_value">
+                  <%= get_in(@travel_policy_check, [:actual_amount]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_exceed_amount">
+                <.text variant="caption" color="muted" id="detail_fields_exceed_amount_label">
+                  超标金额
+                </.text>
+                <.text id="detail_fields_exceed_amount_value">
+                  <%= get_in(@travel_policy_check, [:exceed_amount]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_exceed_ratio">
+                <.text variant="caption" color="muted" id="detail_fields_exceed_ratio_label">
+                  超标比例（如'15%'）
+                </.text>
+                <.text id="detail_fields_exceed_ratio_value">
+                  <%= get_in(@travel_policy_check, [:exceed_ratio]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_exceed_strategy">
+                <.text variant="caption" color="muted" id="detail_fields_exceed_strategy_label">
+                  命中的超标策略
+                </.text>
+                <.text id="detail_fields_exceed_strategy_value">
+                  <%= get_in(@travel_policy_check, [:exceed_strategy]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_exceed_reason">
+                <.text variant="caption" color="muted" id="detail_fields_exceed_reason_label">
+                  超标原因（员工填写）
+                </.text>
+                <.text id="detail_fields_exceed_reason_value">
+                  <%= get_in(@travel_policy_check, [:exceed_reason]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_personal_pay_amount">
+                <.text variant="caption" color="muted" id="detail_fields_personal_pay_amount_label">
+                  个人支付部分
+                </.text>
+                <.text id="detail_fields_personal_pay_amount_value">
+                  <%= get_in(@travel_policy_check, [:personal_pay_amount]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_approval_mode">
+                <.text variant="caption" color="muted" id="detail_fields_approval_mode_label">
+                  命中政策时的审批模式快照
+                </.text>
+                <.text id="detail_fields_approval_mode_value">
+                  <%= get_in(@travel_policy_check, [:approval_mode]) || "" %>
+                </.text>
+              </.stack>
+            </.grid>
+          </.grid>
+        <% else %>
+          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+            <.grid columns={2} gap={4} id="form_grid">
+              <.stack direction="column" id="form_fields">
+                <.select bind="travel_policy_check.check_result" size="md" id="update_check_result" options={[%{label: "compliant", value: "compliant"}, %{label: "exceeded", value: "exceeded"}, %{label: "blocked", value: "blocked"}]}>
+
+                </.select>
+                <.input bind="travel_policy_check.policy_amount" size="md" id="update_policy_amount" />
+                <.input bind="travel_policy_check.actual_amount" size="md" id="update_actual_amount" />
+                <.input bind="travel_policy_check.exceed_amount" size="md" id="update_exceed_amount" />
+                <.input bind="travel_policy_check.exceed_ratio" size="md" id="update_exceed_ratio" />
+                <.input bind="travel_policy_check.exceed_strategy" size="md" id="update_exceed_strategy" />
+                <.input bind="travel_policy_check.exceed_reason" size="md" id="update_exceed_reason" />
+                <.input bind="travel_policy_check.personal_pay_amount" size="md" id="update_personal_pay_amount" />
+                <.input bind="travel_policy_check.approval_request_id" size="md" id="update_approval_request_id" />
+                <.select bind="travel_policy_check.approval_mode" size="md" id="update_approval_mode" options={[%{label: "none", value: "none"}, %{label: "self", value: "self"}, %{label: "oa", value: "oa"}]}>
+
+                </.select>
+              </.stack>
+            </.grid>
+            <.flex justify="end" gap={2} direction="row" id="form_actions">
+              <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
+                取消
+              </.button>
+              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+                保存
+              </.button>
+            </.flex>
+          </.form>
+        <% end %>
+      </.card_content>
+    </.card>
+  </.section>
+</.page>

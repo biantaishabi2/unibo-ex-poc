@@ -71,8 +71,15 @@
       ],
       "params": {}
     },
-    "action_approve_cancel": {
-      "name": "action_approve_cancel",
+    "action_execute_cancel": {
+      "name": "action_execute_cancel",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "action_cancel_cancel_request": {
+      "name": "action_cancel_cancel_request",
       "triggers": [
         "click"
       ],
@@ -109,7 +116,6 @@
     "form_submit": {
       "name": "form_submit",
       "triggers": [
-        "click",
         "submit"
       ],
       "params": {}

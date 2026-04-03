@@ -1,14 +1,58 @@
 {
   "version": 1,
-  "vars": {},
+  "vars": {
+    "search.route_label": {
+      "uses": [
+        {
+          "node_type": "Header",
+          "node_id": "train_header",
+          "location": "prop",
+          "prop": "subtitle",
+          "template": "{{search.route_label|}}"
+        }
+      ]
+    }
+  },
   "events": {
     "select_date": {
       "triggers": [
         {
           "node_type": "Badge",
-          "node_id": "date_badge",
+          "node_id": "train_date_badge",
           "prop": "click",
           "raw": "select_date"
+        }
+      ]
+    },
+    "navigate": {
+      "triggers": [
+        {
+          "node_type": "Card",
+          "node_id": "train_card",
+          "prop": "click",
+          "raw": "navigate"
+        }
+      ]
+    },
+    "sort": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "sort_by_duration",
+          "prop": "click",
+          "raw": "sort"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "sort_by_train_departure",
+          "prop": "click",
+          "raw": "sort"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "sort_by_train_price",
+          "prop": "click",
+          "raw": "sort"
         }
       ]
     }

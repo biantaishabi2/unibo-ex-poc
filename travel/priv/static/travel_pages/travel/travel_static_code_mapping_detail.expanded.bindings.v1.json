@@ -1,90 +1,69 @@
 {
   "version": 1,
   "vars": {
-    "record.supplier_code": {
-      "uses": [
-        {
-          "node_type": "BreadcrumbPage",
-          "node_id": "travel_static_code_mapping_bc_current",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.supplier_code|详情}}"
-        },
-        {
-          "node_type": "Text",
-          "node_id": "travel_static_code_mapping_detail_title",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.supplier_code|}}"
-        },
-        {
-          "node_type": "Text",
-          "node_id": "value_supplier_code",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.supplier_code|}}"
-        }
-      ]
-    },
-    "record.status": {
-      "uses": [
-        {
-          "node_type": "Badge",
-          "node_id": "travel_static_code_mapping_status_badge",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.status|}}"
-        },
-        {
-          "node_type": "Badge",
-          "node_id": "value_status",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.status|}}"
-        }
-      ]
-    },
-    "record.object_type": {
-      "uses": [
-        {
-          "node_type": "Badge",
-          "node_id": "value_object_type",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.object_type|}}"
-        }
-      ]
-    },
-    "record.canonical_entity": {
+    "travel_static_code_mapping.supplier_code": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_canonical_entity",
+          "node_id": "detail_fields_supplier_code_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.canonical_entity|}}"
+          "template": "{{travel_static_code_mapping.supplier_code|}}"
         }
       ]
     },
-    "record.external_code": {
+    "travel_static_code_mapping.object_type": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_external_code",
+          "node_id": "detail_fields_object_type_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.external_code|}}"
+          "template": "{{travel_static_code_mapping.object_type|}}"
         }
       ]
     },
-    "record.external_name": {
+    "travel_static_code_mapping.canonical_entity": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_external_name",
+          "node_id": "detail_fields_canonical_entity_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.external_name|}}"
+          "template": "{{travel_static_code_mapping.canonical_entity|}}"
+        }
+      ]
+    },
+    "travel_static_code_mapping.external_code": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_external_code_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_static_code_mapping.external_code|}}"
+        }
+      ]
+    },
+    "travel_static_code_mapping.external_name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_external_name_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_static_code_mapping.external_name|}}"
+        }
+      ]
+    },
+    "travel_static_code_mapping.status": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_status_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_static_code_mapping.status|}}"
         }
       ]
     }
@@ -94,9 +73,19 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_static_code_mapping_edit_btn",
+          "node_id": "edit_btn",
           "prop": "click",
           "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
         }
       ]
     },
@@ -104,13 +93,13 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "travel_static_code_mapping_edit_form",
+          "node_id": "edit_form",
           "prop": "submit",
           "raw": "form_submit"
         },
         {
           "node_type": "Button",
-          "node_id": "travel_static_code_mapping_save_btn",
+          "node_id": "save_btn",
           "prop": "click",
           "raw": "form_submit"
         }
@@ -120,7 +109,7 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "travel_static_code_mapping_edit_form",
+          "node_id": "edit_form",
           "prop": "change",
           "raw": "form_change"
         }
@@ -130,7 +119,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "travel_static_code_mapping_cancel_btn",
+          "node_id": "cancel_btn",
           "prop": "click",
           "raw": "cancel_edit"
         }

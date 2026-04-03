@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "FlightOffer 列表",
+    "flight_offer": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -61,7 +64,9 @@
     ]
   },
   "keys": [
-    "page_title",
+    "flight_offer",
+    "flight_offer.page",
+    "flight_offer.total_pages",
     "rows",
     "rows[]",
     "rows[].arrival_airport_code",
@@ -83,7 +88,7 @@
     "rows_empty"
   ],
   "required": [
-    "page_title",
+    "flight_offer",
     "rows",
     "rows_empty"
   ],
@@ -93,6 +98,22 @@
     "backend": {
       "api_map": {
         "list": "Travel.FlightOffer.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "arrival_airport_code: arrivalAirportCode arrival_airport_ref_id: arrivalAirportRefId arrival_at: arrivalAt baggage_policy: baggagePolicy cabin_class: cabinClass currency departure_airport_code: departureAirportCode departure_airport_ref_id: departureAirportRefId departure_at: departureAt fare_family: fareFamily flight_no: flightNo host_shop_id: hostShopId id itinerary_code: itineraryCode listed_price: listedPrice refund_change_policy: refundChangePolicy sale_status: saleStatus seats_available: seatsAvailable settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
+      },
+      "params": {
+        "accept": [
+          "departure_at",
+          "arrival_at",
+          "sale_status"
+        ]
       }
     },
     "domain": "Travel",

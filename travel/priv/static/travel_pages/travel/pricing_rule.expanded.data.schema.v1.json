@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "item.markup_rate",
+    "item.product_type",
+    "item.status",
+    "item.supplier_code",
+    "pricing_rules"
+  ],
+  "requiredRoots": [
+    "item",
+    "pricing_rules"
+  ],
+  "schema": {
+    "pricing_rules": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "product_type": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "supplier_code": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "markup_rate": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          },
+          "status": {
+            "type": "string",
+            "required": false,
+            "example": ""
+          }
+        }
+      },
+      "exampleCount": 3
+    },
+    "item": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "product_type": {
+          "type": "unknown",
+          "required": true
+        },
+        "supplier_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "markup_rate": {
+          "type": "unknown",
+          "required": true
+        },
+        "status": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    }
+  },
+  "notes": []
+}

@@ -11,13 +11,14 @@
         "name": "TravelHotel",
         "description": "酒店主数据（Travel 层，来源 OFBiz Product）",
         "source": {
-          "base": "Product",
+          "base": "TravelHotel",
           "filter": {
             "product_type_id": "TRAVEL_HOTEL"
           },
-          "domain": "ofbiz/product"
+          "domain": "travel"
         },
         "aggregate_root": true,
+        "resource_type": "master_data",
         "attributes": [
           {
             "name": "id",
@@ -130,13 +131,14 @@
         "name": "TravelRoomType",
         "description": "酒店房型主数据（Travel 层，来源 OFBiz ProductFeature）",
         "source": {
-          "base": "ProductFeature",
+          "base": "TravelRoomType",
           "filter": {
             "product_feature_type_id": "ROOM_TYPE"
           },
-          "domain": "ofbiz/product"
+          "domain": "travel"
         },
         "aggregate_root": true,
+        "resource_type": "master_data",
         "attributes": [
           {
             "name": "id",
@@ -248,13 +250,14 @@
         "name": "TravelAirline",
         "description": "航司主数据（Travel 层，来源 OFBiz PartyGroup）",
         "source": {
-          "base": "PartyGroup",
+          "base": "TravelAirline",
           "filter": {
             "industry": "AIRLINE"
           },
-          "domain": "ofbiz/party"
+          "domain": "travel"
         },
         "aggregate_root": true,
+        "resource_type": "master_data",
         "attributes": [
           {
             "name": "id",
@@ -356,13 +359,14 @@
         "name": "TravelCabinClass",
         "description": "舱位主数据（Travel 层，来源 OFBiz Enumeration）",
         "source": {
-          "base": "Enumeration",
+          "base": "TravelCabinClass",
           "filter": {
             "enum_type_id": "CABIN_CLASS"
           },
-          "domain": "ofbiz/common"
+          "domain": "travel"
         },
         "aggregate_root": true,
+        "resource_type": "config",
         "attributes": [
           {
             "name": "id",
@@ -457,10 +461,11 @@
         "name": "TravelStaticCodeMapping",
         "description": "供应商静态码到 Travel 主数据的映射（Travel 层统一适配）",
         "source": {
-          "base": "DataSource",
-          "domain": "ofbiz/common"
+          "base": "TravelStaticCodeMapping",
+          "domain": "travel"
         },
         "aggregate_root": true,
+        "resource_type": "config",
         "attributes": [
           {
             "name": "id",
@@ -1020,7 +1025,39 @@
               }
             ]
           }
-        ]
+        ],
+        "state_machine": {
+          "initial_state": "draft",
+          "states": [
+            "active",
+            "draft",
+            "expired",
+            "inactive"
+          ],
+          "transitions": [
+            {
+              "from": "draft",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "inactive",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "active",
+              "to": "inactive",
+              "event": "deactivate"
+            },
+            {
+              "from": "active",
+              "to": "expired",
+              "event": "expire"
+            }
+          ],
+          "state_attribute": "sale_status"
+        }
       },
       {
         "name": "FlightOffer",
@@ -1480,7 +1517,39 @@
               }
             ]
           }
-        ]
+        ],
+        "state_machine": {
+          "initial_state": "draft",
+          "states": [
+            "active",
+            "draft",
+            "expired",
+            "inactive"
+          ],
+          "transitions": [
+            {
+              "from": "draft",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "inactive",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "active",
+              "to": "inactive",
+              "event": "deactivate"
+            },
+            {
+              "from": "active",
+              "to": "expired",
+              "event": "expire"
+            }
+          ],
+          "state_attribute": "sale_status"
+        }
       },
       {
         "name": "VacationOffer",
@@ -1919,7 +1988,39 @@
               }
             ]
           }
-        ]
+        ],
+        "state_machine": {
+          "initial_state": "draft",
+          "states": [
+            "active",
+            "draft",
+            "expired",
+            "inactive"
+          ],
+          "transitions": [
+            {
+              "from": "draft",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "inactive",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "active",
+              "to": "inactive",
+              "event": "deactivate"
+            },
+            {
+              "from": "active",
+              "to": "expired",
+              "event": "expire"
+            }
+          ],
+          "state_attribute": "sale_status"
+        }
       },
       {
         "name": "TrainOffer",
@@ -2408,7 +2509,39 @@
               }
             ]
           }
-        ]
+        ],
+        "state_machine": {
+          "initial_state": "draft",
+          "states": [
+            "active",
+            "draft",
+            "expired",
+            "inactive"
+          ],
+          "transitions": [
+            {
+              "from": "draft",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "inactive",
+              "to": "active",
+              "event": "activate"
+            },
+            {
+              "from": "active",
+              "to": "inactive",
+              "event": "deactivate"
+            },
+            {
+              "from": "active",
+              "to": "expired",
+              "event": "expire"
+            }
+          ],
+          "state_attribute": "sale_status"
+        }
       },
       {
         "name": "TravelOrder",
@@ -2647,7 +2780,7 @@
         ],
         "actions": [
           {
-            "name": "create_order",
+            "name": "create",
             "type": "create",
             "accept": [
               "tenant_id",
@@ -2669,7 +2802,8 @@
               "ticket_passenger_infos",
               "seat_selection_snapshot"
             ],
-            "primary": true
+            "primary": true,
+            "description": "创建订单（别名 create_order）"
           },
           {
             "name": "read",
@@ -2734,7 +2868,12 @@
             "accept": []
           },
           {
-            "name": "approve_cancel",
+            "name": "execute_cancel",
+            "type": "update",
+            "accept": []
+          },
+          {
+            "name": "cancel_cancel_request",
             "type": "update",
             "accept": []
           },
@@ -2766,35 +2905,35 @@
             "rule": "present",
             "field": "tenant_id",
             "on": [
-              "create_order"
+              "create"
             ]
           },
           {
             "rule": "present",
             "field": "order_no",
             "on": [
-              "create_order"
+              "create"
             ]
           },
           {
             "rule": "present",
             "field": "customer_id",
             "on": [
-              "create_order"
+              "create"
             ]
           },
           {
             "rule": "present",
             "field": "contact_name",
             "on": [
-              "create_order"
+              "create"
             ]
           },
           {
             "rule": "present",
             "field": "contact_phone",
             "on": [
-              "create_order"
+              "create"
             ]
           },
           {
@@ -2808,7 +2947,7 @@
               ]
             },
             "on": [
-              "create_order"
+              "create"
             ],
             "message": "hotel_offer_id、flight_offer_id、vacation_offer_id、train_offer_id 必须四选一"
           },
@@ -2816,7 +2955,7 @@
             "rule": "present",
             "field": "hotel_offer_id",
             "on": [
-              "create_order"
+              "create"
             ],
             "where": {
               "op": "eq",
@@ -2836,7 +2975,7 @@
             "rule": "present",
             "field": "flight_offer_id",
             "on": [
-              "create_order"
+              "create"
             ],
             "where": {
               "op": "eq",
@@ -2856,7 +2995,7 @@
             "rule": "present",
             "field": "vacation_offer_id",
             "on": [
-              "create_order"
+              "create"
             ],
             "where": {
               "op": "eq",
@@ -2876,7 +3015,7 @@
             "rule": "present",
             "field": "train_offer_id",
             "on": [
-              "create_order"
+              "create"
             ],
             "where": {
               "op": "eq",
@@ -3004,9 +3143,10 @@
               ]
             },
             "on": [
-              "approve_cancel"
+              "execute_cancel",
+              "cancel_cancel_request"
             ],
-            "message": "只有 cancel_pending 订单可以 approve_cancel"
+            "message": "只有 cancel_pending 订单可以 execute_cancel 或 cancel_cancel_request"
           },
           {
             "rule": "one_of",
@@ -3125,7 +3265,7 @@
             "value": "cancelled",
             "on": [
               "cancel_waitlist",
-              "approve_cancel"
+              "execute_cancel"
             ]
           },
           {
@@ -3134,6 +3274,14 @@
             "value": "cancelled",
             "on": [
               "cancel_waitlist"
+            ]
+          },
+          {
+            "effect": "set_attribute",
+            "field": "status",
+            "value": "booked",
+            "on": [
+              "cancel_cancel_request"
             ]
           },
           {
@@ -3171,7 +3319,7 @@
               ]
             },
             "on": [
-              "create_order",
+              "create",
               "update",
               "confirm_quote",
               "submit_order",
@@ -3182,7 +3330,8 @@
               "mark_completed",
               "request_cancel",
               "cancel_waitlist",
-              "approve_cancel",
+              "execute_cancel",
+              "cancel_cancel_request",
               "request_change",
               "confirm_change",
               "mark_order_failed",
@@ -3247,7 +3396,7 @@
             "topic": "travel.order.cancel_requested"
           },
           {
-            "on": "approve_cancel",
+            "on": "execute_cancel",
             "topic": "travel.order.cancelled"
           },
           {
@@ -3265,7 +3414,7 @@
             "description": "统一酒旅订单生命周期，覆盖 train 候补与改签分支；退款由 Payment 域处理",
             "steps": [
               {
-                "action": "create_order",
+                "action": "create",
                 "next": [
                   "update",
                   "confirm_quote",
@@ -3335,12 +3484,21 @@
               {
                 "action": "request_cancel",
                 "next": [
-                  "approve_cancel"
-                ]
+                  "execute_cancel",
+                  "cancel_cancel_request"
+                ],
+                "trigger_event": "travel.order.cancel_requested"
               },
               {
-                "action": "approve_cancel",
+                "action": "execute_cancel",
                 "trigger_event": "travel.order.cancelled"
+              },
+              {
+                "action": "cancel_cancel_request",
+                "next": [
+                  "mark_completed",
+                  "request_cancel"
+                ]
               },
               {
                 "action": "request_change",
@@ -3366,61 +3524,13 @@
                 "action": "destroy"
               }
             ]
-          },
-          {
-            "name": "payment_confirmed_to_fulfillment",
-            "description": "订单支付确认后，跨实体创建 TravelFulfillment 并发起供应商预订确认；履约失败时由 TravelFulfillment 自行处理 fail_fulfillment",
-            "steps": [
-              {
-                "action": "mark_payment_succeeded",
-                "entity": "TravelOrder"
-              },
-              {
-                "action": "create_fulfillment",
-                "entity": "TravelFulfillment",
-                "depends_on": [
-                  "mark_payment_succeeded"
-                ],
-                "input": {
-                  "fulfillment_type": "reserve_room",
-                  "tenant_id": "{{mark_payment_succeeded.tenant_id}}",
-                  "travel_order_id": "{{mark_payment_succeeded.id}}"
-                }
-              }
-            ],
-            "compensation": [
-              {
-                "entity": "TravelOrder",
-                "action": "mark_order_failed"
-              }
-            ]
-          },
-          {
-            "name": "order_submitted_policy_check",
-            "description": "订单提交后，跨实体创建 TravelPolicyCheck 记录差标校验结果",
-            "steps": [
-              {
-                "action": "submit_order",
-                "entity": "TravelOrder"
-              },
-              {
-                "action": "create",
-                "entity": "TravelPolicyCheck",
-                "depends_on": [
-                  "submit_order"
-                ],
-                "input": {
-                  "order_id": "{{submit_order.id}}"
-                }
-              }
-            ]
           }
         ],
         "integrations": [
           {
             "name": "shop_caller_context_resolve",
             "on": [
-              "create_order"
+              "create"
             ],
             "mode": "sync",
             "request": {
@@ -3444,7 +3554,7 @@
                   "to": "enterprise_id"
                 },
                 {
-                  "from": "context.current_shop_id",
+                  "from": "attr.host_shop_id",
                   "to": "current_shop_id"
                 }
               ],
@@ -3654,28 +3764,22 @@
               }
             ],
             "description": "支付成功后异步提交供应商预订，失败时回滚 booking_pending 并转失败处理"
-          }
-        ],
-        "determine_actions": [
-          {
-            "name": "trigger_fulfillment_creation",
-            "phase": "post_commit",
-            "scope": "cross_aggregate",
-            "mode": "derive_only",
-            "read_set": [
-              "status",
-              "product_type"
-            ]
           },
           {
-            "name": "trigger_policy_check",
-            "phase": "post_commit",
-            "scope": "cross_aggregate",
-            "mode": "derive_only",
-            "read_set": [
-              "product_type",
-              "total_amount"
-            ]
+            "name": "create_approval_instance",
+            "on": [
+              "request_cancel"
+            ],
+            "mode": "sync",
+            "request": {
+              "subject_type": "string",
+              "subject_id": "uuid"
+            },
+            "response": {
+              "instance_id": "uuid",
+              "status": "string"
+            },
+            "description": "发起取消时创建审批实例，由 Approvals 域驱动 execute_cancel 或 cancel_cancel_request"
           }
         ],
         "state_machine": {
@@ -3745,21 +3849,26 @@
             {
               "from": "cancel_pending",
               "to": "cancelled",
-              "event": "approve_cancel"
+              "event": "execute_cancel"
+            },
+            {
+              "from": "cancel_pending",
+              "to": "booked",
+              "event": "cancel_cancel_request"
             }
           ],
           "state_attribute": "status"
         },
         "event_consumers": [
           {
-            "topic": "travel.change_order.completed",
-            "action": "confirm_change",
-            "source_entity": "TravelChangeOrder"
+            "topic": "approvals.instance.approved",
+            "action": "execute_cancel",
+            "source_entity": "ApprovalInstance"
           },
           {
-            "topic": "travel.refund_order.refunded",
-            "action": "approve_cancel",
-            "source_entity": "TravelRefundOrder"
+            "topic": "approvals.instance.rejected",
+            "action": "cancel_cancel_request",
+            "source_entity": "ApprovalInstance"
           }
         ]
       },
@@ -4286,7 +4395,7 @@
       },
       {
         "name": "TravelChangeOrder",
-        "description": "改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态",
+        "description": "改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态；审批通过 overlay on Approvals 域",
         "aggregate_root": true,
         "attributes": [
           {
@@ -4381,12 +4490,29 @@
             "primary": true
           },
           {
-            "name": "approve",
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "change_reason",
+              "price_difference",
+              "change_fee",
+              "new_offer_id"
+            ],
+            "primary": true
+          },
+          {
+            "name": "submit",
+            "type": "update",
+            "accept": [],
+            "description": "提交改签申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance"
+          },
+          {
+            "name": "confirm_change",
             "type": "update",
             "accept": []
           },
           {
-            "name": "reject",
+            "name": "reject_change",
             "type": "update",
             "accept": []
           },
@@ -4418,10 +4544,11 @@
               ]
             },
             "on": [
-              "approve",
-              "reject"
+              "submit",
+              "confirm_change",
+              "reject_change"
             ],
-            "message": "只有 pending 改签单可以审批或拒绝"
+            "message": "只有 pending 改签单可以提交或由审批触发"
           },
           {
             "rule": "one_of",
@@ -4469,7 +4596,7 @@
             "field": "status",
             "value": "approved",
             "on": [
-              "approve"
+              "confirm_change"
             ]
           },
           {
@@ -4477,7 +4604,7 @@
             "field": "status",
             "value": "rejected",
             "on": [
-              "reject"
+              "reject_change"
             ]
           },
           {
@@ -4508,8 +4635,9 @@
             },
             "on": [
               "create",
-              "approve",
-              "reject",
+              "submit",
+              "confirm_change",
+              "reject_change",
               "complete",
               "complete_direct"
             ]
@@ -4526,11 +4654,15 @@
         ],
         "events": [
           {
-            "on": "approve",
+            "on": "submit",
+            "topic": "travel.change_order.submitted"
+          },
+          {
+            "on": "confirm_change",
             "topic": "travel.change_order.approved"
           },
           {
-            "on": "reject",
+            "on": "reject_change",
             "topic": "travel.change_order.rejected"
           },
           {
@@ -4550,20 +4682,27 @@
               {
                 "action": "create",
                 "next": [
-                  "approve",
-                  "reject",
+                  "submit",
                   "complete_direct"
                 ]
               },
               {
-                "action": "approve",
+                "action": "submit",
+                "next": [
+                  "confirm_change",
+                  "reject_change"
+                ],
+                "trigger_event": "travel.change_order.submitted"
+              },
+              {
+                "action": "confirm_change",
                 "next": [
                   "complete"
                 ],
                 "trigger_event": "travel.change_order.approved"
               },
               {
-                "action": "reject",
+                "action": "reject_change",
                 "trigger_event": "travel.change_order.rejected"
               },
               {
@@ -4575,46 +4714,24 @@
                 "trigger_event": "travel.change_order.completed"
               }
             ]
-          },
-          {
-            "name": "change_approval_to_order_confirm",
-            "description": "改签审批完成后，触发原订单执行 confirm_change；失败时回滚改签单为 rejected",
-            "steps": [
-              {
-                "action": "complete",
-                "entity": "TravelChangeOrder"
-              },
-              {
-                "action": "confirm_change",
-                "entity": "TravelOrder",
-                "depends_on": [
-                  "complete"
-                ],
-                "input": {
-                  "id": "{{complete.original_order_id}}"
-                }
-              }
-            ],
-            "compensation": [
-              {
-                "entity": "TravelChangeOrder",
-                "action": "reject"
-              }
-            ]
           }
         ],
-        "determine_actions": [
+        "integrations": [
           {
-            "name": "notify_order_change_approved",
-            "phase": "post_commit",
-            "scope": "cross_aggregate",
-            "mode": "async_write_back",
-            "read_set": [
-              "original_order.status"
+            "name": "create_approval_instance",
+            "on": [
+              "submit"
             ],
-            "write_set": [
-              "status"
-            ]
+            "mode": "sync",
+            "request": {
+              "subject_type": "string",
+              "subject_id": "uuid"
+            },
+            "response": {
+              "instance_id": "uuid",
+              "status": "string"
+            },
+            "description": "当 approval_mode=oa 时创建审批实例"
           }
         ],
         "state_machine": {
@@ -4629,12 +4746,12 @@
             {
               "from": "pending",
               "to": "approved",
-              "event": "approve"
+              "event": "confirm_change"
             },
             {
               "from": "pending",
               "to": "rejected",
-              "event": "reject"
+              "event": "reject_change"
             },
             {
               "from": "approved",
@@ -4648,11 +4765,23 @@
             }
           ],
           "state_attribute": "status"
-        }
+        },
+        "event_consumers": [
+          {
+            "topic": "approvals.instance.approved",
+            "action": "confirm_change",
+            "source_entity": "ApprovalInstance"
+          },
+          {
+            "topic": "approvals.instance.rejected",
+            "action": "reject_change",
+            "source_entity": "ApprovalInstance"
+          }
+        ]
       },
       {
         "name": "TravelRefundOrder",
-        "description": "退票/退订单，记录针对已有 TravelOrder 的退票请求、手续费与退款状态",
+        "description": "退票/退订单，记录针对已有 TravelOrder 的退票请求、手续费与退款状态；审批通过 overlay on Approvals 域",
         "aggregate_root": true,
         "attributes": [
           {
@@ -4741,12 +4870,28 @@
             "primary": true
           },
           {
-            "name": "approve",
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "refund_reason",
+              "refund_fee",
+              "refund_amount"
+            ],
+            "primary": true
+          },
+          {
+            "name": "submit",
+            "type": "update",
+            "accept": [],
+            "description": "提交退票申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance"
+          },
+          {
+            "name": "confirm_refund",
             "type": "update",
             "accept": []
           },
           {
-            "name": "reject",
+            "name": "reject_refund",
             "type": "update",
             "accept": []
           },
@@ -4778,10 +4923,11 @@
               ]
             },
             "on": [
-              "approve",
-              "reject"
+              "submit",
+              "confirm_refund",
+              "reject_refund"
             ],
-            "message": "只有 pending 退票单可以审批或拒绝"
+            "message": "只有 pending 退票单可以提交或由审批触发"
           },
           {
             "rule": "one_of",
@@ -4829,7 +4975,7 @@
             "field": "status",
             "value": "approved",
             "on": [
-              "approve"
+              "confirm_refund"
             ]
           },
           {
@@ -4837,7 +4983,7 @@
             "field": "status",
             "value": "rejected",
             "on": [
-              "reject"
+              "reject_refund"
             ]
           },
           {
@@ -4868,8 +5014,9 @@
             },
             "on": [
               "create",
-              "approve",
-              "reject",
+              "submit",
+              "confirm_refund",
+              "reject_refund",
               "refund",
               "refund_direct"
             ]
@@ -4886,11 +5033,15 @@
         ],
         "events": [
           {
-            "on": "approve",
+            "on": "submit",
+            "topic": "travel.refund_order.submitted"
+          },
+          {
+            "on": "confirm_refund",
             "topic": "travel.refund_order.approved"
           },
           {
-            "on": "reject",
+            "on": "reject_refund",
             "topic": "travel.refund_order.rejected"
           },
           {
@@ -4910,20 +5061,27 @@
               {
                 "action": "create",
                 "next": [
-                  "approve",
-                  "reject",
+                  "submit",
                   "refund_direct"
                 ]
               },
               {
-                "action": "approve",
+                "action": "submit",
+                "next": [
+                  "confirm_refund",
+                  "reject_refund"
+                ],
+                "trigger_event": "travel.refund_order.submitted"
+              },
+              {
+                "action": "confirm_refund",
                 "next": [
                   "refund"
                 ],
                 "trigger_event": "travel.refund_order.approved"
               },
               {
-                "action": "reject",
+                "action": "reject_refund",
                 "trigger_event": "travel.refund_order.rejected"
               },
               {
@@ -4935,46 +5093,24 @@
                 "trigger_event": "travel.refund_order.refunded"
               }
             ]
-          },
-          {
-            "name": "refund_to_order_cancel",
-            "description": "退票单退款完成后，触发原订单执行 approve_cancel；失败时退票单状态仍保持 refunded（退款已完成，订单取消为最终补偿）",
-            "steps": [
-              {
-                "action": "refund",
-                "entity": "TravelRefundOrder"
-              },
-              {
-                "action": "approve_cancel",
-                "entity": "TravelOrder",
-                "depends_on": [
-                  "refund"
-                ],
-                "input": {
-                  "id": "{{refund.original_order_id}}"
-                }
-              }
-            ],
-            "compensation": [
-              {
-                "entity": "TravelRefundOrder",
-                "action": "reject"
-              }
-            ]
           }
         ],
-        "determine_actions": [
+        "integrations": [
           {
-            "name": "notify_order_refund_approved",
-            "phase": "post_commit",
-            "scope": "cross_aggregate",
-            "mode": "async_write_back",
-            "read_set": [
-              "original_order.status"
+            "name": "create_approval_instance",
+            "on": [
+              "submit"
             ],
-            "write_set": [
-              "status"
-            ]
+            "mode": "sync",
+            "request": {
+              "subject_type": "string",
+              "subject_id": "uuid"
+            },
+            "response": {
+              "instance_id": "uuid",
+              "status": "string"
+            },
+            "description": "当 approval_mode=oa 时创建审批实例"
           }
         ],
         "state_machine": {
@@ -4989,12 +5125,12 @@
             {
               "from": "pending",
               "to": "approved",
-              "event": "approve"
+              "event": "confirm_refund"
             },
             {
               "from": "pending",
               "to": "rejected",
-              "event": "reject"
+              "event": "reject_refund"
             },
             {
               "from": "approved",
@@ -5008,12 +5144,25 @@
             }
           ],
           "state_attribute": "status"
-        }
+        },
+        "event_consumers": [
+          {
+            "topic": "approvals.instance.approved",
+            "action": "confirm_refund",
+            "source_entity": "ApprovalInstance"
+          },
+          {
+            "topic": "approvals.instance.rejected",
+            "action": "reject_refund",
+            "source_entity": "ApprovalInstance"
+          }
+        ]
       },
       {
         "name": "TravelPolicy",
         "description": "差旅标准政策，定义不同企业、职级、城市等级下的差旅费用上限与超标策略",
         "aggregate_root": true,
+        "resource_type": "config",
         "attributes": [
           {
             "name": "id",
@@ -5331,7 +5480,7 @@
         "workflows": [
           {
             "name": "policy_lifecycle",
-            "description": "差旅政策生命周期：active ↔ inactive",
+            "description": "差旅政策生命周期：active / inactive",
             "steps": [
               {
                 "action": "create",
@@ -5363,7 +5512,27 @@
               }
             ]
           }
-        ]
+        ],
+        "state_machine": {
+          "initial_state": "false",
+          "states": [
+            "false",
+            "true"
+          ],
+          "transitions": [
+            {
+              "from": "false",
+              "to": "true",
+              "event": "activate"
+            },
+            {
+              "from": "true",
+              "to": "false",
+              "event": "deactivate"
+            }
+          ],
+          "state_attribute": "is_active"
+        }
       },
       {
         "name": "TravelPolicyCheck",
@@ -5492,6 +5661,17 @@
           {
             "name": "read",
             "type": "read",
+            "primary": true
+          },
+          {
+            "name": "update",
+            "type": "update",
+            "accept": [
+              "check_result",
+              "exceed_reason",
+              "exceed_strategy",
+              "personal_pay_amount"
+            ],
             "primary": true
           }
         ],

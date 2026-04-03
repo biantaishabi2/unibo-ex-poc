@@ -1,4 +1,4 @@
-# Workflow: policy_lifecycle — 差旅政策生命周期：active ↔ inactive
+# Workflow: policy_lifecycle — 差旅政策生命周期：active / inactive
 # ```mermaid
 # stateDiagram-v2
 #   [*] --> create
@@ -14,7 +14,7 @@ defmodule UniboExPoc.Travel.TravelPolicy do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource],
+    extensions: [AshGraphql.Resource, AshStateMachine],
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
@@ -33,7 +33,6 @@ defmodule UniboExPoc.Travel.TravelPolicy do
     queries do
       get :get_travel_travel_policy, :read
       list :list_travel_travel_policys, :read
-      get :get_match_policy_travel_travel_policy, :match_policy
       list :list_match_policy_travel_travel_policys, :match_policy
     end
 
@@ -99,8 +98,10 @@ defmodule UniboExPoc.Travel.TravelPolicy do
       public? true
       description "个人支付比例 0-100"
     end
-    attribute :is_active, :boolean do
-      default true
+    attribute :is_active, :atom do
+      allow_nil? false
+      constraints one_of: [:false, :true]
+      default "false"
       public? true
       description "是否启用"
     end
@@ -108,8 +109,19 @@ defmodule UniboExPoc.Travel.TravelPolicy do
       public? true
       description "企业标识（不做跨域外键）"
     end
-    create_timestamp :inserted_at
-    update_timestamp :updated_at
+    attribute :inserted_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      public? true
+    end
+    attribute :updated_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      update_default &DateTime.utc_now/0
+      public? true
+    end
   end
 
   actions do
@@ -152,6 +164,7 @@ defmodule UniboExPoc.Travel.TravelPolicy do
       end
       # message: "只有未启用的政策可以激活"
       change set_attribute(:is_active, true)
+      change AshStateMachine.BuiltinChanges.transition_state(:true)
       require_atomic? false
     end
     update :deactivate do
@@ -167,6 +180,7 @@ defmodule UniboExPoc.Travel.TravelPolicy do
       end
       # message: "只有已启用的政策可以停用"
       change set_attribute(:is_active, false)
+      change AshStateMachine.BuiltinChanges.transition_state(:false)
       require_atomic? false
     end
   end
@@ -179,12 +193,17 @@ defmodule UniboExPoc.Travel.TravelPolicy do
     identity :unique_policy_scope, [:policy_name, :product_type, :employee_level, :city_tier]
   end
 
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
-  end
 
+  state_machine do
+    initial_states [:false]
+    default_initial_state :false
+    extra_states [:false, :true]
+    state_attribute :is_active
+    transitions do
+      transition :activate, from: :false, to: :true
+      transition :deactivate, from: :true, to: :false
+    end
+  end
 
   pub_sub do
     module UniboExPoc.PubSub

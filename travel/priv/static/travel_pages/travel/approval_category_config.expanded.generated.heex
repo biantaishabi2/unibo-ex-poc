@@ -1,0 +1,114 @@
+<.page title="详情" id="approval_category_config">
+  <.section layout="none" id="breadcrumb_section">
+    <.breadcrumb id="page_breadcrumb">
+      <.breadcrumb_list id="bc_list">
+        <.breadcrumb_item id="bc_list_item">
+          <.breadcrumb_link id="bc_link">
+            列表
+          </.breadcrumb_link>
+        </.breadcrumb_item>
+        <.breadcrumb_separator id="bc_sep" />
+        <.breadcrumb_item id="bc_current_item">
+          <.breadcrumb_page id="bc_current">
+            详情
+          </.breadcrumb_page>
+        </.breadcrumb_item>
+      </.breadcrumb_list>
+    </.breadcrumb>
+  </.section>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="detail_header">
+    <.flex gap={3} align="center" direction="row" id="title_group">
+      <.stack direction="column" id="title_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelPolicyCheck
+        </.text>
+        <.text variant="h1" id="page_title">
+          差标校验记录,记录订单下单时针对差旅政策的校验结果、超标金额与处理策略
+        </.text>
+      </.stack>
+      <.badge bind="travel_policy_check.status" variant="default" size="sm" id="status_badge" />
+    </.flex>
+    <.flex gap={2} direction="row" id="actions_group">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
+        编辑
+      </.button>
+      <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
+        删除
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="info_section" />
+  <.split ratio="1:3" id="settings_split">
+    <.card variant="default" id="nav_card">
+      <.card_content id="nav_content">
+        <.stack gap={1} direction="column" id="nav_menu">
+          <.button variant="ghost" phx-click="navigate_general" size="md" id="nav_general">
+            基本设置
+          </.button>
+          <.button variant="ghost" phx-click="navigate_notification" size="md" id="nav_notification">
+            通知设置
+          </.button>
+          <.button variant="ghost" phx-click="navigate_security" size="md" id="nav_security">
+            安全设置
+          </.button>
+          <.button variant="ghost" phx-click="navigate_display" size="md" id="nav_display">
+            显示设置
+          </.button>
+          <.button variant="ghost" phx-click="navigate_advanced" size="md" id="nav_advanced">
+            高级设置
+          </.button>
+        </.stack>
+      </.card_content>
+    </.card>
+    <.stack gap={4} direction="column" id="settings_content">
+      <.card variant="default" id="general_card">
+        <.card_header id="general_header">
+          <.card_title id="general_title">
+            基本设置
+          </.card_title>
+        </.card_header>
+        <.card_content id="general_content">
+          <.stack gap={3} direction="column" id="general_fields">
+            <.input name="site_name" label="站点名称" placeholder="请输入站点名称" size="md" id="setting_name" />
+            <.input name="logo" label="Logo" type="file" size="md" id="setting_logo" />
+            <.textarea name="site_description" label="站点描述" placeholder="请输入站点描述" id="setting_description" />
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="notification_card">
+        <.card_header id="notification_header">
+          <.card_title id="notification_title">
+            通知设置
+          </.card_title>
+        </.card_header>
+        <.card_content id="notification_content">
+          <.stack gap={3} direction="column" id="notification_fields">
+            <.select name="notify_method" label="默认通知方式" size="md" id="notify_method" options={[%{label: "短信", value: "sms"}]}>
+
+            </.select>
+            <.select name="notify_frequency" label="通知频率" size="md" id="notify_frequency" options={[%{label: "每周汇总", value: "weekly"}]}>
+
+            </.select>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="security_card">
+        <.card_header id="security_header">
+          <.card_title id="security_title">
+            安全设置
+          </.card_title>
+        </.card_header>
+        <.card_content id="security_content">
+          <.stack gap={3} direction="column" id="security_fields">
+            <.select name="session_timeout" label="会话超时时间" size="md" id="session_timeout" options={[%{label: "4小时", value: "240"}]}>
+
+            </.select>
+            <.select name="password_policy" label="密码策略" size="md" id="password_policy" options={[%{label: "严格", value: "strict"}]}>
+
+            </.select>
+          </.stack>
+        </.card_content>
+      </.card>
+    </.stack>
+  </.split>
+</.page>

@@ -1,0 +1,49 @@
+{
+  "backend": {
+    "api_map": {
+      "list": "Travel.TravelOrder.list"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "id"
+    },
+    "params": {
+      "accept": []
+    }
+  },
+  "delivery_mode": "compiled",
+  "domain": "Travel",
+  "e2e": {
+    "playwright": {
+      "auto": true,
+      "base_path": "/pages/travel/home",
+      "cases": [],
+      "page_kind": "list",
+      "page_spec": {
+        "page_kind": "list",
+        "route_role": "list",
+        "supports_runtime_record_identity": false,
+        "template_kind": "overview_page"
+      }
+    }
+  },
+  "entity": "TravelOrder",
+  "extends": "base_overview",
+  "page_id": "home",
+  "page_type": "overview_page",
+  "state_transitions": [],
+  "status_keys": [],
+  "transitions": {},
+  "ui": {
+    "sections": [],
+    "template": {
+      "list": "overview_page"
+    }
+  },
+  "version": 2
+}

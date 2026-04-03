@@ -2,27 +2,27 @@
   "version": 1,
   "requiredPaths": [
     "editing",
-    "record.bed_type",
-    "record.hotel_code",
-    "record.room_type_code",
-    "record.room_type_name",
-    "record.status"
+    "travel_room_type.bed_type",
+    "travel_room_type.hotel_code",
+    "travel_room_type.room_type_code",
+    "travel_room_type.room_type_name",
+    "travel_room_type.status"
   ],
   "requiredRoots": [
     "editing",
-    "record"
+    "travel_room_type"
   ],
   "schema": {
-    "record": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_room_type": {
       "type": "object",
       "required": true,
       "properties": {
         "room_type_code": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
-        "status": {
           "type": "string",
           "required": false,
           "example": ""
@@ -41,13 +41,13 @@
           "type": "string",
           "required": false,
           "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
         }
       }
-    },
-    "editing": {
-      "type": "object",
-      "required": true,
-      "properties": {}
     }
   },
   "notes": []

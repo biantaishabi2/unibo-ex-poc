@@ -1,43 +1,37 @@
 {
   "version": 1,
   "events": {
-    "flight_offer_create": {
-      "name": "flight_offer_create",
+    "toggle_edit": {
+      "name": "toggle_edit",
       "triggers": [
         "click"
       ],
       "params": {}
     },
-    "flight_offer_update": {
-      "name": "flight_offer_update",
+    "action_destroy": {
+      "name": "action_destroy",
       "triggers": [
         "click"
       ],
       "params": {}
     },
-    "flight_offer_activate": {
-      "name": "flight_offer_activate",
+    "form_submit": {
+      "name": "form_submit",
       "triggers": [
-        "click"
+        "click",
+        "submit"
       ],
       "params": {}
     },
-    "flight_offer_deactivate": {
-      "name": "flight_offer_deactivate",
+    "form_change": {
+      "name": "form_change",
       "triggers": [
-        "click"
+        "change"
       ],
       "params": {}
     },
-    "flight_offer_expire": {
-      "name": "flight_offer_expire",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
-    },
-    "flight_offer_destroy": {
-      "name": "flight_offer_destroy",
+    "cancel_edit": {
+      "name": "cancel_edit",
       "triggers": [
         "click"
       ],

@@ -1,25 +1,103 @@
 {
   "version": 1,
   "defaults": {
-    "policy": {
-      "exceeded": true
-    },
-    "results": {
-      "total_count": true
-    },
     "search": {
+      "route_label": "",
       "date_range": [
         {
           "is_selected": "",
-          "date_label": ""
+          "date_label": "",
+          "weekday": ""
         },
         {
           "is_selected": "",
-          "date_label": ""
+          "date_label": "",
+          "weekday": ""
         },
         {
           "is_selected": "",
-          "date_label": ""
+          "date_label": "",
+          "weekday": ""
+        }
+      ]
+    },
+    "policy": {
+      "exceeded": true
+    },
+    "trains": {
+      "total_count": true,
+      "items": [
+        {
+          "id": "tra_01",
+          "train_no": "",
+          "train_type_label": "",
+          "is_policy_compliant": true,
+          "departure_time": "",
+          "departure_station_name": "",
+          "duration_label": "",
+          "stop_count_label": "",
+          "arrival_time": "",
+          "arrival_station_name": "",
+          "seat_options": [
+            {
+              "seat_class_name": "",
+              "price": "",
+              "tickets_label": ""
+            },
+            {
+              "seat_class_name": "",
+              "price": "",
+              "tickets_label": ""
+            }
+          ]
+        },
+        {
+          "id": "tra_02",
+          "train_no": "",
+          "train_type_label": "",
+          "is_policy_compliant": true,
+          "departure_time": "",
+          "departure_station_name": "",
+          "duration_label": "",
+          "stop_count_label": "",
+          "arrival_time": "",
+          "arrival_station_name": "",
+          "seat_options": [
+            {
+              "seat_class_name": "",
+              "price": "",
+              "tickets_label": ""
+            },
+            {
+              "seat_class_name": "",
+              "price": "",
+              "tickets_label": ""
+            }
+          ]
+        },
+        {
+          "id": "tra_03",
+          "train_no": "",
+          "train_type_label": "",
+          "is_policy_compliant": true,
+          "departure_time": "",
+          "departure_station_name": "",
+          "duration_label": "",
+          "stop_count_label": "",
+          "arrival_time": "",
+          "arrival_station_name": "",
+          "seat_options": [
+            {
+              "seat_class_name": "",
+              "price": "",
+              "tickets_label": ""
+            },
+            {
+              "seat_class_name": "",
+              "price": "",
+              "tickets_label": ""
+            }
+          ]
         }
       ]
     }
@@ -27,18 +105,37 @@
   "keys": [
     "policy",
     "policy.exceeded",
-    "results",
-    "results.total_count",
     "search",
     "search.date_range",
     "search.date_range[]",
     "search.date_range[].date_label",
-    "search.date_range[].is_selected"
+    "search.date_range[].is_selected",
+    "search.date_range[].weekday",
+    "search.route_label",
+    "trains",
+    "trains.items",
+    "trains.items[]",
+    "trains.items[].arrival_station_name",
+    "trains.items[].arrival_time",
+    "trains.items[].departure_station_name",
+    "trains.items[].departure_time",
+    "trains.items[].duration_label",
+    "trains.items[].id",
+    "trains.items[].is_policy_compliant",
+    "trains.items[].seat_options",
+    "trains.items[].seat_options[]",
+    "trains.items[].seat_options[].price",
+    "trains.items[].seat_options[].seat_class_name",
+    "trains.items[].seat_options[].tickets_label",
+    "trains.items[].stop_count_label",
+    "trains.items[].train_no",
+    "trains.items[].train_type_label",
+    "trains.total_count"
   ],
   "required": [
     "policy",
-    "results",
-    "search"
+    "search",
+    "trains"
   ],
   "urlParams": {},
   "notes": []

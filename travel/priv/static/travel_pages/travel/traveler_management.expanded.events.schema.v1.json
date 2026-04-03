@@ -1,36 +1,29 @@
 {
   "version": 1,
   "events": {
-    "open_dialog:traveler_edit_dialog:create": {
-      "name": "open_dialog:traveler_edit_dialog:create",
+    "navigate_create": {
+      "name": "navigate_create",
       "triggers": [
         "click"
       ],
       "params": {}
     },
-    "open_dialog:traveler_edit_dialog:edit:{{item.id|}}": {
-      "name": "open_dialog:traveler_edit_dialog:edit:{{item.id|}}",
+    "filter_submit": {
+      "name": "filter_submit",
       "triggers": [
         "click"
       ],
       "params": {}
     },
-    "delete:Travel.TravelerProfile:{{item.id|}}": {
-      "name": "delete:Travel.TravelerProfile:{{item.id|}}",
+    "travel_order_page_prev": {
+      "name": "travel_order_page_prev",
       "triggers": [
         "click"
       ],
       "params": {}
     },
-    "close_dialog:traveler_edit_dialog": {
-      "name": "close_dialog:traveler_edit_dialog",
-      "triggers": [
-        "click"
-      ],
-      "params": {}
-    },
-    "submit_form:Travel.TravelerProfile": {
-      "name": "submit_form:Travel.TravelerProfile",
+    "travel_order_page_next": {
+      "name": "travel_order_page_next",
       "triggers": [
         "click"
       ],

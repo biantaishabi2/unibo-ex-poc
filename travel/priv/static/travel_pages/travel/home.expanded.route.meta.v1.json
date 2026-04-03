@@ -1,0 +1,12 @@
+{
+  "page_id": "home",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.HomeLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/home",
+    "kind": "list",
+    "params": []
+  }
+}

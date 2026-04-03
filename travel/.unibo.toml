@@ -1,0 +1,22 @@
+[project]
+module_prefix = "UniboExPoc"
+repo = "UniboExPoc.Repo"
+otp_app = "unibo_ex_poc"
+
+[backend]
+input_dirs = ["./models"]
+output = "./lib"
+target = "ash"
+graphql = true
+emit_graphql_schemas = false
+runtime_profile = "strict"
+relation_mode = "warn"
+autowire_ash_deps = true
+
+[frontend]
+models = ["./models"]
+stitch_bin = "../../stitch/dist/bin/stitch.js"
+output = "./priv/static/travel_pages"
+pages_dir = "./pages"
+templates_dir = "../pages/bases"
+deploy_dir = "./priv/static/travel_pages"

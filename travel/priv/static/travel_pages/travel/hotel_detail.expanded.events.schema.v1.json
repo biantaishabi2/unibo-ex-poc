@@ -1,15 +1,37 @@
 {
   "version": 1,
   "events": {
-    "refresh_offers": {
-      "name": "refresh_offers",
+    "toggle_edit": {
+      "name": "toggle_edit",
       "triggers": [
         "click"
       ],
       "params": {}
     },
-    "navigate:/travel/hotel/booking/{{item.id|}}": {
-      "name": "navigate:/travel/hotel/booking/{{item.id|}}",
+    "action_destroy": {
+      "name": "action_destroy",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "form_submit": {
+      "name": "form_submit",
+      "triggers": [
+        "click",
+        "submit"
+      ],
+      "params": {}
+    },
+    "form_change": {
+      "name": "form_change",
+      "triggers": [
+        "change"
+      ],
+      "params": {}
+    },
+    "cancel_edit": {
+      "name": "cancel_edit",
       "triggers": [
         "click"
       ],

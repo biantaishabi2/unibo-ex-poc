@@ -7,11 +7,11 @@ defmodule UniboExPoc.Travel.Workflows.TravelChangeOrder.ChangeOrderLifecycleWork
   alias UniboExPoc.Travel.TravelChangeOrder
 
   def steps do
-    [:s1_create, :s2_approve, :s3_reject, :s4_complete, :s5_complete_direct]
+    [:s1_create, :s2_submit, :s3_confirm_change, :s4_reject_change, :s5_complete, :s6_complete_direct]
   end
 
   @workflow_semantics_json ~S"""
-{"steps":[{"idempotency_key":null,"next":["approve","reject","complete_direct"],"next_step_ids":["s2_approve","s3_reject","s5_complete_direct"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["complete"],"next_step_ids":["s4_complete"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"approve","step_id":"s2_approve"},{"idempotency_key":null,"next":["complete"],"next_step_ids":["s4_complete"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"reject","step_id":"s3_reject"},{"idempotency_key":null,"next":["complete_direct"],"next_step_ids":["s5_complete_direct"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"complete","step_id":"s4_complete"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"complete_direct","step_id":"s5_complete_direct"}],"workflow":"change_order_lifecycle"}
+{"steps":[{"idempotency_key":null,"next":["submit","complete_direct"],"next_step_ids":["s2_submit","s6_complete_direct"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"create","step_id":"s1_create"},{"idempotency_key":null,"next":["confirm_change","reject_change"],"next_step_ids":["s3_confirm_change","s4_reject_change"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"submit","step_id":"s2_submit"},{"idempotency_key":null,"next":["complete"],"next_step_ids":["s5_complete"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"confirm_change","step_id":"s3_confirm_change"},{"idempotency_key":null,"next":["complete"],"next_step_ids":["s5_complete"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"reject_change","step_id":"s4_reject_change"},{"idempotency_key":null,"next":["complete_direct"],"next_step_ids":["s6_complete_direct"],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"complete","step_id":"s5_complete"},{"idempotency_key":null,"next":[],"next_step_ids":[],"on_error":[],"on_error_step_ids":[],"retry":{"backoff_ms":0,"max_attempts":1},"step":"complete_direct","step_id":"s6_complete_direct"}],"workflow":"change_order_lifecycle"}
 """
   def workflow_semantics_json, do: String.trim(@workflow_semantics_json)
 
@@ -100,13 +100,15 @@ defmodule UniboExPoc.Travel.Workflows.TravelChangeOrder.ChangeOrderLifecycleWork
     case step do
       :s1_create ->
         Ash.create(Ash.Changeset.for_create(TravelChangeOrder, :create, params), ash_opts)
-      :s2_approve ->
-        Ash.update(Ash.Changeset.for_update(record, :approve, params), ash_opts)
-      :s3_reject ->
-        Ash.update(Ash.Changeset.for_update(record, :reject, params), ash_opts)
-      :s4_complete ->
+      :s2_submit ->
+        Ash.update(Ash.Changeset.for_update(record, :submit, params), ash_opts)
+      :s3_confirm_change ->
+        Ash.update(Ash.Changeset.for_update(record, :confirm_change, params), ash_opts)
+      :s4_reject_change ->
+        Ash.update(Ash.Changeset.for_update(record, :reject_change, params), ash_opts)
+      :s5_complete ->
         Ash.update(Ash.Changeset.for_update(record, :complete, params), ash_opts)
-      :s5_complete_direct ->
+      :s6_complete_direct ->
         Ash.update(Ash.Changeset.for_update(record, :complete_direct, params), ash_opts)
       _ -> {:ok, record}
     end
@@ -132,11 +134,12 @@ defmodule UniboExPoc.Travel.Workflows.TravelChangeOrder.ChangeOrderLifecycleWork
 
   defp next_candidates(step) do
     case step do
-      :s1_create -> [:s2_approve, :s3_reject, :s5_complete_direct]
-      :s2_approve -> [:s4_complete]
-      :s3_reject -> [:s4_complete]
-      :s4_complete -> [:s5_complete_direct]
-      :s5_complete_direct -> []
+      :s1_create -> [:s2_submit, :s6_complete_direct]
+      :s2_submit -> [:s3_confirm_change, :s4_reject_change]
+      :s3_confirm_change -> [:s5_complete]
+      :s4_reject_change -> [:s5_complete]
+      :s5_complete -> [:s6_complete_direct]
+      :s6_complete_direct -> []
       _ -> []
     end
   end
@@ -144,10 +147,11 @@ defmodule UniboExPoc.Travel.Workflows.TravelChangeOrder.ChangeOrderLifecycleWork
   defp on_error_candidates(step) do
     case step do
       :s1_create -> []
-      :s2_approve -> []
-      :s3_reject -> []
-      :s4_complete -> []
-      :s5_complete_direct -> []
+      :s2_submit -> []
+      :s3_confirm_change -> []
+      :s4_reject_change -> []
+      :s5_complete -> []
+      :s6_complete_direct -> []
       _ -> []
     end
   end
@@ -155,10 +159,11 @@ defmodule UniboExPoc.Travel.Workflows.TravelChangeOrder.ChangeOrderLifecycleWork
   defp branch_next(step, _record) do
     case step do
       :s1_create -> nil
-      :s2_approve -> nil
-      :s3_reject -> nil
-      :s4_complete -> nil
-      :s5_complete_direct -> nil
+      :s2_submit -> nil
+      :s3_confirm_change -> nil
+      :s4_reject_change -> nil
+      :s5_complete -> nil
+      :s6_complete_direct -> nil
       _ -> nil
     end
   end
@@ -166,10 +171,11 @@ defmodule UniboExPoc.Travel.Workflows.TravelChangeOrder.ChangeOrderLifecycleWork
   defp step_skipped?(step, _record) do
     case step do
       :s1_create -> false
-      :s2_approve -> false
-      :s3_reject -> false
-      :s4_complete -> false
-      :s5_complete_direct -> false
+      :s2_submit -> false
+      :s3_confirm_change -> false
+      :s4_reject_change -> false
+      :s5_complete -> false
+      :s6_complete_direct -> false
       _ -> false
     end
   end
@@ -177,10 +183,11 @@ defmodule UniboExPoc.Travel.Workflows.TravelChangeOrder.ChangeOrderLifecycleWork
   defp retry_policy(step) do
     case step do
       :s1_create -> %{max_attempts: 1, backoff_ms: 0}
-      :s2_approve -> %{max_attempts: 1, backoff_ms: 0}
-      :s3_reject -> %{max_attempts: 1, backoff_ms: 0}
-      :s4_complete -> %{max_attempts: 1, backoff_ms: 0}
-      :s5_complete_direct -> %{max_attempts: 1, backoff_ms: 0}
+      :s2_submit -> %{max_attempts: 1, backoff_ms: 0}
+      :s3_confirm_change -> %{max_attempts: 1, backoff_ms: 0}
+      :s4_reject_change -> %{max_attempts: 1, backoff_ms: 0}
+      :s5_complete -> %{max_attempts: 1, backoff_ms: 0}
+      :s6_complete_direct -> %{max_attempts: 1, backoff_ms: 0}
       _ -> %{max_attempts: 1, backoff_ms: 0}
     end
   end
@@ -188,10 +195,11 @@ defmodule UniboExPoc.Travel.Workflows.TravelChangeOrder.ChangeOrderLifecycleWork
   defp step_idempotency_source(step) do
     case step do
       :s1_create -> nil
-      :s2_approve -> nil
-      :s3_reject -> nil
-      :s4_complete -> nil
-      :s5_complete_direct -> nil
+      :s2_submit -> nil
+      :s3_confirm_change -> nil
+      :s4_reject_change -> nil
+      :s5_complete -> nil
+      :s6_complete_direct -> nil
       _ -> nil
     end
   end

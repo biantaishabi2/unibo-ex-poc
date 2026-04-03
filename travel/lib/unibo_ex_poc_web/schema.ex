@@ -6,18 +6,6 @@ defmodule UniboExPocWeb.Schema do
   def unibo_runtime_domains do
     [
       UniboExPoc.Travel,
-      UniboExPoc.Ecommerce,
-      UniboExPoc.Sales,
-      UniboExPoc.Payment,
-      UniboExPoc.Delivery,
-      UniboExPoc.Purchasing,
-      UniboExPoc.Accounting,
-      UniboExPoc.Ofbiz.Common,
-      UniboExPoc.Ofbiz.Party,
-      UniboExPoc.Ofbiz.Product,
-      UniboExPoc.Ofbiz.Order,
-      UniboExPoc.Ofbiz.Shipment,
-      UniboExPoc.Ofbiz.Accounting,
     ]
   end
 
@@ -33,18 +21,6 @@ defmodule UniboExPocWeb.Schema do
   use AshGraphql,
     domains: [
       UniboExPoc.Travel,
-      UniboExPoc.Ecommerce,
-      UniboExPoc.Sales,
-      UniboExPoc.Payment,
-      UniboExPoc.Delivery,
-      UniboExPoc.Purchasing,
-      UniboExPoc.Accounting,
-      UniboExPoc.Ofbiz.Common,
-      UniboExPoc.Ofbiz.Party,
-      UniboExPoc.Ofbiz.Product,
-      UniboExPoc.Ofbiz.Order,
-      UniboExPoc.Ofbiz.Shipment,
-      UniboExPoc.Ofbiz.Accounting,
     ]
 
   query do

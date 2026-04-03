@@ -1,8 +1,14 @@
 <.page title="填写订单" id="hotel_booking">
   <.section layout="none" id="header_section">
-    <.flex class="items-center gap-2 p-3">
-      <.button variant="ghost" size="sm" phx-click="go_back">← 返回</.button>
-      <.text variant="h4" class="flex-1">填写订单</.text>
+    <.flex justify="between" align="center" gap={3} class="px-4 py-3 border-b bg-background" id="page_header">
+      <.flex align="center" gap={3} class="flex-1 min-w-0">
+        <.button variant="ghost" size="sm" phx-click="go_back">
+          返回
+        </.button>
+        <.text as="h4" class="flex-1 min-w-0 text-lg font-semibold">
+          填写订单
+        </.text>
+      </.flex>
     </.flex>
   </.section>
   <.section layout="none" id="summary_section">
@@ -15,37 +21,45 @@
       <.card_content id="hotel_summary_cc">
         <.stack gap={2} direction="column" id="hotel_info_stack">
           <.text variant="h3" weight="bold" id="hotel_name">
-            <%= @offer.hotel_name %>
+            <%= get_in(@offer, [:hotel_name]) || "" %>
           </.text>
           <.flex gap={2} align="center" direction="row" id="room_badges_flex">
-            <.badge variant="secondary" size="sm" id="room_type_badge">
-              <%= @offer.room_type_ref.room_type_name %>
-            </.badge>
-            <.badge variant="outline" size="sm" id="bed_type_badge">
-              <%= @offer.room_type_ref.bed_type %>
-            </.badge>
+            <%= if (val = get_in(@offer, [:room_type_ref, :room_type_name])) && to_string(val) != "" do %>
+              <.badge variant="secondary" size="sm" id="room_type_badge">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
+            <%= if (val = get_in(@offer, [:room_type_ref, :bed_type])) && to_string(val) != "" do %>
+              <.badge variant="outline" size="sm" id="bed_type_badge">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
           <.flex gap={2} direction="row" id="date_stats_flex">
-            <.statistic title="入住" value={@offer.checkin_date} size="md" id="checkin_stat" />
-            <.statistic title="退房" value={@offer.checkout_date} size="md" id="checkout_stat" />
+            <.statistic title="入住" value={get_in(@offer, [:checkin_date])} size="md" id="checkin_stat" />
+            <.statistic title="退房" value={get_in(@offer, [:checkout_date])} size="md" id="checkout_stat" />
           </.flex>
           <.flex gap={1} wrap="true" direction="row" id="hotel_policy_badges_flex">
-            <.badge variant="outline" size="sm" id="cancellation_badge">
-              <%= @offer.cancellation_policy %>
-            </.badge>
-            <.badge variant="outline" size="sm" id="guarantee_badge">
-              <%= @offer.guarantee_policy %>
-            </.badge>
+            <%= if (val = get_in(@offer, [:cancellation_policy])) && to_string(val) != "" do %>
+              <.badge variant="outline" size="sm" id="cancellation_badge">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
+            <%= if (val = get_in(@offer, [:guarantee_policy])) && to_string(val) != "" do %>
+              <.badge variant="outline" size="sm" id="guarantee_badge">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
         </.stack>
       </.card_content>
       <.card_footer id="hotel_summary_cf">
         <.flex justify="end" align="baseline" direction="row" id="hotel_price_flex">
           <.text variant="caption" id="hotel_currency">
-            <%= @offer.currency %>
+            <%= get_in(@offer, [:currency]) || "" %>
           </.text>
           <.text variant="h2" color="primary" id="hotel_listed_price">
-            <%= @offer.listed_price %>
+            <%= get_in(@offer, [:listed_price]) || "" %>
           </.text>
         </.flex>
       </.card_footer>
@@ -68,18 +82,18 @@
             入住人
           </.text>
           <.stack gap={2} direction="column" id="guest_list_stack">
-            <%= for item <- @travelers.items do %>
+            <%= for item <- (get_in(@travelers, [:items]) || []) do %>
               <.flex gap={2} align="center" direction="row">
                 <.checkbox bind="item.selected" size="md" />
-                <.avatar src={item.avatar} fallback={item.name_initial} size="sm">
+                <.avatar src={get_in(item, [:avatar])} fallback={get_in(item, [:name_initial])} size="sm">
 
                 </.avatar>
                 <.stack gap={0} direction="column">
                   <.text variant="body">
-                    <%= item.name %>
+                    <%= get_in(item, [:name]) || "" %>
                   </.text>
                   <.text variant="caption" color="muted">
-                    <%= item.id_number_masked %>
+                    <%= get_in(item, [:id_number_masked]) || "" %>
                   </.text>
                 </.stack>
               </.flex>
@@ -131,10 +145,10 @@
             合计
           </.text>
           <.text variant="caption" color="primary" id="total_currency">
-            <%= @offer.currency %>
+            <%= get_in(@offer, [:currency]) || "" %>
           </.text>
           <.text variant="h2" color="primary" id="total_price">
-            <%= @offer.total_price %>
+            <%= get_in(@offer, [:total_price]) || "" %>
           </.text>
         </.flex>
         <.button variant="primary" size="lg" phx-click="submit_booking" id="btn_submit">

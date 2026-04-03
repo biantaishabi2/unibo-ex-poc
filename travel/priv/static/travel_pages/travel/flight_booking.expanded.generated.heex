@@ -1,47 +1,55 @@
 <.page title="填写订单" id="flight_booking">
   <.section layout="none" id="header_section">
-    <.flex class="items-center gap-2 p-3">
-      <.button variant="ghost" size="sm" phx-click="go_back">← 返回</.button>
-      <.text variant="h4" class="flex-1">填写订单</.text>
+    <.flex justify="between" align="center" gap={3} class="px-4 py-3 border-b bg-background" id="page_header">
+      <.flex align="center" gap={3} class="flex-1 min-w-0">
+        <.button variant="ghost" size="sm" phx-click="go_back">
+          返回
+        </.button>
+        <.text as="h4" class="flex-1 min-w-0 text-lg font-semibold">
+          填写订单
+        </.text>
+      </.flex>
     </.flex>
   </.section>
   <.section layout="none" id="summary_section">
     <.card variant="default" id="flight_summary_card">
       <.card_header id="flight_summary_ch">
         <.flex gap={2} align="center" direction="row" id="flight_header_flex">
-          <.avatar src={(@offer[:airline_ref] || %{})[:logo]} fallback={(@offer[:airline_ref] || %{})[:code]} size="sm" id="airline_avatar">
+          <.avatar src={get_in(@offer, [:airline_ref, :logo])} fallback={get_in(@offer, [:airline_ref, :code])} size="sm" id="airline_avatar">
 
           </.avatar>
           <.text variant="body" weight="bold" id="flight_no_text">
-            <%= @offer.flight_no %>
+            <%= get_in(@offer, [:flight_no]) || "" %>
           </.text>
-          <.badge variant="secondary" size="sm" id="cabin_class_badge">
-            <%= @offer.cabin_class_ref.name %>
-          </.badge>
+          <%= if (val = get_in(@offer, [:cabin_class_ref, :name])) && to_string(val) != "" do %>
+            <.badge variant="secondary" size="sm" id="cabin_class_badge">
+              <%= to_string(val) %>
+            </.badge>
+          <% end %>
         </.flex>
       </.card_header>
       <.card_content id="flight_summary_cc">
         <.flex justify="between" align="center" direction="row" id="flight_route_flex">
           <.stack gap={0} align="center" direction="column" id="departure_stack">
             <.text variant="h2" weight="bold" id="departure_time">
-              <%= @offer.departure_time %>
+              <%= get_in(@offer, [:departure_time]) || "" %>
             </.text>
             <.text variant="caption" color="muted" id="departure_airport">
-              <%= @offer.departure_airport_code %>
+              <%= get_in(@offer, [:departure_airport_code]) || "" %>
             </.text>
           </.stack>
           <.stack gap={0} align="center" direction="column" id="middle_stack">
             <.text variant="caption" color="muted" id="date_label">
-              <%= @offer.date_label %>
+              <%= get_in(@offer, [:date_label]) || "" %>
             </.text>
             <.icon name="plane" size="sm" id="plane_icon" />
           </.stack>
           <.stack gap={0} align="center" direction="column" id="arrival_stack">
             <.text variant="h2" weight="bold" id="arrival_time">
-              <%= @offer.arrival_time %>
+              <%= get_in(@offer, [:arrival_time]) || "" %>
             </.text>
             <.text variant="caption" color="muted" id="arrival_airport">
-              <%= @offer.arrival_airport_code %>
+              <%= get_in(@offer, [:arrival_airport_code]) || "" %>
             </.text>
           </.stack>
         </.flex>
@@ -49,10 +57,10 @@
       <.card_footer id="flight_summary_cf">
         <.flex justify="end" align="baseline" direction="row" id="flight_price_flex">
           <.text variant="caption" id="flight_currency">
-            <%= @offer.currency %>
+            <%= get_in(@offer, [:currency]) || "" %>
           </.text>
           <.text variant="h2" color="primary" id="flight_listed_price">
-            <%= @offer.listed_price %>
+            <%= get_in(@offer, [:listed_price]) || "" %>
           </.text>
         </.flex>
       </.card_footer>
@@ -68,16 +76,20 @@
       <.card_content id="refund_policy_cc">
         <.stack gap={2} direction="column" id="refund_policy_stack">
           <.flex gap={2} direction="row" id="refund_stats_flex">
-            <.statistic title="退票" value={(@offer[:refund_change_policy] || %{})[:refund_label]} size="md" id="refund_stat" />
-            <.statistic title="改签" value={(@offer[:refund_change_policy] || %{})[:change_label]} size="md" id="change_stat" />
+            <.statistic title="退票" value={get_in(@offer, [:refund_change_policy, :refund_label])} size="md" id="refund_stat" />
+            <.statistic title="改签" value={get_in(@offer, [:refund_change_policy, :change_label])} size="md" id="change_stat" />
           </.flex>
           <.flex gap={1} wrap="true" direction="row" id="fare_badges_flex">
-            <.badge variant="outline" size="sm" id="baggage_badge">
-              <%= @offer.baggage_policy %>
-            </.badge>
-            <.badge variant="outline" size="sm" id="fare_family_badge">
-              <%= @offer.fare_family %>
-            </.badge>
+            <%= if (val = get_in(@offer, [:baggage_policy])) && to_string(val) != "" do %>
+              <.badge variant="outline" size="sm" id="baggage_badge">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
+            <%= if (val = get_in(@offer, [:fare_family])) && to_string(val) != "" do %>
+              <.badge variant="outline" size="sm" id="fare_family_badge">
+                <%= to_string(val) %>
+              </.badge>
+            <% end %>
           </.flex>
         </.stack>
       </.card_content>
@@ -100,18 +112,18 @@
       </.card_header>
       <.card_content id="passenger_cc">
         <.stack gap={2} direction="column" id="passenger_list_stack">
-          <%= for item <- @travelers.items do %>
+          <%= for item <- (get_in(@travelers, [:items]) || []) do %>
             <.flex gap={2} align="center" paddingy={2} direction="row">
               <.checkbox bind="item.selected" size="md" />
-              <.avatar src={item.avatar} fallback={item.name_initial} size="sm">
+              <.avatar src={get_in(item, [:avatar])} fallback={get_in(item, [:name_initial])} size="sm">
 
               </.avatar>
               <.stack gap={0} direction="column">
                 <.text variant="body">
-                  <%= item.name %>
+                  <%= get_in(item, [:name]) || "" %>
                 </.text>
                 <.text variant="caption" color="muted">
-                  <%= item.id_type_label %>
+                  <%= get_in(item, [:id_type_label]) || "" %>
                 </.text>
               </.stack>
             </.flex>
@@ -158,10 +170,10 @@
             合计
           </.text>
           <.text variant="caption" color="primary" id="total_currency">
-            <%= @offer.currency %>
+            <%= get_in(@offer, [:currency]) || "" %>
           </.text>
           <.text variant="h2" color="primary" id="total_price">
-            <%= @offer.total_price %>
+            <%= get_in(@offer, [:total_price]) || "" %>
           </.text>
         </.flex>
         <.button variant="primary" size="lg" phx-click="submit_booking" id="btn_submit">

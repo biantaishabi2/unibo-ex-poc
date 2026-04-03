@@ -5,7 +5,6 @@ defmodule HospitalSchedulingWeb.Schema do
 
   def unibo_runtime_domains do
     [
-      HospitalScheduling.Scheduling,
     ]
   end
 
@@ -18,10 +17,7 @@ defmodule HospitalSchedulingWeb.Schema do
     field :body, :string
   end
 
-  use AshGraphql,
-    domains: [
-      HospitalScheduling.Scheduling,
-    ]
+  # GraphQL 域由子域 Schema 分别处理，主 Schema 仅提供最小定义
 
   query do
     field :graphql_contract, :graphql_contract do
@@ -29,8 +25,8 @@ defmodule HospitalSchedulingWeb.Schema do
       arg :doc_url, :string
       resolve(fn _, args, _ -> {:ok, HospitalSchedulingWeb.Graphql.RuntimeConfig.graphql_contract(Map.get(args, :doc_url) || Map.get(args, "doc_url") || Map.get(args, :field) || Map.get(args, "field"))} end)
     end
-  end
-
-  mutation do
+    field :health, :string do
+      resolve(fn _, _, _ -> {:ok, "ok"} end)
+    end
   end
 end

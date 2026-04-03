@@ -1,12 +1,30 @@
 {
   "travel_change_order": {
-    "change_reason": "",
-    "price_difference": "",
-    "change_fee": "",
-    "status": "",
-    "approval_mode": "",
     "page": "",
     "total_pages": ""
   },
-  "rows_empty": true
+  "rows_empty": true,
+  "rows": [
+    {
+      "change_reason": "",
+      "price_difference": "",
+      "change_fee": "",
+      "status": "",
+      "approval_mode": ""
+    },
+    {
+      "change_reason": "",
+      "price_difference": "",
+      "change_fee": "",
+      "status": "",
+      "approval_mode": ""
+    },
+    {
+      "change_reason": "",
+      "price_difference": "",
+      "change_fee": "",
+      "status": "",
+      "approval_mode": ""
+    }
+  ]
 }

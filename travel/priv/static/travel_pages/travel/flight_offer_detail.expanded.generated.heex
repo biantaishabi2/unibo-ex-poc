@@ -1,218 +1,222 @@
-<.page title="FlightOffer 详情" id="flight_offer_detail">
-  <.breadcrumb id="flight_offer_breadcrumb">
-    <.breadcrumb_list id="flight_offer_bc_list">
-      <.breadcrumb_item id="flight_offer_bc_list_item">
-        <.breadcrumb_link id="flight_offer_bc_link">
-          FlightOffer 列表
-        </.breadcrumb_link>
-      </.breadcrumb_item>
-      <.breadcrumb_separator id="flight_offer_bc_sep" />
-      <.breadcrumb_item id="flight_offer_bc_current_item">
-        <.breadcrumb_page id="flight_offer_bc_current">
-          <%= @record.supplier_code %>
-        </.breadcrumb_page>
-      </.breadcrumb_item>
-    </.breadcrumb_list>
-  </.breadcrumb>
-  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="flight_offer_detail_header">
-    <.flex gap={3} align="center" direction="row" id="flight_offer_title_group">
-      <.text variant="title" id="flight_offer_detail_title">
-        <%= @record.supplier_code %>
-      </.text>
-      <.badge variant="default" size="sm" id="flight_offer_status_badge">
-        <%= @record.sale_status %>
-      </.badge>
+<.page title="详情" id="flight_offer_detail">
+  <.section layout="none" id="breadcrumb_section">
+    <.breadcrumb id="page_breadcrumb">
+      <.breadcrumb_list id="bc_list">
+        <.breadcrumb_item id="bc_list_item">
+          <.breadcrumb_link id="bc_link">
+            列表
+          </.breadcrumb_link>
+        </.breadcrumb_item>
+        <.breadcrumb_separator id="bc_sep" />
+        <.breadcrumb_item id="bc_current_item">
+          <.breadcrumb_page id="bc_current">
+            详情
+          </.breadcrumb_page>
+        </.breadcrumb_item>
+      </.breadcrumb_list>
+    </.breadcrumb>
+  </.section>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="detail_header">
+    <.flex gap={3} align="center" direction="row" id="title_group">
+      <.stack direction="column" id="title_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          FlightOffer
+        </.text>
+        <.text variant="h1" id="page_title">
+          机票可售 offer,承载航班、舱位、票规和库存快照
+        </.text>
+      </.stack>
+      <.badge bind="flight_offer.status" variant="default" size="sm" id="status_badge" />
     </.flex>
-    <.flex gap={2} direction="row" id="flight_offer_actions">
-      <.button variant="secondary" phx-click="toggle_edit" size="md" id="flight_offer_edit_btn">
+    <.flex gap={2} direction="row" id="actions_group">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
         编辑
       </.button>
-      <.button variant="secondary" phx-click="action_activate" size="md" id="flight_offer_action_activate">
-        activate
-      </.button>
-      <.button variant="secondary" phx-click="action_deactivate" size="md" id="flight_offer_action_deactivate">
-        deactivate
-      </.button>
-      <.button variant="secondary" phx-click="action_expire" size="md" id="flight_offer_action_expire">
-        expire
-      </.button>
-      <.button variant="danger" phx-click="action_destroy" size="md" id="flight_offer_delete_btn">
+      <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
         删除
       </.button>
     </.flex>
   </.section>
-  <.card variant="default" id="flight_offer_info_card">
-    <.card_header id="flight_offer_info_header">
-      <.card_title id="flight_offer_info_title">
-        基本信息
-      </.card_title>
-    </.card_header>
-    <.card_content id="flight_offer_info_content">
-      <%= if !(@editing && @editing != []) do %>
-        <.grid columns={2} gap={4} id="flight_offer_info_grid">
-          <.flex direction="row" id="field_supplier_code">
-            <.text variant="muted" id="label_supplier_code">
-              供应商编码
-            </.text>
-            <.text id="value_supplier_code">
-              <%= @record.supplier_code %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_itinerary_code">
-            <.text variant="muted" id="label_itinerary_code">
-              行程编码
-            </.text>
-            <.text id="value_itinerary_code">
-              <%= @record.itinerary_code %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_flight_no">
-            <.text variant="muted" id="label_flight_no">
-              航班号
-            </.text>
-            <.text id="value_flight_no">
-              <%= @record.flight_no %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_departure_airport_code">
-            <.text variant="muted" id="label_departure_airport_code">
-              出发机场编码
-            </.text>
-            <.text id="value_departure_airport_code">
-              <%= @record.departure_airport_code %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_arrival_airport_code">
-            <.text variant="muted" id="label_arrival_airport_code">
-              到达机场编码
-            </.text>
-            <.text id="value_arrival_airport_code">
-              <%= @record.arrival_airport_code %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_departure_at">
-            <.text variant="muted" id="label_departure_at">
-              起飞时间
-            </.text>
-            <.text id="value_departure_at">
-              <%= @record.departure_at %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_arrival_at">
-            <.text variant="muted" id="label_arrival_at">
-              到达时间
-            </.text>
-            <.text id="value_arrival_at">
-              <%= @record.arrival_at %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_cabin_class">
-            <.text variant="muted" id="label_cabin_class">
-              舱等
-            </.text>
-            <.text id="value_cabin_class">
-              <%= @record.cabin_class %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_fare_family">
-            <.text variant="muted" id="label_fare_family">
-              运价族
-            </.text>
-            <.text id="value_fare_family">
-              <%= @record.fare_family %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_listed_price">
-            <.text variant="muted" id="label_listed_price">
-              对客展示价快照
-            </.text>
-            <.text id="value_listed_price">
-              <%= @record.listed_price %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_settlement_price">
-            <.text variant="muted" id="label_settlement_price">
-              结算价快照
-            </.text>
-            <.text id="value_settlement_price">
-              <%= @record.settlement_price %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_currency">
-            <.text variant="muted" id="label_currency">
-              currency
-            </.text>
-            <.text id="value_currency">
-              <%= @record.currency %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_seats_available">
-            <.text variant="muted" id="label_seats_available">
-              可售座位快照
-            </.text>
-            <.text id="value_seats_available">
-              <%= @record.seats_available %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_baggage_policy">
-            <.text variant="muted" id="label_baggage_policy">
-              行李规则快照
-            </.text>
-            <.text id="value_baggage_policy">
-              <%= @record.baggage_policy %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_refund_change_policy">
-            <.text variant="muted" id="label_refund_change_policy">
-              退改规则快照
-            </.text>
-            <.text id="value_refund_change_policy">
-              <%= @record.refund_change_policy %>
-            </.text>
-          </.flex>
-          <.flex direction="row" id="field_sale_status">
-            <.text variant="muted" id="label_sale_status">
-              sale_status
-            </.text>
-            <.badge variant="default" size="sm" id="value_sale_status">
-              <%= @record.sale_status %>
-            </.badge>
-          </.flex>
-        </.grid>
-      <% else %>
-        <.form phx-submit="form_submit" phx-change="form_change" id="flight_offer_edit_form">
-          <.grid columns={2} gap={4} id="flight_offer_form_grid">
-            <.input name="tenant_id" label="tenant_id" placeholder="请输入tenant_id" required="true" size="md" id="form_tenant_id" />
-            <.input name="host_shop_id" label="宿主商城 ID,仅用于宿主侧隔离和桥接上下文" placeholder="请输入宿主商城 ID,仅用于宿主侧隔离和桥接上下文" size="md" id="form_host_shop_id" />
-            <.input name="supplier_code" label="供应商编码" placeholder="请输入供应商编码" required="true" size="md" id="form_supplier_code" />
-            <.input name="itinerary_code" label="行程编码" placeholder="请输入行程编码" required="true" size="md" id="form_itinerary_code" />
-            <.input name="flight_no" label="航班号" placeholder="请输入航班号" required="true" size="md" id="form_flight_no" />
-            <.input name="departure_airport_code" label="出发机场编码" placeholder="请输入出发机场编码" required="true" size="md" id="form_departure_airport_code" />
-            <.input name="arrival_airport_code" label="到达机场编码" placeholder="请输入到达机场编码" required="true" size="md" id="form_arrival_airport_code" />
-            <.input name="departure_at" label="起飞时间" placeholder="请输入起飞时间" required="true" size="md" id="form_departure_at" />
-            <.input name="arrival_at" label="到达时间" placeholder="请输入到达时间" required="true" size="md" id="form_arrival_at" />
-            <.input name="cabin_class" label="舱等" placeholder="请输入舱等" required="true" size="md" id="form_cabin_class" />
-            <.input name="fare_family" label="运价族" placeholder="请输入运价族" size="md" id="form_fare_family" />
-            <.input name="listed_price" label="对客展示价快照" placeholder="请输入对客展示价快照" required="true" size="md" id="form_listed_price" />
-            <.input name="settlement_price" label="结算价快照" placeholder="请输入结算价快照" size="md" id="form_settlement_price" />
-            <.input name="currency" label="currency" placeholder="请输入currency" size="md" id="form_currency" />
-            <.input name="seats_available" label="可售座位快照" placeholder="请输入可售座位快照" size="md" id="form_seats_available" />
-            <.textarea name="baggage_policy" label="行李规则快照" placeholder="请输入行李规则快照" id="form_baggage_policy" />
-            <.textarea name="refund_change_policy" label="退改规则快照" placeholder="请输入退改规则快照" id="form_refund_change_policy" />
-            <.select name="sale_status" label="sale_status" size="md" id="form_sale_status">
-
-            </.select>
+  <.section layout="none" id="info_section">
+    <.card variant="default" id="info_card">
+      <.card_header id="info_header">
+        <.card_title id="info_title">
+          基本信息
+        </.card_title>
+      </.card_header>
+      <.card_content id="info_content">
+        <%= if !(@editing && @editing != []) do %>
+          <.grid columns={2} gap={4} id="info_grid">
+            <.grid columns={2} gap={3} id="detail_fields">
+              <.stack gap={0} direction="column" id="detail_fields_supplier_code">
+                <.text variant="caption" color="muted" id="detail_fields_supplier_code_label">
+                  供应商编码
+                </.text>
+                <.text id="detail_fields_supplier_code_value">
+                  <%= get_in(@flight_offer, [:supplier_code]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_itinerary_code">
+                <.text variant="caption" color="muted" id="detail_fields_itinerary_code_label">
+                  行程编码
+                </.text>
+                <.text id="detail_fields_itinerary_code_value">
+                  <%= get_in(@flight_offer, [:itinerary_code]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_flight_no">
+                <.text variant="caption" color="muted" id="detail_fields_flight_no_label">
+                  航班号
+                </.text>
+                <.text id="detail_fields_flight_no_value">
+                  <%= get_in(@flight_offer, [:flight_no]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_departure_airport_code">
+                <.text variant="caption" color="muted" id="detail_fields_departure_airport_code_label">
+                  出发机场编码
+                </.text>
+                <.text id="detail_fields_departure_airport_code_value">
+                  <%= get_in(@flight_offer, [:departure_airport_code]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_arrival_airport_code">
+                <.text variant="caption" color="muted" id="detail_fields_arrival_airport_code_label">
+                  到达机场编码
+                </.text>
+                <.text id="detail_fields_arrival_airport_code_value">
+                  <%= get_in(@flight_offer, [:arrival_airport_code]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_departure_at">
+                <.text variant="caption" color="muted" id="detail_fields_departure_at_label">
+                  起飞时间
+                </.text>
+                <.text id="detail_fields_departure_at_value">
+                  <%= get_in(@flight_offer, [:departure_at]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_arrival_at">
+                <.text variant="caption" color="muted" id="detail_fields_arrival_at_label">
+                  到达时间
+                </.text>
+                <.text id="detail_fields_arrival_at_value">
+                  <%= get_in(@flight_offer, [:arrival_at]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_cabin_class">
+                <.text variant="caption" color="muted" id="detail_fields_cabin_class_label">
+                  舱等
+                </.text>
+                <.text id="detail_fields_cabin_class_value">
+                  <%= get_in(@flight_offer, [:cabin_class]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_fare_family">
+                <.text variant="caption" color="muted" id="detail_fields_fare_family_label">
+                  运价族
+                </.text>
+                <.text id="detail_fields_fare_family_value">
+                  <%= get_in(@flight_offer, [:fare_family]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_listed_price">
+                <.text variant="caption" color="muted" id="detail_fields_listed_price_label">
+                  对客展示价快照
+                </.text>
+                <.text id="detail_fields_listed_price_value">
+                  <%= get_in(@flight_offer, [:listed_price]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_settlement_price">
+                <.text variant="caption" color="muted" id="detail_fields_settlement_price_label">
+                  结算价快照
+                </.text>
+                <.text id="detail_fields_settlement_price_value">
+                  <%= get_in(@flight_offer, [:settlement_price]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_currency">
+                <.text variant="caption" color="muted" id="detail_fields_currency_label">
+                  currency
+                </.text>
+                <.text id="detail_fields_currency_value">
+                  <%= get_in(@flight_offer, [:currency]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_seats_available">
+                <.text variant="caption" color="muted" id="detail_fields_seats_available_label">
+                  可售座位快照
+                </.text>
+                <.text id="detail_fields_seats_available_value">
+                  <%= get_in(@flight_offer, [:seats_available]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_baggage_policy">
+                <.text variant="caption" color="muted" id="detail_fields_baggage_policy_label">
+                  行李规则快照
+                </.text>
+                <.text id="detail_fields_baggage_policy_value">
+                  <%= get_in(@flight_offer, [:baggage_policy]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_refund_change_policy">
+                <.text variant="caption" color="muted" id="detail_fields_refund_change_policy_label">
+                  退改规则快照
+                </.text>
+                <.text id="detail_fields_refund_change_policy_value">
+                  <%= get_in(@flight_offer, [:refund_change_policy]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_sale_status">
+                <.text variant="caption" color="muted" id="detail_fields_sale_status_label">
+                  sale_status
+                </.text>
+                <.text id="detail_fields_sale_status_value">
+                  <%= get_in(@flight_offer, [:sale_status]) || "" %>
+                </.text>
+              </.stack>
+            </.grid>
           </.grid>
-          <.flex justify="end" gap={2} direction="row" id="flight_offer_form_actions">
-            <.button variant="secondary" phx-click="cancel_edit" size="md" id="flight_offer_cancel_btn">
-              取消
-            </.button>
-            <.button variant="primary" phx-click="form_submit" size="md" id="flight_offer_save_btn">
-              保存
-            </.button>
-          </.flex>
-        </.form>
-      <% end %>
-    </.card_content>
-  </.card>
+        <% else %>
+          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+            <.grid columns={2} gap={4} id="form_grid">
+              <.stack direction="column" id="form_fields">
+                <.input bind="flight_offer.tenant_id" size="md" id="update_tenant_id" />
+                <.input bind="flight_offer.host_shop_id" size="md" id="update_host_shop_id" />
+                <.input bind="flight_offer.supplier_code" size="md" id="update_supplier_code" />
+                <.input bind="flight_offer.itinerary_code" size="md" id="update_itinerary_code" />
+                <.input bind="flight_offer.flight_no" size="md" id="update_flight_no" />
+                <.input bind="flight_offer.departure_airport_code" size="md" id="update_departure_airport_code" />
+                <.input bind="flight_offer.arrival_airport_code" size="md" id="update_arrival_airport_code" />
+                <.input bind="flight_offer.departure_at" size="md" id="update_departure_at" />
+                <.input bind="flight_offer.arrival_at" size="md" id="update_arrival_at" />
+                <.input bind="flight_offer.cabin_class" size="md" id="update_cabin_class" />
+                <.input bind="flight_offer.fare_family" size="md" id="update_fare_family" />
+                <.input bind="flight_offer.listed_price" size="md" id="update_listed_price" />
+                <.input bind="flight_offer.settlement_price" size="md" id="update_settlement_price" />
+                <.input bind="flight_offer.currency" size="md" id="update_currency" />
+                <.input bind="flight_offer.seats_available" size="md" id="update_seats_available" />
+                <.textarea bind="flight_offer.baggage_policy" id="update_baggage_policy" />
+                <.textarea bind="flight_offer.refund_change_policy" id="update_refund_change_policy" />
+                <.select bind="flight_offer.sale_status" size="md" id="update_sale_status" options={[%{label: "draft", value: "draft"}, %{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}, %{label: "expired", value: "expired"}]}>
+
+                </.select>
+                <.input bind="flight_offer.departure_airport_ref_id" size="md" id="update_departure_airport_ref_id" />
+                <.input bind="flight_offer.arrival_airport_ref_id" size="md" id="update_arrival_airport_ref_id" />
+              </.stack>
+            </.grid>
+            <.flex justify="end" gap={2} direction="row" id="form_actions">
+              <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
+                取消
+              </.button>
+              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+                保存
+              </.button>
+            </.flex>
+          </.form>
+        <% end %>
+      </.card_content>
+    </.card>
+  </.section>
 </.page>

@@ -6,12 +6,5 @@
     "bed_type": "",
     "status": ""
   },
-  "editing": false,
-  "record": {
-    "room_type_code": "RT_KING_DLX",
-    "status": "active",
-    "room_type_name": "高级大床房",
-    "hotel_code": "HTL_BJ_001",
-    "bed_type": "大床 1.8m"
-  }
+  "editing": false
 }

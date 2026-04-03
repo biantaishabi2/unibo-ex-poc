@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "defaults": {
+    "travel_policy_check": {
+      "check_result": "",
+      "policy_amount": "",
+      "actual_amount": "",
+      "exceed_amount": "",
+      "exceed_ratio": "",
+      "exceed_strategy": "",
+      "exceed_reason": "",
+      "personal_pay_amount": "",
+      "approval_mode": ""
+    },
+    "editing": false
+  },
+  "keys": [
+    "editing",
+    "travel_policy_check",
+    "travel_policy_check.actual_amount",
+    "travel_policy_check.approval_mode",
+    "travel_policy_check.check_result",
+    "travel_policy_check.exceed_amount",
+    "travel_policy_check.exceed_ratio",
+    "travel_policy_check.exceed_reason",
+    "travel_policy_check.exceed_strategy",
+    "travel_policy_check.personal_pay_amount",
+    "travel_policy_check.policy_amount"
+  ],
+  "required": [
+    "editing",
+    "travel_policy_check"
+  ],
+  "urlParams": {},
+  "notes": []
+}

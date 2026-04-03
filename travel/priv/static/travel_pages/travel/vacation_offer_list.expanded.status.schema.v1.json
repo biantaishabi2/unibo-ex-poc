@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "VacationOffer 列表",
+    "vacation_offer": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -58,7 +61,6 @@
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].booking_rules",
@@ -76,12 +78,15 @@
     "rows[].settlement_price",
     "rows[].start_date",
     "rows[].supplier_code",
-    "rows_empty"
+    "rows_empty",
+    "vacation_offer",
+    "vacation_offer.page",
+    "vacation_offer.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "vacation_offer"
   ],
   "urlParams": {},
   "notes": [],
@@ -89,6 +94,23 @@
     "backend": {
       "api_map": {
         "list": "Travel.VacationOffer.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "booking_rules: bookingRules cancellation_policy: cancellationPolicy currency departure_city_code: departureCityCode departure_city_ref_id: departureCityRefId destination_code: destinationCode destination_ref_id: destinationRefId end_date: endDate host_shop_id: hostShopId id inventory_count: inventoryCount listed_price: listedPrice package_code: packageCode package_name: packageName package_type: packageType sale_status: saleStatus settlement_price: settlementPrice start_date: startDate supplier_code: supplierCode tenant_id: tenantId"
+      },
+      "params": {
+        "accept": [
+          "package_type",
+          "start_date",
+          "end_date",
+          "sale_status"
+        ]
       }
     },
     "domain": "Travel",

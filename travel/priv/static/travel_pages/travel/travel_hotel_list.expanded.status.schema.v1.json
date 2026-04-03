@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "TravelHotel 列表",
+    "travel_hotel": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -28,7 +31,6 @@
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].city_code",
@@ -36,12 +38,15 @@
     "rows[].hotel_name",
     "rows[].hotel_star",
     "rows[].status",
-    "rows_empty"
+    "rows_empty",
+    "travel_hotel",
+    "travel_hotel.page",
+    "travel_hotel.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_hotel"
   ],
   "urlParams": {},
   "notes": [],
@@ -49,6 +54,20 @@
     "backend": {
       "api_map": {
         "list": "Travel.TravelHotel.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "city_code: cityCode city_id: cityId hotel_code: hotelCode hotel_name: hotelName hotel_star: hotelStar id status"
+      },
+      "params": {
+        "accept": [
+          "status"
+        ]
       }
     },
     "domain": "Travel",

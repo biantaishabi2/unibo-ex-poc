@@ -16,58 +16,5 @@
     "guarantee_policy": "",
     "sale_status": ""
   },
-  "editing": false,
-  "hotel": {
-    "cover_image": "",
-    "hotel_name": "北京国贸大酒店",
-    "hotel_star": "五星级",
-    "exterior_image": "",
-    "dining_image": "",
-    "room_image": "",
-    "score": "4.8",
-    "score_label": "很好",
-    "address": "北京市朝阳区建国门外大街1号"
-  },
-  "offers_empty": false,
-  "offers": [
-    {
-      "room_type_name": "高级大床房",
-      "bed_type": "大床 1.8m",
-      "area_label": "35m²",
-      "floor_label": "8-15层",
-      "rate_plan_code": "含早特惠",
-      "cancellation_policy": "18:00前免费取消",
-      "is_breakfast_included": true,
-      "exceeds_policy": false,
-      "currency": "¥",
-      "listed_price": "688",
-      "id": "off_01"
-    },
-    {
-      "room_type_name": "商务双床房",
-      "bed_type": "双床 1.2m×2",
-      "area_label": "40m²",
-      "floor_label": "15-22层",
-      "rate_plan_code": "灵活退改",
-      "cancellation_policy": "随时免费取消",
-      "is_breakfast_included": true,
-      "exceeds_policy": false,
-      "currency": "¥",
-      "listed_price": "788",
-      "id": "off_02"
-    },
-    {
-      "room_type_name": "行政套房",
-      "bed_type": "大床 2.0m",
-      "area_label": "65m²",
-      "floor_label": "22-28层",
-      "rate_plan_code": "行政礼遇",
-      "cancellation_policy": "入住前1天免费取消",
-      "is_breakfast_included": true,
-      "exceeds_policy": true,
-      "currency": "¥",
-      "listed_price": "1,580",
-      "id": "off_03"
-    }
-  ]
+  "editing": false
 }

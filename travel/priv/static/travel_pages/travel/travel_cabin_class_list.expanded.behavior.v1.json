@@ -2,6 +2,20 @@
   "backend": {
     "api_map": {
       "list": "Travel.TravelCabinClass.list"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "cabin_class_code: cabinClassCode cabin_class_name: cabinClassName cabin_rank: cabinRank id status"
+    },
+    "params": {
+      "accept": [
+        "status"
+      ]
     }
   },
   "domain": "Travel",

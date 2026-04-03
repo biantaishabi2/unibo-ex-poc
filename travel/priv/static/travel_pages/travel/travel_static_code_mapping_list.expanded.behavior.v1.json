@@ -2,6 +2,21 @@
   "backend": {
     "api_map": {
       "list": "Travel.TravelStaticCodeMapping.list"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "canonical_entity: canonicalEntity canonical_id: canonicalId external_code: externalCode external_name: externalName id object_type: objectType status supplier_code: supplierCode"
+    },
+    "params": {
+      "accept": [
+        "object_type",
+        "status"
+      ]
     }
   },
   "domain": "Travel",

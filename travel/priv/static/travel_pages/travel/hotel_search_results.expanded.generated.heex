@@ -1,39 +1,51 @@
-<.page title="酒店搜索" id="hotel_search_results">
+<.page title="搜索结果" id="hotel_search_results">
   <.section layout="none" id="header_section">
-    <.flex class="items-center gap-2 p-3">
-      <.button variant="ghost" size="sm" phx-click="go_back">← 返回</.button>
-      <.text variant="h4" class="flex-1">酒店搜索</.text>
+    <.flex subtitle={get_in(@search, [:city_label])} justify="between" align="center" gap={3} class="px-4 py-3 border-b bg-background" id="hotel_header">
+      <.flex align="center" gap={3} class="flex-1 min-w-0">
+        <.button variant="ghost" size="sm" phx-click="go_back">
+          返回
+        </.button>
+        <.text as="h4" class="flex-1 min-w-0 text-lg font-semibold">
+          酒店搜索
+        </.text>
+      </.flex>
     </.flex>
   </.section>
-  <.section layout="none" id="search_summary_section">
-    <.flex gap={2} padding={3} align="center" background="surface" direction="row" id="search_summary">
-      <.badge variant="outline" size="sm" id="checkin_date_badge">
-        <%= @search.checkin_date %>
-      </.badge>
-      <.text id="date_separator">
-        -
+  <.section layout="none" id="date_slider_section">
+    <.flex gap={3} paddingx={3} paddingy={2} align="center" background="surface" direction="row" id="hotel_date_bar">
+      <.stack gap={0} align="center" direction="column" id="checkin_info">
+        <.text variant="caption" color="muted" id="checkin_label">
+          入住
+        </.text>
+        <.text variant="body" weight="bold" id="checkin_date">
+          <%= get_in(@search, [:checkin_date]) || "" %>
+        </.text>
+      </.stack>
+      <.text variant="caption" color="muted" id="night_count">
+        <%= get_in(@search, [:night_count_label]) || "" %>
       </.text>
-      <.badge variant="outline" size="sm" id="checkout_date_badge">
-        <%= @search.checkout_date %>
-      </.badge>
-      <.input placeholder="酒店名/商圈/地标" bind="search.keyword" size="sm" id="keyword_input" />
+      <.stack gap={0} align="center" direction="column" id="checkout_info">
+        <.text variant="caption" color="muted" id="checkout_label">
+          离店
+        </.text>
+        <.text variant="body" weight="bold" id="checkout_date">
+          <%= get_in(@search, [:checkout_date]) || "" %>
+        </.text>
+      </.stack>
     </.flex>
   </.section>
   <.section layout="none" id="filter_section">
     <.flex gap={2} paddingx={3} paddingy={2} wrap={true} direction="row" id="hotel_filter_bar">
-      <.select label="排序" name="filter.sort_by" size="md" id="filter_sort_by">
+      <.select label="星级" name="filter.star" size="md" id="filter_star">
 
       </.select>
-      <.select label="区域" name="filter.area" size="md" id="filter_area">
+      <.select label="价格" name="filter.price_range" size="md" id="filter_price_range">
 
       </.select>
-      <.select label="价格星级" name="filter.price_star" size="md" id="filter_price_star">
+      <.select label="商圈" name="filter.district" size="md" id="filter_district">
 
       </.select>
-      <.select label="差标" name="filter.policy_compliant" size="md" id="filter_hotel_policy">
-
-      </.select>
-      <.select label="协议酒店" name="filter.agreement_hotel" size="md" id="filter_agreement">
+      <.select label="品牌" name="filter.brand" size="md" id="filter_brand">
 
       </.select>
     </.flex>
@@ -41,60 +53,72 @@
   <.section layout="none" id="alert_section">
     <%= if @policy.exceeded == true do %>
       <.alert variant="warning" title="超标提示" id="hotel_policy_alert">
-        以下标记超标的酒店超出差旅标准,预订需审批
+        标记超标的酒店超出差旅标准,预订需审批
       </.alert>
     <% end %>
   </.section>
   <.section layout="none" id="results_section">
     <.stack gap={3} padding={3} direction="column" id="hotel_results_list">
-      <%= for item <- @hotels.items do %>
-        <.card phx-click="navigate" params={"/travel/hotel/#{item.hotel_code}"} variant="default">
+      <%= for item <- (get_in(@hotels, [:items]) || []) do %>
+        <.card phx-click="navigate" params={"/travel/hotel/#{get_in(item, [:id])}"} variant="default">
           <.card_header>
-            <.image src={(item[:hotel_ref] || %{})[:cover_image]} alt={item.hotel_name} aspect_ratio="16:9" borderradius="top" />
+            <.flex gap={2} align="center" direction="row">
+              <.text variant="body" weight="bold">
+                <%= get_in(item, [:hotel_name]) || "" %>
+              </.text>
+              <%= if (val = get_in(item, [:hotel_star])) && to_string(val) != "" do %>
+                <.badge variant="outline" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+              <%= if item.is_policy_compliant == false do %>
+                <.badge variant="destructive" size="sm">
+                  超标
+                </.badge>
+              <% end %>
+            </.flex>
           </.card_header>
           <.card_content>
-            <.stack gap={2} direction="column">
-              <.flex gap={2} align="center" direction="row">
-                <.text variant="h4" weight="bold">
-                  <%= item.hotel_name %>
-                </.text>
-                <.badge variant="secondary" size="sm">
-                  <%= (item[:hotel_ref] || %{})[:hotel_star] %>
-                </.badge>
-              </.flex>
-              <.flex gap={2} align="center" direction="row">
-                <.badge variant="primary" size="sm">
-                  <%= (item[:hotel_ref] || %{})[:score] %>
-                </.badge>
-                <.text variant="caption" color="muted">
-                  <%= (item[:hotel_ref] || %{})[:address] %>
-                </.text>
-              </.flex>
+            <.stack gap={1} direction="column">
+              <.text variant="caption" color="muted">
+                <%= get_in(item, [:address]) || "" %>
+              </.text>
+              <.text variant="caption" color="muted">
+                <%= get_in(item, [:district]) || "" %>
+              </.text>
               <.flex gap={1} wrap={true} direction="row">
-                <%= for facility <- (item[:hotel_ref] || %{})[:facilities] do %>
+                <%= if (val = get_in(item, [:room_type_name])) && to_string(val) != "" do %>
                   <.badge variant="outline" size="sm">
-                    <%= facility.name %>
+                    <%= to_string(val) %>
+                  </.badge>
+                <% end %>
+                <%= if (val = get_in(item, [:breakfast_label])) && to_string(val) != "" do %>
+                  <.badge variant="outline" size="sm">
+                    <%= to_string(val) %>
+                  </.badge>
+                <% end %>
+                <%= if (val = get_in(item, [:cancel_label])) && to_string(val) != "" do %>
+                  <.badge variant="outline" size="sm">
+                    <%= to_string(val) %>
                   </.badge>
                 <% end %>
               </.flex>
             </.stack>
           </.card_content>
           <.card_footer>
-            <.flex justify="between" align="center" direction="row">
-              <%= if item.is_agreement == true do %>
-                <.badge variant="success" size="sm">
-                  协议酒店
-                </.badge>
-              <% end %>
+            <.flex justify="between" align="baseline" direction="row">
+              <.text variant="caption" color="muted">
+                <%= get_in(item, [:rating_label]) || "" %>
+              </.text>
               <.flex gap={1} align="baseline" direction="row">
                 <.text variant="caption">
-                  <%= item.currency %>
+                  ?
                 </.text>
                 <.text variant="h3" color="primary">
-                  <%= item.listed_price %>
+                  <%= get_in(item, [:listed_price]) || "" %>
                 </.text>
-                <.text variant="caption">
-                  起
+                <.text variant="caption" color="muted">
+                  /晚
                 </.text>
               </.flex>
             </.flex>
@@ -108,4 +132,23 @@
       <.empty_state title="未找到酒店" description="请调整搜索条件后重试" id="no_hotels" />
     <% end %>
   </.section>
+  <.section layout="none" id="sort_bar_section">
+    <.control_bar position="sticky_bottom" id="hotel_sort_bar">
+      <.flex gap={3} justify="spacearound" width="full" direction="row" id="hotel_sort_buttons">
+        <.button variant="ghost" icon="arrow-up-down" phx-click="sort" size="md" id="sort_by_hotel_price">
+          价格
+        </.button>
+        <.button variant="ghost" icon="star" phx-click="sort" size="md" id="sort_by_rating">
+          评分
+        </.button>
+        <.button variant="ghost" icon="map-pin" phx-click="sort" size="md" id="sort_by_distance">
+          距离
+        </.button>
+        <.button variant="ghost" icon="thumbs-up" phx-click="sort" size="md" id="sort_by_hotel_recommended">
+          推荐
+        </.button>
+      </.flex>
+    </.control_bar>
+  </.section>
+  <.separator id="sep_after_date" />
 </.page>

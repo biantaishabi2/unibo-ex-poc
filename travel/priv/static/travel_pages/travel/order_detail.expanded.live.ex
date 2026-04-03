@@ -11,108 +11,31 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): has_points_deduction, is_flight_order, is_hotel_order, is_train_order, order, order.flight_offer, order.flight_offer.aircraft_type, order.flight_offer.airline_name, order.flight_offer.arrival_airport, order.flight_offer.arrival_terminal, order.flight_offer.arrival_time, order.flight_offer.baggage_allowance, order.flight_offer.departure_airport, order.flight_offer.departure_terminal, order.flight_offer.departure_time, order.flight_offer.duration, order.flight_offer.flight_no, order.flight_offer.meal_info, order.flight_offer.product_description, order.flight_offer.refund_change_policy, order.hotel_offer, order.hotel_offer.address, order.hotel_offer.bed_type, order.hotel_offer.breakfast_info, order.hotel_offer.cancellation_fee, order.hotel_offer.check_in_date, order.hotel_offer.check_out_date, order.hotel_offer.floor_info, order.hotel_offer.guests, order.hotel_offer.guests[], order.hotel_offer.guests[].name, order.hotel_offer.guests[].phone, order.hotel_offer.guests[].room_no, order.hotel_offer.hotel_name, order.hotel_offer.night_count, order.hotel_offer.room_area, order.hotel_offer.room_count, order.hotel_offer.room_type_name, order.hotel_offer.window_type, order.order_no, ...
+  # status.keys preview (first ~40): editing, travel_order, travel_order.booking_mode, travel_order.change_status, travel_order.contact_name, travel_order.contact_phone, travel_order.currency, travel_order.order_no, travel_order.original_order_ref, travel_order.payment_external_ref, travel_order.points_deduction_amount, travel_order.points_to_use, travel_order.product_type, travel_order.recommended_payment_method, travel_order.seat_selection_snapshot, travel_order.status, travel_order.supplier_order_ref, travel_order.ticket_passenger_infos, travel_order.total_amount, travel_order.traveler_count, travel_order.waitlist_status
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"order\": {
-    \"status\": \"\",
+  \"travel_order\": {
     \"order_no\": \"\",
+    \"product_type\": \"\",
+    \"booking_mode\": \"\",
+    \"contact_name\": \"\",
+    \"contact_phone\": \"\",
+    \"traveler_count\": \"\",
     \"total_amount\": \"\",
+    \"points_to_use\": \"\",
     \"points_deduction_amount\": \"\",
-    \"payable_amount\": \"\",
-    \"flight_offer\": {
-      \"departure_time\": \"\",
-      \"departure_airport\": \"\",
-      \"departure_terminal\": \"\",
-      \"duration\": \"\",
-      \"flight_no\": \"\",
-      \"arrival_time\": \"\",
-      \"arrival_airport\": \"\",
-      \"arrival_terminal\": \"\",
-      \"airline_name\": \"\",
-      \"aircraft_type\": \"\",
-      \"meal_info\": \"\",
-      \"refund_change_policy\": \"\",
-      \"baggage_allowance\": \"\",
-      \"product_description\": \"\"
-    },
-    \"seat_selection_snapshot\": {
-      \"pickup_code\": \"\",
-      \"gate\": \"\"
-    },
-    \"train_offer\": {
-      \"departure_time\": \"\",
-      \"departure_station\": \"\",
-      \"train_no\": \"\",
-      \"duration\": \"\",
-      \"arrival_time\": \"\",
-      \"arrival_station\": \"\",
-      \"stop_stations\": \"\"
-    },
-    \"hotel_offer\": {
-      \"hotel_name\": \"\",
-      \"address\": \"\",
-      \"room_type_name\": \"\",
-      \"room_count\": \"\",
-      \"night_count\": \"\",
-      \"bed_type\": \"\",
-      \"room_area\": \"\",
-      \"breakfast_info\": \"\",
-      \"window_type\": \"\",
-      \"floor_info\": \"\",
-      \"check_in_date\": \"\",
-      \"check_out_date\": \"\",
-      \"cancellation_fee\": \"\",
-      \"guests\": [
-        {
-          \"room_no\": \"\",
-          \"name\": \"order_1\",
-          \"phone\": \"\"
-        },
-        {
-          \"room_no\": \"\",
-          \"name\": \"order_2\",
-          \"phone\": \"\"
-        },
-        {
-          \"room_no\": \"\",
-          \"name\": \"order_3\",
-          \"phone\": \"\"
-        }
-      ]
-    },
-    \"ticket_passenger_infos\": [
-      {
-        \"name\": \"order_1\",
-        \"ticket_status\": \"\",
-        \"id_number\": \"\",
-        \"seat_no\": \"\",
-        \"seat_class\": \"\"
-      },
-      {
-        \"name\": \"order_2\",
-        \"ticket_status\": \"\",
-        \"id_number\": \"\",
-        \"seat_no\": \"\",
-        \"seat_class\": \"\"
-      },
-      {
-        \"name\": \"order_3\",
-        \"ticket_status\": \"\",
-        \"id_number\": \"\",
-        \"seat_no\": \"\",
-        \"seat_class\": \"\"
-      }
-    ]
+    \"recommended_payment_method\": \"\",
+    \"currency\": \"\",
+    \"status\": \"\",
+    \"change_status\": \"\",
+    \"waitlist_status\": \"\",
+    \"original_order_ref\": \"\",
+    \"ticket_passenger_infos\": \"\",
+    \"seat_selection_snapshot\": \"\",
+    \"supplier_order_ref\": \"\",
+    \"payment_external_ref\": \"\"
   },
-  \"order_status_booked_or_completed\": true,
-  \"order_pending\": true,
-  \"order_cancelled_or_failed\": true,
-  \"order_status_completed\": true,
-  \"has_points_deduction\": true,
-  \"is_flight_order\": true,
-  \"is_train_order\": true,
-  \"is_hotel_order\": true
+  \"editing\": false
 }")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
@@ -121,6 +44,10 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event nil
+  @backend_load_selection nil
+  @backend_load_assigns %{}
+  @backend_params_accept []
+  @backend_info_reload_messages []
   @backend_api_map %{}
   @status_key_roots []
   @auth_mode "optional"
@@ -133,9 +60,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     defaults = atomize_keys(@status_defaults_raw)
     socket = assign(socket, defaults)
     socket = assign(socket, :__status_defaults, defaults)
+    socket = if is_map(@backend_load_assigns) and map_size(@backend_load_assigns) > 0, do: assign(socket, @backend_load_assigns), else: socket
     socket = apply_derived(socket)
     socket = apply_params(socket, params)
-    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(params, "__page_id", @page_id), socket), else: socket
+    backend_params = __filter_backend_params(params)
+    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
     {:ok, socket}
   end
 
@@ -147,9 +76,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: if backend exports handle_info/2, delegate and apply BackendResult v1.
+    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
     socket =
-      if function_exported?(@backend_mod, :handle_info, 2) do
+      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
         state0 = __take_status(socket.assigns)
         apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
       else
@@ -159,14 +88,58 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event(_event, _params, socket) do
-    # No events declared by events.schema
+  def handle_event("action_destroy", params, socket) do
+    # UI action event name: action_destroy
+    socket = dispatch_backend("action_destroy", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("cancel_edit", params, socket) do
+    # UI action event name: cancel_edit
+    socket = dispatch_backend("cancel_edit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("form_change", params, socket) do
+    # UI action event name: form_change
+    socket = dispatch_backend("form_change", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("form_submit", params, socket) do
+    # UI action event name: form_submit
+    socket = dispatch_backend("form_submit", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("toggle_edit", params, socket) do
+    # UI action event name: toggle_edit
+    socket = dispatch_backend("toggle_edit", params, socket)
     {:noreply, socket}
   end
 
   defp apply_params(socket, params) when is_map(params) do
     socket
   end
+
+  defp __filter_backend_params(params) when is_map(params) do
+    if @backend_params_accept == [] do
+      params
+    else
+      Map.take(params, @backend_params_accept ++ ["__page_id"])
+    end
+  end
+  defp __filter_backend_params(params), do: params
+
+  defp __accept_backend_info?({kind, value}) when is_atom(kind) and is_binary(value) do
+    kind == :page_host_reload and value in @backend_info_reload_messages
+  end
+  defp __accept_backend_info?(value) when is_binary(value), do: value in @backend_info_reload_messages
+  defp __accept_backend_info?(_), do: @backend_info_reload_messages == []
 
   defp ensure_user_context(socket) do
     # Thin user-context contract: keep it uniform so skeletons stay generated and diffable.

@@ -104,6 +104,7 @@
   "layer2": {
     "backend": {
       "api_map": {
+        "create": "Scheduling.SchedulingPeriod.create",
         "destroy": "Scheduling.SchedulingPeriod.destroy",
         "get": "Scheduling.SchedulingPeriod.get",
         "mark_adjusted": "Scheduling.SchedulingPeriod.mark_adjusted",

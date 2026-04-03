@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "events": {
+    "wizard_cancel": {
+      "name": "wizard_cancel",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "wizard_submit": {
+      "name": "wizard_submit",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "wizard_prev": {
+      "name": "wizard_prev",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    },
+    "wizard_next": {
+      "name": "wizard_next",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

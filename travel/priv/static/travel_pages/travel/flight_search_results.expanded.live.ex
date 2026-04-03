@@ -11,28 +11,121 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): policy, policy.exceeded, results, results.total_count, search, search.date_range, search.date_range[], search.date_range[].date_label, search.date_range[].is_selected
+  # status.keys preview (first ~40): flights, flights.items, flights.items[], flights.items[].aircraft_type, flights.items[].airline_ref, flights.items[].airline_ref.code, flights.items[].airline_ref.logo, flights.items[].airline_ref.name, flights.items[].arrival_airport_code, flights.items[].arrival_airport_ref, flights.items[].arrival_airport_ref.city_name, flights.items[].arrival_time, flights.items[].cabin_class_ref, flights.items[].cabin_class_ref.name, flights.items[].currency, flights.items[].departure_airport_code, flights.items[].departure_airport_ref, flights.items[].departure_airport_ref.city_name, flights.items[].departure_time, flights.items[].discount_label, flights.items[].duration_label, flights.items[].flight_no, flights.items[].id, flights.items[].is_policy_compliant, flights.items[].listed_price, flights.items[].stop_label, flights.total_count, policy, policy.exceeded, search, search.date_range, search.date_range[], search.date_range[].date_label, search.date_range[].is_selected, search.date_range[].price_label, search.route_label
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"policy\": {
-    \"exceeded\": true
-  },
-  \"results\": {
-    \"total_count\": true
-  },
   \"search\": {
+    \"route_label\": \"\",
     \"date_range\": [
       {
         \"is_selected\": \"\",
-        \"date_label\": \"\"
+        \"date_label\": \"\",
+        \"price_label\": \"\"
       },
       {
         \"is_selected\": \"\",
-        \"date_label\": \"\"
+        \"date_label\": \"\",
+        \"price_label\": \"\"
       },
       {
         \"is_selected\": \"\",
-        \"date_label\": \"\"
+        \"date_label\": \"\",
+        \"price_label\": \"\"
+      }
+    ]
+  },
+  \"policy\": {
+    \"exceeded\": true
+  },
+  \"flights\": {
+    \"total_count\": true,
+    \"items\": [
+      {
+        \"id\": \"fli_01\",
+        \"airline_ref\": {
+          \"logo\": \"\",
+          \"code\": \"\",
+          \"name\": \"airline_ref_1\"
+        },
+        \"flight_no\": \"\",
+        \"is_policy_compliant\": true,
+        \"departure_time\": \"\",
+        \"departure_airport_ref\": {
+          \"city_name\": \"\"
+        },
+        \"departure_airport_code\": \"\",
+        \"duration_label\": \"\",
+        \"stop_label\": \"\",
+        \"arrival_time\": \"\",
+        \"arrival_airport_ref\": {
+          \"city_name\": \"\"
+        },
+        \"arrival_airport_code\": \"\",
+        \"cabin_class_ref\": {
+          \"name\": \"cabin_class_ref_1\"
+        },
+        \"aircraft_type\": \"\",
+        \"discount_label\": \"\",
+        \"currency\": \"\",
+        \"listed_price\": \"\"
+      },
+      {
+        \"id\": \"fli_02\",
+        \"airline_ref\": {
+          \"logo\": \"\",
+          \"code\": \"\",
+          \"name\": \"airline_ref_2\"
+        },
+        \"flight_no\": \"\",
+        \"is_policy_compliant\": true,
+        \"departure_time\": \"\",
+        \"departure_airport_ref\": {
+          \"city_name\": \"\"
+        },
+        \"departure_airport_code\": \"\",
+        \"duration_label\": \"\",
+        \"stop_label\": \"\",
+        \"arrival_time\": \"\",
+        \"arrival_airport_ref\": {
+          \"city_name\": \"\"
+        },
+        \"arrival_airport_code\": \"\",
+        \"cabin_class_ref\": {
+          \"name\": \"cabin_class_ref_2\"
+        },
+        \"aircraft_type\": \"\",
+        \"discount_label\": \"\",
+        \"currency\": \"\",
+        \"listed_price\": \"\"
+      },
+      {
+        \"id\": \"fli_03\",
+        \"airline_ref\": {
+          \"logo\": \"\",
+          \"code\": \"\",
+          \"name\": \"airline_ref_3\"
+        },
+        \"flight_no\": \"\",
+        \"is_policy_compliant\": true,
+        \"departure_time\": \"\",
+        \"departure_airport_ref\": {
+          \"city_name\": \"\"
+        },
+        \"departure_airport_code\": \"\",
+        \"duration_label\": \"\",
+        \"stop_label\": \"\",
+        \"arrival_time\": \"\",
+        \"arrival_airport_ref\": {
+          \"city_name\": \"\"
+        },
+        \"arrival_airport_code\": \"\",
+        \"cabin_class_ref\": {
+          \"name\": \"cabin_class_ref_3\"
+        },
+        \"aircraft_type\": \"\",
+        \"discount_label\": \"\",
+        \"currency\": \"\",
+        \"listed_price\": \"\"
       }
     ]
   }
@@ -44,6 +137,10 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event nil
+  @backend_load_selection nil
+  @backend_load_assigns %{}
+  @backend_params_accept []
+  @backend_info_reload_messages []
   @backend_api_map %{}
   @status_key_roots []
   @auth_mode "optional"
@@ -56,9 +153,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     defaults = atomize_keys(@status_defaults_raw)
     socket = assign(socket, defaults)
     socket = assign(socket, :__status_defaults, defaults)
+    socket = if is_map(@backend_load_assigns) and map_size(@backend_load_assigns) > 0, do: assign(socket, @backend_load_assigns), else: socket
     socket = apply_derived(socket)
     socket = apply_params(socket, params)
-    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(params, "__page_id", @page_id), socket), else: socket
+    backend_params = __filter_backend_params(params)
+    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
     {:ok, socket}
   end
 
@@ -70,14 +169,21 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: if backend exports handle_info/2, delegate and apply BackendResult v1.
+    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
     socket =
-      if function_exported?(@backend_mod, :handle_info, 2) do
+      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
         state0 = __take_status(socket.assigns)
         apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
       else
         socket
       end
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("navigate", params, socket) do
+    # UI action event name: navigate
+    socket = dispatch_backend("navigate", params, socket)
     {:noreply, socket}
   end
 
@@ -88,9 +194,31 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     {:noreply, socket}
   end
 
+  @impl true
+  def handle_event("sort", params, socket) do
+    # UI action event name: sort
+    socket = dispatch_backend("sort", params, socket)
+    {:noreply, socket}
+  end
+
   defp apply_params(socket, params) when is_map(params) do
     socket
   end
+
+  defp __filter_backend_params(params) when is_map(params) do
+    if @backend_params_accept == [] do
+      params
+    else
+      Map.take(params, @backend_params_accept ++ ["__page_id"])
+    end
+  end
+  defp __filter_backend_params(params), do: params
+
+  defp __accept_backend_info?({kind, value}) when is_atom(kind) and is_binary(value) do
+    kind == :page_host_reload and value in @backend_info_reload_messages
+  end
+  defp __accept_backend_info?(value) when is_binary(value), do: value in @backend_info_reload_messages
+  defp __accept_backend_info?(_), do: @backend_info_reload_messages == []
 
   defp ensure_user_context(socket) do
     # Thin user-context contract: keep it uniform so skeletons stay generated and diffable.

@@ -2,31 +2,25 @@
 # ```mermaid
 # stateDiagram-v2
 #   [*] --> create
-#   create --> approve
-#   create --> reject
+#   create --> submit
 #   create --> complete_direct
-#   approve --> complete
-#   reject --> [*] : rejected
+#   submit --> confirm_change
+#   submit --> reject_change
+#   confirm_change --> complete
+#   reject_change --> [*] : rejected
 #   complete --> [*] : completed
 #   complete_direct --> [*] : completed
-# ```
-# Workflow: change_approval_to_order_confirm — 改签审批完成后，触发原订单执行 confirm_change；失败时回滚改签单为 rejected
-# ```mermaid
-# stateDiagram-v2
-#   [*] --> complete
-#   complete --> [*]
-#   confirm_change --> [*]
 # ```
 defmodule UniboExPoc.Travel.TravelChangeOrder do
   use Ash.Resource,
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource, AshStateMachine],
+    extensions: [AshGraphql.Resource, AshStateMachine],
     notifiers: [Ash.Notifier.PubSub]
 
   resource do
-    description "改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态"
+    description "改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态；审批通过 overlay on Approvals 域"
   end
 
   postgres do
@@ -45,8 +39,10 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
 
     mutations do
       create :create_travel_travel_change_order, :create
-      update :approve_travel_travel_change_order, :approve
-      update :reject_travel_travel_change_order, :reject
+      update :update_travel_travel_change_order, :update
+      update :submit_travel_travel_change_order, :submit
+      update :confirm_change_travel_travel_change_order, :confirm_change
+      update :reject_change_travel_travel_change_order, :reject_change
       update :complete_travel_travel_change_order, :complete
       update :complete_direct_travel_travel_change_order, :complete_direct
     end
@@ -83,8 +79,19 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       public? true
       description "审批模式快照；none 表示跳过审批，self/oa 表示进入审批流"
     end
-    create_timestamp :inserted_at
-    update_timestamp :updated_at
+    attribute :inserted_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      public? true
+    end
+    attribute :updated_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      update_default &DateTime.utc_now/0
+      public? true
+    end
   end
 
   relationships do
@@ -104,9 +111,15 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       change manage_relationship(:original_order_id, :original_order, type: :append, on_lookup: :relate)
       validate present(:original_order_id)
     end
-    update :approve do
-      description "Update Travel Change Order via Approve. doc_url: graphql://contract/travel/approve_travel_travel_change_order"
+    update :update do
+      description "Update Travel Change Order via Update. doc_url: graphql://contract/travel/update_travel_travel_change_order"
       primary? true
+      accept [:change_reason, :price_difference, :change_fee, :new_offer_id]
+    end
+    update :submit do
+      description "提交改签申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance
+
+提交改签申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance. doc_url: graphql://contract/travel/submit_travel_travel_change_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -116,13 +129,12 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
           Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :pending}))
         end
       end
-      # message: "只有 pending 改签单可以审批或拒绝"
-      change set_attribute(:status, :approved)
-      change transition_state(:approved)
+      # message: "只有 pending 改签单可以提交或由审批触发"
+      change UniboExPoc.Travel.Integrations.TravelChangeOrder.SubmitCreateApprovalInstanceBridge
       require_atomic? false
     end
-    update :reject do
-      description "Update Travel Change Order via Reject. doc_url: graphql://contract/travel/reject_travel_travel_change_order"
+    update :confirm_change do
+      description "Update Travel Change Order via Confirm Change. doc_url: graphql://contract/travel/confirm_change_travel_travel_change_order"
       accept []
       change fn changeset, _ctx ->
         current = Ash.Changeset.get_attribute(changeset, :status)
@@ -132,9 +144,25 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
           Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :pending}))
         end
       end
-      # message: "只有 pending 改签单可以审批或拒绝"
+      # message: "只有 pending 改签单可以提交或由审批触发"
+      change set_attribute(:status, :approved)
+      change AshStateMachine.BuiltinChanges.transition_state(:approved)
+      require_atomic? false
+    end
+    update :reject_change do
+      description "Update Travel Change Order via Reject Change. doc_url: graphql://contract/travel/reject_change_travel_travel_change_order"
+      accept []
+      change fn changeset, _ctx ->
+        current = Ash.Changeset.get_attribute(changeset, :status)
+        if current == :pending do
+          changeset
+        else
+          Ash.Changeset.add_error(changeset, Ash.Error.Changes.InvalidAttribute.exception(field: :status, message: "must equal %{value}", vars: %{value: :pending}))
+        end
+      end
+      # message: "只有 pending 改签单可以提交或由审批触发"
       change set_attribute(:status, :rejected)
-      change transition_state(:rejected)
+      change AshStateMachine.BuiltinChanges.transition_state(:rejected)
       require_atomic? false
     end
     update :complete do
@@ -150,7 +178,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       end
       # message: "只有 approved 改签单可以完成"
       change set_attribute(:status, :completed)
-      change transition_state(:completed)
+      change AshStateMachine.BuiltinChanges.transition_state(:completed)
       require_atomic? false
     end
     update :complete_direct do
@@ -175,35 +203,7 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
       end
       # message: "关闭审批时，pending 改签单可直接完成"
       change set_attribute(:status, :completed)
-      change transition_state(:completed)
-      require_atomic? false
-    end
-
-    update :notify_order_change_approved do
-      accept []
-      # determination semantics: phase=post_commit, scope=cross_aggregate, mode=async_write_back
-      # 异步写回：通过 AsyncRuntime.Queue 进入 outbox 风格队列
-      change fn changeset, _ctx ->
-        queue_module = UniboExPoc.AsyncRuntime.Queue
-        record_id = changeset.data && changeset.data.id
-        dedup_key = "determination:travel_change_order:notify_order_change_approved:#{inspect(record_id)}"
-        payload = %{
-          "entity" => "travel_change_order",
-          "determination" => "notify_order_change_approved",
-          "scope" => "cross_aggregate",
-          "mode" => "async_write_back",
-          "record_id" => record_id
-        }
-        if Code.ensure_loaded?(queue_module) and function_exported?(queue_module, :enqueue, 1) do
-          case queue_module.enqueue(%{kind: "determination_async_write_back", dedup_key: dedup_key, payload: payload}) do
-            {:ok, _task} -> changeset
-            {:ok, :duplicate} -> changeset
-            {:error, reason} -> Ash.Changeset.add_error(changeset, "async determination enqueue failed: #{inspect(reason)}")
-          end
-        else
-          Ash.Changeset.add_error(changeset, "async runtime queue unavailable")
-        end
-      end
+      change AshStateMachine.BuiltinChanges.transition_state(:completed)
       require_atomic? false
     end
   end
@@ -212,20 +212,15 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
     identity :unique_order_status, [:original_order_id, :status]
   end
 
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
-  end
-
 
   state_machine do
     initial_states [:pending]
     default_initial_state :pending
+    extra_states [:pending, :approved, :completed, :rejected]
     state_attribute :status
     transitions do
-      transition :approve, from: :pending, to: :approved
-      transition :reject, from: :pending, to: :rejected
+      transition :confirm_change, from: :pending, to: :approved
+      transition :reject_change, from: :pending, to: :rejected
       transition :complete, from: :approved, to: :completed
       transition :complete_direct, from: :pending, to: :completed
     end
@@ -235,8 +230,9 @@ defmodule UniboExPoc.Travel.TravelChangeOrder do
     module UniboExPoc.PubSub
     prefix "travel_change_order"
 
-    publish :approve, ["travel.change_order.approved"]
-    publish :reject, ["travel.change_order.rejected"]
+    publish :submit, ["travel.change_order.submitted"]
+    publish :confirm_change, ["travel.change_order.approved"]
+    publish :reject_change, ["travel.change_order.rejected"]
     publish :complete, ["travel.change_order.completed"]
     publish :complete_direct, ["travel.change_order.completed"]
   end

@@ -11,34 +11,77 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "MyAppWeb.Pages.StitchGeneratedLive"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): travelers, travelers[], travelers[].full_name, travelers[].id, travelers[].id_number, travelers[].id_type, travelers[].is_self, travelers[].phone, travelers_empty
+  # status.keys preview (first ~40): rows, rows[], rows[].booking_mode, rows[].change_status, rows[].contact_name, rows[].contact_phone, rows[].currency, rows[].order_no, rows[].original_order_ref, rows[].payment_external_ref, rows[].points_deduction_amount, rows[].points_to_use, rows[].product_type, rows[].recommended_payment_method, rows[].seat_selection_snapshot, rows[].status, rows[].supplier_order_ref, rows[].ticket_passenger_infos, rows[].total_amount, rows[].traveler_count, rows[].waitlist_status, rows_empty, travel_order, travel_order.page, travel_order.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"travelers_empty\": true,
-  \"travelers\": [
+  \"travel_order\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
+  \"rows_empty\": true,
+  \"rows\": [
     {
-      \"full_name\": \"\",
-      \"is_self\": true,
-      \"id_type\": \"\",
-      \"id_number\": \"\",
-      \"phone\": \"\",
-      \"id\": \"tra_01\"
+      \"order_no\": \"\",
+      \"product_type\": \"\",
+      \"booking_mode\": \"\",
+      \"contact_name\": \"\",
+      \"contact_phone\": \"\",
+      \"traveler_count\": \"\",
+      \"total_amount\": \"\",
+      \"points_to_use\": \"\",
+      \"points_deduction_amount\": \"\",
+      \"recommended_payment_method\": \"\",
+      \"currency\": \"\",
+      \"status\": \"\",
+      \"change_status\": \"\",
+      \"waitlist_status\": \"\",
+      \"original_order_ref\": \"\",
+      \"ticket_passenger_infos\": \"\",
+      \"seat_selection_snapshot\": \"\",
+      \"supplier_order_ref\": \"\",
+      \"payment_external_ref\": \"\"
     },
     {
-      \"full_name\": \"\",
-      \"is_self\": true,
-      \"id_type\": \"\",
-      \"id_number\": \"\",
-      \"phone\": \"\",
-      \"id\": \"tra_02\"
+      \"order_no\": \"\",
+      \"product_type\": \"\",
+      \"booking_mode\": \"\",
+      \"contact_name\": \"\",
+      \"contact_phone\": \"\",
+      \"traveler_count\": \"\",
+      \"total_amount\": \"\",
+      \"points_to_use\": \"\",
+      \"points_deduction_amount\": \"\",
+      \"recommended_payment_method\": \"\",
+      \"currency\": \"\",
+      \"status\": \"\",
+      \"change_status\": \"\",
+      \"waitlist_status\": \"\",
+      \"original_order_ref\": \"\",
+      \"ticket_passenger_infos\": \"\",
+      \"seat_selection_snapshot\": \"\",
+      \"supplier_order_ref\": \"\",
+      \"payment_external_ref\": \"\"
     },
     {
-      \"full_name\": \"\",
-      \"is_self\": true,
-      \"id_type\": \"\",
-      \"id_number\": \"\",
-      \"phone\": \"\",
-      \"id\": \"tra_03\"
+      \"order_no\": \"\",
+      \"product_type\": \"\",
+      \"booking_mode\": \"\",
+      \"contact_name\": \"\",
+      \"contact_phone\": \"\",
+      \"traveler_count\": \"\",
+      \"total_amount\": \"\",
+      \"points_to_use\": \"\",
+      \"points_deduction_amount\": \"\",
+      \"recommended_payment_method\": \"\",
+      \"currency\": \"\",
+      \"status\": \"\",
+      \"change_status\": \"\",
+      \"waitlist_status\": \"\",
+      \"original_order_ref\": \"\",
+      \"ticket_passenger_infos\": \"\",
+      \"seat_selection_snapshot\": \"\",
+      \"supplier_order_ref\": \"\",
+      \"payment_external_ref\": \"\"
     }
   ]
 }")
@@ -49,6 +92,10 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
   @backend_load_event nil
+  @backend_load_selection nil
+  @backend_load_assigns %{}
+  @backend_params_accept []
+  @backend_info_reload_messages []
   @backend_api_map %{}
   @status_key_roots []
   @auth_mode "optional"
@@ -61,9 +108,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     defaults = atomize_keys(@status_defaults_raw)
     socket = assign(socket, defaults)
     socket = assign(socket, :__status_defaults, defaults)
+    socket = if is_map(@backend_load_assigns) and map_size(@backend_load_assigns) > 0, do: assign(socket, @backend_load_assigns), else: socket
     socket = apply_derived(socket)
     socket = apply_params(socket, params)
-    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(params, "__page_id", @page_id), socket), else: socket
+    backend_params = __filter_backend_params(params)
+    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
     {:ok, socket}
   end
 
@@ -75,9 +124,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: if backend exports handle_info/2, delegate and apply BackendResult v1.
+    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
     socket =
-      if function_exported?(@backend_mod, :handle_info, 2) do
+      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
         state0 = __take_status(socket.assigns)
         apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
       else
@@ -87,43 +136,51 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("close_dialog:traveler_edit_dialog", params, socket) do
-    # UI action event name: close_dialog:traveler_edit_dialog
-    socket = dispatch_backend("close_dialog:traveler_edit_dialog", params, socket)
+  def handle_event("filter_submit", params, socket) do
+    # UI action event name: filter_submit
+    socket = dispatch_backend("filter_submit", params, socket)
     {:noreply, socket}
   end
 
   @impl true
-  def handle_event("delete:Travel.TravelerProfile:{{item.id|}}", params, socket) do
-    # UI action event name: delete:Travel.TravelerProfile:{{item.id|}}
-    socket = dispatch_backend("delete:Travel.TravelerProfile:{{item.id|}}", params, socket)
+  def handle_event("navigate_create", params, socket) do
+    # UI action event name: navigate_create
+    socket = dispatch_backend("navigate_create", params, socket)
     {:noreply, socket}
   end
 
   @impl true
-  def handle_event("open_dialog:traveler_edit_dialog:create", params, socket) do
-    # UI action event name: open_dialog:traveler_edit_dialog:create
-    socket = dispatch_backend("open_dialog:traveler_edit_dialog:create", params, socket)
+  def handle_event("travel_order_page_next", params, socket) do
+    # UI action event name: travel_order_page_next
+    socket = dispatch_backend("travel_order_page_next", params, socket)
     {:noreply, socket}
   end
 
   @impl true
-  def handle_event("open_dialog:traveler_edit_dialog:edit:{{item.id|}}", params, socket) do
-    # UI action event name: open_dialog:traveler_edit_dialog:edit:{{item.id|}}
-    socket = dispatch_backend("open_dialog:traveler_edit_dialog:edit:{{item.id|}}", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("submit_form:Travel.TravelerProfile", params, socket) do
-    # UI action event name: submit_form:Travel.TravelerProfile
-    socket = dispatch_backend("submit_form:Travel.TravelerProfile", params, socket)
+  def handle_event("travel_order_page_prev", params, socket) do
+    # UI action event name: travel_order_page_prev
+    socket = dispatch_backend("travel_order_page_prev", params, socket)
     {:noreply, socket}
   end
 
   defp apply_params(socket, params) when is_map(params) do
     socket
   end
+
+  defp __filter_backend_params(params) when is_map(params) do
+    if @backend_params_accept == [] do
+      params
+    else
+      Map.take(params, @backend_params_accept ++ ["__page_id"])
+    end
+  end
+  defp __filter_backend_params(params), do: params
+
+  defp __accept_backend_info?({kind, value}) when is_atom(kind) and is_binary(value) do
+    kind == :page_host_reload and value in @backend_info_reload_messages
+  end
+  defp __accept_backend_info?(value) when is_binary(value), do: value in @backend_info_reload_messages
+  defp __accept_backend_info?(_), do: @backend_info_reload_messages == []
 
   defp ensure_user_context(socket) do
     # Thin user-context contract: keep it uniform so skeletons stay generated and diffable.

@@ -3,7 +3,7 @@ defmodule UniboExPoc.Travel.TravelAirline do
     otp_app: :travel,
     domain: UniboExPoc.Travel,
     data_layer: AshPostgres.DataLayer,
-    extensions: [AshGraphql.Resource, AshPaperTrail.Resource]
+    extensions: [AshGraphql.Resource]
 
   resource do
     description "航司主数据（Travel 层，来源 OFBiz PartyGroup）"
@@ -74,12 +74,6 @@ defmodule UniboExPoc.Travel.TravelAirline do
 
   identities do
     identity :unique_airline_code, [:airline_code]
-  end
-
-  paper_trail do
-    change_tracking_mode :full_diff
-    store_action_name? true
-    ignore_attributes [:inserted_at, :updated_at]
   end
 
 end

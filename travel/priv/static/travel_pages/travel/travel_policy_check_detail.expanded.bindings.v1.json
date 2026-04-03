@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "vars": {
+    "travel_policy_check.check_result": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_check_result_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy_check.check_result|}}"
+        }
+      ]
+    },
+    "travel_policy_check.policy_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_policy_amount_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy_check.policy_amount|}}"
+        }
+      ]
+    },
+    "travel_policy_check.actual_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_actual_amount_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy_check.actual_amount|}}"
+        }
+      ]
+    },
+    "travel_policy_check.exceed_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_exceed_amount_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy_check.exceed_amount|}}"
+        }
+      ]
+    },
+    "travel_policy_check.exceed_ratio": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_exceed_ratio_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy_check.exceed_ratio|}}"
+        }
+      ]
+    },
+    "travel_policy_check.exceed_strategy": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_exceed_strategy_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy_check.exceed_strategy|}}"
+        }
+      ]
+    },
+    "travel_policy_check.exceed_reason": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_exceed_reason_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy_check.exceed_reason|}}"
+        }
+      ]
+    },
+    "travel_policy_check.personal_pay_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_personal_pay_amount_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy_check.personal_pay_amount|}}"
+        }
+      ]
+    },
+    "travel_policy_check.approval_mode": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_approval_mode_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy_check.approval_mode|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
+}

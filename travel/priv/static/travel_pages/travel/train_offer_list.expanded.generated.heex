@@ -1,180 +1,212 @@
-<.page title="TrainOffer 列表" id="train_offer_list">
-  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="train_offer_header">
-    <.text variant="title" id="train_offer_title">
-      <%= @page_title %>
-    </.text>
-    <.button variant="primary" phx-click="navigate_create" size="md" id="train_offer_create_btn">
-      新建
-    </.button>
+<.page title="列表" id="train_offer_list">
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.stack direction="column" id="page_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TrainOffer
+        </.text>
+        <.text variant="h1" id="page_title">
+          火车票可售 offer,承载车次、席别、候补和退改规则快照
+        </.text>
+      </.stack>
+      <.button variant="primary" phx-click="navigate_create" size="md" id="create_btn">
+        新建
+      </.button>
+    </.flex>
   </.section>
-  <.card variant="default" id="train_offer_filter_card">
-    <.card_content id="train_offer_filter_content">
-      <.flex gap={4} align="center" direction="row" id="train_offer_filter_row">
-        <.input name="travel_date_from" label="乘车日期 起" size="md" id="filter_travel_date_from" />
-        <.input name="travel_date_to" label="乘车日期 止" size="md" id="filter_travel_date_to" />
-        <.input name="departure_at_from" label="发车时间 起" size="md" id="filter_departure_at_from" />
-        <.input name="departure_at_to" label="发车时间 止" size="md" id="filter_departure_at_to" />
-        <.input name="arrival_at_from" label="到达时间 起" size="md" id="filter_arrival_at_from" />
-        <.input name="arrival_at_to" label="到达时间 止" size="md" id="filter_arrival_at_to" />
-        <.select name="inventory_status" label="余票或候补可用状态" size="md" id="filter_inventory_status">
-
-        </.select>
-        <.select name="sale_status" label="可售状态" size="md" id="filter_sale_status">
-
-        </.select>
-        <.button variant="secondary" phx-click="filter_submit" size="md" id="train_offer_filter_submit">
-          查询
-        </.button>
-      </.flex>
-    </.card_content>
-  </.card>
-  <.table id="train_offer_table">
-    <.table_header id="train_offer_table_header">
-      <.table_row id="train_offer_header_row">
-        <.table_head id="th_supplier_code">
-          供应商编码
-        </.table_head>
-        <.table_head id="th_train_no">
-          车次号
-        </.table_head>
-        <.table_head id="th_departure_station_code">
-          出发站编码
-        </.table_head>
-        <.table_head id="th_departure_station_name">
-          出发站名称
-        </.table_head>
-        <.table_head id="th_arrival_station_code">
-          到达站编码
-        </.table_head>
-        <.table_head id="th_arrival_station_name">
-          到达站名称
-        </.table_head>
-        <.table_head id="th_travel_date">
-          乘车日期
-        </.table_head>
-        <.table_head id="th_departure_at">
-          发车时间
-        </.table_head>
-        <.table_head id="th_arrival_at">
-          到达时间
-        </.table_head>
-        <.table_head id="th_seat_class">
-          席别名称
-        </.table_head>
-        <.table_head id="th_seat_code">
-          席别编码
-        </.table_head>
-        <.table_head id="th_is_no_seat">
-          是否无座票
-        </.table_head>
-        <.table_head id="th_inventory_status">
-          余票或候补可用状态
-        </.table_head>
-        <.table_head id="th_waitlist_supported">
-          是否支持候补
-        </.table_head>
-        <.table_head id="th_listed_price">
-          对客展示价快照
-        </.table_head>
-        <.table_head id="th_settlement_price">
-          结算价快照
-        </.table_head>
-        <.table_head id="th_currency">
-          currency
-        </.table_head>
-        <.table_head id="th_booking_rules_snapshot">
-          预订规则快照
-        </.table_head>
-        <.table_head id="th_change_rules_snapshot">
-          改签规则快照
-        </.table_head>
-        <.table_head id="th_refund_rules_snapshot">
-          退票规则快照
-        </.table_head>
-        <.table_head id="th_sale_status">
-          可售状态
-        </.table_head>
-      </.table_row>
-    </.table_header>
-    <.table_body id="train_offer_table_body">
-      <%= for row <- @rows do %>
-        <.table_row>
-          <.table_cell>
-            <%= row.supplier_code %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.train_no %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.departure_station_code %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.departure_station_name %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.arrival_station_code %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.arrival_station_name %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.travel_date %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.departure_at %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.arrival_at %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.seat_class %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.seat_code %>
-          </.table_cell>
-          <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= row.is_no_seat %>
-            </.badge>
-          </.table_cell>
-          <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= row.inventory_status %>
-            </.badge>
-          </.table_cell>
-          <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= row.waitlist_supported %>
-            </.badge>
-          </.table_cell>
-          <.table_cell>
-            <%= row.listed_price %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.settlement_price %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.currency %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.booking_rules_snapshot %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.change_rules_snapshot %>
-          </.table_cell>
-          <.table_cell>
-            <%= row.refund_rules_snapshot %>
-          </.table_cell>
-          <.table_cell>
-            <.badge variant="default" size="sm">
-              <%= row.sale_status %>
-            </.badge>
-          </.table_cell>
+  <.section layout="none" id="view_tabs">
+    <.tabs default_value="all" id="view_selector">
+      <.tabs_list id="view_tab_list">
+        <.tabs_trigger value="all" active_value="all" id="trigger_all">
+          全部
+        </.tabs_trigger>
+      </.tabs_list>
+    </.tabs>
+  </.section>
+  <.section layout="none" id="filter_section">
+    <.card variant="default" id="filter_card">
+      <.card_content id="filter_content">
+        <.flex gap={4} align="center" direction="row" id="filter_row">
+          <.stack direction="column" id="filter_fields" />
+          <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
+            查询
+          </.button>
+        </.flex>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="table_section">
+    <.table id="data_table">
+      <.table_header id="data_header">
+        <.table_row id="header_row">
+          <.table_head id="th_supplier_code">
+            供应商编码
+          </.table_head>
+          <.table_head id="th_train_no">
+            车次号
+          </.table_head>
+          <.table_head id="th_departure_station_code">
+            出发站编码
+          </.table_head>
+          <.table_head id="th_departure_station_name">
+            出发站名称
+          </.table_head>
+          <.table_head id="th_arrival_station_code">
+            到达站编码
+          </.table_head>
+          <.table_head id="th_arrival_station_name">
+            到达站名称
+          </.table_head>
+          <.table_head id="th_travel_date">
+            乘车日期
+          </.table_head>
+          <.table_head id="th_departure_at">
+            发车时间
+          </.table_head>
+          <.table_head id="th_arrival_at">
+            到达时间
+          </.table_head>
+          <.table_head id="th_seat_class">
+            席别名称
+          </.table_head>
+          <.table_head id="th_seat_code">
+            席别编码
+          </.table_head>
+          <.table_head id="th_is_no_seat">
+            是否无座票
+          </.table_head>
+          <.table_head id="th_inventory_status">
+            余票或候补可用状态
+          </.table_head>
+          <.table_head id="th_waitlist_supported">
+            是否支持候补
+          </.table_head>
+          <.table_head id="th_listed_price">
+            对客展示价快照
+          </.table_head>
+          <.table_head id="th_settlement_price">
+            结算价快照
+          </.table_head>
+          <.table_head id="th_currency">
+            currency
+          </.table_head>
+          <.table_head id="th_booking_rules_snapshot">
+            预订规则快照
+          </.table_head>
+          <.table_head id="th_change_rules_snapshot">
+            改签规则快照
+          </.table_head>
+          <.table_head id="th_refund_rules_snapshot">
+            退票规则快照
+          </.table_head>
+          <.table_head id="th_sale_status">
+            可售状态
+          </.table_head>
         </.table_row>
-      <% end %>
-    </.table_body>
-  </.table>
-  <%= if (@rows_empty && @rows_empty != []) do %>
-    <.empty_state description="暂无火车票可售 offer,承载车次、席别、候补和退改规则快照数据" id="train_offer_no_data" />
-  <% end %>
+      </.table_header>
+      <.table_body id="data_body">
+        <%= for row <- (@rows || []) do %>
+          <.table_row>
+            <.table_cell>
+              <%= get_in(row, [:supplier_code]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:train_no]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:departure_station_code]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:departure_station_name]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:arrival_station_code]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:arrival_station_name]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:travel_date]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:departure_at]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:arrival_at]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:seat_class]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:seat_code]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:is_no_seat])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:inventory_status])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:waitlist_supported])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:listed_price]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:settlement_price]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:currency]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:booking_rules_snapshot]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:change_rules_snapshot]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:refund_rules_snapshot]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:sale_status])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+          </.table_row>
+        <% end %>
+      </.table_body>
+    </.table>
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if (@rows_empty && @rows_empty != []) do %>
+      <.empty_state description="暂无数据" id="no_data" />
+    <% end %>
+  </.section>
+  <.section layout="none" id="footer">
+    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
+      <.button phx-click="train_offer_page_prev" variant="primary" size="md" id="page_prev">
+        上一页
+      </.button>
+      <.text id="page_info">
+        <%= get_in(@train_offer, [:page]) || "" %> / <%= get_in(@train_offer, [:total_pages]) || "" %>
+      </.text>
+      <.button phx-click="train_offer_page_next" variant="primary" size="md" id="page_next">
+        下一页
+      </.button>
+    </.flex>
+  </.section>
 </.page>

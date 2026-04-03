@@ -25,6 +25,7 @@ defmodule UniboExPoc.Travel.TravelPolicyCheck do
 
     mutations do
       create :create_travel_travel_policy_check, :create
+      update :update_travel_travel_policy_check, :update
     end
 
   end
@@ -75,8 +76,19 @@ defmodule UniboExPoc.Travel.TravelPolicyCheck do
       public? true
       description "命中政策时的审批模式快照"
     end
-    create_timestamp :inserted_at
-    update_timestamp :updated_at
+    attribute :inserted_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      public? true
+    end
+    attribute :updated_at, :utc_datetime_usec do
+      allow_nil? false
+      writable? false
+      default &DateTime.utc_now/0
+      update_default &DateTime.utc_now/0
+      public? true
+    end
   end
 
   relationships do
@@ -91,7 +103,7 @@ defmodule UniboExPoc.Travel.TravelPolicyCheck do
   end
 
   actions do
-    defaults [:read, :update]
+    defaults [:read]
     create :create do
       description "Create Travel Policy Check via Create. doc_url: graphql://contract/travel/create_travel_travel_policy_check"
       primary? true
@@ -103,6 +115,11 @@ defmodule UniboExPoc.Travel.TravelPolicyCheck do
       validate present(:order_id)
       validate present(:policy_id)
       validate present(:check_result)
+    end
+    update :update do
+      description "Update Travel Policy Check via Update. doc_url: graphql://contract/travel/update_travel_travel_policy_check"
+      primary? true
+      accept [:check_result, :exceed_reason, :exceed_strategy, :personal_pay_amount]
     end
   end
 

@@ -1,78 +1,146 @@
-<.page title="差旅" id="home">
-  <.section layout="none" id="search_section">
-    <.tabs default_value="flight" id="search_tabs">
-      <.tabs_list id="tab_list">
-        <.tabs_trigger value="flight" active_value="flight" id="trigger_flight">
-          机票
-        </.tabs_trigger>
-        <.tabs_trigger value="hotel" active_value="flight" id="trigger_hotel">
-          酒店
-        </.tabs_trigger>
-        <.tabs_trigger value="train" active_value="flight" id="trigger_train">
-          火车票
-        </.tabs_trigger>
-      </.tabs_list>
-      <.tabs_content value="flight" active_value="flight" id="flight_tab_content">
-        <.stack gap={4} direction="column" id="flight_form">
-          <.stack gap={3} direction="column" id="flight_fields">
-            <.input label="出发城市" placeholder="请选择出发城市" bind="form.departure_city" size="md" id="departure_city_input" />
-            <.input label="目的城市" placeholder="请选择目的城市" bind="form.arrival_city" size="md" id="arrival_city_input" />
-            <.input label="出发日期" placeholder="请选择日期" bind="form.departure_date" type="date" size="md" id="departure_date_input" />
-            <.flex gap={2} align="center" direction="row" id="direct_only_row">
-              <.switch label="仅看直飞" bind="form.direct_only" size="md" id="direct_only_switch" />
-            </.flex>
-            <.button variant="primary" size="lg" phx-click="navigate:/travel/flight/search" id="search_flight_btn">
-              因公出行?搜索机票
-            </.button>
-          </.stack>
+<.page title="概览面板" id="home">
+  <.section layout="none" id="kpi_cards">
+    <.card background="primary" padding={6} variant="default" id="hero_card">
+      <.card_content id="hero_content">
+        <.stack align="center" gap={3} direction="column" id="hero_info">
+          <.text variant="h1" weight="bold" color="white" id="hero_title">
+            <%= @hero_title %>
+          </.text>
+          <.text variant="body" color="white" id="hero_subtitle">
+            <%= @hero_subtitle %>
+          </.text>
+          <.button variant="secondary" phx-click="hero_action" size="md" id="hero_action">
+            <%= @hero_action_label %>
+          </.button>
         </.stack>
-      </.tabs_content>
-      <.tabs_content value="hotel" active_value="flight" id="hotel_tab_content">
-        <.stack gap={4} direction="column" id="hotel_form">
-          <.stack gap={3} direction="column" id="hotel_fields">
-            <.input label="城市" placeholder="请选择城市" bind="form.hotel_city" size="md" id="hotel_city_input" />
-            <.flex gap={2} direction="row" id="hotel_date_row">
-              <.input label="入住日期" placeholder="请选择" bind="form.checkin_date" type="date" size="md" id="checkin_date_input" />
-              <.input label="退房日期" placeholder="请选择" bind="form.checkout_date" type="date" size="md" id="checkout_date_input" />
-            </.flex>
-            <.input label="关键词" placeholder="酒店名/商圈/地标" bind="form.hotel_keyword" size="md" id="hotel_keyword_input" />
-            <.button variant="primary" size="lg" phx-click="navigate:/travel/hotel/search" id="search_hotel_btn">
-              因公出行?搜索酒店
-            </.button>
-          </.stack>
-        </.stack>
-      </.tabs_content>
-      <.tabs_content value="train" active_value="flight" id="train_tab_content">
-        <.stack gap={4} direction="column" id="train_form">
-          <.stack gap={3} direction="column" id="train_fields">
-            <.input label="出发站" placeholder="请选择出发站" bind="form.departure_station" size="md" id="departure_station_input" />
-            <.input label="到达站" placeholder="请选择到达站" bind="form.arrival_station" size="md" id="arrival_station_input" />
-            <.input label="出发日期" placeholder="请选择日期" bind="form.train_date" type="date" size="md" id="train_date_input" />
-            <.flex gap={2} align="center" direction="row" id="high_speed_row">
-              <.switch label="只看高铁动车" bind="form.high_speed_only" size="md" id="high_speed_switch" />
-            </.flex>
-            <.button variant="primary" size="lg" phx-click="navigate:/travel/train/search" id="search_train_btn">
-              因公出行?搜索火车票
-            </.button>
-          </.stack>
-        </.stack>
-      </.tabs_content>
-    </.tabs>
+      </.card_content>
+    </.card>
   </.section>
-  <.section layout="none" id="bottom_nav">
-    <.flex justify="around" direction="row" id="nav_bar">
-      <.button variant="ghost" icon="home" phx-click="navigate:/travel" size="md" id="nav_home">
-        首页
-      </.button>
-      <.button variant="ghost" icon="calendar" phx-click="navigate:/travel/trips" size="md" id="nav_trips">
-        行程
-      </.button>
-      <.button variant="ghost" icon="list" phx-click="navigate:/travel/orders" size="md" id="nav_orders">
-        订单
-      </.button>
-      <.button variant="ghost" icon="user" phx-click="navigate:/travel/profile" size="md" id="nav_profile">
-        我的
-      </.button>
-    </.flex>
+  <.section layout="grid" columns={2} id="charts">
+    <.grid columns={4} gap={4} id="shortcuts">
+      <.card variant="default" id="shortcut_1">
+        <.card_content id="shortcut_1_content">
+          <.stack align="center" gap={2} direction="column" id="shortcut_1_info">
+            <.icon name={@shortcut_1_icon} size="lg" id="shortcut_1_icon" />
+            <.text weight="bold" id="shortcut_1_label">
+              <%= @shortcut_1_label %>
+            </.text>
+            <.text variant="muted" id="shortcut_1_desc">
+              <%= @shortcut_1_desc %>
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="shortcut_2">
+        <.card_content id="shortcut_2_content">
+          <.stack align="center" gap={2} direction="column" id="shortcut_2_info">
+            <.icon name={@shortcut_2_icon} size="lg" id="shortcut_2_icon" />
+            <.text weight="bold" id="shortcut_2_label">
+              <%= @shortcut_2_label %>
+            </.text>
+            <.text variant="muted" id="shortcut_2_desc">
+              <%= @shortcut_2_desc %>
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="shortcut_3">
+        <.card_content id="shortcut_3_content">
+          <.stack align="center" gap={2} direction="column" id="shortcut_3_info">
+            <.icon name={@shortcut_3_icon} size="lg" id="shortcut_3_icon" />
+            <.text weight="bold" id="shortcut_3_label">
+              <%= @shortcut_3_label %>
+            </.text>
+            <.text variant="muted" id="shortcut_3_desc">
+              <%= @shortcut_3_desc %>
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="shortcut_4">
+        <.card_content id="shortcut_4_content">
+          <.stack align="center" gap={2} direction="column" id="shortcut_4_info">
+            <.icon name={@shortcut_4_icon} size="lg" id="shortcut_4_icon" />
+            <.text weight="bold" id="shortcut_4_label">
+              <%= @shortcut_4_label %>
+            </.text>
+            <.text variant="muted" id="shortcut_4_desc">
+              <%= @shortcut_4_desc %>
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+    </.grid>
+    <.card variant="default" id="announcement_card">
+      <.card_header id="announcement_header">
+        <.flex justify="between" align="center" direction="row" id="announcement_title_bar">
+          <.card_title id="announcement_title">
+            通知公告
+          </.card_title>
+          <.button variant="link" phx-click="navigate_announcements" size="md" id="announcement_more">
+            查看更多
+          </.button>
+        </.flex>
+      </.card_header>
+      <.card_content id="announcement_content">
+        <.stack gap={3} direction="column" id="announcement_list">
+          <%= for ann <- (@announcements || []) do %>
+            <.flex justify="between" align="center" direction="row" id="announcement_item">
+              <.stack gap={0} direction="column" id="ann_info">
+                <.text weight="bold" id="ann_title">
+                  <%= get_in(ann, [:title]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
+                </.text>
+                <.text variant="muted" id="ann_summary">
+                  <%= get_in(ann, [:summary]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
+                </.text>
+              </.stack>
+              <.text variant="caption" id="ann_date">
+                <%= get_in(ann, [:publish_at]) |> then(fn v when is_binary(v) and v != "" -> v; _ -> "" end) %>
+              </.text>
+            </.flex>
+          <% end %>
+        </.stack>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="activity_feed">
+    <.grid columns={3} gap={4} id="summary_grid">
+      <.card variant="default" id="pending_card">
+        <.card_content id="pending_content">
+          <.stack align="center" gap={1} direction="column" id="pending_info">
+            <.text variant="h2" weight="bold" id="pending_value">
+              <%= @pending_count %>
+            </.text>
+            <.text variant="muted" id="pending_label">
+              待办事项
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="message_card">
+        <.card_content id="message_content">
+          <.stack align="center" gap={1} direction="column" id="message_info">
+            <.text variant="h2" weight="bold" id="message_value">
+              <%= @message_count %>
+            </.text>
+            <.text variant="muted" id="message_label">
+              未读消息
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+      <.card variant="default" id="schedule_card">
+        <.card_content id="schedule_content">
+          <.stack align="center" gap={1} direction="column" id="schedule_info">
+            <.text variant="h2" weight="bold" id="schedule_value">
+              <%= @schedule_count %>
+            </.text>
+            <.text variant="muted" id="schedule_label">
+              今日日程
+            </.text>
+          </.stack>
+        </.card_content>
+      </.card>
+    </.grid>
   </.section>
 </.page>

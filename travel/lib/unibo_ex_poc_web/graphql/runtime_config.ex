@@ -35,6 +35,10 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
     Keyword.get(config(), :schema, UniboExPocWeb.Schema)
   end
 
+  def default_tenant_id do
+    Keyword.get(config(), :default_tenant_id)
+  end
+
   def runtime_consistency_error do
     invalid_domains =
       schema_module()
@@ -158,13 +162,15 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
 
   defp default_page_host_pages_dir do
     static_dir = Path.join(:code.priv_dir(@app), "static")
+    app_pages = Atom.to_string(@app) <> "_pages"
 
     candidates =
       if File.dir?(static_dir) do
         static_dir
         |> File.ls!()
         |> Enum.filter(fn entry ->
-          String.ends_with?(entry, "_pages") and File.dir?(Path.join(static_dir, entry))
+          File.dir?(Path.join(static_dir, entry)) and
+            (String.ends_with?(entry, "_pages") or entry == "pages")
         end)
         |> Enum.sort()
       else
@@ -172,14 +178,17 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
       end
 
     cond do
-      "365_pages" in candidates ->
-        Path.join(static_dir, "365_pages")
+      app_pages in candidates ->
+        Path.join(static_dir, app_pages)
+
+      "pages" in candidates ->
+        Path.join(static_dir, "pages")
 
       length(candidates) == 1 ->
         Path.join(static_dir, hd(candidates))
 
       true ->
-        Path.join(static_dir, "365_pages")
+        Path.join(static_dir, app_pages)
     end
   end
 
@@ -671,12 +680,18 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
           if nested == %{}, do: acc, else: Map.put(acc, normalized_key, nested)
 
         is_list(value) ->
-          normalized_list =
-            value
-            |> Enum.map(&normalize_string/1)
-            |> Enum.reject(&(&1 == ""))
+          cond do
+            Enum.all?(value, &is_map/1) ->
+              normalized = Enum.map(value, &normalize_map/1) |> Enum.reject(&(&1 == %{}))
+              if normalized == [], do: acc, else: Map.put(acc, normalized_key, normalized)
+            true ->
+              normalized_list =
+                value
+                |> Enum.map(&normalize_string/1)
+                |> Enum.reject(&(&1 == ""))
 
-          if normalized_list == [], do: acc, else: Map.put(acc, normalized_key, normalized_list)
+              if normalized_list == [], do: acc, else: Map.put(acc, normalized_key, normalized_list)
+          end
 
         true ->
           normalized_value = normalize_string(value)
@@ -814,11 +829,12 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
     |> map_get("pages")
     |> normalize_list()
     |> Enum.map(fn page ->
+      raw_state_schema = map_get(page, "state_schema")
       page = normalize_map(page)
       page_id = normalize_string(map_get(page, "page_id"))
       page_type = normalize_string(map_get(page, "page_type"))
       backend = normalize_map(map_get(page, "backend"))
-      state_schema = normalize_map(map_get(page, "state_schema"))
+      state_schema = raw_state_schema || %{}
 
       page
       |> Map.put("page_id", page_id)
@@ -872,10 +888,12 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
   defp frontend_backend_page_issues(report, page_id) do
     page_id = normalize_string(page_id)
 
-    report.errors ++
-      Enum.filter(report.warnings, fn issue ->
-        normalize_string(map_get(issue, "page_id")) == page_id
-      end)
+    # 仅全局 errors 阻断页面加载，warnings 不阻断（可通过 manifest report 查看）
+    Enum.filter(report.errors, fn issue ->
+      # 全局 error（无 page_id）或匹配当前 page_id 的 error
+      issue_pid = normalize_string(map_get(issue, "page_id"))
+      issue_pid == "" or issue_pid == page_id
+    end)
   end
 
   defp maybe_add_frontend_manifest_missing_pages(errors, frontend_data) do
@@ -1295,7 +1313,11 @@ defmodule UniboExPocWeb.Graphql.RuntimeConfig do
     conn = Map.get(context, :conn) || Map.get(context, "conn")
 
     case extract_tenant_candidate_from_conn(conn) do
-      nil -> {:ok, nil}
+      nil ->
+        case default_tenant_id() do
+          tid when is_binary(tid) and tid != "" -> {:ok, tid}
+          _ -> {:ok, nil}
+        end
       candidate -> normalize_tenant_candidate(context, candidate)
     end
   end

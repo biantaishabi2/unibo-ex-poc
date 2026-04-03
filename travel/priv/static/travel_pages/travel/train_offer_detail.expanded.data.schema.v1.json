@@ -2,43 +2,43 @@
   "version": 1,
   "requiredPaths": [
     "editing",
-    "record.arrival_at",
-    "record.arrival_station_code",
-    "record.arrival_station_name",
-    "record.booking_rules_snapshot",
-    "record.change_rules_snapshot",
-    "record.currency",
-    "record.departure_at",
-    "record.departure_station_code",
-    "record.departure_station_name",
-    "record.inventory_status",
-    "record.is_no_seat",
-    "record.listed_price",
-    "record.refund_rules_snapshot",
-    "record.sale_status",
-    "record.seat_class",
-    "record.seat_code",
-    "record.settlement_price",
-    "record.supplier_code",
-    "record.train_no",
-    "record.travel_date",
-    "record.waitlist_supported"
+    "train_offer.arrival_at",
+    "train_offer.arrival_station_code",
+    "train_offer.arrival_station_name",
+    "train_offer.booking_rules_snapshot",
+    "train_offer.change_rules_snapshot",
+    "train_offer.currency",
+    "train_offer.departure_at",
+    "train_offer.departure_station_code",
+    "train_offer.departure_station_name",
+    "train_offer.inventory_status",
+    "train_offer.is_no_seat",
+    "train_offer.listed_price",
+    "train_offer.refund_rules_snapshot",
+    "train_offer.sale_status",
+    "train_offer.seat_class",
+    "train_offer.seat_code",
+    "train_offer.settlement_price",
+    "train_offer.supplier_code",
+    "train_offer.train_no",
+    "train_offer.travel_date",
+    "train_offer.waitlist_supported"
   ],
   "requiredRoots": [
     "editing",
-    "record"
+    "train_offer"
   ],
   "schema": {
-    "record": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "train_offer": {
       "type": "object",
       "required": true,
       "properties": {
         "supplier_code": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
-        "inventory_status": {
           "type": "string",
           "required": false,
           "example": ""
@@ -98,6 +98,11 @@
           "required": false,
           "example": ""
         },
+        "inventory_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
         "waitlist_supported": {
           "type": "string",
           "required": false,
@@ -139,11 +144,6 @@
           "example": ""
         }
       }
-    },
-    "editing": {
-      "type": "object",
-      "required": true,
-      "properties": {}
     }
   },
   "notes": []

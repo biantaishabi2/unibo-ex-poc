@@ -11,10 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "travel_order_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].booking_mode, rows[].change_status, rows[].contact_name, rows[].contact_phone, rows[].currency, rows[].order_no, rows[].original_order_ref, rows[].payment_external_ref, rows[].points_deduction_amount, rows[].points_to_use, rows[].product_type, rows[].recommended_payment_method, rows[].seat_selection_snapshot, rows[].status, rows[].supplier_order_ref, rows[].ticket_passenger_infos, rows[].total_amount, rows[].traveler_count, rows[].waitlist_status, rows_empty
+  # status.keys preview (first ~40): rows, rows[], rows[].booking_mode, rows[].change_status, rows[].contact_name, rows[].contact_phone, rows[].currency, rows[].order_no, rows[].original_order_ref, rows[].payment_external_ref, rows[].points_deduction_amount, rows[].points_to_use, rows[].product_type, rows[].recommended_payment_method, rows[].seat_selection_snapshot, rows[].status, rows[].supplier_order_ref, rows[].ticket_passenger_infos, rows[].total_amount, rows[].traveler_count, rows[].waitlist_status, rows_empty, travel_order, travel_order.page, travel_order.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"TravelOrder 列表\",
+  \"travel_order\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
   \"rows_empty\": true,
   \"rows\": [
     {
@@ -88,7 +91,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mode "api"
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
-  @backend_load_event nil
+  @backend_load_event "list"
+  @backend_load_selection "booking_mode: bookingMode change_status: changeStatus contact_name: contactName contact_phone: contactPhone currency customer_id: customerId host_enterprise_id: hostEnterpriseId host_member_id: hostMemberId host_shop_id: hostShopId id order_no: orderNo original_order_ref: originalOrderRef payment_external_ref: paymentExternalRef payment_id: paymentId points_deduction_amount: pointsDeductionAmount points_to_use: pointsToUse product_type: productType recommended_payment_method: recommendedPaymentMethod seat_selection_snapshot: seatSelectionSnapshot status supplier_order_ref: supplierOrderRef tenant_id: tenantId ticket_passenger_infos: ticketPassengerInfos total_amount: totalAmount traveler_count: travelerCount waitlist_status: waitlistStatus"
+  @backend_load_assigns %{}
+  @backend_params_accept ["product_type", "booking_mode", "status", "change_status", "waitlist_status"]
+  @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
     "list" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.TravelOrder.list"}
   }
@@ -103,9 +110,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     defaults = atomize_keys(@status_defaults_raw)
     socket = assign(socket, defaults)
     socket = assign(socket, :__status_defaults, defaults)
+    socket = if is_map(@backend_load_assigns) and map_size(@backend_load_assigns) > 0, do: assign(socket, @backend_load_assigns), else: socket
     socket = apply_derived(socket)
     socket = apply_params(socket, params)
-    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(params, "__page_id", @page_id), socket), else: socket
+    backend_params = __filter_backend_params(params)
+    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
     {:ok, socket}
   end
 
@@ -117,9 +126,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: if backend exports handle_info/2, delegate and apply BackendResult v1.
+    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
     socket =
-      if function_exported?(@backend_mod, :handle_info, 2) do
+      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
         state0 = __take_status(socket.assigns)
         apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
       else
@@ -142,9 +151,38 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     {:noreply, socket}
   end
 
+  @impl true
+  def handle_event("travel_order_page_next", params, socket) do
+    # UI action event name: travel_order_page_next
+    socket = dispatch_backend("travel_order_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("travel_order_page_prev", params, socket) do
+    # UI action event name: travel_order_page_prev
+    socket = dispatch_backend("travel_order_page_prev", params, socket)
+    {:noreply, socket}
+  end
+
   defp apply_params(socket, params) when is_map(params) do
     socket
   end
+
+  defp __filter_backend_params(params) when is_map(params) do
+    if @backend_params_accept == [] do
+      params
+    else
+      Map.take(params, @backend_params_accept ++ ["__page_id"])
+    end
+  end
+  defp __filter_backend_params(params), do: params
+
+  defp __accept_backend_info?({kind, value}) when is_atom(kind) and is_binary(value) do
+    kind == :page_host_reload and value in @backend_info_reload_messages
+  end
+  defp __accept_backend_info?(value) when is_binary(value), do: value in @backend_info_reload_messages
+  defp __accept_backend_info?(_), do: @backend_info_reload_messages == []
 
   defp ensure_user_context(socket) do
     # Thin user-context contract: keep it uniform so skeletons stay generated and diffable.

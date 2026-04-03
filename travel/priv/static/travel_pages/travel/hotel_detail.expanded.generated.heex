@@ -1,135 +1,212 @@
-<.page title="酒店详情" id="hotel_detail">
-  <.section layout="none" id="hotel_cover">
-    <.image src={@hotel.cover_image} alt={@hotel.hotel_name} id="cover_image" />
+<.page title="详情" id="hotel_detail">
+  <.section layout="none" id="breadcrumb_section">
+    <.breadcrumb id="page_breadcrumb">
+      <.breadcrumb_list id="bc_list">
+        <.breadcrumb_item id="bc_list_item">
+          <.breadcrumb_link id="bc_link">
+            列表
+          </.breadcrumb_link>
+        </.breadcrumb_item>
+        <.breadcrumb_separator id="bc_sep" />
+        <.breadcrumb_item id="bc_current_item">
+          <.breadcrumb_page id="bc_current">
+            详情
+          </.breadcrumb_page>
+        </.breadcrumb_item>
+      </.breadcrumb_list>
+    </.breadcrumb>
   </.section>
-  <.section layout="none" id="hotel_info">
-    <.stack gap={2} direction="column" id="hotel_basic">
-      <.flex gap={2} align="center" direction="row" id="hotel_name_row">
-        <.text variant="h2" weight="bold" id="hotel_name">
-          <%= @hotel.hotel_name %>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="detail_header">
+    <.flex gap={3} align="center" direction="row" id="title_group">
+      <.stack direction="column" id="title_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          HotelOffer
         </.text>
-        <.badge variant="secondary" size="sm" id="hotel_star">
-          <%= @hotel.hotel_star %>
-        </.badge>
-      </.flex>
-      <.tabs default_value="exterior" id="photo_tabs">
-        <.tabs_list id="photo_tab_list">
-          <.tabs_trigger value="exterior" active_value="exterior" id="trigger_exterior">
-            外观
-          </.tabs_trigger>
-          <.tabs_trigger value="dining" active_value="exterior" id="trigger_dining">
-            餐饮
-          </.tabs_trigger>
-          <.tabs_trigger value="room" active_value="exterior" id="trigger_room">
-            客房
-          </.tabs_trigger>
-        </.tabs_list>
-        <.tabs_content value="exterior" active_value="exterior" id="exterior_content">
-          <.image src={@hotel.exterior_image} alt="外观" id="exterior_img" />
-        </.tabs_content>
-        <.tabs_content value="dining" active_value="exterior" id="dining_content">
-          <.image src={@hotel.dining_image} alt="餐饮" id="dining_img" />
-        </.tabs_content>
-        <.tabs_content value="room" active_value="exterior" id="room_content_tab">
-          <.image src={@hotel.room_image} alt="客房" id="room_img" />
-        </.tabs_content>
-      </.tabs>
-      <.flex gap={2} align="center" direction="row" id="score_row">
-        <.badge variant="primary" size="sm" id="hotel_score">
-          <%= @hotel.score %>
-        </.badge>
-        <.text variant="body" color="primary" id="score_label">
-          <%= @hotel.score_label %>
+        <.text variant="h1" id="page_title">
+          酒店可售 offer,承载房型、价计划、价态和可售规则快照
         </.text>
-      </.flex>
-      <.flex gap={1} align="center" direction="row" id="address_row">
-        <.icon name="map-pin" size="sm" color="muted" id="map_pin_icon" />
-        <.text variant="caption" color="muted" id="hotel_address">
-          <%= @hotel.address %>
-        </.text>
-      </.flex>
-    </.stack>
-  </.section>
-  <.separator id="sep_1" />
-  <.section layout="none" id="date_filter">
-    <.flex gap={2} align="center" direction="row" id="filter_row">
-      <.input label="入住" bind="filter.checkin_date" type="date" size="md" id="checkin_input" />
-      <.input label="退房" bind="filter.checkout_date" type="date" size="md" id="checkout_input" />
-      <.button variant="outline" phx-click="refresh_offers" size="md" id="refresh_btn">
-        查询
+      </.stack>
+      <.badge bind="hotel_offer.status" variant="default" size="sm" id="status_badge" />
+    </.flex>
+    <.flex gap={2} direction="row" id="actions_group">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
+        编辑
+      </.button>
+      <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
+        删除
       </.button>
     </.flex>
   </.section>
-  <.separator id="sep_2" />
-  <.section layout="grid" columns={3} id="room_list_section">
-    <.text variant="h3" id="room_list_title">
-      房型报价
-    </.text>
-    <.stack gap={3} direction="column" id="room_list">
-      <%= for item <- @offers do %>
-        <.card variant="default">
-          <.card_header>
-            <.flex gap={3} direction="row">
-              <.stack gap={1} direction="column">
-                <.text variant="h4" weight="bold">
-                  <%= item.room_type_name %>
+  <.section layout="none" id="info_section">
+    <.card variant="default" id="info_card">
+      <.card_header id="info_header">
+        <.card_title id="info_title">
+          基本信息
+        </.card_title>
+      </.card_header>
+      <.card_content id="info_content">
+        <%= if !(@editing && @editing != []) do %>
+          <.grid columns={2} gap={4} id="info_grid">
+            <.grid columns={2} gap={3} id="detail_fields">
+              <.stack gap={0} direction="column" id="detail_fields_supplier_code">
+                <.text variant="caption" color="muted" id="detail_fields_supplier_code_label">
+                  供应商编码
                 </.text>
-                <.text variant="caption" color="muted">
-                  <%= item.bed_type %>
+                <.text id="detail_fields_supplier_code_value">
+                  <%= get_in(@hotel_offer, [:supplier_code]) || "" %>
                 </.text>
-                <.flex gap={1} direction="row">
-                  <.badge variant="outline" size="sm">
-                    <%= item.area_label %>
-                  </.badge>
-                  <.badge variant="outline" size="sm">
-                    <%= item.floor_label %>
-                  </.badge>
-                </.flex>
               </.stack>
-            </.flex>
-          </.card_header>
-          <.card_content>
-            <.flex justify="between" align="center" direction="row">
-              <.stack gap={1} direction="column">
-                <.text variant="body" weight="bold">
-                  <%= item.rate_plan_code %>
+              <.stack gap={0} direction="column" id="detail_fields_hotel_code">
+                <.text variant="caption" color="muted" id="detail_fields_hotel_code_label">
+                  酒店编码
                 </.text>
-                <.flex gap={1} direction="row">
-                  <.badge variant="outline" size="sm">
-                    <%= item.cancellation_policy %>
-                  </.badge>
-                  <%= if (item.is_breakfast_included && item.is_breakfast_included != []) do %>
-                    <.badge variant="success" size="sm">
-                      含早
-                    </.badge>
-                  <% end %>
-                  <%= if (item.exceeds_policy && item.exceeds_policy != []) do %>
-                    <.badge variant="destructive" size="sm">
-                      超标
-                    </.badge>
-                  <% end %>
-                </.flex>
+                <.text id="detail_fields_hotel_code_value">
+                  <%= get_in(@hotel_offer, [:hotel_code]) || "" %>
+                </.text>
               </.stack>
-              <.flex gap={2} align="center" direction="row">
-                <.flex gap={1} align="baseline" direction="row">
-                  <.text variant="caption">
-                    <%= item.currency %>
-                  </.text>
-                  <.text variant="h3" color="primary">
-                    <%= item.listed_price %>
-                  </.text>
-                </.flex>
-                <.button variant="primary" size="sm" phx-click="navigate:/travel/hotel/booking/{{item.id|}}">
-                  预订
-                </.button>
-              </.flex>
+              <.stack gap={0} direction="column" id="detail_fields_hotel_name">
+                <.text variant="caption" color="muted" id="detail_fields_hotel_name_label">
+                  酒店名称
+                </.text>
+                <.text id="detail_fields_hotel_name_value">
+                  <%= get_in(@hotel_offer, [:hotel_name]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_city_code">
+                <.text variant="caption" color="muted" id="detail_fields_city_code_label">
+                  城市编码
+                </.text>
+                <.text id="detail_fields_city_code_value">
+                  <%= get_in(@hotel_offer, [:city_code]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_room_type_code">
+                <.text variant="caption" color="muted" id="detail_fields_room_type_code_label">
+                  房型编码
+                </.text>
+                <.text id="detail_fields_room_type_code_value">
+                  <%= get_in(@hotel_offer, [:room_type_code]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_rate_plan_code">
+                <.text variant="caption" color="muted" id="detail_fields_rate_plan_code_label">
+                  价计划编码
+                </.text>
+                <.text id="detail_fields_rate_plan_code_value">
+                  <%= get_in(@hotel_offer, [:rate_plan_code]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_checkin_date">
+                <.text variant="caption" color="muted" id="detail_fields_checkin_date_label">
+                  入住日期
+                </.text>
+                <.text id="detail_fields_checkin_date_value">
+                  <%= get_in(@hotel_offer, [:checkin_date]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_checkout_date">
+                <.text variant="caption" color="muted" id="detail_fields_checkout_date_label">
+                  离店日期
+                </.text>
+                <.text id="detail_fields_checkout_date_value">
+                  <%= get_in(@hotel_offer, [:checkout_date]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_listed_price">
+                <.text variant="caption" color="muted" id="detail_fields_listed_price_label">
+                  对客展示价快照
+                </.text>
+                <.text id="detail_fields_listed_price_value">
+                  <%= get_in(@hotel_offer, [:listed_price]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_settlement_price">
+                <.text variant="caption" color="muted" id="detail_fields_settlement_price_label">
+                  结算价快照
+                </.text>
+                <.text id="detail_fields_settlement_price_value">
+                  <%= get_in(@hotel_offer, [:settlement_price]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_currency">
+                <.text variant="caption" color="muted" id="detail_fields_currency_label">
+                  币种
+                </.text>
+                <.text id="detail_fields_currency_value">
+                  <%= get_in(@hotel_offer, [:currency]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_inventory_count">
+                <.text variant="caption" color="muted" id="detail_fields_inventory_count_label">
+                  可售库存快照
+                </.text>
+                <.text id="detail_fields_inventory_count_value">
+                  <%= get_in(@hotel_offer, [:inventory_count]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_cancellation_policy">
+                <.text variant="caption" color="muted" id="detail_fields_cancellation_policy_label">
+                  取消规则快照
+                </.text>
+                <.text id="detail_fields_cancellation_policy_value">
+                  <%= get_in(@hotel_offer, [:cancellation_policy]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_guarantee_policy">
+                <.text variant="caption" color="muted" id="detail_fields_guarantee_policy_label">
+                  担保规则快照
+                </.text>
+                <.text id="detail_fields_guarantee_policy_value">
+                  <%= get_in(@hotel_offer, [:guarantee_policy]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_sale_status">
+                <.text variant="caption" color="muted" id="detail_fields_sale_status_label">
+                  可售状态
+                </.text>
+                <.text id="detail_fields_sale_status_value">
+                  <%= get_in(@hotel_offer, [:sale_status]) || "" %>
+                </.text>
+              </.stack>
+            </.grid>
+          </.grid>
+        <% else %>
+          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+            <.grid columns={2} gap={4} id="form_grid">
+              <.stack direction="column" id="form_fields">
+                <.input bind="hotel_offer.tenant_id" size="md" id="update_tenant_id" />
+                <.input bind="hotel_offer.host_shop_id" size="md" id="update_host_shop_id" />
+                <.input bind="hotel_offer.supplier_code" size="md" id="update_supplier_code" />
+                <.input bind="hotel_offer.hotel_code" size="md" id="update_hotel_code" />
+                <.input bind="hotel_offer.hotel_name" size="md" id="update_hotel_name" />
+                <.input bind="hotel_offer.city_code" size="md" id="update_city_code" />
+                <.input bind="hotel_offer.room_type_code" size="md" id="update_room_type_code" />
+                <.input bind="hotel_offer.rate_plan_code" size="md" id="update_rate_plan_code" />
+                <.input bind="hotel_offer.checkin_date" size="md" id="update_checkin_date" />
+                <.input bind="hotel_offer.checkout_date" size="md" id="update_checkout_date" />
+                <.input bind="hotel_offer.listed_price" size="md" id="update_listed_price" />
+                <.input bind="hotel_offer.settlement_price" size="md" id="update_settlement_price" />
+                <.input bind="hotel_offer.currency" size="md" id="update_currency" />
+                <.input bind="hotel_offer.inventory_count" size="md" id="update_inventory_count" />
+                <.textarea bind="hotel_offer.cancellation_policy" id="update_cancellation_policy" />
+                <.textarea bind="hotel_offer.guarantee_policy" id="update_guarantee_policy" />
+                <.select bind="hotel_offer.sale_status" size="md" id="update_sale_status" options={[%{label: "draft", value: "draft"}, %{label: "active", value: "active"}, %{label: "inactive", value: "inactive"}, %{label: "expired", value: "expired"}]}>
+
+                </.select>
+                <.input bind="hotel_offer.city_ref_id" size="md" id="update_city_ref_id" />
+              </.stack>
+            </.grid>
+            <.flex justify="end" gap={2} direction="row" id="form_actions">
+              <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
+                取消
+              </.button>
+              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+                保存
+              </.button>
             </.flex>
-          </.card_content>
-        </.card>
-      <% end %>
-    </.stack>
-    <%= if (@offers_empty && @offers_empty != []) do %>
-      <.empty_state title="暂无可用房型" description="请调整日期后重试" id="no_rooms" />
-    <% end %>
+          </.form>
+        <% end %>
+      </.card_content>
+    </.card>
   </.section>
 </.page>

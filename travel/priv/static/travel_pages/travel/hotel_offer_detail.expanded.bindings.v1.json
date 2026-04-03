@@ -1,189 +1,168 @@
 {
   "version": 1,
   "vars": {
-    "record.supplier_code": {
+    "hotel_offer.supplier_code": {
       "uses": [
         {
-          "node_type": "BreadcrumbPage",
-          "node_id": "hotel_offer_bc_current",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.supplier_code|详情}}"
-        },
-        {
           "node_type": "Text",
-          "node_id": "hotel_offer_detail_title",
+          "node_id": "detail_fields_supplier_code_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.supplier_code|}}"
-        },
-        {
-          "node_type": "Text",
-          "node_id": "value_supplier_code",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.supplier_code|}}"
+          "template": "{{hotel_offer.supplier_code|}}"
         }
       ]
     },
-    "record.sale_status": {
-      "uses": [
-        {
-          "node_type": "Badge",
-          "node_id": "hotel_offer_status_badge",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.sale_status|}}"
-        },
-        {
-          "node_type": "Badge",
-          "node_id": "value_sale_status",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{record.sale_status|}}"
-        }
-      ]
-    },
-    "record.hotel_code": {
+    "hotel_offer.hotel_code": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_hotel_code",
+          "node_id": "detail_fields_hotel_code_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.hotel_code|}}"
+          "template": "{{hotel_offer.hotel_code|}}"
         }
       ]
     },
-    "record.hotel_name": {
+    "hotel_offer.hotel_name": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_hotel_name",
+          "node_id": "detail_fields_hotel_name_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.hotel_name|}}"
+          "template": "{{hotel_offer.hotel_name|}}"
         }
       ]
     },
-    "record.city_code": {
+    "hotel_offer.city_code": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_city_code",
+          "node_id": "detail_fields_city_code_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.city_code|}}"
+          "template": "{{hotel_offer.city_code|}}"
         }
       ]
     },
-    "record.room_type_code": {
+    "hotel_offer.room_type_code": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_room_type_code",
+          "node_id": "detail_fields_room_type_code_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.room_type_code|}}"
+          "template": "{{hotel_offer.room_type_code|}}"
         }
       ]
     },
-    "record.rate_plan_code": {
+    "hotel_offer.rate_plan_code": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_rate_plan_code",
+          "node_id": "detail_fields_rate_plan_code_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.rate_plan_code|}}"
+          "template": "{{hotel_offer.rate_plan_code|}}"
         }
       ]
     },
-    "record.checkin_date": {
+    "hotel_offer.checkin_date": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_checkin_date",
+          "node_id": "detail_fields_checkin_date_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.checkin_date|}}"
+          "template": "{{hotel_offer.checkin_date|}}"
         }
       ]
     },
-    "record.checkout_date": {
+    "hotel_offer.checkout_date": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_checkout_date",
+          "node_id": "detail_fields_checkout_date_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.checkout_date|}}"
+          "template": "{{hotel_offer.checkout_date|}}"
         }
       ]
     },
-    "record.listed_price": {
+    "hotel_offer.listed_price": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_listed_price",
+          "node_id": "detail_fields_listed_price_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.listed_price|}}"
+          "template": "{{hotel_offer.listed_price|}}"
         }
       ]
     },
-    "record.settlement_price": {
+    "hotel_offer.settlement_price": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_settlement_price",
+          "node_id": "detail_fields_settlement_price_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.settlement_price|}}"
+          "template": "{{hotel_offer.settlement_price|}}"
         }
       ]
     },
-    "record.currency": {
+    "hotel_offer.currency": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_currency",
+          "node_id": "detail_fields_currency_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.currency|}}"
+          "template": "{{hotel_offer.currency|}}"
         }
       ]
     },
-    "record.inventory_count": {
+    "hotel_offer.inventory_count": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_inventory_count",
+          "node_id": "detail_fields_inventory_count_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.inventory_count|}}"
+          "template": "{{hotel_offer.inventory_count|}}"
         }
       ]
     },
-    "record.cancellation_policy": {
+    "hotel_offer.cancellation_policy": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_cancellation_policy",
+          "node_id": "detail_fields_cancellation_policy_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.cancellation_policy|}}"
+          "template": "{{hotel_offer.cancellation_policy|}}"
         }
       ]
     },
-    "record.guarantee_policy": {
+    "hotel_offer.guarantee_policy": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "value_guarantee_policy",
+          "node_id": "detail_fields_guarantee_policy_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{record.guarantee_policy|}}"
+          "template": "{{hotel_offer.guarantee_policy|}}"
+        }
+      ]
+    },
+    "hotel_offer.sale_status": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_sale_status_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{hotel_offer.sale_status|}}"
         }
       ]
     }
@@ -193,39 +172,9 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "hotel_offer_edit_btn",
+          "node_id": "edit_btn",
           "prop": "click",
           "raw": "toggle_edit"
-        }
-      ]
-    },
-    "action_activate": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "hotel_offer_action_activate",
-          "prop": "click",
-          "raw": "action_activate"
-        }
-      ]
-    },
-    "action_deactivate": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "hotel_offer_action_deactivate",
-          "prop": "click",
-          "raw": "action_deactivate"
-        }
-      ]
-    },
-    "action_expire": {
-      "triggers": [
-        {
-          "node_type": "Button",
-          "node_id": "hotel_offer_action_expire",
-          "prop": "click",
-          "raw": "action_expire"
         }
       ]
     },
@@ -233,7 +182,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "hotel_offer_delete_btn",
+          "node_id": "delete_btn",
           "prop": "click",
           "raw": "action_destroy"
         }
@@ -243,13 +192,13 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "hotel_offer_edit_form",
+          "node_id": "edit_form",
           "prop": "submit",
           "raw": "form_submit"
         },
         {
           "node_type": "Button",
-          "node_id": "hotel_offer_save_btn",
+          "node_id": "save_btn",
           "prop": "click",
           "raw": "form_submit"
         }
@@ -259,7 +208,7 @@
       "triggers": [
         {
           "node_type": "Form",
-          "node_id": "hotel_offer_edit_form",
+          "node_id": "edit_form",
           "prop": "change",
           "raw": "form_change"
         }
@@ -269,7 +218,7 @@
       "triggers": [
         {
           "node_type": "Button",
-          "node_id": "hotel_offer_cancel_btn",
+          "node_id": "cancel_btn",
           "prop": "click",
           "raw": "cancel_edit"
         }

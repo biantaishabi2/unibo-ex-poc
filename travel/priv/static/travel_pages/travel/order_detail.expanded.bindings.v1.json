@@ -1,457 +1,272 @@
 {
   "version": 1,
   "vars": {
-    "order.status": {
+    "travel_order.order_no": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "status_text",
+          "node_id": "detail_fields_order_no_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.status|}}"
+          "template": "{{travel_order.order_no|}}"
         }
       ]
     },
-    "order.order_no": {
+    "travel_order.product_type": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "order_no_value",
+          "node_id": "detail_fields_product_type_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.order_no|}}"
+          "template": "{{travel_order.product_type|}}"
         }
       ]
     },
-    "order.total_amount": {
+    "travel_order.booking_mode": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "total_amount_value",
+          "node_id": "detail_fields_booking_mode_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.total_amount|}}"
+          "template": "{{travel_order.booking_mode|}}"
         }
       ]
     },
-    "order.points_deduction_amount": {
+    "travel_order.contact_name": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "points_value",
+          "node_id": "detail_fields_contact_name_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.points_deduction_amount|}}"
+          "template": "{{travel_order.contact_name|}}"
         }
       ]
     },
-    "order.payable_amount": {
+    "travel_order.contact_phone": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "payable_value",
+          "node_id": "detail_fields_contact_phone_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.payable_amount|}}"
+          "template": "{{travel_order.contact_phone|}}"
         }
       ]
     },
-    "order.flight_offer.departure_time": {
+    "travel_order.traveler_count": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "flight_dep_time",
+          "node_id": "detail_fields_traveler_count_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.flight_offer.departure_time|}}"
+          "template": "{{travel_order.traveler_count|}}"
         }
       ]
     },
-    "order.flight_offer.departure_airport": {
+    "travel_order.total_amount": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "flight_dep_airport",
+          "node_id": "detail_fields_total_amount_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.flight_offer.departure_airport|}}"
+          "template": "{{travel_order.total_amount|}}"
         }
       ]
     },
-    "order.flight_offer.departure_terminal": {
+    "travel_order.points_to_use": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "flight_dep_terminal",
+          "node_id": "detail_fields_points_to_use_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.flight_offer.departure_terminal|}}"
+          "template": "{{travel_order.points_to_use|}}"
         }
       ]
     },
-    "order.flight_offer.duration": {
+    "travel_order.points_deduction_amount": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "flight_duration",
+          "node_id": "detail_fields_points_deduction_amount_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.flight_offer.duration|}}"
+          "template": "{{travel_order.points_deduction_amount|}}"
         }
       ]
     },
-    "order.flight_offer.flight_no": {
+    "travel_order.recommended_payment_method": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "flight_no_mid",
+          "node_id": "detail_fields_recommended_payment_method_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.flight_offer.flight_no|}}"
+          "template": "{{travel_order.recommended_payment_method|}}"
         }
       ]
     },
-    "order.flight_offer.arrival_time": {
+    "travel_order.currency": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "flight_arr_time",
+          "node_id": "detail_fields_currency_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.flight_offer.arrival_time|}}"
+          "template": "{{travel_order.currency|}}"
         }
       ]
     },
-    "order.flight_offer.arrival_airport": {
+    "travel_order.status": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "flight_arr_airport",
+          "node_id": "detail_fields_status_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.flight_offer.arrival_airport|}}"
+          "template": "{{travel_order.status|}}"
         }
       ]
     },
-    "order.flight_offer.arrival_terminal": {
+    "travel_order.change_status": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "flight_arr_terminal",
+          "node_id": "detail_fields_change_status_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.flight_offer.arrival_terminal|}}"
+          "template": "{{travel_order.change_status|}}"
         }
       ]
     },
-    "order.flight_offer.airline_name": {
+    "travel_order.waitlist_status": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "airline_name",
+          "node_id": "detail_fields_waitlist_status_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.flight_offer.airline_name|}}"
+          "template": "{{travel_order.waitlist_status|}}"
         }
       ]
     },
-    "order.flight_offer.aircraft_type": {
+    "travel_order.original_order_ref": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "aircraft_type",
+          "node_id": "detail_fields_original_order_ref_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.flight_offer.aircraft_type|}}"
+          "template": "{{travel_order.original_order_ref|}}"
         }
       ]
     },
-    "order.flight_offer.meal_info": {
-      "uses": [
-        {
-          "node_type": "Badge",
-          "node_id": "meal_badge",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.flight_offer.meal_info|}}"
-        }
-      ]
-    },
-    "order.flight_offer.refund_change_policy": {
+    "travel_order.ticket_passenger_infos": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "refund_policy",
+          "node_id": "detail_fields_ticket_passenger_infos_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.flight_offer.refund_change_policy|}}"
+          "template": "{{travel_order.ticket_passenger_infos|}}"
         }
       ]
     },
-    "order.flight_offer.baggage_allowance": {
+    "travel_order.seat_selection_snapshot": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "baggage_policy",
+          "node_id": "detail_fields_seat_selection_snapshot_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.flight_offer.baggage_allowance|}}"
+          "template": "{{travel_order.seat_selection_snapshot|}}"
         }
       ]
     },
-    "order.flight_offer.product_description": {
+    "travel_order.supplier_order_ref": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "product_desc",
+          "node_id": "detail_fields_supplier_order_ref_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.flight_offer.product_description|}}"
+          "template": "{{travel_order.supplier_order_ref|}}"
         }
       ]
     },
-    "order.seat_selection_snapshot.pickup_code": {
+    "travel_order.payment_external_ref": {
       "uses": [
         {
           "node_type": "Text",
-          "node_id": "pickup_value",
+          "node_id": "detail_fields_payment_external_ref_value",
           "location": "prop",
           "prop": "content",
-          "template": "{{order.seat_selection_snapshot.pickup_code|}}"
-        }
-      ]
-    },
-    "order.seat_selection_snapshot.gate": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "gate_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.seat_selection_snapshot.gate|}}"
-        }
-      ]
-    },
-    "order.train_offer.departure_time": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "train_dep_time",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.train_offer.departure_time|}}"
-        }
-      ]
-    },
-    "order.train_offer.departure_station": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "train_dep_station",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.train_offer.departure_station|}}"
-        }
-      ]
-    },
-    "order.train_offer.train_no": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "train_no_display",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.train_offer.train_no|}}"
-        }
-      ]
-    },
-    "order.train_offer.duration": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "train_duration",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.train_offer.duration|}}"
-        }
-      ]
-    },
-    "order.train_offer.arrival_time": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "train_arr_time",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.train_offer.arrival_time|}}"
-        }
-      ]
-    },
-    "order.train_offer.arrival_station": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "train_arr_station",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.train_offer.arrival_station|}}"
-        }
-      ]
-    },
-    "order.train_offer.stop_stations": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "stop_stations",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.train_offer.stop_stations|}}"
-        }
-      ]
-    },
-    "order.hotel_offer.hotel_name": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "hotel_name",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.hotel_offer.hotel_name|}}"
-        }
-      ]
-    },
-    "order.hotel_offer.address": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "hotel_address",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.hotel_offer.address|}}"
-        }
-      ]
-    },
-    "order.hotel_offer.room_type_name": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "room_type_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.hotel_offer.room_type_name|}}"
-        }
-      ]
-    },
-    "order.hotel_offer.room_count": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "room_count_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.hotel_offer.room_count|}}"
-        }
-      ]
-    },
-    "order.hotel_offer.night_count": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "night_count_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.hotel_offer.night_count|}}"
-        }
-      ]
-    },
-    "order.hotel_offer.bed_type": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "bed_type_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.hotel_offer.bed_type|}}"
-        }
-      ]
-    },
-    "order.hotel_offer.room_area": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "room_area_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.hotel_offer.room_area|}}"
-        }
-      ]
-    },
-    "order.hotel_offer.breakfast_info": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "breakfast_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.hotel_offer.breakfast_info|}}"
-        }
-      ]
-    },
-    "order.hotel_offer.window_type": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "window_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.hotel_offer.window_type|}}"
-        }
-      ]
-    },
-    "order.hotel_offer.floor_info": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "floor_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.hotel_offer.floor_info|}}"
-        }
-      ]
-    },
-    "order.hotel_offer.check_in_date": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "checkin_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.hotel_offer.check_in_date|}}"
-        }
-      ]
-    },
-    "order.hotel_offer.check_out_date": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "checkout_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.hotel_offer.check_out_date|}}"
-        }
-      ]
-    },
-    "order.hotel_offer.cancellation_fee": {
-      "uses": [
-        {
-          "node_type": "Text",
-          "node_id": "cancel_fee_value",
-          "location": "prop",
-          "prop": "content",
-          "template": "{{order.hotel_offer.cancellation_fee|}}"
+          "template": "{{travel_order.payment_external_ref|}}"
         }
       ]
     }
   },
-  "events": {}
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
 }

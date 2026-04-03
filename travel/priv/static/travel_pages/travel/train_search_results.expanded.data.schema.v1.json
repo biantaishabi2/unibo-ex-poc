@@ -3,21 +3,45 @@
   "requiredPaths": [
     "date_item.date_label",
     "date_item.is_selected",
+    "date_item.weekday",
+    "item",
+    "item.arrival_station_name",
+    "item.arrival_time",
+    "item.departure_station_name",
+    "item.departure_time",
+    "item.duration_label",
+    "item.id",
+    "item.seat_options",
+    "item.stop_count_label",
+    "item.train_no",
+    "item.train_type_label",
     "policy",
-    "results",
-    "search.date_range"
+    "search.date_range",
+    "search.route_label",
+    "seat.price",
+    "seat.seat_class_name",
+    "seat.tickets_label",
+    "trains",
+    "trains.items"
   ],
   "requiredRoots": [
     "date_item",
+    "item",
     "policy",
-    "results",
-    "search"
+    "search",
+    "seat",
+    "trains"
   ],
   "schema": {
     "search": {
       "type": "object",
       "required": true,
       "properties": {
+        "route_label": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
         "date_range": {
           "type": "array",
           "required": false,
@@ -31,6 +55,11 @@
                 "example": ""
               },
               "date_label": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "weekday": {
                 "type": "string",
                 "required": false,
                 "example": ""
@@ -52,6 +81,10 @@
         "date_label": {
           "type": "unknown",
           "required": true
+        },
+        "weekday": {
+          "type": "unknown",
+          "required": true
         }
       }
     },
@@ -66,7 +99,7 @@
         }
       }
     },
-    "results": {
+    "trains": {
       "type": "object",
       "required": true,
       "properties": {
@@ -74,6 +107,157 @@
           "type": "boolean",
           "required": false,
           "example": true
+        },
+        "items": {
+          "type": "array",
+          "required": false,
+          "items": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "required": false,
+                "example": "tra_01"
+              },
+              "train_no": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "train_type_label": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "is_policy_compliant": {
+                "type": "boolean",
+                "required": false,
+                "example": true
+              },
+              "departure_time": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "departure_station_name": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "duration_label": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "stop_count_label": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "arrival_time": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "arrival_station_name": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "seat_options": {
+                "type": "array",
+                "required": false,
+                "items": {
+                  "type": "object",
+                  "required": false,
+                  "properties": {
+                    "seat_class_name": {
+                      "type": "string",
+                      "required": false,
+                      "example": ""
+                    },
+                    "price": {
+                      "type": "string",
+                      "required": false,
+                      "example": ""
+                    },
+                    "tickets_label": {
+                      "type": "string",
+                      "required": false,
+                      "example": ""
+                    }
+                  }
+                },
+                "exampleCount": 2
+              }
+            }
+          },
+          "exampleCount": 3
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "id": {
+          "type": "unknown",
+          "required": true
+        },
+        "train_no": {
+          "type": "unknown",
+          "required": true
+        },
+        "train_type_label": {
+          "type": "unknown",
+          "required": true
+        },
+        "departure_time": {
+          "type": "unknown",
+          "required": true
+        },
+        "departure_station_name": {
+          "type": "unknown",
+          "required": true
+        },
+        "duration_label": {
+          "type": "unknown",
+          "required": true
+        },
+        "stop_count_label": {
+          "type": "unknown",
+          "required": true
+        },
+        "arrival_time": {
+          "type": "unknown",
+          "required": true
+        },
+        "arrival_station_name": {
+          "type": "unknown",
+          "required": true
+        },
+        "seat_options": {
+          "type": "unknown",
+          "required": true
+        }
+      }
+    },
+    "seat": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "seat_class_name": {
+          "type": "unknown",
+          "required": true
+        },
+        "price": {
+          "type": "unknown",
+          "required": true
+        },
+        "tickets_label": {
+          "type": "unknown",
+          "required": true
         }
       }
     }

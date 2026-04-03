@@ -1,6 +1,7 @@
 {
   "backend": {
     "api_map": {
+      "create": "Scheduling.ShiftType.create",
       "destroy": "Scheduling.ShiftType.destroy",
       "get": "Scheduling.ShiftType.get",
       "update": "Scheduling.ShiftType.update"

@@ -1,8 +1,23 @@
 {
   "backend": {
     "api_map": {
+      "create": "Travel.TravelRoomType.create",
       "get": "Travel.TravelRoomType.get",
       "update": "Travel.TravelRoomType.update"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "bed_type: bedType hotel_code: hotelCode id room_type_code: roomTypeCode room_type_name: roomTypeName status"
+    },
+    "params": {
+      "accept": [
+        "id"
+      ]
     }
   },
   "children": [],

@@ -1,0 +1,62 @@
+<.page title="表单" id="refund_apply">
+  <.section layout="none" id="breadcrumb_section">
+    <.flex direction="row" id="breadcrumb_bar" />
+  </.section>
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.stack direction="column" id="page_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelRefundOrder
+        </.text>
+        <.text variant="h1" id="page_title">
+          退票/退订单,记录针对已有 TravelOrder 的退票请求、手续费与退款状态;审批通过 overlay on Approvals 域
+        </.text>
+      </.stack>
+      <.flex gap={2} direction="row" id="header_actions">
+        <.button variant="ghost" phx-click="form_cancel" size="md" id="cancel_btn">
+          取消
+        </.button>
+        <.button variant="secondary" phx-click="save_draft" size="md" id="save_draft_btn">
+          保存草稿
+        </.button>
+        <.button variant="primary" phx-click="form_submit" size="md" id="submit_btn">
+          提交
+        </.button>
+      </.flex>
+    </.flex>
+  </.section>
+  <.section layout="none" id="form_section">
+    <.form phx-submit="form_submit" phx-change="form_change" id="main_form">
+      <.card variant="default" id="basic_info_card">
+        <.card_header id="basic_info_header">
+          <.card_title id="basic_info_title">
+            <%= @section_1_title %>
+          </.card_title>
+        </.card_header>
+        <.card_content id="basic_info_content">
+          <.stack direction="column" id="basic_info_grid">
+            <.input bind="travel_refund_order.refund_reason" size="md" id="create_refund_reason" />
+            <.input bind="travel_refund_order.refund_fee" size="md" id="create_refund_fee" />
+            <.input bind="travel_refund_order.refund_amount" size="md" id="create_refund_amount" />
+            <.select bind="travel_refund_order.status" size="md" id="create_status" options={[%{label: "pending", value: "pending"}, %{label: "approved", value: "approved"}, %{label: "refunded", value: "refunded"}, %{label: "rejected", value: "rejected"}]}>
+
+            </.select>
+            <.select bind="travel_refund_order.approval_mode" size="md" id="create_approval_mode" options={[%{label: "none", value: "none"}, %{label: "self", value: "self"}, %{label: "oa", value: "oa"}]}>
+
+            </.select>
+          </.stack>
+        </.card_content>
+      </.card>
+    </.form>
+  </.section>
+  <.section layout="none" id="form_footer">
+    <.flex justify="end" gap={2} direction="row" id="footer_actions">
+      <.button variant="secondary" phx-click="form_cancel" size="md" id="footer_cancel">
+        取消
+      </.button>
+      <.button variant="primary" phx-click="form_submit" size="md" id="footer_submit">
+        提交
+      </.button>
+    </.flex>
+  </.section>
+</.page>

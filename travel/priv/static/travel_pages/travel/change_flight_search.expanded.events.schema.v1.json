@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "events": {
+    "select_date": {
+      "name": "select_date",
+      "triggers": [
+        "click"
+      ],
+      "params": {}
+    }
+  },
+  "notes": []
+}

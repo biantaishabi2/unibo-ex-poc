@@ -2,7 +2,9 @@
   "version": 1,
   "defaults": {
     "search": {
+      "city_label": "",
       "checkin_date": "",
+      "night_count_label": "",
       "checkout_date": ""
     },
     "policy": {
@@ -12,66 +14,42 @@
       "total_count": true,
       "items": [
         {
-          "hotel_code": "",
-          "hotel_ref": {
-            "cover_image": "",
-            "hotel_star": "",
-            "score": "",
-            "address": "",
-            "facilities": [
-              {
-                "name": "facilitie_1"
-              },
-              {
-                "name": "facilitie_2"
-              }
-            ]
-          },
+          "id": "hot_01",
           "hotel_name": "",
-          "is_agreement": true,
-          "currency": "",
+          "hotel_star": "",
+          "is_policy_compliant": true,
+          "address": "",
+          "district": "",
+          "room_type_name": "",
+          "breakfast_label": "",
+          "cancel_label": "",
+          "rating_label": "",
           "listed_price": ""
         },
         {
-          "hotel_code": "",
-          "hotel_ref": {
-            "cover_image": "",
-            "hotel_star": "",
-            "score": "",
-            "address": "",
-            "facilities": [
-              {
-                "name": "facilitie_1"
-              },
-              {
-                "name": "facilitie_2"
-              }
-            ]
-          },
+          "id": "hot_02",
           "hotel_name": "",
-          "is_agreement": true,
-          "currency": "",
+          "hotel_star": "",
+          "is_policy_compliant": true,
+          "address": "",
+          "district": "",
+          "room_type_name": "",
+          "breakfast_label": "",
+          "cancel_label": "",
+          "rating_label": "",
           "listed_price": ""
         },
         {
-          "hotel_code": "",
-          "hotel_ref": {
-            "cover_image": "",
-            "hotel_star": "",
-            "score": "",
-            "address": "",
-            "facilities": [
-              {
-                "name": "facilitie_1"
-              },
-              {
-                "name": "facilitie_2"
-              }
-            ]
-          },
+          "id": "hot_03",
           "hotel_name": "",
-          "is_agreement": true,
-          "currency": "",
+          "hotel_star": "",
+          "is_policy_compliant": true,
+          "address": "",
+          "district": "",
+          "room_type_name": "",
+          "breakfast_label": "",
+          "cancel_label": "",
+          "rating_label": "",
           "listed_price": ""
         }
       ]
@@ -81,25 +59,25 @@
     "hotels",
     "hotels.items",
     "hotels.items[]",
-    "hotels.items[].currency",
-    "hotels.items[].hotel_code",
+    "hotels.items[].address",
+    "hotels.items[].breakfast_label",
+    "hotels.items[].cancel_label",
+    "hotels.items[].district",
     "hotels.items[].hotel_name",
-    "hotels.items[].hotel_ref",
-    "hotels.items[].hotel_ref.address",
-    "hotels.items[].hotel_ref.cover_image",
-    "hotels.items[].hotel_ref.facilities",
-    "hotels.items[].hotel_ref.facilities[]",
-    "hotels.items[].hotel_ref.facilities[].name",
-    "hotels.items[].hotel_ref.hotel_star",
-    "hotels.items[].hotel_ref.score",
-    "hotels.items[].is_agreement",
+    "hotels.items[].hotel_star",
+    "hotels.items[].id",
+    "hotels.items[].is_policy_compliant",
     "hotels.items[].listed_price",
+    "hotels.items[].rating_label",
+    "hotels.items[].room_type_name",
     "hotels.total_count",
     "policy",
     "policy.exceeded",
     "search",
     "search.checkin_date",
-    "search.checkout_date"
+    "search.checkout_date",
+    "search.city_label",
+    "search.night_count_label"
   ],
   "required": [
     "hotels",

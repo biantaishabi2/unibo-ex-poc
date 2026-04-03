@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "vars": {},
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    },
+    "navigate_general": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "nav_general",
+          "prop": "click",
+          "raw": "navigate_general"
+        }
+      ]
+    },
+    "navigate_notification": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "nav_notification",
+          "prop": "click",
+          "raw": "navigate_notification"
+        }
+      ]
+    },
+    "navigate_security": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "nav_security",
+          "prop": "click",
+          "raw": "navigate_security"
+        }
+      ]
+    },
+    "navigate_display": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "nav_display",
+          "prop": "click",
+          "raw": "navigate_display"
+        }
+      ]
+    },
+    "navigate_advanced": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "nav_advanced",
+          "prop": "click",
+          "raw": "navigate_advanced"
+        }
+      ]
+    }
+  }
+}

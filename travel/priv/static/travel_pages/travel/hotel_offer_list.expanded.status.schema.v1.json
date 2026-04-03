@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "HotelOffer 列表",
+    "hotel_offer": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -58,7 +61,9 @@
     ]
   },
   "keys": [
-    "page_title",
+    "hotel_offer",
+    "hotel_offer.page",
+    "hotel_offer.total_pages",
     "rows",
     "rows[]",
     "rows[].cancellation_policy",
@@ -79,7 +84,7 @@
     "rows_empty"
   ],
   "required": [
-    "page_title",
+    "hotel_offer",
     "rows",
     "rows_empty"
   ],
@@ -89,6 +94,22 @@
     "backend": {
       "api_map": {
         "list": "Travel.HotelOffer.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "cancellation_policy: cancellationPolicy checkin_date: checkinDate checkout_date: checkoutDate city_code: cityCode city_ref_id: cityRefId currency guarantee_policy: guaranteePolicy host_shop_id: hostShopId hotel_code: hotelCode hotel_name: hotelName id inventory_count: inventoryCount listed_price: listedPrice rate_plan_code: ratePlanCode room_type_code: roomTypeCode sale_status: saleStatus settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
+      },
+      "params": {
+        "accept": [
+          "checkin_date",
+          "checkout_date",
+          "sale_status"
+        ]
       }
     },
     "domain": "Travel",

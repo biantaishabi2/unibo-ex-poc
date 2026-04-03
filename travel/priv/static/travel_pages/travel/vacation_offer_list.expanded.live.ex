@@ -11,10 +11,13 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "vacation_offer_list"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): page_title, rows, rows[], rows[].booking_rules, rows[].cancellation_policy, rows[].currency, rows[].departure_city_code, rows[].destination_code, rows[].end_date, rows[].inventory_count, rows[].listed_price, rows[].package_code, rows[].package_name, rows[].package_type, rows[].sale_status, rows[].settlement_price, rows[].start_date, rows[].supplier_code, rows_empty
+  # status.keys preview (first ~40): rows, rows[], rows[].booking_rules, rows[].cancellation_policy, rows[].currency, rows[].departure_city_code, rows[].destination_code, rows[].end_date, rows[].inventory_count, rows[].listed_price, rows[].package_code, rows[].package_name, rows[].package_type, rows[].sale_status, rows[].settlement_price, rows[].start_date, rows[].supplier_code, rows_empty, vacation_offer, vacation_offer.page, vacation_offer.total_pages
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"page_title\": \"VacationOffer 列表\",
+  \"vacation_offer\": {
+    \"page\": \"\",
+    \"total_pages\": \"\"
+  },
   \"rows_empty\": true,
   \"rows\": [
     {
@@ -76,7 +79,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mode "api"
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
-  @backend_load_event nil
+  @backend_load_event "list"
+  @backend_load_selection "booking_rules: bookingRules cancellation_policy: cancellationPolicy currency departure_city_code: departureCityCode departure_city_ref_id: departureCityRefId destination_code: destinationCode destination_ref_id: destinationRefId end_date: endDate host_shop_id: hostShopId id inventory_count: inventoryCount listed_price: listedPrice package_code: packageCode package_name: packageName package_type: packageType sale_status: saleStatus settlement_price: settlementPrice start_date: startDate supplier_code: supplierCode tenant_id: tenantId"
+  @backend_load_assigns %{}
+  @backend_params_accept ["package_type", "start_date", "end_date", "sale_status"]
+  @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
     "list" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.VacationOffer.list"}
   }
@@ -91,9 +98,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     defaults = atomize_keys(@status_defaults_raw)
     socket = assign(socket, defaults)
     socket = assign(socket, :__status_defaults, defaults)
+    socket = if is_map(@backend_load_assigns) and map_size(@backend_load_assigns) > 0, do: assign(socket, @backend_load_assigns), else: socket
     socket = apply_derived(socket)
     socket = apply_params(socket, params)
-    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(params, "__page_id", @page_id), socket), else: socket
+    backend_params = __filter_backend_params(params)
+    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
     {:ok, socket}
   end
 
@@ -105,9 +114,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: if backend exports handle_info/2, delegate and apply BackendResult v1.
+    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
     socket =
-      if function_exported?(@backend_mod, :handle_info, 2) do
+      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
         state0 = __take_status(socket.assigns)
         apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
       else
@@ -130,9 +139,38 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     {:noreply, socket}
   end
 
+  @impl true
+  def handle_event("vacation_offer_page_next", params, socket) do
+    # UI action event name: vacation_offer_page_next
+    socket = dispatch_backend("vacation_offer_page_next", params, socket)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_event("vacation_offer_page_prev", params, socket) do
+    # UI action event name: vacation_offer_page_prev
+    socket = dispatch_backend("vacation_offer_page_prev", params, socket)
+    {:noreply, socket}
+  end
+
   defp apply_params(socket, params) when is_map(params) do
     socket
   end
+
+  defp __filter_backend_params(params) when is_map(params) do
+    if @backend_params_accept == [] do
+      params
+    else
+      Map.take(params, @backend_params_accept ++ ["__page_id"])
+    end
+  end
+  defp __filter_backend_params(params), do: params
+
+  defp __accept_backend_info?({kind, value}) when is_atom(kind) and is_binary(value) do
+    kind == :page_host_reload and value in @backend_info_reload_messages
+  end
+  defp __accept_backend_info?(value) when is_binary(value), do: value in @backend_info_reload_messages
+  defp __accept_backend_info?(_), do: @backend_info_reload_messages == []
 
   defp ensure_user_context(socket) do
     # Thin user-context contract: keep it uniform so skeletons stay generated and diffable.

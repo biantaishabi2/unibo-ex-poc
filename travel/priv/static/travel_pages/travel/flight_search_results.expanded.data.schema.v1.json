@@ -3,14 +3,37 @@
   "requiredPaths": [
     "date_item.date_label",
     "date_item.is_selected",
+    "date_item.price_label",
+    "flights",
+    "flights.items",
+    "item",
+    "item.aircraft_type",
+    "item.airline_ref.code",
+    "item.airline_ref.logo",
+    "item.airline_ref.name",
+    "item.arrival_airport_code",
+    "item.arrival_airport_ref.city_name",
+    "item.arrival_time",
+    "item.cabin_class_ref.name",
+    "item.currency",
+    "item.departure_airport_code",
+    "item.departure_airport_ref.city_name",
+    "item.departure_time",
+    "item.discount_label",
+    "item.duration_label",
+    "item.flight_no",
+    "item.id",
+    "item.listed_price",
+    "item.stop_label",
     "policy",
-    "results",
-    "search.date_range"
+    "search.date_range",
+    "search.route_label"
   ],
   "requiredRoots": [
     "date_item",
+    "flights",
+    "item",
     "policy",
-    "results",
     "search"
   ],
   "schema": {
@@ -18,6 +41,11 @@
       "type": "object",
       "required": true,
       "properties": {
+        "route_label": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
         "date_range": {
           "type": "array",
           "required": false,
@@ -31,6 +59,11 @@
                 "example": ""
               },
               "date_label": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "price_label": {
                 "type": "string",
                 "required": false,
                 "example": ""
@@ -52,6 +85,10 @@
         "date_label": {
           "type": "unknown",
           "required": true
+        },
+        "price_label": {
+          "type": "unknown",
+          "required": true
         }
       }
     },
@@ -66,7 +103,7 @@
         }
       }
     },
-    "results": {
+    "flights": {
       "type": "object",
       "required": true,
       "properties": {
@@ -74,6 +111,206 @@
           "type": "boolean",
           "required": false,
           "example": true
+        },
+        "items": {
+          "type": "array",
+          "required": false,
+          "items": {
+            "type": "object",
+            "required": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "required": false,
+                "example": "fli_01"
+              },
+              "airline_ref": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                  "logo": {
+                    "type": "string",
+                    "required": false,
+                    "example": ""
+                  },
+                  "code": {
+                    "type": "string",
+                    "required": false,
+                    "example": ""
+                  },
+                  "name": {
+                    "type": "string",
+                    "required": false,
+                    "example": "airline_ref_1"
+                  }
+                }
+              },
+              "flight_no": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "is_policy_compliant": {
+                "type": "boolean",
+                "required": false,
+                "example": true
+              },
+              "departure_time": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "departure_airport_ref": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                  "city_name": {
+                    "type": "string",
+                    "required": false,
+                    "example": ""
+                  }
+                }
+              },
+              "departure_airport_code": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "duration_label": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "stop_label": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "arrival_time": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "arrival_airport_ref": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                  "city_name": {
+                    "type": "string",
+                    "required": false,
+                    "example": ""
+                  }
+                }
+              },
+              "arrival_airport_code": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "cabin_class_ref": {
+                "type": "object",
+                "required": false,
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "required": false,
+                    "example": "cabin_class_ref_1"
+                  }
+                }
+              },
+              "aircraft_type": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "discount_label": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "currency": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              },
+              "listed_price": {
+                "type": "string",
+                "required": false,
+                "example": ""
+              }
+            }
+          },
+          "exampleCount": 3
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "id": {
+          "type": "unknown",
+          "required": true
+        },
+        "airline_ref": {
+          "type": "unknown",
+          "required": true
+        },
+        "flight_no": {
+          "type": "unknown",
+          "required": true
+        },
+        "departure_time": {
+          "type": "unknown",
+          "required": true
+        },
+        "departure_airport_ref": {
+          "type": "unknown",
+          "required": true
+        },
+        "departure_airport_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "duration_label": {
+          "type": "unknown",
+          "required": true
+        },
+        "stop_label": {
+          "type": "unknown",
+          "required": true
+        },
+        "arrival_time": {
+          "type": "unknown",
+          "required": true
+        },
+        "arrival_airport_ref": {
+          "type": "unknown",
+          "required": true
+        },
+        "arrival_airport_code": {
+          "type": "unknown",
+          "required": true
+        },
+        "cabin_class_ref": {
+          "type": "unknown",
+          "required": true
+        },
+        "aircraft_type": {
+          "type": "unknown",
+          "required": true
+        },
+        "discount_label": {
+          "type": "unknown",
+          "required": true
+        },
+        "currency": {
+          "type": "unknown",
+          "required": true
+        },
+        "listed_price": {
+          "type": "unknown",
+          "required": true
         }
       }
     }

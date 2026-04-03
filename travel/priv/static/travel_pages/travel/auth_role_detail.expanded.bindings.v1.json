@@ -1,0 +1,195 @@
+{
+  "version": 1,
+  "vars": {
+    "travel_policy.policy_name": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_policy_name_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy.policy_name|}}"
+        }
+      ]
+    },
+    "travel_policy.product_type": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_product_type_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy.product_type|}}"
+        }
+      ]
+    },
+    "travel_policy.employee_level": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_employee_level_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy.employee_level|}}"
+        }
+      ]
+    },
+    "travel_policy.city_tier": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_city_tier_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy.city_tier|}}"
+        }
+      ]
+    },
+    "travel_policy.season": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_season_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy.season|}}"
+        }
+      ]
+    },
+    "travel_policy.max_amount": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_max_amount_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy.max_amount|}}"
+        }
+      ]
+    },
+    "travel_policy.cabin_class_limit": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_cabin_class_limit_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy.cabin_class_limit|}}"
+        }
+      ]
+    },
+    "travel_policy.hotel_star_limit": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_hotel_star_limit_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy.hotel_star_limit|}}"
+        }
+      ]
+    },
+    "travel_policy.exceed_strategy": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_exceed_strategy_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy.exceed_strategy|}}"
+        }
+      ]
+    },
+    "travel_policy.approval_mode": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_approval_mode_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy.approval_mode|}}"
+        }
+      ]
+    },
+    "travel_policy.personal_pay_ratio": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_personal_pay_ratio_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy.personal_pay_ratio|}}"
+        }
+      ]
+    },
+    "travel_policy.is_active": {
+      "uses": [
+        {
+          "node_type": "Text",
+          "node_id": "detail_fields_is_active_value",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{travel_policy.is_active|}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "toggle_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "edit_btn",
+          "prop": "click",
+          "raw": "toggle_edit"
+        }
+      ]
+    },
+    "action_destroy": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "delete_btn",
+          "prop": "click",
+          "raw": "action_destroy"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "edit_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "save_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "edit_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    },
+    "cancel_edit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "cancel_btn",
+          "prop": "click",
+          "raw": "cancel_edit"
+        }
+      ]
+    }
+  }
+}

@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "TravelAirline 列表",
+    "travel_airline": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -28,7 +31,6 @@
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].airline_code",
@@ -36,12 +38,15 @@
     "rows[].iata_code",
     "rows[].icao_code",
     "rows[].status",
-    "rows_empty"
+    "rows_empty",
+    "travel_airline",
+    "travel_airline.page",
+    "travel_airline.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_airline"
   ],
   "urlParams": {},
   "notes": [],
@@ -49,6 +54,20 @@
     "backend": {
       "api_map": {
         "list": "Travel.TravelAirline.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "airline_code: airlineCode airline_name: airlineName iata_code: iataCode icao_code: icaoCode id status"
+      },
+      "params": {
+        "accept": [
+          "status"
+        ]
       }
     },
     "domain": "Travel",

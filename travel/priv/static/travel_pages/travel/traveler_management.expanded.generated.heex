@@ -1,86 +1,204 @@
-<.page title="出行人管理" id="traveler_management">
-  <.section layout="none" id="header_section">
-    <.flex justify="between" align="center" direction="row" id="title_bar">
-      <.text variant="h3" weight="bold" id="page_title">
-        出行人管理
-      </.text>
-      <.button variant="primary" size="sm" icon="plus" phx-click="open_dialog:traveler_edit_dialog:create" id="add_traveler_btn">
-        新增出行人
+<.page title="列表" id="traveler_management">
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="header_bar">
+      <.stack direction="column" id="page_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelOrder
+        </.text>
+        <.text variant="h1" id="page_title">
+          统一酒旅订单,承接 hotel、flight、vacation、train 四类商品的下单和状态流转;通过跨域引用关联 Sales::Customer 和 Payment::Payment
+        </.text>
+      </.stack>
+      <.button variant="primary" phx-click="navigate_create" size="md" id="create_btn">
+        新建
       </.button>
     </.flex>
   </.section>
-  <.section layout="grid" columns={2} id="traveler_list_section">
-    <.stack gap={2} direction="column" id="traveler_cards">
-      <%= for item <- @travelers do %>
-        <.card variant="default">
-          <.card_content>
-            <.flex justify="between" align="center" direction="row">
-              <.flex gap={2} align="center" direction="row">
-                <.avatar size="sm" fallback={item.full_name}>
-
-                </.avatar>
-                <.stack gap={0} direction="column">
-                  <.flex gap={1} align="center" direction="row">
-                    <.text variant="body" weight="bold">
-                      <%= item.full_name %>
-                    </.text>
-                    <%= if (item.is_self && item.is_self != []) do %>
-                      <.badge variant="secondary" size="sm">
-                        本人
-                      </.badge>
-                    <% end %>
-                  </.flex>
-                  <.flex gap={2} direction="row">
-                    <.text variant="caption" color="muted">
-                      <%= item.id_type %>
-                    </.text>
-                    <.text variant="caption" color="muted">
-                      <%= item.id_number %>
-                    </.text>
-                  </.flex>
-                  <.text variant="caption" color="muted">
-                    <%= item.phone %>
-                  </.text>
-                </.stack>
-              </.flex>
-              <.flex gap={1} direction="row">
-                <.button variant="ghost" size="sm" icon="edit" phx-click="open_dialog:traveler_edit_dialog:edit:{{item.id|}}" />
-                <.button variant="ghost" size="sm" icon="trash" color="destructive" phx-click="delete:Travel.TravelerProfile:{{item.id|}}" />
-              </.flex>
-            </.flex>
-          </.card_content>
-        </.card>
-      <% end %>
-    </.stack>
-    <%= if (@travelers_empty && @travelers_empty != []) do %>
-      <.empty_state title="暂无出行人" description="添加常用出行人,预订时可快速选择" id="no_travelers" />
+  <.section layout="none" id="view_tabs">
+    <.tabs default_value="all" id="view_selector">
+      <.tabs_list id="view_tab_list">
+        <.tabs_trigger value="all" active_value="all" id="trigger_all">
+          全部
+        </.tabs_trigger>
+      </.tabs_list>
+    </.tabs>
+  </.section>
+  <.section layout="none" id="filter_section">
+    <.card variant="default" id="filter_card">
+      <.card_content id="filter_content">
+        <.flex gap={4} align="center" direction="row" id="filter_row">
+          <.stack direction="column" id="filter_fields" />
+          <.button variant="secondary" phx-click="filter_submit" size="md" id="filter_submit">
+            查询
+          </.button>
+        </.flex>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="table_section">
+    <.table id="data_table">
+      <.table_header id="data_header">
+        <.table_row id="header_row">
+          <.table_head id="th_order_no">
+            订单号
+          </.table_head>
+          <.table_head id="th_product_type">
+            商品类型
+          </.table_head>
+          <.table_head id="th_booking_mode">
+            train 订单预订模式
+          </.table_head>
+          <.table_head id="th_contact_name">
+            contact_name
+          </.table_head>
+          <.table_head id="th_contact_phone">
+            contact_phone
+          </.table_head>
+          <.table_head id="th_traveler_count">
+            出行人数量
+          </.table_head>
+          <.table_head id="th_total_amount">
+            订单总金额
+          </.table_head>
+          <.table_head id="th_points_to_use">
+            计划使用的积分数量
+          </.table_head>
+          <.table_head id="th_points_deduction_amount">
+            积分抵现金额
+          </.table_head>
+          <.table_head id="th_recommended_payment_method">
+            宿主 quote 返回的推荐支付方式
+          </.table_head>
+          <.table_head id="th_currency">
+            currency
+          </.table_head>
+          <.table_head id="th_status">
+            status
+          </.table_head>
+          <.table_head id="th_change_status">
+            change_status
+          </.table_head>
+          <.table_head id="th_waitlist_status">
+            waitlist_status
+          </.table_head>
+          <.table_head id="th_original_order_ref">
+            改签链路引用的原订单号或原票号
+          </.table_head>
+          <.table_head id="th_ticket_passenger_infos">
+            乘车人信息快照
+          </.table_head>
+          <.table_head id="th_seat_selection_snapshot">
+            选座与席别偏好快照
+          </.table_head>
+          <.table_head id="th_supplier_order_ref">
+            供应商订单号
+          </.table_head>
+          <.table_head id="th_payment_external_ref">
+            宿主支付侧外部支付流水号
+          </.table_head>
+        </.table_row>
+      </.table_header>
+      <.table_body id="data_body">
+        <%= for row <- (@rows || []) do %>
+          <.table_row>
+            <.table_cell>
+              <%= get_in(row, [:order_no]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:product_type])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:booking_mode])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:contact_name]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:contact_phone]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:traveler_count]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:total_amount]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:points_to_use]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:points_deduction_amount]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:recommended_payment_method]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:currency]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:status])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:change_status])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= if (val = get_in(row, [:waitlist_status])) && to_string(val) != "" do %>
+                <.badge variant="default" size="sm">
+                  <%= to_string(val) %>
+                </.badge>
+              <% end %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:original_order_ref]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:ticket_passenger_infos]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:seat_selection_snapshot]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:supplier_order_ref]) || "" %>
+            </.table_cell>
+            <.table_cell>
+              <%= get_in(row, [:payment_external_ref]) || "" %>
+            </.table_cell>
+          </.table_row>
+        <% end %>
+      </.table_body>
+    </.table>
+  </.section>
+  <.section layout="none" id="empty_section">
+    <%= if (@rows_empty && @rows_empty != []) do %>
+      <.empty_state description="暂无数据" id="no_data" />
     <% end %>
   </.section>
-  <.section layout="none" id="dialog_section">
-    <.dialog title="编辑出行人" id="traveler_edit_dialog">
-      <.stack gap={3} direction="column" id="dialog_form">
-        <.input label="姓名" placeholder="请输入真实姓名" bind="form.full_name" required="true" size="md" id="input_full_name" />
-        <.select label="证件类型" placeholder="请选择证件类型" bind="form.id_type" required="true" size="md" id="select_id_type" options={[%{label: "身份证", value: "id_card"}, %{label: "护照", value: "passport"}, %{label: "港澳通行证", value: "hk_mo_pass"}, %{label: "台湾通行证", value: "tw_pass"}]}>
-
-        </.select>
-        <.input label="证件号码" placeholder="请输入证件号码" bind="form.id_number" required="true" size="md" id="input_id_number" />
-        <.input label="手机号码" placeholder="请输入手机号码" bind="form.phone" type="tel" size="md" id="input_phone" />
-        <.input label="邮箱" placeholder="请输入邮箱地址" bind="form.email" type="email" size="md" id="input_email" />
-        <.flex justify="between" align="center" direction="row" id="is_self_row">
-          <.text id="is_self_label">
-            是否本人
-          </.text>
-          <.switch bind="form.is_self" size="md" id="switch_is_self" />
-        </.flex>
-        <.flex gap={2} justify="end" direction="row" id="dialog_actions">
-          <.button variant="outline" phx-click="close_dialog:traveler_edit_dialog" size="md" id="cancel_btn">
-            取消
-          </.button>
-          <.button variant="primary" phx-click="submit_form:Travel.TravelerProfile" size="md" id="save_btn">
-            保存
-          </.button>
-        </.flex>
-      </.stack>
-    </.dialog>
+  <.section layout="none" id="footer">
+    <.flex gap={2} direction="row" justify="center" id="pagination_bar">
+      <.button phx-click="travel_order_page_prev" variant="primary" size="md" id="page_prev">
+        上一页
+      </.button>
+      <.text id="page_info">
+        <%= get_in(@travel_order, [:page]) || "" %> / <%= get_in(@travel_order, [:total_pages]) || "" %>
+      </.text>
+      <.button phx-click="travel_order_page_next" variant="primary" size="md" id="page_next">
+        下一页
+      </.button>
+    </.flex>
   </.section>
 </.page>

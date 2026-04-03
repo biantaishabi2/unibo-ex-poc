@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "defaults": {
+    "page_title": "个人中心",
+    "profile_description": ""
+  },
+  "keys": [
+    "page_title",
+    "profile_description"
+  ],
+  "required": [
+    "page_title",
+    "profile_description"
+  ],
+  "urlParams": {},
+  "notes": []
+}

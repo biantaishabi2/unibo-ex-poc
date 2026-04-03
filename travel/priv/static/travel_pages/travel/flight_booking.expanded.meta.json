@@ -1,1 +1,1 @@
-{"entity":"FlightBooking","domain":"Travel","page_type":"custom"}
+{"entity":"FlightOffer","domain":"Travel","page_type":"custom","extends_template":"base_booking_form"}

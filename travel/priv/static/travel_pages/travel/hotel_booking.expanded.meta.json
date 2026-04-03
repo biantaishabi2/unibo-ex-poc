@@ -1,1 +1,1 @@
-{"entity":"HotelBooking","domain":"Travel","page_type":"custom"}
+{"entity":"HotelOffer","domain":"Travel","page_type":"custom","extends_template":"base_booking_form"}

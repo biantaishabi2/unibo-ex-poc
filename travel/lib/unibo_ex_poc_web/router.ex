@@ -1,5 +1,7 @@
 defmodule UniboExPocWeb.Router do
   use UniboExPocWeb, :router
+  import UniboExPocWeb.Generated.CompiledPageRouter
+  import UniboExPocWeb.Generated.PageHostRouter
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -19,9 +21,13 @@ defmodule UniboExPocWeb.Router do
 
     get "/", PageController, :home
 
-    live "/travel", TravelLive
-    live "/travel/:page", TravelLive
+
   end
+
+  # UniBO page host 页面路由
+  compiled_page_routes()
+  page_host_routes()
+
 
   # GraphQL — 验证无 BFF 架构
   scope "/api" do

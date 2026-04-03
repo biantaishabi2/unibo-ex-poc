@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "vars": {
+    "section_1_title": {
+      "uses": [
+        {
+          "node_type": "CardTitle",
+          "node_id": "basic_info_title",
+          "location": "prop",
+          "prop": "content",
+          "template": "{{section_1_title|基本信息}}"
+        }
+      ]
+    }
+  },
+  "events": {
+    "form_cancel": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "cancel_btn",
+          "prop": "click",
+          "raw": "form_cancel"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "footer_cancel",
+          "prop": "click",
+          "raw": "form_cancel"
+        }
+      ]
+    },
+    "save_draft": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "save_draft_btn",
+          "prop": "click",
+          "raw": "save_draft"
+        }
+      ]
+    },
+    "form_submit": {
+      "triggers": [
+        {
+          "node_type": "Button",
+          "node_id": "footer_submit",
+          "prop": "click",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Form",
+          "node_id": "main_form",
+          "prop": "submit",
+          "raw": "form_submit"
+        },
+        {
+          "node_type": "Button",
+          "node_id": "submit_btn",
+          "prop": "click",
+          "raw": "form_submit"
+        }
+      ]
+    },
+    "form_change": {
+      "triggers": [
+        {
+          "node_type": "Form",
+          "node_id": "main_form",
+          "prop": "change",
+          "raw": "form_change"
+        }
+      ]
+    }
+  }
+}

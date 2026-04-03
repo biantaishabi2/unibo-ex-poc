@@ -143,6 +143,16 @@ defmodule HospitalSchedulingWeb.Generated.PageHostRuntime do
 
   def page_contract(_page_id), do: %{}
 
+  @doc "页面是否有非空 api_map（即是否需要走 backend dispatch）"
+  def page_has_backend?(page_id) when is_binary(page_id) do
+    case RuntimeConfig.frontend_page(page_id) do
+      {:ok, page} -> normalize_map(map_get(page, "api_map")) != %{}
+      _ -> false
+    end
+  end
+
+  def page_has_backend?(_page_id), do: false
+
   def host_path_for_page(page) when is_map(page) do
     page
     |> map_get("route")
@@ -703,10 +713,20 @@ defmodule HospitalSchedulingWeb.Generated.PageHostRuntime do
     record = map_get(defaults, "record")
     form = map_get(defaults, "form")
 
+    # 检测 defaults 中任意 list 类型的值（如 records），作为 rows 的 fallback
+    any_list =
+      Enum.find_value(defaults, nil, fn
+        {_key, value} when is_list(value) and value != [] -> value
+        _ -> nil
+      end)
+
     sample =
       cond do
         is_list(rows) and match?([first | _] when is_map(first), rows) ->
           List.first(rows)
+
+        is_list(any_list) and match?([first | _] when is_map(first), any_list) ->
+          List.first(any_list)
 
         is_map(record) and map_size(record) > 0 ->
           record
@@ -954,6 +974,10 @@ defmodule HospitalSchedulingWeb.Generated.PageHostRuntime do
       deep_merge(left_value, right_value)
     end)
   end
+
+  # #1646: 后端返回 nil 时保留 status_defaults 中的默认结构，
+  # 避免嵌套关联（如 last_solver_run）被 nil 覆盖后 dot-access 崩溃
+  defp deep_merge(left, nil) when is_map(left), do: left
 
   defp deep_merge(_left, right), do: right
 end

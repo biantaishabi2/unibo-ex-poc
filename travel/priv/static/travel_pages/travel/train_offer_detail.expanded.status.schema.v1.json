@@ -1,9 +1,8 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
+    "train_offer": {
       "supplier_code": "",
-      "inventory_status": "",
       "train_no": "",
       "departure_station_code": "",
       "departure_station_name": "",
@@ -15,6 +14,7 @@
       "seat_class": "",
       "seat_code": "",
       "is_no_seat": "",
+      "inventory_status": "",
       "waitlist_supported": "",
       "listed_price": "",
       "settlement_price": "",
@@ -24,36 +24,36 @@
       "refund_rules_snapshot": "",
       "sale_status": ""
     },
-    "editing": true
+    "editing": false
   },
   "keys": [
     "editing",
-    "record",
-    "record.arrival_at",
-    "record.arrival_station_code",
-    "record.arrival_station_name",
-    "record.booking_rules_snapshot",
-    "record.change_rules_snapshot",
-    "record.currency",
-    "record.departure_at",
-    "record.departure_station_code",
-    "record.departure_station_name",
-    "record.inventory_status",
-    "record.is_no_seat",
-    "record.listed_price",
-    "record.refund_rules_snapshot",
-    "record.sale_status",
-    "record.seat_class",
-    "record.seat_code",
-    "record.settlement_price",
-    "record.supplier_code",
-    "record.train_no",
-    "record.travel_date",
-    "record.waitlist_supported"
+    "train_offer",
+    "train_offer.arrival_at",
+    "train_offer.arrival_station_code",
+    "train_offer.arrival_station_name",
+    "train_offer.booking_rules_snapshot",
+    "train_offer.change_rules_snapshot",
+    "train_offer.currency",
+    "train_offer.departure_at",
+    "train_offer.departure_station_code",
+    "train_offer.departure_station_name",
+    "train_offer.inventory_status",
+    "train_offer.is_no_seat",
+    "train_offer.listed_price",
+    "train_offer.refund_rules_snapshot",
+    "train_offer.sale_status",
+    "train_offer.seat_class",
+    "train_offer.seat_code",
+    "train_offer.settlement_price",
+    "train_offer.supplier_code",
+    "train_offer.train_no",
+    "train_offer.travel_date",
+    "train_offer.waitlist_supported"
   ],
   "required": [
     "editing",
-    "record"
+    "train_offer"
   ],
   "urlParams": {},
   "notes": [],
@@ -61,11 +61,26 @@
     "backend": {
       "api_map": {
         "activate": "Travel.TrainOffer.activate",
+        "create": "Travel.TrainOffer.create",
         "deactivate": "Travel.TrainOffer.deactivate",
         "destroy": "Travel.TrainOffer.destroy",
         "expire": "Travel.TrainOffer.expire",
         "get": "Travel.TrainOffer.get",
         "update": "Travel.TrainOffer.update"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "arrival_at: arrivalAt arrival_station_code: arrivalStationCode arrival_station_name: arrivalStationName arrival_station_ref_id: arrivalStationRefId booking_rules_snapshot: bookingRulesSnapshot change_rules_snapshot: changeRulesSnapshot currency departure_at: departureAt departure_station_code: departureStationCode departure_station_name: departureStationName departure_station_ref_id: departureStationRefId host_shop_id: hostShopId id inventory_status: inventoryStatus is_no_seat: isNoSeat listed_price: listedPrice refund_rules_snapshot: refundRulesSnapshot sale_status: saleStatus seat_class: seatClass seat_code: seatCode settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId train_no: trainNo travel_date: travelDate waitlist_supported: waitlistSupported"
+      },
+      "params": {
+        "accept": [
+          "id"
+        ]
       }
     },
     "children": [],
@@ -115,6 +130,54 @@
                 "action": "expect_text_contains",
                 "selector": "#flash-group, [data-flash], [role='alert']",
                 "value": "成功"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_activate"
+            ],
+            "name": "动作：activate",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_activate']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_activate']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_deactivate"
+            ],
+            "name": "动作：deactivate",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_deactivate']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_deactivate']"
+              }
+            ]
+          },
+          {
+            "covers": [
+              "action_expire"
+            ],
+            "name": "动作：expire",
+            "steps": [
+              {
+                "action": "click",
+                "selector": "[data-action='action_expire']"
+              },
+              {
+                "action": "expect_visible",
+                "selector": "[data-action='action_expire']"
               }
             ]
           }

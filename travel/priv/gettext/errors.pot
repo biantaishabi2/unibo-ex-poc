@@ -1,109 +1,155 @@
-## This is a PO Template file.
-##
-## `msgid`s here are often extracted from source code.
-## Add new translations manually only if they're dynamic
-## translations that can't be statically extracted.
-##
-## Run `mix gettext.extract` to bring this file up to
-## date. Leave `msgstr`s empty as changing them here has no
-## effect: edit them in PO (`.po`) files instead.
-## From Ecto.Changeset.cast/4
-msgid "can't be blank"
+# 从 YAML 模型自动生成 — 验证消息翻译模板
+# UniBO Compiler — Gettext Errors POT
+
+#. domain: Travel, entity: HotelOffer, validation: compare
+msgid "listed_price 不能为负数"
 msgstr ""
 
-## From Ecto.Changeset.unique_constraint/3
-msgid "has already been taken"
+#. domain: Travel, entity: HotelOffer, validation: compare
+msgid "settlement_price 不能为负数"
 msgstr ""
 
-## From Ecto.Changeset.put_change/3
-msgid "is invalid"
+#. domain: Travel, entity: HotelOffer, validation: compare
+msgid "inventory_count 不能为负数"
 msgstr ""
 
-## From Ecto.Changeset.validate_acceptance/3
-msgid "must be accepted"
+#. domain: Travel, entity: HotelOffer, validation: one_of, on: activate
+msgid "只有草稿或停用中的 offer 可以 activate"
 msgstr ""
 
-## From Ecto.Changeset.validate_format/3
-msgid "has invalid format"
+#. domain: Travel, entity: HotelOffer, validation: one_of, on: deactivate, expire
+msgid "只有 active 状态的 offer 可以 deactivate 或 expire"
 msgstr ""
 
-## From Ecto.Changeset.validate_subset/3
-msgid "has an invalid entry"
+#. domain: Travel, entity: FlightOffer, validation: compare
+msgid "seats_available 不能为负数"
 msgstr ""
 
-## From Ecto.Changeset.validate_exclusion/3
-msgid "is reserved"
+#. domain: Travel, entity: TravelOrder, validation: exactly_one_of, on: create
+msgid "hotel_offer_id、flight_offer_id、vacation_offer_id、train_offer_id 必须四选一"
 msgstr ""
 
-## From Ecto.Changeset.validate_confirmation/3
-msgid "does not match confirmation"
+#. domain: Travel, entity: TravelOrder, validation: present, on: create
+msgid "hotel 订单必须绑定 hotel_offer_id"
 msgstr ""
 
-## From Ecto.Changeset.no_assoc_constraint/3
-msgid "is still associated with this entry"
+#. domain: Travel, entity: TravelOrder, validation: present, on: create
+msgid "flight 订单必须绑定 flight_offer_id"
 msgstr ""
 
-msgid "are still associated with this entry"
+#. domain: Travel, entity: TravelOrder, validation: present, on: create
+msgid "vacation 订单必须绑定 vacation_offer_id"
 msgstr ""
 
-## From Ecto.Changeset.validate_length/3
-msgid "should have %{count} item(s)"
-msgid_plural "should have %{count} item(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should be %{count} character(s)"
-msgid_plural "should be %{count} character(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should be %{count} byte(s)"
-msgid_plural "should be %{count} byte(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should have at least %{count} item(s)"
-msgid_plural "should have at least %{count} item(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should be at least %{count} character(s)"
-msgid_plural "should be at least %{count} character(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should be at least %{count} byte(s)"
-msgid_plural "should be at least %{count} byte(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should have at most %{count} item(s)"
-msgid_plural "should have at most %{count} item(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should be at most %{count} character(s)"
-msgid_plural "should be at most %{count} character(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "should be at most %{count} byte(s)"
-msgid_plural "should be at most %{count} byte(s)"
-msgstr[0] ""
-msgstr[1] ""
-
-## From Ecto.Changeset.validate_number/3
-msgid "must be less than %{number}"
+#. domain: Travel, entity: TravelOrder, validation: present, on: create
+msgid "train 订单必须绑定 train_offer_id"
 msgstr ""
 
-msgid "must be greater than %{number}"
+#. domain: Travel, entity: TravelOrder, validation: compare
+msgid "traveler_count 至少为 1"
 msgstr ""
 
-msgid "must be less than or equal to %{number}"
+#. domain: Travel, entity: TravelOrder, validation: compare
+msgid "total_amount 不能为负数"
 msgstr ""
 
-msgid "must be greater than or equal to %{number}"
+#. domain: Travel, entity: TravelOrder, validation: compare
+msgid "points_to_use 不能为负数"
 msgstr ""
 
-msgid "must be equal to %{number}"
+#. domain: Travel, entity: TravelOrder, validation: compare
+msgid "points_deduction_amount 不能为负数"
 msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: confirm_quote
+msgid "只有 draft 订单可以 confirm_quote"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: submit_order, submit_waitlist
+msgid "只有 quoted 订单可以提交普通购票或候补"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: mark_payment_succeeded, mark_order_failed
+msgid "只有 submitted 订单可以进入支付成功或失败结果"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: mark_booked, fulfill_waitlist, cancel_waitlist
+msgid "只有 booking_pending 订单可以完成出票、兑现候补或取消候补"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: mark_completed, request_cancel, request_change
+msgid "只有 booked 订单可以完成、取消或改签"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: execute_cancel, cancel_cancel_request
+msgid "只有 cancel_pending 订单可以 execute_cancel 或 cancel_cancel_request"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: fulfill_waitlist, cancel_waitlist
+msgid "只有 waitlist_pending 的订单可以兑现或取消候补"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, validation: one_of, on: confirm_change
+msgid "只有 change_pending 的订单可以 confirm_change"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, validation: one_of, on: confirm_booking, fail_fulfillment, cancel_fulfillment
+msgid "只有 pending 履约可以确认、失败或取消"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, validation: one_of, on: issue_voucher_or_ticket
+msgid "只有 confirmed 履约可以 issue_voucher_or_ticket"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, validation: one_of, on: mark_in_use
+msgid "只有 issued 履约可以 mark_in_use"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, validation: one_of, on: complete_fulfillment
+msgid "只有 issued 或 in_use 履约可以 complete_fulfillment"
+msgstr ""
+
+#. domain: Travel, entity: TravelChangeOrder, validation: one_of, on: submit, confirm_change, reject_change
+msgid "只有 pending 改签单可以提交或由审批触发"
+msgstr ""
+
+#. domain: Travel, entity: TravelChangeOrder, validation: one_of, on: complete
+msgid "只有 approved 改签单可以完成"
+msgstr ""
+
+#. domain: Travel, entity: TravelChangeOrder, validation: one_of, on: complete_direct
+msgid "只有关闭审批的改签单可以直接完成"
+msgstr ""
+
+#. domain: Travel, entity: TravelChangeOrder, validation: one_of, on: complete_direct
+msgid "关闭审批时，pending 改签单可直接完成"
+msgstr ""
+
+#. domain: Travel, entity: TravelRefundOrder, validation: one_of, on: submit, confirm_refund, reject_refund
+msgid "只有 pending 退票单可以提交或由审批触发"
+msgstr ""
+
+#. domain: Travel, entity: TravelRefundOrder, validation: one_of, on: refund
+msgid "只有 approved 退票单可以执行退款"
+msgstr ""
+
+#. domain: Travel, entity: TravelRefundOrder, validation: one_of, on: refund_direct
+msgid "只有关闭审批的退票单可以直接退款"
+msgstr ""
+
+#. domain: Travel, entity: TravelRefundOrder, validation: one_of, on: refund_direct
+msgid "关闭审批时，pending 退票单可直接退款"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, validation: one_of, on: activate
+msgid "只有未启用的政策可以激活"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, validation: one_of, on: deactivate
+msgid "只有已启用的政策可以停用"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, validation: compare
+msgid "personal_pay_ratio 必须在 0-100 之间"
+msgstr ""
+

@@ -1,8 +1,23 @@
 {
   "backend": {
     "api_map": {
+      "create": "Travel.TravelHotel.create",
       "get": "Travel.TravelHotel.get",
       "update": "Travel.TravelHotel.update"
+    },
+    "info": {
+      "reload_messages": [
+        "page_host_reload"
+      ]
+    },
+    "load": {
+      "assigns": {},
+      "selection": "city_code: cityCode city_id: cityId hotel_code: hotelCode hotel_name: hotelName hotel_star: hotelStar id status"
+    },
+    "params": {
+      "accept": [
+        "id"
+      ]
     }
   },
   "children": [],

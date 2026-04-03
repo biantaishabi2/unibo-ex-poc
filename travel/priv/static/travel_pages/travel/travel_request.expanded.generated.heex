@@ -1,0 +1,136 @@
+<.page title="表单" id="travel_request">
+  <.section layout="none" id="breadcrumb_section">
+    <.flex direction="row" id="breadcrumb_bar" />
+  </.section>
+  <.section layout="none" id="header">
+    <.flex justify="between" align="center" direction="row" id="wz_header_bar">
+      <.stack direction="column" id="wz_page_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelOrder
+        </.text>
+        <.text variant="h1" id="page_title">
+          统一酒旅订单,承接 hotel、flight、vacation、train 四类商品的下单和状态流转;通过跨域引用关联 Sales::Customer 和 Payment::Payment
+        </.text>
+      </.stack>
+      <.flex gap={2} direction="row" id="wz_header_actions">
+        <.button variant="ghost" phx-click="wizard_cancel" size="md" id="wz_hdr_cancel_btn">
+          取消
+        </.button>
+        <.button variant="primary" phx-click="wizard_submit" size="md" id="wz_hdr_submit_btn">
+          提交
+        </.button>
+      </.flex>
+    </.flex>
+  </.section>
+  <.section layout="grid" columns={4} id="form_section">
+    <.flex justify="center" align="center" gap={4} direction="row" id="wz_step_bar">
+      <.stack align="center" direction="column" id="wz_step_1">
+        <.badge variant="default" size="sm" id="wz_step_1_indicator">
+          1
+        </.badge>
+        <.text variant="caption" id="wz_step_1_label">
+          <%= @step_1_label %>
+        </.text>
+      </.stack>
+      <.text variant="muted" id="wz_step_sep_1">
+        —
+      </.text>
+      <.stack align="center" direction="column" id="wz_step_2">
+        <.badge variant="default" size="sm" id="wz_step_2_indicator">
+          2
+        </.badge>
+        <.text variant="caption" id="wz_step_2_label">
+          <%= @step_2_label %>
+        </.text>
+      </.stack>
+      <.text variant="muted" id="wz_step_sep_2">
+        —
+      </.text>
+      <.stack align="center" direction="column" id="wz_step_3">
+        <.badge variant="default" size="sm" id="wz_step_3_indicator">
+          3
+        </.badge>
+        <.text variant="caption" id="wz_step_3_label">
+          <%= @step_3_label %>
+        </.text>
+      </.stack>
+    </.flex>
+    <.card variant="default" id="wz_step_1_card">
+      <.card_header id="wz_step_1_header">
+        <.card_title id="wz_step_1_title">
+          <%= @step_1_label %>
+        </.card_title>
+      </.card_header>
+      <.card_content id="wz_step_1_content">
+        <.stack direction="column" id="wz_step_1_grid">
+          <.input size="md" name="travel_order[tenant_id]" id="form_tenant_id" />
+          <.input size="md" name="travel_order[host_shop_id]" id="form_host_shop_id" />
+          <.input size="md" name="travel_order[order_no]" id="form_order_no" />
+          <.select size="md" name="travel_order[product_type]" id="form_product_type" :let={builder}>
+            <.select_trigger builder={builder} />
+            <.select_content builder={builder}>
+              <.select_group>
+                <.select_item builder={builder} value="hotel" label="hotel">hotel</.select_item>
+                <.select_item builder={builder} value="flight" label="flight">flight</.select_item>
+                <.select_item builder={builder} value="vacation" label="vacation">vacation</.select_item>
+                <.select_item builder={builder} value="train" label="train">train</.select_item>
+              </.select_group>
+            </.select_content>
+          </.select>
+          <.input size="md" name="travel_order[customer_id]" id="form_customer_id" />
+          <.input size="md" name="travel_order[contact_name]" id="form_contact_name" />
+          <.input size="md" name="travel_order[contact_phone]" id="form_contact_phone" />
+          <.input size="md" name="travel_order[traveler_count]" id="form_traveler_count" />
+          <.input size="md" name="travel_order[total_amount]" id="form_total_amount" />
+          <.input size="md" name="travel_order[points_to_use]" id="form_points_to_use" />
+          <.input size="md" name="travel_order[points_deduction_amount]" id="form_points_deduction_amount" />
+          <.input size="md" name="travel_order[currency]" id="form_currency" />
+          <.input size="md" name="travel_order[ticket_passenger_infos]" id="form_ticket_passenger_infos" />
+          <.input columns={2} gap={4} size="md" name="travel_order[seat_selection_snapshot]" id="form_seat_selection_snapshot" />
+        </.stack>
+      </.card_content>
+    </.card>
+    <.card variant="default" id="wz_step_2_card">
+      <.card_header id="wz_step_2_header">
+        <.card_title id="wz_step_2_title">
+          <%= @step_2_label %>
+        </.card_title>
+      </.card_header>
+      <.card_content id="wz_step_2_content">
+        <.grid columns={2} gap={4} id="wz_step_2_grid" />
+      </.card_content>
+    </.card>
+    <.card variant="default" id="wz_step_3_card">
+      <.card_header id="wz_step_3_header">
+        <.card_title id="wz_step_3_title">
+          <%= @step_3_label %>
+        </.card_title>
+      </.card_header>
+      <.card_content id="wz_step_3_content">
+        <.stack gap={3} direction="column" id="wz_summary_display">
+          <.text id="wz_summary_fields">
+            汇总确认区域
+          </.text>
+        </.stack>
+      </.card_content>
+    </.card>
+  </.section>
+  <.section layout="none" id="form_footer">
+    <.flex justify="between" direction="row" id="wz_nav_buttons">
+      <.button variant="secondary" phx-click="wizard_prev" size="md" id="wz_prev_btn">
+        上一步
+      </.button>
+      <.flex gap={2} direction="row" id="wz_right_buttons">
+        <.button variant="ghost" phx-click="wizard_cancel" size="md" id="wz_cancel_btn">
+          取消
+        </.button>
+        <.button variant="primary" phx-click="wizard_next" size="md" id="wz_next_btn">
+          下一步
+        </.button>
+        <.button variant="primary" phx-click="wizard_submit" size="md" id="wz_submit_btn">
+          提交
+        </.button>
+      </.flex>
+    </.flex>
+  </.section>
+</.page>

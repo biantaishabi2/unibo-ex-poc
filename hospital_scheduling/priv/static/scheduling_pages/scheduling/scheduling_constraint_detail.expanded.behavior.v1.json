@@ -1,6 +1,7 @@
 {
   "backend": {
     "api_map": {
+      "create": "Scheduling.SchedulingConstraint.create",
       "destroy": "Scheduling.SchedulingConstraint.destroy",
       "get": "Scheduling.SchedulingConstraint.get",
       "update": "Scheduling.SchedulingConstraint.update"

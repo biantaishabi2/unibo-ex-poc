@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "defaults": {
+    "flight_offer": {
+      "page": "",
+      "total_pages": ""
+    },
+    "rows_empty": true,
+    "rows": [
+      {
+        "supplier_code": "",
+        "itinerary_code": "",
+        "flight_no": "",
+        "departure_airport_code": "",
+        "arrival_airport_code": "",
+        "departure_at": "",
+        "arrival_at": "",
+        "cabin_class": "",
+        "fare_family": "",
+        "listed_price": "",
+        "settlement_price": "",
+        "currency": "",
+        "seats_available": "",
+        "baggage_policy": "",
+        "refund_change_policy": "",
+        "sale_status": ""
+      },
+      {
+        "supplier_code": "",
+        "itinerary_code": "",
+        "flight_no": "",
+        "departure_airport_code": "",
+        "arrival_airport_code": "",
+        "departure_at": "",
+        "arrival_at": "",
+        "cabin_class": "",
+        "fare_family": "",
+        "listed_price": "",
+        "settlement_price": "",
+        "currency": "",
+        "seats_available": "",
+        "baggage_policy": "",
+        "refund_change_policy": "",
+        "sale_status": ""
+      },
+      {
+        "supplier_code": "",
+        "itinerary_code": "",
+        "flight_no": "",
+        "departure_airport_code": "",
+        "arrival_airport_code": "",
+        "departure_at": "",
+        "arrival_at": "",
+        "cabin_class": "",
+        "fare_family": "",
+        "listed_price": "",
+        "settlement_price": "",
+        "currency": "",
+        "seats_available": "",
+        "baggage_policy": "",
+        "refund_change_policy": "",
+        "sale_status": ""
+      }
+    ]
+  },
+  "keys": [
+    "flight_offer",
+    "flight_offer.page",
+    "flight_offer.total_pages",
+    "rows",
+    "rows[]",
+    "rows[].arrival_airport_code",
+    "rows[].arrival_at",
+    "rows[].baggage_policy",
+    "rows[].cabin_class",
+    "rows[].currency",
+    "rows[].departure_airport_code",
+    "rows[].departure_at",
+    "rows[].fare_family",
+    "rows[].flight_no",
+    "rows[].itinerary_code",
+    "rows[].listed_price",
+    "rows[].refund_change_policy",
+    "rows[].sale_status",
+    "rows[].seats_available",
+    "rows[].settlement_price",
+    "rows[].supplier_code",
+    "rows_empty"
+  ],
+  "required": [
+    "flight_offer",
+    "rows",
+    "rows_empty"
+  ],
+  "urlParams": {},
+  "notes": []
+}

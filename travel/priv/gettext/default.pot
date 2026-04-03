@@ -1,0 +1,579 @@
+# 从 YAML 模型自动生成，请勿手动编辑
+# UniBO Compiler — Gettext POT
+
+#. domain: Travel
+msgid "Travel vertical canonical model，作为电商域 overlay，通过 target_domain 引用 Sales/Payment/Delivery 域实体"
+msgstr ""
+
+#. domain: Travel, entity: TravelHotel
+msgid "酒店主数据（Travel 层，来源 OFBiz Product）"
+msgstr ""
+
+#. domain: Travel, entity: TravelHotel, attribute: hotel_code
+msgid "酒店规范编码"
+msgstr ""
+
+#. domain: Travel, entity: TravelHotel, attribute: hotel_name
+msgid "酒店名称"
+msgstr ""
+
+#. domain: Travel, entity: TravelHotel, attribute: city_code
+msgid "城市编码冗余（便于兼容检索）"
+msgstr ""
+
+#. domain: Travel, entity: TravelHotel, attribute: hotel_star
+msgid "酒店星级"
+msgstr ""
+
+#. domain: Travel, entity: TravelRoomType
+msgid "酒店房型主数据（Travel 层，来源 OFBiz ProductFeature）"
+msgstr ""
+
+#. domain: Travel, entity: TravelRoomType, attribute: room_type_code
+msgid "房型规范编码"
+msgstr ""
+
+#. domain: Travel, entity: TravelRoomType, attribute: room_type_name
+msgid "房型名称"
+msgstr ""
+
+#. domain: Travel, entity: TravelRoomType, attribute: hotel_code
+msgid "酒店编码冗余（便于兼容检索）"
+msgstr ""
+
+#. domain: Travel, entity: TravelRoomType, attribute: bed_type
+msgid "床型"
+msgstr ""
+
+#. domain: Travel, entity: TravelAirline
+msgid "航司主数据（Travel 层，来源 OFBiz PartyGroup）"
+msgstr ""
+
+#. domain: Travel, entity: TravelAirline, attribute: airline_code
+msgid "航司规范编码"
+msgstr ""
+
+#. domain: Travel, entity: TravelAirline, attribute: airline_name
+msgid "航司名称"
+msgstr ""
+
+#. domain: Travel, entity: TravelAirline, attribute: iata_code
+msgid "IATA 二字码"
+msgstr ""
+
+#. domain: Travel, entity: TravelAirline, attribute: icao_code
+msgid "ICAO 三字码"
+msgstr ""
+
+#. domain: Travel, entity: TravelCabinClass
+msgid "舱位主数据（Travel 层，来源 OFBiz Enumeration）"
+msgstr ""
+
+#. domain: Travel, entity: TravelCabinClass, attribute: cabin_class_code
+msgid "舱位规范编码"
+msgstr ""
+
+#. domain: Travel, entity: TravelCabinClass, attribute: cabin_class_name
+msgid "舱位名称"
+msgstr ""
+
+#. domain: Travel, entity: TravelCabinClass, attribute: cabin_rank
+msgid "舱位等级序"
+msgstr ""
+
+#. domain: Travel, entity: TravelStaticCodeMapping
+msgid "供应商静态码到 Travel 主数据的映射（Travel 层统一适配）"
+msgstr ""
+
+#. domain: Travel, entity: TravelStaticCodeMapping, attribute: supplier_code
+msgid "供应商编码"
+msgstr ""
+
+#. domain: Travel, entity: TravelStaticCodeMapping, attribute: object_type
+msgid "主数据对象类型"
+msgstr ""
+
+#. domain: Travel, entity: TravelStaticCodeMapping, attribute: canonical_entity
+msgid "Travel 实体名"
+msgstr ""
+
+#. domain: Travel, entity: TravelStaticCodeMapping, attribute: canonical_id
+msgid "Travel 实体 ID"
+msgstr ""
+
+#. domain: Travel, entity: TravelStaticCodeMapping, attribute: external_code
+msgid "供应商侧编码"
+msgstr ""
+
+#. domain: Travel, entity: TravelStaticCodeMapping, attribute: external_name
+msgid "供应商侧名称"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer
+msgid "酒店可售 offer，承载房型、价计划、价态和可售规则快照"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: tenant_id
+msgid "租户 ID"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: host_shop_id
+msgid "宿主商城 ID，仅用于宿主侧隔离和桥接上下文"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: hotel_code
+msgid "酒店编码"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: city_code
+msgid "城市编码"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: room_type_code
+msgid "房型编码"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: rate_plan_code
+msgid "价计划编码"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: checkin_date
+msgid "入住日期"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: checkout_date
+msgid "离店日期"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: listed_price
+msgid "对客展示价快照"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: settlement_price
+msgid "结算价快照"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: currency
+msgid "币种"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: inventory_count
+msgid "可售库存快照"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: cancellation_policy
+msgid "取消规则快照"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: guarantee_policy
+msgid "担保规则快照"
+msgstr ""
+
+#. domain: Travel, entity: HotelOffer, attribute: sale_status
+msgid "可售状态"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer
+msgid "机票可售 offer，承载航班、舱位、票规和库存快照"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer, attribute: itinerary_code
+msgid "行程编码"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer, attribute: flight_no
+msgid "航班号"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer, attribute: departure_airport_code
+msgid "出发机场编码"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer, attribute: arrival_airport_code
+msgid "到达机场编码"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer, attribute: departure_at
+msgid "起飞时间"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer, attribute: arrival_at
+msgid "到达时间"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer, attribute: cabin_class
+msgid "舱等"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer, attribute: fare_family
+msgid "运价族"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer, attribute: seats_available
+msgid "可售座位快照"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer, attribute: baggage_policy
+msgid "行李规则快照"
+msgstr ""
+
+#. domain: Travel, entity: FlightOffer, attribute: refund_change_policy
+msgid "退改规则快照"
+msgstr ""
+
+#. domain: Travel, entity: VacationOffer
+msgid "度假可售 offer，承载套餐、出发日期和预订规则快照"
+msgstr ""
+
+#. domain: Travel, entity: VacationOffer, attribute: package_code
+msgid "套餐编码"
+msgstr ""
+
+#. domain: Travel, entity: VacationOffer, attribute: package_name
+msgid "套餐名称"
+msgstr ""
+
+#. domain: Travel, entity: VacationOffer, attribute: package_type
+msgid "套餐类型"
+msgstr ""
+
+#. domain: Travel, entity: VacationOffer, attribute: departure_city_code
+msgid "出发城市编码"
+msgstr ""
+
+#. domain: Travel, entity: VacationOffer, attribute: destination_code
+msgid "目的地编码"
+msgstr ""
+
+#. domain: Travel, entity: VacationOffer, attribute: start_date
+msgid "出行开始日期"
+msgstr ""
+
+#. domain: Travel, entity: VacationOffer, attribute: end_date
+msgid "出行结束日期"
+msgstr ""
+
+#. domain: Travel, entity: VacationOffer, attribute: booking_rules
+msgid "预订规则快照"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer
+msgid "火车票可售 offer，承载车次、席别、候补和退改规则快照"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: train_no
+msgid "车次号"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: departure_station_code
+msgid "出发站编码"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: departure_station_name
+msgid "出发站名称"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: arrival_station_code
+msgid "到达站编码"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: arrival_station_name
+msgid "到达站名称"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: travel_date
+msgid "乘车日期"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: departure_at
+msgid "发车时间"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: seat_class
+msgid "席别名称"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: seat_code
+msgid "席别编码"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: is_no_seat
+msgid "是否无座票"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: inventory_status
+msgid "余票或候补可用状态"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: waitlist_supported
+msgid "是否支持候补"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: change_rules_snapshot
+msgid "改签规则快照"
+msgstr ""
+
+#. domain: Travel, entity: TrainOffer, attribute: refund_rules_snapshot
+msgid "退票规则快照"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder
+msgid "统一酒旅订单，承接 hotel、flight、vacation、train 四类商品的下单和状态流转；通过跨域引用关联 Sales::Customer 和 Payment::Payment"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: host_shop_id
+msgid "宿主商城 ID，用于 sidecar 对接上下文"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: host_member_id
+msgid "宿主会员标识，来自 shop caller context"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: host_enterprise_id
+msgid "宿主企业标识，来自 shop caller context"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: order_no
+msgid "订单号"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: product_type
+msgid "商品类型"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: booking_mode
+msgid "train 订单预订模式"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: traveler_count
+msgid "出行人数量"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: total_amount
+msgid "订单总金额"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: points_to_use
+msgid "计划使用的积分数量"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: points_deduction_amount
+msgid "积分抵现金额"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: recommended_payment_method
+msgid "宿主 quote 返回的推荐支付方式"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: original_order_ref
+msgid "改签链路引用的原订单号或原票号"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: ticket_passenger_infos
+msgid "乘车人信息快照"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: seat_selection_snapshot
+msgid "选座与席别偏好快照"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: supplier_order_ref
+msgid "供应商订单号"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, attribute: payment_external_ref
+msgid "宿主支付侧外部支付流水号"
+msgstr ""
+
+#. domain: Travel, entity: TravelOrder, action: create
+msgid "创建订单（别名 create_order）"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment
+msgid "统一酒旅履约聚合，承接预订确认、发券出票、候补兑现、乘车使用和失败结果；可选关联 Delivery::Shipment"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, attribute: supplier_booking_ref
+msgid "供应商预订号"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, attribute: voucher_or_ticket_ref
+msgid "凭证号或票号"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, attribute: ticket_refs
+msgid "多张票号、座席和乘客映射结果"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, attribute: waitlist_result
+msgid "train 候补兑现结果"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, attribute: change_result
+msgid "train 改签结果"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, attribute: boarding_status
+msgid "train 乘车状态"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, attribute: confirmation_payload
+msgid "确认结果快照"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, attribute: failure_reason
+msgid "失败原因"
+msgstr ""
+
+#. domain: Travel, entity: TravelFulfillment, attribute: used_at
+msgid "实际使用时间"
+msgstr ""
+
+#. domain: Travel, entity: TravelChangeOrder
+msgid "改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态；审批通过 overlay on Approvals 域"
+msgstr ""
+
+#. domain: Travel, entity: TravelChangeOrder, attribute: change_reason
+msgid "改签原因"
+msgstr ""
+
+#. domain: Travel, entity: TravelChangeOrder, attribute: price_difference
+msgid "差价"
+msgstr ""
+
+#. domain: Travel, entity: TravelChangeOrder, attribute: change_fee
+msgid "改签手续费"
+msgstr ""
+
+#. domain: Travel, entity: TravelChangeOrder, attribute: new_offer_id
+msgid "新报价ID（可能是 FlightOffer/TrainOffer/HotelOffer，不做外键）"
+msgstr ""
+
+#. domain: Travel, entity: TravelChangeOrder, attribute: approval_mode
+msgid "审批模式快照；none 表示跳过审批，self/oa 表示进入审批流"
+msgstr ""
+
+#. domain: Travel, entity: TravelChangeOrder, action: submit
+msgid "提交改签申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance"
+msgstr ""
+
+#. domain: Travel, entity: TravelRefundOrder
+msgid "退票/退订单，记录针对已有 TravelOrder 的退票请求、手续费与退款状态；审批通过 overlay on Approvals 域"
+msgstr ""
+
+#. domain: Travel, entity: TravelRefundOrder, attribute: refund_reason
+msgid "退票原因"
+msgstr ""
+
+#. domain: Travel, entity: TravelRefundOrder, attribute: refund_fee
+msgid "退票手续费"
+msgstr ""
+
+#. domain: Travel, entity: TravelRefundOrder, attribute: refund_amount
+msgid "实退金额"
+msgstr ""
+
+#. domain: Travel, entity: TravelRefundOrder, action: submit
+msgid "提交退票申请，如 approval_mode=oa 则通过 integration 创建 ApprovalInstance"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy
+msgid "差旅标准政策，定义不同企业、职级、城市等级下的差旅费用上限与超标策略"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, attribute: policy_name
+msgid "政策名称，如\"总部差旅标准\""
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, attribute: product_type
+msgid "适用商品类型"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, attribute: employee_level
+msgid "职级标识"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, attribute: city_tier
+msgid "城市等级（tier_1/tier_2/tier_3）"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, attribute: season
+msgid "淡旺季标识（可选）"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, attribute: max_amount
+msgid "金额上限（单位分）"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, attribute: cabin_class_limit
+msgid "舱位限制"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, attribute: hotel_star_limit
+msgid "酒店星级限制"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, attribute: exceed_strategy
+msgid "超标处理策略"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, attribute: approval_mode
+msgid "审批模式；none 表示关闭审批，self/oa 表示进入对应审批流"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, attribute: personal_pay_ratio
+msgid "个人支付比例 0-100"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, attribute: is_active
+msgid "是否启用"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicy, attribute: enterprise_id
+msgid "企业标识（不做跨域外键）"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicyCheck
+msgid "差标校验记录，记录订单下单时针对差旅政策的校验结果、超标金额与处理策略"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicyCheck, attribute: check_result
+msgid "校验结果"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicyCheck, attribute: policy_amount
+msgid "差标金额（单位分）"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicyCheck, attribute: actual_amount
+msgid "实际金额（单位分）"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicyCheck, attribute: exceed_amount
+msgid "超标金额"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicyCheck, attribute: exceed_ratio
+msgid "超标比例（如\"15%\"）"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicyCheck, attribute: exceed_strategy
+msgid "命中的超标策略"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicyCheck, attribute: exceed_reason
+msgid "超标原因（员工填写）"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicyCheck, attribute: personal_pay_amount
+msgid "个人支付部分"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicyCheck, attribute: approval_request_id
+msgid "审批请求ID（不做跨域外键）"
+msgstr ""
+
+#. domain: Travel, entity: TravelPolicyCheck, attribute: approval_mode
+msgid "命中政策时的审批模式快照"
+msgstr ""
+

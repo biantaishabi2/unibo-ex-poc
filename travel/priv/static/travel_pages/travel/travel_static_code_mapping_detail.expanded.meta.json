@@ -1,1 +1,1 @@
-{"entity":"TravelStaticCodeMapping","domain":"Travel","page_type":"detail"}
+{"entity":"TravelStaticCodeMapping","domain":"Travel","page_type":"detail","extends_template":"base_object_page"}

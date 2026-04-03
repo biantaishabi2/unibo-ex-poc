@@ -2,38 +2,38 @@
   "version": 1,
   "requiredPaths": [
     "editing",
-    "record.arrival_airport_code",
-    "record.arrival_at",
-    "record.baggage_policy",
-    "record.cabin_class",
-    "record.currency",
-    "record.departure_airport_code",
-    "record.departure_at",
-    "record.fare_family",
-    "record.flight_no",
-    "record.itinerary_code",
-    "record.listed_price",
-    "record.refund_change_policy",
-    "record.sale_status",
-    "record.seats_available",
-    "record.settlement_price",
-    "record.supplier_code"
+    "flight_offer.arrival_airport_code",
+    "flight_offer.arrival_at",
+    "flight_offer.baggage_policy",
+    "flight_offer.cabin_class",
+    "flight_offer.currency",
+    "flight_offer.departure_airport_code",
+    "flight_offer.departure_at",
+    "flight_offer.fare_family",
+    "flight_offer.flight_no",
+    "flight_offer.itinerary_code",
+    "flight_offer.listed_price",
+    "flight_offer.refund_change_policy",
+    "flight_offer.sale_status",
+    "flight_offer.seats_available",
+    "flight_offer.settlement_price",
+    "flight_offer.supplier_code"
   ],
   "requiredRoots": [
     "editing",
-    "record"
+    "flight_offer"
   ],
   "schema": {
-    "record": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "flight_offer": {
       "type": "object",
       "required": true,
       "properties": {
         "supplier_code": {
-          "type": "string",
-          "required": false,
-          "example": ""
-        },
-        "sale_status": {
           "type": "string",
           "required": false,
           "example": ""
@@ -107,13 +107,13 @@
           "type": "string",
           "required": false,
           "example": ""
+        },
+        "sale_status": {
+          "type": "string",
+          "required": false,
+          "example": ""
         }
       }
-    },
-    "editing": {
-      "type": "object",
-      "required": true,
-      "properties": {}
     }
   },
   "notes": []

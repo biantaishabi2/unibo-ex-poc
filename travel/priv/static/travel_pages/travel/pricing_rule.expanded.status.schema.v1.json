@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "defaults": {
+    "pricing_rules": [
+      {
+        "product_type": "",
+        "supplier_code": "",
+        "markup_rate": "",
+        "status": ""
+      },
+      {
+        "product_type": "",
+        "supplier_code": "",
+        "markup_rate": "",
+        "status": ""
+      },
+      {
+        "product_type": "",
+        "supplier_code": "",
+        "markup_rate": "",
+        "status": ""
+      }
+    ]
+  },
+  "keys": [
+    "pricing_rules",
+    "pricing_rules[]",
+    "pricing_rules[].markup_rate",
+    "pricing_rules[].product_type",
+    "pricing_rules[].status",
+    "pricing_rules[].supplier_code"
+  ],
+  "required": [
+    "pricing_rules"
+  ],
+  "urlParams": {},
+  "notes": []
+}

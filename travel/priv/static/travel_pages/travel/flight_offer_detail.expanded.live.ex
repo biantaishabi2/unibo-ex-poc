@@ -11,12 +11,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @page_id "flight_offer_detail"
   @page_title "Untitled Page"
 
-  # status.keys preview (first ~40): editing, record, record.arrival_airport_code, record.arrival_at, record.baggage_policy, record.cabin_class, record.currency, record.departure_airport_code, record.departure_at, record.fare_family, record.flight_no, record.itinerary_code, record.listed_price, record.refund_change_policy, record.sale_status, record.seats_available, record.settlement_price, record.supplier_code
+  # status.keys preview (first ~40): editing, flight_offer, flight_offer.arrival_airport_code, flight_offer.arrival_at, flight_offer.baggage_policy, flight_offer.cabin_class, flight_offer.currency, flight_offer.departure_airport_code, flight_offer.departure_at, flight_offer.fare_family, flight_offer.flight_no, flight_offer.itinerary_code, flight_offer.listed_price, flight_offer.refund_change_policy, flight_offer.sale_status, flight_offer.seats_available, flight_offer.settlement_price, flight_offer.supplier_code
   # Defaults are used for dev/mock transitions (e.g. toggle_list_empty restore).
   @status_defaults_raw Jason.decode!("{
-  \"record\": {
+  \"flight_offer\": {
     \"supplier_code\": \"\",
-    \"sale_status\": \"\",
     \"itinerary_code\": \"\",
     \"flight_no\": \"\",
     \"departure_airport_code\": \"\",
@@ -30,9 +29,10 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     \"currency\": \"\",
     \"seats_available\": \"\",
     \"baggage_policy\": \"\",
-    \"refund_change_policy\": \"\"
+    \"refund_change_policy\": \"\",
+    \"sale_status\": \"\"
   },
-  \"editing\": true
+  \"editing\": false
 }")
   # NOTE: we atomize at runtime (mount/3) and store the result in assigns.__status_defaults.
 
@@ -40,9 +40,14 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_mode "api"
   @backend_mod __MODULE__.Backend
   @backend_fun :handle_event
-  @backend_load_event nil
+  @backend_load_event "get"
+  @backend_load_selection "arrival_airport_code: arrivalAirportCode arrival_airport_ref_id: arrivalAirportRefId arrival_at: arrivalAt baggage_policy: baggagePolicy cabin_class: cabinClass currency departure_airport_code: departureAirportCode departure_airport_ref_id: departureAirportRefId departure_at: departureAt fare_family: fareFamily flight_no: flightNo host_shop_id: hostShopId id itinerary_code: itineraryCode listed_price: listedPrice refund_change_policy: refundChangePolicy sale_status: saleStatus seats_available: seatsAvailable settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
+  @backend_load_assigns %{}
+  @backend_params_accept ["id"]
+  @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
     "activate" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.FlightOffer.activate"},
+    "create" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.FlightOffer.create"},
     "deactivate" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.FlightOffer.deactivate"},
     "destroy" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.FlightOffer.destroy"},
     "expire" => %{module: __MODULE__.Backend, fun: :handle_event, api: "Travel.FlightOffer.expire"},
@@ -60,9 +65,11 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
     defaults = atomize_keys(@status_defaults_raw)
     socket = assign(socket, defaults)
     socket = assign(socket, :__status_defaults, defaults)
+    socket = if is_map(@backend_load_assigns) and map_size(@backend_load_assigns) > 0, do: assign(socket, @backend_load_assigns), else: socket
     socket = apply_derived(socket)
     socket = apply_params(socket, params)
-    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(params, "__page_id", @page_id), socket), else: socket
+    backend_params = __filter_backend_params(params)
+    socket = if @backend_mode == "api" and is_binary(@backend_load_event), do: dispatch_backend(@backend_load_event, Map.put(backend_params, "__page_id", @page_id), socket), else: socket
     {:ok, socket}
   end
 
@@ -74,9 +81,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
 
   @impl true
   def handle_info(msg, socket) do
-    # Optional async contract: if backend exports handle_info/2, delegate and apply BackendResult v1.
+    # Optional async contract: 仅当页面声明允许的 reload/info 消息时再转发给 backend。
     socket =
-      if function_exported?(@backend_mod, :handle_info, 2) do
+      if __accept_backend_info?(msg) and function_exported?(@backend_mod, :handle_info, 2) do
         state0 = __take_status(socket.assigns)
         apply_backend_result(socket, apply(@backend_mod, :handle_info, [msg, state0]))
       else
@@ -86,30 +93,9 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   end
 
   @impl true
-  def handle_event("action_activate", params, socket) do
-    # UI action event name: action_activate
-    socket = dispatch_backend("action_activate", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_deactivate", params, socket) do
-    # UI action event name: action_deactivate
-    socket = dispatch_backend("action_deactivate", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
   def handle_event("action_destroy", params, socket) do
     # UI action event name: action_destroy
     socket = dispatch_backend("action_destroy", params, socket)
-    {:noreply, socket}
-  end
-
-  @impl true
-  def handle_event("action_expire", params, socket) do
-    # UI action event name: action_expire
-    socket = dispatch_backend("action_expire", params, socket)
     {:noreply, socket}
   end
 
@@ -144,6 +130,21 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   defp apply_params(socket, params) when is_map(params) do
     socket
   end
+
+  defp __filter_backend_params(params) when is_map(params) do
+    if @backend_params_accept == [] do
+      params
+    else
+      Map.take(params, @backend_params_accept ++ ["__page_id"])
+    end
+  end
+  defp __filter_backend_params(params), do: params
+
+  defp __accept_backend_info?({kind, value}) when is_atom(kind) and is_binary(value) do
+    kind == :page_host_reload and value in @backend_info_reload_messages
+  end
+  defp __accept_backend_info?(value) when is_binary(value), do: value in @backend_info_reload_messages
+  defp __accept_backend_info?(_), do: @backend_info_reload_messages == []
 
   defp ensure_user_context(socket) do
     # Thin user-context contract: keep it uniform so skeletons stay generated and diffable.

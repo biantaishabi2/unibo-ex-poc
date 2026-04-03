@@ -1,64 +1,59 @@
 {
   "version": 1,
   "defaults": {
-    "offer": {
-      "departure_time": "",
-      "departure_station_name": "",
-      "duration_label": "",
-      "date_label": "",
-      "arrival_time": "",
-      "arrival_station_name": "",
+    "train_offer": {
+      "supplier_code": "",
       "train_no": "",
-      "train_type_label": "",
-      "seat_options": [
-        {
-          "seat_class_name": "",
-          "not_policy_compliant": true,
-          "tickets_label": "",
-          "currency": "",
-          "price": "",
-          "offer_id": ""
-        },
-        {
-          "seat_class_name": "",
-          "not_policy_compliant": true,
-          "tickets_label": "",
-          "currency": "",
-          "price": "",
-          "offer_id": ""
-        },
-        {
-          "seat_class_name": "",
-          "not_policy_compliant": true,
-          "tickets_label": "",
-          "currency": "",
-          "price": "",
-          "offer_id": ""
-        }
-      ]
-    }
+      "departure_station_code": "",
+      "departure_station_name": "",
+      "arrival_station_code": "",
+      "arrival_station_name": "",
+      "travel_date": "",
+      "departure_at": "",
+      "arrival_at": "",
+      "seat_class": "",
+      "seat_code": "",
+      "is_no_seat": "",
+      "inventory_status": "",
+      "waitlist_supported": "",
+      "listed_price": "",
+      "settlement_price": "",
+      "currency": "",
+      "booking_rules_snapshot": "",
+      "change_rules_snapshot": "",
+      "refund_rules_snapshot": "",
+      "sale_status": ""
+    },
+    "editing": false
   },
   "keys": [
-    "offer",
-    "offer.arrival_station_name",
-    "offer.arrival_time",
-    "offer.date_label",
-    "offer.departure_station_name",
-    "offer.departure_time",
-    "offer.duration_label",
-    "offer.seat_options",
-    "offer.seat_options[]",
-    "offer.seat_options[].currency",
-    "offer.seat_options[].not_policy_compliant",
-    "offer.seat_options[].offer_id",
-    "offer.seat_options[].price",
-    "offer.seat_options[].seat_class_name",
-    "offer.seat_options[].tickets_label",
-    "offer.train_no",
-    "offer.train_type_label"
+    "editing",
+    "train_offer",
+    "train_offer.arrival_at",
+    "train_offer.arrival_station_code",
+    "train_offer.arrival_station_name",
+    "train_offer.booking_rules_snapshot",
+    "train_offer.change_rules_snapshot",
+    "train_offer.currency",
+    "train_offer.departure_at",
+    "train_offer.departure_station_code",
+    "train_offer.departure_station_name",
+    "train_offer.inventory_status",
+    "train_offer.is_no_seat",
+    "train_offer.listed_price",
+    "train_offer.refund_rules_snapshot",
+    "train_offer.sale_status",
+    "train_offer.seat_class",
+    "train_offer.seat_code",
+    "train_offer.settlement_price",
+    "train_offer.supplier_code",
+    "train_offer.train_no",
+    "train_offer.travel_date",
+    "train_offer.waitlist_supported"
   ],
   "required": [
-    "offer"
+    "editing",
+    "train_offer"
   ],
   "urlParams": {},
   "notes": []

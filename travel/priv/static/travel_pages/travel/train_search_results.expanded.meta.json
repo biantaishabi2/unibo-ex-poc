@@ -1,1 +1,1 @@
-{"entity":"TrainOffer","domain":"Travel","page_type":"custom"}
+{"entity":"TrainOffer","domain":"Travel","page_type":"custom","extends_template":"base_search_results"}

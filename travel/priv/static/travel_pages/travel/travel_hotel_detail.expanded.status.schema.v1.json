@@ -1,35 +1,50 @@
 {
   "version": 1,
   "defaults": {
-    "record": {
+    "travel_hotel": {
       "hotel_code": "",
-      "status": "",
       "hotel_name": "",
       "city_code": "",
-      "hotel_star": ""
+      "hotel_star": "",
+      "status": ""
     },
-    "editing": true
+    "editing": false
   },
   "keys": [
     "editing",
-    "record",
-    "record.city_code",
-    "record.hotel_code",
-    "record.hotel_name",
-    "record.hotel_star",
-    "record.status"
+    "travel_hotel",
+    "travel_hotel.city_code",
+    "travel_hotel.hotel_code",
+    "travel_hotel.hotel_name",
+    "travel_hotel.hotel_star",
+    "travel_hotel.status"
   ],
   "required": [
     "editing",
-    "record"
+    "travel_hotel"
   ],
   "urlParams": {},
   "notes": [],
   "layer2": {
     "backend": {
       "api_map": {
+        "create": "Travel.TravelHotel.create",
         "get": "Travel.TravelHotel.get",
         "update": "Travel.TravelHotel.update"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "city_code: cityCode city_id: cityId hotel_code: hotelCode hotel_name: hotelName hotel_star: hotelStar id status"
+      },
+      "params": {
+        "accept": [
+          "id"
+        ]
       }
     },
     "children": [],

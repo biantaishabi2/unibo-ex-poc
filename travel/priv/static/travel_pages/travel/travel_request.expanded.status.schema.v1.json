@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "defaults": {
+    "step_1_label": "基本信息",
+    "step_2_label": "详细配置",
+    "step_3_label": "确认提交"
+  },
+  "keys": [
+    "step_1_label",
+    "step_2_label",
+    "step_3_label"
+  ],
+  "required": [
+    "step_1_label",
+    "step_2_label",
+    "step_3_label"
+  ],
+  "urlParams": {},
+  "notes": [],
+  "layer2": {
+    "backend": {
+      "api_map": {
+        "create": "Travel.TravelOrder.create",
+        "list": "Travel.TravelOrder.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "id"
+      },
+      "params": {
+        "accept": []
+      }
+    },
+    "delivery_mode": "compiled",
+    "domain": "Travel",
+    "e2e": {
+      "playwright": {
+        "auto": true,
+        "base_path": "/pages/travel/travel_request",
+        "cases": [],
+        "page_kind": "detail",
+        "page_spec": {
+          "page_kind": "detail",
+          "route_role": "detail",
+          "supports_runtime_record_identity": false,
+          "template_kind": "wizard"
+        }
+      }
+    },
+    "entity": "TravelOrder",
+    "extends": "base_form",
+    "page_id": "travel_request",
+    "page_type": "wizard",
+    "state_transitions": [],
+    "status_keys": [],
+    "transitions": {},
+    "ui": {
+      "sections": [],
+      "template": {
+        "detail": "wizard"
+      }
+    },
+    "version": 2
+  }
+}

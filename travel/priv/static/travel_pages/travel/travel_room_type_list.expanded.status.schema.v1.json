@@ -1,7 +1,10 @@
 {
   "version": 1,
   "defaults": {
-    "page_title": "TravelRoomType 列表",
+    "travel_room_type": {
+      "page": "",
+      "total_pages": ""
+    },
     "rows_empty": true,
     "rows": [
       {
@@ -28,7 +31,6 @@
     ]
   },
   "keys": [
-    "page_title",
     "rows",
     "rows[]",
     "rows[].bed_type",
@@ -36,12 +38,15 @@
     "rows[].room_type_code",
     "rows[].room_type_name",
     "rows[].status",
-    "rows_empty"
+    "rows_empty",
+    "travel_room_type",
+    "travel_room_type.page",
+    "travel_room_type.total_pages"
   ],
   "required": [
-    "page_title",
     "rows",
-    "rows_empty"
+    "rows_empty",
+    "travel_room_type"
   ],
   "urlParams": {},
   "notes": [],
@@ -49,6 +54,20 @@
     "backend": {
       "api_map": {
         "list": "Travel.TravelRoomType.list"
+      },
+      "info": {
+        "reload_messages": [
+          "page_host_reload"
+        ]
+      },
+      "load": {
+        "assigns": {},
+        "selection": "bed_type: bedType hotel_code: hotelCode id room_type_code: roomTypeCode room_type_name: roomTypeName status"
+      },
+      "params": {
+        "accept": [
+          "status"
+        ]
       }
     },
     "domain": "Travel",

@@ -1,112 +1,280 @@
-<.page title="预订结果" id="booking_confirmation">
-  <.section padding={3} layout="none" id="main_content">
-    <.stack gap={3} direction="column" id="content_stack">
-      <.card variant="default" id="status_card">
-        <.card_content id="status_content">
-          <.stack gap={2} align="center" padding={4} direction="column" id="status_stack">
-            <%= if (@order_booking_success && @order_booking_success != []) do %>
-              <.icon name="check-circle" size="lg" color="success" id="success_icon" />
-              <.text variant="h2" weight="bold" id="success_text">
-                预订成功
-              </.text>
-            <% end %>
-            <%= if (@order_status_failed && @order_status_failed != []) do %>
-              <.icon name="x-circle" size="lg" color="destructive" id="fail_icon" />
-              <.text variant="h2" weight="bold" id="fail_text">
-                预订失败
-              </.text>
-              <.text variant="caption" color="muted" id="fail_hint">
-                请稍后重试或联系客服
-              </.text>
-            <% end %>
-          </.stack>
-        </.card_content>
-      </.card>
-      <.card variant="default" id="summary_card">
-        <.card_header id="summary_header">
-          <.text variant="h4" weight="bold" id="summary_title">
-            订单摘要
-          </.text>
-        </.card_header>
-        <.card_content id="summary_content">
-          <.stack gap={2} direction="column" id="summary_stack">
-            <.flex justify="between" direction="row" id="order_no_row">
-              <.text variant="caption" color="muted" id="order_no_label">
-                订单号
-              </.text>
-              <.text id="order_no_value">
-                <%= @order.order_no %>
-              </.text>
-            </.flex>
-            <.separator id="sep_1" />
-            <.flex justify="between" direction="row" id="product_type_row">
-              <.text variant="caption" color="muted" id="product_type_label">
-                产品类型
-              </.text>
-              <.badge variant="secondary" size="sm" id="product_type_badge">
-                <%= @order.product_type %>
-              </.badge>
-            </.flex>
-            <.separator id="sep_2" />
-            <%= if (@is_flight_order && @is_flight_order != []) do %>
-              <.flex justify="between" direction="row" id="flight_row">
-                <.text variant="caption" color="muted" id="flight_label">
-                  航班
-                </.text>
-                <.text id="flight_value">
-                  <%= @order.flight_offer.flight_no %>
-                </.text>
-              </.flex>
-            <% end %>
-            <%= if (@is_hotel_order && @is_hotel_order != []) do %>
-              <.flex justify="between" direction="row" id="hotel_row">
-                <.text variant="caption" color="muted" id="hotel_label">
-                  酒店
-                </.text>
-                <.text id="hotel_value">
-                  <%= @order.hotel_offer.hotel_name %>
-                </.text>
-              </.flex>
-            <% end %>
-            <%= if (@is_train_order && @is_train_order != []) do %>
-              <.flex justify="between" direction="row" id="train_row">
-                <.text variant="caption" color="muted" id="train_label">
-                  车次
-                </.text>
-                <.text id="train_value">
-                  <%= @order.train_offer.train_no %>
-                </.text>
-              </.flex>
-            <% end %>
-            <.separator id="sep_3" />
-            <.flex justify="between" direction="row" id="traveler_count_row">
-              <.text variant="caption" color="muted" id="traveler_count_label">
-                出行人数
-              </.text>
-              <.text id="traveler_count_value">
-                <%= @order.traveler_count %>
-              </.text>
-            </.flex>
-            <.separator id="sep_4" />
-            <.flex justify="between" direction="row" id="amount_row">
-              <.text variant="caption" color="muted" id="amount_label">
-                订单金额
-              </.text>
-              <.text variant="h3" color="primary" id="amount_value">
-                <%= @order.total_amount %>
-              </.text>
-            </.flex>
-          </.stack>
-        </.card_content>
-      </.card>
-      <.stack gap={2} direction="column" id="action_buttons">
-        <.button variant="primary" size="lg" fullwidth="true" phx-click="navigate:/travel/orders/{{order.id|}}" id="view_order_btn">
-          查看订单
-        </.button>
-        <.button variant="outline" size="lg" fullwidth="true" phx-click="navigate:/travel" id="go_home_btn">
-          回到首页
-        </.button>
+<.page title="详情" id="booking_confirmation">
+  <.section layout="none" id="breadcrumb_section">
+    <.breadcrumb id="page_breadcrumb">
+      <.breadcrumb_list id="bc_list">
+        <.breadcrumb_item id="bc_list_item">
+          <.breadcrumb_link id="bc_link">
+            列表
+          </.breadcrumb_link>
+        </.breadcrumb_item>
+        <.breadcrumb_separator id="bc_sep" />
+        <.breadcrumb_item id="bc_current_item">
+          <.breadcrumb_page id="bc_current">
+            详情
+          </.breadcrumb_page>
+        </.breadcrumb_item>
+      </.breadcrumb_list>
+    </.breadcrumb>
+  </.section>
+  <.section direction="row" justify="between" align="center" layout="grid" columns={2} id="detail_header">
+    <.flex gap={3} align="center" direction="row" id="title_group">
+      <.stack direction="column" id="title_meta">
+        <.text variant="caption" color="muted" id="breadcrumb">
+          TravelOrder
+        </.text>
+        <.text variant="h1" id="page_title">
+          统一酒旅订单,承接 hotel、flight、vacation、train 四类商品的下单和状态流转;通过跨域引用关联 Sales::Customer 和 Payment::Payment
+        </.text>
       </.stack>
-    </.stack>
+      <%= case get_in(@travel_order, [:status]) do %>
+        <% "draft" -> %>
+          <.badge color="yellow">draft</.badge>
+        <% "quoted" -> %>
+          <.badge color="blue">quoted</.badge>
+        <% "submitted" -> %>
+          <.badge color="blue">submitted</.badge>
+        <% "booking_pending" -> %>
+          <.badge color="blue">booking_pending</.badge>
+        <% "booked" -> %>
+          <.badge color="blue">booked</.badge>
+        <% "cancel_pending" -> %>
+          <.badge color="blue">cancel_pending</.badge>
+        <% "cancelled" -> %>
+          <.badge color="red">cancelled</.badge>
+        <% "completed" -> %>
+          <.badge color="green">completed</.badge>
+        <% "failed" -> %>
+          <.badge color="blue">failed</.badge>
+        <% _ -> %>
+          <.badge />
+      <% end %>
+    </.flex>
+    <.flex gap={2} direction="row" id="actions_group">
+      <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
+        编辑
+      </.button>
+      <.button variant="danger" phx-click="action_destroy" size="md" id="delete_btn">
+        删除
+      </.button>
+    </.flex>
+  </.section>
+  <.section layout="none" id="info_section">
+    <.card variant="default" id="info_card">
+      <.card_header id="info_header">
+        <.card_title id="info_title">
+          基本信息
+        </.card_title>
+      </.card_header>
+      <.card_content id="info_content">
+        <%= if !(@editing && @editing != []) do %>
+          <.grid columns={2} gap={4} id="info_grid">
+            <.grid columns={2} gap={3} id="detail_fields">
+              <.stack gap={0} direction="column" id="detail_fields_order_no">
+                <.text variant="caption" color="muted" id="detail_fields_order_no_label">
+                  订单号
+                </.text>
+                <.text id="detail_fields_order_no_value">
+                  <%= get_in(@travel_order, [:order_no]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_product_type">
+                <.text variant="caption" color="muted" id="detail_fields_product_type_label">
+                  商品类型
+                </.text>
+                <.text id="detail_fields_product_type_value">
+                  <%= get_in(@travel_order, [:product_type]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_booking_mode">
+                <.text variant="caption" color="muted" id="detail_fields_booking_mode_label">
+                  train 订单预订模式
+                </.text>
+                <.text id="detail_fields_booking_mode_value">
+                  <%= get_in(@travel_order, [:booking_mode]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_contact_name">
+                <.text variant="caption" color="muted" id="detail_fields_contact_name_label">
+                  contact_name
+                </.text>
+                <.text id="detail_fields_contact_name_value">
+                  <%= get_in(@travel_order, [:contact_name]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_contact_phone">
+                <.text variant="caption" color="muted" id="detail_fields_contact_phone_label">
+                  contact_phone
+                </.text>
+                <.text id="detail_fields_contact_phone_value">
+                  <%= get_in(@travel_order, [:contact_phone]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_traveler_count">
+                <.text variant="caption" color="muted" id="detail_fields_traveler_count_label">
+                  出行人数量
+                </.text>
+                <.text id="detail_fields_traveler_count_value">
+                  <%= get_in(@travel_order, [:traveler_count]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_total_amount">
+                <.text variant="caption" color="muted" id="detail_fields_total_amount_label">
+                  订单总金额
+                </.text>
+                <.text id="detail_fields_total_amount_value">
+                  <%= get_in(@travel_order, [:total_amount]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_points_to_use">
+                <.text variant="caption" color="muted" id="detail_fields_points_to_use_label">
+                  计划使用的积分数量
+                </.text>
+                <.text id="detail_fields_points_to_use_value">
+                  <%= get_in(@travel_order, [:points_to_use]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_points_deduction_amount">
+                <.text variant="caption" color="muted" id="detail_fields_points_deduction_amount_label">
+                  积分抵现金额
+                </.text>
+                <.text id="detail_fields_points_deduction_amount_value">
+                  <%= get_in(@travel_order, [:points_deduction_amount]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_recommended_payment_method">
+                <.text variant="caption" color="muted" id="detail_fields_recommended_payment_method_label">
+                  宿主 quote 返回的推荐支付方式
+                </.text>
+                <.text id="detail_fields_recommended_payment_method_value">
+                  <%= get_in(@travel_order, [:recommended_payment_method]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_currency">
+                <.text variant="caption" color="muted" id="detail_fields_currency_label">
+                  currency
+                </.text>
+                <.text id="detail_fields_currency_value">
+                  <%= get_in(@travel_order, [:currency]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_status">
+                <.text variant="caption" color="muted" id="detail_fields_status_label">
+                  status
+                </.text>
+                <.text id="detail_fields_status_value">
+                  <%= get_in(@travel_order, [:status]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_change_status">
+                <.text variant="caption" color="muted" id="detail_fields_change_status_label">
+                  change_status
+                </.text>
+                <.text id="detail_fields_change_status_value">
+                  <%= get_in(@travel_order, [:change_status]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_waitlist_status">
+                <.text variant="caption" color="muted" id="detail_fields_waitlist_status_label">
+                  waitlist_status
+                </.text>
+                <.text id="detail_fields_waitlist_status_value">
+                  <%= get_in(@travel_order, [:waitlist_status]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_original_order_ref">
+                <.text variant="caption" color="muted" id="detail_fields_original_order_ref_label">
+                  改签链路引用的原订单号或原票号
+                </.text>
+                <.text id="detail_fields_original_order_ref_value">
+                  <%= get_in(@travel_order, [:original_order_ref]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_ticket_passenger_infos">
+                <.text variant="caption" color="muted" id="detail_fields_ticket_passenger_infos_label">
+                  乘车人信息快照
+                </.text>
+                <.text id="detail_fields_ticket_passenger_infos_value">
+                  <%= get_in(@travel_order, [:ticket_passenger_infos]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_seat_selection_snapshot">
+                <.text variant="caption" color="muted" id="detail_fields_seat_selection_snapshot_label">
+                  选座与席别偏好快照
+                </.text>
+                <.text id="detail_fields_seat_selection_snapshot_value">
+                  <%= get_in(@travel_order, [:seat_selection_snapshot]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_supplier_order_ref">
+                <.text variant="caption" color="muted" id="detail_fields_supplier_order_ref_label">
+                  供应商订单号
+                </.text>
+                <.text id="detail_fields_supplier_order_ref_value">
+                  <%= get_in(@travel_order, [:supplier_order_ref]) || "" %>
+                </.text>
+              </.stack>
+              <.stack gap={0} direction="column" id="detail_fields_payment_external_ref">
+                <.text variant="caption" color="muted" id="detail_fields_payment_external_ref_label">
+                  宿主支付侧外部支付流水号
+                </.text>
+                <.text id="detail_fields_payment_external_ref_value">
+                  <%= get_in(@travel_order, [:payment_external_ref]) || "" %>
+                </.text>
+              </.stack>
+            </.grid>
+          </.grid>
+        <% else %>
+          <.form phx-submit="form_submit" phx-change="form_change" id="edit_form">
+            <.grid columns={2} gap={4} id="form_grid">
+              <.stack direction="column" id="form_fields">
+                <.input bind="travel_order.tenant_id" size="md" id="update_tenant_id" />
+                <.input bind="travel_order.host_shop_id" size="md" id="update_host_shop_id" />
+                <.input bind="travel_order.host_member_id" size="md" id="update_host_member_id" />
+                <.input bind="travel_order.host_enterprise_id" size="md" id="update_host_enterprise_id" />
+                <.input bind="travel_order.order_no" size="md" id="update_order_no" />
+                <.select bind="travel_order.product_type" size="md" id="update_product_type" options={[%{label: "hotel", value: "hotel"}, %{label: "flight", value: "flight"}, %{label: "vacation", value: "vacation"}, %{label: "train", value: "train"}]}>
+
+                </.select>
+                <.select bind="travel_order.booking_mode" size="md" id="update_booking_mode" options={[%{label: "standard", value: "standard"}, %{label: "waitlist", value: "waitlist"}]}>
+
+                </.select>
+                <.input bind="travel_order.contact_name" size="md" id="update_contact_name" />
+                <.input bind="travel_order.contact_phone" size="md" id="update_contact_phone" />
+                <.input bind="travel_order.traveler_count" size="md" id="update_traveler_count" />
+                <.input bind="travel_order.total_amount" size="md" id="update_total_amount" />
+                <.input bind="travel_order.points_to_use" size="md" id="update_points_to_use" />
+                <.input bind="travel_order.points_deduction_amount" size="md" id="update_points_deduction_amount" />
+                <.input bind="travel_order.recommended_payment_method" size="md" id="update_recommended_payment_method" />
+                <.input bind="travel_order.currency" size="md" id="update_currency" />
+                <.select bind="travel_order.status" size="md" id="update_status" options={[%{label: "draft", value: "draft"}, %{label: "quoted", value: "quoted"}, %{label: "submitted", value: "submitted"}, %{label: "booking_pending", value: "booking_pending"}, %{label: "booked", value: "booked"}, %{label: "cancel_pending", value: "cancel_pending"}, %{label: "cancelled", value: "cancelled"}, %{label: "completed", value: "completed"}, %{label: "failed", value: "failed"}]}>
+
+                </.select>
+                <.select bind="travel_order.change_status" size="md" id="update_change_status" options={[%{label: "none", value: "none"}, %{label: "pending", value: "pending"}, %{label: "changed", value: "changed"}, %{label: "failed", value: "failed"}]}>
+
+                </.select>
+                <.select bind="travel_order.waitlist_status" size="md" id="update_waitlist_status" options={[%{label: "none", value: "none"}, %{label: "pending", value: "pending"}, %{label: "fulfilled", value: "fulfilled"}, %{label: "cancelled", value: "cancelled"}, %{label: "failed", value: "failed"}]}>
+
+                </.select>
+                <.input bind="travel_order.original_order_ref" size="md" id="update_original_order_ref" />
+                <.input bind="travel_order.ticket_passenger_infos" size="md" id="update_ticket_passenger_infos" />
+                <.input bind="travel_order.seat_selection_snapshot" size="md" id="update_seat_selection_snapshot" />
+                <.input bind="travel_order.supplier_order_ref" size="md" id="update_supplier_order_ref" />
+                <.input bind="travel_order.payment_external_ref" size="md" id="update_payment_external_ref" />
+                <.input bind="travel_order.customer_id" size="md" id="update_customer_id" />
+                <.input bind="travel_order.payment_id" size="md" id="update_payment_id" />
+              </.stack>
+            </.grid>
+            <.flex justify="end" gap={2} direction="row" id="form_actions">
+              <.button variant="secondary" phx-click="cancel_edit" size="md" id="cancel_btn">
+                取消
+              </.button>
+              <.button variant="primary" phx-click="form_submit" size="md" id="save_btn">
+                保存
+              </.button>
+            </.flex>
+          </.form>
+        <% end %>
+      </.card_content>
+    </.card>
   </.section>
 </.page>

@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "requiredPaths": [
+    "editing",
+    "travel_change_order.approval_mode",
+    "travel_change_order.change_fee",
+    "travel_change_order.change_reason",
+    "travel_change_order.price_difference",
+    "travel_change_order.status"
+  ],
+  "requiredRoots": [
+    "editing",
+    "travel_change_order"
+  ],
+  "schema": {
+    "editing": {
+      "type": "object",
+      "required": true,
+      "properties": {}
+    },
+    "travel_change_order": {
+      "type": "object",
+      "required": true,
+      "properties": {
+        "change_reason": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "price_difference": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "change_fee": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "status": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        },
+        "approval_mode": {
+          "type": "string",
+          "required": false,
+          "example": ""
+        }
+      }
+    }
+  },
+  "notes": []
+}
