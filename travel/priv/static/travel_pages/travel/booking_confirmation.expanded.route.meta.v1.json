@@ -1,0 +1,12 @@
+{
+  "page_id": "booking_confirmation",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.BookingConfirmationLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/booking_confirmation",
+    "kind": "detail",
+    "params": []
+  }
+}

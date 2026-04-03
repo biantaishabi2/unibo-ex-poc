@@ -56,7 +56,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelRefundOrderDetailLive do
   @backend_load_event "get"
   @backend_load_selection "approval_mode: approvalMode id refund_amount: refundAmount refund_fee: refundFee refund_reason: refundReason status"
   @backend_load_assigns %{travel_refund_order: %{}}
-  @backend_params_accept ["id", "original_order_id", "refund_fee", "refund_amount", "approval_mode", "refund_reason"]
+  @backend_params_accept ["id", "original_order_id", "refund_amount", "refund_reason", "approval_mode", "refund_fee"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "confirm_refund" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelRefundOrder.confirm_refund"},

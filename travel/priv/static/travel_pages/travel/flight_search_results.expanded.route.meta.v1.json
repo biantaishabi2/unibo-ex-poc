@@ -1,0 +1,12 @@
+{
+  "page_id": "flight_search_results",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.FlightSearchResultsLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/flight_search_results",
+    "kind": "search",
+    "params": []
+  }
+}

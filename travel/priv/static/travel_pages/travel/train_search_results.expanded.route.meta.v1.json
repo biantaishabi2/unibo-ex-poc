@@ -1,0 +1,12 @@
+{
+  "page_id": "train_search_results",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.TrainSearchResultsLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/train_search_results",
+    "kind": "search",
+    "params": []
+  }
+}

@@ -44,12 +44,12 @@
       "params": {
         "accept": [
           "id",
-          "status",
-          "city_code",
-          "city_id",
           "hotel_name",
           "hotel_code",
-          "hotel_star"
+          "hotel_star",
+          "city_id",
+          "status",
+          "city_code"
         ]
       }
     },
@@ -135,6 +135,11 @@
               },
               {
                 "action": "type",
+                "field": "city_code",
+                "value": "UPDATED_{{__run_id}}_city_code"
+              },
+              {
+                "action": "type",
                 "field": "city_id",
                 "value": "UPDATED_{{__run_id}}_city_id"
               },
@@ -147,11 +152,6 @@
                 "action": "type",
                 "field": "hotel_star",
                 "value": "UPDATED_{{__run_id}}_hotel_star"
-              },
-              {
-                "action": "type",
-                "field": "city_code",
-                "value": "UPDATED_{{__run_id}}_city_code"
               },
               {
                 "action": "select_option",
@@ -357,11 +357,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.city_id",
+              "equals": "$form.status",
               "excludes_source": null,
               "graphql_field": "getTravelTravelHotel",
               "op": "equals",
-              "path": "city_id",
+              "path": "status",
               "source": "active_record_id"
             },
             "ui": [

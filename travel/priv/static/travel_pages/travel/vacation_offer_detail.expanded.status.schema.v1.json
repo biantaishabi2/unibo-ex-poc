@@ -74,24 +74,24 @@
       "params": {
         "accept": [
           "id",
-          "sale_status",
           "currency",
-          "departure_city_ref_id",
-          "destination_ref_id",
-          "package_name",
-          "settlement_price",
-          "departure_city_code",
-          "start_date",
-          "supplier_code",
           "package_code",
-          "inventory_count",
-          "host_shop_id",
-          "cancellation_policy",
-          "booking_rules",
-          "destination_code",
+          "destination_ref_id",
+          "start_date",
+          "listed_price",
           "end_date",
+          "host_shop_id",
+          "inventory_count",
+          "sale_status",
+          "departure_city_ref_id",
+          "booking_rules",
           "package_type",
-          "listed_price"
+          "supplier_code",
+          "settlement_price",
+          "cancellation_policy",
+          "destination_code",
+          "package_name",
+          "departure_city_code"
         ]
       }
     },
@@ -176,13 +176,13 @@
               },
               {
                 "action": "type",
-                "field": "inventory_count",
-                "value": "2"
+                "field": "package_name",
+                "value": "UPDATED_{{__run_id}}_package_name"
               },
               {
-                "action": "type",
-                "field": "departure_city_ref_id",
-                "value": "UPDATED_{{__run_id}}_departure_city_ref_id"
+                "action": "select_option",
+                "field": "package_type",
+                "value": "free_travel"
               },
               {
                 "action": "type",
@@ -206,8 +206,8 @@
               },
               {
                 "action": "type",
-                "field": "package_name",
-                "value": "UPDATED_{{__run_id}}_package_name"
+                "field": "departure_city_ref_id",
+                "value": "UPDATED_{{__run_id}}_departure_city_ref_id"
               },
               {
                 "action": "type",
@@ -220,9 +220,9 @@
                 "value": "200.00"
               },
               {
-                "action": "select_option",
-                "field": "package_type",
-                "value": "free_travel"
+                "action": "type",
+                "field": "inventory_count",
+                "value": "2"
               },
               {
                 "action": "click",

@@ -1,0 +1,12 @@
+{
+  "page_id": "hotel_search_results",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.HotelSearchResultsLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/hotel_search_results",
+    "kind": "search",
+    "params": []
+  }
+}
