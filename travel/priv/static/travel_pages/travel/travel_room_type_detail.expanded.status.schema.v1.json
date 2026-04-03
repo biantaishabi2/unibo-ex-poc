@@ -44,11 +44,11 @@
       "params": {
         "accept": [
           "id",
-          "bed_type",
-          "status",
           "hotel_code",
+          "status",
           "room_type_code",
-          "room_type_name"
+          "room_type_name",
+          "bed_type"
         ]
       }
     },
@@ -351,11 +351,11 @@
                 }
               ],
               "binds": [],
-              "equals": "$form.room_type_name",
+              "equals": "$form.bed_type",
               "excludes_source": null,
               "graphql_field": "getTravelTravelRoomType",
               "op": "equals",
-              "path": "room_type_name",
+              "path": "bed_type",
               "source": "active_record_id"
             },
             "ui": [

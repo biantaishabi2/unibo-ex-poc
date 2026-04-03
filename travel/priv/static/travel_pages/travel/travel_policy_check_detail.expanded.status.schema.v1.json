@@ -55,14 +55,14 @@
           "order_id",
           "policy_id",
           "approval_mode",
-          "exceed_amount",
           "personal_pay_amount",
-          "approval_request_id",
-          "actual_amount",
-          "check_result",
-          "policy_amount",
           "exceed_strategy",
+          "actual_amount",
+          "exceed_amount",
+          "policy_amount",
+          "approval_request_id",
           "exceed_reason",
+          "check_result",
           "exceed_ratio"
         ]
       }
@@ -158,14 +158,14 @@
                 "value": "UPDATED_{{__run_id}}_exceed_strategy"
               },
               {
-                "action": "select_option",
-                "field": "check_result",
-                "value": "exceeded"
-              },
-              {
                 "action": "type",
                 "field": "exceed_reason",
                 "value": "UPDATED_{{__run_id}}_exceed_reason"
+              },
+              {
+                "action": "select_option",
+                "field": "check_result",
+                "value": "exceeded"
               },
               {
                 "action": "click",

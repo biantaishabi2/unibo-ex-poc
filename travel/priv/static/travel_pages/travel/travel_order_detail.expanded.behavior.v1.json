@@ -33,19 +33,19 @@
       "accept": [
         "id",
         "hotel_offer_id",
-        "seat_selection_snapshot",
-        "host_shop_id",
-        "ticket_passenger_infos",
-        "total_amount",
-        "order_no",
-        "points_to_use",
-        "points_deduction_amount",
         "contact_name",
+        "ticket_passenger_infos",
+        "host_shop_id",
+        "seat_selection_snapshot",
+        "order_no",
         "currency",
+        "total_amount",
         "product_type",
         "customer_id",
+        "traveler_count",
+        "points_deduction_amount",
         "contact_phone",
-        "traveler_count"
+        "points_to_use"
       ]
     }
   },
@@ -136,6 +136,11 @@
             },
             {
               "action": "type",
+              "field": "contact_name",
+              "value": "UPDATED_{{__run_id}}_contact_name"
+            },
+            {
+              "action": "type",
               "field": "ticket_passenger_infos",
               "value": "{\"updated\":true}"
             },
@@ -148,11 +153,6 @@
               "action": "type",
               "field": "seat_selection_snapshot",
               "value": "{\"updated\":true}"
-            },
-            {
-              "action": "type",
-              "field": "contact_name",
-              "value": "UPDATED_{{__run_id}}_contact_name"
             },
             {
               "action": "click",
@@ -1585,11 +1585,11 @@
                 "source": "backend_result"
               }
             ],
-            "equals": "$form.order_no",
+            "equals": "$form.points_deduction_amount",
             "excludes_source": null,
             "graphql_field": "getTravelTravelOrder",
             "op": "field_equals",
-            "path": "order_no",
+            "path": "points_deduction_amount",
             "source": "created_record_id"
           },
           "ui": [

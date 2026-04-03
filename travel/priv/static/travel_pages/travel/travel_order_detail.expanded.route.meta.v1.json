@@ -5,7 +5,7 @@
   "phoenix_web_module": "UniboExPocWeb",
   "render_mode": "inline",
   "route": {
-    "path": "/pages/travel/travel_order/:id?hotel_offer_id={{hotel_offer_id}}",
+    "path": "/pages/travel/travel_order/:id",
     "kind": "detail",
     "params": [
       "id"

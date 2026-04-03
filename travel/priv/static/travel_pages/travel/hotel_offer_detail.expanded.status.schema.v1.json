@@ -74,23 +74,23 @@
       "params": {
         "accept": [
           "id",
-          "city_code",
           "cancellation_policy",
-          "sale_status",
-          "currency",
-          "room_type_code",
-          "checkin_date",
-          "supplier_code",
-          "hotel_name",
-          "city_ref_id",
-          "rate_plan_code",
-          "guarantee_policy",
+          "inventory_count",
           "settlement_price",
-          "host_shop_id",
           "hotel_code",
-          "checkout_date",
           "listed_price",
-          "inventory_count"
+          "city_ref_id",
+          "guarantee_policy",
+          "room_type_code",
+          "sale_status",
+          "hotel_name",
+          "checkin_date",
+          "checkout_date",
+          "supplier_code",
+          "host_shop_id",
+          "currency",
+          "rate_plan_code",
+          "city_code"
         ]
       }
     },
@@ -175,23 +175,8 @@
               },
               {
                 "action": "type",
-                "field": "city_code",
-                "value": "UPDATED_{{__run_id}}_city_code"
-              },
-              {
-                "action": "type",
-                "field": "guarantee_policy",
-                "value": "UPDATED_{{__run_id}}_guarantee_policy"
-              },
-              {
-                "action": "type",
-                "field": "city_ref_id",
-                "value": "UPDATED_{{__run_id}}_city_ref_id"
-              },
-              {
-                "action": "type",
-                "field": "listed_price",
-                "value": "200.00"
+                "field": "inventory_count",
+                "value": "2"
               },
               {
                 "action": "type",
@@ -200,8 +185,23 @@
               },
               {
                 "action": "type",
-                "field": "hotel_name",
-                "value": "UPDATED_{{__run_id}}_hotel_name"
+                "field": "guarantee_policy",
+                "value": "UPDATED_{{__run_id}}_guarantee_policy"
+              },
+              {
+                "action": "type",
+                "field": "listed_price",
+                "value": "200.00"
+              },
+              {
+                "action": "type",
+                "field": "city_code",
+                "value": "UPDATED_{{__run_id}}_city_code"
+              },
+              {
+                "action": "type",
+                "field": "city_ref_id",
+                "value": "UPDATED_{{__run_id}}_city_ref_id"
               },
               {
                 "action": "type",
@@ -215,8 +215,8 @@
               },
               {
                 "action": "type",
-                "field": "inventory_count",
-                "value": "2"
+                "field": "hotel_name",
+                "value": "UPDATED_{{__run_id}}_hotel_name"
               },
               {
                 "action": "click",

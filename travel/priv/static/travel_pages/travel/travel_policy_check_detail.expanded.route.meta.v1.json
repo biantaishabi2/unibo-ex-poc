@@ -5,7 +5,7 @@
   "phoenix_web_module": "UniboExPocWeb",
   "render_mode": "inline",
   "route": {
-    "path": "/pages/travel/travel_policy_check/:id?order_id={{order_id}}&policy_id={{policy_id}}",
+    "path": "/pages/travel/travel_policy_check/:id",
     "kind": "detail",
     "params": [
       "id"

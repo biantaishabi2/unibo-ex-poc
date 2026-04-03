@@ -56,7 +56,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelRefundOrderDetailLive do
   @backend_load_event "get"
   @backend_load_selection "approval_mode: approvalMode id refund_amount: refundAmount refund_fee: refundFee refund_reason: refundReason status"
   @backend_load_assigns %{travel_refund_order: %{}}
-  @backend_params_accept ["id", "original_order_id", "refund_fee", "refund_reason", "refund_amount", "approval_mode"]
+  @backend_params_accept ["id", "original_order_id", "refund_amount", "approval_mode", "refund_reason", "refund_fee"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "confirm_refund" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelRefundOrder.confirm_refund"},
@@ -68,7 +68,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelRefundOrderDetailLive do
     "submit" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelRefundOrder.submit"},
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelRefundOrder.update"}
   }
-  @backend_embedded_page %{page_id: "travel_refund_order_detail", page_kind: "detail", api_map: %{confirm_refund: "Travel.TravelRefundOrder.confirm_refund", create: "Travel.TravelRefundOrder.create", get: "Travel.TravelRefundOrder.get", refund: "Travel.TravelRefundOrder.refund", refund_direct: "Travel.TravelRefundOrder.refund_direct", reject_refund: "Travel.TravelRefundOrder.reject_refund", submit: "Travel.TravelRefundOrder.submit", update: "Travel.TravelRefundOrder.update"}, backend: %{load: %{selection: "approval_mode: approvalMode id refund_amount: refundAmount refund_fee: refundFee refund_reason: refundReason status"}}, route: %{path: "/pages/travel/travel_refund_order/:id", query: "original_order_id={{original_order_id}}", kind: "detail"}, state_schema: %{defaults: %{record: %{status: true}, travel_refund_order: %{refund_reason: "", refund_fee: "", refund_amount: "", status: "", approval_mode: ""}, editing: false}}, status_keys: ["record", "editing", "form", "loading"]}
+  @backend_embedded_page %{page_id: "travel_refund_order_detail", page_kind: "detail", api_map: %{confirm_refund: "Travel.TravelRefundOrder.confirm_refund", create: "Travel.TravelRefundOrder.create", get: "Travel.TravelRefundOrder.get", refund: "Travel.TravelRefundOrder.refund", refund_direct: "Travel.TravelRefundOrder.refund_direct", reject_refund: "Travel.TravelRefundOrder.reject_refund", submit: "Travel.TravelRefundOrder.submit", update: "Travel.TravelRefundOrder.update"}, backend: %{load: %{selection: "approval_mode: approvalMode id refund_amount: refundAmount refund_fee: refundFee refund_reason: refundReason status"}}, route: %{path: "/pages/travel/travel_refund_order/:id", query: "", kind: "detail"}, state_schema: %{defaults: %{record: %{status: true}, travel_refund_order: %{refund_reason: "", refund_fee: "", refund_amount: "", status: "", approval_mode: ""}, editing: false}}, status_keys: ["record", "editing", "form", "loading"]}
   @entity_assign_fields ["refund_reason", "refund_fee", "refund_amount", "status", "approval_mode"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"

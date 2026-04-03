@@ -56,7 +56,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelChangeOrderDetailLive do
   @backend_load_event "get"
   @backend_load_selection "approval_mode: approvalMode change_fee: changeFee change_reason: changeReason id new_offer_id: newOfferId price_difference: priceDifference status"
   @backend_load_assigns %{travel_change_order: %{}}
-  @backend_params_accept ["id", "original_order_id", "approval_mode", "change_fee", "new_offer_id", "change_reason", "price_difference"]
+  @backend_params_accept ["id", "original_order_id", "change_fee", "new_offer_id", "approval_mode", "price_difference", "change_reason"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "complete" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelChangeOrder.complete"},
@@ -68,7 +68,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelChangeOrderDetailLive do
     "submit" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelChangeOrder.submit"},
     "update" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelChangeOrder.update"}
   }
-  @backend_embedded_page %{page_id: "travel_change_order_detail", page_kind: "detail", api_map: %{complete: "Travel.TravelChangeOrder.complete", complete_direct: "Travel.TravelChangeOrder.complete_direct", confirm_change: "Travel.TravelChangeOrder.confirm_change", create: "Travel.TravelChangeOrder.create", get: "Travel.TravelChangeOrder.get", reject_change: "Travel.TravelChangeOrder.reject_change", submit: "Travel.TravelChangeOrder.submit", update: "Travel.TravelChangeOrder.update"}, backend: %{load: %{selection: "approval_mode: approvalMode change_fee: changeFee change_reason: changeReason id new_offer_id: newOfferId price_difference: priceDifference status"}}, route: %{path: "/pages/travel/travel_change_order/:id", query: "original_order_id={{original_order_id}}", kind: "detail"}, state_schema: %{defaults: %{record: %{status: true}, travel_change_order: %{change_reason: "", price_difference: "", change_fee: "", status: "", approval_mode: ""}, editing: false}}, status_keys: ["record", "editing", "form", "loading"]}
+  @backend_embedded_page %{page_id: "travel_change_order_detail", page_kind: "detail", api_map: %{complete: "Travel.TravelChangeOrder.complete", complete_direct: "Travel.TravelChangeOrder.complete_direct", confirm_change: "Travel.TravelChangeOrder.confirm_change", create: "Travel.TravelChangeOrder.create", get: "Travel.TravelChangeOrder.get", reject_change: "Travel.TravelChangeOrder.reject_change", submit: "Travel.TravelChangeOrder.submit", update: "Travel.TravelChangeOrder.update"}, backend: %{load: %{selection: "approval_mode: approvalMode change_fee: changeFee change_reason: changeReason id new_offer_id: newOfferId price_difference: priceDifference status"}}, route: %{path: "/pages/travel/travel_change_order/:id", query: "", kind: "detail"}, state_schema: %{defaults: %{record: %{status: true}, travel_change_order: %{change_reason: "", price_difference: "", change_fee: "", status: "", approval_mode: ""}, editing: false}}, status_keys: ["record", "editing", "form", "loading"]}
   @entity_assign_fields ["change_reason", "price_difference", "change_fee", "status", "approval_mode"]
   @status_key_roots [:record, :editing, :form, :loading]
   @auth_mode "optional"

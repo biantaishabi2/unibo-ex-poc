@@ -67,7 +67,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_load_event "get"
   @backend_load_selection "arrival_airport_code: arrivalAirportCode arrival_at: arrivalAt baggage_policy: baggagePolicy cabin_class: cabinClass currency departure_airport_code: departureAirportCode departure_at: departureAt fare_family: fareFamily flight_no: flightNo host_shop_id: hostShopId id itinerary_code: itineraryCode listed_price: listedPrice refund_change_policy: refundChangePolicy sale_status: saleStatus seats_available: seatsAvailable settlement_price: settlementPrice supplier_code: supplierCode tenant_id: tenantId"
   @backend_load_assigns %{flight_offer: %{}}
-  @backend_params_accept ["id", "host_shop_id", "flight_no", "cabin_class", "arrival_airport_ref_id", "currency", "sale_status", "baggage_policy", "seats_available", "departure_airport_ref_id", "arrival_at", "arrival_airport_code", "departure_airport_code", "supplier_code", "departure_at", "fare_family", "settlement_price", "refund_change_policy", "itinerary_code", "listed_price"]
+  @backend_params_accept ["id", "itinerary_code", "host_shop_id", "arrival_airport_code", "cabin_class", "seats_available", "arrival_airport_ref_id", "departure_at", "listed_price", "arrival_at", "baggage_policy", "fare_family", "settlement_price", "departure_airport_code", "departure_airport_ref_id", "sale_status", "flight_no", "currency", "refund_change_policy", "supplier_code"]
   @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
     "activate" => %{module: MyAppWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.FlightOffer.activate"},

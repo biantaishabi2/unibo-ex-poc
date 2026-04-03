@@ -19,18 +19,18 @@
     "params": {
       "accept": [
         "id",
-        "season",
-        "product_type",
-        "employee_level",
-        "policy_name",
-        "city_tier",
-        "exceed_strategy",
-        "personal_pay_ratio",
-        "hotel_star_limit",
         "approval_mode",
+        "exceed_strategy",
+        "season",
         "max_amount",
+        "hotel_star_limit",
+        "product_type",
+        "city_tier",
         "cabin_class_limit",
-        "enterprise_id"
+        "personal_pay_ratio",
+        "employee_level",
+        "enterprise_id",
+        "policy_name"
       ]
     }
   },
@@ -115,24 +115,9 @@
               "selector": "#travel_policy_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             },
             {
-              "action": "type",
-              "field": "hotel_star_limit",
-              "value": "UPDATED_{{__run_id}}_hotel_star_limit"
-            },
-            {
-              "action": "type",
-              "field": "personal_pay_ratio",
-              "value": "2"
-            },
-            {
-              "action": "type",
-              "field": "season",
-              "value": "UPDATED_{{__run_id}}_season"
-            },
-            {
               "action": "select_option",
-              "field": "exceed_strategy",
-              "value": "require_reason"
+              "field": "approval_mode",
+              "value": "self"
             },
             {
               "action": "type",
@@ -141,13 +126,28 @@
             },
             {
               "action": "type",
-              "field": "cabin_class_limit",
-              "value": "UPDATED_{{__run_id}}_cabin_class_limit"
+              "field": "hotel_star_limit",
+              "value": "UPDATED_{{__run_id}}_hotel_star_limit"
+            },
+            {
+              "action": "type",
+              "field": "season",
+              "value": "UPDATED_{{__run_id}}_season"
+            },
+            {
+              "action": "type",
+              "field": "personal_pay_ratio",
+              "value": "2"
             },
             {
               "action": "select_option",
-              "field": "approval_mode",
-              "value": "self"
+              "field": "exceed_strategy",
+              "value": "require_reason"
+            },
+            {
+              "action": "type",
+              "field": "cabin_class_limit",
+              "value": "UPDATED_{{__run_id}}_cabin_class_limit"
             },
             {
               "action": "type",

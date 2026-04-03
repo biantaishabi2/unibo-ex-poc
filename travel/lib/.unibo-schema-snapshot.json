@@ -4397,12 +4397,19 @@
         "name": "TravelChangeOrder",
         "description": "改签单，记录针对已有 TravelOrder 的改签请求、差价与审批状态；审批通过 overlay on Approvals 域",
         "aggregate_root": true,
+        "tenancy": {},
         "attributes": [
           {
             "name": "id",
             "type": "uuid",
             "primary_key": true,
             "generated": true
+          },
+          {
+            "name": "tenant_id",
+            "type": "uuid",
+            "required": true,
+            "description": "租户 ID"
           },
           {
             "name": "change_reason",
@@ -4647,6 +4654,7 @@
           {
             "name": "unique_order_status",
             "keys": [
+              "tenant_id",
               "original_order_id",
               "status"
             ]
@@ -5355,12 +5363,16 @@
           {
             "name": "activate",
             "type": "update",
-            "accept": []
+            "accept": [
+              "is_active"
+            ]
           },
           {
             "name": "deactivate",
             "type": "update",
-            "accept": []
+            "accept": [
+              "is_active"
+            ]
           }
         ],
         "validations": [
@@ -5512,27 +5524,7 @@
               }
             ]
           }
-        ],
-        "state_machine": {
-          "initial_state": "false",
-          "states": [
-            "false",
-            "true"
-          ],
-          "transitions": [
-            {
-              "from": "false",
-              "to": "true",
-              "event": "activate"
-            },
-            {
-              "from": "true",
-              "to": "false",
-              "event": "deactivate"
-            }
-          ],
-          "state_attribute": "is_active"
-        }
+        ]
       },
       {
         "name": "TravelPolicyCheck",
