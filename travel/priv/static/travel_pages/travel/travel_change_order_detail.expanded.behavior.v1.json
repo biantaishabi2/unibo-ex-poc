@@ -24,10 +24,10 @@
         "id",
         "original_order_id",
         "change_reason",
-        "change_fee",
-        "new_offer_id",
         "approval_mode",
-        "price_difference"
+        "price_difference",
+        "change_fee",
+        "new_offer_id"
       ]
     }
   },
@@ -118,6 +118,11 @@
             },
             {
               "action": "type",
+              "field": "change_reason",
+              "value": "UPDATED_{{__run_id}}_change_reason"
+            },
+            {
+              "action": "type",
               "field": "price_difference",
               "value": "UPDATED_{{__run_id}}_price_difference"
             },
@@ -125,11 +130,6 @@
               "action": "type",
               "field": "change_fee",
               "value": "UPDATED_{{__run_id}}_change_fee"
-            },
-            {
-              "action": "type",
-              "field": "change_reason",
-              "value": "UPDATED_{{__run_id}}_change_reason"
             },
             {
               "action": "click",

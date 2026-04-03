@@ -1,0 +1,12 @@
+{
+  "page_id": "flight_booking",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.FlightBookingLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/flight_booking",
+    "kind": "custom",
+    "params": []
+  }
+}

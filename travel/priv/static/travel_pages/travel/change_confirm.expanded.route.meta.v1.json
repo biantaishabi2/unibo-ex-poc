@@ -1,0 +1,12 @@
+{
+  "page_id": "change_confirm",
+  "delivery_mode": "compiled",
+  "module_name": "UniboExPocWeb.Pages.Travel.ChangeConfirmLive",
+  "phoenix_web_module": "UniboExPocWeb",
+  "render_mode": "inline",
+  "route": {
+    "path": "/pages/travel/change_confirm",
+    "kind": "detail",
+    "params": []
+  }
+}

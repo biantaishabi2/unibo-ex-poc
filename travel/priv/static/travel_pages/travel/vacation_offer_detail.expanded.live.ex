@@ -66,7 +66,7 @@ defmodule MyAppWeb.Pages.StitchGeneratedLive do
   @backend_load_event "get"
   @backend_load_selection "booking_rules: bookingRules cancellation_policy: cancellationPolicy currency departure_city_code: departureCityCode destination_code: destinationCode end_date: endDate host_shop_id: hostShopId id inventory_count: inventoryCount listed_price: listedPrice package_code: packageCode package_name: packageName package_type: packageType sale_status: saleStatus settlement_price: settlementPrice start_date: startDate supplier_code: supplierCode tenant_id: tenantId"
   @backend_load_assigns %{vacation_offer: %{}}
-  @backend_params_accept ["id", "currency", "package_code", "destination_ref_id", "start_date", "listed_price", "end_date", "host_shop_id", "inventory_count", "sale_status", "departure_city_ref_id", "booking_rules", "package_type", "supplier_code", "settlement_price", "cancellation_policy", "destination_code", "package_name", "departure_city_code"]
+  @backend_params_accept ["id", "departure_city_ref_id", "sale_status", "host_shop_id", "supplier_code", "package_code", "currency", "end_date", "package_type", "departure_city_code", "cancellation_policy", "booking_rules", "destination_code", "inventory_count", "settlement_price", "listed_price", "start_date", "destination_ref_id", "package_name"]
   @backend_info_reload_messages ["page_host_reload"]
   @backend_api_map %{
     "activate" => %{module: MyAppWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.VacationOffer.activate"},
