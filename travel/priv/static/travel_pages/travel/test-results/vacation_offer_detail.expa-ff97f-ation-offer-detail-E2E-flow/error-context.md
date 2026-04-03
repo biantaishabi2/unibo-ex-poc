@@ -7,217 +7,308 @@
 # Test info
 
 - Name: vacation_offer_detail.expanded.spec.ts >> vacation_offer_detail >> E2E flow
-- Location: vacation_offer_detail.expanded.spec.ts:1217:7
+- Location: vacation_offer_detail.expanded.spec.ts:1216:7
 
 # Error details
 
 ```
-Error: setup action failed for activate
+Error: backend get equals assertion failed: expected UPDATED_1775257572305_sw31o8_departure_city_ref_id got 
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e2]:
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link [ref=e6] [cursor=pointer]:
+          - /url: /
+          - img [ref=e7]
+        - paragraph [ref=e8]: v1.7.21
+      - generic [ref=e9]:
+        - link "@elixirphoenix" [ref=e10] [cursor=pointer]:
+          - /url: https://twitter.com/elixirphoenix
+        - link "GitHub" [ref=e11] [cursor=pointer]:
+          - /url: https://github.com/phoenixframework/phoenix
+        - link "Get Started" [ref=e12] [cursor=pointer]:
+          - /url: https://hexdocs.pm/phoenix/overview.html
+          - text: Get Started →
+  - main [ref=e13]:
+    - generic [ref=e15]:
+      - link "← 列表" [ref=e17] [cursor=pointer]:
+        - /url: /pages
+      - generic "详情" [ref=e18]:
+        - navigation "breadcrumb" [ref=e20]:
+          - list [ref=e21]:
+            - listitem [ref=e22]:
+              - generic [ref=e23]: 列表
+            - listitem [ref=e24]:
+              - img [ref=e25]
+            - listitem [ref=e27]:
+              - link "详情" [disabled] [ref=e28]
+        - generic [ref=e30]:
+          - generic [ref=e32]:
+            - paragraph [ref=e33]: VacationOffer
+            - paragraph [ref=e34]: 度假可售 offer,承载套餐、出发日期和预订规则快照
+          - generic [ref=e36]:
+            - button "编辑" [ref=e37] [cursor=pointer]
+            - button "deactivate" [ref=e38] [cursor=pointer]
+            - button "expire" [ref=e39] [cursor=pointer]
+            - button "删除" [ref=e40] [cursor=pointer]
+        - generic [ref=e42]:
+          - heading "基本信息" [level=3] [ref=e44]
+          - generic [ref=e47]:
+            - generic [ref=e48]:
+              - paragraph [ref=e49]: 供应商编码
+              - paragraph
+            - generic [ref=e50]:
+              - paragraph [ref=e51]: 套餐编码
+              - paragraph
+            - generic [ref=e52]:
+              - paragraph [ref=e53]: 套餐名称
+              - paragraph
+            - generic [ref=e54]:
+              - paragraph [ref=e55]: 套餐类型
+              - paragraph
+            - generic [ref=e56]:
+              - paragraph [ref=e57]: 出发城市编码
+              - paragraph
+            - generic [ref=e58]:
+              - paragraph [ref=e59]: 目的地编码
+              - paragraph
+            - generic [ref=e60]:
+              - paragraph [ref=e61]: 出行开始日期
+              - paragraph
+            - generic [ref=e62]:
+              - paragraph [ref=e63]: 出行结束日期
+              - paragraph
+            - generic [ref=e64]:
+              - paragraph [ref=e65]: 对客展示价快照
+              - paragraph
+            - generic [ref=e66]:
+              - paragraph [ref=e67]: 结算价快照
+              - paragraph
+            - generic [ref=e68]:
+              - paragraph [ref=e69]: currency
+              - paragraph
+            - generic [ref=e70]:
+              - paragraph [ref=e71]: 可售库存快照
+              - paragraph
+            - generic [ref=e72]:
+              - paragraph [ref=e73]: 预订规则快照
+              - paragraph
+            - generic [ref=e74]:
+              - paragraph [ref=e75]: 取消规则快照
+              - paragraph
+            - generic [ref=e76]:
+              - paragraph [ref=e77]: sale_status
+              - paragraph
 ```
 
 # Test source
 
 ```ts
-  755 |   const mutationFields = (payload?.data?.__schema?.mutationType?.fields || []).map((field) => field.name);
-  756 |   if (queryFields.length === 0 && mutationFields.length === 0) {
-  757 |     throw new Error('GraphQL introspection at ' + __GRAPHQL_URL + ' returned no fields. Is the server running? Response: ' + JSON.stringify(payload).slice(0, 300));
-  758 |   }
-  759 |   ctx.__graphqlSchema = { query: queryFields, mutation: mutationFields };
-  760 |   return ctx.__graphqlSchema;
-  761 | }
-  762 | 
-  763 | async function resolveContractGraphqlField(ctx, mode, explicitField, domain, entity, actionName) {
-  764 |   const schema = await loadGraphqlSchemaCache(ctx);
-  765 |   const fields = mode === 'query' ? schema.query : schema.mutation;
-  766 |   const explicit = String(explicitField || '').trim();
-  767 |   if (explicit && fields.includes(explicit)) return explicit;
-  768 |   if (explicit) {
-  769 |     const camel = pascalize(explicit).replace(/^./, (ch) => ch.toLowerCase());
-  770 |     if (camel !== explicit && fields.includes(camel)) return camel;
-  771 |   }
-  772 |   return await resolveGraphqlField(ctx, mode, domain, entity, actionName);
-  773 | }
-  774 | 
-  775 | async function resolveGraphqlField(ctx, mode, domain, entity, actionName) {
-  776 |   const schema = await loadGraphqlSchemaCache(ctx);
-  777 |   const fields = mode === 'query' ? schema.query : schema.mutation;
-  778 |   const domainName = pascalize(domain);
-  779 |   const entityName = pascalize(entity);
-  780 |   const domainSnake = snakeize(domain);
-  781 |   const entitySnake = snakeize(entity);
-  782 |   const candidates = [];
-  783 |   let normalizedPrefix = (domainName + entityName).replace(/^./, (ch) => ch.toLowerCase());
-  784 |   if (mode === 'query') {
-  785 |     if (actionName === 'list') {
-  786 |       normalizedPrefix = 'list' + domainName + entityName;
-  787 |       candidates.push('list_' + domainSnake + '_' + pluralize(entitySnake));
-  788 |     } else if (actionName === 'get') {
-  789 |       normalizedPrefix = 'get' + domainName + entityName;
-  790 |       candidates.push('get_' + domainSnake + '_' + entitySnake);
-  791 |     }
-  792 |   } else if (actionName === 'destroy') {
-  793 |     normalizedPrefix = 'delete' + domainName + entityName;
-  794 |     candidates.push('delete_' + domainSnake + '_' + entitySnake);
-  795 |   } else if (actionName) {
-  796 |     const actionPrefix = pascalize(actionName);
-  797 |     normalizedPrefix = actionPrefix.charAt(0).toLowerCase() + actionPrefix.slice(1) + domainName + entityName;
-  798 |     candidates.push(snakeize(actionName) + '_' + domainSnake + '_' + entitySnake);
-  799 |   }
-  800 |   candidates.push(normalizedPrefix);
-  801 |   return candidates.find((candidate) => fields.includes(candidate)) || fields.find((field) => candidates.some((candidate) => field === candidate || (field.startsWith(candidate) && /^(s|es|_|$)/.test(field.slice(candidate.length))))) || null;
-  802 | }
-  803 | 
-  804 | function applyBindings(ctx, binds, resultValue) {
-  805 |   for (const bind of Array.isArray(binds) ? binds : []) {
-  806 |     const source = typeof bind?.source === 'string' ? bind.source : 'result';
-  807 |     const base = source === 'result' || source === 'backend_result'
-  808 |       ? resultValue
-  809 |       : readContextValue(ctx, source);
-  810 |     const value = readValueAtPath(base, bind?.path || null);
-  811 |     assignContextValue(ctx, bind?.name, value);
-  812 |   }
-  813 | }
-  814 | 
-  815 | function refreshDataBindings(ctx) {
-  816 |   applyBindings(ctx, __DATA_CONTRACT.binds, null);
-  817 | }
-  818 | 
-  819 | function resolveTemplateDeep(ctx, value) {
-  820 |   if (typeof value === 'string') return resolveTemplateString(ctx, value);
-  821 |   if (Array.isArray(value)) return value.map((item) => resolveTemplateDeep(ctx, item));
-  822 |   if (value && typeof value === 'object') {
-  823 |     return Object.fromEntries(Object.entries(value).map(([key, item]) => [key, resolveTemplateDeep(ctx, item)]));
-  824 |   }
-  825 |   return value;
-  826 | }
-  827 | 
-  828 | function toGraphqlLiteral(value) {
-  829 |   if (value == null) return 'null';
-  830 |   if (Array.isArray(value)) return '[' + value.map((item) => toGraphqlLiteral(item)).join(', ') + ']';
-  831 |   if (typeof value === 'object') {
-  832 |     return '{ ' + Object.entries(value).map(([key, item]) => `${key}: ${toGraphqlLiteral(item)}`).join(', ') + ' }';
-  833 |   }
-  834 |   if (typeof value === 'string') return JSON.stringify(value);
-  835 |   if (typeof value === 'number' || typeof value === 'boolean') return String(value);
-  836 |   return JSON.stringify(String(value));
-  837 | }
-  838 | 
-  839 | function defaultRecordId(ctx) {
-  840 |   return ctx.active_record_id || ctx.route_record_id || ctx.seed_record_id || ctx.created_record_id || ctx.route?.id || '';
-  841 | }
-  842 | 
-  843 | function resolveBackendAssertionId(ctx, assertion) {
-  844 |   const idArg = (Array.isArray(assertion?.args) ? assertion.args : []).find((arg) => arg?.name === 'id');
-  845 |   const explicit = resolveTemplateString(ctx, idArg?.source ? '{{' + idArg.source + '}}' : '{{route.id}}');
-  846 |   return explicit || defaultRecordId(ctx);
-  847 | }
-  848 | 
-  849 | async function runSetupAction(ctx, item, recordId, actionName) {
-  850 |   const field = await resolveContractGraphqlField(ctx, 'mutation', null, item.domain, item.entity, actionName);
-  851 |   if (!field) throw new Error('missing GraphQL action field for setup ' + JSON.stringify({ item, actionName }));
-  852 |   const payload = await graphqlRequest(ctx, `mutation ContractSetupAction($id: ID!) { ${field}(id: $id) { result { id } errors { message } } }`, { id: recordId });
-  853 |   const errors = payload?.errors || payload?.data?.[field]?.errors || [];
-  854 |   if (Array.isArray(errors) && errors.length > 0) {
-> 855 |     throw new Error('setup action failed for ' + String(actionName));
-      |           ^ Error: setup action failed for activate
-  856 |   }
-  857 |   return payload?.data?.[field]?.result || null;
-  858 | }
-  859 | 
-  860 | async function runSetupItem(page, ctx, item) {
-  861 |   if (!item) return;
-  862 |   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
-  863 |     const savedTenantId = ctx.tenant_id;
-  864 |     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
-  865 |     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
-  866 |     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
-  867 |     const wherePath = typeof item.where_path === 'string' ? item.where_path.trim() : '';
-  868 |     const whereField = /^[A-Za-z_][A-Za-z0-9_]*$/.test(wherePath) ? wherePath : '';
-  869 |     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
-  870 |     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
-  871 |     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
-  872 |     rememberTenantContext(ctx, inputValue);
-  873 |     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
-  874 |     const matched = whereField
-  875 |       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
-  876 |       : rows;
-  877 |     const rawIndex = Number.isInteger(item.index) ? Number(item.index) : Number(item.index || 0);
-  878 |     const index = Number.isFinite(rawIndex) && rawIndex >= 0 ? rawIndex : 0;
-  879 |     let result = matched[index] || matched[0];
-  880 |     const prepareActions = Array.isArray(item.prepare_actions) ? item.prepare_actions : [];
-  881 |     if (!result && (item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create')) {
-  882 |       const createField = await resolveContractGraphqlField(ctx, 'mutation', item.create_graphql_field, item.domain, item.entity, 'create');
-  883 |       if (!createField) throw new Error('missing GraphQL create field for setup ' + JSON.stringify(item));
-  884 |       const createPayload = await graphqlRequest(ctx, `mutation ContractSetupCreate { ${createField}(input: ${toGraphqlLiteral(inputValue)}) { result { id } errors { message } } }`, {});
-  885 |       const errors = createPayload?.errors || createPayload?.data?.[createField]?.errors || [];
-  886 |       if (Array.isArray(errors) && errors.length > 0) {
-  887 |         throw new Error('setup create failed for ' + String(item.name || createField) + ': ' + JSON.stringify(errors));
-  888 |       }
-  889 |       result = createPayload?.data?.[createField]?.result || null;
-  890 |       if (result?.id) {
-  891 |         ctx.__cleanup_queue = ctx.__cleanup_queue || [];
-  892 |         ctx.__cleanup_queue.push({ id: result.id, domain: item.domain, entity: item.entity });
-  893 |       }
-  894 |     }
-  895 |     if (item.cleanup_policy === 'never') { for (const row of rows) { if (row?.id) ctx.__seed_ids.add(row.id); } }
-  896 |     if (!result) throw new Error('setup returned no rows for ' + String(item.name || field));
-  897 |     for (const actionName of prepareActions) {
-  898 |       if (!result?.id) break;
-  899 |       result = await runSetupAction(ctx, item, result.id, String(actionName || '').trim()) || result;
-  900 |     }
-  901 |     applyBindings(ctx, item.binds, result);
-  902 |     refreshDataBindings(ctx);
-  903 |     ctx.tenant_id = savedTenantId;
-  904 |   }
-  905 | }
-  906 | 
-  907 | async function ensureContractSetup(page, ctx) {
-  908 |   if (ctx.__setupDone) return;
-  909 |   for (const item of Array.isArray(__DATA_CONTRACT.setup) ? __DATA_CONTRACT.setup : []) {
-  910 |     await runSetupItem(page, ctx, item);
-  911 |   }
-  912 |   ctx.__setupDone = true;
-  913 | }
-  914 | 
-  915 | function parseApiRef(apiRef) {
-  916 |   const parts = String(apiRef || '').split('.');
-  917 |   if (parts.length < 3) return null;
-  918 |   return { domain: parts[0], entity: parts[1], action: parts[2] };
-  919 | }
-  920 | 
-  921 | function collectVerificationEntries(verificationKey, caseKind, covers) {
-  922 |   const entries = [];
-  923 |   const pushEntry = (entry) => {
-  924 |     if (!entry) return;
-  925 |     if (!entries.includes(entry)) entries.push(entry);
-  926 |   };
-  927 |   if (verificationKey && verificationKey !== '__AUTO__') {
-  928 |     pushEntry(__VERIFICATION_CONTRACT[verificationKey]);
-  929 |   } else {
-  930 |     if (caseKind === 'load') pushEntry(__VERIFICATION_CONTRACT.load);
-  931 |     for (const cover of Array.isArray(covers) ? covers : []) {
-  932 |       pushEntry(__VERIFICATION_CONTRACT[cover]);
-  933 |     }
-  934 |   }
-  935 |   for (const cover of Array.isArray(covers) ? covers : []) {
-  936 |     if (!String(cover).startsWith('action_')) continue;
-  937 |     const event = String(cover).slice('action_'.length);
-  938 |     const matches = Array.isArray(__VERIFICATION_CONTRACT.state_transitions) ? __VERIFICATION_CONTRACT.state_transitions.filter((item) => item?.event === event) : [];
-  939 |     for (const match of matches) pushEntry(match);
-  940 |   }
-  941 |   return entries;
-  942 | }
-  943 | 
-  944 | async function runWaitEntry(page, ctx, entry) {
-  945 |   if (!entry) return;
-  946 |   const timeout = Number(entry?.timeout) > 0 ? Number(entry.timeout) : 15000;
-  947 |   await waitForLiveViewReady(page, timeout);
-  948 |   const until = entry?.until || {};
-  949 |   const kind = String(until?.kind || entry?.mode || '').trim();
-  950 |   const selector = typeof until?.selector === 'string' ? until.selector : (Array.isArray(entry?.selectors) ? entry.selectors[0] : null);
-  951 |   const urlContains = typeof until?.url_contains === 'string' ? until.url_contains : entry?.url_contains;
-  952 |   if ((kind === 'visible' || kind === 'dom_visible' || kind === 'state_key') && selector) {
-  953 |     await expect(locatorFor(page, selector)).toBeVisible({ timeout });
-  954 |   }
-  955 |   if ((kind === 'hidden' || kind === 'dom_hidden') && selector) {
+  950  |   const urlContains = typeof until?.url_contains === 'string' ? until.url_contains : entry?.url_contains;
+  951  |   if ((kind === 'visible' || kind === 'dom_visible' || kind === 'state_key') && selector) {
+  952  |     await expect(locatorFor(page, selector)).toBeVisible({ timeout });
+  953  |   }
+  954  |   if ((kind === 'hidden' || kind === 'dom_hidden') && selector) {
+  955  |     await expect(locatorFor(page, selector)).toBeHidden({ timeout });
+  956  |   }
+  957  |   if (kind === 'form_settled' && selector) {
+  958  |     const formLocator = locatorFor(page, selector);
+  959  |     const fallbackSelectors = Array.isArray(entry?.selectors) ? entry.selectors.filter((item) => item && item !== selector) : [];
+  960  |     try {
+  961  |       await formLocator.waitFor({ state: 'hidden', timeout });
+  962  |     } catch (error) {
+  963  |       let settled = false;
+  964  |       for (const candidate of fallbackSelectors) {
+  965  |         try {
+  966  |           await expect(locatorFor(page, candidate)).toBeVisible({ timeout: Math.max(1000, Math.floor(timeout / 2)) });
+  967  |           settled = true;
+  968  |           break;
+  969  |         } catch (_candidateError) {}
+  970  |       }
+  971  |       const stillVisible = await formLocator.isVisible().catch(() => false);
+  972  |       if (stillVisible && !settled) throw error;
+  973  |     }
+  974  |     await syncRouteContext(page, ctx);
+  975  |   }
+  976  |   if (kind === 'url_contains' || kind === 'url_and_root') {
+  977  |     const expectedUrl = resolveTemplateString(ctx, String(urlContains || ''));
+  978  |     if (expectedUrl) {
+  979  |       try {
+  980  |         await page.waitForFunction((v) => window.location.href.includes(v), expectedUrl, { timeout });
+  981  |       } catch (_e) {
+  982  |         await page.waitForURL((url) => url.toString().includes(expectedUrl), { timeout });
+  983  |       }
+  984  |     }
+  985  |     if (selector) await expect(locatorFor(page, selector)).toBeVisible({ timeout });
+  986  |     await syncRouteContext(page, ctx);
+  987  |   }
+  988  | }
+  989  | 
+  990  | async function retryBackendAssertion(timeout, task) {
+  991  |   const deadline = Date.now() + timeout;
+  992  |   let lastError = null;
+  993  |   while (Date.now() <= deadline) {
+  994  |     try {
+  995  |       return await task();
+  996  |     } catch (error) {
+  997  |       lastError = error;
+  998  |       await new Promise((resolve) => setTimeout(resolve, 200));
+  999  |     }
+  1000 |   }
+  1001 |   throw lastError || new Error('backend assertion timed out');
+  1002 | }
+  1003 | 
+  1004 | async function snapshotPreCreateIds(ctx) {
+  1005 |   if (ctx.__pre_create_ids) return;
+  1006 |   const listApiRef = parseApiRef(__BACKEND_API_MAP['list']);
+  1007 |   if (!listApiRef) return;
+  1008 |   try {
+  1009 |     const listField = await resolveContractGraphqlField(ctx, 'query', null, listApiRef.domain, listApiRef.entity, 'list');
+  1010 |     if (!listField) return;
+  1011 |     const payload = await graphqlRequest(ctx, `query CaptureBaseline { ${listField} { results { id } count } }`, {});
+  1012 |     const rows = Array.isArray(payload?.data?.[listField]?.results) ? payload.data[listField].results : [];
+  1013 |     ctx.__pre_create_ids = new Set(rows.map((r) => r?.id).filter(Boolean));
+  1014 |   } catch (e) { if (e && e.message) console.error('snapshotPreCreateIds failed:', e.message); }
+  1015 | }
+  1016 | 
+  1017 | async function runCaseWait(page, ctx, waitKey, covers) {
+  1018 |   const entries = [];
+  1019 |   const pushEntry = (entry) => {
+  1020 |     if (!entry) return;
+  1021 |     if (!entries.includes(entry)) entries.push(entry);
+  1022 |   };
+  1023 |   if (waitKey && waitKey !== '__AUTO__') {
+  1024 |     pushEntry(__WAIT_CONTRACT[waitKey]);
+  1025 |   } else if (Array.isArray(covers) && covers.length === 1) {
+  1026 |     pushEntry(__WAIT_CONTRACT[covers[0]]);
+  1027 |   }
+  1028 |   for (const entry of entries) {
+  1029 |     await runWaitEntry(page, ctx, entry);
+  1030 |   }
+  1031 | }
+  1032 | 
+  1033 | async function executeBackendAssertion(ctx, assertion) {
+  1034 |   if (!assertion || !assertion.api) return;
+  1035 |   const apiRef = parseApiRef(__BACKEND_API_MAP[assertion.api]);
+  1036 |   if (!apiRef) throw new Error('missing api_map entry for assertion.api=' + JSON.stringify(assertion.api) + '; available keys: ' + Object.keys(__BACKEND_API_MAP).join(', '));
+  1037 |   const field = await resolveContractGraphqlField(ctx, 'query', assertion.graphql_field, apiRef.domain, apiRef.entity, assertion.api);
+  1038 |   if (!field) throw new Error('missing GraphQL field for backend assertion ' + JSON.stringify(assertion));
+  1039 |   const timeout = Number(assertion?.timeout) > 0 ? Number(assertion.timeout) : 15000;
+  1040 |   await retryBackendAssertion(timeout, async () => {
+  1041 |     if (assertion.api === 'get') {
+  1042 |       const id = resolveBackendAssertionId(ctx, assertion);
+  1043 |       const payload = await graphqlRequest(ctx, `query ContractGet($id: ID!) { ${field}(id: $id) { ${__BACKEND_SELECTION} } }`, { id });
+  1044 |       if (Array.isArray(payload?.errors) && payload.errors.length > 0) throw new Error('backend get graphql errors: ' + JSON.stringify(payload.errors));
+  1045 |       const record = payload?.data?.[field];
+  1046 |       const actual = readValueAtPath(record, assertion.path || null);
+  1047 |       if (assertion.op === 'exists' && (actual == null || actual === '')) throw new Error('backend get exists assertion failed for ' + String(assertion.path || 'record'));
+  1048 |       if (assertion.op === 'equals' || assertion.op === 'field_equals') {
+  1049 |         const expected = resolveTemplateString(ctx, String(assertion.equals || ''));
+> 1050 |         if (String(actual ?? '') !== expected) throw new Error('backend get equals assertion failed: expected ' + expected + ' got ' + String(actual ?? ''));
+       |                                                      ^ Error: backend get equals assertion failed: expected UPDATED_1775257572305_sw31o8_departure_city_ref_id got 
+  1051 |       }
+  1052 |       applyBindings(ctx, assertion.binds, record);
+  1053 |       refreshDataBindings(ctx);
+  1054 |       return;
+  1055 |     }
+  1056 |     if (assertion.api === 'list') {
+  1057 |       const payload = await graphqlRequest(ctx, `query ContractList { ${field} { results { ${__BACKEND_SELECTION} } count } }`, {});
+  1058 |       if (Array.isArray(payload?.errors) && payload.errors.length > 0) throw new Error('backend list graphql errors: ' + JSON.stringify(payload.errors));
+  1059 |       const results = payload?.data?.[field]?.results || [];
+  1060 |       if (assertion.op === 'exists' && !Array.isArray(results)) throw new Error('backend list exists assertion failed');
+  1061 |       if (assertion.op === 'contains_equals') {
+  1062 |         const expected = resolveTemplateString(ctx, String(assertion.equals || ''));
+  1063 |         const matched = Array.isArray(results)
+  1064 |           ? results.find((row) => String(readValueAtPath(row, assertion.path || null) ?? '') === expected)
+  1065 |           : null;
+  1066 |         if (!matched) throw new Error('backend list contains_equals assertion failed for ' + String(assertion.path || 'record'));
+  1067 |         applyBindings(ctx, assertion.binds, matched);
+  1068 |         refreshDataBindings(ctx);
+  1069 |         return;
+  1070 |       }
+  1071 |       if (assertion.op === 'not_contains') {
+  1072 |         const excluded = resolveTemplateString(ctx, '{{' + String(assertion.excludes_source || '') + '}}');
+  1073 |         const ids = Array.isArray(results) ? results.map((row) => readValueAtPath(row, 'id')) : [];
+  1074 |         if (ids.some((id) => String(id || '') === excluded)) throw new Error('backend list not_contains assertion failed for ' + excluded);
+  1075 |       }
+  1076 |     }
+  1077 |   });
+  1078 | }
+  1079 | 
+  1080 | async function captureCreatedRecordId(ctx, caseKind, covers) {
+  1081 |   const isCreate = caseKind === 'create' || caseKind === 'crud' || (Array.isArray(covers) && covers.some((c) => { const s = String(c); return s.includes('create') || s === 'form_submit' || s === 'action_create'; }));
+  1082 |   if (!isCreate) return;
+  1083 |   if (ctx.created_record_id) return;
+  1084 |   const listApiRef = parseApiRef(__BACKEND_API_MAP['list']);
+  1085 |   if (!listApiRef) return;
+  1086 |   try {
+  1087 |     const listField = await resolveContractGraphqlField(ctx, 'query', null, listApiRef.domain, listApiRef.entity, 'list');
+  1088 |     if (!listField) return;
+  1089 |     const payload = await graphqlRequest(ctx, `query CaptureCreated { ${listField} { results { id } count } }`, {});
+  1090 |     const rows = Array.isArray(payload?.data?.[listField]?.results) ? payload.data[listField].results : [];
+  1091 |     const allIds = rows.map((r) => r?.id).filter(Boolean);
+  1092 |     if (!ctx.__pre_create_ids) ctx.__pre_create_ids = new Set();
+  1093 |     const existing = new Set([...(ctx.__cleanup_queue || []).map((q) => q.id), ...(ctx.__seed_ids || []), ...[ctx.seed_record_id, ctx.active_record_id].filter(Boolean)]);
+  1094 |     const matched = rows.find((r) => r?.id && !ctx.__pre_create_ids.has(r.id) && !existing.has(r.id));
+  1095 |     if (matched?.id) {
+  1096 |       ctx.created_record_id = matched.id;
+  1097 |       ctx.__cleanup_queue = ctx.__cleanup_queue || [];
+  1098 |       ctx.__cleanup_queue.push({ id: matched.id, domain: listApiRef.domain, entity: listApiRef.entity });
+  1099 |       refreshDataBindings(ctx);
+  1100 |     }
+  1101 |   } catch (e) { if (e && e.message) console.error('captureCreatedRecordId failed:', e.message); }
+  1102 | }
+  1103 | 
+  1104 | async function runCaseVerification(page, ctx, verificationKey, caseKind, covers) {
+  1105 |   const entries = collectVerificationEntries(verificationKey, caseKind, covers);
+  1106 |   for (const entry of entries) {
+  1107 |     if (!entry) continue;
+  1108 |     for (const ui of Array.isArray(entry.ui) ? entry.ui : []) {
+  1109 |       if (ui?.assert === 'visible' && ui.selector) await expect(locatorFor(page, ui.selector)).toBeVisible({ timeout: 15000 });
+  1110 |       if (ui?.assert === 'text_contains' && ui.selector) await expect(locatorFor(page, ui.selector)).toContainText(resolveTemplateString(ctx, String(ui.value || '')), { timeout: 15000 });
+  1111 |       if (ui?.assert === 'url_contains' && ui.value) await expect(page).toHaveURL(new RegExp(escapeRegex(resolveTemplateString(ctx, String(ui.value)))));
+  1112 |     }
+  1113 |     await executeBackendAssertion(ctx, entry.backend);
+  1114 |   }
+  1115 | }
+  1116 | 
+  1117 | async function runContractCleanup(ctx) {
+  1118 |   const seedIds = ctx.__seed_ids || new Set();
+  1119 |   const dynamicQueue = Array.isArray(ctx.__cleanup_queue) ? [...ctx.__cleanup_queue].reverse() : [];
+  1120 |   for (const entry of dynamicQueue) {
+  1121 |     if (!entry?.id || !entry?.domain || !entry?.entity) continue;
+  1122 |     if (seedIds.has(entry.id)) continue;
+  1123 |     try {
+  1124 |       const field = await resolveContractGraphqlField(ctx, 'mutation', null, entry.domain, entry.entity, 'destroy');
+  1125 |       if (!field) continue;
+  1126 |       await graphqlRequest(ctx, `mutation DynamicCleanup($id: ID!) { ${field}(id: $id) { result { id } errors { message } } }`, { id: entry.id });
+  1127 |     } catch (e) { console.error('cleanup failed for id=' + entry.id + ':', e?.message || e); }
+  1128 |   }
+  1129 |   for (const item of Array.isArray(__DATA_CONTRACT.cleanup) ? __DATA_CONTRACT.cleanup : []) {
+  1130 |     if (!item?.api) continue;
+  1131 |     const apiRef = parseApiRef(__BACKEND_API_MAP[item.api]);
+  1132 |     if (!apiRef) continue;
+  1133 |     const id = resolveCleanupSourceValue(ctx, item.source, item.path);
+  1134 |     if (id == null || id === '') {
+  1135 |       if (item.ignore_missing) continue;
+  1136 |       throw new Error('cleanup source value missing for ' + JSON.stringify(item));
+  1137 |     }
+  1138 |     if (seedIds.has(id)) continue;
+  1139 |     const field = await resolveContractGraphqlField(ctx, 'mutation', null, apiRef.domain, apiRef.entity, item.api);
+  1140 |     if (!field) {
+  1141 |       if (item.ignore_missing) continue;
+  1142 |       throw new Error('missing GraphQL mutation field for cleanup ' + JSON.stringify(item));
+  1143 |     }
+  1144 |     const payload = await graphqlRequest(ctx, `mutation ContractCleanup($id: ID!) { ${field}(id: $id) { result { id } errors { message } } }`, { id });
+  1145 |     const errors = payload?.errors || payload?.data?.[field]?.errors || [];
+  1146 |     if (!item.ignore_missing && Array.isArray(errors) && errors.length > 0) {
+  1147 |       throw new Error('cleanup mutation failed for ' + String(field));
+  1148 |     }
+  1149 |   }
+  1150 | }
 ```

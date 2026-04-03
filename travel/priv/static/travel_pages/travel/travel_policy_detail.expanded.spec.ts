@@ -541,7 +541,6 @@ async function runSetupAction(ctx, item, recordId, actionName) {
 async function runSetupItem(page, ctx, item) {
   if (!item) return;
   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
-    const savedTenantId = ctx.tenant_id;
     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
@@ -550,7 +549,6 @@ async function runSetupItem(page, ctx, item) {
     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
-    rememberTenantContext(ctx, inputValue);
     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
     const matched = whereField
       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
@@ -568,6 +566,7 @@ async function runSetupItem(page, ctx, item) {
         throw new Error('setup create failed for ' + String(item.name || createField) + ': ' + JSON.stringify(errors));
       }
       result = createPayload?.data?.[createField]?.result || null;
+      rememberTenantContext(ctx, inputValue);
       if (result?.id) {
         ctx.__cleanup_queue = ctx.__cleanup_queue || [];
         ctx.__cleanup_queue.push({ id: result.id, domain: item.domain, entity: item.entity });
@@ -581,7 +580,7 @@ async function runSetupItem(page, ctx, item) {
     }
     applyBindings(ctx, item.binds, result);
     refreshDataBindings(ctx);
-    ctx.tenant_id = savedTenantId;
+    // tenant context 保持 create_input 设置的值，不恢复
   }
 }
 
@@ -1003,11 +1002,18 @@ test.describe("travel_policy_detail", () => {
         __ctx.form["season"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#travel_policy_form_hotel_star_limit, [name='hotel_star_limit']`).first();
+        const loc = page.locator(`#travel_policy_form_policy_name, [name='policy_name']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_star_limit");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_policy_name");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["hotel_star_limit"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["policy_name"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_policy_form_max_amount, [name='max_amount']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "2");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["max_amount"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const root = page.locator(`#travel_policy_form_approval_mode`).first();
@@ -1049,11 +1055,11 @@ test.describe("travel_policy_detail", () => {
         __ctx.form["personal_pay_ratio"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
-        const loc = page.locator(`#travel_policy_form_max_amount, [name='max_amount']`).first();
+        const loc = page.locator(`#travel_policy_form_hotel_star_limit, [name='hotel_star_limit']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "2");
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_hotel_star_limit");
         await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["max_amount"] = resolvedValue; refreshDataBindings(__ctx);
+        __ctx.form["hotel_star_limit"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_policy_form_cabin_class_limit, [name='cabin_class_limit']`).first();
@@ -1061,13 +1067,6 @@ test.describe("travel_policy_detail", () => {
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_cabin_class_limit");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["cabin_class_limit"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_policy_form_policy_name, [name='policy_name']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_policy_name");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["policy_name"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_policy_edit_form button[type="submit"], #travel_policy_edit_form [phx-click="form_submit"]`).first();

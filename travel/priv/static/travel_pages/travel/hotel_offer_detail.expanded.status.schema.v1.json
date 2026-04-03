@@ -74,23 +74,23 @@
       "params": {
         "accept": [
           "id",
-          "city_ref_id",
           "room_type_code",
-          "hotel_name",
-          "host_shop_id",
+          "cancellation_policy",
+          "settlement_price",
+          "sale_status",
+          "guarantee_policy",
+          "supplier_code",
+          "listed_price",
+          "inventory_count",
           "checkout_date",
           "currency",
-          "checkin_date",
-          "supplier_code",
-          "inventory_count",
-          "cancellation_policy",
-          "sale_status",
           "city_code",
-          "listed_price",
+          "city_ref_id",
+          "hotel_name",
           "rate_plan_code",
           "hotel_code",
-          "settlement_price",
-          "guarantee_policy"
+          "checkin_date",
+          "host_shop_id"
         ]
       }
     },
@@ -175,18 +175,33 @@
               },
               {
                 "action": "type",
+                "field": "inventory_count",
+                "value": "2"
+              },
+              {
+                "action": "type",
+                "field": "listed_price",
+                "value": "200.00"
+              },
+              {
+                "action": "type",
                 "field": "hotel_name",
                 "value": "UPDATED_{{__run_id}}_hotel_name"
               },
               {
                 "action": "type",
-                "field": "city_code",
-                "value": "UPDATED_{{__run_id}}_city_code"
+                "field": "city_ref_id",
+                "value": "UPDATED_{{__run_id}}_city_ref_id"
               },
               {
                 "action": "type",
                 "field": "currency",
                 "value": "UPDATED_{{__run_id}}_currency"
+              },
+              {
+                "action": "type",
+                "field": "settlement_price",
+                "value": "200.00"
               },
               {
                 "action": "type",
@@ -200,23 +215,8 @@
               },
               {
                 "action": "type",
-                "field": "listed_price",
-                "value": "200.00"
-              },
-              {
-                "action": "type",
-                "field": "city_ref_id",
-                "value": "UPDATED_{{__run_id}}_city_ref_id"
-              },
-              {
-                "action": "type",
-                "field": "settlement_price",
-                "value": "200.00"
-              },
-              {
-                "action": "type",
-                "field": "inventory_count",
-                "value": "2"
+                "field": "city_code",
+                "value": "UPDATED_{{__run_id}}_city_code"
               },
               {
                 "action": "click",

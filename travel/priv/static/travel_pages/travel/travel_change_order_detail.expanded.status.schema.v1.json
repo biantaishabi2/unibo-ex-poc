@@ -151,11 +151,6 @@
               },
               {
                 "action": "type",
-                "field": "change_fee",
-                "value": "UPDATED_{{__run_id}}_change_fee"
-              },
-              {
-                "action": "type",
                 "field": "new_offer_id",
                 "value": "UPDATED_{{__run_id}}_new_offer_id"
               },
@@ -163,6 +158,11 @@
                 "action": "type",
                 "field": "change_reason",
                 "value": "UPDATED_{{__run_id}}_change_reason"
+              },
+              {
+                "action": "type",
+                "field": "change_fee",
+                "value": "UPDATED_{{__run_id}}_change_fee"
               },
               {
                 "action": "click",

@@ -574,7 +574,6 @@ async function runSetupAction(ctx, item, recordId, actionName) {
 async function runSetupItem(page, ctx, item) {
   if (!item) return;
   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
-    const savedTenantId = ctx.tenant_id;
     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
@@ -583,7 +582,6 @@ async function runSetupItem(page, ctx, item) {
     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
-    rememberTenantContext(ctx, inputValue);
     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
     const matched = whereField
       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
@@ -601,6 +599,7 @@ async function runSetupItem(page, ctx, item) {
         throw new Error('setup create failed for ' + String(item.name || createField) + ': ' + JSON.stringify(errors));
       }
       result = createPayload?.data?.[createField]?.result || null;
+      rememberTenantContext(ctx, inputValue);
       if (result?.id) {
         ctx.__cleanup_queue = ctx.__cleanup_queue || [];
         ctx.__cleanup_queue.push({ id: result.id, domain: item.domain, entity: item.entity });
@@ -614,7 +613,7 @@ async function runSetupItem(page, ctx, item) {
     }
     applyBindings(ctx, item.binds, result);
     refreshDataBindings(ctx);
-    ctx.tenant_id = savedTenantId;
+    // tenant context 保持 create_input 设置的值，不恢复
   }
 }
 
@@ -1029,6 +1028,27 @@ test.describe("travel_policy_check_detail", () => {
       }
       await expect(page.locator(`#travel_policy_check_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
+        const loc = page.locator(`#travel_policy_check_form_exceed_reason, [name='exceed_reason']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_exceed_reason");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["exceed_reason"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_policy_check_form_exceed_strategy, [name='exceed_strategy']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_exceed_strategy");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["exceed_strategy"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_policy_check_form_personal_pay_amount, [name='personal_pay_amount']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "2");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["personal_pay_amount"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
         const root = page.locator(`#travel_policy_check_form_check_result`).first();
         await root.waitFor({ state: 'visible', timeout: 15000 });
         const trigger = root.locator('button').first();
@@ -1043,27 +1063,6 @@ test.describe("travel_policy_check_detail", () => {
         __ctx.form["check_result"] = resolvedValue; refreshDataBindings(__ctx);
         await waitForLiveViewReady(page, 15000);
         await syncRouteContext(page, __ctx);
-      }
-      {
-        const loc = page.locator(`#travel_policy_check_form_personal_pay_amount, [name='personal_pay_amount']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "2");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["personal_pay_amount"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_policy_check_form_exceed_strategy, [name='exceed_strategy']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_exceed_strategy");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["exceed_strategy"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_policy_check_form_exceed_reason, [name='exceed_reason']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_exceed_reason");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["exceed_reason"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_policy_check_edit_form button[type="submit"], #travel_policy_check_edit_form [phx-click="form_submit"]`).first();

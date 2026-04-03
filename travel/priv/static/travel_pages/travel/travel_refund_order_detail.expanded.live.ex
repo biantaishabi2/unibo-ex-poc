@@ -56,7 +56,7 @@ defmodule UniboExPocWeb.Pages.Travel.TravelRefundOrderDetailLive do
   @backend_load_event "get"
   @backend_load_selection "approval_mode: approvalMode id refund_amount: refundAmount refund_fee: refundFee refund_reason: refundReason status"
   @backend_load_assigns %{travel_refund_order: %{}}
-  @backend_params_accept ["id", "original_order_id", "refund_fee", "refund_reason", "refund_amount", "approval_mode"]
+  @backend_params_accept ["id", "original_order_id", "refund_amount", "refund_reason", "approval_mode", "refund_fee"]
   @backend_info_reload_messages []
   @backend_api_map %{
     "confirm_refund" => %{module: UniboExPocWeb.Graphql.StitchBackend, fun: :dispatch, api: "Travel.TravelRefundOrder.confirm_refund"},
@@ -710,22 +710,22 @@ end
           <.button variant="secondary" phx-click="action_submit" size="md" id="travel_refund_order_action_submit">
             提交退票申请,如 approval_mode=oa 则通过 integration 创建 ApprovalInstance
           </.button>
-          <%= if get_in(@record, [:status]) == "pending" do %>
+          <%= if to_string(get_in(@record, [:status])) == "pending" do %>
             <.button variant="secondary" phx-click="action_confirm_refund" size="md" id="travel_refund_order_action_confirm_refund">
               confirm_refund
             </.button>
           <% end %>
-          <%= if get_in(@record, [:status]) == "pending" do %>
+          <%= if to_string(get_in(@record, [:status])) == "pending" do %>
             <.button variant="secondary" phx-click="action_reject_refund" size="md" id="travel_refund_order_action_reject_refund">
               reject_refund
             </.button>
           <% end %>
-          <%= if get_in(@record, [:status]) == "approved" do %>
+          <%= if to_string(get_in(@record, [:status])) == "approved" do %>
             <.button variant="secondary" phx-click="action_refund" size="md" id="travel_refund_order_action_refund">
               refund
             </.button>
           <% end %>
-          <%= if get_in(@record, [:status]) == "pending" do %>
+          <%= if to_string(get_in(@record, [:status])) == "pending" do %>
             <.button variant="secondary" phx-click="action_refund_direct" size="md" id="travel_refund_order_action_refund_direct">
               refund_direct
             </.button>

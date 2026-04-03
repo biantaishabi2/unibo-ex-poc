@@ -695,7 +695,6 @@ async function runSetupAction(ctx, item, recordId, actionName) {
 async function runSetupItem(page, ctx, item) {
   if (!item) return;
   if (item.kind === 'related_list_first' || item.kind === 'entity_list_first' || item.kind === 'entity_list_first_or_create' || item.kind === 'entity_list_match_or_create') {
-    const savedTenantId = ctx.tenant_id;
     const inputValue = resolveTemplateDeep(ctx, item.create_input || {});
     const field = await resolveContractGraphqlField(ctx, 'query', item.graphql_field, item.domain, item.entity, 'list');
     if (!field) throw new Error('missing GraphQL list field for setup ' + JSON.stringify(item));
@@ -704,7 +703,6 @@ async function runSetupItem(page, ctx, item) {
     const selectionFields = Array.from(new Set(['id', ...(whereField ? [whereField] : [])])).join(' ');
     const payload = await graphqlRequest(ctx, `query ContractSetup { ${field} { results { ${selectionFields} } count } }`, {});
     const rows = Array.isArray(payload?.data?.[field]?.results) ? payload.data[field].results : [];
-    rememberTenantContext(ctx, inputValue);
     const whereEquals = typeof item.where_equals === 'string' ? resolveTemplateString(ctx, item.where_equals) : '';
     const matched = whereField
       ? rows.filter((row) => String(readValueAtPath(row, whereField) ?? '') === whereEquals)
@@ -722,6 +720,7 @@ async function runSetupItem(page, ctx, item) {
         throw new Error('setup create failed for ' + String(item.name || createField) + ': ' + JSON.stringify(errors));
       }
       result = createPayload?.data?.[createField]?.result || null;
+      rememberTenantContext(ctx, inputValue);
       if (result?.id) {
         ctx.__cleanup_queue = ctx.__cleanup_queue || [];
         ctx.__cleanup_queue.push({ id: result.id, domain: item.domain, entity: item.entity });
@@ -735,7 +734,7 @@ async function runSetupItem(page, ctx, item) {
     }
     applyBindings(ctx, item.binds, result);
     refreshDataBindings(ctx);
-    ctx.tenant_id = savedTenantId;
+    // tenant context 保持 create_input 设置的值，不恢复
   }
 }
 
@@ -1150,20 +1149,6 @@ test.describe("travel_fulfillment_detail", () => {
       }
       await expect(page.locator(`#travel_fulfillment_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
       {
-        const loc = page.locator(`#travel_fulfillment_form_confirmation_payload, [name='confirmation_payload']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_confirmation_payload");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["confirmation_payload"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
-        const loc = page.locator(`#travel_fulfillment_form_voucher_or_ticket_ref, [name='voucher_or_ticket_ref']`).first();
-        await loc.waitFor({ state: 'visible', timeout: 15000 });
-        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_voucher_or_ticket_ref");
-        await loc.fill(resolvedValue, { timeout: 15000 });
-        __ctx.form["voucher_or_ticket_ref"] = resolvedValue; refreshDataBindings(__ctx);
-      }
-      {
         const loc = page.locator(`#travel_fulfillment_form_supplier_booking_ref, [name='supplier_booking_ref']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_supplier_booking_ref");
@@ -1171,11 +1156,25 @@ test.describe("travel_fulfillment_detail", () => {
         __ctx.form["supplier_booking_ref"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
+        const loc = page.locator(`#travel_fulfillment_form_confirmation_payload, [name='confirmation_payload']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_confirmation_payload");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["confirmation_payload"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
         const loc = page.locator(`#travel_fulfillment_form_failure_reason, [name='failure_reason']`).first();
         await loc.waitFor({ state: 'visible', timeout: 15000 });
         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_failure_reason");
         await loc.fill(resolvedValue, { timeout: 15000 });
         __ctx.form["failure_reason"] = resolvedValue; refreshDataBindings(__ctx);
+      }
+      {
+        const loc = page.locator(`#travel_fulfillment_form_voucher_or_ticket_ref, [name='voucher_or_ticket_ref']`).first();
+        await loc.waitFor({ state: 'visible', timeout: 15000 });
+        const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_voucher_or_ticket_ref");
+        await loc.fill(resolvedValue, { timeout: 15000 });
+        __ctx.form["voucher_or_ticket_ref"] = resolvedValue; refreshDataBindings(__ctx);
       }
       {
         const loc = page.locator(`#travel_fulfillment_form_ticket_refs, [name='ticket_refs']`).first();

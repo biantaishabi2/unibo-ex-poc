@@ -20,17 +20,17 @@
       "accept": [
         "id",
         "cabin_class_limit",
-        "season",
-        "city_tier",
-        "policy_name",
-        "employee_level",
         "max_amount",
-        "product_type",
+        "employee_level",
+        "personal_pay_ratio",
+        "policy_name",
+        "approval_mode",
         "hotel_star_limit",
         "exceed_strategy",
-        "approval_mode",
-        "personal_pay_ratio",
-        "enterprise_id"
+        "city_tier",
+        "enterprise_id",
+        "season",
+        "product_type"
       ]
     }
   },
@@ -121,8 +121,13 @@
             },
             {
               "action": "type",
-              "field": "hotel_star_limit",
-              "value": "UPDATED_{{__run_id}}_hotel_star_limit"
+              "field": "policy_name",
+              "value": "UPDATED_{{__run_id}}_policy_name"
+            },
+            {
+              "action": "type",
+              "field": "max_amount",
+              "value": "2"
             },
             {
               "action": "select_option",
@@ -141,18 +146,13 @@
             },
             {
               "action": "type",
-              "field": "max_amount",
-              "value": "2"
+              "field": "hotel_star_limit",
+              "value": "UPDATED_{{__run_id}}_hotel_star_limit"
             },
             {
               "action": "type",
               "field": "cabin_class_limit",
               "value": "UPDATED_{{__run_id}}_cabin_class_limit"
-            },
-            {
-              "action": "type",
-              "field": "policy_name",
-              "value": "UPDATED_{{__run_id}}_policy_name"
             },
             {
               "action": "click",

@@ -56,10 +56,10 @@
         "accept": [
           "id",
           "original_order_id",
-          "refund_fee",
-          "refund_reason",
           "refund_amount",
-          "approval_mode"
+          "refund_reason",
+          "approval_mode",
+          "refund_fee"
         ]
       }
     },
@@ -145,11 +145,6 @@
               },
               {
                 "action": "type",
-                "field": "refund_reason",
-                "value": "UPDATED_{{__run_id}}_refund_reason"
-              },
-              {
-                "action": "type",
                 "field": "refund_fee",
                 "value": "UPDATED_{{__run_id}}_refund_fee"
               },
@@ -157,6 +152,11 @@
                 "action": "type",
                 "field": "refund_amount",
                 "value": "UPDATED_{{__run_id}}_refund_amount"
+              },
+              {
+                "action": "type",
+                "field": "refund_reason",
+                "value": "UPDATED_{{__run_id}}_refund_reason"
               },
               {
                 "action": "click",

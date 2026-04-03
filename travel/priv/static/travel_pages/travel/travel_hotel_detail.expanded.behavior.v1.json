@@ -18,11 +18,11 @@
       "accept": [
         "id",
         "hotel_code",
-        "city_code",
-        "city_id",
         "hotel_star",
+        "status",
         "hotel_name",
-        "status"
+        "city_id",
+        "city_code"
       ]
     }
   },
@@ -107,14 +107,14 @@
               "selector": "#travel_hotel_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
             },
             {
-              "action": "type",
-              "field": "hotel_name",
-              "value": "UPDATED_{{__run_id}}_hotel_name"
-            },
-            {
               "action": "select_option",
               "field": "status",
               "value": "inactive"
+            },
+            {
+              "action": "type",
+              "field": "hotel_name",
+              "value": "UPDATED_{{__run_id}}_hotel_name"
             },
             {
               "action": "type",

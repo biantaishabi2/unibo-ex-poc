@@ -46,13 +46,13 @@
       "params": {
         "accept": [
           "id",
-          "supplier_code",
-          "canonical_id",
-          "external_code",
-          "external_name",
           "object_type",
-          "status",
-          "canonical_entity"
+          "external_code",
+          "canonical_id",
+          "supplier_code",
+          "canonical_entity",
+          "external_name",
+          "status"
         ]
       }
     },
@@ -137,24 +137,24 @@
                 "selector": "#travel_static_code_mapping_edit_form, #main_form, form[phx-submit=\"form_submit\"]"
               },
               {
-                "action": "select_option",
-                "field": "status",
-                "value": "inactive"
-              },
-              {
                 "action": "type",
                 "field": "canonical_id",
                 "value": "d4d9c861-7465-4f63-a16e-6f6e6963616c"
               },
               {
                 "action": "type",
-                "field": "canonical_entity",
-                "value": "UPDATED_{{__run_id}}_canonical_entity"
+                "field": "external_name",
+                "value": "UPDATED_{{__run_id}}_external_name"
+              },
+              {
+                "action": "select_option",
+                "field": "status",
+                "value": "inactive"
               },
               {
                 "action": "type",
-                "field": "external_name",
-                "value": "UPDATED_{{__run_id}}_external_name"
+                "field": "canonical_entity",
+                "value": "UPDATED_{{__run_id}}_canonical_entity"
               },
               {
                 "action": "click",

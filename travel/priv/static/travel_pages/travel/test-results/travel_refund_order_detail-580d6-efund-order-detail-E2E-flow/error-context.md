@@ -7,7 +7,7 @@
 # Test info
 
 - Name: travel_refund_order_detail.expanded.spec.ts >> travel_refund_order_detail >> E2E flow
-- Location: travel_refund_order_detail.expanded.spec.ts:1311:7
+- Location: travel_refund_order_detail.expanded.spec.ts:1310:7
 
 # Error details
 
@@ -63,13 +63,13 @@ Call log:
         - generic [ref=e44]:
           - generic [ref=e45]:
             - paragraph [ref=e46]: 退票原因
-            - paragraph [ref=e47]: UPDATED_1775228368334_34q72c_refund_reason
+            - paragraph [ref=e47]: UPDATED_1775257572312_rxtjfr_refund_reason
           - generic [ref=e48]:
             - paragraph [ref=e49]: 退票手续费
-            - paragraph [ref=e50]: UPDATED_1775228368334_34q72c_refund_fee
+            - paragraph [ref=e50]: UPDATED_1775257572312_rxtjfr_refund_fee
           - generic [ref=e51]:
             - paragraph [ref=e52]: 实退金额
-            - paragraph [ref=e53]: UPDATED_1775228368334_34q72c_refund_amount
+            - paragraph [ref=e53]: UPDATED_1775257572312_rxtjfr_refund_amount
           - generic [ref=e54]:
             - paragraph [ref=e55]: status
             - paragraph [ref=e56]: approved
@@ -81,206 +81,206 @@ Call log:
 # Test source
 
 ```ts
-  1371 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1372 |           refreshDataBindings(__ctx);
-  1373 |         }
-  1374 |         await waitForLiveViewReady(page, 15000);
-  1375 |         await syncRouteContext(page, __ctx);
-  1376 |       }
-  1377 |       await expect(page.locator(`#travel_refund_order_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).not.toBeVisible({ timeout: 15000 });
-  1378 |         await runCaseWait(page, __ctx, null, ["toggle_edit","cancel_edit"]);
-  1379 |         await captureCreatedRecordId(__ctx, "flow", ["toggle_edit","cancel_edit"]);
-  1380 |         await runCaseVerification(page, __ctx, "toggle_edit", "flow", ["toggle_edit","cancel_edit"]);
-  1381 |       });
-  1382 |       await test.step("CRUD：编辑记录", async () => {
-  1383 |         await snapshotPreCreateIds(__ctx);
-  1384 |         await ensureSeedRecord(page, __ctx);
-  1385 |         await page.goto(resolveContractUrl(__ctx));
-  1386 |         await syncRouteContext(page, __ctx);
-  1387 |         await waitForLiveViewReady(page, 15000);
-  1388 |       {
-  1389 |         const loc = page.locator(`#edit_btn`).first();
-  1390 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1391 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1392 |         const confirmText = await loc.getAttribute('data-confirm');
-  1393 |         await loc.scrollIntoViewIfNeeded();
-  1394 |         if (confirmText) {
-  1395 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1396 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1397 |             .catch(() => null);
-  1398 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1399 |           await dialogPromise;
-  1400 |         } else {
-  1401 |           await loc.click({ timeout: 15000 });
-  1402 |         }
-  1403 |         if (clickedId) {
-  1404 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1405 |           refreshDataBindings(__ctx);
-  1406 |         }
-  1407 |         await waitForLiveViewReady(page, 15000);
-  1408 |         await syncRouteContext(page, __ctx);
-  1409 |       }
-  1410 |       await expect(page.locator(`#travel_refund_order_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
-  1411 |       {
-  1412 |         const loc = page.locator(`#travel_refund_order_form_refund_reason, [name='refund_reason']`).first();
-  1413 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1414 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_reason");
-  1415 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1416 |         __ctx.form["refund_reason"] = resolvedValue; refreshDataBindings(__ctx);
-  1417 |       }
-  1418 |       {
-  1419 |         const loc = page.locator(`#travel_refund_order_form_refund_fee, [name='refund_fee']`).first();
-  1420 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1421 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_fee");
-  1422 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1423 |         __ctx.form["refund_fee"] = resolvedValue; refreshDataBindings(__ctx);
-  1424 |       }
-  1425 |       {
-  1426 |         const loc = page.locator(`#travel_refund_order_form_refund_amount, [name='refund_amount']`).first();
-  1427 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1428 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_amount");
-  1429 |         await loc.fill(resolvedValue, { timeout: 15000 });
-  1430 |         __ctx.form["refund_amount"] = resolvedValue; refreshDataBindings(__ctx);
-  1431 |       }
-  1432 |       {
-  1433 |         const loc = page.locator(`#travel_refund_order_edit_form button[type="submit"], #travel_refund_order_edit_form [phx-click="form_submit"]`).first();
-  1434 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1435 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1436 |         const confirmText = await loc.getAttribute('data-confirm');
-  1437 |         await loc.scrollIntoViewIfNeeded();
-  1438 |         if (confirmText) {
-  1439 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1440 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1441 |             .catch(() => null);
-  1442 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1443 |           await dialogPromise;
-  1444 |         } else {
-  1445 |           await loc.click({ timeout: 15000 });
-  1446 |         }
-  1447 |         if (clickedId) {
-  1448 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1449 |           refreshDataBindings(__ctx);
-  1450 |         }
-  1451 |         await waitForLiveViewReady(page, 15000);
-  1452 |         await syncRouteContext(page, __ctx);
-  1453 |       }
-  1454 |         await runCaseWait(page, __ctx, "form_submit", ["toggle_edit","form_change","form_submit"]);
-  1455 |         await captureCreatedRecordId(__ctx, "crud", ["toggle_edit","form_change","form_submit"]);
-  1456 |         await runCaseVerification(page, __ctx, "update", "crud", ["toggle_edit","form_change","form_submit"]);
-  1457 |       });
-  1458 |       await test.step("状态转换：pending → approved（confirm_refund）", async () => {
-  1459 |       {
-  1460 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_refund_order/{{state_action_record_id_confirm_refund}}");
-  1461 |         const target = /^https?:\/\//.test(targetValue)
-  1462 |           ? targetValue
-  1463 |           : new URL(targetValue, "http://localhost:4100/").toString();
-  1464 |         await page.goto(target);
-  1465 |       }
-  1466 |       await waitForLiveViewReady(page, 15000);
-  1467 |       await syncRouteContext(page, __ctx);
-  1468 |       await expect(page.locator(`#travel_refund_order_detail`)).toBeVisible({ timeout: 15000 });
-  1469 |       {
-  1470 |         const loc = page.locator(`#travel_refund_order_action_confirm_refund`).first();
-> 1471 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1370 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
+  1371 |           refreshDataBindings(__ctx);
+  1372 |         }
+  1373 |         await waitForLiveViewReady(page, 15000);
+  1374 |         await syncRouteContext(page, __ctx);
+  1375 |       }
+  1376 |       await expect(page.locator(`#travel_refund_order_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).not.toBeVisible({ timeout: 15000 });
+  1377 |         await runCaseWait(page, __ctx, null, ["toggle_edit","cancel_edit"]);
+  1378 |         await captureCreatedRecordId(__ctx, "flow", ["toggle_edit","cancel_edit"]);
+  1379 |         await runCaseVerification(page, __ctx, "toggle_edit", "flow", ["toggle_edit","cancel_edit"]);
+  1380 |       });
+  1381 |       await test.step("CRUD：编辑记录", async () => {
+  1382 |         await snapshotPreCreateIds(__ctx);
+  1383 |         await ensureSeedRecord(page, __ctx);
+  1384 |         await page.goto(resolveContractUrl(__ctx));
+  1385 |         await syncRouteContext(page, __ctx);
+  1386 |         await waitForLiveViewReady(page, 15000);
+  1387 |       {
+  1388 |         const loc = page.locator(`#edit_btn`).first();
+  1389 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1390 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
+  1391 |         const confirmText = await loc.getAttribute('data-confirm');
+  1392 |         await loc.scrollIntoViewIfNeeded();
+  1393 |         if (confirmText) {
+  1394 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
+  1395 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
+  1396 |             .catch(() => null);
+  1397 |           await loc.click({ timeout: 15000, noWaitAfter: true });
+  1398 |           await dialogPromise;
+  1399 |         } else {
+  1400 |           await loc.click({ timeout: 15000 });
+  1401 |         }
+  1402 |         if (clickedId) {
+  1403 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
+  1404 |           refreshDataBindings(__ctx);
+  1405 |         }
+  1406 |         await waitForLiveViewReady(page, 15000);
+  1407 |         await syncRouteContext(page, __ctx);
+  1408 |       }
+  1409 |       await expect(page.locator(`#travel_refund_order_edit_form, #main_form, form[phx-submit="form_submit"]`).first()).toBeVisible({ timeout: 15000 });
+  1410 |       {
+  1411 |         const loc = page.locator(`#travel_refund_order_form_refund_fee, [name='refund_fee']`).first();
+  1412 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1413 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_fee");
+  1414 |         await loc.fill(resolvedValue, { timeout: 15000 });
+  1415 |         __ctx.form["refund_fee"] = resolvedValue; refreshDataBindings(__ctx);
+  1416 |       }
+  1417 |       {
+  1418 |         const loc = page.locator(`#travel_refund_order_form_refund_amount, [name='refund_amount']`).first();
+  1419 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1420 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_amount");
+  1421 |         await loc.fill(resolvedValue, { timeout: 15000 });
+  1422 |         __ctx.form["refund_amount"] = resolvedValue; refreshDataBindings(__ctx);
+  1423 |       }
+  1424 |       {
+  1425 |         const loc = page.locator(`#travel_refund_order_form_refund_reason, [name='refund_reason']`).first();
+  1426 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1427 |         const resolvedValue = resolveTemplateString(__ctx, "UPDATED_{{__run_id}}_refund_reason");
+  1428 |         await loc.fill(resolvedValue, { timeout: 15000 });
+  1429 |         __ctx.form["refund_reason"] = resolvedValue; refreshDataBindings(__ctx);
+  1430 |       }
+  1431 |       {
+  1432 |         const loc = page.locator(`#travel_refund_order_edit_form button[type="submit"], #travel_refund_order_edit_form [phx-click="form_submit"]`).first();
+  1433 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1434 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
+  1435 |         const confirmText = await loc.getAttribute('data-confirm');
+  1436 |         await loc.scrollIntoViewIfNeeded();
+  1437 |         if (confirmText) {
+  1438 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
+  1439 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
+  1440 |             .catch(() => null);
+  1441 |           await loc.click({ timeout: 15000, noWaitAfter: true });
+  1442 |           await dialogPromise;
+  1443 |         } else {
+  1444 |           await loc.click({ timeout: 15000 });
+  1445 |         }
+  1446 |         if (clickedId) {
+  1447 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
+  1448 |           refreshDataBindings(__ctx);
+  1449 |         }
+  1450 |         await waitForLiveViewReady(page, 15000);
+  1451 |         await syncRouteContext(page, __ctx);
+  1452 |       }
+  1453 |         await runCaseWait(page, __ctx, "form_submit", ["toggle_edit","form_change","form_submit"]);
+  1454 |         await captureCreatedRecordId(__ctx, "crud", ["toggle_edit","form_change","form_submit"]);
+  1455 |         await runCaseVerification(page, __ctx, "update", "crud", ["toggle_edit","form_change","form_submit"]);
+  1456 |       });
+  1457 |       await test.step("状态转换：pending → approved（confirm_refund）", async () => {
+  1458 |       {
+  1459 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_refund_order/{{state_action_record_id_confirm_refund}}");
+  1460 |         const target = /^https?:\/\//.test(targetValue)
+  1461 |           ? targetValue
+  1462 |           : new URL(targetValue, "http://localhost:4100/").toString();
+  1463 |         await page.goto(target);
+  1464 |       }
+  1465 |       await waitForLiveViewReady(page, 15000);
+  1466 |       await syncRouteContext(page, __ctx);
+  1467 |       await expect(page.locator(`#travel_refund_order_detail`)).toBeVisible({ timeout: 15000 });
+  1468 |       {
+  1469 |         const loc = page.locator(`#travel_refund_order_action_confirm_refund`).first();
+> 1470 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
        |                   ^ TimeoutError: locator.waitFor: Timeout 15000ms exceeded.
-  1472 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1473 |         const confirmText = await loc.getAttribute('data-confirm');
-  1474 |         await loc.scrollIntoViewIfNeeded();
-  1475 |         if (confirmText) {
-  1476 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1477 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1478 |             .catch(() => null);
-  1479 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1480 |           await dialogPromise;
-  1481 |         } else {
-  1482 |           await loc.click({ timeout: 15000 });
-  1483 |         }
-  1484 |         if (clickedId) {
-  1485 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1486 |           __ctx["state_action_record_id_confirm_refund"] = clickedId;
-  1487 |           refreshDataBindings(__ctx);
-  1488 |         }
-  1489 |         if (!clickedId) {
-  1490 |           __ctx["state_action_record_id_confirm_refund"] = defaultRecordId(__ctx);
-  1491 |         }
-  1492 |         await waitForLiveViewReady(page, 15000);
-  1493 |         await syncRouteContext(page, __ctx);
-  1494 |       }
-  1495 |         await runCaseWait(page, __ctx, "action_confirm_refund", ["action_confirm_refund"]);
-  1496 |         await captureCreatedRecordId(__ctx, "state", ["action_confirm_refund"]);
-  1497 |         await runCaseVerification(page, __ctx, "action_confirm_refund", "state", ["action_confirm_refund"]);
-  1498 |       });
-  1499 |       await test.step("状态转换：pending → rejected（reject_refund）", async () => {
-  1500 |       {
-  1501 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_refund_order/{{state_action_record_id_reject_refund}}");
-  1502 |         const target = /^https?:\/\//.test(targetValue)
-  1503 |           ? targetValue
-  1504 |           : new URL(targetValue, "http://localhost:4100/").toString();
-  1505 |         await page.goto(target);
-  1506 |       }
-  1507 |       await waitForLiveViewReady(page, 15000);
-  1508 |       await syncRouteContext(page, __ctx);
-  1509 |       await expect(page.locator(`#travel_refund_order_detail`)).toBeVisible({ timeout: 15000 });
-  1510 |       {
-  1511 |         const loc = page.locator(`#travel_refund_order_action_reject_refund`).first();
-  1512 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1513 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1514 |         const confirmText = await loc.getAttribute('data-confirm');
-  1515 |         await loc.scrollIntoViewIfNeeded();
-  1516 |         if (confirmText) {
-  1517 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1518 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1519 |             .catch(() => null);
-  1520 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1521 |           await dialogPromise;
-  1522 |         } else {
-  1523 |           await loc.click({ timeout: 15000 });
-  1524 |         }
-  1525 |         if (clickedId) {
-  1526 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1527 |           __ctx["state_action_record_id_reject_refund"] = clickedId;
-  1528 |           refreshDataBindings(__ctx);
-  1529 |         }
-  1530 |         if (!clickedId) {
-  1531 |           __ctx["state_action_record_id_reject_refund"] = defaultRecordId(__ctx);
-  1532 |         }
-  1533 |         await waitForLiveViewReady(page, 15000);
-  1534 |         await syncRouteContext(page, __ctx);
-  1535 |       }
-  1536 |         await runCaseWait(page, __ctx, "action_reject_refund", ["action_reject_refund"]);
-  1537 |         await captureCreatedRecordId(__ctx, "state", ["action_reject_refund"]);
-  1538 |         await runCaseVerification(page, __ctx, "action_reject_refund", "state", ["action_reject_refund"]);
-  1539 |       });
-  1540 |       await test.step("状态转换：approved → refunded（refund）", async () => {
-  1541 |       {
-  1542 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_refund_order/{{state_action_record_id_refund}}");
-  1543 |         const target = /^https?:\/\//.test(targetValue)
-  1544 |           ? targetValue
-  1545 |           : new URL(targetValue, "http://localhost:4100/").toString();
-  1546 |         await page.goto(target);
-  1547 |       }
-  1548 |       await waitForLiveViewReady(page, 15000);
-  1549 |       await syncRouteContext(page, __ctx);
-  1550 |       await expect(page.locator(`#travel_refund_order_detail`)).toBeVisible({ timeout: 15000 });
-  1551 |       {
-  1552 |         const loc = page.locator(`#travel_refund_order_action_refund`).first();
-  1553 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
-  1554 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
-  1555 |         const confirmText = await loc.getAttribute('data-confirm');
-  1556 |         await loc.scrollIntoViewIfNeeded();
-  1557 |         if (confirmText) {
-  1558 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
-  1559 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
-  1560 |             .catch(() => null);
-  1561 |           await loc.click({ timeout: 15000, noWaitAfter: true });
-  1562 |           await dialogPromise;
-  1563 |         } else {
-  1564 |           await loc.click({ timeout: 15000 });
-  1565 |         }
-  1566 |         if (clickedId) {
-  1567 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
-  1568 |           __ctx["state_action_record_id_refund"] = clickedId;
-  1569 |           refreshDataBindings(__ctx);
-  1570 |         }
-  1571 |         if (!clickedId) {
+  1471 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
+  1472 |         const confirmText = await loc.getAttribute('data-confirm');
+  1473 |         await loc.scrollIntoViewIfNeeded();
+  1474 |         if (confirmText) {
+  1475 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
+  1476 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
+  1477 |             .catch(() => null);
+  1478 |           await loc.click({ timeout: 15000, noWaitAfter: true });
+  1479 |           await dialogPromise;
+  1480 |         } else {
+  1481 |           await loc.click({ timeout: 15000 });
+  1482 |         }
+  1483 |         if (clickedId) {
+  1484 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
+  1485 |           __ctx["state_action_record_id_confirm_refund"] = clickedId;
+  1486 |           refreshDataBindings(__ctx);
+  1487 |         }
+  1488 |         if (!clickedId) {
+  1489 |           __ctx["state_action_record_id_confirm_refund"] = defaultRecordId(__ctx);
+  1490 |         }
+  1491 |         await waitForLiveViewReady(page, 15000);
+  1492 |         await syncRouteContext(page, __ctx);
+  1493 |       }
+  1494 |         await runCaseWait(page, __ctx, "action_confirm_refund", ["action_confirm_refund"]);
+  1495 |         await captureCreatedRecordId(__ctx, "state", ["action_confirm_refund"]);
+  1496 |         await runCaseVerification(page, __ctx, "action_confirm_refund", "state", ["action_confirm_refund"]);
+  1497 |       });
+  1498 |       await test.step("状态转换：pending → rejected（reject_refund）", async () => {
+  1499 |       {
+  1500 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_refund_order/{{state_action_record_id_reject_refund}}");
+  1501 |         const target = /^https?:\/\//.test(targetValue)
+  1502 |           ? targetValue
+  1503 |           : new URL(targetValue, "http://localhost:4100/").toString();
+  1504 |         await page.goto(target);
+  1505 |       }
+  1506 |       await waitForLiveViewReady(page, 15000);
+  1507 |       await syncRouteContext(page, __ctx);
+  1508 |       await expect(page.locator(`#travel_refund_order_detail`)).toBeVisible({ timeout: 15000 });
+  1509 |       {
+  1510 |         const loc = page.locator(`#travel_refund_order_action_reject_refund`).first();
+  1511 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1512 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
+  1513 |         const confirmText = await loc.getAttribute('data-confirm');
+  1514 |         await loc.scrollIntoViewIfNeeded();
+  1515 |         if (confirmText) {
+  1516 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
+  1517 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
+  1518 |             .catch(() => null);
+  1519 |           await loc.click({ timeout: 15000, noWaitAfter: true });
+  1520 |           await dialogPromise;
+  1521 |         } else {
+  1522 |           await loc.click({ timeout: 15000 });
+  1523 |         }
+  1524 |         if (clickedId) {
+  1525 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
+  1526 |           __ctx["state_action_record_id_reject_refund"] = clickedId;
+  1527 |           refreshDataBindings(__ctx);
+  1528 |         }
+  1529 |         if (!clickedId) {
+  1530 |           __ctx["state_action_record_id_reject_refund"] = defaultRecordId(__ctx);
+  1531 |         }
+  1532 |         await waitForLiveViewReady(page, 15000);
+  1533 |         await syncRouteContext(page, __ctx);
+  1534 |       }
+  1535 |         await runCaseWait(page, __ctx, "action_reject_refund", ["action_reject_refund"]);
+  1536 |         await captureCreatedRecordId(__ctx, "state", ["action_reject_refund"]);
+  1537 |         await runCaseVerification(page, __ctx, "action_reject_refund", "state", ["action_reject_refund"]);
+  1538 |       });
+  1539 |       await test.step("状态转换：approved → refunded（refund）", async () => {
+  1540 |       {
+  1541 |         const targetValue = resolveTemplateString(__ctx, "/pages/travel/travel_refund_order/{{state_action_record_id_refund}}");
+  1542 |         const target = /^https?:\/\//.test(targetValue)
+  1543 |           ? targetValue
+  1544 |           : new URL(targetValue, "http://localhost:4100/").toString();
+  1545 |         await page.goto(target);
+  1546 |       }
+  1547 |       await waitForLiveViewReady(page, 15000);
+  1548 |       await syncRouteContext(page, __ctx);
+  1549 |       await expect(page.locator(`#travel_refund_order_detail`)).toBeVisible({ timeout: 15000 });
+  1550 |       {
+  1551 |         const loc = page.locator(`#travel_refund_order_action_refund`).first();
+  1552 |         await loc.waitFor({ state: 'visible', timeout: 15000 });
+  1553 |         const clickedId = await loc.getAttribute('phx-value-id') || await loc.getAttribute('data-id');
+  1554 |         const confirmText = await loc.getAttribute('data-confirm');
+  1555 |         await loc.scrollIntoViewIfNeeded();
+  1556 |         if (confirmText) {
+  1557 |           const dialogPromise = page.waitForEvent('dialog', { timeout: 15000 })
+  1558 |             .then(async (dialog) => { await dialog.accept(); return dialog; })
+  1559 |             .catch(() => null);
+  1560 |           await loc.click({ timeout: 15000, noWaitAfter: true });
+  1561 |           await dialogPromise;
+  1562 |         } else {
+  1563 |           await loc.click({ timeout: 15000 });
+  1564 |         }
+  1565 |         if (clickedId) {
+  1566 |           __ctx.clicked_row = { ...( __ctx.clicked_row || {}), id: clickedId };
+  1567 |           __ctx["state_action_record_id_refund"] = clickedId;
+  1568 |           refreshDataBindings(__ctx);
+  1569 |         }
+  1570 |         if (!clickedId) {
 ```

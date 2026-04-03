@@ -46,22 +46,22 @@
       <.button variant="secondary" phx-click="action_submit" size="md" id="travel_change_order_action_submit">
         提交改签申请,如 approval_mode=oa 则通过 integration 创建 ApprovalInstance
       </.button>
-      <%= if get_in(@record, [:status]) == "pending" do %>
+      <%= if to_string(get_in(@record, [:status])) == "pending" do %>
         <.button variant="secondary" phx-click="action_confirm_change" size="md" id="travel_change_order_action_confirm_change">
           confirm_change
         </.button>
       <% end %>
-      <%= if get_in(@record, [:status]) == "pending" do %>
+      <%= if to_string(get_in(@record, [:status])) == "pending" do %>
         <.button variant="secondary" phx-click="action_reject_change" size="md" id="travel_change_order_action_reject_change">
           reject_change
         </.button>
       <% end %>
-      <%= if get_in(@record, [:status]) == "approved" do %>
+      <%= if to_string(get_in(@record, [:status])) == "approved" do %>
         <.button variant="secondary" phx-click="action_complete" size="md" id="travel_change_order_action_complete">
           complete
         </.button>
       <% end %>
-      <%= if get_in(@record, [:status]) == "pending" do %>
+      <%= if to_string(get_in(@record, [:status])) == "pending" do %>
         <.button variant="secondary" phx-click="action_complete_direct" size="md" id="travel_change_order_action_complete_direct">
           complete_direct
         </.button>

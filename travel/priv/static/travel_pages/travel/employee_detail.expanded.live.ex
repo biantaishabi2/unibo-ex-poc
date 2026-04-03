@@ -666,57 +666,57 @@ defmodule UniboExPocWeb.Pages.Travel.EmployeeDetailLive do
           <.button variant="secondary" phx-click="toggle_edit" size="md" id="edit_btn">
             编辑
           </.button>
-          <%= if get_in(@record, [:status]) == "draft" do %>
+          <%= if to_string(get_in(@record, [:status])) == "draft" do %>
             <.button variant="secondary" phx-click="action_confirm_quote" size="md" id="travel_order_action_confirm_quote">
               confirm_quote
             </.button>
           <% end %>
-          <%= if get_in(@record, [:status]) == "quoted" do %>
+          <%= if to_string(get_in(@record, [:status])) == "quoted" do %>
             <.button variant="secondary" phx-click="action_submit_order" size="md" id="travel_order_action_submit_order">
               submit_order
             </.button>
           <% end %>
-          <%= if get_in(@record, [:status]) == "quoted" do %>
+          <%= if to_string(get_in(@record, [:status])) == "quoted" do %>
             <.button variant="secondary" phx-click="action_submit_waitlist" size="md" id="travel_order_action_submit_waitlist">
               submit_waitlist
             </.button>
           <% end %>
-          <%= if get_in(@record, [:status]) == "submitted" do %>
+          <%= if to_string(get_in(@record, [:status])) == "submitted" do %>
             <.button variant="secondary" phx-click="action_mark_payment_succeeded" size="md" id="travel_order_action_mark_payment_succeeded">
               mark_payment_succeeded
             </.button>
           <% end %>
-          <%= if get_in(@record, [:status]) == "booking_pending" do %>
+          <%= if to_string(get_in(@record, [:status])) == "booking_pending" do %>
             <.button variant="secondary" phx-click="action_mark_booked" size="md" id="travel_order_action_mark_booked">
               mark_booked
             </.button>
           <% end %>
-          <%= if get_in(@record, [:status]) == "booking_pending" do %>
+          <%= if to_string(get_in(@record, [:status])) == "booking_pending" do %>
             <.button variant="secondary" phx-click="action_fulfill_waitlist" size="md" id="travel_order_action_fulfill_waitlist">
               fulfill_waitlist
             </.button>
           <% end %>
-          <%= if get_in(@record, [:status]) == "booked" do %>
+          <%= if to_string(get_in(@record, [:status])) == "booked" do %>
             <.button variant="secondary" phx-click="action_mark_completed" size="md" id="travel_order_action_mark_completed">
               mark_completed
             </.button>
           <% end %>
-          <%= if get_in(@record, [:status]) == "booked" do %>
+          <%= if to_string(get_in(@record, [:status])) == "booked" do %>
             <.button variant="secondary" phx-click="action_request_cancel" size="md" id="travel_order_action_request_cancel">
               request_cancel
             </.button>
           <% end %>
-          <%= if get_in(@record, [:status]) == "booking_pending" do %>
+          <%= if to_string(get_in(@record, [:status])) == "booking_pending" do %>
             <.button variant="secondary" phx-click="action_cancel_waitlist" size="md" id="travel_order_action_cancel_waitlist">
               cancel_waitlist
             </.button>
           <% end %>
-          <%= if get_in(@record, [:status]) == "cancel_pending" do %>
+          <%= if to_string(get_in(@record, [:status])) == "cancel_pending" do %>
             <.button variant="secondary" phx-click="action_execute_cancel" size="md" id="travel_order_action_execute_cancel">
               execute_cancel
             </.button>
           <% end %>
-          <%= if get_in(@record, [:status]) == "cancel_pending" do %>
+          <%= if to_string(get_in(@record, [:status])) == "cancel_pending" do %>
             <.button variant="secondary" phx-click="action_cancel_cancel_request" size="md" id="travel_order_action_cancel_cancel_request">
               cancel_cancel_request
             </.button>
@@ -727,7 +727,7 @@ defmodule UniboExPocWeb.Pages.Travel.EmployeeDetailLive do
           <.button variant="secondary" phx-click="action_confirm_change" size="md" id="travel_order_action_confirm_change">
             confirm_change
           </.button>
-          <%= if get_in(@record, [:status]) == "submitted" do %>
+          <%= if to_string(get_in(@record, [:status])) == "submitted" do %>
             <.button variant="secondary" phx-click="action_mark_order_failed" size="md" id="travel_order_action_mark_order_failed">
               mark_order_failed
             </.button>

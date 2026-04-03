@@ -94,19 +94,19 @@
         "accept": [
           "id",
           "hotel_offer_id",
-          "total_amount",
-          "currency",
-          "seat_selection_snapshot",
-          "points_to_use",
-          "order_no",
-          "product_type",
           "contact_phone",
-          "traveler_count",
-          "ticket_passenger_infos",
+          "seat_selection_snapshot",
           "contact_name",
-          "points_deduction_amount",
+          "order_no",
           "customer_id",
-          "host_shop_id"
+          "host_shop_id",
+          "product_type",
+          "total_amount",
+          "points_to_use",
+          "points_deduction_amount",
+          "traveler_count",
+          "currency",
+          "ticket_passenger_infos"
         ]
       }
     },
@@ -192,16 +192,6 @@
               },
               {
                 "action": "type",
-                "field": "seat_selection_snapshot",
-                "value": "{\"updated\":true}"
-              },
-              {
-                "action": "type",
-                "field": "contact_name",
-                "value": "UPDATED_{{__run_id}}_contact_name"
-              },
-              {
-                "action": "type",
                 "field": "ticket_passenger_infos",
                 "value": "{\"updated\":true}"
               },
@@ -214,6 +204,16 @@
                 "action": "type",
                 "field": "contact_phone",
                 "value": "UPDATED_{{__run_id}}_contact_phone"
+              },
+              {
+                "action": "type",
+                "field": "seat_selection_snapshot",
+                "value": "{\"updated\":true}"
+              },
+              {
+                "action": "type",
+                "field": "contact_name",
+                "value": "UPDATED_{{__run_id}}_contact_name"
               },
               {
                 "action": "click",
@@ -1646,11 +1646,11 @@
                   "source": "backend_result"
                 }
               ],
-              "equals": "$form.total_amount",
+              "equals": "$form.currency",
               "excludes_source": null,
               "graphql_field": "getTravelTravelOrder",
               "op": "field_equals",
-              "path": "total_amount",
+              "path": "currency",
               "source": "created_record_id"
             },
             "ui": [
